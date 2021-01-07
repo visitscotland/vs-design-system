@@ -44,11 +44,13 @@
 
             <#if module.quote??>
                 <vs-quote slot="icentreQuote">
-                    <vs-img
-                        alt="${(module.quoteImage)!'${label("essentials.global", "default.alt-text")}'}"
-                        src="${imageQuote}"
-                        slot="quoteImage">
-                    </vs-img>
+                    <#if module.quoteImage??>
+                        <vs-img
+                            alt="${(module.quoteImage)!'${label("essentials.global", "default.alt-text")}'}"
+                            src="${imageQuote}"
+                            slot="quoteImage">
+                        </vs-img>
+                    </#if>
                     <div
                         slot="quoteContent"
                     >
