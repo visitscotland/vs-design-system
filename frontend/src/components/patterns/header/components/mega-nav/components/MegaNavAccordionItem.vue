@@ -2,7 +2,7 @@
     <VsAccordionItem
         class="vs-mega-nav-accordion-item"
         data-test="vs-mega-nav-accordion-item"
-        :class="[{ 'is-last-item': isLast }, `vs-mega-nav-accordion-item--level-${level}`]"
+        :class="accordionItemClasses"
         :data-unique-id="getUniqueId"
         :control-id="`vs-mega-nav-accordion-item-${controlId}`"
         :open-by-default="false"
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
+import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
 import VsIcon from '@components/elements/icon/Icon';
 
 /**
@@ -87,6 +87,12 @@ export default {
             transformedTitle = transformedTitle.replace(/\s+/g, '-');
 
             return `vs-mega-nav-${transformedTitle}`;
+        },
+        accordionItemClasses() {
+            return [
+                `vs-mega-nav-accordion-item--level-${this.level}`,
+                this.isLast ? 'is-last-item' : '',
+            ];
         },
     },
 };
