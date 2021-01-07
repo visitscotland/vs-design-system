@@ -166,6 +166,10 @@ export default {
         }
     }
 
+    .vs-image-location-map {
+        height: $spacer-11;
+    }
+
     .key-facilities-list {
         &.has-facilities {
             border-top: 1px solid $color-gray-tint-5;
