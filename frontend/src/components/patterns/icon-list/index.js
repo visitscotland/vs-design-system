@@ -1,2 +1,2 @@
 export { VsIconList } from './IconList';
-export { VsIconListItem } from './IconListItem';
+export { VsIconListItem } from './components/IconListItem';
