@@ -34,13 +34,13 @@ definitions:
       wicket.model: ${model.search}
     /hippo:configuration/hippo:frontend/cms/cms-services/DmsDestinationLocationListProvider:
       jcr:primaryType: frontend:plugin
-      plugin.class: com.visitscotland.brmx.components.DmsLocationListProvider
+      plugin.class: com.visitscotland.brxm.components.DmsLocationListProvider
       valuelist.provider: service.locationlist.destination
       location.levels: [REGION, DESTINATION]
     /hippo:configuration/hippo:frontend/cms/cms-services/DmsProductSearchLocationListProvider:
       jcr:primaryType: frontend:plugin
       location.levels: []
-      plugin.class: com.visitscotland.brmx.components.DmsLocationListProvider
+      plugin.class: com.visitscotland.brxm.components.DmsLocationListProvider
       valuelist.provider: service.locationlist.psr
     /hippo:configuration/hippo:frontend/cms/ui-extensions/translationDiff:
       jcr:primaryType: frontend:uiExtension
