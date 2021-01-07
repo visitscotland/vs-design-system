@@ -6,7 +6,7 @@
 
 <#macro icentre module>
     <#if module.image.cmsImage??>
-    <#assign image>
+        <#assign image>
             <@hst.link hippobean=module.image.cmsImage.original/>
         </#assign>
     <#else>
