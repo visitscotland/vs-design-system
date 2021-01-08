@@ -24,7 +24,7 @@
         <#assign quoteLink=module.quoteLink />
     </#if>
 
-    <vs-container slot="upper" class="py-lg-4 vs-icentre__container" >
+    <vs-container slot="upper" class="py-lg-4 px-sm-0" >
         <vs-icentre>
             <template slot="icentreHeading">
                 <vs-heading level="2">${module.title}</vs-heading>
