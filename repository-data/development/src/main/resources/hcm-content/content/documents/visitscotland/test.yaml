@@ -2288,7 +2288,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 591494e4-a193-4417-9436-bd5e81213eca
         hippo:name: iCentre Module
-        hippo:versionHistory: a78d4469-9fa3-4b72-a923-a1d5c83e7588
+        hippo:versionHistory: 1c21539f-4d0f-4630-b5b5-e2653b1941d2
         /icentre-module[1]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
@@ -2297,7 +2297,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-03T10:13:58.043Z
-          hippostdpubwf:lastModificationDate: 2020-12-03T12:32:40.803Z
+          hippostdpubwf:lastModificationDate: 2021-01-08T10:20:53.131Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: f63255d9-106e-44db-bec0-f87f84688081
           hippotranslation:locale: en
@@ -2331,9 +2331,10 @@
                   Donec id eros a ipsum facilisis lacinia nec ac nunc.</p>
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:docbase: 8fac413e-f1e1-4b9b-9d57-9470bee430e7
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
             visitscotland:title: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
@@ -2350,7 +2351,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-03T10:13:58.043Z
-          hippostdpubwf:lastModificationDate: 2020-12-03T12:32:40.750Z
+          hippostdpubwf:lastModificationDate: 2021-01-08T10:20:53.036Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: f63255d9-106e-44db-bec0-f87f84688081
           hippotranslation:locale: en
@@ -2384,9 +2385,10 @@
                   Donec id eros a ipsum facilisis lacinia nec ac nunc.</p>
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:docbase: 8fac413e-f1e1-4b9b-9d57-9470bee430e7
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
             visitscotland:title: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
@@ -2403,9 +2405,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-03T10:13:58.043Z
-          hippostdpubwf:lastModificationDate: 2020-12-03T12:32:40.750Z
+          hippostdpubwf:lastModificationDate: 2021-01-08T10:20:53.036Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-12-03T12:33:01.253Z
+          hippostdpubwf:publicationDate: 2021-01-08T10:20:57.946Z
           hippotranslation:id: f63255d9-106e-44db-bec0-f87f84688081
           hippotranslation:locale: en
           visitscotland:translation: ''
@@ -2438,9 +2440,10 @@
                   Donec id eros a ipsum facilisis lacinia nec ac nunc.</p>
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:docbase: 8fac413e-f1e1-4b9b-9d57-9470bee430e7
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
             visitscotland:title: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
