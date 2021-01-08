@@ -132,7 +132,7 @@ export default {
 
 <docs>
 ```jsx
-    <vs-quote>
+    <VsQuote>
         <VsImg
             src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             alt="This is the alt text"
@@ -157,6 +157,6 @@ export default {
         >
             Signet Library
         </VsButton>
-    </vs-quote>
+    </VsQuote>
 ```
 </docs>
