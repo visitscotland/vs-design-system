@@ -163,18 +163,18 @@ export default {
     &__links-contained {
         margin-bottom: $spacer-0;
         margin-top: $spacer-9;
-        font-size: 1.125rem;
+        font-size: $display3-size;
 
         @include media-breakpoint-up(lg) {
-            line-height: 1.75;
+            line-height: $spacer-7;
         }
     }
 
     &__standalone-links {
-        font-size: 1.125rem;
+        font-size: $display3-size;
 
         @include media-breakpoint-up(lg) {
-            line-height: 1.75;
+            line-height: $spacer-7;
         }
     }
 }
