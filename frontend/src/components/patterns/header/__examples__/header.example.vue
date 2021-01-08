@@ -104,7 +104,7 @@
                                         </VsMegaNavListItem>
 
                                         <VsMegaNavListItem
-                                            v-if="subHeading.href"
+                                            v-if="subHeading.href && subHeading.cta"
                                             :href="subHeading.href"
                                             subheading-link
                                             slot="navHeadingCtaLink"

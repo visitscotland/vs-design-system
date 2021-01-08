@@ -50,7 +50,7 @@
                 <VsMegaNavAccordionItem
                     :title="item.title"
                     level="1"
-                    :control-id="'menu_accordion_item_' + mobileItemIndex"
+                    :control-id="mobileItemIndex"
                     v-for="(item, mobileItemIndex) in header.mainNav"
                     :key="mobileItemIndex"
                 >
@@ -67,7 +67,7 @@
                     <VsMegaNavAccordionItem
                         :title="subHeading.title"
                         level="2"
-                        :control-id="'menu_accordion_item_' + subHeadingIndex"
+                        :control-id="subHeadingIndex"
                         v-for="(subHeading, subHeadingIndex) in item.dropdownNav"
                         :key="subHeadingIndex"
                     >
