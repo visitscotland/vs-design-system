@@ -14,16 +14,6 @@
         <#assign image = module.image.externalImage!'' />
     </#if>
 
-    <#if module.quoteImage??>
-        <#assign imageQuote>
-            <@hst.link hippobean=module.quoteImage.cmsImage.original/>
-        </#assign>
-    </#if>
-
-    <#if module.quoteLink??>
-        <#assign quoteLink=module.quoteLink />
-    </#if>
-
     <vs-container slot="upper" class="py-lg-4 px-sm-0" >
         <vs-icentre>
             <template slot="icentreHeading">
@@ -50,8 +40,34 @@
             </template>
 
             <#if module.quote??>
+                <#if module.quoteImage??>
+                    <#assign imageQuote>
+                        <@hst.link hippobean=module.quoteImage.cmsImage.original/>
+                    </#assign>
+                <#else>
+                    <#assign imageQuote="" />
+                </#if>
+
+                <#if module.quoteLink??>
+                    <#assign quoteLink=module.quoteLink />
+                <#else>
+                    <#assign quoteLink="" />
+                </#if>
+
+                <#if module.quoteAuthorName??>
+                    <#assign quoteAuthorName=module.quoteAuthorName />
+                <#else>
+                    <#assign quoteAuthorName="" />
+                </#if>
+
+                <#if module.quoteAuthorTitle??>
+                    <#assign quoteAuthorTitle=module.quoteAuthorTitle />
+                <#else>
+                    <#assign quoteAuthorTitle="" />
+                </#if>
+
                 <template slot="icentreQuote">
-                    <@quote authorImage=imageQuote content=module.quote authorName=module.quoteAuthorName authorTitle=module.quoteAuthorTitle link=quoteLink />
+                    <@quote authorImage=imageQuote content=module.quote authorName=quoteAuthorName authorTitle=quoteAuthorTitle link=quoteLink />
                 </template>
             </#if>
         </vs-icentre>

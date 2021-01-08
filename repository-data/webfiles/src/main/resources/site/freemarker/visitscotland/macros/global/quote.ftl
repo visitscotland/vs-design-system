@@ -1,17 +1,21 @@
 <#macro quote authorImage content authorName authorTitle link="">
     <vs-quote>
-        <#if authorImage??>
+        <#if authorImage?has_content>
             <vs-img
                 alt="${(authorImage)!'${label("essentials.global", "default.alt-text")}'}"
                 src="${authorImage}"
                 slot="quoteImage">
             </vs-img>
         </#if>
-        <div slot="quoteContent">
+        <template slot="quoteContent">
             <@hst.html hippohtml=content/>
-        </div>
-        <span slot="quoteAuthorName">${authorName}</span>
-        <span slot="quoteAuthorTitle">${authorTitle}</span>
+        </template>
+        <#if authorName?has_content>
+            <template slot="quoteAuthorName">${authorName}</template>
+        </#if>
+        <#if authorTitle?has_content>
+            <template slot="quoteAuthorTitle">${authorTitle}</template>
+        </#if>
         <#if link?has_content>
             <vs-button
                 href="${link.link}"
