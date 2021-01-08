@@ -19,7 +19,7 @@
         </#assign>
     </#if>
 
-    <vs-container slot="upper" class="py-lg-4" >
+    <vs-container slot="upper" class="py-lg-4 vs-icentre__container" >
         <vs-icentre>
             <span slot="icentreHeading">
                 <vs-heading level="2">${module.title}</vs-heading>
