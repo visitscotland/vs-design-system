@@ -1,8 +1,18 @@
 <template>
-    <form
-        class="vs-form"
-        :id="`mktoForm_${formId}`"
-    />
+    <section class="vs-form">
+        <form
+            v-if="!showSuccessMessage"
+            class="vs-form__form"
+            :id="`mktoForm_${formId}`"
+        />
+
+        <div
+            class="vs-form__success-msg"
+            v-if="showSuccessMessage"
+        >
+            Well done, the form was submitted
+        </div>
+    </section>
 </template>
 
 <script>
@@ -20,10 +30,18 @@ export default {
             required: true,
         },
     },
+    data() {
+        return {
+            showSuccessMessage: false,
+        };
+    },
     mounted() {
         window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
         window.MktoForms2.whenRendered((form) => {
             this.destyleMktoForm(form);
+            form.onSuccess(() => {
+                this.showSuccessMessage = true;
+            });
         });
     },
     methods: {
