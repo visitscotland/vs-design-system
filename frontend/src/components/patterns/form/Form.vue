@@ -41,6 +41,7 @@ export default {
             this.destyleMktoForm(form);
             form.onSuccess(() => {
                 this.showSuccessMessage = true;
+                return false;
             });
         });
     },
