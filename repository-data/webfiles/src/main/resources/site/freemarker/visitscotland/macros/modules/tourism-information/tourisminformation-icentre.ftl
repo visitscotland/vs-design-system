@@ -3,6 +3,7 @@
 <#include "../../../../frontend/components/vs-quote.ftl">
 <#include "../../../../frontend/components/vs-img.ftl">
 <#include "../../global/image-with-caption.ftl">
+<#include "../../global/quote.ftl">
 
 <#macro icentre module>
     <#if module.image.cmsImage??>
@@ -19,17 +20,21 @@
         </#assign>
     </#if>
 
+    <#if module.quoteLink??>
+        <#assign quoteLink=module.quoteLink />
+    </#if>
+
     <vs-container slot="upper" class="py-lg-4 vs-icentre__container" >
         <vs-icentre>
-            <span slot="icentreHeading">
+            <template slot="icentreHeading">
                 <vs-heading level="2">${module.title}</vs-heading>
-            </span>
+            </template>
 
-            <span slot="icentreImageWithCaption">
+            <template slot="icentreImageWithCaption">
                 <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
-            </span>
+            </template>
 
-            <span slot="icentreLinks">
+            <template slot="icentreLinks">
                 ${module.description}
                 <#list module.links as iCentre>
                     <vs-link href="${iCentre.link}">
@@ -42,34 +47,12 @@
                     </#if>
                 </#list>
                 .
-            </span>
+            </template>
 
             <#if module.quote??>
-                <vs-quote slot="icentreQuote">
-                    <#if module.quoteImage??>
-                        <vs-img
-                            alt="${(module.quoteImage)!'${label("essentials.global", "default.alt-text")}'}"
-                            src="${imageQuote}"
-                            slot="quoteImage">
-                        </vs-img>
-                    </#if>
-                    <div slot="quoteContent">
-                        <@hst.html hippohtml=module.quote/>
-                    </div>
-                    <span slot="quoteAuthorName">
-                        ${module.quoteAuthorName}
-                    </span>
-                    <span slot="quoteAuthorTitle">
-                        ${module.quoteAuthorTitle}
-                    </span>
-                    <#if module.quoteLink??>
-                        <vs-button
-                            href="${module.quoteLink.link}"
-                            slot="quoteLink">
-                            ${module.quoteLink.label}
-                        </vs-button>
-                    </#if>
-                </vs-quote>
+                <template slot="icentreQuote">
+                    <@quote authorImage=imageQuote content=module.quote authorName=module.quoteAuthorName authorTitle=module.quoteAuthorTitle link=quoteLink />
+                </template>
             </#if>
         </vs-icentre>
     </vs-container>
