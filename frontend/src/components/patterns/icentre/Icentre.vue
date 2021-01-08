@@ -175,10 +175,10 @@ export default {
 
 <docs>
 ```jsx
-    <VsIcentre>
-        <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
+    <vs-icentre>
+        <vs-heading level="2" slot="icentreHeading">A tip from your local experts</vs-heading>
 
-        <VsImageWithCaption
+        <vs-image-with-caption>
             imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             altText="This is the alt text"
             slot="icentreImageWithCaption">
@@ -190,17 +190,17 @@ export default {
             <span slot="credit">
                 &copy; Some test credits
             </span>
-        </VsImageWithCaption>
+        </vs-image-with-caption>
 
         <span slot="icentreQuote">
-            <VsQuote>
-                <VsImg
+            <vs-quote>
+                <vs-img
                     src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     alt="This is the alt text"
                     data-sizes="auto"
                     class="lazyload"
                     slot="quoteImage">
-                </VsImg>
+                </vs-img>
                 <p
                     slot="quoteContent"
                 >
@@ -220,22 +220,22 @@ export default {
                 >
                     Visitor Services Advisor at Edinburgh iCentre
                 </span>
-                <VsButton
+                <vs-button
                     href="#"
                     slot="quoteLink"
                 >
                     Signet Library
-                </VsButton>
-            </VsQuote>
+                </vs-button>
+            </vs-quote>
         </span>
 
         <p slot="icentreLinks">Test content <a href="#">link</a></p>
-    </VsIcentre>
+    </vs-icentre>
 
-    <VsIcentre>
-        <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
+    <vs-icentre>
+        <vs-heading level="2" slot="icentreHeading">A tip from your local experts</vs-heading>
 
-        <VsImageWithCaption
+        <vs-image-with-caption
             imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             altText="This is the alt text"
             slot="icentreImageWithCaption">
@@ -247,9 +247,9 @@ export default {
             <span slot="credit">
                 &copy; Some test credits
             </span>
-        </VsImageWithCaption>
+        </vs-image-with-caption>
 
         <p slot="icentreLinks">Test content <a href="#">link</a></p>
-    </VsIcentre>
+    </vs-icentre>
 ```
 </docs>
