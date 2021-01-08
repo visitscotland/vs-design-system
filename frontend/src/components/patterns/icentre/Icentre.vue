@@ -170,10 +170,10 @@ export default {
         margin-bottom: $spacer-0;
         margin-top: $spacer-9;
         line-height: 1.25;
+        font-size: 1.125rem;
 
         @include media-breakpoint-up(lg) {
             line-height: 1.75;
-            font-size: 1.125rem;
         }
     }
 }
