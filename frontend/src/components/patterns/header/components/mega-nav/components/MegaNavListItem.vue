@@ -2,7 +2,7 @@
     <li
         class="vs-mega-nav-list-item"
         data-test="vs-mega-nav-list-item"
-        :class="navItemClass"
+        :class="navItemClasses"
     >
         <VsLink
             :href="href"
@@ -51,14 +51,22 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+         * Flag to check if item is last in array
+         */
+        isLast: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
-        navItemClass() {
+        navItemClasses() {
             return {
                 'vs-mega-nav-list-item__heading': this.href === '#',
                 'vs-mega-nav-list-item__link': this.href !== '#',
                 'vs-mega-nav-list-item__subheading-link': this.subheadingLink,
                 'vs-mega-nav-list-item__cta-link': this.ctaLink,
+                'is-last-item': this.isLast,
             };
         },
     },
