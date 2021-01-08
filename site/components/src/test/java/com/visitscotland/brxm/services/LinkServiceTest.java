@@ -173,7 +173,7 @@ class LinkServiceTest {
     }
 
     @Test
-    @DisplayName("Create a url from an SharedLink with an ExternalLink Compound ")
+    @DisplayName("Create a url from an SharedLink with an ProductSearchLink Compound ")
     void getPlainLink_productSearchLink() {
         SharedLink sharedLink = mock(SharedLink.class);
         ProductSearchLink productSearchLink = mock(ProductSearchLink.class, withSettings().lenient());
@@ -182,6 +182,20 @@ class LinkServiceTest {
         when(ps.getProductType()).thenReturn("acco");
         when(productSearchLink.getSearch()).thenReturn(ps);
         when(sharedLink.getLinkType()).thenReturn(productSearchLink, productSearchLink);
+
+        String link = service.getPlainLink(sharedLink, null);
+
+        assertTrue(link.contains("acco") && link.contains("search-results"));
+    }
+
+    @Test
+    @DisplayName("Create a url from an SharedLink with a ProductSearch Compound ")
+    void getPlainLink_productSearch() {
+        SharedLink sharedLink = mock(SharedLink.class);
+        ProductsSearch productSearch = mock(ProductsSearch.class);
+
+        when(productSearch.getProductType()).thenReturn("acco");
+        when(sharedLink.getLinkType()).thenReturn(productSearch, productSearch);
 
         String link = service.getPlainLink(sharedLink, null);
 

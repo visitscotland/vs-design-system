@@ -14,7 +14,6 @@ import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
@@ -98,13 +97,14 @@ public class LinkService {
             }
         } else if (link.getLinkType() instanceof ExternalLink) {
             return ((ExternalLink) link.getLinkType()).getLink();
+        } else if (link.getLinkType() instanceof ProductsSearch) {
+            return new ProductSearchBuilder().fromHippoBean(((ProductsSearch) link.getLinkType())).build();
         } else if (link.getLinkType() instanceof ProductSearchLink) {
             return new ProductSearchBuilder().fromHippoBean(((ProductSearchLink) link.getLinkType()).getSearch()).build();
         } else if (link.getLinkType() instanceof ExternalDocument) {
             return ((ExternalDocument) link.getLinkType()).getLink();
-        }
-        else {
-            logger.warn(String.format("This class %s is not recognized as a link type and cannot be converted", link.getLinkType() == null ? "null" : link.getClass().getSimpleName()));
+        } else {
+            logger.warn(String.format("This class %s is not recognized as a link type and cannot be converted", link.getLinkType() == null ? "null" : link.getLinkType().getClass().getSimpleName()));
         }
         return null;
     }
@@ -130,18 +130,18 @@ public class LinkService {
     /**
      * Method to assign the right category based on the url/cms structure
      *
-     * @param path String path of the document
+     * @param path   String path of the document
      * @param locale Locale
      * @return category
      */
     public String getLinkCategory(String path, Locale locale) {
         try {
-            if (getType(path)==LinkType.EXTERNAL) {
+            if (getType(path) == LinkType.EXTERNAL) {
                 java.net.URL url = new URL(path);
                 String host = url.getHost();
                 String category = host.toUpperCase().startsWith("WWW.") ? host.substring(4) : host;
                 return category.toUpperCase();
-            }else {
+            } else {
                 if (path.contains("ebooks.visitscotland.com")) {
                     return "eBooks";
                 } else if (path.contains("blog")) {
@@ -160,10 +160,10 @@ public class LinkService {
                     return resourceBundle.getResourceBundle("navigation.footer", "footer.visitor-information", locale, true);
                 }
             }
-            return resourceBundle.getResourceBundle("navigation.main", "see-do", locale ,true);
+            return resourceBundle.getResourceBundle("navigation.main", "see-do", locale, true);
 
         } catch (MalformedURLException e) {
-            logger.error("The URL "+path+" is not valid", e);
+            logger.error("The URL " + path + " is not valid", e);
             return null;
         }
 
