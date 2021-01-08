@@ -169,7 +169,6 @@ export default {
     &__links-contained {
         margin-bottom: $spacer-0;
         margin-top: $spacer-9;
-        line-height: 1.25;
         font-size: 1.125rem;
 
         @include media-breakpoint-up(lg) {
