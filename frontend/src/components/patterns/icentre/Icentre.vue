@@ -175,6 +175,14 @@ export default {
             line-height: 1.75;
         }
     }
+
+    &__standalone-links {
+        font-size: 1.125rem;
+
+        @include media-breakpoint-up(lg) {
+            line-height: 1.75;
+        }
+    }
 }
 </style>
 
