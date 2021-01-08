@@ -182,10 +182,10 @@ export default {
 
 <docs>
 ```jsx
-    <vs-icentre>
-        <vs-heading level="2" slot="icentreHeading">A tip from your local experts</vs-heading>
+    <VsIcentre>
+        <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
 
-        <vs-image-with-caption>
+        <VsImageWithCaption
             imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             altText="This is the alt text"
             slot="icentreImageWithCaption">
@@ -197,17 +197,17 @@ export default {
             <span slot="credit">
                 &copy; Some test credits
             </span>
-        </vs-image-with-caption>
+        </VsImageWithCaption>
 
         <span slot="icentreQuote">
-            <vs-quote>
-                <vs-img
+            <VsQuote>
+                <VsImg
                     src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     alt="This is the alt text"
                     data-sizes="auto"
                     class="lazyload"
                     slot="quoteImage">
-                </vs-img>
+                </VsImg>
                 <p slot="quoteContent">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
                     ac urna non metus tempor accumsan ut non risus. In turpis est,
@@ -217,22 +217,22 @@ export default {
                 </p>
                 <span slot="quoteAuthorName">Penny</span>
                 <span slot="quoteAuthorTitle">Visitor Services Advisor at Edinburgh iCentre</span>
-                <vs-button
+                <VsButton
                     href="#"
                     slot="quoteLink"
                 >
                     Signet Library
-                </vs-button>
-            </vs-quote>
+                </VsButton>
+            </VsQuote>
         </span>
 
         <p slot="icentreLinks">Test content <a href="#">link</a></p>
-    </vs-icentre>
+    </VsIcentre>
 
-    <vs-icentre>
-        <vs-heading level="2" slot="icentreHeading">A tip from your local experts</vs-heading>
+    <VsIcentre>
+        <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
 
-        <vs-image-with-caption
+        <VsImageWithCaption
             imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             altText="This is the alt text"
             slot="icentreImageWithCaption">
@@ -244,9 +244,9 @@ export default {
             <span slot="credit">
                 &copy; Some test credits
             </span>
-        </vs-image-with-caption>
+        </VsImageWithCaption>
 
         <p slot="icentreLinks">Test content <a href="#">link</a></p>
-    </vs-icentre>
+    </VsIcentre>
 ```
 </docs>
