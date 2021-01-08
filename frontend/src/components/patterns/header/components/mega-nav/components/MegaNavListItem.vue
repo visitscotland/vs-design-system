@@ -138,7 +138,7 @@ export default {
                     background-color: transparent;
 
                     &:after{
-                        height: 100%;
+                        opacity: 1;
                     }
                 }
             }
@@ -157,9 +157,10 @@ export default {
             @include media-breakpoint-up(lg) {
                 &:after{
                     width: 6px;
-                    height: 0;
+                    height: 100%;
+                    opacity: 0;
                     background: $color-pink;
-                    transition: height 0.15s linear;
+                    transition: opacity 0.16s ease-in-out;
                 }
             }
         }
