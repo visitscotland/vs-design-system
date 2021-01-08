@@ -10,10 +10,10 @@
         <template slot="quoteContent">
             <@hst.html hippohtml=content/>
         </template>
-        <#if authorName?has_content>
+        <#if authorName?has_content && authorName != "">
             <template slot="quoteAuthorName">${authorName}</template>
         </#if>
-        <#if authorTitle?has_content>
+        <#if authorTitle?has_content && authorTitle != "">
             <template slot="quoteAuthorTitle">${authorTitle}</template>
         </#if>
         <#if link?has_content>
