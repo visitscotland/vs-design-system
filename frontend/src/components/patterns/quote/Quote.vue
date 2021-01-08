@@ -60,11 +60,11 @@ export default {
     }
 
     &__author-title {
-        line-height: 1.25;
+        line-height: $spacer-5;
 
         @include media-breakpoint-up(lg) {
-            line-height: 1.75;
-            font-size: 1.125rem;
+            line-height: $spacer-7;
+            font-size: $display3-size;
             margin-bottom: $spacer-7;
         }
     }
