@@ -111,12 +111,6 @@ export default {
         padding: $spacer-11 $spacer-0;
     }
 
-    &__container {
-        @include media-breakpoint-down(sm) {
-            padding: 0;
-        }
-    }
-
     &__heading {
         margin-bottom: $spacer-9;
 
