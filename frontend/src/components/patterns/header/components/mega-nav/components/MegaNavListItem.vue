@@ -2,7 +2,7 @@
     <li
         class="vs-mega-nav-list-item"
         data-test="vs-mega-nav-list-item"
-        :class="[{ 'is-last-item': isLast }, navItemClass]"
+        :class="navItemClasses"
     >
         <VsLink
             :href="href"
@@ -60,12 +60,13 @@ export default {
         },
     },
     computed: {
-        navItemClass() {
+        navItemClasses() {
             return {
                 'vs-mega-nav-list-item__heading': this.href === '#',
                 'vs-mega-nav-list-item__link': this.href !== '#',
                 'vs-mega-nav-list-item__subheading-link': this.subheadingLink,
                 'vs-mega-nav-list-item__cta-link': this.ctaLink,
+                'is-last-item': this.isLast,
             };
         },
     },
@@ -137,7 +138,7 @@ export default {
                     background-color: transparent;
 
                     &:after{
-                        height: 100%;
+                        opacity: 1;
                     }
                 }
             }
@@ -156,9 +157,10 @@ export default {
             @include media-breakpoint-up(lg) {
                 &:after{
                     width: 6px;
-                    height: 0;
+                    height: 100%;
+                    opacity: 0;
                     background: $color-pink;
-                    transition: height 0.15s linear;
+                    transition: opacity 0.16s ease-in-out;
                 }
             }
         }
@@ -205,6 +207,11 @@ export default {
             border: 2px solid $color-white;
             line-height: $line-height-s;
             padding: $spacer-1 $spacer-5;
+
+            &:focus{
+                outline: 0;
+                border: 2px solid $color-pink;
+            }
         }
 
         &__link{
