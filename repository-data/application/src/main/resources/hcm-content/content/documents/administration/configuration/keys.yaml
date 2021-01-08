@@ -1,8 +1,9 @@
-/content/documents/administration/labels/keys:
+/content/documents/administration/configuration/keys:
   jcr:primaryType: hippo:handle
-  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 66d7dad9-555b-4284-a7ab-38398edf1713
   hippo:name: Keys
+  hippo:versionHistory: 1941ee01-cd9a-4ac7-a2fc-31f0e6a4b308
   /keys[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -11,7 +12,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
-    hippostdpubwf:lastModificationDate: 2020-05-18T15:58:43.589+01:00
+    hippostdpubwf:lastModificationDate: 2020-11-03T13:53:40.306Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['']
     resourcebundle:id: keys
@@ -41,7 +42,7 @@
     hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
     hippostdpubwf:lastModificationDate: 2020-05-18T15:58:43.544+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-05-20T14:42:07.135+01:00
+    hippostdpubwf:publicationDate: 2020-11-03T13:40:00.509Z
     resourcebundle:descriptions: ['']
     resourcebundle:id: keys
     resourcebundle:keys: [maptiler.devkey]

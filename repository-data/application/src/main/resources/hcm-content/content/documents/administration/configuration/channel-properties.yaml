@@ -1,8 +1,9 @@
 /content/documents/administration/configuration/channel-properties:
   jcr:primaryType: hippo:handle
-  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 16ca0afd-655a-4612-a712-cded4cd912b0
   hippo:name: Channel Properties
+  hippo:versionHistory: 1afce4df-8a9b-4970-a319-2b2352808233
   /channel-properties[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -11,12 +12,14 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-06-12T19:38:17.843+01:00
-    hippostdpubwf:lastModificationDate: 2020-06-26T10:33:13.459+01:00
+    hippostdpubwf:lastModificationDate: 2020-11-03T13:33:33.516Z
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:descriptions: ['', '', '', '', '']
     resourcebundle:id: channel
-    resourcebundle:keys: [og.site-name, og.twitter.site, seo.title-suffix]
-    resourcebundle:messages: [Visit Scotland, '@VisitScotland', '| VisitScotland']
+    resourcebundle:keys: [og.site-name, og.twitter.site, seo.title-suffix, marketo.newsletter.formId,
+      marketo.munchkinId]
+    resourcebundle:messages: [Visit Scotland, '@VisitScotland', '| VisitScotland',
+      '35', 638-HHZ-510]
   /channel-properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -25,12 +28,14 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-06-12T19:38:17.843+01:00
-    hippostdpubwf:lastModificationDate: 2020-06-26T10:33:13.212+01:00
+    hippostdpubwf:lastModificationDate: 2020-11-03T13:50:15.416Z
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:descriptions: ['', '', '', '', '']
     resourcebundle:id: channel
-    resourcebundle:keys: [og.site-name, og.twitter.site, seo.title-suffix]
-    resourcebundle:messages: [Visit Scotland, '@VisitScotland', '| VisitScotland']
+    resourcebundle:keys: [og.site-name, og.twitter.site, seo.title-suffix, marketo.newsletter.formId,
+      marketo.munchkinId]
+    resourcebundle:messages: [Visit Scotland, '@VisitScotland', '| VisitScotland',
+      '35', 638-HHZ-510]
   /channel-properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -39,10 +44,12 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-06-12T19:38:17.843+01:00
-    hippostdpubwf:lastModificationDate: 2020-06-26T10:33:13.212+01:00
+    hippostdpubwf:lastModificationDate: 2020-11-03T13:50:15.416Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-06-26T10:33:18.766+01:00
-    resourcebundle:descriptions: ['', '', '']
+    hippostdpubwf:publicationDate: 2020-11-03T13:50:17.729Z
+    resourcebundle:descriptions: ['', '', '', '', '']
     resourcebundle:id: channel
-    resourcebundle:keys: [og.site-name, og.twitter.site, seo.title-suffix]
-    resourcebundle:messages: [Visit Scotland, '@VisitScotland', '| VisitScotland']
+    resourcebundle:keys: [og.site-name, og.twitter.site, seo.title-suffix, marketo.newsletter.formId,
+      marketo.munchkinId]
+    resourcebundle:messages: [Visit Scotland, '@VisitScotland', '| VisitScotland',
+      '35', 638-HHZ-510]
