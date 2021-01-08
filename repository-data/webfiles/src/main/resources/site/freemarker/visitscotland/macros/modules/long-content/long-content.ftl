@@ -2,8 +2,8 @@
 <#include "../../../../frontend/components/vs-image-with-caption.ftl">
 <#include "../../global/image-with-caption.ftl">
 
-<#-- @ftlvariable name="module" type="com.visitscotland.brmx.beans.mapping.LongContentModule" -->
-<#-- @ftlvariable name="section" type="com.visitscotland.brmx.beans.mapping.FlatLongContentSection" -->
+<#-- @ftlvariable name="module" type="com.visitscotland.brxm.beans.mapping.LongContentModule" -->
+<#-- @ftlvariable name="section" type="com.visitscotland.brxm.beans.mapping.FlatLongContentSection" -->
 
 <#macro longContent module>
     <@hst.manageContent hippobean=module.hippoBean />

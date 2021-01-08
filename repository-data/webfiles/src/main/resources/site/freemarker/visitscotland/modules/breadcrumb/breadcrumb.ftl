@@ -11,7 +11,7 @@
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
 <#-- @ftlvariable name="requestedURI" type="java.lang.String" -->
 <#-- @ftlvariable name="isHome" type="java.lang.Boolean" -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Page" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.beans.Page" -->
 
 </#compress>
 <#if breadcrumb?? && breadcrumb.items??>

@@ -7,7 +7,7 @@
 
 <script>
 import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
-import VsItineraryMapMarker from '@components/patterns/itineraries/components/itinerary-map/ItineraryMapMarker';
+import VsItineraryMapMarker from '@components/patterns/itineraries/components/itinerary-map/components/ItineraryMapMarker';
 import Vue from 'vue';
 
 let mapboxgl = null;

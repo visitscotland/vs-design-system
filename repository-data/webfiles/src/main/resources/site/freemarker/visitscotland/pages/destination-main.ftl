@@ -23,14 +23,14 @@
 
 <#include "./module-builder.ftl">
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
-<#-- @ftlvariable name="pageItems" type="com.visitscotland.brmx.beans.Megalinks" -->
-<#-- @ftlvariable name="image" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.beans.Destination" -->
+<#-- @ftlvariable name="pageItems" type="com.visitscotland.brxm.beans.Megalinks" -->
+<#-- @ftlvariable name="image" type="com.visitscotland.brxm.beans.mapping.FlatImage" -->
 
-<#-- @ftlvariable name="heroImage" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.beans.mapping.FlatImage" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.beans.mapping.Coordinates" -->
 
-<#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
+<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.beans.Image" -->
 
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />

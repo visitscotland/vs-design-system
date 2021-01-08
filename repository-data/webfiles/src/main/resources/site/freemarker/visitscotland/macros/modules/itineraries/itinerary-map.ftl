@@ -3,8 +3,8 @@
 <#include "../../../../frontend/components/vs-itinerary-map.ftl">
 <#include "../../../../frontend/components/vs-itinerary-map-marker.ftl">
 
-<#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
-<#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
+<#-- @ftlvariable name="stop" type="com.visitscotland.brxm.beans.Stop" -->
+<#-- @ftlvariable name="prod" type="com.visitscotland.brxm.beans.mapping.FlatStop" -->
 
 <#macro itineraryMap days>
     <vs-itinerary-map
