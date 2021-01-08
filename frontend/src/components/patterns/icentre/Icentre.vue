@@ -125,7 +125,12 @@ export default {
     }
 
     &__links {
+        font-size: $display3-size;
         margin-bottom: $spacer-9;
+
+        @include media-breakpoint-up(lg) {
+            line-height: $spacer-7;
+        }
     }
 
     &__intro-content {
@@ -163,14 +168,6 @@ export default {
     &__links-contained {
         margin-bottom: $spacer-0;
         margin-top: $spacer-9;
-        font-size: $display3-size;
-
-        @include media-breakpoint-up(lg) {
-            line-height: $spacer-7;
-        }
-    }
-
-    &__standalone-links {
         font-size: $display3-size;
 
         @include media-breakpoint-up(lg) {
