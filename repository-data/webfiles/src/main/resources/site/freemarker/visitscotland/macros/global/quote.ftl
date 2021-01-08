@@ -10,12 +10,8 @@
         <div slot="quoteContent">
             <@hst.html hippohtml=content/>
         </div>
-        <span slot="quoteAuthorName">
-            ${authorName}
-        </span>
-        <span slot="quoteAuthorTitle">
-            ${authorTitle}
-        </span>
+        <span slot="quoteAuthorName">${authorName}</span>
+        <span slot="quoteAuthorTitle">${authorTitle}</span>
         <#if link?has_content>
             <vs-button
                 href="${link.link}"
