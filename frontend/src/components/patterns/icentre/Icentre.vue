@@ -111,6 +111,12 @@ export default {
         padding: $spacer-11 $spacer-0;
     }
 
+    &__container {
+        @include media-breakpoint-down(sm) {
+            padding: 0;
+        }
+    }
+
     &__heading {
         margin-bottom: $spacer-9;
 
@@ -137,7 +143,7 @@ export default {
             padding: 0;
 
             figure {
-                width: calc(100% + 1.5em);
+                width: calc(100% + 2em);
                 margin-left: -1em;
             }
         }
