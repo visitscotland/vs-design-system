@@ -6,7 +6,10 @@
         <div class="vs-quote__speech-container">
             <span class="vs-quote__speech-mark">“</span>
         </div>
-        <div class="vs-quote__author-container">
+        <div
+            class="vs-quote__author-container"
+            v-if="hasAuthorImage"
+        >
             <!-- @slot Holds the author image (vs-image expected) -->
             <slot name="quoteImage" />
         </div>
@@ -15,11 +18,17 @@
                 <!-- @slot Holds the main body of the quote (html expected) -->
                 <slot name="quoteContent" />
             </div>
-            <p class="vs-quote__author-name">
+            <p
+                class="vs-quote__author-name"
+                v-if="hasAuthorName"
+            >
                 <!-- @slot Holds the name of the author (text expected) -->
                 <slot name="quoteAuthorName" />,
             </p>
-            <p class="vs-quote__author-title">
+            <p
+                class="vs-quote__author-title"
+                v-if="hasAuthorTitle"
+            >
                 <!-- @slot Holds the job title of the author (text expected) -->
                 <slot name="quoteAuthorTitle" />
             </p>
@@ -39,6 +48,17 @@ export default {
     name: 'VsQuote',
     status: 'prototype',
     release: '0.0.1',
+    computed: {
+        hasAuthorName() {
+            return !!this.$slots.quoteAuthorName;
+        },
+        hasAuthorTitle() {
+            return !!this.$slots.quoteAuthorTitle;
+        },
+        hasAuthorImage() {
+            return !!this.$slots.quoteImage;
+        },
+    },
 };
 </script>
 
