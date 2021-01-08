@@ -2,9 +2,9 @@
     <VsAccordionItem
         class="vs-mega-nav-accordion-item"
         data-test="vs-mega-nav-accordion-item"
-        :class="`vs-mega-nav-accordion-item--level-${level}`"
+        :class="accordionItemClasses"
         :data-unique-id="getUniqueId"
-        :control-id="controlId"
+        :control-id="`vs-mega-nav-accordion-item-${controlId}`"
         :open-by-default="false"
     >
         <template #title>
@@ -33,7 +33,8 @@
 </template>
 
 <script>
-import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
+import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
+import VsIcon from '@components/elements/icon/Icon';
 
 /**
  *  This component is used in the mobile menu for groups of links
@@ -46,6 +47,7 @@ export default {
     release: '0.1.0',
     components: {
         VsAccordionItem,
+        VsIcon,
     },
     props: {
         /**
@@ -71,6 +73,13 @@ export default {
             required: true,
             validator: (value) => value.match(/(1|2)/),
         },
+        /**
+         * Flag to check if item is last in array
+         */
+        isLast: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         getUniqueId() {
@@ -78,6 +87,12 @@ export default {
             transformedTitle = transformedTitle.replace(/\s+/g, '-');
 
             return `vs-mega-nav-${transformedTitle}`;
+        },
+        accordionItemClasses() {
+            return [
+                `vs-mega-nav-accordion-item--level-${this.level}`,
+                this.isLast ? 'is-last-item' : '',
+            ];
         },
     },
 };
@@ -131,8 +146,9 @@ export default {
                 padding-left: $spacer-5;
                 padding-right: $spacer-5;
 
-                &:hover {
+                &:hover, &:focus, &:active, &:active:focus {
                     background-color: $color-secondary-gray-tint-6;
+                    color: $color-base-text;
                 }
             }
         }
@@ -148,7 +164,7 @@ export default {
                 padding-left: $spacer-8;
                 padding-right: $spacer-5;
 
-                &:hover {
+                &:hover, &:focus, &:active, &:active:focus {
                     background-color: $color-white;
                     color: $color-pink;
                 }
@@ -165,14 +181,14 @@ export default {
         <VsMegaNavAccordionItem
             :title="item.title"
             level="1"
-            :control-id="'menu_accordion_item_' + mobileItemIndex"
+            :control-id="mobileItemIndex"
             v-for="(item, mobileItemIndex) in header.mainNav"
             :key="mobileItemIndex"
         >
             <VsMegaNavAccordionItem
                 :title="subHeading.title"
                 level="2"
-                :control-id="'menu_accordion_item_' + subHeadingIndex"
+                :control-id="subHeadingIndex"
                 v-for="(subHeading, subHeadingIndex) in item.dropdownNav"
                 :key="subHeadingIndex"
             >
