@@ -17,7 +17,7 @@
             </div>
             <p class="vs-quote__author-name">
                 <!-- @slot Holds the name of the author (text expected) -->
-                <slot name="quoteAuthorName" />
+                <slot name="quoteAuthorName" />,
             </p>
             <p class="vs-quote__author-title">
                 <!-- @slot Holds the job title of the author (text expected) -->
@@ -52,7 +52,11 @@ export default {
 
     &__author-name {
         font-weight: bold;
-        margin-bottom: $spacer-2;
+        margin-bottom: $spacer-0;
+
+        @include media-breakpoint-up(lg) {
+            margin-bottom: $spacer-2;
+        }
     }
 
     &__author-title {
@@ -136,23 +140,15 @@ export default {
             class="lazyload"
             slot="quoteImage">
         </VsImg>
-        <p
-            slot="quoteContent"
-        >
+        <p slot="quoteContent">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
             ac urna non metus tempor accumsan ut non risus. In turpis est,
             imperdiet eu sagittis ac, sodales quis nunc. Ut sagittis vulputate
             lacinia. Vivamus faucibus lorem leo, nec laoreet ligula auctor a.
             Donec id eros a ipsum facilisis lacinia nec ac nunc.
         </p>
-        <span
-            slot="quoteAuthorName"
-        >
-            Penny
-        </span>
-        <span
-            slot="quoteAuthorTitle"
-        >
+        <span slot="quoteAuthorName">Penny</span>
+        <span slot="quoteAuthorTitle">
             Visitor Services Advisor at Edinburgh iCentre
         </span>
         <VsButton
