@@ -41,9 +41,7 @@
             <main id="main">
                 <@hst.include ref="main"/>
 
-
-                <#--  <@embeddedForm label("channel", "marketo.newsletter.formId") />  -->
-                <@embeddedForm 67 />
+                <@embeddedForm label("channel", "marketo.newsletter.formId") />
             </main>
 
             <@hst.include ref="footer"/>
