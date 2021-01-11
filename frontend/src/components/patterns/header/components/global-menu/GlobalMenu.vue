@@ -1,6 +1,9 @@
 <template>
     <div class="vs-global-menu">
-        <VsContainer fluid="lg">
+        <VsContainer
+            fluid="lg"
+            class="px-0 px-sm-3"
+        >
             <VsRow>
                 <VsCol
                     cols="12"
