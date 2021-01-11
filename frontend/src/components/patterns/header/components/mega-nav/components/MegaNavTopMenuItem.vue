@@ -93,6 +93,7 @@ export default {
 
     &__divider{
         margin: $spacer-3 0 $spacer-7;
+        border-color: $color-gray-tint-6;
     }
 
     &__columns-wrapper{

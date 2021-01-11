@@ -127,7 +127,7 @@ export default {
                     font-weight: $font-weight-normal;
                     transition: none;
                     border: 0;
-                    border-top: 1px solid $border-color;
+                    border-top: 1px solid $color-gray-tint-6;
 
                     &:focus, &:active, &:active:focus {
                         box-shadow: 0 0 0 0.1rem $color-pink inset!important;
@@ -157,16 +157,21 @@ export default {
     &--level-2{
         > .vs-accordion-item__card-header{
             .vs-accordion-toggle.btn-primary{
-                background-color: #F8F8F8;
+                background-color: $color-white;
                 color: $color-secondary-gray-shade-3;
                 font-size: $h3-font-size;
                 line-height: $line-height-s;
                 padding-left: $spacer-8;
                 padding-right: $spacer-5;
 
-                &:hover, &:focus, &:active, &:active:focus {
-                    background-color: $color-white;
+                &:hover {
+                    background-color: $color-gray-tint-7;
                     color: $color-pink;
+                }
+
+                &:focus, &:active, &:active:focus {
+                    background-color: $color-white;
+                    color: $color-secondary-gray-shade-3;
                 }
             }
         }

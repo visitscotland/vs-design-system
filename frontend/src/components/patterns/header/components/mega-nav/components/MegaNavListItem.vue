@@ -77,8 +77,8 @@ export default {
 .vs-mega-nav-list-item{
     position: relative;
     list-style-type: none;
-    background-color: #EFEFEF;
-    border-top: 1px solid $border-color;
+    background-color: $color-gray-tint-7;
+    border-top: 1px solid $color-gray-tint-6;
 
     @include media-breakpoint-up(lg) {
         border-top: 0;
@@ -89,7 +89,7 @@ export default {
         text-decoration: none;
         display: block;
         padding: $spacer-3 $spacer-9;
-        border: 2px solid #EFEFEF;
+        border: 2px solid $color-gray-tint-7;
         line-height: 1.4;
         font-size: $h4-font-size;
 
@@ -110,7 +110,7 @@ export default {
     }
 
     &__heading{
-        border-bottom: 1px solid #d9d9d9;
+        border-bottom: 1px solid $color-gray-tint-5;
         margin-bottom: $spacer-1;
         line-height: $standard-line-height;
 
@@ -174,8 +174,8 @@ export default {
 
     &__cta-link{
         .vs-link--variant-primary{
-            background-color: #F8F8F8;
-            color: $color-secondary-gray-shade-3;
+            background-color: $color-white;
+            color: $color-pink;
             font-size: $h3-font-size;
             line-height: $line-height-s;
             padding-left: $spacer-8;
@@ -188,10 +188,12 @@ export default {
 
             &:hover {
                 border: 0;
+                background-color: $color-gray-tint-7;
             }
 
             &:focus, &:active, &:active:focus {
                 border: 0;
+                background-color: $color-white;
                 box-shadow: 0 0 0 0.1rem $color-pink inset;
             }
         }
@@ -201,7 +203,6 @@ export default {
 @include no-js {
     .vs-mega-nav-list-item{
         background-color: transparent;
-        border: 0;
 
         .vs-link--variant-primary{
             border: 2px solid $color-white;
@@ -216,21 +217,20 @@ export default {
 
         &__link{
             .vs-link--variant-primary{
-                color: $color-secondary-gray;
-
                 &:hover{
                     background-color: transparent;
 
                     &:after{
-                        height: 100%;
+                        opacity: 1;
                     }
                 }
 
                 &::after{
                     width: 6px;
-                    height: 0;
+                    height: 100%;
+                    opacity: 0;
                     background: $color-pink;
-                    transition: height 0.15s linear;
+                    transition: opacity 0.16s ease-in-out;
                 }
             }
         }
