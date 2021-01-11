@@ -277,6 +277,10 @@ export default {
 
             &:focus {
                 box-shadow: 0 0 0 0.1rem $color-pink inset;
+
+                &::after{
+                    display: none;
+                }
             }
 
             &::after {
