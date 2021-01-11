@@ -9695,7 +9695,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 54a21331-8c54-4985-8154-982099a6d826
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
@@ -9827,9 +9826,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:45:01.131Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T15:08:19.165Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T15:00:57.578Z
+          hippostdpubwf:publicationDate: 2021-01-11T16:36:23.438Z
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
           visitscotland:anchor: introduction
@@ -10768,7 +10767,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:50:37.879Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:53:55.163Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:16:13.955Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: f25530e0-d25c-4a47-844f-47f23b0cbb3d
           hippotranslation:locale: en
@@ -10782,34 +10781,39 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Fans of Islay's famous peaty malt whiskies and vibrant island culture.</p>
+                <p>Fans of Islay's famous peaty malt whiskies and vibrant island culture.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p>If there's one thing that will warm you up in winter, it's <a href="https://www.visitscotland.com/see-do/food-drink/whisky/" title="Whisky">whisky</a>, the country's national drink. For a winter break with a difference, take the ferry to <a href="https://www.visitscotland.com/destinations-maps/isle-islay/" title="Isle of Islay">Islay</a>, Scotland's whisky island.&nbsp;</p>
+                <p>If there's one thing that will warm you up in winter, it's <a href="https://www.visitscotland.com/see-do/food-drink/whisky/" title="Whisky">whisky</a>, the country's national drink. For a winter break with a difference, take the ferry to <a href="https://www.visitscotland.com/destinations-maps/isle-islay/" title="Isle of Islay">Islay</a>, Scotland's whisky island.&nbsp;</p>
 
-              <p>With nine <a href="https://www.visitscotland.com/holidays-breaks/christmas-winter/winter-ideas-inspiration/#" title="Islay Whisky Distilleries guide">distilleries</a> to visit, you'll no doubt find a favourite peaty dram to warm your cockles on Islay. You could visit <a href="https://www.visitscotland.com/info/see-do/bowmore-distillery-p421321" title="Bowmore Distillery">Bowmore Distillery</a>, situated in the heart of the village of the same name, or get up close to the stills of&nbsp;<a href="https://www.visitscotland.com/info/see-do/lagavulin-distillery-visitors-centre-p418551">Lagavulin Distillery</a>. Islay also boasts some lovely beaches and clifftop nature reserves, perfect for a winter stroll.</p>
+                <p>With nine <a href="https://www.visitscotland.com/holidays-breaks/christmas-winter/winter-ideas-inspiration/#" title="Islay Whisky Distilleries guide">distilleries</a> to visit, you'll no doubt find a favourite peaty dram to warm your cockles on Islay. You could visit <a href="https://www.visitscotland.com/info/see-do/bowmore-distillery-p421321" title="Bowmore Distillery">Bowmore Distillery</a>, situated in the heart of the village of the same name, or get up close to the stills of&nbsp;<a href="https://www.visitscotland.com/info/see-do/lagavulin-distillery-visitors-centre-p418551">Lagavulin Distillery</a>. Islay also boasts some lovely beaches and clifftop nature reserves, perfect for a winter stroll.</p>
 
-              <p>Unwind in a cosy fire-lit pub where you might hear some live traditional music. If you visit during&nbsp;22 -&nbsp;24 November 2019, you can experience great craic during the <a href="https://www.facebook.com/islaysessions/" title="The Islay Sessions Facebook page" target="_blank">Islay Sessions</a>, a small winter festival featuring incredible folk musicians.</p>
+                <p>Unwind in a cosy fire-lit pub where you might hear some live traditional music. If you visit during&nbsp;22 -&nbsp;24 November 2019, you can experience great craic during the <a href="https://www.facebook.com/islaysessions/" title="The Islay Sessions Facebook page" target="_blank">Islay Sessions</a>, a small winter festival featuring incredible folk musicians.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>The island offers a great range of places to stay, from traditional hotels to luxury eco-lodges with saunas and hot tubs.</p>
+                <p>The island offers a great range of places to stay, from traditional hotels to luxury eco-lodges with saunas and hot tubs.</p>
 
-              <p>Find <a href="https://www.visitscotland.com/destinations-maps/isle-islay/accommodation/" title="Accommodation">accommodation on Islay</a>.</p>
+                <p>Find <a href="https://www.visitscotland.com/destinations-maps/isle-islay/accommodation/" title="Accommodation">accommodation on Islay</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>Treat yourself to some fine Islay produce, including tasty fresh seafood. At the restaurant in the <a href="https://www.visitscotland.com/info/accommodation/the-port-charlotte-hotel-p204341">Port Charlotte Hotel,</a> you can enjoy a sumptuous meal in elegant surroundings, or tuck into a&nbsp;bar supper in the relaxed atmosphere of the bar and conservatory.</p>
+                <p>Treat yourself to some fine Islay produce, including tasty fresh seafood. At the restaurant in the <a href="https://www.visitscotland.com/info/accommodation/the-port-charlotte-hotel-p204341">Port Charlotte Hotel,</a> you can enjoy a sumptuous meal in elegant surroundings, or tuck into a&nbsp;bar supper in the relaxed atmosphere of the bar and conservatory.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>Located off the coast of the Kintyre peninsula on Scotland's west coast, Islay is most easily accessed from the port of Kennacraig, with car <a href="https://www.calmac.co.uk/kennacraig-portellen-portaskaig-islay-ferry-winter-timetable" title="CalMac - Islay- Kennacraig Winter Timetable" target="_blank">ferries</a> running daily. A ferry also departs from Oban once a week.</p>
+                <p>Located off the coast of the Kintyre peninsula on Scotland's west coast, Islay is most easily accessed from the port of Kennacraig, with car <a href="https://www.calmac.co.uk/kennacraig-portellen-portaskaig-islay-ferry-winter-timetable" title="CalMac - Islay- Kennacraig Winter Timetable" target="_blank">ferries</a> running daily. A ferry also departs from Oban once a week.</p>
 
-              <p>When it comes to getting around the&nbsp;distilleries without a car, <a href="https://www.visitscotland.com/info/see-do/search-results?prodtypes=acti%2Cattr%2Creta%2Ctour&amp;cat=cgalltour&amp;loc=Isle+of+Islay&amp;locpoly=391&amp;locprox=0" title="Taxi and tour companies on Islay search results">local taxi companies</a> can arrange bespoke tours.</p>
+                <p>When it comes to getting around the&nbsp;distilleries without a car, <a href="https://www.visitscotland.com/info/see-do/search-results?prodtypes=acti%2Cattr%2Creta%2Ctour&amp;cat=cgalltour&amp;loc=Isle+of+Islay&amp;locpoly=391&amp;locprox=0" title="Taxi and tour companies on Islay search results">local taxi companies</a> can arrange bespoke tours.</p>
         /a-whisky-lovers-winter-break-on-islay[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -10818,7 +10822,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:50:37.879Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:54:03.364Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:34:12.078Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: f25530e0-d25c-4a47-844f-47f23b0cbb3d
           hippotranslation:locale: en
@@ -10832,34 +10836,39 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Fans of Islay's famous peaty malt whiskies and vibrant island culture.</p>
+                <p>Fans of Islay's famous peaty malt whiskies and vibrant island culture.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p>If there's one thing that will warm you up in winter, it's <a href="https://www.visitscotland.com/see-do/food-drink/whisky/" title="Whisky">whisky</a>, the country's national drink. For a winter break with a difference, take the ferry to <a href="https://www.visitscotland.com/destinations-maps/isle-islay/" title="Isle of Islay">Islay</a>, Scotland's whisky island.&nbsp;</p>
+                <p>If there's one thing that will warm you up in winter, it's <a href="https://www.visitscotland.com/see-do/food-drink/whisky/" title="Whisky">whisky</a>, the country's national drink. For a winter break with a difference, take the ferry to <a href="https://www.visitscotland.com/destinations-maps/isle-islay/" title="Isle of Islay">Islay</a>, Scotland's whisky island.&nbsp;</p>
 
-              <p>With nine <a href="https://www.visitscotland.com/holidays-breaks/christmas-winter/winter-ideas-inspiration/#" title="Islay Whisky Distilleries guide">distilleries</a> to visit, you'll no doubt find a favourite peaty dram to warm your cockles on Islay. You could visit <a href="https://www.visitscotland.com/info/see-do/bowmore-distillery-p421321" title="Bowmore Distillery">Bowmore Distillery</a>, situated in the heart of the village of the same name, or get up close to the stills of&nbsp;<a href="https://www.visitscotland.com/info/see-do/lagavulin-distillery-visitors-centre-p418551">Lagavulin Distillery</a>. Islay also boasts some lovely beaches and clifftop nature reserves, perfect for a winter stroll.</p>
+                <p>With nine <a href="https://www.visitscotland.com/holidays-breaks/christmas-winter/winter-ideas-inspiration/#" title="Islay Whisky Distilleries guide">distilleries</a> to visit, you'll no doubt find a favourite peaty dram to warm your cockles on Islay. You could visit <a href="https://www.visitscotland.com/info/see-do/bowmore-distillery-p421321" title="Bowmore Distillery">Bowmore Distillery</a>, situated in the heart of the village of the same name, or get up close to the stills of&nbsp;<a href="https://www.visitscotland.com/info/see-do/lagavulin-distillery-visitors-centre-p418551">Lagavulin Distillery</a>. Islay also boasts some lovely beaches and clifftop nature reserves, perfect for a winter stroll.</p>
 
-              <p>Unwind in a cosy fire-lit pub where you might hear some live traditional music. If you visit during&nbsp;22 -&nbsp;24 November 2019, you can experience great craic during the <a href="https://www.facebook.com/islaysessions/" title="The Islay Sessions Facebook page" target="_blank">Islay Sessions</a>, a small winter festival featuring incredible folk musicians.</p>
+                <p>Unwind in a cosy fire-lit pub where you might hear some live traditional music. If you visit during&nbsp;22 -&nbsp;24 November 2019, you can experience great craic during the <a href="https://www.facebook.com/islaysessions/" title="The Islay Sessions Facebook page" target="_blank">Islay Sessions</a>, a small winter festival featuring incredible folk musicians.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>The island offers a great range of places to stay, from traditional hotels to luxury eco-lodges with saunas and hot tubs.</p>
+                <p>The island offers a great range of places to stay, from traditional hotels to luxury eco-lodges with saunas and hot tubs.</p>
 
-              <p>Find <a href="https://www.visitscotland.com/destinations-maps/isle-islay/accommodation/" title="Accommodation">accommodation on Islay</a>.</p>
+                <p>Find <a href="https://www.visitscotland.com/destinations-maps/isle-islay/accommodation/" title="Accommodation">accommodation on Islay</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>Treat yourself to some fine Islay produce, including tasty fresh seafood. At the restaurant in the <a href="https://www.visitscotland.com/info/accommodation/the-port-charlotte-hotel-p204341">Port Charlotte Hotel,</a> you can enjoy a sumptuous meal in elegant surroundings, or tuck into a&nbsp;bar supper in the relaxed atmosphere of the bar and conservatory.</p>
+                <p>Treat yourself to some fine Islay produce, including tasty fresh seafood. At the restaurant in the <a href="https://www.visitscotland.com/info/accommodation/the-port-charlotte-hotel-p204341">Port Charlotte Hotel,</a> you can enjoy a sumptuous meal in elegant surroundings, or tuck into a&nbsp;bar supper in the relaxed atmosphere of the bar and conservatory.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>Located off the coast of the Kintyre peninsula on Scotland's west coast, Islay is most easily accessed from the port of Kennacraig, with car <a href="https://www.calmac.co.uk/kennacraig-portellen-portaskaig-islay-ferry-winter-timetable" title="CalMac - Islay- Kennacraig Winter Timetable" target="_blank">ferries</a> running daily. A ferry also departs from Oban once a week.</p>
+                <p>Located off the coast of the Kintyre peninsula on Scotland's west coast, Islay is most easily accessed from the port of Kennacraig, with car <a href="https://www.calmac.co.uk/kennacraig-portellen-portaskaig-islay-ferry-winter-timetable" title="CalMac - Islay- Kennacraig Winter Timetable" target="_blank">ferries</a> running daily. A ferry also departs from Oban once a week.</p>
 
-              <p>When it comes to getting around the&nbsp;distilleries without a car, <a href="https://www.visitscotland.com/info/see-do/search-results?prodtypes=acti%2Cattr%2Creta%2Ctour&amp;cat=cgalltour&amp;loc=Isle+of+Islay&amp;locpoly=391&amp;locprox=0" title="Taxi and tour companies on Islay search results">local taxi companies</a> can arrange bespoke tours.</p>
+                <p>When it comes to getting around the&nbsp;distilleries without a car, <a href="https://www.visitscotland.com/info/see-do/search-results?prodtypes=acti%2Cattr%2Creta%2Ctour&amp;cat=cgalltour&amp;loc=Isle+of+Islay&amp;locpoly=391&amp;locprox=0" title="Taxi and tour companies on Islay search results">local taxi companies</a> can arrange bespoke tours.</p>
         /a-whisky-lovers-winter-break-on-islay[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -10868,9 +10877,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:50:37.879Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:54:03.364Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:34:12.078Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T15:00:58.445Z
+          hippostdpubwf:publicationDate: 2021-01-11T16:35:32.211Z
           hippotranslation:id: f25530e0-d25c-4a47-844f-47f23b0cbb3d
           hippotranslation:locale: en
           visitscotland:anchor: whisky
@@ -10883,34 +10892,39 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Fans of Islay's famous peaty malt whiskies and vibrant island culture.</p>
+                <p>Fans of Islay's famous peaty malt whiskies and vibrant island culture.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p>If there's one thing that will warm you up in winter, it's <a href="https://www.visitscotland.com/see-do/food-drink/whisky/" title="Whisky">whisky</a>, the country's national drink. For a winter break with a difference, take the ferry to <a href="https://www.visitscotland.com/destinations-maps/isle-islay/" title="Isle of Islay">Islay</a>, Scotland's whisky island.&nbsp;</p>
+                <p>If there's one thing that will warm you up in winter, it's <a href="https://www.visitscotland.com/see-do/food-drink/whisky/" title="Whisky">whisky</a>, the country's national drink. For a winter break with a difference, take the ferry to <a href="https://www.visitscotland.com/destinations-maps/isle-islay/" title="Isle of Islay">Islay</a>, Scotland's whisky island.&nbsp;</p>
 
-              <p>With nine <a href="https://www.visitscotland.com/holidays-breaks/christmas-winter/winter-ideas-inspiration/#" title="Islay Whisky Distilleries guide">distilleries</a> to visit, you'll no doubt find a favourite peaty dram to warm your cockles on Islay. You could visit <a href="https://www.visitscotland.com/info/see-do/bowmore-distillery-p421321" title="Bowmore Distillery">Bowmore Distillery</a>, situated in the heart of the village of the same name, or get up close to the stills of&nbsp;<a href="https://www.visitscotland.com/info/see-do/lagavulin-distillery-visitors-centre-p418551">Lagavulin Distillery</a>. Islay also boasts some lovely beaches and clifftop nature reserves, perfect for a winter stroll.</p>
+                <p>With nine <a href="https://www.visitscotland.com/holidays-breaks/christmas-winter/winter-ideas-inspiration/#" title="Islay Whisky Distilleries guide">distilleries</a> to visit, you'll no doubt find a favourite peaty dram to warm your cockles on Islay. You could visit <a href="https://www.visitscotland.com/info/see-do/bowmore-distillery-p421321" title="Bowmore Distillery">Bowmore Distillery</a>, situated in the heart of the village of the same name, or get up close to the stills of&nbsp;<a href="https://www.visitscotland.com/info/see-do/lagavulin-distillery-visitors-centre-p418551">Lagavulin Distillery</a>. Islay also boasts some lovely beaches and clifftop nature reserves, perfect for a winter stroll.</p>
 
-              <p>Unwind in a cosy fire-lit pub where you might hear some live traditional music. If you visit during&nbsp;22 -&nbsp;24 November 2019, you can experience great craic during the <a href="https://www.facebook.com/islaysessions/" title="The Islay Sessions Facebook page" target="_blank">Islay Sessions</a>, a small winter festival featuring incredible folk musicians.</p>
+                <p>Unwind in a cosy fire-lit pub where you might hear some live traditional music. If you visit during&nbsp;22 -&nbsp;24 November 2019, you can experience great craic during the <a href="https://www.facebook.com/islaysessions/" title="The Islay Sessions Facebook page" target="_blank">Islay Sessions</a>, a small winter festival featuring incredible folk musicians.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>The island offers a great range of places to stay, from traditional hotels to luxury eco-lodges with saunas and hot tubs.</p>
+                <p>The island offers a great range of places to stay, from traditional hotels to luxury eco-lodges with saunas and hot tubs.</p>
 
-              <p>Find <a href="https://www.visitscotland.com/destinations-maps/isle-islay/accommodation/" title="Accommodation">accommodation on Islay</a>.</p>
+                <p>Find <a href="https://www.visitscotland.com/destinations-maps/isle-islay/accommodation/" title="Accommodation">accommodation on Islay</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>Treat yourself to some fine Islay produce, including tasty fresh seafood. At the restaurant in the <a href="https://www.visitscotland.com/info/accommodation/the-port-charlotte-hotel-p204341">Port Charlotte Hotel,</a> you can enjoy a sumptuous meal in elegant surroundings, or tuck into a&nbsp;bar supper in the relaxed atmosphere of the bar and conservatory.</p>
+                <p>Treat yourself to some fine Islay produce, including tasty fresh seafood. At the restaurant in the <a href="https://www.visitscotland.com/info/accommodation/the-port-charlotte-hotel-p204341">Port Charlotte Hotel,</a> you can enjoy a sumptuous meal in elegant surroundings, or tuck into a&nbsp;bar supper in the relaxed atmosphere of the bar and conservatory.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>Located off the coast of the Kintyre peninsula on Scotland's west coast, Islay is most easily accessed from the port of Kennacraig, with car <a href="https://www.calmac.co.uk/kennacraig-portellen-portaskaig-islay-ferry-winter-timetable" title="CalMac - Islay- Kennacraig Winter Timetable" target="_blank">ferries</a> running daily. A ferry also departs from Oban once a week.</p>
+                <p>Located off the coast of the Kintyre peninsula on Scotland's west coast, Islay is most easily accessed from the port of Kennacraig, with car <a href="https://www.calmac.co.uk/kennacraig-portellen-portaskaig-islay-ferry-winter-timetable" title="CalMac - Islay- Kennacraig Winter Timetable" target="_blank">ferries</a> running daily. A ferry also departs from Oban once a week.</p>
 
-              <p>When it comes to getting around the&nbsp;distilleries without a car, <a href="https://www.visitscotland.com/info/see-do/search-results?prodtypes=acti%2Cattr%2Creta%2Ctour&amp;cat=cgalltour&amp;loc=Isle+of+Islay&amp;locpoly=391&amp;locprox=0" title="Taxi and tour companies on Islay search results">local taxi companies</a> can arrange bespoke tours.</p>
+                <p>When it comes to getting around the&nbsp;distilleries without a car, <a href="https://www.visitscotland.com/info/see-do/search-results?prodtypes=acti%2Cattr%2Creta%2Ctour&amp;cat=cgalltour&amp;loc=Isle+of+Islay&amp;locpoly=391&amp;locprox=0" title="Taxi and tour companies on Islay search results">local taxi companies</a> can arrange bespoke tours.</p>
       /a-weekend-of-arts-and-culture-in-glasgow:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -10925,7 +10939,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:50:37.879Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:54:05.629Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:34:42.295Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e183fc7e-6637-471a-a249-164d5d51ad1d
           hippotranslation:locale: en
@@ -10939,30 +10953,35 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Anyone who enjoys listening to live music, exploring museums and soaking up a vibrant city atmosphere.</p>
+                <p>Anyone who enjoys listening to live music, exploring museums and soaking up a vibrant city atmosphere.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p><a href="https://www.visitscotland.com/destinations-maps/glasgow/" title="Glasgow">Glasgow</a> has its finger on the pulse all year round, and even in the dreariest of winter months this dynamic city really shines. Explore the handsome city centre and admire Glasgow's striking architecture. At <a href="https://www.visitscotland.com/info/see-do/the-lighthouse-p452421" title="The Lighthouse, Glasgow">The Lighthouse</a>, discover touring exhibitions, take in panoramic views of the city, or find out more about designer <a href="https://www.visitscotland.com/about/famous-scots/charles-rennie-mackintosh/" title="Charles Rennie Mackintosh">Charles Rennie Mackintosh</a> in the dedicated Mackintosh Centre. Take a subway to the West End to visit the beautiful <a href="https://www.visitscotland.com/info/see-do/kelvingrove-art-gallery-and-museum-p246571" title="Kelvingrove Art Gallery and Museum">Kelvingrove Art Gallery &amp; Museum</a> and discover the area's quirky shops, cool bars and restaurants.</p>
+                <p><a href="https://www.visitscotland.com/destinations-maps/glasgow/" title="Glasgow">Glasgow</a> has its finger on the pulse all year round, and even in the dreariest of winter months this dynamic city really shines. Explore the handsome city centre and admire Glasgow's striking architecture. At <a href="https://www.visitscotland.com/info/see-do/the-lighthouse-p452421" title="The Lighthouse, Glasgow">The Lighthouse</a>, discover touring exhibitions, take in panoramic views of the city, or find out more about designer <a href="https://www.visitscotland.com/about/famous-scots/charles-rennie-mackintosh/" title="Charles Rennie Mackintosh">Charles Rennie Mackintosh</a> in the dedicated Mackintosh Centre. Take a subway to the West End to visit the beautiful <a href="https://www.visitscotland.com/info/see-do/kelvingrove-art-gallery-and-museum-p246571" title="Kelvingrove Art Gallery and Museum">Kelvingrove Art Gallery &amp; Museum</a> and discover the area's quirky shops, cool bars and restaurants.</p>
 
-              <p>If you visit in January, you can catch a gig or two at one of the many fantastic venues across the city during <a href="http://www.celticconnections.com/Pages/default.aspx" target="_blank">Celtic Connections</a>, the world-famous celebration of traditional, folk and roots music. This winter festival features the best of home-grown talent and incredible musicians from all across the globe, and you can see both legendary artists as well as up-and-coming acts.</p>
+                <p>If you visit in January, you can catch a gig or two at one of the many fantastic venues across the city during <a href="http://www.celticconnections.com/Pages/default.aspx" target="_blank">Celtic Connections</a>, the world-famous celebration of traditional, folk and roots music. This winter festival features the best of home-grown talent and incredible musicians from all across the globe, and you can see both legendary artists as well as up-and-coming acts.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>From smart boutique hotels to sleek serviced apartments, Glasgow has a huge range of places to stay.</p>
+                <p>From smart boutique hotels to sleek serviced apartments, Glasgow has a huge range of places to stay.</p>
 
-              <p>Find <a href="https://www.visitscotland.com/destinations-maps/glasgow/accommodation/" title="Accommodation">accommodation in Glasgow</a>.</p>
+                <p>Find <a href="https://www.visitscotland.com/destinations-maps/glasgow/accommodation/" title="Accommodation">accommodation in Glasgow</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>Glasgow's dining scene is thriving. Experience a Glasgow institution and book a table at the <a href="https://www.visitscotland.com/info/food-drink/the-ubiquitous-chip-p312441">Ubiquitous Chip</a>, or opt for one of the trendy restaurants in the Finnieston area of the city.</p>
+                <p>Glasgow's dining scene is thriving. Experience a Glasgow institution and book a table at the <a href="https://www.visitscotland.com/info/food-drink/the-ubiquitous-chip-p312441">Ubiquitous Chip</a>, or opt for one of the trendy restaurants in the Finnieston area of the city.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>Glasgow is served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/air" title="People Make Glasgow - Getting to Glasgow by air" target="_blank">three international airports</a> with regular flights to cities in the UK and Europe. It's also very well served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/by-rail" title="People Make Glasgow - Getting to Glasgow by train" target="_blank">train</a> and bus routes.</p>
+                <p>Glasgow is served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/air" title="People Make Glasgow - Getting to Glasgow by air" target="_blank">three international airports</a> with regular flights to cities in the UK and Europe. It's also very well served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/by-rail" title="People Make Glasgow - Getting to Glasgow by train" target="_blank">train</a> and bus routes.</p>
         /a-weekend-of-arts-and-culture-in-glasgow[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -10971,7 +10990,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:50:37.879Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:52:20.310Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:34:42.425Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e183fc7e-6637-471a-a249-164d5d51ad1d
           hippotranslation:locale: en
@@ -10985,30 +11004,35 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Anyone who enjoys listening to live music, exploring museums and soaking up a vibrant city atmosphere.</p>
+                <p>Anyone who enjoys listening to live music, exploring museums and soaking up a vibrant city atmosphere.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p><a href="https://www.visitscotland.com/destinations-maps/glasgow/" title="Glasgow">Glasgow</a> has its finger on the pulse all year round, and even in the dreariest of winter months this dynamic city really shines. Explore the handsome city centre and admire Glasgow's striking architecture. At <a href="https://www.visitscotland.com/info/see-do/the-lighthouse-p452421" title="The Lighthouse, Glasgow">The Lighthouse</a>, discover touring exhibitions, take in panoramic views of the city, or find out more about designer <a href="https://www.visitscotland.com/about/famous-scots/charles-rennie-mackintosh/" title="Charles Rennie Mackintosh">Charles Rennie Mackintosh</a> in the dedicated Mackintosh Centre. Take a subway to the West End to visit the beautiful <a href="https://www.visitscotland.com/info/see-do/kelvingrove-art-gallery-and-museum-p246571" title="Kelvingrove Art Gallery and Museum">Kelvingrove Art Gallery &amp; Museum</a> and discover the area's quirky shops, cool bars and restaurants.</p>
+                <p><a href="https://www.visitscotland.com/destinations-maps/glasgow/" title="Glasgow">Glasgow</a> has its finger on the pulse all year round, and even in the dreariest of winter months this dynamic city really shines. Explore the handsome city centre and admire Glasgow's striking architecture. At <a href="https://www.visitscotland.com/info/see-do/the-lighthouse-p452421" title="The Lighthouse, Glasgow">The Lighthouse</a>, discover touring exhibitions, take in panoramic views of the city, or find out more about designer <a href="https://www.visitscotland.com/about/famous-scots/charles-rennie-mackintosh/" title="Charles Rennie Mackintosh">Charles Rennie Mackintosh</a> in the dedicated Mackintosh Centre. Take a subway to the West End to visit the beautiful <a href="https://www.visitscotland.com/info/see-do/kelvingrove-art-gallery-and-museum-p246571" title="Kelvingrove Art Gallery and Museum">Kelvingrove Art Gallery &amp; Museum</a> and discover the area's quirky shops, cool bars and restaurants.</p>
 
-              <p>If you visit in January, you can catch a gig or two at one of the many fantastic venues across the city during <a href="http://www.celticconnections.com/Pages/default.aspx" target="_blank">Celtic Connections</a>, the world-famous celebration of traditional, folk and roots music. This winter festival features the best of home-grown talent and incredible musicians from all across the globe, and you can see both legendary artists as well as up-and-coming acts.</p>
+                <p>If you visit in January, you can catch a gig or two at one of the many fantastic venues across the city during <a href="http://www.celticconnections.com/Pages/default.aspx" target="_blank">Celtic Connections</a>, the world-famous celebration of traditional, folk and roots music. This winter festival features the best of home-grown talent and incredible musicians from all across the globe, and you can see both legendary artists as well as up-and-coming acts.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>From smart boutique hotels to sleek serviced apartments, Glasgow has a huge range of places to stay.</p>
+                <p>From smart boutique hotels to sleek serviced apartments, Glasgow has a huge range of places to stay.</p>
 
-              <p>Find <a href="https://www.visitscotland.com/destinations-maps/glasgow/accommodation/" title="Accommodation">accommodation in Glasgow</a>.</p>
+                <p>Find <a href="https://www.visitscotland.com/destinations-maps/glasgow/accommodation/" title="Accommodation">accommodation in Glasgow</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>Glasgow's dining scene is thriving. Experience a Glasgow institution and book a table at the <a href="https://www.visitscotland.com/info/food-drink/the-ubiquitous-chip-p312441">Ubiquitous Chip</a>, or opt for one of the trendy restaurants in the Finnieston area of the city.</p>
+                <p>Glasgow's dining scene is thriving. Experience a Glasgow institution and book a table at the <a href="https://www.visitscotland.com/info/food-drink/the-ubiquitous-chip-p312441">Ubiquitous Chip</a>, or opt for one of the trendy restaurants in the Finnieston area of the city.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>Glasgow is served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/air" title="People Make Glasgow - Getting to Glasgow by air" target="_blank">three international airports</a> with regular flights to cities in the UK and Europe. It's also very well served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/by-rail" title="People Make Glasgow - Getting to Glasgow by train" target="_blank">train</a> and bus routes.</p>
+                <p>Glasgow is served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/air" title="People Make Glasgow - Getting to Glasgow by air" target="_blank">three international airports</a> with regular flights to cities in the UK and Europe. It's also very well served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/by-rail" title="People Make Glasgow - Getting to Glasgow by train" target="_blank">train</a> and bus routes.</p>
         /a-weekend-of-arts-and-culture-in-glasgow[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -11017,9 +11041,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:50:37.879Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:54:05.629Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:34:42.295Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T15:00:58.838Z
+          hippostdpubwf:publicationDate: 2021-01-11T16:35:32.818Z
           hippotranslation:id: e183fc7e-6637-471a-a249-164d5d51ad1d
           hippotranslation:locale: en
           visitscotland:anchor: culture
@@ -11032,30 +11056,35 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Anyone who enjoys listening to live music, exploring museums and soaking up a vibrant city atmosphere.</p>
+                <p>Anyone who enjoys listening to live music, exploring museums and soaking up a vibrant city atmosphere.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p><a href="https://www.visitscotland.com/destinations-maps/glasgow/" title="Glasgow">Glasgow</a> has its finger on the pulse all year round, and even in the dreariest of winter months this dynamic city really shines. Explore the handsome city centre and admire Glasgow's striking architecture. At <a href="https://www.visitscotland.com/info/see-do/the-lighthouse-p452421" title="The Lighthouse, Glasgow">The Lighthouse</a>, discover touring exhibitions, take in panoramic views of the city, or find out more about designer <a href="https://www.visitscotland.com/about/famous-scots/charles-rennie-mackintosh/" title="Charles Rennie Mackintosh">Charles Rennie Mackintosh</a> in the dedicated Mackintosh Centre. Take a subway to the West End to visit the beautiful <a href="https://www.visitscotland.com/info/see-do/kelvingrove-art-gallery-and-museum-p246571" title="Kelvingrove Art Gallery and Museum">Kelvingrove Art Gallery &amp; Museum</a> and discover the area's quirky shops, cool bars and restaurants.</p>
+                <p><a href="https://www.visitscotland.com/destinations-maps/glasgow/" title="Glasgow">Glasgow</a> has its finger on the pulse all year round, and even in the dreariest of winter months this dynamic city really shines. Explore the handsome city centre and admire Glasgow's striking architecture. At <a href="https://www.visitscotland.com/info/see-do/the-lighthouse-p452421" title="The Lighthouse, Glasgow">The Lighthouse</a>, discover touring exhibitions, take in panoramic views of the city, or find out more about designer <a href="https://www.visitscotland.com/about/famous-scots/charles-rennie-mackintosh/" title="Charles Rennie Mackintosh">Charles Rennie Mackintosh</a> in the dedicated Mackintosh Centre. Take a subway to the West End to visit the beautiful <a href="https://www.visitscotland.com/info/see-do/kelvingrove-art-gallery-and-museum-p246571" title="Kelvingrove Art Gallery and Museum">Kelvingrove Art Gallery &amp; Museum</a> and discover the area's quirky shops, cool bars and restaurants.</p>
 
-              <p>If you visit in January, you can catch a gig or two at one of the many fantastic venues across the city during <a href="http://www.celticconnections.com/Pages/default.aspx" target="_blank">Celtic Connections</a>, the world-famous celebration of traditional, folk and roots music. This winter festival features the best of home-grown talent and incredible musicians from all across the globe, and you can see both legendary artists as well as up-and-coming acts.</p>
+                <p>If you visit in January, you can catch a gig or two at one of the many fantastic venues across the city during <a href="http://www.celticconnections.com/Pages/default.aspx" target="_blank">Celtic Connections</a>, the world-famous celebration of traditional, folk and roots music. This winter festival features the best of home-grown talent and incredible musicians from all across the globe, and you can see both legendary artists as well as up-and-coming acts.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>From smart boutique hotels to sleek serviced apartments, Glasgow has a huge range of places to stay.</p>
+                <p>From smart boutique hotels to sleek serviced apartments, Glasgow has a huge range of places to stay.</p>
 
-              <p>Find <a href="https://www.visitscotland.com/destinations-maps/glasgow/accommodation/" title="Accommodation">accommodation in Glasgow</a>.</p>
+                <p>Find <a href="https://www.visitscotland.com/destinations-maps/glasgow/accommodation/" title="Accommodation">accommodation in Glasgow</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>Glasgow's dining scene is thriving. Experience a Glasgow institution and book a table at the <a href="https://www.visitscotland.com/info/food-drink/the-ubiquitous-chip-p312441">Ubiquitous Chip</a>, or opt for one of the trendy restaurants in the Finnieston area of the city.</p>
+                <p>Glasgow's dining scene is thriving. Experience a Glasgow institution and book a table at the <a href="https://www.visitscotland.com/info/food-drink/the-ubiquitous-chip-p312441">Ubiquitous Chip</a>, or opt for one of the trendy restaurants in the Finnieston area of the city.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>Glasgow is served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/air" title="People Make Glasgow - Getting to Glasgow by air" target="_blank">three international airports</a> with regular flights to cities in the UK and Europe. It's also very well served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/by-rail" title="People Make Glasgow - Getting to Glasgow by train" target="_blank">train</a> and bus routes.</p>
+                <p>Glasgow is served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/air" title="People Make Glasgow - Getting to Glasgow by air" target="_blank">three international airports</a> with regular flights to cities in the UK and Europe. It's also very well served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/by-rail" title="People Make Glasgow - Getting to Glasgow by train" target="_blank">train</a> and bus routes.</p>
       /a-getaway-exploring-the-moray-coastline:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -11070,7 +11099,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:53:08.793Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:53:08.793Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:34:54.280Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 003cb8bb-091c-4a3d-8385-17fee3bbb123
           hippotranslation:locale: en
@@ -11084,30 +11113,35 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Those who want to enjoy a scenic coastal break and see amazing night time wonders.</p>
+                <p>Those who want to enjoy a scenic coastal break and see amazing night time wonders.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p>The Highland region of <a href="http://www.morayspeyside.com" title="" target="_blank">Moray Speyside</a>&nbsp;is perfect for a quiet escape filled with bracing coastal walks along beaches and paths.&nbsp;Explore charming historic fishing villages, take walks along unspoilt stretches of sand and try to spot the resident dolphins frolicking close to the shore. Get a real flavour of Speyside by following the River Spey to one of the region's <a href="https://ebooks.visitscotland.com/whisky-distilleries-guides/speyside/" title="Read about Speyside distilleries in VisitScotland's whisky distilleries eBook">whisky distilleries</a>.</p>
+                <p>The Highland region of <a href="http://www.morayspeyside.com" title="" target="_blank">Moray Speyside</a>&nbsp;is perfect for a quiet escape filled with bracing coastal walks along beaches and paths.&nbsp;Explore charming historic fishing villages, take walks along unspoilt stretches of sand and try to spot the resident dolphins frolicking close to the shore. Get a real flavour of Speyside by following the River Spey to one of the region's <a href="https://ebooks.visitscotland.com/whisky-distilleries-guides/speyside/" title="Read about Speyside distilleries in VisitScotland's whisky distilleries eBook">whisky distilleries</a>.</p>
 
-              <p>Did you know the Moray area is one of the best places in the UK to catch sight of the <a href="https://www.visitscotland.com/see-do/landscapes-nature/northern-lights/" title="Northern Lights">Northern Lights</a>? If you're lucky enough to get clear night skies and an aurora forecast, head to <a href="https://www.visitscotland.com/info/towns-villages/east-beach-p314111" title="Lossiemouth East Beach">Lossiemouth East Beach</a> or Bow Fiddle Rock at <a href="https://www.visitscotland.com/info/towns-villages/portknockie-p238151" title="Portknockie">Portknockie</a>, two places where the Northern Lights have been spotted at in recent years.</p>
+                <p>Did you know the Moray area is one of the best places in the UK to catch sight of the <a href="https://www.visitscotland.com/see-do/landscapes-nature/northern-lights/" title="Northern Lights">Northern Lights</a>? If you're lucky enough to get clear night skies and an aurora forecast, head to <a href="https://www.visitscotland.com/info/towns-villages/east-beach-p314111" title="Lossiemouth East Beach">Lossiemouth East Beach</a> or Bow Fiddle Rock at <a href="https://www.visitscotland.com/info/towns-villages/portknockie-p238151" title="Portknockie">Portknockie</a>, two places where the Northern Lights have been spotted at in recent years.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>The Moray Firth has a range of accommodation, including family-run hotels and inns and cosy self-catering cottages.</p>
+                <p>The Moray Firth has a range of accommodation, including family-run hotels and inns and cosy self-catering cottages.</p>
 
-              <p>Find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;cat=&amp;loc=Moray&amp;locpoly=941&amp;locprox=0&amp;rooms=1&amp;r1c=0&amp;avail=off&amp;stay=" title="">accommodation in Moray</a>.</p>
+                <p>Find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;cat=&amp;loc=Moray&amp;locpoly=941&amp;locprox=0&amp;rooms=1&amp;r1c=0&amp;avail=off&amp;stay=" title="">accommodation in Moray</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>The coastline boasts some fine traditional pubs at the likes of <a href="https://www.visitscotland.com/info/towns-villages/findhorn-p237641" title="Findhorn">Findhorn</a>, or dine in an 18th century stone salt cellar at <a href="http://1629lossiemouth.co.uk/la-caverna/" title="La Caverna, Lossiemouth" target="_blank">La Caverna</a> in Lossiemouth. You could also choose the cheery <a href="http://www.mossettavern.com/" title="Mosset Tavern, Forres" target="_blank">Mosset Tavern</a> in Forres.</p>
+                <p>The coastline boasts some fine traditional pubs at the likes of <a href="https://www.visitscotland.com/info/towns-villages/findhorn-p237641" title="Findhorn">Findhorn</a>, or dine in an 18th century stone salt cellar at <a href="http://1629lossiemouth.co.uk/la-caverna/" title="La Caverna, Lossiemouth" target="_blank">La Caverna</a> in Lossiemouth. You could also choose the cheery <a href="http://www.mossettavern.com/" title="Mosset Tavern, Forres" target="_blank">Mosset Tavern</a> in Forres.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>From Inverness, it's easy to drive to Moray. <a href="https://www.visitscotland.com/info/towns-villages/elgin-p237701" title="Elgin">Elgin</a>, one of the largest towns in the area, is just an hour away by car.</p>
+                <p>From Inverness, it's easy to drive to Moray. <a href="https://www.visitscotland.com/info/towns-villages/elgin-p237701" title="Elgin">Elgin</a>, one of the largest towns in the area, is just an hour away by car.</p>
         /a-getaway-exploring-the-moray-coastline[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -11116,7 +11150,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:53:08.793Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:54:07.746Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:34:54.245Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 003cb8bb-091c-4a3d-8385-17fee3bbb123
           hippotranslation:locale: en
@@ -11130,30 +11164,35 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Those who want to enjoy a scenic coastal break and see amazing night time wonders.</p>
+                <p>Those who want to enjoy a scenic coastal break and see amazing night time wonders.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p>The Highland region of <a href="http://www.morayspeyside.com" title="" target="_blank">Moray Speyside</a>&nbsp;is perfect for a quiet escape filled with bracing coastal walks along beaches and paths.&nbsp;Explore charming historic fishing villages, take walks along unspoilt stretches of sand and try to spot the resident dolphins frolicking close to the shore. Get a real flavour of Speyside by following the River Spey to one of the region's <a href="https://ebooks.visitscotland.com/whisky-distilleries-guides/speyside/" title="Read about Speyside distilleries in VisitScotland's whisky distilleries eBook">whisky distilleries</a>.</p>
+                <p>The Highland region of <a href="http://www.morayspeyside.com" title="" target="_blank">Moray Speyside</a>&nbsp;is perfect for a quiet escape filled with bracing coastal walks along beaches and paths.&nbsp;Explore charming historic fishing villages, take walks along unspoilt stretches of sand and try to spot the resident dolphins frolicking close to the shore. Get a real flavour of Speyside by following the River Spey to one of the region's <a href="https://ebooks.visitscotland.com/whisky-distilleries-guides/speyside/" title="Read about Speyside distilleries in VisitScotland's whisky distilleries eBook">whisky distilleries</a>.</p>
 
-              <p>Did you know the Moray area is one of the best places in the UK to catch sight of the <a href="https://www.visitscotland.com/see-do/landscapes-nature/northern-lights/" title="Northern Lights">Northern Lights</a>? If you're lucky enough to get clear night skies and an aurora forecast, head to <a href="https://www.visitscotland.com/info/towns-villages/east-beach-p314111" title="Lossiemouth East Beach">Lossiemouth East Beach</a> or Bow Fiddle Rock at <a href="https://www.visitscotland.com/info/towns-villages/portknockie-p238151" title="Portknockie">Portknockie</a>, two places where the Northern Lights have been spotted at in recent years.</p>
+                <p>Did you know the Moray area is one of the best places in the UK to catch sight of the <a href="https://www.visitscotland.com/see-do/landscapes-nature/northern-lights/" title="Northern Lights">Northern Lights</a>? If you're lucky enough to get clear night skies and an aurora forecast, head to <a href="https://www.visitscotland.com/info/towns-villages/east-beach-p314111" title="Lossiemouth East Beach">Lossiemouth East Beach</a> or Bow Fiddle Rock at <a href="https://www.visitscotland.com/info/towns-villages/portknockie-p238151" title="Portknockie">Portknockie</a>, two places where the Northern Lights have been spotted at in recent years.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>The Moray Firth has a range of accommodation, including family-run hotels and inns and cosy self-catering cottages.</p>
+                <p>The Moray Firth has a range of accommodation, including family-run hotels and inns and cosy self-catering cottages.</p>
 
-              <p>Find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;cat=&amp;loc=Moray&amp;locpoly=941&amp;locprox=0&amp;rooms=1&amp;r1c=0&amp;avail=off&amp;stay=" title="">accommodation in Moray</a>.</p>
+                <p>Find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;cat=&amp;loc=Moray&amp;locpoly=941&amp;locprox=0&amp;rooms=1&amp;r1c=0&amp;avail=off&amp;stay=" title="">accommodation in Moray</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>The coastline boasts some fine traditional pubs at the likes of <a href="https://www.visitscotland.com/info/towns-villages/findhorn-p237641" title="Findhorn">Findhorn</a>, or dine in an 18th century stone salt cellar at <a href="http://1629lossiemouth.co.uk/la-caverna/" title="La Caverna, Lossiemouth" target="_blank">La Caverna</a> in Lossiemouth. You could also choose the cheery <a href="http://www.mossettavern.com/" title="Mosset Tavern, Forres" target="_blank">Mosset Tavern</a> in Forres.</p>
+                <p>The coastline boasts some fine traditional pubs at the likes of <a href="https://www.visitscotland.com/info/towns-villages/findhorn-p237641" title="Findhorn">Findhorn</a>, or dine in an 18th century stone salt cellar at <a href="http://1629lossiemouth.co.uk/la-caverna/" title="La Caverna, Lossiemouth" target="_blank">La Caverna</a> in Lossiemouth. You could also choose the cheery <a href="http://www.mossettavern.com/" title="Mosset Tavern, Forres" target="_blank">Mosset Tavern</a> in Forres.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>From Inverness, it's easy to drive to Moray. <a href="https://www.visitscotland.com/info/towns-villages/elgin-p237701" title="Elgin">Elgin</a>, one of the largest towns in the area, is just an hour away by car.</p>
+                <p>From Inverness, it's easy to drive to Moray. <a href="https://www.visitscotland.com/info/towns-villages/elgin-p237701" title="Elgin">Elgin</a>, one of the largest towns in the area, is just an hour away by car.</p>
         /a-getaway-exploring-the-moray-coastline[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -11162,9 +11201,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:53:08.793Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:54:07.746Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:34:54.245Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T15:00:57.971Z
+          hippostdpubwf:publicationDate: 2021-01-11T16:35:32.165Z
           hippotranslation:id: 003cb8bb-091c-4a3d-8385-17fee3bbb123
           hippotranslation:locale: en
           visitscotland:anchor: coastline
@@ -11177,30 +11216,35 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Those who want to enjoy a scenic coastal break and see amazing night time wonders.</p>
+                <p>Those who want to enjoy a scenic coastal break and see amazing night time wonders.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p>The Highland region of <a href="http://www.morayspeyside.com" title="" target="_blank">Moray Speyside</a>&nbsp;is perfect for a quiet escape filled with bracing coastal walks along beaches and paths.&nbsp;Explore charming historic fishing villages, take walks along unspoilt stretches of sand and try to spot the resident dolphins frolicking close to the shore. Get a real flavour of Speyside by following the River Spey to one of the region's <a href="https://ebooks.visitscotland.com/whisky-distilleries-guides/speyside/" title="Read about Speyside distilleries in VisitScotland's whisky distilleries eBook">whisky distilleries</a>.</p>
+                <p>The Highland region of <a href="http://www.morayspeyside.com" title="" target="_blank">Moray Speyside</a>&nbsp;is perfect for a quiet escape filled with bracing coastal walks along beaches and paths.&nbsp;Explore charming historic fishing villages, take walks along unspoilt stretches of sand and try to spot the resident dolphins frolicking close to the shore. Get a real flavour of Speyside by following the River Spey to one of the region's <a href="https://ebooks.visitscotland.com/whisky-distilleries-guides/speyside/" title="Read about Speyside distilleries in VisitScotland's whisky distilleries eBook">whisky distilleries</a>.</p>
 
-              <p>Did you know the Moray area is one of the best places in the UK to catch sight of the <a href="https://www.visitscotland.com/see-do/landscapes-nature/northern-lights/" title="Northern Lights">Northern Lights</a>? If you're lucky enough to get clear night skies and an aurora forecast, head to <a href="https://www.visitscotland.com/info/towns-villages/east-beach-p314111" title="Lossiemouth East Beach">Lossiemouth East Beach</a> or Bow Fiddle Rock at <a href="https://www.visitscotland.com/info/towns-villages/portknockie-p238151" title="Portknockie">Portknockie</a>, two places where the Northern Lights have been spotted at in recent years.</p>
+                <p>Did you know the Moray area is one of the best places in the UK to catch sight of the <a href="https://www.visitscotland.com/see-do/landscapes-nature/northern-lights/" title="Northern Lights">Northern Lights</a>? If you're lucky enough to get clear night skies and an aurora forecast, head to <a href="https://www.visitscotland.com/info/towns-villages/east-beach-p314111" title="Lossiemouth East Beach">Lossiemouth East Beach</a> or Bow Fiddle Rock at <a href="https://www.visitscotland.com/info/towns-villages/portknockie-p238151" title="Portknockie">Portknockie</a>, two places where the Northern Lights have been spotted at in recent years.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>The Moray Firth has a range of accommodation, including family-run hotels and inns and cosy self-catering cottages.</p>
+                <p>The Moray Firth has a range of accommodation, including family-run hotels and inns and cosy self-catering cottages.</p>
 
-              <p>Find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;cat=&amp;loc=Moray&amp;locpoly=941&amp;locprox=0&amp;rooms=1&amp;r1c=0&amp;avail=off&amp;stay=" title="">accommodation in Moray</a>.</p>
+                <p>Find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;cat=&amp;loc=Moray&amp;locpoly=941&amp;locprox=0&amp;rooms=1&amp;r1c=0&amp;avail=off&amp;stay=" title="">accommodation in Moray</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>The coastline boasts some fine traditional pubs at the likes of <a href="https://www.visitscotland.com/info/towns-villages/findhorn-p237641" title="Findhorn">Findhorn</a>, or dine in an 18th century stone salt cellar at <a href="http://1629lossiemouth.co.uk/la-caverna/" title="La Caverna, Lossiemouth" target="_blank">La Caverna</a> in Lossiemouth. You could also choose the cheery <a href="http://www.mossettavern.com/" title="Mosset Tavern, Forres" target="_blank">Mosset Tavern</a> in Forres.</p>
+                <p>The coastline boasts some fine traditional pubs at the likes of <a href="https://www.visitscotland.com/info/towns-villages/findhorn-p237641" title="Findhorn">Findhorn</a>, or dine in an 18th century stone salt cellar at <a href="http://1629lossiemouth.co.uk/la-caverna/" title="La Caverna, Lossiemouth" target="_blank">La Caverna</a> in Lossiemouth. You could also choose the cheery <a href="http://www.mossettavern.com/" title="Mosset Tavern, Forres" target="_blank">Mosset Tavern</a> in Forres.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>From Inverness, it's easy to drive to Moray. <a href="https://www.visitscotland.com/info/towns-villages/elgin-p237701" title="Elgin">Elgin</a>, one of the largest towns in the area, is just an hour away by car.</p>
+                <p>From Inverness, it's easy to drive to Moray. <a href="https://www.visitscotland.com/info/towns-villages/elgin-p237701" title="Elgin">Elgin</a>, one of the largest towns in the area, is just an hour away by car.</p>
       /an-active-winter-break-in-the-great-outdoors:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -11215,7 +11259,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:54:26.565Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:55:58.066Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:35:04.408Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: a836113b-f70d-4326-9e1e-35d226c55aea
           hippotranslation:locale: en
@@ -11229,30 +11273,35 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Those with a passion for the great outdoors (who also like the finer things in life)!</p>
+                <p>Those with a passion for the great outdoors (who also like the finer things in life)!</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p>Combine your passion for the natural environment with a good dollop of indulgence on a break to <a href="https://www.thetorridon.com/" title="The Torridon" target="_blank">The Torridon</a>, a luxury estate retreat in the beautiful north west Highlands.</p>
+                <p>Combine your passion for the natural environment with a good dollop of indulgence on a break to <a href="https://www.thetorridon.com/" title="The Torridon" target="_blank">The Torridon</a>, a luxury estate retreat in the beautiful north west Highlands.</p>
 
-              <p>The Torridon offers activities year-round. In the winter months, there's a <a href="https://www.thetorridon.com/activities/activity-programme/" title="Activities at The Torridon" target="_blank">programme</a> of archery, sea kayaking, canoeing, rock climbing, and guided walks and mountain bike rides. The surrounding landscape is truly wild and rugged, making for some very exhilarating hiking. Experienced climbers can get a taste of navigating the Torridon mountains in challenging winter conditions. Be sure to pack the crampons!</p>
+                <p>The Torridon offers activities year-round. In the winter months, there's a <a href="https://www.thetorridon.com/activities/activity-programme/" title="Activities at The Torridon" target="_blank">programme</a> of archery, sea kayaking, canoeing, rock climbing, and guided walks and mountain bike rides. The surrounding landscape is truly wild and rugged, making for some very exhilarating hiking. Experienced climbers can get a taste of navigating the Torridon mountains in challenging winter conditions. Be sure to pack the crampons!</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>The Torridon itself offers elegantly decorated rooms in the grand hotel, built originally as a hunting lodge, and rooms in the Inn. You can also enjoy the privacy of the picturesque boat house, perfect for a self-catering break.</p>
+                <p>The Torridon itself offers elegantly decorated rooms in the grand hotel, built originally as a hunting lodge, and rooms in the Inn. You can also enjoy the privacy of the picturesque boat house, perfect for a self-catering break.</p>
 
-              <p>Or find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Torridon&amp;locplace=8751&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off" title="">other accommodation in the Torridon area</a>.</p>
+                <p>Or find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Torridon&amp;locplace=8751&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off" title="">other accommodation in the Torridon area</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>The Torridon is a slice of foodie heaven, with <a href="https://www.thetorridon.com/inn/inn-restaurant/" title="Torridon Inn" target="_blank">Torridon Inn</a> offering hearty pub grub and the <a href="https://www.thetorridon.com/restaurant/" title="1887 Restaurant at The Torridon" target="_blank">1887 Restaurant</a> serving fine, award-winning cuisine with exquisitely matched wines. And should the weather conditions affect the activities in the outdoors, then why not relax in a comfy arm chair and enjoy a delicious afternoon tea, complete with a warming pot of The Torridon's signature blend?</p>
+                <p>The Torridon is a slice of foodie heaven, with <a href="https://www.thetorridon.com/inn/inn-restaurant/" title="Torridon Inn" target="_blank">Torridon Inn</a> offering hearty pub grub and the <a href="https://www.thetorridon.com/restaurant/" title="1887 Restaurant at The Torridon" target="_blank">1887 Restaurant</a> serving fine, award-winning cuisine with exquisitely matched wines. And should the weather conditions affect the activities in the outdoors, then why not relax in a comfy arm chair and enjoy a delicious afternoon tea, complete with a warming pot of The Torridon's signature blend?</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>The Torridon is accessible by <a href="https://www.thetorridon.com/contact-us/travel-advice/" title="Travel to The Torridon" target="_blank">road</a>. From Inverness, the journey takes approximately 1 hour and 30 mins, crossing the Kessock Bridge and following the A835, A832, and the A896.</p>
+                <p>The Torridon is accessible by <a href="https://www.thetorridon.com/contact-us/travel-advice/" title="Travel to The Torridon" target="_blank">road</a>. From Inverness, the journey takes approximately 1 hour and 30 mins, crossing the Kessock Bridge and following the A835, A832, and the A896.</p>
         /an-active-winter-break-in-the-great-outdoors[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -11261,7 +11310,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:54:26.565Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:58:34.876Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:35:04.349Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: a836113b-f70d-4326-9e1e-35d226c55aea
           hippotranslation:locale: en
@@ -11275,30 +11324,35 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Those with a passion for the great outdoors (who also like the finer things in life)!</p>
+                <p>Those with a passion for the great outdoors (who also like the finer things in life)!</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p>Combine your passion for the natural environment with a good dollop of indulgence on a break to <a href="https://www.thetorridon.com/" title="The Torridon" target="_blank">The Torridon</a>, a luxury estate retreat in the beautiful north west Highlands.</p>
+                <p>Combine your passion for the natural environment with a good dollop of indulgence on a break to <a href="https://www.thetorridon.com/" title="The Torridon" target="_blank">The Torridon</a>, a luxury estate retreat in the beautiful north west Highlands.</p>
 
-              <p>The Torridon offers activities year-round. In the winter months, there's a <a href="https://www.thetorridon.com/activities/activity-programme/" title="Activities at The Torridon" target="_blank">programme</a> of archery, sea kayaking, canoeing, rock climbing, and guided walks and mountain bike rides. The surrounding landscape is truly wild and rugged, making for some very exhilarating hiking. Experienced climbers can get a taste of navigating the Torridon mountains in challenging winter conditions. Be sure to pack the crampons!</p>
+                <p>The Torridon offers activities year-round. In the winter months, there's a <a href="https://www.thetorridon.com/activities/activity-programme/" title="Activities at The Torridon" target="_blank">programme</a> of archery, sea kayaking, canoeing, rock climbing, and guided walks and mountain bike rides. The surrounding landscape is truly wild and rugged, making for some very exhilarating hiking. Experienced climbers can get a taste of navigating the Torridon mountains in challenging winter conditions. Be sure to pack the crampons!</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>The Torridon itself offers elegantly decorated rooms in the grand hotel, built originally as a hunting lodge, and rooms in the Inn. You can also enjoy the privacy of the picturesque boat house, perfect for a self-catering break.</p>
+                <p>The Torridon itself offers elegantly decorated rooms in the grand hotel, built originally as a hunting lodge, and rooms in the Inn. You can also enjoy the privacy of the picturesque boat house, perfect for a self-catering break.</p>
 
-              <p>Or find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Torridon&amp;locplace=8751&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off" title="">other accommodation in the Torridon area</a>.</p>
+                <p>Or find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Torridon&amp;locplace=8751&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off" title="">other accommodation in the Torridon area</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>The Torridon is a slice of foodie heaven, with <a href="https://www.thetorridon.com/inn/inn-restaurant/" title="Torridon Inn" target="_blank">Torridon Inn</a> offering hearty pub grub and the <a href="https://www.thetorridon.com/restaurant/" title="1887 Restaurant at The Torridon" target="_blank">1887 Restaurant</a> serving fine, award-winning cuisine with exquisitely matched wines. And should the weather conditions affect the activities in the outdoors, then why not relax in a comfy arm chair and enjoy a delicious afternoon tea, complete with a warming pot of The Torridon's signature blend?</p>
+                <p>The Torridon is a slice of foodie heaven, with <a href="https://www.thetorridon.com/inn/inn-restaurant/" title="Torridon Inn" target="_blank">Torridon Inn</a> offering hearty pub grub and the <a href="https://www.thetorridon.com/restaurant/" title="1887 Restaurant at The Torridon" target="_blank">1887 Restaurant</a> serving fine, award-winning cuisine with exquisitely matched wines. And should the weather conditions affect the activities in the outdoors, then why not relax in a comfy arm chair and enjoy a delicious afternoon tea, complete with a warming pot of The Torridon's signature blend?</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>The Torridon is accessible by <a href="https://www.thetorridon.com/contact-us/travel-advice/" title="Travel to The Torridon" target="_blank">road</a>. From Inverness, the journey takes approximately 1 hour and 30 mins, crossing the Kessock Bridge and following the A835, A832, and the A896.</p>
+                <p>The Torridon is accessible by <a href="https://www.thetorridon.com/contact-us/travel-advice/" title="Travel to The Torridon" target="_blank">road</a>. From Inverness, the journey takes approximately 1 hour and 30 mins, crossing the Kessock Bridge and following the A835, A832, and the A896.</p>
         /an-active-winter-break-in-the-great-outdoors[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -11307,9 +11361,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:54:26.565Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:58:34.876Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:35:04.349Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T15:00:58.726Z
+          hippostdpubwf:publicationDate: 2021-01-11T16:35:32.269Z
           hippotranslation:id: a836113b-f70d-4326-9e1e-35d226c55aea
           hippotranslation:locale: en
           visitscotland:anchor: outdoors
@@ -11322,30 +11376,35 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Those with a passion for the great outdoors (who also like the finer things in life)!</p>
+                <p>Those with a passion for the great outdoors (who also like the finer things in life)!</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p>Combine your passion for the natural environment with a good dollop of indulgence on a break to <a href="https://www.thetorridon.com/" title="The Torridon" target="_blank">The Torridon</a>, a luxury estate retreat in the beautiful north west Highlands.</p>
+                <p>Combine your passion for the natural environment with a good dollop of indulgence on a break to <a href="https://www.thetorridon.com/" title="The Torridon" target="_blank">The Torridon</a>, a luxury estate retreat in the beautiful north west Highlands.</p>
 
-              <p>The Torridon offers activities year-round. In the winter months, there's a <a href="https://www.thetorridon.com/activities/activity-programme/" title="Activities at The Torridon" target="_blank">programme</a> of archery, sea kayaking, canoeing, rock climbing, and guided walks and mountain bike rides. The surrounding landscape is truly wild and rugged, making for some very exhilarating hiking. Experienced climbers can get a taste of navigating the Torridon mountains in challenging winter conditions. Be sure to pack the crampons!</p>
+                <p>The Torridon offers activities year-round. In the winter months, there's a <a href="https://www.thetorridon.com/activities/activity-programme/" title="Activities at The Torridon" target="_blank">programme</a> of archery, sea kayaking, canoeing, rock climbing, and guided walks and mountain bike rides. The surrounding landscape is truly wild and rugged, making for some very exhilarating hiking. Experienced climbers can get a taste of navigating the Torridon mountains in challenging winter conditions. Be sure to pack the crampons!</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>The Torridon itself offers elegantly decorated rooms in the grand hotel, built originally as a hunting lodge, and rooms in the Inn. You can also enjoy the privacy of the picturesque boat house, perfect for a self-catering break.</p>
+                <p>The Torridon itself offers elegantly decorated rooms in the grand hotel, built originally as a hunting lodge, and rooms in the Inn. You can also enjoy the privacy of the picturesque boat house, perfect for a self-catering break.</p>
 
-              <p>Or find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Torridon&amp;locplace=8751&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off" title="">other accommodation in the Torridon area</a>.</p>
+                <p>Or find <a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Torridon&amp;locplace=8751&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off" title="">other accommodation in the Torridon area</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>The Torridon is a slice of foodie heaven, with <a href="https://www.thetorridon.com/inn/inn-restaurant/" title="Torridon Inn" target="_blank">Torridon Inn</a> offering hearty pub grub and the <a href="https://www.thetorridon.com/restaurant/" title="1887 Restaurant at The Torridon" target="_blank">1887 Restaurant</a> serving fine, award-winning cuisine with exquisitely matched wines. And should the weather conditions affect the activities in the outdoors, then why not relax in a comfy arm chair and enjoy a delicious afternoon tea, complete with a warming pot of The Torridon's signature blend?</p>
+                <p>The Torridon is a slice of foodie heaven, with <a href="https://www.thetorridon.com/inn/inn-restaurant/" title="Torridon Inn" target="_blank">Torridon Inn</a> offering hearty pub grub and the <a href="https://www.thetorridon.com/restaurant/" title="1887 Restaurant at The Torridon" target="_blank">1887 Restaurant</a> serving fine, award-winning cuisine with exquisitely matched wines. And should the weather conditions affect the activities in the outdoors, then why not relax in a comfy arm chair and enjoy a delicious afternoon tea, complete with a warming pot of The Torridon's signature blend?</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>The Torridon is accessible by <a href="https://www.thetorridon.com/contact-us/travel-advice/" title="Travel to The Torridon" target="_blank">road</a>. From Inverness, the journey takes approximately 1 hour and 30 mins, crossing the Kessock Bridge and following the A835, A832, and the A896.</p>
+                <p>The Torridon is accessible by <a href="https://www.thetorridon.com/contact-us/travel-advice/" title="Travel to The Torridon" target="_blank">road</a>. From Inverness, the journey takes approximately 1 hour and 30 mins, crossing the Kessock Bridge and following the A835, A832, and the A896.</p>
       /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -11361,7 +11420,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:55:22.432Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:57:24.483Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:35:16.197Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: cc928b13-7583-41db-9602-acae8394b2dd
           hippotranslation:locale: en
@@ -11376,48 +11435,53 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Those looking to experience unforgettably dark skies and traditional Scottish culture.</p>
+                <p>Those looking to experience unforgettably dark skies and traditional Scottish culture.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p><strong>Dark skies</strong></p>
+                <p>Dark skies</p>
 
-              <p>Winter is a fantastic time to soak up the splendour of the night sky. One of the best places to go <a href="https://www.visitscotland.com/see-do/landscapes-nature/dark-sky-parks-sites/" title="Dark Sky Parks &amp; Sites">stargazing in Scotland</a> is the <a href="https://www.visitscotland.com/info/towns-villages/galloway-forest-park-p249171" title="Galloway Forest Park">Galloway Forest Park</a> in south west Scotland, which was the second park in Europe and first in the UK to be awarded Dark Sky Park status.</p>
+                <p>Winter is a fantastic time to soak up the splendour of the night sky. One of the best places to go <a href="https://www.visitscotland.com/see-do/landscapes-nature/dark-sky-parks-sites/" title="Dark Sky Parks &amp; Sites">stargazing in Scotland</a> is the <a href="https://www.visitscotland.com/info/towns-villages/galloway-forest-park-p249171" title="Galloway Forest Park">Galloway Forest Park</a> in south west Scotland, which was the second park in Europe and first in the UK to be awarded Dark Sky Park status.</p>
 
-              <p>Find <a href="https://forestryandland.gov.scot/visit/forest-parks/galloway-forest-park/dark-skies" title="Dark sky park events in the Galloway Forest Park" target="_blank">dark sky park events in the Galloway Forest Park</a> and visit the <a href="https://www.visitscotland.com/info/see-do/scottish-dark-sky-observatory-p905131" title="Scottish Dark Sky Observatory">Scottish Dark Sky Observatory</a> at Dalmellington in Ayrshire to take part in a range of great events and navigate the skies using the observatory’s high-powered telescopes.</p>
+                <p>Find <a href="https://forestryandland.gov.scot/visit/forest-parks/galloway-forest-park/dark-skies" title="Dark sky park events in the Galloway Forest Park" target="_blank">dark sky park events in the Galloway Forest Park</a> and visit the <a href="https://www.visitscotland.com/info/see-do/scottish-dark-sky-observatory-p905131" title="Scottish Dark Sky Observatory">Scottish Dark Sky Observatory</a> at Dalmellington in Ayrshire to take part in a range of great events and navigate the skies using the observatory’s high-powered telescopes.</p>
 
-              <p>The Galloway Forest Park is also part of the <a href="http://www.gsabiosphere.org.uk/" title="" target="_blank">Galloway and Southern Ayrshire Biosphere</a> and you can book a dark sky event with one of the biosphere’s <a href="http://www.gsabiosphere.org.uk/become-a-dark-sky-ranger/" title="Galloway and Southern Ayrshire Biosphere Dark Sky Rangers" target="_blank">Dark Sky Rangers</a>.</p>
+                <p>The Galloway Forest Park is also part of the <a href="http://www.gsabiosphere.org.uk/" title="" target="_blank">Galloway and Southern Ayrshire Biosphere</a> and you can book a dark sky event with one of the biosphere’s <a href="http://www.gsabiosphere.org.uk/become-a-dark-sky-ranger/" title="Galloway and Southern Ayrshire Biosphere Dark Sky Rangers" target="_blank">Dark Sky Rangers</a>.</p>
 
-              <p>Another superb location for stargazing is the town of <a href="https://www.visitscotland.com/info/towns-villages/moffat-p244851" title="">Moffat</a> in Dumfries &amp; Galloway as it’s a designated Dark Sky Town – the first town in Europe to be awarded this status. The streetlights in the town are specially designed to minimise light pollution so that you can enjoy the starry skies above uninterrupted.</p>
+                <p>Another superb location for stargazing is the town of <a href="https://www.visitscotland.com/info/towns-villages/moffat-p244851" title="">Moffat</a> in Dumfries &amp; Galloway as it’s a designated Dark Sky Town – the first town in Europe to be awarded this status. The streetlights in the town are specially designed to minimise light pollution so that you can enjoy the starry skies above uninterrupted.</p>
 
-              <p><strong>Robert Burns and Burns Night</strong></p>
+                <p>Robert Burns and Burns Night</p>
 
-              <p>If you’re looking to experience authentic Scottish culture then January is a fantastic time to visit. Traditional Burns Suppers take place on and around 25 January to celebrate <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/" title="Robert Burns">Robert Burns</a>’ birthday, which is known as <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/burns-night/" title="Burns Night">Burns Night</a>.</p>
+                <p>If you’re looking to experience authentic Scottish culture then January is a fantastic time to visit. Traditional Burns Suppers take place on and around 25 January to celebrate <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/" title="Robert Burns">Robert Burns</a>’ birthday, which is known as <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/burns-night/" title="Burns Night">Burns Night</a>.</p>
 
-              <p>Robert Burns was born in Ayrshire and every year you’ll find events celebrating his life at the <a href="http://www.burnsfestival.com/" title="Find information about the Burns an’ a’ that! Festival" target="_blank">Burns An’ A’ That!</a> festival. Look out for the <a href="http://www.burnsfestival.com/burns-hame-toun/" title="Burns Hame Toun" target="_blank">Burns Hame Toun</a> events happening in January. Burns attractions to visit in Ayrshire include the <a href="https://www.visitscotland.com/info/see-do/robert-burns-birthplace-museum-p252331" title="Find information about the Robert Burns Birthplace Museum">Robert Burns Birthplace Museum</a> in Alloway and <a href="https://www.visitscotland.com/info/see-do/the-burns-house-museum-p256201" title="Find information on the Burns House Museum">Burns House Museum</a> in Mauchline.</p>
+                <p>Robert Burns was born in Ayrshire and every year you’ll find events celebrating his life at the <a href="http://www.burnsfestival.com/" title="Find information about the Burns an’ a’ that! Festival" target="_blank">Burns An’ A’ That!</a> festival. Look out for the <a href="http://www.burnsfestival.com/burns-hame-toun/" title="Burns Hame Toun" target="_blank">Burns Hame Toun</a> events happening in January. Burns attractions to visit in Ayrshire include the <a href="https://www.visitscotland.com/info/see-do/robert-burns-birthplace-museum-p252331" title="Find information about the Robert Burns Birthplace Museum">Robert Burns Birthplace Museum</a> in Alloway and <a href="https://www.visitscotland.com/info/see-do/the-burns-house-museum-p256201" title="Find information on the Burns House Museum">Burns House Museum</a> in Mauchline.</p>
 
-              <p>Dumfries &amp; Galloway also has strong connections with Robert Burns and is the place where he lived and spent time in the later years of his life, including at <a href="https://www.visitscotland.com/info/see-do/robert-burns-ellisland-farm-p250531" title="">Ellisland Farm</a> at Auldgirth and <a href="http://www.globeinndumfries.co.uk/" title="Find information on The Globe Inn" target="_blank">The Globe Inn</a> and <a href="https://www.visitscotland.com/info/see-do/robert-burns-house-p250471" title="">Robert Burns House</a> in Dumfries. From 24 January – 2 February 2020 you’ll find a packed programme of events at the <a href="http://bigburnssupper.com/" title="Big Burns Supper 2016" target="_blank">Big Burns Supper</a>, taking place in venues throughout Dumfries.</p>
+                <p>Dumfries &amp; Galloway also has strong connections with Robert Burns and is the place where he lived and spent time in the later years of his life, including at <a href="https://www.visitscotland.com/info/see-do/robert-burns-ellisland-farm-p250531" title="">Ellisland Farm</a> at Auldgirth and <a href="http://www.globeinndumfries.co.uk/" title="Find information on The Globe Inn" target="_blank">The Globe Inn</a> and <a href="https://www.visitscotland.com/info/see-do/robert-burns-house-p250471" title="">Robert Burns House</a> in Dumfries. From 24 January – 2 February 2020 you’ll find a packed programme of events at the <a href="http://bigburnssupper.com/" title="Big Burns Supper 2016" target="_blank">Big Burns Supper</a>, taking place in venues throughout Dumfries.</p>
 
-              <p>Find more things to see and do in <a href="https://www.visitscotland.com/destinations-maps/ayrshire-arran/" title="Ayrshire &amp; Arran">Ayrshire</a> and <a href="https://www.visitscotland.com/destinations-maps/dumfries-galloway/" title="Dumfries &amp; Galloway">Dumfries &amp; Galloway</a>.</p>
+                <p>Find more things to see and do in <a href="https://www.visitscotland.com/destinations-maps/ayrshire-arran/" title="Ayrshire &amp; Arran">Ayrshire</a> and <a href="https://www.visitscotland.com/destinations-maps/dumfries-galloway/" title="Dumfries &amp; Galloway">Dumfries &amp; Galloway</a>.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>Choose from hotels, B&amp;Bs, self-catering cottages and much more across both regions.</p>
+                <p>Choose from hotels, B&amp;Bs, self-catering cottages and much more across both regions.</p>
 
-              <p>Find accommodation in <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Ayrshire+%26+Arran&amp;locpoly=201&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Ayrshire &amp; Arran accommodation search">Ayrshire &amp; Arran</a> and <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Dumfries+%26+Galloway&amp;locpoly=111&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Dumfries &amp; Galloway accommodation search">Dumfries &amp; Galloway</a>.</p>
+                <p>Find accommodation in <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Ayrshire+%26+Arran&amp;locpoly=201&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Ayrshire &amp; Arran accommodation search">Ayrshire &amp; Arran</a> and <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Dumfries+%26+Galloway&amp;locpoly=111&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Dumfries &amp; Galloway accommodation search">Dumfries &amp; Galloway</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>Tuck into tasty local produce at eateries including <a href="https://www.visitscotland.com/info/food-drink/the-green-frog-cafe-p835261" title="The Green Frog Café in Moffat">The Green Frog Café</a> in Moffat, <a href="https://www.visitscotland.com/info/food-drink/loch-arthur-farm-shop-cafe-p304001" title="Loch Arthur Farm Shop Café near Dumfries">Loch Arthur Farm Shop Café</a> near Dumfries, the <a href="https://www.visitscotland.com/info/food-drink/kirkmichael-arms-p606101" title="Kirkmichael Arms near Maybole">Kirkmichael Arms</a> near Maybole and <a href="https://www.visitscotland.com/info/food-drink/the-coo-shed-p1968601" title="The Coo Shed near Alloway">The Coo Shed</a> near Alloway.</p>
+                <p>Tuck into tasty local produce at eateries including <a href="https://www.visitscotland.com/info/food-drink/the-green-frog-cafe-p835261" title="The Green Frog Café in Moffat">The Green Frog Café</a> in Moffat, <a href="https://www.visitscotland.com/info/food-drink/loch-arthur-farm-shop-cafe-p304001" title="Loch Arthur Farm Shop Café near Dumfries">Loch Arthur Farm Shop Café</a> near Dumfries, the <a href="https://www.visitscotland.com/info/food-drink/kirkmichael-arms-p606101" title="Kirkmichael Arms near Maybole">Kirkmichael Arms</a> near Maybole and <a href="https://www.visitscotland.com/info/food-drink/the-coo-shed-p1968601" title="The Coo Shed near Alloway">The Coo Shed</a> near Alloway.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
+                <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
 
-              <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+                <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
         /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -11426,7 +11490,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:55:22.432Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:57:24.450Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:35:16.165Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: cc928b13-7583-41db-9602-acae8394b2dd
           hippotranslation:locale: en
@@ -11441,48 +11505,53 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Those looking to experience unforgettably dark skies and traditional Scottish culture.</p>
+                <p>Those looking to experience unforgettably dark skies and traditional Scottish culture.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p><strong>Dark skies</strong></p>
+                <p>Dark skies</p>
 
-              <p>Winter is a fantastic time to soak up the splendour of the night sky. One of the best places to go <a href="https://www.visitscotland.com/see-do/landscapes-nature/dark-sky-parks-sites/" title="Dark Sky Parks &amp; Sites">stargazing in Scotland</a> is the <a href="https://www.visitscotland.com/info/towns-villages/galloway-forest-park-p249171" title="Galloway Forest Park">Galloway Forest Park</a> in south west Scotland, which was the second park in Europe and first in the UK to be awarded Dark Sky Park status.</p>
+                <p>Winter is a fantastic time to soak up the splendour of the night sky. One of the best places to go <a href="https://www.visitscotland.com/see-do/landscapes-nature/dark-sky-parks-sites/" title="Dark Sky Parks &amp; Sites">stargazing in Scotland</a> is the <a href="https://www.visitscotland.com/info/towns-villages/galloway-forest-park-p249171" title="Galloway Forest Park">Galloway Forest Park</a> in south west Scotland, which was the second park in Europe and first in the UK to be awarded Dark Sky Park status.</p>
 
-              <p>Find <a href="https://forestryandland.gov.scot/visit/forest-parks/galloway-forest-park/dark-skies" title="Dark sky park events in the Galloway Forest Park" target="_blank">dark sky park events in the Galloway Forest Park</a> and visit the <a href="https://www.visitscotland.com/info/see-do/scottish-dark-sky-observatory-p905131" title="Scottish Dark Sky Observatory">Scottish Dark Sky Observatory</a> at Dalmellington in Ayrshire to take part in a range of great events and navigate the skies using the observatory’s high-powered telescopes.</p>
+                <p>Find <a href="https://forestryandland.gov.scot/visit/forest-parks/galloway-forest-park/dark-skies" title="Dark sky park events in the Galloway Forest Park" target="_blank">dark sky park events in the Galloway Forest Park</a> and visit the <a href="https://www.visitscotland.com/info/see-do/scottish-dark-sky-observatory-p905131" title="Scottish Dark Sky Observatory">Scottish Dark Sky Observatory</a> at Dalmellington in Ayrshire to take part in a range of great events and navigate the skies using the observatory’s high-powered telescopes.</p>
 
-              <p>The Galloway Forest Park is also part of the <a href="http://www.gsabiosphere.org.uk/" title="" target="_blank">Galloway and Southern Ayrshire Biosphere</a> and you can book a dark sky event with one of the biosphere’s <a href="http://www.gsabiosphere.org.uk/become-a-dark-sky-ranger/" title="Galloway and Southern Ayrshire Biosphere Dark Sky Rangers" target="_blank">Dark Sky Rangers</a>.</p>
+                <p>The Galloway Forest Park is also part of the <a href="http://www.gsabiosphere.org.uk/" title="" target="_blank">Galloway and Southern Ayrshire Biosphere</a> and you can book a dark sky event with one of the biosphere’s <a href="http://www.gsabiosphere.org.uk/become-a-dark-sky-ranger/" title="Galloway and Southern Ayrshire Biosphere Dark Sky Rangers" target="_blank">Dark Sky Rangers</a>.</p>
 
-              <p>Another superb location for stargazing is the town of <a href="https://www.visitscotland.com/info/towns-villages/moffat-p244851" title="">Moffat</a> in Dumfries &amp; Galloway as it’s a designated Dark Sky Town – the first town in Europe to be awarded this status. The streetlights in the town are specially designed to minimise light pollution so that you can enjoy the starry skies above uninterrupted.</p>
+                <p>Another superb location for stargazing is the town of <a href="https://www.visitscotland.com/info/towns-villages/moffat-p244851" title="">Moffat</a> in Dumfries &amp; Galloway as it’s a designated Dark Sky Town – the first town in Europe to be awarded this status. The streetlights in the town are specially designed to minimise light pollution so that you can enjoy the starry skies above uninterrupted.</p>
 
-              <p><strong>Robert Burns and Burns Night</strong></p>
+                <p>Robert Burns and Burns Night</p>
 
-              <p>If you’re looking to experience authentic Scottish culture then January is a fantastic time to visit. Traditional Burns Suppers take place on and around 25 January to celebrate <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/" title="Robert Burns">Robert Burns</a>’ birthday, which is known as <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/burns-night/" title="Burns Night">Burns Night</a>.</p>
+                <p>If you’re looking to experience authentic Scottish culture then January is a fantastic time to visit. Traditional Burns Suppers take place on and around 25 January to celebrate <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/" title="Robert Burns">Robert Burns</a>’ birthday, which is known as <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/burns-night/" title="Burns Night">Burns Night</a>.</p>
 
-              <p>Robert Burns was born in Ayrshire and every year you’ll find events celebrating his life at the <a href="http://www.burnsfestival.com/" title="Find information about the Burns an’ a’ that! Festival" target="_blank">Burns An’ A’ That!</a> festival. Look out for the <a href="http://www.burnsfestival.com/burns-hame-toun/" title="Burns Hame Toun" target="_blank">Burns Hame Toun</a> events happening in January. Burns attractions to visit in Ayrshire include the <a href="https://www.visitscotland.com/info/see-do/robert-burns-birthplace-museum-p252331" title="Find information about the Robert Burns Birthplace Museum">Robert Burns Birthplace Museum</a> in Alloway and <a href="https://www.visitscotland.com/info/see-do/the-burns-house-museum-p256201" title="Find information on the Burns House Museum">Burns House Museum</a> in Mauchline.</p>
+                <p>Robert Burns was born in Ayrshire and every year you’ll find events celebrating his life at the <a href="http://www.burnsfestival.com/" title="Find information about the Burns an’ a’ that! Festival" target="_blank">Burns An’ A’ That!</a> festival. Look out for the <a href="http://www.burnsfestival.com/burns-hame-toun/" title="Burns Hame Toun" target="_blank">Burns Hame Toun</a> events happening in January. Burns attractions to visit in Ayrshire include the <a href="https://www.visitscotland.com/info/see-do/robert-burns-birthplace-museum-p252331" title="Find information about the Robert Burns Birthplace Museum">Robert Burns Birthplace Museum</a> in Alloway and <a href="https://www.visitscotland.com/info/see-do/the-burns-house-museum-p256201" title="Find information on the Burns House Museum">Burns House Museum</a> in Mauchline.</p>
 
-              <p>Dumfries &amp; Galloway also has strong connections with Robert Burns and is the place where he lived and spent time in the later years of his life, including at <a href="https://www.visitscotland.com/info/see-do/robert-burns-ellisland-farm-p250531" title="">Ellisland Farm</a> at Auldgirth and <a href="http://www.globeinndumfries.co.uk/" title="Find information on The Globe Inn" target="_blank">The Globe Inn</a> and <a href="https://www.visitscotland.com/info/see-do/robert-burns-house-p250471" title="">Robert Burns House</a> in Dumfries. From 24 January – 2 February 2020 you’ll find a packed programme of events at the <a href="http://bigburnssupper.com/" title="Big Burns Supper 2016" target="_blank">Big Burns Supper</a>, taking place in venues throughout Dumfries.</p>
+                <p>Dumfries &amp; Galloway also has strong connections with Robert Burns and is the place where he lived and spent time in the later years of his life, including at <a href="https://www.visitscotland.com/info/see-do/robert-burns-ellisland-farm-p250531" title="">Ellisland Farm</a> at Auldgirth and <a href="http://www.globeinndumfries.co.uk/" title="Find information on The Globe Inn" target="_blank">The Globe Inn</a> and <a href="https://www.visitscotland.com/info/see-do/robert-burns-house-p250471" title="">Robert Burns House</a> in Dumfries. From 24 January – 2 February 2020 you’ll find a packed programme of events at the <a href="http://bigburnssupper.com/" title="Big Burns Supper 2016" target="_blank">Big Burns Supper</a>, taking place in venues throughout Dumfries.</p>
 
-              <p>Find more things to see and do in <a href="https://www.visitscotland.com/destinations-maps/ayrshire-arran/" title="Ayrshire &amp; Arran">Ayrshire</a> and <a href="https://www.visitscotland.com/destinations-maps/dumfries-galloway/" title="Dumfries &amp; Galloway">Dumfries &amp; Galloway</a>.</p>
+                <p>Find more things to see and do in <a href="https://www.visitscotland.com/destinations-maps/ayrshire-arran/" title="Ayrshire &amp; Arran">Ayrshire</a> and <a href="https://www.visitscotland.com/destinations-maps/dumfries-galloway/" title="Dumfries &amp; Galloway">Dumfries &amp; Galloway</a>.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>Choose from hotels, B&amp;Bs, self-catering cottages and much more across both regions.</p>
+                <p>Choose from hotels, B&amp;Bs, self-catering cottages and much more across both regions.</p>
 
-              <p>Find accommodation in <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Ayrshire+%26+Arran&amp;locpoly=201&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Ayrshire &amp; Arran accommodation search">Ayrshire &amp; Arran</a> and <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Dumfries+%26+Galloway&amp;locpoly=111&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Dumfries &amp; Galloway accommodation search">Dumfries &amp; Galloway</a>.</p>
+                <p>Find accommodation in <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Ayrshire+%26+Arran&amp;locpoly=201&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Ayrshire &amp; Arran accommodation search">Ayrshire &amp; Arran</a> and <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Dumfries+%26+Galloway&amp;locpoly=111&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Dumfries &amp; Galloway accommodation search">Dumfries &amp; Galloway</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>Tuck into tasty local produce at eateries including <a href="https://www.visitscotland.com/info/food-drink/the-green-frog-cafe-p835261" title="The Green Frog Café in Moffat">The Green Frog Café</a> in Moffat, <a href="https://www.visitscotland.com/info/food-drink/loch-arthur-farm-shop-cafe-p304001" title="Loch Arthur Farm Shop Café near Dumfries">Loch Arthur Farm Shop Café</a> near Dumfries, the <a href="https://www.visitscotland.com/info/food-drink/kirkmichael-arms-p606101" title="Kirkmichael Arms near Maybole">Kirkmichael Arms</a> near Maybole and <a href="https://www.visitscotland.com/info/food-drink/the-coo-shed-p1968601" title="The Coo Shed near Alloway">The Coo Shed</a> near Alloway.</p>
+                <p>Tuck into tasty local produce at eateries including <a href="https://www.visitscotland.com/info/food-drink/the-green-frog-cafe-p835261" title="The Green Frog Café in Moffat">The Green Frog Café</a> in Moffat, <a href="https://www.visitscotland.com/info/food-drink/loch-arthur-farm-shop-cafe-p304001" title="Loch Arthur Farm Shop Café near Dumfries">Loch Arthur Farm Shop Café</a> near Dumfries, the <a href="https://www.visitscotland.com/info/food-drink/kirkmichael-arms-p606101" title="Kirkmichael Arms near Maybole">Kirkmichael Arms</a> near Maybole and <a href="https://www.visitscotland.com/info/food-drink/the-coo-shed-p1968601" title="The Coo Shed near Alloway">The Coo Shed</a> near Alloway.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
+                <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
 
-              <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+                <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
         /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -11491,9 +11560,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:55:22.432Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:57:24.450Z
+          hippostdpubwf:lastModificationDate: 2021-01-11T16:35:16.165Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T15:00:57.457Z
+          hippostdpubwf:publicationDate: 2021-01-11T16:35:32.105Z
           hippotranslation:id: cc928b13-7583-41db-9602-acae8394b2dd
           hippotranslation:locale: en
           visitscotland:anchor: dark-skies
@@ -11507,45 +11576,50 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>Best for</h3>
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Best for</h3>
 
-              <p>Those looking to experience unforgettably dark skies and traditional Scottish culture.</p>
+                <p>Those looking to experience unforgettably dark skies and traditional Scottish culture.</p>
 
-              <h3>Things to see and do</h3>
+                <h3>Things to see and do</h3>
 
-              <p><strong>Dark skies</strong></p>
+                <p>Dark skies</p>
 
-              <p>Winter is a fantastic time to soak up the splendour of the night sky. One of the best places to go <a href="https://www.visitscotland.com/see-do/landscapes-nature/dark-sky-parks-sites/" title="Dark Sky Parks &amp; Sites">stargazing in Scotland</a> is the <a href="https://www.visitscotland.com/info/towns-villages/galloway-forest-park-p249171" title="Galloway Forest Park">Galloway Forest Park</a> in south west Scotland, which was the second park in Europe and first in the UK to be awarded Dark Sky Park status.</p>
+                <p>Winter is a fantastic time to soak up the splendour of the night sky. One of the best places to go <a href="https://www.visitscotland.com/see-do/landscapes-nature/dark-sky-parks-sites/" title="Dark Sky Parks &amp; Sites">stargazing in Scotland</a> is the <a href="https://www.visitscotland.com/info/towns-villages/galloway-forest-park-p249171" title="Galloway Forest Park">Galloway Forest Park</a> in south west Scotland, which was the second park in Europe and first in the UK to be awarded Dark Sky Park status.</p>
 
-              <p>Find <a href="https://forestryandland.gov.scot/visit/forest-parks/galloway-forest-park/dark-skies" title="Dark sky park events in the Galloway Forest Park" target="_blank">dark sky park events in the Galloway Forest Park</a> and visit the <a href="https://www.visitscotland.com/info/see-do/scottish-dark-sky-observatory-p905131" title="Scottish Dark Sky Observatory">Scottish Dark Sky Observatory</a> at Dalmellington in Ayrshire to take part in a range of great events and navigate the skies using the observatory’s high-powered telescopes.</p>
+                <p>Find <a href="https://forestryandland.gov.scot/visit/forest-parks/galloway-forest-park/dark-skies" title="Dark sky park events in the Galloway Forest Park" target="_blank">dark sky park events in the Galloway Forest Park</a> and visit the <a href="https://www.visitscotland.com/info/see-do/scottish-dark-sky-observatory-p905131" title="Scottish Dark Sky Observatory">Scottish Dark Sky Observatory</a> at Dalmellington in Ayrshire to take part in a range of great events and navigate the skies using the observatory’s high-powered telescopes.</p>
 
-              <p>The Galloway Forest Park is also part of the <a href="http://www.gsabiosphere.org.uk/" title="" target="_blank">Galloway and Southern Ayrshire Biosphere</a> and you can book a dark sky event with one of the biosphere’s <a href="http://www.gsabiosphere.org.uk/become-a-dark-sky-ranger/" title="Galloway and Southern Ayrshire Biosphere Dark Sky Rangers" target="_blank">Dark Sky Rangers</a>.</p>
+                <p>The Galloway Forest Park is also part of the <a href="http://www.gsabiosphere.org.uk/" title="" target="_blank">Galloway and Southern Ayrshire Biosphere</a> and you can book a dark sky event with one of the biosphere’s <a href="http://www.gsabiosphere.org.uk/become-a-dark-sky-ranger/" title="Galloway and Southern Ayrshire Biosphere Dark Sky Rangers" target="_blank">Dark Sky Rangers</a>.</p>
 
-              <p>Another superb location for stargazing is the town of <a href="https://www.visitscotland.com/info/towns-villages/moffat-p244851" title="">Moffat</a> in Dumfries &amp; Galloway as it’s a designated Dark Sky Town – the first town in Europe to be awarded this status. The streetlights in the town are specially designed to minimise light pollution so that you can enjoy the starry skies above uninterrupted.</p>
+                <p>Another superb location for stargazing is the town of <a href="https://www.visitscotland.com/info/towns-villages/moffat-p244851" title="">Moffat</a> in Dumfries &amp; Galloway as it’s a designated Dark Sky Town – the first town in Europe to be awarded this status. The streetlights in the town are specially designed to minimise light pollution so that you can enjoy the starry skies above uninterrupted.</p>
 
-              <p><strong>Robert Burns and Burns Night</strong></p>
+                <p>Robert Burns and Burns Night</p>
 
-              <p>If you’re looking to experience authentic Scottish culture then January is a fantastic time to visit. Traditional Burns Suppers take place on and around 25 January to celebrate <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/" title="Robert Burns">Robert Burns</a>’ birthday, which is known as <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/burns-night/" title="Burns Night">Burns Night</a>.</p>
+                <p>If you’re looking to experience authentic Scottish culture then January is a fantastic time to visit. Traditional Burns Suppers take place on and around 25 January to celebrate <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/" title="Robert Burns">Robert Burns</a>’ birthday, which is known as <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/burns-night/" title="Burns Night">Burns Night</a>.</p>
 
-              <p>Robert Burns was born in Ayrshire and every year you’ll find events celebrating his life at the <a href="http://www.burnsfestival.com/" title="Find information about the Burns an’ a’ that! Festival" target="_blank">Burns An’ A’ That!</a> festival. Look out for the <a href="http://www.burnsfestival.com/burns-hame-toun/" title="Burns Hame Toun" target="_blank">Burns Hame Toun</a> events happening in January. Burns attractions to visit in Ayrshire include the <a href="https://www.visitscotland.com/info/see-do/robert-burns-birthplace-museum-p252331" title="Find information about the Robert Burns Birthplace Museum">Robert Burns Birthplace Museum</a> in Alloway and <a href="https://www.visitscotland.com/info/see-do/the-burns-house-museum-p256201" title="Find information on the Burns House Museum">Burns House Museum</a> in Mauchline.</p>
+                <p>Robert Burns was born in Ayrshire and every year you’ll find events celebrating his life at the <a href="http://www.burnsfestival.com/" title="Find information about the Burns an’ a’ that! Festival" target="_blank">Burns An’ A’ That!</a> festival. Look out for the <a href="http://www.burnsfestival.com/burns-hame-toun/" title="Burns Hame Toun" target="_blank">Burns Hame Toun</a> events happening in January. Burns attractions to visit in Ayrshire include the <a href="https://www.visitscotland.com/info/see-do/robert-burns-birthplace-museum-p252331" title="Find information about the Robert Burns Birthplace Museum">Robert Burns Birthplace Museum</a> in Alloway and <a href="https://www.visitscotland.com/info/see-do/the-burns-house-museum-p256201" title="Find information on the Burns House Museum">Burns House Museum</a> in Mauchline.</p>
 
-              <p>Dumfries &amp; Galloway also has strong connections with Robert Burns and is the place where he lived and spent time in the later years of his life, including at <a href="https://www.visitscotland.com/info/see-do/robert-burns-ellisland-farm-p250531" title="">Ellisland Farm</a> at Auldgirth and <a href="http://www.globeinndumfries.co.uk/" title="Find information on The Globe Inn" target="_blank">The Globe Inn</a> and <a href="https://www.visitscotland.com/info/see-do/robert-burns-house-p250471" title="">Robert Burns House</a> in Dumfries. From 24 January – 2 February 2020 you’ll find a packed programme of events at the <a href="http://bigburnssupper.com/" title="Big Burns Supper 2016" target="_blank">Big Burns Supper</a>, taking place in venues throughout Dumfries.</p>
+                <p>Dumfries &amp; Galloway also has strong connections with Robert Burns and is the place where he lived and spent time in the later years of his life, including at <a href="https://www.visitscotland.com/info/see-do/robert-burns-ellisland-farm-p250531" title="">Ellisland Farm</a> at Auldgirth and <a href="http://www.globeinndumfries.co.uk/" title="Find information on The Globe Inn" target="_blank">The Globe Inn</a> and <a href="https://www.visitscotland.com/info/see-do/robert-burns-house-p250471" title="">Robert Burns House</a> in Dumfries. From 24 January – 2 February 2020 you’ll find a packed programme of events at the <a href="http://bigburnssupper.com/" title="Big Burns Supper 2016" target="_blank">Big Burns Supper</a>, taking place in venues throughout Dumfries.</p>
 
-              <p>Find more things to see and do in <a href="https://www.visitscotland.com/destinations-maps/ayrshire-arran/" title="Ayrshire &amp; Arran">Ayrshire</a> and <a href="https://www.visitscotland.com/destinations-maps/dumfries-galloway/" title="Dumfries &amp; Galloway">Dumfries &amp; Galloway</a>.</p>
+                <p>Find more things to see and do in <a href="https://www.visitscotland.com/destinations-maps/ayrshire-arran/" title="Ayrshire &amp; Arran">Ayrshire</a> and <a href="https://www.visitscotland.com/destinations-maps/dumfries-galloway/" title="Dumfries &amp; Galloway">Dumfries &amp; Galloway</a>.</p>
 
-              <h3>Stay</h3>
+                <h3>Stay</h3>
 
-              <p>Choose from hotels, B&amp;Bs, self-catering cottages and much more across both regions.</p>
+                <p>Choose from hotels, B&amp;Bs, self-catering cottages and much more across both regions.</p>
 
-              <p>Find accommodation in <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Ayrshire+%26+Arran&amp;locpoly=201&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Ayrshire &amp; Arran accommodation search">Ayrshire &amp; Arran</a> and <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Dumfries+%26+Galloway&amp;locpoly=111&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Dumfries &amp; Galloway accommodation search">Dumfries &amp; Galloway</a>.</p>
+                <p>Find accommodation in <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Ayrshire+%26+Arran&amp;locpoly=201&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Ayrshire &amp; Arran accommodation search">Ayrshire &amp; Arran</a> and <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Dumfries+%26+Galloway&amp;locpoly=111&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Dumfries &amp; Galloway accommodation search">Dumfries &amp; Galloway</a>.</p>
 
-              <h3>Eating out</h3>
+                <h3>Eating out</h3>
 
-              <p>Tuck into tasty local produce at eateries including <a href="https://www.visitscotland.com/info/food-drink/the-green-frog-cafe-p835261" title="The Green Frog Café in Moffat">The Green Frog Café</a> in Moffat, <a href="https://www.visitscotland.com/info/food-drink/loch-arthur-farm-shop-cafe-p304001" title="Loch Arthur Farm Shop Café near Dumfries">Loch Arthur Farm Shop Café</a> near Dumfries, the <a href="https://www.visitscotland.com/info/food-drink/kirkmichael-arms-p606101" title="Kirkmichael Arms near Maybole">Kirkmichael Arms</a> near Maybole and <a href="https://www.visitscotland.com/info/food-drink/the-coo-shed-p1968601" title="The Coo Shed near Alloway">The Coo Shed</a> near Alloway.</p>
+                <p>Tuck into tasty local produce at eateries including <a href="https://www.visitscotland.com/info/food-drink/the-green-frog-cafe-p835261" title="The Green Frog Café in Moffat">The Green Frog Café</a> in Moffat, <a href="https://www.visitscotland.com/info/food-drink/loch-arthur-farm-shop-cafe-p304001" title="Loch Arthur Farm Shop Café near Dumfries">Loch Arthur Farm Shop Café</a> near Dumfries, the <a href="https://www.visitscotland.com/info/food-drink/kirkmichael-arms-p606101" title="Kirkmichael Arms near Maybole">Kirkmichael Arms</a> near Maybole and <a href="https://www.visitscotland.com/info/food-drink/the-coo-shed-p1968601" title="The Coo Shed near Alloway">The Coo Shed</a> near Alloway.</p>
 
-              <h3>Getting there</h3>
+                <h3>Getting there</h3>
 
-              <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
+                <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
 
-              <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+                <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>

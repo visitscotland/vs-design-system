@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 4e6dedcb-35aa-4a33-934a-3c8003ab2130
+          jcr:uuid: 011cc135-f564-489b-84d4-cb1a90f1aae1
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -70,7 +70,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
           visitscotland:anchor: ''
-          jcr:uuid: b6d3068d-a626-4c7a-a915-893c60f2ed11
+          jcr:uuid: 8de485ed-5be0-4f9f-9586-96a6c33abe3e
           hippostdpubwf:lastModificationDate: 2020-12-11T10:07:47.311Z
           hippostdpubwf:creationDate: 2020-12-11T10:07:47.312Z
           /visitscotland:image:
@@ -135,6 +135,8 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
                 \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{name:''links''},{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}
+                ] , removeButtons: ''PickImage,Youtube,Table''}'
           /paragraph:
             jcr:primaryType: frontend:plugin
             caption: PARAGRAPH
