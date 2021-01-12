@@ -203,6 +203,7 @@ export default {
 @include no-js {
     .vs-mega-nav-list-item{
         background-color: transparent;
+        border: 0;
 
         .vs-link--variant-primary{
             border: 2px solid $color-white;
@@ -236,6 +237,8 @@ export default {
         }
 
         &__heading{
+            border-bottom: 1px solid $color-gray-tint-5;
+
             .vs-link--variant-primary{
                 font-size: $h2-font-size;
             }
