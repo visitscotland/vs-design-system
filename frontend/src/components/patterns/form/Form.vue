@@ -39,6 +39,7 @@ export default {
         window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
         window.MktoForms2.whenRendered((form) => {
             this.destyleMktoForm(form);
+
             form.onSuccess(() => {
                 this.showSuccessMessage = true;
                 return false;
@@ -74,6 +75,16 @@ export default {
             if (!moreStyles) {
                 formEl.setAttribute('data-styles-ready', 'true');
             }
+
+            // move instructional text above field
+            const instructionsEls = formEl.getElementsByClassName('mktoInstruction');
+
+            instructionsEls.forEach((instruction) => {
+                const instructionClone = instruction;
+                const inputSibling = instruction.previousElementSibling;
+                const parent = instruction.parentNode;
+                parent.insertBefore(instructionClone, inputSibling);
+            });
         },
     },
 
