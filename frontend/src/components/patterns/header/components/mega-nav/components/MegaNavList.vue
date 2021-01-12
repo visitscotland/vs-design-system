@@ -57,6 +57,10 @@ export default {
         width: 100%;
         margin: 0 $spacer-6 $spacer-4 0;
 
+        @include media-breakpoint-up(sm) {
+            width: 50%;
+        }
+
         @include media-breakpoint-up(md) {
             width: 32%;
         }
