@@ -69,7 +69,7 @@ export default {
 
   ```jsx
     <div class="position-relative mt-5">
-        <vs-summary-box-icon-with-label
+        <VsSummaryBoxIconWithLabel
             :icon=itineraries.sampleItinerary.transport.key
             :label=itineraries.sampleItinerary.transport.value
         />
