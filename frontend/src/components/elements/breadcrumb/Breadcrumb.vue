@@ -38,15 +38,15 @@ export default {
 
 <docs>
   ```jsx
-  <vs-breadcrumb>
-    <vs-breadcrumb-item
+  <VsBreadcrumb>
+    <VsBreadcrumbItem
       v-for="(item, index) in breadcrumb.breadcrumb"
       :key="index"
       :href="item.href"
       :active="item.active"
       :text="item.name"
       >
-    </vs-breadcrumb-item>
-  </vs-breadcrumb>
+    </VsBreadcrumbItem>
+  </VsBreadcrumb>
   ```
 </docs>
