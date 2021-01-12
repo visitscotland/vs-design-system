@@ -32,13 +32,13 @@ export default {
 <docs>
   ```jsx
   <div>
-    <vs-container>
-      <vs-row>
-        <vs-col>
+    <VsContainer>
+      <VsRow>
+        <VsCol>
           This is a row with a single column
-        </vs-col>
-      </vs-row>
-    </vs-container>
+        </VsCol>
+      </VsRow>
+    </VsContainer>
   </div>
   ```
 </docs>

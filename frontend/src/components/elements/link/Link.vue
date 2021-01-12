@@ -114,82 +114,82 @@ export default {
 
 <docs>
     ```jsx
-        <bs-wrapper class="d-flex flex-wrap mb-4">
-            <vs-link class="mb-2" href="#foo">
+        <BsWrapper class="d-flex flex-wrap mb-4">
+            <VsLink class="mb-2" href="#foo">
                 Link
-            </vs-link>
-            <vs-link variant="dark" class="ml-6 mb-2" href="#foo">
+            </VsLink>
+            <VsLink variant="dark" class="ml-6 mb-2" href="#foo">
                 Dark Link
-            </vs-link>
-        </bs-wrapper>
+            </VsLink>
+        </BsWrapper>
 
         <VsHeading level="3">External links</VsHeading>
-        <bs-wrapper class="d-flex flex-wrap mb-4">
-            <vs-link class="mb-2" type="external" href="https://www.visitscotland.com">
+        <BsWrapper class="d-flex flex-wrap mb-4">
+            <VsLink class="mb-2" type="external" href="https://www.visitscotland.com">
                 External Link
-            </vs-link>
-            <vs-link variant="dark" type="external" class="ml-6 mb-2" href="#foo">
+            </VsLink>
+            <VsLink variant="dark" type="external" class="ml-6 mb-2" href="#foo">
                 External Dark Link
-            </vs-link>
-            <vs-heading level="4" class="ml-6 mb-2">
-                <vs-link href="https://www.visitscotland.com" type="external">
+            </VsLink>
+            <VsHeading level="4" class="ml-6 mb-2">
+                <VsLink href="https://www.visitscotland.com" type="external">
                     External Heading link
-                </vs-link>
-            </vs-heading>
-        </bs-wrapper>
+                </VsLink>
+            </VsHeading>
+        </BsWrapper>
 
         <VsHeading level="3">Download links</VsHeading>
-        <bs-wrapper class="d-flex flex-wrap mb-4">
-            <vs-link class="mb-2" type="download" href="https://www.visitscotland.com">
+        <BsWrapper class="d-flex flex-wrap mb-4">
+            <VsLink class="mb-2" type="download" href="https://www.visitscotland.com">
                 Download Link
-            </vs-link>
+            </VsLink>
 
-            <vs-link variant="dark" type="download" class="ml-6 mb-2" href="#foo">
+            <VsLink variant="dark" type="download" class="ml-6 mb-2" href="#foo">
                 Download Dark Link
-            </vs-link>
+            </VsLink>
 
-            <vs-heading level="4" class="ml-6 mb-2">
-                <vs-link href="https://www.visitscotland.com" type="download">
+            <VsHeading level="4" class="ml-6 mb-2">
+                <VsLink href="https://www.visitscotland.com" type="download">
                     Download Heading link
-                </vs-link>
-            </vs-heading>
-        </bs-wrapper>
+                </VsLink>
+            </VsHeading>
+        </BsWrapper>
 
         <VsHeading level="3">Internal links</VsHeading>
-        <bs-wrapper class="d-flex flex-wrap mb-4">
-            <vs-link class="mb-2" type="internal" href="https://www.visitscotland.com">
+        <BsWrapper class="d-flex flex-wrap mb-4">
+            <VsLink class="mb-2" type="internal" href="https://www.visitscotland.com">
                 Internal Link
-            </vs-link>
+            </VsLink>
 
-            <vs-link variant="dark" type="internal" class="ml-6 mb-2" href="#foo">
+            <VsLink variant="dark" type="internal" class="ml-6 mb-2" href="#foo">
                 Internal Dark Link
-            </vs-link>
+            </VsLink>
 
-            <vs-heading level="4" class="ml-6 mb-2">
-                <vs-link href="https://www.visitscotland.com" type="internal">
+            <VsHeading level="4" class="ml-6 mb-2">
+                <VsLink href="https://www.visitscotland.com" type="internal">
                     Internal Heading link
-                </vs-link>
-            </vs-heading>
-        </bs-wrapper>
+                </VsLink>
+            </VsHeading>
+        </BsWrapper>
 
-        <bs-wrapper class="d-flex flex-wrap mb-4">
+        <BsWrapper class="d-flex flex-wrap mb-4">
             <h3>Normal Paragraph (16px)</h3>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
                  efficitur pretium ultricies. Phasellus placerat tellus gravida,
                  laoreet velit vitae, interdum ante. Praesent quis urna
-                 <vs-link href="#foo">Link</vs-link> finibus, efficitur arcu vel,
+                 <VsLink href="#foo">Link</VsLink> finibus, efficitur arcu vel,
                  fermentum dui. Praesent laoreet leo nonfelis porttitor, eu tempor
                  tellus lobortis. Nunc consectetur ornare laoreet. Curabitur
-                 <vs-link type="external" href="https://www.visitscotland.com">External Link</vs-link>
+                 <VsLink type="external" href="https://www.visitscotland.com">External Link</VsLink>
                  ut sagittis quam. Praesent in quam ornare, ultricies odio vitae, aliquam nisl.
                  Curabitur et elit facilisis, egestas felis sed, dignissim eros. Curabitur
                  aliquam et lorem et accumsan. Fusce rutrum vel ex in posuere. Ut luctus
                  odio eu leo rutrum vestibulum.
             </p>
-        </bs-wrapper>
+        </BsWrapper>
 
-        <bs-wrapper
+        <BsWrapper
             class="d-flex flex-wrap mb-4 p-6"
             style="background-color: #191919; color: white"
         >
@@ -200,14 +200,14 @@ export default {
                  gravida, laoreet velit vitae, interdum ante. Praesent quis urna finibus,
                  efficitur arcu vel, fermentum dui. Praesent laoreet leo non
                  felis porttitor, eu tempor tellus lobortis. Nunc consectetur ornare laoreet.
-                Praesent in quam ornare, ultricies odio vitae, <vs-link variant="dark" href="#foo">
-                Dark Link</vs-link> aliquam nisl. Curabitur et elit facilisis,
+                Praesent in quam ornare, ultricies odio vitae, <VsLink variant="dark" href="#foo">
+                Dark Link</VsLink> aliquam nisl. Curabitur et elit facilisis,
                 egestas felis sed, dignissim eros. Curabitur aliquam et lorem et
-                accumsan. <vs-link variant="dark" type="external" href="#foo">External
-                Dark Link</vs-link> Fusce rutrum vel ex in posuere. Ut luctus odio eu leo
+                accumsan. <VsLink variant="dark" type="external" href="#foo">External
+                Dark Link</VsLink> Fusce rutrum vel ex in posuere. Ut luctus odio eu leo
                 rutrum vestibulum.
                 Nulla tortor ligula, consequat ac feugiat et, porta id eros.
             </VsLeadParagraph>
-        </bs-wrapper>
+        </BsWrapper>
     ```
 </docs>
