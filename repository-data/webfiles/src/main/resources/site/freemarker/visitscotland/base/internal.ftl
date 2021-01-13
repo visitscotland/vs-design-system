@@ -35,10 +35,10 @@
     </internal-footer>
 </#compress>
 <#compress>
-    <internal-scripts-footer>
+    <internal-script-footer>
         <@footerContributions />
         <!-- end include -->
-    </internal-scripts-footer>
+    </internal-script-footer>
 </#compress>
 </body>
 </html>
