@@ -5,4 +5,4 @@
 #   At: 12/29/2020, 12:47:33
 #   From: C:/vsdev/workspace/visitscotland-2019/frontend (https://github.com/typicode/husky#readme)
 
-. "$(dirname "$0")/husky.sh"
+. "$(dirname "$0")/husky.4.3.0.sh"
