@@ -51,13 +51,6 @@ export default {
             type: Boolean,
             default: false,
         },
-        /**
-         * Flag to check if item is last in array
-         */
-        isLast: {
-            type: Boolean,
-            default: false,
-        },
     },
     computed: {
         navItemClasses() {
@@ -66,7 +59,6 @@ export default {
                 'vs-mega-nav-list-item__link': this.href !== '#',
                 'vs-mega-nav-list-item__subheading-link': this.subheadingLink,
                 'vs-mega-nav-list-item__cta-link': this.ctaLink,
-                'is-last-item': this.isLast,
             };
         },
     },
