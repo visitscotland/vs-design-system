@@ -101,8 +101,6 @@ export default {
 
         // Close menu on resize screen to fix toggle btn issues
         window.addEventListener('resize', this.closeMenu);
-
-        this.getLastMenuItem();
     },
     beforeDestroy() {
         window.removeEventListener('resize', this.closeMenu);
@@ -110,19 +108,6 @@ export default {
     methods: {
         closeMenu() {
             this.$refs.dropdown.hide(true);
-        },
-        getLastMenuItem() {
-            const lastMenuItem = this.$el.querySelectorAll(
-                '.vs-mega-nav-accordion-item--level-1.is-last-item .vs-mega-nav-accordion-item--level-2.is-last-item .vs-mega-nav-list-item.is-last-item'
-            );
-
-            if (lastMenuItem.length > 0) {
-                lastMenuItem[0].children[0].addEventListener('focusout', this.focusCloseBtn);
-            }
-        },
-        focusCloseBtn() {
-            const closeBtn = this.$el.querySelector('.dropdown-toggle');
-            closeBtn.focus();
         },
     },
 };

@@ -91,7 +91,6 @@ export default {
         accordionItemClasses() {
             return [
                 `vs-mega-nav-accordion-item--level-${this.level}`,
-                this.isLast ? 'is-last-item' : '',
             ];
         },
     },
