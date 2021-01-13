@@ -48,7 +48,7 @@ export default {
 
     @include media-breakpoint-up(xxl) {
         margin-right: $spacer-10;
-        width: 21.4%;
+        width: 21.3%;
     }
 }
 
