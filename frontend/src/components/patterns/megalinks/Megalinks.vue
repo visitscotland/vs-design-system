@@ -131,6 +131,11 @@ export default {
         .row {
             display: flex;
             min-width: 100%;
+
+            // IE11 fix
+            @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+                width: 100%;
+            }
         }
         @supports not (-ms-high-contrast: none) {
             .row > [class*='col-'] {
