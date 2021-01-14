@@ -216,7 +216,7 @@ export default {
 </style>
 
 <docs>
-  ```
+  ```jsx
     <VsGlobalMenuLanguage>
         <VsGlobalMenuLanguageItem language-name="English" />
         <VsGlobalMenuLanguageItem language-name="Deutsch" />

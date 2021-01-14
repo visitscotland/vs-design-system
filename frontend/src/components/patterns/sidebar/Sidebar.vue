@@ -16,7 +16,7 @@ import { VsCol } from '@components/elements/layout';
  * Sidebar component: a wrapper component for sidebar content, generally
  * wrapped in content sections
  *
- * @displaynName Sidebar
+ * @displayName Sidebar
  */
 export default {
     name: 'VsSidebar',
@@ -41,34 +41,34 @@ export default {
 
 <docs>
   ```jsx
-  <vs-container>
-    <vs-row>
-      <vs-sidebar>
-        <vs-content-section tag="aside" heading="Heading">
+  <VsContainer>
+    <VsRow>
+      <VsSidebar>
+        <VsContentSection tag="aside" heading="Heading">
           <p style="margin-bottom:8px">Aside section content. Sidebar container has:</p>
 
           <pre style="white-space:normal">no cols setting - auto flex fit</pre>
-        </vs-content-section>
-      </vs-sidebar>
-    </vs-row>
-    <vs-row>
-      <vs-sidebar sm="10" md="8" lg="6" xl="4" xxl="2">
-        <vs-content-section tag="aside" heading="Heading">
+        </VsContentSection>
+      </VsSidebar>
+    </VsRow>
+    <VsRow>
+      <VsSidebar sm="10" md="8" lg="6" xl="4" xxl="2">
+        <VsContentSection tag="aside" heading="Heading">
           <p style="margin-bottom:8px">Aside section content. Sidebar container has:</p>
 
           <pre style="white-space:normal">sm="10" md="8" lg="6" xl="4" xxl="2"</pre>
-        </vs-content-section>
-      </vs-sidebar>
-    </vs-row>
-    <vs-row>
-      <vs-sidebar cols="6">
-        <vs-content-section tag="aside" heading="Heading">
+        </VsContentSection>
+      </VsSidebar>
+    </VsRow>
+    <VsRow>
+      <VsSidebar cols="6">
+        <VsContentSection tag="aside" heading="Heading">
           <p style="margin-bottom:8px">Aside section content. Sidebar container has:</p>
 
           <pre style="white-space:normal">cols="6"</pre>
-        </vs-content-section>
-      </vs-sidebar>
-    </vs-row>
-  </vs-container>
+        </VsContentSection>
+      </VsSidebar>
+    </VsRow>
+  </VsContainer>
   ```
 </docs>

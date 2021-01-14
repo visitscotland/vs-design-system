@@ -1,4 +1,4 @@
-import VsIKnowPartnerItem from './IKnowPartnerItem';
+import VsIKnowPartnerItem from './IknowPartnerItem';
 
 export default {
     VsIKnowPartnerItem,
