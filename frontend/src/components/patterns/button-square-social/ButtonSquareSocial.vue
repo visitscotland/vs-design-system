@@ -121,10 +121,10 @@ export default {
 </style>
 <docs>
   ```js
-    <vs-button-square-social
+    <VsButtonSquareSocial
         href="#"
         icon="youtube"
     >
-    </vs-button-square-social>
+    </VsButtonSquareSocial>
   ```
 </docs>
