@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VsIKnowPartnerItem from '../IKnowPartnerItem';
+import VsIKnowPartnerItem from '../IknowPartnerItem';
 
 const headingSlot = 'Heading Slot';
 const textSlot = 'Text Slot';
