@@ -50,49 +50,49 @@ export default {
 
   ```jsx
   <div class="position-relative" style="height: 400px;">
-    <vs-summary-box-list>
-       <vs-summary-box-list-item>
-            <vs-summary-box-display
+    <VsSummaryBoxList>
+       <VsSummaryBoxListItem>
+            <VsSummaryBoxDisplay
                 :text=itineraries.sampleItinerary.totalDays
             />
-            <vs-summary-box-label
+            <VsSummaryBoxLabel
                 label="Days"
             />
-        </vs-summary-box-list-item>
-        <vs-summary-box-list-item>
-            <vs-summary-box-distance-display
+        </VsSummaryBoxListItem>
+        <VsSummaryBoxListItem>
+            <VsSummaryBoxDistanceDisplay
                 :miles=itineraries.sampleItinerary.totalMiles
                 :kilometres=itineraries.sampleItinerary.totalKM
                 miles-label="miles"
                 kilometres-label="kilometres"
             />
-            <vs-summary-box-distance-label
+            <VsSummaryBoxDistanceLabel
                 distance-label="Distance"
                 kilometres-abbr="km"
                 kilometres-label="kilometres"
                 miles-abbr="mi"
                 miles-label="miles"
             />
-        </vs-summary-box-list-item>
-        <vs-summary-box-list-item>
-            <vs-summary-box-icon-with-label
+        </VsSummaryBoxListItem>
+        <VsSummaryBoxListItem>
+            <VsSummaryBoxIconWithLabel
                 :icon=itineraries.sampleItinerary.transport.key
                 :label=itineraries.sampleItinerary.transport.value
             />
-            <vs-summary-box-label
+            <VsSummaryBoxLabel
                 label="Transport"
             />
-        </vs-summary-box-list-item>
-        <vs-summary-box-list-item>
-            <vs-summary-box-icon-with-label
+        </VsSummaryBoxListItem>
+        <VsSummaryBoxListItem>
+            <VsSummaryBoxIconWithLabel
                 :icon=itineraries.sampleItinerary.theme.key
                 :label=itineraries.sampleItinerary.theme.value
             />
-            <vs-summary-box-label
+            <VsSummaryBoxLabel
                 label="Main theme"
             />
-        </vs-summary-box-list-item>
-    </vs-summary-box-list>
+        </VsSummaryBoxListItem>
+    </VsSummaryBoxList>
     </div>
   ```
 </docs>
