@@ -161,7 +161,7 @@ export default {
 
 <docs>
 ```jsx
-        <vs-itinerary-day
+        <VsItineraryDay
             v-for="(day, index) in itineraries.sampleItinerary.days"
             :defaultShow="(day.dayCount < 3) ? true : false"
             :key="index"
@@ -170,7 +170,7 @@ export default {
             slot="list"
             :dayTitle="day.title"
         >
-            <vs-description-list
+            <VsDescriptionList
                 v-if="day.transport.length"
                 class="text-center justify-content-center align-items-center"
                 slot="day-transport"
@@ -180,14 +180,14 @@ export default {
                     class="list-inline-item"
                     v-for="(transportType, transportTypeIndex) in day.transport"
                 >
-                    <vs-tooltip :title="transportType.value">
+                    <VsTooltip :title="transportType.value">
                         <vs-icon :name="transportType.key" variant="dark" size="md" />
-                    </vs-tooltip>
+                    </VsTooltip>
                     <span class="sr-only">{{transportType.value}}</span>
                 </dd>
-            </vs-description-list>
+            </VsDescriptionList>
 
             <div slot="day-introduction" v-html="day.introduction"></div>
-        </vs-itinerary-day>
+        </VsItineraryDay>
 ```
 </docs>

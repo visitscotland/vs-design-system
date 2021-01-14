@@ -186,13 +186,13 @@ export default {
 
 <docs>
   ```js
-    <vs-accordion>
-        <vs-accordion-item :open-by-default="true" variant="dark" control-id="accordion_item_1">
+    <VsAccordion>
+        <VsAccordionItem :open-by-default="true" variant="dark" control-id="accordion_item_1">
             <span slot="title">
                 This is a title
             </span>
 
-            <vs-icon
+            <VsIcon
                 name="chevron"
                 orientation="down"
                 variant="light"
@@ -200,7 +200,7 @@ export default {
                 slot="icon-open"
             />
 
-            <vs-icon
+            <VsIcon
                 name="chevron"
                 variant="light"
                 size="xs"
@@ -213,14 +213,14 @@ export default {
                 maximus sagittis mauris a finibus. Morbi fringilla, lorem ut fringilla sollicitudin,
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
-        </vs-accordion-item>
+        </VsAccordionItem>
 
-        <vs-accordion-item :open-by-default="false" variant="dark" control-id="accordion_item_2">
+        <VsAccordionItem :open-by-default="false" variant="dark" control-id="accordion_item_2">
             <span slot="title">
                 This is a title
             </span>
 
-            <vs-icon
+            <VsIcon
                 name="chevron"
                 orientation="down"
                 variant="light"
@@ -228,7 +228,7 @@ export default {
                 slot="icon-open"
             />
 
-            <vs-icon
+            <VsIcon
                 name="chevron"
                 variant="light"
                 size="xs"
@@ -241,13 +241,13 @@ export default {
                 maximus sagittis mauris a finibus. Morbi fringilla, lorem ut fringilla sollicitudin,
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
-        </vs-accordion-item>
-        <vs-accordion-item :open-by-default="false" variant="dark" control-id="accordion_item_3">
+        </VsAccordionItem>
+        <VsAccordionItem :open-by-default="false" variant="dark" control-id="accordion_item_3">
             <span slot="title">
                 This is a title
             </span>
 
-            <vs-icon
+            <VsIcon
                 name="chevron"
                 orientation="down"
                 variant="light"
@@ -255,7 +255,7 @@ export default {
                 slot="icon-open"
             />
 
-            <vs-icon
+            <VsIcon
                 name="chevron"
                 variant="light"
                 size="xs"
@@ -268,7 +268,7 @@ export default {
                 maximus sagittis mauris a finibus. Morbi fringilla, lorem ut fringilla sollicitudin,
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
-        </vs-accordion-item>
-    </vs-accordion>
+        </VsAccordionItem>
+    </VsAccordion>
   ```
 </docs>
