@@ -73,13 +73,6 @@ export default {
             required: true,
             validator: (value) => value.match(/(1|2)/),
         },
-        /**
-         * Flag to check if item is last in array
-         */
-        isLast: {
-            type: Boolean,
-            default: false,
-        },
     },
     computed: {
         getUniqueId() {
