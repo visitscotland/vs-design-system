@@ -66,7 +66,7 @@ export default {
 <docs>
   ```jsx
 
-    <vs-itinerary-mobile-map-toggle />
+    <VsItineraryMobileMapToggle />
 
   ```
 </docs>
