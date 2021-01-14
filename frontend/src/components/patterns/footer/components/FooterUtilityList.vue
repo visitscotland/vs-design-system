@@ -126,27 +126,27 @@ export default {
 
 <docs>
   ```js
-    <vs-footer>
-        <vs-footer-utility-list>
-            <vs-footer-nav-list-item
+    <VsFooter>
+        <VsFooterUtilityList>
+            <VsFooterNavListItem
                 href="#"
                 link-text="Brochures"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
+            ></VsFooterNavListItem>
+            <VsFooterNavListItem
                 href="#"
                 link-text="VisitScotland iCentres"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
+            ></VsFooterNavListItem>
+            <VsFooterNavListItem
                 href="#"
                 link-text="iKnow Scotland Community"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
+            ></VsFooterNavListItem>
+            <VsFooterNavListItem
                 href="#"
                 link-text="VisitScotland Awards"
-            ></vs-footer-nav-list-item>
+            ></VsFooterNavListItem>
 
-        </vs-footer-utility-list>
-    </vs-footer>
+        </VsFooterUtilityList>
+    </VsFooter>
 
   ```
 </docs>

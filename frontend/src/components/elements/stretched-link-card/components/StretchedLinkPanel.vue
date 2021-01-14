@@ -88,8 +88,8 @@ export default {
 </style>
 
 <docs>
-    ```
-        <vs-stretched-link-panel days="14" />
-        <vs-stretched-link-panel text="Panel text" />
+    ```jsx
+        <VsStretchedLinkPanel days="14" />
+        <VsStretchedLinkPanel text="Panel text" />
     ```
 </docs>
