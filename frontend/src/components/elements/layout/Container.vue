@@ -35,17 +35,17 @@ export default {
 <docs>
   ```jsx
     <div>
-      <vs-container style="background:#ccc">
-        <vs-row>
-          <vs-col>This is a fixed-width container</vs-col>
-        </vs-row>
-      </vs-container>
+      <VsContainer style="background:#ccc">
+        <VsRow>
+          <VsCol>This is a fixed-width container</VsCol>
+        </VsRow>
+      </VsContainer>
       <br />
-      <vs-container fluid style="background:#ccc">
-        <vs-row>
-          <vs-col>This is a fluid container</vs-col>
-        </vs-row>
-      </vs-container>
+      <VsContainer fluid style="background:#ccc">
+        <VsRow>
+          <VsCol>This is a fluid container</VsCol>
+        </VsRow>
+      </VsContainer>
       <br />
       *Note: the fixed width container appears fluid here because
        it is inside a parent element that is not full-page width.

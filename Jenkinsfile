@@ -23,9 +23,10 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
   //env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
   //cron_string = "*/2 * * * *"
 } else {
-  thisAgent = "docker-02"
   env.VS_RELEASE_SNAPSHOT = "FALSE"
-  //thisAgent = "op-dev-xvcdocker-01"
+  // thisAgent should always be set to op-dev-xvcdocker-01 unless you have been informed otherwise!
+  thisAgent = "op-dev-xvcdocker-01"
+  //thisAgent = "docker-02"
 }
 
 import groovy.json.JsonSlurper
