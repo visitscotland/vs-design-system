@@ -16,6 +16,8 @@
 /**
   * Text Wrapper is used to wrap and render HTML or text strings from
   * WYSIWYG editors or others and apply styles when needed.
+ *
+ * @displayName Rich Text Wrapper
  */
 export default {
     name: 'VsRichTextWrapper',
@@ -54,24 +56,24 @@ export default {
 
 <docs>
 ```jsx
-    <bs-wrapper class="mb-9">
+    <BsWrapper class="mb-9">
         <h3>Normal Variant</h3>
-        <vs-rich-text-wrapper>
+        <VsRichTextWrapper>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
              <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
              enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
             Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
-        </vs-rich-text-wrapper>
-    </bs-wrapper>
+        </VsRichTextWrapper>
+    </BsWrapper>
 
-    <bs-wrapper class="mb-4">
+    <BsWrapper class="mb-4">
         <h3>Lead Variant</h3>
-        <vs-rich-text-wrapper variant="lead">
+        <VsRichTextWrapper variant="lead">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
              <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
               enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
             Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
-        </vs-rich-text-wrapper>
-    </bs-wrapper>
+        </VsRichTextWrapper>
+    </BsWrapper>
 ```
 </docs>
