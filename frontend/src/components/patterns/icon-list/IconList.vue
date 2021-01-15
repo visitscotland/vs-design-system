@@ -60,39 +60,39 @@ export default {
 
 <docs>
   ```jsx
-    <vs-icon-list title="Key Facilities">
-        <vs-icon-list-item
+    <VsIconList title="Key Facilities">
+        <VsIconListItem
             icon="facility-wifi"
             label="WiFi"
         />
-        <vs-icon-list-item
+        <VsIconListItem
             icon="facility-petswelcom"
             label="Pets Welcome"
         />
-        <vs-icon-list-item
+        <VsIconListItem
             icon="facility-parking"
             label="Parking"
         />
-        <vs-icon-list-item
+        <VsIconListItem
             icon="facility-dsblaccess"
             label="Level Access"
         />
-        <vs-icon-list-item
+        <VsIconListItem
             icon="facility-audioloop"
             label="Hearing Loop"
         />
-        <vs-icon-list-item
+        <VsIconListItem
             icon="publictlt"
             label="Public Toilets">
-        </vs-icon-list-item>
-        <vs-icon-list-item
+        </VsIconListItem>
+        <VsIconListItem
             icon="giftshop"
             label="Gift Shop">
-        </vs-icon-list-item>
-        <vs-icon-list-item
+        </VsIconListItem>
+        <VsIconListItem
             icon="facility-accessparkdrop"
             label="Accessible Parking or Drop-off Point"
         />
-    </vs-icon-list>
+    </VsIconList>
   ```
 </docs>
