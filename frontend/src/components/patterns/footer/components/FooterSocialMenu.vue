@@ -65,33 +65,33 @@ export default {
 
 <docs>
   ```js
-    <vs-footer>
-        <vs-footer-nav-list>
-            <vs-col cols="12" md="6">
-                <vs-footer-social-menu>
+    <VsFooter>
+        <VsFooterNavList>
+            <VsCol cols="12" md="6">
+                <VsFooterSocialMenu>
                     <span slot="title">
                         Find us on
                     </span>
 
-                    <vs-footer-social-item
+                    <VsFooterSocialItem
                         href="#"
                         icon="facebook"
-                    ></vs-footer-social-item>
-                    <vs-footer-social-item
+                    ></VsFooterSocialItem>
+                    <VsFooterSocialItem
                         href="#"
                         icon="twitter"
-                    ></vs-footer-social-item>
-                    <vs-footer-social-item
+                    ></VsFooterSocialItem>
+                    <VsFooterSocialItem
                         href="#"
                         icon="youtube"
-                    ></vs-footer-social-item>
-                    <vs-footer-social-item
+                    ></VsFooterSocialItem>
+                    <VsFooterSocialItem
                         href="#"
                         icon="instagram"
-                    ></vs-footer-social-item>
-                </vs-footer-social-menu>
-            </vs-col>
-        </vs-footer-nav-list>
-    </vs-footer>
+                    ></VsFooterSocialItem>
+                </VsFooterSocialMenu>
+            </VsCol>
+        </VsFooterNavList>
+    </VsFooter>
   ```
 </docs>
