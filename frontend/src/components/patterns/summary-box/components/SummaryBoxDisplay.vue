@@ -47,7 +47,7 @@ export default {
 
   ```jsx
     <div class="py-2">
-        <vs-summary-box-display
+        <VsSummaryBoxDisplay
             :text=itineraries.sampleItinerary.totalDays
         />
     </div>
