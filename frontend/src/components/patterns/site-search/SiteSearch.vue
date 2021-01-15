@@ -1,7 +1,7 @@
 <template>
     <BForm
         role="search"
-        class="d-flex align-items-start py-2 py-md-4"
+        class="d-flex align-items-start py-2 py-md-4 vs-site-search"
         action
         method="get"
         :novalidate="true"
@@ -80,6 +80,11 @@ import VsFormInput from '@components/elements/form-input/FormInput';
 import { BForm, BFormInvalidFeedback } from 'bootstrap-vue';
 import { getters } from '../drawer/drawer.store';
 
+/**
+ * TODO: Document Usage
+ *
+ * @displayName Site Search
+ */
 export default {
     name: 'VsSiteSearch',
     status: 'prototype',
@@ -173,7 +178,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/input-group";
 
@@ -206,7 +211,7 @@ export default {
 <docs>
   ```jsx
   <div>
-    <vs-site-search />
+    <VsSiteSearch />
   </div>
   ```
 </docs>

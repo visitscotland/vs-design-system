@@ -14,9 +14,21 @@
 </template>
 
 <script>
+import VsButton from '@components/elements/button/Button';
+import VsIcon from '@components/elements/icon/Icon';
+
+/**
+ * TODO: Document usage
+ *
+ * @displayName Close Button
+ */
 export default {
     name: 'VsCloseButton',
+    components: {
+        VsButton,
+        VsIcon,
+    },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>

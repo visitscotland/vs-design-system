@@ -4,6 +4,7 @@
         class="vs-description-list"
         :class="{ 'list-inline': inline }"
     >
+        <!-- @slot The description content goes here -->
         <slot />
     </VsRow>
 </template>
@@ -15,6 +16,8 @@ import { VsRow } from '@components/elements/layout';
  *
  * The default list has 2 columns that collapse to stacked lists on smaller
  * screens. There is also an Inline option that can be passed in for a different style.
+ *
+ * @displayName Description List
  */
 
 export default {
@@ -30,6 +33,7 @@ export default {
          */
         inline: {
             type: Boolean,
+            default: false,
         },
     },
     /**
@@ -57,30 +61,30 @@ export default {
 
 <docs>
   ```jsx
-    <vs-description-list class="mb-6">
-        <vs-description-list-term>Highlights</vs-description-list-term>
-        <vs-description-list-detail
+    <VsDescriptionList class="mb-6">
+        <VsDescriptionListItem title>Highlights</VsDescriptionListItem>
+        <VsDescriptionListItem
             v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
         >
             {{highlight}}
-        </vs-description-list-detail>
-    </vs-description-list>
+        </VsDescriptionListItem>
+    </VsDescriptionList>
 
-    <vs-description-list class="mb-8">
-        <vs-description-list-term>Areas Covered</vs-description-list-term>
-        <vs-description-list-detail
+    <VsDescriptionList class="mb-8">
+        <VsDescriptionListItem title>Areas Covered</VsDescriptionListItem>
+        <VsDescriptionListItem
             v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
             key="index"
         >
             {{areaCovered}}
-        </vs-description-list-detail>
-    </vs-description-list>
+        </VsDescriptionListItem>
+    </VsDescriptionList>
 
-    <vs-description-list inline>
-        <vs-description-list-term>Transport</vs-description-list-term>
-        <vs-description-list-detail>
+    <VsDescriptionList inline>
+        <VsDescriptionListItem title>Transport</VsDescriptionListItem>
+        <VsDescriptionListItem>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit mollis neque quis sem facilisis.
-        </vs-description-list-detail>
-    </vs-description-list>
+        </VsDescriptionListItem>
+    </VsDescriptionList>
   ```
 </docs>
