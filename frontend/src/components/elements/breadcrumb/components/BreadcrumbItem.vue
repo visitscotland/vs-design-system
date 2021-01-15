@@ -107,7 +107,7 @@ export default {
 
 <docs>
   ```jsx
-  <vs-breadcrumb-item href="#" text="Inactive"></vs-breadcrumb-item>
-  <vs-breadcrumb-item active href="#" text="Active"></vs-breadcrumb-item>
+  <VsBreadcrumbItem href="#" text="Inactive"></VsBreadcrumbItem>
+  <VsBreadcrumbItem active href="#" text="Active"></VsBreadcrumbItem>
   ```
 </docs>
