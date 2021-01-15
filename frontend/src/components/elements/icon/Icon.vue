@@ -6,6 +6,7 @@
             [`vs-icon--size-${size}`]: true,
             [`vs-icon--${formattedName}`]: true,
             [`vs-icon--variant-${variant}`]: variant,
+            ['icon--' + orientation]: orientation,
         }"
         v-bind="$attrs"
     />
@@ -13,8 +14,8 @@
 
 <script>
 import { get } from 'lodash';
-import VsSvg from '../svg';
 import designTokens from '@/assets/tokens/tokens.raw.json';
+import VsSvg from '../svg';
 
 const iconPath = 'icons/';
 
@@ -25,6 +26,8 @@ const iconPath = 'icons/';
  *
  * Our icons come in specific sizes - xxs, xs, sm, md, lg and xl - and can be any colour,
  * including any of the theme colours.
+ *
+ * @displayName Icon
  */
 export default {
     name: 'VsIcon',
@@ -55,9 +58,20 @@ export default {
             ),
         },
         /**
-         * The size of the icon. Defaults to medium.
-         * `small, medium, large`
-         */
+        * The orientation of the icon. Defaults to 'up'.
+        * `up, left, right, down`
+        */
+        orientation: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(
+                /(up|down|left|right)/,
+            ),
+        },
+        /**
+        * Size of icon, defaults to medium
+        * `xxs, xs, sm, md, lg, xl`)
+        */
         size: {
             type: String,
             default: 'md',
@@ -147,6 +161,10 @@ export default {
                     key: 'walking',
                     value: 'walk',
                 },
+                {
+                    key: 'transport',
+                    value: 'transport',
+                },
             ],
         };
     },
@@ -213,61 +231,98 @@ $variants: (
     @each $variant in map-keys($variants) {
         &.vs-icon--variant-#{$variant} {
             fill: map-get($variants, $variant);
+
+             &.icon--reverse {
+                fill: $color-white;
+                background: map-get($variants, $variant);
+            }
         }
+    }
+
+    &.icon--down {
+        transform: rotate(180deg);
+    }
+
+    &.icon--left {
+        transform: rotate(270deg);
+    }
+
+    &.icon--right {
+        transform: rotate(90deg);
     }
 }
 </style>
 
 <docs>
-  ```jsx
+```jsx
   <div>
 
     <h3>Default</h3>
-    <vs-icon name="search" />
+    <VsIcon name="search" />
 
     <h3 class="mt-8">Variant</h3>
-    <vs-icon name="user" variant="primary" />
-    <vs-icon name="user" variant="secondary" />
-    <vs-icon name="user" variant="success" />
-    <vs-icon name="user" variant="warning" />
-    <vs-icon name="user" variant="info" />
-    <vs-icon name="user" variant="danger" />
-    <vs-icon name="user" variant="dark" />
-    <vs-icon name="user" variant="light" />
+    <VsIcon name="user" variant="primary" />
+    <VsIcon name="user" variant="secondary" />
+    <VsIcon name="user" variant="success" />
+    <VsIcon name="user" variant="warning" />
+    <VsIcon name="user" variant="info" />
+    <VsIcon name="user" variant="danger" />
+    <VsIcon name="user" variant="dark" />
+    <VsIcon name="user" variant="light" />
 
     <h3 class="mt-8">Size</h3>
 
     <div class="d-flex">
         <div class="d-flex flex-column mr-3 align-items-center">
-        <h4>xxs</h4>
-        <vs-icon name="favourite" size="xxs" />
+            <h4>xxs</h4>
+            <VsIcon name="favourite" size="xxs" />
+            </div>
+
+            <div class="d-flex flex-column mr-3 align-items-center">
+            <h4>xs</h4>
+            <VsIcon name="favourite" size="xs" />
+            </div>
+
+            <div class="d-flex flex-column mr-3 align-items-center">
+            <h4>sm</h4>
+            <VsIcon name="favourite" size="sm" />
+            </div>
+
+            <div class="d-flex flex-column mr-3 align-items-center">
+            <h4>md</h4>
+            <VsIcon name="favourite" size="md" />
+            </div>
+
+            <div class="d-flex flex-column mr-3 align-items-center">
+            <h4>lg</h4>
+            <VsIcon name="favourite" size="lg" />
+            </div>
+
+            <div class="d-flex flex-column mr-3 align-items-center">
+            <h4>xl</h4>
+            <VsIcon name="favourite" size="xl" />
+            </div>
         </div>
 
-        <div class="d-flex flex-column mr-3 align-items-center">
-        <h4>xs</h4>
-        <vs-icon name="favourite" size="xs" />
-        </div>
-
-        <div class="d-flex flex-column mr-3 align-items-center">
-        <h4>sm</h4>
-        <vs-icon name="favourite" size="sm" />
-        </div>
-
-        <div class="d-flex flex-column mr-3 align-items-center">
-        <h4>md</h4>
-        <vs-icon name="favourite" size="md" />
-        </div>
-
-        <div class="d-flex flex-column mr-3 align-items-center">
-        <h4>lg</h4>
-        <vs-icon name="favourite" size="lg" />
-        </div>
-
-        <div class="d-flex flex-column mr-3 align-items-center">
-        <h4>xl</h4>
-        <vs-icon name="favourite" size="xl" />
+        <h3 class="mt-8">Orientation</h3>
+        <div class="d-flex">
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Up</h4>
+                <VsIcon name="chevron" orientation="up" />
+            </div>
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Down</h4>
+                <VsIcon name="chevron" orientation="down" />
+            </div>
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Left</h4>
+                <VsIcon name="chevron" orientation="left" />
+            </div>
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Right</h4>
+                <VsIcon name="chevron" orientation="right" />
+            </div>
         </div>
     </div>
-  </div>
-  ```
+```
 </docs>

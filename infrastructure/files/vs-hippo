@@ -66,7 +66,9 @@ echo == stopping Tomcat
 export JAVA_HOME=$JAVA_HOME
 export CATALINA_HOME=$CATALINA_HOME
 export CATALINA_BASE=$CATALINA_BASE
-$CATALINA_HOME/bin/catalina.sh stop
+$CATALINA_HOME/bin/catalina.sh stop -force
+echo == terminating processes
+for PID in `ps -ef | grep "java" | grep "$VS_BRXM_TOMCAT_PORT" | awk '{print $2}'`; do echo "terminating $PID"; kill -9 $PID; done
 
 echo remove existing CATALINA_BASE
 echo ""

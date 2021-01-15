@@ -4,8 +4,11 @@
         :width="mapWidth"
         :height="mapHeight"
         viewBox="0 0 76 105.9"
+        class="vs-image-location-map"
+        data-test="vs-image-location-map"
     >
         <path
+            data-test="vs-image-location-map__first-path"
             d="M65.9965,9.0973l-.167.736.668.184Z"
             transform="translate(-0.2662 -0.2662)"
             fill="none"
@@ -408,6 +411,7 @@
         />
         <circle
             r="4"
+            data-test="vs-image-location-map__marker"
             :fill="mapMarkerColor"
             :cx="positionX"
             :cy="positionY"
@@ -418,7 +422,10 @@
 <script>
 /**
  * Image map element
+ *
+ * @displayName Image Location Map
  */
+
 export default {
     name: 'VsImageLocationMap',
     status: 'prototype',
@@ -494,8 +501,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-svg {
+<style lang="scss">
+.vs-image-location-map {
     width: 100%;
     height: 100%;
 }
@@ -503,19 +510,19 @@ svg {
 
 <docs>
   ```jsx
-  <vs-row>
-    <vs-col cols="6" sm="4" lg="3" v-for="(image, index) in hero.imageLocationMapExamples">
+  <VsRow>
+    <VsCol cols="6" sm="4" lg="3" v-for="(image, index) in hero.imageLocationMapExamples">
       <div class="mb-3 p-3 text-center">
         <p>{{image.title}}</p>
-          <vs-image-location-map
+          <VsImageLocationMap
             :latitude="image.latitude"
             :longitude="image.longitude"
             map-outline-color="#191919"
             map-marker-color="#109DA3"
           >
-          </vs-image-location-map>
+          </VsImageLocationMap>
       </div>
-    </vs-col>
-  </vs-row>
+    </VsCol>
+  </VsRow>
   ```
 </docs>

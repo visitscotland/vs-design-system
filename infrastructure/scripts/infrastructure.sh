@@ -42,6 +42,7 @@ if [ -z "$VS_BRXM_INSTANCE_HTTP_HOST" ]; then VS_BRXM_INSTANCE_HTTP_HOST=localho
 if [ -z "$VS_BRXM_PERSISTENCE_METHOD" ]; then VS_BRXM_PERSISTENCE_METHOD=h2; fi
 if [ -z "$VS_BRXM_TOMCAT_PORT" ]; then VS_BRXM_TOMCAT_PORT=8080; fi
 if [ -z "$VS_CONTAINER_PORT_INCREMENT" ]; then VS_CONTAINER_PORT_INCREMENT=100; fi
+if [ -z "$VS_CONTAINER_CONSOLE_FILE" ]; then VS_CONTAINER_CONSOLE_FILE="/tmp/console.out"; fi
 if [ -z "$VS_CONTAINER_DYN_PORT_MAX" ]; then VS_CONTAINER_DYN_PORT_MAX=8999; fi
 if [ -z "$VS_CONTAINER_INT_PORT_SSR" ]; then VS_CONTAINER_INT_PORT_SSR=8082; fi
 if [ -z "$VS_CONTAINER_INT_PORT_SSH" ]; then VS_CONTAINER_INT_PORT_SSH=22; fi
@@ -52,7 +53,7 @@ if [ -z "$VS_CONTAINER_SSH_PASS_HIPPO" ]; then VS_CONTAINER_SSH_PASS_HIPPO=hippo
 if [ -z "$VS_CONTAINER_UPDATES_DIR" ]; then VS_CONTAINER_UPDATES_DIR="../files"; fi
 #  ==== SSR Application Variables ====
 if [ -z "$VS_FRONTEND_DIR" ]; then VS_FRONTEND_DIR=frontend; fi
-if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/"; fi
+if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/ $VS_FRONTEND_DIR/build/"; fi
 if [ -z "$VS_SSR_PACKAGE_TARGET" ]; then VS_SSR_PACKAGE_TARGET="./target"; fi
 if [ -z "$VS_SSR_PACKAGE_NAME" ]; then VS_SSR_PACKAGE_NAME="vs-ssr-package.tar.gz"; fi
 if [ -z "$VS_SSR_PROXY_ON" ]; then VS_SSR_PROXY_ON="TRUE"; fi
@@ -380,7 +381,7 @@ setPortRange() {
   # gp:DONE - even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
   echo "determining port range to test for available base ports"
   if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
-    if [ "VS_PARENT_JOB_NAME" == "feature.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
+    if [ "$VS_PARENT_JOB_NAME" == "feature.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
       VS_CONTAINER_BASE_PORT_OVERRIDE=8100
       echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to  $VS_CONTAINER_BASE_PORT_OVERRIDE"
     elif [ "$VS_PARENT_JOB_NAME" == "develop.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
@@ -397,7 +398,7 @@ setPortRange() {
     fi
   fi
   if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
-    MIN_PORT=8000
+    MIN_PORT=8001
     MAX_PORT=8096
   else
     MIN_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
@@ -564,9 +565,9 @@ containerCreateAndStart() {
     echo "about to create a new Docker container with:"
     #VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     if [ "$VS_BRXM_PERSISTENCE_METHOD" == "mysql" ]; then
-      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env $VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env $VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     else
-      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env $VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env $VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     fi
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
@@ -594,14 +595,15 @@ containerUpdates() {
     THIS_LOCAL_FILE="`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_FILE`"
     if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "$THIS_LOCAL_FILE" ]; then
       echo " - sums match, an updated version of $THIS_FILE is available, copying to container"
-      docker exec $VS_CONTAINER_NAME mv $THIS_FILE $THIS_FILE.old 2>/dev/null
-      docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE 2>/dev/null
-      THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>/dev/null | awk '{print $1}'`
+      docker exec $VS_CONTAINER_NAME cp $THIS_FILE $THIS_FILE.old 2>>$VS_CONTAINER_CONSOLE_FILE
+      docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE 2>>VS_CONTAINER_CONSOLE_FILE
+      THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>>VS_CONTAINER_CONSOLE_FILE | awk '{print $1}'`
       echo " - sum now: $THIS_TEST"
     else
       echo " - no match"
     fi
   done
+  docker exec $VS_CONTAINER_NAME /bin/bash -c "find /usr/local/bin -type f | xargs chmod +x"
 }
 
 containerSSHStart() {
@@ -665,12 +667,15 @@ containerStartHippo() {
     # temporary mamangement of node app here until changes can be made in vs-hippo
     echo "about to execute "/usr/bin/pkill node" in container $VS_CONTAINER_NAME"
     docker exec -d $VS_CONTAINER_NAME /usr/bin/pkill node
+    #VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "for PID in `ps -ef | grep "java" | grep "$VS_BRXM_TOMCAT_PORT" | awk \'{print $2}\'`; do echo "terminating $PID"; kill -9 $PID; done"'
+    #echo "about to execute $VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
+    #eval $VS_DOCKER_CMD 
     if [ "$VS_BRXM_PERSISTENCE_METHOD" == "mysql" ]; then
-      VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /usr/local/bin/vs-hippo'
+      VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/vs-hippo >> $VS_CONTAINER_CONSOLE_FILE"'
     else
       VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /usr/local/bin/vs-hippo nodb'
     fi
-    echo "about to execute "/usr/local/bin/vs-hippo nodb" in container $VS_CONTAINER_NAME"
+    echo "about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
     RETURN_CODE=$?; echo $RETURN_CODE
@@ -715,7 +720,7 @@ createBuildReport() {
     echo "Direct Tomcat access - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/cms/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/site/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "    -  needs a HOST header of localhost:8080 to be passed with the request" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "    -  both need a HOST header of \"localhost:8080\" to be passed with the request" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     if [ ! -z "$VS_CONTAINER_EXT_PORT_SSR" ]; then
       echo "Direct SSR access - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -733,6 +738,8 @@ createBuildReport() {
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "$VS_CONTAINER_BASE_PORT" > env_port.txt
+    echo "$VS_HOST_IP_ADDRESS" > env_host.txt
   else
     EXIT_CODE=127
     echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE

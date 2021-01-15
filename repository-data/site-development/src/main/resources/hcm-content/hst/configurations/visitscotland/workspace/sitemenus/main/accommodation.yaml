@@ -1,0 +1,8 @@
+/hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/main/accommodation:
+  jcr:primaryType: hst:sitemenuitem
+  hst:referencesitemapitem: see-do/landscapes-nature/iconic-scottish-views
+  hst:repobased: false
+  /sandbox:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: dev-test
+    hst:repobased: false

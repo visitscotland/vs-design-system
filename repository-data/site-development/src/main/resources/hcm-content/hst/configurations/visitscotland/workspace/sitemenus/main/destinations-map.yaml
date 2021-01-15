@@ -1,0 +1,16 @@
+/hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/main/destinations-map:
+  .meta:order-before: see-do
+  jcr:primaryType: hst:sitemenuitem
+  hst:referencesitemapitem: destinations-maps/orkney/short-break-itinerary
+  hst:repobased: false
+  /cities.nav:
+    jcr:primaryType: hst:sitemenuitem
+    hst:repobased: false
+    /Itinerary:
+      jcr:primaryType: hst:sitemenuitem
+      hst:referencesitemapitem: see-do/attractions/historic/victorian-heritage-trail-itinerary
+      hst:repobased: false
+    /orkney.nav:
+      jcr:primaryType: hst:sitemenuitem
+      hst:referencesitemapitem: destinations-maps/orkney/short-break-itinerary
+      hst:repobased: false

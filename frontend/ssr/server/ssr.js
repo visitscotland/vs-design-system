@@ -22,8 +22,9 @@ let renderer;
 const formatHtml = (subjectHtml) => beautifyHtml(
     subjectHtml,
     {
-        indent_with_tabs: true,
-        preserve_newlines: false,
+		indent_with_tabs: false,
+        preserve_newlines: true,
+        indent_char: "",
     },
 );
 
@@ -111,7 +112,7 @@ const renderPage = async (pageHtml) => {
     const { $appNode, $page } = parsePageParts(pageHtml)
 
     // HTML is formatted before rendering to ensure successful hydration
-    const formattedAppHtml = formatHtml(cheerio.html($appNode));
+    const formattedAppHtml = formatHtml(cheerio.html($appNode, { decodeEntities: false }))
 
     prepSsrTemplate($page, formattedAppHtml);
 

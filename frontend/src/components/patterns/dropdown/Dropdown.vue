@@ -14,7 +14,8 @@
                 {{ text }}
             </slot>
             <VsIcon
-                name="chevron-down"
+                name="chevron"
+                orientation="down"
                 variant="reverse-white"
                 size="xxs"
                 class="ml-1"
@@ -27,14 +28,18 @@
 <script>
 import { BDropdown } from 'bootstrap-vue';
 import { reject } from 'lodash';
+import VsIcon from '@components/elements/icon';
 
 /**
  * Dropdown component for lists of links for example.
+ *
+ * @displayName Dropdown
  */
 export default {
     name: 'VsDropdown',
     components: {
         BDropdown,
+        VsIcon,
     },
     props: {
         text: {
@@ -59,14 +64,14 @@ export default {
 
 .vs-dropdown {
   .dropdown-toggle {
-    .vs-icon {
+    .icon-chevron {
       transition: all 150ms ease-in-out;
     }
   }
   &.show {
     .dropdown-toggle {
-      .vs-icon {
-        transform: rotate(-180deg);
+      .icon-chevron {
+        transform: none;
       }
     }
   }
@@ -75,10 +80,10 @@ export default {
 
 <docs>
   ```js
-  <vs-dropdown text="Dropdown">
-    <vs-dropdown-item href="https://www.google.com">Google</vs-dropdown-item>
-    <vs-dropdown-item>bbbb</vs-dropdown-item>
-    <vs-dropdown-item>feeeeee</vs-dropdown-item>
-  </vs-dropdown>
+  <VsDropdown text="Dropdown">
+    <VsDropdownItem href="https://www.google.com">Google</VsDropdownItem>
+    <VsDropdownItem>bbbb</VsDropdownItem>
+    <VsDropdownItem>feeeeee</VsDropdownItem>
+  </VsDropdown>
   ```
 </docs>

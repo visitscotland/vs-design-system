@@ -1,27 +1,32 @@
 def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-products"
-//def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com, webops@visitscotland.net"
-def MAIL_TO = "gavin@visitscotland.net"
+def MAIL_TO = "webops@visitscotland.net"
 
 def thisAgent
 def VS_CONTAINER_BASE_PORT_OVERRIDE
+cron_string = ""
 if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop" || JOB_NAME == "develop.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8099"
+  env.VS_RELEASE_SNAPSHOT = "TRUE"
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-nightly.visitscotland.com/develop" || JOB_NAME == "develop-nightly.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8098"
   cron_string = "@midnight"
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-stable.visitscotland.com/develop" || JOB_NAME == "develop-stable.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
+  env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8100"
+} else if (BRANCH_NAME == "develop" && (JOB_NAME == "feature.visitscotland.com/develop" || JOB_NAME == "feature.visitscotland.com-mb/develop")) {
+  thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8097"
 } else if (BRANCH_NAME == "feature/VS-1865-feature-environments-enhancements" && (JOB_NAME == "feature.visitscotland.com-mb/feature%2FVS-1865-feature-environments-enhancements")) {
   thisAgent = "op-dev-xvcdocker-01"
   //env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
   //cron_string = "*/2 * * * *"
-  cron_string = ""
 } else {
-  thisAgent = "docker-02"
-  cron_string = ""
+  env.VS_RELEASE_SNAPSHOT = "FALSE"
+  // thisAgent should always be set to op-dev-xvcdocker-01 unless you have been informed otherwise!
+  thisAgent = "op-dev-xvcdocker-01"
+  //thisAgent = "docker-02"
 }
 
 import groovy.json.JsonSlurper
@@ -31,11 +36,15 @@ pipeline {
   agent {label thisAgent}
   triggers { cron( cron_string ) }
   environment {
+    MAVEN_SETTINGS = credentials('maven-settings')
     // from 20200804 VS_SSR_PROXY_ON will only affect whether the SSR app is packaged and sent to the container, using or bypassing will be set via query string
     VS_SSR_PROXY_ON = 'TRUE'
+    // VS_CONTAINER_PRESERVE is set to TRUE in the ingrastructure build script, if this is set to FALSE the container will be rebuilt every time and the repository wiped
+    VS_CONTAINER_PRESERVE = 'TRUE'
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
-    VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-1865-feature-environments-enhancements'
+    VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
+    VS_RUN_LIGHTHOUSE_TESTS = 'TRUE'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
@@ -78,7 +87,7 @@ pipeline {
       when {
         allOf {
           expression {return env.VS_RUN_BRC_STAGES != 'TRUE'}
-	  expression {return env.VS_SKIP_VS_BLD != 'TRUE'}
+	      expression {return env.VS_SKIP_VS_BLD != 'TRUE'}
           expression {return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
         }
       }
@@ -88,7 +97,7 @@ pipeline {
       }
       post {
         success {
-          sh 'mvn -f pom.xml install -P dist'
+          sh 'mvn -f pom.xml install -Pdist-with-development-data'
           mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
         failure {
@@ -141,13 +150,13 @@ pipeline {
       }
       steps {
         // -- 20200712: QUESTION FOR SE, "brC does not recognise the package, maybe it needs Enterprise Features?"
-        sh 'mvn verify && mvn -Pdist -P!fed-build -DskipTests'
+        sh 'mvn verify && mvn -Pdist-with-development-data -P!fed-build -DskipTests'
       }
       post {
         success {
           //sh 'mvn -f pom.xml install -P !default'
 	  // -- 20200712: extra install step removed
-          //sh 'mvn -f pom.xml install -P dist'
+          //sh 'mvn -f pom.xml install -Pdist-with-development-data'
           mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
         failure {
@@ -155,7 +164,78 @@ pipeline {
         }
       }
     } //end stage
+    stage ('Build Actions'){
+      parallel {
+        stage('SonarQube BE Scan') {
+          when {
+            branch 'develop' 
+          }
+          steps {
+            withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
+              sh "mvn sonar:sonar -Dsonar.host.url=http://172.28.87.209:9000 -s $MAVEN_SETTINGS"
+            }
+          }
+        }
 
+        stage('SonarQube FE scan') {
+          when {
+            branch 'develop' 
+          }
+          environment {
+            scannerHome = tool 'SonarQube_4.0'
+          }
+          steps {
+            withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
+              sh '''
+                ${scannerHome}/bin/sonar-scanner \
+                -Dsonar.sources=./frontend \
+                -Dsonar.projectKey=VS2019-FE \
+                -Dsonar.host.url=http://172.28.87.209:9000 \
+                -Dsonar.login=9fa63cfd51d94fb8e437b536523c15a9b45ee2c1
+              '''
+            }
+          }
+        }
+
+        stage ('Snapshot to Nexus'){
+              when {
+                allOf {
+                  expression {return env.VS_RELEASE_SNAPSHOT == 'TRUE'}
+                }
+              }
+              steps{
+                  script{
+                      sh 'mvn -B -f pom.xml deploy -Pdist-with-development-data -s $MAVEN_SETTINGS'
+                  }
+              }
+          }
+
+        stage('Release to Nexus') {
+          when {
+                branch 'PR-145' // to do - change this to develop  when ready
+          }
+          steps {
+              script {
+                NEW_TAG = "${env.JOB_NAME}-${env.BUILD_NUMBER}"
+              }
+              echo "Creating tag $NEW_TAG"
+              sh "git tag -m \"CI tagging\" $NEW_TAG"
+              echo "Uploading tag $NEW_TAG to Bitbucket"
+              withCredentials([usernamePassword(credentialsId: 'jenkins-ssh', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+                sh """
+                git config --local credential.username ${USER}
+                git config --local credential.helper "!echo password=${PASSWORD}; echo"
+                git push origin $NEW_TAG --repo=${env.GIT_URL}
+                """
+              }
+              echo "Uploading version $NEW_TAG to Nexus"
+              sh "mvn versions:set -DremoveSnapshot"
+              sh "mvn -B clean  deploy -Pdist -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
+          }
+        }
+      }
+    }
+ 
     stage ('vs build feature env') {
       steps{
         script{
@@ -163,7 +243,35 @@ pipeline {
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
       }
-    } //end stage
+    } 
+    stage('Lighthouse Testing'){
+      when {
+        allOf {
+          expression {return env.VS_RUN_LIGHTHOUSE_TESTS == 'TRUE'}
+        }
+      }
+      steps{
+        script{
+          sleep time: 120, unit: 'SECONDS'
+          sh 'sh ./testing/lighthouse.sh'
+        }
+      }
+      post {
+        success {
+          publishHTML (target: [
+            allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: false,
+            reportDir: 'frontend/.lighthouseci',
+            reportFiles: 'lhr-**.html',
+            reportName: "LH Report"
+          ])
+        }
+        failure {
+          mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Lighthouse failure: ${env.JOB_NAME}", to: "${env.CHANGE_AUTHOR_EMAIL}";
+        }
+      }
+    }
 
 // -- 20200712: entire section commented out as it currently serves no purpose
 //    stage ('Availability notice'){
@@ -190,92 +298,3 @@ pipeline {
     }
   } //end post
 } //end pipeline
-
-private String login(url, VS_BRC_USERNAME, VS_BRC_PASSWORD) {
-   echo "Login and obtain access token:"
-   def json = "{\"username\": \"${VS_BRC_USERNAME}\", \"password\": \"${VS_BRC_PASSWORD}\"}"
-   loginResult = post(url, json)
-   echo "Login result ${loginResult}"
-   return loginResult
-}
-
-private boolean verify_token(url, access_token) {
-    if (access_token) {
-        echo "Verify access token:"
-        verifyResult = get(url, access_token)
-        echo "Verify result ${verifyResult}"
-        if (parseJson(verifyResult).error_code) {
-            echo "Token is invalid"
-            echo "Error code: " + parseJson(verifyResult).error_code
-            echo "Error detail: " + parseJson(verifyResult).error_detail
-            return false;
-        }
-        echo "Access token is valid"
-        return true;
-    } else {
-        echo "Access token is null"
-        return false;
-    }
-}
-
-private String refresh_token(url, refresh_token) {
-    echo "Refresh access token:"
-    def json = "{\"grant_type\": \"refresh_token\", \"refresh_token\": \"${refresh_token}\"}"
-    refreshResult = post(url, json)
-    echo "Refresh result ${refreshResult}"
-    return "Bearer " + parseJson(refreshResult).access_token;
-}
-
-
-@NonCPS
-private String get(url, access_token = null) {
-   return curl("GET", url, access_token)
-}
-
-@NonCPS
-private String post(url, json, access_token = null) {
-   return curl("POST", url, access_token, json)
-}
-
-@NonCPS
-private String postMultipart(url, String fileName, file, String access_token = null) {
-   return curl("POST", url, access_token, null, fileName, file, null, "multipart/form-data")
-}
-
-@NonCPS
-private String put(url, json, String access_token = null) {
-   return curl("PUT", url, access_token, json, null, null, "-i --http1.1")
-}
-
-@NonCPS
-private String  delete(url, access_token = null) {
-   return curl("DELETE", url, access_token, null, null, null, "--http1.1")
-}
-
-@NonCPS
-private String curl(method, url, access_token, json = null, fileName = null, file = null, extraParams = null, contentType = "application/json") {
-   return sh(script: "curl ${extraParams?:""} \
-           -X ${method} '${url}' \
-           ${access_token?"-H 'Authorization: ${access_token}'":""} \
-           -H 'Content-Type: ${contentType}' \
-           ${json?"-d '${json}'":""} \
-           ${(fileName && file)?"-F '${fileName}=@${file}'":""}",
-           returnStdout: true)
-}
-
-@NonCPS
-def parseJson(text) {
-   return new JsonSlurper().parseText(text)
-}
-
-
-@NonCPS
-def getEnvironmentID(environments, VS_BRC_ENV) {
-   result = null
-   parseJson(environments).items.each() { env ->
-       if(env.name.toString() == VS_BRC_ENV) {
-           result = env.id
-       }
-   }
-   return result
-}

@@ -10,8 +10,43 @@ Alternatively, developers might prefer to run a quicker version were UI packages
 Please, note that the full run is advised every time the branch is changed or when front end changes 
 are expected.
 
+Windows Based Console
+
     mvn clean verify -P !fed-build -DskipTests
     mvn -P cargo.run
+   
+or 
+
+    mvn clean verify -P !fed-build -DskipTests &&mvn -P cargo.run
+    
+Unix Based Console
+
+    mvn clean verify -P \!fed-build -DskipTests 
+    mvn -P cargo.run
+    
+Front end developers can also benefit of a quick run by running the following command which only
+build the front end packages and the UI integration.
+
+    mvn verify -P fed-build -D skipTests && mvn -P cargo.run    
+    
+## Navigating through the CMS
+
+#### Useful URLs
+This is a bunch useful URLs for local development 
+
+- http://localhost:8080/site: Display the site that would be presented to the final Internet User. Unpublished documents
+will not be available.
+- http://localhost:8080/cms: CMS (Content Management System) tool for managing the content
+- http://localhost:8080/cms/console: JCR Console that contains the configuration and the data of the CMS
+- http://localhost:8080/cms/repository: Query tool for the JCR Console. It can be queried through xPath or JCR
+- http://localhost:8080/essentials: Out-of-the-box set of tools that add some extra capabilities to the CMS
+ 
+
+
+### Development credentials
+Username: admin
+Password: admin (Do not share it. It is a secret)
+
     
 ## Troubleshooting
 **I get the following error when I try to clone the message: _fatal: cannot create directory at '{some big path}': Filename too long_**
@@ -24,7 +59,15 @@ Git has a limit of 260 characters for a filename in Windows when Git is compiled
 
 To be documented
 
-_QuickFix: Intall NPM and Yarn manually with the versions specified in ui-integration/pom.xml_
+_QuickFix: Install NPM and Yarn manually with the versions specified in ui-integration/pom.xml_
+
+## Add custom Git hooks
+
+We use custom Git hooks to test the format of our commit messages to ensure that they meet the required standard. These custom hooks are stored in the folder `.custom-hooks` so that they can be maintained on BitBucket.
+
+Use `git config core.hooksPath .custom-hooks` to configure Git to use the custom hooks directory instead of the default hooks.
+
+Note: if you're using a GUI Git client, such as GitKraken, you'll need to manually copy the `.custom-hooks` files to `.git/hooks/` as these clients might not support `core.hooksPath`.
 
 BloomReach Instruction (Legacy) 
 ===============================

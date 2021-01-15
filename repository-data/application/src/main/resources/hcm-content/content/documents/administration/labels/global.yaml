@@ -1,53 +1,58 @@
 /content/documents/administration/labels/global:
-  .meta:order-before: facilities
-  jcr:primaryType: hippo:handle
-  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-  jcr:uuid: 5efb212a-55c3-4670-922b-69dea2fec67b
+  jcr:primaryType: hippostd:folder
+  jcr:mixinTypes: ['hippo:named', 'mix:versionable']
+  jcr:uuid: 7cc99553-f947-4db7-8146-0c2c7c138f95
   hippo:name: Global
-  hippo:versionHistory: 35a15d62-6b30-48bd-86c5-2e8116b3f3dc
-  /global[1]:
-    jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: 3d72b51b-02e2-41e0-98f8-fe564afa818f
-    hippo:availability: [live]
-    hippostd:state: published
-    hippostdpubwf:createdBy: admin
-    hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-    hippostdpubwf:lastModificationDate: 2020-06-12T16:54:28.547+01:00
-    hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-06-12T16:54:30.581+01:00
-    resourcebundle:descriptions: [Text shown in the global page footer., '', '', '']
-    resourcebundle:id: essentials.global
-    resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text, footer.logo-alt-text]
-    resourcebundle:messages: [VisitScotland. All rights reserved., Find out more,
-      No image title, VisitScotland Home]
-  /global[2]:
-    jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-    jcr:uuid: d68d8c05-f29b-4cf8-9f5a-6b5410f30af1
-    hippo:availability: [preview]
-    hippostd:state: unpublished
-    hippostdpubwf:createdBy: admin
-    hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-    hippostdpubwf:lastModificationDate: 2020-06-12T16:54:28.547+01:00
-    hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: [Text shown in the global page footer., '', '', '']
-    resourcebundle:id: essentials.global
-    resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text, footer.logo-alt-text]
-    resourcebundle:messages: [VisitScotland. All rights reserved., Find out more,
-      No image title, VisitScotland Home]
-  /global[3]:
-    jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: 19eb7b34-a824-463c-a06f-b2f9455231f8
-    hippo:availability: []
-    hippostd:state: draft
-    hippostdpubwf:createdBy: admin
-    hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-    hippostdpubwf:lastModificationDate: 2020-06-12T16:54:05.427+01:00
-    hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: [Text shown in the global page footer., '', '', '']
-    resourcebundle:id: essentials.global
-    resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text, footer.logo-alt-text]
-    resourcebundle:messages: [VisitScotland. All rights reserved., Find out more,
-      No image title, VisitScotland Home]
+  hippostd:foldertype: [new-untranslated-folder-resource-bundle, new-resource-bundle]
+  /global:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+    jcr:uuid: 766a22ea-0b28-44cf-9937-953443a6fb02
+    hippo:name: Global
+    hippo:versionHistory: daff4619-0c93-4e8e-95e5-ed54d9f9e376
+    /global[1]:
+      jcr:primaryType: resourcebundle:resourcebundle
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: a8cf5ddd-a19d-4641-91c4-6ec509c3a7a5
+      hippo:availability: [live]
+      hippostd:state: published
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
+      hippostdpubwf:lastModificationDate: 2020-12-10T14:54:17.485Z
+      hippostdpubwf:lastModifiedBy: admin
+      hippostdpubwf:publicationDate: 2020-12-10T14:54:21.872Z
+      resourcebundle:descriptions: ['', '', '', '']
+      resourcebundle:id: essentials.global
+      resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
+        keyfacilities.title]
+      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities]
+    /global[2]:
+      jcr:primaryType: resourcebundle:resourcebundle
+      jcr:mixinTypes: ['mix:versionable']
+      jcr:uuid: 7664e8f1-7d3c-48e5-b9b9-d86b38be4c07
+      hippo:availability: [preview]
+      hippostd:state: unpublished
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
+      hippostdpubwf:lastModificationDate: 2020-12-10T14:54:17.485Z
+      hippostdpubwf:lastModifiedBy: admin
+      resourcebundle:descriptions: ['', '', '', '']
+      resourcebundle:id: essentials.global
+      resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
+        keyfacilities.title]
+      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities]
+    /global[3]:
+      jcr:primaryType: resourcebundle:resourcebundle
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: 98d561a7-16ef-410d-b382-f1b76e196920
+      hippo:availability: []
+      hippostd:state: draft
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
+      hippostdpubwf:lastModificationDate: 2020-12-10T14:54:17.646Z
+      hippostdpubwf:lastModifiedBy: admin
+      resourcebundle:descriptions: ['', '', '', '']
+      resourcebundle:id: essentials.global
+      resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
+        keyfacilities.title]
+      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities]

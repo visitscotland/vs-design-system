@@ -16,6 +16,7 @@ module.exports = {
   entry: {
     app: "./src/main.js",
   },
+  devtool: process.env.NODE_ENV === 'development' ? 'source-map' : '',
   output: {
     path: path.resolve(__dirname, "../dist/base"),
     filename: "[name].js",
@@ -42,7 +43,7 @@ module.exports = {
 		loader: 'eslint-loader',
 		options: {
 		  failOnError: true,
-		  failOnWarning: true
+		  failOnWarning: false
 		},
 	  },
       {

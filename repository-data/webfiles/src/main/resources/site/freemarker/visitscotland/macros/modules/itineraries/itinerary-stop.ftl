@@ -3,19 +3,18 @@
 <#include "../../../../frontend/components/vs-itinerary-tips.ftl">
 <#include "../../../../frontend/components/vs-itinerary-border-overlap-wrapper.ftl">
 <#include "../../../../frontend/components/vs-description-list.ftl">
-<#include "../../../../frontend/components/vs-description-list-term.ftl">
-<#include "../../../../frontend/components/vs-description-list-detail.ftl">
+<#include "../../../../frontend/components/vs-description-list-item.ftl">
 <#include "../../../../frontend/components/vs-link.ftl">
 <#include "../../../../frontend/components/vs-svg.ftl">
-<#include "../../../../frontend/components/vs-button-with-icon.ftl">
+<#include "../../../../frontend/components/vs-button.ftl">
 
 <#include "../../global/key-facilities.ftl">
 <#include "../../global/image-with-caption.ftl">
 <#include "../../global/cms-errors.ftl">
 
 <#macro itineraryStop stop lastStop>
-<#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
-<#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
+<#-- @ftlvariable name="stop" type="com.visitscotland.brxm.beans.Stop" -->
+<#-- @ftlvariable name="prod" type="com.visitscotland.brxm.beans.mapping.FlatStop" -->
 
     <#assign prod = stops[stop.identifier]>
     <#assign image = "" />
@@ -92,8 +91,8 @@
             <#if prod??>
                 <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
                     <vs-description-list class="my-4 mb-0 justify-content-start" inline>
-                        <vs-description-list-term class="mb-0 mr-0 col-auto">${label("itinerary", "stop.time-to-explore")}</vs-description-list-term>
-                        <vs-description-list-detail class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-detail>
+                        <vs-description-list-item title class="mb-0 mr-0 col-auto">${label("itinerary", "stop.time-to-explore")}</vs-description-list-item>
+                        <vs-description-list-item class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-item>
                     </vs-description-list>
                 </#if>
 
@@ -117,12 +116,12 @@
             <#assign nearbyStayUrl = productSearch(locale, "acco", prod.coordinates.latitude, prod.coordinates.longitude, 5)>
 
             <vs-itinerary-border-overlap-wrapper slot="nearby-links">
-                <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" icon="food" href="${nearbyEatsUrl}" >
+                <vs-button class="mb-3" background="white" variant="outline-primary" icon="food" href="${nearbyEatsUrl}" >
                     ${label("itinerary", "stop.nearby-eat")}
-                </vs-button-with-icon>
-                <vs-button-with-icon background="white" variant="outline-primary" icon="product-accommodation" href="${nearbyStayUrl}" >
+                </vs-button>
+                <vs-button background="white" variant="outline-primary" icon="product-accommodation" href="${nearbyStayUrl}" >
                     ${label("itinerary", "stop.nearby-stay")}
-                </vs-button-with-icon>
+                </vs-button>
             </vs-itinerary-border-overlap-wrapper>
         </#if>
     </vs-itinerary-stop>

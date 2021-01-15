@@ -1,5 +1,8 @@
 <template>
-    <li class="vs-listicle-item border">
+    <li
+        class="vs-listicle-item border"
+        data-test="vs-listicle-item"
+    >
         <slot name="hippo-details" />
 
         <!-- HEADER -->
@@ -51,6 +54,11 @@
 import VsHeading from '@components/elements/heading/Heading';
 import { VsRow, VsCol } from '@components/elements/layout';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Listicle Item
+ */
 export default {
     name: 'VsListicleItem',
     status: 'prototype',
@@ -91,7 +99,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-listicle-item {
     margin-bottom: $spacer-9;
 
@@ -146,7 +154,7 @@ export default {
         }
     }
 
-    h3.heading {
+    h3.vs-heading {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -156,6 +164,10 @@ export default {
         @include media-breakpoint-up(md) {
             margin-bottom: 0;
         }
+    }
+
+    .vs-image-location-map {
+        height: $spacer-11;
     }
 
     .key-facilities-list {
@@ -172,36 +184,34 @@ export default {
                 border-left: 1px solid $color-gray-tint-5;
             }
 
-            & ::v-deep {
-                .vs-icon-list {
+            .vs-icon-list {
+                .vs-icon-list__item {
+                    width: 80px;
+                }
+
+                @include media-breakpoint-up(sm) {
+                    border-top: 1px solid $color-gray-tint-5;
+                    padding-top: $spacer-4;
+
+                    .vs-icon-list__item {
+                        width: 90px;
+                    }
+                }
+
+                @include media-breakpoint-up(lg) {
+                    border-top: 0;
+                    padding: 0 $spacer-2;
+
                     .vs-icon-list__item {
                         width: 80px;
                     }
+                }
+                @include media-breakpoint-up(xl) {
+                    padding: 0 $spacer-4;
+                }
 
-                    @include media-breakpoint-up(sm) {
-                        border-top: 1px solid $color-gray-tint-5;
-                        padding-top: $spacer-4;
-
-                        .vs-icon-list__item {
-                            width: 90px;
-                        }
-                    }
-
-                    @include media-breakpoint-up(lg) {
-                        border-top: 0;
-                        padding: 0 $spacer-2;
-
-                        .vs-icon-list__item {
-                            width: 80px;
-                        }
-                    }
-                    @include media-breakpoint-up(xl) {
-                        padding: 0 $spacer-4;
-                    }
-
-                    @include media-breakpoint-up(xxl) {
-                        padding: 0 $spacer-9;
-                    }
+                @include media-breakpoint-up(xxl) {
+                    padding: 0 $spacer-9;
                 }
             }
         }
@@ -214,7 +224,7 @@ export default {
 
     <ul style="list-style-type: none; padding: 0;">
 
-        <vs-listicle-item
+        <VsListicleItem
             v-for="(item, index) in listicles.sampleListicle"
             key="index"
             index="1"
@@ -224,14 +234,14 @@ export default {
             :ctaLabel="item.ctaLabel"
         >
             <div slot="image-slot">
-                <vs-image-with-caption
+                <VsImageWithCaption
                     :altText="item.image.altText"
                     :image-src="item.image.imageSrc"
                     :latitude="item.image.latitude"
                     :longitude="item.image.longitude"
                     variant="large"
                 >
-                    <vs-img
+                    <VsImg
                         class="lazyload"
                         :src="item.image.imageSrc"
                         srcset="data:image/gif;base64,
@@ -239,7 +249,7 @@ export default {
                         :data-srcset="item.image.imageSrc"
                         :alt="item.image.altText"
                         data-sizes="auto">
-                    </vs-img>
+                    </VsImg>
 
                     <span slot="caption">
                         {{ item.image.caption }}
@@ -248,7 +258,7 @@ export default {
                     <span slot="credit">
                         &copy; {{ item.image.credit }}
                     </span>
-                </vs-image-with-caption>
+                </VsImageWithCaption>
             </div>
 
             <div slot="description-slot">
@@ -256,38 +266,38 @@ export default {
             </div>
 
             <div slot="facilities-slot">
-                <vs-icon-list title="Key Facilities">
-                    <vs-icon-list-item
+                <VsIconList title="Key Facilities">
+                    <VsIconListItem
                         icon="facility-petswelcom"
                         label="Pets Welcome">
-                    </vs-icon-list-item>
-                    <vs-icon-list-item
+                    </VsIconListItem>
+                    <VsIconListItem
                         icon="facility-dsblaccess"
                         label="Wheelchair Access">
-                    </vs-icon-list-item>
-                    <vs-icon-list-item
+                    </VsIconListItem>
+                    <VsIconListItem
                         icon="facility-audioloop"
                         label="Hearing Loop">
-                    </vs-icon-list-item>
-                    <vs-icon-list-item
+                    </VsIconListItem>
+                    <VsIconListItem
                         icon="facility-wifi"
                         label="WiFi">
-                    </vs-icon-list-item>
-                    <vs-icon-list-item
+                    </VsIconListItem>
+                    <VsIconListItem
                         icon="publictlt"
                         label="Public Toilets">
-                    </vs-icon-list-item>
-                    <vs-icon-list-item
+                    </VsIconListItem>
+                    <VsIconListItem
                         icon="giftshop"
                         label="Gift Shop">
-                    </vs-icon-list-item>
-                    <vs-icon-list-item
+                    </VsIconListItem>
+                    <VsIconListItem
                         icon="facility-accessparkdrop"
                         label="Accessible Parking or Drop-off Point">
-                    </vs-icon-list-item>
-                </vs-icon-list>
+                    </VsIconListItem>
+                </VsIconList>
             </div>
-        </vs-listicle-item>
+        </VsListicleItem>
     </ul>
 ```
 </docs>

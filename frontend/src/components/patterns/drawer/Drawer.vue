@@ -14,19 +14,19 @@
 
 <script>
 import smoothscroll from 'smoothscroll-polyfill';
-
 import { BCollapse } from 'bootstrap-vue';
 import VsContainer from '@components/elements/layout/Container';
 import { getters } from './drawer.store';
 import { REGISTER_DRAWER } from './drawer.store.action-types';
 import { GET_ACTIVE_CONTENT } from './drawer.store.getter-types';
 
-
 /**
  * VsDrawer provides a collapsible container that can contain
  * multiple sets of content wrapped in VsDrawerContent. Matched
  * VsToggle components provide the ability to switch between
  * the sets of content and open/close the drawer.
+ *
+ * @displayName Drawer
  */
 export default {
     name: 'VsDrawer',
@@ -82,7 +82,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-header__drawer-wrapper {
   @extend %default-inset-box-shadow;
   background-color: $color-gray-tint-7;
@@ -104,48 +104,48 @@ export default {
 <docs>
 ```jsx
 <div>
-  <bs-wrapper class="container">
-    <bs-wrapper class="row mb-4">
-      <bs-wrapper class="col-6 d-flex justify-content-center">
-        <vs-drawer-toggle class="mr-2" drawer-key="drawer-1" content-key="content-1">
-          Toggle<br />drawer 1<br />content 1</vs-drawer-toggle>
-        <vs-drawer-toggle drawer-key="drawer-1" content-key="content-2">
-          Toggle<br />drawer 1<br />content 2</vs-drawer-toggle>
-      </bs-wrapper>
-      <bs-wrapper class="col-6 d-flex justify-content-center">
-        <vs-drawer-toggle class="mr-2" drawer-key="drawer-2" content-key="content-1">
-            Toggle<br />drawer 2<br />content 1</vs-drawer-toggle>
-        <vs-drawer-toggle drawer-key="drawer-2" content-key="content-2">
-          Toggle<br />drawer 2<br />content 2</vs-drawer-toggle>
-      </bs-wrapper>
+  <BsWrapper class="container">
+    <BsWrapper class="row mb-4">
+      <BsWrapper class="col-6 d-flex justify-content-center">
+        <VsDrawerToggle class="mr-2" drawer-key="drawer-1" content-key="content-1">
+          Toggle<br />drawer 1<br />content 1</VsDrawerToggle>
+        <VsDrawerToggle drawer-key="drawer-1" content-key="content-2">
+          Toggle<br />drawer 1<br />content 2</VsDrawerToggle>
+      </BsWrapper>
+      <BsWrapper class="col-6 d-flex justify-content-center">
+        <VsDrawerToggle class="mr-2" drawer-key="drawer-2" content-key="content-1">
+            Toggle<br />drawer 2<br />content 1</VsDrawerToggle>
+        <VsDrawerToggle drawer-key="drawer-2" content-key="content-2">
+          Toggle<br />drawer 2<br />content 2</VsDrawerToggle>
+      </BsWrapper>
 
-    </bs-wrapper>
+    </BsWrapper>
 
-    <bs-wrapper class="row">
-      <bs-wrapper class="col-6">
-        <vs-drawer drawer-key="drawer-1">
-          <vs-drawer-content content-key="content-1">
+    <BsWrapper class="row">
+      <BsWrapper class="col-6">
+        <VsDrawer drawer-key="drawer-1">
+          <VsDrawerContent content-key="content-1">
             DRAWER 1 CONTENT 1
-          </vs-drawer-content>
-          <vs-drawer-content content-key="content-2">
+          </VsDrawerContent>
+          <VsDrawerContent content-key="content-2">
             DRAWER 1 CONTENT 2
-          </vs-drawer-content>
-        </vs-drawer>
-      </bs-wrapper>
+          </VsDrawerContent>
+        </VsDrawer>
+      </BsWrapper>
 
-      <bs-wrapper class="col-6">
-        <vs-drawer drawer-key="drawer-2">
-          <vs-drawer-content content-key="content-1">
+      <BsWrapper class="col-6">
+        <VsDrawer drawer-key="drawer-2">
+          <VsDrawerContent content-key="content-1">
             DRAWER 2 CONTENT 1
-          </vs-drawer-content>
-          <vs-drawer-content content-key="content-2">
+          </VsDrawerContent>
+          <VsDrawerContent content-key="content-2">
             DRAWER 2 CONTENT 2
-          </vs-drawer-content>
-        </vs-drawer>
-      </bs-wrapper>
+          </VsDrawerContent>
+        </VsDrawer>
+      </BsWrapper>
 
-    </bs-wrapper>
-  </bs-wrapper>
+    </BsWrapper>
+  </BsWrapper>
 </div>
 ```
 </docs>

@@ -1,3 +1,4 @@
+<#compress>
 <#include "../../include/imports.ftl">
 
 <#--  <#include "../../frontend/stores/vs-store-itineraries-store.ftl">  -->
@@ -22,8 +23,7 @@
 <#include "../../frontend/components/vs-summary-box-distance-label.ftl">
 <#include "../../frontend/components/vs-summary-box-icon-with-label.ftl">
 <#include "../../frontend/components/vs-description-list.ftl">
-<#include "../../frontend/components/vs-description-list-term.ftl">
-<#include "../../frontend/components/vs-description-list-detail.ftl">
+<#include "../../frontend/components/vs-description-list-item.ftl">
 <#include "../../frontend/components/vs-itinerary-day.ftl">
 <#include "../../frontend/components/vs-itinerary.ftl">
 <#include "../../frontend/components/vs-svg.ftl">
@@ -31,17 +31,18 @@
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/modules/itineraries/itinerary-map.ftl">
 <#include "../macros/global/cms-errors.ftl">
+<#include "../pages/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.beans.Itinerary" -->
 <#-- @ftlvariable name="firstStopLocation" type="java.lang.String" -->
 <#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
-<#-- @ftlvariable name="heroImage" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.beans.mapping.FlatImage" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.beans.mapping.Coordinates" -->
 
 <#-- Template defined objects -->
-<#-- @ftlvariable name="day" type="com.visitscotland.brmx.beans.Day" -->
-<#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
+<#-- @ftlvariable name="day" type="com.visitscotland.brxm.beans.Day" -->
+<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.beans.Image" -->
 
 <#assign mainTransport = "">
 <#assign dayNumber = 0>
@@ -51,9 +52,9 @@
 <#if document.transports?has_content >
     <#assign mainTransport = document.transports[0]>
 </#if>
-
+</#compress>
 <div class="has-edit-button">
-    <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
+    <@hst.manageContent hippobean=document documentTemplateQuery="new-day" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
     <vs-page-intro>
@@ -153,22 +154,22 @@
             <vs-row>
                 <vs-col cols="12" lg="11" offset-lg="1">
                     <vs-description-list class="mb-6">
-                        <vs-description-list-term>
+                        <vs-description-list-item title>
                             ${label("itinerary", "highlights")}
-                        </vs-description-list-term>
+                        </vs-description-list-item>
                         <#-- TODO: each ${document.highlight} should render a new dd element -->
-                        <vs-description-list-detail>
+                        <vs-description-list-item>
                             <div style="white-space: pre-wrap">${document.highlights}</div>
-                        </vs-description-list-detail>
+                        </vs-description-list-item>
                     </vs-description-list>
                     <vs-description-list class="mb-8">
-                        <vs-description-list-term>
+                        <vs-description-list-item title>
                             ${label("itinerary", "areas-covered")}
-                        </vs-description-list-term>
+                        </vs-description-list-item>
                         <#list document.areas as area>
-                            <vs-description-list-detail>
+                            <vs-description-list-item>
                                 ${label("areas", "${area}")}${"\n"}
-                            </vs-description-list-detail>
+                            </vs-description-list-item>
                         </#list>
                     </vs-description-list>
                 </vs-col>
@@ -192,7 +193,7 @@
                     <vs-description-list class="text-center justify-content-center align-items-center has-edit-button" slot="day-transport">
                          <@hst.manageContent hippobean=day />
                         <#-- 
-                            Note - can't use vs-description-list-term and vs-description-list-detail 
+                            Note - can't use vs-description-list-item
                             here yet as font style and layout are different 
                         -->
                         <dt class="list-inline-item">${label("itinerary", "transport")}:</dt>
@@ -221,4 +222,7 @@
             </vs-itinerary-day>
         </#list>
     </vs-itinerary>
+    <#if otyml??>
+        <@moduleBuilder otyml "theme1" />
+    </#if>
 </div>
