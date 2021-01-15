@@ -49,7 +49,7 @@ export default {
 
   ```jsx
     <div class="position-relative p-5">
-        <vs-summary-box-label label="Distance" />
+        <VsSummaryBoxLabel label="Distance" />
     </div>
   ```
 </docs>

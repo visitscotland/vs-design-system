@@ -213,8 +213,8 @@ export default {
 <docs>
     ```js
     <VsMegalinks>
-        <vs-col cols="12">
-            <vs-megalink-single-image
+        <VsCol cols="12">
+            <VsMegalinkSingleImage
                 title="The Component heading"
                 buttonLink="www.visitscotland.com"
                 imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -256,10 +256,10 @@ export default {
                 <template slot="vsSingleImageButtonText">
                     This is the button
                 </template>
-            </vs-megalink-single-image>
-        </vs-col>
-        <vs-col cols="12">
-            <vs-megalink-single-image
+            </VsMegalinkSingleImage>
+        </VsCol>
+        <VsCol cols="12">
+            <VsMegalinkSingleImage
                 title="This is the second component heading"
                 buttonLink="www.visitscotland.com"
                 imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -300,8 +300,8 @@ export default {
                 <template slot="vsSingleImageButtonText">
                     This is the button
                 </template>
-            </vs-megalink-single-image>
-        </vs-col>
+            </VsMegalinkSingleImage>
+        </VsCol>
     </VsMegalinks>
     ```
 </docs>
