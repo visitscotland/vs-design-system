@@ -258,49 +258,49 @@ $variants: (
   <div>
 
     <h3>Default</h3>
-    <vs-icon name="search" />
+    <VsIcon name="search" />
 
     <h3 class="mt-8">Variant</h3>
-    <vs-icon name="user" variant="primary" />
-    <vs-icon name="user" variant="secondary" />
-    <vs-icon name="user" variant="success" />
-    <vs-icon name="user" variant="warning" />
-    <vs-icon name="user" variant="info" />
-    <vs-icon name="user" variant="danger" />
-    <vs-icon name="user" variant="dark" />
-    <vs-icon name="user" variant="light" />
+    <VsIcon name="user" variant="primary" />
+    <VsIcon name="user" variant="secondary" />
+    <VsIcon name="user" variant="success" />
+    <VsIcon name="user" variant="warning" />
+    <VsIcon name="user" variant="info" />
+    <VsIcon name="user" variant="danger" />
+    <VsIcon name="user" variant="dark" />
+    <VsIcon name="user" variant="light" />
 
     <h3 class="mt-8">Size</h3>
 
     <div class="d-flex">
         <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xxs</h4>
-            <vs-icon name="favourite" size="xxs" />
+            <VsIcon name="favourite" size="xxs" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xs</h4>
-            <vs-icon name="favourite" size="xs" />
+            <VsIcon name="favourite" size="xs" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">
             <h4>sm</h4>
-            <vs-icon name="favourite" size="sm" />
+            <VsIcon name="favourite" size="sm" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">
             <h4>md</h4>
-            <vs-icon name="favourite" size="md" />
+            <VsIcon name="favourite" size="md" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">
             <h4>lg</h4>
-            <vs-icon name="favourite" size="lg" />
+            <VsIcon name="favourite" size="lg" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xl</h4>
-            <vs-icon name="favourite" size="xl" />
+            <VsIcon name="favourite" size="xl" />
             </div>
         </div>
 
@@ -308,19 +308,19 @@ $variants: (
         <div class="d-flex">
             <div class="d-flex flex-column mr-3 align-items-center">
                 <h4>Up</h4>
-                <vs-icon name="chevron" orientation="up" />
+                <VsIcon name="chevron" orientation="up" />
             </div>
             <div class="d-flex flex-column mr-3 align-items-center">
                 <h4>Down</h4>
-                <vs-icon name="chevron" orientation="down" />
+                <VsIcon name="chevron" orientation="down" />
             </div>
             <div class="d-flex flex-column mr-3 align-items-center">
                 <h4>Left</h4>
-                <vs-icon name="chevron" orientation="left" />
+                <VsIcon name="chevron" orientation="left" />
             </div>
             <div class="d-flex flex-column mr-3 align-items-center">
                 <h4>Right</h4>
-                <vs-icon name="chevron" orientation="right" />
+                <VsIcon name="chevron" orientation="right" />
             </div>
         </div>
     </div>

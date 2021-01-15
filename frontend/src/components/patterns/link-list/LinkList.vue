@@ -8,6 +8,8 @@
 <script>
 /**
  * This component is a list of links.
+ *
+ * @displayName LinkList
  */
 
 export default {

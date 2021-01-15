@@ -47,14 +47,14 @@ export default {
 <docs>
   ```jsx
     <ul style="width: 200px; list-style-type: none;">
-       <vs-summary-box-list-item>
-            <vs-summary-box-display
+       <VsSummaryBoxListItem>
+            <VsSummaryBoxDisplay
                 :text=itineraries.sampleItinerary.totalDays
             />
-            <vs-summary-box-label
+            <VsSummaryBoxLabel
                 label="Days"
             />
-        </vs-summary-box-list-item>
+        </VsSummaryBoxListItem>
     </ul>
   ```
 </docs>
