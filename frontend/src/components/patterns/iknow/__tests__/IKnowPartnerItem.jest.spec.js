@@ -1,12 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VsIKnowPartnerItem from '../IKnowPartnerItem';
+import VsIknowPartnerItem from '../IknowPartnerItem';
 
 const headingSlot = 'Heading Slot';
 const textSlot = 'Text Slot';
 const ctaSlot = 'CTA Slot';
 
-const factoryShallowMount = () => shallowMount(VsIKnowPartnerItem, {
+const factoryShallowMount = () => shallowMount(VsIknowPartnerItem, {
     slots: {
         iknowHeading: headingSlot,
         iknowText: textSlot,
@@ -24,7 +24,7 @@ describe('VsIknowParterItem', () => {
     });
 
     it('should render a cta wrapper if cta is inserted in the `iknow-cta` slot', () => {
-        const modifiedWrapper = shallowMount(VsIKnowPartnerItem, {
+        const modifiedWrapper = shallowMount(VsIknowPartnerItem, {
             slots: {
                 iknowCta: ctaSlot,
             },
@@ -50,7 +50,7 @@ describe('VsIknowParterItem', () => {
         });
 
         it('renders content inserted in the `iknow-cta` slot', () => {
-            const modifiedWrapper = shallowMount(VsIKnowPartnerItem, {
+            const modifiedWrapper = shallowMount(VsIknowPartnerItem, {
                 slots: {
                     iknowCta: ctaSlot,
                 },

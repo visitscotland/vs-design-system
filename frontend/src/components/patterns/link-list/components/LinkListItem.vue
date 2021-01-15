@@ -17,6 +17,8 @@ import VsLink from '@components/elements/link/Link';
 
 /**
  * This component is an item appearing in a list of links.
+ *
+ * @displayName LinkListItem
  */
 
 export default {
