@@ -1951,7 +1951,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: ea5e9e7e-c8a9-4986-8b1a-fd63b8d9c7e6
         hippo:name: Single Image
-        hippo:versionHistory: 92b206ad-6866-4c42-a031-fade74b9a822
+        hippo:versionHistory: 27e2ab8c-6f78-4641-903f-e989a707af38
         /single-image[1]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:versionable']
@@ -1960,7 +1960,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-08-17T12:15:05.944+01:00
+          hippostdpubwf:lastModificationDate: 2021-01-15T11:24:21.793Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 947115dd-693b-4a35-af7b-c527e3a432fa
           hippotranslation:locale: en
@@ -1968,11 +1968,11 @@
           visitscotland:list: false
           visitscotland:listLayout: false
           visitscotland:teaserVisible: false
-          visitscotland:title: Megalinks  - Single Image Layout (6 items)
+          visitscotland:title: ''
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of the Simgle Image Layout of
-              the Megalinks module</p>
+            hippostd:content: ''
           /visitscotland:megalinkItems[1]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
@@ -2039,7 +2039,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-10T16:14:30.119Z
+          hippostdpubwf:lastModificationDate: 2021-01-15T11:24:16.040Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 947115dd-693b-4a35-af7b-c527e3a432fa
           hippotranslation:locale: en
@@ -2047,11 +2047,11 @@
           visitscotland:list: false
           visitscotland:listLayout: false
           visitscotland:teaserVisible: false
-          visitscotland:title: Megalinks  - Single Image Layout (6 items)
+          visitscotland:title: ''
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of the Simgle Image Layout of
-              the Megalinks module</p>
+            hippostd:content: ''
           /visitscotland:megalinkItems[1]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
@@ -2118,20 +2118,20 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-08-17T12:15:05.944+01:00
+          hippostdpubwf:lastModificationDate: 2021-01-15T11:24:21.793Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-08-17T12:56:57.985+01:00
+          hippostdpubwf:publicationDate: 2021-01-15T11:24:25.084Z
           hippotranslation:id: 947115dd-693b-4a35-af7b-c527e3a432fa
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
           visitscotland:list: false
           visitscotland:listLayout: false
           visitscotland:teaserVisible: false
-          visitscotland:title: Megalinks  - Single Image Layout (6 items)
+          visitscotland:title: ''
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of the Simgle Image Layout of
-              the Megalinks module</p>
+            hippostd:content: ''
           /visitscotland:megalinkItems[1]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
@@ -3322,7 +3322,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 5804b835-f014-4d99-b56b-da50fa07c5a0
         hippo:name: james-test
-        hippo:versionHistory: 953c12da-c0b7-4dff-a82f-9e8ac211e733
+        hippo:versionHistory: bba82b87-a0ea-4fc4-9c8c-61d30d6d61a3
         /content[1]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
@@ -3401,7 +3401,7 @@
           hippostdpubwf:creationDate: 2020-10-26T11:53:39.795Z
           hippostdpubwf:lastModificationDate: 2020-12-17T14:03:46.314Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-12-17T14:03:47.929Z
+          hippostdpubwf:publicationDate: 2021-01-15T12:09:14.438Z
           hippotranslation:id: ebc5d395-ff32-4782-bacf-4dfdc1167191
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
