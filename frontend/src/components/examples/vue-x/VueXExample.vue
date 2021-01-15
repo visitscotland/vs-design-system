@@ -12,15 +12,15 @@
 </template>
 
 <script>
-import BCard from 'bootstrap-vue/es/components/card/card';
-import BCardText from 'bootstrap-vue/es/components/card/card-text';
-
+import { BCard, BCardText } from 'bootstrap-vue';
 import VsButton from '../../elements/button';
 import store from './example.store';
 
 /**
  * This is an example component to demonstrate how VueX can be used with
  * components of the design system.
+ *
+ * @displayName VueX Example
  */
 export default {
     name: 'VsVueXExample',
@@ -95,7 +95,6 @@ export default {
     }
   }
   </script>
-
 
   ```
 </docs>

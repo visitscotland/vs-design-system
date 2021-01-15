@@ -6,6 +6,7 @@
             'vs-heading--thin': thin,
         }"
     >
+        <!-- @slot The main header content goes here -->
         <slot />
 
         <span class="vs-heading__sub-heading">
@@ -20,6 +21,8 @@ import { isNumber } from 'lodash';
  * Headings are used as the titles of each major section of a page in the
  * interface. For example, templates generally use headings as their title.
  * Heading element provides an option to change the level of the heading.
+ *
+ * @displayName Heading
  */
 export default {
     name: 'VsHeading',
@@ -46,6 +49,9 @@ export default {
     computed: {
         type() {
             return `h${this.level}`;
+        },
+        hasSubtitle() {
+            return !!this.$slots['sub-heading'];
         },
     },
 };
@@ -102,28 +108,28 @@ $sub-font-sizes: (
 <docs>
   ```jsx
   <div>
-    <vs-heading>H1 Heading</vs-heading>
-    <vs-heading thin>H1 Heading Thin</vs-heading>
+    <VsHeading>H1 Heading</VsHeading>
+    <VsHeading thin>H1 Heading Thin</VsHeading>
     <br />
-    <vs-heading level="2">H2 Heading</vs-heading>
-    <vs-heading thin level="2">H2 Heading  Thin</vs-heading>
+    <VsHeading level="2">H2 Heading</VsHeading>
+    <VsHeading thin level="2">H2 Heading  Thin</VsHeading>
     <br />
-    <vs-heading level="3">H3 Heading</vs-heading>
-    <vs-heading thin level="3">H3 Heading Thin</vs-heading>
+    <VsHeading level="3">H3 Heading</VsHeading>
+    <VsHeading thin level="3">H3 Heading Thin</VsHeading>
     <br />
-    <vs-heading level="4">H4 Heading</vs-heading>
-    <vs-heading thin level="4">H4 Heading Thin</vs-heading>
+    <VsHeading level="4">H4 Heading</VsHeading>
+    <VsHeading thin level="4">H4 Heading Thin</VsHeading>
     <br />
-    <vs-heading level="5">H5 Heading</vs-heading>
-    <vs-heading thin level="5">H5 Heading Thin</vs-heading>
+    <VsHeading level="5">H5 Heading</VsHeading>
+    <VsHeading thin level="5">H5 Heading Thin</VsHeading>
     <br />
-    <vs-heading level="6">H6 Heading</vs-heading>
-    <vs-heading thin level="6">H6 Heading Thin</vs-heading>
+    <VsHeading level="6">H6 Heading</VsHeading>
+    <VsHeading thin level="6">H6 Heading Thin</VsHeading>
 
-    <vs-heading level="3" class="mt-9">
+    <VsHeading level="3" class="mt-9">
         H3 Heading With Subtitle
         <span slot="sub-heading">This Is a Subtitle</span>
-    </vs-heading>
+    </VsHeading>
   </div>
 
   ```

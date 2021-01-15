@@ -1,13 +1,18 @@
 <template>
-    <div class="social-credit">
+    <div
+        class="social-credit"
+        data-test="vs-social-credit-link"
+    >
         <VsIcon
             v-if="source"
             :name="source"
             variant="light"
             size="xs"
+            data-test="vs-social-credit-link__icon"
         />
         <VsLink
             class="social-credit__link"
+            data-test="vs-social-credit-link__link"
             :href="socialPostUrl"
             external
         >
@@ -20,6 +25,11 @@
 import VsLink from '@components/elements/link/Link';
 import VsIcon from '@components/elements/icon/Icon';
 
+/**
+ * TODO: Document Usage
+ *
+ * @displayName Social Credit Link
+ */
 export default {
     name: 'VsSocialCreditLink',
     status: 'prototype',
@@ -58,7 +68,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .social-credit {
     line-height: $line_height_xs;
 
@@ -79,10 +89,8 @@ export default {
             outline: 0 !important;
         }
 
-        & ::v-deep {
-            svg.vs-icon {
-                fill: $color-white !important;
-            }
+        svg.vs-icon {
+            fill: $color-white !important;
         }
     }
 }
