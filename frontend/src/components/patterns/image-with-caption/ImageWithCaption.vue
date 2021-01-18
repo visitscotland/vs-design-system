@@ -21,6 +21,7 @@
             <VsButton
                 variant="outline-transparent"
                 class="vs-image-with-caption__toggle-caption-btn position-absolute"
+                aria-label="Expand caption"
                 :animate="false"
                 :aria-controls="'image_' + imageSrc"
                 :aria-expanded="showCaption ? 'true' : 'false'"
