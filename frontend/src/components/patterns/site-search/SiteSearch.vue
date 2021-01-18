@@ -211,7 +211,7 @@ export default {
 <docs>
   ```jsx
   <div>
-    <vs-site-search />
+    <VsSiteSearch />
   </div>
   ```
 </docs>
