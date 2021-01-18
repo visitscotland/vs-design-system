@@ -7,6 +7,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsSocialCreditLink, {
         ...propsData,
         credit: 'Test credit',
         socialPostUrl: '#',
+        source: 'instagram',
     },
 });
 
@@ -15,6 +16,7 @@ const factoryMount = (propsData) => mount(VsSocialCreditLink, {
         ...propsData,
         credit: 'Test credit',
         socialPostUrl: '#',
+        source: 'instagram',
     },
 });
 
@@ -39,26 +41,15 @@ describe('VsSocialCreditLink', () => {
             expect(link.props().href).toBe('#');
         });
 
-        it('doesn\'t render an icon if the `source` prop is undefined', () => {
-            const wrapper = factoryShallowMount();
-            const icon = wrapper.find('[data-test="vs-social-credit-link__icon"');
-
-            expect(icon.exists()).toBe(false);
-        });
-
         it('renders an icon if the `source` prop is defined', () => {
-            const wrapper = factoryShallowMount({
-                source: 'instagram',
-            });
+            const wrapper = factoryShallowMount();
             const icon = wrapper.find('[data-test="vs-social-credit-link__icon"');
 
             expect(icon.exists()).toBe(true);
         });
 
         it('passes the `source` prop to the icon', () => {
-            const wrapper = factoryShallowMount({
-                source: 'instagram',
-            });
+            const wrapper = factoryShallowMount();
             const icon = wrapper.find('[data-test="vs-social-credit-link__icon"');
 
             expect(icon.props().name).toBe('instagram');
