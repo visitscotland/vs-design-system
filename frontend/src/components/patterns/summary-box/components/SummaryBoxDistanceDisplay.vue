@@ -36,14 +36,6 @@ export default {
             type: String,
             default: '',
         },
-        milesLabel: {
-            type: String,
-            default: '',
-        },
-        kilometresLabel: {
-            type: String,
-            default: '',
-        },
     },
     computed: {
         isShowingMiles() {
