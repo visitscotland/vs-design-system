@@ -25,7 +25,7 @@
 
 <script>
 import VsDropdown from '../../../dropdown/Dropdown';
-import VsDropdownItem from '../../../dropdown/DropdownItem';
+import VsDropdownItem from '../../../dropdown/components/DropdownItem';
 
 /**
  * This component is the dropdown used inside the Global Menu component.
@@ -171,8 +171,8 @@ export default {
 </style>
 
 <docs>
-  ```
-    <vs-global-menu
+  ```jsx
+    <VsGlobalMenu
         dropdown-label="I nostri siti"
         active-site="https://www.visitscotland.com/"
     >
@@ -189,6 +189,6 @@ export default {
         >
             EN
         </span>
-    </vs-global-menu>
+    </VsGlobalMenu>
   ```
 </docs>

@@ -76,20 +76,20 @@ export default {
 
 <docs>
 ```jsx
-<bs-wrapper>
+<BsWrapper>
   <label for="small">Small</label>
-  <vs-form-input id="small" placeholder="Enter your name" class="mb-5" size="sm" />
+  <VsFormInput id="small" placeholder="Enter your name" class="mb-5" size="sm" />
   <label for="medium">Medium (default)</label>
-  <vs-form-input id="medium" placeholder="Enter your name" class="mb-5" size="md" />
+  <VsFormInput id="medium" placeholder="Enter your name" class="mb-5" size="md" />
   <label for="large">Large</label>
-  <vs-form-input id="large" placeholder="Enter your name" class="mb-5" size="lg" />
+  <VsFormInput id="large" placeholder="Enter your name" class="mb-5" size="lg" />
 
   <label for="input-none">No State</label>
-  <vs-form-input id="input-none" :state="null" placeholder="No validation" class="mb-5"/>
+  <VsFormInput id="input-none" :state="null" placeholder="No validation" class="mb-5"/>
   <label for="input-valid">Valid state</label>
-  <vs-form-input id="input-valid" :state="true" placeholder="Valid" class="mb-5" />
+  <VsFormInput id="input-valid" :state="true" placeholder="Valid" class="mb-5" />
   <label for="input-invalid">Invalid state</label>
-  <vs-form-input id="input-invalid" :state="false" placeholder="Invalid" class="mb-5" />
-</bs-wrapper>
+  <VsFormInput id="input-invalid" :state="false" placeholder="Invalid" class="mb-5" />
+</BsWrapper>
 ```
 </docs>
