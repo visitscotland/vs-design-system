@@ -10,7 +10,7 @@ current_branch="$(git rev-parse --abbrev-ref HEAD)"
 # regex to validate in commit msg
 # Accepted format: <jira-issue-id> <TYPE> (<Scope>) <Brief description>
 # E.g. BAU-3632 FEAT (Whisky map) Add new distilleries
-commit_regex='((Merge\sbranch\s('[a-z]+')\s([a-z0-9].+))|(([A-Z]+-[0-9]+|NON-JIRA)\s(BREAK|DOCS|FEAT|FIX|FORMAT|MAINT|MERGE|TEST)\s\(.+\)\s.+))'
+commit_regex='((merge\sbranch\s('[a-z]+')\s.*)|(([A-Z]+-[0-9]+|NON-JIRA)\s(BREAK|DOCS|FEAT|FIX|FORMAT|MAINT|MERGE|TEST)\s\(.+\)\s.+))'
 error_msg="Aborting commit. Your commit message does not meet VisitScotland's commit message standards."
 
 if ! grep -iqE "$commit_regex" "$1"; then
