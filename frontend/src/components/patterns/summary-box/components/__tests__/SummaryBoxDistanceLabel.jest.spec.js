@@ -2,7 +2,7 @@ import { shallowMount, mount } from '@vue/test-utils';
 
 import VsSummaryBoxDistanceLabel from '../SummaryBoxDistanceLabel';
 
-const handleClick = jest.fn();
+const spyHandleClick = jest.spyOn(VsSummaryBoxDistanceLabel.methods, 'handleClick');
 
 const factoryShallowMount = (propsData) => shallowMount(VsSummaryBoxDistanceLabel, {
     propsData: {
@@ -13,9 +13,6 @@ const factoryShallowMount = (propsData) => shallowMount(VsSummaryBoxDistanceLabe
 const factoryMount = (propsData) => mount(VsSummaryBoxDistanceLabel, {
     propsData: {
         ...propsData,
-    },
-    methods: {
-        handleClick,
     },
 });
 
@@ -35,12 +32,11 @@ describe('VsSummaryBoxDistanceLabel', () => {
     });
 
     it('should accept an milesLabel property', () => {
+        const label = 'meilen';
         const wrapper = factoryShallowMount({
-            milesLabel: 'meilen',
+            milesLabel: label,
         });
-        expect(wrapper.html()).toContain(
-            '<vs-button-stub variant="transparent" size="md" animate="true" aria-expanded="true" aria-controls="display_miles" class="active"><abbr title="meilen">mi</abbr></vs-button-stub>',
-        );
+        expect(wrapper.html()).toContain(label);
     });
 
     it('should accept an milesAbbr property', () => {
@@ -51,12 +47,11 @@ describe('VsSummaryBoxDistanceLabel', () => {
     });
 
     it('should accept an kilometresLabel property', () => {
+        const label = 'kilomètres';
         const wrapper = factoryShallowMount({
-            kilometresLabel: 'kilomètres',
+            kilometresLabel: label,
         });
-        expect(wrapper.html()).toContain(
-            '<vs-button-stub variant="transparent" size="md" animate="true" aria-expanded="false" aria-controls="display_kilometres" class=""><abbr title="kilomètres">km</abbr></vs-button-stub>',
-        );
+        expect(wrapper.html()).toContain(label);
     });
 
     it('should accept an kilometresAbbr property', () => {
@@ -69,14 +64,16 @@ describe('VsSummaryBoxDistanceLabel', () => {
     it('should call the handleClick method on click of miles button', () => {
         const wrapper = factoryMount();
         wrapper.find('[aria-controls="display_miles"]').trigger('click');
-        expect(handleClick).toBeCalled();
-        expect(handleClick).toHaveBeenCalledWith(true);
+
+        expect(spyHandleClick).toBeCalled();
+        expect(spyHandleClick).toHaveBeenCalledWith(true);
     });
 
     it('should call the handleClick method on click of kilometres button', () => {
         const wrapper = factoryMount();
         wrapper.find('[aria-controls="display_kilometres"]').trigger('click');
-        expect(handleClick).toBeCalled();
-        expect(handleClick).toHaveBeenCalledWith(false);
+
+        expect(spyHandleClick).toBeCalled();
+        expect(spyHandleClick).toHaveBeenCalledWith(false);
     });
 });
