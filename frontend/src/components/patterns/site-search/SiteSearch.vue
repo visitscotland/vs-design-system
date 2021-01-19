@@ -78,7 +78,6 @@ import VsIcon from '@components/elements/icon/Icon';
 import VsFormInput from '@components/elements/form-input/FormInput';
 
 import { BForm, BFormInvalidFeedback } from 'bootstrap-vue';
-import { getters } from '../drawer/drawer.store';
 
 /**
  * TODO: Document Usage
@@ -132,19 +131,8 @@ export default {
         };
     },
     computed: {
-        drawerModule() {
-            return getters['drawer/module'];
-        },
         isValid() {
             return this.searchTerm.length > 0;
-        },
-    },
-    watch: {
-        drawerModule(newValue) {
-            if (newValue !== 'site-search') {
-                this.clearSearchField();
-                this.resetValidation();
-            }
         },
     },
     methods: {
