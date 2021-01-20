@@ -31,7 +31,7 @@
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/modules/itineraries/itinerary-map.ftl">
 <#include "../macros/global/cms-errors.ftl">
-<#include "../pages/module-builder.ftl">
+<#include "../macros/shared/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.beans.Itinerary" -->
