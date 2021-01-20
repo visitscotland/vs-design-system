@@ -1,4 +1,5 @@
 import { shallowMount, mount } from '@vue/test-utils';
+import VsDropdownItem from '@components/patterns/dropdown/components/DropdownItem';
 import VsGlobalMenuLanguageItem from '../GlobalMenuLanguageItem';
 
 const factoryShallowMount = (propsData) => shallowMount(VsGlobalMenuLanguageItem, {
@@ -14,7 +15,7 @@ describe('VsGlobalMenuLanguageItem renders', () => {
     it('should render a dropdownitem', () => {
         const wrapper = factoryShallowMount();
 
-        expect(wrapper.is('vsdropdownitem-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('VSDROPDOWNITEM-STUB');
     });
 });
 
@@ -24,7 +25,7 @@ describe(':props', () => {
             languageName: 'Spanish',
         });
 
-        expect(wrapper.find('vsdropdownitem-stub').text()).toEqual('Spanish');
+        expect(wrapper.findComponent(VsDropdownItem).text()).toEqual('Spanish');
     });
 
     it('should have href props language link', () => {
