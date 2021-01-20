@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 6a91d069-1687-4b29-a8ce-60dbe4bdf137
+          jcr:uuid: 4bd80d8e-aa9c-488c-afc4-10e14022a847
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -58,17 +58,22 @@ definitions:
             jcr:primaryType: frontend:plugin
             item: ${cluster.id}.field
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.skin: css/document-styles.css
           /copy:
             jcr:primaryType: frontend:plugin
             caption: Copy
             field: copy
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: ''
+            hint: 'Recommended length: 2500 characters'
+            wicket.css: []
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
-                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
+              ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
+                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 3750}}'
+              ckeditor.config.overlayed.json: '{toolbarGroups: [ {name: ''styles''},{name:''listindentalign'',groups:[''list'']},
+                {name:''links''},{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}
+                ] , removeButtons: ''PickImage,Youtube,Table''}'
           /media:
             jcr:primaryType: frontend:plugin
             caption: Media
@@ -86,5 +91,7 @@ definitions:
             field: Quote
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
+            wicket.css: [article-separator]
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig

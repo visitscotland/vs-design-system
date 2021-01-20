@@ -14,7 +14,7 @@ describe('VsGlobalMenuLanguage', () => {
     it('should render a dropdown', () => {
         const wrapper = factoryShallowMount();
 
-        expect(wrapper.is('vsdropdown-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('VSDROPDOWN-STUB');
     });
 });
 
