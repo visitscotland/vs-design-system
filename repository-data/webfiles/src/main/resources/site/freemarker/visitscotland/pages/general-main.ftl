@@ -92,13 +92,11 @@
 	<#list pageItems as module>
 
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a common macro to control it-->
-		<#if module.theme?? && module.theme == "style3" && standardTemplate >
-			<#assign theme = "#292929" />
+		<#if standardTemplate >
+			<@moduleBuilder module=module colourScheme=["light", "light", "light"] />
 		<#else>
-			<#assign theme = "#FFFFFF" />
+			<@moduleBuilder module />
 		</#if>
-
-		<@moduleBuilder module=module theme=theme />
 
 	</#list>
 </div>

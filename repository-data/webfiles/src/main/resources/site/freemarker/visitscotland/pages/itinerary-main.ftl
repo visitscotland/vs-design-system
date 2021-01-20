@@ -223,6 +223,6 @@
         </#list>
     </vs-itinerary>
     <#if otyml??>
-        <@moduleBuilder otyml "theme1" />
+        <@moduleBuilder otyml />
     </#if>
 </div>
