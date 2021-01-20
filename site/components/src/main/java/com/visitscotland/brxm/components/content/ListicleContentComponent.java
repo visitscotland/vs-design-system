@@ -65,6 +65,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             model.setIndex(listicle.getDescOrder()?index--:index++);
 
             //Set the image
+            //TODO Use ImageFactory
             if (listicleItem.getListicleItemImage() != null) {
                 if (listicleItem.getListicleItemImage() instanceof InstagramImage) {
                     InstagramImage instagramLink = (InstagramImage) listicleItem.getListicleItemImage();

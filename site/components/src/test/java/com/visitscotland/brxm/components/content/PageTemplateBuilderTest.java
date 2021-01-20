@@ -8,11 +8,13 @@ import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.MultiImageLinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.SingleImageLinksModule;
+import com.visitscotland.brxm.components.content.factory.ArticleFactory;
 import com.visitscotland.brxm.components.content.factory.ICentreFactory;
 import com.visitscotland.brxm.components.content.factory.IKnowFactory;
 import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.mock.TouristInformationMockBuilder;
+import com.visitscotland.brxm.utils.DocumentUtils;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -22,7 +24,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -47,6 +52,12 @@ class PageTemplateBuilderTest {
     @Mock
     LinkModulesFactory linksFactory;
 
+    @Mock
+    ArticleFactory articleFactory;
+
+    @Mock
+    DocumentUtils utils;
+
     PageTemplateBuilder builder;
 
     @BeforeEach
@@ -57,7 +68,7 @@ class PageTemplateBuilderTest {
         //Adds a mock document to the Request
         request.setAttribute("document", page);
 
-        builder = new PageTemplateBuilder(linksFactory, iCentreFactory, iKnowFactory);
+        builder = new PageTemplateBuilder(utils, linksFactory, iCentreFactory, iKnowFactory, articleFactory);
     }
 
     /**
@@ -65,7 +76,7 @@ class PageTemplateBuilderTest {
      */
     @Test
     void pageWithoutElements() {
-        when(page.getModules()).thenReturn(new ArrayList<>());
+        when(utils.getAllowedDocuments(page)).thenReturn(Collections.emptyList());
 
         builder.addModules(request);
 
@@ -82,7 +93,7 @@ class PageTemplateBuilderTest {
         Megalinks megalinks = new MegalinksMockBuilder().build();
         MultiImageLinksModule module = new MultiImageLinksModule();
 
-        when(page.getModules()).thenReturn(Collections.singletonList(megalinks));
+        when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(megalinks));
         when(linksFactory.getMegalinkModule(megalinks, Locale.UK)).thenReturn(module);
 
         builder.addModules(request);
@@ -102,7 +113,7 @@ class PageTemplateBuilderTest {
                 new MegalinksMockBuilder().build(),
                 new MegalinksMockBuilder().build());
 
-        when(page.getModules()).thenReturn(list);
+        when(utils.getAllowedDocuments(page)).thenReturn(list);
         when(linksFactory.getMegalinkModule((Megalinks) list.get(0), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
         when(linksFactory.getMegalinkModule((Megalinks) list.get(1), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
         when(linksFactory.getMegalinkModule((Megalinks) list.get(2), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
@@ -129,7 +140,7 @@ class PageTemplateBuilderTest {
                 new MegalinksMockBuilder().build(),
                 new MegalinksMockBuilder().build());
 
-        when(page.getModules()).thenReturn(list);
+        when(utils.getAllowedDocuments(page)).thenReturn(list);
         when(linksFactory.getMegalinkModule((Megalinks) list.get(0), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
         when(linksFactory.getMegalinkModule((Megalinks) list.get(1), Locale.UK)).thenReturn(new MultiImageLinksModule());
         when(linksFactory.getMegalinkModule((Megalinks) list.get(2), Locale.UK)).thenReturn(new MultiImageLinksModule());
@@ -151,7 +162,7 @@ class PageTemplateBuilderTest {
     @Test
     void addMegalinksModule_firstItemColourIsStyle3_whenNoH2() {
         Megalinks mega = new MegalinksMockBuilder().build();
-        when(page.getModules()).thenReturn(Collections.singletonList(mega));
+        when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(mega));
 
         // Build the first case where the first element has no title
         when(linksFactory.getMegalinkModule(mega, Locale.UK)).thenReturn(new MultiImageLinksModule());
@@ -178,7 +189,7 @@ class PageTemplateBuilderTest {
                 new MegalinksMockBuilder().build(),
                 new MegalinksMockBuilder().build());
 
-        when(page.getModules()).thenReturn(list);
+        when(utils.getAllowedDocuments(page)).thenReturn(list);
         when(linksFactory.getMegalinkModule((Megalinks) list.get(0), Locale.UK)).thenReturn(new SingleImageLinksModule());
         when(linksFactory.getMegalinkModule((Megalinks) list.get(1), Locale.UK)).thenReturn(new SingleImageLinksModule());
         when(linksFactory.getMegalinkModule((Megalinks) list.get(2), Locale.UK)).thenReturn(new SingleImageLinksModule());
@@ -202,7 +213,7 @@ class PageTemplateBuilderTest {
     void addTouristInformation_iKnowModule() {
         TourismInformation ti = new TouristInformationMockBuilder().build();
 
-        when(page.getModules()).thenReturn(Collections.singletonList(ti));
+        when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(ti));
         when(iKnowFactory.getIKnowModule(any(), eq(null), eq(request.getLocale()))).thenReturn(new IKnowModule());
 
         builder.addModules(request);
@@ -224,7 +235,7 @@ class PageTemplateBuilderTest {
 
         TourismInformation ti = new TouristInformationMockBuilder().build();
 
-        when(page.getModules()).thenReturn(Collections.singletonList(ti));
+        when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(ti));
 
         when(iCentreFactory.getModule(any(), eq(request.getLocale()), eq(null))).thenReturn(new ICentreModule());
         when(iKnowFactory.getIKnowModule(any(), eq(null), eq(request.getLocale()))).thenReturn(new IKnowModule());
@@ -252,6 +263,31 @@ class PageTemplateBuilderTest {
 
         assertEquals(1, items.size());
         assertEquals(module.getType(), items.get(0).getType());
-        assertEquals(PageTemplateBuilder.themes[0], items.get(0).getTheme());
+        assertEquals(PageTemplateBuilder.NEUTRAL_THEME, items.get(0).getTheme());
     }
+
+    @Test
+    @DisplayName("VS-2015 - Match the initial background colour with the megalinks")
+    void setIntroTheme(){
+        Megalinks mega = new MegalinksMockBuilder().build();
+        when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(mega));
+
+        when(linksFactory.getMegalinkModule(mega, Locale.UK)).thenReturn(new MultiImageLinksModule());
+        builder.addModules(request);
+        LinksModule module = (LinksModule) ((List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
+
+        assertNotNull(request.getAttribute(PageTemplateBuilder.INTRO_THEME));
+        assertEquals(request.getAttribute(PageTemplateBuilder.INTRO_THEME), module.getTheme());
+    }
+
+    @Test
+    @DisplayName("VS-2015 - introTheme is populated with a neutral theme when the theme cannot be inferred")
+    void setIntroTheme_forNonMegalinks(){
+        when(utils.getAllowedDocuments(page)).thenReturn(Collections.emptyList());
+        builder.addModules(request);
+
+        assertEquals(PageTemplateBuilder.NEUTRAL_THEME,
+                request.getAttribute(PageTemplateBuilder.INTRO_THEME));
+    }
+
 }

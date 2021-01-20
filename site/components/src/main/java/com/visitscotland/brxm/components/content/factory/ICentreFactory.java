@@ -122,6 +122,8 @@ public class ICentreFactory {
         return module;
     }
 
+
+
     /**
      * Get the list of links for a location and a locale. When the location is not provided a link to the iCentres page
      * would be returned
