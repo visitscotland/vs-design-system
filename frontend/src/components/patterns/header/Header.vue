@@ -13,7 +13,8 @@
 
 <script>
 /**
- * TODO: Document usage
+ * The main header for the site,
+ * includes slots for global menu and meganav
  *
  * @displayName Header
  */
