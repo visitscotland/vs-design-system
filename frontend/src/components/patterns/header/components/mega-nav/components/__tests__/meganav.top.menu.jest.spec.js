@@ -8,9 +8,9 @@ const factoryShallowMount = () => shallowMount(VsMegaNavTopMenu, {
 });
 
 describe('VsMegaNavTopMenu', () => {
-    it('should render a component with the data-test attribute `.vs-mega-nav__top-menu`', () => {
+    it('should render a component with the data-test attribute `vs-mega-nav-top-menu`', () => {
         const wrapper = factoryShallowMount();
-        expect(wrapper.attributes('data-test')).toBe('vs-mega-nav__top-menu');
+        expect(wrapper.attributes('data-test')).toBe('vs-mega-nav-top-menu');
     });
 
     describe(':slots', () => {
