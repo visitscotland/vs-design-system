@@ -5,6 +5,9 @@
 <@hst.headContribution category="htmlBodyEndScripts">
     <script src="//e.visitscotland.com/js/forms2/js/forms2.min.js"></script>
 </@hst.headContribution>
+<@hst.headContribution category="htmlBodyEndScripts">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</@hst.headContribution> 
 
 <#macro embeddedForm marketoId>
     <section class="vs-embedded-form">
