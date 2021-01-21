@@ -36,14 +36,6 @@ export default {
             type: String,
             default: '',
         },
-        milesLabel: {
-            type: String,
-            default: '',
-        },
-        kilometresLabel: {
-            type: String,
-            default: '',
-        },
     },
     computed: {
         isShowingMiles() {
@@ -73,13 +65,13 @@ export default {
 
   ```jsx
     <div class="py-5">
-        <vs-summary-box-distance-display
+        <VsSummaryBoxDistanceDisplay
             :miles=itineraries.sampleItinerary.totalMiles
             :kilometres=itineraries.sampleItinerary.totalKM
             miles-label="miles"
             kilometres-label="kilometres"
         >
-        </vs-summary-box-distance-display>
+        </VsSummaryBoxDistanceDisplay>
     </div>
   ```
 </docs>

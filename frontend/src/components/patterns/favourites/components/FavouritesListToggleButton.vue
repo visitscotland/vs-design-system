@@ -99,7 +99,7 @@ export default {
 <docs>
   ```jsx
 
-    <vs-favourites-toggle-button
+    <VsFavouritesToggleButton
       :href="favourite.href"
       :title="favourite.title"
     />
