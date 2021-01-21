@@ -1,10 +1,19 @@
 <template>
     <section class="vs-form">
-        <form
-            v-if="!showSuccessMessage"
+        <div
             class="vs-form__form"
-            :id="`mktoForm_${formId}`"
-        />
+            v-if="!showSuccessMessage"
+        >
+            <form
+                :id="`mktoForm_${formId}`"
+            />
+
+            <div
+                class="g-recaptcha"
+                data-sitekey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
+                data-size="compact"
+            />
+        </div>
 
         <div
             class="vs-form__success-msg"
@@ -37,6 +46,40 @@ export default {
     },
     mounted() {
         window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
+        /* eslint-disable */
+        window.MktoForms2.whenReady((form) => {
+            const formEl = form.getFormElem()[0];
+            const emailEl = formEl.querySelector('#Email');
+            const submitContainer = formEl.querySelector('.mktoButtonRow');
+            const submitEl = formEl.querySelector('button[type="submit"]');
+            const recaptchaEl = document.querySelector('.g-recaptcha');
+
+            const formElId = form.getId();
+            form.submittable(false); // force resize reCAPTCHA frame
+            recaptchaEl.querySelector('iframe').setAttribute('height', '140'); // move reCAPTCHA inside form container
+
+            formEl.insertBefore(recaptchaEl, submitContainer);
+
+            form.onValidate((builtInValidation) => {
+                // code to handle the recaptcha
+                if (!builtInValidation) return;
+
+                // calling the recaptcha
+                const recaptchaResponse = grecaptcha.getResponse();
+                if (!recaptchaResponse) {
+                    recaptchaEl.classList.add('mktoInvalid');
+                } else {
+                    recaptchaEl.classList.remove('mktoInvalid');
+                    form.addHiddenFields({
+                        lastReCAPTCHAUserFingerprint: recaptchaResponse,
+                        lastRecaptchaEnabledFormID: formElId,
+                    });
+
+                    form.submittable(true);
+                }
+            });
+        });
+        /* eslint-enable */
         window.MktoForms2.whenRendered((form) => {
             this.destyleMktoForm(form);
 
@@ -61,6 +104,7 @@ export default {
             const arrayify = getSelection.call.bind([].slice);
 
             const styledEls = arrayify(formEl.querySelectorAll('[style]')).concat(formEl);
+
             styledEls.forEach((el) => {
                 el.removeAttribute('style');
             });
@@ -100,5 +144,34 @@ export default {
         .mktoAsterix {
             display: none;
         }
+    }
+
+    .g-recaptcha {
+        visibility: hidden;
+    }
+
+    .mktoForm .g-recaptcha {
+        visibility: visible;
+    }
+
+    .g-recaptcha.g-recaptcha {
+        margin: 20px 0 0;
+    }
+
+    .g-recaptcha > div {
+        width: 168px !important;
+        margin: 0;
+    }
+
+    .g-recaptcha > div > div {
+        border-left: 5px solid transparent;
+        border-top: 5px solid transparent;
+        border-radius: 5px;
+        transition: background-color 400ms ease-out;
+    }
+
+    .g-recaptcha.mktoInvalid > div > div {
+        background-color: #F63C00;
+        transition: background-color 400ms ease-in;
     }
 </style>
