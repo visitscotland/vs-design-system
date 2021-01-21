@@ -89,8 +89,8 @@ export default {
         }
     }
 
-    .btn {
-        padding: 0.3rem $spacer-5;
+    .dropdown-toggle {
+        padding: $spacer-1 $spacer-3;
         font-size: $font-size-sm;
         display: flex;
         align-items: center;
