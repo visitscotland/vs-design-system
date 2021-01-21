@@ -2,12 +2,9 @@ package com.visitscotland.brxm.components.content.factory;
 
 import com.visitscotland.brxm.beans.Article;
 import com.visitscotland.brxm.beans.ArticleSection;
-import com.visitscotland.brxm.beans.Quote;
-import com.visitscotland.brxm.beans.capabilities.Linkable;
-import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLongContentSection;
 import com.visitscotland.brxm.beans.mapping.LongContentModule;
-import com.visitscotland.brxm.beans.mapping.megalinks.EnhancedLink;
+import com.visitscotland.brxm.components.content.factory.utils.QuoteEmbedder;
 import com.visitscotland.brxm.dms.LocationLoader;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
@@ -19,14 +16,16 @@ import java.util.Locale;
 
 public class ArticleFactory {
 
-    private static final Logger logger = LoggerFactory.getLogger(ArticleFactory.class);
-
     LocationLoader locationLoader;
     ImageFactory imageFactory;
+    LinkModulesFactory linkFactory;
+    QuoteEmbedder quoteEmbedder;
 
     public ArticleFactory(){
         locationLoader = LocationLoader.getInstance();
         imageFactory = new ImageFactory();
+        linkFactory = new LinkModulesFactory();
+        quoteEmbedder = new QuoteEmbedder();
     }
 
     public LongContentModule getModule(HstRequest request, Article doc){
@@ -48,38 +47,15 @@ public class ArticleFactory {
                 flcs.setImage(imageFactory.getImage(section.getMediaItem(), module, request.getLocale()));
             }
 
-            Quote quote = section.getQuote();
-            Locale locale = request.getLocale();
-            // TODO: --> Refactor
-            
-            if (quote != null) {
-                flcs.setQuote(quote.getQuote());
-                flcs.setQuoteAuthorName(quote.getAuthor());
-                flcs.setQuoteAuthorTitle(quote.getRole());
+            flcs.setQuote(quoteEmbedder.getQuote(section.getQuote(), module, request.getLocale()));
 
-                if (quote.getImage() != null) {
-                    flcs.setQuoteImage(new FlatImage(quote.getImage(), locale));
-                }
-
-                if (quote.getProduct() instanceof Linkable) {
-                    //TODO Global
-                    LinkModulesFactory linkFactory = new LinkModulesFactory();
-                    EnhancedLink link = linkFactory.createEnhancedLink((Linkable) quote.getProduct(), locale, false);
-                    flcs.setQuoteLink(link);
-                    if (module.getImage() == null) {
-                        module.setImage(link.getImage());
-                    }
-                } else if (quote.getProduct() != null){
-                    //TODO: Content issue
-                    logger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
-                }
-            }
-            //TODO: --> Refactor
             sections.add(flcs);
         }
         module.setSections(sections);
 
         return module;
     }
+
+
 
 }

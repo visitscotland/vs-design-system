@@ -6,8 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.ICentre;
 import com.visitscotland.brxm.beans.Image;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
+import com.visitscotland.brxm.beans.mapping.FlatQuote;
 import com.visitscotland.brxm.beans.mapping.ICentreModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.EnhancedLink;
+import com.visitscotland.brxm.components.content.factory.utils.QuoteEmbedder;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.mock.TouristInformationMockBuilder;
@@ -39,7 +41,10 @@ class ICentreFactoryTest {
     DMSDataService dmsData;
 
     @Mock
-    LinkModulesFactory linkFactory;
+    QuoteEmbedder quoteEmbedder;
+
+    @Mock
+    ImageFactory imageFactory;
 
     @Mock
     ResourceBundleService bundle;
@@ -63,7 +68,7 @@ class ICentreFactoryTest {
 
     @BeforeEach
     void init() {
-        factory = new ICentreFactory(utils, dmsData, linkFactory, bundle);
+        factory = new ICentreFactory(utils, dmsData, bundle, quoteEmbedder, imageFactory);
         mockBuilder = new TouristInformationMockBuilder().addICentre();
     }
 
@@ -129,9 +134,9 @@ class ICentreFactoryTest {
         assertEquals("title", module.getTitle());
         assertEquals(ti.getImage(), module.getImage().getCmsImage());
         assertEquals(ti.getQuote().getQuote(), module.getQuote());
-        assertEquals(ti.getQuote().getImage(), module.getQuoteImage().getCmsImage());
-        assertEquals("Moo McCoo", module.getQuoteAuthorName());
-        assertEquals("Grass QA", module.getQuoteAuthorTitle());
+        assertEquals(ti.getQuote().getImage(), module.getQuote().getImage().getCmsImage());
+        assertEquals("Moo McCoo", module.getQuote().getAuthorName());
+        assertEquals("Grass QA", module.getQuote().getAuthorTitle());
     }
 
     @Test
@@ -174,8 +179,12 @@ class ICentreFactoryTest {
         EnhancedLink link = new EnhancedLink();
         link.setImage(new FlatImage());
         link.getImage().setExternalImage("dms-image.jpg");
+        FlatQuote quote = new FlatQuote();
+        quote.setLink(link);
+
         when(dmsData.legacyMapSearch(any())).thenReturn(node);
-        when(linkFactory.createEnhancedLink(any(), any(),eq(false))).thenReturn(link);
+//        when(linkFactory.createEnhancedLink(any(), any(),eq(false))).thenReturn(link);
+        when(quoteEmbedder.getQuote(any(), any(), any())).thenReturn(quote);
         module = factory.getModule(mockBuilder.addQuoteProduct().build().getICentre(), Locale.CANADA_FRENCH, "St. Kilda");
         assertEquals("dms-image.jpg", module.getImage().getExternalImage());
         assertNull(module.getImage().getCmsImage());
