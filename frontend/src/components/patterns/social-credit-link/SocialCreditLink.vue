@@ -61,7 +61,7 @@ export default {
          */
         source: {
             type: String,
-            default: '',
+            required: true,
             validator: (value) => value.match(/(instagram)/),
         },
     },
