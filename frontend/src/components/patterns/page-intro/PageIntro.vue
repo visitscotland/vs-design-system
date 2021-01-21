@@ -6,7 +6,10 @@
                 <div class="vs-page-intro__wrapper--inner-top">
                     <slot name="upper" />
                 </div>
-                <div class="vs-page-intro__wrapper--inner-bottom py-9">
+                <div
+                    class="vs-page-intro__wrapper--inner-bottom py-9"
+                    v-if="!!this.$slots['lower']"
+                >
                     <slot name="lower" />
                 </div>
             </div>
