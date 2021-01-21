@@ -21,6 +21,7 @@
             <VsButton
                 variant="outline-transparent"
                 class="vs-image-with-caption__toggle-caption-btn position-absolute"
+                aria-label="Expand caption"
                 :animate="false"
                 :aria-controls="'image_' + imageSrc"
                 :aria-expanded="showCaption ? 'true' : 'false'"
@@ -421,7 +422,7 @@ export default {
   ```jsx
 
     <h3>Large Caption Style</h3>
-    <vs-image-with-caption
+    <VsImageWithCaption
         v-for="(item, index) in imageWithCaption.imageExamples.large"
         :altText="item.altText"
         :image-src="item.imageSrc"
@@ -432,13 +433,13 @@ export default {
         style="max-width:700px"
         class="mb-11"
     >
-        <vs-img
+        <VsImg
             class="lazyload"
             :src="item.imageSrc"
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
-        </vs-img>
+        </VsImg>
 
         <span slot="caption" v-if="item.caption">
             {{ item.caption }}
@@ -447,10 +448,10 @@ export default {
         <span slot="credit" v-if="item.credit">
             &copy; {{ item.credit }}
         </span>
-    </vs-image-with-caption>
+    </VsImageWithCaption>
 
     <h3 style="margin-top: 7rem;">Fullwidth Caption Style</h3>
-    <vs-image-with-caption
+    <VsImageWithCaption
         v-for="(item, index) in imageWithCaption.imageExamples.fullwidth"
         :altText="item.altText"
         :closedDefaultCaption="item.isSmall"
@@ -459,13 +460,13 @@ export default {
         variant="fullwidth"
         style="max-width:700px"
     >
-        <vs-img
+        <VsImg
             class="lazyload"
             :src="item.imageSrc"
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
-        </vs-img>
+        </VsImg>
 
         <span slot="caption" v-if="item.caption">
             {{ item.caption }}
@@ -474,9 +475,9 @@ export default {
         <span slot="credit" v-if="item.credit">
             &copy; {{ item.credit }}
         </span>
-    </vs-image-with-caption>
+    </VsImageWithCaption>
 
-    <vs-image-with-caption
+    <VsImageWithCaption
         v-for="(item, index) in imageWithCaption.imageExamples.small"
         :altText="item.altText"
         :closedDefaultCaption="item.isSmall"
@@ -485,13 +486,13 @@ export default {
         variant="fullwidth"
         style="max-width:300px"
     >
-        <vs-img
+        <VsImg
             class="lazyload"
             :src="item.imageSrc"
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
-        </vs-img>
+        </VsImg>
 
         <span slot="caption" v-if="item.caption">
             {{ item.caption }}
@@ -500,10 +501,10 @@ export default {
         <span slot="credit" v-if="item.credit">
             &copy; {{ item.credit }}
         </span>
-    </vs-image-with-caption>
+    </VsImageWithCaption>
 
     <h3 style="margin-top: 5rem;">Social images</h3>
-    <vs-image-with-caption
+    <VsImageWithCaption
         v-for="(item, index) in imageWithCaption.imageExamples.social"
         :altText="item.altText"
         :image-src="item.imageSrc"
@@ -513,15 +514,15 @@ export default {
         :variant="item.variant"
         style="max-width:700px"
     >
-        <vs-img
+        <VsImg
             class="lazyload"
             :src="item.imageSrc"
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
-        </vs-img>
+        </VsImg>
 
-        <vs-svg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
+        <VsSvg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
 
         <span slot="caption" v-if="item.caption">
             {{ item.caption }}
@@ -534,7 +535,7 @@ export default {
             :source="item.source"
         >
         </VsSocialCreditLink>
-    </vs-image-with-caption>
+    </VsImageWithCaption>
 
   ```
 </docs>

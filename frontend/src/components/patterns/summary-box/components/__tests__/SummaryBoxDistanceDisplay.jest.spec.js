@@ -37,20 +37,22 @@ describe('VsSummaryBoxDistanceDisplay', () => {
             expect(wrapper.text()).toContain('20');
         });
 
-        it('if `showMiles` is true in the store, it should accept and render a `milesLabel` property', () => {
+        it('if `showMiles` is true in the store, it should render a `display_miles` div with the miles value', () => {
             const wrapper = factoryShallowMount({
                 isShowingMiles: () => true,
             });
 
-            expect(wrapper.text()).toContain('miles');
+            const milesDiv = wrapper.find('#display_miles');
+            expect(milesDiv.exists()).toBe(true);
         });
 
-        it('if `showMiles` is false in the store, it should accept and render a `kilometresLabel` property', () => {
+        it('if `showMiles` is false in the store, it should render a `display_kilometres` div with the km value', () => {
             const wrapper = factoryShallowMount({
                 isShowingMiles: () => false,
             });
 
-            expect(wrapper.text()).toContain('km');
+            const kmDiv = wrapper.find('#display_kilometres');
+            expect(kmDiv.exists()).toBe(true);
         });
     });
 });

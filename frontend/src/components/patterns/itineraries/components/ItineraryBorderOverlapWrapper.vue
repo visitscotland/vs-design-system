@@ -51,8 +51,8 @@ export default {
 <docs>
 
   ```jsx
-    <vs-itinerary-border-overlap-wrapper>
-        <vs-button
+    <VsItineraryBorderOverlapWrapper>
+        <VsButton
             class="mb-3"
             background="white"
             button-size="md"
@@ -61,15 +61,15 @@ export default {
             icon="food"
         >
             Nearby places to eat
-        </vs-button>
-        <vs-button
+        </VsButton>
+        <VsButton
             background="white"
             variant="outline-primary"
             href="#"
             icon="product-accommodation"
         >
             Nearby places to stay
-        </vs-button>
-    </vs-itinerary-border-overlap-wrapper>
+        </VsButton>
+    </VsItineraryBorderOverlapWrapper>
   ```
 </docs>
