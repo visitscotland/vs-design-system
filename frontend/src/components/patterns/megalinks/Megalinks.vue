@@ -760,7 +760,7 @@ export default {
         buttonLink="http://www.visitscotland.com"
         variant="single-image"
     >
-        <vs-col cols="12">
+        <VsCol cols="12">
             <vs-megalink-single-image
                 title="The Component heading"
                 buttonLink="www.visitscotland.com"
@@ -810,7 +810,7 @@ export default {
                     This is the button
                 </template>
             </vs-megalink-single-image>
-        </vs-col>
+        </VsCol>
     </VsMegalinks>
     <VsMegalinks
         title="A second, dark version"
@@ -825,7 +825,7 @@ export default {
             Morbi lacinia est id risus facilisis porttitor ut ac mi.
             Maecenas bibendum sodales nisi eu luctus.</p>
         </template>
-        <vs-col cols="12">
+        <VsCol cols="12">
             <VsMegalinkSingleImage
                 title="This is the second component heading"
                 theme="dark"
