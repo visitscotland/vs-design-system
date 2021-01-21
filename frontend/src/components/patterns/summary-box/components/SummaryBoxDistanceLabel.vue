@@ -123,13 +123,13 @@ export default {
 
   ```jsx
     <div class="position-relative p-5">
-        <vs-summary-box-distance-label
+        <VsSummaryBoxDistanceLabel
             distance-label="Distance"
             miles-label="miles"
             miles-abbr="mi"
             kilometres-label="kilometres"
             kilometres-abbr="km"
-        ></vs-summary-box-distance-label>
+        ></VsSummaryBoxDistanceLabel>
     </div>
   ```
 </docs>

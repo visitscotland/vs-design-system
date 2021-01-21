@@ -292,7 +292,7 @@ export default {
                         md="6"
                         lg="12"
                     >
-                        <vs-megalink-multi-image
+                        <VsMegalinkMultiImage
                             featured
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text"
@@ -307,14 +307,14 @@ export default {
                                 places to eat and drink
                                 from local markets to renowned restaurants.</p>
                             </template>
-                        </vs-megalink-multi-image>
+                        </VsMegalinkMultiImage>
                     </VsCol>
                     <VsCol
                         cols="12"
                         md="6"
                         lg="4"
                     >
-                        <vs-megalink-multi-image
+                        <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text 1"
                             linkType="external"
@@ -328,14 +328,14 @@ export default {
                                 places to eat and drink from local markets to renowned
                                 restaurants. Here are some recomm…</p>
                             </template>
-                        </vs-megalink-multi-image>
+                        </VsMegalinkMultiImage>
                     </VsCol>
                     <VsCol
                         cols="12"
                         md="6"
                         lg="4"
                     >
-                        <vs-megalink-multi-image
+                        <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text 2"
                             linkType="external"
@@ -358,14 +358,14 @@ export default {
                                 from local markets to renowned restaurants. Here are
                                 some recomm…</p>
                             </template>
-                        </vs-megalink-multi-image>
+                        </VsMegalinkMultiImage>
                     </VsCol>
                     <VsCol
                         cols="12"
                         md="6"
                         lg="4"
                     >
-                        <vs-megalink-multi-image
+                        <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             linkType="download"
                             linkUrl="https://www.visitscotland.com"
@@ -378,13 +378,13 @@ export default {
                                 places to eat and drink from local markets to renowned
                                 restaurants. Here are some recomm…</p>
                             </template>
-                        </vs-megalink-multi-image>
+                        </VsMegalinkMultiImage>
                     </VsCol>
                     <VsCol
                         cols="12"
                         md="6"
                     >
-                        <vs-megalink-multi-image
+                        <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             linkType="download"
                             linkUrl="https://www.visitscotland.com"
@@ -397,13 +397,13 @@ export default {
                                 places to eat and drink from local markets to renowned
                                 restaurants. Here are some recomm…</p>
                             </template>
-                        </vs-megalink-multi-image>
+                        </VsMegalinkMultiImage>
                     </VsCol>
                     <VsCol
                         cols="12"
                         md="6"
                     >
-                        <vs-megalink-multi-image
+                        <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             linkType="download"
                             linkUrl="https://www.visitscotland.com"
@@ -416,14 +416,14 @@ export default {
                                 places to eat and drink from local markets to renowned
                                 restaurants. Here are some recomm…</p>
                             </template>
-                        </vs-megalink-multi-image>
+                        </VsMegalinkMultiImage>
                     </VsCol>
                     <VsCol
                         cols="12"
                         md="6"
                         lg="12"
                     >
-                        <vs-megalink-multi-image
+                        <VsMegalinkMultiImage
                             featured
                             lastFeatured
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -439,7 +439,7 @@ export default {
                                 places to eat and drink
                                 from local markets to renowned restaurants.</p>
                             </template>
-                        </vs-megalink-multi-image>
+                        </VsMegalinkMultiImage>
                     </VsCol>
                 </VsRow>
             </VsContainer>
@@ -668,7 +668,7 @@ export default {
             cols="12"
             md="6"
         >
-            <vs-megalink-link-list
+            <VsMegalinkLinkList
                 imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 imgAlt="This is the alt text"
                 linkType="internal"
@@ -683,13 +683,13 @@ export default {
                     to eat and drink from local markets to renowned
                     restaurants.</p>
                 </template>
-            </vs-megalink-link-list>
+            </VsMegalinkLinkList>
         </VsCol>
         <VsCol
             cols="12"
             md="6"
         >
-            <vs-megalink-link-list
+            <VsMegalinkLinkList
                 imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 imgAlt="This is the alt text 1"
                 linkType="external"
@@ -704,13 +704,13 @@ export default {
                     places to eat and drink from local markets to renowned
                     restaurants. Here are some recomm…</p>
                 </template>
-            </vs-megalink-link-list>
+            </VsMegalinkLinkList>
         </VsCol>
         <VsCol
             cols="12"
             md="6"
         >
-            <vs-megalink-link-list
+            <VsMegalinkLinkList
                 imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 imgAlt="This is the alt text 2"
                 linkType="external"
@@ -726,13 +726,13 @@ export default {
                     from local markets to renowned restaurants.
                     Here are some recomm…</p>
                 </template>
-            </vs-megalink-link-list>
+            </VsMegalinkLinkList>
         </VsCol>
         <VsCol
             cols="12"
             md="6"
         >
-            <vs-megalink-link-list
+            <VsMegalinkLinkList
                 imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 linkType="download"
                 theme="dark"
@@ -746,7 +746,7 @@ export default {
                     places to eat and drink from local markets to renowned
                     restaurants. Here are some recomm…</p>
                 </template>
-            </vs-megalink-link-list>
+            </VsMegalinkLinkList>
         </VsCol>
 
         <template slot="vsMegalinksButton">
@@ -826,7 +826,7 @@ export default {
             Maecenas bibendum sodales nisi eu luctus.</p>
         </template>
         <vs-col cols="12">
-            <vs-megalink-single-image
+            <VsMegalinkSingleImage
                 title="This is the second component heading"
                 theme="dark"
                 buttonLink="www.visitscotland.com"
@@ -870,8 +870,8 @@ export default {
                 <template slot="vsSingleImageButtonText">
                     This is the button
                 </template>
-            </vs-megalink-single-image>
-        </vs-col>
+            </VsMegalinkSingleImage>
+        </VsCol>
     </VsMegalinks>
     ```
 </docs>

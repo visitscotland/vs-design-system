@@ -132,7 +132,7 @@ export default {
 <docs>
 ```jsx
     <ul style="list-style-type: none; padding: 0;">
-        <vs-itinerary-stop
+        <VsItineraryStop
             v-for="(stop, index) in itineraries.sampleItinerary.days[0].stops"
             :key="index"
             :stopNumber="stop.stopCount"
@@ -140,20 +140,20 @@ export default {
             :stopTitle="stop.title"
         >
             <div slot="stop-details">
-                <vs-image-with-caption
+                <VsImageWithCaption
                     :altText="stop.image.altText"
                     :image-src="stop.image.imageSrc"
                     variant="fullwidth"
                 >
-                    <vs-img
+                    <VsImg
                         class="lazyload"
                         :src="stop.image.imageSrc"
                         :data-srcset="stop.image.imageSrc"
                         :alt="stop.image.altText"
                         data-sizes="auto">
-                    </vs-img>
+                    </VsImg>
 
-                    <vs-svg
+                    <VsSvg
                         slot="toggle-icon"
                         path="info-toggle"
                         height="24"
@@ -167,41 +167,41 @@ export default {
                     <span slot="credit">
                         &copy; {{ stop.image.credit }}
                     </span>
-                </vs-image-with-caption>
+                </VsImageWithCaption>
                 <div v-html="stop.description"></div>
-                <vs-link href="stop.href">
+                <VsLink href="stop.href">
                     Find out more
-                </vs-link>
-                <vs-description-list class="my-4 mb-0 justify-content-start" inline>
-                    <vs-description-list-item title class="mb-0 mr-0 col-auto">
+                </VsLink>
+                <VsDescriptionList class="my-4 mb-0 justify-content-start" inline>
+                    <VsDescriptionListItem title class="mb-0 mr-0 col-auto">
                         Time to explore
-                    </vs-description-list-item>
-                    <vs-description-list-item class="mb-0 col-auto px-0">
+                    </VsDescriptionListItem>
+                    <VsDescriptionListItem class="mb-0 col-auto px-0">
                         {{stop.timeToExplore}}
-                    </vs-description-list-item>
-                </vs-description-list>
-                <vs-itinerary-tips v-if="stop.tips.tipsBody.length || stop.tips.tipsTitle.length">
+                    </VsDescriptionListItem>
+                </VsDescriptionList>
+                <VsItineraryTips v-if="stop.tips.tipsBody.length || stop.tips.tipsTitle.length">
                     <div slot="text">
                     <strong>{{stop.tips.tipsTitle}}</strong>
                     <div v-html="stop.tips.tipsBody"></div>
                     </div>
-                    <vs-svg slot="svg" path="highland-cow" />
-                </vs-itinerary-tips>
-                <vs-icon-list v-if="stop.facilities.length" title="Key facilities">
-                    <vs-icon-list-item
+                    <VsSvg slot="svg" path="highland-cow" />
+                </VsItineraryTips>
+                <VsIconList v-if="stop.facilities.length" title="Key facilities">
+                    <VsIconListItem
                         v-for="(facility, facilitiesIndex) in stop.facilities"
                         :key="facilitiesIndex"
                         :label="facility.value"
                         :icon="facility.key"
                         />
-                </vs-icon-list>
+                </VsIconList>
               </div>
             <!-- mimic only showing these links on the last stop of the day -->
-            <vs-itinerary-border-overlap-wrapper
+            <VsItineraryBorderOverlapWrapper
                 slot="nearby-links"
                 v-if="index == itineraries.sampleItinerary.days[0].stops.length - 1"
             >
-                <vs-button
+                <VsButton
                     class="mb-3"
                     button-size="md"
                     background="white"
@@ -210,17 +210,17 @@ export default {
                     icon="food"
                 >
                     Nearby places to eat
-                </vs-button>
-                <vs-button
+                </VsButton>
+                <VsButton
                     background="white"
                     variant="outline-primary"
                     href="#"
                     icon="product-accommodation"
                 >
                     Nearby places to stay
-                </vs-button>
-            </vs-itinerary-border-overlap-wrapper>
-        </vs-itinerary-stop>
+                </VsButton>
+            </VsItineraryBorderOverlapWrapper>
+        </VsItineraryStop>
     </ul>
 ```
 </docs>

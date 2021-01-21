@@ -61,30 +61,30 @@ export default {
 
 <docs>
   ```jsx
-    <vs-description-list class="mb-6">
-        <vs-description-list-item title>Highlights</vs-description-list-item>
-        <vs-description-list-item
+    <VsDescriptionList class="mb-6">
+        <VsDescriptionListItem title>Highlights</VsDescriptionListItem>
+        <VsDescriptionListItem
             v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
         >
             {{highlight}}
-        </vs-description-list-item>
-    </vs-description-list>
+        </VsDescriptionListItem>
+    </VsDescriptionList>
 
-    <vs-description-list class="mb-8">
-        <vs-description-list-item title>Areas Covered</vs-description-list-item>
-        <vs-description-list-item
+    <VsDescriptionList class="mb-8">
+        <VsDescriptionListItem title>Areas Covered</VsDescriptionListItem>
+        <VsDescriptionListItem
             v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
             key="index"
         >
             {{areaCovered}}
-        </vs-description-list-item>
-    </vs-description-list>
+        </VsDescriptionListItem>
+    </VsDescriptionList>
 
-    <vs-description-list inline>
-        <vs-description-list-item title>Transport</vs-description-list-item>
-        <vs-description-list-item>
+    <VsDescriptionList inline>
+        <VsDescriptionListItem title>Transport</VsDescriptionListItem>
+        <VsDescriptionListItem>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit mollis neque quis sem facilisis.
-        </vs-description-list-item>
-    </vs-description-list>
+        </VsDescriptionListItem>
+    </VsDescriptionList>
   ```
 </docs>
