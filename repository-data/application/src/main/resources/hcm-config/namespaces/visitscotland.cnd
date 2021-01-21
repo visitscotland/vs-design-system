@@ -8,10 +8,10 @@
 [visitscotland:basedocument] > hippo:document, hippostd:publishableSummary, hippostdpubwf:document
   orderable
 
-[visitscotland:Article] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
+[visitscotland:Article] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
 
-[visitscotland:ArticleSection] > hippo:compound, hippostd:relaxed, visitscotland:translatable
+[visitscotland:ArticleSection] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:CMSLink] > hippo:compound, hippostd:relaxed
@@ -73,6 +73,12 @@
   orderable
 
 [visitscotland:ListicleItem] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
+  orderable
+
+[visitscotland:LongContent] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
+[visitscotland:LongContentSection] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:MegalinkItem] > hippo:compound, hippostd:relaxed
