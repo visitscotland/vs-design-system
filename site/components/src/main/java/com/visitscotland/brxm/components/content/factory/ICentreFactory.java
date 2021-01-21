@@ -84,7 +84,7 @@ public class ICentreFactory {
 
         //Quote
         if (doc.getQuote() != null) {
-            quoteEmbedder.getQuote(doc.getQuote(), module, locale);
+            module.setQuote(quoteEmbedder.getQuote(doc.getQuote(), module, locale));
             if (module.getImage() == null && module.getQuote().getLink() != null && module.getQuote().getLink().getImage() != null) {
                 module.setImage(module.getQuote().getLink().getImage());
             }

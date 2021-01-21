@@ -2,13 +2,11 @@ package com.visitscotland.brxm.components.content.factory;
 
 import com.visitscotland.brxm.beans.Article;
 import com.visitscotland.brxm.beans.ArticleSection;
-import com.visitscotland.brxm.beans.mapping.FlatLongContentSection;
-import com.visitscotland.brxm.beans.mapping.LongContentModule;
+import com.visitscotland.brxm.beans.mapping.ArticleModuleSection;
+import com.visitscotland.brxm.beans.mapping.ArticleModule;
 import com.visitscotland.brxm.components.content.factory.utils.QuoteEmbedder;
 import com.visitscotland.brxm.dms.LocationLoader;
 import org.hippoecm.hst.core.component.HstRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +26,9 @@ public class ArticleFactory {
         quoteEmbedder = new QuoteEmbedder();
     }
 
-    public LongContentModule getModule(HstRequest request, Article doc){
-        LongContentModule module = new LongContentModule();
-        List<FlatLongContentSection> sections = new ArrayList<>();
+    public ArticleModule getModule(HstRequest request, Article doc){
+        ArticleModule module = new ArticleModule();
+        List<ArticleModuleSection> sections = new ArrayList<>();
         if (doc.getImage() != null) {
             module.setImage(imageFactory.createImage(doc.getImage(), module, Locale.UK));
         }
@@ -39,23 +37,20 @@ public class ArticleFactory {
         module.setHippoBean(doc);
         module.setAnchor(doc.getAnchor());
 
-        for (ArticleSection section: doc.getParagraph()){
-            FlatLongContentSection flcs = new FlatLongContentSection();
-            flcs.setCopy(section.getCopy());
+        for (ArticleSection paragraph: doc.getParagraph()){
+            ArticleModuleSection section = new ArticleModuleSection();
+            section.setCopy(paragraph.getCopy());
 
-            if (section.getMediaItem() != null) {
-                flcs.setImage(imageFactory.getImage(section.getMediaItem(), module, request.getLocale()));
+            if (paragraph.getMediaItem() != null) {
+                section.setImage(imageFactory.getImage(paragraph.getMediaItem(), module, request.getLocale()));
             }
 
-            flcs.setQuote(quoteEmbedder.getQuote(section.getQuote(), module, request.getLocale()));
+            section.setQuote(quoteEmbedder.getQuote(paragraph.getQuote(), module, request.getLocale()));
 
-            sections.add(flcs);
+            sections.add(section);
         }
         module.setSections(sections);
 
         return module;
     }
-
-
-
 }

@@ -2,7 +2,7 @@ package com.visitscotland.brxm.beans.mapping;
 
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
-public class FlatLongContentSection {
+public class ArticleModuleSection {
     private HippoHtml copy;
     private FlatImage image;
     private FlatQuote quote;
