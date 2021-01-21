@@ -1,6 +1,5 @@
 <template>
-    <Component
-        :is="type"
+    <VsButton
         class="vs-itinerary-mobile-map-toggle"
         variant="primary"
         @click.native="toggleMap()"
@@ -12,7 +11,7 @@
         />
 
         {{ showMap ? 'List View' : 'Map View' }}
-    </Component>
+    </VsButton>
 </template>
 
 <script>
@@ -32,12 +31,6 @@ export default {
     components: {
         VsIcon,
         VsButton,
-    },
-    props: {
-        type: {
-            type: String,
-            default: 'vs-button',
-        },
     },
     data() {
         return {
@@ -66,7 +59,7 @@ export default {
 <docs>
   ```jsx
 
-    <vs-itinerary-mobile-map-toggle />
+    <VsItineraryMobileMapToggle />
 
   ```
 </docs>

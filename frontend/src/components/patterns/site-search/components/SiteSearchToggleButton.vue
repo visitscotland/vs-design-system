@@ -58,6 +58,6 @@ export default {
 
 <docs>
   ```jsx
-    <vs-site-search-toggle-button>Search</vs-site-search-toggle-button>
+    <VsSiteSearchToggleButton>Search</VsSiteSearchToggleButton>
   ```
 </docs>

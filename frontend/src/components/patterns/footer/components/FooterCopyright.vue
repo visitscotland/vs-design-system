@@ -113,13 +113,13 @@ export default {
 
 <docs>
   ```js
-    <vs-footer>
-        <vs-footer-copyright link-alt-text="VisitScotland Home" href="/">
+    <VsFooter>
+        <VsFooterCopyright link-alt-text="VisitScotland Home" href="/">
             <span slot="copyright">
                VisitScotland. All rights reserved.
             </span>
-        </vs-footer-copyright>
-    </vs-footer>
+        </VsFooterCopyright>
+    </VsFooter>
 
   ```
 </docs>

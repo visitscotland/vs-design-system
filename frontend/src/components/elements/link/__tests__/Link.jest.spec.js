@@ -67,7 +67,7 @@ describe('VsLink', () => {
             });
 
             expect(wrapper.attributes('target')).toBe('_blank');
-            expect(wrapper.find(VsIcon).exists()).toBe(true);
+            expect(wrapper.findComponent(VsIcon).exists()).toBe(true);
         });
 
         it(':type - should add a download attribute if download type is used', () => {
