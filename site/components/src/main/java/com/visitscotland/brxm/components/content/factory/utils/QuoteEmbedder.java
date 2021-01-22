@@ -26,8 +26,9 @@ public class QuoteEmbedder {
     }
 
     public FlatQuote getQuote(Quote doc, Module module, Locale locale){
-        FlatQuote quote = new FlatQuote();
+
         if (doc != null) {
+            FlatQuote quote = new FlatQuote();
             quote.setQuote(doc.getQuote());
             quote.setAuthorName(doc.getAuthor());
             quote.setAuthorTitle(doc.getRole());
@@ -43,8 +44,10 @@ public class QuoteEmbedder {
                 CommonUtils.contentIssue("The Product for this iCentre (%s) is not a valid link.", doc.getPath());
                 logger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
             }
+            return quote;
         }
-        return quote;
+        return null;
+
     }
 
 }
