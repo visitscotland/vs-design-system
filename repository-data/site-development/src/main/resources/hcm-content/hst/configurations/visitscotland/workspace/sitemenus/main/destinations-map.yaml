@@ -1,5 +1,5 @@
 /hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/main/destinations-map:
-  .meta:order-before: accommodation
+  .meta:order-before: see-do
   jcr:primaryType: hst:sitemenuitem
   hst:referencesitemapitem: destinations-maps/orkney/short-break-itinerary
   hst:repobased: false
