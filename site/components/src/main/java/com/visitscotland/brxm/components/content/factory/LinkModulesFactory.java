@@ -97,7 +97,7 @@ public class LinkModulesFactory {
 
     public HorizontalListLinksModule horizontalListLayout(OTYML doc, Locale locale) {
         HorizontalListLinksModule target = new HorizontalListLinksModule();
-        target.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("modules", "otyml.title.default", locale ,true)): doc.getTitle());
+        target.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("otyml", "otyml.title.default", locale ,true)): doc.getTitle());
         target.setIntroduction(doc.getIntroduction());
         target.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale,true));
 
