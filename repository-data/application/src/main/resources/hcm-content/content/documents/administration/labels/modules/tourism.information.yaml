@@ -13,7 +13,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-11-04T15:30:47.380Z
-    hippostdpubwf:lastModificationDate: 2021-01-22T17:25:01.656Z
+    hippostdpubwf:lastModificationDate: 2021-01-22T17:59:16.023Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', "IDEAL = content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nRELATIVE = /site/binaries/content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
@@ -31,6 +31,11 @@
         from our accredited iKnow partners, with excellent local expertise, travel
         advice and insider tips about must-see attractions and great accommodation
         in the local area']
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '']
   /tourism.information[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -39,7 +44,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-11-04T15:30:47.380Z
-    hippostdpubwf:lastModificationDate: 2021-01-22T17:25:01.601Z
+    hippostdpubwf:lastModificationDate: 2021-01-22T17:59:36.858Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', "IDEAL = content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nRELATIVE = /site/binaries/content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
@@ -57,6 +62,11 @@
         from our accredited iKnow partners, with excellent local expertise, travel
         advice and insider tips about must-see attractions and great accommodation
         in the local area']
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '']
   /tourism.information[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -65,9 +75,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-11-04T15:30:47.380Z
-    hippostdpubwf:lastModificationDate: 2021-01-22T17:25:01.601Z
+    hippostdpubwf:lastModificationDate: 2021-01-22T17:59:36.858Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-01-22T17:26:52.275Z
+    hippostdpubwf:publicationDate: 2021-01-22T17:59:38.102Z
     resourcebundle:descriptions: ['', '', '', '', '', "IDEAL = content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nRELATIVE = /site/binaries/content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nLIVE = https://cimg.visitscotland.com/cms-images/about/458950/fort-william-visitscotland-icentre-sign",
@@ -84,3 +94,8 @@
         from our accredited iKnow partners, with excellent local expertise, travel
         advice and insider tips about must-see attractions and great accommodation
         in the local area']
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '']
