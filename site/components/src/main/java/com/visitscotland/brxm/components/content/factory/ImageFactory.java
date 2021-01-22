@@ -16,10 +16,12 @@ import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Locale;
 
+@Component
 public class ImageFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageFactory.class);

@@ -10,19 +10,29 @@ import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
 import com.visitscotland.brxm.utils.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
+@Component
 public class QuoteEmbedder {
 
     private static final Logger logger = LoggerFactory.getLogger(QuoteEmbedder.class);
 
+    @Autowired
     ImageFactory imageFactory;
+
+    @Autowired
     LinkModulesFactory linkFactory;
 
     public QuoteEmbedder(){
-        this.imageFactory = new ImageFactory();
-        this.linkFactory = new LinkModulesFactory();
+        this(new ImageFactory(), new LinkModulesFactory());
+    }
+
+    QuoteEmbedder(ImageFactory imageFactory, LinkModulesFactory linkFactory){
+        this.imageFactory = imageFactory;
+        this.linkFactory = linkFactory;
     }
 
     public FlatQuote getQuote(Quote doc, Module module, Locale locale){
@@ -38,8 +48,7 @@ public class QuoteEmbedder {
             }
 
             if (doc.getProduct() instanceof Linkable) {
-                EnhancedLink link = linkFactory.createEnhancedLink((Linkable) doc.getProduct(), locale, false);
-                quote.setLink(link);
+                quote.setLink(linkFactory.createEnhancedLink((Linkable) doc.getProduct(), locale, false));
             } else if (doc.getProduct() != null){
                 CommonUtils.contentIssue("The Product for this iCentre (%s) is not a valid link.", doc.getPath());
                 logger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
@@ -47,7 +56,6 @@ public class QuoteEmbedder {
             return quote;
         }
         return null;
-
     }
 
 }
