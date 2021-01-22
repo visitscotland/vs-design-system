@@ -33,6 +33,7 @@
                     :type="type"
                     class="stretched-link"
                     :icon-size="iconSize"
+                    :variant="theme === 'dark' ? 'dark' : 'primary'"
                     data-test="stretched-link"
                 >
                     <!-- @slot Contains header content for the card  -->
@@ -96,6 +97,14 @@ export default {
             type: String,
             default: 'xs',
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+        },
+        /**
+        * The component color theme
+        */
+        theme: {
+            type: String,
+            default: 'light',
+            validator: (value) => value.match(/(light|dark)/),
         },
         /**
         * The image to use in the component

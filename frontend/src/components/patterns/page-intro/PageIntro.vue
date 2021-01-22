@@ -1,12 +1,23 @@
 <template>
-    <div class="vs-page-intro position-relative">
+    <div
+        class="vs-page-intro position-relative"
+        :class="backgroundClass"
+        data-test="vs-page-intro"
+    >
         <slot name="hero" />
         <div class="vs-page-intro__wrapper--outer">
             <div class="vs-page-intro__wrapper--inner">
-                <div class="vs-page-intro__wrapper--inner-top">
+                <div
+                    class="vs-page-intro__wrapper--inner-top"
+                    data-test="vs-page-intro__upper"
+                >
                     <slot name="upper" />
                 </div>
-                <div class="vs-page-intro__wrapper--inner-bottom py-9">
+                <div
+                    class="vs-page-intro__wrapper--inner-bottom py-9"
+                    v-if="!!this.$slots['lower']"
+                    data-test="vs-page-intro__lower"
+                >
                     <slot name="lower" />
                 </div>
             </div>
@@ -25,6 +36,18 @@ export default {
     name: 'VsPageIntro',
     status: 'prototype',
     release: '0.0.1',
+    props: {
+        background: {
+            type: String,
+            default: 'light',
+            validator: (value) => value.match(/(light|dark)/),
+        },
+    },
+    computed: {
+        backgroundClass() {
+            return `vs-page-intro--${this.background}`;
+        },
+    },
 };
 </script>
 
@@ -80,13 +103,17 @@ export default {
         min-width: 200px;
     }
 }
+
+.vs-page-intro--dark {
+    background: $color-secondary-gray-shade-4;
+}
 </style>
 
 <docs>
 
   ```jsx
     const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-itinerary.json")
-    <VsPageIntro>
+    <VsPageIntro background="dark">
       <VsHero
         slot="hero"
         :altText="itineraries.sampleItinerary.image.altText"
