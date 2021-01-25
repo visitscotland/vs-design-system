@@ -29,7 +29,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
 .vs-summary-box-display {
     top: 20%;
     font-family: $headings-font-family;
