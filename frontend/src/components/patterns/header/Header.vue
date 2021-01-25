@@ -27,8 +27,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-header {
     position: relative;
     z-index: 10;
