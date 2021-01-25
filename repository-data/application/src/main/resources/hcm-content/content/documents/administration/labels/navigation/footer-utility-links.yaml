@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 9432875f-9adc-4dac-86c8-271378bd14b5
   hippo:name: Footer Utility Links
-  hippo:versionHistory: 35828b00-95fb-4bfd-b6a2-07de54bdf5fd
+  hippo:versionHistory: c4b9e537-d47e-4236-bb6d-4bbe0f235e88
   /footer-utility-links[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -12,7 +12,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-    hippostdpubwf:lastModificationDate: 2020-12-23T10:39:34.903Z
+    hippostdpubwf:lastModificationDate: 2021-01-22T18:02:04.828Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: navigation.utility
@@ -21,7 +21,11 @@
       footer.terms-of-use, footer.about-us]
     resourcebundle:messages: [Accessibility, Utility list, Acceptable Use, Privacy,
       Cookies, Social Media, Environmental Policy, Terms of Use, About Us]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '']
     resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '']
   /footer-utility-links[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -30,7 +34,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-    hippostdpubwf:lastModificationDate: 2020-12-23T10:38:53.565Z
+    hippostdpubwf:lastModificationDate: 2021-01-22T18:01:40.302Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: navigation.utility
@@ -39,7 +43,11 @@
       footer.terms-of-use, footer.about-us]
     resourcebundle:messages: [Accessibility, Utility list, Acceptable Use, Privacy,
       Cookies, Social Media, Environmental Policy, Terms of Use, About Us]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '']
     resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '']
   /footer-utility-links[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -48,9 +56,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-    hippostdpubwf:lastModificationDate: 2020-12-23T10:39:34.903Z
+    hippostdpubwf:lastModificationDate: 2021-01-22T18:02:04.828Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-12-23T10:39:37.134Z
+    hippostdpubwf:publicationDate: 2021-01-22T18:02:06.765Z
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: navigation.utility
     resourcebundle:keys: [footer.accessibility, footer.utility-list, footer.acceptable-use,
@@ -58,4 +66,8 @@
       footer.terms-of-use, footer.about-us]
     resourcebundle:messages: [Accessibility, Utility list, Acceptable Use, Privacy,
       Cookies, Social Media, Environmental Policy, Terms of Use, About Us]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '']
     resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '']
