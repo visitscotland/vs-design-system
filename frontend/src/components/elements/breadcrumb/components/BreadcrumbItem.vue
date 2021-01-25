@@ -60,8 +60,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/breadcrumb";
-
 .vs-breadcrumb-item {
     color: $color-base-text;
     font-size: $font-size-base;
