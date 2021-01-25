@@ -46,15 +46,14 @@ export default {
     },
     mounted() {
         window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
-        /* eslint-disable */
+
         window.MktoForms2.whenReady((form) => {
             const formEl = form.getFormElem()[0];
-            const emailEl = formEl.querySelector('#Email');
             const submitContainer = formEl.querySelector('.mktoButtonRow');
-            const submitEl = formEl.querySelector('button[type="submit"]');
             const recaptchaEl = document.querySelector('.g-recaptcha');
-
             const formElId = form.getId();
+            const { grecaptcha } = window;
+
             form.submittable(false); // force resize reCAPTCHA frame
             recaptchaEl.querySelector('iframe').setAttribute('height', '140'); // move reCAPTCHA inside form container
 
@@ -79,7 +78,7 @@ export default {
                 }
             });
         });
-        /* eslint-enable */
+
         window.MktoForms2.whenRendered((form) => {
             this.destyleMktoForm(form);
 
