@@ -55,8 +55,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/forms";
-
 .vs-form-input {
   &.form-control {
     border-color: $color-gray-tint-1;

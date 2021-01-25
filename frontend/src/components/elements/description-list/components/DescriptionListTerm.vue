@@ -34,8 +34,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-description-list-term {
     // Responsive columns to achieve default 2 column list layout
     &.vs-description-list-term--styled {

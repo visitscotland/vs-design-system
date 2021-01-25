@@ -167,8 +167,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/forms";
-@import "~bootstrap/scss/input-group";
 
 .vs-site-search__input {
     &::placeholder {
