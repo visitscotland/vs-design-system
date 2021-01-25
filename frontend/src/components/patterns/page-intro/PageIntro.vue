@@ -32,8 +32,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-page-intro__wrapper--outer {
     background: $color-white;
     margin-top: -1rem;

@@ -175,7 +175,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/buttons";
 
 .vs-button.btn {
     font-family: $font-family-base;
