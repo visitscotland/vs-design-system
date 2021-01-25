@@ -27,10 +27,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "~bootstrap/scss/grid";
-</style>
-
 <docs>
   ```jsx
 
