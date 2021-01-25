@@ -38,8 +38,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-rich-text-wrapper {
 
     &.vs-rich-text-wrapper--variant-normal * {
