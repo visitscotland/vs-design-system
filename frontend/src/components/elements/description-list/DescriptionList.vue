@@ -48,8 +48,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-description-list {
 
     // turns offset column off for first item after a term to avoid layout errors
