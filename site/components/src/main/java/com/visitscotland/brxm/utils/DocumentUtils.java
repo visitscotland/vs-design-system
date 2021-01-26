@@ -7,6 +7,7 @@ import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * Singleton
  */
+@Component
 public class DocumentUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(DocumentUtils.class.getName());
