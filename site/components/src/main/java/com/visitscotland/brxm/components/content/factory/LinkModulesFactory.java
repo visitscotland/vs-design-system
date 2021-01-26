@@ -305,11 +305,7 @@ public class LinkModulesFactory {
      */
     private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
         if (link.getLinkType() instanceof DMSLink) {
-            try {
-                return dmsData.productCard(((DMSLink) link.getLinkType()).getProduct(), locale);
-            } catch (IOException e) {
-                logger.error(e.getMessage(), e);
-            }
+            return dmsData.productCard(((DMSLink) link.getLinkType()).getProduct(), locale);
         }
         return null;
     }
