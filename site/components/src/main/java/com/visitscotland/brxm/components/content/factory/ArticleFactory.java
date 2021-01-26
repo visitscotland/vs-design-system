@@ -2,11 +2,11 @@ package com.visitscotland.brxm.components.content.factory;
 
 import com.visitscotland.brxm.beans.Article;
 import com.visitscotland.brxm.beans.ArticleSection;
-import com.visitscotland.brxm.beans.mapping.ArticleModuleSection;
 import com.visitscotland.brxm.beans.mapping.ArticleModule;
+import com.visitscotland.brxm.beans.mapping.ArticleModuleSection;
 import com.visitscotland.brxm.components.content.factory.utils.QuoteEmbedder;
-import com.visitscotland.brxm.dms.LocationLoader;
 import org.hippoecm.hst.core.component.HstRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +14,20 @@ import java.util.Locale;
 
 public class ArticleFactory {
 
-    LocationLoader locationLoader;
-    ImageFactory imageFactory;
-    LinkModulesFactory linkFactory;
-    QuoteEmbedder quoteEmbedder;
+    @Autowired
+    private ImageFactory imageFactory;
+
+    @Autowired
+    private QuoteEmbedder quoteEmbedder;
 
     public ArticleFactory(){
-        locationLoader = LocationLoader.getInstance();
         imageFactory = new ImageFactory();
-        linkFactory = new LinkModulesFactory();
         quoteEmbedder = new QuoteEmbedder();
+    }
+
+    ArticleFactory(ImageFactory imageFactory, QuoteEmbedder quoteEmbedder){
+        this.imageFactory = imageFactory;
+        this.quoteEmbedder = quoteEmbedder;
     }
 
     public ArticleModule getModule(HstRequest request, Article doc){

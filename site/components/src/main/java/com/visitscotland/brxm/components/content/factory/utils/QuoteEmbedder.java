@@ -4,7 +4,6 @@ import com.visitscotland.brxm.beans.Quote;
 import com.visitscotland.brxm.beans.capabilities.Linkable;
 import com.visitscotland.brxm.beans.mapping.FlatQuote;
 import com.visitscotland.brxm.beans.mapping.Module;
-import com.visitscotland.brxm.beans.mapping.megalinks.EnhancedLink;
 import com.visitscotland.brxm.components.content.factory.ImageFactory;
 import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
 import com.visitscotland.brxm.utils.CommonUtils;
@@ -21,16 +20,16 @@ public class QuoteEmbedder {
     private static final Logger logger = LoggerFactory.getLogger(QuoteEmbedder.class);
 
     @Autowired
-    ImageFactory imageFactory;
+    private ImageFactory imageFactory;
 
     @Autowired
-    LinkModulesFactory linkFactory;
+    private LinkModulesFactory linkFactory;
 
     public QuoteEmbedder(){
         this(new ImageFactory(), new LinkModulesFactory());
     }
 
-    QuoteEmbedder(ImageFactory imageFactory, LinkModulesFactory linkFactory){
+    private QuoteEmbedder(ImageFactory imageFactory, LinkModulesFactory linkFactory){
         this.imageFactory = imageFactory;
         this.linkFactory = linkFactory;
     }

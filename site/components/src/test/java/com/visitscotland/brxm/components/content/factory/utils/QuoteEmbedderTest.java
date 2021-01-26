@@ -3,25 +3,22 @@ package com.visitscotland.brxm.components.content.factory.utils;
 import com.visitscotland.brxm.beans.Image;
 import com.visitscotland.brxm.beans.Quote;
 import com.visitscotland.brxm.beans.SharedLink;
-import com.visitscotland.brxm.beans.capabilities.Linkable;
 import com.visitscotland.brxm.beans.mapping.FlatQuote;
 import com.visitscotland.brxm.components.content.factory.ImageFactory;
 import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
-import org.mockito.Answers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import static org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
 import java.util.Locale;
+
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class QuoteEmbedderTest {

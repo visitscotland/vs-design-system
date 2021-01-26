@@ -1,6 +1,7 @@
 package com.visitscotland.brxm.components.content.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.ExternalLink;
 import com.visitscotland.brxm.beans.Image;
 import com.visitscotland.brxm.beans.ImageData;
@@ -10,15 +11,18 @@ import com.visitscotland.brxm.beans.mapping.Coordinates;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.Module;
 import com.visitscotland.brxm.dms.LocationLoader;
+import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Locale;
 
 @Component
@@ -26,10 +30,23 @@ public class ImageFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageFactory.class);
 
-    LocationLoader locationLoader;
+    @Autowired
+    private LocationLoader locationLoader;
+
+    @Autowired
+    private ResourceBundleService bundle;
+
+    @Autowired
+    private CommonUtils utils;
 
     public ImageFactory(){
-        locationLoader = LocationLoader.getInstance();
+        this(LocationLoader.getInstance(),new ResourceBundleService(), new CommonUtils());
+    }
+
+    private ImageFactory(LocationLoader locationLoader, ResourceBundleService bundle, CommonUtils utils){
+        this.locationLoader = locationLoader;
+        this.bundle = bundle;
+        this.utils = utils;
     }
 
     public FlatImage getImage(HippoBean image, Module module, Locale locale){
@@ -113,7 +130,7 @@ public class ImageFactory {
      */
     public FlatImage createImage(InstagramImage document, Module module, Locale locale){
         try {
-            JsonNode instagramInfo = CommonUtils.getInstagramInformation(document);
+            JsonNode instagramInfo = requestInstagramImageData(document);
 
             if (instagramInfo != null) {
                 FlatImage image = new FlatImage();
@@ -129,11 +146,11 @@ public class ImageFactory {
                 return image;
             } else {
                 module.addErrorMessage("The Instagram id is no longer valid");
-                //TODO Code smell
-                logger.warn(CommonUtils.contentIssue("The Instagram id %s is no longer, Listicle = %s ",
-                        document.getId(), document.getPath()));
+                String issue = CommonUtils.contentIssue("The Instagram id %s is no longer, Listicle = %s ",
+                        document.getId(), document.getPath());
+                logger.warn(issue);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             module.addErrorMessage("Error while accessing Instagram: " + e.getMessage());
             logger.error("Error while accessing Instagram", e);
         }
@@ -142,17 +159,33 @@ public class ImageFactory {
     }
 
     /**
+     * Request the main image to instagram, so we can embed it in the site.
+     *
+     * @throws IOException when the response is not readable or the image server is not accessible
+     */
+    private JsonNode requestInstagramImageData(InstagramImage instagramLink) throws IOException {
+        //TODO add the access token value for VS facebook account
+        String accessToken = bundle.getResourceBundle("keys","tagram.accesstoken",  Locale.UK);
+        URL instagramInformation = new URL("https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/" + instagramLink.getId()+"&access_token="+accessToken);
+        String responseInstagram = utils.requestUrl(instagramInformation.toString());
+        if (responseInstagram != null) {
+            return new ObjectMapper().readTree(responseInstagram);
+        }
+        return null;
+    }
+
+    /**
      * Populates the fields Location and Coordinates from the DMS information providing translated locations for
      * all images.
-     *
-     * TODO Use for instagram;
      */
     private void populateLocation(FlatImage image, String location, Locale locale){
         LocationObject locationObject = locationLoader.getLocation(location, locale);
         if (locationObject!=null) {
+            //TODO: This condition "image.getCoordinates() == null" is never false?
             if (image.getCoordinates() == null) {
                 image.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
             }
+
             //TODO Probar
             image.setLocation(locationObject.getName());
         }
