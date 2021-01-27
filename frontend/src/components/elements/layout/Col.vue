@@ -27,29 +27,25 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "~bootstrap/scss/grid";
-</style>
-
 <docs>
   ```jsx
 
   <div class="style-cols">
-    <vs-container>
-      <vs-row>
-        <vs-col cols="6" sm="12">
+    <VsContainer>
+      <VsRow>
+        <VsCol cols="6" sm="12">
           <pre>cols="6" sm="12"</pre>
-        </vs-col>
-      </vs-row>
-      <vs-row>
-        <vs-col cols="8" lg="3">
+        </VsCol>
+      </VsRow>
+      <VsRow>
+        <VsCol cols="8" lg="3">
           <pre>cols="8" lg="3"</pre>
-        </vs-col>
-        <vs-col>
+        </VsCol>
+        <VsCol>
           <pre>no cols props</pre>
-        </vs-col>
-      </vs-row>
-    </vs-container>
+        </VsCol>
+      </VsRow>
+    </VsContainer>
   </div>
 
   ```

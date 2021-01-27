@@ -29,7 +29,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
 .vs-summary-box-display {
     top: 20%;
     font-family: $headings-font-family;
@@ -47,7 +46,7 @@ export default {
 
   ```jsx
     <div class="py-2">
-        <vs-summary-box-display
+        <VsSummaryBoxDisplay
             :text=itineraries.sampleItinerary.totalDays
         />
     </div>

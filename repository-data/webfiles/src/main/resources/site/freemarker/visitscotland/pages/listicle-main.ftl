@@ -16,13 +16,13 @@
 
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
-<#include "../pages/module-builder.ftl">
+<#include "../macros/shared/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
-<#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
-<#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.beans.Listicle" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.beans.mapping.Coordinates" -->
+<#-- @ftlvariable name="item" type="com.visitscotland.brxm.beans.mapping.FlatListicle" -->
+<#-- @ftlvariable name="cta" type="com.visitscotland.brxm.beans.mapping.FlatLink" -->
 
 </#compress>
 <div class="has-edit-button">
