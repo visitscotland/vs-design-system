@@ -211,11 +211,11 @@ export default {
 </style>
 
 <docs>
-  ```
-    <vs-container>
-        <vs-row>
-            <vs-col cols="12" md="6">
-                <vs-stretched-link-card
+  ```jsx
+    <VsContainer>
+        <VsRow>
+            <VsCol cols="12" md="6">
+                <VsStretchedLinkCard
                     link="https://visitscotland.com"
                     type="external"
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -225,7 +225,7 @@ export default {
                         A category header
                     </template>
                     <template slot="stretchedCardPanels">
-                        <vs-stretched-link-panel
+                        <VsStretchedLinkPanel
                             days="14"
                             transport="öffentlicher Verkehr"
                             daysLabel="days"
@@ -236,16 +236,16 @@ export default {
                         A Title Would Go Here
                     </template>
 
-                    <vs-rich-text-wrapper slot="stretchedCardContent">
+                    <VsRichTextWrapper slot="stretchedCardContent">
                         <p>The content for the card goes here</p>
 
                         <p>A second line of content</p>
-                    </vs-rich-text-wrapper>
-                </vs-stretched-link-card>
-            </vs-col>
+                    </VsRichTextWrapper>
+                </VsStretchedLinkCard>
+            </VsCol>
 
-            <vs-col cols="12" md="6">
-                <vs-stretched-link-card
+            <VsCol cols="12" md="6">
+                <VsStretchedLinkCard
                     link="https://visitscotland.com"
                     type="internal"
                     imgSrc=""
@@ -255,14 +255,14 @@ export default {
                         A Title Would Go Here
                     </template>
 
-                    <vs-rich-text-wrapper slot="stretchedCardContent">
+                    <VsRichTextWrapper slot="stretchedCardContent">
                         <p>The content for the card goes here</p>
 
                         <p>A second line of content</p>
-                    </vs-rich-text-wrapper>
-                </vs-stretched-link-card>
-            </vs-col>
-        </vs-row>
-    </vs-container>
+                    </VsRichTextWrapper>
+                </VsStretchedLinkCard>
+            </VsCol>
+        </VsRow>
+    </VsContainer>
   ```
 </docs>
