@@ -61,7 +61,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities";
 
 .content-section {
