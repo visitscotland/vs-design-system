@@ -12,8 +12,6 @@ public class GeneralContentComponent extends PageContentComponent<Destination> {
 
     public PageTemplateBuilder builder;
 
-    public GeneralContentComponent
-
     public GeneralContentComponent(PageUtils utils, PageTemplateBuilder builder){
         super(utils);
         this.builder = builder;
