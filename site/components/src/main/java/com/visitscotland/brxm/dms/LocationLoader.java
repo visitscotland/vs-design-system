@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.*;
 
 //TODO Test?
@@ -18,19 +16,25 @@ public class LocationLoader {
 
     private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class);
 
+    private static LocationLoader instance;
+
     private final Map<Locale, Map<String, LocationObject>> locations = new HashMap<>();
 
     private final Map<String, String> locationToId = new HashMap<>();
 
-    private static LocationLoader instance;
+    private DMSProxy proxy;
 
     private LocationLoader(){
+        proxy = new DMSProxy();
+
         init();
     }
 
     public static LocationLoader getInstance(){
         if (instance == null){
             instance = new LocationLoader();
+        } else if (instance.locationToId.size() == 0){
+            instance.init();
         }
         return instance;
     }
@@ -42,7 +46,6 @@ public class LocationLoader {
         } else {
             return locations.get(null).get(locationToId.get(location));
         }
-
     }
 
     /**
@@ -122,33 +125,33 @@ public class LocationLoader {
     private String request(Locale locale){
         //TODO Change the level to add polygon (for destinations pages)
         if (locale == null){
-            return requestPage(String.format("%s/data/meta/location/list?full", com.visitscotland.brxm.utils.Properties.VS_DMS_SERVICE));
+            return proxy.request(DMSConstants.META_LOCATIONS);
         } else {
-            return requestPage(String.format("%s/data/meta/location/list?full&locale=%s", Properties.VS_DMS_SERVICE, locale.getLanguage()));
+            return proxy.request(DMSConstants.META_LOCATIONS, locale);
         }
     }
 
-    /**
-     * Reads a page byte per byte to ensure that the encoding used is the same as the original
-     *
-     * @param url Requested URL
-     *
-     * @return HTML Fragment
-     */
-    private String requestPage(String url) {
-        StringBuilder sb = new StringBuilder();
-        try (InputStream is = new URL(url).openStream()) {
-            int c;
-            while ((c = is.read()) != -1) {
-                sb.append((char) c);
-            }
-            return sb.toString();
-        } catch (Exception e) {
-            logger.error("Error while loading {}: {}", url, e.getMessage(), e);
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    /**
+//     * Reads a page byte per byte to ensure that the encoding used is the same as the original
+//     *
+//     * @param url Requested URL
+//     *
+//     * @return HTML Fragment
+//     */
+//    private String requestPage(String url) {
+//        StringBuilder sb = new StringBuilder();
+//        try (InputStream is = new URL(url).openStream()) {
+//            int c;
+//            while ((c = is.read()) != -1) {
+//                sb.append((char) c);
+//            }
+//            return sb.toString();
+//        } catch (Exception e) {
+//            logger.error("Error while loading {}: {}", url, e.getMessage(), e);
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
     /**
      * Deserialize the List of elements in a list of Locations

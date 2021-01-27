@@ -36,14 +36,6 @@ export default {
             type: String,
             default: '',
         },
-        milesLabel: {
-            type: String,
-            default: '',
-        },
-        kilometresLabel: {
-            type: String,
-            default: '',
-        },
     },
     computed: {
         isShowingMiles() {
@@ -58,7 +50,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
 .vs-summary-box-distance-display {
     font-family: $headings-font-family;
     font-size: 1.625rem;

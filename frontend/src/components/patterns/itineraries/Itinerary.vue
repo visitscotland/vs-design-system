@@ -109,8 +109,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-itinerary {
     .vs-itinerary__map-container {
         height: 100vh;

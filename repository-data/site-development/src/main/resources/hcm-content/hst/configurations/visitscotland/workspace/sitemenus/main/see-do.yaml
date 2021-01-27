@@ -3,11 +3,11 @@
   jcr:primaryType: hst:sitemenuitem
   hst:referencesitemapitem: see-do/landscapes-nature/iconic-scottish-views
   hst:repobased: false
+  /attractions:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: destinations/megalinks-multi-image-example
+    hst:repobased: false
   /dev-test:
     jcr:primaryType: hst:sitemenuitem
     hst:referencesitemapitem: sandbox
-    hst:repobased: false
-  /test-widget:
-    jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: widget/test---widget
     hst:repobased: false

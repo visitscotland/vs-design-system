@@ -58,7 +58,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
 @import "../../../assets/fonts/fonts.css";
 
 $font-sizes: (

@@ -13,7 +13,8 @@
 
 <script>
 /**
- * TODO: Document usage
+ * The main header for the site,
+ * includes slots for global menu and meganav
  *
  * @displayName Header
  */
@@ -26,8 +27,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-header {
     position: relative;
     z-index: 10;

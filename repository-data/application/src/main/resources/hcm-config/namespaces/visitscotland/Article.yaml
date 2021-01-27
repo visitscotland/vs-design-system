@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 91b1cc11-4f94-4305-960b-6a8c8492cc25
+          jcr:uuid: cb76cebb-c508-4425-9faa-33843f62dcd0
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -70,7 +70,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
           visitscotland:anchor: ''
-          jcr:uuid: 6b34f963-4483-41e1-b65b-e1ac3601d663
+          jcr:uuid: 0d953197-0b32-4180-901d-b9c80b92d44d
           hippostdpubwf:lastModificationDate: 2020-12-11T10:07:47.311Z
           hippostdpubwf:creationDate: 2020-12-11T10:07:47.312Z
           /visitscotland:image:
@@ -98,6 +98,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             item: ${cluster.id}.field
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.skin: css/translation-dialog.css
           /image:
             jcr:primaryType: frontend:plugin
             caption: Image
@@ -127,19 +128,22 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Copy
             field: copy
-            hint: ''
+            hint: 'Recommended length: 200 characters'
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
-                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
+              ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
+                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 300}}'
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{name:''links''},{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}
+                ] , removeButtons: ''PickImage,Youtube,Table''}'
           /paragraph:
             jcr:primaryType: frontend:plugin
-            caption: PARRAGRAPH
+            caption: PARAGRAPH
             field: paragraph
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            wicket.css: []
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
