@@ -175,7 +175,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/buttons";
 
 .vs-button.btn {
     font-family: $font-family-base;
@@ -243,117 +242,117 @@ export default {
 <docs>
 ```jsx
     <h4>Types</h4>
-    <bs-wrapper class="d-flex flex-wrap mb-4">
-      <vs-button class="mr-2 mb-2">Button</vs-button>
-      <vs-button :animate=false class="mr-2 mb-2">Button with no animation</vs-button>
-      <vs-button class="mr-2 mb-2" href="https://www.visitscotland.com">Link</vs-button>
-    </bs-wrapper>
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton class="mr-2 mb-2">Button</VsButton>
+      <VsButton :animate=false class="mr-2 mb-2">Button with no animation</VsButton>
+      <VsButton class="mr-2 mb-2" href="https://www.visitscotland.com">Link</VsButton>
+    </BsWrapper>
 
     <h4>With Icons</h4>
-    <bs-wrapper class="d-flex flex-wrap mb-4">
-      <vs-button
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton
         class="mr-2 mb-2"
         icon="food"
         size="sm"
       >
         Nearby Places to Eat
-      </vs-button>
-    </bs-wrapper>
+      </VsButton>
+    </BsWrapper>
 
-    <bs-wrapper class="d-flex flex-wrap mb-4">
-      <vs-button
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton
         class="mr-2 mb-2"
         icon="map"
         size="md"
       >
         Map View
-      </vs-button>
-    </bs-wrapper>
+      </VsButton>
+    </BsWrapper>
 
-    <bs-wrapper class="d-flex flex-wrap mb-4">
-      <vs-button
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton
         class="mr-2 mb-2"
         icon="external-link"
         size="lg"
       >
         Open in a new tab
-      </vs-button>
-    </bs-wrapper>
+      </VsButton>
+    </BsWrapper>
 
     <h4>Icon Only</h4>
-    <bs-wrapper class="d-flex flex-wrap mb-4">
-      <vs-button
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton
         class="mr-2 mb-2"
         icon="external-link"
         size="sm"
         icon-only
       />
-    </bs-wrapper>
+    </BsWrapper>
 
     <h4>Variants</h4>
-    <bs-wrapper class="d-flex flex-wrap mb-4">
-      <vs-button variant="primary" class="mr-2 mb-2">Primary (default)</vs-button>
-      <vs-button variant="secondary" class="mr-2 mb-2">Secondary</vs-button>
-      <vs-button variant="success" class="mr-2 mb-2">Success</vs-button>
-      <vs-button variant="danger" class="mr-2 mb-2">Danger</vs-button>
-      <vs-button variant="warning" class="mr-2 mb-2">Warning</vs-button>
-      <vs-button variant="info" class="mr-2 mb-2">Info</vs-button>
-      <vs-button variant="light" class="mr-2 mb-2">Light</vs-button>
-      <vs-button variant="dark" class="mr-2 mb-2">Dark</vs-button>
-      <vs-button variant="transparent" class="mr-2 mb-2">Transparent</vs-button>
-    </bs-wrapper>
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton variant="primary" class="mr-2 mb-2">Primary (default)</VsButton>
+      <VsButton variant="secondary" class="mr-2 mb-2">Secondary</VsButton>
+      <VsButton variant="success" class="mr-2 mb-2">Success</VsButton>
+      <VsButton variant="danger" class="mr-2 mb-2">Danger</VsButton>
+      <VsButton variant="warning" class="mr-2 mb-2">Warning</VsButton>
+      <VsButton variant="info" class="mr-2 mb-2">Info</VsButton>
+      <VsButton variant="light" class="mr-2 mb-2">Light</VsButton>
+      <VsButton variant="dark" class="mr-2 mb-2">Dark</VsButton>
+      <VsButton variant="transparent" class="mr-2 mb-2">Transparent</VsButton>
+    </BsWrapper>
     <h4>Outline Color Variants</h4>
-    <bs-wrapper class="d-flex flex-wrap mb-4">
-      <vs-button variant="outline-primary" class="mr-2 mb-2">Primary</vs-button>
-      <vs-button variant="outline-secondary" class="mr-2 mb-2">Secondary</vs-button>
-      <vs-button variant="outline-success" class="mr-2 mb-2">Success</vs-button>
-      <vs-button variant="outline-danger" class="mr-2 mb-2">Danger</vs-button>
-      <vs-button variant="outline-warning" class="mr-2 mb-2">Warning</vs-button>
-      <vs-button variant="outline-info" class="mr-2 mb-2">Info</vs-button>
-      <vs-button variant="outline-dark" class="mr-2 mb-2">Dark</vs-button>
-    </bs-wrapper>
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton variant="outline-primary" class="mr-2 mb-2">Primary</VsButton>
+      <VsButton variant="outline-secondary" class="mr-2 mb-2">Secondary</VsButton>
+      <VsButton variant="outline-success" class="mr-2 mb-2">Success</VsButton>
+      <VsButton variant="outline-danger" class="mr-2 mb-2">Danger</VsButton>
+      <VsButton variant="outline-warning" class="mr-2 mb-2">Warning</VsButton>
+      <VsButton variant="outline-info" class="mr-2 mb-2">Info</VsButton>
+      <VsButton variant="outline-dark" class="mr-2 mb-2">Dark</VsButton>
+    </BsWrapper>
     <h4>Outline Color Variants - override transparent background</h4>
-    <bs-wrapper class="d-flex flex-wrap mb-4 bg-dark p-3">
-      <vs-button background="white" variant="outline-primary" class="mr-2 mb-2">Primary</vs-button>
-    </bs-wrapper>
+    <BsWrapper class="d-flex flex-wrap mb-4 bg-dark p-3">
+      <VsButton background="white" variant="outline-primary" class="mr-2 mb-2">Primary</VsButton>
+    </BsWrapper>
     <h4>Sizes</h4>
-    <bs-wrapper>
-      <vs-button class="mr-2 mb-2" size="sm">Small</vs-button>
-      <vs-button class="mr-2 mb-2" size="md">Medium</vs-button>
-      <vs-button class="mr-2 mb-2" size="lg">Large</vs-button>
-      <vs-button block class="mr-2 mb-2" size="md">Block</vs-button>
-    </bs-wrapper>
+    <BsWrapper>
+      <VsButton class="mr-2 mb-2" size="sm">Small</VsButton>
+      <VsButton class="mr-2 mb-2" size="md">Medium</VsButton>
+      <VsButton class="mr-2 mb-2" size="lg">Large</VsButton>
+      <VsButton block class="mr-2 mb-2" size="md">Block</VsButton>
+    </BsWrapper>
 
     <h4>Disabled States</h4>
-    <bs-wrapper class="d-flex flex-wrap mb-4">
-        <vs-button disabled class="mr-2 mb-2" variant="primary" size="md">
+    <BsWrapper class="d-flex flex-wrap mb-4">
+        <VsButton disabled class="mr-2 mb-2" variant="primary" size="md">
             Disabled primary
-        </vs-button>
-        <vs-button disabled class="mr-2 mb-2" variant="secondary" size="md">
+        </VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="secondary" size="md">
             Disabled primary pink
-        </vs-button>
-        <vs-button disabled class="mr-2 mb-2" variant="success" size="md">
+        </VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="success" size="md">
             Disabled success
-        </vs-button>
-        <vs-button disabled class="mr-2 mb-2" variant="danger" size="md">
+        </VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="danger" size="md">
             Disabled danger
-        </vs-button>
-        <vs-button disabled class="mr-2 mb-2" variant="warning" size="md">
+        </VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="warning" size="md">
             Disabled warning
-        </vs-button>
-        <vs-button disabled class="mr-2 mb-2" variant="info" size="md">
+        </VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="info" size="md">
             Disabled info
-        </vs-button>
-        <vs-button disabled class="mr-2 mb-2" variant="light" size="md">
+        </VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="light" size="md">
             Disabled light
-        </vs-button>
-        <vs-button disabled class="mr-2 mb-2" variant="dark" size="md">
+        </VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="dark" size="md">
             Disabled dark
-        </vs-button>
-        <vs-button disabled class="mr-2 mb-2" variant="transparent" size="md">
+        </VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="transparent" size="md">
             Disabled transparent
-        </vs-button>
-    </bs-wrapper>
+        </VsButton>
+    </BsWrapper>
 
 ```
 </docs>

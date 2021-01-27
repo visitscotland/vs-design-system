@@ -63,42 +63,38 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "~bootstrap/scss/images";
-</style>
-
 <docs>
   ```jsx
 
   <div>
-    <vs-container>
-      <vs-row>
-        <vs-col>
-          <vs-img
+    <VsContainer>
+      <VsRow>
+        <VsCol>
+          <VsImg
             src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             alt="Claire standing stones"
           />
-        </vs-col>
-      </vs-row>
-      <vs-row class="mt-5">
-        <vs-col>
-          <vs-img
+        </VsCol>
+      </VsRow>
+      <VsRow class="mt-5">
+        <VsCol>
+          <VsImg
             src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             alt="Claire standing stones"
             fluid
           />
-        </vs-col>
-      </vs-row>
-      <vs-row class="mt-5">
-        <vs-col>
-          <vs-img
+        </VsCol>
+      </VsRow>
+      <VsRow class="mt-5">
+        <VsCol>
+          <VsImg
             src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             alt="Claire standing stones"
             fluid-grow
           />
-        </vs-col>
-      </vs-row>
-    </vs-container>
+        </VsCol>
+      </VsRow>
+    </VsContainer>
     <br />
 
   </div>

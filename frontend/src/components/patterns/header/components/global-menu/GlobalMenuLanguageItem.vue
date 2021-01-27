@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import VsDropdownItem from '../../../dropdown/DropdownItem';
+import VsDropdownItem from '../../../dropdown/components/DropdownItem';
 
 /**
  * TODO: Document usage
@@ -70,7 +70,7 @@ export default {
 </style>
 
 <docs>
-  ```
+  ```jsx
     <VsGlobalMenuLanguageItem language-name="English" languageLink="site/"/>
   ```
 </docs>

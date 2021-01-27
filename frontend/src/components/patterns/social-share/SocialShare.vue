@@ -36,8 +36,8 @@ export default {
 
 <docs>
 ```jsx
-    <bs-wrapper class="d-flex mb-4">
-        <vs-social-share />
-    </bs-wrapper>
+    <BsWrapper class="d-flex mb-4">
+        <VsSocialShare />
+    </BsWrapper>
 ```
 </docs>

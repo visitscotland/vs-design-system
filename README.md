@@ -14,6 +14,10 @@ Windows Based Console
 
     mvn clean verify -P !fed-build -DskipTests
     mvn -P cargo.run
+   
+or 
+
+    mvn clean verify -P !fed-build -DskipTests &&mvn -P cargo.run
     
 Unix Based Console
 
@@ -56,6 +60,14 @@ Git has a limit of 260 characters for a filename in Windows when Git is compiled
 To be documented
 
 _QuickFix: Install NPM and Yarn manually with the versions specified in ui-integration/pom.xml_
+
+## Add custom Git hooks
+
+We use custom Git hooks to test the format of our commit messages to ensure that they meet the required standard. These custom hooks are stored in the folder `.custom-hooks` so that they can be maintained on BitBucket.
+
+Use `git config core.hooksPath .custom-hooks` to configure Git to use the custom hooks directory instead of the default hooks.
+
+Note: if you're using a GUI Git client, such as GitKraken, you'll need to manually copy the `.custom-hooks` files to `.git/hooks/` as these clients might not support `core.hooksPath`.
 
 BloomReach Instruction (Legacy) 
 ===============================
