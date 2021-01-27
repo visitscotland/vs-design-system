@@ -19,19 +19,19 @@ public class ResourceBundleService {
 
     private static final String SERVICE_NAME = "ResourceBundle";
 
-    final ResourceBundleRegistry resourceBundleRegistry;
-    final CommonUtils common;
+    private ResourceBundleRegistry registry;
+
+    private CommonUtils common;
 
     public ResourceBundleService() {
         //Default Hippo Resource bundle Service
-        this(HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName()),
-                new CommonUtils());
+        this(new CommonUtils());
     }
 
-    ResourceBundleService (ResourceBundleRegistry rbr, CommonUtils common){
-        resourceBundleRegistry = rbr;
+    public ResourceBundleService (CommonUtils common){
         this.common = common;
     }
+
 
 
     /**
@@ -137,9 +137,21 @@ public class ResourceBundleService {
      */
     private ResourceBundle getResourceBundle(String bundleName, Locale locale){
         if (locale == null) {
-            return resourceBundleRegistry.getBundle(bundleName);
+            return getResourceBundleRegistry().getBundle(bundleName);
         } else {
-            return resourceBundleRegistry.getBundle(bundleName, locale);
+            return getResourceBundleRegistry().getBundle(bundleName, locale);
+        }
+    }
+
+    public void setResourceBundleRegistry(ResourceBundleRegistry registry){
+        this.registry = registry;
+    }
+
+    private ResourceBundleRegistry getResourceBundleRegistry(){
+        if (registry == null){
+            return HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName());
+        } else {
+            return registry;
         }
     }
 

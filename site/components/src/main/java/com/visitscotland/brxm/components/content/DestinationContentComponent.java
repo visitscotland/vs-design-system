@@ -10,10 +10,11 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
     private static final Logger logger = LoggerFactory.getLogger(DestinationContentComponent.class);
 
-    PageTemplateBuilder builder;
+    private PageTemplateBuilder builder;
 
-    public DestinationContentComponent() {
-        builder = new PageTemplateBuilder();
+    public DestinationContentComponent(PageUtils utils, PageTemplateBuilder builder){
+        super(utils);
+        this.builder = builder;
     }
 
     @Override

@@ -30,13 +30,13 @@ public class ImageFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageFactory.class);
 
-    @Autowired
+//    @Autowired
     private LocationLoader locationLoader;
 
-    @Autowired
+//    @Autowired
     private ResourceBundleService bundle;
 
-    @Autowired
+//    @Autowired
     private CommonUtils utils;
 
     public ImageFactory(){

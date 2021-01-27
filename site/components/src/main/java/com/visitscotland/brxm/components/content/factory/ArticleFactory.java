@@ -16,18 +16,18 @@ import java.util.Locale;
 @Component
 public class ArticleFactory {
 
-    @Autowired
+//    @Autowired
     private ImageFactory imageFactory;
 
-    @Autowired
+//    @Autowired
     private QuoteEmbedder quoteEmbedder;
 
-    public ArticleFactory(){
-        imageFactory = new ImageFactory();
-        quoteEmbedder = new QuoteEmbedder();
-    }
+//    public ArticleFactory(){
+//        imageFactory = new ImageFactory();
+//        quoteEmbedder = new QuoteEmbedder();
+//    }
 
-    ArticleFactory(ImageFactory imageFactory, QuoteEmbedder quoteEmbedder){
+    public ArticleFactory(ImageFactory imageFactory, QuoteEmbedder quoteEmbedder){
         this.imageFactory = imageFactory;
         this.quoteEmbedder = quoteEmbedder;
     }

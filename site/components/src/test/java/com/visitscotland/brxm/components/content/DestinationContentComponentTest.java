@@ -37,7 +37,7 @@ class DestinationContentComponentTest {
         request.setAttribute("document", document);
 
         //The following method has to be initialized in order to avoid a NullPointerException
-        component.builder = templateBuilder;
+//        component.builder = templateBuilder;
     }
 
 

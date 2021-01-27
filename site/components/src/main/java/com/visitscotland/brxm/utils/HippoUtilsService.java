@@ -10,6 +10,7 @@ import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
+import org.springframework.stereotype.Component;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
@@ -18,6 +19,7 @@ import java.util.Locale;
 /**
  * Set of utilities related with Hippo that from the whole environment to be running in order to work
  */
+@Component
 public class HippoUtilsService {
 
     /**

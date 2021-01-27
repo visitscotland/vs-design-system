@@ -39,9 +39,9 @@ public class ICentreFactory {
     private final ImageFactory imageFactory;
 
 
-    public ICentreFactory() {
-        this(new HippoUtilsService(), new DMSDataService(), new ResourceBundleService(), new QuoteEmbedder(), new ImageFactory());
-    }
+//    public ICentreFactory() {
+//        this(new HippoUtilsService(), new DMSDataService(), new ResourceBundleService(), new QuoteEmbedder(), new ImageFactory());
+//    }
 
     public ICentreFactory(HippoUtilsService utils, DMSDataService dmsData, ResourceBundleService bundle, QuoteEmbedder quoteEmbedder, ImageFactory image) {
         this.utils = utils;

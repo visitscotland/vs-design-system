@@ -41,20 +41,16 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     protected final String FACILITIES = "keyFacilities";
     public final String HERO_COORDINATES = "heroCoordinates";
 
-    HippoUtilsService utils;
-    ResourceBundleService bundle;
-    DMSDataService dmsData;
-    LinkService linksService;
-    LocationLoader locationLoader;
-    LinkModulesFactory linksFactory;
+    private ResourceBundleService bundle;
+    private LinkService linksService;
+    private LocationLoader locationLoader;
+    private LinkModulesFactory linksFactory;
 
-    public PageContentComponent(){
-        utils = new HippoUtilsService();
-        bundle = new ResourceBundleService();
-        dmsData = new DMSDataService();
-        linksService = new LinkService();
-        locationLoader = LocationLoader.getInstance();
-        linksFactory = new LinkModulesFactory();
+    public PageContentComponent(PageUtils pageUtils){
+        this.bundle = pageUtils.getBundle();
+        this.linksService = pageUtils.getLinksService();
+        this.locationLoader = pageUtils.getLocationLoader();
+        this.linksFactory = pageUtils.getLinksFactory();
     }
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {

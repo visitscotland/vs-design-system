@@ -19,17 +19,17 @@ public class QuoteEmbedder {
 
     private static final Logger logger = LoggerFactory.getLogger(QuoteEmbedder.class);
 
-    @Autowired
+//    @Autowired
     private ImageFactory imageFactory;
 
-    @Autowired
+//    @Autowired
     private LinkModulesFactory linkFactory;
 
-    public QuoteEmbedder(){
-        this(new ImageFactory(), new LinkModulesFactory());
-    }
+//    public QuoteEmbedder(){
+//        this(new ImageFactory(), new LinkModulesFactory());
+//    }
 
-    private QuoteEmbedder(ImageFactory imageFactory, LinkModulesFactory linkFactory){
+    public QuoteEmbedder(ImageFactory imageFactory, LinkModulesFactory linkFactory){
         this.imageFactory = imageFactory;
         this.linkFactory = linkFactory;
     }

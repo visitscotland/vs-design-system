@@ -9,14 +9,14 @@ import org.onehippo.cms7.essentials.components.CommonComponent;
 
 public class InternalComponent extends CommonComponent {
 
-    ResourceBundleService bundle;
-    HippoUtilsService utils;
-    InternalParameterProcessor processor;
+    private ResourceBundleService bundle;
+    private HippoUtilsService utils;
+    private InternalParameterProcessor processor;
 
-    public InternalComponent() {
-        bundle = new ResourceBundleService();
-        utils = new HippoUtilsService();
-        processor = new InternalParameterProcessor(bundle, utils);
+    public InternalComponent(ResourceBundleService bundle, HippoUtilsService utils, InternalParameterProcessor processor) {
+        this.bundle = bundle;
+        this.utils = utils;
+        this.processor = processor;
     }
 
     @Override

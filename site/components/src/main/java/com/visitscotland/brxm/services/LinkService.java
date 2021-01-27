@@ -13,14 +13,15 @@ import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 
+@Component
 public class LinkService {
-
 
     private static final Logger logger = LoggerFactory.getLogger(LinkService.class);
 
@@ -30,9 +31,9 @@ public class LinkService {
     private final ResourceBundleService resourceBundle;
     private final HippoUtilsService utils;
 
-    public LinkService() {
-        this(new DMSDataService(), new ResourceBundleService(), new HippoUtilsService());
-    }
+//    public LinkService() {
+//        this(new DMSDataService(), new ResourceBundleService(), new HippoUtilsService());
+//    }
 
     public LinkService(DMSDataService dmsData, ResourceBundleService resourceBundle, HippoUtilsService utils) {
         this.dmsData = dmsData;
