@@ -1,5 +1,5 @@
 import VsDescriptionList from './DescriptionList';
-import VsDescriptionListItem from './DescriptionListItem';
+import VsDescriptionListItem from './components/DescriptionListItem';
 
 export {
     VsDescriptionList,

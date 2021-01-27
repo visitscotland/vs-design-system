@@ -1,6 +1,9 @@
 <template>
     <div class="vs-global-menu">
-        <VsContainer>
+        <VsContainer
+            fluid="lg"
+            class="px-0 px-sm-3"
+        >
             <VsRow>
                 <VsCol
                     cols="12"
@@ -108,7 +111,6 @@ export default {
 
 <style lang="scss">
 .vs-global-menu {
-    width: 100%;
     background: $color-purple;
     color: white;
     position: relative;
@@ -121,30 +123,13 @@ export default {
         height: 35px;
     }
 
-    @include media-breakpoint-down(md) {
-        .container {
-            padding: 0;
-            margin: 0;
-            max-width: 100%;
-        }
-
-        .row {
-            margin: 0 !important;
-        }
-
-        .col-12 {
-            padding: 0 !important;
-        }
-    }
-
     &__wrapper {
         position: initial;
         display: flex;
         align-items: center;
 
         @include media-breakpoint-down(md) {
-            width: 100%;
-            padding: 0;
+            padding-left: 0;
             margin: 0;
         }
     }
@@ -172,8 +157,8 @@ export default {
 </style>
 
 <docs>
-  ```
-    <vs-global-menu
+  ```jsx
+    <VsGlobalMenu
         dropdown-label="I nostri siti"
         active-site="https://www.visitscotland.com/"
     ><span
@@ -186,21 +171,21 @@ export default {
         <span
             slot="third-menu-item"
         >
-        <vs-global-menu-language>
-            <vs-global-menu-language-item languageName="English">
-            </vs-global-menu-language-item>
-            <vs-global-menu-language-item languageName="Deutsch">
-            </vs-global-menu-language-item>
-            <vs-global-menu-language-item languageName="Español">
-            </vs-global-menu-language-item>
-            <vs-global-menu-language-item languageName="Français">
-            </vs-global-menu-language-item>
-            <vs-global-menu-language-item languageName="Italiano">
-            </vs-global-menu-language-item>
-            <vs-global-menu-language-item languageName="Nederlands">
-            </vs-global-menu-language-item>
-        </vs-global-menu-language>
+        <VsGlobalMenuLanguage>
+            <VsGlobalMenuLanguageItem languageName="English">
+            </VsGlobalMenuLanguageItem>
+            <VsGlobalMenuLanguageItem languageName="Deutsch">
+            </VsGlobalMenuLanguageItem>
+            <VsGlobalMenuLanguageItem languageName="Español">
+            </VsGlobalMenuLanguageItem>
+            <VsGlobalMenuLanguageItem languageName="Français">
+            </VsGlobalMenuLanguageItem>
+            <VsGlobalMenuLanguageItem languageName="Italiano">
+            </VsGlobalMenuLanguageItem>
+            <VsGlobalMenuLanguageItem languageName="Nederlands">
+            </VsGlobalMenuLanguageItem>
+        </VsGlobalMenuLanguage>
         </span>
-    </vs-global-menu>
+    </VsGlobalMenu>
   ```
 </docs>
