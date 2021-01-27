@@ -6,7 +6,10 @@
                 <div class="vs-page-intro__wrapper--inner-top">
                     <slot name="upper" />
                 </div>
-                <div class="vs-page-intro__wrapper--inner-bottom py-9">
+                <div
+                    class="vs-page-intro__wrapper--inner-bottom py-9"
+                    v-if="!!this.$slots['lower']"
+                >
                     <slot name="lower" />
                 </div>
             </div>
@@ -29,8 +32,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-page-intro__wrapper--outer {
     background: $color-white;
     margin-top: -1rem;

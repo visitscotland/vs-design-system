@@ -36,8 +36,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-description-list-detail {
     margin-bottom: 0;
 
