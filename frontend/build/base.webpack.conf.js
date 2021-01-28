@@ -78,7 +78,15 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: "html-loader",
+        use: [
+          "html-loader",
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              svgo: {}
+            }
+          }
+        ]
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
