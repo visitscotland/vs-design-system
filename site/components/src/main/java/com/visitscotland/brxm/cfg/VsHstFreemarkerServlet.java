@@ -19,6 +19,7 @@ public class VsHstFreemarkerServlet extends HstFreemarkerServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(VsHstFreemarkerServlet.class);
 
+    @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
