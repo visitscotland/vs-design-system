@@ -10,7 +10,7 @@
 
             <div
                 class="g-recaptcha"
-                data-sitekey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
+                data-sitekey="6LfbqfcZAAAAALdf5BWD2Il3XHgRZvmU1lfo2_bI"
                 data-size=""
             />
         </div>
