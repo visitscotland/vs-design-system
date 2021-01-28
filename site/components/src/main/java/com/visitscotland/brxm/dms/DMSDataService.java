@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.Locale;
 
+//TODO: Test changing the name
+//@Component("dmsDataService")
 @Component
 public class DMSDataService {
 

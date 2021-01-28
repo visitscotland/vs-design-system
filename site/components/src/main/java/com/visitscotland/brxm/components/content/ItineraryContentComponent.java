@@ -6,6 +6,7 @@ import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.dms.LocationObject;
 import com.visitscotland.brxm.beans.mapping.*;
 import com.visitscotland.brxm.beans.mapping.Coordinates;
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
@@ -37,12 +38,10 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     private LocationLoader locationLoader;
     private DMSDataService dmsData;
 
-    public ItineraryContentComponent(PageUtils pageUtils, ResourceBundleService bundle, LocationLoader locationLoader, DMSDataService dmsData) {
-        super(pageUtils);
-
-        this.bundle = bundle;
-        this.locationLoader = locationLoader;
-        this.dmsData = dmsData;
+    public ItineraryContentComponent() {
+        this.bundle = SpringContext.getResourceBundleService();
+        this.locationLoader = SpringContext.getLocationLoader();
+        this.dmsData = SpringContext.getDMSDataService();
     }
 
     @Override

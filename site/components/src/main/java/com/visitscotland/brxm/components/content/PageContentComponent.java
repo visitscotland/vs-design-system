@@ -8,6 +8,7 @@ import com.visitscotland.brxm.beans.mapping.Coordinates;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.LocationLoader;
@@ -23,9 +24,12 @@ import freemarker.template.TemplateModelException;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.container.ComponentManager;
+import org.hippoecm.hst.site.HstServices;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,12 +50,13 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     private LocationLoader locationLoader;
     private LinkModulesFactory linksFactory;
 
-    public PageContentComponent(PageUtils pageUtils){
-        this.bundle = pageUtils.getBundle();
-        this.linksService = pageUtils.getLinksService();
-        this.locationLoader = pageUtils.getLocationLoader();
-        this.linksFactory = pageUtils.getLinksFactory();
+    public PageContentComponent(){
+        this.bundle = new SpringContext().getBean("resourceBundleService");
+        this.linksService = new SpringContext().getBean("linkService");
+        this.locationLoader = new SpringContext().getBean("locationLoader");
+        this.linksFactory = new SpringContext().getBean("linkModulesFactory");
     }
+
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);

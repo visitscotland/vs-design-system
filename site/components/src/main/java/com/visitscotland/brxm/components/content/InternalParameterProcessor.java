@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+//TODO Move to Utils package
 @Component
-class InternalParameterProcessor {
+public class InternalParameterProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(InternalParameterProcessor.class);
 

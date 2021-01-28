@@ -1,10 +1,14 @@
 package com.visitscotland.brxm.components.content;
 
 import com.visitscotland.brxm.beans.Destination;
+import com.visitscotland.brxm.cfg.SpringContext;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.container.ComponentManager;
+import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class GeneralContentComponent extends PageContentComponent<Destination> {
 
@@ -12,9 +16,8 @@ public class GeneralContentComponent extends PageContentComponent<Destination> {
 
     public PageTemplateBuilder builder;
 
-    public GeneralContentComponent(PageUtils utils, PageTemplateBuilder builder){
-        super(utils);
-        this.builder = builder;
+    public GeneralContentComponent(){
+        this.builder = SpringContext.getPageTemplateBuilder();
     }
 
     @Override

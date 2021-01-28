@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.components.content;
 
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -14,9 +15,9 @@ public class InternalComponent extends CommonComponent {
     private InternalParameterProcessor processor;
 
     public InternalComponent(ResourceBundleService bundle, HippoUtilsService utils, InternalParameterProcessor processor) {
-        this.bundle = bundle;
-        this.utils = utils;
-        this.processor = processor;
+        this.bundle = SpringContext.getResourceBundleService();
+        this.utils = SpringContext.getHippoUtilsService();
+        this.processor = SpringContext.getInternalParameterProcessor();
     }
 
     @Override
