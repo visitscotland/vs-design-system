@@ -34,8 +34,9 @@ import VsList from '@components/elements/list';
 /**
  * This component is the list used inside the Global Menu component.
  * It holds the list of websites to be shown on bigger devices.
+ *
+ * @displayName Global Menu List
  */
-
 export default {
     name: 'VsGlobalMenuList',
     status: 'prototype',
@@ -144,8 +145,8 @@ export default {
 </style>
 
 <docs>
-  ```
-    <vs-global-menu
+  ```jsx
+    <VsGlobalMenu
         dropdown-label="I nostri siti"
         active-site="https://www.visitscotland.com/"
     >
@@ -162,6 +163,6 @@ export default {
         >
             EN
         </span>
-    </vs-global-menu>
+    </VsGlobalMenu>
   ```
 </docs>

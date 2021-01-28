@@ -1,25 +1,51 @@
 <template>
-    <div class="card">
-        <!-- @slot Contains the image for the card  -->
-        <slot name="stretchedCardImage" />
+    <div class="card stretched-link-card">
+        <template v-if="imgSrc">
+            <VsImg
+                :src="imgSrc"
+                :alt="imgAlt"
+                class="stretched-link-card__img"
+                data-test="stretched-link-card__img"
+            />
+        </template>
+
+        <div class="stretched-link-card__panels">
+            <!-- @slot Contains optional content for overlaid panels  -->
+            <slot name="stretchedCardPanels" />
+        </div>
 
         <div class="card-body">
             <VsHeading
+                level="4"
+                class="stretched-link-card__category"
+                v-if="!!this.$slots['stretchedCardCategory']"
+                data-test="stretched-link-card__category"
+            >
+                <!-- @slot Contains a category header for the card  -->
+                <slot name="stretchedCardCategory" />
+            </VsHeading>
+            <VsHeading
                 level="3"
-                class="card-title"
+                class="card-title stretched-link-card__title"
             >
                 <VsLink
                     :href="link"
                     :type="type"
                     class="stretched-link"
+                    :icon-size="iconSize"
                     data-test="stretched-link"
                 >
                     <!-- @slot Contains header content for the card  -->
                     <slot name="stretchedCardHeader" />
                 </VsLink>
             </VsHeading>
-            <!-- @slot Contains body content for the card  -->
-            <slot name="stretchedCardContent" />
+            <div
+                class="stretched-link-card__content"
+                data-test="stretched-link-card__content"
+            >
+                <!-- @slot Contains body content for the card  -->
+                <slot name="stretchedCardContent" />
+            </div>
         </div>
     </div>
 </template>
@@ -27,9 +53,13 @@
 <script>
 import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
+import VsImg from '@components/elements/img/Img';
+
 /**
  * The Stretched Link Card is a block that stretches its nested link across its whole area
  * meaning that the whole block is clickable
+ *
+ * @displayName Stretched Link Card
  */
 export default {
     name: 'VsStretchedLinkCard',
@@ -38,6 +68,7 @@ export default {
     components: {
         VsHeading,
         VsLink,
+        VsImg,
     },
     props: {
         /**
@@ -46,6 +77,7 @@ export default {
         link: {
             type: String,
             required: true,
+            default: '#',
         },
         /**
         * The type of link. This will set the icon.
@@ -56,27 +88,174 @@ export default {
             required: true,
             validator: (value) => value.match(/(external|internal|download)/),
         },
+        /**
+        * Size of the link icon - defaults to 'xs'
+        * `xxs, xs, sm, md, lg, xl`)
+        */
+        iconSize: {
+            type: String,
+            default: 'xs',
+            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+        },
+        /**
+        * The image to use in the component
+        */
+        imgSrc: {
+            required: true,
+            type: String,
+        },
+        /**
+        * The image alt text to use in the component
+        */
+        imgAlt: {
+            type: String,
+            default: '',
+        },
     },
 };
 </script>
 
+<style lang="scss">
+    .stretched-link-card.card {
+        transition: box-shadow 800ms;
+        border: none;
+        position: relative;
+
+        &:hover {
+            box-shadow: 10px 10px 20px $color-gray-tint-4;
+
+            .megalink-link-list__title {
+                text-decoration: underline;
+            }
+        }
+
+        .stretched-link {
+            color: $color-base-text;
+            text-decoration: none;
+            letter-spacing: 0;
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            &:focus {
+                outline: 2px solid $color-theme-primary;
+            }
+        }
+
+        .vs-link__icon {
+            height: 12px;
+            width: 12px;
+        }
+
+        .stretched-link-card__img {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .stretched-link-card__title {
+            font-size: $font-size-sm;
+            line-height: $line-height-s;
+            letter-spacing: 0.0875rem;
+            color: $color-base-text;
+        }
+
+        .stretched-link-card__category {
+            font-family: $font-family-base;
+            font-size: $small-font-size;
+            line-height: $line-height-xs;
+            color: $color-secondary-teal-shade-2;
+            letter-spacing: normal;
+            margin-bottom: $spacer-4;
+        }
+
+        .stretched-link-card__content {
+            margin-top: $spacer-2;
+            line-height: $line-height-s;
+
+            p:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        .stretched-link-card__panels {
+            position: absolute;
+            top: $spacer-1;
+            right: $spacer-1;
+            display: flex;
+            flex-direction: row;
+        }
+
+        @include media-breakpoint-up(sm) {
+            .stretched-link-card__panels {
+                top: $spacer-2;
+                right: $spacer-2;
+            }
+        }
+
+        @include media-breakpoint-up(xl) {
+            .stretched-link-card__title {
+                font-size: $h6-font-size;
+                line-height: $line-height-s;
+
+                .card-body {
+                    padding-bottom: $spacer-5;
+                }
+            }
+        }
+    }
+</style>
+
 <docs>
-  ```
-    <vs-stretched-link-card link="https://visitscotland.com" type="external">
-        <vs-img
-            slot="stretchedCardImage"
-            src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-            alt="Claire standing stones"
-            fluid
-        />
+  ```jsx
+    <VsContainer>
+        <VsRow>
+            <VsCol cols="12" md="6">
+                <VsStretchedLinkCard
+                    link="https://visitscotland.com"
+                    type="external"
+                    imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                    imgAlt="This is the alt text"
+                >
+                    <template slot="stretchedCardCategory">
+                        A category header
+                    </template>
+                    <template slot="stretchedCardPanels">
+                        <VsStretchedLinkPanel days="14" />
+                        <VsStretchedLinkPanel text="öffentlicher Verkehr" />
+                    </template>
 
-        <template slot="stretchedCardHeader">
-            A Title Would Go Here
-        </template>
+                    <template slot="stretchedCardHeader">
+                        A Title Would Go Here
+                    </template>
 
-        <vs-rich-text-wrapper slot="stretchedCardContent">
-            The content for the card goes here
-        </vs-rich-text-wrapper>
-    </vs-stretched-link-card>
+                    <VsRichTextWrapper slot="stretchedCardContent">
+                        <p>The content for the card goes here</p>
+
+                        <p>A second line of content</p>
+                    </VsRichTextWrapper>
+                </VsStretchedLinkCard>
+            </VsCol>
+
+            <VsCol cols="12" md="6">
+                <VsStretchedLinkCard
+                    link="https://visitscotland.com"
+                    type="internal"
+                    imgSrc=""
+                    imgAlt="This is the alt text"
+                >
+                    <template slot="stretchedCardHeader">
+                        A Title Would Go Here
+                    </template>
+
+                    <VsRichTextWrapper slot="stretchedCardContent">
+                        <p>The content for the card goes here</p>
+
+                        <p>A second line of content</p>
+                    </VsRichTextWrapper>
+                </VsStretchedLinkCard>
+            </VsCol>
+        </VsRow>
+    </VsContainer>
   ```
 </docs>

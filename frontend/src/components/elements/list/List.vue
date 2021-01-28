@@ -6,6 +6,7 @@
             'vs-list--unstyled': unstyled,
             'vs-list--inline': inline,
         }"
+        v-bind="$attrs"
     >
         <slot />
     </Component>
@@ -15,6 +16,7 @@
 /**
  * Generic List Component that can be used for any kind of list needed given the right properties.
  *
+ * @displayName List
  */
 export default {
     name: 'VsList',
@@ -63,36 +65,36 @@ export default {
 <docs>
 ```jsx
     <h3>Default</h3>
-    <vs-list>
+    <VsList>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
-    </vs-list>
+    </VsList>
 
     <h3 class="mt-8">Inline</h3>
-    <vs-list inline>
+    <VsList inline>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
-    </vs-list>
+    </VsList>
 
     <h3 class="mt-8">Inline Unstyled</h3>
-    <vs-list unstyled inline>
+    <VsList unstyled inline>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
-    </vs-list>
+    </VsList>
 
     <h3 class="mt-8">Unstyled</h3>
-    <vs-list unstyled>
+    <VsList unstyled>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
-    </vs-list>
+    </VsList>
 
     <h3 class="mt-8">Ordered List</h3>
-    <vs-list ordered>
+    <VsList ordered>
         <li>Test</li>
-    </vs-list>
+    </VsList>
 ```
 </docs>
