@@ -20,7 +20,7 @@ class ExternalDocumentValidatorTest {
     @Test
     @DisplayName("The URL is not valid if it does not contain pdf extension")
     void externalDocumentIncorrect() {
-        ExternalDocumentValidator validator = new ExternalDocumentValidator();
+        com.visitscotland.brxm.validator.ExternalDocumentValidator validator = new com.visitscotland.brxm.validator.ExternalDocumentValidator();
 
         when(context.createViolation()).thenReturn(mock(Violation.class));
         String value = "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee";

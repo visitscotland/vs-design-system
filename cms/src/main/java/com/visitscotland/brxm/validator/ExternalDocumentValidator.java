@@ -13,8 +13,6 @@ import java.util.Optional;
  */
 public class ExternalDocumentValidator implements Validator<String>  {
 
-
-
     public Optional<Violation> validate(ValidationContext context, String value) {
         return CommonUtils.getExtenalDocumentSize(value) == null?Optional.of(context.createViolation()) : Optional.empty();
     }
