@@ -112,12 +112,14 @@ import {
 import VsHeading from '../elements/heading/Heading';
 import VsImg from '../elements/img/Img';
 import VsHero from '../patterns/hero/Hero';
-import VsArticle from '../patterns/Article';
-import VsSidebar from '../patterns/Sidebar';
-import VsContentSection from '../patterns/ContentSection';
+import VsArticle from '../patterns/article/Article';
+import VsSidebar from '../patterns/sidebar/Sidebar';
+import VsContentSection from '../patterns/content-section/ContentSection';
 
 /**
- *An example page template.
+ * An example page template.
+ *
+ * @displayName Example
  */
 export default {
     name: 'VsExampleTemplate',

@@ -1,9 +1,9 @@
 <template>
-    <div
+    <nav
         class="vs-mega-nav bg-white"
         data-test="vs-mega-nav"
     >
-        <VsContainer>
+        <VsContainer fluid="lg">
             <VsRow class="align-items-center">
                 <!-- Logo Link -->
                 <VsCol
@@ -16,7 +16,7 @@
                         data-test="vs-mega-nav__logo"
                         link-alt-text="VisitScotland Home"
                         :href="href"
-                        svg-fill="700e57"
+                        svg-fill="#700e57"
                         svg-path="visitscotland"
                     />
                 </VsCol>
@@ -51,7 +51,14 @@
                                 {{ menuToggleAltText }}
                             </span>
                             <VsIcon
-                                v-if="!isOpen"
+                                v-if="isOpen"
+                                name="close"
+                                size="xs"
+                                variant="dark"
+                            />
+
+                            <VsIcon
+                                v-else
                                 name="bars-mobile-menu"
                                 size="md"
                                 variant="dark"
@@ -66,23 +73,24 @@
                 </VsCol>
             </VsRow>
         </VsContainer>
-    </div>
+    </nav>
 </template>
 
 <script>
-/**
- *  The Mega Nav bar component includes main VS logo and slots for
- *  top menu items on desktop and dropdown toggle with menu items for mobile
- */
-
 import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/layout';
 import VsSvgLink from '@components/patterns/svg-link/SvgLink';
-import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/MegaNavDropdown';
-import VsMegaNavTopMenu from '@components/patterns/header/components/mega-nav/desktop-menu/MegaNavTopMenu';
+import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/components/MegaNavDropdown';
+import VsMegaNavTopMenu from '@components/patterns/header/components/mega-nav/components/MegaNavTopMenu';
 import VsIcon from '@components/elements/icon/Icon';
 
+/**
+ *  The Mega Nav bar component includes main VS logo and slots for
+ *  top menu items on desktop and dropdown toggle with menu items for mobile
+ *
+ * @displayName MegaNav
+ */
 export default {
     name: 'VsMegaNav',
     status: 'prototype',
@@ -140,8 +148,8 @@ export default {
     box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.16);
 
     &__logo svg {
-        max-width: 184px;
-        max-height: 20px;
+        width: 184px;
+        height: 20px;
     }
 
     .vs-mega-nav__menu {
@@ -160,6 +168,7 @@ export default {
     }
 
     .vs-mega-nav__menu{
+        display: block!important;
         width: 100%;
         max-width: 100%;
         flex: 0 0 100%;

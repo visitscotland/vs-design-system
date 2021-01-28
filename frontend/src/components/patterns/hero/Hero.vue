@@ -83,7 +83,10 @@ import VsImageLocationMap from '@components/patterns/image-location-map/ImageLoc
 
 /**
  * Hero image element
+ *
+ * @displayName Hero
  */
+
 export default {
     name: 'VsHero',
     status: 'prototype',
@@ -253,9 +256,13 @@ export default {
             max-width: 400px;
             position: absolute;
             right: 1rem;
-            width: auto;
+            width: 14rem;
             z-index: 2;
         }
+    }
+
+    .vs-image-location-map {
+        height: $spacer-11;
     }
 
     .vs-hero__image-caption {
@@ -275,7 +282,7 @@ export default {
 
 <docs>
   ```jsx
-    <vs-hero
+    <VsHero
       v-for="(item, index) in hero.imageExamples"
       :altText="item.altText"
       :credit="item.credit"
@@ -285,15 +292,15 @@ export default {
       :latitude="item.latitude"
       :longitude="item.longitude"
     >
-    <vs-img
+    <VsImg
         class="lazyload"
         :src="item.imageSrc"
         srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
         :data-srcset="item.imageSrc"
         :alt="item.altText"
         data-sizes="auto">
-    </vs-img>
+    </VsImg>
       <span class="vs-hero__overlay-text text-light">Scotland</span>
-    </vs-hero>
+    </VsHero>
   ```
 </docs>

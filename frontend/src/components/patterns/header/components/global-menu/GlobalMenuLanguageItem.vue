@@ -8,8 +8,13 @@
 </template>
 
 <script>
-import VsDropdownItem from '../../../dropdown/DropdownItem';
+import VsDropdownItem from '../../../dropdown/components/DropdownItem';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Global Menu Language Item
+ */
 export default {
     name: 'VsGlobalMenuLanguageItem',
     status: 'prototype',
@@ -65,7 +70,7 @@ export default {
 </style>
 
 <docs>
-  ```
+  ```jsx
     <VsGlobalMenuLanguageItem language-name="English" languageLink="site/"/>
   ```
 </docs>
