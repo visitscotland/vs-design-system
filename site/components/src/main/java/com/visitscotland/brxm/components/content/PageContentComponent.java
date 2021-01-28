@@ -7,16 +7,14 @@ import com.visitscotland.brxm.beans.dms.LocationObject;
 import com.visitscotland.brxm.beans.mapping.Coordinates;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
-import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
+import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
-import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
-import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.dataobjects.DataType;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
@@ -24,12 +22,9 @@ import freemarker.template.TemplateModelException;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.hst.core.container.ComponentManager;
-import org.hippoecm.hst.site.HstServices;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +37,8 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
     public static final String DOCUMENT = "document";
     public static final String EDIT_PATH = "path";
-    protected final String FACILITIES = "keyFacilities";
-    public final String HERO_COORDINATES = "heroCoordinates";
+    public static final String FACILITIES = "keyFacilities";
+    public static final String HERO_COORDINATES = "heroCoordinates";
 
     private ResourceBundleService bundle;
     private LinkService linksService;
@@ -51,10 +46,10 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     private LinkModulesFactory linksFactory;
 
     public PageContentComponent(){
-        this.bundle = new SpringContext().getBean("resourceBundleService");
-        this.linksService = new SpringContext().getBean("linkService");
-        this.locationLoader = new SpringContext().getBean("locationLoader");
-        this.linksFactory = new SpringContext().getBean("linkModulesFactory");
+        bundle = SpringContext.getResourceBundleService();
+        linksService = SpringContext.getLinkService();
+        locationLoader = SpringContext.getLocationLoader();
+        linksFactory = SpringContext.getLinkModulesFactory();
     }
 
     @Override
@@ -101,13 +96,13 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @param page Page
      * @param locale Locale
      */
-    protected LinksModule addOTYML(Page page, Locale locale) {
-        LinksModule otymlLink = null;
+    protected HorizontalListLinksModule addOTYML(Page page, Locale locale) {
+        HorizontalListLinksModule otyml = null;
         if(page.getOtherThings()!=null) {
-            otymlLink = linksFactory.horizontalListLayout(page.getOtherThings(), locale);
-            otymlLink.setTheme(PageTemplateBuilder.themes[0]);
+            otyml = linksFactory.horizontalListLayout(page.getOtherThings(), locale);
+            otyml.setTheme(PageTemplateBuilder.NEUTRAL_THEME);
         }
-        return otymlLink;
+        return otyml;
     }
 
     /**
@@ -164,7 +159,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         checkImageErrors(heroImage,request.getLocale(),alerts);
         request.setAttribute(HERO_IMAGE, heroImage);
 
-        if (alerts.size()>0){
+        if (alerts.isEmpty()){
             request.setAttribute(ALERTS, alerts);
         }
     }

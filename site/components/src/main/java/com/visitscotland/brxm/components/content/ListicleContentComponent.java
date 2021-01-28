@@ -31,9 +31,11 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
     private DMSDataService dmsData;
 
     public ListicleContentComponent(){
-        this.linksService = SpringContext.getLinkService();
-        this.locationLoader = SpringContext.getLocationLoader();
-        this.dmsData = SpringContext.getDMSDataService();
+        logger.debug("ListicleContentComponent initialized");
+
+        linksService = SpringContext.getLinkService();
+        locationLoader = SpringContext.getLocationLoader();
+        dmsData = SpringContext.getDMSDataService();
     }
 
     @Override

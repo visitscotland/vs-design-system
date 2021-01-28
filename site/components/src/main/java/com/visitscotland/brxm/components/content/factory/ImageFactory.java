@@ -18,7 +18,6 @@ import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -30,20 +29,13 @@ public class ImageFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageFactory.class);
 
-//    @Autowired
     private LocationLoader locationLoader;
 
-//    @Autowired
     private ResourceBundleService bundle;
 
-//    @Autowired
     private CommonUtils utils;
 
-    public ImageFactory(){
-        this(LocationLoader.getInstance(),new ResourceBundleService(), new CommonUtils());
-    }
-
-    private ImageFactory(LocationLoader locationLoader, ResourceBundleService bundle, CommonUtils utils){
+    public ImageFactory(LocationLoader locationLoader, ResourceBundleService bundle, CommonUtils utils){
         this.locationLoader = locationLoader;
         this.bundle = bundle;
         this.utils = utils;

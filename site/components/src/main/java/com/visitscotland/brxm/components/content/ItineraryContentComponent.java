@@ -39,9 +39,11 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     private DMSDataService dmsData;
 
     public ItineraryContentComponent() {
-        this.bundle = SpringContext.getResourceBundleService();
-        this.locationLoader = SpringContext.getLocationLoader();
-        this.dmsData = SpringContext.getDMSDataService();
+        logger.debug("ItineraryContentComponent initialized");
+
+        bundle = SpringContext.getResourceBundleService();
+        locationLoader = SpringContext.getLocationLoader();
+        dmsData = SpringContext.getDMSDataService();
     }
 
     @Override

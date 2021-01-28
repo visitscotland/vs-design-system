@@ -26,8 +26,7 @@ public class InternalParameterProcessor {
     private ResourceBundleService bundle;
     private HippoUtilsService utils;
 
-    public InternalParameterProcessor(ResourceBundleService bundle,
-                               HippoUtilsService utils) {
+    public InternalParameterProcessor(ResourceBundleService bundle, HippoUtilsService utils) {
         this.bundle = bundle;
         this.utils = utils;
     }
