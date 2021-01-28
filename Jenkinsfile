@@ -59,7 +59,7 @@ pipeline {
   }
 
   tools {
-    maven 'Maven 3.3.9'
+    maven 'Maven 3.5.0'
     jdk 'jdk1.8.0'
   }
 
@@ -121,7 +121,7 @@ pipeline {
           }
       }
       steps {
-        withMaven(maven: 'Maven 3.3.9', options: [artifactsPublisher(disabled: true)]) {
+        withMaven(maven: 'Maven 3.5.0', options: [artifactsPublisher(disabled: true)]) {
           sh '$MVN_CMD clean compile -Pdefault -DskipTests'
         }
       }
