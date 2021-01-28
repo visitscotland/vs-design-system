@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 21ec8fe3-93a8-4c3c-b70c-f83e305f5405
+          jcr:uuid: 6a2e0eb7-0c2f-4fc1-b6c2-333b8dfc679b
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -42,7 +42,7 @@ definitions:
           visitscotland:seoDescription: ''
           visitscotland:teaser: ''
           visitscotland:seoTitle: ''
-          jcr:uuid: dd305250-63e9-41ba-878d-14cce5838dbc
+          jcr:uuid: 6cab9718-afb2-4c3f-8227-7fb4b1188ffa
           hippostdpubwf:lastModificationDate: 2020-05-15T09:26:41.741+01:00
           hippostdpubwf:creationDate: 2020-05-15T09:26:41.742+01:00
           visitscotland:translation: ''
@@ -86,7 +86,7 @@ definitions:
             wicket.id: ${cluster.id}.right
           /heroImage:
             jcr:primaryType: frontend:plugin
-            caption: Hero Image
+            caption: Main Image
             field: heroImage
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
@@ -94,9 +94,9 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /seoTitle:
             jcr:primaryType: frontend:plugin
-            caption: Meta Title (SEO)
+            caption: Meta Title
             field: seoTitle
-            hint: Provided by SEO
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
@@ -104,7 +104,7 @@ definitions:
               maxlength: ''
           /location:
             jcr:primaryType: frontend:plugin
-            caption: Location
+            caption: DMS Location
             field: location
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
@@ -114,28 +114,28 @@ definitions:
               valuelistProvider: service.locationlist.destination
           /breadcrumb:
             jcr:primaryType: frontend:plugin
-            caption: Navigation Text (Breadcrumbs)
+            caption: Override Navigation & Breadcrumb
             field: breadcrumb
-            hint: Override just when the title is too long  for SEO
+            hint: Use if title is too long for navigation or breadcrumb
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /seoNoIndex:
             jcr:primaryType: frontend:plugin
-            caption: Do not index (SEO)
+            caption: No index
             field: seoNoIndex
-            hint: Prevents the page to be indexed by Search Engines. Do not alter
-              unless it is advised by SEO
+            hint: Page will not be indexed by Search Engines. Only tick if SEO have
+              advised.
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /seoDescription:
             jcr:primaryType: frontend:plugin
-            caption: Meta Description (SEO)
+            caption: Meta Description
             field: seoDescription
-            hint: Provided by SEO
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:

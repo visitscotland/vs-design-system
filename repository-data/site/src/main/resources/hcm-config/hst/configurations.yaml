@@ -447,6 +447,10 @@ definitions:
                 hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
                   'hst:pages/listicle-page', 'hst:pages/general-page', 'hst:pages/destination-page']
                 hst:relativecontentpath: ${parent}/content
+          /internal:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/internal
+            hst:pagetitle: Fragmented Page
         /hst:abstractpages:
           jcr:primaryType: hst:pages
         /hst:pages:
@@ -491,6 +495,9 @@ definitions:
           /general-main:
             jcr:primaryType: hst:template
             hst:renderpath: webfile:/freemarker/visitscotland/pages/general-main.ftl
+          /internal:
+            jcr:primaryType: hst:template
+            hst:renderpath: webfile:/freemarker/visitscotland/base/internal.ftl
         /hst:catalog:
           jcr:primaryType: hst:catalog
           /visitscotland-catalog:

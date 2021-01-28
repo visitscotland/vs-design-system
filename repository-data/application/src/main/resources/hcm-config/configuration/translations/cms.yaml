@@ -11,20 +11,20 @@ definitions:
         de Escocia
       visitscotland:url-validator: Introduzca una URL válida
     /hippo:configuration/hippo:translations/hippo:cms/validators/en:
-      visitscotland:scotland-coordinates-validator: 'Coordinates must be within Scotland:
-        Latitude from 54.6 to 60.9 and longitude from -13.7 to -0.7. Note that longitude
-        must be a negative value.'
-      visitscotland:link-image-validator: 'An image is required for non-DMS products.'
-      visitscotland:location-validator: 'Location/subtitle should be provided for non-DMS products'
-      visitscotland:image-validator: 'The image selected does not have any of the required fields (Alt text or caption).Please fill the missing fields or select another image.'
-      visitscotland:link-validator: 'The document linked is not allowed, please choose a Page document or Shared link'
-      visitscotland:link-validator#stop: 'The document linked is not allowed, please choose a Stop document for Days'
-      visitscotland:link-validator#EmptyLink: 'Please select a link'
-      visitscotland:extrashort-string-validator: 'Max length is 30'
-      visitscotland:short-string-validator: 'Max length is 55'
-      visitscotland:medium-string-validator: 'Max length is 90'
-      visitscotland:long-string-validator: 'Max length is 135'
-      visitscotland:extralong-string-validator: 'Max length is 250'
-      visitscotland:seotitle-string-validator: 'Max length is 70'
-      visitscotland:seodescription-string-validator: 'Max length is 160'
+      visitscotland:scotland-coordinates-validator: 'Coordinates should be between:
+      Latitude from 54.6 to 60.9 and Longitude from -13.7 to -0.7.'
+      visitscotland:link-image-validator: 'An image is required for external products.'
+      visitscotland:location-validator: 'Location should be provided for external products.'
+      visitscotland:image-validator: 'The image doesn’t have all of the required fields. Fill in the missing fields or select another image.'
+      visitscotland:link-validator: 'You can’t link to that type of document. Choose a Page document or a Shared Link instead.'
+      visitscotland:link-validator#stop: 'You can’t link to that type of document. Choose a Stop document.'
+      visitscotland:link-validator#EmptyLink: 'Please select a link.'
+      visitscotland:link-validator#translation: 'The current document has not been linked as expected, please link it again.'
+      visitscotland:extrashort-string-validator: 'Max length is 30.'
+      visitscotland:short-string-validator: 'Max length is 55.'
+      visitscotland:medium-string-validator: 'Max length is 90.'
+      visitscotland:long-string-validator: 'Max length is 135.'
+      visitscotland:extralong-string-validator: 'Max length is 250.'
+      visitscotland:seotitle-string-validator: 'Max length is 70.'
+      visitscotland:seodescription-string-validator: 'Max length is 160.'
       visitscotland:url-validator: Enter a valid website URL

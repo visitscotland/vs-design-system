@@ -1,3 +1,4 @@
+<#compress>
 <#include "../../include/imports.ftl">
 
 <#include "../../frontend/components/vs-header.ftl">
@@ -9,8 +10,7 @@
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsMenuItem" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
 
-
-
+</#compress>
 <#if menu??>
     <div class="has-edit-button">
         <vs-header>

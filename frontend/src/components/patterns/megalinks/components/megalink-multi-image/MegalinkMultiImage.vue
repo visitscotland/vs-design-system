@@ -2,19 +2,15 @@
     <VsStretchedLinkCard
         :link="linkUrl"
         :type="linkType"
+        :img-src="imgSrc"
+        :img-alt="imgAlt"
         class="megalink-multi-image p-2"
         :class="{
             'megalink-multi-image--featured' : featured,
             'megalink-multi-image--featured-last' : lastFeatured,
         }"
-        data-test="megalink-multi-image-featured"
+        :data-test="featured ? 'megalink-multi-image-featured' : 'megalink-multi-image-card'"
     >
-        <VsImg
-            slot="stretchedCardImage"
-            :src="imgSrc"
-            :alt="imgAlt"
-            class="megalink-multi-image__img"
-        />
         <span
             slot="stretchedCardHeader"
             class="megalink-multi-image__title"
@@ -35,11 +31,12 @@
 <script>
 import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
-import VsImg from '@components/elements/img/Img';
 
 /**
 * Megalink cards to be used in the megalinks component
 * There is a standard and featured variant.
+ *
+ * @displayName Megalinks Multi-Image
 */
 
 export default {
@@ -49,7 +46,6 @@ export default {
     components: {
         VsStretchedLinkCard,
         VsRichTextWrapper,
-        VsImg,
     },
     props: {
         /**
@@ -105,36 +101,15 @@ export default {
 
 <style lang="scss">
     .megalink-multi-image.card {
-        border: none;
         margin-top: $spacer-7;
-        position: relative;
-        transition: box-shadow 800ms;
-
-        .stretched-link {
-            color: $color-base-text;
-            text-decoration: none;
-
-            &:hover {
-                .megalink-multi-image__title {
-                    text-decoration: underline;
-                }
-            }
-
-            &:focus {
-                outline: 2px solid $color-theme-primary;
-            }
-        }
 
         .card-body {
             padding: $spacer-4 0 $spacer-2;
+            width: 100%;
         }
 
         &:hover {
             box-shadow: 10px 10px 20px $color-gray-tint-4;
-        }
-
-        .megalink-multi-image__img {
-            max-width: 100%;
         }
 
         .megalink-multi-image__title {
@@ -146,21 +121,8 @@ export default {
         .card-title {
             margin-bottom: 0;
         }
-
-        .vs-link__icon {
-            height: 12px;
-            width: 12px;
-        }
-
-        .megalink-multi-image__content {
-            margin-top: $spacer-2;
-            line-height: $line-height-s;
-
-            p:last-of-type {
-                margin-bottom: 0;
-            }
-        }
     };
+
     @include media-breakpoint-up(xl) {
         .megalink-multi-image.card {
             margin-top: $spacer-12;
@@ -189,24 +151,38 @@ export default {
                 width: 16px;
             }
 
-            .megalink-multi-image__img {
+            .stretched-link-card__img {
                 width: calc(50% - 20px);
             }
 
             .megalink-multi-image__content {
-                font-size: $lead-font-size;
-                margin-top: $spacer-8;
-                line-height: $line-height-m;
+                margin-top: $spacer-4;
+
+                p {
+                    line-height: $line-height-m;
+                    font-size: $lead-font-size;
+                }
             }
 
             .card-body {
-                max-width: 50%;
-                padding: $spacer-9 5% $spacer-5;
+                max-width: calc(50% + 20px);
+                padding: $spacer-6 5% $spacer-5;
             }
 
             &.megalink-multi-image--featured-last {
                 flex-direction: row-reverse;
                 margin-top: $spacer-12;
+            }
+        }
+
+        @include media-breakpoint-up(xl) {
+            .megalink-multi-image--featured.card {
+                .card-body {
+                    padding: $spacer-9 5% $spacer-5;
+                }
+                .megalink-multi-image__content {
+                    margin-top: $spacer-8;
+                }
             }
         }
     }
@@ -219,10 +195,10 @@ export default {
             <VsRow>
                 <VsCol
                     cols="12"
-                    md="6"
+                    lg="6"
                     xl="12"
                 >
-                    <vs-megalink-multi-image
+                    <VsMegalinkMultiImage
                         featured
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text"
@@ -236,14 +212,14 @@ export default {
                             to eat and drink from local markets to renowned
                             restaurants.</p>
                         </template>
-                    </vs-megalink-multi-image>
+                    </VsMegalinkMultiImage>
                 </VsCol>
                 <VsCol
                     cols="12"
                     md="6"
                     xl="4"
                 >
-                    <vs-megalink-multi-image
+                    <VsMegalinkMultiImage
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text 1"
                         linkType="external"
@@ -257,14 +233,14 @@ export default {
                             places to eat and drink from local markets to renowned
                             restaurants. Here are some recomm…</p>
                         </template>
-                    </vs-megalink-multi-image>
+                    </VsMegalinkMultiImage>
                 </VsCol>
                 <VsCol
                     cols="12"
                     md="6"
                     xl="4"
                 >
-                    <vs-megalink-multi-image
+                    <VsMegalinkMultiImage
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text 2"
                         linkType="external"
@@ -286,14 +262,14 @@ export default {
                             from local markets to renowned restaurants.
                             Here are some recomm…</p>
                         </template>
-                    </vs-megalink-multi-image>
+                    </VsMegalinkMultiImage>
                 </VsCol>
                 <VsCol
                     cols="12"
                     md="6"
                     xl="4"
                 >
-                    <vs-megalink-multi-image
+                    <VsMegalinkMultiImage
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         linkType="download"
                         linkUrl="www.visitscotland.com"
@@ -305,7 +281,7 @@ export default {
                             places to eat and drink from local markets to renowned
                             restaurants. Here are some recomm…</p>
                         </template>
-                    </vs-megalink-multi-image>
+                    </VsMegalinkMultiImage>
                 </VsCol>
             </VsRow>
         </VsContainer>

@@ -154,13 +154,14 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-10-20T13:41:15.482Z
-        hippostdpubwf:lastModificationDate: 2020-10-20T13:41:34.892Z
+        hippostdpubwf:lastModificationDate: 2020-12-11T15:19:37.711Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2a5c27e0-f848-4535-ac62-4344ca736630
         hippotranslation:locale: en
         visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Clava Cairns
+        visitscotland:translation: ''
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
@@ -180,6 +181,12 @@
           jcr:primaryType: visitscotland:DMSLink
           visitscotland:label: ''
           visitscotland:product: '245611'
+        /visitscotland:StopTip:
+          jcr:primaryType: visitscotland:StopTip
+          visitscotland:title: prueba
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>prueba</p>
       /clava-cairns[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -188,13 +195,14 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-10-20T13:41:15.482Z
-        hippostdpubwf:lastModificationDate: 2020-10-20T13:41:34.738Z
+        hippostdpubwf:lastModificationDate: 2020-12-11T15:19:37.363Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2a5c27e0-f848-4535-ac62-4344ca736630
         hippotranslation:locale: en
         visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Clava Cairns
+        visitscotland:translation: ''
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
@@ -214,6 +222,12 @@
           jcr:primaryType: visitscotland:DMSLink
           visitscotland:label: ''
           visitscotland:product: '245611'
+        /visitscotland:StopTip:
+          jcr:primaryType: visitscotland:StopTip
+          visitscotland:title: prueba
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>prueba</p>
       /clava-cairns[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']

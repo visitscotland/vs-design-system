@@ -25,11 +25,13 @@
 
 <script>
 import VsDropdown from '../../../dropdown/Dropdown';
-import VsDropdownItem from '../../../dropdown/DropdownItem';
+import VsDropdownItem from '../../../dropdown/components/DropdownItem';
 
 /**
  * This component is the dropdown used inside the Global Menu component.
  * It holds the list of websites to be shown on smaller devices.
+ *
+ * @displayName Global Menu Dropdown
  */
 
 export default {
@@ -87,8 +89,8 @@ export default {
         }
     }
 
-    .btn {
-        padding: 0.3rem $spacer-5;
+    .dropdown-toggle {
+        padding: $spacer-1 $spacer-3;
         font-size: $font-size-sm;
         display: flex;
         align-items: center;
@@ -169,8 +171,8 @@ export default {
 </style>
 
 <docs>
-  ```
-    <vs-global-menu
+  ```jsx
+    <VsGlobalMenu
         dropdown-label="I nostri siti"
         active-site="https://www.visitscotland.com/"
     >
@@ -187,6 +189,6 @@ export default {
         >
             EN
         </span>
-    </vs-global-menu>
+    </VsGlobalMenu>
   ```
 </docs>

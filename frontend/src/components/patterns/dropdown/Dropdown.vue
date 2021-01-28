@@ -32,6 +32,8 @@ import VsIcon from '@components/elements/icon';
 
 /**
  * Dropdown component for lists of links for example.
+ *
+ * @displayName Dropdown
  */
 export default {
     name: 'VsDropdown',
@@ -56,10 +58,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/dropdown";
-@import "~bootstrap/scss/buttons";
-@import "~bootstrap-vue/src/components/dropdown/dropdown";
-
 .vs-dropdown {
   .dropdown-toggle {
     .icon-chevron {
@@ -78,10 +76,10 @@ export default {
 
 <docs>
   ```js
-  <vs-dropdown text="Dropdown">
-    <vs-dropdown-item href="https://www.google.com">Google</vs-dropdown-item>
-    <vs-dropdown-item>bbbb</vs-dropdown-item>
-    <vs-dropdown-item>feeeeee</vs-dropdown-item>
-  </vs-dropdown>
+  <VsDropdown text="Dropdown">
+    <VsDropdownItem href="https://www.google.com">Google</VsDropdownItem>
+    <VsDropdownItem>bbbb</VsDropdownItem>
+    <VsDropdownItem>feeeeee</VsDropdownItem>
+  </VsDropdown>
   ```
 </docs>

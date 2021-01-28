@@ -3,5 +3,9 @@
 
 <@hst.defineObjects />
 
-<#assign locale = hstRequest.requestContext.resolvedMount.mount.locale?replace("_","-")?lower_case>
+<#-- @ftlvariable name="hstRequestContext" type="org.hippoecm.hst.core.request.HstRequestContext" -->
+
+<#assign locale = hstRequestContext.resolvedMount.mount.locale?replace("_","-")?lower_case>
+<#-- Indicates if the URLs need to be fully qualified. (i.e. For integration with 3rd parties) -->
+<#assign fullyQualifiedURLs = hstRequestContext.getModel("fullyQualified")???then(true,false)>
 <#include "./helpers.ftl">

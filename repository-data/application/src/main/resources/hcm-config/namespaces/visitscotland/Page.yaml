@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: dc8bb95c-db77-40e3-87c3-4c8ba027d57e
+          jcr:uuid: db88fdab-5fe2-4ca7-bcc8-9f4d6c9e4966
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -119,7 +119,7 @@ definitions:
           visitscotland:seoNoIndex: false
           visitscotland:seoDescription: ''
           visitscotland:title: ''
-          jcr:uuid: e19bc6b5-51a2-45ee-9b66-ae1104e30e88
+          jcr:uuid: 1ed21f04-9578-4a2e-8f66-564441e6039c
           hippostdpubwf:lastModificationDate: 2019-12-05T16:05:38.470Z
           hippostdpubwf:creationDate: 2019-12-05T16:05:38.470Z
           visitscotland:teaser: ''
@@ -164,7 +164,7 @@ definitions:
             wicket.id: ${cluster.id}.right
           /heroImage:
             jcr:primaryType: frontend:plugin
-            caption: Hero Image
+            caption: Main Image
             field: heroImage
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
@@ -172,28 +172,28 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /breadcrumb:
             jcr:primaryType: frontend:plugin
-            caption: Navigation Text (Breadcrumbs)
+            caption: Override Navigation & Breadcrumb
             field: breadcrumb
-            hint: Override just when the title is too long  for SEO
+            hint: Use if title is too long for navigation or breadcrumb
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /seoTitle:
             jcr:primaryType: frontend:plugin
-            caption: Meta Title (SEO)
+            caption: Meta Title
             field: seoTitle
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
-            hint: Provided by SEO
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxlength: ''
           /seoDescription:
             jcr:primaryType: frontend:plugin
-            caption: Meta Description (SEO)
+            caption: Meta Description
             field: seoDescription
-            hint: Provided by SEO
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
@@ -201,18 +201,28 @@ definitions:
               maxlength: ''
           /seoNoIndex:
             jcr:primaryType: frontend:plugin
-            caption: Do not index (SEO)
+            caption: No index
             field: seoNoIndex
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
-            hint: Prevents the page to be indexed by Search Engines. Do not alter
-              unless it is advised by SEO
+            hint: Page will not be indexed by Search Engines. Only tick if SEO have
+              advised.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /title:
             jcr:primaryType: frontend:plugin
             caption: Heading
             field: title
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            hint: ''
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              maxlength: ''
+          /teaser:
+            jcr:primaryType: frontend:plugin
+            caption: Teaser
+            field: teaser
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
             hint: ''
@@ -233,16 +243,6 @@ definitions:
                 , removeButtons: ''PickImage,Youtube,Table''}'
               ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
                 \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
-          /teaser:
-            jcr:primaryType: frontend:plugin
-            caption: Teaser
-            field: teaser
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            hint: ''
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              maxlength: ''
           /otherThings:
             jcr:primaryType: frontend:plugin
             caption: Other things you might like
