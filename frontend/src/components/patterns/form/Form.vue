@@ -11,7 +11,7 @@
             <div
                 class="g-recaptcha"
                 data-sitekey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-                data-size="compact"
+                data-size=""
             />
         </div>
 
@@ -158,19 +158,20 @@ export default {
     }
 
     .g-recaptcha > div {
-        width: 168px !important;
-        margin: 0;
+        // width: 168px !important;
+        margin: 0 0 20px;
+        overflow: hidden;
     }
 
     .g-recaptcha > div > div {
-        border-left: 5px solid transparent;
-        border-top: 5px solid transparent;
-        border-radius: 5px;
+        // border-left: 5px solid transparent;
+        // border-top: 5px solid transparent;
+        // border-radius: 5px;
         transition: background-color 400ms ease-out;
     }
 
     .g-recaptcha.mktoInvalid > div > div {
         background-color: #F63C00;
-        transition: background-color 400ms ease-in;
+        // transition: background-color 400ms ease-in;
     }
 </style>
