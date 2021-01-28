@@ -2,7 +2,7 @@
     <div class="vs-global-menu">
         <VsContainer
             fluid="lg"
-            class="px-0 px-sm-3"
+            class="px-1 px-sm-3"
         >
             <VsRow>
                 <VsCol
