@@ -6,7 +6,7 @@
     >
         <VsLink
             :href="href"
-            :role="href === '#' ? 'heading' : ''"
+            :role="href === '#' ? 'heading' : 'menuitem'"
         >
             <!-- @slot Default slot for nav link content  -->
             <slot />
