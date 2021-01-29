@@ -97,7 +97,7 @@ public class LinkModulesFactory {
 
     public HorizontalListLinksModule horizontalListLayout(OTYML doc, Locale locale) {
         HorizontalListLinksModule target = new HorizontalListLinksModule();
-        target.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("modules", "otyml.title.default", locale ,true)): doc.getTitle());
+        target.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("otyml", "otyml.title.default", locale ,true)): doc.getTitle());
         target.setIntroduction(doc.getIntroduction());
         target.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale,true));
 
@@ -305,11 +305,7 @@ public class LinkModulesFactory {
      */
     private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
         if (link.getLinkType() instanceof DMSLink) {
-            try {
-                return dmsData.productCard(((DMSLink) link.getLinkType()).getProduct(), locale);
-            } catch (IOException e) {
-                logger.error(e.getMessage(), e);
-            }
+            return dmsData.productCard(((DMSLink) link.getLinkType()).getProduct(), locale);
         }
         return null;
     }

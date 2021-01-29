@@ -4,7 +4,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 51836878-2e2f-4ea5-8ca4-8e68147b1210
   hippo:name: Meganav Links
-  hippo:versionHistory: c55ada8f-618d-4f15-b0c5-d03b0e3dbc0d
+  hippo:versionHistory: 411e5e2e-7c25-4f37-9502-ad8883dedc67
   /meganav[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,7 +13,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T15:19:03.855+01:00
-    hippostdpubwf:lastModificationDate: 2020-12-23T10:47:21.298Z
+    hippostdpubwf:lastModificationDate: 2021-01-22T18:00:34.938Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', The purpose of this text
         is to verify that the cta will not be shown when a Top level Menu Item does
@@ -24,9 +24,13 @@
     resourcebundle:messages: [Places to go, Things to do, Accommodation, Inspiration,
       Travel & Planning, Explore the Map of Scotland, This Text should not be visible,
       Cities, Orkney, Attractions]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:messages_es: ['', Ver y Hacer, Alojamiento, Inspiración, Planifica
         tu viaje, Vea el mapa de Escocia, Este texto no deberia ser visible, '', '',
       '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
   /meganav[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -35,7 +39,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T15:19:03.855+01:00
-    hippostdpubwf:lastModificationDate: 2020-12-23T10:47:25.945Z
+    hippostdpubwf:lastModificationDate: 2021-01-22T18:00:52.739Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', The purpose of this text
         is to verify that the cta will not be shown when a Top level Menu Item does
@@ -46,9 +50,13 @@
     resourcebundle:messages: [Places to go, Things to do, Accommodation, Inspiration,
       Travel & Planning, Explore the Map of Scotland, This Text should not be visible,
       Cities, Orkney, Attractions]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:messages_es: ['', Ver y Hacer, Alojamiento, Inspiración, Planifica
         tu viaje, Vea el mapa de Escocia, Este texto no deberia ser visible, '', '',
       '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
   /meganav[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -57,9 +65,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T15:19:03.855+01:00
-    hippostdpubwf:lastModificationDate: 2020-12-23T10:47:25.945Z
+    hippostdpubwf:lastModificationDate: 2021-01-22T18:00:52.739Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-12-23T10:47:27.407Z
+    hippostdpubwf:publicationDate: 2021-01-22T18:00:54.095Z
     resourcebundle:descriptions: ['', '', '', '', '', '', The purpose of this text
         is to verify that the cta will not be shown when a Top level Menu Item does
         not have a link, '', '', '']
@@ -69,6 +77,10 @@
     resourcebundle:messages: [Places to go, Things to do, Accommodation, Inspiration,
       Travel & Planning, Explore the Map of Scotland, This Text should not be visible,
       Cities, Orkney, Attractions]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:messages_es: ['', Ver y Hacer, Alojamiento, Inspiración, Planifica
         tu viaje, Vea el mapa de Escocia, Este texto no deberia ser visible, '', '',
       '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
