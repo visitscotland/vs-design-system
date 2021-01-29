@@ -76,6 +76,12 @@ function generateTemplateContent(moduleName, mod, configPaths, appMountTarget) {
   if(!isEmpty(mod.scripts)) {
     content += generateTemplateContentScriptAssets(mod.scripts, isApp, configPaths.webfiles)
   }
+
+  if(!isEmpty(mod.fonts)) {
+    if (moduleName === 'VsHeading') {
+       content += generateTemplateContentFontAssets(mod.fonts, isApp, configPaths.webfiles)
+    }
+  }
   
   if (isStore) {
     content += generateTemplateContentStoreScript(moduleName)
@@ -146,6 +152,18 @@ function generateTemplateContentScriptAssets(scripts, isApp, webfilesPath) {
   );
 }
 
+function generateTemplateContentFontAssets(fonts, isApp, webfilesPath) {
+    return reduce(
+      fonts,
+      function(content, assetPath) {
+        const href = generateTemplateContentWebfileTag(`fonts/${assetPath}`, webfilesPath)
+        
+        return content + generateTemplateContentPreload(href, "font");
+        },
+      "",
+    );
+  }
+
 function generateTemplateContentPreload(href, linkType) {
   const linkString = generateTemplateContentLinkTag("preload", href, linkType)
 
@@ -153,7 +171,17 @@ function generateTemplateContentPreload(href, linkType) {
 }
 
 function generateTemplateContentLinkTag(rel, href, type) {
-  return `\t<link rel="${rel}" href="${href}" type="${type}"/>`
+    let crossorigin = "";
+
+    if (type === 'font') {
+        crossorigin = "crossorigin='anonymous'";
+    }
+
+    if (rel === 'preload') {
+        return `\t<link rel="${rel}" href="${href}" as="${type}" ${crossorigin} />`
+    }
+
+    return `\t<link rel="${rel}" href="${href}" type="${type}"/>`
 }
 
 function generateTemplateContentScript(scriptContent, href, headContributionName) {
