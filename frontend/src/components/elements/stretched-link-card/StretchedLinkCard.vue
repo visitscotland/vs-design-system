@@ -161,7 +161,7 @@ export default {
             width: 100%;
             max-width: 100%;
             align-self: flex-start;
-            flex-shrink: 0; // IE11 fix to prevent vertical stretching
+            flex-shrink: 0; // IE11 fix, prevents image vertical stretching
         }
 
         .stretched-link-card__title {
