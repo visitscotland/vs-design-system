@@ -83,7 +83,11 @@ module.exports = {
           {
             loader: 'image-webpack-loader',
             options: {
-              svgo: {}
+              svgo: {
+                plugins: [
+                  { removeViewBox: false },
+                ]
+              }
             }
           }
         ]
