@@ -2,7 +2,7 @@
 <#include "../../../frontend/components/vs-icon-list-item.ftl">
 
 <#macro keyFacilities facilitiesList>
-    <vs-icon-list title="${label('keyFacilities', 'keyfacilitiestitle')}">
+    <vs-icon-list title="${label('essentials.global', 'keyfacilities.title')}">
         <#list facilitiesList as facility>
             <vs-icon-list-item
                 icon="${facility.id}"

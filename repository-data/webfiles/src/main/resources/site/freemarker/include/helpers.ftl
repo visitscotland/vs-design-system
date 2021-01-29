@@ -5,21 +5,21 @@
 <#-- @ftlvariable name="ResourceBundle" type="com.visitscotland.brxm.services.ResourceBundleService" -->
 
 <#--  More reliable method for including labels from resource bundles  -->
-<#--  e.g. ${label("essentials.global", "footer.signup")} -->
+<#--  Usage: ${label("essentials.global", "footer.signup")} -->
 <#function label bundle key>
     <#if ResourceBundle??>
         <#return ResourceBundle.getResourceBundle(bundle, key, locale, false)>
-    <#else >
+    <#else>
         <#return labelFallback(bundle, key)>
     </#if>
 </#function>
 
 <#--  More reliable method for including labels from resource bundles  -->
-<#--  e.g. ${label("essentials.global", "footer.signup")} -->
+<#--  Usage: ${label("essentials.global", "footer.signup")} -->
 <#function optionalLabel bundle key>
     <#if ResourceBundle??>
         <#return ResourceBundle.getResourceBundle(bundle, key, locale, true)>
-    <#else >
+    <#else>
         <#return labelFallback(bundle, key)>
     </#if >
 </#function>
@@ -35,7 +35,7 @@
 
 <#--  Logs an error in the FreeMarker Console  -->
 <#--  It is a hacky way of logging an error and It is achieved by invoking a method that does not exist -->
-<#--  e.g. ${log("Oh no! Something is not all right")} -->
+<#--  Usage: ${log("Oh no! Something is not all right")} -->
 <#function log message>
     console.error(message)
 </#function>
@@ -45,6 +45,18 @@
     <#return ProductSearchBuilder.newInstance().productTypes(productType).proximity(proximity).coordinates(lat, lon).build()>
 </#function>
 
+<#--  Get correct URL for internal or external link -->
+<#--  Usage: ${getUrl(navItem)} -->
+<#function getUrl item>
+    <#if item.hstLink??>
+        <#assign href><@hst.link fullyQualified=fullyQualifiedURLs link=item.hstLink/></#assign>
+        <#return href> 
+    <#elseif item.externalLink??>
+        <#return item.externalLink?replace("\"", "")> 
+    <#else>
+        <#return "#"> 
+    </#if>
+</#function>
 
 
 
