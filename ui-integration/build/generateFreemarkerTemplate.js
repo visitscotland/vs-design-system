@@ -77,10 +77,14 @@ function generateTemplateContent(moduleName, mod, configPaths, appMountTarget) {
     content += generateTemplateContentScriptAssets(mod.scripts, isApp, configPaths.webfiles)
   }
 
-  if(!isEmpty(mod.fonts)) {
+  if(!isEmpty(mod.headingFonts)) {
     if (moduleName === 'VsHeading') {
-       content += generateTemplateContentFontAssets(mod.fonts, isApp, configPaths.webfiles)
+       content += generateTemplateContentFontAssets(mod.headingFonts, isApp, configPaths.webfiles)
     }
+  }
+
+  if(!isEmpty(mod.bodyFonts)) {
+    content += generateTemplateContentFontAssets(mod.bodyFonts, isApp, configPaths.webfiles)
   }
   
   if (isStore) {
