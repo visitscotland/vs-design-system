@@ -157,7 +157,7 @@ export default {
         background-color: transparent;
     }
 
-    .btn.vs-accordion-item__toggle-btn {
+    .btn.vs-accordion-toggle {
         text-align: left;
 
     }
