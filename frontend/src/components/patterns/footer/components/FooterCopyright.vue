@@ -15,7 +15,7 @@
                         data-test="vs-footer-copyright-logo"
                         :link-alt-text="linkAltText"
                         :href="href"
-                        svg-fill="700e57"
+                        svg-fill="#ffffff"
                         svg-path="vs-logo"
                     />
 

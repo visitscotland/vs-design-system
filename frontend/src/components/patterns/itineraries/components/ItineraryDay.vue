@@ -110,8 +110,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-itinerary-day__list-item.card {
     border-top: 5px solid $color-base-text;
     padding: $spacer-4 $spacer-4 0;

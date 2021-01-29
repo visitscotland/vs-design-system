@@ -63,10 +63,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "~bootstrap/scss/images";
-</style>
-
 <docs>
   ```jsx
 

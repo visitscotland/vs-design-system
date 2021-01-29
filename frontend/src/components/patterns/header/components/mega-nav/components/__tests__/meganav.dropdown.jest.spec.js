@@ -19,9 +19,9 @@ const factoryMount = () => mount(VsMegaNavDropdown, {
 });
 
 describe('VsMegaNavDropdown', () => {
-    it('should render a component with the data-test attribute `.vs-mega-nav__dropdown`', () => {
+    it('should render a component with the data-test attribute `vs-mega-nav-dropdown`', () => {
         const wrapper = factoryShallowMount();
-        expect(wrapper.attributes('data-test')).toBe('vs-mega-nav__dropdown');
+        expect(wrapper.attributes('data-test')).toBe('vs-mega-nav-dropdown');
     });
 
     describe(':slots', () => {
@@ -40,14 +40,12 @@ describe('VsMegaNavDropdown', () => {
         it('emits `menuToggled` event when `bv::dropdown::show` is emitted from root', () => {
             const wrapper = factoryMount();
             wrapper.vm.$root.$emit('bv::dropdown::show');
-
             expect(wrapper.emitted().menuToggled).toBeTruthy();
         });
 
         it('emits `menuToggled` event when `bv::dropdown::hide` is emitted from root', () => {
             const wrapper = factoryMount();
             wrapper.vm.$root.$emit('bv::dropdown::hide');
-
             expect(wrapper.emitted().menuToggled).toBeTruthy();
         });
     });

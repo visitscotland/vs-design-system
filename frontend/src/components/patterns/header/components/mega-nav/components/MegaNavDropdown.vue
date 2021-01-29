@@ -1,7 +1,7 @@
 <template>
     <div
-        class="vs-mega-nav__dropdown"
-        data-test="vs-mega-nav__dropdown"
+        class="vs-mega-nav-dropdown"
+        data-test="vs-mega-nav-dropdown"
     >
         <BDropdown
             variant="transparent"
@@ -12,36 +12,47 @@
                 <slot name="buttonContent" />
             </template>
 
-            <VsContainer>
-                <VsRow>
-                    <VsCol cols="12">
-                        <!-- @slot Used to display the top menu link
-                        at the top of the dropdown menu  -->
-                        <slot name="ctaLink" />
-                        <!-- @slot The rest of the mega nav links put here in the dropdown menu  -->
-                        <slot name="dropdownContent" />
+            <li>
+                <VsContainer
+                    fluid="lg"
+                    class="px-0 px-lg-3"
+                >
+                    <VsRow class="no-gutters">
+                        <VsCol cols="12">
+                            <!-- @slot Used to display the top menu link
+                            at the top of the dropdown menu  -->
+                            <slot name="ctaLink" />
 
-                        <VsButton
-                            class="vs-mega-nav__dropdown__close-btn d-lg-none position-absolute"
-                            icon="close"
-                            icon-only
-                            variant="transparent"
-                            @click.native="closeMenu"
-                        >
-                            <span class="sr-only">
-                                {{ menuToggleAltText }}
-                            </span>
-                        </VsButton>
-                    </VsCol>
-                </VsRow>
-            </VsContainer>
+                            <!-- @slot The rest of the mega nav links put
+                            here in the dropdown menu  -->
+                            <slot name="dropdownContent" />
+
+                            <VsButton
+                                class="vs-mega-nav-dropdown__close-btn
+                                d-none d-lg-block position-absolute"
+                                icon="close"
+                                icon-only
+                                size="sm"
+                                variant="transparent"
+                                @click.native="closeMenu"
+                            >
+                                <span class="sr-only">
+                                    {{ menuToggleAltText }}
+                                </span>
+                            </VsButton>
+                        </VsCol>
+                    </VsRow>
+                </VsContainer>
+            </li>
         </BDropdown>
     </div>
 </template>
 
 <script>
 import {
-    VsCol, VsRow, VsContainer,
+    VsCol,
+    VsRow,
+    VsContainer,
 } from '@components/elements/layout';
 import { BDropdown } from 'bootstrap-vue';
 import VsButton from '@components/elements/button/Button';
@@ -59,8 +70,8 @@ export default {
     components: {
         BDropdown,
         VsCol,
-        VsRow,
         VsContainer,
+        VsRow,
         VsButton,
     },
     props: {
@@ -104,7 +115,7 @@ export default {
 
 <style lang="scss">
 
-.vs-mega-nav__dropdown {
+.vs-mega-nav-dropdown {
     padding: 0;
 
     .dropdown {
@@ -121,13 +132,31 @@ export default {
         }
     }
 
-    .vs-mega-nav__dropdown__close-btn{
-        @extend .dropdown-toggle;
-        right: 4px;
-        top: -67px;
+    .btn.vs-mega-nav-dropdown__close-btn{
+        border: 0;
+        height: 26px;
+        width: 26px;
+        font-size: 0;
+        padding: $spacer-1;
+        right: 20px;
+        top: -40px;
+
+        &:focus {
+            box-shadow: 0 0 0 0.1rem $color-pink inset;
+        }
+
+        &:hover {
+            .vs-icon{
+                fill: $color-pink;
+            }
+        }
 
         @include media-breakpoint-up(sm) {
-            right: 12px;
+            right: 36px;
+        }
+        @include media-breakpoint-up(lg) {
+            right: 4px;
+            top: -10px;
         }
     }
 
@@ -135,7 +164,7 @@ export default {
         position: relative;
         letter-spacing: 0;
         font-weight: normal;
-        line-height: 1.2;
+        line-height: $standard-line-height;
         border-radius: 0;
         border: 0;
         height: 32px;
@@ -143,7 +172,7 @@ export default {
         font-size: 0;
         padding: $spacer-1;
 
-        &:focus {
+        &:focus, &:active, &:active:focus {
             box-shadow: 0 0 0 0.1rem $color-pink inset;
         }
 
@@ -190,21 +219,42 @@ export default {
     .dropdown-menu {
         background: $color-gray-tint-8;
         width: 100%;
-        padding: 24px 0;
+        padding: 0;
         margin: 0;
-        min-height: 200px;
         border: 0;
-        box-shadow: 0px 9px 5px -7px rgba(0,0,0,0.1), inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
+        box-shadow: 0px 9px 5px -7px rgba(0,0,0,0.1),
+        inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
         transform: translate3d(0px, 55px, 0px) !important;
+
+        @include media-breakpoint-up(lg) {
+            padding: $spacer-5 0 $spacer-8;
+            max-height: 595px;
+        }
+
+        .vs-mega-nav-accordion-item--level-1:first-child{
+            > .vs-accordion-item__card-header{
+                > .vs-accordion-toggle.btn-primary{
+                    box-shadow: inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
+                }
+            }
+        }
+
     }
 
 }
 
 @include no-js {
-    .vs-mega-nav__dropdown{
+    .vs-mega-nav-dropdown{
         .btn.dropdown-toggle {
-            padding: $spacer-2 $spacer-2;
-            font-size: 1rem;
+            padding: $spacer-3 $spacer-2;
+            height: auto;
+            width: auto;
+            font-size: $h4-font-size;
+            margin-bottom: $spacer-2;
+
+            @include media-breakpoint-up(lg) {
+                margin-bottom: 0;
+            }
 
             &.disabled {
                 opacity: 1;
@@ -212,10 +262,10 @@ export default {
 
             &:focus {
                 box-shadow: 0 0 0 0.1rem $color-pink inset;
-            }
 
-            &:hover {
-                color: $color-base-text;
+                &::after{
+                    display: none;
+                }
             }
 
             &::after {
@@ -231,10 +281,24 @@ export default {
                 border: 0;
                 margin: 0;
             }
+
+            &:hover {
+                color: $color-pink;
+
+                &::after {
+                    width: 100%;
+                    background: $color-pink;
+                }
+            }
+        }
+
+        &__close-btn{
+            display: none!important;
         }
 
         .dropdown-menu{
             display: block;
+            max-height: none;
             position: relative;
             border: 0;
             box-shadow: none;
@@ -245,6 +309,6 @@ export default {
 </style>
 
 <docs>
-   ```[import](./__examples__/meganav.dropdown.example.vue)
+   ```[import](../__examples__/meganav.example.vue)
     ```
 </docs>
