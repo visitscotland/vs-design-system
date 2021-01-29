@@ -1,6 +1,9 @@
 <template>
     <div class="vs-global-menu">
-        <VsContainer>
+        <VsContainer
+            fluid="lg"
+            class="px-0 px-sm-3"
+        >
             <VsRow>
                 <VsCol
                     cols="12"
@@ -108,7 +111,6 @@ export default {
 
 <style lang="scss">
 .vs-global-menu {
-    width: 100%;
     background: $color-purple;
     color: white;
     position: relative;
@@ -121,30 +123,13 @@ export default {
         height: 35px;
     }
 
-    @include media-breakpoint-down(md) {
-        .container {
-            padding: 0;
-            margin: 0;
-            max-width: 100%;
-        }
-
-        .row {
-            margin: 0 !important;
-        }
-
-        .col-12 {
-            padding: 0 !important;
-        }
-    }
-
     &__wrapper {
         position: initial;
         display: flex;
         align-items: center;
 
         @include media-breakpoint-down(md) {
-            width: 100%;
-            padding: 0;
+            padding-left: 0;
             margin: 0;
         }
     }

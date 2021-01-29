@@ -72,8 +72,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-favourites-list__link {
     font-size: 1.5rem;
 }
