@@ -165,23 +165,6 @@ pipeline {
       }
     } //end stage
 
-    stage('Nexus IQ Scan'){
-	  steps {
-        script{
-          try {
-            def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, iqApplication: selectedApplication('visitscotland-site'), iqScanPatterns: [[scanPattern: '/site/target/*.war']], iqStage: 'build', jobCredentialsId: 'nexusiq'
-            echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
-            IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
-          } 
-          catch (error) {
-            def policyEvaluation = error.policyEvaluation
-            echo "Nexus IQ scan vulnerabilities detected', ${policyEvaluation.applicationCompositionReportUrl}"
-            throw error
-          }
-        }
-      }
-    } //end stage
-
     stage ('Build Actions'){
       parallel {
         stage('SonarQube BE Scan') {
