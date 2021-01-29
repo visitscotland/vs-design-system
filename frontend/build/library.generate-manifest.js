@@ -35,8 +35,15 @@ function mapComponentEntryFiles(component) {
   const files = uniq(flatMap(get(component, "chunks"), "files"))
   const scripts = remove(files, ary(partial(endsWith, partial.placeholder, ".js"), 1))
   const styles = remove(files, ary(partial(endsWith, partial.placeholder, ".css"), 1))
+  const fonts = [
+    'eveleth-clean-regular.woff',
+    'eveleth-clean-regular.woff2',
+    'eveleth-clean-thin.woff',
+    'eveleth-clean-thin.woff2',
+  ];
 
   let assetMap = {}
+  assetMap.fonts = fonts;
 
   if(!isEmpty(scripts)) {
     assetMap.scripts = scripts
