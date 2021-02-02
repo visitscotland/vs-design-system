@@ -106,6 +106,29 @@ pipeline {
       }
     }
 
+    stage ('vs test') {
+      when {
+        allOf {
+          expression {return env.VS_RUN_BRC_STAGES != 'TRUE'}
+          expression {return env.VS_SKIP_VS_BLD != 'TRUE'}
+          expression {return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
+        }
+      }
+      steps {
+        // -- 20200712: QUESTION FOR SE, "why do we not build with-development-data?"
+        sh 'mvn -f pom.xml clean package'
+      }
+      post {
+        success {
+          sh 'mvn -f pom.xml -Pdist-with-development-data'
+          mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
+        }
+        failure {
+          mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
+        }
+      }
+    }
+
 
     // -- 20200712: The three 'brxm' and the two 'brc' stages are based on https://developers.bloomreach.com/blog/2019/set-up-continuous-deployment-of-your-brxm-project-in-brcloud-using-jenkins.html
     // --           in time, the connect, upload and deploy stages will be moved into bash scripts and run from a different Jenkins server
