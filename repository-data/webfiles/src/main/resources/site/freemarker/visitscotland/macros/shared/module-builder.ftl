@@ -16,21 +16,31 @@
 
 <#-- @ftlvariable name="hero" type="com.visitscotland.brxm.beans.Image" -->
 
-<#--TODO Control abput colours, change style="background-color:${style}  -->
 <#macro moduleBuilder module theme>
+    <#if theme="theme1">
+        <#assign themeName = "dark">
+    <#elseif theme="theme2">
+        <#assign themeName = "light">
+    </#if>
 
-    <div class="has-edit-button" style="background-color:${theme}">
-        <#-- all Megalinks modules -->
-        <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
-            <@megalinks item=module type=module.getType() />
+    <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
+        <#assign moduleType = "megalinks">
+    <#else>
+        <#assign moduleType = module.getType()>
+    </#if>
 
-        <#elseif module.getType()== "HorizontalListLinksModule">
+    <div class="has-edit-button theme-${themeName}">       
+        <#if moduleType == "megalinks">
+            <#-- all Megalinks modules -->
+            <@megalinks item=module type=module.getType() theme=themeName />
+
+        <#elseif moduleType == "HorizontalListLinksModule">
             <@horizontalList module/>
 
-        <#elseif module.getType()== "ICentreModule">
+        <#elseif moduleType == "ICentreModule">
             <@icentre module/>
 
-        <#elseif module.getType()== "IKnowModule">
+        <#elseif moduleType == "IKnowModule">
             <@iknow module/>
 
         <#elseif module.getType()== "LongContentModule">
