@@ -46,7 +46,6 @@ public class PageTemplateBuilder {
         this.documentUtils = documentUtils;
     }
 
-
     private Page getDocument(HstRequest request) {
         return (Page) request.getAttribute("document");
     }
@@ -78,6 +77,8 @@ public class PageTemplateBuilder {
                     page.modules.add(iKnowModule);
                 } else if (item instanceof Article){
                     page.modules.add(createLongContent(request, (Article) item));
+                } else if (item instanceof LongCopy){
+                    processLongCopy(request, page, (LongCopy) item);
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
@@ -92,6 +93,26 @@ public class PageTemplateBuilder {
         request.setAttribute(PAGE_ITEMS, page.modules);
     }
 
+    /**
+     * Convert a LongCopy into a LongCopy module and adds it to the list of modules
+     *
+     * Note: Consider to create a factory if the creation of the Module requires more logic.
+     */
+    private void processLongCopy(HstRequest request, PageConfiguration config, LongCopy document){
+        Page page = getDocument(request);
+        if (page instanceof General && ((General) page).getTheme().equals(GeneralContentComponent.SIMPLE)){
+            if (config.modules.stream().anyMatch(module -> module instanceof LongCopyModule)){
+                logger.error("Only one instance of this module is allowed");
+            } else {
+                LongCopyModule module = new LongCopyModule();
+                module.setCopy(document.getCopy());
+                config.modules.add(module);
+            }
+        } else {
+            //TODO Content Issue;
+            logger.error("The document type LongCopy is only allowed in Simple Pages");
+        }
+    }
     /**
      * Creates a LinkModule from a Megalinks document
      */
