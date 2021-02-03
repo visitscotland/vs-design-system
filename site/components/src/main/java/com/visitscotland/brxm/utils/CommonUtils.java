@@ -49,7 +49,7 @@ public class CommonUtils {
             if (responseCode >= 300){
                 logger.warn("The request for {} has responded with the Status code {}", url, responseCode);
             }
-            try (final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), Properties.VS_DMS_ENCODING))) {
+            try (final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), Properties.DMS_ENCODING))) {
                 final StringBuilder sb = new StringBuilder();
                 int cp;
 

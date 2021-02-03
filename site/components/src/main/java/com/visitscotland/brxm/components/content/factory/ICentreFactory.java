@@ -30,7 +30,7 @@ public class ICentreFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ICentreFactory.class);
 
-    static final String BUNDLE_ID = "modules";
+    static final String BUNDLE_ID = "tourism.information";
 
     private final HippoUtilsService utils;
     private final DMSDataService dmsData;

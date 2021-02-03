@@ -3,6 +3,8 @@ package com.visitscotland.brxm.components;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.visitscotland.brxm.dms.DMSConstants;
+import com.visitscotland.brxm.dms.DMSProxy;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.dataobjects.*;
@@ -24,18 +26,20 @@ import javax.jcr.Value;
 import java.io.IOException;
 import java.util.*;
 
-
+//TODO Make this testaable
 public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade<JSONObject> {
 
     private static Logger log = LoggerFactory.getLogger(AbstractDMSPicker.class);
 
     private static final String PARAM_EXTERNAL_DOCS_FIELD_NAME = "example.external.docs.field.name";
 
+    private DMSProxy dmsProxy;
 
     private JSONArray docArray;
 
     public AbstractDMSPicker(String type) {
         try {
+            dmsProxy = new DMSProxy();
             docArray = new JSONArray();
             docArray.addAll(JSONArray.fromObject(deserialize(
                     request(type,null, productTypesForPSR(type)))));
@@ -170,23 +174,19 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
      *
      * @return HTML fragment according to the type and the locale
      */
-    protected static String request(String productType, Locale locale, List<String> productTypeParameterList) throws IOException {
+    protected String request(String productType, Locale locale, List<String> productTypeParameterList) {
         String parameters ="";
         if (productTypeParameterList!=null){
             for (String productTypeParameter: productTypeParameterList) {
                 if (parameters.isEmpty()) {
-                    parameters = "?prodtypes=" + productTypeParameter;
+                    parameters = "prodtypes=" + productTypeParameter;
                 } else {
-                    parameters = parameters + "&prodtypes=" + productTypeParameter;
+                    parameters += "&prodtypes=" + productTypeParameter;
                 }
             }
         }
 
-        if (locale == null){
-            return  CommonUtils.request(String.format("%s/data/meta/%s/list%s", Properties.VS_DMS_SERVICE, productType, parameters));
-        } else {
-            return  CommonUtils.request(String.format("%s/data/meta/%s/list%s&locale=%s", Properties.VS_DMS_SERVICE, productType, parameters, locale.getLanguage()));
-        }
+        return dmsProxy.request(String.format(DMSConstants.META_PRODUCT_LIST,productType, parameters), locale);
     }
 
 
