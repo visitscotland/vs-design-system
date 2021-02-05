@@ -1,6 +1,6 @@
 <template>
     <VsDropdown class="vs-global-menu__languages">
-        <template v-slot:button-content>
+        <template #button-content>
             <VsIcon
                 class="vs-global-menu__languages__icon"
                 name="globe"
@@ -11,6 +11,7 @@
             <span class="vs-global-menu__languages__text">{{ languageLabel }}</span>
             <span class="vs-global-menu__languages__selected">{{ selectedLanguage }}</span>
         </template>
+
         <!-- No JS Version -->
         <span class="vs-global-menu__languages__label">
             <VsIcon
@@ -20,6 +21,8 @@
             />
             {{ languageLabel }}
         </span>
+
+        <!-- @slot Default slot for Global Menu Language Items  -->
         <slot />
     </VsDropdown>
 </template>
@@ -134,39 +137,42 @@ export default {
             background: $color-purple-shade-2;
         }
     }
-}
 
-.vs-global-menu__languages {
     @include media-breakpoint-up(lg) {
         position: relative;
     }
 
     .dropdown-toggle {
         @include media-breakpoint-up(lg) {
-            padding: $spacer-2 $spacer-4;
+            padding: $spacer-2 $spacer-3;
         }
     }
-}
 
-.vs-global-menu__languages__icon {
-    display: none;
+    &__icon {
+        display: none;
 
-    @include media-breakpoint-up(lg) {
-        display: inline;
+        @include media-breakpoint-up(lg) {
+            display: inline;
+        }
     }
-}
 
-.vs-global-menu__languages__text {
-    padding-left: $spacer-2;
-    display: none;
+    &__text {
+        padding-left: $spacer-2;
+        display: none;
 
-    @include media-breakpoint-up(lg) {
-        display: inline;
+        @include media-breakpoint-up(lg) {
+            display: inline;
+        }
     }
-}
 
-.vs-global-menu__languages__label {
-    display: none;
+    &__selected {
+        padding-left: $spacer-1;
+    }
+
+    &__label {
+        display: none;
+    }
+
 }
 
 @include no-js {

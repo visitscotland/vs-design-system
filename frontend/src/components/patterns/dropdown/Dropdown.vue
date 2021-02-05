@@ -18,7 +18,6 @@
                 orientation="down"
                 variant="reverse-white"
                 size="xxs"
-                class="ml-1"
             />
         </template>
         <slot />
