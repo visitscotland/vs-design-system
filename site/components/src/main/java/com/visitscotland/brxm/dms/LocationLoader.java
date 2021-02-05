@@ -6,12 +6,15 @@ import com.visitscotland.brxm.beans.dms.LocationObject;
 import com.visitscotland.brxm.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.*;
 
 //TODO Test?
 //TOTO convert to Service
+
+@Component
 public class LocationLoader {
 
     private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class);
@@ -24,10 +27,44 @@ public class LocationLoader {
 
     private DMSProxy proxy;
 
-    private LocationLoader(){
+    public LocationLoader(){
         proxy = new DMSProxy();
-
         init();
+    }
+
+    /**
+     * Initialize maps
+     */
+    private void init() {
+        synchronized (LocationLoader.class) {
+            if (locationToId.size() == 0) {
+                for (Locale locale : com.visitscotland.brxm.utils.Properties.locales) {
+                    Map<String, LocationObject> locationsMap = new HashMap<>();
+                    try {
+                        List<LocationObject> locationList = deserialize(request(locale));
+
+                        //if the locationToId map is empty and the locale is null. Both lists are populated simultaneously
+                        if (locationToId.size() == 0 && locale == null) {
+                            for (LocationObject location : locationList) {
+                                locationToId.put(location.getName(), location.getId());
+                                locationsMap.put(location.getId(), location);
+                            }
+                        } else {
+                            for (LocationObject location : locationList) {
+                                locationsMap.put(location.getId(), location);
+                            }
+                        }
+
+                    } catch (IOException e) {
+                        logger.warn("Location List couldn't been loaded for the locale {}", locale);
+                    } catch (Exception e) {
+                        logger.error("Unexpected exception ", e);
+                    }
+
+                    locations.put(locale, locationsMap);
+                }
+            }
+        }
     }
 
     public static LocationLoader getInstance(){
@@ -67,7 +104,7 @@ public class LocationLoader {
                 locationList.add(obj);
             }
         }
-        if (locationList.size() == 0){
+        if (locationList.isEmpty()){
             logger.warn("No objects matched with the types. It is possible that the types weren't loaded from the endpoint.");
         }
 
@@ -80,40 +117,7 @@ public class LocationLoader {
         locationToId.clear();
         locations.clear();
     }
-    /**
-     * Initialize maps
-     */
-    private void init() {
-        synchronized (LocationLoader.class) {
-            if (locationToId.size() == 0) {
-                for (Locale locale : com.visitscotland.brxm.utils.Properties.locales) {
-                    Map<String, LocationObject> locationsMap = new HashMap<>();
-                    try {
-                        List<LocationObject> locationList = deserialize(request(locale));
 
-                        //if the locationToId map is empty and the locale is null. Both lists are populated simultaneously
-                        if (locationToId.size() == 0 && locale == null) {
-                            for (LocationObject location : locationList) {
-                                locationToId.put(location.getName(), location.getId());
-                                locationsMap.put(location.getId(), location);
-                            }
-                        } else {
-                            for (LocationObject location : locationList) {
-                                locationsMap.put(location.getId(), location);
-                            }
-                        }
-
-                    } catch (IOException e) {
-                        logger.warn("Location List couldn't been loaded for the locale {}", locale);
-                    } catch (Exception e) {
-                        logger.error("Unexpected exception ", e);
-                    }
-
-                    locations.put(locale, locationsMap);
-                }
-            }
-        }
-    }
 
     /**
      * Request the the resource taking into account the language.
@@ -162,15 +166,15 @@ public class LocationLoader {
     private List<LocationObject> deserialize(String data) throws IOException {
         ObjectMapper jsonMapper = new ObjectMapper();
         JsonNode dataObject = jsonMapper.readTree(data);
-        List<LocationObject> locations = new ArrayList<>();
+        List<LocationObject> objects = new ArrayList<>();
 
         if (!dataObject.has("data")){
             throw new IOException("No data field found");
         }
 
         for (JsonNode elm: dataObject.get("data")){
-            locations.add(jsonMapper.readValue(elm.toString(), LocationObject.class));
+            objects.add(jsonMapper.readValue(elm.toString(), LocationObject.class));
         }
-        return locations;
+        return objects;
     }
 }

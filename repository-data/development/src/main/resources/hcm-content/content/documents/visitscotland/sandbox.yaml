@@ -11120,6 +11120,266 @@
               <p>It's a season that lets you see places in a new light and offers new experiences that you&nbsp;just can't enjoy at any other time of year. Even planning where to stay in winter throws up some exciting and unusual options that you've probably never thought of before.</p>
 
               <p>Check out these ideas for a unique Scottish winter break you'll remember for years to come:</p>
+      /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway-with-quote:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 3032dd02-2bcb-4c05-963e-7ee30d5d3b3c
+        hippo:name: A dark skies and Burns Night celebration in Ayrshire and Dumfries
+          & Galloway (with Quote)
+        hippo:versionHistory: 6b11b8cd-2da4-4dd8-84a6-d6c579bcbdb8
+        /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway-with-quote[1]:
+          jcr:primaryType: visitscotland:Article
+          jcr:mixinTypes: ['mix:versionable']
+          jcr:uuid: ad0d4bc3-0fd4-459b-aa96-c35732081d75
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-01-11T14:55:22.432Z
+          hippostdpubwf:lastModificationDate: 2021-01-22T14:56:57.310Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7da16744-ebfa-4985-8b07-07826e82ddcf
+          hippotranslation:locale: en
+          visitscotland:anchor: dark-skies
+          visitscotland:title: A dark skies and Burns Night celebration in Ayrshire
+            and Dumfries & Galloway
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Things to see and do</h3>
+
+                <p>Dark skies</p>
+
+                <p>Winter is a fantastic time to soak up the splendour of the night sky. One of the best places to go <a href="https://www.visitscotland.com/see-do/landscapes-nature/dark-sky-parks-sites/" title="Dark Sky Parks &amp; Sites">stargazing in Scotland</a> is the <a href="https://www.visitscotland.com/info/towns-villages/galloway-forest-park-p249171" title="Galloway Forest Park">Galloway Forest Park</a> in south west Scotland, which was the second park in Europe and first in the UK to be awarded Dark Sky Park status.</p>
+
+                <p>Find <a href="https://forestryandland.gov.scot/visit/forest-parks/galloway-forest-park/dark-skies" title="Dark sky park events in the Galloway Forest Park" target="_blank">dark sky park events in the Galloway Forest Park</a> and visit the <a href="https://www.visitscotland.com/info/see-do/scottish-dark-sky-observatory-p905131" title="Scottish Dark Sky Observatory">Scottish Dark Sky Observatory</a> at Dalmellington in Ayrshire to take part in a range of great events and navigate the skies using the observatory’s high-powered telescopes.</p>
+
+                <p>The Galloway Forest Park is also part of the <a href="http://www.gsabiosphere.org.uk/" title="" target="_blank">Galloway and Southern Ayrshire Biosphere</a> and you can book a dark sky event with one of the biosphere’s <a href="http://www.gsabiosphere.org.uk/become-a-dark-sky-ranger/" title="Galloway and Southern Ayrshire Biosphere Dark Sky Rangers" target="_blank">Dark Sky Rangers</a>.</p>
+
+                <p>Another superb location for stargazing is the town of <a href="https://www.visitscotland.com/info/towns-villages/moffat-p244851" title="">Moffat</a> in Dumfries &amp; Galloway as it’s a designated Dark Sky Town – the first town in Europe to be awarded this status. The streetlights in the town are specially designed to minimise light pollution so that you can enjoy the starry skies above uninterrupted.</p>
+
+                <p>Robert Burns and Burns Night</p>
+
+                <p>If you’re looking to experience authentic Scottish culture then January is a fantastic time to visit. Traditional Burns Suppers take place on and around 25 January to celebrate <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/" title="Robert Burns">Robert Burns</a>’ birthday, which is known as <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/burns-night/" title="Burns Night">Burns Night</a>.</p>
+
+                <p>Robert Burns was born in Ayrshire and every year you’ll find events celebrating his life at the <a href="http://www.burnsfestival.com/" title="Find information about the Burns an’ a’ that! Festival" target="_blank">Burns An’ A’ That!</a> festival. Look out for the <a href="http://www.burnsfestival.com/burns-hame-toun/" title="Burns Hame Toun" target="_blank">Burns Hame Toun</a> events happening in January. Burns attractions to visit in Ayrshire include the <a href="https://www.visitscotland.com/info/see-do/robert-burns-birthplace-museum-p252331" title="Find information about the Robert Burns Birthplace Museum">Robert Burns Birthplace Museum</a> in Alloway and <a href="https://www.visitscotland.com/info/see-do/the-burns-house-museum-p256201" title="Find information on the Burns House Museum">Burns House Museum</a> in Mauchline.</p>
+
+                <p>Dumfries &amp; Galloway also has strong connections with Robert Burns and is the place where he lived and spent time in the later years of his life, including at <a href="https://www.visitscotland.com/info/see-do/robert-burns-ellisland-farm-p250531" title="">Ellisland Farm</a> at Auldgirth and <a href="http://www.globeinndumfries.co.uk/" title="Find information on The Globe Inn" target="_blank">The Globe Inn</a> and <a href="https://www.visitscotland.com/info/see-do/robert-burns-house-p250471" title="">Robert Burns House</a> in Dumfries. From 24 January – 2 February 2020 you’ll find a packed programme of events at the <a href="http://bigburnssupper.com/" title="Big Burns Supper 2016" target="_blank">Big Burns Supper</a>, taking place in venues throughout Dumfries.</p>
+
+                <p>Find more things to see and do in <a href="https://www.visitscotland.com/destinations-maps/ayrshire-arran/" title="Ayrshire &amp; Arran">Ayrshire</a> and <a href="https://www.visitscotland.com/destinations-maps/dumfries-galloway/" title="Dumfries &amp; Galloway">Dumfries &amp; Galloway</a>.</p>
+
+                <h3>Stay</h3>
+
+                <p>Choose from hotels, B&amp;Bs, self-catering cottages and much more across both regions.</p>
+
+                <p>Find accommodation in <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Ayrshire+%26+Arran&amp;locpoly=201&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Ayrshire &amp; Arran accommodation search">Ayrshire &amp; Arran</a> and <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Dumfries+%26+Galloway&amp;locpoly=111&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Dumfries &amp; Galloway accommodation search">Dumfries &amp; Galloway</a>.</p>
+
+                <h3>Eating out</h3>
+
+                <p>Tuck into tasty local produce at eateries including <a href="https://www.visitscotland.com/info/food-drink/the-green-frog-cafe-p835261" title="The Green Frog Café in Moffat">The Green Frog Café</a> in Moffat, <a href="https://www.visitscotland.com/info/food-drink/loch-arthur-farm-shop-cafe-p304001" title="Loch Arthur Farm Shop Café near Dumfries">Loch Arthur Farm Shop Café</a> near Dumfries, the <a href="https://www.visitscotland.com/info/food-drink/kirkmichael-arms-p606101" title="Kirkmichael Arms near Maybole">Kirkmichael Arms</a> near Maybole and <a href="https://www.visitscotland.com/info/food-drink/the-coo-shed-p1968601" title="The Coo Shed near Alloway">The Coo Shed</a> near Alloway.</p>
+
+                <h3>Getting there</h3>
+
+                <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
+
+                <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+            /visitscotland:Quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Mr. X
+              visitscotland:role: Senior Regional Manager on Research & Development
+                at VisitScotland
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>This is the best for those looking to experience
+                  unforgettably dark skies and traditional Scottish culture.</p>
+              /visitscotland:product:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
+        /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway-with-quote[2]:
+          jcr:primaryType: visitscotland:Article
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e0cd1f93-f92b-4b22-b3ab-75e984e4621c
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-01-11T14:55:22.432Z
+          hippostdpubwf:lastModificationDate: 2021-01-22T14:56:57.448Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7da16744-ebfa-4985-8b07-07826e82ddcf
+          hippotranslation:locale: en
+          visitscotland:anchor: dark-skies
+          visitscotland:title: A dark skies and Burns Night celebration in Ayrshire
+            and Dumfries & Galloway
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Things to see and do</h3>
+
+                <p>Dark skies</p>
+
+                <p>Winter is a fantastic time to soak up the splendour of the night sky. One of the best places to go <a href="https://www.visitscotland.com/see-do/landscapes-nature/dark-sky-parks-sites/" title="Dark Sky Parks &amp; Sites">stargazing in Scotland</a> is the <a href="https://www.visitscotland.com/info/towns-villages/galloway-forest-park-p249171" title="Galloway Forest Park">Galloway Forest Park</a> in south west Scotland, which was the second park in Europe and first in the UK to be awarded Dark Sky Park status.</p>
+
+                <p>Find <a href="https://forestryandland.gov.scot/visit/forest-parks/galloway-forest-park/dark-skies" title="Dark sky park events in the Galloway Forest Park" target="_blank">dark sky park events in the Galloway Forest Park</a> and visit the <a href="https://www.visitscotland.com/info/see-do/scottish-dark-sky-observatory-p905131" title="Scottish Dark Sky Observatory">Scottish Dark Sky Observatory</a> at Dalmellington in Ayrshire to take part in a range of great events and navigate the skies using the observatory’s high-powered telescopes.</p>
+
+                <p>The Galloway Forest Park is also part of the <a href="http://www.gsabiosphere.org.uk/" title="" target="_blank">Galloway and Southern Ayrshire Biosphere</a> and you can book a dark sky event with one of the biosphere’s <a href="http://www.gsabiosphere.org.uk/become-a-dark-sky-ranger/" title="Galloway and Southern Ayrshire Biosphere Dark Sky Rangers" target="_blank">Dark Sky Rangers</a>.</p>
+
+                <p>Another superb location for stargazing is the town of <a href="https://www.visitscotland.com/info/towns-villages/moffat-p244851" title="">Moffat</a> in Dumfries &amp; Galloway as it’s a designated Dark Sky Town – the first town in Europe to be awarded this status. The streetlights in the town are specially designed to minimise light pollution so that you can enjoy the starry skies above uninterrupted.</p>
+
+                <p>Robert Burns and Burns Night</p>
+
+                <p>If you’re looking to experience authentic Scottish culture then January is a fantastic time to visit. Traditional Burns Suppers take place on and around 25 January to celebrate <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/" title="Robert Burns">Robert Burns</a>’ birthday, which is known as <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/burns-night/" title="Burns Night">Burns Night</a>.</p>
+
+                <p>Robert Burns was born in Ayrshire and every year you’ll find events celebrating his life at the <a href="http://www.burnsfestival.com/" title="Find information about the Burns an’ a’ that! Festival" target="_blank">Burns An’ A’ That!</a> festival. Look out for the <a href="http://www.burnsfestival.com/burns-hame-toun/" title="Burns Hame Toun" target="_blank">Burns Hame Toun</a> events happening in January. Burns attractions to visit in Ayrshire include the <a href="https://www.visitscotland.com/info/see-do/robert-burns-birthplace-museum-p252331" title="Find information about the Robert Burns Birthplace Museum">Robert Burns Birthplace Museum</a> in Alloway and <a href="https://www.visitscotland.com/info/see-do/the-burns-house-museum-p256201" title="Find information on the Burns House Museum">Burns House Museum</a> in Mauchline.</p>
+
+                <p>Dumfries &amp; Galloway also has strong connections with Robert Burns and is the place where he lived and spent time in the later years of his life, including at <a href="https://www.visitscotland.com/info/see-do/robert-burns-ellisland-farm-p250531" title="">Ellisland Farm</a> at Auldgirth and <a href="http://www.globeinndumfries.co.uk/" title="Find information on The Globe Inn" target="_blank">The Globe Inn</a> and <a href="https://www.visitscotland.com/info/see-do/robert-burns-house-p250471" title="">Robert Burns House</a> in Dumfries. From 24 January – 2 February 2020 you’ll find a packed programme of events at the <a href="http://bigburnssupper.com/" title="Big Burns Supper 2016" target="_blank">Big Burns Supper</a>, taking place in venues throughout Dumfries.</p>
+
+                <p>Find more things to see and do in <a href="https://www.visitscotland.com/destinations-maps/ayrshire-arran/" title="Ayrshire &amp; Arran">Ayrshire</a> and <a href="https://www.visitscotland.com/destinations-maps/dumfries-galloway/" title="Dumfries &amp; Galloway">Dumfries &amp; Galloway</a>.</p>
+
+                <h3>Stay</h3>
+
+                <p>Choose from hotels, B&amp;Bs, self-catering cottages and much more across both regions.</p>
+
+                <p>Find accommodation in <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Ayrshire+%26+Arran&amp;locpoly=201&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Ayrshire &amp; Arran accommodation search">Ayrshire &amp; Arran</a> and <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Dumfries+%26+Galloway&amp;locpoly=111&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Dumfries &amp; Galloway accommodation search">Dumfries &amp; Galloway</a>.</p>
+
+                <h3>Eating out</h3>
+
+                <p>Tuck into tasty local produce at eateries including <a href="https://www.visitscotland.com/info/food-drink/the-green-frog-cafe-p835261" title="The Green Frog Café in Moffat">The Green Frog Café</a> in Moffat, <a href="https://www.visitscotland.com/info/food-drink/loch-arthur-farm-shop-cafe-p304001" title="Loch Arthur Farm Shop Café near Dumfries">Loch Arthur Farm Shop Café</a> near Dumfries, the <a href="https://www.visitscotland.com/info/food-drink/kirkmichael-arms-p606101" title="Kirkmichael Arms near Maybole">Kirkmichael Arms</a> near Maybole and <a href="https://www.visitscotland.com/info/food-drink/the-coo-shed-p1968601" title="The Coo Shed near Alloway">The Coo Shed</a> near Alloway.</p>
+
+                <h3>Getting there</h3>
+
+                <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
+
+                <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+            /visitscotland:Quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Mr. X
+              visitscotland:role: Senior Regional Manager on Research & Development
+                at VisitScotland
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>This is the best for those looking to experience
+                  unforgettably dark skies and traditional Scottish culture.</p>
+              /visitscotland:product:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
+        /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway-with-quote[3]:
+          jcr:primaryType: visitscotland:Article
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 3ec5f75c-602a-47dc-8d4e-511239bef664
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-01-11T14:55:22.432Z
+          hippostdpubwf:lastModificationDate: 2021-01-22T14:56:57.310Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-01-22T14:57:05.554Z
+          hippotranslation:id: 7da16744-ebfa-4985-8b07-07826e82ddcf
+          hippotranslation:locale: en
+          visitscotland:anchor: dark-skies
+          visitscotland:title: A dark skies and Burns Night celebration in Ayrshire
+            and Dumfries & Galloway
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Things to see and do</h3>
+
+                <p>Dark skies</p>
+
+                <p>Winter is a fantastic time to soak up the splendour of the night sky. One of the best places to go <a href="https://www.visitscotland.com/see-do/landscapes-nature/dark-sky-parks-sites/" title="Dark Sky Parks &amp; Sites">stargazing in Scotland</a> is the <a href="https://www.visitscotland.com/info/towns-villages/galloway-forest-park-p249171" title="Galloway Forest Park">Galloway Forest Park</a> in south west Scotland, which was the second park in Europe and first in the UK to be awarded Dark Sky Park status.</p>
+
+                <p>Find <a href="https://forestryandland.gov.scot/visit/forest-parks/galloway-forest-park/dark-skies" title="Dark sky park events in the Galloway Forest Park" target="_blank">dark sky park events in the Galloway Forest Park</a> and visit the <a href="https://www.visitscotland.com/info/see-do/scottish-dark-sky-observatory-p905131" title="Scottish Dark Sky Observatory">Scottish Dark Sky Observatory</a> at Dalmellington in Ayrshire to take part in a range of great events and navigate the skies using the observatory’s high-powered telescopes.</p>
+
+                <p>The Galloway Forest Park is also part of the <a href="http://www.gsabiosphere.org.uk/" title="" target="_blank">Galloway and Southern Ayrshire Biosphere</a> and you can book a dark sky event with one of the biosphere’s <a href="http://www.gsabiosphere.org.uk/become-a-dark-sky-ranger/" title="Galloway and Southern Ayrshire Biosphere Dark Sky Rangers" target="_blank">Dark Sky Rangers</a>.</p>
+
+                <p>Another superb location for stargazing is the town of <a href="https://www.visitscotland.com/info/towns-villages/moffat-p244851" title="">Moffat</a> in Dumfries &amp; Galloway as it’s a designated Dark Sky Town – the first town in Europe to be awarded this status. The streetlights in the town are specially designed to minimise light pollution so that you can enjoy the starry skies above uninterrupted.</p>
+
+                <p>Robert Burns and Burns Night</p>
+
+                <p>If you’re looking to experience authentic Scottish culture then January is a fantastic time to visit. Traditional Burns Suppers take place on and around 25 January to celebrate <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/" title="Robert Burns">Robert Burns</a>’ birthday, which is known as <a href="https://www.visitscotland.com/about/famous-scots/robert-burns/burns-night/" title="Burns Night">Burns Night</a>.</p>
+
+                <p>Robert Burns was born in Ayrshire and every year you’ll find events celebrating his life at the <a href="http://www.burnsfestival.com/" title="Find information about the Burns an’ a’ that! Festival" target="_blank">Burns An’ A’ That!</a> festival. Look out for the <a href="http://www.burnsfestival.com/burns-hame-toun/" title="Burns Hame Toun" target="_blank">Burns Hame Toun</a> events happening in January. Burns attractions to visit in Ayrshire include the <a href="https://www.visitscotland.com/info/see-do/robert-burns-birthplace-museum-p252331" title="Find information about the Robert Burns Birthplace Museum">Robert Burns Birthplace Museum</a> in Alloway and <a href="https://www.visitscotland.com/info/see-do/the-burns-house-museum-p256201" title="Find information on the Burns House Museum">Burns House Museum</a> in Mauchline.</p>
+
+                <p>Dumfries &amp; Galloway also has strong connections with Robert Burns and is the place where he lived and spent time in the later years of his life, including at <a href="https://www.visitscotland.com/info/see-do/robert-burns-ellisland-farm-p250531" title="">Ellisland Farm</a> at Auldgirth and <a href="http://www.globeinndumfries.co.uk/" title="Find information on The Globe Inn" target="_blank">The Globe Inn</a> and <a href="https://www.visitscotland.com/info/see-do/robert-burns-house-p250471" title="">Robert Burns House</a> in Dumfries. From 24 January – 2 February 2020 you’ll find a packed programme of events at the <a href="http://bigburnssupper.com/" title="Big Burns Supper 2016" target="_blank">Big Burns Supper</a>, taking place in venues throughout Dumfries.</p>
+
+                <p>Find more things to see and do in <a href="https://www.visitscotland.com/destinations-maps/ayrshire-arran/" title="Ayrshire &amp; Arran">Ayrshire</a> and <a href="https://www.visitscotland.com/destinations-maps/dumfries-galloway/" title="Dumfries &amp; Galloway">Dumfries &amp; Galloway</a>.</p>
+
+                <h3>Stay</h3>
+
+                <p>Choose from hotels, B&amp;Bs, self-catering cottages and much more across both regions.</p>
+
+                <p>Find accommodation in <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Ayrshire+%26+Arran&amp;locpoly=201&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Ayrshire &amp; Arran accommodation search">Ayrshire &amp; Arran</a> and <a href="https://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Dumfries+%26+Galloway&amp;locpoly=111&amp;locprox=0&amp;avail=off&amp;rooms=1&amp;stay=&amp;r1c=0&amp;minprice=0&amp;maxprice=5000" title="Dumfries &amp; Galloway accommodation search">Dumfries &amp; Galloway</a>.</p>
+
+                <h3>Eating out</h3>
+
+                <p>Tuck into tasty local produce at eateries including <a href="https://www.visitscotland.com/info/food-drink/the-green-frog-cafe-p835261" title="The Green Frog Café in Moffat">The Green Frog Café</a> in Moffat, <a href="https://www.visitscotland.com/info/food-drink/loch-arthur-farm-shop-cafe-p304001" title="Loch Arthur Farm Shop Café near Dumfries">Loch Arthur Farm Shop Café</a> near Dumfries, the <a href="https://www.visitscotland.com/info/food-drink/kirkmichael-arms-p606101" title="Kirkmichael Arms near Maybole">Kirkmichael Arms</a> near Maybole and <a href="https://www.visitscotland.com/info/food-drink/the-coo-shed-p1968601" title="The Coo Shed near Alloway">The Coo Shed</a> near Alloway.</p>
+
+                <h3>Getting there</h3>
+
+                <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
+
+                <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+            /visitscotland:Quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Mr. X
+              visitscotland:role: Senior Regional Manager on Research & Development
+                at VisitScotland
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>This is the best for those looking to experience
+                  unforgettably dark skies and traditional Scottish culture.</p>
+              /visitscotland:product:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
       /a-whisky-lovers-winter-break-on-islay:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -11134,7 +11394,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:50:37.879Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T16:16:13.955Z
+          hippostdpubwf:lastModificationDate: 2021-01-22T14:51:26.790Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: f25530e0-d25c-4a47-844f-47f23b0cbb3d
           hippotranslation:locale: en
@@ -11154,10 +11414,6 @@
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <h3>Best for</h3>
-
-                <p>Fans of Islay's famous peaty malt whiskies and vibrant island culture.</p>
-
                 <h3>Things to see and do</h3>
 
                 <p>If there's one thing that will warm you up in winter, it's <a href="https://www.visitscotland.com/see-do/food-drink/whisky/" title="Whisky">whisky</a>, the country's national drink. For a winter break with a difference, take the ferry to <a href="https://www.visitscotland.com/destinations-maps/isle-islay/" title="Isle of Islay">Islay</a>, Scotland's whisky island.&nbsp;</p>
@@ -11181,6 +11437,23 @@
                 <p>Located off the coast of the Kintyre peninsula on Scotland's west coast, Islay is most easily accessed from the port of Kennacraig, with car <a href="https://www.calmac.co.uk/kennacraig-portellen-portaskaig-islay-ferry-winter-timetable" title="CalMac - Islay- Kennacraig Winter Timetable" target="_blank">ferries</a> running daily. A ferry also departs from Oban once a week.</p>
 
                 <p>When it comes to getting around the&nbsp;distilleries without a car, <a href="https://www.visitscotland.com/info/see-do/search-results?prodtypes=acti%2Cattr%2Creta%2Ctour&amp;cat=cgalltour&amp;loc=Isle+of+Islay&amp;locpoly=391&amp;locprox=0" title="Taxi and tour companies on Islay search results">local taxi companies</a> can arrange bespoke tours.</p>
+            /visitscotland:Quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: ''
+              visitscotland:role: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Fans of Islay's famous peaty malt whiskies and
+                  vibrant island culture.</p>
+              /visitscotland:product:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
         /a-whisky-lovers-winter-break-on-islay[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']

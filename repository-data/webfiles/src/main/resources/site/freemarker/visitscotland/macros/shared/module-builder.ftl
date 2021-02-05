@@ -2,7 +2,7 @@
 <#include "../global/cms-errors.ftl">
 <#include "../modules/megalinks/megalinks.ftl">
 <#include "../modules/megalinks/megalinks-horizontal-list.ftl">
-<#include "../modules/long-content/long-content.ftl">
+<#include "../modules/article/article.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 
@@ -43,8 +43,8 @@
         <#elseif moduleType == "IKnowModule">
             <@iknow module/>
 
-        <#elseif module.getType()== "LongContentModule">
-            <@longContent module/>
+        <#elseif module.getType()== "ArticleModule">
+            <@article module/>
         </#if>
     </div>
 </#macro>

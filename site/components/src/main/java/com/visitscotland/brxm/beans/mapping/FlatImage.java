@@ -28,6 +28,7 @@ public class FlatImage extends IssueList {
     private Coordinates coordinates;
     private Source source;
     private String postUrl;
+    private String location;
 
     final String MEDIA = "mediaUrl";
     final String CREDIT = "copyright";
@@ -41,6 +42,10 @@ public class FlatImage extends IssueList {
     public FlatImage(){
     }
 
+    /**
+     * @deprecated. Use ImageFactory.createImage(cmsModule, locale) instead
+     */
+    @Deprecated
     public FlatImage (Image cmsImage, Locale locale){
        this.cmsImage = cmsImage;
        this.credit = cmsImage.getCredit();
@@ -83,6 +88,10 @@ public class FlatImage extends IssueList {
         }
     }
 
+    /**
+     * @deprecated. Use ImageFactory.createImage(cmsModule, locale) instead
+     */
+    @Deprecated
     public FlatImage(InstagramImage instagramLink, JsonNode instagram, Locale locale) {
         this.externalImage =  instagram.get("thumbnail_url").asText();
         this.credit = instagram.get("author_name").asText();
@@ -179,6 +188,7 @@ public class FlatImage extends IssueList {
         this.postUrl = postUrl;
     }
 
+
     //TODO: Fix too much Logic for a model
     public Coordinates setInstagramCoordinates(InstagramImage instagramLink, Locale locale){
         if (instagramLink.getLocation()!= null && !instagramLink.getLocation().isEmpty()){
@@ -190,4 +200,11 @@ public class FlatImage extends IssueList {
         return null;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }
