@@ -4,7 +4,7 @@ import com.visitscotland.brxm.beans.Article;
 import com.visitscotland.brxm.beans.ArticleSection;
 import com.visitscotland.brxm.beans.mapping.ArticleModule;
 import com.visitscotland.brxm.beans.mapping.ArticleModuleSection;
-import com.visitscotland.brxm.components.content.factory.utils.QuoteEmbedder;
+import com.visitscotland.brxm.components.content.factory.utils.QuoteFactory;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,14 +20,14 @@ public class ArticleFactory {
     private ImageFactory imageFactory;
 
     @Autowired
-    private QuoteEmbedder quoteEmbedder;
+    private QuoteFactory quoteEmbedder;
 
     public ArticleFactory(){
         imageFactory = new ImageFactory();
-        quoteEmbedder = new QuoteEmbedder();
+        quoteEmbedder = new QuoteFactory();
     }
 
-    ArticleFactory(ImageFactory imageFactory, QuoteEmbedder quoteEmbedder){
+    ArticleFactory(ImageFactory imageFactory, QuoteFactory quoteEmbedder){
         this.imageFactory = imageFactory;
         this.quoteEmbedder = quoteEmbedder;
     }
@@ -51,7 +51,9 @@ public class ArticleFactory {
                 section.setImage(imageFactory.getImage(paragraph.getMediaItem(), module, request.getLocale()));
             }
 
-            section.setQuote(quoteEmbedder.getQuote(paragraph.getQuote(), module, request.getLocale()));
+            if (paragraph.getQuote() != null) {
+                section.setQuote(quoteEmbedder.getQuote(paragraph.getQuote(), module, request.getLocale()));
+            }
 
             sections.add(section);
         }

@@ -6,7 +6,7 @@ import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.ICentreModule;
 import com.visitscotland.brxm.beans.mapping.LinkType;
-import com.visitscotland.brxm.components.content.factory.utils.QuoteEmbedder;
+import com.visitscotland.brxm.components.content.factory.utils.QuoteFactory;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
@@ -35,15 +35,15 @@ public class ICentreFactory {
     private final HippoUtilsService utils;
     private final DMSDataService dmsData;
     private final ResourceBundleService bundle;
-    private final QuoteEmbedder quoteEmbedder;
+    private final QuoteFactory quoteEmbedder;
     private final ImageFactory imageFactory;
 
 
     public ICentreFactory() {
-        this(new HippoUtilsService(), new DMSDataService(), new ResourceBundleService(), new QuoteEmbedder(), new ImageFactory());
+        this(new HippoUtilsService(), new DMSDataService(), new ResourceBundleService(), new QuoteFactory(), new ImageFactory());
     }
 
-    public ICentreFactory(HippoUtilsService utils, DMSDataService dmsData, ResourceBundleService bundle, QuoteEmbedder quoteEmbedder, ImageFactory image) {
+    public ICentreFactory(HippoUtilsService utils, DMSDataService dmsData, ResourceBundleService bundle, QuoteFactory quoteEmbedder, ImageFactory image) {
         this.utils = utils;
         this.dmsData = dmsData;
         this.bundle = bundle;

@@ -181,12 +181,8 @@ public class ImageFactory {
     private void populateLocation(FlatImage image, String location, Locale locale){
         LocationObject locationObject = locationLoader.getLocation(location, locale);
         if (locationObject!=null) {
-            //TODO: This condition "image.getCoordinates() == null" is never false?
-            if (image.getCoordinates() == null) {
-                image.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
-            }
+            image.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
 
-            //TODO Probar
             image.setLocation(locationObject.getName());
         }
     }

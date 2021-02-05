@@ -10,7 +10,7 @@ import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatQuote;
 import com.visitscotland.brxm.beans.mapping.ICentreModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.EnhancedLink;
-import com.visitscotland.brxm.components.content.factory.utils.QuoteEmbedder;
+import com.visitscotland.brxm.components.content.factory.utils.QuoteFactory;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.mock.TouristInformationMockBuilder;
@@ -42,7 +42,7 @@ class ICentreFactoryTest {
     DMSDataService dmsData;
 
     @Mock
-    QuoteEmbedder quoteEmbedder;
+    QuoteFactory quoteEmbedder;
 
     @Mock
     ImageFactory imageFactory;
