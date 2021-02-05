@@ -7,10 +7,12 @@ import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+@Component
 public class ResourceBundleService {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceBundleService.class.getName());
@@ -103,10 +105,9 @@ public class ResourceBundleService {
         ResourceBundle bundle = getResourceBundle(bundleName, locale);
 
         String value = null;
-        boolean fallback = false;
 
         if (bundle == null) {
-            logger.warn(String.format("The resource bundle '%s' does not exist" , bundleName));
+            logger.warn("The resource bundle '{}' does not exist", bundleName);
         } else {
             if(bundle.containsKey(key)) {
                 value = bundle.getString(key);
@@ -115,12 +116,11 @@ public class ResourceBundleService {
                     if (!Contract.isEmpty(value)) {
                         logContentIssue("The label key %s does not exists for the %s channel. Resource Bundle key %s", key, bundle.getLocale(), bundleName);
                     }
-                    fallback = true;
                 }
             }
             if (Contract.isEmpty(value) && !optional){
                 logContentIssue("The label key %s does not exists for the English channel. Resource Bundle key %s", key, bundleName);
-                logger.warn(String.format("The label key %s does not exists for the English channel. Resource Bundle key %s", key, bundleName));
+                logger.warn("The label key {} does not exists for the English channel. Resource Bundle key {}", key, bundleName);
             }
         }
 
@@ -165,8 +165,8 @@ public class ResourceBundleService {
      * @param args arguments for the message
      */
     void logContentIssue(String message, Object... args) {
-        //TODO Transform into a different Logger
-        logger.warn(common.contentIssue(message, args));
+        String issue = common.contentIssue(message, args);
+        logger.warn(issue);
     }
 
     public void registerIn(HstRequest request) {

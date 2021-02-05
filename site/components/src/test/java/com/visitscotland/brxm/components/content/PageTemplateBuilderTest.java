@@ -8,6 +8,7 @@ import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.MultiImageLinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.SingleImageLinksModule;
+import com.visitscotland.brxm.components.content.factory.ArticleFactory;
 import com.visitscotland.brxm.components.content.factory.ICentreFactory;
 import com.visitscotland.brxm.components.content.factory.IKnowFactory;
 import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
@@ -23,7 +24,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -49,6 +53,9 @@ class PageTemplateBuilderTest {
     LinkModulesFactory linksFactory;
 
     @Mock
+    ArticleFactory articleFactory;
+
+    @Mock
     DocumentUtils utils;
 
     PageTemplateBuilder builder;
@@ -61,7 +68,7 @@ class PageTemplateBuilderTest {
         //Adds a mock document to the Request
         request.setAttribute("document", page);
 
-        builder = new PageTemplateBuilder(linksFactory, iCentreFactory, iKnowFactory, utils);
+        builder = new PageTemplateBuilder(utils, linksFactory, iCentreFactory, iKnowFactory, articleFactory);
     }
 
     /**
