@@ -3,9 +3,11 @@ package com.visitscotland.brxm.dms;
 import com.visitscotland.brxm.utils.Properties;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Locale;
@@ -19,17 +21,21 @@ public class ProductSearchTest {
 
     private final static String DEFAULT_TYPE = "cate";
 
+    @Mock
+    Properties properties;
+
     //TODO when LocationLoader is not available
 
     @Test()
     @DisplayName("A test with no Product Type should throw an exception")
-    public void noProductType() {
+    void noProductType() {
 
-        Assertions.assertThrows(RuntimeException.class, () -> new ProductSearchBuilder().build());
+        ProductSearchBuilder productSearchBuilder = new ProductSearchBuilder();
+        Assertions.assertThrows(RuntimeException.class, () -> productSearchBuilder.build());
     }
 
     @Test
-    public void basic() {
+    void basic() {
         String url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .build();
 
@@ -38,18 +44,21 @@ public class ProductSearchTest {
     }
 
     @Test()
-    public void productSearch() {
-
-        String url = new ProductSearchBuilder().productTypes("cate").build();
+    void productSearch() {
+        //TODO
+//        Mockito.when(properties.getDmsHost()).thenReturn("http://172.28.81.65:8089");
+        ProductSearchBuilder builder = new ProductSearchBuilder();
+        builder.properties = new Properties();
+        String url = builder.productTypes("cate").build();
 
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain " + PRODUCT_SEARCH + " (%s) ", Properties.VS_DMS_SERVICE, PATH_FOOD_DRINK, url),
-                url.contains(String.format(PRODUCT_SEARCH, Properties.VS_DMS_SERVICE, PATH_FOOD_DRINK)));
+                String.format("The Generated URL is expected to contain " + PRODUCT_SEARCH + " (%s) ", "", PATH_FOOD_DRINK, url),
+                url.contains(String.format(PRODUCT_SEARCH, "", PATH_FOOD_DRINK)));
         validate(url);
     }
 
     @Test()
-    public void productSearchAccommodation() {
+    void productSearchAccommodation() {
         String url = new ProductSearchBuilder().productTypes("acco").build();
 
         Assert.assertTrue(
@@ -59,9 +68,9 @@ public class ProductSearchTest {
     }
 
     @Test
-    public void productSearchUndefinedType() {
+    void productSearchUndefinedType() {
         final String TYPE = "test";
-        String url =  new ProductSearchBuilder().productTypes(TYPE).build();
+        String url = new ProductSearchBuilder().productTypes(TYPE).build();
 
         Assert.assertTrue(
                 String.format("The Generated URL is expected to contain the url path %s ", PATH_SEE_DO),
@@ -77,7 +86,7 @@ public class ProductSearchTest {
     }
 
     @Test
-    public void location() {
+    void location() {
         final String LOCATION = "Edinburgh";
 
         checkLocationAvailability();
@@ -92,7 +101,7 @@ public class ProductSearchTest {
     }
 
     @Test
-    public void locationPolygon() {
+    void locationPolygon() {
         final String LOCATION = "The Highlands";
 
         checkLocationAvailability();
@@ -107,8 +116,8 @@ public class ProductSearchTest {
     }
 
     @Test
-    //TODO localtion by languageTag
-    public void locationTranslation() {
+        //TODO localtion by languageTag
+    void locationTranslation() {
         final String LOCATION = "Edinburgh";
 
         checkLocationAvailability();
@@ -124,7 +133,7 @@ public class ProductSearchTest {
     }
 
     @Test
-    public void category() {
+    void category() {
         String url;
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -157,7 +166,7 @@ public class ProductSearchTest {
     }
 
     @Test
-    public void awards() {
+    void awards() {
         String url;
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -191,7 +200,7 @@ public class ProductSearchTest {
     }
 
     @Test
-    public void facilities() {
+    void facilities() {
         String url;
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -224,7 +233,7 @@ public class ProductSearchTest {
     }
 
     @Test
-    public void rating() {
+    void rating() {
         String url;
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -258,7 +267,7 @@ public class ProductSearchTest {
     }
 
     @Test
-    public void order() {
+    void order() {
         String url;
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -297,7 +306,7 @@ public class ProductSearchTest {
     }
 
     @Test
-    public void proximity() {
+    void proximity() {
         final String LOCATION = "Edinburgh";
         final Double PROXIMITY = 6.0;
 
@@ -334,7 +343,7 @@ public class ProductSearchTest {
     }
 
     @Test
-    public void coordinates() {
+    void coordinates() {
         String url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .sortBy(null)
                 .build();
@@ -345,7 +354,8 @@ public class ProductSearchTest {
     }
 
     @Test
-    public void fromProductSearch() {
+    @Disabled("TODO - This test has not being completed")
+    void fromProductSearch() {
         //TODO Mock ProductSearchObject
     }
 

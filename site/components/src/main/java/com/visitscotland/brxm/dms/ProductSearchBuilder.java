@@ -2,6 +2,7 @@ package com.visitscotland.brxm.dms;
 
 import com.visitscotland.brxm.beans.ProductsSearch;
 import com.visitscotland.brxm.beans.dms.LocationObject;
+import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,6 +80,9 @@ public class ProductSearchBuilder {
 
     private LocationLoader locationLoader;
 
+    //TODO private final
+    Properties properties = new Properties();
+
     public ProductSearchBuilder(){
         this.order = Order.NONE;
         this.proximity = DEFAULT_PROXIMITY;
@@ -97,7 +101,7 @@ public class ProductSearchBuilder {
     //TODO Convert to Languages
     public ProductSearchBuilder locale(Locale locale){
         if (locale != null) {
-            for (Locale loc : Properties.locales) {
+            for (Locale loc : Language.getLocales()) {
                 if (locale.equals(loc) || (loc != null && locale.getLanguage().equals(loc.getLanguage()))) {
                     this.locale = loc;
                     return this;
@@ -248,7 +252,7 @@ public class ProductSearchBuilder {
         if (productTypes == null){
             throw new RuntimeException("No types have been defined for this search");
         }
-        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH, Properties.VS_DMS_SERVICE==null?"":Properties.VS_DMS_SERVICE, path));
+        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH, properties.getDmsHost()==null?"":properties.getDmsHost(), path));
     }
 
     //TODO Test
@@ -256,7 +260,7 @@ public class ProductSearchBuilder {
         if (productTypes == null){
             throw new RuntimeException("No types have been defined for this search");
         }
-        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH_DATA_MAP, Properties.VS_DMS_SERVICE==null?"":Properties.VS_DMS_SERVICE));
+        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH_DATA_MAP, properties.getDmsHost()==null?"":properties.getDmsHost()));
     }
 
     /**

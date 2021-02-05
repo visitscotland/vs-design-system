@@ -35,6 +35,7 @@ public class ICentreFactory {
     private final DMSDataService dmsData;
     private final LinkModulesFactory linkFactory;
     private final ResourceBundleService bundle;
+    private final Properties properties = new Properties();
 
 
     public ICentreFactory() {
@@ -164,7 +165,7 @@ public class ICentreFactory {
                 String label = child.get(DMSConstants.MapSearch.PROPERTIES).get(DMSConstants.MapSearch.NAME).asText();
                 String id = child.get(DMSConstants.MapSearch.PROPERTIES).get(DMSConstants.MapSearch.ID).asText();
                 String languagePath = Language.getLanguageForLocale(locale).getDMSPathVariable();
-                String url = Properties.VS_DMS_SERVICE + DataServiceUtils.getProductURL(label, id, DMSConstants.TYPE_SERVICES, languagePath);
+                String url = properties.getDmsHost() + DataServiceUtils.getProductURL(label, id, DMSConstants.TYPE_SERVICES, languagePath);
                 vicList.add(new FlatLink(label, url, LinkType.INTERNAL));
             }
         }

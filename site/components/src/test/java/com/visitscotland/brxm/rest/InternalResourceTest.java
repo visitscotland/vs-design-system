@@ -32,6 +32,8 @@ class InternalResourceTest {
     @Mock
     CommonUtils utils;
 
+    @Mock
+    Properties properties;
 
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
     HttpServletRequest request;
@@ -104,12 +106,14 @@ class InternalResourceTest {
     @Test
     @DisplayName("fragment - The fragment locale is being processed")
     void fragment_buildUrl_locale() throws IOException {
+        service.properties = new Properties();
+//        when(properties.getLocalhost()).thenReturn("http://localhost:8080");
         ArgumentCaptor<String> urlCaptor = ArgumentCaptor.forClass(String.class);
         when(utils.requestUrl(urlCaptor.capture())).thenReturn(MOCK_RESPONSE);
         when(utils.buildQueryString(any(), any())).thenReturn("");
 
         service.fragment(request,"f1", null,null,  "es").getEntity().toString();
-        assertEquals(Properties.LOCALHOST + "/es/internal", urlCaptor.getValue());
+        assertEquals("http://localhost:8080/site/es/internal", urlCaptor.getValue());
     }
 
     @Test

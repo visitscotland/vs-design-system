@@ -28,6 +28,7 @@ public class LinkService {
     private final DMSDataService dmsData;
     private final ResourceBundleService resourceBundle;
     private final HippoUtilsService utils;
+    private final Properties properties = new Properties();
 
     public LinkService() {
         this(new DMSDataService(), new ResourceBundleService(), new HippoUtilsService());
@@ -58,7 +59,7 @@ public class LinkService {
                         dmsLink.getProduct(), item.getPath()));
             } else if (product != null) {
                 //TODO build the link for the DMS product properly
-                return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), Properties.VS_DMS_SERVICE + product.get(URL).asText(), LinkType.INTERNAL);
+                return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL);
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
@@ -93,7 +94,7 @@ public class LinkService {
                 CommonUtils.contentIssue("The product id '%s' does not exist but is linked ",
                         ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
             } else {
-                return Properties.VS_DMS_SERVICE + product.get(URL).asText();
+                return properties.getDmsHost() + product.get(URL).asText();
             }
         } else if (link.getLinkType() instanceof ExternalLink) {
             return ((ExternalLink) link.getLinkType()).getLink();
@@ -120,7 +121,7 @@ public class LinkService {
         if (Contract.isEmpty(url)) {
             return null;
         } else if (url.startsWith("/") || url.contains("localhost") || url.contains("visitscotland.com")
-                || url.startsWith(Properties.VS_DMS_SERVICE)) {
+                || url.startsWith(properties.getDmsHost())) {
             return LinkType.INTERNAL;
         }
 

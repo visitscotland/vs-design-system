@@ -15,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -43,7 +44,7 @@ public class CommonUtils {
     public static String request(String url) throws IOException {
 
         if (((HttpURLConnection) new URL(url).openConnection()).getResponseCode() < 400) {
-            try (final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), Properties.DMS_ENCODING))) {
+            try (final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), StandardCharsets.UTF_8))) {
                 final StringBuilder sb = new StringBuilder();
                 int cp;
 

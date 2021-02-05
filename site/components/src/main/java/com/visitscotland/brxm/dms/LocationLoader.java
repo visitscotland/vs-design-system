@@ -3,6 +3,7 @@ package com.visitscotland.brxm.dms;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.dms.LocationObject;
+import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,7 @@ public class LocationLoader {
 
     private static LocationLoader instance;
 
-    private final Map<Locale, Map<String, LocationObject>> locations = new HashMap<>();
+    private final Map<Language, Map<String, LocationObject>> locations = new HashMap<>();
 
     private final Map<String, String> locationToId = new HashMap<>();
 
@@ -40,12 +41,7 @@ public class LocationLoader {
     }
 
     public LocationObject getLocation(String location, Locale locale){
-
-        if (Properties.locales.contains(locale)){
-            return locations.get(locale).get(locationToId.get(location));
-        } else {
-            return locations.get(null).get(locationToId.get(location));
-        }
+        return locations.get(Language.getLanguageForLocale(locale)).get(locationToId.get(location));
     }
 
     /**
@@ -55,7 +51,7 @@ public class LocationLoader {
      */
     public List<LocationObject> getLocationsByLevel(String... levels){
         List<LocationObject> locationList = new ArrayList<>();
-        for (LocationObject obj : locations.get(null).values()){
+        for (LocationObject obj : locations.get(Language.ENGLISH).values()){
             if (levels!=null && levels.length>0){
                 for (String level : levels){
                     if (obj.getTypes().contains(level)){
@@ -86,13 +82,13 @@ public class LocationLoader {
     private void init() {
         synchronized (LocationLoader.class) {
             if (locationToId.size() == 0) {
-                for (Locale locale : com.visitscotland.brxm.utils.Properties.locales) {
+                for (Language lang : Language.values()) {
                     Map<String, LocationObject> locationsMap = new HashMap<>();
                     try {
-                        List<LocationObject> locationList = deserialize(request(locale));
+                        List<LocationObject> locationList = deserialize(request(lang.getLocale()));
 
                         //if the locationToId map is empty and the locale is null. Both lists are populated simultaneously
-                        if (locationToId.size() == 0 && locale == null) {
+                        if (locationToId.size() == 0 && lang == Language.ENGLISH) {
                             for (LocationObject location : locationList) {
                                 locationToId.put(location.getName(), location.getId());
                                 locationsMap.put(location.getId(), location);
@@ -104,12 +100,12 @@ public class LocationLoader {
                         }
 
                     } catch (IOException e) {
-                        logger.warn("Location List couldn't been loaded for the locale {}", locale);
+                        logger.warn("Location List couldn't been loaded for the locale {}", lang.getLocale());
                     } catch (Exception e) {
                         logger.error("Unexpected exception ", e);
                     }
 
-                    locations.put(locale, locationsMap);
+                    locations.put(lang, locationsMap);
                 }
             }
         }
@@ -130,28 +126,6 @@ public class LocationLoader {
             return proxy.request(DMSConstants.META_LOCATIONS, locale);
         }
     }
-
-//    /**
-//     * Reads a page byte per byte to ensure that the encoding used is the same as the original
-//     *
-//     * @param url Requested URL
-//     *
-//     * @return HTML Fragment
-//     */
-//    private String requestPage(String url) {
-//        StringBuilder sb = new StringBuilder();
-//        try (InputStream is = new URL(url).openStream()) {
-//            int c;
-//            while ((c = is.read()) != -1) {
-//                sb.append((char) c);
-//            }
-//            return sb.toString();
-//        } catch (Exception e) {
-//            logger.error("Error while loading {}: {}", url, e.getMessage(), e);
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
 
     /**
      * Deserialize the List of elements in a list of Locations

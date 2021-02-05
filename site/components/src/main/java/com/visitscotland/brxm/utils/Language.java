@@ -1,6 +1,10 @@
 package com.visitscotland.brxm.utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public enum Language {
     ENGLISH(Locale.UK),
@@ -25,6 +29,15 @@ public enum Language {
             }
         }
         return ENGLISH;
+    }
+
+    /**
+     * Return the list of locales
+     * @return
+     */
+    public static List<Locale> getLocales(){
+        return Arrays.stream(values()).map(language -> language.locale)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public Locale getLocale(){

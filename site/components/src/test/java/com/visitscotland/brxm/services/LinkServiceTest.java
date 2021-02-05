@@ -41,6 +41,9 @@ class LinkServiceTest {
     @Mock
     private HippoUtilsService utils;
 
+    @Mock
+    private Properties properties;
+
     @BeforeEach
     public void init() {
         service = new LinkService(dmsData, resourceBundle, utils);
@@ -220,11 +223,12 @@ class LinkServiceTest {
     @Test
     @DisplayName("Identifies internal URL patterns")
     void getType() {
+        when(properties.getDmsHost()).thenReturn("//dms");
         assertEquals(LinkType.INTERNAL, service.getType("http://www.visitscotland.com/something"));
         assertEquals(LinkType.INTERNAL, service.getType("http://feature.visitscotland.com"));
         assertEquals(LinkType.INTERNAL, service.getType("http://localhost:8080/site"));
         assertEquals(LinkType.INTERNAL, service.getType("http://localhost:1234/site"));
-        assertEquals(LinkType.INTERNAL, service.getType(Properties.VS_DMS_SERVICE + "/info/edinburgh-castle-p00001"));
+        assertEquals(LinkType.INTERNAL, service.getType(properties.getDmsHost() + "/info/edinburgh-castle-p00001"));
         assertEquals(LinkType.INTERNAL, service.getType("http://future.visitscotland.com"));
 
         assertEquals(LinkType.EXTERNAL, service.getType("http://www.edinburgh.com/"));

@@ -83,6 +83,7 @@ public class FlatImage extends IssueList {
         }
     }
 
+    @Deprecated
     public FlatImage(InstagramImage instagramLink, JsonNode instagram, Locale locale) {
         this.externalImage =  instagram.get("thumbnail_url").asText();
         this.credit = instagram.get("author_name").asText();
