@@ -42,9 +42,10 @@ export default {
     }
 
     .dropdown-item {
-        padding: $spacer-4;
+        padding: $spacer-3;
         color: white;
         text-decoration: none;
+        line-height: $line-height-s;
 
         &:hover {
             background: $color-purple-shade-2;
