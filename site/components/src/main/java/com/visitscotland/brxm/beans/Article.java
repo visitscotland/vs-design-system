@@ -30,7 +30,6 @@ public class Article extends BaseDocument {
 
     @HippoEssentialsGenerated(internalName = "visitscotland:paragraph")
     public List<ArticleSection> getParagraph() {
-        return getChildBeansByName("visitscotland:paragraph",
-                ArticleSection.class);
+        return getChildBeansByName("visitscotland:paragraph", ArticleSection.class);
     }
 }

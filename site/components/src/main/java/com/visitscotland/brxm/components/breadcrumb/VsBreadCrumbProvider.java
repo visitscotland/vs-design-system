@@ -14,9 +14,11 @@ import org.onehippo.forge.breadcrumb.components.BreadcrumbProvider;
 import org.onehippo.forge.breadcrumb.om.BreadcrumbItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class VsBreadCrumbProvider extends BreadcrumbProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(VsBreadCrumbProvider.class.getName());

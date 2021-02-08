@@ -4,11 +4,11 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import java.util.List;
 
-public class LongContentModule extends Module {
+public class ArticleModule extends Module {
     private FlatImage image;
     private String title;
     private HippoHtml introduction;
-    private List<FlatLongContentSection> sections;
+    private List<ArticleModuleSection> sections;
 
     public FlatImage getImage() {
         return image;
@@ -34,11 +34,11 @@ public class LongContentModule extends Module {
         this.introduction = introduction;
     }
 
-    public List<FlatLongContentSection> getSections() {
+    public List<ArticleModuleSection> getSections() {
         return sections;
     }
 
-    public void setSections(List<FlatLongContentSection> sections) {
+    public void setSections(List<ArticleModuleSection> sections) {
         this.sections = sections;
     }
 }
