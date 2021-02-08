@@ -147,16 +147,9 @@ export default {
 <docs>
   ```jsx
     <VsGlobalMenu
-        dropdown-label="I nostri siti"
+        dropdown-label="Our websites"
         active-site="https://www.visitscotland.com/"
     >
-        <span
-            slot="second-menu-item"
-            style="min-width: 50px;"
-        >
-            User... (Not you?)
-        </span>
-
         <span
             slot="third-menu-item"
             style="min-width: 50px;"
