@@ -40,10 +40,6 @@ public class PageTemplateBuilder {
     private final IKnowFactory iKnowFactory;
     private final ArticleFactory articleFactory;
 
-//    public PageTemplateBuilder() {
-//        this(new DocumentUtils(), new LinkModulesFactory(), new ICentreFactory(), new IKnowFactory(), new ArticleFactory());
-//    }
-
     public PageTemplateBuilder(DocumentUtils documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;

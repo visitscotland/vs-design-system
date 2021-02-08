@@ -15,7 +15,7 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
     public DestinationContentComponent(){
         logger.debug("DestinationContentComponent initialized");
-        this.builder = SpringContext.getPageTemplateBuilder();
+        this.builder = SpringContext.getBean(PageTemplateBuilder.class);
     }
 
     @Override

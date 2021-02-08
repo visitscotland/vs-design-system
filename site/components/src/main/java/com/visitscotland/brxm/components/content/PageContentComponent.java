@@ -46,10 +46,10 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     private LinkModulesFactory linksFactory;
 
     public PageContentComponent(){
-        bundle = SpringContext.getResourceBundleService();
-        linksService = SpringContext.getLinkService();
-        locationLoader = SpringContext.getLocationLoader();
-        linksFactory = SpringContext.getLinkModulesFactory();
+        bundle = SpringContext.getBean(ResourceBundleService.class);
+        linksService = SpringContext.getBean(LinkService.class);
+        locationLoader = SpringContext.getBean(LocationLoader.class);
+        linksFactory = SpringContext.getBean(LinkModulesFactory.class);
     }
 
     @Override

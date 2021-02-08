@@ -15,7 +15,7 @@ public class GeneralContentComponent extends PageContentComponent<Destination> {
 
     public GeneralContentComponent(){
         logger.debug("GeneralContentComponent initialized");
-        this.builder = SpringContext.getPageTemplateBuilder();
+        this.builder = SpringContext.getBean(PageTemplateBuilder.class);
     }
 
     @Override

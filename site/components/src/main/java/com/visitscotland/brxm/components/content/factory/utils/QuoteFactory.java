@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
+@Component
 public class QuoteFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(QuoteFactory.class);

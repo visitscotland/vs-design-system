@@ -12,7 +12,7 @@ public class InternalComponent extends CommonComponent {
     private InternalParameterProcessor processor;
 
     public InternalComponent() {
-        processor = SpringContext.getInternalParameterProcessor();
+        processor = SpringContext.getBean(InternalParameterProcessor.class);
     }
 
     @Override

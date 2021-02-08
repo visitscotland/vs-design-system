@@ -13,7 +13,7 @@ import java.util.*;
 
 //TODO Test?
 //TOTO convert to Service
-
+@Component
 public class LocationLoader {
 
     private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class);
@@ -133,28 +133,6 @@ public class LocationLoader {
             return proxy.request(DMSConstants.META_LOCATIONS, locale);
         }
     }
-
-//    /**
-//     * Reads a page byte per byte to ensure that the encoding used is the same as the original
-//     *
-//     * @param url Requested URL
-//     *
-//     * @return HTML Fragment
-//     */
-//    private String requestPage(String url) {
-//        StringBuilder sb = new StringBuilder();
-//        try (InputStream is = new URL(url).openStream()) {
-//            int c;
-//            while ((c = is.read()) != -1) {
-//                sb.append((char) c);
-//            }
-//            return sb.toString();
-//        } catch (Exception e) {
-//            logger.error("Error while loading {}: {}", url, e.getMessage(), e);
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
 
     /**
      * Deserialize the List of elements in a list of Locations
