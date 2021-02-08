@@ -14,7 +14,6 @@ import java.util.*;
 //TODO Test?
 //TOTO convert to Service
 
-@Component
 public class LocationLoader {
 
     private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class);
