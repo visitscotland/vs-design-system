@@ -2,12 +2,11 @@ package com.visitscotland.brxm.components.content.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.beans.ICentre;
-import com.visitscotland.brxm.beans.capabilities.Linkable;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.ICentreModule;
 import com.visitscotland.brxm.beans.mapping.LinkType;
-import com.visitscotland.brxm.beans.mapping.megalinks.EnhancedLink;
+import com.visitscotland.brxm.components.content.factory.utils.QuoteFactory;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
@@ -19,12 +18,14 @@ import com.visitscotland.utils.Contract;
 import com.visitscotland.utils.DataServiceUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+@Component
 public class ICentreFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ICentreFactory.class);
@@ -33,22 +34,20 @@ public class ICentreFactory {
 
     private final HippoUtilsService utils;
     private final DMSDataService dmsData;
-    private final LinkModulesFactory linkFactory;
     private final ResourceBundleService bundle;
-    Properties properties = new Properties();
+    private final QuoteFactory quoteEmbedder;
+    private final ImageFactory imageFactory;
+    private final Properties properties;
 
 
-    public ICentreFactory() {
-        this(new HippoUtilsService(), new DMSDataService(), new LinkModulesFactory(), new ResourceBundleService());
-    }
-
-    public ICentreFactory(HippoUtilsService utils, DMSDataService dmsData, LinkModulesFactory linksFactory, ResourceBundleService bundle) {
+    public ICentreFactory(HippoUtilsService utils, DMSDataService dmsData, ResourceBundleService bundle, QuoteFactory quoteEmbedder, ImageFactory image, Properties properties) {
         this.utils = utils;
         this.dmsData = dmsData;
-        this.linkFactory = linksFactory;
         this.bundle = bundle;
+        this.quoteEmbedder = quoteEmbedder;
+        this.imageFactory = image;
+        this.properties = properties;
     }
-
 
     /**
      * Builds an iCentre module when there is enough data to build it or null when there is not.
@@ -66,42 +65,28 @@ public class ICentreFactory {
 
         //Populate Title
         if (Contract.isEmpty(doc.getTitle())) {
-            module.setTitle(bundle.getResourceBundle(BUNDLE_ID,"icentre.title.default", locale));
+            module.setTitle(bundle.getResourceBundle(BUNDLE_ID, "icentre.title.default", locale));
         } else {
             module.setTitle(doc.getTitle());
         }
 
         //Populate Description
         if (module.getLinks().size() == 1) {
-            module.setDescription(bundle.getResourceBundle(BUNDLE_ID,"icentre.description.singleVic", locale));
+            module.setDescription(bundle.getResourceBundle(BUNDLE_ID, "icentre.description.singleVic", locale));
         } else {
-            module.setDescription(bundle.getResourceBundle(BUNDLE_ID,"icentre.description.multipleVic", locale));
+            module.setDescription(bundle.getResourceBundle(BUNDLE_ID, "icentre.description.multipleVic", locale));
         }
 
         //Populate Image
         if (doc.getImage() != null) {
-            module.setImage(new FlatImage(doc.getImage(), locale));
+            module.setImage(imageFactory.createImage(doc.getImage(), module, locale));
         }
 
         //Quote
         if (doc.getQuote() != null) {
-            module.setQuote(doc.getQuote().getQuote());
-            module.setQuoteAuthorName(doc.getQuote().getAuthor());
-            module.setQuoteAuthorTitle(doc.getQuote().getRole());
-
-            if (doc.getQuote().getImage() != null) {
-                module.setQuoteImage(new FlatImage(doc.getQuote().getImage(), locale));
-            }
-
-            if (doc.getQuote().getProduct() instanceof Linkable) {
-                EnhancedLink link = linkFactory.createEnhancedLink((Linkable) doc.getQuote().getProduct(), locale, false);
-                module.setQuoteLink(link);
-                if (module.getImage() == null) {
-                    module.setImage(link.getImage());
-                }
-            } else if (doc.getQuote().getProduct() != null){
-                //TODO: Content issue
-                logger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
+            module.setQuote(quoteEmbedder.getQuote(doc.getQuote(), module, locale));
+            if (module.getImage() == null && module.getQuote().getLink() != null && module.getQuote().getLink().getImage() != null) {
+                module.setImage(module.getQuote().getLink().getImage());
             }
         }
 
@@ -113,8 +98,8 @@ public class ICentreFactory {
             //TODO: Get CMS Image
 
             try {
-                image.setCmsImage(utils.getDocumentFromNode(bundle.getResourceBundle(BUNDLE_ID,"icentre.image.default", locale)));
-            } catch (Exception e ) {
+                image.setCmsImage(utils.getDocumentFromNode(bundle.getResourceBundle(BUNDLE_ID, "icentre.image.default", locale)));
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             module.setImage(image);
@@ -123,17 +108,18 @@ public class ICentreFactory {
         return module;
     }
 
+
     /**
      * Get the list of links for a location and a locale. When the location is not provided a link to the iCentres page
      * would be returned
      */
-    private List<FlatLink> getLinks (String location, Locale locale){
+    private List<FlatLink> getLinks(String location, Locale locale) {
         if (!Contract.isEmpty(location)) {
             return getVicList(location, locale);
         } else {
             //TODO: Create labels
-            String url = bundle.getResourceBundle(BUNDLE_ID,"icentre.description.link",  locale);
-            String text = bundle.getResourceBundle(BUNDLE_ID,"icentre.description.link.text",  locale);
+            String url = bundle.getResourceBundle(BUNDLE_ID, "icentre.description.link", locale);
+            String text = bundle.getResourceBundle(BUNDLE_ID, "icentre.description.link.text", locale);
 
             return Collections.singletonList(new FlatLink(text, url, LinkType.INTERNAL));
         }
@@ -141,11 +127,11 @@ public class ICentreFactory {
 
     /**
      * Queries the DMS and return a list of iCentre for the specific location
-     *
+     * <p>
      * The location must be specified
      */
-    private List<FlatLink> getVicList (String location, Locale locale){
-        if (Contract.isNull(location)){
+    private List<FlatLink> getVicList(String location, Locale locale) {
+        if (Contract.isNull(location)) {
             return Collections.emptyList();
         }
 
@@ -161,7 +147,7 @@ public class ICentreFactory {
         for (JsonNode child : node) {
             if (child.has(DMSConstants.MapSearch.PROPERTIES) &&
                     child.get(DMSConstants.MapSearch.PROPERTIES).has(DMSConstants.MapSearch.NAME) &&
-                    child.get(DMSConstants.MapSearch.PROPERTIES).has(DMSConstants.MapSearch.ID)){
+                    child.get(DMSConstants.MapSearch.PROPERTIES).has(DMSConstants.MapSearch.ID)) {
                 String label = child.get(DMSConstants.MapSearch.PROPERTIES).get(DMSConstants.MapSearch.NAME).asText();
                 String id = child.get(DMSConstants.MapSearch.PROPERTIES).get(DMSConstants.MapSearch.ID).asText();
                 String languagePath = Language.getLanguageForLocale(locale).getDMSPathVariable();

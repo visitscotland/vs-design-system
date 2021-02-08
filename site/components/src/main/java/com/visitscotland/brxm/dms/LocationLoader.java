@@ -3,16 +3,19 @@ package com.visitscotland.brxm.dms;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.dms.LocationObject;
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.*;
 
 //TODO Test?
 //TOTO convert to Service
+@Component
 public class LocationLoader {
 
     private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class);
@@ -25,57 +28,11 @@ public class LocationLoader {
 
     private DMSProxy proxy;
 
-    private LocationLoader(){
-        proxy = new DMSProxy();
-
+    public LocationLoader(DMSProxy proxy){
+        this.proxy = proxy;
         init();
     }
 
-    public static LocationLoader getInstance(){
-        if (instance == null){
-            instance = new LocationLoader();
-        } else if (instance.locationToId.size() == 0){
-            instance.init();
-        }
-        return instance;
-    }
-
-    public LocationObject getLocation(String location, Locale locale){
-        return locations.get(Language.getLanguageForLocale(locale)).get(locationToId.get(location));
-    }
-
-    /**
-     *
-     * @param levels
-     * @return
-     */
-    public List<LocationObject> getLocationsByLevel(String... levels){
-        List<LocationObject> locationList = new ArrayList<>();
-        for (LocationObject obj : locations.get(Language.ENGLISH).values()){
-            if (levels!=null && levels.length>0){
-                for (String level : levels){
-                    if (obj.getTypes().contains(level)){
-                        locationList.add(obj);
-                        break;
-                    }
-                }
-            }else{
-                locationList.add(obj);
-            }
-        }
-        if (locationList.size() == 0){
-            logger.warn("No objects matched with the types. It is possible that the types weren't loaded from the endpoint.");
-        }
-
-        Collections.sort(locationList, Comparator.comparing(LocationObject::getName));
-
-        return  locationList;
-    }
-
-    private void clear(){
-        locationToId.clear();
-        locations.clear();
-    }
     /**
      * Initialize maps
      */
@@ -112,6 +69,58 @@ public class LocationLoader {
     }
 
     /**
+     * TODO: Check: Is this used by FreeMarker?
+     *
+     * @deprecated use SpringContext.getBean (LocationLoader.class) instead
+     */
+    @Deprecated
+    public static LocationLoader getInstance(){
+        if (instance == null){
+            instance = SpringContext.getBean(LocationLoader.class);
+        } else if (instance.locationToId.size() == 0){
+            instance.init();
+        }
+        return instance;
+    }
+
+    public LocationObject getLocation(String location, Locale locale){
+        return locations.get(Language.getLanguageForLocale(locale)).get(locationToId.get(location));
+    }
+
+    /**
+     *
+     * @param levels
+     * @return
+     */
+    public List<LocationObject> getLocationsByLevel(String... levels){
+        List<LocationObject> locationList = new ArrayList<>();
+        for (LocationObject obj : locations.get(Language.ENGLISH).values()){
+            if (levels!=null && levels.length>0){
+                for (String level : levels){
+                    if (obj.getTypes().contains(level)){
+                        locationList.add(obj);
+                        break;
+                    }
+                }
+            }else{
+                locationList.add(obj);
+            }
+        }
+        if (locationList.isEmpty()){
+            logger.warn("No objects matched with the types. It is possible that the types weren't loaded from the endpoint.");
+        }
+
+        Collections.sort(locationList, Comparator.comparing(LocationObject::getName));
+
+        return  locationList;
+    }
+
+    private void clear(){
+        locationToId.clear();
+        locations.clear();
+    }
+
+    /**
      * Request the the resource taking into account the language.
      *
      * @param locale: Specific locale for the fragment or null if the locale is English (default locale)
@@ -136,15 +145,15 @@ public class LocationLoader {
     private List<LocationObject> deserialize(String data) throws IOException {
         ObjectMapper jsonMapper = new ObjectMapper();
         JsonNode dataObject = jsonMapper.readTree(data);
-        List<LocationObject> locations = new ArrayList<>();
+        List<LocationObject> objects = new ArrayList<>();
 
         if (!dataObject.has("data")){
             throw new IOException("No data field found");
         }
 
         for (JsonNode elm: dataObject.get("data")){
-            locations.add(jsonMapper.readValue(elm.toString(), LocationObject.class));
+            objects.add(jsonMapper.readValue(elm.toString(), LocationObject.class));
         }
-        return locations;
+        return objects;
     }
 }

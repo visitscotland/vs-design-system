@@ -3,10 +3,12 @@ package com.visitscotland.brxm.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.InstagramImage;
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,14 +24,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Map;
 
+@Component
 public class CommonUtils {
 
-    private final Logger logger = LoggerFactory.getLogger(CommonUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(CommonUtils.class);
 
     //TODO add message format for other languages
     //TODO the variable parameters is not in use!
     public static final String contentIssue(String message, Object... parameters) {
-        return String.format("- [CONTENT] - " + message, parameters);
+        String logMessage = "- [CONTENT] - " + message;
+        return String.format(logMessage, parameters);
     }
 
     /**
@@ -38,12 +42,15 @@ public class CommonUtils {
      * @param url
      * @return null if status code not 200 or 300
      * @throws IOException
-     * @deprecated Use the non-static version of this method.
+     * @deprecated Use requestUrl instead which is the non-static version of this method.
      */
     @Deprecated
     public static String request(String url) throws IOException {
-
-        if (((HttpURLConnection) new URL(url).openConnection()).getResponseCode() < 400) {
+        int responseCode = ((HttpURLConnection) new URL(url).openConnection()).getResponseCode();
+        if (responseCode < 400) {
+            if (responseCode >= 300){
+                logger.warn("The request for {} has responded with the Status code {}", url, responseCode);
+            }
             try (final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), StandardCharsets.UTF_8))) {
                 final StringBuilder sb = new StringBuilder();
                 int cp;
@@ -54,6 +61,8 @@ public class CommonUtils {
 
                 return sb.toString();
             }
+        } else {
+            logger.warn("The request for {} has responded with the Status code {}", url, responseCode);
         }
         return null;
     }
@@ -62,9 +71,13 @@ public class CommonUtils {
         return CommonUtils.request(url);
     }
 
+    /**
+     * @deprecated  Use ImageFactory.requestInstagramImageData(InstagramImage)
+     */
+    @Deprecated
     public static JsonNode getInstagramInformation(InstagramImage instagramLink) throws IOException {
         JsonNode response = null;
-        ResourceBundleService bundle = new ResourceBundleService();
+        ResourceBundleService bundle = SpringContext.getBean(ResourceBundleService.class);
         //TODO add the access token value for VS facebook account
         String accessToken = bundle.getResourceBundle("keys","tagram.accesstoken",  Locale.UK);
         URL instagramInformation = new URL("https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/" + instagramLink.getId()+"&access_token="+accessToken);
@@ -78,11 +91,17 @@ public class CommonUtils {
     }
 
 
-    //TODO this method returns the current open state and it could be affected by the cache, ask WEBOPS and move it to front end if needed
-    //TODO move to DMSDataService once this method need is confirmed
+
+    /**
+     * TODO this method returns the current open state and it could be affected by the cache, ask WEBOPS and move it to front end if needed
+     * TODO move to DMSDataService once this method need is confirmed
+     *
+     * @deprecated  This method is not in use at the moment. See TODOs
+     */
+    @Deprecated
     public static String currentOpenStatus(String starTime, String endTime, Locale locale) {
         final String ITINERARY_BUNDLE = "itinerary";
-        ResourceBundleService bundle = new ResourceBundleService();
+        ResourceBundleService bundle = SpringContext.getBean(ResourceBundleService.class);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");
         LocalTime starts = LocalTime.parse(starTime, formatter);
         LocalTime ends = LocalTime.parse(endTime, formatter);

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.DMSProxy;
+import com.visitscotland.brxm.translation.SpringContext;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.dataobjects.*;
@@ -26,7 +27,7 @@ import javax.jcr.Value;
 import java.io.IOException;
 import java.util.*;
 
-//TODO Make this testaable
+//TODO Make this testable
 public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade<JSONObject> {
 
     private static Logger log = LoggerFactory.getLogger(AbstractDMSPicker.class);
@@ -39,7 +40,7 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
 
     public AbstractDMSPicker(String type) {
         try {
-            dmsProxy = new DMSProxy();
+            dmsProxy = SpringContext.getBean(DMSProxy.class);
             docArray = new JSONArray();
             docArray.addAll(JSONArray.fromObject(deserialize(
                     request(type,null, productTypesForPSR(type)))));

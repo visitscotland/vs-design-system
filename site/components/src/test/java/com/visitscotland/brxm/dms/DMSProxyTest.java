@@ -43,7 +43,7 @@ class DMSProxyTest {
         DMSProxy.lastRegisteredFailure = null;
 
         //Overrides the method that defines that instances the connection
-        proxy = new DMSProxy() {
+        proxy = new DMSProxy(properties) {
             @Override
             protected HttpURLConnection openConnection(String url) {
                 return huc;
@@ -152,7 +152,7 @@ class DMSProxyTest {
         when(huc.getResponseCode()).thenThrow(new SocketTimeoutException());
 
         //Note: That some assertions are defined here in order to simplify the code
-        DMSProxy methodProxy = new DMSProxy() {
+        DMSProxy methodProxy = new DMSProxy(properties) {
             @Override
             protected HttpURLConnection openConnection(String url) {
                 Assertions.assertTrue(url.contains("?locale=fr") || url.contains("&locale=fr"));

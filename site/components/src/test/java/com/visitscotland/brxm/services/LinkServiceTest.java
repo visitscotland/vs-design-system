@@ -4,19 +4,19 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.LinkType;
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationContext;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.Locale;
 
@@ -44,11 +44,19 @@ class LinkServiceTest {
     @Mock
     private Properties properties;
 
+    @BeforeAll
+    public static void initContext(){
+        ApplicationContext context = mock(ApplicationContext.class, withSettings().lenient());
+        when(context.getBean(ProductSearchBuilder.class)).thenReturn(new ProductSearchBuilder());
+
+        new SpringContext().setApplicationContext(context);
+    }
+
+
+
     @BeforeEach
     public void init() {
-        service = new LinkService(dmsData, resourceBundle, utils);
-
-        service.properties = properties;
+        service = new LinkService(dmsData, resourceBundle, utils, properties);
     }
 
     @Test

@@ -6,9 +6,12 @@ import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.dms.LocationObject;
 import com.visitscotland.brxm.beans.mapping.*;
 import com.visitscotland.brxm.beans.mapping.Coordinates;
+import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.brxm.dms.LocationLoader;
+import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.CoordinateUtils;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -30,12 +33,17 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public final String DISTANCE = "distance";
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
-    private final ResourceBundleService resourceBundleService;
-    private final LocationLoader locationLoader;
+
+    private ResourceBundleService bundle;
+    private LocationLoader locationLoader;
+    private DMSDataService dmsData;
 
     public ItineraryContentComponent() {
-        resourceBundleService = new ResourceBundleService();
-        locationLoader = LocationLoader.getInstance();
+        logger.debug("ItineraryContentComponent initialized");
+
+        bundle = SpringContext.getBean(ResourceBundleService.class);
+        locationLoader = SpringContext.getBean(LocationLoader.class);
+        dmsData = SpringContext.getBean(DMSDataService.class);
     }
 
     @Override
@@ -117,7 +125,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                             logger.warn(CommonUtils.contentIssue("The product id does not match in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                         } else {
 
-                            FlatLink ctaLink = new FlatLink(resourceBundleService.getCtaLabel(dmsLink.getLabel(), request.getLocale()), product.get(URL).asText(), LinkType.INTERNAL);
+                            FlatLink ctaLink = new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), request.getLocale()), product.get(URL).asText(), LinkType.INTERNAL);
                             model.setCtaLink(ctaLink);
                             if (product.has(ADDRESS)) {
                                 JsonNode address = product.get(ADDRESS);
@@ -169,7 +177,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     visitDuration = externalLink.getTimeToExplore();
 
                     if (externalLink.getExternalLink() != null) {
-                        FlatLink ctaLink = new FlatLink(resourceBundleService.getCtaLabel(externalLink.getExternalLink().getLabel(), request.getLocale()),
+                        FlatLink ctaLink = new FlatLink(bundle.getCtaLabel(externalLink.getExternalLink().getLabel(), request.getLocale()),
                                 externalLink.getExternalLink().getLink(), LinkType.EXTERNAL);
                         model.setCtaLink(ctaLink);
                     }

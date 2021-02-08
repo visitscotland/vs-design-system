@@ -4,12 +4,13 @@ import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
-//TODO Rename to CMSProperties after
+@Component
 public class Properties {
 
     private static final Logger logger = LoggerFactory.getLogger(Properties.class.getName());
@@ -26,14 +27,6 @@ public class Properties {
     private static final String CONFIGURATION = "config.cms";
 
     private final ResourceBundleService bundle;
-
-    /**
-     * @deprecated To be removed once dependency injection is in place
-     */
-    @Deprecated
-    public Properties(){
-        this(new ResourceBundleService());
-    }
 
     public Properties(ResourceBundleService bundle){
         this.bundle = bundle;

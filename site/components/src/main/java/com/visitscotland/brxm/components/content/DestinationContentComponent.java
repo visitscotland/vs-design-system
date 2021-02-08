@@ -1,6 +1,7 @@
 package com.visitscotland.brxm.components.content;
 
 import com.visitscotland.brxm.beans.Destination;
+import com.visitscotland.brxm.cfg.SpringContext;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
@@ -10,10 +11,11 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
     private static final Logger logger = LoggerFactory.getLogger(DestinationContentComponent.class);
 
-    PageTemplateBuilder builder;
+    private PageTemplateBuilder builder;
 
-    public DestinationContentComponent() {
-        builder = new PageTemplateBuilder();
+    public DestinationContentComponent(){
+        logger.debug("DestinationContentComponent initialized");
+        this.builder = SpringContext.getBean(PageTemplateBuilder.class);
     }
 
     @Override

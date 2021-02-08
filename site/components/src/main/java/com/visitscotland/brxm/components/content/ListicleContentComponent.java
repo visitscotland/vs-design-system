@@ -7,6 +7,8 @@ import com.visitscotland.brxm.beans.mapping.Coordinates;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.FlatListicle;
+import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.utils.CommonUtils;
@@ -24,12 +26,16 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
     private static final Logger logger = LoggerFactory.getLogger(ListicleContentComponent.class);
 
-    LinkService linksService;
-    LocationLoader locationLoader;
+    private LinkService linksService;
+    private LocationLoader locationLoader;
+    private DMSDataService dmsData;
 
     public ListicleContentComponent(){
-        linksService = new LinkService();
-        locationLoader = LocationLoader.getInstance();
+        logger.debug("ListicleContentComponent initialized");
+
+        linksService = SpringContext.getBean(LinkService.class);
+        locationLoader = SpringContext.getBean(LocationLoader.class);
+        dmsData = SpringContext.getBean(DMSDataService.class);
     }
 
     @Override
@@ -65,6 +71,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             model.setIndex(listicle.getDescOrder()?index--:index++);
 
             //Set the image
+            //TODO Use ImageFactory
             if (listicleItem.getListicleItemImage() != null) {
                 if (listicleItem.getListicleItemImage() instanceof InstagramImage) {
                     InstagramImage instagramLink = (InstagramImage) listicleItem.getListicleItemImage();

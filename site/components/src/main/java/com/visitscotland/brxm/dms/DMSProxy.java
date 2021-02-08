@@ -5,6 +5,7 @@ import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.*;
@@ -15,11 +16,10 @@ import java.util.Locale;
 /**
  * Proxies connections to the DMS and halts connections for DMS when there is low availability
  */
+@Component
 public class DMSProxy {
 
     private static final Logger logger = LoggerFactory.getLogger(DMSProxy.class);
-    // TODO private final
-    Properties properties = new Properties();
 
     static final String HEADER_TOKEN = "token";
 
@@ -27,6 +27,13 @@ public class DMSProxy {
      * Registers the time of the last failure and blocks subsequent requests
      */
     static Long lastRegisteredFailure = null;
+
+    // TODO private final
+    Properties properties;
+
+    public DMSProxy(Properties properties){
+        this.properties = properties;
+    }
 
 
     /**

@@ -2,48 +2,50 @@ package com.visitscotland.brxm.components.content;
 
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.mapping.*;
+import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.SingleImageLinksModule;
+import com.visitscotland.brxm.components.content.factory.ArticleFactory;
 import com.visitscotland.brxm.components.content.factory.ICentreFactory;
 import com.visitscotland.brxm.components.content.factory.IKnowFactory;
 import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
-import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.utils.DocumentUtils;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.MissingResourceException;
-
+//TODO Move to utils
+@Component
 public class PageTemplateBuilder {
 
     private static final Logger logger = LoggerFactory.getLogger(PageTemplateBuilder.class);
 
-    private final LinkModulesFactory linksFactory;
-    private final ICentreFactory iCentreFactory;
-    private final IKnowFactory iKnowFactory;
-    private final DocumentUtils documentUtils;
-
+    //Static Constant
     static final String INTRO_THEME = "introTheme";
     static final String PAGE_ITEMS = "pageItems";
     static final String[] themes = {"theme1", "theme2", "theme3"};
     static final String[] alignment = {"right", "left"};
     static final String NEUTRAL_THEME = themes[1];
 
+    //Utils
+    private final DocumentUtils documentUtils;
+    //Factories
+    private final LinkModulesFactory linksFactory;
+    private final ICentreFactory iCentreFactory;
+    private final IKnowFactory iKnowFactory;
+    private final ArticleFactory articleFactory;
 
-    public PageTemplateBuilder() {
-        this(new LinkModulesFactory(), new ICentreFactory(), new IKnowFactory(), new DocumentUtils());
-    }
-
-    public PageTemplateBuilder(LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, DocumentUtils documentUtils) {
+    public PageTemplateBuilder(DocumentUtils documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
         this.documentUtils = documentUtils;
+        this.articleFactory = article;
     }
 
 
@@ -64,20 +66,9 @@ public class PageTemplateBuilder {
                 if (item instanceof Megalinks) {
                     processMegalinks(request, page, (Megalinks) item);
                 } else if (item instanceof TourismInformation) {
-                    TourismInformation touristInfo = (TourismInformation) item;
-
-                    ICentreModule iCentreModule = iCentreFactory.getModule(touristInfo.getICentre(), request.getLocale(), location);
-
-                    IKnowModule iKnowModule = iKnowFactory.getIKnowModule(touristInfo.getIKnow(), location, request.getLocale());
-
-                    if (iCentreModule != null) {
-                        iCentreModule.setHippoBean(item);
-                        page.modules.add(iCentreModule);
-                    }
-                    iKnowModule.setHippoBean(item);
-                    page.modules.add(iKnowModule);
+                    processTouristInformation(request,page, (TourismInformation) item, location);
                 } else if (item instanceof Article){
-                    page.modules.add(createLongContent(request, (Article) item));
+                    page.modules.add(articleFactory.getModule(request, (Article) item));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
@@ -153,51 +144,6 @@ public class PageTemplateBuilder {
         }else{
             request.setAttribute(INTRO_THEME, NEUTRAL_THEME);
         }
-    }
-
-    //TODO convert into factory
-    private Module createLongContent(HstRequest request, Article doc){
-        LongContentModule module = new LongContentModule();
-        List<FlatLongContentSection> sections = new ArrayList<>();
-        //TODO add media
-        if (doc.getImage() != null) {
-            module.setImage(new FlatImage(doc.getImage(), Locale.UK));
-        }
-        module.setTitle(doc.getTitle());
-        module.setIntroduction(doc.getCopy());
-        module.setHippoBean(doc);
-        module.setAnchor(doc.getAnchor());
-
-        for (ArticleSection section: doc.getParagraph()){
-            FlatLongContentSection flcs = new FlatLongContentSection();
-            flcs.setCopy(section.getCopy());
-            //TODO Convert MediaItem into image
-            //flcs.setImage(new FlatImage(section.getMediaItem(), request.getLocale()));
-
-            if (section.getMediaItem() instanceof Image) {
-                Image cmsImage = (Image) section.getMediaItem();
-                if (cmsImage != null) {
-                    FlatImage flatImage = new FlatImage(cmsImage,request.getLocale());
-                    flcs.setImage(flatImage);
-                }
-            }
-
-            // TODO Are we going to include Quotes?
-            if (section.getQuote()!= null){
-                flcs.setQuote(section.getQuote().getQuote());
-                flcs.setQuoteAuthorName(section.getQuote().getAuthor());
-                flcs.setQuoteAuthorTitle(section.getQuote().getRole());
-                if (section.getQuote().getImage() != null) {
-                    flcs.setQuoteImage(new FlatImage(section.getQuote().getImage(), request.getLocale()));
-                }
-                //TODO ADD Rethink about CTA
-//                flcs.setQuoteLink(section.getQuote().getProduct());
-            }
-            sections.add(flcs);
-        }
-        module.setSections(sections);
-
-        return module;
     }
 
     /**

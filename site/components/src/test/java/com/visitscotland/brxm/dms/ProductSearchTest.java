@@ -43,12 +43,15 @@ public class ProductSearchTest {
         validate(url);
     }
 
+    /**
+     * TODO BeforeAll?
+     */
     @Test()
     void productSearch() {
         //TODO
 //        Mockito.when(properties.getDmsHost()).thenReturn("http://172.28.81.65:8089");
         ProductSearchBuilder builder = new ProductSearchBuilder();
-        builder.properties = new Properties();
+//        builder.properties = new Properties();
         String url = builder.productTypes("cate").build();
 
         Assert.assertTrue(

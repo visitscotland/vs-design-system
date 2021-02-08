@@ -30,10 +30,6 @@ public class InternalResource extends AbstractResource {
     //TODO private final
     private final Properties properties;
 
-    public InternalResource() {
-        this(new CommonUtils(), new Properties());
-    }
-
     InternalResource(CommonUtils utils, Properties properties) {
         this.utils = utils;
         this.properties = properties;

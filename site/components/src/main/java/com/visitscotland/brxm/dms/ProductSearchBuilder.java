@@ -2,18 +2,27 @@ package com.visitscotland.brxm.dms;
 
 import com.visitscotland.brxm.beans.ProductsSearch;
 import com.visitscotland.brxm.beans.dms.LocationObject;
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
+import com.visitscotland.brxm.utils.VsException;
+import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.*;
 
+import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
+
 /**
  * @author jose.calcines
  */
+@Component
+@Scope(SCOPE_PROTOTYPE)
 public class ProductSearchBuilder {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductSearchBuilder.class.getName());
@@ -81,12 +90,14 @@ public class ProductSearchBuilder {
     private LocationLoader locationLoader;
 
     //TODO private final
-    Properties properties = new Properties();
+    private Properties properties;
 
+    //TODO Convert in a proper prototype as part of the work on Properties
     public ProductSearchBuilder(){
         this.order = Order.NONE;
         this.proximity = DEFAULT_PROXIMITY;
-        this.locationLoader = LocationLoader.getInstance();
+        this.locationLoader = SpringContext.getBean(LocationLoader.class);
+        this.properties = SpringContext.getBean(Properties.class);
     }
 
     /**
@@ -95,7 +106,23 @@ public class ProductSearchBuilder {
      * @return
      */
     public static ProductSearchBuilder newInstance(){
-        return new ProductSearchBuilder();
+        return SpringContext.getBean(ProductSearchBuilder.class);
+    }
+
+    public ProductSearchBuilder fromHippoBean(ProductsSearch ps){
+        if (ps.getProductType() != null) {
+            ProductSearchBuilder psb = SpringContext.getBean(ProductSearchBuilder.class);
+            psb.productTypes(ps.getProductType());
+            psb.location(ps.getLocation());
+            psb.category(ps.getDmsCategories());
+            psb.facility(ps.getDmsFacilities());
+            psb.award(ps.getDmsAwards());
+            psb.rating(ps.getOfficialrating());
+            psb.proximity(ps.getDistance());
+
+            return psb;
+        }
+        return null;
     }
 
     //TODO Convert to Languages
@@ -143,22 +170,6 @@ public class ProductSearchBuilder {
         }
 
         return this;
-    }
-
-    public ProductSearchBuilder fromHippoBean(ProductsSearch ps){
-        if (ps.getProductType() != null) {
-            ProductSearchBuilder psb = new ProductSearchBuilder();
-            psb.productTypes(ps.getProductType());
-            psb.location(ps.getLocation());
-            psb.category(ps.getDmsCategories());
-            psb.facility(ps.getDmsFacilities());
-            psb.award(ps.getDmsAwards());
-            psb.rating(ps.getOfficialrating());
-            psb.proximity(ps.getDistance());
-
-            return psb;
-        }
-        return null;
     }
 
     public ProductSearchBuilder category(String... categories){
@@ -250,7 +261,7 @@ public class ProductSearchBuilder {
      */
     public String build(){
         if (productTypes == null){
-            throw new RuntimeException("No types have been defined for this search");
+            throw new VsException("No types have been defined for this search");
         }
         return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH, properties.getDmsHost()==null?"":properties.getDmsHost(), path));
     }
@@ -258,7 +269,7 @@ public class ProductSearchBuilder {
     //TODO Test
     public String buildDataMap(){
         if (productTypes == null){
-            throw new RuntimeException("No types have been defined for this search");
+            throw new VsException("No types have been defined for this search");
         }
         return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH_DATA_MAP, properties.getDmsHost()==null?"":properties.getDmsHost()));
     }

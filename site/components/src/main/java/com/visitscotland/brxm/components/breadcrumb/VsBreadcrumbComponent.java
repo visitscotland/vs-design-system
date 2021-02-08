@@ -2,6 +2,7 @@ package com.visitscotland.brxm.components.breadcrumb;
 
 
 import com.visitscotland.brxm.beans.Page;
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -52,7 +53,7 @@ public class VsBreadcrumbComponent extends CommonComponent {
 
     public void init(ServletContext servletContext, ComponentConfiguration componentConfig) throws HstComponentException {
         super.init(servletContext, componentConfig);
-        this.bundle = new ResourceBundleService();
+        this.bundle = SpringContext.getBean(ResourceBundleService.class);
         this.breadcrumbProvider = new VsBreadCrumbProvider(this);
     }
 

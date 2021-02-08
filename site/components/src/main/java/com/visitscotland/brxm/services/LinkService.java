@@ -13,13 +13,14 @@ import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 
+@Component
 public class LinkService {
-
 
     private static final Logger logger = LoggerFactory.getLogger(LinkService.class);
 
@@ -28,17 +29,13 @@ public class LinkService {
     private final DMSDataService dmsData;
     private final ResourceBundleService resourceBundle;
     private final HippoUtilsService utils;
-    //TODO fix after dipoc is merged
-    Properties properties = new Properties();
+    private final Properties properties;
 
-    public LinkService() {
-        this(new DMSDataService(), new ResourceBundleService(), new HippoUtilsService());
-    }
-
-    public LinkService(DMSDataService dmsData, ResourceBundleService resourceBundle, HippoUtilsService utils) {
+    public LinkService(DMSDataService dmsData, ResourceBundleService resourceBundle, HippoUtilsService utils, Properties properties) {
         this.dmsData = dmsData;
         this.resourceBundle = resourceBundle;
         this.utils = utils;
+        this.properties = properties;
     }
 
     /**

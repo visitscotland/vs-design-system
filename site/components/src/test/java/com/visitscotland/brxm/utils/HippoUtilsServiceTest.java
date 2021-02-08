@@ -33,7 +33,8 @@ public class HippoUtilsServiceTest extends EasyMockSupport {
 
         replayAll();
 
-        utils.getResourceBundle(KEY,BUNDLE, null);
+        //This method has been removed
+        //utils.getResourceBundle(KEY,BUNDLE, null);
 
         verifyAll();
     }

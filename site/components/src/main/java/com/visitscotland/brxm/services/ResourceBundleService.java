@@ -7,35 +7,34 @@ import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-
+@Component
 public class ResourceBundleService {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceBundleService.class.getName());
 
     private static final String SERVICE_NAME = "ResourceBundle";
 
-    ResourceBundleRegistry resourceBundleRegistry;
-    final CommonUtils common;
+    ResourceBundleRegistry registry;
 
-    public ResourceBundleService() {
-        //Default Hippo Resource bundle Service
-        this(new CommonUtils());
-    }
+    private CommonUtils common;
 
-    ResourceBundleService (CommonUtils common){
+    public ResourceBundleService (CommonUtils common){
         this.common = common;
     }
 
+    // TODO: If The Spring Components are integrated in HST, this method might not be necessary
     private ResourceBundleRegistry getResourceBundleRegistry(){
-        if (resourceBundleRegistry== null){
-            resourceBundleRegistry = HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName());
+        if (registry== null){
+            registry = HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName());
         }
-        return  resourceBundleRegistry;
+        return registry;
     }
+
 
 
     /**
@@ -109,10 +108,9 @@ public class ResourceBundleService {
         ResourceBundle bundle = getResourceBundle(bundleName, locale);
 
         String value = null;
-        boolean fallback = false;
 
         if (bundle == null) {
-            logger.warn(String.format("The resource bundle '%s' does not exist" , bundleName));
+            logger.warn("The resource bundle '{}' does not exist", bundleName);
         } else {
             if(bundle.containsKey(key)) {
                 value = bundle.getString(key);
@@ -121,12 +119,11 @@ public class ResourceBundleService {
                     if (!Contract.isEmpty(value)) {
                         logContentIssue("The label key %s does not exists for the %s channel. Resource Bundle key %s", key, bundle.getLocale(), bundleName);
                     }
-                    fallback = true;
                 }
             }
             if (Contract.isEmpty(value) && !optional){
                 logContentIssue("The label key %s does not exists for the English channel. Resource Bundle key %s", key, bundleName);
-                logger.warn(String.format("The label key %s does not exists for the English channel. Resource Bundle key %s", key, bundleName));
+                logger.warn("The label key {} does not exists for the English channel. Resource Bundle key {}", key, bundleName);
             }
         }
 
@@ -149,6 +146,9 @@ public class ResourceBundleService {
         }
     }
 
+    public void setResourceBundleRegistry(ResourceBundleRegistry registry){
+        this.registry = registry;
+    }
 
     /**
      * Verify that a value exists for a key in the specified language
@@ -171,8 +171,8 @@ public class ResourceBundleService {
      * @param args arguments for the message
      */
     void logContentIssue(String message, Object... args) {
-        //TODO Transform into a different Logger
-        logger.warn(common.contentIssue(message, args));
+        String issue = common.contentIssue(message, args);
+        logger.warn(issue);
     }
 
     public void registerIn(HstRequest request) {

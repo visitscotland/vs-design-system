@@ -41,7 +41,8 @@ public class ResourceBundleServiceTest {
         lenient().when(registry.getBundle(BUNDLE, Locale.UK)).thenReturn(bundle);
 
         service = new ResourceBundleService(new CommonUtils());
-        service.resourceBundleRegistry = registry;
+
+        service.setResourceBundleRegistry(registry);
 
     }
 

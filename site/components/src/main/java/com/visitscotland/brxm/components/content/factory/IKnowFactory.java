@@ -10,9 +10,11 @@ import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
+@Component
 public class IKnowFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(IKnowFactory.class);
@@ -21,10 +23,6 @@ public class IKnowFactory {
 
     private final HippoUtilsService utils;
     private final ResourceBundleService bundle;
-
-    public IKnowFactory(){
-        this(new HippoUtilsService(), new ResourceBundleService());
-    }
 
     public IKnowFactory(HippoUtilsService utils, ResourceBundleService bundle){
         this.utils = utils;

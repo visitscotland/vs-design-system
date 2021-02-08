@@ -18,11 +18,13 @@ import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class LinkModulesFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(LinkModulesFactory.class);
@@ -38,11 +40,7 @@ public class LinkModulesFactory {
     private final ResourceBundleService bundle;
     private final LocationLoader locationLoader;
 
-    public LinkModulesFactory() {
-        this(new HippoUtilsService(), new DMSDataService(), new LinkService(), new ResourceBundleService(),LocationLoader.getInstance());
-    }
-
-    LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle , LocationLoader locationLoader) {
+    public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle , LocationLoader locationLoader) {
         this.utils = utils;
         this.dmsData = dmsData;
         this.linkService = linkService;

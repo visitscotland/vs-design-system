@@ -7,15 +7,14 @@ import com.visitscotland.brxm.beans.dms.LocationObject;
 import com.visitscotland.brxm.beans.mapping.Coordinates;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
-import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
+import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
-import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
-import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.dataobjects.DataType;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
@@ -38,24 +37,21 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
     public static final String DOCUMENT = "document";
     public static final String EDIT_PATH = "path";
-    protected final String FACILITIES = "keyFacilities";
-    public final String HERO_COORDINATES = "heroCoordinates";
+    public static final String FACILITIES = "keyFacilities";
+    public static final String HERO_COORDINATES = "heroCoordinates";
 
-    HippoUtilsService utils;
-    ResourceBundleService bundle;
-    DMSDataService dmsData;
-    LinkService linksService;
-    LocationLoader locationLoader;
-    LinkModulesFactory linksFactory;
+    private ResourceBundleService bundle;
+    private LinkService linksService;
+    private LocationLoader locationLoader;
+    private LinkModulesFactory linksFactory;
 
     public PageContentComponent(){
-        utils = new HippoUtilsService();
-        bundle = new ResourceBundleService();
-        dmsData = new DMSDataService();
-        linksService = new LinkService();
-        locationLoader = LocationLoader.getInstance();
-        linksFactory = new LinkModulesFactory();
+        bundle = SpringContext.getBean(ResourceBundleService.class);
+        linksService = SpringContext.getBean(LinkService.class);
+        locationLoader = SpringContext.getBean(LocationLoader.class);
+        linksFactory = SpringContext.getBean(LinkModulesFactory.class);
     }
+
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
@@ -100,13 +96,13 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @param page Page
      * @param locale Locale
      */
-    protected LinksModule addOTYML(Page page, Locale locale) {
-        LinksModule otymlLink = null;
+    protected HorizontalListLinksModule addOTYML(Page page, Locale locale) {
+        HorizontalListLinksModule otyml = null;
         if(page.getOtherThings()!=null) {
-            otymlLink = linksFactory.horizontalListLayout(page.getOtherThings(), locale);
-            otymlLink.setTheme(PageTemplateBuilder.themes[0]);
+            otyml = linksFactory.horizontalListLayout(page.getOtherThings(), locale);
+            otyml.setTheme(PageTemplateBuilder.NEUTRAL_THEME);
         }
-        return otymlLink;
+        return otyml;
     }
 
     /**
@@ -163,7 +159,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         checkImageErrors(heroImage,request.getLocale(),alerts);
         request.setAttribute(HERO_IMAGE, heroImage);
 
-        if (alerts.size()>0){
+        if (alerts.isEmpty()){
             request.setAttribute(ALERTS, alerts);
         }
     }
