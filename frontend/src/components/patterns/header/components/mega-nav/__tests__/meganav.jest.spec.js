@@ -1,10 +1,20 @@
 import { shallowMount, mount } from '@vue/test-utils';
 import VsMegaNav from '../MegaNav';
-import VsMegaNavDropdown from '../MegaNavDropdown';
 
 const factoryShallowMount = () => shallowMount(VsMegaNav, {
     propsData: {
         href: 'https://www.visitscotland.com',
+        menuToggleAltText: 'Open Menu',
+    },
+    slots: {
+        megaNavTopMenuItems: '<div class="mega-nav-top-menu-items"></div>',
+    },
+});
+
+const factoryMount = () => mount(VsMegaNav, {
+    propsData: {
+        href: 'https://www.visitscotland.com',
+        menuToggleAltText: 'Open Menu',
     },
     slots: {
         megaNavTopMenuItems: '<div class="mega-nav-top-menu-items"></div>',
@@ -12,17 +22,17 @@ const factoryShallowMount = () => shallowMount(VsMegaNav, {
 });
 
 describe('VsMegaNav', () => {
-    it('should render a component with the data-test attribute `.vs-mega-nav`', () => {
+    it('should render a component with the data-test attribute `vs-mega-nav`', () => {
         const wrapper = factoryShallowMount();
         expect(wrapper.attributes('data-test')).toBe('vs-mega-nav');
     });
 
-    it('should render a button with an `icon-bars-mobile-menu` icon', () => {
-        const wrapper = mount(VsMegaNav);
-        const dropdownToggle = wrapper.find('[data-test="vs-mega-nav__dropdown"]').find('.dropdown-toggle');
+    it('should render a button with an `vs-icon--bars-mobile-menu` icon', () => {
+        const wrapper = factoryMount();
+        const dropdownToggle = wrapper.find('[data-test="vs-mega-nav-dropdown"]').find('.dropdown-toggle');
 
         expect(dropdownToggle.exists()).toBe(true);
-        expect(dropdownToggle.html()).toContain('icon-bars-mobile-menu');
+        expect(dropdownToggle.html()).toContain('vs-icon--bars-mobile-menu');
     });
 
     describe(':props', () => {
@@ -30,15 +40,12 @@ describe('VsMegaNav', () => {
             const wrapper = factoryShallowMount();
             expect(wrapper.find('[data-test="vs-mega-nav__logo"]').attributes().href).toBe('https://www.visitscotland.com');
         });
-    });
 
-    describe(':events', () => {
-        it('displays a button with an `icon-close` icon when menuToggled event is emitted', () => {
-            const wrapper = mount(VsMegaNav);
-            const dropdownToggle = wrapper.find('[data-test="vs-mega-nav__dropdown"]').find('.dropdown-toggle');
-            wrapper.find(VsMegaNavDropdown).vm.$emit('menuToggled');
+        it('should display sr-only `Open Menu` text within toggle button', () => {
+            const wrapper = factoryMount();
+            const dropdownToggle = wrapper.find('[data-test="vs-mega-nav-dropdown"]').find('.dropdown-toggle');
 
-            expect(dropdownToggle.html()).toContain('icon-close');
+            expect(dropdownToggle.html()).toContain('Open Menu');
         });
     });
 

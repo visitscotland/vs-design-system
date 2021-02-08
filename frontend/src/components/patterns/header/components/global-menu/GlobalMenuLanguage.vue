@@ -79,7 +79,6 @@ export default {
         width: 100%;
         background: $color-purple;
         font-size: $font-size-sm;
-        transition: all ease-in-out 0.3s;
         margin: 0;
         max-height: 0;
         display: block;

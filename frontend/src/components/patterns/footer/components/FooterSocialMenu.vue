@@ -41,7 +41,7 @@ export default {
     border-left: 1px solid $color-gray-shade-2;
     background: $color-gray-shade-7;
 
-    .vs-footer-social-menu__title{
+    &__title{
         background: $color-gray-shade-7;
         color: $color-white;
         line-height: $line-height-xs;

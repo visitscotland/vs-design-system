@@ -1,20 +1,11 @@
 package com.visitscotland.brxm.components.content.factory;
 
 import com.visitscotland.brxm.beans.*;
-import com.visitscotland.brxm.beans.dms.LocationObject;
 import com.visitscotland.brxm.beans.mapping.ArticleModule;
-import com.visitscotland.brxm.beans.mapping.Coordinates;
-import com.visitscotland.brxm.beans.mapping.FlatImage;
-import com.visitscotland.brxm.beans.mapping.Module;
-import com.visitscotland.brxm.components.content.factory.utils.QuoteEmbedder;
-import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.services.ResourceBundleService;
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.components.content.factory.utils.QuoteFactory;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,9 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.util.Arrays;
-import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -41,7 +30,7 @@ class ArticleFactoryTest {
     ImageFactory imageFactory;
 
     @Mock
-    QuoteEmbedder embedder;
+    QuoteFactory embedder;
 
     @Test
     @DisplayName("Main Article - Populates all fields")

@@ -21,7 +21,7 @@ import java.util.Locale;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class QuoteEmbedderTest {
+class QuoteFactoryTest {
 
     @Mock
     ImageFactory imageFactory;
@@ -31,13 +31,7 @@ class QuoteEmbedderTest {
 
     @InjectMocks
     @Resource
-    QuoteEmbedder embedder;
-
-    @Test
-    @DisplayName("Null object doesn't throw an exception")
-    void empty(){
-        Assertions.assertNull(embedder.getQuote(null, null, null));
-    }
+    QuoteFactory embedder;
 
     @Test
     @DisplayName("Happy path - All fields are mapped correctly")

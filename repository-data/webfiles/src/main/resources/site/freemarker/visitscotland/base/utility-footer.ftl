@@ -13,20 +13,10 @@
             <vs-footer-utility-list>
                 <#list item.childMenuItems as childItem>
                     <#if childItem.title?has_content>
-                        <#assign href = "">
-                        <#assign external = false>
-
-                        <#if childItem.hstLink??>
-                            <#assign href><@hst.link fullyQualified=fullyQualifiedURLs link=childItem.hstLink/></#assign>
-                        <#elseif childItem.externalLink??>
-                            <#assign href>${childItem.externalLink}</#assign>
-                            <#assign external = true>
-                        </#if>
-
                         <vs-footer-nav-list-item
-                            href="${href}"
+                            href="${getUrl(childItem)}"
                             link-text="${childItem.title}"
-                            :external="<#if external>true<#else>false</#if>"
+                            type="<#if childItem.externalLink??>external<#else>none</#if>"
                         ></vs-footer-nav-list-item>
                     </#if>
                 </#list>

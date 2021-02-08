@@ -63,8 +63,6 @@ public class ProductSearchBuilder {
     static final String PATH_FOOD_DRINK = "food-drink";
     static final String PATH_EVENTS = "events";
 
-    private String host = Properties.VS_DMS_SERVICE;
-
     private String productTypes;
     private String path;
     private Double proximity;
@@ -250,7 +248,7 @@ public class ProductSearchBuilder {
         if (productTypes == null){
             throw new RuntimeException("No types have been defined for this search");
         }
-        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH, host==null?"":host, path));
+        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH, Properties.VS_DMS_SERVICE==null?"":Properties.VS_DMS_SERVICE, path));
     }
 
     //TODO Test
@@ -258,7 +256,7 @@ public class ProductSearchBuilder {
         if (productTypes == null){
             throw new RuntimeException("No types have been defined for this search");
         }
-        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH_DATA_MAP, host==null?"":host));
+        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH_DATA_MAP, Properties.VS_DMS_SERVICE==null?"":Properties.VS_DMS_SERVICE));
     }
 
     /**

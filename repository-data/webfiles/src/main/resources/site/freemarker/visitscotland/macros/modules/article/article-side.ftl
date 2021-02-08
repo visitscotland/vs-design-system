@@ -10,6 +10,10 @@
         <@imageWithCaption imageSrc=media imageDetails=section.image variant="fullwidth"/>
     </#if>
     <#if section.quote??>
+        <#-- TODO: Resuse code.
+            This same code will be used for iCentre Module.
+            Please, refactor in a way that makes sense.
+        -->
         <#if section.quote.image.cmsImage??>
             <#assign imageQuote>
                 <@hst.link hippobean=section.quote.image.cmsImage.thumbnail/>
@@ -36,21 +40,23 @@
         </vs-row>
 
 
-        <#if imageQuote?? && imageQuote?has_content>
+
             <br>
 
             <vs-row>
+                <#if imageQuote?? && imageQuote?has_content>
                 <vs-col cols="3" offset-lg="1">
                     <vs-img alt="${(section.quote.image)!'${label("essentials.global", "default.alt-text")}'}"
                             src="${imageQuote}">
                     </vs-img>
                 </vs-col>
+                </#if>
                 <vs-col cols="8" >
                     <vs-heading level="6">${section.quote.authorName}</vs-heading>
                     ${section.quote.authorTitle}
                 </vs-col>
             </vs-row>
-        </#if>
+
 
     </#if>
 </#macro>

@@ -8,7 +8,7 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    sm="6"
+                    sm="7"
                     md="12"
                 >
                     <VsList
@@ -50,10 +50,10 @@ export default {
 
 <style lang="scss">
 .vs-footer-utility-list {
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(xs) {
         .container {
             max-width: 100%;
-            padding: 0;
+            padding: 0 4px;
         }
     }
 

@@ -112,36 +112,30 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                 if (listicleItem.getListicleItem() instanceof DMSLink) {
                     DMSLink dmsLink = (DMSLink) listicleItem.getListicleItem();
                     JsonNode product;
-                    try {
-                        product = dmsData.productCard(dmsLink.getProduct(), request.getLocale());
-                        if (product == null) {
-                            errors.add("The product id does not match in the DMS");
-                            logger.warn(CommonUtils.contentIssue("The product's id  wasn't provided for %s, Listicle = %s - %s",
-                                    dmsLink.getProduct(), listicle.getPath(), listicleItem.getTitle()));
-                        } else {
-                            if (product.has(ADDRESS)){
-                                JsonNode address = product.get(ADDRESS);
-                                if (location== null && address.has(LOCATION)) {
-                                    location = address.get(LOCATION).asText();
-                                }
+                    product = dmsData.productCard(dmsLink.getProduct(), request.getLocale());
+                    if (product == null) {
+                        errors.add("The product id does not match in the DMS");
+                        logger.warn(CommonUtils.contentIssue("The product id was not provided or the product was not found (id=%s), Listicle = %s - %s",
+                                dmsLink.getProduct(), listicle.getPath(), listicleItem.getTitle()));
+                    } else {
+                        if (product.has(ADDRESS)){
+                            JsonNode address = product.get(ADDRESS);
+                            if (location== null && address.has(LOCATION)) {
+                                location = address.get(LOCATION).asText();
                             }
-
-                            if (flatImage == null) {
-                                flatImage = new FlatImage(product);
-                            } else {
-                                if (flatImage.getCoordinates() == null) {
-                                    Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
-                                    flatImage.setCoordinates(coordinates);
-                                }
-                            }
-
-                             model.setFacilities(getFacilities(product));
-
                         }
-                    } catch (IOException e) {
-                        errors.add("Error while querying the DMS: " + e.getMessage());
-                        logger.error(String.format("Error while querying the DMS for %s, Listicle item %s: 5s",
-                                listicle.getName(), model.getIndex(), e.getMessage()));
+
+                        if (flatImage == null) {
+                            flatImage = new FlatImage(product);
+                        } else {
+                            if (flatImage.getCoordinates() == null) {
+                                Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
+                                flatImage.setCoordinates(coordinates);
+                            }
+                        }
+
+                         model.setFacilities(getFacilities(product));
+
                     }
                 }
 
