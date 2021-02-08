@@ -109,11 +109,15 @@ export default {
     }
 
     .dropdown-toggle {
-        padding: 0.3rem $spacer-2;
+        padding: 0.3rem $spacer-4;
         font-size: $font-size-sm;
         background: $color-purple;
         border: none;
         max-width: 130px;
+
+        @include media-breakpoint-up(lg) {
+            padding: 0.3rem $spacer-2;
+        }
 
         &-secondary:not(:disabled):not(.disabled):active {
             background: $color-purple-shade-2;
@@ -148,7 +152,7 @@ export default {
         }
     }
 
-    &__icon {
+    &__icon, &__text {
         display: none;
 
         @include media-breakpoint-up(lg) {
@@ -157,16 +161,13 @@ export default {
     }
 
     &__text {
-        padding-left: $spacer-2;
-        display: none;
-
-        @include media-breakpoint-up(lg) {
-            display: inline;
-        }
+        padding-left: $spacer-1;
     }
 
     &__selected {
-        padding-left: $spacer-1;
+        @include media-breakpoint-up(lg) {
+            padding-left: $spacer-1;
+        }
     }
 
     &__label {
