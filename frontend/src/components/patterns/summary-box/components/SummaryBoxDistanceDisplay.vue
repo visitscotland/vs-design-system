@@ -57,6 +57,13 @@ export default {
     @include media-breakpoint-up(lg) {
         font-size: 1.75rem;
     }
+
+    span {
+        display: block;
+        padding: 0 .25em;
+        word-break: break-word;
+        line-height: 1;
+    }
 }
 </style>
 
