@@ -37,6 +37,7 @@ class IKnowFactoryTest {
     void init() {
         factory = new IKnowFactory(utils, bundle);
         mockBuilder = new TouristInformationMockBuilder().addIKnow();
+
     }
 
     @Test

@@ -13,6 +13,7 @@ import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.mock.TouristInformationMockBuilder;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
+import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,6 +45,10 @@ class ICentreFactoryTest {
     @Mock
     ResourceBundleService bundle;
 
+    @Mock
+    Properties properties;
+
+
     ICentreFactory factory;
 
     TouristInformationMockBuilder mockBuilder;
@@ -65,6 +70,9 @@ class ICentreFactoryTest {
     void init() {
         factory = new ICentreFactory(utils, dmsData, linkFactory, bundle);
         mockBuilder = new TouristInformationMockBuilder().addICentre();
+
+        //TODO fix after dipoc is merged
+        factory.properties = properties;
     }
 
 //    private ICentre iCentreMock(){

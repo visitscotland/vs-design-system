@@ -11,24 +11,30 @@ import org.slf4j.LoggerFactory;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+
 public class ResourceBundleService {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceBundleService.class.getName());
 
     private static final String SERVICE_NAME = "ResourceBundle";
 
-    final ResourceBundleRegistry resourceBundleRegistry;
+    ResourceBundleRegistry resourceBundleRegistry;
     final CommonUtils common;
 
     public ResourceBundleService() {
         //Default Hippo Resource bundle Service
-        this(HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName()),
-                new CommonUtils());
+        this(new CommonUtils());
     }
 
-    ResourceBundleService (ResourceBundleRegistry rbr, CommonUtils common){
-        resourceBundleRegistry = rbr;
+    ResourceBundleService (CommonUtils common){
         this.common = common;
+    }
+
+    private ResourceBundleRegistry getResourceBundleRegistry(){
+        if (resourceBundleRegistry== null){
+            resourceBundleRegistry = HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName());
+        }
+        return  resourceBundleRegistry;
     }
 
 
@@ -137,9 +143,9 @@ public class ResourceBundleService {
      */
     private ResourceBundle getResourceBundle(String bundleName, Locale locale){
         if (locale == null) {
-            return resourceBundleRegistry.getBundle(bundleName);
+            return getResourceBundleRegistry().getBundle(bundleName);
         } else {
-            return resourceBundleRegistry.getBundle(bundleName, locale);
+            return getResourceBundleRegistry().getBundle(bundleName, locale);
         }
     }
 

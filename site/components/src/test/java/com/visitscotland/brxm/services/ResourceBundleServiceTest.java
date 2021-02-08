@@ -40,7 +40,8 @@ public class ResourceBundleServiceTest {
         lenient().when(registry.getBundle(BUNDLE)).thenReturn(fbBundle);
         lenient().when(registry.getBundle(BUNDLE, Locale.UK)).thenReturn(bundle);
 
-        service = new ResourceBundleService(registry, new CommonUtils());
+        service = new ResourceBundleService(new CommonUtils());
+        service.resourceBundleRegistry = registry;
 
     }
 

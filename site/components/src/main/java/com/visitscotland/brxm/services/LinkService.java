@@ -28,7 +28,8 @@ public class LinkService {
     private final DMSDataService dmsData;
     private final ResourceBundleService resourceBundle;
     private final HippoUtilsService utils;
-    private final Properties properties = new Properties();
+    //TODO fix after dipoc is merged
+    Properties properties = new Properties();
 
     public LinkService() {
         this(new DMSDataService(), new ResourceBundleService(), new HippoUtilsService());

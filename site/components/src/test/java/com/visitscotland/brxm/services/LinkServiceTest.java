@@ -47,6 +47,8 @@ class LinkServiceTest {
     @BeforeEach
     public void init() {
         service = new LinkService(dmsData, resourceBundle, utils);
+
+        service.properties = properties;
     }
 
     @Test
@@ -56,6 +58,7 @@ class LinkServiceTest {
         when(externalLink.getLink()).thenReturn("http://fake.link");
         when(externalLink.getLabel()).thenReturn("");
 
+        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
         when(resourceBundle.getCtaLabel(eq(""), any())).thenReturn("Find out more");
 
         FlatLink link = service.createLink(Locale.UK, externalLink);
@@ -168,6 +171,7 @@ class LinkServiceTest {
         ProductsSearch ps = mock(ProductsSearch.class);
         when(ps.getProductType()).thenReturn("acco");
         when(productSearchLink.getSearch()).thenReturn(ps);
+        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
 
         FlatLink link = service.createLink(Locale.UK, productSearchLink);
 
@@ -185,6 +189,7 @@ class LinkServiceTest {
         when(ps.getProductType()).thenReturn("acco");
         when(productSearchLink.getSearch()).thenReturn(ps);
         when(sharedLink.getLinkType()).thenReturn(productSearchLink, productSearchLink);
+        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
 
         String link = service.getPlainLink(sharedLink, null);
 
@@ -199,6 +204,7 @@ class LinkServiceTest {
 
         when(productSearch.getProductType()).thenReturn("acco");
         when(sharedLink.getLinkType()).thenReturn(productSearch, productSearch);
+        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
 
         String link = service.getPlainLink(sharedLink, null);
 
@@ -272,6 +278,7 @@ class LinkServiceTest {
     @Test
     @DisplayName("Return the category for the link/page")
     void getLinkCategory() {
+        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
 
         assertEquals("eBooks", service.getLinkCategory("https://ebooks.visitscotland.com/whisky-distilleries-guides/",Locale.UK));
 
@@ -321,8 +328,9 @@ class LinkServiceTest {
     @Test
     @DisplayName("An exception if the URL is mal formed")
     void getLinkCategory_MalformedURLException(){
-        assertNull(service.getLinkCategory("http//example.com",Locale.UK));
+        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
 
+        assertNull(service.getLinkCategory("http//example.com",Locale.UK));
     }
 
     private String getCategory(String url, String bundle, String key, String value){

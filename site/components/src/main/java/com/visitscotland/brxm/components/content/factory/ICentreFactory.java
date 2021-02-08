@@ -35,7 +35,7 @@ public class ICentreFactory {
     private final DMSDataService dmsData;
     private final LinkModulesFactory linkFactory;
     private final ResourceBundleService bundle;
-    private final Properties properties = new Properties();
+    Properties properties = new Properties();
 
 
     public ICentreFactory() {

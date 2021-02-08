@@ -1,65 +1,116 @@
 package com.visitscotland.brxm.utils;
 
-import org.springframework.stereotype.Component;
+import com.visitscotland.brxm.services.ResourceBundleService;
+import com.visitscotland.utils.Contract;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
-//TODO Externalize properties
-@Component
+//TODO Rename to CMSProperties after
 public class Properties {
 
-    //TODO Calculate local environment
-    //TODO USe in the globalNavigation
-    private String localhost = "http://localhost:8080/site";
+    private static final Logger logger = LoggerFactory.getLogger(Properties.class.getName());
 
-    //TODO private
-    public static final String INSTAGRAM_API = "https://www.instagram.com/p/";
+    public static final String INSTAGRAM_API = "instagram.api";
+    public static final String LOCALHOST = "localhost";
+    public static final String HELPDESK_EMAIL = "helpdesk-email";
+    public static final String DMS_HOST = "dms.host";
+    public static final String DMS_ENCODING = "dms.encoding";
+    public static final String DMS_TOKEN = "dms.token";
+    public static final String DMS_TIMEOUT = "dms.timeout";
+    public static final String DMS_TRIES = "dms.tries";
+    public static final String DMS_SLEEP_TIME = "dms.sleep-time";
+    private static final String CONFIGURATION = "config.cms";
 
-    private String helpdeskEmail = "helpdesk@visitscotland.com";
+    private final ResourceBundleService bundle;
 
-    //TODO Calculate environment
-    private String dmsHost = "http://172.28.81.65:8089";
+    /**
+     * @deprecated To be removed once dependency injection is in place
+     */
+    @Deprecated
+    public Properties(){
+        this(new ResourceBundleService());
+    }
 
-    private Charset dmsEncoding = StandardCharsets.UTF_8;
-    private String dmsToken = "tokenID";
-    private Integer dmsTimeout = 2000;
-    private Integer dmsTries = 3;
-    private Integer dmsWaitTime = 60_000;
+    public Properties(ResourceBundleService bundle){
+        this.bundle = bundle;
+    }
 
     public String getLocalhost() {
-        return localhost;
+        return readString(LOCALHOST);
     }
 
     public String getInstagramApi() {
-        return INSTAGRAM_API;
+        return readString(INSTAGRAM_API);
     }
 
     public String getHelpdeskEmail() {
-        return helpdeskEmail;
+        return readString(HELPDESK_EMAIL);
     }
 
     public String getDmsHost() {
-        return dmsHost;
+        return readString(DMS_HOST);
     }
 
     public Charset getDmsEncoding() {
-        return dmsEncoding;
+        String value = bundle.getResourceBundle(CONFIGURATION, DMS_ENCODING, Locale.UK);
+        try{
+            return Charset.forName(value);
+        } catch (Exception e){
+            logger.warn("{} is not a valid value for the property {}", value, DMS_ENCODING);
+            return StandardCharsets.UTF_8;
+        }
     }
 
     public String getDmsToken() {
-        return dmsToken;
+        return readString(DMS_TOKEN);
     }
 
     public Integer getDmsTimeout() {
-        return dmsTimeout;
+        return readInteger(DMS_TIMEOUT);
     }
 
     public Integer getDmsTries() {
-        return dmsTries;
+        return readInteger(DMS_TRIES);
     }
 
     public Integer getDmsWaitTime() {
-        return dmsWaitTime;
+        return readInteger(DMS_SLEEP_TIME);
+    }
+
+    //TODO Test
+    private String readString(String key){
+        String value = bundle.getResourceBundle(CONFIGURATION, key, Locale.UK);
+
+        if (Contract.isEmpty(value)) {
+            logger.warn("The property {} hasn't been set in the resourceBundle {}", key, CONFIGURATION);
+        } else if (value.startsWith("$")){
+            String env = System.getenv(value.substring(1));
+            if (env != null){
+                return env;
+            }
+        } else  {
+            return value;
+        }
+
+        return "";
+    }
+
+    //TODO test
+    private Integer readInteger(String key){
+        String value = bundle.getResourceBundle(CONFIGURATION, key, Locale.UK);
+        try {
+            if (Contract.isEmpty(value)){
+                logger.warn("The property {} hasn't been set in the resourceBundle {}", key, CONFIGURATION);
+            } else {
+                return Integer.valueOf(value);
+            }
+        } catch (NumberFormatException nfe){
+            logger.error("The property value of the property {} cannot be casted to Integer. '{}' is not allowed.", key,value);
+        }
+        return 0;
     }
 }
