@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+
 public class VsBreadCrumbProvider extends BreadcrumbProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(VsBreadCrumbProvider.class.getName());
