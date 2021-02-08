@@ -3,7 +3,7 @@
         <VsHeader>
             <template #globalMenu>
                 <VsGlobalMenu
-                    dropdown-label="I nostri siti"
+                    dropdown-label="Our websites"
                     active-site="https://www.visitscotland.com/"
                 >
                     <span
