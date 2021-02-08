@@ -25,18 +25,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 
-@Component
 public class ImageFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageFactory.class);
 
-    @Autowired
     private LocationLoader locationLoader;
 
-    @Autowired
     private ResourceBundleService bundle;
 
-    @Autowired
     private CommonUtils utils;
 
     public ImageFactory(){

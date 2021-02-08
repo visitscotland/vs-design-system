@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
-@Component
 public class IKnowFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(IKnowFactory.class);
