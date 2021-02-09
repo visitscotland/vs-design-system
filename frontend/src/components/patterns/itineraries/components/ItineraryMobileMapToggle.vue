@@ -37,9 +37,17 @@ export default {
             showMap: false,
         };
     },
+    mounted() {
+        window.addEventListener('resize', this.resizeWidth);
+
+        this.resizeWidth();
+    },
     methods: {
         toggleMap() {
             this.showMap = !this.showMap;
+        },
+        resizeWidth() {
+            this.showMap = window.innerWidth >= 1200;
         },
     },
 };
