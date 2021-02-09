@@ -24,13 +24,11 @@ public class InternalResource extends AbstractResource {
 
     static final String NO_MATCH = "<!-- No match -->";
 
-    //  TODO: TEST @Autowired
     private final CommonUtils utils;
 
-    //TODO private final
     private final Properties properties;
 
-    InternalResource(CommonUtils utils, Properties properties) {
+    public InternalResource(CommonUtils utils, Properties properties) {
         this.utils = utils;
         this.properties = properties;
     }

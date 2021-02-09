@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.dms.LocationObject;
 import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.utils.Language;
-import com.visitscotland.brxm.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -30,13 +29,12 @@ public class LocationLoader {
 
     public LocationLoader(DMSProxy proxy){
         this.proxy = proxy;
-        init();
     }
 
     /**
      * Initialize maps
      */
-    private void init() {
+    private void validateMaps() {
         synchronized (LocationLoader.class) {
             if (locationToId.size() == 0) {
                 for (Language lang : Language.values()) {
@@ -59,6 +57,9 @@ public class LocationLoader {
                     } catch (IOException e) {
                         logger.warn("Location List couldn't been loaded for the locale {}", lang.getLocale());
                     } catch (Exception e) {
+                        if (e instanceof NullPointerException){
+
+                        }
                         logger.error("Unexpected exception ", e);
                     }
 
@@ -77,15 +78,21 @@ public class LocationLoader {
     public static LocationLoader getInstance(){
         if (instance == null){
             instance = SpringContext.getBean(LocationLoader.class);
-        } else if (instance.locationToId.size() == 0){
-            instance.init();
         }
         return instance;
     }
 
-    public LocationObject getLocation(String location, Locale locale){
-        return locations.get(Language.getLanguageForLocale(locale)).get(locationToId.get(location));
+    private Map<String, LocationObject> getLocations(Language language){
+        validateMaps();
+
+        return locations.get(language);
     }
+
+    public LocationObject getLocation(String location, Locale locale){
+        return getLocations(Language.getLanguageForLocale(locale)).get(locationToId.get(location));
+    }
+
+
 
     /**
      *
@@ -94,7 +101,7 @@ public class LocationLoader {
      */
     public List<LocationObject> getLocationsByLevel(String... levels){
         List<LocationObject> locationList = new ArrayList<>();
-        for (LocationObject obj : locations.get(Language.ENGLISH).values()){
+        for (LocationObject obj : getLocations(Language.ENGLISH).values()){
             if (levels!=null && levels.length>0){
                 for (String level : levels){
                     if (obj.getTypes().contains(level)){
