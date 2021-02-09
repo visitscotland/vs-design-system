@@ -12,10 +12,13 @@ import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationContext;
 
+import javax.annotation.Resource;
 import javax.swing.*;
 import java.io.IOException;
 import java.util.Locale;
@@ -27,12 +30,10 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class LinkServiceTest {
 
-    LinkService service;
-
     @Mock
     private DMSDataService dmsData;
 
-    @Mock
+    @Mock(answer = Answers.RETURNS_SELF)
     private ProductSearchBuilder builder;
 
     @Mock
@@ -44,19 +45,14 @@ class LinkServiceTest {
     @Mock
     private Properties properties;
 
-    @BeforeAll
-    public static void initContext(){
+    @Resource
+    @InjectMocks
+    LinkService service;
+
+    private void initProductSearchBuilder(){
         ApplicationContext context = mock(ApplicationContext.class, withSettings().lenient());
-        when(context.getBean(ProductSearchBuilder.class)).thenReturn(new ProductSearchBuilder());
-
+        when(context.getBean(ProductSearchBuilder.class)).thenReturn(builder);
         new SpringContext().setApplicationContext(context);
-    }
-
-
-
-    @BeforeEach
-    public void init() {
-        service = new LinkService(dmsData, resourceBundle, utils, properties);
     }
 
     @Test
@@ -175,48 +171,48 @@ class LinkServiceTest {
     @DisplayName("Create a link from a ProductSearchLink  Compound")
     void productSearchLink() {
         //Verifies that it can create a URL from the ProductSearchLink
+        initProductSearchBuilder();
+
         ProductSearchLink productSearchLink = mock(ProductSearchLink.class, withSettings().lenient());
         ProductsSearch ps = mock(ProductsSearch.class);
-        when(ps.getProductType()).thenReturn("acco");
         when(productSearchLink.getSearch()).thenReturn(ps);
-        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
 
         FlatLink link = service.createLink(Locale.UK, productSearchLink);
 
-        assertTrue(link.getLink().contains("acco") && link.getLink().contains("search-results"));
+        verify(builder, times(1)).build();
         assertEquals(LinkType.INTERNAL, link.getType());
     }
 
     @Test
     @DisplayName("Create a url from an SharedLink with an ProductSearchLink Compound ")
     void getPlainLink_productSearchLink() {
+        initProductSearchBuilder();
+
         SharedLink sharedLink = mock(SharedLink.class);
         ProductSearchLink productSearchLink = mock(ProductSearchLink.class, withSettings().lenient());
         ProductsSearch ps = mock(ProductsSearch.class);
 
-        when(ps.getProductType()).thenReturn("acco");
         when(productSearchLink.getSearch()).thenReturn(ps);
         when(sharedLink.getLinkType()).thenReturn(productSearchLink, productSearchLink);
-        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
 
         String link = service.getPlainLink(sharedLink, null);
 
-        assertTrue(link.contains("acco") && link.contains("search-results"));
+        verify(builder, times(1)).build();
     }
 
     @Test
     @DisplayName("Create a url from an SharedLink with a ProductSearch Compound ")
     void getPlainLink_productSearch() {
+        initProductSearchBuilder();
+
         SharedLink sharedLink = mock(SharedLink.class);
         ProductsSearch productSearch = mock(ProductsSearch.class);
 
-        when(productSearch.getProductType()).thenReturn("acco");
         when(sharedLink.getLinkType()).thenReturn(productSearch, productSearch);
-        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
 
         String link = service.getPlainLink(sharedLink, null);
 
-        assertTrue(link.contains("acco") && link.contains("search-results"));
+        verify(builder, times(1)).build();
     }
 
     @Test

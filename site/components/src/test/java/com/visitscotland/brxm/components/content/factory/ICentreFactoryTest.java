@@ -10,6 +10,7 @@ import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatQuote;
 import com.visitscotland.brxm.beans.mapping.ICentreModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.EnhancedLink;
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.components.content.factory.utils.QuoteFactory;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
@@ -19,13 +20,16 @@ import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationContext;
 
 import javax.jcr.RepositoryException;
 import java.util.Locale;
@@ -71,6 +75,16 @@ class ICentreFactoryTest {
             " \"name\":\"name\", \"id\":\"id\" " +
             "}}]";
 
+    @BeforeAll
+    public static void initContext(){
+        ApplicationContext context = mock(ApplicationContext.class, withSettings().lenient());
+        ProductSearchBuilder psb = mock(ProductSearchBuilder.class, Answers.RETURNS_SELF);
+        when(psb.build()).thenReturn("URL");
+        when(context.getBean(ProductSearchBuilder.class)).thenReturn(psb);
+
+        new SpringContext().setApplicationContext(context);
+    }
+
     @BeforeEach
     void init() {
         factory = new ICentreFactory(utils, dmsData, bundle, quoteEmbedder, imageFactory, properties);
@@ -110,9 +124,6 @@ class ICentreFactoryTest {
 
         ICentreModule module = factory.getModule(mockBuilder.build().getICentre(), Locale.UK, location);
 
-        String dmsUrl = captor.getValue().build();
-
-        assertTrue(dmsUrl.contains(location), "The queryString " + dmsUrl + "does not contain " + location);
         assertNotNull(module);
         assertNotNull(module.getLinks().get(0).getLink());
     }

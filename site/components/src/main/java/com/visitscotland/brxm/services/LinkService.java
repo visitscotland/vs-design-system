@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.LinkType;
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.utils.CommonUtils;
@@ -38,6 +39,10 @@ public class LinkService {
         this.properties = properties;
     }
 
+    private ProductSearchBuilder productSearch(){
+        return SpringContext.getBean(ProductSearchBuilder.class);
+    }
+
     /**
      * TODO comment this method
      *
@@ -53,15 +58,16 @@ public class LinkService {
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
 
             if (dmsLink.getProduct() == null) {
-                logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
-                        dmsLink.getProduct(), item.getPath()));
+                String message = CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
+                        dmsLink.getProduct(), item.getPath());
+                logger.warn(message);
             } else if (product != null) {
                 //TODO build the link for the DMS product properly
                 return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL);
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
-            ProductSearchBuilder psb = new ProductSearchBuilder().fromHippoBean(productSearchLink.getSearch()).locale(locale);
+            ProductSearchBuilder psb = productSearch().fromHippoBean(productSearchLink.getSearch()).locale(locale);
 
             return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build(), LinkType.INTERNAL);
 
@@ -97,9 +103,9 @@ public class LinkService {
         } else if (link.getLinkType() instanceof ExternalLink) {
             return ((ExternalLink) link.getLinkType()).getLink();
         } else if (link.getLinkType() instanceof ProductsSearch) {
-            return new ProductSearchBuilder().fromHippoBean(((ProductsSearch) link.getLinkType())).build();
+            return productSearch().fromHippoBean(((ProductsSearch) link.getLinkType())).build();
         } else if (link.getLinkType() instanceof ProductSearchLink) {
-            return new ProductSearchBuilder().fromHippoBean(((ProductSearchLink) link.getLinkType()).getSearch()).build();
+            return productSearch().fromHippoBean(((ProductSearchLink) link.getLinkType()).getSearch()).build();
         } else if (link.getLinkType() instanceof ExternalDocument) {
             return ((ExternalDocument) link.getLinkType()).getLink();
         } else {

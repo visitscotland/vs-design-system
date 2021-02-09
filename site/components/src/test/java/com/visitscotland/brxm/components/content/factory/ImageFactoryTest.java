@@ -22,6 +22,7 @@ import org.mockito.Answers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.verification.VerificationMode;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -151,8 +152,8 @@ class ImageFactoryTest {
 
         FlatImage image = imageFactory.getImage(cmsImage, module, Locale.FRENCH);
 
-        verify(cmsImage, never()).getAltText();
-        verify(cmsImage, never()).getDescription();
+        verify(cmsImage, times(1)).getAltText();
+        verify(cmsImage, times(1)).getDescription();
 
         assertEquals(2, module.getErrorMessages().size());
     }

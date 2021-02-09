@@ -24,6 +24,7 @@ public class Properties {
     public static final String DMS_TIMEOUT = "dms.timeout";
     public static final String DMS_TRIES = "dms.tries";
     public static final String DMS_SLEEP_TIME = "dms.sleep-time";
+    public static final String DMS_MAP_DEFAULT_DISTANCE = "dms.default-distance";
     private static final String CONFIGURATION = "config.cms";
 
     private final ResourceBundleService bundle;
@@ -48,15 +49,11 @@ public class Properties {
         return readString(DMS_HOST);
     }
 
-    public Charset getDmsEncoding() {
-        String value = bundle.getResourceBundle(CONFIGURATION, DMS_ENCODING, Locale.UK);
-        try{
-            return Charset.forName(value);
-        } catch (Exception e){
-            logger.warn("{} is not a valid value for the property {}", value, DMS_ENCODING);
-            return StandardCharsets.UTF_8;
-        }
+    public String getDmsMapDefaultDistance() {
+        return readString(DMS_MAP_DEFAULT_DISTANCE);
     }
+
+
 
     public String getDmsToken() {
         return readString(DMS_TOKEN);
@@ -72,6 +69,19 @@ public class Properties {
 
     public Integer getDmsWaitTime() {
         return readInteger(DMS_SLEEP_TIME);
+    }
+
+    //TODO Test
+    public Charset getDmsEncoding() {
+        String value = bundle.getResourceBundle(CONFIGURATION, DMS_ENCODING, Locale.UK);
+        try{
+            if (!Contract.isEmpty(value)) {
+                return Charset.forName(value);
+            }
+        } catch (Exception e){
+            logger.warn("{} is not a valid value for the property {}", value, DMS_ENCODING);
+        }
+        return StandardCharsets.UTF_8;
     }
 
     //TODO Test

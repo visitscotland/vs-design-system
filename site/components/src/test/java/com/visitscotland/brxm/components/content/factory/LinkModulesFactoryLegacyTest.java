@@ -45,6 +45,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     private LinkService linkService;
     private DMSDataService dms;
     private Properties properties;
+    private LocationLoader locationloader;
 
 
     /**
@@ -72,7 +73,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
         factory = partialMockBuilder(LinkModulesFactory.class)
                 .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class, LocationLoader.class)
-                .withArgs(utils, dms, linkService, rs, LocationLoader.getInstance())
+                .withArgs(utils, dms, linkService, rs, locationloader)
                 .addMockedMethod("getLocation", String.class, Locale.class)
                 .createMock();
 

@@ -17,6 +17,7 @@ import java.net.URLEncoder;
 import java.util.*;
 
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
+import static com.visitscotland.brxm.dms.DMSConstants.ProductSearch.*;
 
 /**
  * @author jose.calcines
@@ -43,29 +44,18 @@ public class ProductSearchBuilder {
                      return order;
                  }
             } catch (Exception e){
-                //logger.warn ("Incorrect value for Order + ", value)
+                logger.warn ("Incorrect value for Order: {}", value);
             }
             return Order.NONE;
         }
     }
 
-    static final String PRODUCT_SEARCH = "%s/info/%s/search-results?";
-    static final String AVAILABILITY = "avail";
+
+
+    //TODO Convert into property --> getDmsMapDefaultDistance
     static final Double DEFAULT_PROXIMITY = 10.0;
 
-    static final String PRODUCT_TYPE_PARAM = "prodtypes";
-    static final String LOCATION_NAME_PARAM = "loc";
-    static final String LOCATION_PLACE_PARAM = "locplace";
-    static final String LOCATION_POLYGON_PARAM = "locpoly";
-    static final String CATEGORY_PARAM = "cat";
-    static final String AWARD_PARAM = "src_awards__0";
-    static final String FACILITY_PARAM = "fac_id";
-    static final String RATING_PARAM = "grade";
-    static final String LATITUDE_PARAM = "lat";
-    static final String LONGITUDE_PARAM = "lng";
-    static final String PROXIMITY_LOCATION_PARAM = "locprox";
-    static final String PROXIMITY_PIN_PARAM = "areaproxdist";
-    static final String ORDER_PARAM = "order";
+
 
     //TODO This path should come from DMS?
     static final String PATH_SEE_DO = "see-do";
@@ -87,17 +77,15 @@ public class ProductSearchBuilder {
     private Set<String> facilities = new TreeSet<>();
     private Set<String> ratings = new TreeSet<>();
 
-    private LocationLoader locationLoader;
+    private final LocationLoader locationLoader;
 
-    //TODO private final
-    private Properties properties;
+    private final Properties properties;
 
-    //TODO Convert in a proper prototype as part of the work on Properties
-    public ProductSearchBuilder(){
+    public ProductSearchBuilder(LocationLoader locationLoader, Properties properties){
+        this.locationLoader = locationLoader;
+        this.properties = properties;
         this.order = Order.NONE;
         this.proximity = DEFAULT_PROXIMITY;
-        this.locationLoader = SpringContext.getBean(LocationLoader.class);
-        this.properties = SpringContext.getBean(Properties.class);
     }
 
     /**
@@ -111,21 +99,17 @@ public class ProductSearchBuilder {
 
     public ProductSearchBuilder fromHippoBean(ProductsSearch ps){
         if (ps.getProductType() != null) {
-            ProductSearchBuilder psb = SpringContext.getBean(ProductSearchBuilder.class);
-            psb.productTypes(ps.getProductType());
-            psb.location(ps.getLocation());
-            psb.category(ps.getDmsCategories());
-            psb.facility(ps.getDmsFacilities());
-            psb.award(ps.getDmsAwards());
-            psb.rating(ps.getOfficialrating());
-            psb.proximity(ps.getDistance());
-
-            return psb;
+            productTypes(ps.getProductType());
+            location(ps.getLocation());
+            category(ps.getDmsCategories());
+            facility(ps.getDmsFacilities());
+            award(ps.getDmsAwards());
+            rating(ps.getOfficialrating());
+            proximity(ps.getDistance());
         }
-        return null;
+        return this;
     }
 
-    //TODO Convert to Languages
     public ProductSearchBuilder locale(Locale locale){
         if (locale != null) {
             for (Locale loc : Language.getLocales()) {
@@ -238,7 +222,6 @@ public class ProductSearchBuilder {
         return this;
     }
 
-    //TODO test
     public ProductSearchBuilder sortBy(String order){
         this.order = Order.fromValue(order);
         return this;
@@ -260,18 +243,22 @@ public class ProductSearchBuilder {
      * @return
      */
     public String build(){
-        if (productTypes == null){
-            throw new VsException("No types have been defined for this search");
-        }
-        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH, properties.getDmsHost()==null?"":properties.getDmsHost(), path));
+        return buildUrl(String.format(DMSConstants.PRODUCT_SEARCH, path));
     }
 
-    //TODO Test
     public String buildDataMap(){
+        return buildUrl(DMSConstants.PRODUCT_SEARCH_DATA_MAP);
+    }
+
+    private String buildUrl(String path){
         if (productTypes == null){
             throw new VsException("No types have been defined for this search");
         }
-        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH_DATA_MAP, properties.getDmsHost()==null?"":properties.getDmsHost()));
+        if (Contract.isEmpty(properties.getDmsHost())){
+            return composeUrl(path);
+        } else {
+            return composeUrl(properties.getDmsHost() + path);
+        }
     }
 
     /**
@@ -351,12 +338,8 @@ public class ProductSearchBuilder {
         } else {
             String aux = url;
 
-            for (String var: values){
-                if (aux.endsWith("?")){
-                    aux += param + "=" + var;
-                } else {
-                    aux += "&" + param + "=" + var;
-                }
+            for (String value: values){
+                aux = addParams(aux, param, value);
             }
 
             return aux;

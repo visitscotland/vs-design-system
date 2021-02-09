@@ -6,6 +6,7 @@ import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.ICentreModule;
 import com.visitscotland.brxm.beans.mapping.LinkType;
+import com.visitscotland.brxm.cfg.SpringContext;
 import com.visitscotland.brxm.components.content.factory.utils.QuoteFactory;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.DMSDataService;
@@ -138,7 +139,7 @@ public class ICentreFactory {
         logger.info("Calulating list of iCentres for the location {} (locale {})", location, locale);
         List<FlatLink> vicList = new ArrayList<>();
 
-        ProductSearchBuilder dmsQuery = new ProductSearchBuilder().location(location)
+        ProductSearchBuilder dmsQuery = SpringContext.getBean(ProductSearchBuilder.class).location(location)
                 .productTypes(DMSConstants.TYPE_SERVICES).category(DMSConstants.CAT_ICENTRE)
                 .sortBy(DMSConstants.SORT_ALPHA);
 
