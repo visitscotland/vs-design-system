@@ -175,12 +175,12 @@ export default {
         dropdown-label="Our websites"
         active-site="https://www.visitscotland.com/"
     >
-        <span
+        <template
             slot="third-menu-item"
             style="min-width: 50px;"
         >
             EN
-        </span>
+        </template>
     </VsGlobalMenu>
   ```
 </docs>
