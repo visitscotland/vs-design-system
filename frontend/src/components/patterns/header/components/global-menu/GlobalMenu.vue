@@ -138,7 +138,11 @@ export default {
 @include no-js {
     .vs-global-menu {
         height: auto;
-        font-size: $font-size-base;
+        margin-bottom: $spacer-4;
+
+        .dropdown-toggle{
+            display: none
+        }
 
         &__wrapper {
             display: flex;
@@ -146,10 +150,6 @@ export default {
 
             .vs-global-menu__websites {
                 display: none;
-            }
-
-            .vs-list {
-                display: flex !important;
             }
         }
     }
@@ -162,7 +162,7 @@ export default {
         dropdown-label="Our websites"
         active-site="https://www.visitscotland.com/"
     >
-        <span slot="third-menu-item">
+        <template slot="third-menu-item">
             <VsGlobalMenuLanguage>
                 <VsGlobalMenuLanguageItem languageName="English">
                 </VsGlobalMenuLanguageItem>
@@ -177,7 +177,7 @@ export default {
                 <VsGlobalMenuLanguageItem languageName="Nederlands">
                 </VsGlobalMenuLanguageItem>
             </VsGlobalMenuLanguage>
-        </span>
+        </template>
     </VsGlobalMenu>
   ```
 </docs>

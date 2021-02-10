@@ -61,11 +61,32 @@ export default {
 
 @include no-js {
     .vs-global-menu__languages__item {
-        display: block;
-    }
+        width: 100%;
+        border: none;
 
-    @include media-breakpoint-up(sm) {
-        display: inline;
+        @include media-breakpoint-up(md) {
+            width: auto;
+            padding: $spacer-3;
+        }
+
+        .dropdown-item {
+            color: $color-white;
+            text-decoration: underline;
+            font-size: $h4-font-size;
+
+            &:hover {
+                background:transparent;
+                text-decoration: none;
+            }
+
+            @include media-breakpoint-up(md) {
+                padding: $spacer-1 $spacer-2;
+            }
+
+            @include media-breakpoint-up(lg) {
+                padding: $spacer-1 $spacer-4;
+            }
+        }
     }
 }
 </style>
