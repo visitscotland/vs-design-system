@@ -3,7 +3,7 @@ package com.visitscotland.brxm.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.InstagramImage;
-import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
@@ -77,7 +77,7 @@ public class CommonUtils {
     @Deprecated
     public static JsonNode getInstagramInformation(InstagramImage instagramLink) throws IOException {
         JsonNode response = null;
-        ResourceBundleService bundle = SpringContext.getBean(ResourceBundleService.class);
+        ResourceBundleService bundle = VsComponentManager.get(ResourceBundleService.class);
         //TODO add the access token value for VS facebook account
         String accessToken = bundle.getResourceBundle("keys","tagram.accesstoken",  Locale.UK);
         URL instagramInformation = new URL("https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/" + instagramLink.getId()+"&access_token="+accessToken);
@@ -101,7 +101,7 @@ public class CommonUtils {
     @Deprecated
     public static String currentOpenStatus(String starTime, String endTime, Locale locale) {
         final String ITINERARY_BUNDLE = "itinerary";
-        ResourceBundleService bundle = SpringContext.getBean(ResourceBundleService.class);
+        ResourceBundleService bundle = VsComponentManager.get(ResourceBundleService.class);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");
         LocalTime starts = LocalTime.parse(starTime, formatter);
         LocalTime ends = LocalTime.parse(endTime, formatter);

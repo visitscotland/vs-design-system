@@ -4,7 +4,7 @@ package com.visitscotland.brxm.components.navigation;
 import com.visitscotland.brxm.beans.Page;
 import com.visitscotland.brxm.beans.Widget;
 import com.visitscotland.brxm.beans.mapping.LocalizedURL;
-import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.components.navigation.info.MenuComponentInfo;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
@@ -47,7 +47,7 @@ public class MenuComponent extends EssentialsMenuComponent {
     private HippoUtilsService utils;
 
     public MenuComponent() {
-        this(SpringContext.getBean(ResourceBundleService.class), SpringContext.getBean(HippoUtilsService.class));
+        this(VsComponentManager.get(ResourceBundleService.class), VsComponentManager.get(HippoUtilsService.class));
     }
 
     public MenuComponent(ResourceBundleService bundle, HippoUtilsService utils) {

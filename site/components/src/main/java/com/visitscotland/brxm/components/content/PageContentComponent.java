@@ -8,7 +8,7 @@ import com.visitscotland.brxm.beans.mapping.Coordinates;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
-import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
@@ -46,10 +46,10 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     private LinkModulesFactory linksFactory;
 
     public PageContentComponent(){
-        bundle = SpringContext.getBean(ResourceBundleService.class);
-        linksService = SpringContext.getBean(LinkService.class);
-        locationLoader = SpringContext.getBean(LocationLoader.class);
-        linksFactory = SpringContext.getBean(LinkModulesFactory.class);
+        bundle = VsComponentManager.get(ResourceBundleService.class);
+        linksService = VsComponentManager.get(LinkService.class);
+        locationLoader = VsComponentManager.get(LocationLoader.class);
+        linksFactory = VsComponentManager.get(LinkModulesFactory.class);
     }
 
     @Override

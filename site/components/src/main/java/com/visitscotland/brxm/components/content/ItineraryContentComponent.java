@@ -6,12 +6,11 @@ import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.dms.LocationObject;
 import com.visitscotland.brxm.beans.mapping.*;
 import com.visitscotland.brxm.beans.mapping.Coordinates;
-import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.CoordinateUtils;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -19,7 +18,6 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -41,9 +39,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public ItineraryContentComponent() {
         logger.debug("ItineraryContentComponent initialized");
 
-        bundle = SpringContext.getBean(ResourceBundleService.class);
-        locationLoader = SpringContext.getBean(LocationLoader.class);
-        dmsData = SpringContext.getBean(DMSDataService.class);
+        bundle = VsComponentManager.get(ResourceBundleService.class);
+        locationLoader = VsComponentManager.get(LocationLoader.class);
+        dmsData = VsComponentManager.get(DMSDataService.class);
     }
 
     @Override

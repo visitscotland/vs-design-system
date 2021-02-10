@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.services;
 
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -25,12 +26,13 @@ public class ResourceBundleService {
 
     public ResourceBundleService (CommonUtils common){
         this.common = common;
+//        registry = HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName());
     }
 
     // TODO: If The Spring Components are integrated in HST, this method might not be necessary
     private ResourceBundleRegistry getResourceBundleRegistry(){
         if (registry== null){
-            registry = HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName());
+            registry = VsComponentManager.get(ResourceBundleRegistry.class);
         }
         return registry;
     }

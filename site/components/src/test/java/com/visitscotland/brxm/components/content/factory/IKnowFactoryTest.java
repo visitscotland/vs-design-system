@@ -2,12 +2,13 @@ package com.visitscotland.brxm.components.content.factory;
 
 import com.visitscotland.brxm.beans.IKnow;
 import com.visitscotland.brxm.beans.mapping.IKnowModule;
-import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.mock.TouristInformationMockBuilder;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
+import org.hippoecm.hst.core.container.ComponentManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +21,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationContext;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,12 +43,12 @@ class IKnowFactoryTest {
 
     @BeforeAll
     public static void initContext(){
-        ApplicationContext context = mock(ApplicationContext.class, withSettings().lenient());
+        ComponentManager context = mock(ComponentManager.class, withSettings().lenient());
         psBuilder = mock(ProductSearchBuilder.class, Answers.RETURNS_SELF);
         when(psBuilder.build()).thenReturn("URL");
-        when(context.getBean(ProductSearchBuilder.class)).thenReturn(psBuilder);
+        when(context.getComponent(ProductSearchBuilder.class)).thenReturn(psBuilder);
 
-        new SpringContext().setApplicationContext(context);
+        new VsComponentManager().setComponentManager(context);
     }
 
     @BeforeEach

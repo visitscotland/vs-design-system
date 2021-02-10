@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.LinkType;
-import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.utils.CommonUtils;
@@ -40,7 +40,7 @@ public class LinkService {
     }
 
     private ProductSearchBuilder productSearch(){
-        return SpringContext.getBean(ProductSearchBuilder.class);
+        return VsComponentManager.get(ProductSearchBuilder.class);
     }
 
     /**

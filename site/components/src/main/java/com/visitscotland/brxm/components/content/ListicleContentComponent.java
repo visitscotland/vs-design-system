@@ -7,7 +7,7 @@ import com.visitscotland.brxm.beans.mapping.Coordinates;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.FlatListicle;
-import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.services.LinkService;
@@ -33,9 +33,9 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
     public ListicleContentComponent(){
         logger.debug("ListicleContentComponent initialized");
 
-        linksService = SpringContext.getBean(LinkService.class);
-        locationLoader = SpringContext.getBean(LocationLoader.class);
-        dmsData = SpringContext.getBean(DMSDataService.class);
+        linksService = VsComponentManager.get(LinkService.class);
+        locationLoader = VsComponentManager.get(LocationLoader.class);
+        dmsData = VsComponentManager.get(DMSDataService.class);
     }
 
     @Override

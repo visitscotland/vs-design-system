@@ -3,7 +3,7 @@ package com.visitscotland.brxm.dms;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.dms.LocationObject;
-import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.utils.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,7 +77,7 @@ public class LocationLoader {
     @Deprecated
     public static LocationLoader getInstance(){
         if (instance == null){
-            instance = SpringContext.getBean(LocationLoader.class);
+            instance = VsComponentManager.get(LocationLoader.class);
         }
         return instance;
     }

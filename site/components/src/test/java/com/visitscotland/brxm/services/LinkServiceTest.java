@@ -4,12 +4,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.LinkType;
-import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.core.container.ComponentManager;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Answers;
@@ -19,7 +20,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationContext;
 
 import javax.annotation.Resource;
-import javax.swing.*;
 import java.io.IOException;
 import java.util.Locale;
 
@@ -50,9 +50,9 @@ class LinkServiceTest {
     LinkService service;
 
     private void initProductSearchBuilder(){
-        ApplicationContext context = mock(ApplicationContext.class, withSettings().lenient());
-        when(context.getBean(ProductSearchBuilder.class)).thenReturn(builder);
-        new SpringContext().setApplicationContext(context);
+        ComponentManager context = mock(ComponentManager.class, withSettings().lenient());
+        when(context.getComponent(ProductSearchBuilder.class)).thenReturn(builder);
+        new VsComponentManager().setComponentManager(context);
     }
 
     @Test

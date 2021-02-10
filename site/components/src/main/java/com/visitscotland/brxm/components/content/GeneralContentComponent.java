@@ -1,7 +1,7 @@
 package com.visitscotland.brxm.components.content;
 
 import com.visitscotland.brxm.beans.Destination;
-import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
@@ -15,7 +15,7 @@ public class GeneralContentComponent extends PageContentComponent<Destination> {
 
     public GeneralContentComponent(){
         logger.debug("GeneralContentComponent initialized");
-        this.builder = SpringContext.getBean(PageTemplateBuilder.class);
+        this.builder = VsComponentManager.get(PageTemplateBuilder.class);
     }
 
     @Override

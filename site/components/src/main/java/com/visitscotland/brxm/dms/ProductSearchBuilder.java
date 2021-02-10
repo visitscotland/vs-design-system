@@ -2,7 +2,7 @@ package com.visitscotland.brxm.dms;
 
 import com.visitscotland.brxm.beans.ProductsSearch;
 import com.visitscotland.brxm.beans.dms.LocationObject;
-import com.visitscotland.brxm.cfg.SpringContext;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.brxm.utils.VsException;
@@ -94,7 +94,7 @@ public class ProductSearchBuilder {
      * @return
      */
     public static ProductSearchBuilder newInstance(){
-        return SpringContext.getBean(ProductSearchBuilder.class);
+        return VsComponentManager.get(ProductSearchBuilder.class);
     }
 
     public ProductSearchBuilder fromHippoBean(ProductsSearch ps){
