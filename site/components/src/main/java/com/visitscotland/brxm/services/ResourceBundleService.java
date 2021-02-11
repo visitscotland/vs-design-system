@@ -26,10 +26,13 @@ public class ResourceBundleService {
 
     public ResourceBundleService (CommonUtils common){
         this.common = common;
-//        registry = HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName());
     }
 
-    // TODO: If The Spring Components are integrated in HST, this method might not be necessary
+    /**
+     * ResourceBundleRegistry is not a Spring Component, therefore when Spring is wiring the component it cannot
+     * wire this the {@code ResourceBundleRegistry}. That's the reason why we need to check the registry before
+     * using it.
+     */
     private ResourceBundleRegistry getResourceBundleRegistry(){
         if (registry== null){
             registry = VsComponentManager.get(ResourceBundleRegistry.class);

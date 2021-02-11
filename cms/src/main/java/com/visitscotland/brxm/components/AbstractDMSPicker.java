@@ -3,13 +3,12 @@ package com.visitscotland.brxm.components;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.DMSProxy;
-import com.visitscotland.brxm.translation.SpringContext;
-import com.visitscotland.brxm.utils.CommonUtils;
-import com.visitscotland.brxm.utils.Properties;
-import com.visitscotland.dataobjects.*;
+import com.visitscotland.dataobjects.DataType;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.onehippo.forge.exdocpicker.api.ExternalDocumentCollection;
@@ -18,7 +17,6 @@ import org.onehippo.forge.exdocpicker.api.ExternalDocumentServiceFacade;
 import org.onehippo.forge.exdocpicker.impl.SimpleExternalDocumentCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import net.sf.json.JSONObject;
 import vs.ase.dms.ProductTypes;
 
 import javax.jcr.Node;
@@ -40,7 +38,7 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
 
     public AbstractDMSPicker(String type) {
         try {
-            dmsProxy = SpringContext.getBean(DMSProxy.class);
+            dmsProxy = VsComponentManager.get(DMSProxy.class);
             docArray = new JSONArray();
             docArray.addAll(JSONArray.fromObject(deserialize(
                     request(type,null, productTypesForPSR(type)))));
@@ -61,7 +59,7 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
 
         try {
             final Node contextNode = context.getContextModel().getNode();
-            final List<String> docIds = new ArrayList<String>();
+            final List<String> docIds = new ArrayList<>();
 
             for (Iterator<? extends JSONObject> it = exdocs.iterator(); it.hasNext();) {
                 JSONObject doc = it.next();
@@ -86,7 +84,7 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
                     + PARAM_EXTERNAL_DOCS_FIELD_NAME + "': " + fieldName);
         }
 
-        ExternalDocumentCollection<JSONObject> docCollection = new SimpleExternalDocumentCollection<JSONObject>();
+        ExternalDocumentCollection<JSONObject> docCollection = new SimpleExternalDocumentCollection<>();
 
         try {
             final Node contextNode = context.getContextModel().getNode();
