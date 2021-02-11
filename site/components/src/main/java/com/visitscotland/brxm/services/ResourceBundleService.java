@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.services;
 
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -12,25 +13,33 @@ import org.springframework.stereotype.Component;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+@Component
 public class ResourceBundleService {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceBundleService.class.getName());
 
     private static final String SERVICE_NAME = "ResourceBundle";
 
-    final ResourceBundleRegistry resourceBundleRegistry;
-    final CommonUtils common;
+    ResourceBundleRegistry registry;
 
-    public ResourceBundleService() {
-        //Default Hippo Resource bundle Service
-        this(HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName()),
-                new CommonUtils());
-    }
+    private CommonUtils common;
 
-    ResourceBundleService (ResourceBundleRegistry rbr, CommonUtils common){
-        resourceBundleRegistry = rbr;
+    public ResourceBundleService (CommonUtils common){
         this.common = common;
     }
+
+    /**
+     * ResourceBundleRegistry is not a Spring Component, therefore when Spring is wiring the component it cannot
+     * wire this the {@code ResourceBundleRegistry}. That's the reason why we need to check the registry before
+     * using it.
+     */
+    private ResourceBundleRegistry getResourceBundleRegistry(){
+        if (registry== null){
+            registry = VsComponentManager.get(ResourceBundleRegistry.class);
+        }
+        return registry;
+    }
+
 
 
     /**
@@ -136,12 +145,15 @@ public class ResourceBundleService {
      */
     private ResourceBundle getResourceBundle(String bundleName, Locale locale){
         if (locale == null) {
-            return resourceBundleRegistry.getBundle(bundleName);
+            return getResourceBundleRegistry().getBundle(bundleName);
         } else {
-            return resourceBundleRegistry.getBundle(bundleName, locale);
+            return getResourceBundleRegistry().getBundle(bundleName, locale);
         }
     }
 
+    public void setResourceBundleRegistry(ResourceBundleRegistry registry){
+        this.registry = registry;
+    }
 
     /**
      * Verify that a value exists for a key in the specified language

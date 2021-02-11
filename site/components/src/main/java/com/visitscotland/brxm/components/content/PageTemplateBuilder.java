@@ -14,11 +14,13 @@ import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.MissingResourceException;
-
+//TODO Move to utils
+@Component
 public class PageTemplateBuilder {
 
     private static final Logger logger = LoggerFactory.getLogger(PageTemplateBuilder.class);
@@ -37,10 +39,6 @@ public class PageTemplateBuilder {
     private final ICentreFactory iCentreFactory;
     private final IKnowFactory iKnowFactory;
     private final ArticleFactory articleFactory;
-
-    public PageTemplateBuilder() {
-        this(new DocumentUtils(), new LinkModulesFactory(), new ICentreFactory(), new IKnowFactory(), new ArticleFactory());
-    }
 
     public PageTemplateBuilder(DocumentUtils documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article) {
         this.linksFactory = linksFactory;

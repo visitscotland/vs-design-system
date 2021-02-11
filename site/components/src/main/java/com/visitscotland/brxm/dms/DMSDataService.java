@@ -8,20 +8,19 @@ import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Locale;
 
-
+//TODO: Test changing the name
+//@Component("dmsDataService")
+@Component
 public class DMSDataService {
 
     private static final Logger logger = LoggerFactory.getLogger(DMSDataService.class.getName());
 
     private DMSProxy proxy;
-
-    public DMSDataService() {
-        this (new DMSProxy());
-    }
 
     public DMSDataService(DMSProxy proxy) {
         this.proxy = proxy;
