@@ -10,6 +10,7 @@ import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
+import org.springframework.stereotype.Component;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
@@ -18,6 +19,7 @@ import java.util.Locale;
 /**
  * Set of utilities related with Hippo that from the whole environment to be running in order to work
  */
+@Component
 public class HippoUtilsService {
 
     /**
@@ -25,36 +27,11 @@ public class HippoUtilsService {
      */
     final BaseHstComponent hstComponent;
 
-    //TODO: eliminate when PageContentComponent.getCtaLabel() gets refactored.
-    final ResourceBundleService bundle;
-
     public HippoUtilsService(){
-        bundle = new ResourceBundleService();
         hstComponent = new BaseHstComponent();
     }
 
     static HippoUtilsService instance;
-
-    /**
-     *  @deprecated This method exists until legacy uses are refactored. Do not use this method statically but
-     *  create a new instance so whatever is using this class can be tested
-     */
-    @Deprecated
-    public static HippoUtilsService getInstance(){
-        if (instance == null){
-            instance = new HippoUtilsService();
-        }
-        return instance;
-    }
-
-    /**
-     * @deprecated Use ResourceBundleUtils instead
-     */
-    @Deprecated
-    @NonTestable
-    public String getResourceBundle(String bundleName, String key,  Locale locale){
-        return bundle.getResourceBundle(bundleName, key,  locale, false);
-    }
 
     /**
      * Convert and HstLink or a HippoBean into a URL String

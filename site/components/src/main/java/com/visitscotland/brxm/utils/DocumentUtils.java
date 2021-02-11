@@ -18,6 +18,7 @@ import java.util.List;
 /**
  * Singleton
  */
+@Component
 public class DocumentUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(DocumentUtils.class.getName());

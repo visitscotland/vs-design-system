@@ -10,21 +10,27 @@ import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatQuote;
 import com.visitscotland.brxm.beans.mapping.ICentreModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.EnhancedLink;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.components.content.factory.utils.QuoteFactory;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.mock.TouristInformationMockBuilder;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
+import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
+import org.hippoecm.hst.core.container.ComponentManager;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationContext;
 
 import javax.jcr.RepositoryException;
 import java.util.Locale;
@@ -50,6 +56,9 @@ class ICentreFactoryTest {
     @Mock
     ResourceBundleService bundle;
 
+    @Mock
+    Properties properties;
+
     ICentreFactory factory;
 
     TouristInformationMockBuilder mockBuilder;
@@ -67,15 +76,21 @@ class ICentreFactoryTest {
             " \"name\":\"name\", \"id\":\"id\" " +
             "}}]";
 
-    @BeforeEach
-    void init() {
-        factory = new ICentreFactory(utils, dmsData, bundle, quoteEmbedder, imageFactory);
-        mockBuilder = new TouristInformationMockBuilder().addICentre();
+    @BeforeAll
+    public static void initContext(){
+        ComponentManager context = mock(ComponentManager.class, withSettings().lenient());
+        ProductSearchBuilder psb = mock(ProductSearchBuilder.class, Answers.RETURNS_SELF);
+        when(psb.build()).thenReturn("URL");
+        when(context.getComponent(ProductSearchBuilder.class)).thenReturn(psb);
+
+        new VsComponentManager().setComponentManager(context);
     }
 
-//    private ICentre iCentreMock(){
-//        return mock(ICentre.class);
-//    }
+    @BeforeEach
+    void init() {
+        factory = new ICentreFactory(utils, dmsData, bundle, quoteEmbedder, imageFactory, properties);
+        mockBuilder = new TouristInformationMockBuilder().addICentre();
+    }
 
     @Test
     @DisplayName("iCentre Module for General pages")
@@ -110,9 +125,6 @@ class ICentreFactoryTest {
 
         ICentreModule module = factory.getModule(mockBuilder.build().getICentre(), Locale.UK, location);
 
-        String dmsUrl = captor.getValue().build();
-
-        assertTrue(dmsUrl.contains(location), "The queryString " + dmsUrl + "does not contain " + location);
         assertNotNull(module);
         assertNotNull(module.getLinks().get(0).getLink());
     }

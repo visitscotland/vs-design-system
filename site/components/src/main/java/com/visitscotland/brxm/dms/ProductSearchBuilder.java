@@ -2,17 +2,28 @@ package com.visitscotland.brxm.dms;
 
 import com.visitscotland.brxm.beans.ProductsSearch;
 import com.visitscotland.brxm.beans.dms.LocationObject;
+import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
+import com.visitscotland.brxm.utils.VsException;
+import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.*;
 
+import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
+import static com.visitscotland.brxm.dms.DMSConstants.ProductSearch.*;
+
 /**
  * @author jose.calcines
  */
+@Component
+@Scope(SCOPE_PROTOTYPE)
 public class ProductSearchBuilder {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductSearchBuilder.class.getName());
@@ -33,29 +44,18 @@ public class ProductSearchBuilder {
                      return order;
                  }
             } catch (Exception e){
-                //logger.warn ("Incorrect value for Order + ", value)
+                logger.warn ("Incorrect value for Order: {}", value);
             }
             return Order.NONE;
         }
     }
 
-    static final String PRODUCT_SEARCH = "%s/info/%s/search-results?";
-    static final String AVAILABILITY = "avail";
+
+
+    //TODO Convert into property --> getDmsMapDefaultDistance
     static final Double DEFAULT_PROXIMITY = 10.0;
 
-    static final String PRODUCT_TYPE_PARAM = "prodtypes";
-    static final String LOCATION_NAME_PARAM = "loc";
-    static final String LOCATION_PLACE_PARAM = "locplace";
-    static final String LOCATION_POLYGON_PARAM = "locpoly";
-    static final String CATEGORY_PARAM = "cat";
-    static final String AWARD_PARAM = "src_awards__0";
-    static final String FACILITY_PARAM = "fac_id";
-    static final String RATING_PARAM = "grade";
-    static final String LATITUDE_PARAM = "lat";
-    static final String LONGITUDE_PARAM = "lng";
-    static final String PROXIMITY_LOCATION_PARAM = "locprox";
-    static final String PROXIMITY_PIN_PARAM = "areaproxdist";
-    static final String ORDER_PARAM = "order";
+
 
     //TODO This path should come from DMS?
     static final String PATH_SEE_DO = "see-do";
@@ -77,12 +77,15 @@ public class ProductSearchBuilder {
     private Set<String> facilities = new TreeSet<>();
     private Set<String> ratings = new TreeSet<>();
 
-    private LocationLoader locationLoader;
+    private final LocationLoader locationLoader;
 
-    public ProductSearchBuilder(){
+    private final Properties properties;
+
+    public ProductSearchBuilder(LocationLoader locationLoader, Properties properties){
+        this.locationLoader = locationLoader;
+        this.properties = properties;
         this.order = Order.NONE;
         this.proximity = DEFAULT_PROXIMITY;
-        this.locationLoader = LocationLoader.getInstance();
     }
 
     /**
@@ -91,13 +94,25 @@ public class ProductSearchBuilder {
      * @return
      */
     public static ProductSearchBuilder newInstance(){
-        return new ProductSearchBuilder();
+        return VsComponentManager.get(ProductSearchBuilder.class);
     }
 
-    //TODO Convert to Languages
+    public ProductSearchBuilder fromHippoBean(ProductsSearch ps){
+        if (ps.getProductType() != null) {
+            productTypes(ps.getProductType());
+            location(ps.getLocation());
+            category(ps.getDmsCategories());
+            facility(ps.getDmsFacilities());
+            award(ps.getDmsAwards());
+            rating(ps.getOfficialrating());
+            proximity(ps.getDistance());
+        }
+        return this;
+    }
+
     public ProductSearchBuilder locale(Locale locale){
         if (locale != null) {
-            for (Locale loc : Properties.locales) {
+            for (Locale loc : Language.getLocales()) {
                 if (locale.equals(loc) || (loc != null && locale.getLanguage().equals(loc.getLanguage()))) {
                     this.locale = loc;
                     return this;
@@ -139,22 +154,6 @@ public class ProductSearchBuilder {
         }
 
         return this;
-    }
-
-    public ProductSearchBuilder fromHippoBean(ProductsSearch ps){
-        if (ps.getProductType() != null) {
-            ProductSearchBuilder psb = new ProductSearchBuilder();
-            psb.productTypes(ps.getProductType());
-            psb.location(ps.getLocation());
-            psb.category(ps.getDmsCategories());
-            psb.facility(ps.getDmsFacilities());
-            psb.award(ps.getDmsAwards());
-            psb.rating(ps.getOfficialrating());
-            psb.proximity(ps.getDistance());
-
-            return psb;
-        }
-        return null;
     }
 
     public ProductSearchBuilder category(String... categories){
@@ -223,7 +222,6 @@ public class ProductSearchBuilder {
         return this;
     }
 
-    //TODO test
     public ProductSearchBuilder sortBy(String order){
         this.order = Order.fromValue(order);
         return this;
@@ -245,18 +243,22 @@ public class ProductSearchBuilder {
      * @return
      */
     public String build(){
-        if (productTypes == null){
-            throw new RuntimeException("No types have been defined for this search");
-        }
-        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH, Properties.VS_DMS_SERVICE==null?"":Properties.VS_DMS_SERVICE, path));
+        return buildUrl(String.format(DMSConstants.PRODUCT_SEARCH, path));
     }
 
-    //TODO Test
     public String buildDataMap(){
+        return buildUrl(DMSConstants.PRODUCT_SEARCH_DATA_MAP);
+    }
+
+    private String buildUrl(String path){
         if (productTypes == null){
-            throw new RuntimeException("No types have been defined for this search");
+            throw new VsException("No types have been defined for this search");
         }
-        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH_DATA_MAP, Properties.VS_DMS_SERVICE==null?"":Properties.VS_DMS_SERVICE));
+        if (Contract.isEmpty(properties.getDmsHost())){
+            return composeUrl(path);
+        } else {
+            return composeUrl(properties.getDmsHost() + path);
+        }
     }
 
     /**
@@ -336,12 +338,8 @@ public class ProductSearchBuilder {
         } else {
             String aux = url;
 
-            for (String var: values){
-                if (aux.endsWith("?")){
-                    aux += param + "=" + var;
-                } else {
-                    aux += "&" + param + "=" + var;
-                }
+            for (String value: values){
+                aux = addParams(aux, param, value);
             }
 
             return aux;

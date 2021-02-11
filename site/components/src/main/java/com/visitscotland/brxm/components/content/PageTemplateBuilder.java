@@ -5,20 +5,19 @@ import com.visitscotland.brxm.beans.mapping.*;
 import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.SingleImageLinksModule;
-import com.visitscotland.brxm.components.content.factory.ArticleFactory;
-import com.visitscotland.brxm.components.content.factory.ICentreFactory;
-import com.visitscotland.brxm.components.content.factory.IKnowFactory;
-import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
+import com.visitscotland.brxm.components.content.factory.*;
 import com.visitscotland.brxm.utils.DocumentUtils;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.MissingResourceException;
-
+//TODO Move to utils
+@Component
 public class PageTemplateBuilder {
 
     private static final Logger logger = LoggerFactory.getLogger(PageTemplateBuilder.class);
@@ -37,17 +36,15 @@ public class PageTemplateBuilder {
     private final ICentreFactory iCentreFactory;
     private final IKnowFactory iKnowFactory;
     private final ArticleFactory articleFactory;
+    private final LongCopyFactory longCopyFactory;
 
-    public PageTemplateBuilder() {
-        this(new DocumentUtils(), new LinkModulesFactory(), new ICentreFactory(), new IKnowFactory(), new ArticleFactory());
-    }
-
-    public PageTemplateBuilder(DocumentUtils documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article) {
+    public PageTemplateBuilder(DocumentUtils documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
         this.documentUtils = documentUtils;
         this.articleFactory = article;
+        this.longCopyFactory = longcopy;
     }
 
     private Page getDocument(HstRequest request) {
@@ -97,9 +94,8 @@ public class PageTemplateBuilder {
             if (config.modules.stream().anyMatch(module -> module instanceof LongCopyModule)){
                 logger.error("Only one instance of this module is allowed");
             } else {
-                LongCopyModule module = new LongCopyModule();
-                module.setCopy(document.getCopy());
-                config.modules.add(module);
+                config.modules.add(longCopyFactory.getModule(document));
+
             }
         } else {
             //TODO Content Issue;
