@@ -173,7 +173,7 @@ export default {
                     Find out more
                 </VsLink>
                 <VsDescriptionList class="my-4 mb-0 justify-content-start" inline>
-                    <VsDescriptionListItem title class="mb-0 mr-0 col-auto">
+                    <VsDescriptionListItem title class="mb-0 mr-0 pr-1 col-auto">
                         Time to explore
                     </VsDescriptionListItem>
                     <VsDescriptionListItem class="mb-0 col-auto px-0">
