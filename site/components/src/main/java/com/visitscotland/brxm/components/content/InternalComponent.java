@@ -1,22 +1,16 @@
 package com.visitscotland.brxm.components.content;
 
-import com.visitscotland.brxm.services.ResourceBundleService;
-import com.visitscotland.brxm.utils.HippoUtilsService;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.onehippo.cms7.essentials.components.CommonComponent;
 
-
 public class InternalComponent extends CommonComponent {
 
-    ResourceBundleService bundle;
-    HippoUtilsService utils;
-    InternalParameterProcessor processor;
+    private InternalParameterProcessor processor;
 
     public InternalComponent() {
-        bundle = new ResourceBundleService();
-        utils = new HippoUtilsService();
-        processor = new InternalParameterProcessor(bundle, utils);
+        processor = VsComponentManager.get(InternalParameterProcessor.class);
     }
 
     @Override

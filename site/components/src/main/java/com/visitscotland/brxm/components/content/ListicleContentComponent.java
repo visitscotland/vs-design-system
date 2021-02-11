@@ -7,6 +7,8 @@ import com.visitscotland.brxm.beans.mapping.Coordinates;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.FlatListicle;
+import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.utils.CommonUtils;
@@ -24,12 +26,16 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
     private static final Logger logger = LoggerFactory.getLogger(ListicleContentComponent.class);
 
-    LinkService linksService;
-    LocationLoader locationLoader;
+    private LinkService linksService;
+    private LocationLoader locationLoader;
+    private DMSDataService dmsData;
 
     public ListicleContentComponent(){
-        linksService = new LinkService();
-        locationLoader = LocationLoader.getInstance();
+        logger.debug("ListicleContentComponent initialized");
+
+        linksService = VsComponentManager.get(LinkService.class);
+        locationLoader = VsComponentManager.get(LocationLoader.class);
+        dmsData = VsComponentManager.get(DMSDataService.class);
     }
 
     @Override

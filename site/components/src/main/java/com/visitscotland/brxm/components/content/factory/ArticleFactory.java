@@ -6,25 +6,20 @@ import com.visitscotland.brxm.beans.mapping.ArticleModule;
 import com.visitscotland.brxm.beans.mapping.ArticleModuleSection;
 import com.visitscotland.brxm.components.content.factory.utils.QuoteFactory;
 import org.hippoecm.hst.core.component.HstRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+@Component
 public class ArticleFactory {
 
     private ImageFactory imageFactory;
 
     private QuoteFactory quoteEmbedder;
 
-    public ArticleFactory(){
-        imageFactory = new ImageFactory();
-        quoteEmbedder = new QuoteFactory();
-    }
-
-    ArticleFactory(ImageFactory imageFactory, QuoteFactory quoteEmbedder){
+    public ArticleFactory(ImageFactory imageFactory, QuoteFactory quoteEmbedder){
         this.imageFactory = imageFactory;
         this.quoteEmbedder = quoteEmbedder;
     }

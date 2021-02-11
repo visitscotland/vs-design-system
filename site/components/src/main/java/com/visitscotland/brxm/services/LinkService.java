@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.LinkType;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.utils.CommonUtils;
@@ -13,13 +14,14 @@ import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 
+@Component
 public class LinkService {
-
 
     private static final Logger logger = LoggerFactory.getLogger(LinkService.class);
 
@@ -28,15 +30,17 @@ public class LinkService {
     private final DMSDataService dmsData;
     private final ResourceBundleService resourceBundle;
     private final HippoUtilsService utils;
+    private final Properties properties;
 
-    public LinkService() {
-        this(new DMSDataService(), new ResourceBundleService(), new HippoUtilsService());
-    }
-
-    public LinkService(DMSDataService dmsData, ResourceBundleService resourceBundle, HippoUtilsService utils) {
+    public LinkService(DMSDataService dmsData, ResourceBundleService resourceBundle, HippoUtilsService utils, Properties properties) {
         this.dmsData = dmsData;
         this.resourceBundle = resourceBundle;
         this.utils = utils;
+        this.properties = properties;
+    }
+
+    private ProductSearchBuilder productSearch(){
+        return VsComponentManager.get(ProductSearchBuilder.class);
     }
 
     /**
@@ -54,15 +58,16 @@ public class LinkService {
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
 
             if (dmsLink.getProduct() == null) {
-                logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
-                        dmsLink.getProduct(), item.getPath()));
+                String message = CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
+                        dmsLink.getProduct(), item.getPath());
+                logger.warn(message);
             } else if (product != null) {
                 //TODO build the link for the DMS product properly
-                return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), Properties.VS_DMS_SERVICE + product.get(URL).asText(), LinkType.INTERNAL);
+                return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL);
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
-            ProductSearchBuilder psb = new ProductSearchBuilder().fromHippoBean(productSearchLink.getSearch()).locale(locale);
+            ProductSearchBuilder psb = productSearch().fromHippoBean(productSearchLink.getSearch()).locale(locale);
 
             return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build(), LinkType.INTERNAL);
 
@@ -93,14 +98,14 @@ public class LinkService {
                 CommonUtils.contentIssue("The product id '%s' does not exist but is linked ",
                         ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
             } else {
-                return Properties.VS_DMS_SERVICE + product.get(URL).asText();
+                return properties.getDmsHost() + product.get(URL).asText();
             }
         } else if (link.getLinkType() instanceof ExternalLink) {
             return ((ExternalLink) link.getLinkType()).getLink();
         } else if (link.getLinkType() instanceof ProductsSearch) {
-            return new ProductSearchBuilder().fromHippoBean(((ProductsSearch) link.getLinkType())).build();
+            return productSearch().fromHippoBean(((ProductsSearch) link.getLinkType())).build();
         } else if (link.getLinkType() instanceof ProductSearchLink) {
-            return new ProductSearchBuilder().fromHippoBean(((ProductSearchLink) link.getLinkType()).getSearch()).build();
+            return productSearch().fromHippoBean(((ProductSearchLink) link.getLinkType()).getSearch()).build();
         } else if (link.getLinkType() instanceof ExternalDocument) {
             return ((ExternalDocument) link.getLinkType()).getLink();
         } else {
@@ -120,7 +125,7 @@ public class LinkService {
         if (Contract.isEmpty(url)) {
             return null;
         } else if (url.startsWith("/") || url.contains("localhost") || url.contains("visitscotland.com")
-                || url.startsWith(Properties.VS_DMS_SERVICE)) {
+                || url.startsWith(properties.getDmsHost())) {
             return LinkType.INTERNAL;
         }
 
