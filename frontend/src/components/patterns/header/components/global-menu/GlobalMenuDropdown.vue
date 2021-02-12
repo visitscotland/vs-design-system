@@ -90,7 +90,7 @@ export default {
     }
 
     .dropdown-toggle {
-        padding: $spacer-1 $spacer-3;
+        padding: 0.3rem $spacer-3;
         font-size: $font-size-sm;
         align-items: center;
 
