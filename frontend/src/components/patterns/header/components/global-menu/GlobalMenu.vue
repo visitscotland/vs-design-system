@@ -129,9 +129,14 @@ export default {
         align-items: center;
 
         @include media-breakpoint-down(md) {
-            padding: 0!important;
             margin: 0;
         }
+    }
+}
+
+.row:not(.no-gutters) > .vs-global-menu__wrapper{
+    @include media-breakpoint-down(md) {
+        padding: 0;
     }
 }
 
