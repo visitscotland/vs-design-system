@@ -197,6 +197,10 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         }
     }
 
+    /**
+     * @deprecated use DMSUtils.getFacilities instead
+     */
+    @Deprecated
     protected List<DataType> getFacilities (JsonNode product){
         List<DataType> facilities = null;
         if (product.has(FACILITIES)){

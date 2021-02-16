@@ -1,6 +1,7 @@
 package com.visitscotland.brxm.components.content;
 
 import com.visitscotland.brxm.beans.*;
+import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.ICentreModule;
 import com.visitscotland.brxm.beans.mapping.IKnowModule;
 import com.visitscotland.brxm.beans.mapping.Module;
@@ -91,10 +92,10 @@ class PageTemplateBuilderTest {
     @Test
     void addMegalinksModule_basic() {
         Megalinks megalinks = new MegalinksMockBuilder().build();
-        MultiImageLinksModule module = new MultiImageLinksModule();
+        LinksModule<?> module = new MultiImageLinksModule();
 
         when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(megalinks));
-        when(linksFactory.getMegalinkModule(megalinks, Locale.UK)).thenReturn(module);
+        doReturn(module).when(linksFactory).getMegalinkModule(megalinks, Locale.UK);
 
         builder.addModules(request);
         List items = (List) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
@@ -114,10 +115,10 @@ class PageTemplateBuilderTest {
                 new MegalinksMockBuilder().build());
 
         when(utils.getAllowedDocuments(page)).thenReturn(list);
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(0), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(1), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(2), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(3), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
+        doReturn(new MultiImageLinksModule("h2")).when(linksFactory).getMegalinkModule((Megalinks) list.get(0), Locale.UK);
+        doReturn(new MultiImageLinksModule("h2")).when(linksFactory).getMegalinkModule((Megalinks) list.get(1), Locale.UK);
+        doReturn(new MultiImageLinksModule("h2")).when(linksFactory).getMegalinkModule((Megalinks) list.get(2), Locale.UK);
+        doReturn(new MultiImageLinksModule("h2")).when(linksFactory).getMegalinkModule((Megalinks) list.get(3), Locale.UK);
 
         builder.addModules(request);
         List<LinksModule> items = (List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
@@ -141,10 +142,10 @@ class PageTemplateBuilderTest {
                 new MegalinksMockBuilder().build());
 
         when(utils.getAllowedDocuments(page)).thenReturn(list);
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(0), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(1), Locale.UK)).thenReturn(new MultiImageLinksModule());
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(2), Locale.UK)).thenReturn(new MultiImageLinksModule());
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(3), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
+        doReturn(new MultiImageLinksModule("h2")).when(linksFactory).getMegalinkModule((Megalinks) list.get(0), Locale.UK);
+        doReturn(new MultiImageLinksModule()).when(linksFactory).getMegalinkModule((Megalinks) list.get(1), Locale.UK);
+        doReturn(new MultiImageLinksModule()).when(linksFactory).getMegalinkModule((Megalinks) list.get(2), Locale.UK);
+        doReturn(new MultiImageLinksModule("h2")).when(linksFactory).getMegalinkModule((Megalinks) list.get(3), Locale.UK);
 
         builder.addModules(request);
         List<LinksModule> items = (List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
@@ -165,12 +166,12 @@ class PageTemplateBuilderTest {
         when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(mega));
 
         // Build the first case where the first element has no title
-        when(linksFactory.getMegalinkModule(mega, Locale.UK)).thenReturn(new MultiImageLinksModule());
+        doReturn(new MultiImageLinksModule()).when(linksFactory).getMegalinkModule(mega, Locale.UK);
         builder.addModules(request);
         LinksModule firstModuleWithoutTitle = ((List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
 
         // Build the second case where the first element has a title
-        when(linksFactory.getMegalinkModule(mega, Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
+        doReturn(new MultiImageLinksModule("h2")).when(linksFactory).getMegalinkModule(mega, Locale.UK);
         builder.addModules(request);
         LinksModule firstModuleWithTitle = ((List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
 
@@ -272,7 +273,7 @@ class PageTemplateBuilderTest {
         Megalinks mega = new MegalinksMockBuilder().build();
         when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(mega));
 
-        when(linksFactory.getMegalinkModule(mega, Locale.UK)).thenReturn(new MultiImageLinksModule());
+        doReturn(new MultiImageLinksModule()).when(linksFactory).getMegalinkModule(mega, Locale.UK);
         builder.addModules(request);
         LinksModule module = (LinksModule) ((List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
 

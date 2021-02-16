@@ -3,20 +3,19 @@ package com.visitscotland.brxm.beans.mapping.megalinks;
 import com.visitscotland.brxm.beans.Megalinks;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.Module;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import java.util.List;
 
-public class LinksModule<L extends FlatLink> extends Module {
+public class LinksModule<L extends FlatLink> extends Module<Megalinks> {
 
     private String title;
     private HippoHtml introduction;
     private List<L> links;
     private FlatLink cta;
-    private Megalinks megalinkItem;
     private String theme;
     private String alignment;
-    private List<String> errorMessages;
 
     public String getTitle() {
         return title;
@@ -50,12 +49,12 @@ public class LinksModule<L extends FlatLink> extends Module {
         this.cta = cta;
     }
 
-    public Megalinks getMegalinkItem() {
-        return megalinkItem;
-    }
-
-    public void setMegalinkItem(Megalinks megalinkItem) {
-        this.megalinkItem = megalinkItem;
+    /**
+     * @deprecated  use getHippoBean instead
+     */
+    @Deprecated
+    public HippoBean getMegalinkItem() {
+        return getHippoBean();
     }
 
     public String getTheme() {
@@ -72,12 +71,5 @@ public class LinksModule<L extends FlatLink> extends Module {
 
     public void setAlignment(String alignment) {
         this.alignment = alignment;
-    }
-    public List<String> getErrorMessages() {
-        return errorMessages;
-    }
-
-    public void setErrorMessages(List<String> errorMessages) {
-        this.errorMessages = errorMessages;
     }
 }

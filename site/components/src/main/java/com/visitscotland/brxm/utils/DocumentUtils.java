@@ -53,6 +53,10 @@ public class DocumentUtils {
         return getSiblingDocuments(page, BaseDocument.class, page.getChildJcrTypes());
     }
 
+    public <T extends BaseDocument> List<T> getAllowedDocuments(Page page, Class<T> expectedClass) {
+        return getSiblingDocuments(page, expectedClass, page.getChildJcrTypes());
+    }
+
     /**
      * Returns a list of allowed documents
      *
@@ -102,10 +106,12 @@ public class DocumentUtils {
     }
 
     private void logError(String message, Node node, Exception e) {
+        String logMessage;
         try {
-            logger.error(message + node.getPath(), e);
+            logMessage = message + " : " + node.getPath();
         } catch (RepositoryException e1) {
-            logger.error(message + ". A nested exception happened while trying to access to the node ", e1);
+            logMessage = message + ". A nested exception happened while trying to access to the node ";
         }
+        logger.error(logMessage, e);
     }
 }

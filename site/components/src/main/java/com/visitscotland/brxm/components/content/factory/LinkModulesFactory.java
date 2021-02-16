@@ -48,7 +48,7 @@ public class LinkModulesFactory {
         this.locationLoader = locationLoader;
     }
 
-    public LinksModule getMegalinkModule(Megalinks doc, Locale locale) {
+    public LinksModule<?> getMegalinkModule(Megalinks doc, Locale locale) {
         if (doc.getLayout()!= null && doc.getLayout().equalsIgnoreCase("list") || doc.getMegalinkItems().size() > MAX_ITEMS) {
             return listLayout(doc, locale) ;
         } else if (doc.getLayout()!= null && doc.getLayout().contains(HORIZONTAL_LAYOUT)) {
@@ -187,7 +187,7 @@ public class LinkModulesFactory {
      * @param locale consumer language.
      */
     private void populateCommonFields(LinksModule<?> target, Megalinks doc, Locale locale) {
-        target.setMegalinkItem(doc);
+        target.setHippoBean(doc);
         target.setTitle(doc.getTitle());
         target.setIntroduction(doc.getIntroduction());
 

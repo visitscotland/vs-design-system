@@ -30,14 +30,7 @@ public class FlatImage extends IssueList {
     private String postUrl;
     private String location;
 
-    final String MEDIA = "mediaUrl";
-    final String CREDIT = "copyright";
-    final String ALT_TEXT = "altText";
-    final String IMAGE = "images";
-    final String NAME = "name";
-    final String LATITUDE = "latitude";
-    final String LONGITUDE = "longitude";
-    final String ID = "longitude";
+
 
     public FlatImage(){
     }
@@ -103,7 +96,20 @@ public class FlatImage extends IssueList {
     }
 
 
+    /**
+     * @deprecated. Use ImageFactory.createImage(dmsProduct) instead
+     */
+    @Deprecated
     public FlatImage(JsonNode product) {
+        final String MEDIA = "mediaUrl";
+        final String CREDIT = "copyright";
+        final String ALT_TEXT = "altText";
+        final String IMAGE = "images";
+        final String NAME = "name";
+        final String LATITUDE = "latitude";
+        final String LONGITUDE = "longitude";
+        final String ID = "longitude";
+
         if (product.has(IMAGE)){
             JsonNode dmsImage = product.get(IMAGE).get(0);
             this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.get(MEDIA).asText() : null);
@@ -114,12 +120,20 @@ public class FlatImage extends IssueList {
             if (product.has(LATITUDE) && product.has(LONGITUDE)){
                 this.coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
             }
-        } else if (product != null) {
+        } else {
             addError(String.format("The product %s does not have an image", product.has(ID)?product.get(ID):null));
         }
     }
 
+    /**
+     * @deprecated. Use ImageFactory.createImage(dmsProduct) instead
+     */
+    @Deprecated
     public FlatImage(JsonNode dmsImage, String productName) {
+        final String MEDIA = "mediaUrl";
+        final String CREDIT = "copyright";
+        final String ALT_TEXT = "altText";
+
         this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.get(MEDIA).asText() : null);
         this.credit = (dmsImage.has(CREDIT) ? dmsImage.get(CREDIT).asText() : null);
         this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.get(ALT_TEXT).asText() : productName);
@@ -189,8 +203,11 @@ public class FlatImage extends IssueList {
     }
 
 
-    //TODO: Fix too much Logic for a model
-    public Coordinates setInstagramCoordinates(InstagramImage instagramLink, Locale locale){
+    /**
+     * @deprecated to be removed along with the constructor that is using it
+     */
+    @Deprecated
+    private Coordinates setInstagramCoordinates(InstagramImage instagramLink, Locale locale){
         if (instagramLink.getLocation()!= null && !instagramLink.getLocation().isEmpty()){
             LocationObject locationObject = LocationLoader.getInstance().getLocation(instagramLink.getLocation(), locale);
             if (locationObject != null){

@@ -1,5 +1,8 @@
 package com.visitscotland.brxm.components.content.factory;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.ExternalLink;
 import com.visitscotland.brxm.beans.Image;
 import com.visitscotland.brxm.beans.ImageData;
@@ -51,11 +54,6 @@ class ImageFactoryTest {
             "\"thumbnail_url\": \"http://instagram/visitscotland\"," +
             "\"author_name\": \"Mooe McCoo\"" +
             "}";
-
-//    @BeforeEach
-//    void init(){
-////        imageFactory = new ImageFactory(locationLoader, bundle, utils);
-//    }
 
     @Test
     @DisplayName("Request information about the image to instagram. (Happy Path)")
@@ -141,7 +139,7 @@ class ImageFactoryTest {
     }
 
     @Test
-    @DisplayName("Request information about the image to instagram")
+    @DisplayName("A CMS image with no translation should generate 2 preview warnings")
     void getImageFromCMS_cmsWarning(){
         Module module = new Module();
         Image cmsImage = mock(Image.class);
@@ -159,6 +157,64 @@ class ImageFactoryTest {
     }
 
     @Test
+    @DisplayName("Request information about the image from the DMS")
+    void getImageFromDMS() throws JsonProcessingException {
+        final String DMS_OBJECT = "{ " +
+                "\"name\": \"VisitScotland HeadQuarters\"," +
+                "\"latitude\": 12," +
+                "\"longitude\": -21," +
+                "\"images\": [{"+
+                "\"mediaUrl\": \"http://www.visitscoland.com/VSHQ.jpeg\"," +
+                "\"copyright\": \"A guy\"," +
+                "\"altText\": \"Impressive building\"" +
+                "}]}";
+        Module module = new Module();
+        JsonNode dmsProduct = new ObjectMapper().readTree(DMS_OBJECT);
+
+        FlatImage image = imageFactory.createImage(dmsProduct, module);
+
+        Assertions.assertEquals("http://www.visitscoland.com/VSHQ.jpeg", image.getExternalImage());
+        Assertions.assertEquals("A guy", image.getCredit());
+        Assertions.assertEquals("Impressive building", image.getDescription());
+        Assertions.assertEquals("Impressive building", image.getAltText());
+        Assertions.assertEquals(12, image.getCoordinates().getLatitude());
+        Assertions.assertEquals(-21, image.getCoordinates().getLongitude());
+    }
+
+    @Test
+    @DisplayName("The description of the product populates the alt-text when the later is not defined in the DMS")
+    void getImageFromDMS_noAltText() throws JsonProcessingException {
+        final String DMS_OBJECT = "{ " +
+                "\"name\": \"VisitScotland HeadQuarters\"," +
+                "\"images\": [{"+
+                "\"mediaUrl\": \"http://www.visitscoland.com/VSHQ.jpeg\"" +
+                "}]}";
+        Module module = new Module();
+        JsonNode dmsProduct = new ObjectMapper().readTree(DMS_OBJECT);
+
+        FlatImage image = imageFactory.createImage(dmsProduct, module);
+
+        Assertions.assertEquals("VisitScotland HeadQuarters", image.getDescription());
+        Assertions.assertEquals("VisitScotland HeadQuarters", image.getAltText());
+    }
+
+    @Test
+    @DisplayName("When the image is not valid a null is returned")
+    void getImageFromDMS_invalidImage() throws JsonProcessingException {
+        final String DMS_OBJECT = "{ " +
+                "\"name\": \"VisitScotland HeadQuarters\"," +
+                "\"images\": [{}] }";
+        Module module = new Module();
+        assertNull(imageFactory.createImage( new ObjectMapper().readTree("{}"), module));
+        assertNull(imageFactory.createImage( new ObjectMapper().readTree("{ " +
+                "\"name\": \"VisitScotland HeadQuarters\"," +
+                "\"image\": [{}] }"), module));
+        assertEquals(2, module.getErrorMessages().size());
+    }
+
+
+
+    @Test
     @Disabled("The requirements are not completed")
     @DisplayName("Request an image from a Third Party system")
     void getImageFromExternalSource(){
@@ -170,4 +226,6 @@ class ImageFactoryTest {
 
         assertEquals("http://third-party.com/image", image.getExternalImage());
     }
+
+
 }

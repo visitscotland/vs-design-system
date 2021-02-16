@@ -6,38 +6,19 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import java.util.List;
 
-public class FlatListicle {
-
-    private String identifier;
+public class FlatListicle extends Module<ListicleItem> {
 
     private Integer index;
     private String title;
-    private String subTitle;
+    private String subtitle;
     private HippoHtml description;
     private FlatImage image;
     private List<DataType> facilities;
     private List<FlatLink> links;
-    private List<String> errorMessages;
-    private ListicleItem listicleItem;
 
-    public FlatListicle(){
-
-    }
-
-    public FlatListicle(ListicleItem item){
-        this.identifier = item.getIdentifier();
-        this.title = item.getTitle();
-        this.subTitle = item.getSubtitle();
-        this.description = item.getDescription();
-        this.listicleItem = item;
-    }
-
+    //TODO: Is this useful? Should be moved to Module so all modules can benefit from it?
     public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+        return getHippoBean().getIdentifier();
     }
 
     public Integer getIndex() {
@@ -80,12 +61,12 @@ public class FlatListicle {
         this.facilities = facilities;
     }
 
-    public String getSubTitle() {
-        return subTitle;
+    public String getSubtitle() {
+        return subtitle;
     }
 
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
     public List<FlatLink> getLinks() {
@@ -96,19 +77,14 @@ public class FlatListicle {
         this.links = links;
     }
 
-    public List<String> getErrorMessages() {
-        return errorMessages;
-    }
 
-    public void setErrorMessages(List<String> errorMessages) {
-        this.errorMessages = errorMessages;
-    }
-
+    /**
+     * TODO Fix FreeMarker
+     * @deprecated use getHippoBean() instead
+     */
+    @Deprecated
     public ListicleItem getListicleItem() {
-        return listicleItem;
+        return getHippoBean();
     }
 
-    public void setListicleItem(ListicleItem listicleItem) {
-        this.listicleItem = listicleItem;
-    }
 }

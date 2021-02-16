@@ -13,7 +13,6 @@ import com.visitscotland.brxm.beans.mapping.Module;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
-import com.visitscotland.brxm.utils.ContentLogger;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -24,6 +23,8 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
+
+import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
 
 @Component
 public class ImageFactory {
@@ -42,14 +43,14 @@ public class ImageFactory {
         this.utils = utils;
     }
 
-    public FlatImage getImage(HippoBean image, Module module, Locale locale){
+    public FlatImage getImage(HippoBean image, Module<?> module, Locale locale){
         if (image instanceof InstagramImage) {
             return createImage((InstagramImage) image, module, locale);
         } else if (image  instanceof Image) {
             return createImage((Image) image, module, locale);
         } else if (image instanceof ExternalLink){
             FlatImage flat = new FlatImage();
-            // TODO: No alt text & no description: Double check the requirements
+            // TODO: No alt text & no description: Double check the requirements <-- Review Again
             flat.setExternalImage(((ExternalLink) image).getLink());
         }
         return null;
@@ -64,7 +65,7 @@ public class ImageFactory {
      *
      * @return FlatImage Object
      */
-    public FlatImage createImage(Image cmsImage, Module module, Locale locale){
+    public FlatImage createImage(Image cmsImage, Module<?> module, Locale locale){
         FlatImage image = new FlatImage();
         ImageData data = null;
 
@@ -84,6 +85,7 @@ public class ImageFactory {
                 data = cmsImage.getIt();
             }
         }
+
         if (data == null) {
             image.setAltText(cmsImage.getAltText());
             image.setDescription(cmsImage.getDescription());
@@ -123,7 +125,7 @@ public class ImageFactory {
      *
      * @return FlatImage Object
      */
-    public FlatImage createImage(InstagramImage document, Module module, Locale locale){
+    public FlatImage createImage(InstagramImage document, Module<?> module, Locale locale){
         try {
             JsonNode instagramInfo = requestInstagramImageData(document);
 
@@ -153,6 +155,40 @@ public class ImageFactory {
         return null;
     }
 
+    /** TODO Comment!
+     *
+     * @param dmsProduct
+     * @param module
+     * @return
+     */
+    public FlatImage createImage(JsonNode dmsProduct, Module<?> module){
+
+        if (dmsProduct.has(IMAGE)){
+
+            JsonNode dmsImage = dmsProduct.get(IMAGE).get(0);
+            if (dmsImage.has(MEDIA)) {
+                FlatImage image = new FlatImage();
+
+                image.setExternalImage(get(dmsImage, MEDIA, null));
+                image.setCredit(get(dmsImage, CREDIT, null));
+                image.setAltText(get(dmsImage, ALT_TEXT, get(dmsProduct, NAME, null)));
+                image.setDescription(image.getAltText());
+
+                if (dmsProduct.has(LATITUDE) && dmsProduct.has(LONGITUDE)) {
+                    image.setCoordinates(new Coordinates(dmsProduct.get(LATITUDE).asDouble(), dmsProduct.get(LONGITUDE).asDouble()));
+                }
+                return image;
+            }
+        }
+
+        module.addErrorMessage(String.format("The dmsProduct '%s' does not have an image", get(dmsProduct, ID, "unknown")));
+        return null;
+    }
+
+    private String get(JsonNode node, String field, String defaultValue){
+        return node.has(field)?node.get(field).asText(defaultValue):defaultValue;
+    }
+
     /**
      * Request the main image to instagram, so we can embed it in the site.
      *
@@ -160,7 +196,10 @@ public class ImageFactory {
      */
     private JsonNode requestInstagramImageData(InstagramImage instagramLink) throws IOException {
         //TODO add the access token value for VS facebook account
+        //TODO Properties.getInstagramToken()
         String accessToken = bundle.getResourceBundle("keys","tagram.accesstoken",  Locale.UK);
+        //TODO: Juan Luis, Is this the real API?
+
         URL instagramInformation = new URL("https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/" + instagramLink.getId()+"&access_token="+accessToken);
         String responseInstagram = utils.requestUrl(instagramInformation.toString());
         if (responseInstagram != null) {

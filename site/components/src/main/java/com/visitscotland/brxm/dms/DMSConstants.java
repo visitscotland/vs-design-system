@@ -50,6 +50,24 @@ public class DMSConstants {
         String AVAILABILITY = "avail";
     }
 
+    /**
+     * Note: This interface is marked by SonarQube as a Critical issue, however since those constant are translated
+     * into parameters later on AND they really belong to the dms project, this is a perfectly reasonable use for a
+     * constants interface.
+     */
+    public interface DMSProduct {
+        String MEDIA = "mediaUrl";
+        String CREDIT = "copyright";
+        String ALT_TEXT = "altText";
+        String IMAGE = "images";
+        String NAME = "name";
+        String LATITUDE = "latitude";
+        String LONGITUDE = "longitude";
+        String ID = "longitude";
+        String ADDRESS = "address";
+        String LOCATION = "city";
+    }
+
     //Endpoints
     //TODO Remove %s at the beginning of the constants
     public static final String PRODUCT_SEARCH = "/info/%s/search-results?";

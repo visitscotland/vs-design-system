@@ -151,6 +151,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                             coordinates.setLongitude(product.get(LON).asDouble());
                             model.setCoordinates(coordinates);
 
+                            //TODO dmsUtils.getFacilities
                             model.setFacilities(getFacilities(product));
 
                             if (product.has(OPENING)) {
