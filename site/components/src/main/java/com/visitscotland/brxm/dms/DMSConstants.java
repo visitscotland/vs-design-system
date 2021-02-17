@@ -3,6 +3,10 @@ package com.visitscotland.brxm.dms;
 public class DMSConstants {
 
     private DMSConstants() {
+        utilityClassException();
+    }
+
+    private void utilityClassException(){
         throw new IllegalStateException("Utility class");
     }
 
@@ -15,17 +19,37 @@ public class DMSConstants {
 
     public static final String SORT_ALPHA = "alpha";
 
-    /**
-     * Unique constants for the Map Search functionallity.
-     *
-     * Note: This interface is marked by SonarQube as a Critical issue, however since those constant are translated
-     * into parameters later on AND they really belong to the dms project, this is a perfectly reasonable use for a
-     * constants interface.
-     */
-    public interface MapSearch {
-        String PROPERTIES = "properties";
-        String ID = "id";
-        String NAME = "name";
+    public final class MapSearch {
+
+        private MapSearch (){
+            utilityClassException();
+        }
+
+        public static final String PROPERTIES = "properties";
+        public static final String ID = "id";
+        public static final String NAME = "name";
+    }
+
+    public final class ProductSearch {
+
+        private ProductSearch (){
+            utilityClassException();
+        }
+
+        public static final String PRODUCT_TYPE_PARAM = "prodtypes";
+        public static final String LOCATION_NAME_PARAM = "loc";
+        public static final String LOCATION_PLACE_PARAM = "locplace";
+        public static final String LOCATION_POLYGON_PARAM = "locpoly";
+        public static final String CATEGORY_PARAM = "cat";
+        public static final String AWARD_PARAM = "src_awards__0";
+        public static final String FACILITY_PARAM = "fac_id";
+        public static final String RATING_PARAM = "grade";
+        public static final String LATITUDE_PARAM = "lat";
+        public static final String LONGITUDE_PARAM = "lng";
+        public static final String PROXIMITY_LOCATION_PARAM = "locprox";
+        public static final String PROXIMITY_PIN_PARAM = "areaproxdist";
+        public static final String ORDER_PARAM = "c";
+        public static final String AVAILABILITY = "avail";
     }
 
     /**
@@ -33,39 +57,23 @@ public class DMSConstants {
      * into parameters later on AND they really belong to the dms project, this is a perfectly reasonable use for a
      * constants interface.
      */
-    public interface ProductSearch {
-        String PRODUCT_TYPE_PARAM = "prodtypes";
-        String LOCATION_NAME_PARAM = "loc";
-        String LOCATION_PLACE_PARAM = "locplace";
-        String LOCATION_POLYGON_PARAM = "locpoly";
-        String CATEGORY_PARAM = "cat";
-        String AWARD_PARAM = "src_awards__0";
-        String FACILITY_PARAM = "fac_id";
-        String RATING_PARAM = "grade";
-        String LATITUDE_PARAM = "lat";
-        String LONGITUDE_PARAM = "lng";
-        String PROXIMITY_LOCATION_PARAM = "locprox";
-        String PROXIMITY_PIN_PARAM = "areaproxdist";
-        String ORDER_PARAM = "c";
-        String AVAILABILITY = "avail";
-    }
+    public final class DMSProduct {
 
-    /**
-     * Note: This interface is marked by SonarQube as a Critical issue, however since those constant are translated
-     * into parameters later on AND they really belong to the dms project, this is a perfectly reasonable use for a
-     * constants interface.
-     */
-    public interface DMSProduct {
-        String MEDIA = "mediaUrl";
-        String CREDIT = "copyright";
-        String ALT_TEXT = "altText";
-        String IMAGE = "images";
-        String NAME = "name";
-        String LATITUDE = "latitude";
-        String LONGITUDE = "longitude";
-        String ID = "longitude";
-        String ADDRESS = "address";
-        String LOCATION = "city";
+        private DMSProduct (){
+            utilityClassException();
+        }
+
+        public static final String MEDIA = "mediaUrl";
+        public static final String CREDIT = "copyright";
+        public static final String ALT_TEXT = "altText";
+        public static final String IMAGE = "images";
+        public static final String NAME = "name";
+        public static final String LATITUDE = "latitude";
+        public static final String LONGITUDE = "longitude";
+        public static final String ID = "id";
+        public static final String ADDRESS = "address";
+        public static final String LOCATION = "city";
+        public static final String FACILITIES = "keyFacilities";
     }
 
     //Endpoints

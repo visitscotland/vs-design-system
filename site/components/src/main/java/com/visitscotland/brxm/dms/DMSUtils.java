@@ -7,22 +7,17 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
+
 @Component
 public class DMSUtils {
 
-    public static final String FACILITIES = "keyFacilities";
-
-    public List<DataType> getFacilities (JsonNode product){
-        List<DataType> facilities = null;
-        if (product.has(FACILITIES)){
-            facilities = new ArrayList<>();
-            JsonNode keyFacilitiesList = product.get(FACILITIES);
-
-            if (keyFacilitiesList.isArray()) {
-                for (JsonNode facility : keyFacilitiesList) {
-                    DataType dataType = new DataType(facility.get("id").asText(),facility.get("name").asText());
-                    facilities.add(dataType);
-                }
+    public List<DataType> getKeyFacilities(JsonNode product){
+        List<DataType> facilities = new ArrayList<>();
+        if (product.has(FACILITIES) && product.get(FACILITIES).isArray()){
+            for (JsonNode facility : product.get(FACILITIES)) {
+                DataType dataType = new DataType(facility.get(ID).asText(),facility.get(NAME).asText());
+                facilities.add(dataType);
             }
         }
         return facilities;

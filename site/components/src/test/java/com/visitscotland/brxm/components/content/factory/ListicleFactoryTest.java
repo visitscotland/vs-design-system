@@ -145,7 +145,7 @@ class ListicleFactoryTest {
         when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(moduleImage);
         when(dmsData.productCard("1234", Locale.UK)).thenReturn(node);
         when(linksService.createLink(any(), any())).thenReturn(link);
-        when(dmsUtils.getFacilities(node)).thenReturn(facilities);
+        when(dmsUtils.getKeyFacilities(node)).thenReturn(facilities);
 
         List<FlatListicle> items = factory.generateItems(Locale.UK, page);
 

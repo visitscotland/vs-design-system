@@ -148,7 +148,7 @@ public class ListicleFactory {
                 item.getImage().setCoordinates(coordinates);
             }
 
-            item.setFacilities(dmsUtils.getFacilities(product));
+            item.setFacilities(dmsUtils.getKeyFacilities(product));
         }
     }
 
