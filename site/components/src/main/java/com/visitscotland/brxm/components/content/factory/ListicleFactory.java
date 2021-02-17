@@ -4,12 +4,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.mapping.Coordinates;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
-import com.visitscotland.brxm.beans.mapping.FlatListicle;
+import com.visitscotland.brxm.beans.mapping.ListicleModule;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.DMSUtils;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.brxm.utils.DocumentUtils;
+import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,19 +42,19 @@ public class ListicleFactory {
     }
 
     /**
-     * TODO Comment!
+     * Build a listicleModule from a ListicleItem document
      *
-     * @param listicleItem
-     * @param index
+     * @param locale Set the language for the labels
+     * @param listicleItem CMS document with the data
+     * @param index Index of the item
      * @return
      */
-    public FlatListicle getListicleItem(Locale locale, ListicleItem listicleItem, Integer index) {
+    public ListicleModule getListicleItem(Locale locale, ListicleItem listicleItem, Integer index) {
 
         List<FlatLink> links = new ArrayList<>();
         FlatLink link;
 
-        //TODO Rename to Module
-        FlatListicle module = new FlatListicle();
+        ListicleModule module = new ListicleModule();
         module.setIndex(index);
         module.setHippoBean(listicleItem);
         module.setTitle(listicleItem.getTitle());
@@ -61,7 +62,6 @@ public class ListicleFactory {
         module.setSubtitle(listicleItem.getSubtitle());
 
         //Set the image
-        //TODO Use ImageFactory
         if (listicleItem.getListicleItemImage() != null) {
             module.setImage(imageFactory.getImage(listicleItem.getListicleItemImage(), module, locale));
         }
@@ -73,7 +73,6 @@ public class ListicleFactory {
             links.add(link);
         }
 
-
         //Set Extra Links
         //TODO Can we have more that one?
         for (HippoCompound compound : listicleItem.getExtraLinks()) {
@@ -83,7 +82,7 @@ public class ListicleFactory {
             }
         }
 
-        if (module.getSubtitle() == null && module.getImage() != null) {
+        if (Contract.isEmpty(module.getSubtitle()) && module.getImage() != null) {
             module.setSubtitle(module.getImage().getLocation());
         }
 
@@ -92,7 +91,11 @@ public class ListicleFactory {
         return module;
     }
 
-    private FlatLink processMainProduct(Locale locale, HippoCompound link, FlatListicle module){
+    /**
+     * Process the main product of the item extracting valuable information that will enhance the
+     * module.
+     */
+    private FlatLink processMainProduct(Locale locale, HippoCompound link, ListicleModule module){
         if (link == null) {
             //TODO If possible on CMS add warning:  module.addErrorMessage();
             String issue = CommonUtils.contentIssue("The ListicleItem %s doesn't contain a main product", module.getHippoBean().getPath());
@@ -122,12 +125,8 @@ public class ListicleFactory {
      *
      * Facilities are loaded from the dmsItem. Subtitle, Image and Coordinates are set only when the listicle item has
      * not defined the values
-     *
-     *
-     * @param item
-     * @param dmsLink
      */
-    private void processDMSMainProduct(Locale locale, FlatListicle item, DMSLink dmsLink) {
+    private void processDMSMainProduct(Locale locale, ListicleModule item, DMSLink dmsLink) {
 
         JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
 
@@ -137,10 +136,6 @@ public class ListicleFactory {
                     dmsLink.getProduct(), item.getHippoBean(), item.getHippoBean().getTitle());
             logger.warn(message);
         } else {
-            if (item.getSubtitle() == null && product.has(ADDRESS) && product.get(ADDRESS).has(LOCATION)) {
-                item.setSubtitle(product.get(ADDRESS).get(LOCATION).asText());
-            }
-
             if (item.getImage() == null) {
                 item.setImage(imageFactory.createImage(product, item));
             } else if (item.getImage().getCoordinates() == null && product.has(LATITUDE)) {
@@ -153,15 +148,14 @@ public class ListicleFactory {
     }
 
     /**
-     * TODO Comment!
+     * Process a Listicle and generate a list of listicle modules
      *
-     * @param request
-     * @param listicle
-     * @return
+     * @param locale Set the language for the labels
+     * @param listicle Page document
      */
-    public List<FlatListicle> generateItems(Locale locale, Listicle listicle) {
+    public List<ListicleModule> generateItems(Locale locale, Listicle listicle) {
         final List<ListicleItem> listicleItems = documentUtils.getAllowedDocuments(listicle, ListicleItem.class);
-        final List<FlatListicle> items = new ArrayList<>();
+        final List<ListicleModule> items = new ArrayList<>();
 
         boolean descOrder = Boolean.TRUE.equals(listicle.getDescOrder());
         int index = descOrder ? listicleItems.size() : 1;

@@ -173,6 +173,10 @@ public class ImageFactory {
                 image.setAltText(get(dmsImage, ALT_TEXT, get(dmsProduct, NAME, null)));
                 image.setDescription(image.getAltText());
 
+                if (dmsProduct.has(ADDRESS) && dmsProduct.get(ADDRESS).has(LOCATION)) {
+                    image.setLocation(dmsProduct.get(ADDRESS).get(LOCATION).asText());
+                }
+
                 if (dmsProduct.has(LATITUDE) && dmsProduct.has(LONGITUDE)) {
                     image.setCoordinates(new Coordinates(dmsProduct.get(LATITUDE).asDouble(), dmsProduct.get(LONGITUDE).asDouble()));
                 }

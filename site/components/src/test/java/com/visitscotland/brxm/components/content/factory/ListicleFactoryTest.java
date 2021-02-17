@@ -6,7 +6,7 @@ import com.visitscotland.brxm.beans.Listicle;
 import com.visitscotland.brxm.beans.ListicleItem;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
-import com.visitscotland.brxm.beans.mapping.FlatListicle;
+import com.visitscotland.brxm.beans.mapping.ListicleModule;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.DMSUtils;
 import com.visitscotland.brxm.mock.ListicleItemMockBuilder;
@@ -79,7 +79,7 @@ class ListicleFactoryTest {
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(linksService.createLink(any(), any())).thenReturn(link);
 
-        List<FlatListicle> items = factory.generateItems(Locale.UK, page);
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
         Assertions.assertEquals(1, items.size());
         Assertions.assertEquals(1, items.get(0).getIndex());
@@ -102,7 +102,7 @@ class ListicleFactoryTest {
         when(imageFactory.getImage(eq(item.getListicleItemImage()), any(), any())).thenReturn(moduleImage);
         when(linksService.createLink(any(), any())).thenReturn(link);
 
-        List<FlatListicle> items = factory.generateItems(Locale.UK, page);
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
         Assertions.assertEquals(1, items.size());
         Assertions.assertEquals(1, items.get(0).getLinks().size());
@@ -121,7 +121,7 @@ class ListicleFactoryTest {
         when(linksService.createLink(any(), any())).thenReturn(link);
         when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(heroImage);
 
-        List<FlatListicle> items = factory.generateItems(Locale.UK, page);
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
         Assertions.assertEquals(1, items.size());
         Assertions.assertEquals(1, items.get(0).getLinks().size());
@@ -147,10 +147,10 @@ class ListicleFactoryTest {
         when(linksService.createLink(any(), any())).thenReturn(link);
         when(dmsUtils.getKeyFacilities(node)).thenReturn(facilities);
 
-        List<FlatListicle> items = factory.generateItems(Locale.UK, page);
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
         Assertions.assertEquals(1, items.size());
-        FlatListicle module = items.get(0);
+        ListicleModule module = items.get(0);
 
         Assertions.assertEquals("Subtitle", module.getSubtitle());
         Assertions.assertEquals(moduleImage, module.getImage());
@@ -175,7 +175,7 @@ class ListicleFactoryTest {
         when(imageFactory.createImage(any(JsonNode.class), any())).thenReturn(dmsImage);
         when(dmsData.productCard("1234", Locale.UK)).thenReturn(node);
 
-        FlatListicle module = factory.generateItems(Locale.UK, page).get(0);
+        ListicleModule module = factory.generateItems(Locale.UK, page).get(0);
 
         Assertions.assertEquals("Location", module.getSubtitle());
         Assertions.assertEquals(dmsImage, module.getImage());
@@ -198,7 +198,7 @@ class ListicleFactoryTest {
         when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(moduleImage);
         when(dmsData.productCard("1234", Locale.UK)).thenReturn(node);
 
-        FlatListicle module = factory.generateItems(Locale.UK, page).get(0);
+        ListicleModule module = factory.generateItems(Locale.UK, page).get(0);
 
         Assertions.assertEquals(moduleImage, module.getImage());
         Assertions.assertEquals(12., moduleImage.getCoordinates().getLatitude());
@@ -213,7 +213,7 @@ class ListicleFactoryTest {
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(dmsData.productCard("1234", Locale.UK)).thenReturn(null);
 
-        FlatListicle module = factory.generateItems(Locale.UK, page).get(0);
+        ListicleModule module = factory.generateItems(Locale.UK, page).get(0);
 
         Assertions.assertEquals(1, module.getErrorMessages().size());
     }
@@ -230,7 +230,7 @@ class ListicleFactoryTest {
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(listicleItems);
 
-        List<FlatListicle> items = factory.generateItems(Locale.UK, page);
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
         Assertions.assertEquals(listicleItems.size(), items.size());
         for(int i = items.size()-1; i>0; i--){
@@ -249,7 +249,7 @@ class ListicleFactoryTest {
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(listicleItems);
 
-        List<FlatListicle> items = factory.generateItems(Locale.UK, page);
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
         Assertions.assertEquals(listicleItems.size(), items.size());
         for(int i = 0; i> items.size(); i++){

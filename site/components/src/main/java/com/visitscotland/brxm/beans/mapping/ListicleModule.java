@@ -6,7 +6,7 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import java.util.List;
 
-public class FlatListicle extends Module<ListicleItem> {
+public class ListicleModule extends Module<ListicleItem> {
 
     private Integer index;
     private String title;
