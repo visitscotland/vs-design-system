@@ -17,6 +17,7 @@ public class Properties {
 
     public static final String INSTAGRAM_API = "instagram.api";
     public static final String INSTAGRAM_TOKEN ="instagram.accesstoken";
+    public static final String INSTAGRAM_URL ="instagram.post-url";
     public static final String LOCALHOST = "localhost";
     public static final String HELPDESK_EMAIL = "helpdesk-email";
     public static final String DMS_HOST = "dms.host";
@@ -40,6 +41,10 @@ public class Properties {
 
     public String getInstagramApi() {
         return readString(INSTAGRAM_API);
+    }
+
+    public String getInstagramURL() {
+        return readString(INSTAGRAM_URL);
     }
 
     public String getInstagramToken() {

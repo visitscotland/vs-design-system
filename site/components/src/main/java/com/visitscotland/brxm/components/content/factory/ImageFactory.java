@@ -11,7 +11,6 @@ import com.visitscotland.brxm.beans.mapping.Coordinates;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.Module;
 import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
@@ -32,16 +31,11 @@ public class ImageFactory {
     private static final Logger logger = LoggerFactory.getLogger(ImageFactory.class);
 
     private LocationLoader locationLoader;
-
-    private ResourceBundleService bundle;
-
     private CommonUtils utils;
-
     private Properties properties;
 
-    public ImageFactory(LocationLoader locationLoader, ResourceBundleService bundle, CommonUtils utils, Properties properties) {
+    public ImageFactory(LocationLoader locationLoader, CommonUtils utils, Properties properties) {
         this.locationLoader = locationLoader;
-        this.bundle = bundle;
         this.utils = utils;
         this.properties = properties;
     }
@@ -52,9 +46,9 @@ public class ImageFactory {
         } else if (image instanceof Image) {
             return createImage((Image) image, module, locale);
         } else if (image instanceof ExternalLink) {
-            FlatImage flat = new FlatImage();
-            // TODO: No alt text & no description: Double check the requirements <-- Review Again
-            flat.setExternalImage(((ExternalLink) image).getLink());
+            String message = "ExternalLinks does not allow images";
+            CommonUtils.contentIssue(message);
+            logger.warn(message);
         }
         return null;
     }
@@ -136,8 +130,7 @@ public class ImageFactory {
                 image.setAltText(document.getCaption());
                 image.setDescription(document.getCaption());
                 image.setSource(FlatImage.Source.INSTAGRAM);
-                //TODO DO we need a new property for the PostURL?
-                image.setPostUrl(properties.getInstagramApi() + document.getId());
+                image.setPostUrl(properties.getInstagramURL() + document.getId());
 
                 populateLocation(image, document.getLocation(), locale);
 

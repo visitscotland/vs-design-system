@@ -74,7 +74,7 @@ public class ListicleFactory {
         }
 
         //Set Extra Links
-        //TODO Can we have more that one?
+        //Original designs used to had more that one link, so the logic is prepared to be opened to several links
         for (HippoCompound compound : listicleItem.getExtraLinks()) {
             link = linksService.createLink(locale, compound);
             if (link != null) {
@@ -97,7 +97,6 @@ public class ListicleFactory {
      */
     private FlatLink processMainProduct(Locale locale, HippoCompound link, ListicleModule module){
         if (link == null) {
-            //TODO If possible on CMS add warning:  module.addErrorMessage();
             String issue = CommonUtils.contentIssue("The ListicleItem %s doesn't contain a main product", module.getHippoBean().getPath());
             logger.warn(issue);
             return null;
@@ -110,7 +109,6 @@ public class ListicleFactory {
                     module.setImage(imageFactory.getImage(cmsLink.getHeroImage(), module, locale));
                 }
             } else {
-                //TODO If possible on CMS add warning:  module.addErrorMessage();
                 String issue = CommonUtils.contentIssue("The ListicleItem %s is pointing to a document that is not a page ", module.getHippoBean().getPath());
                 logger.warn(issue);
                 return null;

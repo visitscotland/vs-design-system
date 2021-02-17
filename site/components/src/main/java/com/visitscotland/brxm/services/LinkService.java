@@ -44,11 +44,11 @@ public class LinkService {
     }
 
     /**
-     * TODO comment this method
+     * Creates a link from a Compound item of one of the following types:
+     * DMSLink, ProductSearchLink, ExternalLink, CMSLink
      *
-     * @param locale locale
+     * @param locale locale Language for the labels
      * @param item   Compound Item
-     * @return
      */
     public FlatLink createLink(Locale locale, HippoCompound item) {
 
