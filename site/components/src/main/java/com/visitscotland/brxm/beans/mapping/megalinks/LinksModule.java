@@ -49,14 +49,6 @@ public class LinksModule<L extends FlatLink> extends Module<Megalinks> {
         this.cta = cta;
     }
 
-    /**
-     * @deprecated  use getHippoBean instead
-     */
-    @Deprecated
-    public HippoBean getMegalinkItem() {
-        return getHippoBean();
-    }
-
     public String getTheme() {
         return theme;
     }

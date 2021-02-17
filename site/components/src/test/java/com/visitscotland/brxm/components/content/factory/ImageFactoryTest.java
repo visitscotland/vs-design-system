@@ -15,6 +15,7 @@ import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
 
+import com.visitscotland.brxm.utils.Properties;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
@@ -50,6 +51,9 @@ class ImageFactoryTest {
     @Mock
     CommonUtils utils;
 
+    @Mock
+    Properties properties;
+
     final String INSTAGRAM_OBJECT = "{ " +
             "\"thumbnail_url\": \"http://instagram/visitscotland\"," +
             "\"author_name\": \"Mooe McCoo\"" +
@@ -69,6 +73,7 @@ class ImageFactoryTest {
 
         FlatImage image = imageFactory.getImage(insta, null, Locale.UK);
 
+        Assertions.assertNotNull(image);
         Assertions.assertEquals("http://instagram/visitscotland", image.getExternalImage());
         Assertions.assertEquals("Mooe McCoo", image.getCredit());
         Assertions.assertEquals(FlatImage.Source.INSTAGRAM, image.getSource());
@@ -164,10 +169,13 @@ class ImageFactoryTest {
                 "\"latitude\": 12," +
                 "\"longitude\": -21," +
                 "\"images\": [{"+
-                "\"mediaUrl\": \"http://www.visitscoland.com/VSHQ.jpeg\"," +
-                "\"copyright\": \"A guy\"," +
-                "\"altText\": \"Impressive building\"" +
-                "}]}";
+                "   \"mediaUrl\": \"http://www.visitscoland.com/VSHQ.jpeg\"," +
+                "   \"copyright\": \"A guy\"," +
+                "   \"altText\": \"Impressive building\"" +
+                "}], " +
+                "\"address\": {" +
+                "   \"city\": \"Leith\"" +
+                "}}";
         Module module = new Module();
         JsonNode dmsProduct = new ObjectMapper().readTree(DMS_OBJECT);
 
@@ -177,6 +185,7 @@ class ImageFactoryTest {
         Assertions.assertEquals("A guy", image.getCredit());
         Assertions.assertEquals("Impressive building", image.getDescription());
         Assertions.assertEquals("Impressive building", image.getAltText());
+        Assertions.assertEquals("Leith", image.getLocation());
         Assertions.assertEquals(12, image.getCoordinates().getLatitude());
         Assertions.assertEquals(-21, image.getCoordinates().getLongitude());
     }
@@ -211,8 +220,6 @@ class ImageFactoryTest {
                 "\"image\": [{}] }"), module));
         assertEquals(2, module.getErrorMessages().size());
     }
-
-
 
     @Test
     @Disabled("The requirements are not completed")

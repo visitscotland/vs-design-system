@@ -70,7 +70,7 @@ public class LocationLoader {
     }
 
     /**
-     * TODO: Check: Is this used by FreeMarker?
+     * TODO: This is used by DMSLocationListProvider. Fix that usage.
      *
      * @deprecated use SpringContext.getBean (LocationLoader.class) instead
      */

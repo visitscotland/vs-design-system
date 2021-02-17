@@ -98,6 +98,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (stop.getImage() != null) {
                     Image cmsImage = stop.getImage();
                     if (cmsImage != null) {
+                        //TODO Use imageFactory
                         flatImage = new FlatImage(cmsImage, request.getLocale());
                         checkImageErrors(flatImage, request.getLocale(), errors);
                         if (!(stop.getStopItem() instanceof DMSLink)) {
@@ -144,6 +145,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                             if (stop.getImage() == null && product.has(IMAGE)) {
                                 JsonNode dmsImageList = product.get(IMAGE);
+                                //TODO Use ImageFactory
                                 flatImage = new FlatImage(dmsImageList.get(0), product.get(NAME).asText());
                             }
 

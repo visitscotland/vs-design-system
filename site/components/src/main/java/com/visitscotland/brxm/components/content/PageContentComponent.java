@@ -7,8 +7,10 @@ import com.visitscotland.brxm.beans.dms.LocationObject;
 import com.visitscotland.brxm.beans.mapping.Coordinates;
 import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
+import com.visitscotland.brxm.beans.mapping.Module;
 import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.components.content.factory.ImageFactory;
 import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
@@ -16,6 +18,7 @@ import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.dataobjects.DataType;
+import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModelException;
@@ -27,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -44,12 +48,14 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     private LinkService linksService;
     private LocationLoader locationLoader;
     private LinkModulesFactory linksFactory;
+    private ImageFactory imageFactory;
 
     public PageContentComponent(){
         bundle = VsComponentManager.get(ResourceBundleService.class);
         linksService = VsComponentManager.get(LinkService.class);
         locationLoader = VsComponentManager.get(LocationLoader.class);
         linksFactory = VsComponentManager.get(LinkModulesFactory.class);
+        imageFactory = VsComponentManager.get(ImageFactory.class);
     }
 
     @Override
@@ -154,13 +160,14 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         final String HERO_IMAGE = "heroImage";
         final String ALERTS = "alerts";
         List<String> alerts = validateDesiredFields(getDocument(request));
+        Module introModule = new Module<TYPE>();
 
-        FlatImage heroImage = new FlatImage(getDocument(request).getHeroImage(), request.getLocale());
-        checkImageErrors(heroImage,request.getLocale(),alerts);
+        FlatImage heroImage = imageFactory.createImage(getDocument(request).getHeroImage(), introModule, request.getLocale());
+
         request.setAttribute(HERO_IMAGE, heroImage);
 
-        if (alerts.isEmpty()){
-            request.setAttribute(ALERTS, alerts);
+        if (!Contract.isEmpty(introModule.getErrorMessages())){
+            request.setAttribute(ALERTS, introModule.getErrorMessages());
         }
     }
 
@@ -182,6 +189,10 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         return response;
     }
 
+    /**
+     * TODO: Remove this method after the refactoring of itineraries
+     */
+    @Deprecated
     protected static void checkImageErrors(FlatImage image, Locale locale, List<String> errors){
         if (image.getAltText() == null || image.getAltText().isEmpty()){
             image.setAltText(image.getCmsImage().getAltText());
@@ -198,6 +209,8 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     }
 
     /**
+     * TODO: Remove this method after the refactoring of itineraries
+     *
      * @deprecated use DMSUtils.getFacilities instead
      */
     @Deprecated

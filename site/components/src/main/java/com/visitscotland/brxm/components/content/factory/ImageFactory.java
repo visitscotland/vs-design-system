@@ -22,7 +22,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Locale;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
@@ -38,10 +37,13 @@ public class ImageFactory {
 
     private CommonUtils utils;
 
-    public ImageFactory(LocationLoader locationLoader, ResourceBundleService bundle, CommonUtils utils) {
+    private Properties properties;
+
+    public ImageFactory(LocationLoader locationLoader, ResourceBundleService bundle, CommonUtils utils, Properties properties) {
         this.locationLoader = locationLoader;
         this.bundle = bundle;
         this.utils = utils;
+        this.properties = properties;
     }
 
     public FlatImage getImage(HippoBean image, Module<?> module, Locale locale) {
@@ -134,19 +136,24 @@ public class ImageFactory {
                 image.setAltText(document.getCaption());
                 image.setDescription(document.getCaption());
                 image.setSource(FlatImage.Source.INSTAGRAM);
-                image.setPostUrl(Properties.INSTAGRAM_API + document.getId());
+                //TODO DO we need a new property for the PostURL?
+                image.setPostUrl(properties.getInstagramApi() + document.getId());
 
                 populateLocation(image, document.getLocation(), locale);
 
                 return image;
             } else {
-                module.addErrorMessage("The Instagram id is no longer valid");
+                if (module != null) {
+                    module.addErrorMessage("The Instagram id is no longer valid");
+                }
                 String issue = CommonUtils.contentIssue("The Instagram id %s is no longer, Listicle = %s ",
                         document.getId(), document.getPath());
                 logger.warn(issue);
             }
         } catch (Exception e) {
-            module.addErrorMessage("Error while accessing Instagram: " + e.getMessage());
+            if (module != null) {
+                module.addErrorMessage("Error while accessing Instagram: " + e.getMessage());
+            }
             logger.error("Error while accessing Instagram", e);
         }
 
@@ -154,11 +161,10 @@ public class ImageFactory {
     }
 
     /**
-     * TODO Comment!
+     * Creates an Image from a DMS product node.
      *
-     * @param dmsProduct
-     * @param module
-     * @return
+     * @param dmsProduct JsonNode with the information of the product.
+     * @param module     Module used to log potential issues that can be translated into CMS warning later on
      */
     public FlatImage createImage(JsonNode dmsProduct, Module<?> module) {
 
@@ -184,7 +190,10 @@ public class ImageFactory {
             }
         }
 
-        module.addErrorMessage(String.format("The dmsProduct '%s' does not have an image", get(dmsProduct, ID, "unknown")));
+        if (module != null) {
+            module.addErrorMessage(String.format("The dmsProduct '%s' does not have an image", get(dmsProduct, ID, "unknown")));
+        }
+
         return null;
     }
 
@@ -198,14 +207,14 @@ public class ImageFactory {
      * @throws IOException when the response is not readable or the image server is not accessible
      */
     private JsonNode requestInstagramImageData(InstagramImage instagramLink) throws IOException {
-        String accessToken = bundle.getResourceBundle("config.cms", "instagram.accesstoken", Locale.UK);
-        String url = bundle.getResourceBundle("config.cms", "instagram.api", Locale.UK);
-        URL instagramInformation = new URL(url + instagramLink.getId() + "&access_token=" + accessToken);
-        String responseInstagram = utils.requestUrl(instagramInformation.toString());
+        String responseInstagram = utils.requestUrl(properties.getInstagramApi() + instagramLink.getId() +
+                "&access_token=" + properties.getInstagramToken());
+
         if (responseInstagram != null) {
             return new ObjectMapper().readTree(responseInstagram);
+        } else {
+            return null;
         }
-        return null;
     }
 
     /**

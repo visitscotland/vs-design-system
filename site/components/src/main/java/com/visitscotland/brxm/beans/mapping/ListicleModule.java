@@ -16,11 +16,6 @@ public class ListicleModule extends Module<ListicleItem> {
     private List<DataType> facilities;
     private List<FlatLink> links;
 
-    //TODO: Is this useful? Should be moved to Module so all modules can benefit from it?
-    public String getIdentifier() {
-        return getHippoBean().getIdentifier();
-    }
-
     public Integer getIndex() {
         return index;
     }
@@ -76,15 +71,4 @@ public class ListicleModule extends Module<ListicleItem> {
     public void setLinks(List<FlatLink> links) {
         this.links = links;
     }
-
-
-    /**
-     * TODO Fix FreeMarker
-     * @deprecated use getHippoBean() instead
-     */
-    @Deprecated
-    public ListicleItem getListicleItem() {
-        return getHippoBean();
-    }
-
 }

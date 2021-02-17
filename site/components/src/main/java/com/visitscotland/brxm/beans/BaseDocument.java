@@ -24,10 +24,13 @@ public class BaseDocument extends HippoDocument {
         }
     }
 
-    @Deprecated
+
     /**
-     * This method shouldn't have new invocations. Instead of this, you should invoke {@code new DocumentUtils().getSiblingDocuments()}
+     * TODO: Remove this method after the refactoring of itineraries
+     *
+     * @deprecated Instead of this, you should invoke {@code new DocumentUtils().getSiblingDocuments()}     *
      */
+    @Deprecated
     public <T extends HippoBean> List<T> getPageChildrenByType(Class<T> type) {
         return DocumentUtils.getInstance().getSiblingDocuments(this, type, type.getAnnotation(Node.class).jcrType());
     }

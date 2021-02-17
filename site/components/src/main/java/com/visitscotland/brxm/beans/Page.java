@@ -64,15 +64,6 @@ public class Page extends BaseDocument implements TranslationParent, Linkable {
         return getSingleProperty("visitscotland:translationFlag");
     }
 
-    /**
-     * @deprecated Use DocumentUtils.getInstance().getAllowedDocuments(document) instead
-     */
-    @Override
-    @Deprecated
-    public List<BaseDocument> getModules() {
-        return DocumentUtils.getInstance().getAllowedDocuments(this);
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
     public OTYML getOtherThings() {
         return getBean("visitscotland:otherThings", OTYML.class);

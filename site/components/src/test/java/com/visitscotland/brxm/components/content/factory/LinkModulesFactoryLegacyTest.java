@@ -46,6 +46,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     private DMSDataService dms;
     private Properties properties;
     private LocationLoader locationloader;
+    private ImageFactory imageFactory;
 
 
     /**
@@ -72,8 +73,8 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         expect(utils.createUrl(anyObject(HippoBean.class))).andStubReturn("/fake-url/mock");
 
         factory = partialMockBuilder(LinkModulesFactory.class)
-                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class, LocationLoader.class)
-                .withArgs(utils, dms, linkService, rs, locationloader)
+                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class, LocationLoader.class, ImageFactory.class)
+                .withArgs(utils, dms, linkService, rs, locationloader, imageFactory)
                 .addMockedMethod("getLocation", String.class, Locale.class)
                 .createMock();
 

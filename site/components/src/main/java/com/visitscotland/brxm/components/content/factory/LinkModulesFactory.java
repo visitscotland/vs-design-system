@@ -4,10 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.capabilities.Linkable;
 import com.visitscotland.brxm.beans.dms.LocationObject;
+import com.visitscotland.brxm.beans.mapping.*;
 import com.visitscotland.brxm.beans.mapping.Coordinates;
-import com.visitscotland.brxm.beans.mapping.FlatImage;
-import com.visitscotland.brxm.beans.mapping.FlatLink;
-import com.visitscotland.brxm.beans.mapping.LinkType;
 import com.visitscotland.brxm.beans.mapping.megalinks.*;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.LocationLoader;
@@ -39,13 +37,15 @@ public class LinkModulesFactory {
     private final LinkService linkService;
     private final ResourceBundleService bundle;
     private final LocationLoader locationLoader;
+    private final ImageFactory imageFactory;
 
-    public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle , LocationLoader locationLoader) {
+    public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle , LocationLoader locationLoader, ImageFactory imageFactory) {
         this.utils = utils;
         this.dmsData = dmsData;
         this.linkService = linkService;
         this.bundle = bundle;
         this.locationLoader = locationLoader;
+        this.imageFactory = imageFactory;
     }
 
     public LinksModule<?> getMegalinkModule(Megalinks doc, Locale locale) {
@@ -262,7 +262,8 @@ public class LinkModulesFactory {
             JsonNode product = getNodeFromSharedLink((SharedLink) linkable, locale);
             SharedLink sharedLink = (SharedLink) linkable;
             if (link.getImage() == null && product != null && product.has(IMAGE)) {
-                link.setImage(new FlatImage(product));
+                //TODO Propagate the error messages
+                link.setImage(imageFactory.createImage(product, null));
             }
             if (((SharedLink) linkable).getLinkType() instanceof ExternalDocument){
                 ExternalDocument externalDocument = (ExternalDocument)sharedLink.getLinkType();

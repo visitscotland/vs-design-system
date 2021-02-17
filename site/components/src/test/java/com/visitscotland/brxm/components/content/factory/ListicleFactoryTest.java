@@ -165,11 +165,8 @@ class ListicleFactoryTest {
     void listicle_dmsLink_fallback(){
         ListicleItem item = new ListicleItemMockBuilder().dmsLink("1234").build();
         FlatImage dmsImage = new FlatImage();
+        dmsImage.setLocation("Location");
         JsonNode node = mock(JsonNode.class, withSettings().defaultAnswer(Answers.RETURNS_DEEP_STUBS));
-
-        when(node.has(ADDRESS)).thenReturn(true);
-        when(node.get(ADDRESS).has(LOCATION)).thenReturn(true);
-        when(node.get(ADDRESS).get(LOCATION).asText()).thenReturn("Location");
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(imageFactory.createImage(any(JsonNode.class), any())).thenReturn(dmsImage);
@@ -189,7 +186,6 @@ class ListicleFactoryTest {
         moduleImage.setCmsImage((Image) item.getListicleItemImage());
         JsonNode node = mock(JsonNode.class, withSettings().defaultAnswer(Answers.RETURNS_DEEP_STUBS));
 
-        when(node.has(ADDRESS)).thenReturn(false);
         when(node.has(LATITUDE)).thenReturn(true);
         when(node.get(LATITUDE).asDouble()).thenReturn(12.);
         when(node.get(LONGITUDE).asDouble()).thenReturn(-2.1);

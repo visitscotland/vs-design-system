@@ -25,7 +25,7 @@
             sub-title="${item.subtitle}"
     >
         <div slot="hippo-details" class="has-edit-button">
-            <@hst.manageContent hippobean=item.listicleItem/>
+            <@hst.manageContent hippobean=item.hippoBean/>
             <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
         </div>
 

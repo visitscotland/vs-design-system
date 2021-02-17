@@ -21,12 +21,6 @@ public class LocationObject implements Comparable<LocationObject> {
     @JsonIgnore
     private List<String> children;
 
-
-    @Deprecated
-    public LocationObject(String id, String key, String name, String type) {
-        this(id, key,name,type, null, null, null, null);
-    }
-
     public LocationObject(){
 
     }

@@ -40,13 +40,11 @@ public class CommonUtils {
     /**
      * Request a page and return the body as String
      *
-     * @param url
+     * @param url URL
      * @return null if status code not 200 or 300
      * @throws IOException
-     * @deprecated Use requestUrl instead which is the non-static version of this method.
      */
-    @Deprecated
-    public static String request(String url) throws IOException {
+    public String requestUrl(String url) throws IOException {
         int responseCode = ((HttpURLConnection) new URL(url).openConnection()).getResponseCode();
         if (responseCode < 400) {
             if (responseCode >= 300){
@@ -66,10 +64,6 @@ public class CommonUtils {
             logger.warn("The request for {} has responded with the Status code {}", url, responseCode);
         }
         return null;
-    }
-
-    public String requestUrl(String url) throws IOException {
-        return CommonUtils.request(url);
     }
 
     /**

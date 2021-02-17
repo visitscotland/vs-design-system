@@ -16,6 +16,7 @@ public class Properties {
     private static final Logger logger = LoggerFactory.getLogger(Properties.class.getName());
 
     public static final String INSTAGRAM_API = "instagram.api";
+    public static final String INSTAGRAM_TOKEN ="instagram.accesstoken";
     public static final String LOCALHOST = "localhost";
     public static final String HELPDESK_EMAIL = "helpdesk-email";
     public static final String DMS_HOST = "dms.host";
@@ -39,6 +40,10 @@ public class Properties {
 
     public String getInstagramApi() {
         return readString(INSTAGRAM_API);
+    }
+
+    public String getInstagramToken() {
+        return readString(INSTAGRAM_TOKEN);
     }
 
     public String getHelpdeskEmail() {
