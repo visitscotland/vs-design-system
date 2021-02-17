@@ -184,6 +184,7 @@ export default {
 <style lang="scss" scoped>
 @import "../../styles/docs.tokens.scss";
 @import "../../styles/docs.mixins.scss";
+@import "../../styles/docs.functions.scss";
 
 /* STYLES
 --------------------------------------------- */
@@ -256,7 +257,7 @@ export default {
     }
     li {
       margin: 0 $space-m 0 0;
-      color: $docs-color-silver;
+      color: shade($docs-color-silver, 20%);
       font-size: $size-s;
       align-items: center;
       display: flex;
