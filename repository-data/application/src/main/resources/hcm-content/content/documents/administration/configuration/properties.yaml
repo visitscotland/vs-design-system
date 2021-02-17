@@ -9,10 +9,11 @@
     jcr:mixinTypes: ['mix:referenceable']
     jcr:uuid: 6cacd2ed-5bd2-443a-8807-5b7696aa099c
     hippo:availability: []
+    hippostd:holder: admin
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-02-05T18:16:37.623Z
+    hippostdpubwf:lastModificationDate: 2021-02-17T09:09:11.094Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Encoding
         for requests made to vs-dms-products, "Token that identifies calls made to\
@@ -29,9 +30,9 @@
     resourcebundle:id: config.cms
     resourcebundle:keys: [instagram.api, localhost, dms.encoding, dms.token, dms.timeout,
       dms.tries, dms.sleep-time, helpdesk-email, dms.host, instagram.accesstoken]
-    resourcebundle:messages: ['https://www.instagram.com/p/', 'http://localhost:8080/site',
-      UTF-8, $DMS_TOKEN, '2000', '3', '60000', helpdesk@visitscotland.com, 'http://172.28.81.65:8089',
-      $INSTAGRAM_KEY]
+    resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
+      'http://localhost:8080/site', UTF-8, $DMS_TOKEN, '2000', '3', '60000', helpdesk@visitscotland.com,
+      'http://172.28.81.65:8089', $INSTAGRAM_KEY]
   /properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']

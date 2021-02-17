@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.InstagramImage;
 import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.components.content.factory.ImageFactory;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
@@ -70,27 +71,6 @@ public class CommonUtils {
     public String requestUrl(String url) throws IOException {
         return CommonUtils.request(url);
     }
-
-    /**
-     * @deprecated  Use ImageFactory.requestInstagramImageData(InstagramImage)
-     */
-    @Deprecated
-    public static JsonNode getInstagramInformation(InstagramImage instagramLink) throws IOException {
-        JsonNode response = null;
-        ResourceBundleService bundle = VsComponentManager.get(ResourceBundleService.class);
-        //TODO add the access token value for VS facebook account
-        String accessToken = bundle.getResourceBundle("keys","tagram.accesstoken",  Locale.UK);
-        URL instagramInformation = new URL("https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/" + instagramLink.getId()+"&access_token="+accessToken);
-        String responseInstagram = request(instagramInformation.toString());
-        if (responseInstagram != null) {
-            ObjectMapper mapper = new ObjectMapper();
-            response = mapper.readTree(request(instagramInformation.toString()));
-
-        }
-        return response;
-    }
-
-
 
     /**
      * TODO this method returns the current open state and it could be affected by the cache, ask WEBOPS and move it to front end if needed

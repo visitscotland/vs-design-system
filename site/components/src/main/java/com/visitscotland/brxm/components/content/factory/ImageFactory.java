@@ -13,6 +13,7 @@ import com.visitscotland.brxm.beans.mapping.Module;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -37,18 +38,18 @@ public class ImageFactory {
 
     private CommonUtils utils;
 
-    public ImageFactory(LocationLoader locationLoader, ResourceBundleService bundle, CommonUtils utils){
+    public ImageFactory(LocationLoader locationLoader, ResourceBundleService bundle, CommonUtils utils) {
         this.locationLoader = locationLoader;
         this.bundle = bundle;
         this.utils = utils;
     }
 
-    public FlatImage getImage(HippoBean image, Module<?> module, Locale locale){
+    public FlatImage getImage(HippoBean image, Module<?> module, Locale locale) {
         if (image instanceof InstagramImage) {
             return createImage((InstagramImage) image, module, locale);
-        } else if (image  instanceof Image) {
+        } else if (image instanceof Image) {
             return createImage((Image) image, module, locale);
-        } else if (image instanceof ExternalLink){
+        } else if (image instanceof ExternalLink) {
             FlatImage flat = new FlatImage();
             // TODO: No alt text & no description: Double check the requirements <-- Review Again
             flat.setExternalImage(((ExternalLink) image).getLink());
@@ -60,30 +61,28 @@ public class ImageFactory {
      * Creates an Image from an Instagram compound (InstagramLink)
      *
      * @param cmsImage Compound with the information for the image
-     * @param module Module where potential issues will be logged
-     * @param locale Locale for translated texts (i.e. location)
-     *
+     * @param module   Module where potential issues will be logged
+     * @param locale   Locale for translated texts (i.e. location)
      * @return FlatImage Object
      */
-    public FlatImage createImage(Image cmsImage, Module<?> module, Locale locale){
+    public FlatImage createImage(Image cmsImage, Module<?> module, Locale locale) {
         FlatImage image = new FlatImage();
         ImageData data = null;
 
         image.setCmsImage(cmsImage);
+
+        Language language = Language.getLanguageForLocale(locale);
         //Populate altText and Caption
-        if (locale != null && locale.getLanguage() != null) {
-            //TODO: Use the new Language class when it is available
-            if ("fr".equals(locale.getLanguage())) {
-                data = cmsImage.getFr();
-            } else if ("de".equals(locale.getLanguage())) {
-                data = cmsImage.getDe();
-            } else if ("es".equals(locale.getLanguage())) {
-                data = cmsImage.getEs();
-            } else if ("nl".equals(locale.getLanguage())) {
-                data = cmsImage.getNl();
-            } else if ("it".equals(locale.getLanguage())) {
-                data = cmsImage.getIt();
-            }
+        if (Language.FRENCH.equals(language)) {
+            data = cmsImage.getFr();
+        } else if (Language.GERMAN.equals(language)) {
+            data = cmsImage.getDe();
+        } else if (Language.SPANISH.equals(language)) {
+            data = cmsImage.getEs();
+        } else if (Language.DUTCH.equals(language)) {
+            data = cmsImage.getNl();
+        } else if (Language.ITALIAN.equals(language)) {
+            data = cmsImage.getIt();
         }
 
         if (data == null) {
@@ -94,7 +93,7 @@ public class ImageFactory {
             image.setDescription(data.getCaption());
         }
 
-        if (Contract.isEmpty(image.getAltText())){
+        if (Contract.isEmpty(image.getAltText())) {
             String message = "The image does not have an Alternative Text for the language " + locale;
             module.addErrorMessage(message);
             CommonUtils.contentIssue(message);
@@ -102,7 +101,7 @@ public class ImageFactory {
             image.setAltText(cmsImage.getAltText());
         }
 
-        if (Contract.isEmpty(image.getDescription())){
+        if (Contract.isEmpty(image.getDescription())) {
             String message = "The image does not have a description for the locale " + locale;
             module.addErrorMessage(message);
             CommonUtils.contentIssue(message);
@@ -120,12 +119,11 @@ public class ImageFactory {
      * Creates an Image from an Instagram compound (InstagramLink)
      *
      * @param document Compound with the information for the image
-     * @param module Module where potential issues will be logged
-     * @param locale Locale for translated texts (i.e. location)
-     *
+     * @param module   Module where potential issues will be logged
+     * @param locale   Locale for translated texts (i.e. location)
      * @return FlatImage Object
      */
-    public FlatImage createImage(InstagramImage document, Module<?> module, Locale locale){
+    public FlatImage createImage(InstagramImage document, Module<?> module, Locale locale) {
         try {
             JsonNode instagramInfo = requestInstagramImageData(document);
 
@@ -136,7 +134,7 @@ public class ImageFactory {
                 image.setAltText(document.getCaption());
                 image.setDescription(document.getCaption());
                 image.setSource(FlatImage.Source.INSTAGRAM);
-                image.setPostUrl(Properties.INSTAGRAM_API  + document.getId());
+                image.setPostUrl(Properties.INSTAGRAM_API + document.getId());
 
                 populateLocation(image, document.getLocation(), locale);
 
@@ -155,15 +153,16 @@ public class ImageFactory {
         return null;
     }
 
-    /** TODO Comment!
+    /**
+     * TODO Comment!
      *
      * @param dmsProduct
      * @param module
      * @return
      */
-    public FlatImage createImage(JsonNode dmsProduct, Module<?> module){
+    public FlatImage createImage(JsonNode dmsProduct, Module<?> module) {
 
-        if (dmsProduct.has(IMAGE)){
+        if (dmsProduct.has(IMAGE)) {
 
             JsonNode dmsImage = dmsProduct.get(IMAGE).get(0);
             if (dmsImage.has(MEDIA)) {
@@ -185,8 +184,8 @@ public class ImageFactory {
         return null;
     }
 
-    private String get(JsonNode node, String field, String defaultValue){
-        return node.has(field)?node.get(field).asText(defaultValue):defaultValue;
+    private String get(JsonNode node, String field, String defaultValue) {
+        return node.has(field) ? node.get(field).asText(defaultValue) : defaultValue;
     }
 
     /**
@@ -195,12 +194,9 @@ public class ImageFactory {
      * @throws IOException when the response is not readable or the image server is not accessible
      */
     private JsonNode requestInstagramImageData(InstagramImage instagramLink) throws IOException {
-        //TODO add the access token value for VS facebook account
-        //TODO Properties.getInstagramToken()
-        String accessToken = bundle.getResourceBundle("keys","tagram.accesstoken",  Locale.UK);
-        //TODO: Juan Luis, Is this the real API?
-
-        URL instagramInformation = new URL("https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/" + instagramLink.getId()+"&access_token="+accessToken);
+        String accessToken = bundle.getResourceBundle("config.cms", "instagram.accesstoken", Locale.UK);
+        String url = bundle.getResourceBundle("config.cms", "instagram.api", Locale.UK);
+        URL instagramInformation = new URL(url + instagramLink.getId() + "&access_token=" + accessToken);
         String responseInstagram = utils.requestUrl(instagramInformation.toString());
         if (responseInstagram != null) {
             return new ObjectMapper().readTree(responseInstagram);
@@ -212,9 +208,9 @@ public class ImageFactory {
      * Populates the fields Location and Coordinates from the DMS information providing translated locations for
      * all images.
      */
-    private void populateLocation(FlatImage image, String location, Locale locale){
+    private void populateLocation(FlatImage image, String location, Locale locale) {
         LocationObject locationObject = locationLoader.getLocation(location, locale);
-        if (locationObject!=null) {
+        if (locationObject != null) {
             image.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
 
             image.setLocation(locationObject.getName());
