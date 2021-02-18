@@ -31,6 +31,7 @@ module.exports = {
       "@": resolve("src"),
       "@components": resolve("src/components"),
       "@docs": resolve("docs"),
+      "@images": resolve("docs/images"),
       "@cypress": resolve("cypress"),
     },
   },
@@ -70,7 +71,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif)(\?.*)?$/,
+        test: /\.(png|jpe?g|svg|gif)(\?.*)?$/,
         loader: "file-loader",
         options: {
           name: "img/[name].[hash:7].[ext]",
