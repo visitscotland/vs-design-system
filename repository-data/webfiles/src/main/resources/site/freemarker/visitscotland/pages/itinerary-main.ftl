@@ -113,7 +113,11 @@
                     <vs-summary-box-list>
                         <vs-summary-box-list-item>
                             <vs-summary-box-display text="${document.days?size}"/></vs-summary-box-display>
-                            <vs-summary-box-label label="${label('itinerary', 'days')}"></vs-summary-box-label>
+                            <#if document.days = 1>
+                                <vs-summary-box-label label="${label('itinerary', 'day')}"></vs-summary-box-label>
+                            <#else>
+                                <vs-summary-box-label label="${label('itinerary', 'days')}"></vs-summary-box-label>
+                            </#if>
                         </vs-summary-box-list-item>
                         <vs-summary-box-list-item>
                             <vs-summary-box-distance-display
