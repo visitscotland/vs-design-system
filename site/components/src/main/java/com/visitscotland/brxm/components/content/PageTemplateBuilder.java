@@ -31,6 +31,7 @@ public class PageTemplateBuilder {
 
     //Utils
     private final DocumentUtils documentUtils;
+
     //Factories
     private final LinkModulesFactory linksFactory;
     private final ICentreFactory iCentreFactory;
