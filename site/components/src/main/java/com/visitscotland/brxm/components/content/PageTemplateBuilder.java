@@ -95,7 +95,6 @@ public class PageTemplateBuilder {
                 logger.error("Only one instance of this module is allowed");
             } else {
                 config.modules.add(longCopyFactory.getModule(document));
-
             }
         } else {
             //TODO Content Issue;
