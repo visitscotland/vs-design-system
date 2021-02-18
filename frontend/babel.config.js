@@ -1,5 +1,5 @@
 module.exports = {
-    presets: ["@babel/preset-env"],
+    presets: ["@babel/preset-env", "@babel/preset-react"],
     plugins: [
         "@babel/plugin-syntax-dynamic-import",
         "@babel/plugin-proposal-class-properties",
@@ -11,7 +11,7 @@ module.exports = {
     ignore: [/node_modules\/(?!bootstrap-vue)/],
     env: {
         test: {
-            presets: ["@babel/preset-env"],
+            presets: ["@babel/preset-env", "@babel/preset-react"],
             plugins: [
                 "@babel/plugin-syntax-dynamic-import",
                 "@babel/plugin-proposal-class-properties",

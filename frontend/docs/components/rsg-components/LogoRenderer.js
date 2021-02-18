@@ -1,48 +1,22 @@
-import React from "react"
-import PropTypes from "prop-types"
-import Styled from "rsg-components/Styled"
+import React from 'react';
+import PropTypes from 'prop-types';
+import Styled from 'rsg-components/Styled';
+import logo from '@images/vs_logo_jpg.jpg';
 
-const LOGO_URL = "https://www.visitscotland.com/static/img/logos/scotland_alba_light.png"
+const styles = () => ({
+	image: {
+		width: '12em',
+	},
+});
 
-const styles = ({ fontFamily, color }) => ({
-  title: {
-    fontFamily: fontFamily.base,
-    fontSize: 18,
-    fontWeight: "normal",
-  },
-  svgWrapper: {
-    width: "100%",
-  },
-})
-
-export function LogoRenderer({ classes, children }) {
-  // const transformedLogo = logoSvg.replace(/^<svg /, `<svg style="fill: white" `)
-  // const logoWrapped = React.createElement("div", {
-  //   dangerouslySetInnerHTML: { __html: transformedLogo },
-  //   className: classes.svgWrapper,
-  // })
-
-  const logoWrapped = React.createElement("img", {
-    src: LOGO_URL,
-    className: classes.svgWrapper,
-    key: "thistle-ds-logo-img",
-  })
-
-  const h1 = React.createElement(
-    "h1",
-    {
-      className: classes.title,
-      key: "thistle-ds-logo-title",
-    },
-    children
-  )
-
-  return [logoWrapped, h1]
+export function LogoRenderer({ classes }) {
+    return (
+        <img className={classes.image} src={logo} alt="VisitScotland Logo" key="vs-logo-img"/>
+	);
 }
 
 LogoRenderer.propTypes = {
-  classes: PropTypes.object.isRequired,
-  children: PropTypes.node,
-}
+    classes: PropTypes.object.isRequired,
+};
 
-export default Styled(styles)(LogoRenderer)
+export default Styled(styles)(LogoRenderer);

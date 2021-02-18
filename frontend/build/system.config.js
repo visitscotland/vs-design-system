@@ -12,8 +12,8 @@ module.exports = {
      * Most of the styles are defined in /docs/styles/docs.styles.scss
      */
     theme: {
-        maxWidth: "100%",
-        sidebarWidth: 240,
+        maxWidth: "1320px",
+        sidebarWidth: 260,
         fontFamily: {
             base: ["'Fira Sans'", "Helvetica", "Arial", "sans-serif"],
             monospace: ["Consolas", "'Liberation Mono'", "Menlo", "monospace"],
@@ -99,6 +99,7 @@ module.exports = {
         LogoRenderer: path.join(__dirname, "../docs/components/rsg-components/LogoRenderer"),
         Playground: path.join(__dirname, "../docs/components/rsg-components/Playground"),
         ReactComponent: path.join(__dirname, "../docs/components/rsg-components/ReactComponent"),
+        StyleGuideRenderer: path.join(__dirname,'../docs/components/rsg-components/StyleGuideRenderer'),
     },
     propsParser(filePath, source) {
         return require("vue-docgen-api").parse(filePath, {
