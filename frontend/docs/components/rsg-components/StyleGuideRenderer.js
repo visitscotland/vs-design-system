@@ -7,7 +7,7 @@ import Styled from 'rsg-components/Styled';
 
 const xsmall = '@media (max-width: 600px)';
 
-const styles = ({ font, maxWidth, mq, space, color }) => ({
+const styles = ({ font, maxWidth, space, color }) => ({
     root: {
 		minHeight: '100vh',
 		backgroundColor: color.baseBackground,
@@ -19,58 +19,28 @@ const styles = ({ font, maxWidth, mq, space, color }) => ({
         marginBottom: space[4],
         boxShadow: '0 2px 6px 0 rgb(0 0 0 / 16%)',
     },
-    headerLink: {
-        '&, &:link, &:visited': {
-            marginLeft: '0.5em',
-            marginRight: '0.5em',
-            fontFamily: font,
-            color: '#41b883',
-        },
-        '&:hover, &:active': {
-            color: '#35495e',
-            cursor: 'pointer',
-        },
-    },
-    nav: {
-        marginLeft: 'auto',
-        marginRight: '-0.5em',
-        [xsmall]: {
-            margin: [[10, 0, 0]],
-        },
-    },
-
+    headerLink: {},
+    nav: {},
     logoWrapper: {
         padding: space[2],
         borderBottom: [[1, color.border, 'solid']],
     },
 
-    bar: {
+    navBar: {
         display: 'flex',
-        alignItems: 'center',
-        [xsmall]: {
-            flexDirection: 'column',
-            alignItems: 'center',
-        },
     },
 
     sidebar: {
         flex: '0 0 auto',
-        width: '20%',
     },
 
     sections: {
         flex: '0 0 auto',
-        width: '80%',
-        paddingLeft: space[4],
     },
 
     contentWrapper: {
 		maxWidth,
-		padding: [[0, space[2]]],
 		margin: [[0, 'auto']],
-		[mq.small]: {
-			padding: space[2],
-		},
 		display: 'block',
 	},
 
@@ -81,6 +51,15 @@ const styles = ({ font, maxWidth, mq, space, color }) => ({
 
     components: {
         overflow: 'auto', // To prevent the pane from growing out of the screen
+    },
+
+    footer: {
+    },
+
+    footerText:{
+    },
+
+    mainContent:{
     },
 });
 
@@ -95,46 +74,47 @@ export function StyleGuideRenderer({
 }) {
     return (
         <div className={classes.root}>
-            <header className={classes.header}>
-                <div className={classes.contentWrapper}>
-                    <div className={classes.bar}>
-                        <div className={classes.logoWrapper}>
-                            <Logo>{title}</Logo>
+            <div className={classes.mainContent}>
+                <header className={classes.header}>
+                    <div className={classes.contentWrapper}>
+                        <div className={classes.navBar}>
+                            <div className={classes.logoWrapper}>
+                                <Logo>{title}</Logo>
+                            </div>
+                            <nav className={classes.nav}>
+                                <a
+                                    className={classes.headerLink}
+                                    href="https://vue-styleguidist.github.io"
+                                >
+                                    Docs
+                                </a>
+                                <a
+                                    className={classes.headerLink}
+                                    href="https://github.com/vue-styleguidist/vue-styleguidist"
+                                >
+                                    GitHub
+                                </a>
+                            </nav>
                         </div>
-                        <nav className={classes.nav}>
-                            <a
-                                className={classes.headerLink}
-                                href="https://vue-styleguidist.github.io"
-                            >
-                                Docs
-                            </a>
-                            <a
-                                className={classes.headerLink}
-                                href="https://github.com/vue-styleguidist/vue-styleguidist"
-                            >
-                                GitHub
-                            </a>
-                        </nav>
                     </div>
-                </div>
-            </header>
-            <main className={classes.contentWrapper}>
-                <div className={classes.content}>
-                    {hasSidebar && (
-                        <div className={classes.sidebar} data-testid="sidebar">
-                            {toc}
-                            {/* {version && <Version>{version}</Version>} */}
+                </header>
+                <main className={classes.contentWrapper}>
+                    <div className={classes.content}>
+                        {hasSidebar && (
+                            <div className={classes.sidebar} data-testid="sidebar">
+                                {toc}
+                                {/* {version && <Version>{version}</Version>} */}
+                            </div>
+                        )}
+                        <div className={classes.sections} data-testid="sections">
+                            {children}
                         </div>
-                    )}
-                    <div className={classes.sections} data-testid="sections">
-                        {children}
                     </div>
-                </div>
-
-                <footer className={classes.footer}>
-                    <Markdown text={`Created with [React Styleguidist](${homepageUrl})`} />
-                </footer>
-            </main>
+                </main>
+            </div>
+            <footer className={classes.footer}>
+                <p className={classes.footerText}>&copy; 2021 VisitScotland. All rights reserved.</p>
+            </footer>
         </div>
     );
 }
