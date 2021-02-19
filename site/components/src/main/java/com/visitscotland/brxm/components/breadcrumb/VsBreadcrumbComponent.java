@@ -36,8 +36,6 @@ public class VsBreadcrumbComponent extends CommonComponent {
         request.setAttribute(IS_HOME, "root".equals(request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getId()));
         //Breadcrumb Items list
         request.setAttribute(BREADCRUMB, this.breadcrumbProvider.getBreadcrumb(request));
-        //Register the resource Bundle
-        bundle.registerIn(request);
         //Main document for the page
         setDocument(request);
     }

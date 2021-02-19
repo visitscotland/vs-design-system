@@ -119,7 +119,6 @@ public class MenuComponent extends EssentialsMenuComponent {
     }
 
     protected void enhanceRequest(HstRequest request) {
-        bundle.registerIn(request);
         enhanceMenu(request);
     }
 

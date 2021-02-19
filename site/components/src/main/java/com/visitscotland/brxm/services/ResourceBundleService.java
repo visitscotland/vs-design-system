@@ -180,15 +180,6 @@ public class ResourceBundleService {
         logger.warn(issue);
     }
 
-    public void registerIn(HstRequest request) {
-        if (request.getAttribute(SERVICE_NAME) == null) {
-            request.setAttribute(SERVICE_NAME, this);
-            logger.debug(SERVICE_NAME + " has been registered on the request");
-        } else {
-            logger.info(SERVICE_NAME + " has been been already registered on the request");
-        }
-    }
-
     /**
      * Returns the default CTA label when the manual CTA  is not defined.     *
      *
