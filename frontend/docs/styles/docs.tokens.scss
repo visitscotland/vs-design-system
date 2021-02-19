@@ -6,11 +6,14 @@
 $docs-color-white: #fff;
 $docs-color-very-light-grey: #f5f6fa;
 $docs-color-grey: #e5e5e5;
-$docs-color-grey-dark: #595959;
+$docs-color-grey-med: #6a6366;
+$docs-color-grey-dark: #191919;
 
 $docs-color-purple: #95005e;
+$docs-color-pink: #af006e;
 $docs-color-blue: #005eb8;
 $docs-status-ready: #7cb518;
+$docs-breakpoint-lg: 1024px;
 $docs-breakpoint: 800px;
 $docs-breakpoint-small: 600px;
 
@@ -42,11 +45,11 @@ $size-xxl: 48px !default;
 $size-xl: 36px !default;
 $size-l: 24px !default;
 $size-m: 16px !default;
-$size-s: 13px !default;
+$size-s: 14px !default;
 $size-xs: 11px !default;
 
-$font-heading: "Fira Sans", Helvetica, Arial, sans-serif !default;
-$font-text: "Fira Sans", Helvetica, Arial, sans-serif !default;
+$font-heading: 'Source Sans Pro', Helvetica, Arial, sans-serif !default;
+$font-text: 'Source Sans Pro', Helvetica, Arial, sans-serif !default;
 
 $weight-bold: 700 !default;
 $weight-semi-bold: 600 !default;

@@ -71,7 +71,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|svg|gif)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: "file-loader",
         options: {
           name: "img/[name].[hash:7].[ext]",
