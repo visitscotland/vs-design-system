@@ -12263,3 +12263,174 @@
                 <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
 
                 <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+  /long-copy:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: ee7a0adc-50f6-42f9-ab1c-278f8da90a63
+    hippo:name: Long Copy Module
+    hippostd:foldertype: [new-translated-folder-test, new-document]
+    hippotranslation:id: 578c7b9c-450f-4222-9217-d64539b9e9e0
+    hippotranslation:locale: en
+    /content:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: a34dd38f-6be3-45ca-b693-1812570bab19
+      hippo:name: content
+      hippo:versionHistory: 1024e7d1-f466-460e-a9d3-ca5f9d902a8b
+      /content[1]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:versionable']
+        jcr:uuid: 752aa5cc-dcde-4a72-b9ef-b1c324e48fe9
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:36:37.172Z
+        hippostdpubwf:lastModificationDate: 2021-02-18T16:03:45.109Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a427b6f8-d290-4543-ba14-3f24efed0b41
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title
+        visitscotland:teaser: teaser
+        visitscotland:theme: Simple
+        visitscotland:title: The mountain with its head in the clouds
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>In light of COVID-19, everyone's health and safety
+            is the most important thing. Please follow the advice of the&nbsp;<a href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+            title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+            and always stay 2 metres away from those outwith your own household both
+            indoors and outdoors.*</p>
+      /content[2]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: aaffa824-310f-4e21-a536-a53020614991
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:36:37.172Z
+        hippostdpubwf:lastModificationDate: 2021-02-18T16:03:45.109Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-02-18T16:03:53.153Z
+        hippotranslation:id: a427b6f8-d290-4543-ba14-3f24efed0b41
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title
+        visitscotland:teaser: teaser
+        visitscotland:theme: Simple
+        visitscotland:title: The mountain with its head in the clouds
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>In light of COVID-19, everyone's health and safety
+            is the most important thing. Please follow the advice of the&nbsp;<a href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+            title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+            and always stay 2 metres away from those outwith your own household both
+            indoors and outdoors.*</p>
+      /content[3]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: a3e2d1e4-8883-411e-b42f-c06c8dd9ccea
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:36:37.172Z
+        hippostdpubwf:lastModificationDate: 2021-02-18T16:03:45.232Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a427b6f8-d290-4543-ba14-3f24efed0b41
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title
+        visitscotland:teaser: teaser
+        visitscotland:theme: Simple
+        visitscotland:title: The mountain with its head in the clouds
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>In light of COVID-19, everyone's health and safety
+            is the most important thing. Please follow the advice of the&nbsp;<a href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+            title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+            and always stay 2 metres away from those outwith your own household both
+            indoors and outdoors.*</p>
+    /copy:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 064664f9-2b26-4997-a99e-366d9c343fe8
+      hippo:versionHistory: 5db776b2-ae95-4972-bcd4-be3b3500f241
+      /copy[1]:
+        jcr:primaryType: visitscotland:LongCopy
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 5a08f54c-cfbf-4896-8ce9-3071e105bdf0
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
+        hippostdpubwf:lastModificationDate: 2021-02-18T15:58:26.054Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
+        hippotranslation:locale: en
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <pre>
+            LongCopyModule</pre>
+      /copy[2]:
+        jcr:primaryType: visitscotland:LongCopy
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 1d27a228-5878-4ed0-bf48-8e001307bbbd
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
+        hippostdpubwf:lastModificationDate: 2021-02-18T15:58:25.688Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
+        hippotranslation:locale: en
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <pre>
+            LongCopyModule</pre>
+      /copy[3]:
+        jcr:primaryType: visitscotland:LongCopy
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 26e0f842-7351-45a1-9a21-0f003c97c221
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
+        hippostdpubwf:lastModificationDate: 2021-02-18T15:58:25.688Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-02-18T15:58:38.869Z
+        hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
+        hippotranslation:locale: en
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <pre>
+            LongCopyModule</pre>

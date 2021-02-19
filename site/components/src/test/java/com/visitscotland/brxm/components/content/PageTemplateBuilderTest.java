@@ -3,27 +3,28 @@ package com.visitscotland.brxm.components.content;
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.mapping.ICentreModule;
 import com.visitscotland.brxm.beans.mapping.IKnowModule;
+import com.visitscotland.brxm.beans.mapping.LongCopyModule;
 import com.visitscotland.brxm.beans.mapping.Module;
 import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.MultiImageLinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.SingleImageLinksModule;
-import com.visitscotland.brxm.components.content.factory.ArticleFactory;
-import com.visitscotland.brxm.components.content.factory.ICentreFactory;
-import com.visitscotland.brxm.components.content.factory.IKnowFactory;
-import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
+import com.visitscotland.brxm.components.content.factory.*;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.mock.TouristInformationMockBuilder;
 import com.visitscotland.brxm.utils.DocumentUtils;
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +38,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PageTemplateBuilderTest {
+
 
     MockHstRequest request;
 
@@ -56,8 +58,13 @@ class PageTemplateBuilderTest {
     ArticleFactory articleFactory;
 
     @Mock
+    LongCopyFactory longCopyFactory;
+
+    @Mock
     DocumentUtils utils;
 
+    @Resource
+    @InjectMocks
     PageTemplateBuilder builder;
 
     @BeforeEach
@@ -67,8 +74,6 @@ class PageTemplateBuilderTest {
 
         //Adds a mock document to the Request
         request.setAttribute("document", page);
-
-        builder = new PageTemplateBuilder(utils, linksFactory, iCentreFactory, iKnowFactory, articleFactory);
     }
 
     /**
@@ -288,6 +293,74 @@ class PageTemplateBuilderTest {
 
         assertEquals(PageTemplateBuilder.NEUTRAL_THEME,
                 request.getAttribute(PageTemplateBuilder.INTRO_THEME));
+    }
+
+    @Test
+    @DisplayName("VS-2132 - Happy Path crete a module that contains the basic information")
+    void createLongCopy_basic(){
+        General page = mock(General.class);
+        LongCopy longCopy = mock(LongCopy.class);
+
+        //The module is only allowed got general pages.
+        when(page.getTheme()).thenReturn("Simple");
+        request.setAttribute("document", page);
+
+        when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(longCopy));
+        when(longCopyFactory.getModule(any(LongCopy.class))).thenReturn(new LongCopyModule());
+
+        builder.addModules(request);
+
+        //List<Module> items = (List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
+        LongCopyModule module = (LongCopyModule) ((List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
+        assertNotNull(module);
+    }
+
+    @Test
+    @DisplayName("VS-2132 - This item allowed on general page type - simple theme pages only (Document types)")
+    void createLongCopy_forbidden_destinations(){
+        Destination page = mock(Destination.class);
+        LongCopy longCopy = mock(LongCopy.class);
+
+        //The module is only allowed got general pages.
+        request.setAttribute("document", page);
+
+        when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(longCopy));
+        builder.addModules(request);
+
+        assertEquals(0, ((List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).size());
+    }
+
+    @Test
+    @DisplayName("VS-2132 - This item allowed on general page type - simple theme pages only (Themes)")
+    void createLongCopy_forbidden_generalStandard(){
+        General page = mock(General.class);
+        LongCopy longCopy = mock(LongCopy.class);
+
+        //The module is only allowed got general pages.
+        when(page.getTheme()).thenReturn("Standard");
+        request.setAttribute("document", page);
+
+        when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(longCopy));
+        builder.addModules(request);
+
+        assertEquals(0, ((List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).size());
+    }
+
+    @Test
+    @DisplayName("VS-2132 - This item could be used only ... as a single instance")
+    void createLongCopy_forbidden_multiple(){
+        General page = mock(General.class);
+
+        //The module is only allowed got general pages.
+        when(page.getTheme()).thenReturn("Simple");
+        request.setAttribute("document", page);
+
+        when(utils.getAllowedDocuments(page)).thenReturn(Arrays.asList(mock(LongCopy.class), mock(LongCopy.class), mock(LongCopy.class)));
+        when(longCopyFactory.getModule(any(LongCopy.class))).thenReturn(new LongCopyModule());
+
+        builder.addModules(request);
+
+        assertEquals(1, ((List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).size());
     }
 
 }
