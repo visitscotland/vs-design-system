@@ -6,7 +6,7 @@
 <#include "content-driven-seo.ftl">
 <#include "breadcrumb-schema.ftl">
 
-<@hst.setBundle basename="navigation"/>
+<@hst.setBundle basename="navigation.static"/>
 
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
 <#-- @ftlvariable name="requestedURI" type="java.lang.String" -->
