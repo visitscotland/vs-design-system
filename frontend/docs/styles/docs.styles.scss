@@ -21,7 +21,6 @@ $docs-color-purple-lighter: tint($docs-color-purple, 60%);
 
 /* BASE
  --------------------------------------------- */
-
 // Background of page
 div.rsg--root-1 {
     background: $docs-color-white;
@@ -30,19 +29,15 @@ div.rsg--root-1 {
 // Main content
 main[class^='rsg--content'] {
     display: block; /* IE11 fix */
-    // padding: $space-s $space-xl;
-    overflow-x: hidden;
+    
     @media (max-width: #{$docs-breakpoint}) {
         padding: $space-s $space-m;
     }
 }
 
-// Resetting margins for Styleguidist
-// header[class^='rsg--header'] > div[class^='rsg--wrapper'],
-// section > div[class^='rsg--wrapper'] + article[class^='rsg--root'],
-// article[class^='rsg--root'] div[class^='rsg--root'] {
-//     margin: 0 !important;
-// }
+div[class^='rsg--mainContent'] {
+    min-height: calc(100vh - 50px);
+}
 
 // Display rsg--roots as flex
 main section section > div > div[class^='rsg--root'] {
@@ -69,25 +64,33 @@ div[class^='rsg--wrapper'] > h2[class^='rsg--heading'] {
     border: 0;
     line-height: $line-height-s;
     padding: $space-xl $space-xl;
-    width: calc(100% + #{$space-xl * 2});
-    // margin: -#{$space-s} -#{$space-xl} $space-l -#{$space-xl};
+    width: 100%;
     background: $docs-color-very-light-grey;
     font-size: $size-xxl;
+
     a:hover {
         text-decoration: none;
         cursor: default;
     }
+
     @media (max-width: 1300px) {
         padding: $space-l $space-xl;
     }
+
     @media (max-width: #{$docs-breakpoint}) {
         font-size: $size-xl / 1.2;
         width: calc(100% + #{$space-xl});
         padding: $space-l $space-m;
-        margin: -#{$space-s} -#{$space-m} $space-m;
     }
 }
 
+div[class^='rsg--wrapper'] > h1[class^='rsg--heading']{
+    margin: 0 0 $space-s;
+}
+
+div[class^='rsg--wrapper'] > h2[class^='rsg--heading']{
+    margin: 0;
+}
 
 // Links inside h1
 div[class^='rsg--wrapper'] > h1[class^='rsg--heading'] a {
@@ -203,69 +206,75 @@ td[class^='rsg--cell'] p {
     width: 100%;
 }
 
-/* SIDEBAR
+/* CONTENT
  --------------------------------------------- */
+// contentWrapper
+main[class^='rsg--contentWrapper'], 
+div[class^='rsg--contentWrapper'] {
+    padding: 0 $space-m;
+}
 
-// Sidebar logo
+
+/* HEADER BAR/NAV
+ --------------------------------------------- */
+div[class^='rsg--navBar'] {
+    align-items: center;
+
+    @media (max-width: #{$docs-breakpoint}) {
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+nav[class^='rsg--nav'] {
+    margin-left: auto;
+
+    @media (max-width: #{$docs-breakpoint}) {
+        margin: 0;
+    }
+}
+
+a[class^='rsg--headerLink'] {
+    margin: 0 1.5em;
+    color: $docs-color-grey-dark;
+    cursor: pointer;
+
+    &:last-of-type{
+        margin-right: 0;
+    }
+
+    &:hover, &:active {
+        color: $docs-color-pink;
+    }
+}
+
 div[class^='rsg--logo'] {
     padding: 0;
     border-bottom: 0;
     line-height: 0;
 }
 
-// Sidebar version
-p[class^='rsg--version'] {
-    @include inset-squish-space($space-xs);
-    margin: $space-xs 0 0;
-    color: $docs-color-purple-lighter;
-    font-family: 'Fira Sans', Helvetica, Arial, sans-serif;
-    font-weight: $weight-normal;
-    display: inline-block;
-    line-height: $line-height-xs;
-    border: 1px solid $docs-color-purple-lighter;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: $size-xs;
-    border-radius: $radius-default;
-}
 
-// Sidebar search
-div[class^='rsg--search']{
-    padding: 0;
-}
 
-div[class^='rsg--search'] input {
-    @include inset-squish-space($space-s);
-    color: $docs-color-text;
-    border: 1px solid transparent;
-    background: $docs-color-very-light-grey;
-    &:focus {
-        border: 1px solid $docs-color-purple-lighter;
-        &::-webkit-textfield-decoration-container {
-            display: none !important;
-        }
-        &::-webkit-contacts-auto-fill-button {
-            display: none !important;
-        }
-    }
-    &::-webkit-input-placeholder {
-        color: rgba(mix( $docs-color-text, $docs-color-purple-lighter, 50%), 0.35);
-    }
-    &:-ms-input-placeholder {
-        color: rgba(mix( $docs-color-text, $docs-color-purple-lighter, 50%), 0.35);
-    }
-    &::-moz-placeholder {
-        color: rgba(mix( $docs-color-text, $docs-color-purple-lighter, 50%), 0.35);
-        opacity: 1;
-    }
-}
+
+/* SIDEBAR
+ --------------------------------------------- */
 
 // Sets sidebar background
 div[class^='rsg--sidebar'] {
     background: $docs-color-white;
     border: 0;
-    @media (max-width: #{$docs-breakpoint}) {
-        padding-bottom: $space-l;
+    order: 2;
+    width: 100%;
+    padding-bottom: $space-l;
+
+    @media (min-width: #{$docs-breakpoint}) {
+        order: 1;
+        width: 30%;
+    }
+
+    @media (min-width: #{$docs-breakpoint-lg}) {
+        width: 20%;
     }
 
     // Sidebar sub navigations
@@ -286,18 +295,23 @@ div[class^='rsg--sidebar'] {
     a[class^='rsg--link'] {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        padding: $space-xx-small $space-m;
-        font-weight: $weight-semi-bold;
-        color: $docs-color-purple-lighter;
+        padding: $space-xx-small $space-s;
+        border: 2px solid $docs-color-white;
+        font-weight: normal;
+        color: $docs-color-grey-med;
         display: block;
+        font-size: $size-m;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        &:hover {
-            color: tint($docs-color-purple-lighter, 30%);
+
+        &:hover, &:active {
+            color: $docs-color-pink;
         }
-        &:active {
-            color: tint($docs-color-purple-dark, 30%);
+
+        &:focus{
+            outline: 0;
+            border: 2px solid $docs-color-pink;
         }
     }
 
@@ -307,9 +321,10 @@ div[class^='rsg--sidebar'] {
         & > ul[class^='rsg--list'] {
             display: block;
         }
+
         & > a,
         & > a:hover {
-            color: tint($docs-color-purple-lighter, 80%);
+            color: $docs-color-pink;
         }
     }
 
@@ -345,6 +360,95 @@ div[class^='rsg--sidebar'] {
             }
         }
     }
+}
+
+
+// Sidebar search
+div[class^='rsg--search'] {
+    padding: 0;
+}
+
+div[class^='rsg--search'] input {
+    @include inset-squish-space($space-s);
+    color: $docs-color-text;
+    border: 0;
+    background: $docs-color-very-light-grey;
+    margin-bottom: $space-s;
+
+    &:focus {
+        border: 0;
+        outline: 2px solid $docs-color-purple-lighter;
+        box-shadow: none;
+        
+        &::-webkit-textfield-decoration-container {
+            display: none !important;
+        }
+        &::-webkit-contacts-auto-fill-button {
+            display: none !important;
+        }
+    }
+    &::-webkit-input-placeholder {
+        color: rgba(mix($docs-color-text, $docs-color-purple-lighter, 50%), 0.35);
+    }
+    &:-ms-input-placeholder {
+        color: rgba(mix($docs-color-text, $docs-color-purple-lighter, 50%), 0.35);
+    }
+    &::-moz-placeholder {
+        color: rgba(mix($docs-color-text, $docs-color-purple-lighter, 50%), 0.35);
+        opacity: 1;
+    }
+}
+
+
+// Sidebar version
+p[class^='rsg--version'] {
+    @include inset-squish-space($space-xs);
+    margin: $space-xs 0 0;
+    color: $docs-color-purple-lighter;
+    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+    font-weight: $weight-normal;
+    display: inline-block;
+    line-height: $line-height-xs;
+    border: 1px solid $docs-color-purple-lighter;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: $size-xs;
+    border-radius: $radius-default;
+}
+
+
+
+/* SECTIONS
+ --------------------------------------------- */
+div[class^='rsg--sections'] {
+    width: 100%;
+    order: 1;
+    padding-left: 0;
+
+    @media (min-width: #{$docs-breakpoint}) {
+        order: 2;
+        width: 70%;
+        padding-left: $space-m;
+    }
+
+    @media (min-width: #{$docs-breakpoint-lg}) {
+        width: 80%;
+    }
+}
+
+
+/* FOOTER
+ --------------------------------------------- */
+ footer[class^='rsg--footer'] {
+    height: 50px;
+    background-color: $docs-color-grey-dark;
+    color: $docs-color-white;
+    padding: $space-xs $space-s;
+
+    p[class^='rsg--footerText']{
+        text-align: center;
+    }
+    
 }
 
 /* CODE & COMPONENT PREVIEWS
@@ -532,6 +636,7 @@ code.type {
 
 // Here we’re setting a custom order for Styleguidist’s pieces
 header[class^='rsg--header'] {
+    margin-bottom: $space-m;
     order: 2;
 }
 div[class^='rsg--docs'],
@@ -545,7 +650,7 @@ div[class^='rsg--root'] div[class^='rsg--tabs'] {
 
 // Status label is shown in top right corner for each component
 .status {
-    font-family: 'Fira Sans', Helvetica, Arial, sans-serif;
+    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
     font-weight: $weight-normal;
     order: 1;
     align-self: flex-end;
@@ -670,7 +775,6 @@ thead[class^='rsg--thead'] {
 div[class^='rsg--tabButtons'],
 div[class^='rsg--controls'],
 div[class^='rsg--pathline'],
-footer[class^='rsg--footer'],
 div[class^='rsg--toolbar'] {
     display: none !important;
 }
