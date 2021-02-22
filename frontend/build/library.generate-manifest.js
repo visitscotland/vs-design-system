@@ -15,6 +15,13 @@ const {
     isEmpty,
 } = require('lodash');
 
+function extractEntriesFromOutputFile(outputFile) {
+    const entries = Array.from(invoke(outputFile, 'chunk._groups.values'));
+
+    return entries.length ? mapKeys(entries, 'options.name') : {
+    };
+}
+
 function extractAllEntriesFromFileDescriptor(FileDescriptor) {
     return reduce(
         filter(FileDescriptor, 'isInitial'),
@@ -23,13 +30,6 @@ function extractAllEntriesFromFileDescriptor(FileDescriptor) {
         {
         }
     );
-}
-
-function extractEntriesFromOutputFile(outputFile) {
-    const entries = Array.from(invoke(outputFile, 'chunk._groups.values'));
-
-    return entries.length ? mapKeys(entries, 'options.name') : {
-    };
 }
 
 function mapComponentEntryFiles(component) {

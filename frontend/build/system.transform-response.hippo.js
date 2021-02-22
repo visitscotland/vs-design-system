@@ -8,9 +8,10 @@ let projectName = 'myhippoproject';
 // Set the VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE environment variable to override
 let sectionsFieldTitle = 'Sections';
 
-// The case-sensitive title of the content field in which the section document's textual content is stored
+// The case-sensitive title of the content field in which the section document's textual content
+// is stored
 // Set the VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE environment variable to override
-let sectionsContentFieldTitle = 'content';
+let sectionsContentTitle = 'content';
 
 function transformRawResponse(raw) {
     const instance = raw;
@@ -25,8 +26,12 @@ function transformRawResponse(raw) {
 
 function _setup() {
     projectName = process.env.VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME || projectName;
-    sectionsFieldTitle = process.env.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE || sectionsFieldTitle;
-    sectionsContentFieldTitle = process.env.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE || sectionsContentFieldTitle;
+    sectionsFieldTitle = (
+        process.env.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE || sectionsFieldTitle
+    );
+    sectionsContentTitle = (
+        process.env.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE || sectionsContentTitle
+    );
 }
 
 function _getFieldValue(entry, fieldPath) {
@@ -38,7 +43,7 @@ function _extractEntrySections(entry) {
 }
 
 function _extractSectionContent(section) {
-    const contentObject = _getFieldValue(section, sectionsContentFieldTitle);
+    const contentObject = _getFieldValue(section, sectionsContentTitle);
     const raw = _.get(contentObject, 'content');
     let cons = false;
 
@@ -52,7 +57,7 @@ function _extractSectionContent(section) {
     );
 }
 
-function _replaceHippoLink(match, linkId, contentLinks, cons) {
+function _replaceHippoLink(match, linkId, contentLinks) {
     let srcAttribute = 'src="';
 
     /**
@@ -69,7 +74,7 @@ function _replaceHippoLink(match, linkId, contentLinks, cons) {
 function _parseSection(section) {
     const fields = _.mapKeys(_.get(section, 'items'), (value, key) => _.last(_.split(key, ':')));
 
-    if (fields[sectionsContentFieldTitle]) {
+    if (fields[sectionsContentTitle]) {
         fields.content = _extractSectionContent(section);
     }
 
