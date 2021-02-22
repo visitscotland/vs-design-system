@@ -75,8 +75,8 @@ export default {
 <style lang="scss">
     .vs-stretched-link-panels {
         position: absolute;
-        right: $spacer-2;
-        top: $spacer-2;
+        right: $spacer-3;
+        top: $spacer-3;
         display: flex;
         flex-direction: row;
 
