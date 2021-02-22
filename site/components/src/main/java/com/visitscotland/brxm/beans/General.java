@@ -16,6 +16,7 @@ public class General extends Page {
         return new String[] { "visitscotland:Megalinks",
                 "visitscotland:TourismInformation",
                 "visitscotland:LongContent",
+                "visitscotland:LongCopy",
                 "visitscotland:Article"};
     }
 
