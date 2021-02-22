@@ -29,7 +29,7 @@
     "lint:style": "stylelint",
     "lint:style:all": "lint:style \"src/**/*.{vue,scss}\"",
     "lint:build": "yarn lint \"build/*.{js,vue}\"",
-    "lint:cypress": "yarn lint \"cypress/*.{js,vue}\"",
+    "lint:cypress": "yarn lint \"cypress/**/*.{js,vue}\"",
     "test": "jest --config ./test/unit/jest.conf.js",
     "test:silent": "jest --config ./test/unit/jest.conf.js --reporters jest-silent-reporter",
     "test:watch": "yarn test --watch",

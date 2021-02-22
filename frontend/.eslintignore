@@ -5,7 +5,6 @@ rsg-components
 hippo
 rendora
 
-cypress
 config
 src/components/patterns/header/components/Chart/
 ssr
