@@ -16,7 +16,11 @@
                 <vs-col cols="12">
                     <p>Form ID ${marketoId}</p>
 
-                    <vs-form form-id="${marketoId}" munchkinId="${label("channel", "marketo.munchkinId")}"/>
+                    <vs-form form-id="${marketoId}" munchkinId="${label("channel", "marketo.munchkinId")}">
+                        <template v:slot-success-text>
+                            <p>Well done, the form was submitted</p>
+                        </template>
+                    </vs-form>
                 </vs-col>
             </vs-row>
         </vs-container>

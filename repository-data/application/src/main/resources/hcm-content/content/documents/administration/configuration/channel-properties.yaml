@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 16ca0afd-655a-4612-a712-cded4cd912b0
   hippo:name: Channel Properties
-  hippo:versionHistory: 1afce4df-8a9b-4970-a319-2b2352808233
+  hippo:versionHistory: fb20281e-8d69-4a3b-977f-084e861c4c01
   /channel-properties[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -12,14 +12,14 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-06-12T19:38:17.843+01:00
-    hippostdpubwf:lastModificationDate: 2020-11-03T13:33:33.516Z
+    hippostdpubwf:lastModificationDate: 2021-02-15T14:44:20.315Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '']
     resourcebundle:id: channel
     resourcebundle:keys: [og.site-name, og.twitter.site, seo.title-suffix, marketo.newsletter.formId,
       marketo.munchkinId]
     resourcebundle:messages: [Visit Scotland, '@VisitScotland', '| VisitScotland',
-      '35', 638-HHZ-510]
+      '4', 638-HHZ-510]
   /channel-properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -28,14 +28,14 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-06-12T19:38:17.843+01:00
-    hippostdpubwf:lastModificationDate: 2020-11-03T13:50:15.416Z
+    hippostdpubwf:lastModificationDate: 2021-02-15T15:12:10.334Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '']
     resourcebundle:id: channel
     resourcebundle:keys: [og.site-name, og.twitter.site, seo.title-suffix, marketo.newsletter.formId,
       marketo.munchkinId]
     resourcebundle:messages: [Visit Scotland, '@VisitScotland', '| VisitScotland',
-      '35', 638-HHZ-510]
+      '4', 638-HHZ-510]
   /channel-properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -44,12 +44,12 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-06-12T19:38:17.843+01:00
-    hippostdpubwf:lastModificationDate: 2020-11-03T13:50:15.416Z
+    hippostdpubwf:lastModificationDate: 2021-02-15T15:12:10.334Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-11-03T13:50:17.729Z
+    hippostdpubwf:publicationDate: 2021-02-15T15:12:16.637Z
     resourcebundle:descriptions: ['', '', '', '', '']
     resourcebundle:id: channel
     resourcebundle:keys: [og.site-name, og.twitter.site, seo.title-suffix, marketo.newsletter.formId,
       marketo.munchkinId]
     resourcebundle:messages: [Visit Scotland, '@VisitScotland', '| VisitScotland',
-      '35', 638-HHZ-510]
+      '4', 638-HHZ-510]
