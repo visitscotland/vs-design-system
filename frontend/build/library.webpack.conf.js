@@ -16,7 +16,9 @@ const mergeIE11Fix = require('./webpack.ie11-fix');
 baseWebpackConfig.entry = require('./library.entry.js');
 
 // Remove the CSS extract from the base config to prevent duplicate CSS file
-baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter((plugin) => !(plugin instanceof MiniCssExtractPlugin));
+baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(
+    (plugin) => !(plugin instanceof MiniCssExtractPlugin)
+);
 
 const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
     module: {

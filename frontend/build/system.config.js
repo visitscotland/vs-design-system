@@ -1,5 +1,6 @@
 const path = require('path');
 const chalk = require('chalk');
+const vueDocgenApi = require('vue-docgen-api');
 
 const webpackConfig = require('./system.webpack.config');
 const packageConfig = require('../package.json');
@@ -100,8 +101,8 @@ module.exports = {
         Playground: path.join(__dirname, '../docs/components/rsg-components/Playground'),
         ReactComponent: path.join(__dirname, '../docs/components/rsg-components/ReactComponent'),
     },
-    propsParser(filePath, source) {
-        return require('vue-docgen-api').parse(filePath, {
+    propsParser(filePath) {
+        return vueDocgenApi.parse(filePath, {
             resolve: webpackConfig.resolve,
             alias: webpackConfig.resolve.alias,
             addScriptHandlers: [parseChildComponents.default],
