@@ -1,6 +1,10 @@
 const path = require('path');
 const _ = require('lodash');
 
+function resolve(dir) {
+    return path.join(__dirname, '..', dir);
+}
+
 const webpackBabelRuleIncludes = [
     resolve('node_modules/regexpu-core'),
     resolve('node_modules/unicode-match-property-ecmascript'),
@@ -37,10 +41,6 @@ const webpackBabelRuleUse = {
         comments: false,
     },
 };
-
-function resolve(dir) {
-    return path.join(__dirname, '..', dir);
-}
 
 module.exports = function mergeIE11Fix(config) {
     const babelRule = _.find(_.get(config, 'module.rules'), ['loader', 'babel-loader']);
