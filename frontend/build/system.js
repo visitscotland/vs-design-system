@@ -39,28 +39,6 @@ process.on('uncaughtException', (err) => {
     process.exit(1);
 });
 
-getRemoteConfig(config, argv)
-    .then(partial(run, command))
-    .catch((err) => {
-        console.log(chalk.red('Problem getting remote config:', err));
-    });
-
-function run(command, returnedConfig) {
-    config = returnedConfig;
-    spinner.start();
-
-    const styleguide = styleguidist(config);
-
-    switch (command) {
-    case 'server':
-        styleguide.server(serverCallback);
-        break;
-    case 'build':
-    default:
-        styleguide.build(buildCallback);
-    }
-}
-
 function callbackCommon(err, stats) {
     spinner.stop();
     if (err) throw err;
@@ -85,21 +63,43 @@ function callbackCommon(err, stats) {
     console.log(chalk.cyan('Design System build complete.\n'));
 }
 
-function buildCallback(err, config, stats) {
+function buildCallback(err, inpConfig, stats) {
     callbackCommon(err, stats);
 
-    cleanupRemoteBuild(config);
+    cleanupRemoteBuild(inpConfig);
 }
 
-function serverCallback(err, config, stats) {
+function serverCallback(err, inpConfig, stats) {
     callbackCommon(err, stats);
 
-    const url = `http://${config.serverHost === '0.0.0.0' ? 'localhost' : config.serverHost}:${
+    const url = `http://${inpConfig.serverHost === '0.0.0.0' ? 'localhost' : inpConfig.serverHost}:${
     config.serverPort
   }`;
 
-    console.log(chalk.yellow(config.title, `running at ${url}`));
+    console.log(chalk.yellow(inpConfig.title, `running at ${url}`));
 
     // can't cleanup until after the server has stopped
-    // cleanupRemoteBuild(remoteConfig, config)
+    // cleanupRemoteBuild(remoteConfig, inpConfig)
 }
+
+function run(inpCommand, returnedConfig) {
+    config = returnedConfig;
+    spinner.start();
+
+    const styleguide = styleguidist(config);
+
+    switch (inpCommand) {
+    case 'server':
+        styleguide.server(serverCallback);
+        break;
+    case 'build':
+    default:
+        styleguide.build(buildCallback);
+    }
+}
+
+getRemoteConfig(config, argv)
+    .then(partial(run, command))
+    .catch((err) => {
+        console.log(chalk.red('Problem getting remote config:', err));
+    });

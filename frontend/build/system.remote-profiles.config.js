@@ -1,7 +1,11 @@
 const { merge } = require('lodash');
+const dotenv = require('dotenv');
+
+const trHippo = require('./system.transform-response.hippo');
+const trContentful = require('./system.transform-response.contentful');
 
 if (!process.env.VS_DS_REMOTE_CONFIG_URL) {
-    require('dotenv').config();
+    dotenv.config();
 }
 
 /**
@@ -48,7 +52,7 @@ const commonConfig = {
 const hippo = merge({
 }, commonConfig, {
     requestOptions: {
-        transform: require('./system.transform-response.hippo').transformRawResponse,
+        transform: trHippo.transformRawResponse,
     },
 });
 
@@ -60,7 +64,7 @@ const contentful = merge({
         include: 5,
     },
     requestOptions: {
-        transform: require('./system.transform-response.contentful').transformRawResponse,
+        transform: trContentful.transformRawResponse,
     },
 });
 
