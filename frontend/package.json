@@ -28,6 +28,7 @@
     "lint:watch": "esw \"src/**/*.{js,vue}\" --watch --ext .js,.vue --watch-delay 0 --fix",
     "lint:style": "stylelint",
     "lint:style:all": "lint:style \"src/**/*.{vue,scss}\"",
+    "lint:build": "yarn lint \"build/*.{js,vue}\"",
     "test": "jest --config ./test/unit/jest.conf.js",
     "test:silent": "jest --config ./test/unit/jest.conf.js --reporters jest-silent-reporter",
     "test:watch": "yarn test --watch",
