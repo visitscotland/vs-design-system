@@ -10,7 +10,7 @@
 
             <div
                 class="g-recaptcha"
-                data-sitekey="6LfbqfcZAAAAALdf5BWD2Il3XHgRZvmU1lfo2_bI"
+                data-sitekey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
                 data-size=""
             />
         </div>
@@ -19,7 +19,7 @@
             class="vs-form__success-msg"
             v-if="showSuccessMessage"
         >
-            Well done, the form was submitted
+            <slot name="success-text" />
         </div>
     </section>
 </template>
@@ -45,7 +45,7 @@ export default {
         };
     },
     mounted() {
-        window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
+        window.MktoForms2.loadForm('//e.visitscotland.com', '830-QYE-256', this.formId);
 
         window.MktoForms2.whenReady((form) => {
             const formEl = form.getFormElem()[0];
@@ -81,6 +81,49 @@ export default {
 
         window.MktoForms2.whenRendered((form) => {
             this.destyleMktoForm(form);
+
+            /* eslint-disable */
+            const formEl = form.getFormElem()[0],
+            arrayify = getSelection.call.bind([].slice);
+
+            arrayify(formEl.querySelectorAll('SELECT'))
+                .forEach(function(selectEl) {
+                let currentOg;
+                arrayify(selectEl.querySelectorAll('OPTION'))
+                    .forEach(function(o, idx) {
+                    if (o.value == '[OPTGROUP]') {
+                        currentOg = document.createElement('OPTGROUP');
+                        currentOg.label = o.textContent;
+                        selectEl.appendChild(currentOg);
+                        selectEl.removeChild(o);
+                    } else {
+                        if (currentOg) currentOg.appendChild(o);
+                    }
+                });
+            });
+
+            form.onSubmit(function(){
+                form.submittable(false);
+                // Get the form field values
+                const vals = form.vals();
+                const postcodeField = form.getFormElem().find("#PostalCode");
+                const postcodeInputVal = form.getValues().PostalCode;
+               
+                const postcodeRegex = new RegExp('^(([A-Z][0-9]{1,2})|(([A-Z][A-HJ-Y][0-9]{1,2})|(([A-Z][0-9][A-Z])|([A-Z][A-HJ-Y][0-9]?[A-Z])))) ?[0-9][A-Z]{2}$', 'gi');
+
+                if (postcodeInputVal.length > 0 && (postcodeRegex.test(postcodeInputVal))) {
+                    console.log('submit')
+                } else {
+                    console.log('error');
+
+                    form.showErrorMessage(
+                        'Your postcode field is wrong',
+                        postcodeField
+                    )
+                }
+            });
+
+            /* eslint-enable */
 
             form.onSuccess(() => {
                 this.showSuccessMessage = true;
@@ -153,8 +196,14 @@ export default {
         visibility: visible;
     }
 
+    .g-recaptcha > iframe {
+        display: none !important;
+    }
+
     .g-recaptcha.g-recaptcha {
-        margin: 20px 0 0;
+        margin: 20px 0;
+        max-height: 78px;
+        overflow: hidden;
     }
 
     .g-recaptcha > div {
@@ -173,5 +222,9 @@ export default {
     .g-recaptcha.mktoInvalid > div > div {
         background-color: #F63C00;
         // transition: background-color 400ms ease-in;
+    }
+
+    .g-recaptcha-response {
+        display: none !important;
     }
 </style>
