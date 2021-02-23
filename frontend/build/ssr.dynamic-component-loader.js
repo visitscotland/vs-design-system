@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+
 const os = require('os');
 const path = require('path');
 

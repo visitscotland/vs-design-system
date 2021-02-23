@@ -1,4 +1,9 @@
 #! /usr/bin/env node
+
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-param-reassign */
+
 const fs = require('fs');
 const rm = require('rimraf');
 const path = require('path');

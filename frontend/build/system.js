@@ -1,3 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-dynamic-require */
+
 const path = require('path');
 
 const minimist = require('minimist');

@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+
 const { documentToHtmlString } = require('@contentful/rich-text-html-renderer');
 const _ = require('lodash');
 
