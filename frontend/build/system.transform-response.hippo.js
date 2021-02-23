@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+
 const _ = require('lodash');
 
 // Specifies the project name stub, which is needed to extract field values
