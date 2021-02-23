@@ -1,3 +1,6 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable import/no-extraneous-dependencies */
+
 const mountVue = require('cypress-vue-unit-test');
 
 const { partial, each, clone, pickBy, has, get, defaults } = require('lodash');

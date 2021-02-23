@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+
 import designTokens from '@/assets/tokens/tokens.raw.json';
 import {
     get, map, zipObject,
