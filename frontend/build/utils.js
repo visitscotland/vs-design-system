@@ -1,3 +1,11 @@
+/* eslint-disable func-names */
+/* eslint-disable no-param-reassign */
+/* eslint-disable global-require */
+/* eslint-disable no-shadow */
+/* eslint-disable func-names */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
+
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { cloneDeep, find } = require('lodash');
