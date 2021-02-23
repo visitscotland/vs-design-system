@@ -19,7 +19,7 @@ export default {
     getToken,
 };
 
-function getThemeColours(colours) {
+function getThemeColours() {
     const values = map(themeColours, (colour) => getToken(`color_theme_${ colour}`));
 
     return zipObject(themeColours, values);
