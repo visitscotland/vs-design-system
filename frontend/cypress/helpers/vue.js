@@ -47,7 +47,8 @@ export default {
  *   components: { VsMainNavPromoItem },
  * }
  *
- * // 1st arg here defines the component's tag name (i.e. <vs-main-nav-list-item></vs-main-nav-list-item> )
+ * // 1st arg here defines the component's tag name
+ * // (i.e. <vs-main-nav-list-item></vs-main-nav-list-item> )
  * // 2nd arg here is the component object definition itself
  * vueHelper.init("vs-main-nav-list-item", VsMainNavListItem, props, content, extensions)
  *
