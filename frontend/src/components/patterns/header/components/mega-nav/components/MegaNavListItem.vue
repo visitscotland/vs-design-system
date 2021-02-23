@@ -88,7 +88,7 @@ export default {
         @include media-breakpoint-up(lg) {
             border: 2px solid $color-white;
             line-height: $line-height-s;
-            padding: 0.125rem $spacer-5;
+            padding: 0.125rem $spacer-4;
         }
 
         &:hover{
