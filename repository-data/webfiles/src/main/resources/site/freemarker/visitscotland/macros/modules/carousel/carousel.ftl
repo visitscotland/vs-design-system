@@ -25,12 +25,13 @@
                 </#if>
                 <#if carouselItem.itineraryTransport??>
                     transport="${carouselItem.itineraryTransport}"
+<#--                transport-label="${label("transports",carouselItem.itineraryTransport)}"-->
                 </#if>
                 <#if carouselItem.itineraryDays??>
                     <#if carouselItem.itineraryDays = 1>
-                        days-label="${label('itinerary', 'days')}"
-                    <#else>
                         days-label="${label('itinerary', 'day')}"
+                    <#else>
+                        days-label="${label('itinerary', 'days')}"
                     </#if>
                     days="${carouselItem.itineraryDays}"
                 <#else>

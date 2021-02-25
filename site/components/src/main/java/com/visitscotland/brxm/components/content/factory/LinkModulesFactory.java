@@ -253,7 +253,7 @@ public class LinkModulesFactory {
             Itinerary itinerary = (Itinerary) linkable;
             link.setItineraryDays(DocumentUtils.getInstance().getSiblingDocuments(linkable,Day.class, "visitscotland:Day").size());
             if (itinerary.getTransports().length > 0){
-                link.setItineraryTransport(bundle.getResourceBundle("transports",itinerary.getTransports()[0], locale));
+                link.setItineraryTransport(itinerary.getTransports()[0]);
             }
         }
     }
