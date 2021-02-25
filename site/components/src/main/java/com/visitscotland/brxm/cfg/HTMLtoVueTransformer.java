@@ -43,7 +43,8 @@ public class HTMLtoVueTransformer {
 
         while (matcher.find()) {
             String id = toKebabCase(matcher.group(3));
-            String vsHeading = String.format("<vs-heading level=\"%s\" id=\"%s\"%s>%s</h2>", matcher.group(1), id, matcher.group(2), matcher.group(3));
+            String vsHeading = String.format("<vs-heading level=\"%s\" id=\"%s\"%s>%s</vs-heading>",
+                    matcher.group(1), id, matcher.group(2), matcher.group(3));
             output = output.replace(matcher.group(), vsHeading);
         }
 

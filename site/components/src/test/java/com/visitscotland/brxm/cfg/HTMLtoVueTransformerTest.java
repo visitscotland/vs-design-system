@@ -82,8 +82,19 @@ class HTMLtoVueTransformerTest {
     }
 
     @Test
+    @DisplayName("Headings convert heading to vue componentsonvert headings")
+    void heading(){
+        String HTML = "<h2>Heading 2</h2>";
+
+        String result = transformer.processHeadings(HTML);
+
+        assertTrue(result.startsWith("<vs-heading level=\"2\""));
+        assertTrue(result.endsWith("</vs-heading>"));
+    }
+
+    @Test
     @DisplayName("Create anchor links for h2 headings")
-    void h2(){
+    void h2_multiple(){
         String HTML = "<h2>Heading 1</h2><p>Blah</p><h2>Heading 2</h2><p>Blah</p><h2>Heading 3</h2><p>Blah</p>";
 
         String result = transformer.processHeadings(HTML);
