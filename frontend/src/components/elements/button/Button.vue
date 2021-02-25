@@ -21,6 +21,7 @@
             :size="iconSize"
             :padding="0"
             :orientation="iconOrientation"
+            :variant="iconVariant"
         />
         <!-- @slot The button content goes here -->
         <slot />
@@ -129,6 +130,18 @@ export default {
             type: String,
             default: null,
             validator: (value) => value.match(/(up|down|left|right)/),
+        },
+        /**
+         * The icon variant
+         * `primary, secondary, success, danger, warning, info,
+         * light, dark, reverse-white, primary-purple, secondary-teal`
+         */
+        iconVariant: {
+            type: String,
+            default: 'reverse-white',
+            validator: (value) => value.match(
+                /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/,
+            ),
         },
         /**
          * If the button contains an icon and no text
@@ -284,6 +297,7 @@ export default {
       <VsButton
         class="mr-2 mb-2"
         icon="external-link"
+        iconVariant="warning"
         size="sm"
         icon-only
       />
