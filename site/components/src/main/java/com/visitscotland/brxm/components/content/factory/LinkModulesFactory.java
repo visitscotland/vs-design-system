@@ -14,12 +14,14 @@ import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.utils.DocumentUtils;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.lang.annotation.Documented;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -243,6 +245,19 @@ public class LinkModulesFactory {
         return links;
     }
 
+
+    private void enhancedPageLink(EnhancedLink link, Page linkable, Locale locale){
+        link.setLink(utils.createUrl(linkable));
+        link.setType(LinkType.INTERNAL);
+        if (linkable instanceof Itinerary) {
+            Itinerary itinerary = (Itinerary) linkable;
+            link.setItineraryDays(DocumentUtils.getInstance().getSiblingDocuments(linkable,Day.class, "visitscotland:Day").size());
+            if (itinerary.getTransports().length > 0){
+                link.setItineraryTransport(bundle.getResourceBundle("transports",itinerary.getTransports()[0], locale));
+            }
+        }
+    }
+
     public EnhancedLink createEnhancedLink(Linkable linkable, Locale locale, boolean addCategory) {
         EnhancedLink link = new EnhancedLink();
         link.setTeaser(linkable.getTeaser());
@@ -253,13 +268,7 @@ public class LinkModulesFactory {
         }
 
         if (linkable instanceof Page) {
-            link.setType(LinkType.INTERNAL);
-            if (linkable instanceof Itinerary) {
-                link.setItineraryTransport(((Itinerary) linkable).getTransports()[0]);
-                link.setItineraryDays(((Itinerary) linkable).getDays().size());
-            }
-            link.setLink(utils.createUrl((Page) linkable));
-            link.setType(LinkType.INTERNAL);
+            enhancedPageLink(link, (Page) linkable, locale);
         } else if (linkable instanceof SharedLink) {
             JsonNode product = getNodeFromSharedLink((SharedLink) linkable, locale);
             SharedLink sharedLink = (SharedLink) linkable;
