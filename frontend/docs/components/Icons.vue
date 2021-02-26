@@ -56,6 +56,10 @@ export default {
     margin-bottom: 1rem;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
+    pre {
+        white-space: normal;
+        text-align: center;
+    }
 }
 </style>
 
