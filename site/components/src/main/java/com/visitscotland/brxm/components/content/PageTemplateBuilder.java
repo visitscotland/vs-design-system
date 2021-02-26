@@ -5,10 +5,7 @@ import com.visitscotland.brxm.beans.mapping.*;
 import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.SingleImageLinksModule;
-import com.visitscotland.brxm.components.content.factory.ArticleFactory;
-import com.visitscotland.brxm.components.content.factory.ICentreFactory;
-import com.visitscotland.brxm.components.content.factory.IKnowFactory;
-import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
+import com.visitscotland.brxm.components.content.factory.*;
 import com.visitscotland.brxm.utils.DocumentUtils;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -34,20 +31,22 @@ public class PageTemplateBuilder {
 
     //Utils
     private final DocumentUtils documentUtils;
+
     //Factories
     private final LinkModulesFactory linksFactory;
     private final ICentreFactory iCentreFactory;
     private final IKnowFactory iKnowFactory;
     private final ArticleFactory articleFactory;
+    private final LongCopyFactory longCopyFactory;
 
-    public PageTemplateBuilder(DocumentUtils documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article) {
+    public PageTemplateBuilder(DocumentUtils documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
         this.documentUtils = documentUtils;
         this.articleFactory = article;
+        this.longCopyFactory = longcopy;
     }
-
 
     private Page getDocument(HstRequest request) {
         return (Page) request.getAttribute("document");
@@ -69,6 +68,8 @@ public class PageTemplateBuilder {
                     processTouristInformation(request,page, (TourismInformation) item, location);
                 } else if (item instanceof Article){
                     page.modules.add(articleFactory.getModule(request, (Article) item));
+                } else if (item instanceof LongCopy){
+                    processLongCopy(request, page, (LongCopy) item);
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
@@ -83,6 +84,24 @@ public class PageTemplateBuilder {
         request.setAttribute(PAGE_ITEMS, page.modules);
     }
 
+    /**
+     * Convert a LongCopy into a LongCopy module and adds it to the list of modules
+     *
+     * Note: Consider to create a factory if the creation of the Module requires more logic.
+     */
+    private void processLongCopy(HstRequest request, PageConfiguration config, LongCopy document){
+        Page page = getDocument(request);
+        if (page instanceof General && ((General) page).getTheme().equals(GeneralContentComponent.SIMPLE)){
+            if (config.modules.stream().anyMatch(module -> module instanceof LongCopyModule)){
+                logger.error("Only one instance of this module is allowed");
+            } else {
+                config.modules.add(longCopyFactory.getModule(document));
+            }
+        } else {
+            //TODO Content Issue;
+            logger.error("The document type LongCopy is only allowed in Simple Pages");
+        }
+    }
     /**
      * Creates a LinkModule from a Megalinks document
      */

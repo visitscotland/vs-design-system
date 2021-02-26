@@ -11,6 +11,9 @@ public class GeneralContentComponent extends PageContentComponent<Destination> {
 
     private static final Logger logger = LoggerFactory.getLogger(GeneralContentComponent.class);
 
+    public static final String SIMPLE = "Simple";
+    public static final String STANDARD = "Standard";
+
     private PageTemplateBuilder builder;
 
     public GeneralContentComponent(){

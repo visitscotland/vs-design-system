@@ -1,4 +1,5 @@
 /content/documents/administration/labels/navigation/static:
+  .meta:order-before: meganav
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: ecfe0a42-72cd-456a-89c9-dda1983e4a46
@@ -18,7 +19,7 @@
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
       footer.text, universal.language, meganav-toggle-btn-alt-text]
-    resourcebundle:messages: [See all %s, Find us on, Our websites, VisitScotland
+    resourcebundle:messages: [All %s, Find us on, Our websites, VisitScotland
         Home, VisitScotland. All rights reserved., Language, Toggle menu]
     resourcebundle:messages_de: ['', '', Webseiten, '', '', '', '']
     resourcebundle:messages_es: ['', '', Nuestras páginas web, '', '', '', '']
@@ -39,7 +40,7 @@
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
       footer.text, universal.language, meganav-toggle-btn-alt-text]
-    resourcebundle:messages: [See all %s, Find us on, Our websites, VisitScotland
+    resourcebundle:messages: [All %s, Find us on, Our websites, VisitScotland
         Home, VisitScotland. All rights reserved., Language, Toggle menu]
     resourcebundle:messages_de: ['', '', Webseiten, '', '', '', '']
     resourcebundle:messages_es: ['', '', Nuestras páginas web, '', '', '', '']
@@ -61,7 +62,7 @@
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
       footer.text, universal.language, meganav-toggle-btn-alt-text]
-    resourcebundle:messages: [See all %s, Find us on, Our websites, VisitScotland
+    resourcebundle:messages: [All %s, Find us on, Our websites, VisitScotland
         Home, VisitScotland. All rights reserved., Language, Toggle menu]
     resourcebundle:messages_de: ['', '', Webseiten, '', '', '', '']
     resourcebundle:messages_es: ['', '', Nuestras páginas web, '', '', '', '']
