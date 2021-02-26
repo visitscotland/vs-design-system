@@ -32,7 +32,7 @@ public class VsBreadcrumbComponent extends CommonComponent {
 
         //Requested URL to identify the current page from the breadcrumb
         request.setAttribute(REQUESTED_URI, request.getRequestURI());
-        //Identify if the page is the home page independently from the environment (local, dev, acct, prod) and language
+        //Identify if the page is the home page independently of the environment (local, dev, acct, prod) and language
         request.setAttribute(IS_HOME, "root".equals(request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getId()));
         //Breadcrumb Items list
         request.setAttribute(BREADCRUMB, this.breadcrumbProvider.getBreadcrumb(request));
@@ -42,7 +42,7 @@ public class VsBreadcrumbComponent extends CommonComponent {
 
     private void setDocument(HstRequest request){
         HippoBean document = request.getRequestContext().getContentBean();
-        if (document != null && document instanceof Page) {
+        if (document instanceof Page) {
             request.setAttribute(DOCUMENT, document);
         } else {
             logger.error("There is not a document associated for the following request: " + request.getRequestURI());

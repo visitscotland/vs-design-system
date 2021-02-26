@@ -197,7 +197,7 @@ public class ImageFactory {
     /**
      * Request the main image to instagram, so we can embed it in the site.
      *
-     * @throws IOException when the response is not readable or the image server is not accessible
+     * @throws IOException when the response is not readable, or the image server is not accessible
      */
     private JsonNode requestInstagramImageData(InstagramImage instagramLink) throws IOException {
         String responseInstagram = utils.requestUrl(properties.getInstagramApi() + instagramLink.getId() +

@@ -32,12 +32,13 @@ public class Itinerary extends Page {
         return getMultipleProperty("visitscotland:areas");
     }
 
-    @Deprecated
+
     /**
      * TODO: Remove this method after the refactoring of itineraries
      *
      * @deprecated Instead of this, you should invoke {@code new DocumentUtils().getSiblingDocuments()}
      */
+    @Deprecated
     public List<Day> getDays() {
         return getPageChildrenByType(Day.class);
     }

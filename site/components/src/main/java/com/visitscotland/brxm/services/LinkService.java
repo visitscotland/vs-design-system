@@ -120,7 +120,7 @@ public class LinkService {
     /**
      * Analyzes the URL and identifies what type of link it is.
      *
-     * @param url URL to analyse
+     * @param url URL to analyze
      * @return
      */
     public LinkType getType(String url) {

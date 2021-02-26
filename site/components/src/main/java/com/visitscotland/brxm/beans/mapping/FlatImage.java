@@ -3,10 +3,6 @@ package com.visitscotland.brxm.beans.mapping;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.beans.Image;
-import com.visitscotland.brxm.beans.InstagramImage;
-import com.visitscotland.brxm.beans.dms.LocationObject;
-import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.utils.Properties;
 
 import java.util.Locale;
 
@@ -38,7 +34,7 @@ public class FlatImage extends IssueList {
     /**
      * TODO: Remove this method after the refactoring of itineraries
      *
-     * @deprecated. Use ImageFactory.createImage(cmsModule, locale) instead
+     * @deprecated Use ImageFactory.createImage(cmsModule, locale) instead
      */
     @Deprecated
     public FlatImage (Image cmsImage, Locale locale){
@@ -86,7 +82,7 @@ public class FlatImage extends IssueList {
     /**
      * TODO: Remove this method after the refactoring of itineraries
      *
-     * @deprecated. Use ImageFactory.createImage(dmsProduct) instead
+     * @deprecated Use ImageFactory.createImage(dmsProduct) instead
      */
     @Deprecated
     public FlatImage(JsonNode dmsImage, String productName) {

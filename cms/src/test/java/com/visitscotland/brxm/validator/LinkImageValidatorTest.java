@@ -2,7 +2,6 @@ package com.visitscotland.brxm.validator;
 
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.translation.SessionFactory;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -112,7 +111,7 @@ class LinkImageValidatorTest {
     }
 
     @Test
-    @DisplayName("Listicle, if the product is not a DMS and no image conten block is added, error")
+    @DisplayName("Listicle, if the product is not a DMS and no image content block is added, error")
     void ListicleNoDms_noContentblockImagesProvided() throws RepositoryException {
         LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
 

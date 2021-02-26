@@ -1,10 +1,7 @@
 package com.visitscotland.brxm.beans;
 
-import com.visitscotland.brxm.cfg.VsComponentManager;
-import com.visitscotland.brxm.utils.DocumentUtils;
 import org.hippoecm.hst.content.beans.Node;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
-import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Listicle")
 @Node(jcrType = "visitscotland:Listicle")

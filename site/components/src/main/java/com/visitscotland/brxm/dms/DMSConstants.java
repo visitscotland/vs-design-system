@@ -54,7 +54,7 @@ public class DMSConstants {
 
     /**
      * Note: This interface is marked by SonarQube as a Critical issue, however since those constant are translated
-     * into parameters later on AND they really belong to the dms project, this is a perfectly reasonable use for a
+     * into parameters later on, AND they really belong to the dms project, this is a perfectly reasonable use for a
      * constants interface.
      */
     public final class DMSProduct {

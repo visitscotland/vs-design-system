@@ -160,12 +160,12 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 JsonNode opening = product.get(OPENING);
                                 //TODO adjust the message to designs when ready
                                 if ((opening.has(OPENING_STATE)) && (!opening.get(OPENING_STATE).asText().equalsIgnoreCase("unknown"))) {
-                                    String openingMessge = opening.get(OPENING_PROVISIONAL).asBoolean() == false ? "Usually " : "Provisionally ";
-                                    openingMessge = openingMessge + opening.get(OPENING_STATE).asText() + " " + opening.get(OPENING_DAY).asText();
+                                    String openingMessage = opening.get(OPENING_PROVISIONAL).asBoolean() == false ? "Usually " : "Provisionally ";
+                                    openingMessage = openingMessage + opening.get(OPENING_STATE).asText() + " " + opening.get(OPENING_DAY).asText();
                                     if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
-                                        openingMessge = openingMessge + ": " + opening.get(START_TIME).asText() + "-" + opening.get(END_TIME).asText();
+                                        openingMessage = openingMessage + ": " + opening.get(START_TIME).asText() + "-" + opening.get(END_TIME).asText();
                                     }
-                                    model.setOpen(openingMessge);
+                                    model.setOpen(openingMessage);
                                     model.setOpenLink(new FlatLink(bundle.getResourceBundle("itinerary", "stop.opening",
                                             request.getLocale()), ctaLink.getLink() + "#opening", null));
                                 }

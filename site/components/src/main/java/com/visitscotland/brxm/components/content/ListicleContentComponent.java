@@ -1,7 +1,6 @@
 package com.visitscotland.brxm.components.content;
 
 import com.visitscotland.brxm.beans.Listicle;
-import com.visitscotland.brxm.beans.OTYML;
 import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.components.content.factory.ListicleFactory;
 import org.hippoecm.hst.core.component.HstRequest;

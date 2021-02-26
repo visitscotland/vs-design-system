@@ -37,8 +37,8 @@ public class DMSUtils {
     }
 
     /**
-     * TODO this method returns the current open state and it could be affected by the cache, ask WEBOPS and move it to front end if needed
-     * TODO This method is only intended for Itenaries? Should be part of itineraries factory? Otherwise, the bundle keys should be more general
+     * TODO this method returns the current open state, and it could be affected by the cache, ask WEBOPS and move it to front end if needed
+     * TODO This method is only intended for Itineraries? Should be part of itineraries factory? Otherwise, the bundle keys should be more general
      */
     public String currentOpenStatus(String starTime, String endTime, Locale locale) {
 

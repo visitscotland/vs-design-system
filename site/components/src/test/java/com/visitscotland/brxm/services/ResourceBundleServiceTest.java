@@ -1,7 +1,6 @@
 package com.visitscotland.brxm.services;
 
 import com.visitscotland.brxm.utils.CommonUtils;
-import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -106,7 +105,7 @@ class ResourceBundleServiceTest {
 
     @Test
     void fallbackLocaleToDefault(){
-        //When a test in a language does not exits it logs the issue and fall back to default (English)
+        //When a test in a language does not exit it logs the issue and fall back to default (English)
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("");
@@ -121,7 +120,7 @@ class ResourceBundleServiceTest {
 
     @Test
     void fallbackLocaleToDefault_defaultDoesNotExist(){
-        // Tries to fallback to English but the English key does not exist either.
+        // Tries to fallback to English, but the English key does not exist either.
         // It logs 2 messages, one for the original language and other for the global language.
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(true);

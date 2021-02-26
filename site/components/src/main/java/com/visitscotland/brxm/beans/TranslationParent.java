@@ -1,6 +1,5 @@
 package com.visitscotland.brxm.beans;
 
-import java.util.List;
 
 public interface TranslationParent {
 

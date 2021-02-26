@@ -1,11 +1,9 @@
 package com.visitscotland.brxm.beans;
 
 import com.visitscotland.brxm.beans.capabilities.Linkable;
-import com.visitscotland.brxm.utils.DocumentUtils;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
-import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Page")
 @Node(jcrType = "visitscotland:Page")

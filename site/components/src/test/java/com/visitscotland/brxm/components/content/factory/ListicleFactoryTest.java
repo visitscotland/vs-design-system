@@ -179,7 +179,7 @@ class ListicleFactoryTest {
     }
 
     @Test
-    @DisplayName("ListicleItem from DMSLink - Coordenates take fallback values from the DMS")
+    @DisplayName("ListicleItem from DMSLink - Coordinates take fallback values from the DMS")
     void listicle_dmsLink_coordinates(){
         ListicleItem item = new ListicleItemMockBuilder().addImage().dmsLink("1234").build();
         FlatImage moduleImage = new FlatImage();

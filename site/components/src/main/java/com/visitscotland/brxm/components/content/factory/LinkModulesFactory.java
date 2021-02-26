@@ -18,7 +18,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -75,8 +74,8 @@ public class LinkModulesFactory {
         ll.setTeaserVisible(doc.getTeaserVisible());
         ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale, false));
         //TODO: Add or remove depending on decision 24/11/2020. This warning should be a content guideline? If warning, add  tests.
-        //List<String> warnings =  new ArrayList<>();
-        /*if(ll.getLinks().size()==1){
+        /*List<String> warnings =  new ArrayList<>();
+        if(ll.getLinks().size()==1){
             warnings.add("For list layout is recommended to have t least 2 links");
         }
         ll.setErrorMessages(warnings);*/
@@ -132,7 +131,7 @@ public class LinkModulesFactory {
      * <li>Megalinks with 3 items might have up to one featured items</li>
      * <li>Megalinks with 4 or more items will have between 1 and 2 featured items</li>
      * <li>When the number of featured items exceed what is expected, only the first items will remain as Featured</li>
-     * <li>When the number of featured items is inferion to the expected, the first non-featured items will be promoted
+     * <li>When the number of featured items is inferior to the expected, the first non-featured items will be promoted
      * to featured items</li>
      * </ul>
      *
@@ -298,9 +297,9 @@ public class LinkModulesFactory {
     /**
      * Query the DMSDataService and extract the information about the product as a {@code JsonNode}
      *
-     * @param link
-     * @param locale
-     * @return
+     * @param link SharedLink where the DMS product (ID) is defined
+     * @param locale User language to consume DMS texts such a category, location, facilities...
+     * @return JSON with DMS product information to create the card or null if the product does not exist
      */
     private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
         if (link.getLinkType() instanceof DMSLink) {
@@ -314,7 +313,7 @@ public class LinkModulesFactory {
      *
      * @param img    Image Object
      * @param locale User language to localize Image texts such as the caption
-     * @return
+     * @return flat image to be consumed by FED team
      */
     private FlatImage createFlatImage(Image img, Locale locale) {
         FlatImage flatImage = new FlatImage(img, locale);

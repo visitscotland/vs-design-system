@@ -3,9 +3,7 @@ package com.visitscotland.brxm.services;
 import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.utils.Contract;
-import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
-import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -17,8 +15,6 @@ import java.util.ResourceBundle;
 public class ResourceBundleService {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceBundleService.class.getName());
-
-    private static final String SERVICE_NAME = "ResourceBundle";
 
     ResourceBundleRegistry registry;
 
@@ -88,7 +84,7 @@ public class ResourceBundleService {
      *
      * @param locale String with the locale information
      *
-     * @return a {@code Locale} object version of the {@dode String} or {@code null} when empty String or null
+     * @return a {@code Locale} object version of the {@code String} or {@code null} when empty String or null
      */
     Locale toLocale(String locale){
         if (locale == null || locale.length() == 0){
@@ -170,7 +166,7 @@ public class ResourceBundleService {
     }
 
     /**
-     * Logs a issue that can be solved from the CMS
+     * Logs an issue that can be solved from the CMS
      *
      * @param message message
      * @param args arguments for the message

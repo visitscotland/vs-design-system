@@ -1,7 +1,6 @@
 package com.visitscotland.brxm.components.content;
 
 import com.visitscotland.brxm.beans.*;
-import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.ICentreModule;
 import com.visitscotland.brxm.beans.mapping.IKnowModule;
 import com.visitscotland.brxm.beans.mapping.LongCopyModule;
@@ -14,7 +13,6 @@ import com.visitscotland.brxm.components.content.factory.*;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.mock.TouristInformationMockBuilder;
 import com.visitscotland.brxm.utils.DocumentUtils;
-import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -109,7 +107,7 @@ class PageTemplateBuilderTest {
     }
 
     /**
-     * Styles alternate and the last repeats the first colour
+     * Styles alternate, and the last repeats the first colour
      */
     @Test
     void addMegalinksModule_alternateStyles() {
@@ -231,7 +229,7 @@ class PageTemplateBuilderTest {
 
     /**
      * Verifies that is able to add an iKnowModule when the minimum amount of information has been provided
-     * Verifies that is able set the Hippo Bean when 2 items are returned.
+     * Verifies that is able to set the Hippo Bean when 2 items are returned.
      * Verifies that only one Hippo Bean is set edit module is enabled.
      */
     @Test

@@ -3,7 +3,6 @@ package com.visitscotland.brxm.beans.mapping.megalinks;
 import com.visitscotland.brxm.beans.Megalinks;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.Module;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import java.util.List;
