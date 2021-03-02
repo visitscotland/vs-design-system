@@ -288,7 +288,7 @@ h3 {
     @include reset;
     @include stack-space($space-xs);
     text-transform: capitalize;
-    line-height: $standard-line-height;
+    line-height: $line-height-standard;
     width: 100%;
     float: left;
 }
