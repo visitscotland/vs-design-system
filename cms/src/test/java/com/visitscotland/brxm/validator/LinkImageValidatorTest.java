@@ -2,6 +2,7 @@ package com.visitscotland.brxm.validator;
 
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.translation.SessionFactory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,11 +24,16 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class LinkImageValidatorTest {
 
-    @Mock
+    @Mock(lenient = true)
     ValidationContext context;
 
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
     SessionFactory mockSessionFactory;
+
+    @BeforeEach
+    void init (){
+        when(context.createViolation()).thenReturn(mock(Violation.class));
+    }
 
     @Test
     @DisplayName("Shared links, if the product is not a DMS and no image is provided, error")
@@ -40,8 +46,6 @@ class LinkImageValidatorTest {
         Node imageNode = mockChildNode  (node,true, false,false);
         when(node.getNode("visitscotland:image")).thenReturn(imageNode);
         when(imageNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn(LinkImageValidator.EMPTY_IMAGE);
-
-        when(context.createViolation()).thenReturn(mock(Violation.class));
 
         assertTrue(validator.validate(context, node).isPresent());
     }
@@ -73,8 +77,6 @@ class LinkImageValidatorTest {
         when(node.getNode("visitscotland:image")).thenReturn(imageNode);
         when(imageNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn(LinkImageValidator.EMPTY_IMAGE);
 
-        when(context.createViolation()).thenReturn(mock(Violation.class));
-
         assertTrue(validator.validate(context, node).isPresent());
     }
 
@@ -100,18 +102,16 @@ class LinkImageValidatorTest {
 
         Node node = Mockito.mock(Node.class,withSettings().lenient());
         when(node.hasNode("visitscotland:image")).thenReturn(false);
-        Node childNode = mockChildNode  (node,false, false,true);
+        mockChildNode(node,false, false,true);
 
         when(node.hasNode(ListicleItem.IMAGES)).thenReturn(true);
-        Node imageNode = mockListicleNode(node);
-
-        when(context.createViolation()).thenReturn(mock(Violation.class));
+        mockListicleNode(node);
 
         assertTrue(validator.validate(context, node).isPresent());
     }
 
     @Test
-    @DisplayName("Listicle, if the product is not a DMS and no image conten block is added, error")
+    @DisplayName("Listicle, if the product is not a DMS and no image content block is added, error")
     void ListicleNoDms_noContentblockImagesProvided() throws RepositoryException {
         LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
 
@@ -121,20 +121,30 @@ class LinkImageValidatorTest {
 
         when(node.hasNode(ListicleItem.IMAGES)).thenReturn(false);
 
-        when(context.createViolation()).thenReturn(mock(Violation.class));
+        assertTrue(validator.validate(context, node).isPresent());
+    }
+
+
+    @Test
+    @DisplayName("Listicle, does not force image when linking to CMS Items")
+    void listicle_cmsLink() throws RepositoryException {
+        LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
+        Node node = Mockito.mock(Node.class,withSettings().lenient());
+
+        when(node.hasProperty("visitscotland:link")).thenReturn(true);
+        mockChildNode(node,false, false,true);
 
         assertTrue(validator.validate(context, node).isPresent());
     }
 
     @Test
     @DisplayName("Image is valid oif Instagram is provided")
-    void ListicleNoDms_InstagramProvided() throws RepositoryException {
+    void listicleNoDms_InstagramProvided() throws RepositoryException {
         LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
-
 
         Node node = Mockito.mock(Node.class,withSettings().lenient());
         when(node.hasNode("visitscotland:image")).thenReturn(false);
-        Node childNode = mockChildNode  (node,false, false,true);
+        mockChildNode  (node,false, false,true);
 
         when(node.hasNode(ListicleItem.IMAGES)).thenReturn(true);
         Node imageNode = mockListicleNode(node);
@@ -144,29 +154,21 @@ class LinkImageValidatorTest {
         assertFalse(validator.validate(context, node).isPresent());
     }
 
-    private Node mockChildNode (Node node , boolean sharedLink, boolean stop, boolean listicle) {
+    private Node mockChildNode (Node node , boolean sharedLink, boolean stop, boolean listicle) throws RepositoryException {
         Node imageNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        try {
-            when(node.hasNode(SharedLink.LINK_TYPES)).thenReturn(sharedLink);
-            when(node.hasNode(Stop.PRODUCTS)).thenReturn(stop);
-            when(node.hasNode(ListicleItem.PRODUCT)).thenReturn(listicle);
+        Node childNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
+        Node auxNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
 
-            Node childNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-            Node auxNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
+        when(node.hasNode(SharedLink.LINK_TYPES)).thenReturn(sharedLink);
+        when(node.hasNode(Stop.PRODUCTS)).thenReturn(stop);
+        when(node.hasNode(ListicleItem.PRODUCT)).thenReturn(listicle);
 
-            when(node.getNode(SharedLink.LINK_TYPES)).thenReturn(auxNode);
-            when(node.getNode(Stop.PRODUCTS)).thenReturn(auxNode);
-            when(node.getNode(ListicleItem.PRODUCT)).thenReturn(auxNode);
+        when(node.getNode(SharedLink.LINK_TYPES)).thenReturn(auxNode);
+        when(node.getNode(Stop.PRODUCTS)).thenReturn(auxNode);
+        when(node.getNode(ListicleItem.PRODUCT)).thenReturn(auxNode);
 
-            when(auxNode.getIdentifier()).thenReturn("imageName");
-
-            when(mockSessionFactory.getJcrSession().getNodeByIdentifier("imageName")).thenReturn(childNode);
-
-
-        } catch (RepositoryException e) {
-            //This cannot happen
-            e.printStackTrace();
-        }
+        when(auxNode.getIdentifier()).thenReturn("imageName");
+        when(mockSessionFactory.getJcrSession().getNodeByIdentifier("imageName")).thenReturn(childNode);
 
         return imageNode;
     }
@@ -177,7 +179,7 @@ class LinkImageValidatorTest {
             when(node.hasNode(ListicleItem.IMAGES)).thenReturn(true);
 
             Node auxImageNode = Mockito.mock(Node.class);
-            when (node.getNode(ListicleItem.IMAGES)).thenReturn(auxImageNode);
+            when(node.getNode(ListicleItem.IMAGES)).thenReturn(auxImageNode);
             when(auxImageNode.getIdentifier()).thenReturn("imageName");
             when(mockSessionFactory.getJcrSession().getNodeByIdentifier("imageName")).thenReturn(imageNode);
 

@@ -5,9 +5,9 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Module {
+public class Module<T extends HippoBean> {
 
-    private HippoBean hippoBean;
+    private T hippoBean;
 
     private String anchor;
 
@@ -17,11 +17,11 @@ public class Module {
         return getClass().getSimpleName();
     }
 
-    public HippoBean getHippoBean() {
+    public T getHippoBean() {
         return hippoBean;
     }
 
-    public void setHippoBean(HippoBean hippoBean) {
+    public void setHippoBean(T hippoBean) {
         this.hippoBean = hippoBean;
     }
 

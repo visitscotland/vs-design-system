@@ -1,7 +1,6 @@
 package com.visitscotland.brxm.services;
 
 import com.visitscotland.brxm.utils.CommonUtils;
-import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -19,7 +18,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class ResourceBundleServiceTest {
+class ResourceBundleServiceTest {
 
     static String BUNDLE = "bundle-file";
 
@@ -30,11 +29,12 @@ public class ResourceBundleServiceTest {
 
     @Mock
     ResourceBundle bundle;
+
     @Mock
     ResourceBundle fbBundle;
 
     @BeforeEach
-    public void initialize(){
+    void initialize(){
 
         // No Locale will simulate the fallback to English
         lenient().when(registry.getBundle(BUNDLE)).thenReturn(fbBundle);
@@ -78,7 +78,7 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void getResourceBundle_nonExistingBundleRegisterIssue(){
+    void getResourceBundle_nonExistingBundleRegisterIssue(){
         //Returns null when the name of the resource bundle does not exist.
         String value = service.getResourceBundle("Non-existing", "key", Locale.UK);
 
@@ -86,7 +86,7 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void keyExistsInTheLocale(){
+    void keyExistsInTheLocale(){
         //Returns the value when the key exists.
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("value");
@@ -95,7 +95,7 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void keyExistsInTheLocale_optional(){
+    void keyExistsInTheLocale_optional(){
         //Returns the value when the key exists and optional does not have any impact on it.
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("value");
@@ -104,8 +104,8 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void fallbackLocaleToDefault(){
-        //When a test in a language does not exits it logs the issue and fall back to default (English)
+    void fallbackLocaleToDefault(){
+        //When a test in a language does not exit it logs the issue and fall back to default (English)
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("");
@@ -119,8 +119,8 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void fallbackLocaleToDefault_defaultDoesNotExist(){
-        // Tries to fallback to English but the English key does not exist either.
+    void fallbackLocaleToDefault_defaultDoesNotExist(){
+        // Tries to fallback to English, but the English key does not exist either.
         // It logs 2 messages, one for the original language and other for the global language.
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(true);
@@ -135,7 +135,7 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void optional_DoNotFallbackLocaleToDefault(){
+    void optional_DoNotFallbackLocaleToDefault(){
         //When optional, it doesn't log any issue when not found
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(true);
@@ -148,7 +148,7 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void nonExistingKey(){
+    void nonExistingKey(){
         //When a key does not exist it returns null and logs an issue
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(false);
@@ -160,7 +160,7 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void existsKey(){
+    void existsKey(){
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("value");
 
@@ -168,7 +168,7 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void existsKey_emptyValue() {
+    void existsKey_emptyValue() {
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("");
 
@@ -176,36 +176,12 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void registerInRequest() {
-        //The service is registered on the request as ResourceBundle
-        HstRequest request = mock(HstRequest.class);
-
-        service.registerIn(request);
-
-        verify(request).getAttribute("ResourceBundle");
-        verify(request).setAttribute("ResourceBundle", service);
-    }
-
-    @Test
-    public void skipRegisterInRequest_whenAlreadyRegistered() {
-        //The service is not registered if something is already registered as ResourceBundle
-        HstRequest request = mock(HstRequest.class);
-
-        when(request.getAttribute("ResourceBundle")).thenReturn(service);
-
-        service.registerIn(request);
-
-        verify(request).getAttribute("ResourceBundle");
-        verify(request, never()).setAttribute("ResourceBundle", service);
-    }
-
-    @Test
-    public void getCtaLabel_manual() {
+    void getCtaLabel_manual() {
         Assert.assertEquals("Discover more", service.getCtaLabel("Discover more", null));
     }
 
     @Test
-    public void getCtaLabel_auto() {
+    void getCtaLabel_auto() {
         lenient().when(registry.getBundle("essentials.global", Locale.UK)).thenReturn(bundle);
 
         when(bundle.containsKey("button.find-out-more")).thenReturn(true);

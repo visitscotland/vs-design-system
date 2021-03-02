@@ -32,7 +32,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
     private final String TITLE = "Megalink title";
     
-    //This constants must not generate the name from the class since Freemarker is not aware of them so any change would break the template 
+    //These constants must not generate the name from the class since Freemarker is not aware of them so any change would break the template
     private final String LIST = "ListLinksModule";
     private final String FEATURED = "MultiImageLinksModule";
     private final String SINGLE_IMAGE = "SingleImageLinksModule";
@@ -46,10 +46,11 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     private DMSDataService dms;
     private Properties properties;
     private LocationLoader locationloader;
+    private ImageFactory imageFactory;
 
 
     /**
-     * {@code factory} needs an static method (createUrl) to be mocked since it relies on a static BloomReach dependency
+     * {@code factory} needs a static method (createUrl) to be mocked since it relies on a static BloomReach dependency
      *
      * {@code page} represent a dummy link.
      */
@@ -72,8 +73,8 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         expect(utils.createUrl(anyObject(HippoBean.class))).andStubReturn("/fake-url/mock");
 
         factory = partialMockBuilder(LinkModulesFactory.class)
-                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class, LocationLoader.class)
-                .withArgs(utils, dms, linkService, rs, locationloader)
+                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class, LocationLoader.class, ImageFactory.class)
+                .withArgs(utils, dms, linkService, rs, locationloader, imageFactory)
                 .addMockedMethod("getLocation", String.class, Locale.class)
                 .createMock();
 
@@ -162,7 +163,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
     @Test
     void countFeaturedItems(){
-        //Test the maximum and minimum number of featured items per amount of module
+        //Test the maximum and minimum number of featured items per the amount of module
         replayAll();
 
         createFeaturedLayoutAndCheckItems(1,1,1);
