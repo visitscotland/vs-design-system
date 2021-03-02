@@ -2,6 +2,7 @@ package com.visitscotland.brxm.cfg;
 
 import com.visitscotland.utils.info.About;
 import freemarker.template.Configuration;
+import com.visitscotland.brxm.services.ResourceBundleService;
 import freemarker.template.TemplateModelException;
 import org.hippoecm.hst.servlet.HstFreemarkerServlet;
 import org.slf4j.Logger;
@@ -23,20 +24,20 @@ public class VsHstFreemarkerServlet extends HstFreemarkerServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
-        includeVersionNumber();
-    }
-
-    private void includeVersionNumber(){
-        Configuration freemarkerConfig = super.getConfiguration();
         try {
-            //Sets the version number as a Freemarker shared variable so it can be inserted to all pages.
-            if (About.getVersion().equals("Unknown")){
-                freemarkerConfig.setSharedVariable("version", getClass().getPackage().getImplementationVersion());
-            } else {
-                freemarkerConfig.setSharedVariable("version", About.getVersion() + " (" + About.getBuildNumber() + ")");
-            }
+            getConfiguration().setSharedVariable("ResourceBundle", VsComponentManager.get(ResourceBundleService.class));
+            includeVersionNumber();
         } catch (TemplateModelException e) {
             logger.error("Unable to set shared variables.", e);
+        }
+    }
+
+    private void includeVersionNumber() throws TemplateModelException {
+        //Sets the version number as a Freemarker shared variable so it can be inserted to all pages.
+        if (About.getVersion().equals("Unknown")){
+            getConfiguration().setSharedVariable("version", getClass().getPackage().getImplementationVersion());
+        } else {
+            getConfiguration().setSharedVariable("version", About.getVersion() + " (" + About.getBuildNumber() + ")");
         }
     }
 }

@@ -39,7 +39,7 @@
 
     <#-- TITLE TAG -->
     <@hst.headContribution category="seo">
-        <title>${document.title} ${label("channel", "seo.title-suffix")}</title>
+        <title>${document.seoTitle?html} ${label("channel", "seo.title-suffix")}</title>
     </@hst.headContribution>
 
     <#-- META DESCRIPTION TAG -->
@@ -78,7 +78,7 @@
         <meta name="twitter:site" content="${label("channel", "og.twitter.site")}" /><#-- TODO: lablel -->
     </@hst.headContribution>
     <@hst.headContribution category="opengraph">
-        <meta name="twitter:title" content="${document.seoTitle}" />
+        <meta name="twitter:title" content="${document.seoTitle?html}" />
     </@hst.headContribution>
     <@hst.headContribution category="opengraph">
         <meta name="twitter:description" content="${document.seoDescription?html}" />

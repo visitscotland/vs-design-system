@@ -164,6 +164,7 @@ pipeline {
         }
       }
     } //end stage
+
     stage ('Build Actions'){
       parallel {
         stage('SonarQube BE Scan') {

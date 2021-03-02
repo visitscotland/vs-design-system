@@ -8,7 +8,7 @@
 
 <#macro listicleItem item>
 <#-- @ftlvariable name="listItem" type="com.visitscotland.brxm.beans.ListicleItem" -->
-<#-- @ftlvariable name="item" type="com.visitscotland.brxm.beans.mapping.FlatListicle" -->
+<#-- @ftlvariable name="item" type="com.visitscotland.brxm.beans.mapping.ListicleModule" -->
 <#-- @ftlvariable name="cta" type="com.visitscotland.brxm.beans.mapping.FlatLink" -->
 	<#assign image = "" />
     <#if item.image?? && item.image.cmsImage??>
@@ -22,10 +22,10 @@
     <vs-listicle-item
             index="${item.index}"
             title="${item.title}"
-            sub-title="${item.subTitle}"
+            sub-title="${item.subtitle}"
     >
         <div slot="hippo-details" class="has-edit-button">
-            <@hst.manageContent hippobean=item.listicleItem/>
+            <@hst.manageContent hippobean=item.hippoBean/>
             <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
         </div>
 

@@ -78,7 +78,19 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: "html-loader",
+        use: [
+          "html-loader",
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              svgo: {
+                plugins: [
+                  { removeViewBox: false },
+                ]
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
@@ -91,7 +103,7 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: "file-loader",
         options: {
-          name: "fonts/[name].[hash:7].[ext]",
+          name: "fonts/[name].[ext]",
         },
       },
     ],
