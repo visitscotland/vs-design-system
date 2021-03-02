@@ -155,6 +155,7 @@ export default {
         .vs-stretched-link-card__img {
             width: 100%;
             max-width: 100%;
+            flex-shrink: 0;
         }
 
         .vs-stretched-link-card__title {
