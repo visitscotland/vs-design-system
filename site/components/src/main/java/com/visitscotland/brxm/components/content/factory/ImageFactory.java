@@ -2,7 +2,6 @@ package com.visitscotland.brxm.components.content.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brxm.beans.ExternalLink;
 import com.visitscotland.brxm.beans.Image;
 import com.visitscotland.brxm.beans.ImageData;
 import com.visitscotland.brxm.beans.InstagramImage;
@@ -30,9 +29,9 @@ public class ImageFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageFactory.class);
 
-    private LocationLoader locationLoader;
-    private CommonUtils utils;
-    private Properties properties;
+    private final LocationLoader locationLoader;
+    private final CommonUtils utils;
+    private final Properties properties;
 
     public ImageFactory(LocationLoader locationLoader, CommonUtils utils, Properties properties) {
         this.locationLoader = locationLoader;
@@ -46,7 +45,7 @@ public class ImageFactory {
         } else if (image instanceof Image) {
             return createImage((Image) image, module, locale);
         } else if (image != null) {
-            String message = image.getClass().getSimpleName()+ " cannot be used as an Image";
+            String message = image.getClass().getSimpleName() + " cannot be used as an Image";
             CommonUtils.contentIssue(message);
             logger.warn(message);
         }
