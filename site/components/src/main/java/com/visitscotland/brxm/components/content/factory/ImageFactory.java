@@ -45,8 +45,8 @@ public class ImageFactory {
             return createImage((InstagramImage) image, module, locale);
         } else if (image instanceof Image) {
             return createImage((Image) image, module, locale);
-        } else if (image instanceof ExternalLink) {
-            String message = "ExternalLinks does not allow images";
+        } else if (image != null) {
+            String message = image.getClass().getSimpleName()+ " cannot be used as an Image";
             CommonUtils.contentIssue(message);
             logger.warn(message);
         }
