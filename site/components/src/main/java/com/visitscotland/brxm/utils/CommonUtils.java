@@ -3,6 +3,7 @@ package com.visitscotland.brxm.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.InstagramImage;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -49,7 +51,7 @@ public class CommonUtils {
             if (responseCode >= 300){
                 logger.warn("The request for {} has responded with the Status code {}", url, responseCode);
             }
-            try (final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), Properties.DMS_ENCODING))) {
+            try (final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), StandardCharsets.UTF_8))) {
                 final StringBuilder sb = new StringBuilder();
                 int cp;
 
@@ -75,7 +77,7 @@ public class CommonUtils {
     @Deprecated
     public static JsonNode getInstagramInformation(InstagramImage instagramLink) throws IOException {
         JsonNode response = null;
-        ResourceBundleService bundle = new ResourceBundleService();
+        ResourceBundleService bundle = VsComponentManager.get(ResourceBundleService.class);
         //TODO add the access token value for VS facebook account
         String accessToken = bundle.getResourceBundle("keys","tagram.accesstoken",  Locale.UK);
         URL instagramInformation = new URL("https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/" + instagramLink.getId()+"&access_token="+accessToken);
@@ -89,11 +91,17 @@ public class CommonUtils {
     }
 
 
-    //TODO this method returns the current open state and it could be affected by the cache, ask WEBOPS and move it to front end if needed
-    //TODO move to DMSDataService once this method need is confirmed
+
+    /**
+     * TODO this method returns the current open state and it could be affected by the cache, ask WEBOPS and move it to front end if needed
+     * TODO move to DMSDataService once this method need is confirmed
+     *
+     * @deprecated  This method is not in use at the moment. See TODOs
+     */
+    @Deprecated
     public static String currentOpenStatus(String starTime, String endTime, Locale locale) {
         final String ITINERARY_BUNDLE = "itinerary";
-        ResourceBundleService bundle = new ResourceBundleService();
+        ResourceBundleService bundle = VsComponentManager.get(ResourceBundleService.class);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");
         LocalTime starts = LocalTime.parse(starTime, formatter);
         LocalTime ends = LocalTime.parse(endTime, formatter);

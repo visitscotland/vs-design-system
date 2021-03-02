@@ -40,11 +40,7 @@ public class LinkModulesFactory {
     private final ResourceBundleService bundle;
     private final LocationLoader locationLoader;
 
-    public LinkModulesFactory() {
-        this(new HippoUtilsService(), new DMSDataService(), new LinkService(), new ResourceBundleService(),LocationLoader.getInstance());
-    }
-
-    LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle , LocationLoader locationLoader) {
+    public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle , LocationLoader locationLoader) {
         this.utils = utils;
         this.dmsData = dmsData;
         this.linkService = linkService;

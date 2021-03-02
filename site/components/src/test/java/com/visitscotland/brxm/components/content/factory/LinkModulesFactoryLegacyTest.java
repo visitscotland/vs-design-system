@@ -9,10 +9,12 @@ import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.MultiImageLinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brxm.dms.DMSDataService;
+import com.visitscotland.brxm.dms.DMSProxy;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
+import com.visitscotland.brxm.utils.Properties;
 import org.easymock.EasyMockSupport;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.jupiter.api.Assertions;
@@ -42,14 +44,15 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     private HippoUtilsService utils;
     private LinkService linkService;
     private DMSDataService dms;
+    private Properties properties;
+    private LocationLoader locationloader;
 
 
-/**
+    /**
      * {@code factory} needs an static method (createUrl) to be mocked since it relies on a static BloomReach dependency
      *
      * {@code page} represent a dummy link.
      */
-
     @BeforeAll
     static void init() {
         megalinkService = new MegalinksMockService();
@@ -58,18 +61,19 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
     @BeforeEach
     void initFactory(){
+        properties = mock(Properties.class);
         utils = createNiceMock(HippoUtilsService.class);
-        dms = new DMSDataService();
+        dms = new DMSDataService(new DMSProxy(properties));
 
         ResourceBundleService rs = createNiceMock(ResourceBundleService.class);
         utils = createNiceMock(HippoUtilsService.class);
-        linkService = new LinkService(dms, rs,utils);
+        linkService = new LinkService(dms, rs,utils, properties);
 
         expect(utils.createUrl(anyObject(HippoBean.class))).andStubReturn("/fake-url/mock");
 
         factory = partialMockBuilder(LinkModulesFactory.class)
                 .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class, LocationLoader.class)
-                .withArgs(utils, dms, linkService, rs, LocationLoader.getInstance())
+                .withArgs(utils, dms, linkService, rs, locationloader)
                 .addMockedMethod("getLocation", String.class, Locale.class)
                 .createMock();
 

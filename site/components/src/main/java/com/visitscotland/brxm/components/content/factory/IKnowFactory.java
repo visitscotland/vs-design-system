@@ -3,6 +3,7 @@ package com.visitscotland.brxm.components.content.factory;
 import com.visitscotland.brxm.beans.IKnow;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.IKnowModule;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.services.ResourceBundleService;
@@ -23,10 +24,6 @@ public class IKnowFactory {
 
     private final HippoUtilsService utils;
     private final ResourceBundleService bundle;
-
-    public IKnowFactory(){
-        this(new HippoUtilsService(), new ResourceBundleService());
-    }
 
     public IKnowFactory(HippoUtilsService utils, ResourceBundleService bundle){
         this.utils = utils;
@@ -55,7 +52,7 @@ public class IKnowFactory {
         //TODO get prodTypes from Labels (Configuration)
         //TODO Chekc with http://localhost:8080/cms/content/path/content/documents/administration/options/product-search
 
-        link.setLink(new ProductSearchBuilder().locale(locale).productTypes(DMSConstants.TYPE_SEE_DO).award(DMSConstants.AWARD_IKNOW).location(location).build());
+        link.setLink(VsComponentManager.get(ProductSearchBuilder.class).locale(locale).productTypes(DMSConstants.TYPE_SEE_DO).award(DMSConstants.AWARD_IKNOW).location(location).build());
         link.setLabel(bundle.getResourceBundle(BUNDLE_ID,"iknow.link.label", locale));
 
         module.setLink(link);

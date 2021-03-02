@@ -13,12 +13,12 @@ import com.visitscotland.brxm.beans.mapping.Module;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.utils.ContentLogger;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -30,20 +30,13 @@ public class ImageFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageFactory.class);
 
-    @Autowired
     private LocationLoader locationLoader;
 
-    @Autowired
     private ResourceBundleService bundle;
 
-    @Autowired
     private CommonUtils utils;
 
-    public ImageFactory(){
-        this(LocationLoader.getInstance(),new ResourceBundleService(), new CommonUtils());
-    }
-
-    private ImageFactory(LocationLoader locationLoader, ResourceBundleService bundle, CommonUtils utils){
+    public ImageFactory(LocationLoader locationLoader, ResourceBundleService bundle, CommonUtils utils){
         this.locationLoader = locationLoader;
         this.bundle = bundle;
         this.utils = utils;
@@ -100,17 +93,19 @@ public class ImageFactory {
         }
 
         if (Contract.isEmpty(image.getAltText())){
-            module.addErrorMessage("The image does not have an Alternative Text for the language " + locale);
-            //TODO Do we need content log for this?
-            //TODO Is info level enough for this issue?
-            logger.info("The image does not have an Alternative Text for the language {}", locale);
+            String message = "The image does not have an Alternative Text for the language " + locale;
+            module.addErrorMessage(message);
+            CommonUtils.contentIssue(message);
+            logger.warn(message);
+            image.setAltText(cmsImage.getAltText());
         }
 
         if (Contract.isEmpty(image.getDescription())){
-            module.addErrorMessage("The image does not have a description for the locale " + locale);
-            //TODO Do we need content log for this?
-            //TODO Is info level enough for this issue?
-            logger.info("The image does not have a description for the locale {}", locale);
+            String message = "The image does not have a description for the locale " + locale;
+            module.addErrorMessage(message);
+            CommonUtils.contentIssue(message);
+            logger.warn(message);
+            image.setDescription(cmsImage.getDescription());
         }
 
         //Populates the location

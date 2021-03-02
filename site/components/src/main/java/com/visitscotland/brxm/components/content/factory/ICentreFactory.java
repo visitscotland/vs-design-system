@@ -6,6 +6,7 @@ import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.ICentreModule;
 import com.visitscotland.brxm.beans.mapping.LinkType;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.components.content.factory.utils.QuoteFactory;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.DMSDataService;
@@ -37,18 +38,16 @@ public class ICentreFactory {
     private final ResourceBundleService bundle;
     private final QuoteFactory quoteEmbedder;
     private final ImageFactory imageFactory;
+    private final Properties properties;
 
 
-    public ICentreFactory() {
-        this(new HippoUtilsService(), new DMSDataService(), new ResourceBundleService(), new QuoteFactory(), new ImageFactory());
-    }
-
-    public ICentreFactory(HippoUtilsService utils, DMSDataService dmsData, ResourceBundleService bundle, QuoteFactory quoteEmbedder, ImageFactory image) {
+    public ICentreFactory(HippoUtilsService utils, DMSDataService dmsData, ResourceBundleService bundle, QuoteFactory quoteEmbedder, ImageFactory image, Properties properties) {
         this.utils = utils;
         this.dmsData = dmsData;
         this.bundle = bundle;
         this.quoteEmbedder = quoteEmbedder;
         this.imageFactory = image;
+        this.properties = properties;
     }
 
     /**
@@ -140,7 +139,7 @@ public class ICentreFactory {
         logger.info("Calulating list of iCentres for the location {} (locale {})", location, locale);
         List<FlatLink> vicList = new ArrayList<>();
 
-        ProductSearchBuilder dmsQuery = new ProductSearchBuilder().location(location)
+        ProductSearchBuilder dmsQuery = VsComponentManager.get(ProductSearchBuilder.class).location(location)
                 .productTypes(DMSConstants.TYPE_SERVICES).category(DMSConstants.CAT_ICENTRE)
                 .sortBy(DMSConstants.SORT_ALPHA);
 
@@ -153,7 +152,7 @@ public class ICentreFactory {
                 String label = child.get(DMSConstants.MapSearch.PROPERTIES).get(DMSConstants.MapSearch.NAME).asText();
                 String id = child.get(DMSConstants.MapSearch.PROPERTIES).get(DMSConstants.MapSearch.ID).asText();
                 String languagePath = Language.getLanguageForLocale(locale).getDMSPathVariable();
-                String url = Properties.VS_DMS_SERVICE + DataServiceUtils.getProductURL(label, id, DMSConstants.TYPE_SERVICES, languagePath);
+                String url = properties.getDmsHost() + DataServiceUtils.getProductURL(label, id, DMSConstants.TYPE_SERVICES, languagePath);
                 vicList.add(new FlatLink(label, url, LinkType.INTERNAL));
             }
         }

@@ -9,7 +9,6 @@ import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
 import com.visitscotland.brxm.utils.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
@@ -19,17 +18,11 @@ public class QuoteFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(QuoteFactory.class);
 
-    @Autowired
     private ImageFactory imageFactory;
 
-    @Autowired
     private LinkModulesFactory linkFactory;
 
-    public QuoteFactory(){
-        this(new ImageFactory(), new LinkModulesFactory());
-    }
-
-    private QuoteFactory(ImageFactory imageFactory, LinkModulesFactory linkFactory){
+    public QuoteFactory(ImageFactory imageFactory, LinkModulesFactory linkFactory){
         this.imageFactory = imageFactory;
         this.linkFactory = linkFactory;
     }
