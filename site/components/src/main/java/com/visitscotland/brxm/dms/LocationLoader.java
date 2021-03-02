@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.*;
 
 //TODO Test?
-//TOTO convert to Service
 @Component
 public class LocationLoader {
 
@@ -25,7 +24,7 @@ public class LocationLoader {
 
     private final Map<String, String> locationToId = new HashMap<>();
 
-    private DMSProxy proxy;
+    private final DMSProxy proxy;
 
     public LocationLoader(DMSProxy proxy){
         this.proxy = proxy;
@@ -57,10 +56,6 @@ public class LocationLoader {
                     } catch (IOException e) {
                         logger.warn("Location List couldn't been loaded for the locale {}", lang.getLocale());
                     } catch (Exception e) {
-                        //TODO add body to the if
-                        if (e instanceof NullPointerException){
-
-                        }
                         logger.error("Unexpected exception ", e);
                     }
 

@@ -14,7 +14,6 @@ import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.utils.DocumentUtils;
 import com.visitscotland.brxm.utils.VsException;
 import com.visitscotland.dataobjects.DataType;
-import org.hippoecm.hst.core.component.HstRequest;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Answers;
@@ -28,7 +27,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
+import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.LATITUDE;
+import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.LONGITUDE;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -50,20 +50,17 @@ class ListicleFactoryTest {
     ListicleFactory factory;
 
     @Mock
-    HstRequest request;
-
-    @Mock
     Listicle page;
 
     @BeforeEach
-    void initRequest(){
+    void initRequest() {
         when(page.getDescOrder()).thenReturn(Boolean.FALSE);
     }
 
 
     @Test
     @DisplayName("Create a listicle page")
-    void createListiclePage(){
+    void createListiclePage() {
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.emptyList());
 
         Assertions.assertNotNull(factory.generateItems(Locale.UK, page));
@@ -71,7 +68,7 @@ class ListicleFactoryTest {
 
     @Test
     @DisplayName("ListicleItem - Basic Item with no main product")
-    void listicle_basic(){
+    void listicle_basic() {
 
         ListicleItem item = new ListicleItemMockBuilder().title("Title").sutitle("Edinburgh").addDescription().extraLink().build();
         FlatLink link = new FlatLink();
@@ -93,7 +90,7 @@ class ListicleFactoryTest {
 
     @Test
     @DisplayName("ListicleItem from CMSLink")
-    void listicle_cmsLink(){
+    void listicle_cmsLink() {
         ListicleItem item = new ListicleItemMockBuilder().addImage().cmsLink().build();
         FlatLink link = new FlatLink();
         FlatImage moduleImage = new FlatImage();
@@ -112,7 +109,7 @@ class ListicleFactoryTest {
 
     @Test
     @DisplayName("ListicleItem from CMSLink - When the image is not set on the CMS")
-    void listicle_cmsLink_fallbackImage(){
+    void listicle_cmsLink_fallbackImage() {
         ListicleItem item = new ListicleItemMockBuilder().cmsLink(true).build();
         FlatLink link = new FlatLink();
         FlatImage heroImage = new FlatImage();
@@ -132,7 +129,7 @@ class ListicleFactoryTest {
 
     @Test
     @DisplayName("ListicleItem from DMSLink")
-    void listicle_dmsLink(){
+    void listicle_dmsLink() {
         ListicleItem item = new ListicleItemMockBuilder().addImage().sutitle("Subtitle").dmsLink("1234").build();
         FlatLink link = new FlatLink();
         FlatImage moduleImage = new FlatImage();
@@ -162,7 +159,7 @@ class ListicleFactoryTest {
 
     @Test
     @DisplayName("ListicleItem from DMSLink - Subtitle & Image take fallback values from the DMS")
-    void listicle_dmsLink_fallback(){
+    void listicle_dmsLink_fallback() {
         ListicleItem item = new ListicleItemMockBuilder().dmsLink("1234").build();
         FlatImage dmsImage = new FlatImage();
         dmsImage.setLocation("Location");
@@ -180,7 +177,7 @@ class ListicleFactoryTest {
 
     @Test
     @DisplayName("ListicleItem from DMSLink - Coordinates take fallback values from the DMS")
-    void listicle_dmsLink_coordinates(){
+    void listicle_dmsLink_coordinates() {
         ListicleItem item = new ListicleItemMockBuilder().addImage().dmsLink("1234").build();
         FlatImage moduleImage = new FlatImage();
         moduleImage.setCmsImage((Image) item.getListicleItemImage());
@@ -203,7 +200,7 @@ class ListicleFactoryTest {
 
     @Test
     @DisplayName("ListicleItem from DMSLink - No DMS id generates a CMS warning")
-    void listicle_dmsLink_noMatch(){
+    void listicle_dmsLink_noMatch() {
         ListicleItem item = new ListicleItemMockBuilder().dmsLink("1234").build();
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
@@ -217,7 +214,7 @@ class ListicleFactoryTest {
 
     @Test
     @DisplayName("The items will be shown with descendent order")
-    void descendentOrder(){
+    void descendentOrder() {
         List<ListicleItem> listicleItems = Arrays.asList(
                 new ListicleItemMockBuilder().build(),
                 new ListicleItemMockBuilder().build(),
@@ -229,14 +226,14 @@ class ListicleFactoryTest {
         List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
         Assertions.assertEquals(listicleItems.size(), items.size());
-        for(int i = items.size()-1; i>0; i--){
-            Assertions.assertEquals(i+1, items.get(i).getIndex());
+        for (int i = items.size() - 1; i > 0; i--) {
+            Assertions.assertEquals(i + 1, items.get(i).getIndex());
         }
     }
 
     @Test
     @DisplayName("The items will be shown with ascendant order")
-    void ascendentOrder(){
+    void ascendantOrder() {
         List<ListicleItem> listicleItems = Arrays.asList(
                 new ListicleItemMockBuilder().build(),
                 new ListicleItemMockBuilder().build(),
@@ -248,15 +245,15 @@ class ListicleFactoryTest {
         List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
         Assertions.assertEquals(listicleItems.size(), items.size());
-        for(int i = 0; i> items.size(); i++){
-            Assertions.assertEquals(i+1, items.get(i).getIndex());
+        for (int i = 0; i < items.size(); i++) {
+            Assertions.assertEquals(i + 1, items.get(i).getIndex());
         }
     }
 
     @Test
     @DisplayName("The items will be shown with ascendant order")
     @Disabled("To be confirmed")
-    void imageOrder(){
+    void imageOrder() {
         /**
          * TODO
          1 (most important): Location(Subtitle) field
