@@ -3,7 +3,7 @@
 <#include "headerContributions.ftl">
 <#include "footerContributions.ftl">
 
-<html lang="en">
+<html data-version="${version}" lang="en">
     <head>
         <#if hstRequest.requestContext.channelManagerPreviewRequest>
             <link rel="stylesheet" href="<@hst.webfile  path="/css/cms-request.css"/>" type="text/css"/>
