@@ -30,7 +30,10 @@
         <#assign moduleType = module.getType()>
     </#if>
 
-    <div class="has-edit-button theme-${themeName}">       
+    <div class="has-edit-button theme-${themeName}">
+        <#if module.hippoBean?? >
+            <@hst.manageContent hippobean=module.hippoBean />
+        </#if>
         <#if moduleType == "megalinks">
             <#-- all Megalinks modules -->
             <@megalinks item=module type=module.getType() theme=themeName />
