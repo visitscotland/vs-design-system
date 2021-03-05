@@ -297,10 +297,21 @@ export default {
       <VsButton
         class="mr-2 mb-2"
         icon="external-link"
-        iconVariant="warning"
         size="sm"
         icon-only
       />
+    </BsWrapper>
+
+    <h4>IconVariant</h4>
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton
+        class="mr-2 mb-2"
+        icon="external-link"
+        size="lg"
+        iconVariant="dark"
+      >
+        An exciting black icon
+      </VsButton>
     </BsWrapper>
 
     <h4>Variants</h4>
