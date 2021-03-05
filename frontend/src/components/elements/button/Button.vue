@@ -13,6 +13,10 @@
         :size="size"
         v-bind="$attrs"
         @click="animateHandler"
+        @mouseover="hovered = true"
+        @focusin="hovered = true"
+        @mouseleave="hovered = false"
+        @focusout="hovered = false"
     >
         <VsIcon
             :class="{ 'mr-2': !iconOnly }"
@@ -21,7 +25,7 @@
             :size="iconSize"
             :padding="0"
             :orientation="iconOrientation"
-            :variant="iconVariant"
+            :variant="calcIconVariant"
         />
         <!-- @slot The button content goes here -->
         <slot />
@@ -144,6 +148,19 @@ export default {
             ),
         },
         /**
+         * The icon variant to apply when hovering over the button in case
+         * of outline buttons
+         * `primary, secondary, success, danger, warning, info,
+         * light, dark, reverse-white, primary-purple, secondary-teal`
+         */
+        iconHoverVariant: {
+            type: String,
+            default: '',
+            validator: (value) => value.match(
+                /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/,
+            ),
+        },
+        /**
          * If the button contains an icon and no text
          */
         iconOnly: {
@@ -154,6 +171,7 @@ export default {
     data() {
         return {
             isAnimating: false,
+            hovered: false,
         };
     },
     computed: {
@@ -174,6 +192,13 @@ export default {
         },
         textTransformClass() {
             return this.uppercase ? 'text-uppercase' : null;
+        },
+        calcIconVariant() {
+            if (this.hovered && this.iconHoverVariant) {
+                return this.iconHoverVariant;
+            }
+
+            return this.iconVariant;
         },
     },
     methods: {
@@ -302,7 +327,7 @@ export default {
       />
     </BsWrapper>
 
-    <h4>IconVariant</h4>
+    <h4>Icon Variant</h4>
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton
         class="mr-2 mb-2"
@@ -335,6 +360,16 @@ export default {
       <VsButton variant="outline-warning" class="mr-2 mb-2">Warning</VsButton>
       <VsButton variant="outline-info" class="mr-2 mb-2">Info</VsButton>
       <VsButton variant="outline-dark" class="mr-2 mb-2">Dark</VsButton>
+    </BsWrapper>
+    <h4>Outline Variants with Icons</h4>
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton
+        variant="outline-primary"
+        class="mr-2 mb-2"
+        icon="external-link"
+        iconVariant="primary"
+        iconHoverVariant="light"
+      >Primary</VsButton>
     </BsWrapper>
     <h4>Outline Color Variants - override transparent background</h4>
     <BsWrapper class="d-flex flex-wrap mb-4 bg-dark p-3">
