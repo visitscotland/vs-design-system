@@ -5,7 +5,7 @@
 <#include "./single-image/megalinks-single-image.ftl">
 
 <#macro megalinks item type theme>
-    <@hst.manageContent hippobean=item.megalinkItem />
+    <@hst.manageContent hippobean=item.hippoBean />
 
     <#if type=="MultiImageLinksModule">
         <#assign variant = "multi-image">
