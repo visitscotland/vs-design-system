@@ -9,6 +9,7 @@ import org.apache.cxf.jaxrs.impl.UriBuilderImpl;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -16,15 +17,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-class InternalParameterProcessor {
+//TODO Move to Utils package
+@Component
+public class InternalParameterProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(InternalParameterProcessor.class);
 
-    ResourceBundleService bundle;
-    HippoUtilsService utils;
+    private ResourceBundleService bundle;
+    private HippoUtilsService utils;
 
-    InternalParameterProcessor(ResourceBundleService bundle,
-                               HippoUtilsService utils) {
+    public InternalParameterProcessor(ResourceBundleService bundle, HippoUtilsService utils) {
         this.bundle = bundle;
         this.utils = utils;
     }
