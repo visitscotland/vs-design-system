@@ -16,6 +16,7 @@
                 <VsLink
                     v-if="href && ctaText"
                     :href="href"
+                    role="menuitem"
                     data-test="vs-mega-nav-top-menu-item__cta-link"
                     class="vs-mega-nav-top-menu-item__cta-link"
                 >
@@ -92,7 +93,7 @@ export default {
     }
 
     &__divider{
-        margin: $spacer-3 0 $spacer-7;
+        margin: $spacer-3 0 $spacer-4;
         border-color: $color-gray-tint-6;
     }
 
