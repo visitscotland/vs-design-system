@@ -4,19 +4,22 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.LinkType;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.hippoecm.hst.core.container.ComponentManager;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationContext;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Locale;
 
@@ -27,12 +30,10 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class LinkServiceTest {
 
-    LinkService service;
-
     @Mock
     private DMSDataService dmsData;
 
-    @Mock
+    @Mock(answer = Answers.RETURNS_SELF)
     private ProductSearchBuilder builder;
 
     @Mock
@@ -41,9 +42,17 @@ class LinkServiceTest {
     @Mock
     private HippoUtilsService utils;
 
-    @BeforeEach
-    public void init() {
-        service = new LinkService(dmsData, resourceBundle, utils);
+    @Mock
+    private Properties properties;
+
+    @Resource
+    @InjectMocks
+    LinkService service;
+
+    private void initProductSearchBuilder(){
+        ComponentManager context = mock(ComponentManager.class, withSettings().lenient());
+        when(context.getComponent(ProductSearchBuilder.class)).thenReturn(builder);
+        new VsComponentManager().setComponentManager(context);
     }
 
     @Test
@@ -53,6 +62,7 @@ class LinkServiceTest {
         when(externalLink.getLink()).thenReturn("http://fake.link");
         when(externalLink.getLabel()).thenReturn("");
 
+        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
         when(resourceBundle.getCtaLabel(eq(""), any())).thenReturn("Find out more");
 
         FlatLink link = service.createLink(Locale.UK, externalLink);
@@ -161,45 +171,48 @@ class LinkServiceTest {
     @DisplayName("Create a link from a ProductSearchLink  Compound")
     void productSearchLink() {
         //Verifies that it can create a URL from the ProductSearchLink
+        initProductSearchBuilder();
+
         ProductSearchLink productSearchLink = mock(ProductSearchLink.class, withSettings().lenient());
         ProductsSearch ps = mock(ProductsSearch.class);
-        when(ps.getProductType()).thenReturn("acco");
         when(productSearchLink.getSearch()).thenReturn(ps);
 
         FlatLink link = service.createLink(Locale.UK, productSearchLink);
 
-        assertTrue(link.getLink().contains("acco") && link.getLink().contains("search-results"));
+        verify(builder, times(1)).build();
         assertEquals(LinkType.INTERNAL, link.getType());
     }
 
     @Test
     @DisplayName("Create a url from an SharedLink with an ProductSearchLink Compound ")
     void getPlainLink_productSearchLink() {
+        initProductSearchBuilder();
+
         SharedLink sharedLink = mock(SharedLink.class);
         ProductSearchLink productSearchLink = mock(ProductSearchLink.class, withSettings().lenient());
         ProductsSearch ps = mock(ProductsSearch.class);
 
-        when(ps.getProductType()).thenReturn("acco");
         when(productSearchLink.getSearch()).thenReturn(ps);
         when(sharedLink.getLinkType()).thenReturn(productSearchLink, productSearchLink);
 
         String link = service.getPlainLink(sharedLink, null);
 
-        assertTrue(link.contains("acco") && link.contains("search-results"));
+        verify(builder, times(1)).build();
     }
 
     @Test
     @DisplayName("Create a url from an SharedLink with a ProductSearch Compound ")
     void getPlainLink_productSearch() {
+        initProductSearchBuilder();
+
         SharedLink sharedLink = mock(SharedLink.class);
         ProductsSearch productSearch = mock(ProductsSearch.class);
 
-        when(productSearch.getProductType()).thenReturn("acco");
         when(sharedLink.getLinkType()).thenReturn(productSearch, productSearch);
 
         String link = service.getPlainLink(sharedLink, null);
 
-        assertTrue(link.contains("acco") && link.contains("search-results"));
+        verify(builder, times(1)).build();
     }
 
     @Test
@@ -220,11 +233,12 @@ class LinkServiceTest {
     @Test
     @DisplayName("Identifies internal URL patterns")
     void getType() {
+        when(properties.getDmsHost()).thenReturn("//dms");
         assertEquals(LinkType.INTERNAL, service.getType("http://www.visitscotland.com/something"));
         assertEquals(LinkType.INTERNAL, service.getType("http://feature.visitscotland.com"));
         assertEquals(LinkType.INTERNAL, service.getType("http://localhost:8080/site"));
         assertEquals(LinkType.INTERNAL, service.getType("http://localhost:1234/site"));
-        assertEquals(LinkType.INTERNAL, service.getType(Properties.VS_DMS_SERVICE + "/info/edinburgh-castle-p00001"));
+        assertEquals(LinkType.INTERNAL, service.getType(properties.getDmsHost() + "/info/edinburgh-castle-p00001"));
         assertEquals(LinkType.INTERNAL, service.getType("http://future.visitscotland.com"));
 
         assertEquals(LinkType.EXTERNAL, service.getType("http://www.edinburgh.com/"));
@@ -268,6 +282,7 @@ class LinkServiceTest {
     @Test
     @DisplayName("Return the category for the link/page")
     void getLinkCategory() {
+        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
 
         assertEquals("eBooks", service.getLinkCategory("https://ebooks.visitscotland.com/whisky-distilleries-guides/",Locale.UK));
 
@@ -317,8 +332,9 @@ class LinkServiceTest {
     @Test
     @DisplayName("An exception if the URL is mal formed")
     void getLinkCategory_MalformedURLException(){
-        assertNull(service.getLinkCategory("http//example.com",Locale.UK));
+        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
 
+        assertNull(service.getLinkCategory("http//example.com",Locale.UK));
     }
 
     private String getCategory(String url, String bundle, String key, String value){

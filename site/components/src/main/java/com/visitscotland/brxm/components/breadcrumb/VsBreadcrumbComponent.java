@@ -2,6 +2,7 @@ package com.visitscotland.brxm.components.breadcrumb;
 
 
 import com.visitscotland.brxm.beans.Page;
+import com.visitscotland.brxm.cfg.VsComponentManager;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -31,19 +32,17 @@ public class VsBreadcrumbComponent extends CommonComponent {
 
         //Requested URL to identify the current page from the breadcrumb
         request.setAttribute(REQUESTED_URI, request.getRequestURI());
-        //Identify if the page is the home page independently from the environment (local, dev, acct, prod) and language
+        //Identify if the page is the home page independently of the environment (local, dev, acct, prod) and language
         request.setAttribute(IS_HOME, "root".equals(request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getId()));
         //Breadcrumb Items list
         request.setAttribute(BREADCRUMB, this.breadcrumbProvider.getBreadcrumb(request));
-        //Register the resource Bundle
-        bundle.registerIn(request);
         //Main document for the page
         setDocument(request);
     }
 
     private void setDocument(HstRequest request){
         HippoBean document = request.getRequestContext().getContentBean();
-        if (document != null && document instanceof Page) {
+        if (document instanceof Page) {
             request.setAttribute(DOCUMENT, document);
         } else {
             logger.error("There is not a document associated for the following request: " + request.getRequestURI());
@@ -52,7 +51,7 @@ public class VsBreadcrumbComponent extends CommonComponent {
 
     public void init(ServletContext servletContext, ComponentConfiguration componentConfig) throws HstComponentException {
         super.init(servletContext, componentConfig);
-        this.bundle = new ResourceBundleService();
+        this.bundle = VsComponentManager.get(ResourceBundleService.class);
         this.breadcrumbProvider = new VsBreadCrumbProvider(this);
     }
 

@@ -6,7 +6,7 @@
 <#include "content-driven-seo.ftl">
 <#include "breadcrumb-schema.ftl">
 
-<@hst.setBundle basename="navigation"/>
+<@hst.setBundle basename="navigation.static"/>
 
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
 <#-- @ftlvariable name="requestedURI" type="java.lang.String" -->
@@ -39,7 +39,7 @@
 
             <#--1(${link}) != 2(${requestedURI})-->
                 <vs-breadcrumb-item
-                        key="${item.title}"
+                        key="${item.title?html}"
                         href="${link}"
                         <#if link?? && link == requestedURI >active</#if>
                         text="${item.title?html}"

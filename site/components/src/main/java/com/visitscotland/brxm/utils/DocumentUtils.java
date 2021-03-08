@@ -7,6 +7,7 @@ import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * Singleton
  */
+@Component
 public class DocumentUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(DocumentUtils.class.getName());
@@ -49,6 +51,10 @@ public class DocumentUtils {
      */
     public List<BaseDocument> getAllowedDocuments(Page page) {
         return getSiblingDocuments(page, BaseDocument.class, page.getChildJcrTypes());
+    }
+
+    public <T extends BaseDocument> List<T> getAllowedDocuments(Page page, Class<T> expectedClass) {
+        return getSiblingDocuments(page, expectedClass, page.getChildJcrTypes());
     }
 
     /**
@@ -100,10 +106,12 @@ public class DocumentUtils {
     }
 
     private void logError(String message, Node node, Exception e) {
+        String logMessage;
         try {
-            logger.error(message + node.getPath(), e);
+            logMessage = message + " : " + node.getPath();
         } catch (RepositoryException e1) {
-            logger.error(message + ". A nested exception happened while trying to access to the node ", e1);
+            logMessage = message + ". A nested exception happened while trying to access to the node ";
         }
+        logger.error(logMessage, e);
     }
 }
