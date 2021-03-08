@@ -256,9 +256,9 @@ export default {
                 this.popup = null;
             }
         },
-    },
-    onResize() {
-        this.isTablet = window.innerWidth >= 768;
+        onResize() {
+            this.isTablet = window.innerWidth >= 768;
+        },
     },
 };
 </script>
