@@ -6,24 +6,70 @@
     >
         <VsContainer>
             <VsRow>
-                <VsCol
-                    cols="12"
-                >
-                    <Splide
-                        :options="splideOptions"
-                        @splide:moved="carouselMoved"
-                        @splide:mounted="initialiseCustomOptions"
-                        @splide:updated="resetTabbing"
+                <VsCol cols="12">
+                    <div
+                        class="slider"
+                        ref="slideContainer"
                     >
-                        <!-- @slot default slot to contain slides -->
-                        <slot />
-                    </Splide>
+                        <VsRow
+                            class="vs-carousel__track"
+                        >
+                            <!-- @slot default slot to contain slides -->
+                            <slot />
+                        </VsRow>
+                        HELLO TEST
+                        <button
+                            v-if="!prevDisabled"
+                            class="vs-carousel__control vs-carousel__control--prev"
+                            @click="sliderNavigate('prev')"
+                            @keyup.enter="sliderNavigate('prev')"
+                        >
+                            <VsIcon
+                                name="internal-link"
+                                size="xs"
+                                orientation="down"
+                                variant="light"
+                            />
+                            <span class="sr-only">{{ prevText }}</span>
+                        </button>
+                        <button
+                            v-if="!nextDisabled"
+                            class="vs-carousel__control vs-carousel__control--next"
+                            @click="sliderNavigate('next')"
+                            @keyup.enter="sliderNavigate('next')"
+                        >
+                            <VsIcon
+                                name="internal-link"
+                                size="xs"
+                                variant="light"
+                            />
+                            <span class="sr-only">{{ nextText }}</span>
+                        </button>
+
+                        <div class="vs-carousel__navigation">
+                            <span
+                                v-for="index in maxPages"
+                                :key="index"
+                                class="vs-carousel__navigation-item"
+                                :class="index === currentPage + 1 ?
+                                    'vs-carousel__navigation-item--active' : ''"
+                                @click="sliderNavigate(index - 1)"
+                                @keyup.enter="sliderNavigate(index - 1)"
+                            >
+                                Navigate to page {{ index }}
+                            </span>
+                        </div>
+                    </div>
+
                     <div class="vs-carousel__mobile-pagination-wrapper">
                         <p
                             class="vs-carousel__mobile-pagination"
                             data-test="vs-carousel__mobile-pagination"
                         >
-                            {{ currentSlide }} <slot name="vsCarouselOf" /> {{ totalSlides }}
+                            {{ currentPage + 1 }}
+                            <!-- @slot slot for word 'of' to allow translation -->
+                            <slot name="vsCarouselOf" />
+                            {{ totalSlides }}
                         </p>
                     </div>
                 </VsCol>
@@ -33,7 +79,7 @@
 </template>
 
 <script>
-import { Splide } from '@splidejs/vue-splide';
+import VsIcon from '@components/elements/icon';
 import {
     VsContainer,
     VsRow,
@@ -52,10 +98,10 @@ export default {
     status: 'protolink-type',
     release: '0.0.1',
     components: {
-        Splide,
         VsContainer,
         VsRow,
         VsCol,
+        VsIcon,
     },
     props: {
         prevText: {
@@ -66,209 +112,267 @@ export default {
             type: String,
             default: 'Next slide',
         },
+        slidesXs: {
+            type: String,
+            default: '1',
+        },
+        slidesSm: {
+            type: String,
+            default: '2',
+        },
+        slidesMd: {
+            type: String,
+            default: '3',
+        },
+        slidesLg: {
+            type: String,
+            default: '4',
+        },
     },
     data() {
         return {
-            splideOptions: {
-                slideFocus: false,
-                perPage: 4,
-                gap: '24px',
-                arrowPath: 'M19.47.55,17.7,2.31a1.07,1.07,0,0,0,0,1.52L31.56,17.68H1.07A1.07,1.07,0,0,0,0,18.75v2.5a1.07,1.07,0,0,0,1.07,1.07H31.56L17.7,36.17a1.07,1.07,0,0,0,0,1.52l1.77,1.77a1.09,1.09,0,0,0,1.52,0l18.7-18.7a1.09,1.09,0,0,0,0-1.52L21,.54A1.08,1.08,0,0,0,19.47.55Z',
-                breakpoints: {
-                    992: {
-                        perPage: 3,
-                    },
-                    768: {
-                        perPage: 2,
-                    },
-                    576: {
-                        perPage: 1,
-                        width: '80%',
-                    },
-                },
-                i18n: {
-                    prev: this.prevText,
-                    next: this.nextText,
-                },
-            },
             totalSlides: null,
-            currentSlide: 1,
+            currentPage: 0,
+            maxPages: 1,
+            nextDisabled: false,
+            prevDisabled: true,
+            currentWidth: 'lg',
+        };
+    },
+    computed: {
+        slidesPerPage() {
+            const slidesPerPage = {
+
+            };
+            slidesPerPage.lg = this.slidesLg;
+            slidesPerPage.md = this.slidesMd;
+            slidesPerPage.sm = this.slidesSm;
+            slidesPerPage.xs = this.slidesXs;
+
+            return slidesPerPage;
+        },
+    },
+    provide() {
+        const slideCols = {
+        };
+
+        Object.keys(this.slidesPerPage).forEach((key) => {
+            const colSpan = 12 / this.slidesPerPage[key];
+            slideCols[key] = colSpan;
+        });
+
+        return {
+            slideCols,
         };
     },
     mounted() {
+        console.log('mounted');
         window.addEventListener('resize', () => {
-            this.resetTabbing();
+            const oldSize = this.currentPage;
+            this.setActivePage(oldSize);
+
+            this.defineActiveSlides(window.innerWidth);
         });
-        window.addEventListener('keydown', (e) => {
-            if (e.which === 9) {
-                this.resetTabbing();
-            }
-        });
+        this.defineActiveSlides();
     },
     methods: {
-        initialiseCustomOptions(splide) {
-            this.totalSlides = splide.length;
+        defineActiveSlides() {
+            // console.log('here');
+            // this.calcViewport();
+            // const allSlides = this.$refs.slideContainer
+            //      .getElementsByClassName('vs-carousel-slide__card');
+            // let slideCount = 0;
+
+            // // allSlides.forEach((slide, index) => {
+            // allSlides.forEach(() => {
+            //     //     const activeSlideStart =
+            //     //         this.currentPage * this.slidesPerPage[this.currentWidth];
+            //     //     const activeSlideEnd = parseInt(
+            //     //         this.currentPage * this.slidesPerPage[this.currentWidth], 10
+            //     //     ) + parseInt(this.slidesPerPage[this.currentWidth], 10);
+            //     //     if (index >= activeSlideStart && index < activeSlideEnd) {
+            //     //         slide.classList.add('vs-carousel-slide__card--active');
+            //     //         slide.getElementsByTagName('a')[0].setAttribute('tabindex', '0');
+            //     //     } else {
+            //     //         slide.classList.remove('vs-carousel-slide__card--active');
+            //     //         slide.getElementsByTagName('a')[0].setAttribute('tabindex', '-1');
+            //     //     }
+
+            //     slideCount += 1;
+            // });
+
+            // console.log(`SLIDECOUNT: ${slideCount}`);
+
+            // this.totalSlides = slideCount;
+
+            // this.maxPages = Math.ceil(slideCount / this.slidesPerPage[this.currentWidth]);
         },
-        carouselMoved(splide) {
-            this.currentSlide = splide.index + 1;
-            this.resetTabbing();
+        calcViewport() {
+            if (window.matchMedia('(min-width: 1200px)').matches) {
+                this.currentWidth = 'lg';
+            } else if (window.matchMedia('(min-width: 992px)').matches) {
+                this.currentWidth = 'md';
+            } else if (window.matchMedia('(min-width: 576px)').matches) {
+                this.currentWidth = 'sm';
+            } else {
+                this.currentWidth = 'xs';
+            }
         },
-        // ensures that the user can't tab into elements
-        // that aren't currently shown by the carousel
-        resetTabbing() {
-            const carouselEl = this.$refs.carousel;
-            const carouselLinks = carouselEl.getElementsByTagName('a');
-            // timeout to ensure that code has updated from Splide
-            setTimeout(() => {
-                carouselLinks.forEach((element) => {
-                    const link = element;
-                    if (element.closest('.is-visible') === null) {
-                        link.tabIndex = -1;
-                    } else {
-                        link.tabIndex = 0;
-                    }
-                });
-            }, 500);
+        setActivePage() {
+            let firstActiveItem;
+
+            if (this.currentWidth === 'xs' && this.slidesXs === '1') {
+                firstActiveItem = this.currentPage + 1;
+            } else {
+                firstActiveItem = (this.currentPage * this.slidesPerPage[this.currentWidth]) + 1;
+            }
+
+            this.calcViewport();
+
+            let newFirstPage;
+            if (this.currentWidth === 'xs' && this.slidesXs === '1') {
+                newFirstPage = firstActiveItem;
+            } else {
+                newFirstPage = Math.ceil(
+                    firstActiveItem / this.slidesPerPage[this.currentWidth]
+                );
+            }
+
+            this.currentPage = newFirstPage - 1;
+
+            this.sliderNavigate(this.currentPage);
+        },
+        sliderNavigate(direction) {
+            if (direction === 'next') {
+                this.currentPage += 1;
+            } else if (direction === 'prev') {
+                this.currentPage -= 1;
+            } else {
+                this.currentPage = direction;
+            }
+
+            this.initNavigation();
+
+            const track = this.$refs.slideContainer.getElementsByClassName('row')[0];
+
+            track.style.transform = `translateX(-${this.currentPage * 100}%)`;
+
+            this.defineActiveSlides();
+        },
+        initNavigation() {
+            if (this.currentPage + 1
+                >= this.totalSlides / this.slidesPerPage[this.currentWidth]) {
+                this.nextDisabled = true;
+            } else {
+                this.nextDisabled = false;
+            }
+
+            if (this.currentPage > 0) {
+                this.prevDisabled = false;
+            } else {
+                this.prevDisabled = true;
+            }
         },
     },
 };
 </script>
 
 <style lang="scss">
-    @import '@splidejs/splide/dist/css/themes/splide-default.min.css';
-
     .vs-carousel {
         overflow: hidden;
 
-        .splide__pagination,
-        &__mobile-pagination-wrapper {
-            margin-top: $spacer-9;
+        &__track {
+            flex-wrap: nowrap;
+            transition: transform 0.6s ease-out;
+
+            & > [class^="col-"] {
+                display: flex;
+            }
         }
 
-        .splide {
-            margin: 0 auto;
+        &__control {
+            position: absolute;
+            top: 25%;
+            border: none;
+            background: $color-theme-primary;
+            z-index: 20;
+            width: 35px;
+            height: 35px;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            &__arrow[disabled] {
-                display: none;
+            &--next {
+                right: 0;
             }
 
-            &__track {
-                overflow: visible;
+            &--prev {
+                left: 0;
             }
 
-            &__pagination {
-                position: relative;
+            &:focus,
+            &:hover {
+                border: 2px solid $color-purple-tint-4;
+            }
+        }
+
+        &__navigation {
+            display: none;
+            justify-content: center;
+
+            @include media-breakpoint-up(sm) {
+                display: flex;
+            }
+        }
+
+        &__navigation-item {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background: $color-gray-tint-4;
+            text-indent: -10000px;
+            transform: translateY(2px);
+            margin: $spacer-9 2px 0;
+            cursor: pointer;
+
+            &--active {
+                width: 14px;
+                height: 14px;
+                border-radius: 7px;
+                background: $color-black;
                 transform: none;
-                width: 100%;
-                left: auto;
-                bottom: auto;
-                display: none;
+                cursor: default;
             }
-
-            &__slide {
-                img {
-                        align-self: flex-start;
-                        max-width: 100%;
-                }
-            }
-
-            &__arrow {
-                border-radius: 0;
-                background: $color-pink;
-                opacity: 1;
-                top: 25%;
-
-                svg {
-                    fill: $color-white;
-                    width: 1rem;
-                    height: 1rem;
-                }
-
-                &:hover {
-                    background: $color-pink-shade-2;
-                }
-
-                &:focus {
-                    border: 4px solid $color-pink-tint-5;
-                }
-
-                &--prev {
-                    left: 0;
-                    transform: translateX(-50%);
-                }
-
-                &--next {
-                    right: 0;
-                    transform: translateX(50%);
-                }
-            }
-
-            &__pagination__page {
-                width: 10px;
-                height: 10px;
-                background: $color-gray-tint-4;
-
-                &.is-active {
-                    transform: none;
-                    background: $color-black;
-                    opacity: 1;
-                    width: 14px;
-                    height: 14px;
-                }
-
-                &:hover {
-                    background: $color-pink-tint-5
-                }
-
-                &:focus {
-                    outline: 1px solid $color-pink;
-                }
-            }
-        }
-
-        .splide__pagination,
-        .carousel__mobile-pagination-wrapper {
-            margin-top: $spacer-10;
         }
 
         &__mobile-pagination-wrapper {
-            width: 100%;
             display: flex;
             justify-content: center;
+            margin-top: $spacer-9;
+
+            @include media-breakpoint-up(sm) {
+                display: none;
+            }
         }
 
         &__mobile-pagination {
-            display: inline-block;
             background: $color-gray-tint-7;
-            line-height: $line-height-xs;
-            padding: $spacer-2;
-            font-size: $small-font-size;
-            font-weight: $semibold-font-weight;
-        }
-
-        @include media-breakpoint-up(sm) {
-            .splide__pagination {
-                display: inline-flex;
-            }
-
-            &__mobile-pagination-wrapper {
-                display: none;
-            }
+            padding: $spacer-1 $spacer-2;
+            color: $color-black;
+            font-size: $font-size-sm;
+            font-weight: bold;
+            margin: 0;
         }
     }
 
     .no-js .vs-carousel {
-        .splide__arrows {
+        &__control {
             display: none;
         }
 
-        .splide__list {
-            width: 100% !important;
-            transform: none !important;
-            flex-wrap: wrap;
-        }
-
-        .splide__slide {
+        &__slide {
             width: 100% !important;
             margin-bottom: $spacer-3;
             padding-bottom: $spacer-3;
@@ -283,100 +387,24 @@ export default {
             }
         }
 
-        .splide__pagination,
-        .stretched-link-panels {
+        &__navigation,
+        &__mobile-pagination-wrapper {
             display: none;
         }
 
-        .splide__slide .card {
-            display: flex;
-            flex-direction: row;
-            padding: $spacer-2;
-            border: none;
-            height: 100%;
-            transition: box-shadow 800ms;
+        &__track {
+            flex-wrap: wrap;
 
-            &:hover {
-                box-shadow: 10px 10px 20px $color-gray-tint-4;
+            & > [class^="col-"] {
+                width: 100%;
+                max-width: 100%;
+                flex: 0 0 100%;
 
-                .stretched-link-card__title {
-                    text-decoration: underline;
+                @include media-breakpoint-up(md) {
+                    width: 50%;
+                    max-width: 50%;
+                    flex: 0 0 50%;
                 }
-            }
-
-            .stretched-link {
-                text-decoration: none;
-            }
-
-            .card-body {
-                background: none;
-                padding: 0;
-                align-self: flex-start;
-                width: 66%;
-                text-align: left;
-            }
-
-            .stretched-link-card__img {
-                width: 33%;
-                align-self: flex-start;
-                margin-right: $spacer-4;
-            }
-
-            .stretched-link-card__title {
-                font-size: $small-font-size;
-                letter-spacing: .05rem;
-                line-height: $line-height-m;
-                color: $color-base-text;
-                text-decoration: none;
-            }
-
-            .stretched-link {
-                letter-spacing: 0;
-            }
-
-            .card-title {
-                display: flex;
-                margin-bottom: 0;
-            }
-
-            .stretched-link-card__content {
-                display: none;
-
-                p {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                }
-            }
-
-            .carousel__mobile-pagination-wrapper {
-                display: none;
-            }
-        }
-
-        @include media-breakpoint-up(sm) {
-            .stretched-link-card {
-                .stretched-link-card__content {
-                    display: block;
-                }
-            }
-        }
-
-        @include media-breakpoint-up(lg) {
-            .stretched-link-card {
-                .stretched-link-card__title {
-                    font-size: $small-font-size;
-                }
-
-                .stretched-link-card__content {
-                    margin: $spacer-2 0 0;
-                    line-height: $line-height-s;
-                }
-            }
-
-            .splide__slide {
-                width: calc(50% - 24px) !important;
             }
         }
     }
@@ -385,8 +413,12 @@ export default {
 <docs>
      ```js
     <VsCarousel
-        nextText="hello"
-        prevText="goodbye"
+        next-text="next page"
+        prev-text="previous page"
+        slides-xs="1"
+        slides-sm="2"
+        slides-md="3"
+        slides-lg="4"
     >
         <VsCarouselSlide
             link-url="www.visitscotland.com"
@@ -396,9 +428,10 @@ export default {
             category="Category"
             days="15"
             transport="bus"
+            index="0"
         >
             <template slot="vsCarouselSlideHeading">
-                Count 7,000 shining stars in the iconic
+                1 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
@@ -409,15 +442,18 @@ export default {
                 </p>
             </template>
         </VsCarouselSlide>
-
         <VsCarouselSlide
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
             category="Category"
+            days="15"
+            transport="bus"
+            index="0"
         >
             <template slot="vsCarouselSlideHeading">
-                Count 7,000 shining stars in the iconic
+                2 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
@@ -428,15 +464,18 @@ export default {
                 </p>
             </template>
         </VsCarouselSlide>
-
         <VsCarouselSlide
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
             category="Category"
+            days="15"
+            transport="bus"
+            index="0"
         >
             <template slot="vsCarouselSlideHeading">
-                Count 7,000 shining stars in the iconic
+                3 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
@@ -447,15 +486,18 @@ export default {
                 </p>
             </template>
         </VsCarouselSlide>
-
         <VsCarouselSlide
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
             category="Category"
+            days="15"
+            transport="bus"
+            index="0"
         >
             <template slot="vsCarouselSlideHeading">
-                Count 7,000 shining stars in the iconic
+                4 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
@@ -466,15 +508,18 @@ export default {
                 </p>
             </template>
         </VsCarouselSlide>
-
         <VsCarouselSlide
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
             category="Category"
+            days="15"
+            transport="bus"
+            index="0"
         >
             <template slot="vsCarouselSlideHeading">
-                Count 7,000 shining stars in the iconic
+                5 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
@@ -485,15 +530,84 @@ export default {
                 </p>
             </template>
         </VsCarouselSlide>
-
         <VsCarouselSlide
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
             category="Category"
+            days="15"
+            transport="bus"
+            index="0"
         >
             <template slot="vsCarouselSlideHeading">
-                Count 7,000 shining stars in the iconic
+                6 Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
+            category="Category"
+            days="15"
+            transport="bus"
+            index="0"
+        >
+            <template slot="vsCarouselSlideHeading">
+                7 Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
+            category="Category"
+            days="15"
+            transport="bus"
+            index="0"
+        >
+            <template slot="vsCarouselSlideHeading">
+                8 Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
+            category="Category"
+            days="15"
+            transport="bus"
+            index="0"
+        >
+            <template slot="vsCarouselSlideHeading">
+                9 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
