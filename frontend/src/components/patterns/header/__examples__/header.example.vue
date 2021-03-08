@@ -3,10 +3,10 @@
         <VsHeader>
             <template #globalMenu>
                 <VsGlobalMenu
-                    dropdown-label="I nostri siti"
+                    dropdown-label="Our websites"
                     active-site="https://www.visitscotland.com/"
                 >
-                    <span
+                    <template
                         slot="third-menu-item"
                     >
                         <VsGlobalMenuLanguage>
@@ -17,7 +17,7 @@
                             <VsGlobalMenuLanguageItem language-name="Italiano" />
                             <VsGlobalMenuLanguageItem language-name="Nederlands" />
                         </VsGlobalMenuLanguage>
-                    </span>
+                    </template>
                 </VsGlobalMenu>
             </template>
             <template #megaNav>

@@ -37,6 +37,7 @@
                     :type="type"
                     class="stretched-link"
                     :icon-size="iconSize"
+                    :variant="theme === 'dark' ? 'dark' : 'primary'"
                     data-test="vs-stretched-link"
                 >
                     <!-- @slot Contains header content for the card  -->
@@ -102,6 +103,14 @@ export default {
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
         /**
+        * The component color theme
+        */
+        theme: {
+            type: String,
+            default: 'light',
+            validator: (value) => value.match(/(light|dark)/),
+        },
+        /**
         * The image to use in the component
         */
         imgSrc: {
@@ -155,7 +164,8 @@ export default {
         .vs-stretched-link-card__img {
             width: 100%;
             max-width: 100%;
-            flex-shrink: 0;
+            align-self: flex-start;
+            flex-shrink: 0; // IE11 fix, prevents image vertical stretching
         }
 
         .vs-stretched-link-card__title {
