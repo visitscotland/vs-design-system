@@ -17,7 +17,6 @@
                             <!-- @slot default slot to contain slides -->
                             <slot />
                         </VsRow>
-                        HELLO TEST
                         <button
                             v-if="!prevDisabled"
                             class="vs-carousel__control vs-carousel__control--prev"
@@ -166,7 +165,6 @@ export default {
         };
     },
     mounted() {
-        console.log('mounted');
         window.addEventListener('resize', () => {
             const oldSize = this.currentPage;
             this.setActivePage(oldSize);
@@ -177,35 +175,30 @@ export default {
     },
     methods: {
         defineActiveSlides() {
-            // console.log('here');
-            // this.calcViewport();
-            // const allSlides = this.$refs.slideContainer
-            //      .getElementsByClassName('vs-carousel-slide__card');
-            // let slideCount = 0;
+            this.calcViewport();
+            const allSlides = this.$refs.slideContainer
+                .getElementsByClassName('vs-carousel-slide__card');
+            let slideCount = 0;
 
-            // // allSlides.forEach((slide, index) => {
-            // allSlides.forEach(() => {
-            //     //     const activeSlideStart =
-            //     //         this.currentPage * this.slidesPerPage[this.currentWidth];
-            //     //     const activeSlideEnd = parseInt(
-            //     //         this.currentPage * this.slidesPerPage[this.currentWidth], 10
-            //     //     ) + parseInt(this.slidesPerPage[this.currentWidth], 10);
-            //     //     if (index >= activeSlideStart && index < activeSlideEnd) {
-            //     //         slide.classList.add('vs-carousel-slide__card--active');
-            //     //         slide.getElementsByTagName('a')[0].setAttribute('tabindex', '0');
-            //     //     } else {
-            //     //         slide.classList.remove('vs-carousel-slide__card--active');
-            //     //         slide.getElementsByTagName('a')[0].setAttribute('tabindex', '-1');
-            //     //     }
+            allSlides.forEach((slide, index) => {
+                const activeSlideStart = this.currentPage * this.slidesPerPage[this.currentWidth];
+                const activeSlideEnd = parseInt(
+                    this.currentPage * this.slidesPerPage[this.currentWidth], 10
+                ) + parseInt(this.slidesPerPage[this.currentWidth], 10);
+                if (index >= activeSlideStart && index < activeSlideEnd) {
+                    slide.classList.add('vs-carousel-slide__card--active');
+                    slide.getElementsByTagName('a')[0].setAttribute('tabindex', '0');
+                } else {
+                    slide.classList.remove('vs-carousel-slide__card--active');
+                    slide.getElementsByTagName('a')[0].setAttribute('tabindex', '-1');
+                }
 
-            //     slideCount += 1;
-            // });
+                slideCount += 1;
+            });
 
-            // console.log(`SLIDECOUNT: ${slideCount}`);
+            this.totalSlides = slideCount;
 
-            // this.totalSlides = slideCount;
-
-            // this.maxPages = Math.ceil(slideCount / this.slidesPerPage[this.currentWidth]);
+            this.maxPages = Math.ceil(slideCount / this.slidesPerPage[this.currentWidth]);
         },
         calcViewport() {
             if (window.matchMedia('(min-width: 1200px)').matches) {
