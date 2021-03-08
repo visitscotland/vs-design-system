@@ -299,7 +299,7 @@ export default {
         .vs-image-with-caption__image-caption,
         .vs-image-with-caption__image-credit {
             font-size: $small-font-size;
-            line-height: $standard-line-height;
+            line-height: $line-height-standard;
         }
 
         .vs-image-with-caption__image-caption {

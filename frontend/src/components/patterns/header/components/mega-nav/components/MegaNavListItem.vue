@@ -88,7 +88,7 @@ export default {
         @include media-breakpoint-up(lg) {
             border: 2px solid $color-white;
             line-height: $line-height-s;
-            padding: 0.125rem $spacer-5;
+            padding: 0.125rem $spacer-4;
         }
 
         &:hover{
@@ -104,7 +104,7 @@ export default {
     &__heading{
         border-bottom: 1px solid $color-gray-tint-5;
         margin-bottom: $spacer-1;
-        line-height: $standard-line-height;
+        line-height: $line-height-standard;
 
         .vs-link--variant-primary{
             color: $color-secondary-gray-shade-3;
