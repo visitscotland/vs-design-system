@@ -123,7 +123,7 @@ export default {
                 width: 66%;
             }
 
-            .stretched-link-card__img {
+            .vs-stretched-link-card__img {
                 width: 33%;
                 align-self: flex-start;
                 margin-right: $spacer-4;
