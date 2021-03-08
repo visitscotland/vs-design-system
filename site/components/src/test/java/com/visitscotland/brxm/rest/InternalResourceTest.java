@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.rest;
 
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +30,7 @@ class InternalResourceTest {
     InternalResource service;
 
     @Mock
-    CommonUtils utils;
+    CommonUtilsService utils;
 
     @Mock
     Properties properties;
