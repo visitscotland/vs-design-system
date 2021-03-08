@@ -1,16 +1,20 @@
 <template>
-    <div class="megalink-link-list">
+    <div
+        class="vs-megalink-link-list"
+        :class="`vs-megalink-link-list--${theme}`"
+    >
         <VsStretchedLinkCard
             :link="linkUrl"
             :type="linkType"
+            class="vs-megalink-link-list__wrapper"
             :img-src="imgSrc"
             :img-alt="imgAlt"
-            class="megalink-link-list__wrapper"
             icon-size="xxs"
+            :theme="theme"
         >
             <span
                 slot="stretchedCardHeader"
-                class="megalink-link-list__title"
+                class="vs-megalink-link-list__title"
                 data-test="megalink-link-list__title"
             >
                 <!-- @slot Slot to contain heading -->
@@ -19,7 +23,7 @@
 
             <VsRichTextWrapper
                 slot="stretchedCardContent"
-                class="lead megalink-link-list__content"
+                class="lead vs-megalink-link-list__content"
                 data-test="megalink-link-list__content"
             >
                 <!-- @slot Slot to contain content -->
@@ -83,6 +87,14 @@ export default {
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
         /**
+        * The component color theme
+        */
+        theme: {
+            type: String,
+            default: 'light',
+            validator: (value) => value.match(/(light|dark)/),
+        },
+        /**
         * The link destination
         */
         linkUrl: {
@@ -94,7 +106,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .megalink-link-list {
+    .vs-megalink-link-list {
         border: none;
         padding: $spacer-2 0 $spacer-3;
         position: relative;
@@ -109,15 +121,29 @@ export default {
             bottom: 0;
         }
 
-        .megalink-link-list__wrapper.card {
+        .vs-megalink-link-list__wrapper.card {
             display: flex;
             flex-direction: row;
             padding: $spacer-2;
             border: none;
             height: 100%;
+            background: transparent;
+            transition: box-shadow 800ms;
+
+            &:hover {
+                box-shadow: 10px 10px 20px $color-gray-tint-4;
+
+                .vs-megalink-link-list__title {
+                    text-decoration: underline;
+                }
+            }
+
+            .stretched-link {
+                text-decoration: none;
+            }
 
             .card-body {
-                background: none;
+                background: transparent;
                 padding: 0;
                 align-self: flex-start;
                 width: 66%;
@@ -125,11 +151,13 @@ export default {
 
             .vs-stretched-link-card__img {
                 width: 33%;
+                max-width: 33%;
                 align-self: flex-start;
                 margin-right: $spacer-4;
             }
 
-            .megalink-link-list__title {
+            .vs-megalink-link-list__title {
+                font-size: $font-size-sm;
                 letter-spacing: .05rem;
                 line-height: $line-height-m;
             }
@@ -143,7 +171,7 @@ export default {
                 }
             }
 
-            .megalink-link-list__content {
+            .vs-megalink-link-list__content {
                 display: none;
 
                 p {
@@ -151,6 +179,14 @@ export default {
                     -webkit-line-clamp: 3;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
+                }
+            }
+        }
+
+        &--dark {
+            .vs-megalink-link-list__wrapper.card {
+                .vs-megalink-link-list__title {
+                    color: $color-white;
                 }
             }
         }
@@ -164,18 +200,18 @@ export default {
         }
 
         @include media-breakpoint-up(md) {
-            .megalink-link-list__wrapper.card {
-                .megalink-link-list__title {
+            .vs-megalink-link-list__wrapper.card {
+                .vs-megalink-link-list__title {
                     font-size: $small-font-size;
                 }
 
-                .megalink-link-list__content {
+                .vs-megalink-link-list__content {
                     margin: $spacer-2 0 0;
                     line-height: $line-height-s;
                     display: block;
 
                     p {
-                         display: -webkit-box;
+                        display: -webkit-box;
                         -webkit-line-clamp: 3;
                         -webkit-box-orient: vertical;
                         overflow: hidden;
@@ -186,8 +222,8 @@ export default {
             }
 
             @include media-breakpoint-up(lg) {
-                .megalink-link-list__wrapper.card {
-                    .megalink-link-list__content p {
+                .vs-megalink-link-list__wrapper.card {
+                    .vs-megalink-link-list__content p {
                          font-size: $font-size-base;
                     }
                 }

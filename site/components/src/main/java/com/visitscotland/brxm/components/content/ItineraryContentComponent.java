@@ -6,6 +6,8 @@ import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.dms.LocationObject;
 import com.visitscotland.brxm.beans.mapping.*;
 import com.visitscotland.brxm.beans.mapping.Coordinates;
+import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.brxm.dms.LocationLoader;
@@ -16,7 +18,6 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -30,12 +31,17 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public final String DISTANCE = "distance";
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
-    private final ResourceBundleService resourceBundleService;
-    private final LocationLoader locationLoader;
+
+    private ResourceBundleService bundle;
+    private LocationLoader locationLoader;
+    private DMSDataService dmsData;
 
     public ItineraryContentComponent() {
-        resourceBundleService = new ResourceBundleService();
-        locationLoader = LocationLoader.getInstance();
+        logger.debug("ItineraryContentComponent initialized");
+
+        bundle = VsComponentManager.get(ResourceBundleService.class);
+        locationLoader = VsComponentManager.get(LocationLoader.class);
+        dmsData = VsComponentManager.get(DMSDataService.class);
     }
 
     @Override
@@ -92,6 +98,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (stop.getImage() != null) {
                     Image cmsImage = stop.getImage();
                     if (cmsImage != null) {
+                        //TODO Use imageFactory
                         flatImage = new FlatImage(cmsImage, request.getLocale());
                         checkImageErrors(flatImage, request.getLocale(), errors);
                         if (!(stop.getStopItem() instanceof DMSLink)) {
@@ -117,7 +124,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                             logger.warn(CommonUtils.contentIssue("The product id does not match in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                         } else {
 
-                            FlatLink ctaLink = new FlatLink(resourceBundleService.getCtaLabel(dmsLink.getLabel(), request.getLocale()), product.get(URL).asText(), LinkType.INTERNAL);
+                            FlatLink ctaLink = new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), request.getLocale()), product.get(URL).asText(), LinkType.INTERNAL);
                             model.setCtaLink(ctaLink);
                             if (product.has(ADDRESS)) {
                                 JsonNode address = product.get(ADDRESS);
@@ -138,6 +145,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                             if (stop.getImage() == null && product.has(IMAGE)) {
                                 JsonNode dmsImageList = product.get(IMAGE);
+                                //TODO Use ImageFactory
                                 flatImage = new FlatImage(dmsImageList.get(0), product.get(NAME).asText());
                             }
 
@@ -145,18 +153,19 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                             coordinates.setLongitude(product.get(LON).asDouble());
                             model.setCoordinates(coordinates);
 
+                            //TODO dmsUtils.getFacilities
                             model.setFacilities(getFacilities(product));
 
                             if (product.has(OPENING)) {
                                 JsonNode opening = product.get(OPENING);
                                 //TODO adjust the message to designs when ready
                                 if ((opening.has(OPENING_STATE)) && (!opening.get(OPENING_STATE).asText().equalsIgnoreCase("unknown"))) {
-                                    String openingMessge = opening.get(OPENING_PROVISIONAL).asBoolean() == false ? "Usually " : "Provisionally ";
-                                    openingMessge = openingMessge + opening.get(OPENING_STATE).asText() + " " + opening.get(OPENING_DAY).asText();
+                                    String openingMessage = opening.get(OPENING_PROVISIONAL).asBoolean() == false ? "Usually " : "Provisionally ";
+                                    openingMessage = openingMessage + opening.get(OPENING_STATE).asText() + " " + opening.get(OPENING_DAY).asText();
                                     if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
-                                        openingMessge = openingMessge + ": " + opening.get(START_TIME).asText() + "-" + opening.get(END_TIME).asText();
+                                        openingMessage = openingMessage + ": " + opening.get(START_TIME).asText() + "-" + opening.get(END_TIME).asText();
                                     }
-                                    model.setOpen(openingMessge);
+                                    model.setOpen(openingMessage);
                                     model.setOpenLink(new FlatLink(bundle.getResourceBundle("itinerary", "stop.opening",
                                             request.getLocale()), ctaLink.getLink() + "#opening", null));
                                 }
@@ -169,7 +178,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     visitDuration = externalLink.getTimeToExplore();
 
                     if (externalLink.getExternalLink() != null) {
-                        FlatLink ctaLink = new FlatLink(resourceBundleService.getCtaLabel(externalLink.getExternalLink().getLabel(), request.getLocale()),
+                        FlatLink ctaLink = new FlatLink(bundle.getCtaLabel(externalLink.getExternalLink().getLabel(), request.getLocale()),
                                 externalLink.getExternalLink().getLink(), LinkType.EXTERNAL);
                         model.setCtaLink(ctaLink);
                     }

@@ -3,7 +3,7 @@
 <#include "../../../../../frontend/components/vs-link.ftl">
 <#include "../../../../../frontend/components/vs-link-list-item.ftl">
 
-<#macro singleImage item>
+<#macro singleImage item theme>
     <#if item.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=item.image.cmsImage.original/>
@@ -18,6 +18,7 @@
             img-src="${image}"
             <#if item.cta.link??>button-link="${item.cta.link}"</#if>
             <#if item.alignment == 'left'>alternate</#if>
+            theme="${theme}"
         >
             <template slot="vsSingleImageCaption">
                 ${item.image.description}
@@ -36,6 +37,7 @@
                     <vs-link-list-item
                         href="${listItem.link}"
                         <#if listItem.type != "internal">type="${listItem.type}"</#if>
+                        variant="${theme}"
                     >
                         ${listItem.label}
                     </vs-link-list-item>

@@ -24,15 +24,13 @@ public class InternalResource extends AbstractResource {
 
     static final String NO_MATCH = "<!-- No match -->";
 
-    //  TODO: TEST @Autowired
     private final CommonUtils utils;
 
-    public InternalResource() {
-        this(new CommonUtils());
-    }
+    private final Properties properties;
 
-    InternalResource(CommonUtils utils) {
+    public InternalResource(CommonUtils utils, Properties properties) {
         this.utils = utils;
+        this.properties = properties;
     }
 
     @GET
@@ -62,7 +60,7 @@ public class InternalResource extends AbstractResource {
             }
         } catch (Exception e) {
             logger.error("Error while requesting the data to {} ", url, e);
-            return Response.serverError().entity("Error while handling the request. Please contact Helpdesk at " + Properties.HELPDESK).build();
+            return Response.serverError().entity("Error while handling the request. Please contact Helpdesk at " + properties.getHelpdeskEmail()).build();
         }
     }
 
@@ -86,7 +84,8 @@ public class InternalResource extends AbstractResource {
             languageSubsite = "/" + Language.getLanguageForLocale(Locale.forLanguageTag(locale)).getCMSPathVariable();
         }
 
-        return Properties.LOCALHOST + languageSubsite + "/internal" +
+        //TODO: WebOps concern about hardcoding urls
+        return properties.getLocalhost() + languageSubsite + "/internal" +
                 utils.buildQueryString(parameters, StandardCharsets.UTF_8.name());
     }
 

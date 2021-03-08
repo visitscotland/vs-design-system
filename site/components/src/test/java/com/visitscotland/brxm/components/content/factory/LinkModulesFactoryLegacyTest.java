@@ -9,10 +9,12 @@ import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.MultiImageLinksModule;
 import com.visitscotland.brxm.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brxm.dms.DMSDataService;
+import com.visitscotland.brxm.dms.DMSProxy;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
+import com.visitscotland.brxm.utils.Properties;
 import org.easymock.EasyMockSupport;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.jupiter.api.Assertions;
@@ -30,7 +32,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
     private final String TITLE = "Megalink title";
     
-    //This constants must not generate the name from the class since Freemarker is not aware of them so any change would break the template 
+    //These constants must not generate the name from the class since Freemarker is not aware of them so any change would break the template
     private final String LIST = "ListLinksModule";
     private final String FEATURED = "MultiImageLinksModule";
     private final String SINGLE_IMAGE = "SingleImageLinksModule";
@@ -42,14 +44,16 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     private HippoUtilsService utils;
     private LinkService linkService;
     private DMSDataService dms;
+    private Properties properties;
+    private LocationLoader locationloader;
+    private ImageFactory imageFactory;
 
 
-/**
-     * {@code factory} needs an static method (createUrl) to be mocked since it relies on a static BloomReach dependency
+    /**
+     * {@code factory} needs a static method (createUrl) to be mocked since it relies on a static BloomReach dependency
      *
      * {@code page} represent a dummy link.
      */
-
     @BeforeAll
     static void init() {
         megalinkService = new MegalinksMockService();
@@ -58,18 +62,19 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
     @BeforeEach
     void initFactory(){
+        properties = mock(Properties.class);
         utils = createNiceMock(HippoUtilsService.class);
-        dms = new DMSDataService();
+        dms = new DMSDataService(new DMSProxy(properties));
 
         ResourceBundleService rs = createNiceMock(ResourceBundleService.class);
         utils = createNiceMock(HippoUtilsService.class);
-        linkService = new LinkService(dms, rs,utils);
+        linkService = new LinkService(dms, rs,utils, properties);
 
         expect(utils.createUrl(anyObject(HippoBean.class))).andStubReturn("/fake-url/mock");
 
         factory = partialMockBuilder(LinkModulesFactory.class)
-                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class, LocationLoader.class)
-                .withArgs(utils, dms, linkService, rs, LocationLoader.getInstance())
+                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class, LocationLoader.class, ImageFactory.class)
+                .withArgs(utils, dms, linkService, rs, locationloader, imageFactory)
                 .addMockedMethod("getLocation", String.class, Locale.class)
                 .createMock();
 
@@ -158,7 +163,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
     @Test
     void countFeaturedItems(){
-        //Test the maximum and minimum number of featured items per amount of module
+        //Test the maximum and minimum number of featured items per the amount of module
         replayAll();
 
         createFeaturedLayoutAndCheckItems(1,1,1);

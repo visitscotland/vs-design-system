@@ -10,7 +10,7 @@
         </div>
         <div
             class="vs-itinerary__map-container"
-            v-show="isDesktop || showMap"
+            v-if="isDesktop || showMap"
         >
             <slot name="map" />
         </div>

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.beans.*;
 import com.visitscotland.brxm.beans.capabilities.Linkable;
+import com.visitscotland.brxm.beans.mapping.FlatImage;
 import com.visitscotland.brxm.beans.mapping.FlatLink;
 import com.visitscotland.brxm.beans.mapping.megalinks.EnhancedLink;
 import com.visitscotland.brxm.beans.mapping.megalinks.HorizontalListLinksModule;
@@ -21,10 +22,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Locale;
@@ -50,16 +53,19 @@ public class LinkModuleFactoryTest {
     public enum LinkType {CMS, DMS, EXTERNAL, PRODUCT_SEARCH}
 
     @Mock
-    private ProductSearchBuilder builder;
+    ProductSearchBuilder builder;
 
     @Mock
-    private HippoUtilsService utils;
+    HippoUtilsService utils;
 
     @Mock
-    private DMSDataService dmsData;
+    DMSDataService dmsData;
 
     @Mock
-    private ResourceBundleService resourceBundleService;
+    ImageFactory imageFactory;
+
+    @Mock
+    ResourceBundleService resourceBundleService;
 
     @Mock(lenient = true)
     LinkService linkService;
@@ -67,7 +73,15 @@ public class LinkModuleFactoryTest {
     @Mock
     LocationLoader locationLoader;
 
-    private LinkModulesFactory factory;
+    @Resource
+    @InjectMocks
+    LinkModulesFactory factory;
+
+    @BeforeEach
+    public void beforeEach() {
+        when(linkService.getPlainLink(any(SharedLink.class), any())).thenReturn(PLAIN_LINK);
+    }
+
 
     private Megalinks mockMultiImage() {
         Megalinks mega = mock(Megalinks.class, withSettings().lenient());
@@ -127,12 +141,6 @@ public class LinkModuleFactoryTest {
     }
 
 
-    @BeforeEach
-    public void beforeEach() {
-        when(linkService.getPlainLink(any(SharedLink.class), any())).thenReturn(PLAIN_LINK);
-
-        factory = new LinkModulesFactory(utils, dmsData, linkService, resourceBundleService,locationLoader);
-    }
 
 
     @Test
@@ -182,6 +190,7 @@ public class LinkModuleFactoryTest {
         MegalinkItem item = mockItem(false, LinkType.DMS);
         SharedLink sl = (SharedLink) item.getLink();
         when(sl.getImage()).thenReturn(null);
+        when(imageFactory.createImage(node, null)).thenReturn(new FlatImage());
 
         EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).get(0);
 

@@ -1,7 +1,7 @@
 <#include "../../../../../include/imports.ftl">
 <#include "../../../../../frontend/components/vs-megalink-multi-image.ftl">
 
-<#macro multiImageThreeItems megalink showTeaser>
+<#macro multiImageThreeItems megalink showTeaser theme>
     <#if megalink.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=megalink.image.cmsImage.original/>
@@ -19,6 +19,7 @@
         <vs-megalink-multi-image
             img-src="${image}"
             link-type="${megalink.type}"
+            theme="${theme}"
             link-url="${megalink.link}"
         >
             <template slot="vsMultiImageHeading">
