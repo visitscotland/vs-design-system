@@ -2,14 +2,14 @@ package com.visitscotland.brxm.components.content;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brxm.beans.*;
-import com.visitscotland.brxm.beans.dms.LocationObject;
-import com.visitscotland.brxm.beans.mapping.*;
-import com.visitscotland.brxm.beans.mapping.Coordinates;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.model.*;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
+import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.services.ResourceBundleService;
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.utils.CoordinateUtils;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -116,12 +116,12 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                     if (dmsLink.getProduct() == null) {
                         errors.add("The product's id  was not provided");
-                        logger.warn(CommonUtils.contentIssue("The product's id was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
+                        logger.warn(CommonUtilsService.contentIssue("The product's id was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                     } else {
                         JsonNode product = dmsData.productCard(dmsLink.getProduct(), request.getLocale());
                         if (product == null) {
                             errors.add("The product id does not match in the DMS");
-                            logger.warn(CommonUtils.contentIssue("The product id does not match in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
+                            logger.warn(CommonUtilsService.contentIssue("The product id does not match in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                         } else {
 
                             FlatLink ctaLink = new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), request.getLocale()), product.get(URL).asText(), LinkType.INTERNAL);
@@ -191,7 +191,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                 } else {
                     errors.add("The product's id  was not provided");
-                    logger.warn(CommonUtils.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
+                    logger.warn(CommonUtilsService.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                 }
 
 

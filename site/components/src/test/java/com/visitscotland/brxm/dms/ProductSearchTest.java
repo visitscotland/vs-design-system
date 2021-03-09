@@ -1,14 +1,11 @@
 package com.visitscotland.brxm.dms;
 
-import com.visitscotland.brxm.beans.ProductsSearch;
-import com.visitscotland.brxm.beans.dms.LocationObject;
+import com.visitscotland.brxm.hippobeans.ProductsSearch;
+import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.brxm.utils.VsException;
 import com.visitscotland.utils.Contract;
-import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

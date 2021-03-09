@@ -1,7 +1,7 @@
 package com.visitscotland.brxm.components.navigation;
 
-import com.visitscotland.brxm.beans.Page;
-import com.visitscotland.brxm.beans.Widget;
+import com.visitscotland.brxm.hippobeans.Page;
+import com.visitscotland.brxm.hippobeans.Widget;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -31,7 +31,7 @@ import static org.mockito.Mockito.withSettings;
 
 
 @ExtendWith(MockitoExtension.class)
-public class MenuComponentTest {
+class MenuComponentTest {
 
     private static final String MENU_ID = "mock";
     private static final String BUNDLE_ID = MenuComponent.NAVIGATION_PREFIX + MENU_ID;
@@ -136,7 +136,7 @@ public class MenuComponentTest {
 
     @Test
     void documentWithNoTitle_skippedFromRender() {
-        //When a document has a link but it has no title and no resource bundle. It gets droppped from the list
+        //When a document has a link but it has no title and no resource bundle. It gets dropped from the list
         // On the current specification the field title is mandatory. So, this is more defensive programming rather than a real case
         HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);

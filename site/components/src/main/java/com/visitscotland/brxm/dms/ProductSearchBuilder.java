@@ -1,8 +1,8 @@
 package com.visitscotland.brxm.dms;
 
-import com.visitscotland.brxm.beans.ProductsSearch;
-import com.visitscotland.brxm.beans.dms.LocationObject;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.hippobeans.ProductsSearch;
+import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.brxm.utils.VsException;

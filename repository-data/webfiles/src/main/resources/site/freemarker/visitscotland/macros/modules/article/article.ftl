@@ -4,8 +4,8 @@
 <#include "article-main.ftl">
 <#include "article-side.ftl">
 
-<#-- @ftlvariable name="module" type="com.visitscotland.brxm.beans.mapping.ArticleModule" -->
-<#-- @ftlvariable name="section" type="com.visitscotland.brxm.beans.mapping.ArticleModuleSection" -->
+<#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.ArticleModule" -->
+<#-- @ftlvariable name="section" type="com.visitscotland.brxm.model.ArticleModuleSection" -->
 
 <#macro article module>
     <@hst.manageContent hippobean=module.hippoBean />

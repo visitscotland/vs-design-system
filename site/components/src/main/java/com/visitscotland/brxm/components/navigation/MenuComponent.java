@@ -1,13 +1,13 @@
 package com.visitscotland.brxm.components.navigation;
 
 
-import com.visitscotland.brxm.beans.Page;
-import com.visitscotland.brxm.beans.Widget;
-import com.visitscotland.brxm.beans.mapping.LocalizedURL;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.hippobeans.Page;
+import com.visitscotland.brxm.hippobeans.Widget;
+import com.visitscotland.brxm.model.LocalizedURL;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.components.navigation.info.MenuComponentInfo;
 import com.visitscotland.brxm.services.ResourceBundleService;
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.utils.Contract;
@@ -209,7 +209,7 @@ public class MenuComponent extends EssentialsMenuComponent {
                     String message = String.format("The label '%s' has more parameters than expected. File: %s, key: %s",
                             seeAll, STATIC, "see-all-cta");
                     logger.warn(message);
-                    CommonUtils.contentIssue(message.replace("%", "%%"));
+                    CommonUtilsService.contentIssue(message.replace("%", "%%"));
 
                     //After Catching the exception, we can eliminate the parameters.
                     menuItem.setCta(seeAll.replace("%s", ""));
