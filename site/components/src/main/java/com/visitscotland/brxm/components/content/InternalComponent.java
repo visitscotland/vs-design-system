@@ -1,6 +1,7 @@
 package com.visitscotland.brxm.components.content;
 
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.utils.InternalParameterProcessor;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.onehippo.cms7.essentials.components.CommonComponent;

@@ -1,6 +1,5 @@
 package com.visitscotland.brxm.services;
 
-import com.visitscotland.brxm.utils.CommonUtils;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -40,7 +39,7 @@ class ResourceBundleServiceTest {
         lenient().when(registry.getBundle(BUNDLE)).thenReturn(fbBundle);
         lenient().when(registry.getBundle(BUNDLE, Locale.UK)).thenReturn(bundle);
 
-        service = new ResourceBundleService(new CommonUtils());
+        service = new ResourceBundleService(new CommonUtilsService());
 
         service.setResourceBundleRegistry(registry);
 

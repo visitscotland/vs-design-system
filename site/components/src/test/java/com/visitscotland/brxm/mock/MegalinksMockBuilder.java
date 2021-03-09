@@ -1,9 +1,9 @@
 package com.visitscotland.brxm.mock;
 
-import com.visitscotland.brxm.beans.*;
-import com.visitscotland.brxm.beans.capabilities.Linkable;
-import com.visitscotland.brxm.components.content.factory.LinkModuleFactoryTest;
-import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
+import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
+import com.visitscotland.brxm.factory.LinkModuleFactoryTest;
+import com.visitscotland.brxm.factory.LinkModulesFactory;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;

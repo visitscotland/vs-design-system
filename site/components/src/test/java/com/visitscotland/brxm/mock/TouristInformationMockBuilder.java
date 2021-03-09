@@ -1,7 +1,7 @@
 package com.visitscotland.brxm.mock;
 
-import com.visitscotland.brxm.beans.*;
-import com.visitscotland.brxm.beans.capabilities.Linkable;
+import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.mockito.Mockito;

@@ -19,10 +19,10 @@
 <#include "../macros/shared/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brxm.beans.Listicle" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.beans.mapping.Coordinates" -->
-<#-- @ftlvariable name="item" type="com.visitscotland.brxm.beans.mapping.ListicleModule" -->
-<#-- @ftlvariable name="cta" type="com.visitscotland.brxm.beans.mapping.FlatLink" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Listicle" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.model.Coordinates" -->
+<#-- @ftlvariable name="item" type="com.visitscotland.brxm.model.ListicleModule" -->
+<#-- @ftlvariable name="cta" type="com.visitscotland.brxm.model.FlatLink" -->
 
 </#compress>
 <div class="has-edit-button">
