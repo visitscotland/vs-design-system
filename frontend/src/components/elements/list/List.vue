@@ -5,6 +5,7 @@
         :class="{
             'vs-list--unstyled': unstyled,
             'vs-list--inline': inline,
+            'vs-list--ordered': ordered,
         }"
         v-bind="$attrs"
     >
@@ -50,14 +51,42 @@ export default {
 
 <style lang="scss">
 .vs-list {
-    &.vs-list--unstyled {
-        padding: 0;
+    margin: 0 0 $spacer-5 $spacer-6;
+    padding: 0;
+    list-style: none;
+
+    li{
+        margin-bottom: $spacer-2;
+
+        &::before{
+            content: "• ";
+            color: $color-pink;
+            padding-right: $spacer-4;
+            margin-left: -$spacer-6;
+        }
+    }
+
+    &.vs-list--unstyled,
+    &.vs-list--inline,
+    &.vs-list--ordered {
         margin: 0;
-        list-style: none;
+
+        li{
+            &::before{
+                display: none;
+            }
+        }
     }
 
     &.vs-list--inline {
         display: flex;
+    }
+
+    &.vs-list--ordered {
+        margin: 0 0 $spacer-5 $spacer-6;
+        list-style-position: inside;
+        list-style: decimal;
+
     }
 }
 </style>
@@ -66,16 +95,11 @@ export default {
 ```jsx
     <h3>Default</h3>
     <VsList>
-        <li class="mr-7">Test</li>
-        <li class="mr-7">Test</li>
-        <li class="mr-7">Test</li>
-    </VsList>
-
-    <h3 class="mt-8">Inline</h3>
-    <VsList inline>
-        <li class="mr-7">Test</li>
-        <li class="mr-7">Test</li>
-        <li class="mr-7">Test</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+        <li>Maecenas nec massa placerat, bibendum ex sit amet, blandit dolor.</li>
+        <li>Curabitur tempus quam et dolor venenatis blandit. Nulla et erat orci.
+        Suspendisse consequat ipsum et ex molestie viverra. In faucibus eget nisi eu lobortis.</li>
+        <li>Integer efficitur lacus id mi scelerisque, porta feugiat leo egestas. </li>
     </VsList>
 
     <h3 class="mt-8">Inline Unstyled</h3>
@@ -87,13 +111,15 @@ export default {
 
     <h3 class="mt-8">Unstyled</h3>
     <VsList unstyled>
-        <li class="mr-7">Test</li>
-        <li class="mr-7">Test</li>
-        <li class="mr-7">Test</li>
+        <li >Test</li>
+        <li >Test</li>
+        <li >Test</li>
     </VsList>
 
     <h3 class="mt-8">Ordered List</h3>
     <VsList ordered>
+        <li>Test</li>
+        <li>Test</li>
         <li>Test</li>
     </VsList>
 ```
