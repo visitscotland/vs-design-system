@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.components;
 
-import com.visitscotland.brxm.beans.dms.LocationObject;
+import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.dms.LocationLoader;
 import org.hippoecm.frontend.plugin.IPluginContext;
 import org.hippoecm.frontend.plugin.Plugin;

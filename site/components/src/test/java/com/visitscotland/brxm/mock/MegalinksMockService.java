@@ -1,7 +1,7 @@
 package com.visitscotland.brxm.mock;
 
-import com.visitscotland.brxm.beans.*;
-import com.visitscotland.brxm.components.content.factory.LinkModuleFactoryTest;
+import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.factory.LinkModuleFactoryTest;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 
 import java.util.Collections;

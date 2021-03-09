@@ -1,13 +1,12 @@
 package com.visitscotland.brxm.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brxm.beans.*;
-import com.visitscotland.brxm.beans.mapping.FlatLink;
-import com.visitscotland.brxm.beans.mapping.LinkType;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.model.FlatLink;
+import com.visitscotland.brxm.model.LinkType;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
-import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
@@ -57,7 +56,7 @@ public class LinkService {
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
 
             if (dmsLink.getProduct() == null) {
-                String message = CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
+                String message = CommonUtilsService.contentIssue("There is no product with the id '%s', (%s) ",
                         dmsLink.getProduct(), item.getPath());
                 logger.warn(message);
             } else if (product != null) {
@@ -79,7 +78,7 @@ public class LinkService {
             CMSLink cmsLink = (CMSLink) item;
             return new FlatLink(resourceBundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl(cmsLink.getLink()), LinkType.INTERNAL);
         } else {
-            String message = CommonUtils.contentIssue("The document %s could not be turned into a link'  ", item.getPath());
+            String message = CommonUtilsService.contentIssue("The document %s could not be turned into a link'  ", item.getPath());
             logger.warn(message);
         }
 
@@ -97,7 +96,7 @@ public class LinkService {
 
         if (link.getLinkType() instanceof DMSLink) {
             if (product == null) {//((DMSLink) link).getDmsData(locale)
-                CommonUtils.contentIssue("The product id '%s' does not exist but is linked ",
+                CommonUtilsService.contentIssue("The product id '%s' does not exist but is linked ",
                         ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
             } else {
                 return properties.getDmsHost() + product.get(URL).asText();

@@ -1,9 +1,8 @@
 package com.visitscotland.brxm.mock;
 
-import com.visitscotland.brxm.beans.*;
+import com.visitscotland.brxm.hippobeans.*;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-import org.mockito.Mockito;
 
 import java.util.Collections;
 
