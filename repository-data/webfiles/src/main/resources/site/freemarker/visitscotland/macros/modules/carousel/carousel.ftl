@@ -4,12 +4,12 @@
 
 <#macro carousel item>
     <vs-carousel
-        nextText="next page"
-        prevText="previous page"
-        slidesXs="1"
-        slidesSm="2"
-        slidesMd="3"
-        slidesLg="4"
+        next-text="next page"
+        prev-text="previous page"
+        slides-xs="1"
+        slides-sm="2"
+        slides-md="3"
+        slides-lg="4"
     >
         <#list item.links as carouselItem>
             <#if carouselItem.image.cmsImage??>
