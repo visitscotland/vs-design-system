@@ -1,6 +1,7 @@
 package com.visitscotland.brxm.components.content;
 
-import com.visitscotland.brxm.beans.Destination;
+import com.visitscotland.brxm.hippobeans.Destination;
+import com.visitscotland.brxm.utils.PageTemplateBuilder;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.junit.jupiter.api.BeforeEach;

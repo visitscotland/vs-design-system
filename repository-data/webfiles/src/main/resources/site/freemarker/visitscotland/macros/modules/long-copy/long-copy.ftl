@@ -2,7 +2,7 @@
 <#include "../../../../frontend/components/vs-image-with-caption.ftl">
 <#include "../../global/image-with-caption.ftl">
 
-<#-- @ftlvariable name="module" type="com.visitscotland.brxm.beans.mapping.LongCopyModule" -->
+<#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.LongCopyModule" -->
 
 <#macro longCopy module>
 

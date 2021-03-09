@@ -1,10 +1,10 @@
 package com.visitscotland.brxm.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brxm.beans.*;
-import com.visitscotland.brxm.beans.mapping.FlatLink;
-import com.visitscotland.brxm.beans.mapping.LinkType;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.model.FlatLink;
+import com.visitscotland.brxm.model.LinkType;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.utils.HippoUtilsService;
@@ -17,7 +17,6 @@ import org.mockito.Answers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.context.ApplicationContext;
 
 import javax.annotation.Resource;
 import java.io.IOException;

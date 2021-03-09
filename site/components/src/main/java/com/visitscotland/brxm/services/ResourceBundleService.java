@@ -1,7 +1,6 @@
 package com.visitscotland.brxm.services;
 
-import com.visitscotland.brxm.cfg.VsComponentManager;
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.slf4j.Logger;
@@ -18,9 +17,9 @@ public class ResourceBundleService {
 
     ResourceBundleRegistry registry;
 
-    private CommonUtils common;
+    private CommonUtilsService common;
 
-    public ResourceBundleService (CommonUtils common){
+    public ResourceBundleService (CommonUtilsService common){
         this.common = common;
     }
 

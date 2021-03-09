@@ -3,7 +3,7 @@ package com.visitscotland.brxm.components;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.DMSProxy;
 import com.visitscotland.dataobjects.DataType;

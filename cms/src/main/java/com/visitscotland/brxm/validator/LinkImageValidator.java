@@ -1,9 +1,9 @@
 package com.visitscotland.brxm.validator;
 
-import com.visitscotland.brxm.beans.InstagramImage;
-import com.visitscotland.brxm.beans.ListicleItem;
-import com.visitscotland.brxm.beans.SharedLink;
-import com.visitscotland.brxm.beans.Stop;
+import com.visitscotland.brxm.hippobeans.InstagramImage;
+import com.visitscotland.brxm.hippobeans.ListicleItem;
+import com.visitscotland.brxm.hippobeans.SharedLink;
+import com.visitscotland.brxm.hippobeans.Stop;
 import com.visitscotland.brxm.translation.SessionFactory;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.Validator;

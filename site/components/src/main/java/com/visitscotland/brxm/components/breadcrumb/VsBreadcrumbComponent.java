@@ -1,8 +1,8 @@
 package com.visitscotland.brxm.components.breadcrumb;
 
 
-import com.visitscotland.brxm.beans.Page;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.hippobeans.Page;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;

@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.validator;
 
-import com.visitscotland.brxm.beans.*;
+import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.translation.SessionFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
