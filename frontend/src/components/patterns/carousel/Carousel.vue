@@ -54,6 +54,7 @@
                                     'vs-carousel__navigation-item--active' : ''"
                                 @click="sliderNavigate(index - 1)"
                                 @keyup.enter="sliderNavigate(index - 1)"
+                                tabindex="0"
                             >
                                 Navigate to page {{ index }}
                             </span>
@@ -307,6 +308,7 @@ export default {
             &:focus,
             &:hover {
                 border: 2px solid $color-purple-tint-4;
+                outline: none;
             }
         }
 
@@ -337,6 +339,18 @@ export default {
                 background: $color-black;
                 transform: none;
                 cursor: default;
+
+                &:hover {
+                    background: $color-black;
+                }
+            }
+
+            &:hover {
+                background: $color-pink-tint-5;
+            }
+
+            &:focus {
+                border: 1px solid $color-purple;
             }
         }
 
@@ -363,21 +377,6 @@ export default {
     .no-js .vs-carousel {
         &__control {
             display: none;
-        }
-
-        &__slide {
-            width: 100% !important;
-            margin-bottom: $spacer-3;
-            padding-bottom: $spacer-3;
-
-            &::after {
-                content: '';
-                border-bottom: 1px solid $color-gray-tint-5;
-                position: absolute;
-                width: calc(100% - 16px);
-                left: 8px;
-                bottom: 0;
-            }
         }
 
         &__navigation,
