@@ -159,6 +159,23 @@ export default {
     }
 
     .no-js .vs-carousel-slide {
+        margin-bottom: $spacer-2;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: $spacer-3;
+            bottom: $spacer-1;
+            height: 1px;
+            width: calc(100% - 24px);
+            background: $color-gray-tint-5;
+
+            @include media-breakpoint-up(sm) {
+                width: calc(100% - 40px);
+                left: $spacer-5;
+            }
+        }
+
         .vs-stretched-link-card {
             opacity: 1;
             display: flex;
@@ -226,20 +243,10 @@ export default {
                 }
             }
 
-            &::after {
-                content: '';
-                position: absolute;
-                left: $spacer-2;
-                bottom: 0;
-                height: 1px;
-                width: calc(100% - 16px);
-                background: $color-gray-tint-5;
-                display: inline-block !important;
-            }
-
             .vs-stretched-link-panels {
                 right: auto;
-                left: 33%;
+                left: calc(33% - 4px);
+                top: $spacer-4;
                 transform: translateX(-100%);
 
                 &__panel {
