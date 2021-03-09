@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 const path = require('path');
 const chalk = require('chalk');
 const vueDocgenApi = require('vue-docgen-api');
