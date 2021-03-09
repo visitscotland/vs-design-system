@@ -329,7 +329,7 @@ public class LinkModuleFactoryTest {
         when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, false);
 
-        assertEquals("title(DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
         assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
         Mockito.verify((ExternalDocument)externalDocument.getLinkType(),Mockito.never()).getCategory();
     }
@@ -344,7 +344,7 @@ public class LinkModuleFactoryTest {
         when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, true);
 
-        assertEquals("title(DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
         assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
         assertEquals(category, enhancedLink.getCategory());
     }

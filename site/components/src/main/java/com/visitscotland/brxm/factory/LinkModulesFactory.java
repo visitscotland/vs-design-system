@@ -268,7 +268,8 @@ public class LinkModulesFactory {
             }
             if (((SharedLink) linkable).getLinkType() instanceof ExternalDocument){
                 ExternalDocument externalDocument = (ExternalDocument)sharedLink.getLinkType();
-                String size = CommonUtils.getExtenalDocumentSize(externalDocument.getLink());
+                //TODO Review the following line
+                String size = CommonUtilsService.getExtenalDocumentSize(externalDocument.getLink());
                 if (size!=null) {
                     String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
                     link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");

@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.validator;
 
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.services.CommonUtilsService;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.Validator;
 import org.onehippo.cms.services.validation.api.Violation;
@@ -14,6 +14,7 @@ import java.util.Optional;
 public class ExternalDocumentValidator implements Validator<String>  {
 
     public Optional<Violation> validate(ValidationContext context, String value) {
-        return CommonUtils.getExtenalDocumentSize(value) == null?Optional.of(context.createViolation()) : Optional.empty();
+        //TODO Review the following line
+        return CommonUtilsService.getExtenalDocumentSize(value) == null?Optional.of(context.createViolation()) : Optional.empty();
     }
 }

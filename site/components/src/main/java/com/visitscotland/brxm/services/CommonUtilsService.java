@@ -2,9 +2,8 @@ package com.visitscotland.brxm.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brxm.beans.InstagramImage;
-import com.visitscotland.brxm.cfg.VsComponentManager;
-import com.visitscotland.brxm.services.ResourceBundleService;
+import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.hippobeans.InstagramImage;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,12 +13,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-import java.text.DecimalFormat;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -50,7 +49,7 @@ public class CommonUtilsService {
     public static String request(String url) throws IOException {
         int responseCode = ((HttpURLConnection) new URL(url).openConnection()).getResponseCode();
         if (responseCode < 400) {
-            if (responseCode >= 300){
+            if (responseCode >= 300) {
                 logger.warn("The request for {} has responded with the Status code {}", url, responseCode);
             }
             try (final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), StandardCharsets.UTF_8))) {
@@ -70,19 +69,19 @@ public class CommonUtilsService {
     }
 
     public String requestUrl(String url) throws IOException {
-        return CommonUtils.request(url);
+        return CommonUtilsService.request(url);
     }
 
     /**
-     * @deprecated  Use ImageFactory.requestInstagramImageData(InstagramImage)
+     * @deprecated Use ImageFactory.requestInstagramImageData(InstagramImage)
      */
     @Deprecated
     public static JsonNode getInstagramInformation(InstagramImage instagramLink) throws IOException {
         JsonNode response = null;
         ResourceBundleService bundle = VsComponentManager.get(ResourceBundleService.class);
         //TODO add the access token value for VS facebook account
-        String accessToken = bundle.getResourceBundle("keys","tagram.accesstoken",  Locale.UK);
-        URL instagramInformation = new URL("https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/" + instagramLink.getId()+"&access_token="+accessToken);
+        String accessToken = bundle.getResourceBundle("keys", "tagram.accesstoken", Locale.UK);
+        URL instagramInformation = new URL("https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/" + instagramLink.getId() + "&access_token=" + accessToken);
         String responseInstagram = request(instagramInformation.toString());
         if (responseInstagram != null) {
             ObjectMapper mapper = new ObjectMapper();
@@ -107,7 +106,7 @@ public class CommonUtilsService {
             URLConnection con = url.openConnection();
 
             String ext = con.getContentType();
-            if (ext.contains("pdf")){
+            if (ext.contains("pdf")) {
                 double bytes = con.getContentLength();
                 size = "PDF " + decimalFormat.format((bytes / 1024) / 1024) + "MB";
             }
@@ -118,12 +117,11 @@ public class CommonUtilsService {
     }
 
 
-
     /**
      * TODO this method returns the current open state and it could be affected by the cache, ask WEBOPS and move it to front end if needed
      * TODO move to DMSDataService once this method need is confirmed
      *
-     * @deprecated  This method is not in use at the moment. See TODOs
+     * @deprecated This method is not in use at the moment. See TODOs
      */
     @Deprecated
     public static String currentOpenStatus(String starTime, String endTime, Locale locale) {
