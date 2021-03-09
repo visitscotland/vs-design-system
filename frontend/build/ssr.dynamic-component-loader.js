@@ -1,4 +1,5 @@
 /* eslint-disable func-names */
+/* eslint-disable import/no-extraneous-dependencies */
 
 const os = require('os');
 const path = require('path');
