@@ -27,6 +27,7 @@
   mixin
   - visitscotland:translationFlag (boolean)
   - visitscotland:diff (string)
+  - visitscotland:translationPriority (string)
 
 [visitscotland:Day] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable

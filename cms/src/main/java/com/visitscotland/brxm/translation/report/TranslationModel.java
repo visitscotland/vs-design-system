@@ -1,0 +1,57 @@
+package com.visitscotland.brxm.translation.report;
+
+import java.util.List;
+
+public class TranslationModel {
+    public TranslationModel(String handleId, String displayName, String translationStatus, TranslationPriority translationPriority, List<String> translatedLocales, List<String> sentForTranslationLocales) {
+        this.handleId = handleId;
+        this.displayName = displayName;
+        this.translatedLocales = translatedLocales;
+        this.translationPriority = translationPriority.toString();
+        this.translationStatus = translationStatus;
+        this.sentForTranslationLocales = sentForTranslationLocales;
+        if (translationPriority == TranslationPriority.HIGH) {
+            translationStatusSortOrder = 3;
+        } else if (translationPriority == TranslationPriority.NORMAL) {
+            translationStatusSortOrder = 2;
+        } else {
+            translationStatusSortOrder = 1;
+        }
+    }
+
+    private final String displayName;
+    private final List<String> translatedLocales;
+    private final List<String> sentForTranslationLocales;
+    private final String translationStatus;
+    private final String handleId;
+    private final String translationPriority;
+    private final int translationStatusSortOrder;
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public List<String> getTranslatedLocales() {
+        return translatedLocales;
+    }
+
+    public String getTranslationStatus() {
+        return translationStatus;
+    }
+
+    public List<String> getSentForTranslationLocales() {
+        return sentForTranslationLocales;
+    }
+
+    public String getHandleId() {
+        return handleId;
+    }
+
+    public String getTranslationPriority() {
+        return translationPriority;
+    }
+
+    public int getTranslationStatusSortOrder() {
+        return translationStatusSortOrder;
+    }
+}

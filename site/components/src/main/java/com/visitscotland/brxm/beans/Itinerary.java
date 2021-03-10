@@ -64,4 +64,9 @@ public class Itinerary extends Page {
     public OTYML getOtherThings() {
         return getBean("visitscotland:otherThings", OTYML.class);
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
+    public String getTranslationPriority() {
+        return getSingleProperty("visitscotland:translationPriority");
+    }
 }
