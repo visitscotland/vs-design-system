@@ -3,28 +3,25 @@ package com.visitscotland.brxm.dms;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brxm.utils.CommonUtils;
-import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Locale;
 
-
+//TODO: Test changing the name
+//@Component("dmsDataService")
+@Component
 public class DMSDataService {
 
     private static final Logger logger = LoggerFactory.getLogger(DMSDataService.class.getName());
 
-    private CommonUtils utils;
+    private DMSProxy proxy;
 
-    public DMSDataService() {
-        this (new CommonUtils());
-    }
-
-    public DMSDataService(CommonUtils utils) {
-        this.utils = utils;
+    public DMSDataService(DMSProxy proxy) {
+        this.proxy = proxy;
     }
 
     /**
@@ -37,11 +34,12 @@ public class DMSDataService {
      *
      *
      */
-    public JsonNode productCard(String productId, Locale locale) throws IOException {
+    public JsonNode productCard(String productId, Locale locale) {
         String responseString = null;
 
         if (!Contract.isEmpty(productId)) {
-            String dmsUrl = String.format(DMSConstants.VS_DMS_PRODUCT_CARD,Properties.VS_DMS_SERVICE);
+            //TODO Remove %s from the constant
+            String dmsUrl = String.format(DMSConstants.VS_DMS_PRODUCT_CARD, "");
             dmsUrl += "id=" + productId;
             if (locale != null) {
                 dmsUrl += "&locale=" + locale.getLanguage();
@@ -49,8 +47,7 @@ public class DMSDataService {
 
             logger.info("Requesting data to the dms: %s", dmsUrl);
             try {
-                responseString = utils.requestUrl(dmsUrl);
-
+                responseString = proxy.request(dmsUrl);
                 if (responseString!=null) {
 
                     ObjectMapper mapper = new ObjectMapper();
@@ -85,7 +82,7 @@ public class DMSDataService {
 
         logger.info("Requesting data to the dms: %s", dmsUrl);
         try {
-            responseString = utils.requestUrl(dmsUrl);
+            responseString = proxy.request(dmsUrl);
 
             if (responseString!=null) {
 

@@ -27,7 +27,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
 .vs-summary-box__list {
     background-color: $color-yellow;
     width: 350px;

@@ -3,7 +3,7 @@
 <#include "../../../../frontend/components/vs-global-menu-language.ftl">
 <#include "../../../../frontend/components/vs-global-menu-language-item.ftl">
 
-<#-- @ftlvariable name="language" type="com.visitscotland.brxm.beans.mapping.LocalizedURL"-->
+<#-- @ftlvariable name="language" type="com.visitscotland.brxm.model.LocalizedURL"-->
 <#-- @ftlvariable name="hstRequestContext" type="org.hippoecm.hst.core.request.HstRequestContext" -->
 
 <#macro headerGlobalMenu>

@@ -3,10 +3,12 @@ package com.visitscotland.brxm.components;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brxm.utils.CommonUtils;
-import com.visitscotland.brxm.utils.Properties;
-import com.visitscotland.dataobjects.*;
+import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.dms.DMSConstants;
+import com.visitscotland.brxm.dms.DMSProxy;
+import com.visitscotland.dataobjects.DataType;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.onehippo.forge.exdocpicker.api.ExternalDocumentCollection;
@@ -15,7 +17,6 @@ import org.onehippo.forge.exdocpicker.api.ExternalDocumentServiceFacade;
 import org.onehippo.forge.exdocpicker.impl.SimpleExternalDocumentCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import net.sf.json.JSONObject;
 import vs.ase.dms.ProductTypes;
 
 import javax.jcr.Node;
@@ -24,18 +25,20 @@ import javax.jcr.Value;
 import java.io.IOException;
 import java.util.*;
 
-
+//TODO Make this testable
 public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade<JSONObject> {
 
     private static Logger log = LoggerFactory.getLogger(AbstractDMSPicker.class);
 
     private static final String PARAM_EXTERNAL_DOCS_FIELD_NAME = "example.external.docs.field.name";
 
+    private DMSProxy dmsProxy;
 
     private JSONArray docArray;
 
     public AbstractDMSPicker(String type) {
         try {
+            dmsProxy = VsComponentManager.get(DMSProxy.class);
             docArray = new JSONArray();
             docArray.addAll(JSONArray.fromObject(deserialize(
                     request(type,null, productTypesForPSR(type)))));
@@ -56,7 +59,7 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
 
         try {
             final Node contextNode = context.getContextModel().getNode();
-            final List<String> docIds = new ArrayList<String>();
+            final List<String> docIds = new ArrayList<>();
 
             for (Iterator<? extends JSONObject> it = exdocs.iterator(); it.hasNext();) {
                 JSONObject doc = it.next();
@@ -81,7 +84,7 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
                     + PARAM_EXTERNAL_DOCS_FIELD_NAME + "': " + fieldName);
         }
 
-        ExternalDocumentCollection<JSONObject> docCollection = new SimpleExternalDocumentCollection<JSONObject>();
+        ExternalDocumentCollection<JSONObject> docCollection = new SimpleExternalDocumentCollection<>();
 
         try {
             final Node contextNode = context.getContextModel().getNode();
@@ -170,23 +173,19 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
      *
      * @return HTML fragment according to the type and the locale
      */
-    protected static String request(String productType, Locale locale, List<String> productTypeParameterList) throws IOException {
+    protected String request(String productType, Locale locale, List<String> productTypeParameterList) {
         String parameters ="";
         if (productTypeParameterList!=null){
             for (String productTypeParameter: productTypeParameterList) {
                 if (parameters.isEmpty()) {
-                    parameters = "?prodtypes=" + productTypeParameter;
+                    parameters = "prodtypes=" + productTypeParameter;
                 } else {
-                    parameters = parameters + "&prodtypes=" + productTypeParameter;
+                    parameters += "&prodtypes=" + productTypeParameter;
                 }
             }
         }
 
-        if (locale == null){
-            return  CommonUtils.request(String.format("%s/data/meta/%s/list%s", Properties.VS_DMS_SERVICE, productType, parameters));
-        } else {
-            return  CommonUtils.request(String.format("%s/data/meta/%s/list%s&locale=%s", Properties.VS_DMS_SERVICE, productType, parameters, locale.getLanguage()));
-        }
+        return dmsProxy.request(String.format(DMSConstants.META_PRODUCT_LIST,productType, parameters), locale);
     }
 
 

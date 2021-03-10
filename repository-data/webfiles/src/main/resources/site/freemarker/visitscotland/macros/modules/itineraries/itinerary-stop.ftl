@@ -13,8 +13,8 @@
 <#include "../../global/cms-errors.ftl">
 
 <#macro itineraryStop stop lastStop>
-<#-- @ftlvariable name="stop" type="com.visitscotland.brxm.beans.Stop" -->
-<#-- @ftlvariable name="prod" type="com.visitscotland.brxm.beans.mapping.FlatStop" -->
+<#-- @ftlvariable name="stop" type="com.visitscotland.brxm.hippobeans.Stop" -->
+<#-- @ftlvariable name="prod" type="com.visitscotland.brxm.model.FlatStop" -->
 
     <#assign prod = stops[stop.identifier]>
     <#assign image = "" />
@@ -91,7 +91,7 @@
             <#if prod??>
                 <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
                     <vs-description-list class="my-4 mb-0 justify-content-start" inline>
-                        <vs-description-list-item title class="mb-0 mr-0 col-auto">${label("itinerary", "stop.time-to-explore")}</vs-description-list-item>
+                        <vs-description-list-item title class="mb-0 mr-0 pr-1 col-auto">${label("itinerary", "stop.time-to-explore")}</vs-description-list-item>
                         <vs-description-list-item class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-item>
                     </vs-description-list>
                 </#if>

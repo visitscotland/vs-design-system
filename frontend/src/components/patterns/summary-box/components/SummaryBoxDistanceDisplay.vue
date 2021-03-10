@@ -50,13 +50,19 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
 .vs-summary-box-distance-display {
     font-family: $headings-font-family;
     font-size: 1.625rem;
     top: 20%;
     @include media-breakpoint-up(lg) {
         font-size: 1.75rem;
+    }
+
+    span {
+        display: block;
+        padding: 0 .25em;
+        word-break: break-word;
+        line-height: 1;
     }
 }
 </style>

@@ -1,22 +1,25 @@
 package com.visitscotland.brxm.components.content;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brxm.beans.BaseDocument;
-import com.visitscotland.brxm.beans.Page;
-import com.visitscotland.brxm.beans.dms.LocationObject;
-import com.visitscotland.brxm.beans.mapping.Coordinates;
-import com.visitscotland.brxm.beans.mapping.FlatImage;
-import com.visitscotland.brxm.beans.mapping.FlatLink;
-import com.visitscotland.brxm.beans.mapping.megalinks.LinksModule;
-import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
-import com.visitscotland.brxm.dms.DMSDataService;
+import com.visitscotland.brxm.hippobeans.BaseDocument;
+import com.visitscotland.brxm.hippobeans.Page;
+import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.model.Coordinates;
+import com.visitscotland.brxm.model.FlatImage;
+import com.visitscotland.brxm.model.FlatLink;
+import com.visitscotland.brxm.model.Module;
+import com.visitscotland.brxm.model.megalinks.HorizontalListLinksModule;
+import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.factory.ImageFactory;
+import com.visitscotland.brxm.factory.LinkModulesFactory;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
-import com.visitscotland.brxm.utils.CommonUtils;
-import com.visitscotland.brxm.utils.HippoUtilsService;
+import com.visitscotland.brxm.services.CommonUtilsService;
+import com.visitscotland.brxm.utils.PageTemplateBuilder;
 import com.visitscotland.dataobjects.DataType;
+import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModelException;
@@ -38,31 +41,29 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
     public static final String DOCUMENT = "document";
     public static final String EDIT_PATH = "path";
-    protected final String FACILITIES = "keyFacilities";
-    public final String HERO_COORDINATES = "heroCoordinates";
+    public static final String FACILITIES = "keyFacilities";
+    public static final String HERO_COORDINATES = "heroCoordinates";
 
-    HippoUtilsService utils;
-    ResourceBundleService bundle;
-    DMSDataService dmsData;
-    LinkService linksService;
-    LocationLoader locationLoader;
-    LinkModulesFactory linksFactory;
+    private ResourceBundleService bundle;
+    private LinkService linksService;
+    private LocationLoader locationLoader;
+    private LinkModulesFactory linksFactory;
+    private ImageFactory imageFactory;
 
     public PageContentComponent(){
-        utils = new HippoUtilsService();
-        bundle = new ResourceBundleService();
-        dmsData = new DMSDataService();
-        linksService = new LinkService();
-        locationLoader = LocationLoader.getInstance();
-        linksFactory = new LinkModulesFactory();
+        bundle = VsComponentManager.get(ResourceBundleService.class);
+        linksService = VsComponentManager.get(LinkService.class);
+        locationLoader = VsComponentManager.get(LocationLoader.class);
+        linksFactory = VsComponentManager.get(LinkModulesFactory.class);
+        imageFactory = VsComponentManager.get(ImageFactory.class);
     }
+
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
         addDocumentPath(request);
         addProductSearchBuilder(request);
-        bundle.registerIn(request);
 
         initPage(request);
     }
@@ -100,13 +101,13 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @param page Page
      * @param locale Locale
      */
-    protected LinksModule addOTYML(Page page, Locale locale) {
-        LinksModule otymlLink = null;
+    protected HorizontalListLinksModule addOTYML(Page page, Locale locale) {
+        HorizontalListLinksModule otyml = null;
         if(page.getOtherThings()!=null) {
-            otymlLink = linksFactory.horizontalListLayout(page.getOtherThings(), locale);
-            otymlLink.setTheme(PageTemplateBuilder.themes[0]);
+            otyml = linksFactory.horizontalListLayout(page.getOtherThings(), locale);
+            otyml.setTheme(PageTemplateBuilder.NEUTRAL_THEME);
         }
-        return otymlLink;
+        return otyml;
     }
 
     /**
@@ -158,13 +159,14 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         final String HERO_IMAGE = "heroImage";
         final String ALERTS = "alerts";
         List<String> alerts = validateDesiredFields(getDocument(request));
+        Module introModule = new Module<TYPE>();
 
-        FlatImage heroImage = new FlatImage(getDocument(request).getHeroImage(), request.getLocale());
-        checkImageErrors(heroImage,request.getLocale(),alerts);
+        FlatImage heroImage = imageFactory.createImage(getDocument(request).getHeroImage(), introModule, request.getLocale());
+
         request.setAttribute(HERO_IMAGE, heroImage);
 
-        if (alerts.size()>0){
-            request.setAttribute(ALERTS, alerts);
+        if (!Contract.isEmpty(introModule.getErrorMessages())){
+            request.setAttribute(ALERTS, introModule.getErrorMessages());
         }
     }
 
@@ -172,35 +174,45 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         List<String> response =  new ArrayList<>();
         if (item.getTeaser() == null || item.getTeaser().isEmpty()) {
             response.add("Teaser field should be provided");
-            logger.warn(CommonUtils.contentIssue("The teaser has not been provided for = %s",item.getPath()));
+            logger.warn(CommonUtilsService.contentIssue("The teaser has not been provided for = %s",item.getPath()));
         }
         if (item.getSeoTitle() == null || item.getSeoTitle().isEmpty()) {
             response.add("SEO title field is required");
-            logger.warn(CommonUtils.contentIssue("The SEO title has not been provided for = %s",item.getPath()));
+            logger.warn(CommonUtilsService.contentIssue("The SEO title has not been provided for = %s",item.getPath()));
         }
         if (item.getSeoDescription() == null || item.getSeoDescription().isEmpty()) {
             response.add("SEO description field is required");
-            logger.warn(CommonUtils.contentIssue("The SEO description has not been provided for = %s",item.getPath()));
+            logger.warn(CommonUtilsService.contentIssue("The SEO description has not been provided for = %s",item.getPath()));
         }
 
         return response;
     }
 
+    /**
+     * TODO: Remove this method after the refactoring of itineraries
+     */
+    @Deprecated
     protected static void checkImageErrors(FlatImage image, Locale locale, List<String> errors){
         if (image.getAltText() == null || image.getAltText().isEmpty()){
             image.setAltText(image.getCmsImage().getAltText());
             errors.add("Alt text field not provided for " + locale.getDisplayLanguage());
-            logger.warn(CommonUtils.contentIssue("Please add alt text in %s for the image : %s - %s",
+            logger.warn(CommonUtilsService.contentIssue("Please add alt text in %s for the image : %s - %s",
                     locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
         }
         if (image.getDescription() == null || image.getDescription().isEmpty()){
             image.setDescription(image.getCmsImage().getDescription());
             errors.add("Caption field not provided for " + locale.getDisplayLanguage());
-            logger.warn(CommonUtils.contentIssue("Please add a caption in %s for the image : %s - %s",
+            logger.warn(CommonUtilsService.contentIssue("Please add a caption in %s for the image : %s - %s",
                     locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
         }
     }
 
+    /**
+     * TODO: Remove this method after the refactoring of itineraries
+     *
+     * @deprecated use DMSUtils.getFacilities instead
+     */
+    @Deprecated
     protected List<DataType> getFacilities (JsonNode product){
         List<DataType> facilities = null;
         if (product.has(FACILITIES)){

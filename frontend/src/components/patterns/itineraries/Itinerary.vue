@@ -10,7 +10,7 @@
         </div>
         <div
             class="vs-itinerary__map-container"
-            v-show="isDesktop || showMap"
+            v-if="isDesktop || showMap"
         >
             <slot name="map" />
         </div>
@@ -109,8 +109,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-itinerary {
     .vs-itinerary__map-container {
         height: 100vh;
@@ -138,14 +136,17 @@ export default {
     }
 
     // layout styles for safari
-    @media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
-        @include media-breakpoint-up(lg) {
-            .vs-itinerary__map-container {
-                height: 0;
-            }
+    @media not all and (min-resolution:.001dpcm) {
+        @supports (-webkit-appearance:none) {
+            @include media-breakpoint-up(lg) {
+                .vs-itinerary__map-container {
+                    height: 0;
+                    position: relative;
+                }
 
-            .vs-itinerary__accordion-container {
-                max-width: 50%;
+                .vs-itinerary__accordion-container {
+                    max-width: 50%;
+                }
             }
         }
     }
