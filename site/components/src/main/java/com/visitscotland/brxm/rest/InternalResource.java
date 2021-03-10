@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.rest;
 
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.jaxrs.services.AbstractResource;
@@ -24,11 +24,11 @@ public class InternalResource extends AbstractResource {
 
     static final String NO_MATCH = "<!-- No match -->";
 
-    private final CommonUtils utils;
+    private final CommonUtilsService utils;
 
     private final Properties properties;
 
-    public InternalResource(CommonUtils utils, Properties properties) {
+    public InternalResource(CommonUtilsService utils, Properties properties) {
         this.utils = utils;
         this.properties = properties;
     }

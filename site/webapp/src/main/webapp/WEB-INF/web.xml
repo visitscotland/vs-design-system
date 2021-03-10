@@ -123,7 +123,7 @@
 
   <servlet>
     <servlet-name>freemarker</servlet-name>
-    <servlet-class>org.hippoecm.hst.servlet.HstFreemarkerServlet</servlet-class>
+    <servlet-class>com.visitscotland.brxm.config.VsHstFreemarkerServlet</servlet-class>
     <!-- FreemarkerServlet settings: -->
     <init-param>
       <param-name>TemplatePath</param-name>

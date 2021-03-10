@@ -8,14 +8,14 @@
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brxm.beans.Destination" -->
-<#-- @ftlvariable name="pageItems" type="com.visitscotland.brxm.beans.Megalinks" -->
-<#-- @ftlvariable name="image" type="com.visitscotland.brxm.beans.mapping.FlatImage" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
+<#-- @ftlvariable name="pageItems" type="com.visitscotland.brxm.hippobeans.Megalinks" -->
+<#-- @ftlvariable name="image" type="com.visitscotland.brxm.model.FlatImage" -->
 
-<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.beans.mapping.FlatImage" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.beans.mapping.Coordinates" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.model.FlatImage" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.model.Coordinates" -->
 
-<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.beans.Image" -->
+<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.hippobeans.Image" -->
 
 <#macro moduleBuilder module theme>
     <#if theme="theme1">
@@ -30,7 +30,10 @@
         <#assign moduleType = module.getType()>
     </#if>
 
-    <div class="has-edit-button theme-${themeName}">       
+    <div class="has-edit-button theme-${themeName}">
+        <#if module.hippoBean?? >
+            <@hst.manageContent hippobean=module.hippoBean />
+        </#if>
         <#if moduleType == "megalinks">
             <#-- all Megalinks modules -->
             <@megalinks item=module type=module.getType() theme=themeName />

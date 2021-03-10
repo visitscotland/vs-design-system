@@ -1,7 +1,7 @@
 package com.visitscotland.brxm.validator;
 
-import com.visitscotland.brxm.beans.ListicleItem;
-import com.visitscotland.brxm.beans.Stop;
+import com.visitscotland.brxm.hippobeans.ListicleItem;
+import com.visitscotland.brxm.hippobeans.Stop;
 import com.visitscotland.brxm.translation.SessionFactory;
 import com.visitscotland.utils.Contract;
 import org.onehippo.cms.services.validation.api.ValidationContext;
