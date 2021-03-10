@@ -129,7 +129,7 @@ class PageTemplateBuilderTest {
         assertEquals(4, items.size());
 
         for (int i = 0; i < 4; i++) {
-            assertEquals(PageTemplateBuilder.themes[i % 3], items.get(i).getTheme());
+            assertEquals(i % PageTemplateBuilder.THEMES, items.get(i).getThemeIndex());
         }
     }
 
@@ -156,7 +156,7 @@ class PageTemplateBuilderTest {
         assertEquals(4, items.size());
 
         for (int i = 0; i < 4; i++) {
-            assertEquals(PageTemplateBuilder.themes[i != 3 ? 0 : 1], items.get(i).getTheme());
+            assertEquals(i != 3 ? 0 : 1, items.get(i).getThemeIndex());
         }
     }
 
@@ -179,7 +179,7 @@ class PageTemplateBuilderTest {
         LinksModule firstModuleWithTitle = ((List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
 
         //Compare that the result is identical
-        assertEquals(firstModuleWithoutTitle.getTheme(), firstModuleWithTitle.getTheme());
+        assertEquals(firstModuleWithoutTitle.getThemeIndex(), firstModuleWithTitle.getThemeIndex());
     }
 
     /**

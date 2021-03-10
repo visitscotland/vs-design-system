@@ -13,7 +13,6 @@ public class LinksModule<L extends FlatLink> extends Module<Megalinks> {
     private HippoHtml introduction;
     private List<L> links;
     private FlatLink cta;
-    private String theme;
     private Integer themeIndex;
     private String alignment;
 
@@ -47,14 +46,6 @@ public class LinksModule<L extends FlatLink> extends Module<Megalinks> {
 
     public void setCta(FlatLink cta) {
         this.cta = cta;
-    }
-
-    public String getTheme() {
-        return theme;
-    }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
     }
 
     public Integer getThemeIndex() {
