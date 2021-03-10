@@ -1,6 +1,6 @@
-package com.visitscotland.brxm.cfg;
+package com.visitscotland.brxm.config;
 
-import com.visitscotland.brxm.beans.mapping.LinkType;
+import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.services.LinkService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

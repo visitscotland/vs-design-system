@@ -1,6 +1,6 @@
-package com.visitscotland.brxm.cfg;
+package com.visitscotland.brxm.config;
 
-import com.visitscotland.brxm.beans.mapping.LinkType;
+import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.services.LinkService;
 import org.springframework.stereotype.Component;
 
@@ -25,12 +25,11 @@ public class HTMLtoVueTransformer {
     }
 
     /**
-     * Process the heading tags (h1, h2, etc) and transform them into Vue tags.
+     * Process the heading tags (h2, h3, etc) and transform them into Vue tags.
      */
     public String processHeadings(final String html){
         /*
-         * Targets the opening tag of anchor links (a tag).
-         * - The tag must contain href attribute, otherwise it would be ignored
+         * Targets the heading tags
          *
          * Groups:
          * 1. Level of the header (i.e. "2" when the tag is "h2")

@@ -1,4 +1,4 @@
-package com.visitscotland.brxm.cfg;
+package com.visitscotland.brxm.config;
 
 import org.hippoecm.hst.configuration.hosting.Mount;
 import org.hippoecm.hst.content.rewriter.impl.SimpleContentRewriter;
