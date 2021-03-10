@@ -113,6 +113,7 @@ export default {
 
         &__days {
             font-size: $font-size-lg;
+            font-family: "Source Sans Pro";
             font-weight: bold;
             display: block;
             margin-bottom: $spacer-1;
