@@ -17,6 +17,7 @@
                     v-if="days && transport"
                     :days="days"
                     :transport="transport"
+                    :transport-name="transportName"
                     slot="stretchedCardPanels"
                     :days-label="daysLabel"
                 />
@@ -114,6 +115,14 @@ export default {
         * Optional prop for transport type (will show a the transport icon if used)
         */
         transport: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Display-friendly transport name
+        * to allow for translation
+        */
+        transportName: {
             type: String,
             default: '',
         },
