@@ -124,7 +124,8 @@ public class PageTemplateBuilder {
             page.style--;
         }
 
-        al.setTheme(themes[page.style++ % themes.length]);
+        al.setThemeIndex(page.style++ % themes.length);
+        al.setTheme(themes[al.getThemeIndex()]);
         al.setHippoBean(item);
 
         page.modules.add(al);
@@ -168,9 +169,7 @@ public class PageTemplateBuilder {
      */
     private void setIntroTheme(HstRequest request, List<Module> modules){
         if(!modules.isEmpty() && modules.get(0) instanceof LinksModule){
-            request.setAttribute(INTRO_THEME, ((LinksModule) modules.get(0)).getTheme());
-        }else{
-            request.setAttribute(INTRO_THEME, NEUTRAL_THEME);
+            request.setAttribute(INTRO_THEME, ((LinksModule) modules.get(0)).getThemeIndex());
         }
     }
 

@@ -6,7 +6,7 @@
 <#include "../modules/long-copy/long-copy.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
-<#include "themeCalculator.ftl">
+<#include "theme-calculator.ftl">
 <#include "../modules/otyml/otyml.ftl">
 
 <#-- Implicit Request Objects -->
@@ -19,22 +19,11 @@
 
 <#-- @ftlvariable name="hero" type="com.visitscotland.brxm.hippobeans.Image" -->
 
+<#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.megalinks.LinksModule" -->
+
 <#macro moduleBuilder module colourScheme=[]>
 
-
-    <#if colourScheme?size gt 0>
-        <#assign theme = themeCalculator(module, colourScheme)>
-    <#elseif breadcrumbs?? && breadcrumbs.items?size == 2>
-        <#assign theme = themeCalculator(module, ["light", "light", "dark"])>
-    <#else>
-        <#assign theme = themeCalculator(module, ["dark", "light", "light"])>
-    </#if>
-    <#--<p>Calculated = ${theme}</p>-->
-    <#if theme="theme1">
-        <#assign themeName = "dark">
-    <#elseif theme="theme2">
-        <#assign themeName = "light">
-    </#if>
+    <#assign themeName = themeCalculator(module.themeIndex, colourScheme)>
 
     <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
         <#assign moduleType = "megalinks">
@@ -47,7 +36,7 @@
             <@hst.manageContent hippobean=module.hippoBean />
         </#if>
         <#if moduleType == "megalinks">
-            <#-- all Megalinks modules -->
+            <#-- all Megalinks modules except HorizontalListLinksModule -->
             <@megalinks item=module type=module.getType() theme=themeName />
 
         <#elseif moduleType == "HorizontalListLinksModule">

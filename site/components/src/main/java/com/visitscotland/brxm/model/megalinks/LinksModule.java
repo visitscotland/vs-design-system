@@ -14,6 +14,7 @@ public class LinksModule<L extends FlatLink> extends Module<Megalinks> {
     private List<L> links;
     private FlatLink cta;
     private String theme;
+    private Integer themeIndex;
     private String alignment;
 
     public String getTitle() {
@@ -54,6 +55,14 @@ public class LinksModule<L extends FlatLink> extends Module<Megalinks> {
 
     public void setTheme(String theme) {
         this.theme = theme;
+    }
+
+    public Integer getThemeIndex() {
+        return themeIndex;
+    }
+
+    public void setThemeIndex(Integer themeIndex) {
+        this.themeIndex = themeIndex;
     }
 
     public String getAlignment() {
