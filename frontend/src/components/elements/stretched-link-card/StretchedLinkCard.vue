@@ -146,6 +146,7 @@ export default {
             color: $color-base-text;
             text-decoration: none;
             letter-spacing: 0;
+            display: block;
 
             &:hover {
                 text-decoration: underline;
@@ -169,7 +170,7 @@ export default {
         }
 
         .vs-stretched-link-card__title {
-            font-size: $font-size-sm;
+            font-size: $small-font-size;
             line-height: $line-height-s;
             letter-spacing: 0.0875rem;
             color: $color-base-text;
