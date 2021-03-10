@@ -20,7 +20,6 @@
                 <#assign image = carouselItem.image.externalImage!'' />
             </#if>
             <vs-carousel-slide
-                days-label="${label('itinerary', 'days')}"
                 link-url="${carouselItem.link}"
                 link-type="${carouselItem.type}"
                 img-src="${image}"
@@ -30,7 +29,17 @@
                 </#if>
                 <#if carouselItem.itineraryTransport??>
                     transport="${carouselItem.itineraryTransport}"
+<#--                transport-label="${label("transports",carouselItem.itineraryTransport)}"-->
+                </#if>
+                <#if carouselItem.itineraryDays??>
+                    <#if carouselItem.itineraryDays = 1>
+                        days-label="${label('itinerary', 'day')}"
+                    <#else>
+                        days-label="${label('itinerary', 'days')}"
+                    </#if>
                     days="${carouselItem.itineraryDays}"
+                <#else>
+                    days-label="${label('itinerary', 'day')}"
                 </#if>
             >
                 <template slot="vsCarouselSlideHeading">

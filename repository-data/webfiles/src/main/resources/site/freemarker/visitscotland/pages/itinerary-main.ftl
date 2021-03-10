@@ -41,8 +41,8 @@
     <@cmsErrors errors=alerts!"" editMode=editMode />
      <@hst.link var="hero" hippobean=document.heroImage.original/>
 
-    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="light" areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />	
-    
+    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="light" areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />
+
     <vs-itinerary>
         <@itineraryMap days=document.days />
         <#list document.days as day>
