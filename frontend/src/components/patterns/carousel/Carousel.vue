@@ -104,26 +104,50 @@ export default {
         VsIcon,
     },
     props: {
+        /**
+        * Accessible text for previous
+        * carousel control
+        */
         prevText: {
             type: String,
             default: 'Previous slide',
         },
+        /**
+        * Accessible text for next
+        * carousel control
+        */
         nextText: {
             type: String,
             default: 'Next slide',
         },
+        /**
+        *  Number of slides to appear
+        *  at 'xs' screen size
+        */
         slidesXs: {
             type: String,
             default: '1',
         },
+        /**
+        *  Number of slides to appear
+        *  at 'sm' screen size
+        */
         slidesSm: {
             type: String,
             default: '2',
         },
+        /**
+        *  Number of slides to appear
+        *  at 'md' screen size
+        */
         slidesMd: {
             type: String,
             default: '3',
         },
+        /**
+        *  Number of slides to appear
+        *  at 'lg' screen size
+        */
         slidesLg: {
             type: String,
             default: '4',
@@ -420,7 +444,7 @@ export default {
             category="Category"
             days="15"
             transport="bus"
-            index="0"
+            transport-name="Bus"
         >
             <template slot="vsCarouselSlideHeading">
                 1 Count 7,000 shining stars in the iconic
@@ -442,7 +466,7 @@ export default {
             category="Category"
             days="15"
             transport="bus"
-            index="0"
+            transport-name="Bus"
         >
             <template slot="vsCarouselSlideHeading">
                 2 Count 7,000 shining stars in the iconic
@@ -464,7 +488,7 @@ export default {
             category="Category"
             days="15"
             transport="bus"
-            index="0"
+            transport-name="Bus"
         >
             <template slot="vsCarouselSlideHeading">
                 3 Count 7,000 shining stars in the iconic
@@ -486,7 +510,7 @@ export default {
             category="Category"
             days="15"
             transport="bus"
-            index="0"
+            transport-name="Bus"
         >
             <template slot="vsCarouselSlideHeading">
                 4 Count 7,000 shining stars in the iconic
@@ -508,7 +532,7 @@ export default {
             category="Category"
             days="15"
             transport="bus"
-            index="0"
+            transport-name="Bus"
         >
             <template slot="vsCarouselSlideHeading">
                 5 Count 7,000 shining stars in the iconic
@@ -530,7 +554,7 @@ export default {
             category="Category"
             days="15"
             transport="bus"
-            index="0"
+            transport-name="Bus"
         >
             <template slot="vsCarouselSlideHeading">
                 6 Count 7,000 shining stars in the iconic
@@ -552,7 +576,7 @@ export default {
             category="Category"
             days="15"
             transport="bus"
-            index="0"
+            transport-name="Bus"
         >
             <template slot="vsCarouselSlideHeading">
                 7 Count 7,000 shining stars in the iconic
@@ -574,7 +598,7 @@ export default {
             category="Category"
             days="15"
             transport="bus"
-            index="0"
+            transport-name="Bus"
         >
             <template slot="vsCarouselSlideHeading">
                 8 Count 7,000 shining stars in the iconic
@@ -596,7 +620,7 @@ export default {
             category="Category"
             days="15"
             transport="bus"
-            index="0"
+            transport-name="Bus"
         >
             <template slot="vsCarouselSlideHeading">
                 9 Count 7,000 shining stars in the iconic
