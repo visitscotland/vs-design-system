@@ -26,28 +26,28 @@
 }
 
 @font-face {
-    font-family: "Source Sans Pro Bold";
+    font-family: "Source Sans Pro";
     src: 
       url(./source-sans-pro-bold.woff2) format("woff2"),
       url(./source-sans-pro-bold.woff) format("woff");
-    font-weight: normal;
+    font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
-    font-family: "Source Sans Pro SemiBold";
+    font-family: "Source Sans Pro";
     src: 
       url(./source-sans-pro-semibold.woff2) format("woff2"),
       url(./source-sans-pro-semibold.woff) format("woff");
-    font-weight: normal;
+    font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
-    font-family: "Source Sans Pro Light";
+    font-family: "Source Sans Pro";
     src: 
       url(./source-sans-pro-light.woff2) format("woff2"),
       url(./source-sans-pro-light.woff) format("woff");
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
 }
