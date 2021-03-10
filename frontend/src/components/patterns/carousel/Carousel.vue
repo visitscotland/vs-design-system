@@ -351,7 +351,6 @@ export default {
             height: 10px;
             border-radius: 5px;
             background: $color-gray-tint-4;
-            // text-indent: -10000px;
             transform: translateY(2px);
             margin: $spacer-9 2px 0;
             cursor: pointer;
