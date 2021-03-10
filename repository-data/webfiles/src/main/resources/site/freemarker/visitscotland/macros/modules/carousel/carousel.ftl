@@ -30,6 +30,7 @@
                 </#if>
                 <#if carouselItem.itineraryTransport??>
                     transport="${carouselItem.itineraryTransport}"
+                    transport-name="${label('transports', carouselItem.itineraryTransport)}"
                     days="${carouselItem.itineraryDays}"
                 </#if>
             >
