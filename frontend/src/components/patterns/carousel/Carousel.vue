@@ -45,8 +45,8 @@
                             <span class="sr-only">{{ nextText }}</span>
                         </button>
 
-                        <div class="vs-carousel__navigation">
-                            <span
+                        <ul class="vs-carousel__navigation">
+                            <li
                                 v-for="index in maxPages"
                                 :key="index"
                                 class="vs-carousel__navigation-item"
@@ -56,9 +56,9 @@
                                 @keyup.enter="sliderNavigate(index - 1)"
                                 tabindex="0"
                             >
-                                Navigate to page {{ index }}
-                            </span>
-                        </div>
+                                <span class="sr-only">Navigate to page {{ index }}</span>
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="vs-carousel__mobile-pagination-wrapper">
@@ -351,7 +351,7 @@ export default {
             height: 10px;
             border-radius: 5px;
             background: $color-gray-tint-4;
-            text-indent: -10000px;
+            // text-indent: -10000px;
             transform: translateY(2px);
             margin: $spacer-9 2px 0;
             cursor: pointer;
@@ -374,7 +374,19 @@ export default {
             }
 
             &:focus {
-                border: 1px solid $color-purple;
+                outline: 1px solid $color-purple;
+            }
+
+            @media (hover: none) {
+                &:hover {
+                    background: $color-gray-tint-4;
+                }
+
+                &--active {
+                    &:hover {
+                        background: $color-black;
+                    }
+                }
             }
         }
 
