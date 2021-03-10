@@ -59,16 +59,24 @@ export default {
             type: String,
             default: 'days',
         },
-    },
-    computed: {
-        transportName() {
-            if (this.transport === 'public') {
-                return 'public transport';
-            }
-
-            return this.transport;
+        /**
+        * Display-friendly transport name
+        * to allow for translation
+        */
+        transportName: {
+            type: String,
+            default: '',
         },
     },
+    // computed: {
+    //     transportName() {
+    //         if (this.transport === 'public') {
+    //             return 'public transport';
+    //         }
+
+    //         return this.transport;
+    //     },\\
+    // },
 };
 </script>
 
