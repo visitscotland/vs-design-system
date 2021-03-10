@@ -140,6 +140,7 @@ export default {
     .vs-carousel-slide {
         max-width: 100%;
         flex-shrink: 0;
+        display: flex;
 
         .vs-carousel-slide__card {
             opacity: 0.5;
