@@ -72,6 +72,8 @@ export default {
         margin: 0;
 
         li{
+            margin-bottom: 0;
+
             &::before{
                 display: none;
             }
