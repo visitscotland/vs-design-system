@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import VsCarouselSlide from '../components/CarouselSlide';
+import VsCarouselSlide from '../CarouselSlide';
 
 const imgSrc = 'https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm';
 
@@ -9,14 +9,30 @@ const factoryShallowMount = () => shallowMount(VsCarouselSlide, {
         imgAlt: 'Img alt',
         linkType: 'internal',
         linkUrl: 'http://www.visitscotland.com',
+        category: 'Category Name',
     },
     slots: {
-        vsCarouselSlideCategory: 'Slide category',
         vsCarouselSlideHeading: 'Slide heading',
     },
+    provide: () => ({
+        slideCols: {
+            xs: '12',
+            sm: '6',
+            md: '4',
+            lg: '3',
+        },
+    }),
 });
 
 describe('VsCarouselSlide', () => {
+    it('should render a component with the column attributes defined by injected values', () => {
+        const wrapper = factoryShallowMount();
+        expect(wrapper.find('[data-test="vs-carousel-slide"]').attributes('cols')).toBe('12');
+        expect(wrapper.find('[data-test="vs-carousel-slide"]').attributes('sm')).toBe('6');
+        expect(wrapper.find('[data-test="vs-carousel-slide"]').attributes('lg')).toBe('4');
+        expect(wrapper.find('[data-test="vs-carousel-slide"]').attributes('xl')).toBe('3');
+    });
+
     describe(':slots', () => {
         it('renders default vsCarouselSlideHeading slot content', () => {
             const wrapper = factoryShallowMount();
