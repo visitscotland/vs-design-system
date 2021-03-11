@@ -12394,7 +12394,7 @@
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 064664f9-2b26-4997-a99e-366d9c343fe8
-      hippo:versionHistory: 5db776b2-ae95-4972-bcd4-be3b3500f241
+      hippo:versionHistory: ca2890a5-e29b-4a3e-a8d7-43c8997faaba
       /copy[1]:
         jcr:primaryType: visitscotland:LongCopy
         jcr:mixinTypes: ['mix:referenceable']
@@ -12403,15 +12403,22 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
-        hippostdpubwf:lastModificationDate: 2021-02-18T15:58:26.054Z
+        hippostdpubwf:lastModificationDate: 2021-02-25T14:57:42.810Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
         hippotranslation:locale: en
         /visitscotland:copy:
           jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <pre>
-            LongCopyModule</pre>
+          hippostd:content: "<h2>This is an ordered list</h2>\r\n\r\n<ol>\r\n <li>Item\
+            \ 1\r\n <ol>\r\n  <li>Item 1.1</li>\r\n  <li>Item 1.2</li>\r\n </ol>\r\
+            \n </li>\r\n <li>Item 2</li>\r\n <li>Item 3</li>\r\n</ol>\r\n\r\n<h2>This\
+            \ is an unordered list</h2>\r\n\r\n<ul>\r\n <li>Item 1\r\n <ul>\r\n  <li>Sub\
+            \ item</li>\r\n  <li>Sub item</li>\r\n </ul>\r\n </li>\r\n <li>Item 2</li>\r\
+            \n <li>Item 3</li>\r\n</ul>\r\n\r\n<p>And then we have some links:</p>\r\
+            \n\r\n<ul>\r\n <li><a href=\"content\">CMS Page </a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/blog/\">Blog Page</a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/scottishborders.pdf\"\
+            >PDF</a></li>\r\n</ul>"
       /copy[2]:
         jcr:primaryType: visitscotland:LongCopy
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -12420,15 +12427,22 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
-        hippostdpubwf:lastModificationDate: 2021-02-18T15:58:25.688Z
+        hippostdpubwf:lastModificationDate: 2021-02-25T14:56:08.120Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
         hippotranslation:locale: en
         /visitscotland:copy:
           jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <pre>
-            LongCopyModule</pre>
+          hippostd:content: "<h2>This is an ordered list</h2>\r\n\r\n<ol>\r\n <li>Item\
+            \ 1\r\n <ol>\r\n  <li>Item 1.1</li>\r\n  <li>Item 1.2</li>\r\n </ol>\r\
+            \n </li>\r\n <li>Item 2</li>\r\n <li>Item 3</li>\r\n</ol>\r\n\r\n<h2>This\
+            \ is an unordered list</h2>\r\n\r\n<ul>\r\n <li>Item 1\r\n <ul>\r\n  <li>Sub\
+            \ item</li>\r\n  <li>Sub item</li>\r\n </ul>\r\n </li>\r\n <li>Item 2</li>\r\
+            \n <li>Item 3</li>\r\n</ul>\r\n\r\n<p>And then we have some links:</p>\r\
+            \n\r\n<ul>\r\n <li><a href=\"content\">CMS Page </a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/blog/\">Blog Page</a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/scottishborders.pdf\"\
+            >PDF</a></li>\r\n</ul>"
       /copy[3]:
         jcr:primaryType: visitscotland:LongCopy
         jcr:mixinTypes: ['mix:referenceable']
@@ -12437,13 +12451,20 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
-        hippostdpubwf:lastModificationDate: 2021-02-18T15:58:25.688Z
+        hippostdpubwf:lastModificationDate: 2021-02-25T14:56:08.120Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2021-02-18T15:58:38.869Z
+        hippostdpubwf:publicationDate: 2021-02-25T14:57:52.453Z
         hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
         hippotranslation:locale: en
         /visitscotland:copy:
           jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <pre>
-            LongCopyModule</pre>
+          hippostd:content: "<h2>This is an ordered list</h2>\r\n\r\n<ol>\r\n <li>Item\
+            \ 1\r\n <ol>\r\n  <li>Item 1.1</li>\r\n  <li>Item 1.2</li>\r\n </ol>\r\
+            \n </li>\r\n <li>Item 2</li>\r\n <li>Item 3</li>\r\n</ol>\r\n\r\n<h2>This\
+            \ is an unordered list</h2>\r\n\r\n<ul>\r\n <li>Item 1\r\n <ul>\r\n  <li>Sub\
+            \ item</li>\r\n  <li>Sub item</li>\r\n </ul>\r\n </li>\r\n <li>Item 2</li>\r\
+            \n <li>Item 3</li>\r\n</ul>\r\n\r\n<p>And then we have some links:</p>\r\
+            \n\r\n<ul>\r\n <li><a href=\"content\">CMS Page </a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/blog/\">Blog Page</a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/scottishborders.pdf\"\
+            >PDF</a></li>\r\n</ul>"
