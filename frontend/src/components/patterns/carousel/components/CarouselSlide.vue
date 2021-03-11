@@ -4,6 +4,7 @@
         :sm="slideCols.sm"
         :lg="slideCols.md"
         :xl="slideCols.lg"
+        data-test="vs-carousel-slide"
     >
         <div class="vs-carousel-slide">
             <VsStretchedLinkCard
@@ -160,7 +161,7 @@ export default {
 
         .card-body {
             padding: $spacer-3 0 0;
-            text-align: left;;
+            text-align: left;
 
             .vs-heading__sub-heading {
                 display: none;
@@ -302,3 +303,39 @@ export default {
         }
     }
 </style>
+
+<docs>
+    ```js
+        <VsCarousel
+            next-text="next page"
+            prev-text="previous page"
+            slides-xs="1"
+            slides-sm="2"
+            slides-md="3"
+            slides-lg="4"
+        >
+            <VsCarouselSlide
+                link-url="www.visitscotland.com"
+                link-type="external"
+                img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                img-alt=""
+                category="Category"
+                days="15"
+                transport="bus"
+                transport-name="Bus"
+            >
+                <template slot="vsCarouselSlideHeading">
+                    1 Count 7,000 shining stars in the iconi
+                    galloway forest
+                </template>
+                <template slot="vsCarouselSlideContent">
+                    <p>
+                        Right across the country, you’ll find amazing
+                        places to eat and drink from local markets to renowned
+                        restaurants. Here are some recomm…
+                    </p>
+                </template>
+            </VsCarouselSlide>     
+        </VsCarousel>
+    ```
+</docs>
