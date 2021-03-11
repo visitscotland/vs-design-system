@@ -11,11 +11,13 @@ import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.model.megalinks.*;
+import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.repository.util.DocumentUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -242,6 +244,19 @@ public class LinkModulesFactory {
         return links;
     }
 
+
+    private void enhancedPageLink(EnhancedLink link, Page linkable, Locale locale){
+        link.setLink(utils.createUrl(linkable));
+        link.setType(LinkType.INTERNAL);
+        if (linkable instanceof Itinerary) {
+            Itinerary itinerary = (Itinerary) linkable;
+            link.setItineraryDays(DocumentUtilsService.getInstance().getSiblingDocuments(linkable,Day.class, "visitscotland:Day").size());
+            if (itinerary.getTransports().length > 0){
+                link.setItineraryTransport(itinerary.getTransports()[0]);
+            }
+        }
+    }
+
     public EnhancedLink createEnhancedLink(Linkable linkable, Locale locale, boolean addCategory) {
         EnhancedLink link = new EnhancedLink();
         link.setTeaser(linkable.getTeaser());
@@ -252,13 +267,7 @@ public class LinkModulesFactory {
         }
 
         if (linkable instanceof Page) {
-            link.setType(LinkType.INTERNAL);
-            if (linkable instanceof Itinerary) {
-                link.setItineraryTransport(((Itinerary) linkable).getTransports()[0]);
-                link.setItineraryDays(((Itinerary) linkable).getDays().size());
-            }
-            link.setLink(utils.createUrl((Page) linkable));
-            link.setType(LinkType.INTERNAL);
+            enhancedPageLink(link, (Page) linkable, locale);
         } else if (linkable instanceof SharedLink) {
             JsonNode product = getNodeFromSharedLink((SharedLink) linkable, locale);
             SharedLink sharedLink = (SharedLink) linkable;
@@ -268,12 +277,15 @@ public class LinkModulesFactory {
             }
             if (((SharedLink) linkable).getLinkType() instanceof ExternalDocument){
                 ExternalDocument externalDocument = (ExternalDocument)sharedLink.getLinkType();
-                String extension = externalDocument.getLink().substring(externalDocument.getLink().lastIndexOf(".") + 1).toUpperCase();
-                String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale ,true);
-                link.setLabel(linkable.getTitle()+"("+downloadLabel+" "+extension+" " + externalDocument.getSize()+externalDocument.getBytes() + ")");
-                link.setType(LinkType.DOWNLOAD);
-                if (addCategory) {
-                    link.setCategory(externalDocument.getCategory());
+                //TODO Review the following line
+                String size = CommonUtilsService.getExtenalDocumentSize(externalDocument.getLink());
+                if (size!=null) {
+                    String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
+                    link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");
+                    link.setType(LinkType.DOWNLOAD);
+                    if (addCategory) {
+                        link.setCategory(externalDocument.getCategory());
+                    }
                 }
             }
             link.setLink(linkService.getPlainLink((SharedLink) linkable, product));
