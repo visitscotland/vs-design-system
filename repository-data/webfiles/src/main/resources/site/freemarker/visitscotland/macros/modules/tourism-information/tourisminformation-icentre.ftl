@@ -39,29 +39,29 @@
                 .
             </template>
 
-            <#if module.quote??>
-                <#if module.quoteImage??>
+             <#if module.quote??>
+                <#if module.quote.image??>
                     <#assign imageQuote>
-                        <@hst.link hippobean=module.quoteImage.cmsImage.original/>
+                        <@hst.link hippobean=module.quote.image.cmsImage.original/>
                     </#assign>
                 <#else>
                     <#assign imageQuote="" />
                 </#if>
 
-                <#if module.quoteLink??>
-                    <#assign quoteLink=module.quoteLink />
+                <#if module.quote.link??>
+                    <#assign quoteLink=module.quote.link />
                 <#else>
                     <#assign quoteLink="" />
                 </#if>
 
-                <#if module.quoteAuthorName??>
-                    <#assign quoteAuthorName=module.quoteAuthorName />
+                <#if module.quote.authorName??>
+                    <#assign quoteAuthorName=module.quote.authorName />
                 <#else>
                     <#assign quoteAuthorName="" />
                 </#if>
 
-                <#if module.quoteAuthorTitle??>
-                    <#assign quoteAuthorTitle=module.quoteAuthorTitle />
+                <#if module.quote.authorTitle??>
+                    <#assign quoteAuthorTitle=module.quote.authorTitle />
                 <#else>
                     <#assign quoteAuthorTitle="" />
                 </#if>
