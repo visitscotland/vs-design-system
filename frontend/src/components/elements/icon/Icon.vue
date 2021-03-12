@@ -271,6 +271,13 @@ $variants: (
     <VsIcon name="user" variant="primary" />
     <VsIcon name="user" variant="secondary" />
     <VsIcon name="user" variant="light" />
+    <VsIcon name="user" variant="dark" />
+    <VsIcon name="user" variant="reverse-white" />
+    <VsIcon name="user" variant="secondary-teal" />
+
+    <h3 class="mt-8">Custom Colour</h3>
+    <VsIcon name="user" customColour="#ff0000" />
+    <VsIcon name="user" customColour="gold" />
 
     <h3 class="mt-8">Size</h3>
 
