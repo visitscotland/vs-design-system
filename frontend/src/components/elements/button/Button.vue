@@ -280,6 +280,8 @@ export default {
       >
         Nearby Places to Eat
       </VsButton>
+    </BsWrapper>
+    <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton
         class="mr-2 mb-2"
         icon="map"
@@ -287,6 +289,8 @@ export default {
       >
         Map View
       </VsButton>
+    </BsWrapper>
+    <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton
         class="mr-2 mb-2"
         icon="external-link"
