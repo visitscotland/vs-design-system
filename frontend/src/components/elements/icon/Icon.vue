@@ -49,7 +49,7 @@ export default {
         /**
          * The fill color of the SVG icon.
          * `primary, secondary, light, dark,
-         * reverse-white, primary-purple, secondary-teal`
+         * reverse-white, secondary-teal`
          */
         variant: {
             type: String,
