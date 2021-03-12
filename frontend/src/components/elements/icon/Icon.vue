@@ -224,6 +224,7 @@ $variants: (
         &.vs-icon--size-#{$size} {
             height: $this-size;
             width: $this-size;
+            font-size: $this-size;
             padding: 0;
         }
     }
