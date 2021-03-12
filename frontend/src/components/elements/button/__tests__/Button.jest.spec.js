@@ -132,16 +132,6 @@ describe('VsButton', () => {
                 expect(iconStub.attributes('orientation')).toBe('down');
             });
 
-            it('variant should be `danger` if `iconVariant` is set to `danger`', () => {
-                const wrapper = factoryShallowMount({
-                    icon: testIcon,
-                    iconVariant: 'danger',
-                });
-                const iconStub = wrapper.find('vsicon-stub');
-
-                expect(iconStub.attributes('variant')).toBe('danger');
-            });
-
             it('should set an `mr-2` class if `iconOnly` is not truthy', () => {
                 const wrapper = factoryShallowMount({
                     icon: testIcon,
