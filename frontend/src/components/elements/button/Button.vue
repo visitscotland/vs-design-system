@@ -136,31 +136,6 @@ export default {
             validator: (value) => value.match(/(up|down|left|right)/),
         },
         /**
-         * The icon variant
-         * `primary, secondary, success, danger, warning, info,
-         * light, dark, reverse-white, primary-purple, secondary-teal`
-         */
-        iconVariant: {
-            type: String,
-            default: 'reverse-white',
-            validator: (value) => value.match(
-                /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/,
-            ),
-        },
-        /**
-         * The icon variant to apply when hovering over the button in case
-         * of outline buttons
-         * `primary, secondary, success, danger, warning, info,
-         * light, dark, reverse-white, primary-purple, secondary-teal`
-         */
-        iconHoverVariant: {
-            type: String,
-            default: '',
-            validator: (value) => value.match(
-                /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/,
-            ),
-        },
-        /**
          * If the button contains an icon and no text
          */
         iconOnly: {
@@ -194,11 +169,21 @@ export default {
             return this.uppercase ? 'text-uppercase' : null;
         },
         calcIconVariant() {
-            if (this.hovered && this.iconHoverVariant) {
-                return this.iconHoverVariant;
+            if (this.isOutline) {
+                if (this.hovered) {
+                    return 'light';
+                }
+
+                return this.outlineColour;
             }
 
-            return this.iconVariant;
+            return 'light';
+        },
+        isOutline() {
+            return this.variant.match(/outline/) !== null;
+        },
+        outlineColour() {
+            return this.variant.replace('outline-', '');
         },
     },
     methods: {
