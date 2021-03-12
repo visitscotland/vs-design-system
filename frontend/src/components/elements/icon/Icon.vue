@@ -47,14 +47,14 @@ export default {
         },
         /**
          * The fill color of the SVG icon.
-         * `primary, secondary, success, danger, warning, info,
-         * light, dark, reverse-white, primary-purple, secondary-teal`
+         * `primary, secondary, light, dark,
+         * reverse-white, primary-purple, secondary-teal`
          */
         variant: {
             type: String,
             default: null,
             validator: (value) => value.match(
-                /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/,
+                /(primary|secondary|light|dark|reverse-white|secondary-teal)/,
             ),
         },
         /**
@@ -203,14 +203,9 @@ $sizes: (
 $variants: (
     primary: $color-theme-primary,
     secondary: $color-theme-secondary,
-    success: $color-theme-success,
-    danger: $color-theme-danger,
-    warning: $color-theme-warning,
-    info: $color-theme-info,
     light: $color-theme-light,
     dark: $color-theme-dark,
     reverse-white: $color-white,
-    primary-purple: $color-theme-primary-purple,
     secondary-teal: $color-theme-secondary-teal,
 );
 
@@ -264,11 +259,6 @@ $variants: (
     <h3 class="mt-8">Variant</h3>
     <VsIcon name="user" variant="primary" />
     <VsIcon name="user" variant="secondary" />
-    <VsIcon name="user" variant="success" />
-    <VsIcon name="user" variant="warning" />
-    <VsIcon name="user" variant="info" />
-    <VsIcon name="user" variant="danger" />
-    <VsIcon name="user" variant="dark" />
     <VsIcon name="user" variant="light" />
 
     <h3 class="mt-8">Size</h3>
