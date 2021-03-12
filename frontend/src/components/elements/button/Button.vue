@@ -259,6 +259,10 @@ export default {
             animation: bubble 500ms ease-in-out;
         }
     }
+
+    .vs-icon {
+        margin-top: -.05em;
+    }
 }
 </style>
 
