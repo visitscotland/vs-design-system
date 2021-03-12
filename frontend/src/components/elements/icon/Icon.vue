@@ -8,6 +8,7 @@
             [`vs-icon--variant-${variant}`]: variant,
             ['icon--' + orientation]: orientation,
         }"
+        :style="[customColour ? {fill: customColour} : {}]"
         v-bind="$attrs"
     />
 </template>
@@ -56,6 +57,16 @@ export default {
             validator: (value) => value.match(
                 /(primary|secondary|light|dark|reverse-white|secondary-teal)/,
             ),
+        },
+        /**
+         * Accepts a colour (hex code or colour name) to fill the icon, if this is
+         * set it will override the given variant. This should be used for individual
+         * exceptions but if one is being used regularly it should likely be a variant
+         * instead.
+         */
+        customColour: {
+            type: String,
+            default: null,
         },
         /**
         * The orientation of the icon. Defaults to 'up'.
