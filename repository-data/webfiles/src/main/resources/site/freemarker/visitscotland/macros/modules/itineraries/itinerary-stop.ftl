@@ -121,8 +121,6 @@
                     background="white"
                     variant="outline-primary"
                     icon="food"
-                    icon-variant="primary"
-                    icon-hover-variant="light"
                     href="${nearbyEatsUrl}"
                 >
                     ${label("itinerary", "stop.nearby-eat")}
@@ -131,8 +129,6 @@
                     background="white"
                     variant="outline-primary"
                     icon="product-accommodation"
-                    icon-variant="primary"
-                    icon-hover-variant="light"
                     href="${nearbyStayUrl}"
                 >
                     ${label("itinerary", "stop.nearby-stay")}
