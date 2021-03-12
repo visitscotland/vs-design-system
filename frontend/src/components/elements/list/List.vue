@@ -61,8 +61,10 @@ export default {
         &::before{
             content: "• ";
             color: $color-pink;
-            padding-right: $spacer-4;
+            padding-right: 0.7rem;
             margin-left: -$spacer-6;
+            font-size: $h2-font-size;
+            line-height: $line-height-xs;
         }
     }
 
@@ -95,20 +97,20 @@ export default {
 
 <docs>
 ```jsx
-    <h3>Default</h3>
+    <h3>Styled</h3>
     <VsList>
         <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
-        <li>Maecenas nec massa placerat, bibendum ex sit amet, blandit dolor.</li>
+            <VsList>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+                <li>Maecenas nec massa placerat, bibendum ex sit amet, blandit dolor.</li>
+                <li>Curabitur tempus quam et dolor venenatis blandit. Nulla et erat orci.
+                Suspendisse consequat ipsum et ex molestie viverra.
+                In faucibus eget nisi eu lobortis.</li>
+                <li>Integer efficitur lacus id mi scelerisque, porta feugiat leo egestas. </li>
+            </VsList>
         <li>Curabitur tempus quam et dolor venenatis blandit. Nulla et erat orci.
         Suspendisse consequat ipsum et ex molestie viverra. In faucibus eget nisi eu lobortis.</li>
         <li>Integer efficitur lacus id mi scelerisque, porta feugiat leo egestas. </li>
-    </VsList>
-
-    <h3 class="mt-8">Inline Unstyled</h3>
-    <VsList unstyled inline>
-        <li class="mr-7">Test</li>
-        <li class="mr-7">Test</li>
-        <li class="mr-7">Test</li>
     </VsList>
 
     <h3 class="mt-8">Unstyled</h3>
@@ -116,6 +118,14 @@ export default {
         <li >Test</li>
         <li >Test</li>
         <li >Test</li>
+    </VsList>
+
+    <h3 class="mt-8">Inline Unstyled </h3>
+    <VsList unstyled inline>
+        <li class="mr-7">Test</li>
+        <li class="mr-7">Test
+        </li>
+        <li class="mr-7">Test</li>
     </VsList>
 
     <h3 class="mt-8">Ordered List</h3>
