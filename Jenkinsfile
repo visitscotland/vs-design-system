@@ -246,10 +246,10 @@ pipeline {
           //sh 'sh ./infrastructure/scripts/docker.sh'
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
-        // make all VS_ variables available to 
-        load "$WORKSPACE/vs-last-env"
+        // make all VS_ variables available to pipeline
+        load "$WORKSPACE/vs-last-env.quoted"
         echo "${env.VS_BRXM_PERSISTENCE_METHOD}"
-        script { VS_BRXM_PERSISTENCE_METHOD="null" }
+        script { VS_BRXM_PERSISTENCE_METHOD = "null" }
         echo "${env.VS_BRXM_PERSISTENCE_METHOD}"
         readEnvironmentVariables("vs-last-env")
         echo "${env.VS_BRXM_PERSISTENCE_METHOD}"
