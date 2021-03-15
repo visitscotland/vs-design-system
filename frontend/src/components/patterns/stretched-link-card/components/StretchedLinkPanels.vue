@@ -29,6 +29,8 @@
 import VsIcon from '@components/elements/icon/Icon';
 /**
  * Panels to show information in the stretched link component
+ *
+ * @displayName Stretched Link Panels
  */
 export default {
     name: 'VsStretchedLinkPanels',
@@ -129,18 +131,39 @@ export default {
 
 <docs>
     ```
-        <vs-container>
-            <vs-row>
-                <vs-col md="6">
-                    <vs-stretched-link-panels
-                        days="14"
-                        transport="car"
-                        daysLabel="days"
-                    >
-                        <template slot="stretchedLinkPanelDays">days</template>
-                    </vs-stretched-link-panels>
-                </vs-col>
-            </vs-row>
-        </vs-container>
+        <VsContainer>
+        <VsRow>
+            <VsCol cols="12" md="6">
+                <VsStretchedLinkCard
+                    link="https://visitscotland.com"
+                    type="external"
+                    imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                    imgAlt="This is the alt text"
+                >
+                    <template slot="stretchedCardCategory">
+                        A category header
+                    </template>
+                    <template slot="stretchedCardPanels">
+                        <VsStretchedLinkPanels
+                            days="14"
+                            transport="car"
+                            transportName="Car"
+                            daysLabel="days"
+                        />
+                    </template>
+
+                    <template slot="stretchedCardHeader">
+                        A Title Would Go Here
+                    </template>
+
+                    <VsRichTextWrapper slot="stretchedCardContent">
+                        <p>The content for the card goes here</p>
+
+                        <p>A second line of content</p>
+                    </VsRichTextWrapper>
+                </VsStretchedLinkCard>
+            </VsCol>
+        </VsRow>
+        </VsContainer>
     ```
 </docs>
