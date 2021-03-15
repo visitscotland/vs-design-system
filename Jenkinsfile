@@ -246,6 +246,7 @@ pipeline {
           //sh 'sh ./infrastructure/scripts/docker.sh'
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
+        load "$WORKSPACE/vs_last_env.groovy"
       }
     } 
     stage('Lighthouse Testing'){
