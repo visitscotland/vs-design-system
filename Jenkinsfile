@@ -249,7 +249,8 @@ pipeline {
         // make all VS_ variables available to 
         load "$WORKSPACE/vs-last-env"
         echo "${env.VS_BRXM_PERSISTENCE_METHOD}"
-        VS_BRXM_PERSISTENCE_METHOD="null"
+        script { VS_BRXM_PERSISTENCE_METHOD="null" }
+        echo "${env.VS_BRXM_PERSISTENCE_METHOD}"
         readEnvironmentVariables("vs-last-env")
         echo "${env.VS_BRXM_PERSISTENCE_METHOD}"
       }
