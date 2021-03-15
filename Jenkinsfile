@@ -247,12 +247,15 @@ pipeline {
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
         // make all VS_ variables available to pipeline
-        load "$WORKSPACE/vs-last-env.quoted"
-        echo "${env.VS_COMMIT_AUTHOR}"
-        script { VS_COMMIT_AUTHOR = "null" }
-        echo "${env.VS_COMMIT_AUTHOR}"
-        readEnvironmentVariables("vs-last-env")
-        echo "${env.VS_COMMIT_AUTHOR}"
+        if (fileExists('$WORKSPACE/vs-last-env.quoted')) {
+          load "$WORKSPACE/vs-last-env.quoted"
+        } else {
+          echo "cannot load environment variables, file does not exist"
+        }
+        //script { VS_COMMIT_AUTHOR = "null" }
+        //echo "${env.VS_COMMIT_AUTHOR}"
+        //readEnvironmentVariables("vs-last-env")
+        //echo "${env.VS_COMMIT_AUTHOR}"
       }
     } 
     stage('Lighthouse Testing'){
@@ -281,6 +284,7 @@ pipeline {
           ])
         }
         failure {
+          echo "sending failure notice to ${env.VS_COMMIT_AUTHOR}"
           mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Lighthouse failure: ${env.JOB_NAME}", to: "${env.VS_COMMIT_AUTHOR}";
         }
       }
@@ -312,6 +316,8 @@ pipeline {
   } //end post
 } //end pipeline
 
+// function to read in a properties file (see https://medium.com/@dhamodharakkannan/jenkins-loading-variables-from-a-file-for-different-environments-d442a2a48bce)
+// may not be required if simple "load" command works
 def readEnvironmentVariables(path){
   def properties = readProperties file: path
   keys= properties.keySet()
