@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
+import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 
 /**
