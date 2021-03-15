@@ -19,16 +19,10 @@
         <#assign image = item.image.externalImage />
     </#if>
 
-    <#if item.subtitle??>
-        <#assign subtitle=item.subtitle />
-    <#else>
-        <#assign subtitle="" />
-    </#if>
-
     <vs-listicle-item
             index="${item.index}"
             title="${item.title}"
-            sub-title="${subtitle}"
+            sub-title="${item.subtitle!''}"
     >
         <div slot="hippo-details" class="has-edit-button">
             <@hst.manageContent hippobean=item.hippoBean/>
