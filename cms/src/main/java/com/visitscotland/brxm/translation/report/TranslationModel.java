@@ -3,20 +3,18 @@ package com.visitscotland.brxm.translation.report;
 import java.util.List;
 
 public class TranslationModel {
-    public TranslationModel(String handleId, String displayName, String translationStatus, TranslationPriority translationPriority, List<String> translatedLocales, List<String> sentForTranslationLocales) {
+    public TranslationModel(String handleId, String displayName, String translationStatus,
+                            TranslationPriority translationPriority, List<String> translatedLocales,
+                            List<String> sentForTranslationLocales, String type, String lastModified, PublishStatus publishStatus) {
         this.handleId = handleId;
         this.displayName = displayName;
         this.translatedLocales = translatedLocales;
         this.translationPriority = translationPriority.toString();
         this.translationStatus = translationStatus;
         this.sentForTranslationLocales = sentForTranslationLocales;
-        if (translationPriority == TranslationPriority.HIGH) {
-            translationStatusSortOrder = 3;
-        } else if (translationPriority == TranslationPriority.NORMAL) {
-            translationStatusSortOrder = 2;
-        } else {
-            translationStatusSortOrder = 1;
-        }
+        this.type = type;
+        this.lastModified = lastModified;
+        this.publishStatus = publishStatus;
     }
 
     private final String displayName;
@@ -25,7 +23,9 @@ public class TranslationModel {
     private final String translationStatus;
     private final String handleId;
     private final String translationPriority;
-    private final int translationStatusSortOrder;
+    private final String type;
+    private final String lastModified;
+    private final PublishStatus publishStatus;
 
     public String getDisplayName() {
         return displayName;
@@ -51,7 +51,15 @@ public class TranslationModel {
         return translationPriority;
     }
 
-    public int getTranslationStatusSortOrder() {
-        return translationStatusSortOrder;
+    public String getType() {
+        return type;
+    }
+
+    public String getLastModified() {
+        return lastModified;
+    }
+
+    public PublishStatus getPublishStatus() {
+        return publishStatus;
     }
 }

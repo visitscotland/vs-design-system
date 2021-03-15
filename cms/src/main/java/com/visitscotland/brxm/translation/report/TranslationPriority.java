@@ -2,6 +2,14 @@ package com.visitscotland.brxm.translation.report;
 
 public enum TranslationPriority {
 
-    HIGH, NORMAL, LOW
+    HIGH("High", 3), NORMAL("Normal", 2), LOW("Low", 1);
+
+    public final String name;
+    public final Integer sortOrder;
+
+    TranslationPriority(String name, Integer sortOrder) {
+        this.sortOrder = sortOrder;
+        this.name = name;
+    }
 
 }

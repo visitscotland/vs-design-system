@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
 import javax.jcr.*;
 import javax.jcr.query.RowIterator;
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Component
@@ -109,9 +111,15 @@ public class TranslationReportService {
                 if (infoStatus == TranslationStatus.TRANSLATED) continue;
                 String displayName =  ((NodeDecorator)englishDoc.getHandle()).getDisplayName();
                 TranslationPriority translationPriority = getNodeTranslationPriority(englishDoc);
+                Node unpublished = englishDoc.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+                String primaryNodeType = unpublished.getProperty("jcr:primaryType").getString().replace("visitscotland:", "");
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+                df.setTimeZone(TimeZone.getTimeZone("UTC"));
+                String lastModified  = df.format(unpublished.getProperty("hippostdpubwf:lastModificationDate").getDate().getTime());
 
                 docModels.add(new TranslationModel(englishDoc.getHandle().getIdentifier(), displayName,
-                        infoStatus.toString(), translationPriority, translatedLocales, sendForTranslationLocales));
+                        infoStatus.toString(), translationPriority, translatedLocales, sendForTranslationLocales,
+                        primaryNodeType, lastModified, getDocumentPublishStatus(englishDoc)));
             }
         } catch (RepositoryException ex) {
             // TODO propagate this error to report frontend
@@ -120,6 +128,16 @@ public class TranslationReportService {
         }
 
         return docModels;
+    }
+
+    private static PublishStatus getDocumentPublishStatus(JcrDocument document) throws RepositoryException {
+        Node unpublishedNode = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+        if (unpublishedNode == null) return PublishStatus.NOT_LIVE;
+        String state = unpublishedNode.getProperty("hippostd:stateSummary").getString();
+        if (state.equals("live")) return PublishStatus.CURR_VERSION_LIVE;
+        if (state.equals("new")) return PublishStatus.NOT_LIVE;
+        if (state.equals("changed")) return PublishStatus.PREV_VERSION_LIVE;
+        return PublishStatus.UNKNOWN;
     }
 
     private static String getImageLink(String locale) {

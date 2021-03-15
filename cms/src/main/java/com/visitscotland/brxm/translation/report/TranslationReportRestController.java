@@ -7,6 +7,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestScope
@@ -21,9 +22,11 @@ public class TranslationReportRestController {
     }
 
     @GetMapping("/translation/untranslated")
-    public List<TranslationModel> untranslatedFiles(@RequestParam String locale) {
-        if (!TranslationReportService.SUPPORTED_LOCALES.contains(locale)) return Collections.emptyList();
-        return TranslationReportService.getUntranslatedDocuments(locale);
+    public RestListContainer<TranslationModel> untranslatedFiles(@RequestParam String locale) {
+        if (!TranslationReportService.SUPPORTED_LOCALES.contains(locale)) {
+            return new RestListContainer<>(Collections.emptyList());
+        }
+        return new RestListContainer<>(TranslationReportService.getUntranslatedDocuments(locale));
     }
 
     @PostMapping("/translation/{handleId}/priority")
@@ -34,6 +37,13 @@ public class TranslationReportRestController {
             throw new ResponseStatusException(HttpStatus.OK);
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No priority provided");
+    }
+
+    @GetMapping("/translation/priority")
+    public List<List<Object>> getTranslationPriorityOptions() {
+        return Arrays.stream(TranslationPriority.values()).map(priority -> {
+            return Arrays.asList(priority.toString(),(Object)priority.name,  priority.sortOrder);
+        }).collect(Collectors.toList());
     }
 
     @ExceptionHandler(TranslationReportException.class)

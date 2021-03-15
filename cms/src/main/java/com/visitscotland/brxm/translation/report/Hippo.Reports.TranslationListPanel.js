@@ -4,81 +4,7 @@
 Ext.ns('Hippo.Reports');
 
 const GRID_ID = "myGrid";
-
-PageableHttpProxy = function(conn) {
-    PageableHttpProxy.superclass.constructor.call(this, conn);
-}
-
-Ext.extend(PageableHttpProxy, Ext.data.HttpProxy, {
-
-    doRequest : function(action, rs, params, reader, cb, scope, arg) {
-        console.log("doRequest: start=", params.start, " limit=", " action=",  " N saved records=",this.records === undefined ? 0 : this.records.length, this.conn.url)
-        cb = cb.bind(Ext.getCmp(GRID_ID).getStore());
-        const url = this.conn.api.read.url;
-        if (params.start !== 0 && this.records !== undefined && this.records.length !== 0 && this.recordUrl === url) {
-            console.log("Returning subset of records from store", params)
-            let operation = this.buildJsonObject(this.records, params, true);
-            operation["reader"] = reader
-            operation["scope"] = this
-            operation["request"] = {"callback": cb, arg: arg}
-            this.onRead("read", operation, {
-                method: "GET",
-                status: 200,
-                responseText: JSON.stringify(operation.records.map(function(record) {return record.data})),
-                params: params,
-            })
-            return;
-        }
-
-        this.api = undefined;
-        Ext.data.Api.prepare(this);
-        this.api["read"]["method"] = "GET"
-        console.log("Making HTTP request to obtain records")
-        PageableHttpProxy.superclass.doRequest.call(this, action, rs, params, reader, this.onRequestCompleteCallback(cb) , scope, arg);
-    },
-
-    onRequestCompleteCallback: function(loadStoreCb) {
-        let self = this;
-        return function(o, params, success) {
-            console.log("Returned records, success=" + success)
-            if (success) {
-                self.records = o.records;
-                self.recordUrl = this.url;
-                return loadStoreCb(self.buildJsonObject(o.records, params, success), params, success);
-            }
-
-            loadStoreCb(o, params, success);
-        }
-    },
-
-    translationPriorityValue: function(priority) {
-        if (priority === "HIGH") return 3;
-        if (priority === "NORMAL") return 2;
-        return 1;
-    },
-
-    buildJsonObject: function(records, params, success) {
-        if (params["params"] !== undefined) params = params.params;
-        const start = params.start === undefined ? 0 : params.start;
-        const limit = params.limit === undefined ? 20 : params.limit;
-
-        // // Apply sorting to all records
-        let self = this;
-        const recordLength = records.length;
-        // if (params.sort === "translationPriority") {
-        //     records = records.sort(function (a, b) {
-        //         const aVal = self.translationPriorityValue(a.data.translationPriority);
-        //         const bVal = self.translationPriorityValue(b.data.translationPriority);
-        //         if (aVal > bVal) return params.direction === "ASC" ? -1 : 1;
-        //         if (aVal < bVal) return params.direction === "ASC" ? 1 : -1;
-        //     })
-        // }
-
-        const obj =  {records: records.slice(start, start + limit), success: success, totalRecords: recordLength}
-        console.log("o=", obj, start, limit, params)
-        return obj;
-    }
-});
+const PAGE_SIZE = 13
 
 Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
 
@@ -87,27 +13,30 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         const INITIAL_LOCALE = "fr";
 
         let ajaxStore = new Ext.data.JsonStore({
-            url: GET_UNTRANSLATED_FILES_ENDPOINT + "?locale=" + INITIAL_LOCALE,
             storeId: "myStore",
             autoLoad: true,
             remoteSort: true,
             idProperty: "handleId",
             id: "myStore",
+            root: "data",
+            totalProperty: "total",
             method: "GET",
-            proxy: new PageableHttpProxy({url: GET_UNTRANSLATED_FILES_ENDPOINT + "?locale=" + INITIAL_LOCALE, api: {}}),
-            fields: ["displayName", "translatedLocales", "sentForTranslationLocales", "path", "translationStatus", {name: "translationPriority", sortType: this.translationPrioritySort}, "handleId"]
+            proxy: new Hippo.Reports.PageableHttpProxy({url: GET_UNTRANSLATED_FILES_ENDPOINT, api: {}}, {locale: INITIAL_LOCALE}),
+            fields: ["displayName", "translatedLocales", "sentForTranslationLocales", "path", "translationStatus",
+                "translationPriority", "handleId", "lastModified",
+                "publishStatus", "type"]
         })
 
         var self = this;
 
         this.store = ajaxStore;
-        this.pageSize = 20;
+        this.pageSize = PAGE_SIZE;
         this.paging = true;
-        this.pagingText = "Paging text";
         this.noDataText = "No results";
-        this.autoExpandColumn = "Auto Expand";
 
-        var combo = new Ext.form.ComboBox({
+
+        const languageComboConfig = {
+            xtype: "combo",
             autoSelect: true,
             editable: false,
             triggerAction: 'all',
@@ -128,34 +57,137 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             listeners: {
                 select: function (combo, record, index) {
                     const locale = record["id"]
-                    console.log("Selected locale " + locale);
-                    grid.getStore().proxy.conn.url = GET_UNTRANSLATED_FILES_ENDPOINT + "?locale=" + locale;
-                    grid.getStore().load();
+                    const gridStore = Ext.getCmp(GRID_ID).getStore()
+                    gridStore.proxy.setParams({locale: locale});
+                    gridStore.load();
                 }
             }
-        })
+        }
 
-        var priorityCombo = new Ext.form.ComboBox({
+        const publishStatusComboConfig = {
+            xtype: 'combo',
+            autoSelect: true,
+            editable: false,
+            triggerAction: 'all',
+            lazyRender: true,
+            mode: 'local',
+            value: "all",
+            store: new Ext.data.ArrayStore({
+                id: 0,
+                fields: [
+                    'code',
+                    'displayText'
+                ],
+                data: [["all", "All documents"], ["published", "Published"], ["offline", "Offline"]]
+            }),
+            valueField: 'code',
+            displayField: 'displayText',
+            listeners: {
+                select: function (combo, record, index) {
+                    const selected = record["id"]
+                    const proxy = Ext.getCmp(GRID_ID).getStore().proxy;
+                    console.log("publish selected" , selected)
+                    if (selected === "published") {
+                        proxy.addFilter("publishStatus", (record, value) => {
+                            return value === "CURR_VERSION_LIVE" || value === "PREV_VERSION_LIVE"
+                        })
+                    } else if (selected === "offline") {
+                        proxy.addFilter("publishStatus", (record, value) => {
+                            return value === "NOT_LIVE";
+                        })
+                    } else {
+                        proxy.clearFilter("publishStatus")
+                    }
+                    Ext.getCmp(GRID_ID).getStore().load();
+                }
+            }
+        };
+
+        // Combo box used to edit each record's priority
+        // Configured in the editor grid as a column editor component
+        // Requests for editing made in the editor grid edit event callback
+        const priorityComboConfig = {
+            xtype: "combo",
+            autoSelect: true,
+            editable: false,
+            triggerAction: 'all',
+            lazyRender:true,
+            mode: 'remote',
+            store: new Ext.data.ArrayStore({
+                id: 0,
+                fields: [
+                    'value',
+                    'name',
+                    'sortOrder'
+                ],
+                proxy: new Ext.data.HttpProxy({
+                    // Get possible priority values from the server. Configured in com.visitscotland.brxm.translation.report.TranslationPriority
+                    url: "/cms/translation/priority",
+                    method: "GET"
+                })
+            }),
+            valueField: 'value',
+            displayField: 'name'
+        }
+
+        // Combo box used for filtering records, shown in the left hand side
+        const priorityFilterComboConfig = {
+            xtype: "combo",
             autoSelect: true,
             editable: false,
             triggerAction: 'all',
             lazyRender:true,
             mode: 'local',
+            value: "All documents",
             store: new Ext.data.ArrayStore({
                 id: 0,
+                autoLoad: true,
                 fields: [
-                    'locale',
-                    'displayText'
+                    'value',
+                    'name',
+                    'sortOrder'
                 ],
-                data: [["HIGH", "High"], ["NORMAL", "Normal"], ["LOW", "Low"]]
-            }),
-            valueField: 'locale',
-            displayField: 'displayText'
-        })
+                proxy: new Ext.data.HttpProxy({
+                    // Get possible priority values from the server. Configured in com.visitscotland.brxm.translation.report.TranslationPriority
+                    url: "/cms/translation/priority",
+                    method: "GET"
+                }),
 
-        var grid = new Ext.grid.EditorGridPanel({
+                listeners: {
+                    load: (store) => {
+                        store.insert(0, new Ext.data.Record({
+                            value: "all",
+                            name: "All documents",
+                            sortOrder: 0
+                        }, "all"))
+                    }
+                }
+            }),
+
+            valueField: 'value',
+            displayField: 'name',
+            listeners: {
+                select: (combo, record, index) => {
+                    console.log("Filter translationPriority", record);
+                    const proxy = Ext.getCmp(GRID_ID).getStore().proxy;
+                    if (record === "all") {
+                        proxy.clearFilter("translationPriority");
+                    } else {
+                        proxy.addFilter("translationPriority", (rec, value) => value === record["id"])
+                    }
+
+                    Ext.getCmp(GRID_ID).getStore().load();
+                }
+            }
+
+        }
+
+
+        const editorGridPanelConfig = {
+            xtype: "editorgrid",
             id: GRID_ID,
             store: ajaxStore,
+            stateful: false,
             colModel: new Ext.grid.ColumnModel({
                 defaults: {
                     menuDisabled: true,
@@ -163,27 +195,29 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                     renderer: Ext.util.Format.htmlEncode
                 },
                 columns: [
-                    {name: "name", dataIndex: "displayName", header: "Page", sortable: true, width: 50},
+                    {name: "publishStatus", dataIndex: "publishStatus", header: "", sortable: true, renderer: this.renderPublishStatus, width: 5},
+                    {name: "name", dataIndex: "displayName", header: "Page", sortable: true, width: 30},
+                    {name: "type", dataIndex: "type", header: "Type", sortable: true, width: 10},
+                    {name: "lastModified", dataIndex: "lastModified", header: "Last modified", sortable: true, renderer: this.renderDateTime, width: 5},
                     {name: "translatedLocales", dataIndex: "translatedLocales", header: "Translated", renderer: this.renderFlags, width: 10},
                     {name: "sentForTranslationLocales", dataIndex: "sentForTranslationLocales", header: "Sent for translation", renderer: this.renderFlags, width: 10},
                     {name: "translationStatus", dataIndex: "translationStatus", header: "Status", sortable: true, width: 15},
-                    {name: "translationPriority", dataIndex: "translationPriority", header: "Priority", sortable: true, sortType: this.translationPrioritySort, editor: priorityCombo, width: 15},
+                    {name: "translationPriority", dataIndex: "translationPriority", header: "Priority", sortable: true, editor: priorityComboConfig, renderer: {fn: this.renderTranslationPriority, scope: self}, width: 15},
                 ]
             }),
             loadMask: false,
-            autoExpandColumn: self.autoExpandColumn,
             border: false,
             disableSelection: true,
             enableColumnMove: false,
             viewConfig: {
                 forceFit: true,
-                scrollOffset: 0
+                scrollOffset: 0,
+                markDirty: false
             },
             bbar: self.paging ? new Ext.PagingToolbar({
                 pageSize: self.pageSize,
                 store: self.store,
                 displayInfo: true,
-                displayMsg: self.pagingText,
                 emptyMsg: '',
                 afterPageText: '',
                 listeners: {
@@ -197,18 +231,19 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             }) : null,
 
             listeners: {
-                cellclick: function(grid, rowIndex, columnIndex, event) {
+                cellclick: (grid, rowIndex, columnIndex, event) => {
                     // Only redirect user to page if title is clicked
                     if (columnIndex !== 0) return;
                     const record = grid.getStore().getAt(rowIndex);
                     self.fireEvent('documentSelected', record.data.handleId);
                 },
 
-                afteredit: function(e) {
+                afteredit: (e) =>  {
                     if (e.originalValue === e.value) return;
+                    if (e.field !== "translationPriority") return;
                     console.log("afterEdit", e.record.id, e.record.json.handleId, e.originalValue, e.value, e)
 
-                    self.updatePriority(e.record.id, e.value)
+                    self.updatePriority(e.record.json.handleId, e.value)
                         .done(function() {
                             console.log("Success!");
                         })
@@ -219,14 +254,54 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                         })
                 }
             }
-        });
+        }
 
-        grid.add(combo)
         config = Ext.apply(config, {
             // bodyCssClass: 'hippo-reports-document-list',
-            items:[grid]
+            layout: "border",
+            items: [
+                {
+                    region: "center",
+                    layout: "fit",
+                    items: [editorGridPanelConfig]
+                },
+                {
+                    region: 'west',
+                    width: 200,
+                    items: [
+                        {
+                            xtype: "label",
+                            text: "Language",
+                        },
+                        languageComboConfig,
+                        {
+                            xtype: "label",
+                            text: "Publish status"
+                        },
+                        publishStatusComboConfig,
+                        {
+                            xtype: "label",
+                            text: "Priority"
+                        },
+                        priorityFilterComboConfig
+                    ]
+                }
+            ]
         });
+
         Hippo.Reports.TranslationListPanel.superclass.constructor.call(this, config);
+    },
+
+    getPriorityData: function() {
+        return new Promise((resolve, reject) => {
+            fetch("/cms/translation/priority")
+                .then((response) => {
+                    response.json().then((priorityData) => {
+                        resolve(priorityData)
+                    })
+                })
+                .catch((err) => reject(err))
+        })
     },
 
     renderFlags: function(flags) {
@@ -235,6 +310,60 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             const url = "./wicket/resource/org.hippoecm.frontend.translation.LocaleProviderPlugin/icons/flags/flag-16_" + locale + ".png"
             return '<img src="' + url + '" style="display: inline" />'
         }).join(" ");
+    },
+
+    renderDateTime: function(iso) {
+        const date = new Date(iso);
+        const display = date.dateFormat("d M Y")
+        const onHover = date.toLocaleString()
+        return '<p title="' + onHover + '">' + display + '</p>'
+    },
+
+    renderPublishStatus: function(status) {
+        let topIcon = "hi-empty"
+        let bottomIcon = "hi-empty"
+        if (status === "NOT_LIVE") {
+            topIcon = "hi-minus-circle"
+        } else if (status === "PREV_VERSION_LIVE") {
+            topIcon = "hi-check-circle";
+            bottomIcon = "hi-exclamation-triangle"
+        } else if (status === "CURR_VERSION_LIVE") {
+            topIcon = "hi-check-circle";
+            bottomIcon = "hi-empty";
+        }
+
+        return "<div class=\"hi hi-stack hi-l\">" +
+            " <svg class=\"hi hi-file-text hi-l\"><use xlink:href=\"#hi-file-text-l\"></use></svg>" +
+            " <svg class=\"hi " + topIcon + " hi-m hi-left hi-top\"><use xlink:href=\"#"+ topIcon +"-m\"></use></svg>" +
+            " <svg class=\"hi " + bottomIcon +  " hi-m hi-left hi-bottom\"><use xlink:href=\"#" + bottomIcon + "-m\"></use></svg></div>"
+    },
+
+    renderTranslationPriority: function(priority) {
+        // this = TranslationListPanel
+        if (this.priorityDropdownData === undefined) {
+            this.priorityDropdownData = []
+            this.getPriorityData()
+                .then((priorityData) => {
+                    this.priorityDropdownData = priorityData;
+                    const gridStore = Ext.getCmp(GRID_ID).getStore()
+                    gridStore.load()
+                    var self = this;
+                    gridStore.proxy.addSortTransformation("translationPriority", (a) => {
+                        for (let i = 0; i < self.priorityDropdownData.length; i++) {
+                            if (self.priorityDropdownData[i][0] === a) return self.priorityDropdownData[i][2];
+                        }
+                        return 0;
+                    })
+                })
+            return "";
+        } else if (this.priorityDropdownData.length === 0) {
+            return ""
+        } else {
+            for (let i = 0; i < this.priorityDropdownData.length; i++) {
+                if (this.priorityDropdownData[i][0] === priority) return this.priorityDropdownData[i][1];
+            }
+            return "error";
+        }
     },
 
     updatePriority: function(handleId, priority) {
@@ -247,11 +376,6 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         });
     },
 
-    translationPrioritySort: function(value) {
-        if (value === "HIGH") return 3;
-        if (value === "NORMAL") return 2;
-        return 1;
-    },
 
     loadStore: function() {
         this.store.load({
@@ -262,15 +386,8 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         });
     },
 
-    checkNoData: function(component) {
-        if (this.store.getTotalCount() === 0) {
-            this.showMessage(this.noDataText);
-        }
-    },
-
     initComponent: function() {
         Hippo.Reports.TranslationListPanel.superclass.initComponent.call(this);
-        this.store.on('load', this.checkNoData, this);
         Hippo.Reports.RefreshObservableInstance.addListener("refresh", this.loadStore, this);
         this.loadStore();
     },

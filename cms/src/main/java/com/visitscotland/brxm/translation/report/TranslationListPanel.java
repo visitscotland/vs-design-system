@@ -34,6 +34,7 @@ import java.util.Map;
 @ExtClass("Hippo.Reports.TranslationListPanel")
 public class TranslationListPanel extends ReportPanel {
     private static final JavaScriptResourceReference JS = new JavaScriptResourceReference(TranslationListPanel.class, "Hippo.Reports.TranslationListPanel.js");
+    private static final JavaScriptResourceReference JS_PROXY = new JavaScriptResourceReference(TranslationListPanel.class, "Hippo.Reports.PageableHttpProxy.js");
     private static final CssResourceReference CSS = new CssResourceReference(DocumentListPanel.class, "Hippo.Reports.DocumentList.css");
     private static final Logger log = LoggerFactory.getLogger(TranslationListPanel.class);
 
@@ -59,6 +60,7 @@ public class TranslationListPanel extends ReportPanel {
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
         response.render(CssHeaderItem.forReference(CSS));
+        response.render(JavaScriptHeaderItem.forReference(JS_PROXY));
         response.render(JavaScriptHeaderItem.forReference(JS));
     }
 
