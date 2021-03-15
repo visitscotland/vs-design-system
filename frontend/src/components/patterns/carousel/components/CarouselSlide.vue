@@ -335,7 +335,7 @@ export default {
                         restaurants. Here are some recomm…
                     </p>
                 </template>
-            </VsCarouselSlide>     
+            </VsCarouselSlide>
         </VsCarousel>
     ```
 </docs>
