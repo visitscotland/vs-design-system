@@ -4,8 +4,8 @@
 
 <#macro carousel item>
     <vs-carousel
-        next-text="${label("essentials.page.next)}"
-        prev-text="${label("essentials.page.previous)}"
+        next-text="${label('essentials.pagination', 'page.next')}"
+        prev-text="${label('essentials.pagination', 'page.previous')}"
         slides-xs="1"
         slides-sm="2"
         slides-md="3"
