@@ -7,7 +7,7 @@
 # ====/TO-DO ====
 
 VS_VS_LAST_ENV=vs-last-env
-source $WORKSPACE/$VS_VS_LAST_ENV
+set -a; source $WORKSPACE/$VS_VS_LAST_ENV; set +a
 echo "==== selected VS environment variables ===="
 set | egrep "^(VS_)"
 echo "====/selected VS environment variables ===="
