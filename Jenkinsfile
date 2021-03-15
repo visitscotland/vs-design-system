@@ -250,10 +250,12 @@ pipeline {
         script {
           if (fileExists("$WORKSPACE/vs-last-env.quoted")) {
             load "$WORKSPACE/vs-last-env.quoted"
+            echo "inside script VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
           } else {
             echo "cannot load environment variables, file does not exist"
           }
         }
+        echo "outside script VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
         //script { VS_COMMIT_AUTHOR = "null" }
         //echo "${env.VS_COMMIT_AUTHOR}"
         //readEnvironmentVariables("vs-last-env")
@@ -269,6 +271,7 @@ pipeline {
       steps{
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') { 
           script{
+            // replace this sleep with a "wait for 200" in the script
             sleep time: 120, unit: 'SECONDS'
             sh 'sh ./testing/lighthouse.sh'
           }

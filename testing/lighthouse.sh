@@ -6,6 +6,7 @@
 # gp: use VS variables now exported from infrastructure script to populate the request values for the lighthouse tests
 # gp: change LHCI container name to use other job container name plus a suffix - that way it'll be unique (at preset only one LHCI can run)
 # gp: add functionality of hemanthsridhar-docker-lhci-server-center.bintray.io/lhci to VS brxm container
+# gp: add while loop to curl environment and wait for a "200" before proceeding, remove sleep 120 from 
 # ====/TO-DO ====
 
 #VS_VS_LAST_ENV=vs-last-env
