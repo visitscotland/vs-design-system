@@ -38,5 +38,14 @@ describe('VsModuleWrapper', () => {
             });
             expect(wrapper.find('[data-test="vs-module-wrapper__heading"]').exists()).toBe(false);
         });
+
+        it('does not render the intro if no vsModuleWrapperHeading slot is supplied', () => {
+            const wrapper = shallowMount(VsModuleWrapper, {
+                slots: {
+                    vsModuleWrapperIntro: '',
+                },
+            });
+            expect(wrapper.find('[data-test="vs-module-wrapper__intro"]').exists()).toBe(false);
+        });
     });
 });
