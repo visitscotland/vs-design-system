@@ -169,111 +169,113 @@ export default {
         }
     }
 
-    .no-js .vs-carousel-slide {
-        margin-bottom: $spacer-2;
+    @include no-js {
+        .vs-carousel-slide {
+            margin-bottom: $spacer-2;
 
-        &::after {
-            content: '';
-            position: absolute;
-            left: $spacer-3;
-            bottom: $spacer-1;
-            height: 1px;
-            width: calc(100% - 24px);
-            background: $color-gray-tint-5;
+            &::after {
+                content: '';
+                position: absolute;
+                left: $spacer-3;
+                bottom: $spacer-1;
+                height: 1px;
+                width: calc(100% - 24px);
+                background: $color-gray-tint-5;
 
-            @include media-breakpoint-up(sm) {
-                width: calc(100% - 40px);
-                left: $spacer-5;
-            }
-        }
-
-        .vs-stretched-link-card {
-            opacity: 1;
-            display: flex;
-            flex-direction: row;
-            padding: $spacer-2;
-            border: none;
-            height: 100%;
-            transition: box-shadow 800ms;
-
-            &:hover {
-                box-shadow: 10px 10px 20px $color-gray-tint-4;
-
-                .vs-stretched-link-card__title {
-                    text-decoration: underline;
+                @include media-breakpoint-up(sm) {
+                    width: calc(100% - 40px);
+                    left: $spacer-5;
                 }
             }
 
-            .stretched-link {
-                text-decoration: none;
-            }
-
-            .card-body {
-                background: none;
-                padding: 0;
-                align-self: flex-start;
-                width: 66%;
-                text-align: left;
-            }
-
-            &__img {
-                width: 33%;
-                align-self: flex-start;
-                margin-right: $spacer-4;
-            }
-
-            &__title {
-                font-size: $font-size-sm;
-                letter-spacing: .05rem;
-                line-height: $line-height-m;
-                color: $color-base-text;
-                text-decoration: none;
-            }
-
-            &__category {
-                margin-bottom: $spacer-2;
-            }
-
-            .stretched-link {
-                letter-spacing: 0;
-            }
-
-            .card-title {
+            .vs-stretched-link-card {
+                opacity: 1;
                 display: flex;
-                margin-bottom: 0;
-            }
+                flex-direction: row;
+                padding: $spacer-2;
+                border: none;
+                height: 100%;
+                transition: box-shadow 800ms;
 
-            &__content {
-                display: none;
+                &:hover {
+                    box-shadow: 10px 10px 20px $color-gray-tint-4;
 
-                p {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 3;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                }
-            }
-
-            .vs-stretched-link-panels {
-                right: auto;
-                left: calc(33% - 4px);
-                top: $spacer-4;
-                transform: translateX(-100%);
-
-                &__panel {
-                    display: none;
-                    width: 36px;
-                    height: 36px;
-
-                    &--days {
-                        display: flex;
+                    .vs-stretched-link-card__title {
+                        text-decoration: underline;
                     }
                 }
 
-                 &__days {
-                     font-size: $font-size-base;
-                     margin-bottom: 0;
-                 }
+                .stretched-link {
+                    text-decoration: none;
+                }
+
+                .card-body {
+                    background: none;
+                    padding: 0;
+                    align-self: flex-start;
+                    width: 66%;
+                    text-align: left;
+                }
+
+                &__img {
+                    width: 33%;
+                    align-self: flex-start;
+                    margin-right: $spacer-4;
+                }
+
+                &__title {
+                    font-size: $font-size-sm;
+                    letter-spacing: .05rem;
+                    line-height: $line-height-m;
+                    color: $color-base-text;
+                    text-decoration: none;
+                }
+
+                &__category {
+                    margin-bottom: $spacer-2;
+                }
+
+                .stretched-link {
+                    letter-spacing: 0;
+                }
+
+                .card-title {
+                    display: flex;
+                    margin-bottom: 0;
+                }
+
+                &__content {
+                    display: none;
+
+                    p {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                    }
+                }
+
+                .vs-stretched-link-panels {
+                    right: auto;
+                    left: calc(33% - 4px);
+                    top: $spacer-4;
+                    transform: translateX(-100%);
+
+                    &__panel {
+                        display: none;
+                        width: 36px;
+                        height: 36px;
+
+                        &--days {
+                            display: flex;
+                        }
+                    }
+
+                    &__days {
+                        font-size: $font-size-base;
+                        margin-bottom: 0;
+                    }
+                }
             }
         }
 
@@ -286,19 +288,17 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
-            .vs-stretched-link-card {
-                &__title {
-                    font-size: $small-font-size;
-                }
-
-                &__content {
-                    margin: $spacer-2 0 0;
-                    line-height: $line-height-s;
-                }
-            }
-
             .vs-carousel-slide {
-                width: calc(50% - 24px) !important;
+                .vs-stretched-link-card {
+                    &__title {
+                        font-size: $small-font-size;
+                    }
+
+                    &__content {
+                        margin: $spacer-2 0 0;
+                        line-height: $line-height-s;
+                    }
+                }
             }
         }
     }
