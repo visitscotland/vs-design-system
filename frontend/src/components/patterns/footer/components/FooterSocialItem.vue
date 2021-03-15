@@ -1,6 +1,10 @@
 <template>
-    <li class="vs-footer-social-item">
+    <li
+        class="vs-footer-social-item"
+        data-test="vs-footer-social-item"
+    >
         <VsButtonSquareSocial
+            data-test="vs-footer-social-item__button"
             :href="href"
             :icon="icon"
         />
@@ -14,6 +18,8 @@ import VsButtonSquareSocial from '@components/patterns/button-square-social/Butt
 /**
  * The FooterSocialItem is used inside the FooterSocialMenu to
  * show a button for a social media link.
+ *
+ * @displayName Footer Social Item
  */
 
 export default {
@@ -57,10 +63,10 @@ export default {
 
 <docs>
   ```js
-    <vs-footer>
-        <vs-footer-nav-list break-point="md">
-            <vs-col cols="12" md="6">
-                <vs-accordion-item
+    <VsFooter>
+        <VsFooterNavList break-point="md">
+            <VsCol cols="12" md="6">
+                <VsAccordionItem
                     :open-by-default="true"
                     variant="dark"
                     control-id="accordion_item_1"
@@ -71,34 +77,34 @@ export default {
                     </span>
 
                     <span slot="icon-open">
-                        <vs-icon name="chevron-up" variant="light" size="xs" />
+                        <VsIcon name="chevron" variant="light" size="xs" />
                     </span>
 
                     <span slot="icon-closed">
-                        <vs-icon name="chevron-right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
                     </span>
 
-                    <vs-list unstyled>
-                        <vs-footer-social-item
+                    <VsList unstyled>
+                        <VsFooterSocialItem
                             href="#"
                             icon="facebook"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
+                        ></VsFooterSocialItem>
+                        <VsFooterSocialItem
                             href="#"
                             icon="twitter"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
+                        ></VsFooterSocialItem>
+                        <VsFooterSocialItem
                             href="#"
                             icon="youtube"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
+                        ></VsFooterSocialItem>
+                        <VsFooterSocialItem
                             href="#"
                             icon="instagram"
-                        ></vs-footer-social-item>
-                    </vs-list>
-                </vs-accordion-item>
-            </vs-col>
-        </vs-footer-nav-list>
-    </vs-footer>
+                        ></VsFooterSocialItem>
+                    </VsList>
+                </VsAccordionItem>
+            </VsCol>
+        </VsFooterNavList>
+    </VsFooter>
   ```
 </docs>

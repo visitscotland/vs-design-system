@@ -1,5 +1,6 @@
 <template>
     <BListGroup
+        data-test="vs-list-group"
         v-bind="$attrs"
         v-hand-down-focus
     >
@@ -13,6 +14,8 @@ import HandDownFocus from '@/directives/hand-down-focus';
 
 /**
  * Wrapper for the BListGroup component.
+ *
+ * @displayName List Group
  */
 export default {
     name: 'VsListGroup',
@@ -24,10 +27,6 @@ export default {
     },
 };
 </script>
-
-<style lang="scss" scoped>
-@import "~bootstrap/scss/list-group";
-</style>
 
 <docs>
   ```js
