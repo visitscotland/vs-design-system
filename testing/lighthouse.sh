@@ -8,11 +8,13 @@
 
 VS_VS_LAST_ENV=vs-last-env
 set -a; source $WORKSPACE/$VS_VS_LAST_ENV; set +a
-echo "==== selected VS environment variables ===="
+export VS_*
+echo "==== selected VS environment variables (set) ===="
 set | egrep "^(VS_)"
+echo "====/selected VS environment variables (printenv) ===="
+printenv | egrep "^(VS_)"
 echo "====/selected VS environment variables ===="
 set -x
-export VS_*
 VS_PORT=`cat env_port.txt`
 VS_HOST=`cat env_host.txt`
 rm -rf $(pwd)/frontend/.lighthouseci
