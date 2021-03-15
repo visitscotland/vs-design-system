@@ -11,7 +11,7 @@
 #VS_VS_LAST_ENV=vs-last-env
 # read in VS variables from VS_VS_LAST_ENV
 #source $WORKSPACE/$VS_VS_LAST_ENV
-if [ "VS_DEBUG" = "TRUE"]; then
+if [ "VS_DEBUG" = "TRUE" ]; then
   echo "==== selected VS environment variables ===="
   set | egrep "^(VS_)"
   echo "====/selected VS environment variables ===="

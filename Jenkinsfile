@@ -248,7 +248,7 @@ pipeline {
         }
         // make all VS_ variables available to pipeline
         script {
-          if (fileExists('$WORKSPACE/vs-last-env.quoted')) {
+          if (fileExists("$WORKSPACE/vs-last-env.quoted")) {
             load "$WORKSPACE/vs-last-env.quoted"
           } else {
             echo "cannot load environment variables, file does not exist"
