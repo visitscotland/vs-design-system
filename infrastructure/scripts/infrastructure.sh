@@ -699,7 +699,7 @@ containerStartHippo() {
 }
 
 exportVSVariables() {
-  echo " - exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_PIPELINE_SUFFIX"
+  echo " - exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_PIPELINE_SUFFIX to $PWD"
   set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV > $VS_VS_LAST_ENV$VS_LAST_ENV_PIPELINE_SUFFIX
   for VAR in `cat $VS_VS_LAST_ENV`; do
     echo "found var " $VAR
