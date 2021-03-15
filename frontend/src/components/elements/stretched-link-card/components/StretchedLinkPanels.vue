@@ -68,15 +68,6 @@ export default {
             default: '',
         },
     },
-    // computed: {
-    //     transportName() {
-    //         if (this.transport === 'public') {
-    //             return 'public transport';
-    //         }
-
-    //         return this.transport;
-    //     },\\
-    // },
 };
 </script>
 
