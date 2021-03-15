@@ -249,8 +249,8 @@ pipeline {
         // make all VS_ variables available to pipeline
         script {
           if (fileExists("$WORKSPACE/vs-last-env.quoted")) {
-            echo "loading environment variables from $WORKSPACE/vs-last-env.quoted"
             sh 'ls -alh $WORKSPACE/vs-last-env.quoted'
+            echo "loading environment variables from $WORKSPACE/vs-last-env.quoted in IF block"
             load "$WORKSPACE/vs-last-env.quoted"
             echo "inside if VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
           } else {
@@ -259,6 +259,9 @@ pipeline {
         echo "inside script VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
         }
         echo "outside script VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
+        echo "loading environment variables from $WORKSPACE/vs-last-env.quoted directly in STEPS block"
+        load "$WORKSPACE/vs-last-env.quoted"
+        echo "after STEPS load VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
         //script { VS_COMMIT_AUTHOR = "null" }
         //echo "${env.VS_COMMIT_AUTHOR}"
         //readEnvironmentVariables("vs-last-env")
