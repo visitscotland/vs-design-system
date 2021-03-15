@@ -692,7 +692,7 @@ containerStartHippo() {
 
 exportVSVariables() {
   echo " - exporting selected VS variables to ./$VS_VS_LAST_ENV"
-  printenv | egrep "VS_(DOCKER|BRC|COMMIT)" | tee $VS_VS_LAST_ENV
+  set | egrep "VS_(BRC|COMMIT|DOCKER|GIT)" | tee $VS_VS_LAST_ENV
 }
 
 createBuildReport() {
