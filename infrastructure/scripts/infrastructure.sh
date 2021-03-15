@@ -64,6 +64,7 @@ if [ -z "$VS_SSR_APP_PORT" ]; then VS_SSR_APP_PORT=8082; fi
 #  ==== Other Variables ====
 VS_JENKINS_LAST_ENV=jenkins-last-env
 VS_VS_LAST_ENV=vs-last-env
+VS_LAST_ENV_PIPELINE_SUFFIX=.groovy
 # ====/ADJUSTABLE VARIABLES ====
 
 # ==== PARSE COMMAND LINE ARGUMENTS ====
@@ -698,8 +699,12 @@ containerStartHippo() {
 }
 
 exportVSVariables() {
-  echo " - exporting selected VS variables to ./$VS_VS_LAST_ENV"
-  set | egrep "VS_(BRC|COMMIT|DOCKER|GIT)" | tee $VS_VS_LAST_ENV
+  echo " - exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV.$VS_LAST_ENV_PIPELINE_SUFFIX"
+  rm $VS_VS_LAST_ENV; rm $VS_VS_LAST_ENV.$VS_LAST_ENV_PIPELINE_SUFFIX
+  for VAR in  `set | egrep "VS_"`; do
+    echo $VAR >> $VS_VS_LAST_ENV
+    echo env.$VAR >> $VS_VS_LAST_ENV.$VS_LAST_ENV_PIPELINE_SUFFIX
+  done
 }
 
 createBuildReport() {

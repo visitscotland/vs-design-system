@@ -7,14 +7,14 @@
 # ====/TO-DO ====
 
 VS_VS_LAST_ENV=vs-last-env
-set -a; source $WORKSPACE/$VS_VS_LAST_ENV; set +a
-export VS_*
+
+# read in VS variables from VS_VS_LAST_ENV
+source $WORKSPACE/$VS_VS_LAST_ENV
 echo "==== selected VS environment variables (set) ===="
 set | egrep "^(VS_)"
-echo "====/selected VS environment variables (printenv) ===="
-printenv | egrep "^(VS_)"
-echo "====/selected VS environment variables ===="
-set -x
+echo "==== selected VS environment variables (printenv) ===="
+
+#set -x
 VS_PORT=`cat env_port.txt`
 VS_HOST=`cat env_host.txt`
 rm -rf $(pwd)/frontend/.lighthouseci
