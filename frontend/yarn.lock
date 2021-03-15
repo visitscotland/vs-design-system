@@ -1135,26 +1135,6 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
   integrity sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==
 
-"@splidejs/splide-extension-video@^0.4.6":
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/@splidejs/splide-extension-video/-/splide-extension-video-0.4.6.tgz#fe832e0a2f87a56896e800aead73e6ef78f2cb96"
-  integrity sha512-UEqxkuYClYDhV+DsX9384wKj6FWwWN3HUvUXcNPVKZiHvh0Zn0t1M2w/hcDRJ3VtCxFhx92Kgzlkf22HqdyF+g==
-  dependencies:
-    "@vimeo/player" "^2.10.0"
-
-"@splidejs/splide@^2.4.13":
-  version "2.4.20"
-  resolved "https://registry.yarnpkg.com/@splidejs/splide/-/splide-2.4.20.tgz#6370cf25055a93809a40dcbe16b087199f820eef"
-  integrity sha512-/38a5sxujf2ZOunk6pXNkw/BiYDGiHBeEsrfXLSgMQ05VF175gRJGEe7IcLV3qvaRxtM9U6Jr1HOtWUzvTQ9tg==
-
-"@splidejs/vue-splide@^0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@splidejs/vue-splide/-/vue-splide-0.3.5.tgz#375d3c615fd88c612f46b8029b4ad2007ad6991b"
-  integrity sha512-eI4Kl2v+yAGKMVa9MtfIIPPZtplTfKPx4rCJlZqfethl3tCOGQwL9MxSyLk6bUhl31aOuClxmXQv8O5ubU8fNQ==
-  dependencies:
-    "@splidejs/splide" "^2.4.13"
-    "@splidejs/splide-extension-video" "^0.4.6"
-    vue "^2.6.12"
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -1379,6 +1359,14 @@
     lodash "^4.17.15"
     semver "^7.3.2"
     tsutils "^3.17.1"
+
+"@vimeo/player@^2.10.0":
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/@vimeo/player/-/player-2.15.0.tgz#c1037706f0a95abf87f6aa960d058e11efe6510e"
+  integrity sha512-PH+H7G7pIUbrw8AHeigOc13cUoe8E78y4XCVqSP7pLFj/kQm0EvHQGBO3224Qq7a0XMEmNR6kH+n+8o0GslWCg==
+  dependencies:
+    native-promise-only "0.8.1"
+    weakmap-polyfill "2.0.1"
 
 "@vue/component-compiler-utils@^3.1.0":
   version "3.2.0"
