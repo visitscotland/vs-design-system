@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
-import VsStretchedLinkPanels from '@components/elements/stretched-link-card/components/StretchedLinkPanels';
+import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
+import VsStretchedLinkPanels from '@components/patterns/stretched-link-card/components/StretchedLinkPanels';
 import { VsCol } from '@components/elements/layout';
 
 /**
