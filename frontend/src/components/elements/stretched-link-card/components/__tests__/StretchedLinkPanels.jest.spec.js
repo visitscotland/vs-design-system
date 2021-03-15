@@ -1,10 +1,10 @@
 import { shallowMount } from '@vue/test-utils';
-import VsStretchedLinkPanels from '../components/StretchedLinkPanels';
+import VsStretchedLinkPanels from '../StretchedLinkPanels';
 
 const factoryShallowMount = () => shallowMount(VsStretchedLinkPanels, {
     propsData: {
         days: '10',
-        transport: 'Transport text',
+        transportName: 'Transport text',
         daysLabel: 'days',
     },
 });
