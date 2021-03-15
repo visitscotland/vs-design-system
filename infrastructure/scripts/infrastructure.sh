@@ -702,7 +702,7 @@ containerStartHippo() {
 
 exportVSVariables() {
   echo " - exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD"
-  set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV | sed -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/^/env./" > $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
+  set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV | sed -e "s/^/env./"-e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
 }
 
 createBuildReport() {
