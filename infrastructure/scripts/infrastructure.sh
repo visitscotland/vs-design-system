@@ -131,9 +131,9 @@ checkVariables() {
 
 defaultSettings() {
   # unset variables
-  VS_CONTAINER_LIST=
-  VS_PARENT_JOB_NAME=
-  RESERVED_PORT_LIST=
+  unset VS_CONTAINER_LIST
+  unset VS_PARENT_JOB_NAME
+  unset RESERVED_PORT_LIST
   # set container name from branch name - removing / characters
   if [ -z "$VS_CONTAINER_NAME" ]; then VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`; fi
   if [ -z "$NODE_NAME" ]; then VS_THIS_SERVER=$HOSTNAME; else VS_THIS_SERVER=$NODE_NAME; fi
@@ -700,7 +700,7 @@ containerStartHippo() {
 
 exportVSVariables() {
   echo " - exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_PIPELINE_SUFFIX to $PWD"
-  set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV | -e "s/=\([^']|[^$]\)/=\"\1/" -e "s/\([^']|[^=]\)$/\1\"/" | tee $VS_VS_LAST_ENV.quoted | sed -e "s/^/env./" > $VS_VS_LAST_ENV$VS_LAST_ENV_PIPELINE_SUFFIX
+  set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV | sed -e "s/=\([^']|[^$]\)/=\"\1/" -e "s/\([^']|[^=]\)$/\1\"/" | tee $VS_VS_LAST_ENV.quoted | sed -e "s/^/env./" > $VS_VS_LAST_ENV$VS_LAST_ENV_PIPELINE_SUFFIX
 }
 
 createBuildReport() {
