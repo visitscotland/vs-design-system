@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # ==== TO-DO ====
+# gp: create test routine
+# gp: remove echo "$VS_CONTAINER_BASE_PORT" > env_port.txt AND echo "$VS_HOST_IP_ADDRESS" > env_host.txt from report section - these are now sourced by the LH script
+# ====/TO-DO ====
+# ==== DONE ====
 # gp: split into functions - done
 # gp: activate clean-up routine - done
 # gp: update adjustatable variables to set only if they're not set already, that way the Dev can override in the Jenkinsfile - done
@@ -15,10 +19,9 @@
 # gp: create routine to re-use existing container if it's there - done
 #     - start it if stoppped - redeploy artifact if it's running
 # gp: create notification routine using "VS_COMMIT_AUTHOR" - done
-# gp: create test routine
 # gp: don't start tomcat with container - done
 # gp: additional check to see if mySQL is required - create a CMD without mysql - done
-# ====/TO-DO ====
+# ====/DONE ====
 
 # ==== SETUP ====
 # ==== ADJUSTABLE VARIABLES ====
@@ -550,6 +553,10 @@ packageSSRArtifact() {
     if [ -d "$VS_FRONTEND_DIR" ]; then
       tar -zcf $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_SSR_PACKAGE_SOURCE
       RETURN_CODE=$?; echo " - return code: " $RETURN_CODE; echo ""
+      if [ -a $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME ]; then
+        VS_SSR_PACKAGE_SIZE=`ls -alh $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME | awk '{print $5}'`
+        echo $VS_SSR_PACKAGE_NAME " is " $VS_SSR_PACKAGE_SIZE " in size"
+      fi
       if [ ! "$RETURN_CODE" = "0" ]; then
         SAFE_TO_PROCEED=FALSE
         FAIL_REASON="Failed to package SSR app from $VS_FRONTEND_DIR, command exited with $RETURN_CODE"

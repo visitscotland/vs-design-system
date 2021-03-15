@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# ==== TO-DO ====
+# gp: update post-test check section to send the email - add more detail
+# gp: remove lighthouse failure notification from Jenkinsfile
+# gp: use VS variables exported from infrastructure script to 
+# ====/TO-DO ====
+
 VS_VS_LAST_ENV=vs-last-env
 source $WORKSPACE/$VS_VS_LAST_ENV
 echo "==== selected VS environment variables ===="
