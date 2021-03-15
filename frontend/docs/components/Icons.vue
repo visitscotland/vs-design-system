@@ -8,8 +8,12 @@
             v-for="path in icons"
             :key="path"
         >
-            <div class="card">
-                <VsIcon :name="path" size="xl"/>
+            <div class="card d-flex align-items-center">
+                <VsIcon
+                    :name="path"
+                    size="xl"
+                    class="my-4"
+                />
                 <pre>{{ path }}</pre>
             </div>
         </VsCol>
@@ -17,19 +21,19 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/"
-import { VsRow, VsCol } from "@components/elements/layout"
-import { trimStart, map } from "lodash"
+import VsIcon from '@components/elements/icon/';
+import { VsRow, VsCol } from '@components/elements/layout';
+import { trimStart, map } from 'lodash';
 
 const getAllIcons = () => {
-    const all = require.context("@/assets/svg/icons", false, /^\.\/.*\.svg$/)
-    return map(all.keys(), (key) => trimStart(key, "./").replace(".svg", ""))
-}
+    const all = require.context('@/assets/svg/icons', false, /^\.\/.*\.svg$/);
+    return map(all.keys(), (key) => trimStart(key, './').replace('.svg', ''));
+};
 
-const allIcons = getAllIcons()
+const allIcons = getAllIcons();
 
 export default {
-    name: "Icons",
+    name: 'Icons',
     components: {
         VsIcon,
         VsCol,
@@ -38,23 +42,23 @@ export default {
     data() {
         return {
             icons: allIcons,
-        }
+        };
     },
     methods: {
     },
-}
+};
 
 </script>
 
 <style lang="scss" scoped>
 .card {
-    text-align: center;
     padding: 0.5rem 0;
     margin-bottom: 1rem;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
-    .icon{
-        margin: $spacer-4 auto $spacer-3;
+    pre {
+        white-space: normal;
+        text-align: center;
     }
 }
 </style>
