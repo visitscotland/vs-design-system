@@ -246,7 +246,12 @@ pipeline {
           //sh 'sh ./infrastructure/scripts/docker.sh'
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
-        load "$WORKSPACE/vs_last_env.groovy"
+        // make all VS_ variables available to 
+        load "$WORKSPACE/vs-last-env"
+        echo "${env.VS_BRXM_PERSISTENCE_METHOD}"
+        VS_BRXM_PERSISTENCE_METHOD="null"
+        readEnvironmentVariables("vs-last-env")
+        echo "${env.VS_BRXM_PERSISTENCE_METHOD}"
       }
     } 
     stage('Lighthouse Testing'){
@@ -305,3 +310,12 @@ pipeline {
     }
   } //end post
 } //end pipeline
+
+def readEnvironmentVariables(path){
+  def properties = readProperties file: path
+  keys= properties.keySet()
+  for(key in keys) {
+    value = properties["${key}"]
+    env."${key}" = "${value}"
+  }
+}
