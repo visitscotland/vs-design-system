@@ -248,11 +248,11 @@ pipeline {
         }
         // make all VS_ variables available to pipeline
         load "$WORKSPACE/vs-last-env.quoted"
-        echo "${env.VS_CHANGE_AUTHOR}"
-        script { VS_CHANGE_AUTHOR = "null" }
-        echo "${env.VS_CHANGE_AUTHOR}"
+        echo "${env.VS_COMMIT_AUTHOR}"
+        script { VS_COMMIT_AUTHOR = "null" }
+        echo "${env.VS_COMMIT_AUTHOR}"
         readEnvironmentVariables("vs-last-env")
-        echo "${env.VS_CHANGE_AUTHOR}"
+        echo "${env.VS_COMMIT_AUTHOR}"
       }
     } 
     stage('Lighthouse Testing'){
