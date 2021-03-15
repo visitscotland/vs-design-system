@@ -250,7 +250,7 @@ pipeline {
         script {
           if (fileExists("$WORKSPACE/vs-last-env.quoted")) {
             echo "loading environment variables from $WORKSPACE/vs-last-env.quoted"
-            sh 'sh ls -alh $WORKSPACE/vs-last-env.quoted'
+            sh 'sh /bin/ls -alh $WORKSPACE/vs-last-env.quoted'
             load "$WORKSPACE/vs-last-env.quoted"
             echo "inside script VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
           } else {
@@ -272,6 +272,7 @@ pipeline {
       }
       steps{
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') { 
+          echo "Lighthouse test failure notification will be notified to ${env.VS_COMMIT_AUTHOR}"
           script{
             // replace this sleep with a "wait for 200" in the script
             sleep time: 120, unit: 'SECONDS'
