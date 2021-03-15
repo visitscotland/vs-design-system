@@ -412,28 +412,30 @@ export default {
         }
     }
 
-    .no-js .vs-carousel {
-        &__control {
-            display: none;
-        }
+    @include no-js {
+        .vs-carousel {
+            &__control {
+                display: none;
+            }
 
-        &__navigation,
-        &__mobile-pagination-wrapper {
-            display: none;
-        }
+            &__navigation,
+            &__mobile-pagination-wrapper {
+                display: none;
+            }
 
-        &__track {
-            flex-wrap: wrap;
+            &__track {
+                flex-wrap: wrap;
 
-            & > [class^="col-"] {
-                width: 100%;
-                max-width: 100%;
-                flex: 0 0 100%;
+                & > [class^="col-"] {
+                    width: 100%;
+                    max-width: 100%;
+                    flex: 0 0 100%;
 
-                @include media-breakpoint-up(md) {
-                    width: 50%;
-                    max-width: 50%;
-                    flex: 0 0 50%;
+                    @include media-breakpoint-up(md) {
+                        width: 50%;
+                        max-width: 50%;
+                        flex: 0 0 50%;
+                    }
                 }
             }
         }
