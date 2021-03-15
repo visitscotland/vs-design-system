@@ -209,7 +209,7 @@ export default {
             must-see attractions in the local area.
         </div>
 
-        <vs-button slot="iknowCta">Find our iKnow partners</vs-button>
+        <VsButton slot="iknowCta">Find our iKnow partners</VsButton>
     </VsIKnowPartnerItem>
 ```
 </docs>
