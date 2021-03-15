@@ -16,12 +16,13 @@
 
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
+<#include "../macros/shared/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
-<#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
-<#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Listicle" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.model.Coordinates" -->
+<#-- @ftlvariable name="item" type="com.visitscotland.brxm.model.ListicleModule" -->
+<#-- @ftlvariable name="cta" type="com.visitscotland.brxm.model.FlatLink" -->
 
 </#compress>
 <div class="has-edit-button">
@@ -47,40 +48,43 @@
 			</vs-col>
 		</vs-row>
 
-		<vs-row class="mb-6">
-			<vs-col cols="12" lg="8">
+        <vs-row class="mb-6">
+            <vs-col cols="12" lg="8">
                 <vs-rich-text-wrapper variant="lead">
                     <@hst.html hippohtml=document.introduction/>
                 </vs-rich-text-wrapper>
-			</vs-col>
-		</vs-row>
+            </vs-col>
+        </vs-row>
 
-		<ol style="list-style:none; margin:0; padding:0;">
-			<#list items as listItem>
-				<@listicleItem item=listItem />
-			</#list>
-		</ol>
+        <ol style="list-style:none; margin:0; padding:0;">
+            <#if items?? && items?has_content >
+                <#list items as listItem>
+                    <@listicleItem item=listItem />
+                </#list>
+            </#if>
+        </ol>
 
-        <#assign summary>
-            <@hst.html hippohtml=document.summary/>
-        </#assign>
 
-        <#if summary?has_content>
+       <#if document.listicleClosing??>
             <vs-row class="mb-6">
                 <vs-col cols="12">
                     <vs-panel>
-                        <#if document.summaryTitle?has_content>
-							<template slot="vs-panel-title">
-								<vs-heading thin level="4">${document.summaryTitle}</vs-heading>
-							</template>
+                        <#if document.listicleClosing.title?has_content>
+                            <template slot="vs-panel-title">
+                                <vs-heading thin level="4">${document.listicleClosing.title}</vs-heading>
+                            </template>
                         </#if>
 
                         <vs-rich-text-wrapper variant="lead">
-                            ${summary}
+                            <@hst.html hippohtml=document.listicleClosing.copy/>
                         </vs-rich-text-wrapper>
                     </vs-panel>
                 </vs-col>
             </vs-row>
+      </#if>
+
+        <#if otyml??>
+            <@moduleBuilder otyml "theme1" />
         </#if>
 	</vs-container>
 </div>

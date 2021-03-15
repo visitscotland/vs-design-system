@@ -6,7 +6,7 @@
 <#macro footerSocialMenu>
     <vs-footer-social-menu>
         <span slot="title">
-            ${label("navigation", "footer.find-us-on")}
+            ${label('navigation.static', 'footer.find-us-on')}
         </span>
 
         <vs-footer-social-item

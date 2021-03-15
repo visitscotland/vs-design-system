@@ -7,7 +7,7 @@
 -->
 <#include "../../../include/imports.ftl">
 
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Page" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Page" -->
 
 <#if document??>
     <#-- NO INDEX -->
@@ -39,12 +39,12 @@
 
     <#-- TITLE TAG -->
     <@hst.headContribution category="seo">
-        <title>${document.title} ${label("channel", "seo.title-suffix")}</title>
+        <title>${document.seoTitle?html} ${label("channel", "seo.title-suffix")}</title>
     </@hst.headContribution>
 
     <#-- META DESCRIPTION TAG -->
     <@hst.headContribution category="opengraph">
-        <meta name="description" content="${document.seoDescription}" />
+        <meta name="description" content="${document.seoDescription?html}" />
     </@hst.headContribution>
 
 
@@ -54,7 +54,7 @@
         <meta property="og:title" content="${document.seoTitle}" />
     </@hst.headContribution>
     <@hst.headContribution category="opengraph">
-        <meta property="og:description" content="${document.seoDescription}" />
+        <meta property="og:description" content="${document.seoDescription?html}" />
     </@hst.headContribution>
     <@hst.headContribution category="opengraph">
         <meta property="og:type" content="article" />
@@ -78,10 +78,10 @@
         <meta name="twitter:site" content="${label("channel", "og.twitter.site")}" /><#-- TODO: lablel -->
     </@hst.headContribution>
     <@hst.headContribution category="opengraph">
-        <meta name="twitter:title" content="${document.seoTitle}" />
+        <meta name="twitter:title" content="${document.seoTitle?html}" />
     </@hst.headContribution>
     <@hst.headContribution category="opengraph">
-        <meta name="twitter:description" content="${document.seoDescription}" />
+        <meta name="twitter:description" content="${document.seoDescription?html}" />
     </@hst.headContribution>
     <@hst.headContribution category="opengraph">
         <meta property="twitter:image" content="${ogImage}" />

@@ -1,7 +1,7 @@
 <template>
     <BForm
         role="search"
-        class="d-flex align-items-start py-2 py-md-4"
+        class="d-flex align-items-start py-2 py-md-4 vs-site-search"
         action
         method="get"
         :novalidate="true"
@@ -78,8 +78,12 @@ import VsIcon from '@components/elements/icon/Icon';
 import VsFormInput from '@components/elements/form-input/FormInput';
 
 import { BForm, BFormInvalidFeedback } from 'bootstrap-vue';
-import { getters } from '../drawer/drawer.store';
 
+/**
+ * TODO: Document Usage
+ *
+ * @displayName Site Search
+ */
 export default {
     name: 'VsSiteSearch',
     status: 'prototype',
@@ -127,19 +131,8 @@ export default {
         };
     },
     computed: {
-        drawerModule() {
-            return getters['drawer/module'];
-        },
         isValid() {
             return this.searchTerm.length > 0;
-        },
-    },
-    watch: {
-        drawerModule(newValue) {
-            if (newValue !== 'site-search') {
-                this.clearSearchField();
-                this.resetValidation();
-            }
         },
     },
     methods: {
@@ -173,9 +166,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-@import "~bootstrap/scss/forms";
-@import "~bootstrap/scss/input-group";
+<style lang="scss">
 
 .vs-site-search__input {
     &::placeholder {
@@ -206,7 +197,7 @@ export default {
 <docs>
   ```jsx
   <div>
-    <vs-site-search />
+    <VsSiteSearch />
   </div>
   ```
 </docs>

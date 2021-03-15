@@ -3,9 +3,10 @@
         :is="ordered ? 'ol' : 'ul'"
         class="vs-list"
         :class="{
-            unstyled,
-            inline,
+            'vs-list--unstyled': unstyled,
+            'vs-list--inline': inline,
         }"
+        v-bind="$attrs"
     >
         <slot />
     </Component>
@@ -15,6 +16,7 @@
 /**
  * Generic List Component that can be used for any kind of list needed given the right properties.
  *
+ * @displayName List
  */
 export default {
     name: 'VsList',
@@ -46,15 +48,15 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-list {
-    &.unstyled {
+    &.vs-list--unstyled {
         padding: 0;
         margin: 0;
         list-style: none;
     }
 
-    &.inline {
+    &.vs-list--inline {
         display: flex;
     }
 }
@@ -63,36 +65,36 @@ export default {
 <docs>
 ```jsx
     <h3>Default</h3>
-    <vs-list>
+    <VsList>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
-    </vs-list>
+    </VsList>
 
-    <h3>Inline</h3>
-    <vs-list inline>
+    <h3 class="mt-8">Inline</h3>
+    <VsList inline>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
-    </vs-list>
+    </VsList>
 
-    <h3>Inline Unstyled</h3>
-    <vs-list unstyled inline>
+    <h3 class="mt-8">Inline Unstyled</h3>
+    <VsList unstyled inline>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
-    </vs-list>
+    </VsList>
 
-    <h3>Unstyled</h3>
-    <vs-list unstyled>
+    <h3 class="mt-8">Unstyled</h3>
+    <VsList unstyled>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
-    </vs-list>
+    </VsList>
 
-    <h3>Ordered List</h3>
-    <vs-list ordered>
+    <h3 class="mt-8">Ordered List</h3>
+    <VsList ordered>
         <li>Test</li>
-    </vs-list>
+    </VsList>
 ```
 </docs>
