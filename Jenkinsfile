@@ -247,10 +247,12 @@ pipeline {
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
         // make all VS_ variables available to pipeline
-        if (fileExists('$WORKSPACE/vs-last-env.quoted')) {
-          load "$WORKSPACE/vs-last-env.quoted"
-        } else {
-          echo "cannot load environment variables, file does not exist"
+        script {
+          if (fileExists('$WORKSPACE/vs-last-env.quoted')) {
+            load "$WORKSPACE/vs-last-env.quoted"
+          } else {
+            echo "cannot load environment variables, file does not exist"
+          }
         }
         //script { VS_COMMIT_AUTHOR = "null" }
         //echo "${env.VS_COMMIT_AUTHOR}"

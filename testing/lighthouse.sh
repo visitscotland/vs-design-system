@@ -3,16 +3,20 @@
 # ==== TO-DO ====
 # gp: update post-test check section to send the email - add more detail
 # gp: remove lighthouse failure notification from Jenkinsfile
-# gp: use VS variables exported from infrastructure script to 
+# gp: use VS variables now exported from infrastructure script to populate the request values for the lighthouse tests
+# gp: change LHCI container name to use other job container name plus a suffix - that way it'll be unique (at preset only one LHCI can run)
+# gp: add functionality of hemanthsridhar-docker-lhci-server-center.bintray.io/lhci to VS brxm container
 # ====/TO-DO ====
 
-VS_VS_LAST_ENV=vs-last-env
-
+#VS_VS_LAST_ENV=vs-last-env
 # read in VS variables from VS_VS_LAST_ENV
-source $WORKSPACE/$VS_VS_LAST_ENV
-echo "==== selected VS environment variables (set) ===="
-set | egrep "^(VS_)"
-echo "==== selected VS environment variables (printenv) ===="
+#source $WORKSPACE/$VS_VS_LAST_ENV
+if [ "VS_DEBUG" = "TRUE"]; then
+  echo "==== selected VS environment variables ===="
+  set | egrep "^(VS_)"
+  echo "====/selected VS environment variables ===="
+  echo ""
+fi
 
 #set -x
 VS_PORT=`cat env_port.txt`
@@ -23,7 +27,7 @@ mkdir frontend/.lighthouseci
 docker pull hemanthsridhar-docker-lhci-server-center.bintray.io/lhci:4.0
 docker rm -f lhci
 
-#create a docker container whose name is LHCI and shared memory size #of 512.
+# create a docker container whose name is LHCI and shared memory size #of 512.
 docker run -v "$(pwd)/frontend":/usr/src -w /usr/src  -d --shm-size=512m -it --name lhci hemanthsridhar-docker-lhci-server-center.bintray.io/lhci:4.0
 
 docker exec -i lhci sh -c 'cat > ./extra.json << EOF
