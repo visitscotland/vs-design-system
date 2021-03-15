@@ -12,6 +12,7 @@ echo "==== selected VS environment variables ===="
 set | egrep "^(VS_)"
 echo "====/selected VS environment variables ===="
 set -x
+export VS_*
 VS_PORT=`cat env_port.txt`
 VS_HOST=`cat env_host.txt`
 rm -rf $(pwd)/frontend/.lighthouseci
