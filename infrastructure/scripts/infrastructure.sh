@@ -690,7 +690,7 @@ containerStartHippo() {
   fi
 }
 
-exportVsVariables() {
+exportVSVariables() {
   echo " - exporting selected VS variables to ./$VS_VS_LAST_ENV"
   printenv | egrep "VS_(DOCKER|BRC|COMMIT)" | tee $VS_VS_LAST_ENV
 }
@@ -829,6 +829,7 @@ case $METHOD in
     containerCopyHippoArtifact
     containerCopySSRArtifact
     containerStartHippo
+    exportVSVariables
     testSite
     createBuildReport
     sendBuildReport
