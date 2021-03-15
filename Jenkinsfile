@@ -249,6 +249,8 @@ pipeline {
         // make all VS_ variables available to pipeline
         script {
           if (fileExists("$WORKSPACE/vs-last-env.quoted")) {
+            echo "loading environment variables from $WORKSPACE/vs-last-env.quoted"
+            sh 'sh ls -alh $WORKSPACE/vs-last-env.quoted'
             load "$WORKSPACE/vs-last-env.quoted"
             echo "inside script VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
           } else {
