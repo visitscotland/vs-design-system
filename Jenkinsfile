@@ -252,10 +252,11 @@ pipeline {
             echo "loading environment variables from $WORKSPACE/vs-last-env.quoted"
             sh 'ls -alh $WORKSPACE/vs-last-env.quoted'
             load "$WORKSPACE/vs-last-env.quoted"
-            echo "inside script VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
+            echo "inside if VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
           } else {
             echo "cannot load environment variables, file does not exist"
           }
+        echo "inside script VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
         }
         echo "outside script VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
         //script { VS_COMMIT_AUTHOR = "null" }
