@@ -11,11 +11,11 @@
                     <VsHeading
                         level="2"
                         class="vs-module-wrapper__heading"
-                        v-if="!!this.$slots['moduleWrapperHeading']"
+                        v-if="!!this.$slots['vsModuleWrapperHeading']"
                         data-test="vs-module-wrapper__heading"
                     >
                         <!-- @slot Slot to contain heading -->
-                        <slot name="moduleWrapperHeading" />
+                        <slot name="vsModuleWrapperHeading" />
                     </VsHeading>
                 </VsCol>
                 <VsCol
@@ -27,11 +27,11 @@
                 >
                     <VsRichTextWrapper
                         class="vs-module-wrapper__intro"
-                        v-if="!!this.$slots['moduleWrapperIntro']"
+                        v-if="!!this.$slots['vsModuleWrapperIntro']"
                         data-test="vs-module-wrapper__intro"
                     >
                         <!-- @slot Slot to contain intro text -->
-                        <slot name="moduleWrapperIntro" />
+                        <slot name="vsModuleWrapperIntro" />
                     </VsRichTextWrapper>
                 </VsCol>
             </VsRow>
@@ -89,11 +89,11 @@ export default {
 <docs>
     ```
         <VsModuleWrapper>
-            <template slot="moduleWrapperHeading">
+            <template slot="vsModuleWrapperHeading">
                 Proin interdum quam non semper consequat
             </template>
 
-            <template slot="moduleWrapperIntro">
+            <template slot="vsModuleWrapperIntro">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Nullam condimentum eu ligula sed tristique.
                 Maecenas et sem non libero gravida vulputate vel sit amet diam.

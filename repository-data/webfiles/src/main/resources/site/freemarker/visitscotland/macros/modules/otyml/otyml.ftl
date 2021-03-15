@@ -4,11 +4,11 @@
 
 <#macro otyml item>
     <vs-module-wrapper>
-        <template slot="moduleWrapperHeading">
+        <template slot="vsModuleWrapperHeading">
             ${item.title}
         </template>
 
-        <template slot="moduleWrapperIntro">
+        <template slot="vsModuleWrapperIntro">
             <@hst.html hippohtml=item.introduction/>
         </template>
 
