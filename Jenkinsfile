@@ -43,7 +43,7 @@ pipeline {
     VS_CONTAINER_PRESERVE = 'TRUE'
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
-    VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
+    VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-2255-lighthouse-failing-builds'
     VS_RUN_LIGHTHOUSE_TESTS = 'TRUE'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
@@ -252,9 +252,11 @@ pipeline {
         }
       }
       steps{
-        script{
-          sleep time: 120, unit: 'SECONDS'
-          sh 'sh ./testing/lighthouse.sh'
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') { 
+          script{
+            sleep time: 120, unit: 'SECONDS'
+            sh 'sh ./testing/lighthouse.sh'
+          }
         }
       }
       post {

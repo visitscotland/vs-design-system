@@ -60,6 +60,7 @@ if [ -z "$VS_SSR_PROXY_ON" ]; then VS_SSR_PROXY_ON="TRUE"; fi
 if [ -z "$VS_SSR_APP_PORT" ]; then VS_SSR_APP_PORT=8082; fi
 #  ==== Other Variables ====
 VS_JENKINS_LAST_ENV=jenkins-last-env
+VS_VS_LAST_ENV=vs-last-env
 # ====/ADJUSTABLE VARIABLES ====
 
 # ==== PARSE COMMAND LINE ARGUMENTS ====
@@ -85,8 +86,8 @@ while [[ $# -gt 0 ]]; do
     ;;
   esac
   shift
-  done
-  echo -en "\n"
+done
+echo -en "\n"
 # ====/PARSE COMMAND LINE ARGUMENTS ====
 # ====/SETUP ====
 
@@ -689,6 +690,11 @@ containerStartHippo() {
   fi
 }
 
+exportVsVariables() {
+  echo " - exporting selected VS variables to ./$VS_VS_LAST_ENV"
+  printenv | egrep "VS_(DOCKER|BRC|COMMIT)" | tee $VS_VS_LAST_ENV
+}
+
 createBuildReport() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     EXIT_CODE=0
@@ -777,13 +783,18 @@ sendSiteReport() {
 # ====/FUNCTIONS ====
 
 # ==== RUN ====
+METHOD=$1
 case $METHOD in
   other)
     false
   ;;
   default)
     false
-    ;;
+  ;;
+  setvars)
+    checkVariables
+    defaultSettings
+  ;;
   *)
     echo "no function specified - running defaults"
     checkVariables

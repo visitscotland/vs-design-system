@@ -1,4 +1,9 @@
 #!/bin/bash
+VS_VS_LAST_ENV=vs-last-env
+source $WORKSPACE/$VS_VS_LAST_ENV
+echo "==== selected VS environment variables ===="
+set | egrep "^(VS_)"
+echo "====/selected VS environment variables ===="
 set -x
 VS_PORT=`cat env_port.txt`
 VS_HOST=`cat env_host.txt`
