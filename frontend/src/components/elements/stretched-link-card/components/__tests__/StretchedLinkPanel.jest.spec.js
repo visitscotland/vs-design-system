@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import VsStretchedLinkPanel from '../components/StretchedLinkPanel';
+import VsStretchedLinkPanel from '../StretchedLinkPanel';
 
 describe('VsStretchedLinkCard', () => {
     describe(':props', () => {
