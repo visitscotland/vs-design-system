@@ -219,7 +219,6 @@ export default {
 
             .vs-stretched-link-card__img {
                 width: calc(50% - 20px);
-                flex-shrink: 1;
             }
 
             .megalink-multi-image__content {
