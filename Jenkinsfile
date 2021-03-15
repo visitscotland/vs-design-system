@@ -32,7 +32,10 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
 import groovy.json.JsonSlurper
 
 pipeline {
-  options {buildDiscarder(logRotator(numToKeepStr: '5'))}
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+    disableConcurrentBuilds()
+  }
   agent {label thisAgent}
   triggers { cron( cron_string ) }
   environment {
