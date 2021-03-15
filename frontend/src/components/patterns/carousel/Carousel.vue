@@ -205,21 +205,24 @@ export default {
                 .getElementsByClassName('vs-carousel-slide__card');
             let slideCount = 0;
 
-            allSlides.forEach((slide, index) => {
-                const activeSlideStart = this.currentPage * this.slidesPerPage[this.currentWidth];
-                const activeSlideEnd = parseInt(
-                    this.currentPage * this.slidesPerPage[this.currentWidth], 10
-                ) + parseInt(this.slidesPerPage[this.currentWidth], 10);
-                if (index >= activeSlideStart && index < activeSlideEnd) {
-                    slide.classList.add('vs-carousel-slide__card--active');
-                    slide.getElementsByTagName('a')[0].setAttribute('tabindex', '0');
-                } else {
-                    slide.classList.remove('vs-carousel-slide__card--active');
-                    slide.getElementsByTagName('a')[0].setAttribute('tabindex', '-1');
-                }
+            if (allSlides.length > 0) {
+                allSlides.forEach((slide, index) => {
+                    const activeSlideStart = this.currentPage
+                        * this.slidesPerPage[this.currentWidth];
+                    const activeSlideEnd = parseInt(
+                        this.currentPage * this.slidesPerPage[this.currentWidth], 10
+                    ) + parseInt(this.slidesPerPage[this.currentWidth], 10);
+                    if (index >= activeSlideStart && index < activeSlideEnd) {
+                        slide.classList.add('vs-carousel-slide__card--active');
+                        slide.getElementsByTagName('a')[0].setAttribute('tabindex', '0');
+                    } else {
+                        slide.classList.remove('vs-carousel-slide__card--active');
+                        slide.getElementsByTagName('a')[0].setAttribute('tabindex', '-1');
+                    }
 
-                slideCount += 1;
-            });
+                    slideCount += 1;
+                });
+            }
 
             this.totalSlides = slideCount;
 
