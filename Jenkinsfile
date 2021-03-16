@@ -250,8 +250,9 @@ pipeline {
         script {
           if (fileExists("$WORKSPACE/vs-last-env.quoted")) {
             sh 'ls -alh $WORKSPACE/vs-last-env.quoted'
-            echo "reading environment variables from $WORKSPACE/vs-last-env.quoted in IF block"
-            readEnvironmentVariables("$WORKSPACE/vs-last-env.quoted")
+            echo "loading environment variables from $WORKSPACE/vs-last-env.quoted in IF block"
+            //readEnvironmentVariables("$WORKSPACE/vs-last-env.quoted")
+            load "$WORKSPACE/vs-last-env.quoted"
             echo "inside if VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
           } else {
             echo "cannot load environment variables, file does not exist"
