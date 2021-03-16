@@ -33,7 +33,11 @@ import groovy.json.JsonSlurper
 
 pipeline {
   options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
+    buildDiscarder(logRotator(numToKeepStr: '10'))
+    // to-do
+    // gp: investigate milestone caclulation to cancel current build if a new one starts
+    // - see: https://stackoverflow.com/questions/40760716/jenkins-abort-running-build-if-new-one-is-started/44326216
+    // - see: https://www.jenkins.io/doc/pipeline/steps/pipeline-milestone-step/#pipeline-milestone-step
     disableConcurrentBuilds()
   }
   agent {label thisAgent}
@@ -46,7 +50,10 @@ pipeline {
     VS_CONTAINER_PRESERVE = 'TRUE'
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
+    // VS_SKIP_BUILD_FOR_BRANCH is useful for testing, only ever set to your working branch name - never to a variable!
     VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-2255-lighthouse-failing-builds'
+    // VS_COMMIT_AUTHOR is required by later stages which will fail if it's not set, default value of jenkins@visitscotland.net
+    VS_COMMIT_AUTHOR = 'jenkins@visitscotland.net'
     VS_RUN_LIGHTHOUSE_TESTS = 'TRUE'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
@@ -246,29 +253,18 @@ pipeline {
           //sh 'sh ./infrastructure/scripts/docker.sh'
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
-        // make all VS_ variables available to pipeline
+        // make all VS_ variables available to pipeline, load file must be in env.VARIABLE="VALUE" format
         script {
           if (fileExists("$WORKSPACE/vs-last-env.quoted")) {
-            sh 'ls -alh $WORKSPACE/vs-last-env.quoted'
             echo "loading environment variables from $WORKSPACE/vs-last-env.quoted in IF block"
-            //readEnvironmentVariables("$WORKSPACE/vs-last-env.quoted")
             load "$WORKSPACE/vs-last-env.quoted"
-            echo "inside if VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
           } else {
             echo "cannot load environment variables, file does not exist"
           }
-        echo "inside script VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
         }
-        echo "outside script VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
-        echo "loading environment variables from $WORKSPACE/vs-last-env.quoted directly in STEPS block"
-        load "$WORKSPACE/vs-last-env.quoted"
-        echo "after STEPS load VS_COMMIT_AUTHOR = ${env.VS_COMMIT_AUTHOR}"
-        //script { VS_COMMIT_AUTHOR = "null" }
-        //echo "${env.VS_COMMIT_AUTHOR}"
-        //readEnvironmentVariables("vs-last-env")
-        //echo "${env.VS_COMMIT_AUTHOR}"
       }
-    } 
+    } //end stage
+
     stage('Lighthouse Testing'){
       when {
         allOf {
