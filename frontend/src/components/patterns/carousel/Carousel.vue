@@ -55,6 +55,7 @@
                                 @click="sliderNavigate(index - 1)"
                                 @keyup.enter="sliderNavigate(index - 1)"
                                 tabindex="0"
+                                :data-test="`vs-carousel__nav-${index}`"
                             >
                                 <span class="sr-only">Navigate to page {{ index }}</span>
                             </li>
@@ -276,7 +277,9 @@ export default {
 
             const track = this.$refs.slideContainer.getElementsByClassName('row')[0];
 
-            track.style.transform = `translateX(-${this.currentPage * 100}%)`;
+            if (typeof track !== 'undefined') {
+                track.style.transform = `translateX(-${this.currentPage * 100}%)`;
+            }
 
             this.defineActiveSlides();
         },
