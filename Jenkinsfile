@@ -53,7 +53,8 @@ pipeline {
     // VS_SKIP_BUILD_FOR_BRANCH is useful for testing, only ever set to your working branch name - never to a variable!
     VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-2255-lighthouse-failing-builds'
     // VS_COMMIT_AUTHOR is required by later stages which will fail if it's not set, default value of jenkins@visitscotland.net
-    VS_COMMIT_AUTHOR = 'jenkins@visitscotland.net'
+    // turns out if you set it here it will not be overwritten by the load later in the pipeline
+    //VS_COMMIT_AUTHOR = 'jenkins@visitscotland.net'
     VS_RUN_LIGHTHOUSE_TESTS = 'TRUE'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
