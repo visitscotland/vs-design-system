@@ -174,6 +174,7 @@ export default {
             line-height: $line-height-s;
             letter-spacing: 0.0875rem;
             color: $color-base-text;
+            display: flex;
         }
 
         .vs-stretched-link-card__category {
@@ -213,10 +214,10 @@ export default {
             .vs-stretched-link-card__title {
                 font-size: $h6-font-size;
                 line-height: $line-height-s;
+            }
 
-                .card-body {
-                    padding-bottom: $spacer-5;
-                }
+             .card-body {
+                padding-bottom: $spacer-5;
             }
         }
     }
