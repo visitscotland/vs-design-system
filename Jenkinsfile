@@ -256,8 +256,9 @@ pipeline {
         // make all VS_ variables available to pipeline, load file must be in env.VARIABLE="VALUE" format
         script {
           if (fileExists("$WORKSPACE/vs-last-env.quoted")) {
-            echo "loading environment variables from $WORKSPACE/vs-last-env.quoted in IF block"
+            echo "loading environment variables from $WORKSPACE/vs-last-env.quoted"
             load "$WORKSPACE/vs-last-env.quoted"
+            echo "found ${env.VS_COMMIT_AUTHOR}"
           } else {
             echo "cannot load environment variables, file does not exist"
           }

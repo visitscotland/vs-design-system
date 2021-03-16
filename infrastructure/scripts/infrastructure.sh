@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # ==== TO-DO ====
-# gp: create test routine
-# gp: remove echo "$VS_CONTAINER_BASE_PORT" > env_port.txt AND echo "$VS_HOST_IP_ADDRESS" > env_host.txt from report section - these are now sourced by the LH script
+# gp: remove echo "$VS_CONTAINER_BASE_PORT" > env_port.txt AND echo "$VS_HOST_IP_ADDRESS" > env_host.txt from report section - these are now exported to be avaible to the LH script
+# gp: create test routine for container/tomcat startup
 # ====/TO-DO ====
 # ==== DONE ====
 # gp: split into functions - done
