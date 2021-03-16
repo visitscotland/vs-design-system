@@ -275,7 +275,7 @@ pipeline {
       }
       steps{
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') { 
-          echo "Lighthouse test failure notification will be notified to ${env.VS_COMMIT_AUTHOR}"
+          echo "Lighthouse test failure notification will be emailed to ${env.VS_COMMIT_AUTHOR}"
           script{
             // replace this sleep with a "wait for 200" in the script
             sleep time: 120, unit: 'SECONDS'
