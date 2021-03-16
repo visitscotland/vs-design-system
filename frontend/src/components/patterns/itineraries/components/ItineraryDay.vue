@@ -111,7 +111,7 @@ export default {
 
 <style lang="scss">
 .vs-itinerary-day__list-item.card {
-    width: calc(100% + $spacer-8);
+    width: calc(100% + 2rem);
     border-top: 5px solid $color-base-text;
     margin-left: -1rem;
     padding: $spacer-4 $spacer-8 0;
