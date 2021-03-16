@@ -26,6 +26,12 @@ window.matchMedia = window.matchMedia || function() {
 /* eslint-enable */
 
 describe('VsCarousel', () => {
+    it('should render a carousel container element', () => {
+        const wrapper = factoryShallowMount();
+
+        expect(wrapper.find('[data-test="vs-carousel"]').exists()).toBe(true);
+    });
+
     describe(':slots', () => {
         it('renders the mobile pagination correctly', async() => {
             const wrapper = factoryShallowMount({
