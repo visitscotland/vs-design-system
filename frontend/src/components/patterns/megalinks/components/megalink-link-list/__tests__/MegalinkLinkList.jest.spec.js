@@ -6,6 +6,7 @@ const factoryShallowMount = () => shallowMount(VsMegalinkLinkList, {
         featured: true,
         imgSrc: 'test',
         linkType: 'external',
+        theme: 'dark',
         linkUrl: 'www.visitscotland.com',
     },
     slots: {
@@ -20,6 +21,11 @@ beforeEach(() => {
 });
 
 describe('VsMegalinkLinkList', () => {
+    describe(':props', () => {
+        it('renders the correct theme class', () => {
+            expect(wrapper.find('.megalink-link-list--dark').exists()).toBe(true);
+        });
+    });
     describe(':slots', () => {
         it('renders content inserted in a vsLinkListHeading slot', () => {
             expect(wrapper.find('[data-test="megalink-link-list__title"]').text()).toBe('Multi-image heading');

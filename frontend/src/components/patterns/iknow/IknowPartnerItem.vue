@@ -165,7 +165,7 @@ export default {
 
 <docs>
 ```jsx
-    <VsIKnowPartnerItem>
+    <vs-iknow-partner-item>
         <VsHeading level="2" slot="iknowHeading">Help and advice</VsHeading>
         <div slot="iknowText">
             You can also get advice from our accredited
@@ -176,9 +176,9 @@ export default {
         </div>
 
         <a href="#" slot="iknowCta">Find our iKnow partners</a>
-    </VsIKnowPartnerItem>
+    </vs-iknow-partner-item>
 
-    <VsIKnowPartnerItem>
+    <vs-iknow-partner-item>
         <VsHeading level="2" slot="iknowHeading">Help and advice</VsHeading>
         <div slot="iknowText">
             iKnow Scotland is a network of accredited
@@ -193,9 +193,9 @@ export default {
         </div>
 
         <a href="#" slot="iknowCta">Find our iKnow partners</a>
-    </VsIKnowPartnerItem>
+    </vs-iknow-partner-item>
 
-    <VsIKnowPartnerItem>
+    <vs-iknow-partner-item>
         <VsHeading level="2" slot="iknowHeading">Help and advice</VsHeading>
         <div slot="iknowText">
             iKnow Scotland is a network of accredited
@@ -209,7 +209,7 @@ export default {
             must-see attractions in the local area.
         </div>
 
-        <VsButton slot="iknowCta">Find our iKnow partners</VsButton>
-    </VsIKnowPartnerItem>
+        <vs-button slot="iknowCta">Find our iKnow partners</vs-button>
+    </vs-iknow-partner-item>
 ```
 </docs>
