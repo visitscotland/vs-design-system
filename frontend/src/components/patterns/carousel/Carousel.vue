@@ -439,7 +439,7 @@ export default {
         &__mobile-pagination-wrapper {
             display: flex;
             justify-content: center;
-            margin-top: $spacer-9;
+            margin-top: $spacer-8;
 
             @include media-breakpoint-up(sm) {
                 display: none;

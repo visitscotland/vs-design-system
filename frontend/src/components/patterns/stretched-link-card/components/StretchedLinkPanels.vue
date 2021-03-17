@@ -76,8 +76,8 @@ export default {
 <style lang="scss">
     .vs-stretched-link-panels {
         position: absolute;
-        right: $spacer-3;
-        top: $spacer-3;
+        right: $spacer-4;
+        top: $spacer-4;
         display: flex;
         flex-direction: row;
 
@@ -85,7 +85,7 @@ export default {
             width: 55px;
             height: 55px;
             background: $color-black;
-            margin-left: $spacer-1;
+            margin-left: $spacer-2;
             color: $color-white;
             display: flex;
             flex-direction: column;
@@ -116,15 +116,6 @@ export default {
             height: 20px;
             width: auto;
             margin-bottom: $spacer-1;
-        }
-
-        @include media-breakpoint-up(sm) {
-            right: $spacer-4;
-            top: $spacer-4;
-
-            &__panel {
-                margin-left: $spacer-2;
-            }
         }
     }
 </style>

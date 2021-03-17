@@ -68,8 +68,8 @@ export default {
 
 <style lang="scss">
     .vs-module-wrapper {
-        padding-top: $spacer-12;
-        padding-bottom: $spacer-12;
+        padding-top: $spacer-9;
+        padding-bottom: $spacer-9;
         text-align: center;
 
         &__heading.vs-heading {
@@ -82,6 +82,11 @@ export default {
             p:last-of-type {
                 margin-bottom: 0;
             }
+        }
+
+        @include media-breakpoint-up(sm) {
+            padding-top: $spacer-12;
+            padding-bottom: $spacer-12;
         }
     }
 </style>
