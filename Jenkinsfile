@@ -42,6 +42,7 @@ pipeline {
     // - see: https://www.cloudbees.com/blog/parallelism-and-distributed-builds-jenkins
     // - this could potentially allow the running of all Lighthouse tests on a separate node
     // - experiment with a simple echo on a different node
+    // gp: change sonarqube project target to a short version of the project name
     disableConcurrentBuilds()
   }
   agent {label thisAgent}
@@ -180,8 +181,28 @@ pipeline {
       }
     } //end stage
 
+    stage ('vs build feature env') {
+      steps{
+        script{
+          //sh 'sh ./infrastructure/scripts/docker.sh'
+          sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
+        }
+        // make all VS_ variables available to pipeline, load file must be in env.VARIABLE="VALUE" format
+        script {
+          if (fileExists("$WORKSPACE/vs-last-env.quoted")) {
+            echo "loading environment variables from $WORKSPACE/vs-last-env.quoted"
+            load "$WORKSPACE/vs-last-env.quoted"
+            echo "found ${env.VS_COMMIT_AUTHOR}"
+          } else {
+            echo "cannot load environment variables, file does not exist"
+          }
+        }
+      }
+    } //end stage
+
     stage ('Build Actions'){
       parallel {
+
         stage('SonarQube BE Scan') {
           when {
             branch 'develop' 
@@ -254,25 +275,6 @@ pipeline {
       }
     }
  
-    stage ('vs build feature env') {
-      steps{
-        script{
-          //sh 'sh ./infrastructure/scripts/docker.sh'
-          sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
-        }
-        // make all VS_ variables available to pipeline, load file must be in env.VARIABLE="VALUE" format
-        script {
-          if (fileExists("$WORKSPACE/vs-last-env.quoted")) {
-            echo "loading environment variables from $WORKSPACE/vs-last-env.quoted"
-            load "$WORKSPACE/vs-last-env.quoted"
-            echo "found ${env.VS_COMMIT_AUTHOR}"
-          } else {
-            echo "cannot load environment variables, file does not exist"
-          }
-        }
-      }
-    } //end stage
-
     stage('Lighthouse Testing'){
       when {
         allOf {
