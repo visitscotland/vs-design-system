@@ -5,7 +5,7 @@
             `vs-link--variant-${variant}`,
         ]"
         :href="href"
-        :target="type === 'external' ? '_blank' : '_self'"
+        target="_self"
         :download="type === 'download'"
     >
         <slot />
