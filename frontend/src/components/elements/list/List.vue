@@ -66,6 +66,10 @@ export default {
             font-size: $h2-font-size;
             line-height: $line-height-xs;
         }
+
+        .vs-list{
+            margin: $spacer-2 0 0 $spacer-6;
+        }
     }
 
     &.vs-list--unstyled,
@@ -99,7 +103,7 @@ export default {
 ```jsx
     <h3>Styled</h3>
     <VsList>
-        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             <VsList>
                 <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
                 <li>Maecenas nec massa placerat, bibendum ex sit amet, blandit dolor.</li>
@@ -108,6 +112,7 @@ export default {
                 In faucibus eget nisi eu lobortis.</li>
                 <li>Integer efficitur lacus id mi scelerisque, porta feugiat leo egestas. </li>
             </VsList>
+        </li>
         <li>Curabitur tempus quam et dolor venenatis blandit. Nulla et erat orci.
         Suspendisse consequat ipsum et ex molestie viverra. In faucibus eget nisi eu lobortis.</li>
         <li>Integer efficitur lacus id mi scelerisque, porta feugiat leo egestas. </li>
