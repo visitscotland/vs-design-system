@@ -163,7 +163,7 @@ export default {
     .btn.dropdown-toggle {
         position: relative;
         letter-spacing: 0;
-        font-weight: normal;
+        font-weight: $font-weight-normal;
         line-height: $standard-line-height;
         border-radius: 0;
         border: 0;
