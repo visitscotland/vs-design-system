@@ -2,8 +2,8 @@ package com.visitscotland.brxm.dms;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brxm.beans.dms.LocationObject;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.utils.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

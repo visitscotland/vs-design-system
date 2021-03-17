@@ -1,8 +1,6 @@
 package com.visitscotland.brxm.services;
 
-import com.visitscotland.brxm.utils.CommonUtils;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -40,7 +39,7 @@ class ResourceBundleServiceTest {
         lenient().when(registry.getBundle(BUNDLE)).thenReturn(fbBundle);
         lenient().when(registry.getBundle(BUNDLE, Locale.UK)).thenReturn(bundle);
 
-        service = new ResourceBundleService(new CommonUtils());
+        service = new ResourceBundleService(new CommonUtilsService());
 
         service.setResourceBundleRegistry(registry);
 
@@ -73,8 +72,8 @@ class ResourceBundleServiceTest {
         // Otherwise, a locale is created according to Locale.forLanguageTag(String) specification
         Assertions.assertEquals("en", service.toLocale("en").getLanguage());
         Assertions.assertEquals("", service.toLocale(".java").getLanguage());
-        Assertions.assertNull(service.toLocale(""));
-        Assertions.assertNull(service.toLocale(null));
+        assertNull(service.toLocale(""));
+        assertNull(service.toLocale(null));
     }
 
     @Test
@@ -82,7 +81,7 @@ class ResourceBundleServiceTest {
         //Returns null when the name of the resource bundle does not exist.
         String value = service.getResourceBundle("Non-existing", "key", Locale.UK);
 
-        Assert.assertNull(value);
+        assertNull(value);
     }
 
     @Test
@@ -91,7 +90,7 @@ class ResourceBundleServiceTest {
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("value");
 
-        Assert.assertEquals("value", service.getResourceBundle(BUNDLE, "key", Locale.UK, true));
+        assertEquals("value", service.getResourceBundle(BUNDLE, "key", Locale.UK, true));
     }
 
     @Test
@@ -100,7 +99,7 @@ class ResourceBundleServiceTest {
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("value");
 
-        Assert.assertEquals("value", service.getResourceBundle(BUNDLE, "key", Locale.UK, true));
+        assertEquals("value", service.getResourceBundle(BUNDLE, "key", Locale.UK, true));
     }
 
     @Test
@@ -115,7 +114,7 @@ class ResourceBundleServiceTest {
         String value = service.getResourceBundle(BUNDLE, "key", Locale.UK);
 
         verify(service).logContentIssue(anyString(), any());
-        Assert.assertEquals("value", value);
+        assertEquals("value", value);
     }
 
     @Test
@@ -131,7 +130,7 @@ class ResourceBundleServiceTest {
         String value = service.getResourceBundle(BUNDLE, "key", Locale.UK);
 
         verify(service, times(2)).logContentIssue(anyString(), any());
-        Assert.assertEquals("", value);
+        assertEquals("", value);
     }
 
     @Test
@@ -144,7 +143,7 @@ class ResourceBundleServiceTest {
         String value = service.getResourceBundle(BUNDLE, "key", Locale.UK, true);
 
         verify(service, times(0)).logContentIssue(anyString(), any());
-        Assert.assertEquals("", value);
+        assertEquals("", value);
     }
 
     @Test
@@ -156,7 +155,7 @@ class ResourceBundleServiceTest {
         String value = service.getResourceBundle(BUNDLE, "key", Locale.UK);
 
         verify(service).logContentIssue(anyString(), any());
-        Assert.assertNull(value);
+        assertNull(value);
     }
 
     @Test
@@ -164,7 +163,7 @@ class ResourceBundleServiceTest {
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("value");
 
-        Assert.assertTrue(service.existsResourceBundleKey(BUNDLE, "key", Locale.UK));
+        assertTrue(service.existsResourceBundleKey(BUNDLE, "key", Locale.UK));
     }
 
     @Test
@@ -172,12 +171,12 @@ class ResourceBundleServiceTest {
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("");
 
-        Assert.assertFalse(service.existsResourceBundleKey(BUNDLE, "key", Locale.UK));
+        assertFalse(service.existsResourceBundleKey(BUNDLE, "key", Locale.UK));
     }
 
     @Test
     void getCtaLabel_manual() {
-        Assert.assertEquals("Discover more", service.getCtaLabel("Discover more", null));
+        assertEquals("Discover more", service.getCtaLabel("Discover more", null));
     }
 
     @Test
@@ -187,8 +186,8 @@ class ResourceBundleServiceTest {
         when(bundle.containsKey("button.find-out-more")).thenReturn(true);
         when(bundle.getString("button.find-out-more")).thenReturn("Find out more");
 
-        Assert.assertEquals("Find out more", service.getCtaLabel("",Locale.UK));
-        Assert.assertEquals("Find out more", service.getCtaLabel(null,Locale.UK));
+        assertEquals("Find out more", service.getCtaLabel("",Locale.UK));
+        assertEquals("Find out more", service.getCtaLabel(null,Locale.UK));
     }
 
 }
