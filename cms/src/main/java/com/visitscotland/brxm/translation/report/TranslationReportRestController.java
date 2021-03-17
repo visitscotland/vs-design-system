@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class TranslationReportRestController {
 
 
-    private TranslationReportService translationReportService;
+    private final TranslationReportService translationReportService;
 
     @Autowired
     public TranslationReportRestController(TranslationReportService translationReportService) {
@@ -44,6 +44,16 @@ public class TranslationReportRestController {
         return Arrays.stream(TranslationPriority.values()).map(priority -> {
             return Arrays.asList(priority.toString(),(Object)priority.name,  priority.sortOrder);
         }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/translation/pages")
+    public Set<String> getPageTypes() {
+        return translationReportService.getPageTypes();
+    }
+
+    @GetMapping("/translation/modules")
+    public Set<String> getModuleTypes() {
+        return translationReportService.getModuleTypes();
     }
 
     @ExceptionHandler(TranslationReportException.class)

@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.translation.report;
 
+import com.visitscotland.brxm.beans.Page;
 import com.visitscotland.brxm.translation.SessionFactory;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.jcr.*;
+import javax.jcr.query.Row;
 import javax.jcr.query.RowIterator;
 import java.rmi.RemoteException;
 import java.text.DateFormat;
@@ -29,6 +31,8 @@ public class TranslationReportService {
     private static final String VS_TRANSLATION_PRIORITY = "visitscotland:translationPriority";
     public static final Set<String> SUPPORTED_LOCALES = new HashSet<>(Arrays.asList("en", "fr", "nl", "it", "de", "es"));
     private static final String EDIT_WORKFLOW_NAME = "editing";
+    private Set<String> cachedPageTypes;
+    private Set<String> cachedModuleTypes;
 
     private final SessionFactory sessionFactory;
     private final JcrDocumentFactory jcrDocumentFactory;
@@ -38,12 +42,6 @@ public class TranslationReportService {
         this.sessionFactory = sessionFactory;
         this.jcrDocumentFactory = jcrDocumentFactory;
     }
-
-    public static List<TranslationModel> getUntranslatedDocuments(String untranslatedLocale) {
-        // FIXME
-        return getDocumentsTranslationInformation(untranslatedLocale);
-    }
-
 
     public void setTranslationPriority(String handleId, TranslationPriority priority) {
         try {
@@ -62,33 +60,7 @@ public class TranslationReportService {
         }
     }
 
-
-    private void setTranslationPriority(JcrDocument document, TranslationPriority priority) throws RepositoryException, WorkflowException, RemoteException {
-        Workflow editing = sessionFactory.getUserSession().getWorkflowManager().getWorkflow(EDIT_WORKFLOW_NAME, document.getHandle());
-        Node unpublishedNode = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
-        Session jcrSession = sessionFactory.getJcrSession();
-        if (!document.getLocaleName().equals("en")) {
-            throw new IllegalArgumentException("Can not set " + VS_TRANSLATION_PRIORITY + " on Node with locale" + document.getLocaleName());
-        }
-
-        if (editing instanceof EditableWorkflow) {
-            EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
-            editableWorkflow.obtainEditableInstance();
-            try {
-                unpublishedNode.setProperty(VS_TRANSLATION_PRIORITY, priority.toString());
-            } finally {
-                editableWorkflow.disposeEditableInstance();
-            }
-
-            jcrSession.save();
-            jcrSession.refresh(true);
-        } else {
-            throw new IllegalStateException("Unable to get EditableWorkflow");
-        }
-
-    }
-
-    private static List<TranslationModel> getDocumentsTranslationInformation(String targetLocale) {
+    public static List<TranslationModel> getUntranslatedDocuments(String targetLocale) {
         List<TranslationModel> docModels = new ArrayList<>();
         try {
             for (JcrDocument englishDoc : getAllEnglishDocuments()) {
@@ -129,6 +101,71 @@ public class TranslationReportService {
 
         return docModels;
     }
+
+    public Set<String> getPageTypes() {
+        try {
+            if (cachedPageTypes == null) cachedPageTypes = getTypesDeriving("visitscotland:Page");
+        } catch (RepositoryException ex) {
+            // FIXME
+            log.error("Repo exception", ex);
+            return Collections.emptySet();
+        }
+
+        return cachedPageTypes;
+    }
+
+    public Set<String> getModuleTypes() {
+        try {
+            if (cachedModuleTypes == null) cachedModuleTypes = getTypesDeriving("visitscotland:basedocument");
+        } catch (RepositoryException ex) {
+            // FIXME
+            log.error("Repo exception", ex);
+            return Collections.emptySet();
+        }
+
+        return cachedModuleTypes;
+    }
+
+
+    private Set<String> getTypesDeriving(String supertype) throws RepositoryException {
+        String query = String.format("//element(*, hipposysedit:nodetype)[jcr:contains(@hipposysedit:supertype, \"%s\")]/../..", supertype);
+        RowIterator result = sessionFactory.getJcrSession().getWorkspace().getQueryManager().createQuery(query, "xpath").execute().getRows();
+        Set<String> types = new HashSet<>();
+
+        while (result.hasNext()) {
+            Node node = result.nextRow().getNode();
+            types.add(node.getName());
+        }
+
+        return types;
+    }
+
+
+    private void setTranslationPriority(JcrDocument document, TranslationPriority priority) throws RepositoryException, WorkflowException, RemoteException {
+        Workflow editing = sessionFactory.getUserSession().getWorkflowManager().getWorkflow(EDIT_WORKFLOW_NAME, document.getHandle());
+        Node unpublishedNode = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+        Session jcrSession = sessionFactory.getJcrSession();
+        if (!document.getLocaleName().equals("en")) {
+            throw new IllegalArgumentException("Can not set " + VS_TRANSLATION_PRIORITY + " on Node with locale" + document.getLocaleName());
+        }
+
+        if (editing instanceof EditableWorkflow) {
+            EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
+            editableWorkflow.obtainEditableInstance();
+            try {
+                unpublishedNode.setProperty(VS_TRANSLATION_PRIORITY, priority.toString());
+            } finally {
+                editableWorkflow.disposeEditableInstance();
+            }
+
+            jcrSession.save();
+            jcrSession.refresh(true);
+        } else {
+            throw new IllegalStateException("Unable to get EditableWorkflow");
+        }
+
+    }
+
 
     private static PublishStatus getDocumentPublishStatus(JcrDocument document) throws RepositoryException {
         Node unpublishedNode = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
