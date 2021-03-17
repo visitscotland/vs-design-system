@@ -172,9 +172,13 @@ export default {
         .vs-stretched-link-card__title {
             font-size: $small-font-size;
             line-height: $line-height-s;
-            letter-spacing: 0.0875rem;
+            letter-spacing: 1px;
             color: $color-base-text;
             display: flex;
+
+            a {
+                letter-spacing: inherit;
+            }
         }
 
         .vs-stretched-link-card__category {
