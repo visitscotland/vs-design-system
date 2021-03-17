@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # ==== TO-DO ====
+# gp: remove echo "$VS_CONTAINER_BASE_PORT" > env_port.txt AND echo "$VS_HOST_IP_ADDRESS" > env_host.txt from report section - these are now exported to be avaible to the LH script
+# gp: create test routine for container/tomcat startup
+# ====/TO-DO ====
+# ==== DONE ====
 # gp: split into functions - done
 # gp: activate clean-up routine - done
 # gp: update adjustatable variables to set only if they're not set already, that way the Dev can override in the Jenkinsfile - done
@@ -15,10 +19,9 @@
 # gp: create routine to re-use existing container if it's there - done
 #     - start it if stoppped - redeploy artifact if it's running
 # gp: create notification routine using "VS_COMMIT_AUTHOR" - done
-# gp: create test routine
 # gp: don't start tomcat with container - done
 # gp: additional check to see if mySQL is required - create a CMD without mysql - done
-# ====/TO-DO ====
+# ====/DONE ====
 
 # ==== SETUP ====
 # ==== ADJUSTABLE VARIABLES ====
@@ -60,6 +63,10 @@ if [ -z "$VS_SSR_PROXY_ON" ]; then VS_SSR_PROXY_ON="TRUE"; fi
 if [ -z "$VS_SSR_APP_PORT" ]; then VS_SSR_APP_PORT=8082; fi
 #  ==== Other Variables ====
 VS_JENKINS_LAST_ENV=jenkins-last-env
+VS_VS_LAST_ENV=vs-last-env
+VS_LAST_ENV_QUOTED_SUFFIX=.quoted
+VS_LAST_ENV_GROOVY_SUFFIX=.groovy
+
 # ====/ADJUSTABLE VARIABLES ====
 
 # ==== PARSE COMMAND LINE ARGUMENTS ====
@@ -85,8 +92,8 @@ while [[ $# -gt 0 ]]; do
     ;;
   esac
   shift
-  done
-  echo -en "\n"
+done
+echo -en "\n"
 # ====/PARSE COMMAND LINE ARGUMENTS ====
 # ====/SETUP ====
 
@@ -126,9 +133,9 @@ checkVariables() {
 
 defaultSettings() {
   # unset variables
-  VS_CONTAINER_LIST=
-  VS_PARENT_JOB_NAME=
-  RESERVED_PORT_LIST=
+  unset VS_CONTAINER_LIST
+  unset VS_PARENT_JOB_NAME
+  unset RESERVED_PORT_LIST
   # set container name from branch name - removing / characters
   if [ -z "$VS_CONTAINER_NAME" ]; then VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`; fi
   if [ -z "$NODE_NAME" ]; then VS_THIS_SERVER=$HOSTNAME; else VS_THIS_SERVER=$NODE_NAME; fi
@@ -549,6 +556,10 @@ packageSSRArtifact() {
     if [ -d "$VS_FRONTEND_DIR" ]; then
       tar -zcf $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_SSR_PACKAGE_SOURCE
       RETURN_CODE=$?; echo " - return code: " $RETURN_CODE; echo ""
+      if [ -a $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME ]; then
+        VS_SSR_PACKAGE_SIZE=`ls -alh $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME | awk '{print $5}'`
+        echo $VS_SSR_PACKAGE_NAME " is " $VS_SSR_PACKAGE_SIZE " in size"
+      fi
       if [ ! "$RETURN_CODE" = "0" ]; then
         SAFE_TO_PROCEED=FALSE
         FAIL_REASON="Failed to package SSR app from $VS_FRONTEND_DIR, command exited with $RETURN_CODE"
@@ -689,6 +700,11 @@ containerStartHippo() {
   fi
 }
 
+exportVSVariables() {
+  echo " - exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD"
+  set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
+}
+
 createBuildReport() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     EXIT_CODE=0
@@ -736,8 +752,8 @@ createBuildReport() {
       cat $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "$VS_CONTAINER_BASE_PORT" > env_port.txt
     echo "$VS_HOST_IP_ADDRESS" > env_host.txt
   else
@@ -749,8 +765,8 @@ createBuildReport() {
     echo "JOB FAILED because $FAIL_REASON" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
   fi
 }
 
@@ -777,13 +793,18 @@ sendSiteReport() {
 # ====/FUNCTIONS ====
 
 # ==== RUN ====
+METHOD=$1
 case $METHOD in
   other)
     false
   ;;
   default)
     false
-    ;;
+  ;;
+  setvars)
+    checkVariables
+    defaultSettings
+  ;;
   *)
     echo "no function specified - running defaults"
     checkVariables
@@ -818,6 +839,7 @@ case $METHOD in
     containerCopyHippoArtifact
     containerCopySSRArtifact
     containerStartHippo
+    exportVSVariables
     testSite
     createBuildReport
     sendBuildReport

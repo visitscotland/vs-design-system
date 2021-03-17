@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.rest;
 
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,15 +30,17 @@ class InternalResourceTest {
     InternalResource service;
 
     @Mock
-    CommonUtils utils;
+    CommonUtilsService utils;
 
+    @Mock
+    Properties properties;
 
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
     HttpServletRequest request;
 
     @BeforeEach
     void init(){
-        service = new InternalResource(utils);
+        service = new InternalResource(utils, properties);
     }
 
     @Test
@@ -104,12 +106,13 @@ class InternalResourceTest {
     @Test
     @DisplayName("fragment - The fragment locale is being processed")
     void fragment_buildUrl_locale() throws IOException {
+        when(properties.getLocalhost()).thenReturn("http://localhost:8080");
         ArgumentCaptor<String> urlCaptor = ArgumentCaptor.forClass(String.class);
         when(utils.requestUrl(urlCaptor.capture())).thenReturn(MOCK_RESPONSE);
         when(utils.buildQueryString(any(), any())).thenReturn("");
 
         service.fragment(request,"f1", null,null,  "es").getEntity().toString();
-        assertEquals(Properties.LOCALHOST + "/es/internal", urlCaptor.getValue());
+        assertEquals("http://localhost:8080/es/internal", urlCaptor.getValue());
     }
 
     @Test

@@ -9,30 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-public class RootMenuItemTest {
-
-
-//    private HstSiteMenu hstMenu;
-//
-//    private List<HstSiteMenuItem> menuItems;
-//
-//    public RootMenuItem(HstSiteMenu hstMenu){
-//        this.hstMenu = hstMenu;
-//    }
-//
-//    public void setSiteMenuItems(List<HstSiteMenuItem> items){
-//        this.menuItems = items;
-//    }
-//
-//    @Override
-//    public List<HstSiteMenuItem> getSiteMenuItems() {
-//        return (List<HstSiteMenuItem>) menuItems;
-//    }
-
-    @Test
-    void menuItems() {
-
-    }
+class RootMenuItemTest {
 
     @Test
     void encapsulatedMethods() {
@@ -66,7 +43,7 @@ public class RootMenuItemTest {
         verify(hsm).getName();
 
         when(hsm.isExpanded()).thenReturn(true);
-        Assertions.assertEquals(true, item.isExpanded());
+        Assertions.assertTrue(item.isExpanded());
         verify(hsm).isExpanded();
     }
 }
