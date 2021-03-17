@@ -1,8 +1,11 @@
 #!/bin/bash
 
 # ==== TO-DO ====
-# gp: remove echo "$VS_CONTAINER_BASE_PORT" > env_port.txt AND echo "$VS_HOST_IP_ADDRESS" > env_host.txt from report section - these are now exported to be avaible to the LH script
-# gp: create test routine for container/tomcat startup
+# gp: ~line remove echo "$VS_CONTAINER_BASE_PORT" > env_port.txt AND echo "$VS_HOST_IP_ADDRESS" > env_host.txt from report section - once the env vars are used in the LH script
+# gp: create test routine for container/tomcat startup - curl till 200
+# gp: ~line 140, add additional check to see if there's a CHANGE_BRANCH variable as well as a BRANCH_NAME variable, allow re-use of the branch's container
+# gp: create routine to output feature environment configuration to a file in ci folder, these files will then be collected by a cron job and passed to the proxy server
+# gp: investigate using env.STAGE_NAME in stage notifications
 # ====/TO-DO ====
 # ==== DONE ====
 # gp: split into functions - done
@@ -137,6 +140,7 @@ defaultSettings() {
   unset VS_PARENT_JOB_NAME
   unset RESERVED_PORT_LIST
   # set container name from branch name - removing / characters
+  ## add additional check here to see if there's a CHANGE_BRANCH variable as well as a BRANCH_NAME variable
   if [ -z "$VS_CONTAINER_NAME" ]; then VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`; fi
   if [ -z "$NODE_NAME" ]; then VS_THIS_SERVER=$HOSTNAME; else VS_THIS_SERVER=$NODE_NAME; fi
   if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then
@@ -758,6 +762,7 @@ createBuildReport() {
     echo "$VS_HOST_IP_ADDRESS" > env_host.txt
   else
     EXIT_CODE=127
+    VS_MAIL_NOTIFY_BUILD_SUBJECT="environment build FAILED for $GIT_BRANCH in $VS_PARENT_JOB_NAME"
     echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE

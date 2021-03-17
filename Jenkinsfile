@@ -38,6 +38,10 @@ pipeline {
     // gp: investigate milestone caclulation to cancel current build if a new one starts
     // - see: https://stackoverflow.com/questions/40760716/jenkins-abort-running-build-if-new-one-is-started/44326216
     // - see: https://www.jenkins.io/doc/pipeline/steps/pipeline-milestone-step/#pipeline-milestone-step
+    // gp: investigate the use of stash/unstash to make build artefacts available to other nodes
+    // - see: https://www.cloudbees.com/blog/parallelism-and-distributed-builds-jenkins
+    // - this could potentially allow the running of all Lighthouse tests on a separate node
+    // - experiment with a simple echo on a different node
     disableConcurrentBuilds()
   }
   agent {label thisAgent}
@@ -51,7 +55,7 @@ pipeline {
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
     // VS_SKIP_BUILD_FOR_BRANCH is useful for testing, only ever set to your working branch name - never to a variable!
-    VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-2255-lighthouse-failing-builds'
+    VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-1865-feature-environments-enhancements'
     // VS_COMMIT_AUTHOR is required by later stages which will fail if it's not set, default value of jenkins@visitscotland.net
     // turns out if you set it here it will not be overwritten by the load later in the pipeline
     //VS_COMMIT_AUTHOR = 'jenkins@visitscotland.net'
@@ -184,7 +188,8 @@ pipeline {
           }
           steps {
             withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
-              sh "mvn sonar:sonar -Dsonar.host.url=http://172.28.87.209:9000 -s $MAVEN_SETTINGS"
+              sh "PATH=/usr/bin:$PATH; mvn sonar:sonar -Dsonar.host.url=http://172.28.87.209:9000 -s $MAVEN_SETTINGS"
+              // setting PATH=/usr/bin:$PATH; above allows NodeJS 10.16.3 to be the default and prevents and error at the CSS scan
             }
           }
         }
@@ -199,12 +204,13 @@ pipeline {
           steps {
             withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
               sh '''
-                ${scannerHome}/bin/sonar-scanner \
+                PATH=/usr/bin:$PATH; ${scannerHome}/bin/sonar-scanner \
                 -Dsonar.sources=./frontend \
                 -Dsonar.projectKey=VS2019-FE \
                 -Dsonar.host.url=http://172.28.87.209:9000 \
                 -Dsonar.login=9fa63cfd51d94fb8e437b536523c15a9b45ee2c1
               '''
+              // setting PATH=/usr/bin:$PATH; above allows NodeJS 10.16.3 to be the default and prevents and error at the CSS scan
             }
           }
         }
@@ -224,7 +230,7 @@ pipeline {
 
         stage('Release to Nexus') {
           when {
-                branch 'PR-145' // to do - change this to develop  when ready
+                branch 'PR-145' // to-do - hd: change this to develop when ready
           }
           steps {
               script {
