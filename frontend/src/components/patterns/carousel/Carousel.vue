@@ -6,7 +6,12 @@
     >
         <VsContainer>
             <VsRow>
-                <VsCol cols="12">
+                <VsCol
+                    cols="10"
+                    offset="1"
+                    sm="12"
+                    offset-sm="0"
+                >
                     <div
                         class="slider"
                         ref="slideContainer"
@@ -20,8 +25,8 @@
                         <button
                             v-if="!prevDisabled"
                             class="vs-carousel__control vs-carousel__control--prev"
-                            @click="sliderNavigate('prev')"
-                            @keyup.enter="sliderNavigate('prev')"
+                            @click.prevent="sliderNavigate('prev')"
+                            @keypress.prevent="sliderNavigate('prev')"
                         >
                             <VsIcon
                                 name="internal-link"
@@ -34,8 +39,8 @@
                         <button
                             v-if="!nextDisabled"
                             class="vs-carousel__control vs-carousel__control--next"
-                            @click="sliderNavigate('next')"
-                            @keyup.enter="sliderNavigate('next')"
+                            @keypress.prevent="sliderNavigate('next')"
+                            @click.prevent="sliderNavigate('next')"
                         >
                             <VsIcon
                                 name="internal-link"
@@ -52,8 +57,8 @@
                                 class="vs-carousel__navigation-item"
                                 :class="index === currentPage + 1 ?
                                     'vs-carousel__navigation-item--active' : ''"
-                                @click="sliderNavigate(index - 1)"
-                                @keyup.enter="sliderNavigate(index - 1)"
+                                @click.prevent="sliderNavigate(index - 1)"
+                                @keypress.prevent="sliderNavigate(index - 1)"
                                 tabindex="0"
                                 :data-test="`vs-carousel__nav-${index}`"
                             >
@@ -195,12 +200,12 @@ export default {
             const oldSize = this.currentPage;
             this.setActivePage(oldSize);
 
-            this.defineActiveSlides(window.innerWidth);
+            this.sliderNavigate(this.currentPage);
         });
         this.defineActiveSlides();
     },
     methods: {
-        defineActiveSlides() {
+        defineActiveSlides(remainder) {
             this.calcViewport();
             const allSlides = this.$refs.slideContainer
                 .getElementsByClassName('vs-carousel-slide__card');
@@ -213,12 +218,28 @@ export default {
                     const activeSlideEnd = parseInt(
                         this.currentPage * this.slidesPerPage[this.currentWidth], 10
                     ) + parseInt(this.slidesPerPage[this.currentWidth], 10);
-                    if (index >= activeSlideStart && index < activeSlideEnd) {
-                        slide.classList.add('vs-carousel-slide__card--active');
-                        slide.getElementsByTagName('a')[0].setAttribute('tabindex', '0');
+
+                    const makeActive = (slideEl) => {
+                        slideEl.classList.add('vs-carousel-slide__card--active');
+                        slideEl.getElementsByTagName('a')[0].setAttribute('tabindex', '0');
+                    };
+
+                    const makeInactive = (slideEl) => {
+                        slideEl.classList.remove('vs-carousel-slide__card--active');
+                        slideEl.getElementsByTagName('a')[0].setAttribute('tabindex', '-1');
+                    };
+
+                    // if we're at a final slide that has a remainder
+                    if (remainder && typeof remainder !== 'undefined') {
+                        if (index >= this.totalSlides - this.slidesPerPage[this.currentWidth]) {
+                            makeActive(slide);
+                        } else {
+                            makeInactive(slide);
+                        }
+                    } else if (index >= activeSlideStart && index < activeSlideEnd) {
+                        makeActive(slide);
                     } else {
-                        slide.classList.remove('vs-carousel-slide__card--active');
-                        slide.getElementsByTagName('a')[0].setAttribute('tabindex', '-1');
+                        makeInactive(slide);
                     }
 
                     slideCount += 1;
@@ -275,13 +296,23 @@ export default {
 
             this.initNavigation();
 
+            const totalSlideSpaces = this.slidesPerPage[this.currentWidth] * (this.currentPage + 1);
             const track = this.$refs.slideContainer.getElementsByClassName('row')[0];
+            let finalSlideRemainder = false;
 
-            if (typeof track !== 'undefined') {
+            if (totalSlideSpaces > this.totalSlides) {
+                const offset = this.checkRemainder(totalSlideSpaces);
+
+                if (typeof track !== 'undefined') {
+                    track.style.transform = `translateX(-${((this.currentPage - 1) * 100) + offset}%)`;
+                }
+
+                finalSlideRemainder = true;
+            } else if (typeof track !== 'undefined') {
                 track.style.transform = `translateX(-${this.currentPage * 100}%)`;
             }
 
-            this.defineActiveSlides();
+            this.defineActiveSlides(finalSlideRemainder);
         },
         initNavigation() {
             if (this.currentPage + 1
@@ -296,6 +327,16 @@ export default {
             } else {
                 this.prevDisabled = true;
             }
+        },
+        checkRemainder(totalSpaces) {
+            // this function checks if there's an 'odd' number of slides
+            // meaning the final navigation shouldn't move a full page width
+            const slideRemainder = this.slidesPerPage[this.currentWidth]
+                - (totalSpaces - this.totalSlides);
+            const singleSlideOffset = 100 / this.slidesPerPage[this.currentWidth];
+            const remainderOffset = singleSlideOffset * slideRemainder;
+
+            return remainderOffset;
         },
     },
 };
