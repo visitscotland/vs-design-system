@@ -6,6 +6,8 @@
 # gp: ~line 140, add additional check to see if there's a CHANGE_BRANCH variable as well as a BRANCH_NAME variable, allow re-use of the branch's container
 # gp: create routine to output feature environment configuration to a file in ci folder, these files will then be collected by a cron job and passed to the proxy server
 # gp: investigate using env.STAGE_NAME in stage notifications
+# gp: add timing to each proc and output it to a log, cat that log to the Jenkins job log at the end of the script
+# gp: timestamp each "doing this" notification as "dd-mmm-yyyy hh:mm:ss.nnn INFO [scriptname] doing this", output it to the log
 # ====/TO-DO ====
 # ==== DONE ====
 # gp: split into functions - done
@@ -81,6 +83,7 @@ while [[ $# -gt 0 ]]; do
   if [ "$VS_DEBUG" == "TRUE" ]; then echo -en "\nread \"$THIS_VAR\" from command line"; fi
   case $THIS_VAR in
     --debug) if [ ! -z "$THIS_RESULT" ]; then VS_DEBUG=$THIS_RESULT; else VS_DEBUG=TRUE; fi;;
+    --ci-dir) if [ ! -z "$THIS_RESULT" ]; then VS_CI_DIR=$THIS_RESULT; fi;;
     --frontend-dir) if [ ! -z "$THIS_RESULT" ]; then VS_FRONTEND_DIR=$THIS_RESULT; fi;;
     --persistence) if [ ! -z "$THIS_RESULT" ]; then VS_BRXM_PERSISTENCE_METHOD=$THIS_RESULT; fi;;
     --persistence-method) if [ ! -z "$THIS_RESULT" ]; then VS_BRXM_PERSISTENCE_METHOD=$THIS_RESULT; fi;;
@@ -139,6 +142,16 @@ defaultSettings() {
   unset VS_CONTAINER_LIST
   unset VS_PARENT_JOB_NAME
   unset RESERVED_PORT_LIST
+  # set, and create if missing, VS_CI_DIR
+  if [ -z "VS_CI_DIR" ]; then
+    if [ ! -z "$WORKSPACE" ]; then
+      VS_CI_DIR=$WORKSPACE/ci
+    else
+      VS_CI_DIR=./ci
+    fi
+  fi
+  if [ ! -d "$VS_CI_DIR" ]; then mkdir -p $VS_CI_DIR; fi
+  if [ ! -d "$VS_CI_DIR/logs" ]; then mkdir -p $VS_CI_DIR/logs; fi
   # set container name from branch name - removing / characters
   ## add additional check here to see if there's a CHANGE_BRANCH variable as well as a BRANCH_NAME variable
   if [ -z "$VS_CONTAINER_NAME" ]; then VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`; fi
@@ -152,6 +165,8 @@ defaultSettings() {
   VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{print $2}' | sed -e "s/\/.*$//"`
   VS_PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
   VS_SCRIPTNAME=`basename $0`
+  VS_SCRIPT_LOG=$VS_CI_DIR/logs/$VS_SCRIPTNAME.log
+  VS_LOG_DATESTAMP="echo `date +%d-%b-%Y" "%H:%M:%S.%N | sed -e "s/\(\.[0-9][0-9][0-9]\).*$/\1/"`"
   if [ "$VS_SSR_PROXY_ON" == "TRUE" ]; then
     VS_PROXY_QS_SSR="&vs_ssr_proxy=on"
   else
@@ -482,7 +497,7 @@ findBasePort() {
 }
 
 findDynamicPorts() {
-  echo "finding free ports from $VS_CONTAINER_BASE_PORT in increments of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other servies on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
+  echo "finding free ports from $VS_CONTAINER_BASE_PORT in increments of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other services on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
   THIS_PORT=$VS_CONTAINER_BASE_PORT
   echo "" > $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA
   for VS_CONTAINER_INT_PORT in `set | grep "VS_CONTAINER_INT_PORT_"`; do
@@ -708,7 +723,7 @@ containerStartHippo() {
 }
 
 exportVSVariables() {
-  echo " - exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [`basename $0`] exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD" | tee -a $VS_SCRIPT_LOG
   set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
 }
 
