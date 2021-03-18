@@ -19,7 +19,7 @@
         <div class="row">
             <div cols="12" class="vs-global-menu__wrapper col-12">
                 <div class="dropdown b-dropdown vs-dropdown vs-global-menu__dropdown d-lg-none btn-group" id="__BVID__12">
-                    <span>branch: ${branch} author: ${vsCommitAuthor} PR: ${gitChangeId}</span>
+                    <span>branch: ${branch} author: ${CommitAuthor} PR: ${gitChangeId}</span>
                 </div>
                 <ul class="vs-list vs-global-menu__list d-none d-lg-flex vs-list--unstyled vs-list--inline">
                     <li class="vs-global-menu__list_item vs-global-menu__list_item--active d-none d-lg-block">
