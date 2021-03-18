@@ -42,8 +42,8 @@ public class VsHstFreemarkerServlet extends HstFreemarkerServlet {
     }
 
     private void includeBranchInformation() throws TemplateModelException {
-        if (System.getenv().containsKey("BRANCH_NAME")){
-            String branch = System.getenv("BRANCH_NAME");
+        if (System.getenv().containsKey("VS_BRANCH_NAME")){
+            String branch = System.getenv("VS_BRANCH_NAME");
             //TODO: We might want to add more information to the header
             addVariable("branch", branch);
         }
