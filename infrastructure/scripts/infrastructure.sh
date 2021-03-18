@@ -70,6 +70,7 @@ VS_LAST_ENV_GROOVY_SUFFIX=.groovy
 # ====/ADJUSTABLE VARIABLES ====
 
 # ==== PARSE COMMAND LINE ARGUMENTS ====
+METHOD=$1
 while [[ $# -gt 0 ]]; do
   argument="$1"
   THIS_VAR=`echo $argument | sed -e "s/=.*//g"`; #echo $THIS_VAR
@@ -811,7 +812,6 @@ sendSiteReport() {
 # ====/FUNCTIONS ====
 
 # ==== RUN ====
-METHOD=$1
 echo "called with $METHOD"
 case $METHOD in
   other)
