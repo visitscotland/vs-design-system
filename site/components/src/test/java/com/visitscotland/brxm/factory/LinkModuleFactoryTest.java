@@ -13,6 +13,8 @@ import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
+import com.visitscotland.brxm.services.CommonUtilsService;
+import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
@@ -30,6 +32,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Locale;
 
@@ -53,6 +56,10 @@ public class LinkModuleFactoryTest {
 
     public enum LinkType {CMS, DMS, EXTERNAL, PRODUCT_SEARCH}
 
+
+    @Mock
+    CommonUtilsService commonUtils;
+
     @Mock
     ProductSearchBuilder builder;
 
@@ -73,6 +80,9 @@ public class LinkModuleFactoryTest {
 
     @Mock
     LocationLoader locationLoader;
+
+    @Mock
+    DocumentUtilsService documentUtilsService;
 
     @Resource
     @InjectMocks
@@ -299,9 +309,9 @@ public class LinkModuleFactoryTest {
     //TODO Correct before merging with develop
     @Test
     @DisplayName("Itineraries have days and main transport added")
-    @Disabled("Disabled in order to avoid conflicts with Dependency injection")
     void createEnhancedLink_itinerary() {
-        Linkable itinerary = new MegalinksMockBuilder().getItinerary("bus", 2);
+        Itinerary itinerary = new MegalinksMockBuilder().getItinerary("bus");
+        when(documentUtilsService.getSiblingDocuments(itinerary,Day.class, "visitscotland:Day")).thenReturn(Arrays.asList(mock(Day.class), mock(Day.class)));
 
         EnhancedLink enhancedLink = factory.createEnhancedLink(itinerary,Locale.UK, false);
 
@@ -330,6 +340,7 @@ public class LinkModuleFactoryTest {
         SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,  null);
 
         when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        when(commonUtils.getExternalDocumentSize(any())).thenReturn("PDF 15.5MB");
         EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, false);
 
         assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
@@ -345,6 +356,7 @@ public class LinkModuleFactoryTest {
         SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,category);
 
         when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        when(commonUtils.getExternalDocumentSize(any())).thenReturn("PDF 15.5MB");
         EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, true);
 
         assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());

@@ -17,7 +17,6 @@ import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
-import org.hippoecm.repository.util.DocumentUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -41,14 +40,18 @@ public class LinkModulesFactory {
     private final ResourceBundleService bundle;
     private final LocationLoader locationLoader;
     private final ImageFactory imageFactory;
+    private final CommonUtilsService commonUtils;
+    private final DocumentUtilsService documentUtilsService;
 
-    public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle , LocationLoader locationLoader, ImageFactory imageFactory) {
+    public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle, LocationLoader locationLoader, ImageFactory imageFactory, CommonUtilsService commonUtils, DocumentUtilsService documentUtilsService) {
         this.utils = utils;
         this.dmsData = dmsData;
         this.linkService = linkService;
         this.bundle = bundle;
         this.locationLoader = locationLoader;
         this.imageFactory = imageFactory;
+        this.commonUtils = commonUtils;
+        this.documentUtilsService = documentUtilsService;
     }
 
     public LinksModule<?> getMegalinkModule(Megalinks doc, Locale locale) {
@@ -250,7 +253,7 @@ public class LinkModulesFactory {
         link.setType(LinkType.INTERNAL);
         if (linkable instanceof Itinerary) {
             Itinerary itinerary = (Itinerary) linkable;
-            link.setItineraryDays(DocumentUtilsService.getInstance().getSiblingDocuments(linkable,Day.class, "visitscotland:Day").size());
+            link.setItineraryDays(documentUtilsService.getSiblingDocuments(linkable,Day.class, "visitscotland:Day").size());
             if (itinerary.getTransports().length > 0){
                 link.setItineraryTransport(itinerary.getTransports()[0]);
             }
@@ -277,8 +280,7 @@ public class LinkModulesFactory {
             }
             if (((SharedLink) linkable).getLinkType() instanceof ExternalDocument){
                 ExternalDocument externalDocument = (ExternalDocument)sharedLink.getLinkType();
-                //TODO Review the following line
-                String size = CommonUtilsService.getExtenalDocumentSize(externalDocument.getLink());
+                String size = commonUtils.getExternalDocumentSize(externalDocument.getLink());
                 if (size!=null) {
                     String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
                     link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");
