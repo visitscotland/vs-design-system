@@ -22,7 +22,7 @@
     <vs-listicle-item
             index="${item.index}"
             title="${item.title}"
-            sub-title="${item.subtitle}"
+            sub-title="${item.subtitle!''}"
     >
         <div slot="hippo-details" class="has-edit-button">
             <@hst.manageContent hippobean=item.hippoBean/>
