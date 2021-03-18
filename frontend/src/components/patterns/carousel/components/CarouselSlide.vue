@@ -144,6 +144,7 @@ export default {
         display: flex;
 
         .vs-carousel-slide__card {
+            flex-shrink: 0;
             opacity: 0.5;
             transition: opacity 0.3s ease;
             transition-delay: 0.6s;

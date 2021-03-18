@@ -1,13 +1,15 @@
 import { shallowMount } from '@vue/test-utils';
 import VsCarousel from '../Carousel';
 
-const factoryShallowMount = (slotsData, propsData) => shallowMount(VsCarousel, {
-    propsData: {
-        ...propsData,
-    },
+const factoryShallowMount = (slotsData) => shallowMount(VsCarousel, {
     data() {
         return {
-            currentSlide: 3,
+            totalSlides: 20,
+            currentPage: 0,
+            maxPages: 1,
+            nextDisabled: false,
+            prevDisabled: true,
+            currentWidth: 'lg',
         };
     },
     ...slotsData,
@@ -24,6 +26,12 @@ window.matchMedia = window.matchMedia || function() {
 /* eslint-enable */
 
 describe('VsCarousel', () => {
+    it('should render a carousel container element', () => {
+        const wrapper = factoryShallowMount();
+
+        expect(wrapper.find('[data-test="vs-carousel"]').exists()).toBe(true);
+    });
+
     describe(':slots', () => {
         it('renders the mobile pagination correctly', async() => {
             const wrapper = factoryShallowMount({
@@ -44,37 +52,82 @@ describe('VsCarousel', () => {
 
             expect(formattedPagination).toBe('2 of 10');
         });
+
+        it('renders the default slot correctly', () => {
+            const wrapper = factoryShallowMount({
+                slots: {
+                    default: '<div class="default-content">Default slot carousel content</div>',
+                },
+            });
+
+            expect(wrapper.find('.default-content').exists()).toBe(true);
+        });
     });
 
-    it('only renders the previous control if the prop is set to true', async() => {
-        const wrapper = factoryShallowMount();
+    describe(':methods', () => {
+        it('sets the correct active page on arrow click', async() => {
+            const wrapper = factoryShallowMount();
 
-        await wrapper.setData({
-            prevDisabled: false,
+            await wrapper.setData({
+                currentPage: 0,
+                totalSlides: 10,
+                currentWidth: 'lg',
+            });
+
+            await wrapper.find('.vs-carousel__control--next').trigger('click');
+
+            expect(wrapper.vm.currentPage).toBe(1);
+
+            await wrapper.find('.vs-carousel__control--prev').trigger('click');
+
+            expect(wrapper.vm.currentPage).toBe(0);
         });
 
-        expect(wrapper.find('.vs-carousel__control--prev').exists()).toBe(true);
+        it('sets the correct active page on clicking navigation item', async() => {
+            const wrapper = factoryShallowMount();
 
-        await wrapper.setData({
-            prevDisabled: true,
+            await wrapper.setData({
+                currentPage: 0,
+                totalSlides: 10,
+                currentWidth: 'lg',
+                maxPages: 4,
+            });
+
+            wrapper.find('[data-test="vs-carousel__nav-3"]').trigger('click');
+
+            expect(wrapper.vm.currentPage).toBe(2);
         });
 
-        expect(wrapper.find('.vs-carousel__control--prev').exists()).toBe(false);
-    });
+        it('only renders the previous control if the prop is set to true', async() => {
+            const wrapper = factoryShallowMount();
 
-    it('only renders the next control if the prop is set to true', async() => {
-        const wrapper = factoryShallowMount();
+            await wrapper.setData({
+                prevDisabled: false,
+            });
 
-        await wrapper.setData({
-            nextDisabled: false,
+            expect(wrapper.find('.vs-carousel__control--prev').exists()).toBe(true);
+
+            await wrapper.setData({
+                prevDisabled: true,
+            });
+
+            expect(wrapper.find('.vs-carousel__control--prev').exists()).toBe(false);
         });
 
-        expect(wrapper.find('.vs-carousel__control--next').exists()).toBe(true);
+        it('only renders the next control if the prop is set to true', async() => {
+            const wrapper = factoryShallowMount();
 
-        await wrapper.setData({
-            nextDisabled: true,
+            await wrapper.setData({
+                nextDisabled: false,
+            });
+
+            expect(wrapper.find('.vs-carousel__control--next').exists()).toBe(true);
+
+            await wrapper.setData({
+                nextDisabled: true,
+            });
+
+            expect(wrapper.find('.vs-carousel__control--next').exists()).toBe(false);
         });
-
-        expect(wrapper.find('.vs-carousel__control--next').exists()).toBe(false);
     });
 });
