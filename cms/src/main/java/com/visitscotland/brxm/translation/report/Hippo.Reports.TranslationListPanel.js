@@ -4,7 +4,36 @@
 Ext.ns('Hippo.Reports');
 
 const GRID_ID = "myGrid";
+const MODULE_FILTER_ID = "moduleFilter"
+const MODULE_LABEL_ID = "moduleFilterLabel"
+const PAGE_FILTER_ID = "pageFilter"
+const PAGE_LABEL_FILTER_ID = "pageFilterLabel"
+const FILTER_SIDEBAR_ID = "filterSidebar"
 const PAGE_SIZE = 13
+
+const SIDEBAR_LABEL_STYLE = "display: block; margin-top: 20px";
+
+// Simply loads records from a simple list, such as [1, 3, 6, 7]
+// Normal ArrayReader requires each list item to be in a sublist
+Hippo.Reports.SimpleArrayReader = Ext.extend(Ext.data.JsonReader,{
+    readRecords: function (list) {
+        return {
+            success : true,
+            records : list.map((item) => new this.recordType({value: item}, item)),
+            totalRecords : list.length
+        };
+   }
+});
+
+
+Hippo.Reports.SimpleArrayStore = Ext.extend(Ext.data.Store, {
+    constructor: function (config) {
+        Hippo.Reports.SimpleArrayStore.superclass.constructor.call(this, Ext.apply(config, {
+            reader: new Hippo.Reports.SimpleArrayReader(config)
+        }));
+    }
+});
+
 
 Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
 
@@ -23,8 +52,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             method: "GET",
             proxy: new Hippo.Reports.PageableHttpProxy({url: GET_UNTRANSLATED_FILES_ENDPOINT, api: {}}, {locale: INITIAL_LOCALE}),
             fields: ["displayName", "translatedLocales", "sentForTranslationLocales", "path", "translationStatus",
-                "translationPriority", "handleId", "lastModified",
-                "publishStatus", "type"]
+                "translationPriority", "handleId", "lastModified", "publishStatus", "type"]
         })
 
         var self = this;
@@ -207,6 +235,12 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                     const store = Ext.getCmp(GRID_ID).getStore();
                     if (record["id"] === "all") {
                         store.proxy.clearFilter("type");
+                        self.removePageSubtypeFilters.call(self)
+                    }
+                    if ( record["id"] === "pages") {
+                        self.showPageFilter.call(self)
+                    } else if (record["id"] === "modules") {
+                        self.showModuleFilter.call(self)
                     }
                     if (self.moduleTypes.length === 0 || self.pageTypes.length === 0) return;
                     const allowedTypes = record["id"] === "pages" ? self.pageTypes : self.moduleTypes;
@@ -216,7 +250,99 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             }
         };
 
+        // Filter allows user to filter by module
+        // Added dynamically when page/module filter = module
+        this.moduleFilterComboConfig = {
+            xtype: "combo",
+            id: MODULE_FILTER_ID,
+            autoSelect: true,
+            editable: false,
+            triggerAction: 'all',
+            lazyRender:true,
+            mode: 'local',
+            value: "All documents",
+            store: new Hippo.Reports.SimpleArrayStore({
+                id: 0,
+                autoLoad: true,
+                fields: [
+                    'value',
+                ],
+                proxy: new Ext.data.HttpProxy({
+                    url: "/cms/translation/modules",
+                    method: "GET"
+                }),
 
+                listeners: {
+                    load: (store) => {
+                        store.insert(0, new Ext.data.Record({
+                            value: "All documents",
+                        }, "All documents"))
+                    }
+                }
+            }),
+
+            valueField: 'value',
+            displayField: 'value',
+            listeners: {
+                select: (combo, record, index) => {
+                    console.log("Filter module type", record);
+                    const proxy = Ext.getCmp(GRID_ID).getStore().proxy;
+                    if (record["id"] === "All documents") {
+                        proxy.clearFilter("type");
+                    } else {
+                        proxy.addFilter("type", (rec, value) => value === record["id"])
+                    }
+
+                    Ext.getCmp(GRID_ID).getStore().load();
+                }
+            }
+        }
+
+        this.pageFilterComboConfig = {
+            xtype: "combo",
+            id: PAGE_FILTER_ID,
+            autoSelect: true,
+            editable: false,
+            triggerAction: 'all',
+            lazyRender:true,
+            mode: 'local',
+            value: "All documents",
+            store: new Hippo.Reports.SimpleArrayStore({
+                id: 0,
+                autoLoad: true,
+                fields: [
+                    'value',
+                ],
+                proxy: new Ext.data.HttpProxy({
+                    url: "/cms/translation/pages",
+                    method: "GET"
+                }),
+
+                listeners: {
+                    load: (store) => {
+                        store.insert(0, new Ext.data.Record({
+                            value: "All documents",
+                        }, "All documents"))
+                    }
+                }
+            }),
+
+            valueField: 'value',
+            displayField: 'value',
+            listeners: {
+                select: (combo, record, index) => {
+                    console.log("Filter page type", record);
+                    const proxy = Ext.getCmp(GRID_ID).getStore().proxy;
+                    if (record["id"] === "All documents") {
+                        proxy.clearFilter("type");
+                    } else {
+                        proxy.addFilter("type", (rec, value) => value === record["id"])
+                    }
+
+                    Ext.getCmp(GRID_ID).getStore().load();
+                }
+            }
+        }
 
         const editorGridPanelConfig = {
             xtype: "editorgrid",
@@ -231,12 +357,12 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                 },
                 columns: [
                     {name: "publishStatus", dataIndex: "publishStatus", header: "", sortable: true, renderer: this.renderPublishStatus, width: 5},
-                    {name: "name", dataIndex: "displayName", header: "Page", sortable: true, width: 30},
+                    {name: "name", dataIndex: "displayName", header: "Document", sortable: true, width: 30},
                     {name: "type", dataIndex: "type", header: "Type", sortable: true, width: 10},
                     {name: "lastModified", dataIndex: "lastModified", header: "Last modified", sortable: true, renderer: this.renderDateTime, width: 5},
                     {name: "translatedLocales", dataIndex: "translatedLocales", header: "Translated", renderer: this.renderFlags, width: 10},
                     {name: "sentForTranslationLocales", dataIndex: "sentForTranslationLocales", header: "Sent for translation", renderer: this.renderFlags, width: 10},
-                    {name: "translationStatus", dataIndex: "translationStatus", header: "Status", sortable: true, width: 15},
+                    {name: "translationStatus", dataIndex: "translationStatus", header: "Translation status", sortable: true, width: 15},
                     {name: "translationPriority", dataIndex: "translationPriority", header: "Priority", sortable: true, editor: priorityComboConfig, renderer: {fn: this.renderTranslationPriority, scope: self}, width: 15},
                 ]
             }),
@@ -268,7 +394,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             listeners: {
                 cellclick: (grid, rowIndex, columnIndex, event) => {
                     // Only redirect user to page if title is clicked
-                    if (columnIndex !== 0) return;
+                    if (columnIndex !== 1) return;
                     const record = grid.getStore().getAt(rowIndex);
                     self.fireEvent('documentSelected', record.data.handleId);
                 },
@@ -291,6 +417,21 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             }
         }
 
+        this.moduleLabel = {
+            xtype: "label",
+            text: "Module type",
+            id: MODULE_LABEL_ID,
+            style: SIDEBAR_LABEL_STYLE
+        }
+
+        this.pageLabel = {
+            xtype: "label",
+            text: "Page type",
+            id: PAGE_LABEL_FILTER_ID,
+            style: SIDEBAR_LABEL_STYLE
+        }
+
+
         config = Ext.apply(config, {
             // bodyCssClass: 'hippo-reports-document-list',
             layout: "border",
@@ -301,53 +442,34 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                     items: [editorGridPanelConfig]
                 },
                 {
+                    layout: "anchor",
                     region: 'west',
+                    id: FILTER_SIDEBAR_ID,
+                    anchorSize: {width:200, height:600},
                     width: 200,
-                    layout: "vbox",
-                    // alight: "stretch",
-                    defaultMargins: {
-                        top: 20,
-                        left: 0,
-                        right: 5,
-                        bottom: 5
-                    },
                     items: [
                         {
                             xtype: "label",
                             text: "Language",
+                            anchor: "100%"
                         },
                         languageComboConfig,
                         {
                             xtype: "label",
                             text: "Publish status",
-                            margins: {
-                                top: 20,
-                                bottom: 5,
-                                left: 0,
-                                right: 5
-                            }
+                            style: SIDEBAR_LABEL_STYLE
                         },
                         publishStatusComboConfig,
                         {
                             xtype: "label",
                             text: "Priority",
-                            margins: {
-                                top: 20,
-                                bottom: 5,
-                                left: 0,
-                                right: 5
-                            },
+                            style: SIDEBAR_LABEL_STYLE
                         },
                         priorityFilterComboConfig,
                         {
                             xtype: "label",
-                            text: "Type",
-                            margins: {
-                                top: 20,
-                                bottom: 5,
-                                left: 0,
-                                right: 5
-                            },
+                            text: "Document type",
+                            style: SIDEBAR_LABEL_STYLE
                         },
                         pageOrModuleFilterComboConfig
                     ]
@@ -357,6 +479,31 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         });
 
         Hippo.Reports.TranslationListPanel.superclass.constructor.call(this, config);
+    },
+
+    removePageSubtypeFilters() {
+        const cmp = Ext.getCmp(FILTER_SIDEBAR_ID)
+        cmp.remove(MODULE_FILTER_ID);
+        cmp.remove(MODULE_LABEL_ID);
+        cmp.remove(PAGE_FILTER_ID);
+        cmp.remove(PAGE_LABEL_FILTER_ID);
+        cmp.doLayout()
+    },
+
+    showModuleFilter() {
+        this.removePageSubtypeFilters();
+        const cmp = Ext.getCmp(FILTER_SIDEBAR_ID)
+        cmp.add(this.moduleLabel)
+        cmp.add(this.moduleFilterComboConfig);
+        cmp.doLayout()
+    },
+
+    showPageFilter() {
+        this.removePageSubtypeFilters();
+        const cmp = Ext.getCmp(FILTER_SIDEBAR_ID)
+        cmp.add(this.pageLabel)
+        cmp.add(this.pageFilterComboConfig);
+        cmp.doLayout()
     },
 
     getPriorityData: function() {
@@ -396,8 +543,9 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         })
     },
 
-    renderFlags: function(flags) {
+    renderFlags: function(flags, metaData, record, rowIndex, colIndex, store) {
         // Ensure flags are always shown in the same order, and English comes up first
+        const uuid = record.data.handleId;
         flags = flags.sort((a, b) => {
             if (a === "en") return -1;
             if (b === "en") return 1;
