@@ -137,6 +137,7 @@ defaultSettings() {
   unset VS_CONTAINER_LIST
   unset VS_PARENT_JOB_NAME
   unset RESERVED_PORT_LIST
+  unset VS_CONTAINER_PORT_MAPPINGS
   # set container name from branch name - removing / characters
   if [ -z "$VS_CONTAINER_NAME" ]; then VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`; fi
   if [ -z "$VS_BRANCH_NAME" ]; then
