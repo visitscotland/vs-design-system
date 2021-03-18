@@ -109,7 +109,7 @@ pipeline {
         }
       }
       steps {
-        sh 'sh ./infrastructure/scripts/docker.sh setvars'
+        sh 'sh ./infrastructure/scripts/infrastructure.sh setvars'
         // -- 20200712: QUESTION FOR SE, "why do we not build with-development-data?"
         sh 'mvn -f pom.xml clean package'
       }
