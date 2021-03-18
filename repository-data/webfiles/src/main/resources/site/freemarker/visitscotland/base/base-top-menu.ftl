@@ -23,7 +23,7 @@
                 </div>
                 <ul class="vs-list vs-global-menu__list d-none d-lg-flex vs-list--unstyled vs-list--inline">
                     <li class="vs-global-menu__list_item vs-global-menu__list_item--active d-none d-lg-block">
-                        <span>branch: ${branch} author: ${vsCommitAuthor} PR: {gitChangeId}</span>
+                        <span>branch: ${branch} author: ${commitAuthor} PR: ${gitChangeId}</span>
                     </li>
                 </ul>
             </div>
