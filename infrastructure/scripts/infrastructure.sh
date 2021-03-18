@@ -716,6 +716,13 @@ exportVSVariables() {
   set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
 }
 
+copyVSVariables() {
+  VS_TARGET=$WORKSPACE/site/components/src/main/resources/vs-static/
+  echo " - copying VS variables file $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $VS_TARGET"
+  # to-do gp: set VS_TARGET in defaultSettings
+  cp $VS_VS_LAST_ENV $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX $VS_TARGET
+}
+
 createBuildReport() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     EXIT_CODE=0
@@ -815,6 +822,8 @@ case $METHOD in
   setvars)
     checkVariables
     defaultSettings
+    exportVSVariables
+    copyVSVariables
   ;;
   *)
     echo "no function specified - running defaults"

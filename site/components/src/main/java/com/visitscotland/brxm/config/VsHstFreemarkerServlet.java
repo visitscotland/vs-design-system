@@ -45,7 +45,16 @@ public class VsHstFreemarkerServlet extends HstFreemarkerServlet {
         if (System.getenv().containsKey("VS_BRANCH_NAME")){
             String branch = System.getenv("VS_BRANCH_NAME");
             //TODO: We might want to add more information to the header
+            //gp: could we do a forEach to catch all VS_ environment variables?
             addVariable("branch", branch);
+        }
+        if (System.getenv().containsKey("VS_COMMIT_AUTHOR")){
+            String commitAuthor = System.getenv("VS_COMMIT_AUTHOR");
+            addVariable("commitAuthor", commitAuthor);
+        }
+        if (System.getenv().containsKey("CHANGE_ID")){
+            String gitChangeId = System.getenv("CHANGE_ID");
+            addVariable("gitChangeId", gitChangeId);
         }
     }
 
