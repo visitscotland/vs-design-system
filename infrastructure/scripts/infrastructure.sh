@@ -812,6 +812,7 @@ sendSiteReport() {
 
 # ==== RUN ====
 METHOD=$1
+echo "called with $METHOD"
 case $METHOD in
   other)
     false
