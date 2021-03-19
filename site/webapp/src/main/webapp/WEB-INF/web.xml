@@ -211,6 +211,11 @@
     <url-pattern>/resources/*</url-pattern>
   </servlet-mapping>
 
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/vs-static/*</url-pattern>
+  </servlet-mapping>
+
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Login</web-resource-name>
