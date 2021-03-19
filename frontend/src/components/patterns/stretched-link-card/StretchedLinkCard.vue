@@ -146,13 +146,21 @@ export default {
         border: none;
         position: relative;
 
-        &:not(.vs-stretched-link-card--disabled.card) {
-            &:hover {
-                box-shadow: 10px 10px 20px $color-gray-tint-4;
+        &:hover {
+            box-shadow: 10px 10px 20px $color-gray-tint-4;
 
-                .megalink-link-list__title {
-                    text-decoration: underline;
-                }
+            .megalink-link-list__title {
+                text-decoration: underline;
+            }
+        }
+
+        &--disabled {
+            &:hover {
+                box-shadow: none;
+            }
+
+            .megalink-link-list__title {
+                text-decoration: none;
             }
         }
 
@@ -164,16 +172,6 @@ export default {
 
             &--disabled {
                 cursor: default;
-            }
-
-            &:not(.stretched-link--disabled) {
-                &:hover {
-                    text-decoration: underline;
-                }
-
-                &:focus {
-                    outline: 2px solid $color-theme-primary;
-                }
             }
         }
 
