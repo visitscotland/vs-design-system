@@ -12,12 +12,10 @@
                     sm="12"
                     offset-sm="0"
                 >
-                    <div
-                        class="slider"
-                        ref="slideContainer"
-                    >
+                    <div class="slider">
                         <VsRow
                             class="vs-carousel__track"
+                            :style="{ 'transform': `translateX(${trackOffset})` }"
                         >
                             <!-- @slot default slot to contain slides -->
                             <slot />
@@ -54,15 +52,18 @@
                             <li
                                 v-for="index in maxPages"
                                 :key="index"
-                                class="vs-carousel__navigation-item"
-                                :class="index === currentPage + 1 ?
-                                    'vs-carousel__navigation-item--active' : ''"
-                                @click.prevent="sliderNavigate(index - 1)"
-                                @keypress.prevent="sliderNavigate(index - 1)"
-                                tabindex="0"
-                                :data-test="`vs-carousel__nav-${index}`"
                             >
-                                <span class="sr-only">Navigate to page {{ index }}</span>
+                                <button
+                                    class="vs-carousel__navigation-item"
+                                    :class="index === currentPage + 1 ?
+                                        'vs-carousel__navigation-item--active' : ''"
+                                    @click.prevent="sliderNavigate(index - 1)"
+                                    @keypress.prevent="sliderNavigate(index - 1)"
+                                    tabindex="0"
+                                    :data-test="`vs-carousel__nav-${index}`"
+                                >
+                                    <span class="sr-only">Navigate to page {{ index }}</span>
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -167,6 +168,8 @@ export default {
             nextDisabled: false,
             prevDisabled: true,
             currentWidth: 'lg',
+            activeSlides: [],
+            remainderOffset: 0,
         };
     },
     computed: {
@@ -181,10 +184,19 @@ export default {
 
             return slidesPerPage;
         },
+        trackOffset() {
+            if (this.remainderOffset) {
+                return `-${((this.currentPage - 1) * 100) + this.remainderOffset}%`;
+            }
+
+            return `-${((this.currentPage) * 100)}%`;
+        },
     },
     provide() {
         const slideCols = {
         };
+
+        const visibleSlides = this.activeSlides;
 
         Object.keys(this.slidesPerPage).forEach((key) => {
             const colSpan = 12 / this.slidesPerPage[key];
@@ -193,6 +205,7 @@ export default {
 
         return {
             slideCols,
+            visibleSlides,
         };
     },
     mounted() {
@@ -207,7 +220,8 @@ export default {
     methods: {
         defineActiveSlides(remainder) {
             this.calcViewport();
-            const allSlides = this.$refs.slideContainer
+            this.activeSlides.length = 0;
+            const allSlides = this.$refs.carousel
                 .getElementsByClassName('vs-carousel-slide__card');
             let slideCount = 0;
 
@@ -219,27 +233,13 @@ export default {
                         this.currentPage * this.slidesPerPage[this.currentWidth], 10
                     ) + parseInt(this.slidesPerPage[this.currentWidth], 10);
 
-                    const makeActive = (slideEl) => {
-                        slideEl.classList.add('vs-carousel-slide__card--active');
-                        slideEl.getElementsByTagName('a')[0].setAttribute('tabindex', '0');
-                    };
-
-                    const makeInactive = (slideEl) => {
-                        slideEl.classList.remove('vs-carousel-slide__card--active');
-                        slideEl.getElementsByTagName('a')[0].setAttribute('tabindex', '-1');
-                    };
-
                     // if we're at a final slide that has a remainder
                     if (remainder && typeof remainder !== 'undefined') {
                         if (index >= this.totalSlides - this.slidesPerPage[this.currentWidth]) {
-                            makeActive(slide);
-                        } else {
-                            makeInactive(slide);
+                            this.activeSlides.push(index);
                         }
                     } else if (index >= activeSlideStart && index < activeSlideEnd) {
-                        makeActive(slide);
-                    } else {
-                        makeInactive(slide);
+                        this.activeSlides.push(index);
                     }
 
                     slideCount += 1;
@@ -297,19 +297,13 @@ export default {
             this.initNavigation();
 
             const totalSlideSpaces = this.slidesPerPage[this.currentWidth] * (this.currentPage + 1);
-            const track = this.$refs.slideContainer.getElementsByClassName('row')[0];
             let finalSlideRemainder = false;
 
             if (totalSlideSpaces > this.totalSlides) {
-                const offset = this.checkRemainder(totalSlideSpaces);
-
-                if (typeof track !== 'undefined') {
-                    track.style.transform = `translateX(-${((this.currentPage - 1) * 100) + offset}%)`;
-                }
-
+                this.remainderOffset = this.checkRemainder(totalSlideSpaces);
                 finalSlideRemainder = true;
-            } else if (typeof track !== 'undefined') {
-                track.style.transform = `translateX(-${this.currentPage * 100}%)`;
+            } else {
+                this.remainderOffset = 0;
             }
 
             this.defineActiveSlides(finalSlideRemainder);
@@ -386,6 +380,7 @@ export default {
         &__navigation {
             display: none;
             justify-content: center;
+            list-style: none;
 
             @include media-breakpoint-up(sm) {
                 display: flex;
@@ -400,7 +395,18 @@ export default {
             background: $color-gray-tint-4;
             transform: translateY(2px);
             margin: $spacer-9 2px 0;
+            border: none;
+            box-shadow: none;
             cursor: pointer;
+            padding: 0;
+
+            &:hover {
+                background: $color-pink-tint-5;
+            }
+
+            &:focus {
+                outline: 1px solid $color-purple;
+            }
 
             &--active {
                 width: 14px;
@@ -413,14 +419,6 @@ export default {
                 &:hover {
                     background: $color-black;
                 }
-            }
-
-            &:hover {
-                background: $color-pink-tint-5;
-            }
-
-            &:focus {
-                outline: 1px solid $color-purple;
             }
 
             @media (hover: none) {
@@ -505,6 +503,7 @@ export default {
             days="15"
             transport="bus"
             transport-name="Bus"
+            slide-index="0"
         >
             <template slot="vsCarouselSlideHeading">
                 1 Count 7,000 shining stars in the iconic
@@ -527,6 +526,7 @@ export default {
             days="15"
             transport="bus"
             transport-name="Bus"
+            slide-index="1"
         >
             <template slot="vsCarouselSlideHeading">
                 2 Count 7,000 shining stars in the iconic
@@ -549,6 +549,7 @@ export default {
             days="15"
             transport="bus"
             transport-name="Bus"
+            slide-index="2"
         >
             <template slot="vsCarouselSlideHeading">
                 3 Count 7,000 shining stars in the iconic
@@ -571,6 +572,7 @@ export default {
             days="15"
             transport="bus"
             transport-name="Bus"
+            slide-index="3"
         >
             <template slot="vsCarouselSlideHeading">
                 4 Count 7,000 shining stars in the iconic
@@ -593,6 +595,7 @@ export default {
             days="15"
             transport="bus"
             transport-name="Bus"
+            slide-index="4"
         >
             <template slot="vsCarouselSlideHeading">
                 5 Count 7,000 shining stars in the iconic
@@ -615,6 +618,7 @@ export default {
             days="15"
             transport="bus"
             transport-name="Bus"
+            slide-index="5"
         >
             <template slot="vsCarouselSlideHeading">
                 6 Count 7,000 shining stars in the iconic
@@ -637,6 +641,7 @@ export default {
             days="15"
             transport="bus"
             transport-name="Bus"
+            slide-index="6"
         >
             <template slot="vsCarouselSlideHeading">
                 7 Count 7,000 shining stars in the iconic
@@ -659,6 +664,7 @@ export default {
             days="15"
             transport="bus"
             transport-name="Bus"
+            slide-index="7"
         >
             <template slot="vsCarouselSlideHeading">
                 8 Count 7,000 shining stars in the iconic
@@ -681,6 +687,7 @@ export default {
             days="15"
             transport="bus"
             transport-name="Bus"
+            slide-index="8"
         >
             <template slot="vsCarouselSlideHeading">
                 9 Count 7,000 shining stars in the iconic
