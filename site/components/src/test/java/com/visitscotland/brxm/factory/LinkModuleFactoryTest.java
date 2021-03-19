@@ -364,6 +364,18 @@ public class LinkModuleFactoryTest {
         assertEquals(category, enhancedLink.getCategory());
     }
 
+    @Test
+    @DisplayName("VS-1696 - If size cannot be calculated the link still appears")
+    void createEnhancedLink_externalDocument_broken() {
+        final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
+
+        when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        EnhancedLink enhancedLink = factory.createEnhancedLink(
+                new MegalinksMockBuilder().getExternalDocument("title",url,"see-do"),
+                Locale.UK, true);
+
+        assertEquals("title (DOWNLOAD)", enhancedLink.getLabel());
+    }
 
     @Test
     @DisplayName("VS-1696 get OTYML module overriding the default title")

@@ -104,8 +104,7 @@ public class CommonUtilsService {
      */
     public String getExternalDocumentSize(String link, Locale locale) {
         DecimalFormatSymbols dfs = new DecimalFormatSymbols(locale);
-        DecimalFormat decimalFormat = new DecimalFormat("#.#", dfs); //"£10,000.81"
-
+        DecimalFormat decimalFormat = new DecimalFormat("#.#", dfs);
         try {
             URLConnection con = openConnection(link);
             String type = con.getContentType();

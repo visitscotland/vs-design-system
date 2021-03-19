@@ -283,13 +283,15 @@ public class LinkModulesFactory {
             if (((SharedLink) linkable).getLinkType() instanceof ExternalDocument){
                 ExternalDocument externalDocument = (ExternalDocument)sharedLink.getLinkType();
                 String size = commonUtils.getExternalDocumentSize(externalDocument.getLink(), locale);
-                if (size != null) {
+                String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
+                if (size == null) {
                     //TODO Create preview warning.
                     commonUtils.contentIssue("The external document %s might be broken.", link.getLink());
-                    size = "";
+                    link.setLabel(linkable.getTitle() + " (" + downloadLabel + ")");
+                } else {
+                    link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");
                 }
-                String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
-                link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");
+
                 link.setType(LinkType.DOWNLOAD);
                 if (addCategory) {
                     link.setCategory(externalDocument.getCategory());

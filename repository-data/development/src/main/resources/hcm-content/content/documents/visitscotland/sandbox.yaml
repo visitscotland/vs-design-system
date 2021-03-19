@@ -8908,14 +8908,16 @@
               jcr:mixinTypes: ['mix:referenceable']
               jcr:uuid: b9cca612-aa5e-4826-ac6e-5399f1544203
               hippo:availability: []
+              hippostd:holder: admin
+              hippostd:retainable: false
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-12-10T13:26:48.003Z
-              hippostdpubwf:lastModificationDate: 2020-12-10T13:26:48.003Z
+              hippostdpubwf:lastModificationDate: 2021-03-19T10:38:58.069Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: bebc1af7-3bcc-40ee-93f8-6885fb42d6be
               hippotranslation:locale: en
-              visitscotland:teaser: What to see and do in Aberdeen
+              visitscotland:teaser: What to see and do in Aberdeen  https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/ntorthhighlands.pdf
               visitscotland:title: Aberdeen - what do see and do
               visitscotland:translation: ''
               /visitscotland:image:
@@ -8928,21 +8930,22 @@
                 jcr:primaryType: visitscotland:ExternalDocument
                 visitscotland:bytes: KB
                 visitscotland:category: Things to do
-                visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/aberdeen.pdf
+                visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/aberdeen/
                 visitscotland:size: 66.6
             /aberdeen-what-to-see-and-do[2]:
               jcr:primaryType: visitscotland:SharedLink
               jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
               jcr:uuid: 856eb496-c104-4436-bb50-c34a281ec06b
               hippo:availability: [preview]
+              hippostd:retainable: false
               hippostd:state: unpublished
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-12-10T13:26:48.003Z
-              hippostdpubwf:lastModificationDate: 2020-12-10T13:28:07.996Z
+              hippostdpubwf:lastModificationDate: 2021-03-19T10:38:57.935Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: bebc1af7-3bcc-40ee-93f8-6885fb42d6be
               hippotranslation:locale: en
-              visitscotland:teaser: What to see and do in Aberdeen
+              visitscotland:teaser: What to see and do in Aberdeen  https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/ntorthhighlands.pdf
               visitscotland:title: Aberdeen - what do see and do
               visitscotland:translation: ''
               /visitscotland:image:
@@ -8955,7 +8958,7 @@
                 jcr:primaryType: visitscotland:ExternalDocument
                 visitscotland:bytes: KB
                 visitscotland:category: Things to do
-                visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/aberdeen.pdf
+                visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/aberdeen/
                 visitscotland:size: 66.6
             /aberdeen-what-to-see-and-do[3]:
               jcr:primaryType: visitscotland:SharedLink
