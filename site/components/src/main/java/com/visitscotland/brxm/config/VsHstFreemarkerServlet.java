@@ -1,7 +1,7 @@
 package com.visitscotland.brxm.config;
 
-import com.visitscotland.utils.info.About;
 import com.visitscotland.brxm.services.ResourceBundleService;
+import com.visitscotland.utils.info.About;
 import freemarker.template.TemplateModelException;
 import org.hippoecm.hst.servlet.HstFreemarkerServlet;
 import org.slf4j.Logger;
@@ -43,19 +43,26 @@ public class VsHstFreemarkerServlet extends HstFreemarkerServlet {
 
     private void includeBranchInformation() throws TemplateModelException {
         if (System.getenv().containsKey("VS_BRANCH_NAME")){
-            String branch = System.getenv("VS_BRANCH_NAME");
             //TODO: We might want to add more information to the header
+            addVariable("ciBranch", System.getenv("VS_BRANCH_NAME"));
+
+            if (System.getenv().containsKey("VS_COMMIT_AUTHOR")){
+                addVariable("ciCommitAuthor", System.getenv("VS_COMMIT_AUTHOR"));
+            }
+            if (System.getenv().containsKey("CHANGE_ID")){
+                addVariable("ciPrID", System.getenv("CHANGE_ID"));
+            }
+            //TODO: Review following comments
             //gp: could we do a forEach to catch all VS_ environment variables?
-            addVariable("branch", branch);
+            //jc: yes, was the value of that? is it an alternative to define them one by one? If the list grows it might be worth to evaluate this
+//            addVariable("vsProperties", System.getenv().entrySet().stream()
+//                    .filter(entry -> entry.getKey().startsWith("VS_"))
+//                    .collect(Collectors.toList()));
         }
-        if (System.getenv().containsKey("VS_COMMIT_AUTHOR")){
-            String commitAuthor = System.getenv("VS_COMMIT_AUTHOR");
-            addVariable("commitAuthor", commitAuthor);
-        }
-        if (System.getenv().containsKey("CHANGE_ID")){
-            String gitChangeId = System.getenv("CHANGE_ID");
-            addVariable("gitChangeId", gitChangeId);
-        }
+
+
+
+
     }
 
     private void addVariable(String key, Object value) throws TemplateModelException{
