@@ -49,6 +49,10 @@
             </vs-carousel-slide>
         </#list>
 
+        <template slot="vsCarouselNavigate">
+            ${label("essentials.pagination", "page.navigate-to-page")}
+        </template>
+
         <template slot="vsCarouselOf">
             ${label("essentials.pagination", "page.of")}
         </template>
