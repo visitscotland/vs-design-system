@@ -10,6 +10,7 @@ const factoryShallowMount = () => shallowMount(VsCarouselSlide, {
         linkType: 'internal',
         linkUrl: 'http://www.visitscotland.com',
         category: 'Category Name',
+        slideIndex: '4',
     },
     slots: {
         vsCarouselSlideHeading: 'Slide heading',
@@ -21,6 +22,7 @@ const factoryShallowMount = () => shallowMount(VsCarouselSlide, {
             md: '4',
             lg: '3',
         },
+        visibleSlides: [4, 5, 6],
     }),
 });
 
@@ -31,6 +33,12 @@ describe('VsCarouselSlide', () => {
         expect(wrapper.find('[data-test="vs-carousel-slide"]').attributes('sm')).toBe('6');
         expect(wrapper.find('[data-test="vs-carousel-slide"]').attributes('lg')).toBe('4');
         expect(wrapper.find('[data-test="vs-carousel-slide"]').attributes('xl')).toBe('3');
+    });
+
+    it('should contain an active class if the index value matches a visibleSlide prop', async() => {
+        const wrapper = factoryShallowMount();
+
+        expect(wrapper.find('[data-test="vs-carousel-card"').classes()).toContain('vs-carousel-slide__card--active');
     });
 
     describe(':slots', () => {
