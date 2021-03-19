@@ -41,11 +41,10 @@ public class MegalinksMockBuilder {
         return this;
     }
 
-    public Linkable getItinerary(String mainTransport, int days){
+    public Itinerary getItinerary(String mainTransport){
         Itinerary itinerary = mock(Itinerary.class, RETURNS_DEEP_STUBS);
 
         when (itinerary.getTransports()).thenReturn(new String[]{mainTransport});
-        when (itinerary.getDays().size()).thenReturn(days);
 
         return itinerary;
     }

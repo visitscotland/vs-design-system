@@ -15,6 +15,8 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.Map;
 
 @Component
@@ -36,7 +38,7 @@ public class CommonUtilsService {
      * @throws IOException
      */
     public String requestUrl(String url) throws IOException {
-        int responseCode = ((HttpURLConnection) new URL(url).openConnection()).getResponseCode();
+        int responseCode = openConnection(url).getResponseCode();
         if (responseCode < 400) {
             if (logger.isWarnEnabled() && responseCode >= 300){
                 logger.warn("The request for {} has responded with the Status code {}", protectUrl(url), responseCode);
@@ -62,7 +64,6 @@ public class CommonUtilsService {
      *
      * TODO Verify if the token can be sent in the headers instead of part of the URL
      *
-     * @param url
      */
     private String protectUrl(String url){
         if (url.contains("accessToken")){
@@ -98,27 +99,29 @@ public class CommonUtilsService {
     }
 
     /**
-     * TODO: Static methods are discouraged
+     * Calculates the Size of the External document if the document
      *
-     * @deprecated Static methods are discouraged
      */
-    @Deprecated
-    public static String getExtenalDocumentSize(String link) {
-        String size = null;
-        URL url;
-        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+    public String getExternalDocumentSize(String link, Locale locale) {
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols(locale);
+        DecimalFormat decimalFormat = new DecimalFormat("#.#", dfs);
         try {
-            url = new URL(link);
-            URLConnection con = url.openConnection();
-
-            String ext = con.getContentType();
-            if (ext.contains("pdf")) {
+            URLConnection con = openConnection(link);
+            String type = con.getContentType();
+            if (type.contains("pdf")) {
                 double bytes = con.getContentLength();
-                size = "PDF " + decimalFormat.format((bytes / 1024) / 1024) + "MB";
+                return "PDF " + decimalFormat.format(bytes / 1024 / 1024) + "MB";
             }
         } catch (IOException e) {
             logger.error("The URL {} is not valid", link, e);
         }
-        return size;
+        return null;
+    }
+
+    /**
+     * This method allow us to test this class
+     */
+    HttpURLConnection openConnection(String url) throws IOException {
+        return (HttpURLConnection) new URL(url).openConnection();
     }
 }

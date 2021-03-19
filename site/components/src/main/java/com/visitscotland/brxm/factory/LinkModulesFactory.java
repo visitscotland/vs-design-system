@@ -17,7 +17,6 @@ import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
-import org.hippoecm.repository.util.DocumentUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -41,14 +40,18 @@ public class LinkModulesFactory {
     private final ResourceBundleService bundle;
     private final LocationLoader locationLoader;
     private final ImageFactory imageFactory;
+    private final CommonUtilsService commonUtils;
+    private final DocumentUtilsService documentUtilsService;
 
-    public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle , LocationLoader locationLoader, ImageFactory imageFactory) {
+    public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle, LocationLoader locationLoader, ImageFactory imageFactory, CommonUtilsService commonUtils, DocumentUtilsService documentUtilsService) {
         this.utils = utils;
         this.dmsData = dmsData;
         this.linkService = linkService;
         this.bundle = bundle;
         this.locationLoader = locationLoader;
         this.imageFactory = imageFactory;
+        this.commonUtils = commonUtils;
+        this.documentUtilsService = documentUtilsService;
     }
 
     public LinksModule<?> getMegalinkModule(Megalinks doc, Locale locale) {
@@ -250,7 +253,7 @@ public class LinkModulesFactory {
         link.setType(LinkType.INTERNAL);
         if (linkable instanceof Itinerary) {
             Itinerary itinerary = (Itinerary) linkable;
-            link.setItineraryDays(DocumentUtilsService.getInstance().getSiblingDocuments(linkable,Day.class, "visitscotland:Day").size());
+            link.setItineraryDays(documentUtilsService.getSiblingDocuments(linkable,Day.class, "visitscotland:Day").size());
             if (itinerary.getTransports().length > 0){
                 link.setItineraryTransport(itinerary.getTransports()[0]);
             }
@@ -271,24 +274,31 @@ public class LinkModulesFactory {
         } else if (linkable instanceof SharedLink) {
             JsonNode product = getNodeFromSharedLink((SharedLink) linkable, locale);
             SharedLink sharedLink = (SharedLink) linkable;
+            link.setLink(linkService.getPlainLink((SharedLink) linkable, product));
+
             if (link.getImage() == null && product != null && product.has(IMAGE)) {
                 //TODO Propagate the error messages
                 link.setImage(imageFactory.createImage(product, null));
             }
             if (((SharedLink) linkable).getLinkType() instanceof ExternalDocument){
                 ExternalDocument externalDocument = (ExternalDocument)sharedLink.getLinkType();
-                //TODO Review the following line
-                String size = CommonUtilsService.getExtenalDocumentSize(externalDocument.getLink());
-                if (size!=null) {
-                    String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
+                String size = commonUtils.getExternalDocumentSize(externalDocument.getLink(), locale);
+                String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
+                if (size == null) {
+                    //TODO Create preview warning.
+                    commonUtils.contentIssue("The external document %s might be broken.", link.getLink());
+                    link.setLabel(linkable.getTitle() + " (" + downloadLabel + ")");
+                } else {
                     link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");
-                    link.setType(LinkType.DOWNLOAD);
-                    if (addCategory) {
-                        link.setCategory(externalDocument.getCategory());
-                    }
                 }
+
+                link.setType(LinkType.DOWNLOAD);
+                if (addCategory) {
+                    link.setCategory(externalDocument.getCategory());
+                }
+
             }
-            link.setLink(linkService.getPlainLink((SharedLink) linkable, product));
+
             if (link.getType() == null) {
                 link.setType(linkService.getType(link.getLink()));
             }
