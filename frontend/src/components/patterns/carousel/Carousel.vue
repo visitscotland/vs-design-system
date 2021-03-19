@@ -62,7 +62,10 @@
                                     tabindex="0"
                                     :data-test="`vs-carousel__nav-${index}`"
                                 >
-                                    <span class="sr-only">Navigate to page {{ index }}</span>
+                                    <span class="sr-only">
+                                        <!-- @slot 'navigate to page' text to allow translation -->
+                                        <slot name="vsCarouselNavigate" /> {{ index }}
+                                    </span>
                                 </button>
                             </li>
                         </ul>
@@ -74,7 +77,7 @@
                             data-test="vs-carousel__mobile-pagination"
                         >
                             {{ currentPage + 1 }}
-                            <!-- @slot slot for word 'of' to allow translation -->
+                            <!-- @slot 'of' text to allow translation -->
                             <slot name="vsCarouselOf" />
                             {{ totalSlides }}
                         </p>
@@ -701,6 +704,10 @@ export default {
                 </p>
             </template>
         </VsCarouselSlide>
+
+        <template slot="vsCarouselNavigate">
+            Navigate to page
+        </template>
 
         <template slot="vsCarouselOf">
             of
