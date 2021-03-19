@@ -20,6 +20,7 @@
                 <#assign image = carouselItem.image.externalImage!'' />
             </#if>
             <vs-carousel-slide
+                slide-index="${carouselItem?index}"
                 link-url="${carouselItem.link}"
                 link-type="${carouselItem.type}"
                 img-src="${image}"
