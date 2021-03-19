@@ -181,6 +181,25 @@
     </init-param>
   </servlet>
 
+<!-- gp test VS-2165 -->
+  <servlet>
+    <servlet-name>default</servlet-name>
+    <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>11</param-value>
+    </init-param>
+    <init-param>
+      <param-name>showServerInfo</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>listings</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>BinariesServlet</servlet-name>
     <url-pattern>/binaries/*</url-pattern>
@@ -211,6 +230,7 @@
     <url-pattern>/resources/*</url-pattern>
   </servlet-mapping>
 
+<!-- gp test VS-2165 -->
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>/vs-static/</url-pattern>
