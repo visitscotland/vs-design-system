@@ -12,7 +12,9 @@
                 :type="linkType"
                 :img-src="imgSrc"
                 :img-alt="imgAlt"
+                :class="isVisible(slideIndex) ? 'vs-carousel-slide__card--active' : ''"
                 class="vs-carousel-slide__card"
+                :disabled="!isVisible(slideIndex)"
             >
                 <VsStretchedLinkPanels
                     v-if="days && transport"
@@ -127,13 +129,31 @@ export default {
             type: String,
             default: '',
         },
+        /**
+        * Mandatory index of slide -
+        * needed to calculate active slides
+        */
+        slideIndex: {
+            type: String,
+            required: true,
+        },
     },
-    data() {
-        return {
-            parentData: this.$parent.slidesPerPage,
-        };
+    methods: {
+        isVisible(slideNum) {
+            const slideInt = parseInt(slideNum, 10);
+            if (this.visibleSlides.indexOf(slideInt) >= 0) {
+                return true;
+            }
+
+            return false;
+        },
+        cardClick(e, slideNum) {
+            if (!this.isVisible(slideNum)) {
+                e.preventDefault();
+            }
+        },
     },
-    inject: ['slideCols'],
+    inject: ['slideCols', 'visibleSlides'],
 };
 </script>
 
