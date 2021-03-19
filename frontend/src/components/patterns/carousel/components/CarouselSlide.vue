@@ -15,6 +15,7 @@
                 :class="isVisible(slideIndex) ? 'vs-carousel-slide__card--active' : ''"
                 class="vs-carousel-slide__card"
                 :disabled="!isVisible(slideIndex)"
+                data-test="vs-carousel-card"
             >
                 <VsStretchedLinkPanels
                     v-if="days && transport"
