@@ -340,7 +340,7 @@ public class LinkModuleFactoryTest {
         SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,  null);
 
         when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
-        when(commonUtils.getExternalDocumentSize(any())).thenReturn("PDF 15.5MB");
+        when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
         EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, false);
 
         assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
@@ -356,7 +356,7 @@ public class LinkModuleFactoryTest {
         SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,category);
 
         when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
-        when(commonUtils.getExternalDocumentSize(any())).thenReturn("PDF 15.5MB");
+        when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
         EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, true);
 
         assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());

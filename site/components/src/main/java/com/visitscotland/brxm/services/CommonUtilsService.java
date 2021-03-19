@@ -15,6 +15,8 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.Map;
 
 @Component
@@ -100,16 +102,16 @@ public class CommonUtilsService {
      * Calculates the Size of the External document if the document
      *
      */
-    public String getExternalDocumentSize(String link) {
-        //TODO Decimal format depends on the locale
-        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+    public String getExternalDocumentSize(String link, Locale locale) {
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols(locale);
+        DecimalFormat decimalFormat = new DecimalFormat("#.#", dfs); //"£10,000.81"
+
         try {
-            //TODO openConnection feels like a bad practice. A timeout is required
             URLConnection con = openConnection(link);
             String type = con.getContentType();
             if (type.contains("pdf")) {
                 double bytes = con.getContentLength();
-                return "PDF " + decimalFormat.format((bytes / 1024) / 1024) + "MB";
+                return "PDF " + decimalFormat.format(bytes / 1024 / 1024) + "MB";
             }
         } catch (IOException e) {
             logger.error("The URL {} is not valid", link, e);

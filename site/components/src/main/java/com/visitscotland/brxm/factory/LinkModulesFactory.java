@@ -274,23 +274,29 @@ public class LinkModulesFactory {
         } else if (linkable instanceof SharedLink) {
             JsonNode product = getNodeFromSharedLink((SharedLink) linkable, locale);
             SharedLink sharedLink = (SharedLink) linkable;
+            link.setLink(linkService.getPlainLink((SharedLink) linkable, product));
+
             if (link.getImage() == null && product != null && product.has(IMAGE)) {
                 //TODO Propagate the error messages
                 link.setImage(imageFactory.createImage(product, null));
             }
             if (((SharedLink) linkable).getLinkType() instanceof ExternalDocument){
                 ExternalDocument externalDocument = (ExternalDocument)sharedLink.getLinkType();
-                String size = commonUtils.getExternalDocumentSize(externalDocument.getLink());
-                if (size!=null) {
-                    String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
-                    link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");
-                    link.setType(LinkType.DOWNLOAD);
-                    if (addCategory) {
-                        link.setCategory(externalDocument.getCategory());
-                    }
+                String size = commonUtils.getExternalDocumentSize(externalDocument.getLink(), locale);
+                if (size != null) {
+                    //TODO Create preview warning.
+                    commonUtils.contentIssue("The external document %s might be broken.", link.getLink());
+                    size = "";
                 }
+                String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
+                link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");
+                link.setType(LinkType.DOWNLOAD);
+                if (addCategory) {
+                    link.setCategory(externalDocument.getCategory());
+                }
+
             }
-            link.setLink(linkService.getPlainLink((SharedLink) linkable, product));
+
             if (link.getType() == null) {
                 link.setType(linkService.getType(link.getLink()));
             }

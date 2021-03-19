@@ -47,7 +47,7 @@ class ExternalDocumentValidatorTest {
     @Test
     @DisplayName("The URL is valid")
     void externalDocument() {
-        when(service.getExternalDocumentSize(any())).thenReturn("DOWNLOAD PDF 3 MB");
+        when(service.getExternalDocumentSize(any(), any())).thenReturn("DOWNLOAD PDF 3 MB");
 
         String value = "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee";
         assertFalse(validator.validate(context, value).isPresent());
