@@ -1,5 +1,8 @@
 <template>
-    <div class="card vs-stretched-link-card">
+    <div
+        class="card vs-stretched-link-card"
+        :class="disabled ? 'vs-stretched-link-card--disabled': ''"
+    >
         <template
             v-if="imgSrc"
         >
@@ -36,9 +39,11 @@
                     :href="link"
                     :type="type"
                     class="stretched-link"
+                    :class="disabled ? 'stretched-link--disabled' : ''"
                     :icon-size="iconSize"
                     :variant="theme === 'dark' ? 'dark' : 'primary'"
                     data-test="vs-stretched-link"
+                    :disabled="disabled"
                 >
                     <!-- @slot Contains header content for the card  -->
                     <slot name="stretchedCardHeader" />
@@ -124,21 +129,30 @@ export default {
             type: String,
             default: '',
         },
+        /**
+        * Prop to disable link functionality
+        */
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
     },
 };
 </script>
 
 <style lang="scss">
-    .vs-stretched-link-card.card {
+    .card.vs-stretched-link-card {
         transition: box-shadow 800ms;
         border: none;
         position: relative;
 
-        &:hover {
-            box-shadow: 10px 10px 20px $color-gray-tint-4;
+        &:not(.vs-stretched-link-card--disabled.card) {
+            &:hover {
+                box-shadow: 10px 10px 20px $color-gray-tint-4;
 
-            .megalink-link-list__title {
-                text-decoration: underline;
+                .megalink-link-list__title {
+                    text-decoration: underline;
+                }
             }
         }
 
@@ -148,12 +162,18 @@ export default {
             letter-spacing: 0;
             display: block;
 
-            &:hover {
-                text-decoration: underline;
+            &--disabled {
+                cursor: default;
             }
 
-            &:focus {
-                outline: 2px solid $color-theme-primary;
+            &:not(.stretched-link--disabled) {
+                &:hover {
+                    text-decoration: underline;
+                }
+
+                &:focus {
+                    outline: 2px solid $color-theme-primary;
+                }
             }
         }
 
