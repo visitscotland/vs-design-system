@@ -1,5 +1,7 @@
 package com.visitscotland.brxm.config;
 
+import com.visitscotland.brxm.utils.NonTestable;
+import com.visitscotland.utils.info.About;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.info.About;
 import freemarker.template.TemplateModelException;
@@ -17,6 +19,7 @@ import java.util.Properties;
  *
  * {@code com.visitscotland.org.util.VSHstFreemarkerServlet.java}
  */
+@NonTestable(NonTestable.Cause.INHERITANCE)
 public class VsHstFreemarkerServlet extends HstFreemarkerServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(VsHstFreemarkerServlet.class);
