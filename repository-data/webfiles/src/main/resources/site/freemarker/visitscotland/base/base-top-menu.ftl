@@ -5,6 +5,7 @@
 
 <#include "../macros/modules/header/mega-nav/header-mega-nav.ftl">
 <#include "../macros/modules/header/header-global-menu.ftl">
+<#include "../macros/global/base-dev-env-menu.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
@@ -13,9 +14,9 @@
 </#compress>
 
 <#-- TODO: Remove the following lines-->
-<#--<#assign ciBranch = "feature/VS-1234-this-is-a-very-long-branch-name-that-jose-is-using-as-a-demo">-->
-<#--<#assign ciCommitAuthor = "Jose Calcines">-->
-<#--<#assign ciPrID = "PR-231">-->
+<#assign ciBranch = "feature/VS-1234-this-is-a-very-long-branch-name-that-jose-is-using-as-a-demo">
+<#assign ciCommitAuthor = "Jose Calcines">
+<#assign ciPrID = "PR-231">
 <#if ciBranch??>
 <#-- TODO: Remove the following lines-->
 <#--<div class="vs-global-menu">-->
@@ -34,18 +35,9 @@
 <#--        </div>-->
 <#--    </div>-->
 <#--</div>-->
-    <div class="vs-global-menu">
-        <div fluid="lg" class="px-1 px-sm-3 container-lg">
-            <span><strong>Branch:</strong> ${ciBranch}</span>
-            <span><strong>Author:</strong> ${ciCommitAuthor}</span>
-            <#if ciPrID??>
-                <span>(<strong>PR:</strong> ${ciPrID})</span>
-            </#if>
-            <#if vsProperties??>
-                hello
-            </#if>
-        </div>
-    </div>
+
+    <@devEnvMenu ciBranch ciCommitAuthor ciPrID />
+   
 </#if>
 
 <#if menu??>
