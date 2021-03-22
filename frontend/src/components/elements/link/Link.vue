@@ -10,7 +10,7 @@
     >
         <slot />
         <VsIcon
-            v-if="type !== null"
+            v-if="type !== 'default'"
             :name="`${type}-link`"
             variant="primary"
             :size="iconSize"
@@ -54,8 +54,8 @@ export default {
          */
         type: {
             type: String,
-            default: null,
-            validator: (value) => value.match(/(external|internal|download)/),
+            default: 'default',
+            validator: (value) => value.match(/(default|external|internal|download)/),
         },
         /**
          * Option to choose a pre-defined style variant
