@@ -14,9 +14,7 @@ import org.hippoecm.hst.core.sitemenu.HstSiteMenu;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.hippoecm.hst.site.HstServices;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -25,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.withSettings;
@@ -320,5 +319,13 @@ class MenuComponentTest {
 
         when(utils.getBeanForResolvedSiteMapItem(request, rsi)).thenReturn(bean);
     }
+
+    @Test
+    @DisplayName("addLocalizedURLs")
+    @Disabled
+    void addLocalizedURLs(){
+        assertFalse(true, "The method addLocalizedURLs doesn't have any coverage");
+    }
+
 
 }

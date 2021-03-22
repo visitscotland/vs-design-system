@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.*;
 
-//TODO Test?
 @Component
 public class LocationLoader {
 
