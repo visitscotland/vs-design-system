@@ -13,6 +13,10 @@
         :size="size"
         v-bind="$attrs"
         @click="animateHandler"
+        @mouseover="hovered = true"
+        @focusin="hovered = true"
+        @mouseleave="hovered = false"
+        @focusout="hovered = false"
     >
         <VsIcon
             :class="{ 'mr-2': !iconOnly }"
@@ -21,6 +25,7 @@
             :size="iconSize"
             :padding="0"
             :orientation="iconOrientation"
+            :variant="calcIconVariant"
         />
         <!-- @slot The button content goes here -->
         <slot />
@@ -67,13 +72,13 @@ export default {
         },
         /**
          * Style variation to give additional meaning.
-         * `primary, secondary, success, danger, warning, info, light, dark, transparent`
+         * `primary, secondary`
          */
         variant: {
             type: String,
             default: 'primary',
             validator: (value) => value.match(
-                /(primary|secondary|success|danger|warning|info|light|dark|transparent)/,
+                /(primary|secondary)/,
             ),
         },
         /**
@@ -141,6 +146,7 @@ export default {
     data() {
         return {
             isAnimating: false,
+            hovered: false,
         };
     },
     computed: {
@@ -161,6 +167,23 @@ export default {
         },
         textTransformClass() {
             return this.uppercase ? 'text-uppercase' : null;
+        },
+        calcIconVariant() {
+            if (this.isOutline) {
+                if (this.hovered) {
+                    return 'light';
+                }
+
+                return this.outlineColour;
+            }
+
+            return 'light';
+        },
+        isOutline() {
+            return this.variant.match(/outline/) !== null;
+        },
+        outlineColour() {
+            return this.variant.replace('outline-', '');
         },
     },
     methods: {
@@ -236,6 +259,10 @@ export default {
             animation: bubble 500ms ease-in-out;
         }
     }
+
+    .vs-icon {
+        margin-top: -.05em;
+    }
 }
 </style>
 
@@ -258,7 +285,6 @@ export default {
         Nearby Places to Eat
       </VsButton>
     </BsWrapper>
-
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton
         class="mr-2 mb-2"
@@ -268,7 +294,6 @@ export default {
         Map View
       </VsButton>
     </BsWrapper>
-
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton
         class="mr-2 mb-2"
@@ -293,23 +318,24 @@ export default {
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton variant="primary" class="mr-2 mb-2">Primary (default)</VsButton>
       <VsButton variant="secondary" class="mr-2 mb-2">Secondary</VsButton>
-      <VsButton variant="success" class="mr-2 mb-2">Success</VsButton>
-      <VsButton variant="danger" class="mr-2 mb-2">Danger</VsButton>
-      <VsButton variant="warning" class="mr-2 mb-2">Warning</VsButton>
-      <VsButton variant="info" class="mr-2 mb-2">Info</VsButton>
-      <VsButton variant="light" class="mr-2 mb-2">Light</VsButton>
-      <VsButton variant="dark" class="mr-2 mb-2">Dark</VsButton>
-      <VsButton variant="transparent" class="mr-2 mb-2">Transparent</VsButton>
     </BsWrapper>
     <h4>Outline Color Variants</h4>
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton variant="outline-primary" class="mr-2 mb-2">Primary</VsButton>
       <VsButton variant="outline-secondary" class="mr-2 mb-2">Secondary</VsButton>
-      <VsButton variant="outline-success" class="mr-2 mb-2">Success</VsButton>
-      <VsButton variant="outline-danger" class="mr-2 mb-2">Danger</VsButton>
-      <VsButton variant="outline-warning" class="mr-2 mb-2">Warning</VsButton>
-      <VsButton variant="outline-info" class="mr-2 mb-2">Info</VsButton>
-      <VsButton variant="outline-dark" class="mr-2 mb-2">Dark</VsButton>
+    </BsWrapper>
+    <h4>Outline Variants with Icons</h4>
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton
+        variant="outline-primary"
+        class="mr-2 mb-2"
+        icon="external-link"
+      >Primary</VsButton>
+      <VsButton
+        variant="outline-secondary"
+        class="mr-2 mb-2"
+        icon="external-link"
+      >Secondary</VsButton>
     </BsWrapper>
     <h4>Outline Color Variants - override transparent background</h4>
     <BsWrapper class="d-flex flex-wrap mb-4 bg-dark p-3">
@@ -329,28 +355,7 @@ export default {
             Disabled primary
         </VsButton>
         <VsButton disabled class="mr-2 mb-2" variant="secondary" size="md">
-            Disabled primary pink
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="success" size="md">
-            Disabled success
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="danger" size="md">
-            Disabled danger
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="warning" size="md">
-            Disabled warning
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="info" size="md">
-            Disabled info
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="light" size="md">
-            Disabled light
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="dark" size="md">
-            Disabled dark
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="transparent" size="md">
-            Disabled transparent
+            Disabled secondary
         </VsButton>
     </BsWrapper>
 
