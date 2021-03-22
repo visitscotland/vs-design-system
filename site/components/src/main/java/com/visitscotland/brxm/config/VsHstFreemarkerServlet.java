@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import java.io.IOException;
+import java.util.Properties;
 
 /**
  * This Piece of code Extracted from the dot-org project and Enhanced for the dot-com needs (Dependency Injection Coming soon)
@@ -43,7 +45,6 @@ public class VsHstFreemarkerServlet extends HstFreemarkerServlet {
 
     private void includeBranchInformation() throws TemplateModelException {
         if (System.getenv().containsKey("VS_BRANCH_NAME")){
-            //TODO: We might want to add more information to the header
             addVariable("ciBranch", System.getenv("VS_BRANCH_NAME"));
 
             if (System.getenv().containsKey("VS_COMMIT_AUTHOR")){
@@ -52,17 +53,23 @@ public class VsHstFreemarkerServlet extends HstFreemarkerServlet {
             if (System.getenv().containsKey("CHANGE_ID")){
                 addVariable("ciPrID", System.getenv("CHANGE_ID"));
             }
-            //TODO: Review following comments
-            //gp: could we do a forEach to catch all VS_ environment variables?
-            //jc: yes, was the value of that? is it an alternative to define them one by one? If the list grows it might be worth to evaluate this
-//            addVariable("vsProperties", System.getenv().entrySet().stream()
-//                    .filter(entry -> entry.getKey().startsWith("VS_"))
-//                    .collect(Collectors.toList()));
+        } else {
+            try {
+                Properties p = new Properties();
+                p.load(getClass().getResourceAsStream("/ci/build-info.properties"));
+                if (p.containsKey("VS_BRANCH_NAME")){
+                    addVariable("ciBranch", p.get("VS_BRANCH_NAME"));
+                }
+                if (p.containsKey("VS_COMMIT_AUTHOR")){
+                    addVariable("ciCommitAuthor", p.get("VS_COMMIT_AUTHOR"));
+                }
+                if (p.containsKey("CHANGE_ID")){
+                    addVariable("ciPrID", p.get("CHANGE_ID"));
+                }
+            } catch (IOException e) {
+                logger.error(e.getMessage());
+            }
         }
-
-
-
-
     }
 
     private void addVariable(String key, Object value) throws TemplateModelException{
