@@ -5,7 +5,8 @@ import java.util.List;
 public class TranslationModel {
     public TranslationModel(String handleId, String displayName, String translationStatus,
                             TranslationPriority translationPriority, List<String> translatedLocales,
-                            List<String> sentForTranslationLocales, String type, String lastModified, PublishStatus publishStatus) {
+                            List<String> sentForTranslationLocales, String type, String lastModified,String lastModifiedBy,
+                            PublishStatus publishStatus) {
         this.handleId = handleId;
         this.displayName = displayName;
         this.translatedLocales = translatedLocales;
@@ -14,6 +15,7 @@ public class TranslationModel {
         this.sentForTranslationLocales = sentForTranslationLocales;
         this.type = type;
         this.lastModified = lastModified;
+        this.lastModifiedBy = lastModifiedBy;
         this.publishStatus = publishStatus;
     }
 
@@ -25,6 +27,7 @@ public class TranslationModel {
     private final String translationPriority;
     private final String type;
     private final String lastModified;
+    private final String lastModifiedBy;
     private final PublishStatus publishStatus;
 
     public String getDisplayName() {
@@ -57,6 +60,10 @@ public class TranslationModel {
 
     public String getLastModified() {
         return lastModified;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
     }
 
     public PublishStatus getPublishStatus() {

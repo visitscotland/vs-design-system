@@ -88,10 +88,11 @@ public class TranslationReportService {
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
                 df.setTimeZone(TimeZone.getTimeZone("UTC"));
                 String lastModified  = df.format(unpublished.getProperty("hippostdpubwf:lastModificationDate").getDate().getTime());
+                String lastModifiedBy = unpublished.getProperty("hippostdpubwf:lastModifiedBy").getString();
 
                 docModels.add(new TranslationModel(englishDoc.getHandle().getIdentifier(), displayName,
                         infoStatus.toString(), translationPriority, translatedLocales, sendForTranslationLocales,
-                        primaryNodeType, lastModified, getDocumentPublishStatus(englishDoc)));
+                        primaryNodeType, lastModified,lastModifiedBy, getDocumentPublishStatus(englishDoc)));
             }
         } catch (RepositoryException ex) {
             // TODO propagate this error to report frontend

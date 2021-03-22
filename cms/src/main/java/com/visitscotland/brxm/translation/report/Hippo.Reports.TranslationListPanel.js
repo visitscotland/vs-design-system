@@ -44,7 +44,10 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         let ajaxStore = new Ext.data.JsonStore({
             storeId: "myStore",
             autoLoad: true,
+            // NOT sorted on server. This just delegates sorting to Hippo.Reports.PageableHttpProxy
             remoteSort: true,
+            // Default sort from high to low priority
+            sortInfo: {field: "translationPriority", direction: "DESC"},
             idProperty: "handleId",
             id: "myStore",
             root: "data",
@@ -52,7 +55,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             method: "GET",
             proxy: new Hippo.Reports.PageableHttpProxy({url: GET_UNTRANSLATED_FILES_ENDPOINT, api: {}}, {locale: INITIAL_LOCALE}),
             fields: ["displayName", "translatedLocales", "sentForTranslationLocales", "path", "translationStatus",
-                "translationPriority", "handleId", "lastModified", "publishStatus", "type"]
+                "translationPriority", "handleId", "lastModified", "lastModifiedBy", "publishStatus", "type"]
         })
 
         var self = this;
@@ -357,9 +360,10 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                 },
                 columns: [
                     {name: "publishStatus", dataIndex: "publishStatus", header: "", sortable: true, renderer: this.renderPublishStatus, width: 5},
-                    {name: "name", dataIndex: "displayName", header: "Document", sortable: true, width: 30},
+                    {name: "name", dataIndex: "displayName", header: "Document", sortable: true, width: 25},
                     {name: "type", dataIndex: "type", header: "Type", sortable: true, width: 10},
                     {name: "lastModified", dataIndex: "lastModified", header: "Last modified", sortable: true, renderer: this.renderDateTime, width: 5},
+                    {name: "lastModifiedBy", dataIndex: "lastModifiedBy", header: "Modified by", sortable: true, width: 5},
                     {name: "translatedLocales", dataIndex: "translatedLocales", header: "Translated", renderer: this.renderFlags, width: 10},
                     {name: "sentForTranslationLocales", dataIndex: "sentForTranslationLocales", header: "Sent for translation", renderer: this.renderFlags, width: 10},
                     {name: "translationStatus", dataIndex: "translationStatus", header: "Translation status", sortable: true, width: 15},
