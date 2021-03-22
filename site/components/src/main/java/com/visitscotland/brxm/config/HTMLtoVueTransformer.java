@@ -88,8 +88,8 @@ public class HTMLtoVueTransformer {
     /**
      * Process ul and ol lists.
      *
-     * Due to a bug in Vue, nested ul tags are not correctly processed. In order to overcome that issue only the most
-     * external tag will be converted to a Vue component
+     * Due to a bug in Vue, nested ul and ol tags are not correctly processed. In order to overcome that issue, only the most
+     * external tags will be converted to a Vue component
      *
      * This text will come from a CKEditor so it is assumed that the HTML is well constructed.
      */
@@ -112,7 +112,7 @@ public class HTMLtoVueTransformer {
             }
         }
 
-        //Transform only most external tags into Vue component internal list will remain as ul or ol
+        //Transform only most external list tags into Vue component. Internal list will remain as ul or ol
         String closeTag = null;
         Integer closeTagIndex = null;
         int depth = 1;
