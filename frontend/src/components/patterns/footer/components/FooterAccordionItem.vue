@@ -107,7 +107,7 @@ export default {
         background-color: $color-gray-shade-7;
         color: $color-white;
         font-family: $font-family-sans-serif;
-        font-weight: 600;
+        font-weight: $font-weight-semi-bold;
     }
 
      .vs-accordion-item__panel.card-body {
@@ -121,7 +121,7 @@ export default {
         letter-spacing: initial;
         padding: $spacer-3;
         line-height: $line-height-xs;
-        font-weight: 500;
+        font-weight: $font-weight-semi-bold;
         text-align: left;
 
         &:hover {
