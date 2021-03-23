@@ -177,6 +177,10 @@ export default {
                 return this.outlineColour;
             }
 
+            if (this.variant === 'transparent') {
+                return 'primary';
+            }
+
             return 'light';
         },
         isOutline() {
