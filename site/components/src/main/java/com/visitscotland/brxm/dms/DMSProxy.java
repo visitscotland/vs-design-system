@@ -2,8 +2,10 @@ package com.visitscotland.brxm.dms;
 
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
+import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.*;
@@ -14,6 +16,7 @@ import java.util.Locale;
 /**
  * Proxies connections to the DMS and halts connections for DMS when there is low availability
  */
+@Component
 public class DMSProxy {
 
     private static final Logger logger = LoggerFactory.getLogger(DMSProxy.class);
@@ -24,6 +27,14 @@ public class DMSProxy {
      * Registers the time of the last failure and blocks subsequent requests
      */
     static Long lastRegisteredFailure = null;
+
+    // TODO private final
+    Properties properties;
+
+    public DMSProxy(Properties properties){
+        this.properties = properties;
+    }
+
 
     /**
      * Request information to the DMS and returns the body as String.
@@ -38,9 +49,9 @@ public class DMSProxy {
      * @throws IOException
      */
     public String request(String path) {
-        if (path.startsWith(Properties.VS_DMS_SERVICE)){
+        if (!Contract.isEmpty(properties.getDmsHost()) && path.startsWith(properties.getDmsHost())){
             //TODO Fix ProductSearchBuilder to make it build relative URLs
-            return request(path.substring(Properties.VS_DMS_SERVICE.length()), null);
+            return request(path.substring(properties.getDmsHost().length()), null);
         }
 
         return request(path, null);
@@ -49,7 +60,7 @@ public class DMSProxy {
     public synchronized String request(String path, Locale locale) {
         String languageParam = "";
         // Checks if there is a lock and if has to be released
-        if (lastRegisteredFailure != null && lastRegisteredFailure + Properties.DMS_WAIT_TIME < new Date().getTime()){
+        if (lastRegisteredFailure != null && lastRegisteredFailure + properties.getDmsWaitTime() < new Date().getTime()){
             lastRegisteredFailure = null;
         }
 
@@ -62,7 +73,7 @@ public class DMSProxy {
                     languageParam = "?locale=" + lang.getLocale().getLanguage();
                 }
             }
-            return request(path + languageParam, Properties.DMS_TRIES);
+            return request(path + languageParam, properties.getDmsTries());
         } else {
             return null;
         }
@@ -77,26 +88,26 @@ public class DMSProxy {
      */
     private String request(String path, int retries) {
         try {
-            HttpURLConnection dmsConnection = openConnection(Properties.VS_DMS_SERVICE + path);
-            dmsConnection.setConnectTimeout(Properties.DMS_TIMEOUT);
-            dmsConnection.setRequestProperty(HEADER_TOKEN, Properties.DMS_TOKEN);
+            HttpURLConnection dmsConnection = openConnection(properties.getDmsHost() + path);
+            dmsConnection.setConnectTimeout(properties.getDmsTimeout());
+            dmsConnection.setRequestProperty(HEADER_TOKEN, properties.getDmsToken());
             dmsConnection.setRequestMethod("GET");
 
             int code = dmsConnection.getResponseCode();
 
             if (code < 300) {
-                return requestContent(dmsConnection, Properties.DMS_ENCODING);
+                return requestContent(dmsConnection, properties.getDmsEncoding());
             } else if (code < 400) {
                 logger.warn("The request {} return a {} status code. Please correct the request", path, code);
                 HttpURLConnection.setFollowRedirects(true);
-                return requestContent(dmsConnection, Properties.DMS_ENCODING);
+                return requestContent(dmsConnection, properties.getDmsEncoding());
             }
         } catch (SocketTimeoutException e) {
             if (retries > 1) {
                 return request(path, retries - 1);
             } else {
                 //TODO SHOULD we print the URL?
-                logger.error("The DMS Service couldn't be reached. Holding all subsequent connections for {} ms ", Properties.DMS_WAIT_TIME);
+                logger.error("The DMS Service couldn't be reached. Holding all subsequent connections for {} ms ", properties.getDmsWaitTime());
                 DMSProxy.registerFailure();
             }
         } catch (IOException e){

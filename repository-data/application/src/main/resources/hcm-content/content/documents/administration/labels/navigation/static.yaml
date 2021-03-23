@@ -1,9 +1,10 @@
 /content/documents/administration/labels/navigation/static:
+  .meta:order-before: meganav
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: ecfe0a42-72cd-456a-89c9-dda1983e4a46
   hippo:name: Static Texts
-  hippo:versionHistory: b0a77da4-cdc0-4c2a-9a3d-04d8c9e16119
+  hippo:versionHistory: 85047185-88ee-4151-9e1a-4a2b07090fac
   /static[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -12,19 +13,19 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
-    hippostdpubwf:lastModificationDate: 2021-01-22T18:02:08.152Z
+    hippostdpubwf:lastModificationDate: 2021-02-10T17:19:27.882Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '']
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
       footer.text, universal.language, meganav-toggle-btn-alt-text]
-    resourcebundle:messages: [See all %s, Find us on, Our websites, VisitScotland
+    resourcebundle:messages: [All %s, Find us on, Our websites, VisitScotland
         Home, VisitScotland. All rights reserved., Language, Toggle menu]
-    resourcebundle:messages_de: ['', '', '', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', '', '']
-    resourcebundle:messages_fr: ['', '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '']
+    resourcebundle:messages_de: ['', '', Webseiten, '', '', '', '']
+    resourcebundle:messages_es: ['', '', Nuestras páginas web, '', '', '', '']
+    resourcebundle:messages_fr: ['', '', Nos sites web, '', '', '', '']
+    resourcebundle:messages_it: ['', '', i nostri siti web, '', '', '', '']
+    resourcebundle:messages_nl: ['', '', Onze websites, '', '', '', '']
   /static[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -33,19 +34,19 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
-    hippostdpubwf:lastModificationDate: 2021-01-22T18:02:32.079Z
+    hippostdpubwf:lastModificationDate: 2021-02-10T17:20:37.464Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '']
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
       footer.text, universal.language, meganav-toggle-btn-alt-text]
-    resourcebundle:messages: [See all %s, Find us on, Our websites, VisitScotland
+    resourcebundle:messages: [All %s, Find us on, Our websites, VisitScotland
         Home, VisitScotland. All rights reserved., Language, Toggle menu]
-    resourcebundle:messages_de: ['', '', '', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', '', '']
-    resourcebundle:messages_fr: ['', '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '']
+    resourcebundle:messages_de: ['', '', Webseiten, '', '', '', '']
+    resourcebundle:messages_es: ['', '', Nuestras páginas web, '', '', '', '']
+    resourcebundle:messages_fr: ['', '', Nos sites web, '', '', '', '']
+    resourcebundle:messages_it: ['', '', i nostri siti web, '', '', '', '']
+    resourcebundle:messages_nl: ['', '', Onze websites, '', '', '', '']
   /static[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -54,17 +55,17 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
-    hippostdpubwf:lastModificationDate: 2021-01-22T18:02:32.079Z
+    hippostdpubwf:lastModificationDate: 2021-02-10T17:20:37.464Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-01-22T18:02:33.610Z
+    hippostdpubwf:publicationDate: 2021-02-10T17:20:40.070Z
     resourcebundle:descriptions: ['', '', '', '', '', '', '']
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
       footer.text, universal.language, meganav-toggle-btn-alt-text]
-    resourcebundle:messages: [See all %s, Find us on, Our websites, VisitScotland
+    resourcebundle:messages: [All %s, Find us on, Our websites, VisitScotland
         Home, VisitScotland. All rights reserved., Language, Toggle menu]
-    resourcebundle:messages_de: ['', '', '', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', '', '']
-    resourcebundle:messages_fr: ['', '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '']
+    resourcebundle:messages_de: ['', '', Webseiten, '', '', '', '']
+    resourcebundle:messages_es: ['', '', Nuestras páginas web, '', '', '', '']
+    resourcebundle:messages_fr: ['', '', Nos sites web, '', '', '', '']
+    resourcebundle:messages_it: ['', '', i nostri siti web, '', '', '', '']
+    resourcebundle:messages_nl: ['', '', Onze websites, '', '', '', '']

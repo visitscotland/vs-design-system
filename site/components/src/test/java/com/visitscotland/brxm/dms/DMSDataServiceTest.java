@@ -1,7 +1,6 @@
 package com.visitscotland.brxm.dms;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brxm.utils.CommonUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

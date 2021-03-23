@@ -1,10 +1,8 @@
 package com.visitscotland.brxm.services;
 
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.utils.Contract;
-import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
-import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -12,25 +10,31 @@ import org.springframework.stereotype.Component;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+@Component
 public class ResourceBundleService {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceBundleService.class.getName());
 
-    private static final String SERVICE_NAME = "ResourceBundle";
+    ResourceBundleRegistry registry;
 
-    final ResourceBundleRegistry resourceBundleRegistry;
-    final CommonUtils common;
+    private CommonUtilsService common;
 
-    public ResourceBundleService() {
-        //Default Hippo Resource bundle Service
-        this(HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName()),
-                new CommonUtils());
-    }
-
-    ResourceBundleService (ResourceBundleRegistry rbr, CommonUtils common){
-        resourceBundleRegistry = rbr;
+    public ResourceBundleService (CommonUtilsService common){
         this.common = common;
     }
+
+    /**
+     * ResourceBundleRegistry is not a Spring Component, therefore when Spring is wiring the component it cannot
+     * wire this the {@code ResourceBundleRegistry}. That's the reason why we need to check the registry before
+     * using it.
+     */
+    private ResourceBundleRegistry getResourceBundleRegistry(){
+        if (registry== null){
+            registry = VsComponentManager.get(ResourceBundleRegistry.class);
+        }
+        return registry;
+    }
+
 
 
     /**
@@ -79,7 +83,7 @@ public class ResourceBundleService {
      *
      * @param locale String with the locale information
      *
-     * @return a {@code Locale} object version of the {@dode String} or {@code null} when empty String or null
+     * @return a {@code Locale} object version of the {@code String} or {@code null} when empty String or null
      */
     Locale toLocale(String locale){
         if (locale == null || locale.length() == 0){
@@ -136,12 +140,15 @@ public class ResourceBundleService {
      */
     private ResourceBundle getResourceBundle(String bundleName, Locale locale){
         if (locale == null) {
-            return resourceBundleRegistry.getBundle(bundleName);
+            return getResourceBundleRegistry().getBundle(bundleName);
         } else {
-            return resourceBundleRegistry.getBundle(bundleName, locale);
+            return getResourceBundleRegistry().getBundle(bundleName, locale);
         }
     }
 
+    public void setResourceBundleRegistry(ResourceBundleRegistry registry){
+        this.registry = registry;
+    }
 
     /**
      * Verify that a value exists for a key in the specified language
@@ -158,7 +165,7 @@ public class ResourceBundleService {
     }
 
     /**
-     * Logs a issue that can be solved from the CMS
+     * Logs an issue that can be solved from the CMS
      *
      * @param message message
      * @param args arguments for the message
@@ -166,15 +173,6 @@ public class ResourceBundleService {
     void logContentIssue(String message, Object... args) {
         String issue = common.contentIssue(message, args);
         logger.warn(issue);
-    }
-
-    public void registerIn(HstRequest request) {
-        if (request.getAttribute(SERVICE_NAME) == null) {
-            request.setAttribute(SERVICE_NAME, this);
-            logger.debug(SERVICE_NAME + " has been registered on the request");
-        } else {
-            logger.info(SERVICE_NAME + " has been been already registered on the request");
-        }
     }
 
     /**

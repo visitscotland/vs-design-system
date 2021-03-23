@@ -12,6 +12,7 @@
         </span>
         <VsSvg
             data-test="vs-svg-link__svg"
+            focusable="false"
             :path="svgPath"
             :fill="svgFill"
         />

@@ -77,7 +77,7 @@ definitions:
           /media:
             jcr:primaryType: frontend:plugin
             caption: Media
-            compoundList: visitscotland:ExternalLink,hippogallerypicker:imagelink,visitscotland:InstagramImage
+            compoundList: hippogallerypicker:imagelink,visitscotland:InstagramImage
             contentPickerType: links
             field: media
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin

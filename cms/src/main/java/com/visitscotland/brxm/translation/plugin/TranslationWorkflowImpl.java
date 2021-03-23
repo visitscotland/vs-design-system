@@ -160,8 +160,15 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
                 Node linkedNode = rootSession.getNodeByIdentifier(linkUUID);
                 JcrDocument linkedJcrDocument = new JcrDocument(linkedNode);
                 if (linkedJcrDocument.hasTranslation(language)) {
-                    Node targetNode = linkedJcrDocument.getTranslation(language);
-                    childNode.setProperty("hippo:docbase", targetNode.getIdentifier());
+                    // Translated link is the unpublished variant. Must link to parent hippo:handle instead
+                    Node unpublishedTranslatedVariant = linkedJcrDocument.getTranslation(language);
+                    Node translatedHandle = unpublishedTranslatedVariant.getParent();
+                    if (translatedHandle.isNodeType(HippoNodeType.NT_HANDLE)) {
+                        childNode.setProperty("hippo:docbase", translatedHandle.getIdentifier());
+                    } else {
+                        log.warn("Can not translate node link - variant " + unpublishedTranslatedVariant.getIdentifier()
+                                + " has parent " + translatedHandle.getPrimaryNodeType().toString() + "that is not a hippo handle");
+                    }
                 } else {
                     log.warn("Missing link translation node");
                 }

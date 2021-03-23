@@ -2033,10 +2033,12 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: ee591b3b-3cce-46c9-b421-be474319dcfc
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2021-01-21T13:05:57.992Z
+          hippostdpubwf:lastModificationDate: 2021-03-05T14:42:37.760Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 947115dd-693b-4a35-af7b-c527e3a432fa
           hippotranslation:locale: en
@@ -2192,19 +2194,22 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: af6fc0d9-216a-45f8-ac71-70e8355fa23f
         hippo:name: Single image 2
-        hippo:versionHistory: cb509407-a99d-4d22-b730-30c66065cb4b
+        hippo:versionHistory: f0e43105-3f1b-45b3-a7e4-d1963d406f49
         /single-image-2[1]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 73c061dc-0d28-4b8b-b519-788bc3d5c4bd
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-11-16T11:48:36.675Z
-          hippostdpubwf:lastModificationDate: 2021-01-21T13:08:28.720Z
+          hippostdpubwf:lastModificationDate: 2021-03-05T14:43:09.847Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 84b9854d-d136-4649-993a-875f7dd45a47
           hippotranslation:locale: en
+          visitscotland:layout: ''
           visitscotland:listLayout: false
           visitscotland:teaserVisible: true
           visitscotland:title: Another single image
@@ -2217,7 +2222,7 @@
             visitscotland:title: SIngle image 2
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -2243,13 +2248,15 @@
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
           jcr:uuid: e6e40f6c-3592-4a94-a835-3b92c1187858
           hippo:availability: [preview]
+          hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-11-16T11:48:36.675Z
-          hippostdpubwf:lastModificationDate: 2021-01-21T13:08:35.161Z
+          hippostdpubwf:lastModificationDate: 2021-03-05T14:43:03.541Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 84b9854d-d136-4649-993a-875f7dd45a47
           hippotranslation:locale: en
+          visitscotland:layout: ''
           visitscotland:listLayout: false
           visitscotland:teaserVisible: true
           visitscotland:title: Another single image
@@ -2262,7 +2269,7 @@
             visitscotland:title: SIngle image 2
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -2288,14 +2295,16 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: be15bc89-b045-4ba6-8fc9-03a7be237225
           hippo:availability: [live]
+          hippostd:retainable: false
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-11-16T11:48:36.675Z
-          hippostdpubwf:lastModificationDate: 2021-01-21T13:08:35.161Z
+          hippostdpubwf:lastModificationDate: 2021-03-05T14:43:03.541Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-21T13:08:36.767Z
+          hippostdpubwf:publicationDate: 2021-03-05T14:43:09.536Z
           hippotranslation:id: 84b9854d-d136-4649-993a-875f7dd45a47
           hippotranslation:locale: en
+          visitscotland:layout: ''
           visitscotland:listLayout: false
           visitscotland:teaserVisible: true
           visitscotland:title: Another single image
@@ -2308,7 +2317,7 @@
             visitscotland:title: SIngle image 2
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -4585,16 +4594,18 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 668f9ef6-e5cb-4544-86c9-b38d01ce1243
             hippo:availability: []
+            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
-            hippostdpubwf:lastModificationDate: 2020-05-26T12:11:56.527+01:00
+            hippostdpubwf:lastModificationDate: 2021-03-05T12:05:08.011Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 031ee49b-b582-4764-b4f6-da2121ddecb8
             hippotranslation:locale: en
             visitscotland:subtitle: ''
             visitscotland:tipsTitle: Edinburgh Castle - Sample Pullout Title
             visitscotland:title: Edinburgh castle
+            visitscotland:translation: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
               hippostd:content: <p>Edinburgh castle is a really nice attraction and
@@ -12263,3 +12274,197 @@
                 <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
 
                 <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+  /long-copy:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: ee7a0adc-50f6-42f9-ab1c-278f8da90a63
+    hippo:name: Long Copy Module
+    hippostd:foldertype: [new-translated-folder-test, new-document]
+    hippotranslation:id: 578c7b9c-450f-4222-9217-d64539b9e9e0
+    hippotranslation:locale: en
+    /content:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: a34dd38f-6be3-45ca-b693-1812570bab19
+      hippo:name: content
+      hippo:versionHistory: 1024e7d1-f466-460e-a9d3-ca5f9d902a8b
+      /content[1]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:versionable']
+        jcr:uuid: 752aa5cc-dcde-4a72-b9ef-b1c324e48fe9
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:36:37.172Z
+        hippostdpubwf:lastModificationDate: 2021-02-18T16:03:45.109Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a427b6f8-d290-4543-ba14-3f24efed0b41
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title
+        visitscotland:teaser: teaser
+        visitscotland:theme: Simple
+        visitscotland:title: The mountain with its head in the clouds
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>In light of COVID-19, everyone's health and safety
+            is the most important thing. Please follow the advice of the&nbsp;<a href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+            title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+            and always stay 2 metres away from those outwith your own household both
+            indoors and outdoors.*</p>
+      /content[2]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: aaffa824-310f-4e21-a536-a53020614991
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:36:37.172Z
+        hippostdpubwf:lastModificationDate: 2021-02-18T16:03:45.109Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-02-18T16:03:53.153Z
+        hippotranslation:id: a427b6f8-d290-4543-ba14-3f24efed0b41
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title
+        visitscotland:teaser: teaser
+        visitscotland:theme: Simple
+        visitscotland:title: The mountain with its head in the clouds
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>In light of COVID-19, everyone's health and safety
+            is the most important thing. Please follow the advice of the&nbsp;<a href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+            title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+            and always stay 2 metres away from those outwith your own household both
+            indoors and outdoors.*</p>
+      /content[3]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: a3e2d1e4-8883-411e-b42f-c06c8dd9ccea
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostd:transferable: false
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:36:37.172Z
+        hippostdpubwf:lastModificationDate: 2021-03-05T14:35:44.158Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a427b6f8-d290-4543-ba14-3f24efed0b41
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title
+        visitscotland:teaser: teaser
+        visitscotland:theme: Simple
+        visitscotland:title: The mountain with its head in the clouds
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>In light of COVID-19, everyone's health and safety
+            is the most important thing. Please follow the advice of the&nbsp;<a href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+            title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+            and always stay 2 metres away from those outwith your own household both
+            indoors and outdoors.*</p>
+    /copy:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 064664f9-2b26-4997-a99e-366d9c343fe8
+      hippo:versionHistory: ca2890a5-e29b-4a3e-a8d7-43c8997faaba
+      /copy[1]:
+        jcr:primaryType: visitscotland:LongCopy
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 5a08f54c-cfbf-4896-8ce9-3071e105bdf0
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
+        hippostdpubwf:lastModificationDate: 2021-02-25T14:57:42.810Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
+        hippotranslation:locale: en
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: "<h2>This is an ordered list</h2>\r\n\r\n<ol>\r\n <li>Item\
+            \ 1\r\n <ol>\r\n  <li>Item 1.1</li>\r\n  <li>Item 1.2</li>\r\n </ol>\r\
+            \n </li>\r\n <li>Item 2</li>\r\n <li>Item 3</li>\r\n</ol>\r\n\r\n<h2>This\
+            \ is an unordered list</h2>\r\n\r\n<ul>\r\n <li>Item 1\r\n <ul>\r\n  <li>Sub\
+            \ item</li>\r\n  <li>Sub item</li>\r\n </ul>\r\n </li>\r\n <li>Item 2</li>\r\
+            \n <li>Item 3</li>\r\n</ul>\r\n\r\n<p>And then we have some links:</p>\r\
+            \n\r\n<ul>\r\n <li><a href=\"content\">CMS Page </a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/blog/\">Blog Page</a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/scottishborders.pdf\"\
+            >PDF</a></li>\r\n</ul>"
+      /copy[2]:
+        jcr:primaryType: visitscotland:LongCopy
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 1d27a228-5878-4ed0-bf48-8e001307bbbd
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
+        hippostdpubwf:lastModificationDate: 2021-02-25T14:56:08.120Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
+        hippotranslation:locale: en
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: "<h2>This is an ordered list</h2>\r\n\r\n<ol>\r\n <li>Item\
+            \ 1\r\n <ol>\r\n  <li>Item 1.1</li>\r\n  <li>Item 1.2</li>\r\n </ol>\r\
+            \n </li>\r\n <li>Item 2</li>\r\n <li>Item 3</li>\r\n</ol>\r\n\r\n<h2>This\
+            \ is an unordered list</h2>\r\n\r\n<ul>\r\n <li>Item 1\r\n <ul>\r\n  <li>Sub\
+            \ item</li>\r\n  <li>Sub item</li>\r\n </ul>\r\n </li>\r\n <li>Item 2</li>\r\
+            \n <li>Item 3</li>\r\n</ul>\r\n\r\n<p>And then we have some links:</p>\r\
+            \n\r\n<ul>\r\n <li><a href=\"content\">CMS Page </a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/blog/\">Blog Page</a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/scottishborders.pdf\"\
+            >PDF</a></li>\r\n</ul>"
+      /copy[3]:
+        jcr:primaryType: visitscotland:LongCopy
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 26e0f842-7351-45a1-9a21-0f003c97c221
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
+        hippostdpubwf:lastModificationDate: 2021-02-25T14:56:08.120Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-02-25T14:57:52.453Z
+        hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
+        hippotranslation:locale: en
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: "<h2>This is an ordered list</h2>\r\n\r\n<ol>\r\n <li>Item\
+            \ 1\r\n <ol>\r\n  <li>Item 1.1</li>\r\n  <li>Item 1.2</li>\r\n </ol>\r\
+            \n </li>\r\n <li>Item 2</li>\r\n <li>Item 3</li>\r\n</ol>\r\n\r\n<h2>This\
+            \ is an unordered list</h2>\r\n\r\n<ul>\r\n <li>Item 1\r\n <ul>\r\n  <li>Sub\
+            \ item</li>\r\n  <li>Sub item</li>\r\n </ul>\r\n </li>\r\n <li>Item 2</li>\r\
+            \n <li>Item 3</li>\r\n</ul>\r\n\r\n<p>And then we have some links:</p>\r\
+            \n\r\n<ul>\r\n <li><a href=\"content\">CMS Page </a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/blog/\">Blog Page</a></li>\r\n <li><a href=\"\
+            https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/scottishborders.pdf\"\
+            >PDF</a></li>\r\n</ul>"

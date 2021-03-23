@@ -93,7 +93,7 @@ export default {
     }
 
     &__divider{
-        margin: $spacer-3 0 $spacer-7;
+        margin: $spacer-3 0 $spacer-4;
         border-color: $color-gray-tint-6;
     }
 

@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.dms;
 
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
@@ -28,10 +29,13 @@ class DMSProxyTest {
     DMSProxy proxy;
 
     @Mock
-    CommonUtils utils;
+    CommonUtilsService utils;
 
     @Mock
     HttpURLConnection huc;
+
+    @Mock
+    Properties properties;
 
     @BeforeEach
     void init() {
@@ -39,18 +43,20 @@ class DMSProxyTest {
         DMSProxy.lastRegisteredFailure = null;
 
         //Overrides the method that defines that instances the connection
-        proxy = new DMSProxy() {
+        proxy = new DMSProxy(properties) {
             @Override
             protected HttpURLConnection openConnection(String url) {
                 return huc;
             }
         };
+        proxy.properties = this.properties;
     }
 
     @Test
     @DisplayName("VS-2386 - Serves the content of an endpoint that returns a 200 status code")
     void requestContent() throws IOException {
         final String CONTENT = "This is it";
+        when(properties.getDmsEncoding()).thenReturn(Charset.defaultCharset());
         when(huc.getResponseCode()).thenReturn(200);
         when(huc.getInputStream()).thenReturn(new ByteArrayInputStream(CONTENT.getBytes()));
 
@@ -63,6 +69,7 @@ class DMSProxyTest {
     @DisplayName("VS-2386 - Serves the content redirected from a 300 status code")
     void requestWithRedirects() throws IOException {
         final String CONTENT = "This is it";
+        when(properties.getDmsEncoding()).thenReturn(Charset.defaultCharset());
         when(huc.getResponseCode()).thenReturn(300);
         when(huc.getInputStream()).thenReturn(new ByteArrayInputStream(CONTENT.getBytes()));
 
@@ -77,13 +84,14 @@ class DMSProxyTest {
     @Test
     @DisplayName("VS-2386 - There were several attempts of retrieving the data")
     void exceptionPropagation() throws IOException {
-        Properties.DMS_TRIES = 5;
+        final int DMS_TRIES = 5;
+        when(properties.getDmsTries()).thenReturn(DMS_TRIES);
         // Verifies that the exception is propagated and a number of tries is attempted
         when(huc.getResponseCode()).thenThrow(new SocketTimeoutException());
 
         Assertions.assertNull(proxy.request("/timeout"));
 
-        verify(huc, times(Properties.DMS_TRIES)).getResponseCode();
+        verify(huc, times(DMS_TRIES)).getResponseCode();
     }
 
     @Test
@@ -91,7 +99,10 @@ class DMSProxyTest {
     void simultaneousConnection() throws IOException, InterruptedException {
         //Creates a Pool of 10 simultaneous connections
         ExecutorService service = Executors.newFixedThreadPool(20);
-        Properties.DMS_TRIES = 1;
+        final int DMS_TRIES = 1;
+
+        when(properties.getDmsTries()).thenReturn(DMS_TRIES);
+        when(properties.getDmsWaitTime()).thenReturn(60_000);
 
         //Apart from throwing the exceptions it halts the test to ensure concurrent calls to the method
         when(huc.getResponseCode()).then(invocationOnMock -> {
@@ -112,13 +123,14 @@ class DMSProxyTest {
 
         Assertions.assertNotNull(DMSProxy.lastRegisteredFailure);
 
-        verify(huc, times(1)).getResponseCode();
+        verify(huc, times(DMS_TRIES)).getResponseCode();
     }
 
     @Test
     @DisplayName("VS-2386 - Test that the lock is release after a while")
     void lockRelease() throws IOException {
         when(huc.getResponseCode()).thenThrow(new SocketTimeoutException());
+        when(properties.getDmsWaitTime()).thenReturn(60_000);
 
         for (int i = 0; i < 3; i++) {
             Assertions.assertNull(proxy.request("/fails-and-lock"));
@@ -140,14 +152,13 @@ class DMSProxyTest {
         when(huc.getResponseCode()).thenThrow(new SocketTimeoutException());
 
         //Note: That some assertions are defined here in order to simplify the code
-        DMSProxy methodProxy = new DMSProxy() {
+        DMSProxy methodProxy = new DMSProxy(properties) {
             @Override
             protected HttpURLConnection openConnection(String url) {
                 Assertions.assertTrue(url.contains("?locale=fr") || url.contains("&locale=fr"));
                 return huc;
             }
         };
-
 
         Assertions.assertNull(methodProxy.request("/french-locale", Locale.FRANCE));
         Assertions.assertNull(methodProxy.request("/french-locale?page=1", Locale.FRANCE));
