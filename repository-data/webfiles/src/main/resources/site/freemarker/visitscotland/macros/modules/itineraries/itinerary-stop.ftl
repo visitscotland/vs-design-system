@@ -13,8 +13,8 @@
 <#include "../../global/cms-errors.ftl">
 
 <#macro itineraryStop stop lastStop>
-<#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
-<#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
+<#-- @ftlvariable name="stop" type="com.visitscotland.brxm.hippobeans.Stop" -->
+<#-- @ftlvariable name="prod" type="com.visitscotland.brxm.model.FlatStop" -->
 
     <#assign prod = stops[stop.identifier]>
     <#assign image = "" />
@@ -91,7 +91,7 @@
             <#if prod??>
                 <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
                     <vs-description-list class="my-4 mb-0 justify-content-start" inline>
-                        <vs-description-list-item title class="mb-0 mr-0 col-auto">${label("itinerary", "stop.time-to-explore")}</vs-description-list-item>
+                        <vs-description-list-item title class="mb-0 mr-0 pr-1 col-auto">${label("itinerary", "stop.time-to-explore")}</vs-description-list-item>
                         <vs-description-list-item class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-item>
                     </vs-description-list>
                 </#if>
@@ -116,10 +116,21 @@
             <#assign nearbyStayUrl = productSearch(locale, "acco", prod.coordinates.latitude, prod.coordinates.longitude, 5)>
 
             <vs-itinerary-border-overlap-wrapper slot="nearby-links">
-                <vs-button class="mb-3" background="white" variant="outline-primary" icon="food" href="${nearbyEatsUrl}" >
+                <vs-button
+                    class="mb-3"
+                    background="white"
+                    variant="outline-primary"
+                    icon="food"
+                    href="${nearbyEatsUrl}"
+                >
                     ${label("itinerary", "stop.nearby-eat")}
                 </vs-button>
-                <vs-button background="white" variant="outline-primary" icon="product-accommodation" href="${nearbyStayUrl}" >
+                <vs-button
+                    background="white"
+                    variant="outline-primary"
+                    icon="product-accommodation"
+                    href="${nearbyStayUrl}"
+                >
                     ${label("itinerary", "stop.nearby-stay")}
                 </vs-button>
             </vs-itinerary-border-overlap-wrapper>

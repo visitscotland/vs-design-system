@@ -510,19 +510,19 @@ export default {
 
 <docs>
   ```jsx
-  <vs-row>
-    <vs-col cols="6" sm="4" lg="3" v-for="(image, index) in hero.imageLocationMapExamples">
+  <VsRow>
+    <VsCol cols="6" sm="4" lg="3" v-for="(image, index) in hero.imageLocationMapExamples">
       <div class="mb-3 p-3 text-center">
         <p>{{image.title}}</p>
-          <vs-image-location-map
+          <VsImageLocationMap
             :latitude="image.latitude"
             :longitude="image.longitude"
             map-outline-color="#191919"
             map-marker-color="#109DA3"
           >
-          </vs-image-location-map>
+          </VsImageLocationMap>
       </div>
-    </vs-col>
-  </vs-row>
+    </VsCol>
+  </VsRow>
   ```
 </docs>

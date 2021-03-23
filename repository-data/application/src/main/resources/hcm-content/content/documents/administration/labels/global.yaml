@@ -9,7 +9,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 766a22ea-0b28-44cf-9937-953443a6fb02
     hippo:name: Global
-    hippo:versionHistory: daff4619-0c93-4e8e-95e5-ed54d9f9e376
+    hippo:versionHistory: 557b4c96-9605-4efc-83d2-9390258c3721
     /global[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -18,14 +18,20 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2020-12-10T14:54:17.485Z
+      hippostdpubwf:lastModificationDate: 2021-01-22T17:58:03.661Z
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2020-12-10T14:54:21.872Z
-      resourcebundle:descriptions: ['', '', '', '']
+      hippostdpubwf:publicationDate: 2021-01-22T17:58:05.054Z
+      resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global
       resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
-        keyfacilities.title]
-      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities]
+        keyfacilities.title, home]
+      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities,
+        Home]
+      resourcebundle:messages_de: ['', '', '', '', '']
+      resourcebundle:messages_es: ['', '', '', '', '']
+      resourcebundle:messages_fr: ['', '', '', '', '']
+      resourcebundle:messages_it: ['', '', '', '', '']
+      resourcebundle:messages_nl: ['', '', '', '', '']
     /global[2]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:versionable']
@@ -34,13 +40,19 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2020-12-10T14:54:17.485Z
+      hippostdpubwf:lastModificationDate: 2021-01-22T17:58:03.661Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ['', '', '', '']
+      resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global
       resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
-        keyfacilities.title]
-      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities]
+        keyfacilities.title, home]
+      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities,
+        Home]
+      resourcebundle:messages_de: ['', '', '', '', '']
+      resourcebundle:messages_es: ['', '', '', '', '']
+      resourcebundle:messages_fr: ['', '', '', '', '']
+      resourcebundle:messages_it: ['', '', '', '', '']
+      resourcebundle:messages_nl: ['', '', '', '', '']
     /global[3]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -49,10 +61,16 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2020-12-10T14:54:17.646Z
+      hippostdpubwf:lastModificationDate: 2021-01-22T17:56:59.132Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ['', '', '', '']
+      resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global
       resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
-        keyfacilities.title]
-      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities]
+        keyfacilities.title, home]
+      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities,
+        Home]
+      resourcebundle:messages_de: ['', '', '', '', '']
+      resourcebundle:messages_es: ['', '', '', '', '']
+      resourcebundle:messages_fr: ['', '', '', '', '']
+      resourcebundle:messages_it: ['', '', '', '', '']
+      resourcebundle:messages_nl: ['', '', '', '', '']

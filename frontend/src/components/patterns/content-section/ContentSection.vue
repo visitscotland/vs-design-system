@@ -61,7 +61,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities";
 
 .content-section {
@@ -76,21 +75,21 @@ export default {
 
 <docs>
   ```jsx
-  <vs-container>
-    <vs-row>
-      <vs-article cols="8" md="12">
-        <vs-content-section heading="Article section title">
+  <VsContainer>
+    <VsRow>
+      <VsArticle cols="8" md="12">
+        <VsContentSection heading="Article section title">
           Article section content
-        </vs-content-section>
-      </vs-article>
+        </VsContentSection>
+      </VsArticle>
       <br /><br />
-      <vs-sidebar>
-        <vs-content-section tag="aside" heading="Aside section title">
+      <VsSidebar>
+        <VsContentSection tag="aside" heading="Aside section title">
           Aside section content
-        </vs-content-section>
-      </vs-sidebar>
-    </vs-row>
-  </vs-container>
+        </VsContentSection>
+      </VsSidebar>
+    </VsRow>
+  </VsContainer>
 
   ```
 </docs>

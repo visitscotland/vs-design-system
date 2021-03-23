@@ -160,6 +160,8 @@ export default {
         .stretched-link-card__img {
             width: 100%;
             max-width: 100%;
+            align-self: flex-start;
+            flex-shrink: 0; // IE11 fix, prevents image vertical stretching
         }
 
         .stretched-link-card__title {
@@ -216,11 +218,11 @@ export default {
 </style>
 
 <docs>
-  ```
-    <vs-container>
-        <vs-row>
-            <vs-col cols="12" md="6">
-                <vs-stretched-link-card
+  ```jsx
+    <VsContainer>
+        <VsRow>
+            <VsCol cols="12" md="6">
+                <VsStretchedLinkCard
                     link="https://visitscotland.com"
                     type="external"
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -230,24 +232,24 @@ export default {
                         A category header
                     </template>
                     <template slot="stretchedCardPanels">
-                        <vs-stretched-link-panel days="14" />
-                        <vs-stretched-link-panel text="öffentlicher Verkehr" />
+                        <VsStretchedLinkPanel days="14" />
+                        <VsStretchedLinkPanel text="öffentlicher Verkehr" />
                     </template>
 
                     <template slot="stretchedCardHeader">
                         A Title Would Go Here
                     </template>
 
-                    <vs-rich-text-wrapper slot="stretchedCardContent">
+                    <VsRichTextWrapper slot="stretchedCardContent">
                         <p>The content for the card goes here</p>
 
                         <p>A second line of content</p>
-                    </vs-rich-text-wrapper>
-                </vs-stretched-link-card>
-            </vs-col>
+                    </VsRichTextWrapper>
+                </VsStretchedLinkCard>
+            </VsCol>
 
-            <vs-col cols="12" md="6">
-                <vs-stretched-link-card
+            <VsCol cols="12" md="6">
+                <VsStretchedLinkCard
                     link="https://visitscotland.com"
                     type="internal"
                     imgSrc=""
@@ -257,14 +259,14 @@ export default {
                         A Title Would Go Here
                     </template>
 
-                    <vs-rich-text-wrapper slot="stretchedCardContent">
+                    <VsRichTextWrapper slot="stretchedCardContent">
                         <p>The content for the card goes here</p>
 
                         <p>A second line of content</p>
-                    </vs-rich-text-wrapper>
-                </vs-stretched-link-card>
-            </vs-col>
-        </vs-row>
-    </vs-container>
+                    </VsRichTextWrapper>
+                </VsStretchedLinkCard>
+            </VsCol>
+        </VsRow>
+    </VsContainer>
   ```
 </docs>

@@ -2,19 +2,20 @@
 <#include "../global/cms-errors.ftl">
 <#include "../modules/megalinks/megalinks.ftl">
 <#include "../modules/megalinks/megalinks-horizontal-list.ftl">
-<#include "../modules/long-content/long-content.ftl">
+<#include "../modules/article/article.ftl">
+<#include "../modules/long-copy/long-copy.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
-<#-- @ftlvariable name="pageItems" type="com.visitscotland.brmx.beans.Megalinks" -->
-<#-- @ftlvariable name="image" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
+<#-- @ftlvariable name="pageItems" type="com.visitscotland.brxm.hippobeans.Megalinks" -->
+<#-- @ftlvariable name="image" type="com.visitscotland.brxm.model.FlatImage" -->
 
-<#-- @ftlvariable name="heroImage" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.model.FlatImage" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.model.Coordinates" -->
 
-<#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
+<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.hippobeans.Image" -->
 
 <#macro moduleBuilder module theme>
     <#if theme="theme1">
@@ -29,7 +30,10 @@
         <#assign moduleType = module.getType()>
     </#if>
 
-    <div class="has-edit-button theme-${themeName}">       
+    <div class="has-edit-button theme-${themeName}">
+        <#if module.hippoBean?? >
+            <@hst.manageContent hippobean=module.hippoBean />
+        </#if>
         <#if moduleType == "megalinks">
             <#-- all Megalinks modules -->
             <@megalinks item=module type=module.getType() theme=themeName />
@@ -43,8 +47,11 @@
         <#elseif moduleType == "IKnowModule">
             <@iknow module/>
 
-        <#elseif module.getType()== "LongContentModule">
-            <@longContent module/>
+        <#elseif module.getType()== "ArticleModule">
+            <@article module/>
+
+        <#elseif module.getType()== "LongCopyModule">
+            <@longCopy module/>
         </#if>
     </div>
 </#macro>

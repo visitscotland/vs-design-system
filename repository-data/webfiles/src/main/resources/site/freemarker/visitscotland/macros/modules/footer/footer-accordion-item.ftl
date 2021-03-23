@@ -25,23 +25,16 @@
                     <vs-icon name="chevron" orientation="right" variant="light" size="xs"></vs-icon>
                 </span>
 
-                <vs-list unstyled>
+                <vs-list
+                    unstyled
+                    role="menu"
+                >
                     <#list menuItem.childMenuItems as childItem>
-                        <#assign href = "">
-                        <#assign external = false>
-
                         <#if childItem.title?has_content>
-                            <#if childItem.hstLink??>
-                                <#assign href><@hst.link fullyQualified=fullyQualifiedURLs link=childItem.hstLink/></#assign>
-                            <#elseif childItem.externalLink??>
-                                <#assign href>${childItem.externalLink}</#assign>
-                                <#assign external = true>
-                            </#if>
-
                             <vs-footer-nav-list-item
-                                href="${href}"
+                                href="${getUrl(childItem)}"
                                 link-text="${childItem.title}"
-                                <#if external>type="external"</#if>
+                                type="<#if childItem.externalLink??>external<#else>none</#if>"
                             ></vs-footer-nav-list-item>
                         </#if>
                     </#list>

@@ -36,14 +36,6 @@ export default {
             type: String,
             default: '',
         },
-        milesLabel: {
-            type: String,
-            default: '',
-        },
-        kilometresLabel: {
-            type: String,
-            default: '',
-        },
     },
     computed: {
         isShowingMiles() {
@@ -58,13 +50,19 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
 .vs-summary-box-distance-display {
     font-family: $headings-font-family;
     font-size: 1.625rem;
     top: 20%;
     @include media-breakpoint-up(lg) {
         font-size: 1.75rem;
+    }
+
+    span {
+        display: block;
+        padding: 0 .25em;
+        word-break: break-word;
+        line-height: 1;
     }
 }
 </style>
@@ -73,13 +71,13 @@ export default {
 
   ```jsx
     <div class="py-5">
-        <vs-summary-box-distance-display
+        <VsSummaryBoxDistanceDisplay
             :miles=itineraries.sampleItinerary.totalMiles
             :kilometres=itineraries.sampleItinerary.totalKM
             miles-label="miles"
             kilometres-label="kilometres"
         >
-        </vs-summary-box-distance-display>
+        </VsSummaryBoxDistanceDisplay>
     </div>
   ```
 </docs>

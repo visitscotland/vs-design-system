@@ -61,7 +61,7 @@ export default {
          */
         source: {
             type: String,
-            default: '',
+            required: true,
             validator: (value) => value.match(/(instagram)/),
         },
     },
@@ -76,7 +76,7 @@ export default {
         color: $color-white !important;
         font-weight: $font-weight-light;
         font-size: $small-font-size;
-        line-height: $standard-line-height;
+        line-height: $line-height-standard;
         margin-bottom: $spacer-0;
 
         &:hover,

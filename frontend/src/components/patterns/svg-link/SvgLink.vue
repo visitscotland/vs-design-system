@@ -12,6 +12,7 @@
         </span>
         <VsSvg
             data-test="vs-svg-link__svg"
+            focusable="false"
             :path="svgPath"
             :fill="svgFill"
         />
@@ -70,10 +71,10 @@ export default {
 
 <docs>
 ```jsx
-    <vs-svg-link
+    <VsSvgLink
         link-alt-text="VisitScotland Home"
         href="/"
-        svg-fill="700e57"
+        svg-fill="#700e57"
         svg-path="visitscotland"
     />
 ```

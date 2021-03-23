@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import VsDropdownItem from '../../../dropdown/DropdownItem';
+import VsDropdownItem from '../../../dropdown/components/DropdownItem';
 
 /**
  * TODO: Document usage
@@ -42,9 +42,10 @@ export default {
     }
 
     .dropdown-item {
-        padding: $spacer-4;
+        padding: $spacer-3;
         color: white;
         text-decoration: none;
+        line-height: $line-height-s;
 
         &:hover {
             background: $color-purple-shade-2;
@@ -60,17 +61,38 @@ export default {
 
 @include no-js {
     .vs-global-menu__languages__item {
-        display: block;
-    }
+        width: 100%;
+        border: none;
 
-    @include media-breakpoint-up(sm) {
-        display: inline;
+        @include media-breakpoint-up(md) {
+            width: auto;
+            padding: $spacer-3;
+        }
+
+        .dropdown-item {
+            color: $color-white;
+            text-decoration: underline;
+            font-size: $h4-font-size;
+
+            &:hover {
+                background:transparent;
+                text-decoration: none;
+            }
+
+            @include media-breakpoint-up(md) {
+                padding: $spacer-1 $spacer-2;
+            }
+
+            @include media-breakpoint-up(lg) {
+                padding: $spacer-1 $spacer-4;
+            }
+        }
     }
 }
 </style>
 
 <docs>
-  ```
+  ```jsx
     <VsGlobalMenuLanguageItem language-name="English" languageLink="site/"/>
   ```
 </docs>

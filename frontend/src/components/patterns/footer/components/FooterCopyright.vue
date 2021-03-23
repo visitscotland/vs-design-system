@@ -15,7 +15,7 @@
                         data-test="vs-footer-copyright-logo"
                         :link-alt-text="linkAltText"
                         :href="href"
-                        svg-fill="700e57"
+                        svg-fill="#ffffff"
                         svg-path="vs-logo"
                     />
 
@@ -113,13 +113,13 @@ export default {
 
 <docs>
   ```js
-    <vs-footer>
-        <vs-footer-copyright link-alt-text="VisitScotland Home" href="/">
+    <VsFooter>
+        <VsFooterCopyright link-alt-text="VisitScotland Home" href="/">
             <span slot="copyright">
                VisitScotland. All rights reserved.
             </span>
-        </vs-footer-copyright>
-    </vs-footer>
+        </VsFooterCopyright>
+    </VsFooter>
 
   ```
 </docs>
