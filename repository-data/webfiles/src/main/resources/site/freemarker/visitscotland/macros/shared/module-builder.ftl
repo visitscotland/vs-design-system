@@ -1,11 +1,11 @@
 <#include "../../../include/imports.ftl">
 <#include "../global/cms-errors.ftl">
 <#include "../modules/megalinks/megalinks.ftl">
-<#include "../modules/megalinks/megalinks-horizontal-list.ftl">
 <#include "../modules/article/article.ftl">
 <#include "../modules/long-copy/long-copy.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
+<#include "../modules/otyml/otyml.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
@@ -39,7 +39,7 @@
             <@megalinks item=module type=module.getType() theme=themeName />
 
         <#elseif moduleType == "HorizontalListLinksModule">
-            <@horizontalList module/>
+            <@otyml module/>
 
         <#elseif moduleType == "ICentreModule">
             <@icentre module/>
