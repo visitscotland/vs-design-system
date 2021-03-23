@@ -21,7 +21,7 @@ public class DMSProxy {
 
     private static final Logger logger = LoggerFactory.getLogger(DMSProxy.class);
 
-    static final String HEADER = "VS-Api-Key";
+    static final String HEADER = "VS-API-Key";
 
     /**
      * Registers the time of the last failure and blocks subsequent requests
