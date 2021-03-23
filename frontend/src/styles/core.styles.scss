@@ -1,7 +1,11 @@
 /* GLOBAL: STYLES 
  *
- * Styles added here do not belong to any individual component
- * and are intended to be applied to all components
+ * Library css should be loaded here globally rather than loaded
+ * within each vue component. This improves our caching strategy
+ * and cuts down on code duplication, but may change in the
+ * future if the build pipeline changes.
+ *
+ * See pull request #314 for more details and evidence
  */
 
 @import "./resources.scss";
