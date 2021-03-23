@@ -1,10 +1,8 @@
 package com.visitscotland.brxm.translation.report;
 
-import com.visitscotland.brxm.beans.Page;
 import com.visitscotland.brxm.translation.SessionFactory;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
-import com.visitscotland.brxm.translation.plugin.TranslationException;
 import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.api.WorkflowException;
@@ -15,8 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.jcr.*;
-import javax.jcr.query.Row;
+import javax.jcr.ItemNotFoundException;
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import javax.jcr.query.RowIterator;
 import java.rmi.RemoteException;
 import java.text.DateFormat;
