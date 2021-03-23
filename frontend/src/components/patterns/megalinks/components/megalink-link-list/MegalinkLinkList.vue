@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
+import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 
 /**
@@ -149,7 +149,7 @@ export default {
                 width: 66%;
             }
 
-            .stretched-link-card__img {
+            .vs-stretched-link-card__img {
                 width: 33%;
                 max-width: 33%;
                 align-self: flex-start;
