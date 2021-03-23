@@ -1,6 +1,5 @@
 package com.visitscotland.brxm.utils;
 
-import com.visitscotland.brxm.services.ResourceBundleService;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
@@ -10,14 +9,15 @@ import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
+import org.springframework.stereotype.Component;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import java.util.Locale;
 
 /**
  * Set of utilities related with Hippo that from the whole environment to be running in order to work
  */
+@Component
 public class HippoUtilsService {
 
     /**
@@ -25,36 +25,11 @@ public class HippoUtilsService {
      */
     final BaseHstComponent hstComponent;
 
-    //TODO: eliminate when PageContentComponent.getCtaLabel() gets refactored.
-    final ResourceBundleService bundle;
-
     public HippoUtilsService(){
-        bundle = new ResourceBundleService();
         hstComponent = new BaseHstComponent();
     }
 
     static HippoUtilsService instance;
-
-    /**
-     *  @deprecated This method exists until legacy uses are refactored. Do not use this method statically but
-     *  create a new instance so whatever is using this class can be tested
-     */
-    @Deprecated
-    public static HippoUtilsService getInstance(){
-        if (instance == null){
-            instance = new HippoUtilsService();
-        }
-        return instance;
-    }
-
-    /**
-     * @deprecated Use ResourceBundleUtils instead
-     */
-    @Deprecated
-    @NonTestable
-    public String getResourceBundle(String bundleName, String key,  Locale locale){
-        return bundle.getResourceBundle(bundleName, key,  locale, false);
-    }
 
     /**
      * Convert and HstLink or a HippoBean into a URL String
@@ -65,7 +40,7 @@ public class HippoUtilsService {
      *
      * @return URL for the page that renders the document or null when it cannot be rendered as a page.
      */
-    @NonTestable
+    @NonTestable(NonTestable.Cause.BRIDGE)
     public String createUrl(HippoBean document){
         final boolean FULLY_QUALIFIED = true;
         HstRequestContext requestContext = RequestContextProvider.get();
@@ -77,7 +52,7 @@ public class HippoUtilsService {
     /**
      * Return a HippoBean from the path of the Node
      */
-    @NonTestable
+    @NonTestable(NonTestable.Cause.BRIDGE)
     public <T extends HippoBean> T getDocumentFromNode(String path) throws QueryException, ObjectBeanManagerException, RepositoryException {
         return getDocumentFromNode(RequestContextProvider.get().getSession().getNode(path));
     }
@@ -85,7 +60,7 @@ public class HippoUtilsService {
     /**
      * Return a HippoBean from the Node
      */
-    @NonTestable
+    @NonTestable(NonTestable.Cause.BRIDGE)
     public <T extends HippoBean> T getDocumentFromNode(Node jcrNode) throws QueryException, ObjectBeanManagerException {
         HippoBean bean = RequestContextProvider.get().getQueryManager()
                 .createQuery(jcrNode).execute().getHippoBeans().nextHippoBean();
@@ -93,6 +68,7 @@ public class HippoUtilsService {
         return (T) bean.getObjectConverter().getObject(bean.getNode());
     }
 
+    @NonTestable(NonTestable.Cause.BRIDGE)
     public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem) {
         return hstComponent.getBeanForResolvedSiteMapItem(request, sitemapItem);
     }
@@ -105,7 +81,7 @@ public class HippoUtilsService {
      *
      * @return value of the query parameter or null if such parameter hasn't been defined
      */
-    @NonTestable
+    @NonTestable(NonTestable.Cause.BRIDGE)
     public String getParameterFromUrl(HstRequest request, String parameter){
         return request.getRequestContext().getServletRequest().getParameter(parameter);
     }

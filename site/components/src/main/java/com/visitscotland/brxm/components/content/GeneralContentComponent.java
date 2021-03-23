@@ -1,6 +1,8 @@
 package com.visitscotland.brxm.components.content;
 
-import com.visitscotland.brxm.beans.Destination;
+import com.visitscotland.brxm.hippobeans.Destination;
+import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.utils.PageTemplateBuilder;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
@@ -10,14 +12,19 @@ public class GeneralContentComponent extends PageContentComponent<Destination> {
 
     private static final Logger logger = LoggerFactory.getLogger(GeneralContentComponent.class);
 
-    PageTemplateBuilder builder;
+    public static final String SIMPLE = "Simple";
+    public static final String STANDARD = "Standard";
+
+    private PageTemplateBuilder builder;
 
     public GeneralContentComponent(){
-        builder = new PageTemplateBuilder();
+        logger.debug("GeneralContentComponent initialized");
+        this.builder = VsComponentManager.get(PageTemplateBuilder.class);
     }
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
+
         super.doBeforeRender(request, response);
 
         addHeroCoordinates(request);

@@ -24,7 +24,7 @@
     JAXB CONTEXT MAPPINGS
   -->
   <bean id="jaxrsHippoContextProvider" class="org.onehippo.cms7.essentials.components.rest.JaxbContextProvider">
-    <property name="beansPackage" value="com.visitscotland.brxm.beans"/>
+    <property name="beansPackage" value="com.visitscotland.brxm.hippobeans"/>
     <!--
       you can add extra classes if needed as followed:
     -->

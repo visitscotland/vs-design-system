@@ -2,7 +2,7 @@
 <#include "../../../../../frontend/components/vs-megalink-link-list.ftl">
 <#include "../../../global/cms-errors.ftl">
 
-<#macro linkList item showTeaser>
+<#macro linkList item showTeaser theme>
     <vs-row>
         <vs-col
             cols="12"
@@ -29,6 +29,7 @@
                         <vs-megalink-link-list
                             img-src="${image}"
                             link-type="${listItem.type}"
+                            theme="${theme}"
                             link-url="${listItem.link}"
                         >
                             <template slot="vsLinkListHeading">
