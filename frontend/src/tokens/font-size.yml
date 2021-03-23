@@ -42,7 +42,7 @@ props:
     - name: nav-lvl1-desktop-font-size
       value: "{!font_size_base} * 1.125"
     - name: xs-font-size
-      value: "{!font_size_base} * .625"
+      value: "{!font_size_base} * 0.625"
 global:
     type: number
     category: font-size
