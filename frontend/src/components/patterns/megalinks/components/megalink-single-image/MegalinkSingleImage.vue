@@ -1,7 +1,7 @@
 <template>
     <section
-        class="megalink-single-image"
-        :class="alternate ? 'megalink-single-image--alternate' : ''"
+        class="vs-megalink-single-image"
+        :class="singleImageClasses"
         data-test="megalink-single-image"
     >
         <VsImageWithCaption
@@ -9,7 +9,7 @@
             alt-text=""
             :text-align="alternate ? 'left' : 'right'"
             :image-src="imgSrc"
-            class="megalink-single-image__image"
+            class="vs-megalink-single-image__image"
         >
             <template slot="caption">
                 <!-- @slot Slot for image caption -->
@@ -29,12 +29,13 @@
                 :class="alternate ? 'offset-lg-6' : 'offset-lg-0'"
             >
                 <div
-                    class="megalink-single-image__content"
+                    class="vs-megalink-single-image__content"
                     data-test="megalink-single-image__content"
                 >
                     <VsHeading
                         level="3"
                         v-if="title"
+                        class="vs-megalink-single-image__title"
                         data-test="megalink-single-image__title"
                     >
                         {{ title }}
@@ -49,7 +50,7 @@
                         <slot name="vsSingleImageLinks" />
                     </VsLinkList>
 
-                    <div class="megalink-single-image__button">
+                    <div class="vs-megalink-single-image__button">
                         <VsButton
                             :href="buttonLink"
                             v-if="buttonLink"
@@ -121,19 +122,35 @@ export default {
             type: String,
             default: '',
         },
+        /**
+        * The component theme
+        */
+        theme: {
+            type: String,
+            default: 'light',
+            validator: (value) => value.match(/(light|dark)/),
+        },
+    },
+    computed: {
+        singleImageClasses() {
+            return [
+                `vs-megalink-single-image--${this.theme}`,
+                this.alternate ? 'vs-megalink-single-image--alternate' : '',
+            ];
+        },
     },
 };
 </script>
 
 <style lang="scss">
-    .megalink-single-image {
+    .vs-megalink-single-image {
         min-width: 100%;
 
-        .megalink-single-image__title {
-            margin-bottom: 0;
+        .vs-megalink-single-image__title {
+            margin-bottom: $spacer-8;
         }
 
-        .megalink-single-image__content {
+        .vs-megalink-single-image__content {
             position: relative;
             z-index: 10;
             background: $color-white;
@@ -143,33 +160,60 @@ export default {
             width: 100%;
 
             p {
-                margin-bottom: 1rem;
-
-                &:first-of-type {
-                    margin-top: 1rem;
-                }
+                margin-bottom: $spacer-4;
             }
         }
 
-        .megalink-single-image__image {
-            // needed to avoid layout issues in IE11
+        .vs-megalink-single-image__link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .vs-megalink-single-image__link-list-item {
+            margin-top: $spacer-4;
+            font-size: $lead-font-size;
+
+            &:first-of-type {
+                margin-bottom: $spacer-0;
+            }
+        }
+
+        .vs-megalink-single-image__image {
             overflow: hidden;
             margin: 0 -12px (-$spacer-8);
         }
 
-        .megalink-single-image__button {
+        .vs-megalink-single-image__button {
             margin-top: $spacer-7;
+        }
+
+        &--dark {
+            .vs-megalink-single-image__content {
+                background: $color-gray-shade-7;
+            }
+
+            .vs-megalink-single-image__title,
+            p {
+                color: $color-white;
+            }
         }
 
         @include media-breakpoint-up(sm) {
             margin: 0;
 
-            .megalink-single-image__image {
+            .vs-megalink-single-image__image {
                 margin-bottom: 0;
             }
 
-            .megalink-single-image__content {
+            .vs-megalink-single-image__content {
                 background: transparent;
+            }
+
+            &--dark {
+                .vs-megalink-single-image__content {
+                    background: $color-secondary-gray-shade-4;
+                }
             }
         }
 
@@ -179,31 +223,41 @@ export default {
             display: flex;
             flex-direction: column;
 
-            .megalink-single-image__content {
+            .vs-megalink-single-image__content {
                 padding: $spacer-9 $spacer-9 $spacer-9 $spacer-9;
                 margin: 0;
                 background: $color-white;
             }
 
-            .megalink-single-image__image {
+            .vs-megalink-single-image__image {
                 width: 66%;
                 align-self: flex-end;
                 margin: 0 0 -200px;
             }
 
             &--alternate {
-                .megalink-single-image__image {
+                .vs-megalink-single-image__image {
                     align-self: flex-start;
                 }
 
-                .megalink-single-image__content {
+                .vs-megalink-single-image__content {
                     align-self: flex-end;
+                }
+            }
+
+            &--dark {
+                .vs-megalink-single-image__title {
+                    color: $color-white;
+                }
+
+                .vs-megalink-single-image__content {
+                    background: $color-gray-shade-7;
                 }
             }
         }
 
         @include media-breakpoint-up(xl) {
-            .megalink-single-image__content {
+            .vs-megalink-single-image__content {
                 padding: $spacer-9 $spacer-12 $spacer-9 $spacer-9;
             }
         }
