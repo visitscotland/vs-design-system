@@ -112,31 +112,39 @@ export default {
 
 @include no-js {
     .vs-global-menu__list {
+        width: 100%;
         flex-wrap: wrap;
+        display: flex !important;
 
-        .vs-list {
-            display: flex !important;
+        @include media-breakpoint-up(md) {
+            flex-wrap: nowrap;
         }
 
         &_item {
-            display: flex;
-            flex: auto;
+            display: block;
             flex-basis: 100%;
-
-            border-bottom: 1px solid $color-purple-tint-3;
 
             @include media-breakpoint-up(md) {
                 flex-basis: auto;
                 border: none;
-                margin: 0 $spacer-4;
+                margin: 0 $spacer-2;
+            }
+
+            &:first-of-type{
+                margin-left: 0;
+            }
+
+            &:last-of-type{
+                margin-right: 0;
             }
 
             a {
-                display: flex;
-                align-items: center;
-                flex: auto;
-                justify-content: center;
-                padding: 1.9rem $spacer-5;
+                max-height: none;
+                display: block;
+                text-align: center;
+                font-size: $font-size-base;
+                padding: $spacer-5;
+                line-height: $line-height-standard;
             }
         }
     }
@@ -147,22 +155,15 @@ export default {
 <docs>
   ```jsx
     <VsGlobalMenu
-        dropdown-label="I nostri siti"
+        dropdown-label="Our websites"
         active-site="https://www.visitscotland.com/"
     >
-        <span
-            slot="second-menu-item"
-            style="min-width: 50px;"
-        >
-            User... (Not you?)
-        </span>
-
-        <span
+        <template
             slot="third-menu-item"
             style="min-width: 50px;"
         >
             EN
-        </span>
+        </template>
     </VsGlobalMenu>
   ```
 </docs>
