@@ -17,15 +17,15 @@
 <#include "../macros/shared/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brxm.beans.Itinerary" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Itinerary" -->
 <#-- @ftlvariable name="firstStopLocation" type="java.lang.String" -->
 <#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
-<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.beans.mapping.FlatImage" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.beans.mapping.Coordinates" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.model.FlatImage" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.model.Coordinates" -->
 
 <#-- Template defined objects -->
-<#-- @ftlvariable name="day" type="com.visitscotland.brxm.beans.Day" -->
-<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.beans.Image" -->
+<#-- @ftlvariable name="day" type="com.visitscotland.brxm.hippobeans.Day" -->
+<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.hippobeans.Image" -->
 
 <#assign mainTransport = "">
 <#assign dayNumber = 0>
@@ -41,8 +41,8 @@
     <@cmsErrors errors=alerts!"" editMode=editMode />
      <@hst.link var="hero" hippobean=document.heroImage.original/>
 
-    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="light" areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />	
-    
+    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="light" areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />
+
     <vs-itinerary>
         <@itineraryMap days=document.days />
         <#list document.days as day>

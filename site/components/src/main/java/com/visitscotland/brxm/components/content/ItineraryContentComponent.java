@@ -2,14 +2,14 @@ package com.visitscotland.brxm.components.content;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brxm.beans.*;
-import com.visitscotland.brxm.beans.dms.LocationObject;
-import com.visitscotland.brxm.beans.mapping.*;
-import com.visitscotland.brxm.beans.mapping.Coordinates;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.model.*;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
+import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.services.ResourceBundleService;
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.utils.CoordinateUtils;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -98,6 +98,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (stop.getImage() != null) {
                     Image cmsImage = stop.getImage();
                     if (cmsImage != null) {
+                        //TODO Use imageFactory
                         flatImage = new FlatImage(cmsImage, request.getLocale());
                         checkImageErrors(flatImage, request.getLocale(), errors);
                         if (!(stop.getStopItem() instanceof DMSLink)) {
@@ -115,12 +116,12 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                     if (dmsLink.getProduct() == null) {
                         errors.add("The product's id  was not provided");
-                        logger.warn(CommonUtils.contentIssue("The product's id was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
+                        logger.warn(CommonUtilsService.contentIssue("The product's id was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                     } else {
                         JsonNode product = dmsData.productCard(dmsLink.getProduct(), request.getLocale());
                         if (product == null) {
                             errors.add("The product id does not match in the DMS");
-                            logger.warn(CommonUtils.contentIssue("The product id does not match in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
+                            logger.warn(CommonUtilsService.contentIssue("The product id does not match in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                         } else {
 
                             FlatLink ctaLink = new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), request.getLocale()), product.get(URL).asText(), LinkType.INTERNAL);
@@ -144,6 +145,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                             if (stop.getImage() == null && product.has(IMAGE)) {
                                 JsonNode dmsImageList = product.get(IMAGE);
+                                //TODO Use ImageFactory
                                 flatImage = new FlatImage(dmsImageList.get(0), product.get(NAME).asText());
                             }
 
@@ -151,18 +153,19 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                             coordinates.setLongitude(product.get(LON).asDouble());
                             model.setCoordinates(coordinates);
 
+                            //TODO dmsUtils.getFacilities
                             model.setFacilities(getFacilities(product));
 
                             if (product.has(OPENING)) {
                                 JsonNode opening = product.get(OPENING);
                                 //TODO adjust the message to designs when ready
                                 if ((opening.has(OPENING_STATE)) && (!opening.get(OPENING_STATE).asText().equalsIgnoreCase("unknown"))) {
-                                    String openingMessge = opening.get(OPENING_PROVISIONAL).asBoolean() == false ? "Usually " : "Provisionally ";
-                                    openingMessge = openingMessge + opening.get(OPENING_STATE).asText() + " " + opening.get(OPENING_DAY).asText();
+                                    String openingMessage = opening.get(OPENING_PROVISIONAL).asBoolean() == false ? "Usually " : "Provisionally ";
+                                    openingMessage = openingMessage + opening.get(OPENING_STATE).asText() + " " + opening.get(OPENING_DAY).asText();
                                     if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
-                                        openingMessge = openingMessge + ": " + opening.get(START_TIME).asText() + "-" + opening.get(END_TIME).asText();
+                                        openingMessage = openingMessage + ": " + opening.get(START_TIME).asText() + "-" + opening.get(END_TIME).asText();
                                     }
-                                    model.setOpen(openingMessge);
+                                    model.setOpen(openingMessage);
                                     model.setOpenLink(new FlatLink(bundle.getResourceBundle("itinerary", "stop.opening",
                                             request.getLocale()), ctaLink.getLink() + "#opening", null));
                                 }
@@ -188,7 +191,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                 } else {
                     errors.add("The product's id  was not provided");
-                    logger.warn(CommonUtils.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
+                    logger.warn(CommonUtilsService.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                 }
 
 

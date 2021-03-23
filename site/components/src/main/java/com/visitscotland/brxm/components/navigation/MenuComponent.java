@@ -1,13 +1,13 @@
 package com.visitscotland.brxm.components.navigation;
 
 
-import com.visitscotland.brxm.beans.Page;
-import com.visitscotland.brxm.beans.Widget;
-import com.visitscotland.brxm.beans.mapping.LocalizedURL;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.hippobeans.Page;
+import com.visitscotland.brxm.hippobeans.Widget;
+import com.visitscotland.brxm.model.LocalizedURL;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.components.navigation.info.MenuComponentInfo;
 import com.visitscotland.brxm.services.ResourceBundleService;
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.utils.Contract;
@@ -40,7 +40,6 @@ public class MenuComponent extends EssentialsMenuComponent {
     static final String NAVIGATION_PREFIX = "navigation.";
     static final String CTA_SUFFIX = ".cta";
 
-    static final String ENHANCED_MENU = "enhancedMenu";
     static final String MENU = "menu";
 
     private ResourceBundleService bundle;
@@ -90,7 +89,7 @@ public class MenuComponent extends EssentialsMenuComponent {
                     lan.setUrl(utils.createUrl(translation));
                     lan.setExists(true);
                 } else {
-                    //TODO: Define if the URL is made up or we use the englishSite link instead
+                    //TODO: Define if the URL is made up, or we use the englishSite link instead
                     //lan.setUrl(utils.createUrl(englishSite));
                     lan.setUrl(composeNonExistingURL(language.getLocale(), request));
                     lan.setExists(false);
@@ -104,7 +103,7 @@ public class MenuComponent extends EssentialsMenuComponent {
     }
 
     /**
-     * Composes a the URL from the current request for a non existing URL.
+     * Composes the URL from the current request for a non-existing URL.
      */
     private String composeNonExistingURL(Locale locale, HstRequest request){
         String languagePath = "";
@@ -119,7 +118,6 @@ public class MenuComponent extends EssentialsMenuComponent {
     }
 
     protected void enhanceRequest(HstRequest request) {
-        bundle.registerIn(request);
         enhanceMenu(request);
     }
 
@@ -147,7 +145,7 @@ public class MenuComponent extends EssentialsMenuComponent {
     private MenuItem enhanceMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle) {
         MenuItem menuItem = new MenuItem(hstItem);
 
-        //By default the name would be populated by the resourceBundle
+        //By default, the name would be populated by the resourceBundle
         menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), request.getLocale(), true));
 
         //if document base page or widget, we enhance the document
@@ -177,13 +175,13 @@ public class MenuComponent extends EssentialsMenuComponent {
             }
             return menuItem;
         } else {
-            //Menu Items with no title cannot be displayed so they are not included in the list of menu Items.
+            //Menu Items with no title cannot be displayed, so they are not included in the list of menu Items.
             return null;
         }
     }
 
     /**
-     * Updates the menu item with enhanced information taken from the labels or the core document where they link to
+     * Updates the menu item with enhanced information taken from the labels, or the core document where they link to
      *
      * @param menuItem Menu Item to enhance
      * @param document HippoBean that contains the relevant document that is linked from the header
@@ -211,7 +209,7 @@ public class MenuComponent extends EssentialsMenuComponent {
                     String message = String.format("The label '%s' has more parameters than expected. File: %s, key: %s",
                             seeAll, STATIC, "see-all-cta");
                     logger.warn(message);
-                    CommonUtils.contentIssue(message.replace("%", "%%"));
+                    CommonUtilsService.contentIssue(message.replace("%", "%%"));
 
                     //After Catching the exception, we can eliminate the parameters.
                     menuItem.setCta(seeAll.replace("%s", ""));

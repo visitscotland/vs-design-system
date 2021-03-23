@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.translation.plugin;
 
-import com.visitscotland.brxm.beans.TranslationParent;
+import com.visitscotland.brxm.hippobeans.capabilities.TranslationParent;
 import com.visitscotland.brxm.translation.SessionFactory;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;

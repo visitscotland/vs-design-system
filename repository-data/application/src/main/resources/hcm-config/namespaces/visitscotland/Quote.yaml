@@ -87,7 +87,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Quote
             field: quote
-            hint: ''
+            hint: 'Max length suggestion is 250.'
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
@@ -96,7 +96,7 @@ definitions:
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
               ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
-                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 300}}'
+                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 375}}'
           /product:
             jcr:primaryType: frontend:plugin
             caption: Product

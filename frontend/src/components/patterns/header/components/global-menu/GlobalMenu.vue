@@ -129,16 +129,25 @@ export default {
         align-items: center;
 
         @include media-breakpoint-down(md) {
-            padding-left: 0;
             margin: 0;
         }
+    }
+}
+
+.row:not(.no-gutters) > .vs-global-menu__wrapper{
+    @include media-breakpoint-down(md) {
+        padding: 0;
     }
 }
 
 @include no-js {
     .vs-global-menu {
         height: auto;
-        font-size: $font-size-base;
+        margin-bottom: $spacer-4;
+
+        .dropdown-toggle{
+            display: none
+        }
 
         &__wrapper {
             display: flex;
@@ -146,10 +155,6 @@ export default {
 
             .vs-global-menu__websites {
                 display: none;
-            }
-
-            .vs-list {
-                display: flex !important;
             }
         }
     }
@@ -159,33 +164,25 @@ export default {
 <docs>
   ```jsx
     <VsGlobalMenu
-        dropdown-label="I nostri siti"
+        dropdown-label="Our websites"
         active-site="https://www.visitscotland.com/"
-    ><span
-            slot="second-menu-item"
-            style="min-width: 50px;"
-        >
-            User... (Not you?)
-        </span>
-
-        <span
-            slot="third-menu-item"
-        >
-        <VsGlobalMenuLanguage>
-            <VsGlobalMenuLanguageItem languageName="English">
-            </VsGlobalMenuLanguageItem>
-            <VsGlobalMenuLanguageItem languageName="Deutsch">
-            </VsGlobalMenuLanguageItem>
-            <VsGlobalMenuLanguageItem languageName="Español">
-            </VsGlobalMenuLanguageItem>
-            <VsGlobalMenuLanguageItem languageName="Français">
-            </VsGlobalMenuLanguageItem>
-            <VsGlobalMenuLanguageItem languageName="Italiano">
-            </VsGlobalMenuLanguageItem>
-            <VsGlobalMenuLanguageItem languageName="Nederlands">
-            </VsGlobalMenuLanguageItem>
-        </VsGlobalMenuLanguage>
-        </span>
+    >
+        <template slot="third-menu-item">
+            <VsGlobalMenuLanguage>
+                <VsGlobalMenuLanguageItem languageName="English">
+                </VsGlobalMenuLanguageItem>
+                <VsGlobalMenuLanguageItem languageName="Deutsch">
+                </VsGlobalMenuLanguageItem>
+                <VsGlobalMenuLanguageItem languageName="Español">
+                </VsGlobalMenuLanguageItem>
+                <VsGlobalMenuLanguageItem languageName="Français">
+                </VsGlobalMenuLanguageItem>
+                <VsGlobalMenuLanguageItem languageName="Italiano">
+                </VsGlobalMenuLanguageItem>
+                <VsGlobalMenuLanguageItem languageName="Nederlands">
+                </VsGlobalMenuLanguageItem>
+            </VsGlobalMenuLanguage>
+        </template>
     </VsGlobalMenu>
   ```
 </docs>

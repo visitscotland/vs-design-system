@@ -2,8 +2,8 @@ package com.visitscotland.brxm.dms;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brxm.beans.dms.LocationObject;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.utils.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.*;
 
-//TODO Test?
-//TOTO convert to Service
 @Component
 public class LocationLoader {
 
@@ -25,7 +23,7 @@ public class LocationLoader {
 
     private final Map<String, String> locationToId = new HashMap<>();
 
-    private DMSProxy proxy;
+    private final DMSProxy proxy;
 
     public LocationLoader(DMSProxy proxy){
         this.proxy = proxy;
@@ -42,7 +40,7 @@ public class LocationLoader {
                     try {
                         List<LocationObject> locationList = deserialize(request(lang.getLocale()));
 
-                        //if the locationToId map is empty and the locale is null. Both lists are populated simultaneously
+                        //if the locationToId map is empty, and the locale is null. Both lists are populated simultaneously
                         if (locationToId.size() == 0 && lang == Language.ENGLISH) {
                             for (LocationObject location : locationList) {
                                 locationToId.put(location.getName(), location.getId());
@@ -57,9 +55,6 @@ public class LocationLoader {
                     } catch (IOException e) {
                         logger.warn("Location List couldn't been loaded for the locale {}", lang.getLocale());
                     } catch (Exception e) {
-                        if (e instanceof NullPointerException){
-
-                        }
                         logger.error("Unexpected exception ", e);
                     }
 
@@ -70,7 +65,7 @@ public class LocationLoader {
     }
 
     /**
-     * TODO: Check: Is this used by FreeMarker?
+     * TODO: This is used by DMSLocationListProvider. Fix that usage.
      *
      * @deprecated use SpringContext.getBean (LocationLoader.class) instead
      */
@@ -128,14 +123,14 @@ public class LocationLoader {
     }
 
     /**
-     * Request the the resource taking into account the language.
+     * Request the resource taking into account the language.
      *
-     * @param locale: Specific locale for the fragment or null if the locale is English (default locale)
+     * @param locale: A specific locale for the fragment or null if the locale is English (default locale)
      *
      * @return HTML fragment according to the type and the locale
      */
     private String request(Locale locale){
-        //TODO Change the level to add polygon (for destinations pages)
+        //TODO Change the level to add a polygon (for destinations pages)
         if (locale == null){
             return proxy.request(DMSConstants.META_LOCATIONS);
         } else {
