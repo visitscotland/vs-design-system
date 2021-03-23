@@ -46,6 +46,7 @@ export default {
         color: $color-white;
         line-height: $line-height-xs;
         font-weight: $font-weight-semi-bold;
+        font-family: $font-family-sans-serif;
     }
 
     @include media-breakpoint-down(md) {
