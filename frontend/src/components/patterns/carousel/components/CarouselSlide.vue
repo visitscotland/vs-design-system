@@ -148,11 +148,6 @@ export default {
 
             return false;
         },
-        cardClick(e, slideNum) {
-            if (!this.isVisible(slideNum)) {
-                e.preventDefault();
-            }
-        },
     },
     inject: ['slideCols', 'visibleSlides'],
 };
