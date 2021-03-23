@@ -6,6 +6,7 @@ const factoryShallowMount = () => shallowMount(VsMegalinkSingleImage, {
         alternate: false,
         title: 'The Single Image title',
         buttonLink: 'http://www.visitscotland.com',
+        theme: 'dark',
     },
     slots: {
         vsSingleImageContent: '<p>This is the content for the single image component</p>',
@@ -34,6 +35,9 @@ describe('VsMegalinkSingleImage', () => {
             });
 
             expect(wrapper.find('[data-test="megalink-single-image__title"]').exists()).toBe(false);
+        });
+        it('renders the correct theme class', () => {
+            expect(wrapper.find('[data-test="megalink-single-image"]').classes()).toContain('megalink-single-image--dark');
         });
     });
 
