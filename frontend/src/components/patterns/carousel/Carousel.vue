@@ -188,6 +188,8 @@ export default {
             return slidesPerPage;
         },
         trackOffset() {
+            // how much the carousel track should be offset by
+            // to show the current active slides
             if (this.remainderOffset) {
                 return `-${((this.currentPage - 1) * 100) + this.remainderOffset}%`;
             }
@@ -213,8 +215,7 @@ export default {
     },
     mounted() {
         window.addEventListener('resize', () => {
-            const oldSize = this.currentPage;
-            this.setActivePage(oldSize);
+            this.setActivePage();
 
             this.sliderNavigate(this.currentPage);
         });
@@ -228,6 +229,8 @@ export default {
                 .getElementsByClassName('vs-carousel-slide__card');
             let slideCount = 0;
 
+            // iterate through child slides and evaluate if they're active
+            // if they are, add to the activeSlides array
             if (allSlides.length > 0) {
                 allSlides.forEach((slide, index) => {
                     const activeSlideStart = this.currentPage
@@ -237,6 +240,7 @@ export default {
                     ) + parseInt(this.slidesPerPage[this.currentWidth], 10);
 
                     // if we're at a final slide that has a remainder
+                    // the last slides that fit on a page are active
                     if (remainder && typeof remainder !== 'undefined') {
                         if (index >= this.totalSlides - this.slidesPerPage[this.currentWidth]) {
                             this.activeSlides.push(index);
@@ -249,8 +253,10 @@ export default {
                 });
             }
 
+            // update total slide number for mobile navigation
             this.totalSlides = slideCount;
 
+            // calculate total number of pages in carousel
             this.maxPages = Math.ceil(slideCount / this.slidesPerPage[this.currentWidth]);
         },
         calcViewport() {
@@ -265,16 +271,22 @@ export default {
             }
         },
         setActivePage() {
+            // method to calculate active page after resize
+            // and ensure user sees same slides
             let firstActiveItem;
 
+            // calculate first active item for reference when resizing
             if (this.currentWidth === 'xs' && this.slidesXs === '1') {
                 firstActiveItem = this.currentPage + 1;
             } else {
                 firstActiveItem = (this.currentPage * this.slidesPerPage[this.currentWidth]) + 1;
             }
 
+            // work out which viewport we're currently on
             this.calcViewport();
 
+            // calculate which page we're on in the new viewport
+            // based on the first active item
             let newFirstPage;
             if (this.currentWidth === 'xs' && this.slidesXs === '1') {
                 newFirstPage = firstActiveItem;
@@ -286,6 +298,8 @@ export default {
 
             this.currentPage = newFirstPage - 1;
 
+            // navigate to the correct page to keep the user at
+            // the same position they were at before the resize
             this.sliderNavigate(this.currentPage);
         },
         sliderNavigate(direction) {
@@ -299,6 +313,9 @@ export default {
 
             this.initNavigation();
 
+            // calculate if the slides don't neatly fit into the pages
+            // this will highlight if there's an 'odd' number of slides
+            // on the final page of the carousel
             const totalSlideSpaces = this.slidesPerPage[this.currentWidth] * (this.currentPage + 1);
             let finalSlideRemainder = false;
 
@@ -312,6 +329,8 @@ export default {
             this.defineActiveSlides(finalSlideRemainder);
         },
         initNavigation() {
+            // method to enable/disable arrow controls for carousel
+            // depending on current position
             if (this.currentPage + 1
                 >= this.totalSlides / this.slidesPerPage[this.currentWidth]) {
                 this.nextDisabled = true;
@@ -326,7 +345,7 @@ export default {
             }
         },
         checkRemainder(totalSpaces) {
-            // this function checks if there's an 'odd' number of slides
+            // this method checks if there's an 'odd' number of slides
             // meaning the final navigation shouldn't move a full page width
             const slideRemainder = this.slidesPerPage[this.currentWidth]
                 - (totalSpaces - this.totalSlides);
