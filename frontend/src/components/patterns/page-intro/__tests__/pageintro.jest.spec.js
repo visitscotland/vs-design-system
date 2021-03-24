@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import VsPageIntro from '../PageIntro';
 
-const factoryShallowMount = (slotData, propsData) => shallowMount(VsPageIntro, {
+const factoryShallowMount = (slotData) => shallowMount(VsPageIntro, {
     propsData: {
         background: 'dark',
         simpleIntro: false,
@@ -17,7 +17,9 @@ describe('VsPageIntro', () => {
         });
 
         it('should render the correct class for the simpleIntro prop', async() => {
-            await wrapper.setProps({ simpleIntro: true });
+            await wrapper.setProps({
+                simpleIntro: true,
+            });
             expect(wrapper.find('[data-test="vs-page-intro"]').classes()).toContain('vs-page-intro--simple');
         });
     });
