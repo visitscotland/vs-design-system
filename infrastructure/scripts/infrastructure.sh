@@ -32,7 +32,7 @@
 # ==== ADJUSTABLE VARIABLES ====
 #  == VS Variables ==
 if [ -z "$VS_DEBUG" ]; then VS_DEBUG=FALSE; fi
-if [ -z "$VS_BUILD_PROPERTIES_TARGET_DIR" ]; then VS_BUILD_PROPERTIES_TARGET_DIR=$WORKSPACE/site/components/src/main/resources/ci/; fi
+if [ -z "$VS_BUILD_PROPERTIES_TARGET_DIR" ]; then VS_BUILD_PROPERTIES_TARGET_DIR=$WORKSPACE/site/components/src/main/resources/ci; fi
 if [ -z "$VS_BUILD_PROPERTIES_TARGET_NAME" ]; then VS_BUILD_PROPERTIES_TARGET_NAME=build-info.properties; fi
 if [ -z "$VS_DOCKER_IMAGE_NAME" ]; then VS_DOCKER_IMAGE_NAME=vs-brxm; fi
 if [ -z "$VS_DOCKERFILE_PATH" ]; then VS_DOCKERFILE_PATH=/home/jenkins/vs-dockerfile; fi
@@ -753,7 +753,7 @@ copyVSVariables() {
     echo " - $VS_BUILD_PROPERTIES_TARGET_DIR does not exist, creating"
     mkdir -p $VS_BUILD_PROPERTIES_TARGET_DIR
   fi
-  cat $VS_VS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET/$VS_BUILD_PROPERTIES_TARGET_NAME
+  cat $VS_VS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME
 }
 
 createBuildReport() {
