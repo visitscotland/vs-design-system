@@ -145,7 +145,7 @@ defaultSettings() {
   unset RESERVED_PORT_LIST
   unset VS_CONTAINER_PORT_MAPPINGS
   # set, and create if missing, VS_CI_DIR
-  if [ -z "VS_CI_DIR" ]; then
+  if [ -z "$VS_CI_DIR" ]; then
     if [ ! -z "$WORKSPACE" ]; then
       VS_CI_DIR=$WORKSPACE/ci
     else
