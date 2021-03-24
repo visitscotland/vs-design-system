@@ -1,5 +1,4 @@
-
-<#function themeCalculator index colourSchemeParam=[]>
+<#function themeCalculator module="" colourSchemeParam=[]>
     <#assign colourScheme = ["light", "light", "dark"]>
 
     <#if colourSchemeParam?size = 0>
@@ -15,15 +14,18 @@
         <#assign colourScheme = colourSchemeParam>
     </#if>
 
-    <#if !index?has_content>
-        <#return "light">
-    <#else>
+    <#if index?has_content>
         <#return colourScheme[index]>
+    <#else>
+        <#return "light">
     </#if>
 
-<#--    <#if !module.themeIndex?has_content>-->
-<#--        <#return "light">-->
-<#--    <#else>-->
+<#-- TODO: Review the following code for iCentreModules -->
+<#--    <#if module.themeIndex?has_content>-->
 <#--        <#return colourScheme[module.themeIndex]>-->
+<#--    <#elseif module.getType="ICentreModule">-->
+<#--        <#return "grey">-->
+<#--    <#else>-->
+<#--        <#return "light">    -->
 <#--    </#if>-->
 </#function>

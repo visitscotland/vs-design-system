@@ -31,9 +31,9 @@
 
 
     <#if standardTemplate>
-        <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme=introTheme areas="" days="" firstStop="" lastStop="" />
+        <@pageIntro content=document heroImage=heroImage hero=heroImage hero=hero />
     <#else>
-        <@pageIntro content=document heroImage="" heroCoordinates="" hero="" theme="light" areas="" days="" firstStop="" lastStop="" />
+        <@pageIntro content=document heroImage="" hero="" />
     </#if>
 
   <#--TODO Control abput colours, change style="background-color:${style}  -->
