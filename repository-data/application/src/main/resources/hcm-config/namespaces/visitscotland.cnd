@@ -5,6 +5,15 @@
 <'hippotranslation'='http://www.onehippo.org/jcr/hippotranslation/nt/1.0'>
 <'hippogallery'='http://www.onehippo.org/jcr/hippogallery/nt/2.0'>
 
+[visitscotland:basedocument] > hippo:document, hippostd:publishableSummary, hippostdpubwf:document
+  orderable
+
+[visitscotland:Article] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
+[visitscotland:ArticleSection] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:CMSLink] > hippo:compound, hippostd:relaxed
   orderable
 
@@ -12,9 +21,6 @@
   orderable
 
 [visitscotland:DMSLink] > hippo:compound, hippostd:relaxed
-  orderable
-
-[visitscotland:basedocument] > hippo:document, hippostd:publishableSummary, hippostdpubwf:document
   orderable
 
 [visitscotland:translatable]
@@ -31,16 +37,16 @@
 [visitscotland:Destination] > hippostd:relaxed, hippotranslation:translated, visitscotland:Page, visitscotland:translatable
   orderable
 
+[visitscotland:ExternalDocument] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:ExternalLink] > hippo:compound, hippostd:relaxed
   orderable
 
-[visitscotland:General] > hippostd:relaxed, hippotranslation:translated, visitscotland:Page
+[visitscotland:General] > hippostd:relaxed, hippotranslation:translated, visitscotland:Page, visitscotland:translatable
   orderable
 
 [visitscotland:ICentre] > hippo:compound, hippostd:relaxed
-  orderable
-
-[visitscotland:Quote] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:IKnow] > hippo:compound, hippostd:relaxed
@@ -63,7 +69,13 @@
 [visitscotland:Listicle] > hippostd:relaxed, hippotranslation:translated, visitscotland:Page, visitscotland:translatable
   orderable
 
+[visitscotland:ListicleClosing] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:ListicleItem] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
+  orderable
+
+[visitscotland:LongCopy] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
 
 [visitscotland:MegalinkItem] > hippo:compound, hippostd:relaxed
@@ -72,10 +84,16 @@
 [visitscotland:Megalinks] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
+[visitscotland:OTYML] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:ProductSearchLink] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:ProductsSearch] > hippo:compound, hippostd:relaxed
+  orderable
+
+[visitscotland:Quote] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:SharedLink] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
@@ -87,7 +105,10 @@
 [visitscotland:Stop] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
-[visitscotland:TourismInformation] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+[visitscotland:StopTip] > hippo:compound, hippostd:relaxed
+  orderable
+
+[visitscotland:TourismInformation] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
 [visitscotland:Widget] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable

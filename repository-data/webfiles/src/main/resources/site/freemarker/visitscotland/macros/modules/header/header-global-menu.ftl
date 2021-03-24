@@ -3,11 +3,15 @@
 <#include "../../../../frontend/components/vs-global-menu-language.ftl">
 <#include "../../../../frontend/components/vs-global-menu-language-item.ftl">
 
-<#-- @ftlvariable name="language" type="com.visitscotland.brmx.beans.mapping.LocalizedURL"-->
-
-<#assign currentLocale=hstRequest.requestContext.resolvedMount.mount.locale>
+<#-- @ftlvariable name="language" type="com.visitscotland.brxm.model.LocalizedURL"-->
+<#-- @ftlvariable name="hstRequestContext" type="org.hippoecm.hst.core.request.HstRequestContext" -->
 
 <#macro headerGlobalMenu>
+    <#assign currentLocale=hstRequestContext.resolvedMount.mount.locale>
+    <#if localizedURLs?size == 0 && hstRequestContext.getModel("placeholerLocalizedURLs")??>
+        <#assign localizedURLs=hstRequestContext.getModel("placeholerLocalizedURLs")>
+    </#if>
+
     <vs-global-menu
             dropdown-label="${label('navigation.static', 'uninav.our-sites')}"
             active-site="https://www.visitscotland.com/"

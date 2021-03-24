@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # ==== TO-DO ====
+# gp: remove echo "$VS_CONTAINER_BASE_PORT" > env_port.txt AND echo "$VS_HOST_IP_ADDRESS" > env_host.txt from report section - these are now exported to be avaible to the LH script
+# gp: create test routine for container/tomcat startup
+# ====/TO-DO ====
+# ==== DONE ====
 # gp: split into functions - done
 # gp: activate clean-up routine - done
 # gp: update adjustatable variables to set only if they're not set already, that way the Dev can override in the Jenkinsfile - done
@@ -15,10 +19,9 @@
 # gp: create routine to re-use existing container if it's there - done
 #     - start it if stoppped - redeploy artifact if it's running
 # gp: create notification routine using "VS_COMMIT_AUTHOR" - done
-# gp: create test routine
 # gp: don't start tomcat with container - done
 # gp: additional check to see if mySQL is required - create a CMD without mysql - done
-# ====/TO-DO ====
+# ====/DONE ====
 
 # ==== SETUP ====
 # ==== ADJUSTABLE VARIABLES ====
@@ -53,16 +56,21 @@ if [ -z "$VS_CONTAINER_SSH_PASS_HIPPO" ]; then VS_CONTAINER_SSH_PASS_HIPPO=hippo
 if [ -z "$VS_CONTAINER_UPDATES_DIR" ]; then VS_CONTAINER_UPDATES_DIR="../files"; fi
 #  ==== SSR Application Variables ====
 if [ -z "$VS_FRONTEND_DIR" ]; then VS_FRONTEND_DIR=frontend; fi
-if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/"; fi
+if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/ $VS_FRONTEND_DIR/build/"; fi
 if [ -z "$VS_SSR_PACKAGE_TARGET" ]; then VS_SSR_PACKAGE_TARGET="./target"; fi
 if [ -z "$VS_SSR_PACKAGE_NAME" ]; then VS_SSR_PACKAGE_NAME="vs-ssr-package.tar.gz"; fi
 if [ -z "$VS_SSR_PROXY_ON" ]; then VS_SSR_PROXY_ON="TRUE"; fi
 if [ -z "$VS_SSR_APP_PORT" ]; then VS_SSR_APP_PORT=8082; fi
 #  ==== Other Variables ====
 VS_JENKINS_LAST_ENV=jenkins-last-env
+VS_VS_LAST_ENV=vs-last-env
+VS_LAST_ENV_QUOTED_SUFFIX=.quoted
+VS_LAST_ENV_GROOVY_SUFFIX=.groovy
+
 # ====/ADJUSTABLE VARIABLES ====
 
 # ==== PARSE COMMAND LINE ARGUMENTS ====
+METHOD=$1
 while [[ $# -gt 0 ]]; do
   argument="$1"
   THIS_VAR=`echo $argument | sed -e "s/=.*//g"`; #echo $THIS_VAR
@@ -85,8 +93,8 @@ while [[ $# -gt 0 ]]; do
     ;;
   esac
   shift
-  done
-  echo -en "\n"
+done
+echo -en "\n"
 # ====/PARSE COMMAND LINE ARGUMENTS ====
 # ====/SETUP ====
 
@@ -126,11 +134,23 @@ checkVariables() {
 
 defaultSettings() {
   # unset variables
-  VS_CONTAINER_LIST=
-  VS_PARENT_JOB_NAME=
-  RESERVED_PORT_LIST=
+  unset VS_CONTAINER_LIST
+  unset VS_PARENT_JOB_NAME
+  unset RESERVED_PORT_LIST
+  unset VS_CONTAINER_PORT_MAPPINGS
   # set container name from branch name - removing / characters
   if [ -z "$VS_CONTAINER_NAME" ]; then VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`; fi
+  if [ -z "$VS_BRANCH_NAME" ]; then
+    if [ ! -z "$CHANGE_BRANCH" ]; then
+      # this job is running against a branch in pull request status, using CHANGE_BRANCH variable
+      VS_BRANCH_NAME=$CHANGE_BRANCH
+    elif [ ! -z "$BRANCH_NAME" ]; then
+      # this branch is a branch, using BRANCH_NAME variable
+      VS_BRANCH_NAME=$BRANCH_NAME
+    else
+      VS_BRANCH_NAME="branch not found"
+    fi
+  fi
   if [ -z "$NODE_NAME" ]; then VS_THIS_SERVER=$HOSTNAME; else VS_THIS_SERVER=$NODE_NAME; fi
   if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then
     VS_BRXM_REPOSITORY="repository"
@@ -549,6 +569,10 @@ packageSSRArtifact() {
     if [ -d "$VS_FRONTEND_DIR" ]; then
       tar -zcf $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_SSR_PACKAGE_SOURCE
       RETURN_CODE=$?; echo " - return code: " $RETURN_CODE; echo ""
+      if [ -a $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME ]; then
+        VS_SSR_PACKAGE_SIZE=`ls -alh $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME | awk '{print $5}'`
+        echo $VS_SSR_PACKAGE_NAME " is " $VS_SSR_PACKAGE_SIZE " in size"
+      fi
       if [ ! "$RETURN_CODE" = "0" ]; then
         SAFE_TO_PROCEED=FALSE
         FAIL_REASON="Failed to package SSR app from $VS_FRONTEND_DIR, command exited with $RETURN_CODE"
@@ -565,9 +589,9 @@ containerCreateAndStart() {
     echo "about to create a new Docker container with:"
     #VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     if [ "$VS_BRXM_PERSISTENCE_METHOD" == "mysql" ]; then
-      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env $VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env $VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     else
-      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env $VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env $VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     fi
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
@@ -689,6 +713,18 @@ containerStartHippo() {
   fi
 }
 
+exportVSVariables() {
+  echo " - exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD"
+  set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
+}
+
+copyVSVariables() {
+  VS_TARGET=$WORKSPACE/site/webapp/src/main/webapp/vs-static/
+  echo " - copying VS variables file $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $VS_TARGET"
+  # to-do gp: set VS_TARGET in defaultSettings
+  cp $VS_VS_LAST_ENV $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX $VS_TARGET
+}
+
 createBuildReport() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     EXIT_CODE=0
@@ -736,8 +772,8 @@ createBuildReport() {
       cat $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "$VS_CONTAINER_BASE_PORT" > env_port.txt
     echo "$VS_HOST_IP_ADDRESS" > env_host.txt
   else
@@ -749,8 +785,8 @@ createBuildReport() {
     echo "JOB FAILED because $FAIL_REASON" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
   fi
 }
 
@@ -777,13 +813,20 @@ sendSiteReport() {
 # ====/FUNCTIONS ====
 
 # ==== RUN ====
+echo "called with $METHOD"
 case $METHOD in
   other)
     false
   ;;
   default)
     false
-    ;;
+  ;;
+  setvars)
+    checkVariables
+    defaultSettings
+    exportVSVariables
+    copyVSVariables
+  ;;
   *)
     echo "no function specified - running defaults"
     checkVariables
@@ -818,6 +861,7 @@ case $METHOD in
     containerCopyHippoArtifact
     containerCopySSRArtifact
     containerStartHippo
+    exportVSVariables
     testSite
     createBuildReport
     sendBuildReport

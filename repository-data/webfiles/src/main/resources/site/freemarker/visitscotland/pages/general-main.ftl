@@ -13,22 +13,19 @@
 <#include "../../frontend/components/vs-heading.ftl">
 <#include "../../frontend/components/vs-social-share.ftl">
 
-<#include "../macros/modules/megalinks/megalinks-multi-image.ftl">
-<#include "../macros/modules/megalinks/megalinks-single-image.ftl">
-<#include "../macros/modules/megalinks/megalinks-list.ftl">
 <#include "../macros/global/cms-errors.ftl">
 
-<#include "./module-builder.ftl">
+<#include "../macros/shared/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.General" -->
-<#-- @ftlvariable name="pageItems" type="com.visitscotland.brmx.beans.Megalinks" -->
-<#-- @ftlvariable name="image" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.General" -->
+<#-- @ftlvariable name="pageItems" type="com.visitscotland.brxm.hippobeans.Megalinks" -->
+<#-- @ftlvariable name="image" type="com.visitscotland.brxm.model.FlatImage" -->
 
-<#-- @ftlvariable name="heroImage" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.model.FlatImage" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.model.Coordinates" -->
 
-<#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
+<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.hippobeans.Image" -->
 
 <#assign standardTemplate = (document.theme == "Standard") />
 
@@ -76,6 +73,13 @@
 				<vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
 					<vs-rich-text-wrapper variant="lead">
 						<@hst.html hippohtml=document.introduction/>
+						<ul>
+						<#list pageItems as module>
+							<#if module.anchor?has_content >
+								<li><a href="#${module.anchor}">${module.title}</a></li>
+							</#if>
+						</#list>
+						</ul>
 					</vs-rich-text-wrapper>
 				</vs-col>
 			</vs-row>
@@ -86,15 +90,15 @@
 
   <#--TODO Control abput colours, change style="background-color:${style}  -->
 	<#list pageItems as module>
-	<vs-container slot="upper" class="py-lg-4" >
+
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a common macro to control it-->
-		<#if module.style == "style3" && standardTemplate >
-			<#assign style = "#292929" />
+		<#if module.theme?? && module.theme == "style3" && standardTemplate >
+			<#assign theme = "#292929" />
 		<#else>
-			<#assign style = "#FFFFFF" />
+			<#assign theme = "#FFFFFF" />
 		</#if>
 
-		<@moduleBuilder module style />
-	</vs-container>
+		<@moduleBuilder module=module theme=theme />
+
 	</#list>
 </div>

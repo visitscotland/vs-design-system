@@ -25,7 +25,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 4d302e29-93dd-4157-9df9-bbd741bb12a0
         hippo:name: Orkney short break itinerary
-        hippo:versionHistory: 2eb4469d-fbed-4a80-a0ad-fa16d8a1f936
+        hippo:versionHistory: 07269544-0fab-4bf7-9f81-c36761435bf3
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:referenceable']
@@ -34,7 +34,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:10:20.684+01:00
+          hippostdpubwf:lastModificationDate: 2020-12-10T15:06:00.642Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
@@ -53,15 +53,14 @@
           visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
           visitscotland:start: ''
           visitscotland:teaser: Taste the smoky influences in Orkney whisky, see rare
-            birds soaring in the skies overhead, walk amongst historic sites that
-            have stood for thousands of years and gaze out at swirling seas on a coastal
-            walk.
+            birds soaring in the skies overhead.
           visitscotland:theme: islands
           visitscotland:title: Short Break in Orkney – 4 Day Itinerary
+          visitscotland:translation: ''
           visitscotland:transports: [cycling]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -83,7 +82,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:10:26.222+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-10T11:55:35.739Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
@@ -102,15 +101,13 @@
           visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
           visitscotland:start: ''
           visitscotland:teaser: Taste the smoky influences in Orkney whisky, see rare
-            birds soaring in the skies overhead, walk amongst historic sites that
-            have stood for thousands of years and gaze out at swirling seas on a coastal
-            walk.
+            birds soaring in the skies overhead.
           visitscotland:theme: islands
           visitscotland:title: Short Break in Orkney – 4 Day Itinerary
           visitscotland:transports: [cycling]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -132,9 +129,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:10:26.222+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-10T11:55:35.739Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-06-12T08:53:27.606+01:00
+          hippostdpubwf:publicationDate: 2020-11-10T11:55:39.818Z
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
           visitscotland:areas: [north]
@@ -152,15 +149,13 @@
           visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
           visitscotland:start: ''
           visitscotland:teaser: Taste the smoky influences in Orkney whisky, see rare
-            birds soaring in the skies overhead, walk amongst historic sites that
-            have stood for thousands of years and gaze out at swirling seas on a coastal
-            walk.
+            birds soaring in the skies overhead.
           visitscotland:theme: islands
           visitscotland:title: Short Break in Orkney – 4 Day Itinerary
           visitscotland:transports: [cycling]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -310,3 +305,288 @@
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: f7501bf0-04e4-40bc-8f39-8234d43ea690
+  /inverness:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: e28a235e-0eb2-4818-bbf7-d4e4db28b849
+    hippostd:foldertype: [new-translated-folder, new-page, new-module]
+    hippotranslation:id: 97d90188-2284-47b4-93e6-0c9f91cfda43
+    hippotranslation:locale: en
+    /see-do:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: a236c92e-8edc-4dfc-a68c-5ea39a9a3702
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
+      hippotranslation:id: b4df2c7d-8264-45f2-a85a-d61eccc60255
+      hippotranslation:locale: en
+      /One Day in Inverness:
+        jcr:primaryType: hippostd:folder
+        jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+        jcr:uuid: 7370f4a2-3fbd-449e-864c-9145e62b9bb9
+        hippo:name: One Day in Inverness
+        hippostd:foldertype: [new-translated-folder, new-page, new-module]
+        hippotranslation:id: ba93810c-908f-4564-98c5-667548dc3bcd
+        hippotranslation:locale: en
+        /content:
+          jcr:primaryType: hippo:handle
+          jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+          jcr:uuid: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
+          hippo:name: One Day in Inverness - A 24hr Itinerary
+          hippo:versionHistory: 89f8ff09-35b1-4935-91e6-051b835ce5b6
+          /content[1]:
+            jcr:primaryType: visitscotland:Itinerary
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: ff84cc8a-4642-446f-bd54-cb003a4bfab9
+            hippo:availability: []
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-10-20T13:17:10.325Z
+            hippostdpubwf:lastModificationDate: 2020-11-24T13:30:45.645Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 6fddc980-6b21-40a1-ae0b-c64e3eb534a9
+            hippotranslation:locale: en
+            visitscotland:areas: [north]
+            visitscotland:breadcrumb: ''
+            visitscotland:distance: 24.0
+            visitscotland:finish: Inverness
+            visitscotland:highlights: "Culloden Battlefield\r\nInverness Museum &\
+              \ Art Gallery\r\nClava Cairns\r\nRiver Ness & Ness Islands\r\nInverness\
+              \ Botanic Gardens"
+            visitscotland:popular: false
+            visitscotland:seoDescription: Experience the best of Inverness in one-day
+              with a fun-filled itinerary from VisitScotland. From a historic battlefield
+              to dining out, plan a day trip now.
+            visitscotland:seoNoIndex: false
+            visitscotland:seoTitle: One Day in Inverness - A 24hr Itinerary
+            visitscotland:start: Inverness
+            visitscotland:teaser: Experience some of the best attractions Inverness
+              has to offer with this one day itinerary.
+            visitscotland:theme: city
+            visitscotland:title: Experience Inverness in One Day
+            visitscotland:translation: ''
+            visitscotland:transports: [car, walking]
+            /visitscotland:heroImage:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: f846ac14-4bbe-43af-8bdd-1f60979abc11
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Small but mighty, Inverness is quickly becoming
+                a popular city break destination for visitors from around the world.
+                Experience some of the best attractions Inverness has to offer with
+                this one day itinerary. From art galleries and museums to food &amp;
+                drink, Inverness has it all!</p>
+          /content[2]:
+            jcr:primaryType: visitscotland:Itinerary
+            jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+            jcr:uuid: c400408b-b604-40dd-8a13-70b57122f977
+            hippo:availability: [preview]
+            hippostd:state: unpublished
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-10-20T13:17:10.325Z
+            hippostdpubwf:lastModificationDate: 2020-11-24T13:30:45.615Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 6fddc980-6b21-40a1-ae0b-c64e3eb534a9
+            hippotranslation:locale: en
+            visitscotland:areas: [north]
+            visitscotland:breadcrumb: ''
+            visitscotland:distance: 24.0
+            visitscotland:finish: Inverness
+            visitscotland:highlights: "Culloden Battlefield\r\nInverness Museum &\
+              \ Art Gallery\r\nClava Cairns\r\nRiver Ness & Ness Islands\r\nInverness\
+              \ Botanic Gardens"
+            visitscotland:popular: false
+            visitscotland:seoDescription: Experience the best of Inverness in one-day
+              with a fun-filled itinerary from VisitScotland. From a historic battlefield
+              to dining out, plan a day trip now.
+            visitscotland:seoNoIndex: false
+            visitscotland:seoTitle: One Day in Inverness - A 24hr Itinerary
+            visitscotland:start: Inverness
+            visitscotland:teaser: Experience some of the best attractions Inverness
+              has to offer with this one day itinerary.
+            visitscotland:theme: city
+            visitscotland:title: Experience Inverness in One Day
+            visitscotland:translation: ''
+            visitscotland:transports: [car, walking]
+            /visitscotland:heroImage:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: f846ac14-4bbe-43af-8bdd-1f60979abc11
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Small but mighty, Inverness is quickly becoming
+                a popular city break destination for visitors from around the world.
+                Experience some of the best attractions Inverness has to offer with
+                this one day itinerary. From art galleries and museums to food &amp;
+                drink, Inverness has it all!</p>
+          /content[3]:
+            jcr:primaryType: visitscotland:Itinerary
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: 3c1a15d4-eff9-43ff-b0f5-a31aa3b144b8
+            hippo:availability: [live]
+            hippostd:state: published
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-10-20T13:17:10.325Z
+            hippostdpubwf:lastModificationDate: 2020-11-24T13:30:45.615Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippostdpubwf:publicationDate: 2020-11-24T13:30:49.017Z
+            hippotranslation:id: 6fddc980-6b21-40a1-ae0b-c64e3eb534a9
+            hippotranslation:locale: en
+            visitscotland:areas: [north]
+            visitscotland:breadcrumb: ''
+            visitscotland:distance: 24.0
+            visitscotland:finish: Inverness
+            visitscotland:highlights: "Culloden Battlefield\r\nInverness Museum &\
+              \ Art Gallery\r\nClava Cairns\r\nRiver Ness & Ness Islands\r\nInverness\
+              \ Botanic Gardens"
+            visitscotland:popular: false
+            visitscotland:seoDescription: Experience the best of Inverness in one-day
+              with a fun-filled itinerary from VisitScotland. From a historic battlefield
+              to dining out, plan a day trip now.
+            visitscotland:seoNoIndex: false
+            visitscotland:seoTitle: One Day in Inverness - A 24hr Itinerary
+            visitscotland:start: Inverness
+            visitscotland:teaser: Experience some of the best attractions Inverness
+              has to offer with this one day itinerary.
+            visitscotland:theme: city
+            visitscotland:title: Experience Inverness in One Day
+            visitscotland:translation: ''
+            visitscotland:transports: [car, walking]
+            /visitscotland:heroImage:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: f846ac14-4bbe-43af-8bdd-1f60979abc11
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Small but mighty, Inverness is quickly becoming
+                a popular city break destination for visitors from around the world.
+                Experience some of the best attractions Inverness has to offer with
+                this one day itinerary. From art galleries and museums to food &amp;
+                drink, Inverness has it all!</p>
+        /day-1:
+          jcr:primaryType: hippo:handle
+          jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+          jcr:uuid: 2b28979e-4086-4e36-9cea-1d25c0f6b85c
+          hippo:name: Day 1
+          hippo:versionHistory: 044d99bd-13e2-44fb-b4f1-6ded0c44c096
+          /day-1[1]:
+            jcr:primaryType: visitscotland:Day
+            jcr:mixinTypes: ['mix:versionable']
+            jcr:uuid: c0c89bae-cbbd-4528-bd89-336df148769c
+            hippo:availability: [preview]
+            hippostd:state: unpublished
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-10-20T13:32:22.551Z
+            hippostdpubwf:lastModificationDate: 2020-11-24T13:34:21.895Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 3dca079a-21cd-4bd6-ab73-45593a4bb66b
+            hippotranslation:locale: en
+            visitscotland:title: Day 1 - Inverness
+            visitscotland:translation: ''
+            visitscotland:transports: [car, walking]
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Culloden Battlefield, Inverness Museum &amp; Art
+                Gallery, Clava Cairns, River Ness &amp; Ness Islands and Inverness
+                Botanic Gardens</p>
+            /visitscotland:stops[1]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8ef343ea-4650-4fb7-98d1-b34822be9817
+            /visitscotland:stops[2]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 961348bd-660b-423f-bca8-e694f5e892ce
+            /visitscotland:stops[3]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: d93a1829-d987-4138-9b7d-d4302ce127c8
+            /visitscotland:stops[4]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 56d04a55-ae5b-4357-a8fd-b20bebbe91c5
+            /visitscotland:stops[5]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 9d93f20d-6c33-4b6d-9c3b-b7e8cd7f8669
+            /visitscotland:stops[6]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 0aba5bc3-cfab-48cf-807f-f24dd702ab2b
+          /day-1[2]:
+            jcr:primaryType: visitscotland:Day
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: 62a20feb-faad-457a-b041-2a6e47a35972
+            hippo:availability: []
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-10-20T13:32:22.551Z
+            hippostdpubwf:lastModificationDate: 2020-11-24T13:34:21.927Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 3dca079a-21cd-4bd6-ab73-45593a4bb66b
+            hippotranslation:locale: en
+            visitscotland:title: Day 1 - Inverness
+            visitscotland:translation: ''
+            visitscotland:transports: [car, walking]
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Culloden Battlefield, Inverness Museum &amp; Art
+                Gallery, Clava Cairns, River Ness &amp; Ness Islands and Inverness
+                Botanic Gardens</p>
+            /visitscotland:stops[1]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8ef343ea-4650-4fb7-98d1-b34822be9817
+            /visitscotland:stops[2]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 961348bd-660b-423f-bca8-e694f5e892ce
+            /visitscotland:stops[3]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: d93a1829-d987-4138-9b7d-d4302ce127c8
+            /visitscotland:stops[4]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 56d04a55-ae5b-4357-a8fd-b20bebbe91c5
+            /visitscotland:stops[5]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 9d93f20d-6c33-4b6d-9c3b-b7e8cd7f8669
+            /visitscotland:stops[6]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 0aba5bc3-cfab-48cf-807f-f24dd702ab2b
+          /day-1[3]:
+            jcr:primaryType: visitscotland:Day
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: 5228c822-de16-4ad1-a498-f60d66abd2ff
+            hippo:availability: [live]
+            hippostd:state: published
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-10-20T13:32:22.551Z
+            hippostdpubwf:lastModificationDate: 2020-11-24T13:34:21.895Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippostdpubwf:publicationDate: 2020-11-24T13:34:31.689Z
+            hippotranslation:id: 3dca079a-21cd-4bd6-ab73-45593a4bb66b
+            hippotranslation:locale: en
+            visitscotland:title: Day 1 - Inverness
+            visitscotland:translation: ''
+            visitscotland:transports: [car, walking]
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Culloden Battlefield, Inverness Museum &amp; Art
+                Gallery, Clava Cairns, River Ness &amp; Ness Islands and Inverness
+                Botanic Gardens</p>
+            /visitscotland:stops[1]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8ef343ea-4650-4fb7-98d1-b34822be9817
+            /visitscotland:stops[2]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 961348bd-660b-423f-bca8-e694f5e892ce
+            /visitscotland:stops[3]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: d93a1829-d987-4138-9b7d-d4302ce127c8
+            /visitscotland:stops[4]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 56d04a55-ae5b-4357-a8fd-b20bebbe91c5
+            /visitscotland:stops[5]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 9d93f20d-6c33-4b6d-9c3b-b7e8cd7f8669
+            /visitscotland:stops[6]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 0aba5bc3-cfab-48cf-807f-f24dd702ab2b
