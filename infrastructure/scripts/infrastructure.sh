@@ -720,9 +720,11 @@ exportVSVariables() {
 
 copyVSVariables() {
   VS_TARGET=$WORKSPACE/site/webapp/src/main/webapp/vs-static/
-  echo " - copying VS variables file $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $VS_TARGET"
-  # to-do gp: set VS_TARGET in defaultSettings
-  cp $VS_VS_LAST_ENV $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX $VS_TARGET
+  if [ -d $VS_TARGET ]; then
+    echo " - copying VS variables file $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $VS_TARGET"
+    # to-do gp: set VS_TARGET in defaultSettings
+    cp $VS_VS_LAST_ENV $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX $VS_TARGET
+  fi
 }
 
 createBuildReport() {
