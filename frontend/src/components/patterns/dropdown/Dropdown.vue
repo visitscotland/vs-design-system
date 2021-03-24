@@ -2,7 +2,6 @@
     <BDropdown
         v-bind="$attrs"
         class="vs-dropdown"
-        no-caret
     >
         <slot
             v-for="(_, name) in nonButtonContentSlots"
@@ -13,13 +12,6 @@
             <slot name="button-content">
                 {{ text }}
             </slot>
-            <VsIcon
-                name="chevron"
-                orientation="down"
-                variant="reverse-white"
-                size="xxs"
-                class="ml-1"
-            />
         </template>
         <slot />
     </BDropdown>
@@ -28,16 +20,16 @@
 <script>
 import { BDropdown } from 'bootstrap-vue';
 import { reject } from 'lodash';
-import VsIcon from '@components/elements/icon';
 
 /**
  * Dropdown component for lists of links for example.
+ *
+ * @displayName Dropdown
  */
 export default {
     name: 'VsDropdown',
     components: {
         BDropdown,
-        VsIcon,
     },
     props: {
         text: {
@@ -56,32 +48,28 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/dropdown";
-@import "~bootstrap/scss/buttons";
-@import "~bootstrap-vue/src/components/dropdown/dropdown";
-
 .vs-dropdown {
-  .dropdown-toggle {
-    .icon-chevron {
-      transition: all 150ms ease-in-out;
-    }
-  }
-  &.show {
     .dropdown-toggle {
-      .icon-chevron {
-        transform: none;
-      }
+        &::after {
+            display: inline-block;
+            margin: 0.1rem 0 0 0.4rem;
+            vertical-align: 0.155em;
+            content: "";
+            border: solid $color-white;
+            border-width: 0 1px 1px 0;
+            padding: 0.25rem;
+            transform: rotate(45deg);
+        }
     }
-  }
 }
 </style>
 
 <docs>
   ```js
-  <vs-dropdown text="Dropdown">
-    <vs-dropdown-item href="https://www.google.com">Google</vs-dropdown-item>
-    <vs-dropdown-item>bbbb</vs-dropdown-item>
-    <vs-dropdown-item>feeeeee</vs-dropdown-item>
-  </vs-dropdown>
+  <VsDropdown text="Dropdown">
+    <VsDropdownItem href="https://www.google.com">Google</VsDropdownItem>
+    <VsDropdownItem>bbbb</VsDropdownItem>
+    <VsDropdownItem>feeeeee</VsDropdownItem>
+  </VsDropdown>
   ```
 </docs>

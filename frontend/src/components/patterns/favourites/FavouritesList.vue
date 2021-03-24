@@ -32,6 +32,11 @@
 import VsIcon from '@components/elements/icon/Icon';
 import favouritesStore from './favourites.store';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Favourites List
+ */
 export default {
     name: 'VsFavouritesList',
     status: 'prototype',
@@ -66,9 +71,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-@import "~bootstrap/scss/type";
-
+<style lang="scss">
 .vs-favourites-list__link {
     font-size: 1.5rem;
 }
@@ -76,7 +79,7 @@ export default {
 .vs-favourites-list__header {
     color: $color-gray-shade-2;
     font-size: 2rem;
-    font-weight: 300;
+    font-weight: $font-weight-light;
     letter-spacing: 1px;
 }
 </style>
@@ -86,27 +89,27 @@ export default {
 
   <div style="position: relative; height: 600px;">
     Test Add Favourite Item 1
-    <vs-favourites-toggle-button
+    <VsFavouritesToggleButton
       :href="favourite.href"
       :title="favourite.title"
     >
-    </vs-favourites-toggle-button>
+    </VsFavouritesToggleButton>
     Test Add Favourite Item 2
-     <vs-favourites-toggle-button
+     <VsFavouritesToggleButton
       href="http:www.visitscotland.org"
       title="VisitScotland Corporate Website"
     >
-    </vs-favourites-toggle-button>
+    </VsFavouritesToggleButton>
     Test Add Favourite Item 3
-     <vs-favourites-toggle-button
+     <VsFavouritesToggleButton
       href="https://www.visitscotland.com/destinations-maps/st-andrews/"
       title="St Andrews"
     >
-    </vs-favourites-toggle-button>
+    </VsFavouritesToggleButton>
     Favourites Count
-    <vs-favourites-view-button>
-    </vs-favourites-view-button>
-    <vs-favourites-list/>
+    <VsFavouritesViewButton>
+    </VsFavouritesViewButton>
+    <VsFavouritesList/>
   </div>
   ```
 </docs>

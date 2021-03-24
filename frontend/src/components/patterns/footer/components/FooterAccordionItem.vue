@@ -1,6 +1,8 @@
 <template>
     <VsAccordionItem
-        class="vs-footer-accordion__item mb-md-4"
+        class="vs-footer-accordion-item mb-md-4"
+        data-test="vs-footer-accordion-item"
+        :data-unique-id="getUniqueId"
         :control-id="controlId"
         :item-break-point="itemBreakPoint"
         :open-by-default="openByDefault"
@@ -8,7 +10,7 @@
     >
         <template #title>
             <!-- @slot Put the title here  -->
-            <slot name="title" />
+            {{ title }}
         </template>
 
         <template #icon-open>
@@ -26,11 +28,13 @@
 </template>
 
 <script>
-import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
+import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
 
 /**
  * The FooterAccordionItem is an accordion item used inside the FooterNavList.
  * It's a wrapper for FooterNavListItems in the footer.
+ *
+ * @displayName Footer Accordion Item
  */
 
 export default {
@@ -65,6 +69,13 @@ export default {
             default: true,
         },
         /**
+         * The title for the submenu and alias for the testing data-unique-id
+         */
+        title: {
+            type: String,
+            default: '',
+        },
+        /**
          * Variant for which button to show in headers
          */
         variant: {
@@ -72,24 +83,34 @@ export default {
             default: 'primary',
         },
     },
+    computed: {
+        getUniqueId() {
+            let transformedTitle = this.title.toLowerCase();
+            transformedTitle = transformedTitle.replace(/\s+/g, '-');
+
+            return `vs-footer-${transformedTitle}`;
+        },
+    },
 };
 </script>
 
 <style lang="scss">
-.vs-footer-accordion__item.card {
+.vs-footer-accordion-item.card {
     border-bottom: 1px solid $color-gray-shade-2;
 
-      .vs-accordion__item__card-header{
+      .vs-accordion-item__card-header{
         background-color: $color-gray-shade-7;
     }
 
-    .vs-accordion__item__title {
+    .vs-accordion-item__title {
         margin: $spacer-3 0;
         background-color: $color-gray-shade-7;
         color: $color-white;
+        font-family: $font-family-sans-serif;
+        font-weight: $font-weight-semi-bold;
     }
 
-     .vs-accordion__item__panel.card-body {
+     .vs-accordion-item__panel.card-body {
         background-color: $color-gray-shade-6;
         color: $color-white;
         border-top: 1px solid $color-gray-shade-2;
@@ -100,7 +121,7 @@ export default {
         letter-spacing: initial;
         padding: $spacer-3;
         line-height: $line-height-xs;
-        font-weight: 500;
+        font-weight: $font-weight-semi-bold;
         text-align: left;
 
         &:hover {
@@ -130,11 +151,11 @@ export default {
         padding: 0 $spacer-3;
         background-color: $color-theme-dark;
 
-        .vs-accordion__item__title {
+        .vs-accordion-item__title {
             margin-top: $spacer-1;
         }
 
-        .vs-accordion__item__panel.card-body {
+        .vs-accordion-item__panel.card-body {
             padding: 0;
             background-color: $color-theme-dark;
             border-top: 0;
@@ -145,48 +166,45 @@ export default {
 
 <docs>
   ```js
-    <vs-footer>
-        <vs-footer-nav-list break-point="md">
-            <vs-col cols="12" md="6">
-                <vs-footer-accordion-item
+    <VsFooter>
+        <VsFooterNavList break-point="md">
+            <VsCol cols="12" md="6">
+                <VsFooterAccordionItem
                     :open-by-default="false"
+                    title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
                     class="border-left-0"
                 >
-                    <span slot="title">
-                        Visitor information
-                    </span>
-
                     <span slot="icon-open">
-                        <vs-icon name="chevron" variant="light" size="xs" />
+                        <VsIcon name="chevron" variant="light" size="xs" />
                     </span>
 
                     <span slot="icon-closed">
-                        <vs-icon name="chevron" orientation="right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
                     </span>
 
-                    <vs-list unstyled>
-                        <vs-footer-nav-list-item
+                    <VsList unstyled>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="Brochures"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="VisitScotland iCentres"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="iKnow Scotland Community"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="VisitScotland Awards"
-                        ></vs-footer-nav-list-item>
-                    </vs-list>
-                </vs-footer-accordion-item>
-            </vs-col>
-        </vs-footer-nav-list>
-    </vs-footer>
+                        ></VsFooterNavListItem>
+                    </VsList>
+                </VsFooterAccordionItem>
+            </VsCol>
+        </VsFooterNavList>
+    </VsFooter>
   ```
 </docs>

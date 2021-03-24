@@ -1,6 +1,6 @@
 <template>
     <VsDropdown class="vs-global-menu__languages">
-        <template v-slot:button-content>
+        <template #button-content>
             <VsIcon
                 class="vs-global-menu__languages__icon"
                 name="globe"
@@ -24,7 +24,7 @@
             {{ languageLabel }}
         </span>
 
-        <!-- @slot Default slot to render dropdown items  -->
+        <!-- @slot Default slot for Global Menu Language Items  -->
         <slot />
     </VsDropdown>
 </template>
@@ -34,6 +34,11 @@ import cookieMixin from '@mixins/cookieMixin';
 import VsIcon from '@components/elements/icon/Icon';
 import VsDropdown from '../../../dropdown/Dropdown';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Global Menu Language
+ */
 export default {
     name: 'VsGlobalMenuLanguage',
     status: 'prototype',
@@ -89,7 +94,6 @@ export default {
         width: 100%;
         background: $color-purple;
         font-size: $font-size-sm;
-        transition: all ease-in-out 0.3s;
         margin: 0;
         max-height: 0;
         overflow: hidden;
@@ -116,10 +120,14 @@ export default {
     }
 
     .dropdown-toggle {
-        padding: 0.3rem $spacer-2;
+        padding: 0.3rem $spacer-4;
         font-size: $font-size-sm;
         background: $color-purple;
         border: none;
+
+        @include media-breakpoint-up(lg) {
+            padding: 0.3rem $spacer-2;
+        }
 
         &-secondary:not(:disabled):not(.disabled):active {
             background: $color-purple-shade-2;
@@ -143,80 +151,80 @@ export default {
             background: $color-purple-shade-2;
         }
     }
-}
 
-.vs-global-menu__languages {
     @include media-breakpoint-up(lg) {
         position: relative;
     }
 
     .dropdown-toggle {
         @include media-breakpoint-up(lg) {
-            padding: $spacer-2 $spacer-4;
+            padding: $spacer-2 $spacer-3;
         }
     }
-}
 
-.vs-global-menu__languages__icon {
-    display: none;
+    &__icon, &__text {
+        display: none;
 
-    @include media-breakpoint-up(lg) {
-        display: inline;
+        @include media-breakpoint-up(lg) {
+            display: inline;
+        }
     }
-}
 
-.vs-global-menu__languages__text {
-    padding-left: $spacer-2;
-    display: none;
-
-    @include media-breakpoint-up(lg) {
-        display: inline;
+    &__text {
+        padding-left: $spacer-1;
     }
-}
 
-.vs-global-menu__languages__label {
-    display: none;
+    &__selected {
+        @include media-breakpoint-up(lg) {
+            padding-left: $spacer-1;
+        }
+    }
+
+    &__label {
+        display: none;
+    }
+
 }
 
 @include no-js {
     .vs-global-menu__languages {
         display: block;
+        width: 100%;
 
         .dropdown-menu {
             @extend .show;
             position: initial;
-            display: block;
-            border: none;
-            opacity: 1;
-            max-height: 700px;
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
             transform: translate3d(0px, 0px, 0px) !important;
             text-align: center;
+            max-height: none;
+            border-top: 1px solid $color-white;
+            padding: $spacer-3 0;
 
-        }
-
-        .dropdown-toggle {
-            display: none;
-        }
-
-        .dropdown-item {
-            color: white;
-
-            &:hover {
-                background: $color-purple-shade-2;
-            }
-        }
-
-        .vs-global-menu__languages__label {
-            display: inline;
-            color: white;
-            padding: $spacer-4;
-        }
-
-        @include media-breakpoint-up(sm) {
-            .dropdown-menu {
+            @include media-breakpoint-up(md) {
                 display: inline-flex;
                 flex-wrap: wrap;
                 text-align: left;
+            }
+        }
+
+        &__label {
+            display: inline;
+            color: $color-white;
+            padding: $spacer-3;
+            line-height: $line-height-s;
+            font-size: $h4-font-size;
+            margin: 0 auto;
+
+            @include media-breakpoint-up(md) {
+                padding: $spacer-4 $spacer-3;
+                margin: 0;
+            }
+
+            @include media-breakpoint-up(lg) {
+                padding: $spacer-4 $spacer-3 $spacer-4 0;
             }
         }
     }
@@ -224,7 +232,7 @@ export default {
 </style>
 
 <docs>
-  ```
+  ```jsx
     <VsGlobalMenuLanguage>
         <VsGlobalMenuLanguageItem language-name="English" language="en_EN" />
         <VsGlobalMenuLanguageItem language-name="Deutsch" language="de_DE" />
