@@ -1,6 +1,5 @@
 package com.visitscotland.brxm.utils;
 
-import com.visitscotland.brxm.services.ResourceBundleService;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import java.util.Locale;
 
 /**
  * Set of utilities related with Hippo that from the whole environment to be running in order to work
@@ -42,7 +40,7 @@ public class HippoUtilsService {
      *
      * @return URL for the page that renders the document or null when it cannot be rendered as a page.
      */
-    @NonTestable
+    @NonTestable(NonTestable.Cause.BRIDGE)
     public String createUrl(HippoBean document){
         final boolean FULLY_QUALIFIED = true;
         HstRequestContext requestContext = RequestContextProvider.get();
@@ -54,7 +52,7 @@ public class HippoUtilsService {
     /**
      * Return a HippoBean from the path of the Node
      */
-    @NonTestable
+    @NonTestable(NonTestable.Cause.BRIDGE)
     public <T extends HippoBean> T getDocumentFromNode(String path) throws QueryException, ObjectBeanManagerException, RepositoryException {
         return getDocumentFromNode(RequestContextProvider.get().getSession().getNode(path));
     }
@@ -62,7 +60,7 @@ public class HippoUtilsService {
     /**
      * Return a HippoBean from the Node
      */
-    @NonTestable
+    @NonTestable(NonTestable.Cause.BRIDGE)
     public <T extends HippoBean> T getDocumentFromNode(Node jcrNode) throws QueryException, ObjectBeanManagerException {
         HippoBean bean = RequestContextProvider.get().getQueryManager()
                 .createQuery(jcrNode).execute().getHippoBeans().nextHippoBean();
@@ -70,6 +68,7 @@ public class HippoUtilsService {
         return (T) bean.getObjectConverter().getObject(bean.getNode());
     }
 
+    @NonTestable(NonTestable.Cause.BRIDGE)
     public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem) {
         return hstComponent.getBeanForResolvedSiteMapItem(request, sitemapItem);
     }
@@ -82,7 +81,7 @@ public class HippoUtilsService {
      *
      * @return value of the query parameter or null if such parameter hasn't been defined
      */
-    @NonTestable
+    @NonTestable(NonTestable.Cause.BRIDGE)
     public String getParameterFromUrl(HstRequest request, String parameter){
         return request.getRequestContext().getServletRequest().getParameter(parameter);
     }

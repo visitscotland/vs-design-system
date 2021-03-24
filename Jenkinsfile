@@ -41,8 +41,9 @@ pipeline {
     // gp: investigate the use of stash/unstash to make build artefacts available to other nodes
     // - see: https://www.cloudbees.com/blog/parallelism-and-distributed-builds-jenkins
     // - this could potentially allow the running of all Lighthouse tests on a separate node
-    // - experiment with a simple echo on a different node
+    // - experiment with a simple echo on a different node (stash/unstash)
     // gp: change sonarqube project target to a short version of the project name
+
     disableConcurrentBuilds()
   }
   agent {label thisAgent}
@@ -103,11 +104,12 @@ pipeline {
       when {
         allOf {
           expression {return env.VS_RUN_BRC_STAGES != 'TRUE'}
-	      expression {return env.VS_SKIP_VS_BLD != 'TRUE'}
+	        expression {return env.VS_SKIP_VS_BLD != 'TRUE'}
           expression {return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
         }
       }
       steps {
+        sh 'sh ./infrastructure/scripts/infrastructure.sh setvars'
         // -- 20200712: QUESTION FOR SE, "why do we not build with-development-data?"
         sh 'mvn -f pom.xml clean package'
       }
