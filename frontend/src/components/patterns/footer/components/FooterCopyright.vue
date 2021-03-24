@@ -1,5 +1,9 @@
 <template>
-    <div class="vs-footer-copyright border-top border-secondary-light">
+    <div
+        class="vs-footer-copyright border-top border-secondary-light"
+        data-unique-id="vs-footer-sub_footer"
+        data-test="vs-footer-copyright"
+    >
         <VsContainer>
             <VsRow>
                 <VsCol
@@ -8,10 +12,10 @@
                 >
                     <VsSvgLink
                         class="vs-footer-copyright__logo mb-4"
-                        data-test="vs-footer-copyright__logo"
+                        data-test="vs-footer-copyright-logo"
                         :link-alt-text="linkAltText"
                         :href="href"
-                        svg-fill="700e57"
+                        svg-fill="#ffffff"
                         svg-path="vs-logo"
                     />
 
@@ -36,6 +40,8 @@ import {
 
 /**
  * The VsFooterCopyright holds an image and copyright notices for the footer.
+ *
+ * @displayName Footer Copyright
  */
 
 export default {
@@ -107,13 +113,13 @@ export default {
 
 <docs>
   ```js
-    <vs-footer>
-        <vs-footer-copyright link-alt-text="VisitScotland Home" href="/">
+    <VsFooter>
+        <VsFooterCopyright link-alt-text="VisitScotland Home" href="/">
             <span slot="copyright">
                VisitScotland. All rights reserved.
             </span>
-        </vs-footer-copyright>
-    </vs-footer>
+        </VsFooterCopyright>
+    </VsFooter>
 
   ```
 </docs>

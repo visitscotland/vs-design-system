@@ -54,19 +54,6 @@ $grid-breakpoints: (
     xxl: $breakpoint-xxl,
 );
 
-// Setting gutter width for XS
-@media (max-width: map-get($grid-breakpoints, sm)){
-    .row:not(.no-gutters) {
-        margin-right: -4px;
-        margin-left: -4px;
-    }
-    .row:not(.no-gutters) > .col,
-    .row:not(.no-gutters) > [class*="col-"] {
-        padding-right: 4px;
-        padding-left: 4px;
-    }
-}
-
 $container-max-widths: (
     sm: $max-container-width-sm,
     md: $max-container-width-md,
@@ -131,6 +118,9 @@ $link-decoration: underline;
 
 /* Typography */
 $lead-font-weight: 400;
-$semibold-font-weight: 500;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700; 
 
 $standard-line-height: 1.2;

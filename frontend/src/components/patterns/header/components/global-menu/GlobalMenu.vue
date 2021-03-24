@@ -1,6 +1,9 @@
 <template>
     <div class="vs-global-menu">
-        <VsContainer>
+        <VsContainer
+            fluid="lg"
+            class="px-1 px-sm-3"
+        >
             <VsRow>
                 <VsCol
                     cols="12"
@@ -46,6 +49,8 @@ import VsGlobalMenuList from './GlobalMenuList';
 /**
  * This component is the main Global Nav Wrapper for the top of the page.
  * It holds the Our Websites and slots for Login and Language Change functionalities.
+ *
+ * @displayName Global Menu
  */
 
 export default {
@@ -106,7 +111,6 @@ export default {
 
 <style lang="scss">
 .vs-global-menu {
-    width: 100%;
     background: $color-purple;
     color: white;
     position: relative;
@@ -119,39 +123,31 @@ export default {
         height: 35px;
     }
 
-    @include media-breakpoint-down(md) {
-        .container {
-            padding: 0;
-            margin: 0;
-            max-width: 100%;
-        }
-
-        .row {
-            margin: 0 !important;
-        }
-
-        .col-12 {
-            padding: 0 !important;
-        }
-    }
-
     &__wrapper {
         position: initial;
         display: flex;
         align-items: center;
 
         @include media-breakpoint-down(md) {
-            width: 100%;
-            padding: 0;
             margin: 0;
         }
+    }
+}
+
+.row:not(.no-gutters) > .vs-global-menu__wrapper{
+    @include media-breakpoint-down(md) {
+        padding: 0;
     }
 }
 
 @include no-js {
     .vs-global-menu {
         height: auto;
-        font-size: $font-size-base;
+        margin-bottom: $spacer-4;
+
+        .dropdown-toggle{
+            display: none
+        }
 
         &__wrapper {
             display: flex;
@@ -160,45 +156,33 @@ export default {
             .vs-global-menu__websites {
                 display: none;
             }
-
-            .vs-list {
-                display: flex !important;
-            }
         }
     }
 }
 </style>
 
 <docs>
-  ```
-    <vs-global-menu
-        dropdown-label="I nostri siti"
+  ```jsx
+    <VsGlobalMenu
+        dropdown-label="Our websites"
         active-site="https://www.visitscotland.com/"
-    ><span
-            slot="second-menu-item"
-            style="min-width: 50px;"
-        >
-            User... (Not you?)
-        </span>
-
-        <span
-            slot="third-menu-item"
-        >
-        <vs-global-menu-language>
-            <vs-global-menu-language-item languageName="English">
-            </vs-global-menu-language-item>
-            <vs-global-menu-language-item languageName="Deutsch">
-            </vs-global-menu-language-item>
-            <vs-global-menu-language-item languageName="Español">
-            </vs-global-menu-language-item>
-            <vs-global-menu-language-item languageName="Français">
-            </vs-global-menu-language-item>
-            <vs-global-menu-language-item languageName="Italiano">
-            </vs-global-menu-language-item>
-            <vs-global-menu-language-item languageName="Nederlands">
-            </vs-global-menu-language-item>
-        </vs-global-menu-language>
-        </span>
-    </vs-global-menu>
+    >
+        <template slot="third-menu-item">
+            <VsGlobalMenuLanguage>
+                <VsGlobalMenuLanguageItem languageName="English">
+                </VsGlobalMenuLanguageItem>
+                <VsGlobalMenuLanguageItem languageName="Deutsch">
+                </VsGlobalMenuLanguageItem>
+                <VsGlobalMenuLanguageItem languageName="Español">
+                </VsGlobalMenuLanguageItem>
+                <VsGlobalMenuLanguageItem languageName="Français">
+                </VsGlobalMenuLanguageItem>
+                <VsGlobalMenuLanguageItem languageName="Italiano">
+                </VsGlobalMenuLanguageItem>
+                <VsGlobalMenuLanguageItem languageName="Nederlands">
+                </VsGlobalMenuLanguageItem>
+            </VsGlobalMenuLanguage>
+        </template>
+    </VsGlobalMenu>
   ```
 </docs>

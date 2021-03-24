@@ -99,8 +99,8 @@ module.exports = {
 			"vue": "never",
 			"js": "never",
 		}],
-
-        "no-debugger": "warn"
+        "no-debugger": "warn",
+        "no-underscore-dangle": "off",
 	},
 	settings: {
 		"import/resolver": {
