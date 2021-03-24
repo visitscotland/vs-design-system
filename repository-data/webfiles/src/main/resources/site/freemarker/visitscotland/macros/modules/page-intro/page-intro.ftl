@@ -26,42 +26,62 @@
 <#else>
     <#assign themeName = "light">
 </#if>
-
 <div class="has-edit-button">
-    <vs-page-intro background="${themeName}">
-        <vs-hero
-            slot="hero"
-            alt-text="${heroImage.altText!''}"
-            credit="${heroImage.credit!''}"
-            caption="${heroImage.description!''}"
-            image-src="${hero}"
-            latitude="${(heroCoordinates.latitude)!''}"
-            longitude="${(heroCoordinates.longitude)!''}"
-        >
-            <vs-img
-                src="${hero}"
-                alt="${heroImage.altText!''}"
-            > </vs-img>
-        </vs-hero>
+    <vs-page-intro background="${themeName}" <#if !heroImage?has_content>simple-intro="false"</#if>>
+        <#if heroImage?has_content>
+            <vs-hero
+                slot="hero"
+                alt-text="${heroImage.altText!''}"
+                credit="${heroImage.credit!''}"
+                caption="${heroImage.description!''}"
+                image-src="${hero}"
+                latitude="${(heroCoordinates.latitude)!''}"
+                longitude="${(heroCoordinates.longitude)!''}"
+            >
+                <vs-img
+                    src="${hero}"
+                    alt="${heroImage.altText!''}"
+                > </vs-img>
+            </vs-hero>
+        </#if>
         <vs-container slot="upper" class="py-lg-4">
             <vs-row class="justify-content-md-between">
-                <vs-col cols="12" lg="8" offset-lg="1">
-                    <@hst.include ref="breadcrumb"/>
-                </vs-col>
+                <#if heroImage?has_content>
+                    <vs-col cols="12" lg="8" offset-lg="1">
+                        <@hst.include ref="breadcrumb"/>
+                    </vs-col>
+                <#else>
+                    <vs-col cols="12">
+                        <@hst.include ref="breadcrumb"/>
+                    </vs-col>
+                </#if>
             </vs-row>
 
             <vs-row>
-                <vs-col cols="10" lg="8" offset-lg="1">
-                    <vs-heading level="1">${document.title}</vs-heading>
-                </vs-col>
-                <vs-col cols="2">
-                    <div class="d-flex justify-content-center justify-content-sm-end">
-                        <vs-social-share></vs-social-share>
-                    </div>
-                </vs-col>
+                <#if heroImage?has_content>
+                    <vs-col cols="10" lg="8" offset-lg="1">
+                        <vs-heading level="1">${document.title}</vs-heading>
+                    </vs-col>
+                    <vs-col cols="2">
+                        <div class="d-flex justify-content-center justify-content-sm-end">
+                            <vs-social-share></vs-social-share>
+                        </div>
+                    </vs-col>
+                <#else>
+                    <vs-col cols="10">
+                        <vs-heading level="1">${document.title}</vs-heading>
+                    </vs-col>
+                    <vs-col cols="2">
+                        <div class="d-flex justify-content-center justify-content-sm-end">
+                            <vs-social-share></vs-social-share>
+                        </div>
+                    </vs-col>
+                </#if>
             </vs-row>
             <vs-row>
-                <#if days?has_content>
+                <#if !heroImage?has_content>
+                    <vs-col cols="12">
+                <#elseif days?has_content>
                     <vs-col cols="12" md="6" lg="5" xl="6" offset-lg="1">
                 <#else>
                     <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
