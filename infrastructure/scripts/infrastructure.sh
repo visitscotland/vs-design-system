@@ -747,12 +747,14 @@ exportVSVariables() {
 }
 
 copyVSVariables() {
-  echo " - writing VS variables from $VS_VS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
+  echo " - writing VS variables from $VS_VS_LAST_ENV and $VS_JENKINS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
   # to-do gp: set VS_TARGET in defaultSettings
   if [ ! -d $VS_BUILD_PROPERTIES_TARGET_DIR ]; then
     echo " - $VS_BUILD_PROPERTIES_TARGET_DIR does not exist, creating"
     mkdir -p $VS_BUILD_PROPERTIES_TARGET_DIR
   fi
+  echo "# properties from $BUILD_TAG" > $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME
+  cat $VS_JENKINS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME
   cat $VS_VS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME
 }
 
@@ -845,7 +847,7 @@ sendSiteReport() {
 # ====/FUNCTIONS ====
 
 # ==== RUN ====
-echo "called with $METHOD"
+echo "$0 was called with $METHOD"
 case $METHOD in
   other)
     false
