@@ -31,8 +31,6 @@ module.exports = {
             '@components': resolve('src/components'),
             '@docs': resolve('docs'),
             '@cypress': resolve('cypress'),
-            '@mixins': resolve('src/mixins'),
-            '@directives': resolve('src/directives'),
         },
     },
     module: {

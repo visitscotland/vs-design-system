@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import cookieMixin from '@mixins/cookieMixin';
 import VsIcon from '@components/elements/icon/Icon';
-import VsDropdown from '../../../dropdown/Dropdown';
+import VsDropdown from '@components/patterns/dropdown/Dropdown';
+import cookieMixin from '../../../../../mixins/cookieMixin';
 
 /**
  * TODO: Document usage
