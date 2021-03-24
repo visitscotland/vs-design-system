@@ -32,6 +32,7 @@
 # ==== ADJUSTABLE VARIABLES ====
 #  == VS Variables ==
 if [ -z "$VS_DEBUG" ]; then VS_DEBUG=FALSE; fi
+if [ -z "$VS_BUILD_PROPERTIES_TARGET" ]; then VS_BUILD_PROPERTIES_TARGET=$WORKSPACE/site/components/src/main/resources/ci/; fi
 if [ -z "$VS_DOCKER_IMAGE_NAME" ]; then VS_DOCKER_IMAGE_NAME=vs-brxm; fi
 if [ -z "$VS_DOCKERFILE_PATH" ]; then VS_DOCKERFILE_PATH=/home/jenkins/vs-dockerfile; fi
 if [ -z "$VS_DOCKERFILE_NAME" ]; then VS_DOCKERFILE_NAME=vs-brxm; fi
@@ -745,10 +746,13 @@ exportVSVariables() {
 }
 
 copyVSVariables() {
-  VS_TARGET=$WORKSPACE/site/webapp/src/main/webapp/vs-static/
-  echo " - copying VS variables file $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $VS_TARGET"
+  echo " - copying VS variables file $VS_VS_LAST_ENV $VS_BUILD_PROPERTIES_TARGET"
   # to-do gp: set VS_TARGET in defaultSettings
-  cp $VS_VS_LAST_ENV $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX $VS_TARGET
+  if [ ! -d $VS_BUILD_PROPERTIES_TARGET ]; then
+    echo " - $VS_BUILD_PROPERTIES_TARGET does not exist, creating"
+    mkdir -p $VS_BUILD_PROPERTIES_TARGET
+  fi
+  cp -f $VS_VS_LAST_ENV $VS_BUILD_PROPERTIES_TARGET
 }
 
 createBuildReport() {
