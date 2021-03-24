@@ -25,11 +25,13 @@
 
 <script>
 import VsDropdown from '../../../dropdown/Dropdown';
-import VsDropdownItem from '../../../dropdown/DropdownItem';
+import VsDropdownItem from '../../../dropdown/components/DropdownItem';
 
 /**
  * This component is the dropdown used inside the Global Menu component.
  * It holds the list of websites to be shown on smaller devices.
+ *
+ * @displayName Global Menu Dropdown
  */
 
 export default {
@@ -87,10 +89,9 @@ export default {
         }
     }
 
-    .btn {
-        padding: 0.3rem $spacer-5;
+    .dropdown-toggle {
+        padding: 0.3rem $spacer-3;
         font-size: $font-size-sm;
-        display: flex;
         align-items: center;
 
         &-secondary:not(:disabled):not(.disabled):active {
@@ -100,7 +101,6 @@ export default {
         &:focus {
             outline: 3px solid $color-pink-tint-5;
             outline-offset: -3px;
-            // box-shadow: none;
             box-shadow: inset 0px 0px 0px 3px $color-pink-tint-5;
         }
     }
@@ -122,7 +122,7 @@ export default {
 
     .dropdown-menu {
         min-width: auto;
-        width: 100vw;
+        width: 100%;
         background: $color-purple;
         max-height: 0;
         overflow: hidden;
@@ -137,10 +137,11 @@ export default {
             }
 
             a {
-                padding: 0.7rem $spacer-5;
-                color: white;
+                padding: $spacer-3;
+                color: $color-white;
                 text-decoration: none;
                 font-size: $font-size-sm;
+                line-height: $line-height-s;
 
                 &:hover, &:focus {
                     background: $color-purple-shade-2;
@@ -169,24 +170,17 @@ export default {
 </style>
 
 <docs>
-  ```
-    <vs-global-menu
-        dropdown-label="I nostri siti"
+  ```jsx
+    <VsGlobalMenu
+        dropdown-label="Our websites"
         active-site="https://www.visitscotland.com/"
     >
-        <span
-            slot="second-menu-item"
-            style="min-width: 50px;"
-        >
-            User... (Not you?)
-        </span>
-
-        <span
+        <template
             slot="third-menu-item"
             style="min-width: 50px;"
         >
             EN
-        </span>
-    </vs-global-menu>
+        </template>
+    </VsGlobalMenu>
   ```
 </docs>
