@@ -33,6 +33,7 @@
 #  == VS Variables ==
 if [ -z "$VS_DEBUG" ]; then VS_DEBUG=FALSE; fi
 if [ -z "$VS_BUILD_PROPERTIES_TARGET" ]; then VS_BUILD_PROPERTIES_TARGET=$WORKSPACE/site/components/src/main/resources/ci/; fi
+if [ -z "$VS_BUILD_PROPERTIES_TARGET_NAME" ]; then VS_BUILD_PROPERTIES_TARGET_NAME=build-info.properties; fi
 if [ -z "$VS_DOCKER_IMAGE_NAME" ]; then VS_DOCKER_IMAGE_NAME=vs-brxm; fi
 if [ -z "$VS_DOCKERFILE_PATH" ]; then VS_DOCKERFILE_PATH=/home/jenkins/vs-dockerfile; fi
 if [ -z "$VS_DOCKERFILE_NAME" ]; then VS_DOCKERFILE_NAME=vs-brxm; fi
@@ -746,13 +747,13 @@ exportVSVariables() {
 }
 
 copyVSVariables() {
-  echo " - copying VS variables file $VS_VS_LAST_ENV $VS_BUILD_PROPERTIES_TARGET"
+  echo " - writing VS variables from $VS_VS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
   # to-do gp: set VS_TARGET in defaultSettings
-  if [ ! -d $VS_BUILD_PROPERTIES_TARGET ]; then
-    echo " - $VS_BUILD_PROPERTIES_TARGET does not exist, creating"
-    mkdir -p $VS_BUILD_PROPERTIES_TARGET
+  if [ ! -d $VS_BUILD_PROPERTIES_TARGET_DIR ]; then
+    echo " - $VS_BUILD_PROPERTIES_TARGET_DIR does not exist, creating"
+    mkdir -p $VS_BUILD_PROPERTIES_TARGET_DIR
   fi
-  cp -f $VS_VS_LAST_ENV $VS_BUILD_PROPERTIES_TARGET
+  cat $VS_VS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET/$VS_BUILD_PROPERTIES_TARGET_NAME
 }
 
 createBuildReport() {
