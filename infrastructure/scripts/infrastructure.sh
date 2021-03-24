@@ -169,7 +169,7 @@ defaultSettings() {
     fi
   fi
   # set unique container name from JOB_NAME and VS_BRANCH_NAME - removing / characters
-  if [ -z "$VS_CONTAINER_NAME" ]&&[ "VS_BRANCH_NAME" != "branch-not-found" ]; then
+  if [ -z "$VS_CONTAINER_NAME" ]&&[ "$VS_BRANCH_NAME" != "branch-not-found" ]; then
     VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $VS_BRANCH_NAME`
   else
     VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
