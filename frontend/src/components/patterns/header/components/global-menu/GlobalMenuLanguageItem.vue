@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import cookieMixin from '@mixins/cookieMixin';
-import VsDropdownItem from '../../../dropdown/components/DropdownItem';
+import VsDropdownItem from '@components/patterns/dropdown/components/DropdownItem';
+import cookieMixin from '../../../../../mixins/cookieMixin';
 
 /**
  * TODO: Document usage
