@@ -1,7 +1,7 @@
 <template>
     <div
         class="vs-page-intro position-relative"
-        :class="backgroundClass"
+        :class="introClasses"
         data-test="vs-page-intro"
     >
         <slot name="hero" />
@@ -37,15 +37,28 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     props: {
+        /*
+        * Background theme
+        */
         background: {
             type: String,
             default: 'light',
             validator: (value) => value.match(/(light|dark)/),
         },
+        /*
+        * Option for an intro to be used on simple page type
+        */
+        simpleIntro: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
-        backgroundClass() {
-            return `vs-page-intro--${this.background}`;
+        introClasses() {
+            return [
+                `vs-page-intro--${this.background}`,
+                this.simpleIntro ? 'vs-page-intro--simple' : '',
+            ];
         },
     },
 };
@@ -104,6 +117,17 @@ export default {
 
 .vs-page-intro--dark {
     background: $color-secondary-gray-shade-4;
+}
+
+.vs-page-intro--simple {
+    .vs-page-intro__wrapper--inner {
+        padding-top: $spacer-4;
+
+        @include media-breakpoint-up(lg) {
+            margin: 0;
+            padding: 0;
+        }
+    }
 }
 </style>
 
