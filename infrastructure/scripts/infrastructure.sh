@@ -154,9 +154,7 @@ defaultSettings() {
   fi
   if [ ! -d "$VS_CI_DIR" ]; then mkdir -p $VS_CI_DIR; fi
   if [ ! -d "$VS_CI_DIR/logs" ]; then mkdir -p $VS_CI_DIR/logs; fi
-  # set container name from branch name - removing / characters
   ## add additional check here to see if there's a CHANGE_BRANCH variable as well as a BRANCH_NAME variable
-  if [ -z "$VS_CONTAINER_NAME" ]; then VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`; fi
   if [ -z "$VS_BRANCH_NAME" ]; then
     if [ ! -z "$CHANGE_BRANCH" ]; then
       # this job is running against a branch in pull request status, using CHANGE_BRANCH variable
@@ -165,8 +163,14 @@ defaultSettings() {
       # this branch is a branch, using BRANCH_NAME variable
       VS_BRANCH_NAME=$BRANCH_NAME
     else
-      VS_BRANCH_NAME="branch not found"
+      VS_BRANCH_NAME="branch-not-found"
     fi
+  fi
+  # set unique container name from JOB_NAME and VS_BRANCH_NAME - removing / characters
+  if [ -z "$VS_CONTAINER_NAME" ]&&[ "VS_BRANCH_NAME" != "branch-not-found" ]; then
+    VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $VS_BRANCH_NAME`
+  else
+    VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
   fi
   if [ -z "$NODE_NAME" ]; then VS_THIS_SERVER=$HOSTNAME; else VS_THIS_SERVER=$NODE_NAME; fi
   if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then
