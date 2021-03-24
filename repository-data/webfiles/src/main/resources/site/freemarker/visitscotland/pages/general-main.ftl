@@ -28,24 +28,23 @@
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />
     <@hst.link var="hero" hippobean=document.heroImage.original/>
     <@cmsErrors errors=alerts!"" editMode=editMode />
-    
+
 
     <#if standardTemplate>
         <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme=introTheme areas="" days="" firstStop="" lastStop="" />
-
     <#else>
         <@pageIntro content=document heroImage="" heroCoordinates="" hero="" theme="light" areas="" days="" firstStop="" lastStop="" />
     </#if>
-	
+
+  <#--TODO Control abput colours, change style="background-color:${style}  -->
 	<#list pageItems as module>
 
-		<#if module.theme??>
-            <#assign theme = module.theme />
-        <#else>
-            <#assign theme = "theme2" />
-        </#if>
-
-		<@moduleBuilder module=module theme=theme />
+		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a common macro to control it-->
+		<#if standardTemplate >
+			<@moduleBuilder module=module colourScheme=["light", "light", "light"] />
+		<#else>
+			<@moduleBuilder module />
+		</#if>
 
 	</#list>
 </div>

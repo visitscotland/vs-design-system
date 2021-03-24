@@ -18,17 +18,11 @@
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
-    <@hst.link var="hero" hippobean=document.heroImage.original/>
+    <@hst.link var="hero" hippobean=heroImage.cmsImage.original/>
 
-    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme=introTheme areas="" days="" firstStop="" lastStop="" />	
+    <@pageIntro content=document heroImage=heroImage hero=hero />
 
 	<#list pageItems as item>
-        <#if item.theme??>
-            <#assign theme = item.theme />
-        <#else>
-            <#assign theme = "theme2" />
-        </#if>
-
-        <@moduleBuilder module=item theme=theme />
+        <@moduleBuilder item />
 	</#list>
 </div>

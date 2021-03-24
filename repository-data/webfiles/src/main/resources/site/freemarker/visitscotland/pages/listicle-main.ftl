@@ -81,7 +81,7 @@
       </#if>
 
         <#if otyml??>
-            <@moduleBuilder otyml "theme1" />
+            <@moduleBuilder otyml />
         </#if>
 	</vs-container>
 </div>

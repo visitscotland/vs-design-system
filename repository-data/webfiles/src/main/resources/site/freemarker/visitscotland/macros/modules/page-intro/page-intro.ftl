@@ -19,13 +19,11 @@
 <#include "../../../../frontend/components/vs-description-list-item.ftl">
 <#include "../../../../frontend/components/vs-image-with-caption.ftl">
 <#include "../../../../frontend/components/vs-image-location-map.ftl">
+<#include "../../shared/theme-calculator.ftl">
 
-<#macro pageIntro content heroImage heroCoordinates hero theme areas days firstStop lastStop>
-<#if theme="theme1">
-    <#assign themeName = "dark">
-<#else>
-    <#assign themeName = "light">
-</#if>
+<#macro pageIntro content heroImage hero areas=[] days="" firstStop="" lastStop="">
+
+    <#assign themeName = themeCalculator(introTheme)>
 <div class="has-edit-button">
     <vs-page-intro background="${themeName}" <#if !heroImage?has_content>simple-intro="false"</#if>>
         <#if heroImage?has_content>

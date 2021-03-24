@@ -33,9 +33,9 @@
 <div class="has-edit-button">
     <@hst.manageContent hippobean=document documentTemplateQuery="new-day" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
-     <@hst.link var="hero" hippobean=document.heroImage.original/>
+    <@hst.link var="hero" hippobean=document.heroImage.original/>
 
-    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="light" areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />
+    <@pageIntro content=document heroImage=heroImage hero=hero areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />
 
     <vs-itinerary>
         <@itineraryMap days=document.days />
@@ -84,6 +84,6 @@
         </#list>
     </vs-itinerary>
     <#if otyml??>
-        <@moduleBuilder otyml "theme1" />
+        <@moduleBuilder otyml />
     </#if>
 </div>
