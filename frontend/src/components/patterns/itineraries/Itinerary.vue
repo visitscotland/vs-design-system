@@ -14,7 +14,9 @@
         >
             <slot name="map" />
         </div>
-        <VsContainer>
+        <VsContainer
+            class="vs-itinerary__outer-container"
+        >
             <VsRow>
                 <VsCol
                     cols="12"
@@ -111,6 +113,18 @@ export default {
 <style lang="scss">
 .vs-itinerary {
     background-color: $color-white;
+
+    .vs-itinerary__outer-container {
+        @include media-breakpoint-down(lg) {
+            max-width: 100%;
+        }
+
+        @include media-breakpoint-down(sm) {
+            max-width: initial;
+            width: calc(100% + #{$spacer-6});
+            margin-left: -#{$spacer-3};
+        }
+    }
 
     .vs-itinerary__map-container {
         height: 100vh;
