@@ -1,56 +1,71 @@
 <template>
-    <VsAccordionItem
-        :open-by-default="show"
-        :control-id="'itinerary-day-' + dayNumber"
-        variant="transparent"
-        item-break-point="lg"
-        class="vs-itinerary-day__list-item"
+    <div
+        class="vs-itinerary__day-outer"
     >
-        <template #title>
-            <!-- @slot Put the title here  -->
-            <VsHeading
-                level="2"
-                class="vs-itinerary-day__header text-center mt-9 position-relative"
-            >
-                <span class="vs-itinerary-day__title d-inline-block">
-                    {{ dayLabel }} {{ dayNumber }}
-                </span>
-                <span slot="sub-heading">{{ dayTitle }}</span>
-            </VsHeading>
-        </template>
+        <VsContainer>
+            <VsRow>
+                <VsCol>
+                    <VsAccordionItem
+                        :open-by-default="show"
+                        :control-id="'itinerary-day-' + dayNumber"
+                        variant="transparent"
+                        item-break-point="lg"
+                        class="vs-itinerary-day__list-item"
+                    >
+                        <template #title>
+                            <!-- @slot Put the title here  -->
+                            <VsHeading
+                                level="2"
+                                class="vs-itinerary-day__header text-center mt-9 position-relative"
+                            >
+                                <span class="vs-itinerary-day__title d-inline-block">
+                                    {{ dayLabel }} {{ dayNumber }}
+                                </span>
+                                <span slot="sub-heading">{{ dayTitle }}</span>
+                            </VsHeading>
+                        </template>
 
-        <template #icon-open>
-            <!-- @slot Slot for the icon to show when accordion item is open  -->
-            <VsIcon
-                name="chevron"
-                orientation="down"
-                variant="dark"
-                size="xs"
-                :padding="3"
-                class="vs-itinerary-day__toggle-button"
-            />
-        </template>
-        <template #icon-closed>
-            <!-- @slot Slot for the icon to show when accordion item is closed  -->
-            <VsIcon
-                name="chevron"
-                variant="dark"
-                size="xs"
-                :padding="3"
-                class="vs-itinerary-day__toggle-button"
-            />
-        </template>
-        <div :id="'dayPanel_' + dayNumber">
-            <slot name="day-transport" />
-            <slot name="day-introduction" />
-            <ul class="list-unstyled">
-                <slot name="stops" />
-            </ul>
-        </div>
-    </VsAccordionItem>
+                        <template #icon-open>
+                            <!-- @slot Slot for the icon to show when accordion item is open  -->
+                            <VsIcon
+                                name="chevron"
+                                orientation="down"
+                                variant="dark"
+                                size="xs"
+                                :padding="3"
+                                class="vs-itinerary-day__toggle-button"
+                            />
+                        </template>
+                        <template #icon-closed>
+                            <!-- @slot Slot for the icon to show when accordion item is closed  -->
+                            <VsIcon
+                                name="chevron"
+                                variant="dark"
+                                size="xs"
+                                :padding="3"
+                                class="vs-itinerary-day__toggle-button"
+                            />
+                        </template>
+                        <div :id="'dayPanel_' + dayNumber">
+                            <slot name="day-transport" />
+                            <slot name="day-introduction" />
+                            <ul class="list-unstyled">
+                                <slot name="stops" />
+                            </ul>
+                        </div>
+                    </VsAccordionItem>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
+    </div>
 </template>
 
 <script>
+import {
+    VsContainer,
+    VsRow,
+    VsCol,
+} from '@components/elements/layout';
 import VsIcon from '@components/elements/icon/Icon';
 import VsHeading from '@components/elements/heading/Heading';
 import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
@@ -66,6 +81,9 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
+        VsContainer,
+        VsRow,
+        VsCol,
         VsHeading,
         VsIcon,
         VsAccordionItem,
@@ -112,14 +130,17 @@ export default {
 <style lang="scss">
 .vs-itinerary-day__list-item.card {
     width: calc(100% + #{$spacer-4});
-    border-top: 5px solid $color-base-text;
     margin-left: -#{$spacer-2};
     padding: $spacer-4 $spacer-6 0;
+}
 
+.vs-itinerary__day-outer {
+    border-top: 5px solid $color-base-text;
+}
+
+.vs-itinerary__day-outer:first-of-type {
     @include media-breakpoint-up(lg) {
-        &:first-of-type {
-            border-top: none;
-        }
+        border-top: none;
     }
 }
 
