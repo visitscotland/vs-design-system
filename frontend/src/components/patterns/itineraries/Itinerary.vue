@@ -110,6 +110,8 @@ export default {
 
 <style lang="scss">
 .vs-itinerary {
+    background-color: $color-white;
+
     .vs-itinerary__map-container {
         height: 100vh;
         position: fixed;
