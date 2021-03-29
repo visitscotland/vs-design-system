@@ -179,7 +179,12 @@ export default {
                     v-for="(transportType, transportTypeIndex) in day.transport"
                 >
                     <VsTooltip :title="transportType.value">
-                        <vs-icon :name="transportType.key" variant="dark" size="md" />
+                        <vs-icon
+                            :name="transportType.key"
+                            variant="dark"
+                            size="md"
+                            smallSize="xs"
+                        />
                     </VsTooltip>
                     <span class="sr-only">{{transportType.value}}</span>
                 </dd>
