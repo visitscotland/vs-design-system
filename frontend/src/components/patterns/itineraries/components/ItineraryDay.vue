@@ -40,7 +40,10 @@
                 class="vs-itinerary-day__toggle-button"
             />
         </template>
-        <div :id="'dayPanel_' + dayNumber">
+        <div
+            :id="'dayPanel_' + dayNumber"
+            class="vs-itinerary-day__panel"
+        >
             <slot name="day-transport" />
             <slot name="day-introduction" />
             <ul class="list-unstyled">
@@ -143,6 +146,12 @@ export default {
         height: 32px;
         width: 32px;
         padding: 8px;
+    }
+}
+
+.vs-itinerary-day__panel .list-inline-item:not(:last-child) {
+    @include media-breakpoint-down(xs) {
+        margin-right: $spacer-1;
     }
 }
 
