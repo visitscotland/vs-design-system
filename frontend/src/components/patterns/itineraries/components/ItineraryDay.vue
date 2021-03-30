@@ -139,7 +139,7 @@ export default {
 }
 
 .vs-itinerary__day-outer:first-of-type {
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-up(md) {
         border-top: none;
     }
 }
