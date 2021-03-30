@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -118,7 +120,7 @@ class HTMLtoVueTransformerTest {
 
     @Test
     @DisplayName("Transform ordered lists into vue components")
-    void ol(){
+    void lists_ol(){
         String HTML = "<ol><li>Item 1</li><li>Item 2</li></ol>";
 
         assertTrue(transformer.processLists(HTML).endsWith("</vs-list>"));
@@ -127,11 +129,45 @@ class HTMLtoVueTransformerTest {
 
     @Test
     @DisplayName("Transform unordered lists into vue components")
-    void ul(){
+    void lists_ul(){
         String HTML = "<ul><li>Item 1</li><li>Item 2</li></ul>";
 
         assertTrue(transformer.processLists(HTML).endsWith("</vs-list>"));
         assertTrue(transformer.processLists(HTML).startsWith("<vs-list>"));
     }
 
+//    @ParameterizedTest
+//    @CsvSource({
+//            "<ul><li>Item 1</li><li>Item 2</li></ul><ul><li>Item 3</li><li>Item 4</li></ul>," +
+//                    "<vs-list><li>Item 1</li><li>Item 2</li></vs-list><vs-list><li>Item 3</li><li>Item 4</li></vs-list>",
+//            "<ul><li>Item 1</li><li>Item 2</li><li><ul><li>Item 3</li><li>Item 4</li></ul></li></ul>," +
+//                    "<vs-list><li>Item 1</li><li>Item 2</li><li><ul><li>Item 3</li><li>Item 4</li></ul></li></vs-list>",
+//            "<ul><ol><ul></ul></ol><ol></ol></ul> <ol><ol></ol></ol><ul><ul></ul></ul>," +
+//                    "<vs-list><ol><ul></ul></ol><ol></ol></vs-list> <vs-list ordered><ol></ol></vs-list><vs-list><ul></ul></vs-list>"
+//    })
+//    @DisplayName("VS-2488 - Consecutive lists will be turned into vs-link components")
+//    void lists_nestedListProcess(String input, String expectedOutput){
+//        assertEquals(expectedOutput, transformer.processLists(input));
+//    }
+
+    @Test
+    @DisplayName("VS-2488 - Consecutive lists will be turned into vs-link components")
+    void lists_severalConsecutiveLists(){
+        String output = transformer.processLists("<ul><li>Item 1</li><li>Item 2</li></ul><ul><li>Item 3</li><li>Item 4</li></ul>");
+        assertEquals("<vs-list><li>Item 1</li><li>Item 2</li></vs-list><vs-list><li>Item 3</li><li>Item 4</li></vs-list>", output);
+    }
+
+    @Test
+    @DisplayName("VS-2488 - Nested list will only alter the most external item")
+    void lists_nestedLists(){
+        String output = transformer.processLists("<ul><li>Item 1</li><li>Item 2</li><li><ul><li>Item 3</li><li>Item 4</li></ul></li></ul>");
+        assertEquals("<vs-list><li>Item 1</li><li>Item 2</li><li><ul><li>Item 3</li><li>Item 4</li></ul></li></vs-list>", output);
+    }
+
+    @Test
+    @DisplayName("VS-2488 - Complex scenario that combines consecutive and nested lists")
+    void lists_complex(){
+        String output = transformer.processLists("<ul><ol><ul></ul></ol><ol></ol></ul> <ol><ol></ol></ol><ul><ul></ul></ul>");
+        assertEquals("<vs-list><ol><ul></ul></ol><ol></ol></vs-list> <vs-list ordered><ol></ol></vs-list><vs-list><ul></ul></vs-list>", output);
+    }
 }
