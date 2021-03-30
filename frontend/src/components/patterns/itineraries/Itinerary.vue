@@ -115,11 +115,11 @@ export default {
     background-color: $color-white;
 
     .vs-itinerary__outer-container {
-        @include media-breakpoint-down(lg) {
+        @include media-breakpoint-down(sm) {
             max-width: 100%;
         }
 
-        @include media-breakpoint-down(sm) {
+        @include media-breakpoint-down(xs) {
             max-width: initial;
             width: calc(100% + #{$spacer-6});
             margin-left: -#{$spacer-3};
