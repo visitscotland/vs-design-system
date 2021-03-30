@@ -28,13 +28,15 @@ import org.wicketstuff.js.ext.util.ExtEventListener;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import java.util.Map;
+import java.util.*;
 
 
 @ExtClass("Hippo.Reports.TranslationListPanel")
 public class TranslationListPanel extends ReportPanel {
-    private static final JavaScriptResourceReference JS = new JavaScriptResourceReference(TranslationListPanel.class, "Hippo.Reports.TranslationListPanel.js");
-    private static final JavaScriptResourceReference JS_PROXY = new JavaScriptResourceReference(TranslationListPanel.class, "Hippo.Reports.PageableHttpProxy.js");
+    // Javascript files needed for the translation report
+    // Added to page in order they appear in this list
+    private static final List<String> JS_FILES = Arrays.asList("js/constants.js", "js/Hippo.Reports.PageableHttpProxy.js",
+            "js/Hippo.Reports.SimpleArrayStore.js", "js/reportFilterComponents.js",  "js/Hippo.Reports.TranslationListPanel.js");
     private static final CssResourceReference CSS = new CssResourceReference(DocumentListPanel.class, "Hippo.Reports.DocumentList.css");
     private static final Logger log = LoggerFactory.getLogger(TranslationListPanel.class);
 
@@ -59,9 +61,10 @@ public class TranslationListPanel extends ReportPanel {
     @Override
     public void renderHead(IHeaderResponse response) {
         super.renderHead(response);
+        JS_FILES.forEach((String file) -> {
+            response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(TranslationListPanel.class, file)));
+        });
         response.render(CssHeaderItem.forReference(CSS));
-        response.render(JavaScriptHeaderItem.forReference(JS_PROXY));
-        response.render(JavaScriptHeaderItem.forReference(JS));
     }
 
     protected void preRenderExtHead(StringBuilder js) {

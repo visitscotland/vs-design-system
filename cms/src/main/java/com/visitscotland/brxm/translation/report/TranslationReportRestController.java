@@ -23,10 +23,10 @@ public class TranslationReportRestController {
 
     @GetMapping("/translation/untranslated")
     public RestListContainer<TranslationModel> untranslatedFiles(@RequestParam String locale) {
-        if (!TranslationReportService.SUPPORTED_LOCALES.contains(locale)) {
+        if (!translationReportService.isLocaleSupported(locale)) {
             return new RestListContainer<>(Collections.emptyList());
         }
-        return new RestListContainer<>(TranslationReportService.getUntranslatedDocuments(locale));
+        return new RestListContainer<>(translationReportService.getUntranslatedDocuments(locale));
     }
 
     @PostMapping("/translation/{handleId}/priority")
@@ -34,7 +34,6 @@ public class TranslationReportRestController {
         Object priorityString = requestBody.get("priority");
         if (priorityString != null) {
             translationReportService.setTranslationPriority(handleId, TranslationPriority.valueOf(priorityString.toString()));
-            throw new ResponseStatusException(HttpStatus.OK);
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No priority provided");
     }

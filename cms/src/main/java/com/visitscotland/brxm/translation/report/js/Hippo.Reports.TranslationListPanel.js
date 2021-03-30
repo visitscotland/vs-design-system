@@ -3,43 +3,10 @@
  */
 Ext.ns('Hippo.Reports');
 
-const GRID_ID = "myGrid";
-const MODULE_FILTER_ID = "moduleFilter"
-const MODULE_LABEL_ID = "moduleFilterLabel"
-const PAGE_FILTER_ID = "pageFilter"
-const PAGE_LABEL_FILTER_ID = "pageFilterLabel"
-const FILTER_SIDEBAR_ID = "filterSidebar"
-const PAGE_SIZE = 13
-
-const SIDEBAR_LABEL_STYLE = "display: block; margin-top: 20px";
-
-// Simply loads records from a simple list, such as [1, 3, 6, 7]
-// Normal ArrayReader requires each list item to be in a sublist
-Hippo.Reports.SimpleArrayReader = Ext.extend(Ext.data.JsonReader,{
-    readRecords: function (list) {
-        return {
-            success : true,
-            records : list.map((item) => new this.recordType({value: item}, item)),
-            totalRecords : list.length
-        };
-   }
-});
-
-
-Hippo.Reports.SimpleArrayStore = Ext.extend(Ext.data.Store, {
-    constructor: function (config) {
-        Hippo.Reports.SimpleArrayStore.superclass.constructor.call(this, Ext.apply(config, {
-            reader: new Hippo.Reports.SimpleArrayReader(config)
-        }));
-    }
-});
-
 
 Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
 
     constructor: function(config) {
-        const GET_UNTRANSLATED_FILES_ENDPOINT = "/cms/translation/untranslated"
-        const INITIAL_LOCALE = "fr";
 
         let ajaxStore = new Ext.data.JsonStore({
             storeId: "myStore",
@@ -67,72 +34,6 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         this.moduleTypes = []
 
 
-        const languageComboConfig = {
-            xtype: "combo",
-            autoSelect: true,
-            editable: false,
-            triggerAction: 'all',
-            remoteSort: true,
-            lazyRender:true,
-            mode: 'local',
-            value: INITIAL_LOCALE,
-            store: new Ext.data.ArrayStore({
-                id: 0,
-                fields: [
-                    'locale',
-                    'displayText'
-                ],
-                data: [["fr", "French"], ["de", "German"], ["nl", "Dutch"], ["it", "Italian"], ["es", "Spanish"]]
-            }),
-            valueField: 'locale',
-            displayField: 'displayText',
-            listeners: {
-                select: function (combo, record, index) {
-                    const locale = record["id"]
-                    const gridStore = Ext.getCmp(GRID_ID).getStore()
-                    gridStore.proxy.setParams({locale: locale});
-                    gridStore.load();
-                }
-            }
-        }
-
-        const publishStatusComboConfig = {
-            xtype: 'combo',
-            autoSelect: true,
-            editable: false,
-            triggerAction: 'all',
-            lazyRender: true,
-            mode: 'local',
-            value: "all",
-            store: new Ext.data.ArrayStore({
-                id: 0,
-                fields: [
-                    'code',
-                    'displayText'
-                ],
-                data: [["all", "All documents"], ["published", "Published"], ["offline", "Offline"]]
-            }),
-            valueField: 'code',
-            displayField: 'displayText',
-            listeners: {
-                select: function (combo, record, index) {
-                    const selected = record["id"]
-                    const proxy = Ext.getCmp(GRID_ID).getStore().proxy;
-                    if (selected === "published") {
-                        proxy.addFilter("publishStatus", (record, value) => {
-                            return value === "CURR_VERSION_LIVE" || value === "PREV_VERSION_LIVE"
-                        })
-                    } else if (selected === "offline") {
-                        proxy.addFilter("publishStatus", (record, value) => {
-                            return value === "NOT_LIVE";
-                        })
-                    } else {
-                        proxy.clearFilter("publishStatus")
-                    }
-                    Ext.getCmp(GRID_ID).getStore().load();
-                }
-            }
-        };
 
         // Combo box used to edit each record's priority
         // Configured in the editor grid as a column editor component
@@ -161,191 +62,6 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             displayField: 'name'
         }
 
-        // Combo box used for filtering records, shown in the left hand side
-        const priorityFilterComboConfig = {
-            xtype: "combo",
-            autoSelect: true,
-            editable: false,
-            triggerAction: 'all',
-            lazyRender:true,
-            mode: 'local',
-            value: "All documents",
-            store: new Ext.data.ArrayStore({
-                id: 0,
-                autoLoad: true,
-                fields: [
-                    'value',
-                    'name',
-                    'sortOrder'
-                ],
-                proxy: new Ext.data.HttpProxy({
-                    // Get possible priority values from the server. Configured in com.visitscotland.brxm.translation.report.TranslationPriority
-                    url: "/cms/translation/priority",
-                    method: "GET"
-                }),
-
-                listeners: {
-                    load: (store) => {
-                        store.insert(0, new Ext.data.Record({
-                            value: "all",
-                            name: "All documents",
-                            sortOrder: 0
-                        }, "all"))
-                    }
-                }
-            }),
-
-            valueField: 'value',
-            displayField: 'name',
-            listeners: {
-                select: (combo, record, index) => {
-                    console.log("Filter translationPriority", record);
-                    const proxy = Ext.getCmp(GRID_ID).getStore().proxy;
-                    if (record["id"] === "all") {
-                        proxy.clearFilter("translationPriority");
-                    } else {
-                        proxy.addFilter("translationPriority", (rec, value) => value === record["id"])
-                    }
-
-                    Ext.getCmp(GRID_ID).getStore().load();
-                }
-            }
-        }
-
-        // Combo box used for filtering between Pages and modules
-        // Gets possible page and module types from api
-        const pageOrModuleFilterComboConfig = {
-            xtype: 'combo',
-            autoSelect: true,
-            editable: false,
-            triggerAction: 'all',
-            lazyRender: true,
-            mode: 'local',
-            value: "all",
-            store: new Ext.data.ArrayStore({
-                id: 0,
-                fields: [
-                    'code',
-                    'displayText'
-                ],
-                data: [["all", "All documents"], ["pages", "Pages"], ["modules", "Modules"]]
-            }),
-            valueField: 'code',
-            displayField: 'displayText',
-            listeners: {
-                select: function (combo, record, index) {
-                    console.log("Filter select", self.moduleTypes, self.pageTypes);
-                    const store = Ext.getCmp(GRID_ID).getStore();
-                    if (record["id"] === "all") {
-                        store.proxy.clearFilter("type");
-                        self.removePageSubtypeFilters.call(self)
-                    }
-                    if ( record["id"] === "pages") {
-                        self.showPageFilter.call(self)
-                    } else if (record["id"] === "modules") {
-                        self.showModuleFilter.call(self)
-                    }
-                    if (self.moduleTypes.length === 0 || self.pageTypes.length === 0) return;
-                    const allowedTypes = record["id"] === "pages" ? self.pageTypes : self.moduleTypes;
-                    store.proxy.addFilter("type", (rec, val) => allowedTypes.includes(val));
-                    store.load();
-                }
-            }
-        };
-
-        // Filter allows user to filter by module
-        // Added dynamically when page/module filter = module
-        this.moduleFilterComboConfig = {
-            xtype: "combo",
-            id: MODULE_FILTER_ID,
-            autoSelect: true,
-            editable: false,
-            triggerAction: 'all',
-            lazyRender:true,
-            mode: 'local',
-            value: "All documents",
-            store: new Hippo.Reports.SimpleArrayStore({
-                id: 0,
-                autoLoad: true,
-                fields: [
-                    'value',
-                ],
-                proxy: new Ext.data.HttpProxy({
-                    url: "/cms/translation/modules",
-                    method: "GET"
-                }),
-
-                listeners: {
-                    load: (store) => {
-                        store.insert(0, new Ext.data.Record({
-                            value: "All documents",
-                        }, "All documents"))
-                    }
-                }
-            }),
-
-            valueField: 'value',
-            displayField: 'value',
-            listeners: {
-                select: (combo, record, index) => {
-                    console.log("Filter module type", record);
-                    const proxy = Ext.getCmp(GRID_ID).getStore().proxy;
-                    if (record["id"] === "All documents") {
-                        proxy.clearFilter("type");
-                    } else {
-                        proxy.addFilter("type", (rec, value) => value === record["id"])
-                    }
-
-                    Ext.getCmp(GRID_ID).getStore().load();
-                }
-            }
-        }
-
-        this.pageFilterComboConfig = {
-            xtype: "combo",
-            id: PAGE_FILTER_ID,
-            autoSelect: true,
-            editable: false,
-            triggerAction: 'all',
-            lazyRender:true,
-            mode: 'local',
-            value: "All documents",
-            store: new Hippo.Reports.SimpleArrayStore({
-                id: 0,
-                autoLoad: true,
-                fields: [
-                    'value',
-                ],
-                proxy: new Ext.data.HttpProxy({
-                    url: "/cms/translation/pages",
-                    method: "GET"
-                }),
-
-                listeners: {
-                    load: (store) => {
-                        store.insert(0, new Ext.data.Record({
-                            value: "All documents",
-                        }, "All documents"))
-                    }
-                }
-            }),
-
-            valueField: 'value',
-            displayField: 'value',
-            listeners: {
-                select: (combo, record, index) => {
-                    console.log("Filter page type", record);
-                    const proxy = Ext.getCmp(GRID_ID).getStore().proxy;
-                    if (record["id"] === "All documents") {
-                        proxy.clearFilter("type");
-                    } else {
-                        proxy.addFilter("type", (rec, value) => value === record["id"])
-                    }
-
-                    Ext.getCmp(GRID_ID).getStore().load();
-                }
-            }
-        }
 
         const editorGridPanelConfig = {
             xtype: "editorgrid",
@@ -438,6 +154,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
 
         config = Ext.apply(config, {
             // bodyCssClass: 'hippo-reports-document-list',
+            id: PANEL_ID,
             layout: "border",
             items: [
                 {
@@ -457,25 +174,25 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                             text: "Language",
                             anchor: "100%"
                         },
-                        languageComboConfig,
+                        Hippo.Reports.languageComboConfig,
                         {
                             xtype: "label",
                             text: "Publish status",
                             style: SIDEBAR_LABEL_STYLE
                         },
-                        publishStatusComboConfig,
+                        Hippo.Reports.publishStatusComboConfig,
                         {
                             xtype: "label",
                             text: "Priority",
                             style: SIDEBAR_LABEL_STYLE
                         },
-                        priorityFilterComboConfig,
+                        Hippo.Reports.priorityFilterComboConfig,
                         {
                             xtype: "label",
                             text: "Document type",
                             style: SIDEBAR_LABEL_STYLE
                         },
-                        pageOrModuleFilterComboConfig
+                        Hippo.Reports.pageOrModuleFilterComboConfig
                     ]
 
                 }
@@ -498,7 +215,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         this.removePageSubtypeFilters();
         const cmp = Ext.getCmp(FILTER_SIDEBAR_ID)
         cmp.add(this.moduleLabel)
-        cmp.add(this.moduleFilterComboConfig);
+        cmp.add(Hippo.Reports.moduleFilterComboConfig);
         cmp.doLayout()
     },
 
@@ -506,7 +223,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         this.removePageSubtypeFilters();
         const cmp = Ext.getCmp(FILTER_SIDEBAR_ID)
         cmp.add(this.pageLabel)
-        cmp.add(this.pageFilterComboConfig);
+        cmp.add(Hippo.Reports.pageFilterComboConfig);
         cmp.doLayout()
     },
 
@@ -590,7 +307,8 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
     },
 
     renderTranslationPriority: function(priority) {
-        // this = TranslationListPanel
+        // If the priority map does not exist, request it and force a reload of the store once it has completed
+        // If data does exist, then map the given priority onto its display value
         if (this.priorityDropdownData === undefined) {
             this.priorityDropdownData = []
             this.getPriorityData()
@@ -598,23 +316,17 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                     this.priorityDropdownData = priorityData;
                     const gridStore = Ext.getCmp(GRID_ID).getStore()
                     gridStore.load()
-                    var self = this;
-                    gridStore.proxy.addSortTransformation("translationPriority", (a) => {
-                        for (let i = 0; i < self.priorityDropdownData.length; i++) {
-                            if (self.priorityDropdownData[i][0] === a) return self.priorityDropdownData[i][2];
-                        }
-                        return 0;
+                    gridStore.proxy.addSortTransformation("translationPriority", (value) => {
+                        const item = priorityData.find((item) => item[0] === value);
+                        return item === undefined ? value : item[2];
                     })
                 })
             return "";
-        } else if (this.priorityDropdownData.length === 0) {
-            return ""
         } else {
-            for (let i = 0; i < this.priorityDropdownData.length; i++) {
-                if (this.priorityDropdownData[i][0] === priority) return this.priorityDropdownData[i][1];
-            }
-            return "error";
+            const item = this.priorityDropdownData.find((item) => item[0] === priority);
+            if (item !== undefined) return item[1];
         }
+        return "";
     },
 
     updatePriority: function(handleId, priority) {

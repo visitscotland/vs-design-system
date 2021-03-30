@@ -1,11 +1,9 @@
 package com.visitscotland.brxm.translation.report;
 
-import com.visitscotland.brxm.beans.Page;
 import com.visitscotland.brxm.translation.SessionFactory;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
-import com.visitscotland.brxm.translation.plugin.TranslationException;
-import org.hippoecm.frontend.session.UserSession;
+import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.impl.NodeDecorator;
@@ -16,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.jcr.*;
-import javax.jcr.query.Row;
-import javax.jcr.query.RowIterator;
 import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -29,18 +25,22 @@ public class TranslationReportService {
     private static final Logger log = LoggerFactory.getLogger(TranslationReportService.class);
     private static final String VS_TRANSLATION_FLAG = "visitscotland:translationFlag";
     private static final String VS_TRANSLATION_PRIORITY = "visitscotland:translationPriority";
-    public static final Set<String> SUPPORTED_LOCALES = new HashSet<>(Arrays.asList("en", "fr", "nl", "it", "de", "es"));
+    private static final String LAST_MODIFIED_BY_PROPERTY = "hippostdpubwf:lastModifiedBy";
+    private static final String LAST_MODIFIED_DATE_PROPERTY = "hippostdpubwf:lastModificationDate";
     private static final String EDIT_WORKFLOW_NAME = "editing";
+    private static final Set<String> SUPPORTED_LOCALES = new HashSet<>(Arrays.asList("en", "fr", "nl", "it", "de", "es"));
     private Set<String> cachedPageTypes;
     private Set<String> cachedModuleTypes;
 
     private final SessionFactory sessionFactory;
     private final JcrDocumentFactory jcrDocumentFactory;
+    private final JcrQueryService jcrQueryService;
 
     @Autowired
-    public TranslationReportService(SessionFactory sessionFactory, JcrDocumentFactory jcrDocumentFactory) {
+    public TranslationReportService(SessionFactory sessionFactory, JcrDocumentFactory jcrDocumentFactory, JcrQueryService jcrQueryService) {
         this.sessionFactory = sessionFactory;
         this.jcrDocumentFactory = jcrDocumentFactory;
+        this.jcrQueryService = jcrQueryService;
     }
 
     public void setTranslationPriority(String handleId, TranslationPriority priority) {
@@ -49,21 +49,18 @@ public class TranslationReportService {
             JcrDocument doc = jcrDocumentFactory.createFromNode(jcrNode);
             setTranslationPriority(doc, priority);
         } catch (ItemNotFoundException ex) {
-            log.info("Failed to get item with handle " + handleId, ex);
             throw new TranslationReportException("Can not find item", ex);
         } catch (RepositoryException | RemoteException ex) {
-            log.info("Failed to access repository", ex);
             throw new TranslationReportException("Failed to update item", ex);
         } catch (WorkflowException ex) {
-            log.info("Another user editing document " + handleId, ex);
             throw new TranslationReportException("Document being modified by another user", ex);
         }
     }
 
-    public static List<TranslationModel> getUntranslatedDocuments(String targetLocale) {
+    public List<TranslationModel> getUntranslatedDocuments(String targetLocale) {
         List<TranslationModel> docModels = new ArrayList<>();
         try {
-            for (JcrDocument englishDoc : getAllEnglishDocuments()) {
+            for (JcrDocument englishDoc : jcrQueryService.getAllEnglishDocuments()) {
                 List<String> translatedLocales = new ArrayList<>();
                 List<String> sendForTranslationLocales = new ArrayList<>();
                 TranslationStatus infoStatus = TranslationStatus.NOT_SENT_FOR_TRANSLATION;
@@ -81,23 +78,18 @@ public class TranslationReportService {
                     }
                 }
                 if (infoStatus == TranslationStatus.TRANSLATED) continue;
-                String displayName =  ((NodeDecorator)englishDoc.getHandle()).getDisplayName();
+                String displayName = ((HippoNode) englishDoc.getHandle()).getDisplayName();
                 TranslationPriority translationPriority = getNodeTranslationPriority(englishDoc);
                 Node unpublished = englishDoc.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
                 String primaryNodeType = unpublished.getProperty("jcr:primaryType").getString().replace("visitscotland:", "");
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-                df.setTimeZone(TimeZone.getTimeZone("UTC"));
-                String lastModified  = df.format(unpublished.getProperty("hippostdpubwf:lastModificationDate").getDate().getTime());
-                String lastModifiedBy = unpublished.getProperty("hippostdpubwf:lastModifiedBy").getString();
-
+                String lastModifiedBy = unpublished.getProperty(LAST_MODIFIED_BY_PROPERTY).getString();
+                String lastModified = getDateAsIsoString(unpublished, LAST_MODIFIED_DATE_PROPERTY);
                 docModels.add(new TranslationModel(englishDoc.getHandle().getIdentifier(), displayName,
                         infoStatus.toString(), translationPriority, translatedLocales, sendForTranslationLocales,
-                        primaryNodeType, lastModified,lastModifiedBy, getDocumentPublishStatus(englishDoc)));
+                        primaryNodeType, lastModified, lastModifiedBy, getDocumentPublishStatus(englishDoc)));
             }
         } catch (RepositoryException ex) {
-            // TODO propagate this error to report frontend
-            log.error("Repository exception whilst retrieving untranslated documents", ex);
-            return Collections.emptyList();
+            throw new TranslationReportException("Failed to access repository", ex);
         }
 
         return docModels;
@@ -105,11 +97,9 @@ public class TranslationReportService {
 
     public Set<String> getPageTypes() {
         try {
-            if (cachedPageTypes == null) cachedPageTypes = getTypesDeriving("visitscotland:Page");
+            if (cachedPageTypes == null) cachedPageTypes = jcrQueryService.getTypesDeriving("visitscotland:Page");
         } catch (RepositoryException ex) {
-            // FIXME
-            log.error("Repo exception", ex);
-            return Collections.emptySet();
+            throw new TranslationReportException("Failed to access repository", ex);
         }
 
         return cachedPageTypes;
@@ -117,28 +107,22 @@ public class TranslationReportService {
 
     public Set<String> getModuleTypes() {
         try {
-            if (cachedModuleTypes == null) cachedModuleTypes = getTypesDeriving("visitscotland:basedocument");
+            if (cachedModuleTypes == null) cachedModuleTypes = jcrQueryService.getTypesDeriving("visitscotland:basedocument");
         } catch (RepositoryException ex) {
-            // FIXME
-            log.error("Repo exception", ex);
-            return Collections.emptySet();
+            throw new TranslationReportException("Failed to access repository", ex);
         }
 
         return cachedModuleTypes;
     }
 
+    public boolean isLocaleSupported(String locale) {
+        return SUPPORTED_LOCALES.contains(locale);
+    }
 
-    private Set<String> getTypesDeriving(String supertype) throws RepositoryException {
-        String query = String.format("//element(*, hipposysedit:nodetype)[jcr:contains(@hipposysedit:supertype, \"%s\")]/../..", supertype);
-        RowIterator result = sessionFactory.getJcrSession().getWorkspace().getQueryManager().createQuery(query, "xpath").execute().getRows();
-        Set<String> types = new HashSet<>();
-
-        while (result.hasNext()) {
-            Node node = result.nextRow().getNode();
-            types.add(node.getName());
-        }
-
-        return types;
+    private static String getDateAsIsoString(Node node, String property) throws RepositoryException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+        df.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return df.format(node.getProperty(property).getDate().getTime());
     }
 
 
@@ -164,9 +148,7 @@ public class TranslationReportService {
         } else {
             throw new IllegalStateException("Unable to get EditableWorkflow");
         }
-
     }
-
 
     private static PublishStatus getDocumentPublishStatus(JcrDocument document) throws RepositoryException {
         Node unpublishedNode = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
@@ -178,14 +160,8 @@ public class TranslationReportService {
         return PublishStatus.UNKNOWN;
     }
 
-    private static String getImageLink(String locale) {
-        if (locale.equals("en")) locale = "uk";
-        String url = "./wicket/resource/org.hippoecm.frontend.translation.LocaleProviderPlugin/icons/flags/flag-16_" + locale +".png";
-        return "<img src=\"" + url + "\" style=\"display: inline\" />";
-    }
-
-    private static TranslationPriority getNodeTranslationPriority(JcrDocument document) throws RepositoryException{
-        Node node =  document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+    private static TranslationPriority getNodeTranslationPriority(JcrDocument document) throws RepositoryException {
+        Node node = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
         String priorityString = node.hasProperty(VS_TRANSLATION_PRIORITY) ?
                 node.getProperty(VS_TRANSLATION_PRIORITY).getString() : "";
         if (priorityString.isEmpty()) return TranslationPriority.NORMAL;
@@ -198,8 +174,7 @@ public class TranslationReportService {
         return TranslationPriority.NORMAL;
     }
 
-    private static TranslationStatus getDocumentTranslationStatus(JcrDocument englishDoc, String locale) throws RepositoryException{
-        // TODO has Erik already written code to do this? Look into how the translationDiff field works
+    private static TranslationStatus getDocumentTranslationStatus(JcrDocument englishDoc, String locale) throws RepositoryException {
         if (locale.equals("en")) return TranslationStatus.TRANSLATED;
         if (!englishDoc.getTranslationLocaleNames().contains(locale)) {
             // If the clone has not been created, then the document can not have been sent for translation
@@ -217,28 +192,5 @@ public class TranslationReportService {
             }
         }
     }
-
-    private static List<JcrDocument> getAllEnglishDocuments() throws RepositoryException {
-        List<NodeDecorator> nodes =  queryNodes( "select * from visitscotland:basedocument where hippostd:state = 'unpublished' and hippotranslation:locale = 'en'");
-        List<JcrDocument> jcrDocuments = new ArrayList<>();
-        for (NodeDecorator node : nodes) {
-            jcrDocuments.add(new JcrDocument(node));
-        }
-        return jcrDocuments;
-    }
-
-    private static List<NodeDecorator> queryNodes(String sqlQuery) throws RepositoryException {
-        RowIterator allPagesRows = UserSession.get().getJcrSession().getWorkspace()
-                .getQueryManager().createQuery(sqlQuery, "sql").execute().getRows();
-
-        List<NodeDecorator> nodes = new ArrayList<>();
-        while (allPagesRows.hasNext()) {
-            nodes.add((NodeDecorator)allPagesRows.nextRow().getNode());
-        }
-
-        return nodes;
-    }
-
-
 
 }

@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.translation;
 
+import org.hippoecm.repository.api.HippoNode;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -55,9 +56,18 @@ public final class MockNodeBuilder {
         return this;
     }
 
+    public MockNodeBuilder withProperty(String propertyPath, Calendar propertyValue) throws Exception {
+        Property mockProperty = mock(Property.class);
+        lenient().when(mockProperty.getDate()).thenReturn(propertyValue);
+        properties.put(propertyPath, mockProperty);
+        return this;
+    }
+
+
     public MockNodeBuilder withProperty(String propertyPath, boolean propertyValue) throws Exception {
         Property mockProperty = mock(Property.class);
         lenient().when(mockProperty.getBoolean()).thenReturn(propertyValue);
+        lenient().when(mockProperty.getString()).thenReturn(Boolean.toString(propertyValue));
         properties.put(propertyPath, mockProperty);
         return this;
     }
@@ -95,7 +105,7 @@ public final class MockNodeBuilder {
     }
 
     public Node build() throws Exception {
-        Node mockNode = mock(Node.class);
+        Node mockNode = mock(HippoNode.class);
         lenient().when(mockNode.hasProperty(any())).thenReturn(false);
         lenient().when(mockNode.isNodeType(any())).thenReturn(false);
 
@@ -111,12 +121,12 @@ public final class MockNodeBuilder {
         }
 
         for (String type : nodeTypes) {
-            when(mockNode.isNodeType(type)).thenReturn(true);
+            lenient().when(mockNode.isNodeType(type)).thenReturn(true);
         }
 
         for (Map.Entry<String, Property> propertyEntry : properties.entrySet()) {
             lenient().when(mockNode.hasProperty(eq(propertyEntry.getKey()))).thenReturn(true);
-            when(mockNode.getProperty(eq(propertyEntry.getKey()))).thenReturn(propertyEntry.getValue());
+            lenient().when(mockNode.getProperty(eq(propertyEntry.getKey()))).thenReturn(propertyEntry.getValue());
         }
 
         for (Map.Entry<String, List<Node>> childNodeEntry : childNodes.entrySet()) {
