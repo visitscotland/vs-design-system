@@ -132,6 +132,12 @@ export default {
     width: calc(100% + #{$spacer-4});
     margin-left: -#{$spacer-2};
     padding: $spacer-4 $spacer-6 0;
+
+    @include media-breakpoint-up(md) {
+        width: calc(100% + 1.5rem);
+        margin-left: -.75rem;
+        padding: 1rem 1rem 0;
+    }
 }
 
 .vs-itinerary__day-outer {
