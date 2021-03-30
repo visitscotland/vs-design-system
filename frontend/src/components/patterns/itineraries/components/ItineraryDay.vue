@@ -134,9 +134,9 @@ export default {
     padding: $spacer-4 $spacer-6 0;
 
     @include media-breakpoint-up(md) {
-        width: calc(100% + 1.5rem);
-        margin-left: -.75rem;
-        padding: 1rem 1rem 0;
+        width: calc(100% + #{$spacer-6});
+        margin-left: -#{$spacer-3};
+        padding: $spacer-4 $spacer-4 0;
     }
 }
 
