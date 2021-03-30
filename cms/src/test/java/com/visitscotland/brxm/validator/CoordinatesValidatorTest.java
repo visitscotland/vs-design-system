@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.validator;
 
-import com.visitscotland.brxm.beans.Coordinates;
+import com.visitscotland.brxm.hippobeans.Coordinates;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

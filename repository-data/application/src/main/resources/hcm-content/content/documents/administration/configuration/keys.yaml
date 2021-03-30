@@ -9,15 +9,16 @@
     jcr:mixinTypes: ['mix:referenceable']
     jcr:uuid: 41e8730b-1d40-47e6-89b3-80cac8cec1f0
     hippo:availability: []
+    hippostd:holder: admin
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
-    hippostdpubwf:lastModificationDate: 2020-12-04T14:22:05.392Z
+    hippostdpubwf:lastModificationDate: 2021-02-17T09:14:31.983Z
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '']
+    resourcebundle:descriptions: ['']
     resourcebundle:id: keys
-    resourcebundle:keys: [maptiler.devkey, instagram.accesstoken]
-    resourcebundle:messages: [SZGAUFW8iNcUjjJgrkgf, '']
+    resourcebundle:keys: [maptiler.devkey]
+    resourcebundle:messages: [SZGAUFW8iNcUjjJgrkgf]
   /keys[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
