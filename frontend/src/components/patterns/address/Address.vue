@@ -1,7 +1,8 @@
 <template>
     <div
         class="vs-address"
-        data-test="vs-address">
+        data-test="vs-address"
+    >
         <VsIcon
             name="map-marker"
             class="vs-address__map-marker"
