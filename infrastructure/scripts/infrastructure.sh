@@ -174,6 +174,7 @@ defaultSettings() {
   else
     VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
   fi
+  # to-do: gp  - write out VS_CONTAINER_NAME to job's workspace/ci/vs-container-name
   if [ -z "$NODE_NAME" ]; then VS_THIS_SERVER=$HOSTNAME; else VS_THIS_SERVER=$NODE_NAME; fi
   if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then
     VS_BRXM_REPOSITORY="repository"
@@ -367,10 +368,14 @@ getPullRequestListViaCurl() {
 
 getBranchListFromWorkspace() {
   echo "checking for branches and PRs for $VS_PARENT_JOB_NAME listed in workspaces.txt"
+  # to-do: gp - update echo above to reflect changes to branch and PR scan method
   for BRANCH in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME" | sed -e "s/%2F/\//g" | sed "s/.*\//$VS_PARENT_JOB_NAME\_/g"`; do
     if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH"; fi
     BRANCH_LIST="$BRANCH_LIST $BRANCH"
   done
+  # to-do: gp add for loop to check for vs-container-name map files in _PR only (avoid doubles)
+  #           for PR in [logic above | grep _PR] check PR's workspace/ci for vs-contanier-name file
+  #           cat the file for a branch name and add those branches to BRANCH_LIST (some)
   echo ""
 }
 
@@ -748,7 +753,7 @@ exportVSVariables() {
 
 copyVSVariables() {
   echo " - writing VS variables from $VS_VS_LAST_ENV and $VS_JENKINS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
-  # to-do gp: set VS_TARGET in defaultSettings
+  # to-do: gp - set VS_TARGET in defaultSettings
   if [ ! -d $VS_BUILD_PROPERTIES_TARGET_DIR ]; then
     echo " - $VS_BUILD_PROPERTIES_TARGET_DIR does not exist, creating"
     mkdir -p $VS_BUILD_PROPERTIES_TARGET_DIR
