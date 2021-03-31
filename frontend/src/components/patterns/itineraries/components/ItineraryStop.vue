@@ -132,7 +132,7 @@ export default {
             width: 50%;
             border-right: 1px solid $color-gray-tint-5;
             margin-bottom: -#{$spacer-4};
-            padding: $spacer-4 $spacer-2;
+            padding: $spacer-4 $spacer-0;
         }
     }
 }
