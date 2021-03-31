@@ -12,7 +12,9 @@
                     class="vs-address__address-box"
                     cols="10"
                 >
-                    <slot />
+                    <address>
+                        <slot />
+                    </address>
                 </VsCol>
             </VsRow>
         </VsContainer>
