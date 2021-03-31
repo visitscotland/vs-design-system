@@ -49,6 +49,10 @@ export default {
         padding: $spacer-2;
     }
 
+    .vs-address span {
+        display: block;
+    }
+
     .vs-address__address-box {
         line-height: $line-height-s;
     }
@@ -59,11 +63,11 @@ export default {
 
     <h3>Basic Address</h3>
     <VsAddress>
-        Edinburgh Castle,<br>
-        Castle Hill,<br>
-        Edinburgh,<br>
-        City of Edinburgh,<br>
-        EH1 2NG
+        <span>Edinburgh Castle,</span>
+        <span>Castle Hill,</span>
+        <span>Edinburgh,</span>
+        <span>City of Edinburgh,</span>
+        <span>EH1 2NG</span>
     </VsAddress>
 
   ```

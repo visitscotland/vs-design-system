@@ -82,16 +82,16 @@
                 <#if prod.address.line1?? && prod.address.line1?has_content>
                     <vs-address>
                         <#if prod.address.line1?? && prod.address.line1?has_content>
-                            <span>${prod.address.line1},<br></span>
+                            <span>${prod.address.line1},</span>
                         </#if>
                         <#if prod.address.line2?? && prod.address.line2?has_content>
-                            <span>${prod.address.line2},<br></span>
+                            <span>${prod.address.line2},</span>
                         </#if>
                         <#if prod.address.line3?? && prod.address.line3?has_content>
-                            <span>${prod.address.line3},<br></span>
+                            <span>${prod.address.line3},</span>
                         </#if>
                         <#if prod.address.city?? && prod.address.city?has_content>
-                            <span>${prod.address.city},<br></span>
+                            <span>${prod.address.city},</span>
                         </#if>
                         <#if prod.address.postcode?? && prod.address.postcode?has_content>
                             <span>${prod.address.postcode}</span>
