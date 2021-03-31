@@ -1,29 +1,17 @@
 <template>
     <div
         class="vs-address"
-        data-test="vs-address"
-    >
-        <VsContainer>
-            <VsRow>
-                <VsCol cols="2 pl-0">
-                    <VsIcon name="map-marker" />
-                </VsCol>
-                <VsCol
-                    class="vs-address__address-box"
-                    cols="10"
-                >
-                    <address>
-                        <slot />
-                    </address>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
+        data-test="vs-address">
+        <VsIcon
+            name="map-marker"
+            class="vs-address__map-marker"
+        />
+        <address class="vs-address__address-box">
+            <slot />
+        </address>
     </div>
 </template>
 <script>
-import {
-    VsCol, VsRow, VsContainer,
-} from '@components/elements/layout';
 import VsIcon from '@components/elements/icon';
 
 /**
@@ -36,9 +24,6 @@ export default {
     status: 'prototype',
     release: '0.1.0',
     components: {
-        VsCol,
-        VsRow,
-        VsContainer,
         VsIcon,
     },
 };
@@ -53,8 +38,15 @@ export default {
         display: block;
     }
 
+    .vs-address__map-marker {
+        display: inline-block;
+        vertical-align: top;
+    }
+
     .vs-address__address-box {
         line-height: $line-height-s;
+        display: inline-block;
+        vertical-align: top;
     }
 </style>
 
