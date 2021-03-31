@@ -7,6 +7,7 @@
 <#include "../../../../frontend/components/vs-link.ftl">
 <#include "../../../../frontend/components/vs-svg.ftl">
 <#include "../../../../frontend/components/vs-button.ftl">
+<#include "../../../../frontend/components/vs-address.ftl">
 
 <#include "../../global/key-facilities.ftl">
 <#include "../../global/image-with-caption.ftl">
@@ -51,24 +52,6 @@
                     ${prod.ctaLink.label}
                 </vs-link>
             </#if>
-            </br>
-            <#--TODO Include Address, Address fields allow null and the fields are:
-           <#if prod.address.line1?? && prod.address.line1?has_content>
-                  </br>ADDRESS</br>
-                  ${prod.address.line1}</br>
-              <#if prod.address.line2?? && prod.address.line2?has_content>
-                      ${prod.address.line2}</br>
-              </#if>
-                 <#if prod.address.line3?? && prod.address.line3?has_content>
-                      ${prod.address.line3}</br>
-              </#if>
-                  <#if prod.address.city?? && prod.address.city?has_content>
-                      ${prod.address.city}</br>
-              </#if>
-              <#if prod.address.postCode?? && prod.address.postCode?has_content>
-                      ${prod.address.postCode}</br>
-              </#if>
-           </#if>-->
             <#--TODO show open times the field is:
         </br>
              <#if prod.openLink?? && prod.openLink.link?? && prod.openLink.link?has_content>
@@ -94,6 +77,26 @@
                         <vs-description-list-item title class="mb-0 mr-0 pr-1 col-auto">${label("itinerary", "stop.time-to-explore")}</vs-description-list-item>
                         <vs-description-list-item class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-item>
                     </vs-description-list>
+                </#if>
+
+                <#if prod.address.line1?? && prod.address.line1?has_content>
+                    <vs-address>
+                        <#if prod.address.line1?? && prod.address.line1?has_content>
+                            <span>${prod.address.line1},<br></span>
+                        </#if>
+                        <#if prod.address.line2?? && prod.address.line2?has_content>
+                            <span>${prod.address.line2},<br></span>
+                        </#if>
+                        <#if prod.address.line3?? && prod.address.line3?has_content>
+                            <span>${prod.address.line3},<br></span>
+                        </#if>
+                        <#if prod.address.city?? && prod.address.city?has_content>
+                            <span>${prod.address.city},<br></span>
+                        </#if>
+                        <#if prod.address.postcode?? && prod.address.postcode?has_content>
+                            <span>${prod.address.postcode}</span>
+                        </#if>
+                    </vs-address>
                 </#if>
 
                 <#if (prod.tipsTitle?? && prod.tipsTitle?has_content)>
