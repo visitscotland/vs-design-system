@@ -5,7 +5,7 @@
     >
         <VsContainer>
             <VsRow>
-                <VsCol cols="2">
+                <VsCol cols="2 pl-0">
                     <VsIcon name="map-marker" />
                 </VsCol>
                 <VsCol
@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss">
     .vs-address {
-        padding: $spacer-2;
+        padding: $spacer-2 $spacer-0;
     }
 
     .vs-address span {
