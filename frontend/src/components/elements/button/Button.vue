@@ -78,7 +78,7 @@ export default {
             type: String,
             default: 'primary',
             validator: (value) => value.match(
-                /(primary|secondary)/,
+                /(primary|secondary|transparent)/,
             ),
         },
         /**
@@ -175,6 +175,10 @@ export default {
                 }
 
                 return this.outlineColour;
+            }
+
+            if (this.variant === 'transparent') {
+                return 'primary';
             }
 
             return 'light';
