@@ -364,7 +364,7 @@ export default {
                 Transport
             </VsDescriptionListItem>
             <VsDescriptionListItem
-                class="col-auto m-0 px-0"
+                class="col-auto px-0"
                 v-for="(transportType, transportTypeIndex) in day.transport"
                 :key="transportTypeIndex"
             >
