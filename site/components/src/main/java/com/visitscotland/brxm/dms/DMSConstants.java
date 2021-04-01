@@ -1,5 +1,8 @@
 package com.visitscotland.brxm.dms;
 
+import com.visitscotland.brxm.utils.NonTestable;
+
+@NonTestable()
 public class DMSConstants {
 
     private DMSConstants() {

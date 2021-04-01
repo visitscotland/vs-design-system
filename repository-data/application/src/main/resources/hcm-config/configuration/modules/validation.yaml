@@ -51,3 +51,6 @@ definitions:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator
       maxLength: '160'
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:external-document-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: com.visitscotland.brxm.validator.ExternalDocumentValidator

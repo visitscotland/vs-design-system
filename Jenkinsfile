@@ -32,7 +32,20 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
 import groovy.json.JsonSlurper
 
 pipeline {
-  options {buildDiscarder(logRotator(numToKeepStr: '5'))}
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '10'))
+    // to-do
+    // gp: investigate milestone caclulation to cancel current build if a new one starts
+    // - see: https://stackoverflow.com/questions/40760716/jenkins-abort-running-build-if-new-one-is-started/44326216
+    // - see: https://www.jenkins.io/doc/pipeline/steps/pipeline-milestone-step/#pipeline-milestone-step
+    // gp: investigate the use of stash/unstash to make build artefacts available to other nodes
+    // - see: https://www.cloudbees.com/blog/parallelism-and-distributed-builds-jenkins
+    // - this could potentially allow the running of all Lighthouse tests on a separate node
+    // - experiment with a simple echo on a different node (stash/unstash)
+    // gp: change sonarqube project target to a short version of the project name
+
+    disableConcurrentBuilds()
+  }
   agent {label thisAgent}
   triggers { cron( cron_string ) }
   environment {
@@ -43,7 +56,11 @@ pipeline {
     VS_CONTAINER_PRESERVE = 'TRUE'
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
-    VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
+    // VS_SKIP_BUILD_FOR_BRANCH is useful for testing, only ever set to your working branch name - never to a variable!
+    VS_SKIP_BUILD_FOR_BRANCH = 'e.g.:feature/VS-1865-feature-environments-enhancements'
+    // VS_COMMIT_AUTHOR is required by later stages which will fail if it's not set, default value of jenkins@visitscotland.net
+    // turns out if you set it here it will not be overwritten by the load later in the pipeline
+    //VS_COMMIT_AUTHOR = 'jenkins@visitscotland.net'
     VS_RUN_LIGHTHOUSE_TESTS = 'TRUE'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
@@ -87,21 +104,22 @@ pipeline {
       when {
         allOf {
           expression {return env.VS_RUN_BRC_STAGES != 'TRUE'}
-	      expression {return env.VS_SKIP_VS_BLD != 'TRUE'}
+	        expression {return env.VS_SKIP_VS_BLD != 'TRUE'}
           expression {return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
         }
       }
       steps {
+        sh 'sh ./infrastructure/scripts/infrastructure.sh setvars'
         // -- 20200712: QUESTION FOR SE, "why do we not build with-development-data?"
         sh 'mvn -f pom.xml clean package'
       }
       post {
         success {
           sh 'mvn -f pom.xml install -Pdist-with-development-data'
-          mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
+          mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Maven build succeeded at ${env.STAGE_NAME} for ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
         failure {
-          mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
+          mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Maven build FAILED at ${env.STAGE_NAME} for  ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
       }
     }
@@ -165,15 +183,36 @@ pipeline {
       }
     } //end stage
 
+    stage ('vs build feature env') {
+      steps{
+        script{
+          //sh 'sh ./infrastructure/scripts/docker.sh'
+          sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
+        }
+        // make all VS_ variables available to pipeline, load file must be in env.VARIABLE="VALUE" format
+        script {
+          if (fileExists("$WORKSPACE/vs-last-env.quoted")) {
+            echo "loading environment variables from $WORKSPACE/vs-last-env.quoted"
+            load "$WORKSPACE/vs-last-env.quoted"
+            echo "found ${env.VS_COMMIT_AUTHOR}"
+          } else {
+            echo "cannot load environment variables, file does not exist"
+          }
+        }
+      }
+    } //end stage
+
     stage ('Build Actions'){
       parallel {
+
         stage('SonarQube BE Scan') {
           when {
             branch 'develop' 
           }
           steps {
             withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
-              sh "mvn sonar:sonar -Dsonar.host.url=http://172.28.87.209:9000 -s $MAVEN_SETTINGS"
+              sh "PATH=/usr/bin:$PATH; mvn sonar:sonar -Dsonar.host.url=http://172.28.87.209:9000 -s $MAVEN_SETTINGS"
+              // setting PATH=/usr/bin:$PATH; above allows NodeJS 10.16.3 to be the default and prevents and error at the CSS scan
             }
           }
         }
@@ -188,12 +227,13 @@ pipeline {
           steps {
             withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
               sh '''
-                ${scannerHome}/bin/sonar-scanner \
+                PATH=/usr/bin:$PATH; ${scannerHome}/bin/sonar-scanner \
                 -Dsonar.sources=./frontend \
                 -Dsonar.projectKey=VS2019-FE \
                 -Dsonar.host.url=http://172.28.87.209:9000 \
                 -Dsonar.login=9fa63cfd51d94fb8e437b536523c15a9b45ee2c1
               '''
+              // setting PATH=/usr/bin:$PATH; above allows NodeJS 10.16.3 to be the default and prevents and error at the CSS scan
             }
           }
         }
@@ -213,7 +253,7 @@ pipeline {
 
         stage('Release to Nexus') {
           when {
-                branch 'PR-145' // to do - change this to develop  when ready
+                branch 'PR-145' // to-do - hd: change this to develop when ready
           }
           steps {
               script {
@@ -237,14 +277,6 @@ pipeline {
       }
     }
  
-    stage ('vs build feature env') {
-      steps{
-        script{
-          //sh 'sh ./infrastructure/scripts/docker.sh'
-          sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
-        }
-      }
-    } 
     stage('Lighthouse Testing'){
       when {
         allOf {
@@ -252,9 +284,13 @@ pipeline {
         }
       }
       steps{
-        script{
-          sleep time: 120, unit: 'SECONDS'
-          sh 'sh ./testing/lighthouse.sh'
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') { 
+          echo "Lighthouse test failure notification will be emailed to ${env.VS_COMMIT_AUTHOR}"
+          script{
+            // replace this sleep with a "wait for 200" in the script
+            sleep time: 120, unit: 'SECONDS'
+            sh 'sh ./testing/lighthouse.sh'
+          }
         }
       }
       post {
@@ -269,7 +305,8 @@ pipeline {
           ])
         }
         failure {
-          mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Lighthouse failure: ${env.JOB_NAME}", to: "${env.CHANGE_AUTHOR_EMAIL}";
+          echo "sending failure notice to ${env.VS_COMMIT_AUTHOR}"
+          mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Lighthouse failure: ${env.JOB_NAME}", to: "${env.VS_COMMIT_AUTHOR}";
         }
       }
     }
@@ -299,3 +336,14 @@ pipeline {
     }
   } //end post
 } //end pipeline
+
+// function to read in a properties file (see https://medium.com/@dhamodharakkannan/jenkins-loading-variables-from-a-file-for-different-environments-d442a2a48bce)
+// may not be required if simple "load" command works
+def readEnvironmentVariables(path){
+  def properties = readProperties file: path
+  keys= properties.keySet()
+  for(key in keys) {
+    value = properties["${key}"]
+    env."${key}" = "${value}"
+  }
+}
