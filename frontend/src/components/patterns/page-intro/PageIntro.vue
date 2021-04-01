@@ -232,6 +232,7 @@ export default {
     &--hero {
         .vs-page-intro__wrapper {
             @include media-breakpoint-up(lg) {
+                padding: 0 16px;
                 margin-top: -240px;
             }
         }
