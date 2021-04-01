@@ -47,5 +47,14 @@ describe('VsIcon', () => {
 
             expect(wrapper.classes(`vs-icon--size-${testSize}`)).toBe(true);
         });
+
+        it(':smallSize - should accept and render smallSizes as props', () => {
+            const testSize = 'xs';
+            const wrapper = factoryShallowMount({
+                smallSize: testSize,
+            });
+
+            expect(wrapper.classes(`vs-icon--sm-size-${testSize}`)).toBe(true);
+        });
     });
 });
