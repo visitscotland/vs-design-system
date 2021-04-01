@@ -9,6 +9,7 @@
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/shared/module-builder.ftl">
+<#include "../macros/modules/otyml/otyml.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Itinerary" -->
@@ -83,7 +84,8 @@
             </vs-itinerary-day>
         </#list>
     </vs-itinerary>
-    <#if otyml??>
-        <@moduleBuilder otyml />
-    </#if>
+    <!-- commented out to prevent stack trace errors - needs fixing -->
+    <#--  <#if otyml??>
+        <@moduleBuilder module />
+    </#if>  -->
 </div>

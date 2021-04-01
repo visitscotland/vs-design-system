@@ -22,13 +22,12 @@
 <#include "../../shared/theme-calculator.ftl">
 
 <#macro pageIntro content heroImage hero areas=[] days="" firstStop="" lastStop="">
-
     <#assign themeName = themeCalculator(introTheme)>
 <div class="has-edit-button">
-    <vs-page-intro background="${themeName}" <#if !heroImage?has_content>simple-intro="false"</#if>>
+    <vs-page-intro background="${themeName}" <#if heroImage?has_content>hero-intro</#if> <#if days?has_content>is-itinerary</#if>>
         <#if heroImage?has_content>
             <vs-hero
-                slot="hero"
+                slot="vsIntroHero"
                 alt-text="${heroImage.altText!''}"
                 credit="${heroImage.credit!''}"
                 caption="${heroImage.description!''}"
@@ -42,74 +41,42 @@
                 > </vs-img>
             </vs-hero>
         </#if>
-        <vs-container slot="upper" class="py-lg-4">
-            <vs-row class="justify-content-md-between">
-                <#if heroImage?has_content>
-                    <vs-col cols="12" lg="8" offset-lg="1">
-                        <@hst.include ref="breadcrumb"/>
-                    </vs-col>
-                <#else>
-                    <vs-col cols="12">
-                        <@hst.include ref="breadcrumb"/>
-                    </vs-col>
-                </#if>
-            </vs-row>
 
-            <vs-row>
-                <#if heroImage?has_content>
-                    <vs-col cols="10" lg="8" offset-lg="1">
-                        <vs-heading level="1">${document.title}</vs-heading>
-                    </vs-col>
-                    <vs-col cols="2">
-                        <div class="d-flex justify-content-center justify-content-sm-end">
-                            <vs-social-share></vs-social-share>
-                        </div>
-                    </vs-col>
-                <#else>
-                    <vs-col cols="10">
-                        <vs-heading level="1">${document.title}</vs-heading>
-                    </vs-col>
-                    <vs-col cols="2">
-                        <div class="d-flex justify-content-center justify-content-sm-end">
-                            <vs-social-share></vs-social-share>
-                        </div>
-                    </vs-col>
-                </#if>
-            </vs-row>
-            <vs-row>
-                <#if !heroImage?has_content>
-                    <vs-col cols="12">
-                <#elseif days?has_content>
-                    <vs-col cols="12" md="6" lg="5" xl="6" offset-lg="1">
-                <#else>
-                    <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
-                </#if>
-                    <vs-rich-text-wrapper variant="lead">
-                        <@hst.html hippohtml=document.introduction/>
-                    </vs-rich-text-wrapper>
+        <template slot="vsIntroBreadcrumb">
+            <@hst.include ref="breadcrumb"/>
+        </template>
 
-                    <#if firstStop?has_content && lastStop?has_content>
-                        <dl class="list-inline">
-                            <dt class="list-inline-item">${label("itinerary", "start-finish")}</dt>
-                            <dd class="list-inline-item">${firstStop} / ${lastStop}</dd>
-                        </dl>
-                    </#if>
-                </vs-col>
-                <#if days?has_content>
-                    <@summaryBox days />
-                </#if>
-            </vs-row>
-        </vs-container>
+        <template slot="vsIntroHeading">
+            ${document.title}
+        </template>
+
+        <template slot="vsIntroContent">
+            <@hst.html hippohtml=document.introduction/>
+        </template>
+
+        <#if days?has_content>
+            <#if firstStop?has_content && lastStop?has_content>
+                <template slot="vsIntroStartFinish">
+                    <dl class="list-inline">
+                        <dt class="list-inline-item">${label("itinerary", "start-finish")}</dt>
+                        <dd class="list-inline-item">${firstStop} / ${lastStop}</dd>
+                    </dl>
+                </template>
+            </#if>
+        
+            <template slot="VsIntroSummaryBox">
+                <@summaryBox days />
+            </template>
+        </#if>
 
         <#if areas?has_content>
-            <vs-container slot="lower">
+            <vs-container slot="VsIntroLower">
                 <vs-row>
                     <vs-col cols="12" lg="11" offset-lg="1">
                         <vs-description-list class="mb-6">
                             <vs-description-list-item title>
                                 ${label("itinerary", "highlights")}
                             </vs-description-list-item>
-                            <#-- TODO: each ${document.highlight} should render a new dd element -->
                             <vs-description-list-item>
                                 <div style="white-space: pre-wrap">${document.highlights}</div>
                             </vs-description-list-item>
