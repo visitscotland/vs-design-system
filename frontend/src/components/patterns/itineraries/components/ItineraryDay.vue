@@ -46,7 +46,10 @@
                                 class="vs-itinerary-day__toggle-button"
                             />
                         </template>
-                        <div :id="'dayPanel_' + dayNumber">
+                        <div
+                            :id="'dayPanel_' + dayNumber"
+                            class="vs-itinerary-day__panel"
+                        >
                             <slot name="day-transport" />
                             <slot name="day-introduction" />
                             <ul class="list-unstyled">
@@ -175,6 +178,12 @@ export default {
     }
 }
 
+.vs-itinerary-day__panel .list-inline-item:not(:last-child) {
+    @include media-breakpoint-down(xs) {
+        margin-right: $spacer-1;
+    }
+}
+
 @include no-js {
     @include media-breakpoint-down(lg) {
         .vs-itinerary-day__list-item {
@@ -208,7 +217,12 @@ export default {
                     v-for="(transportType, transportTypeIndex) in day.transport"
                 >
                     <VsTooltip :title="transportType.value">
-                        <vs-icon :name="transportType.key" variant="dark" size="md" />
+                        <vs-icon
+                            :name="transportType.key"
+                            variant="dark"
+                            size="md"
+                            smallSize="xs"
+                        />
                     </VsTooltip>
                     <span class="sr-only">{{transportType.value}}</span>
                 </dd>
