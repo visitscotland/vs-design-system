@@ -8,7 +8,7 @@
             data-test="vs-summary-box-distance-display"
         >
             <span
-                v-if="showMiles"
+                v-if="showingMiles"
                 id="display_miles"
             >{{ miles }}</span>
             <span
@@ -21,8 +21,8 @@
             <div class="d-flex justify-content-center align-items-center">
                 <VsButton
                     @click.native="handleClick(true)"
-                    :class="showMiles ? 'active' : ''"
-                    :aria-expanded="showMiles ? 'true' : 'false'"
+                    :class="showingMiles ? 'active' : ''"
+                    :aria-expanded="showingMiles ? 'true' : 'false'"
                     variant="transparent"
                     aria-controls="display_miles"
                 >
@@ -31,8 +31,8 @@
                 <span class="separator">/</span>
                 <VsButton
                     @click.native="handleClick(false)"
-                    :class="showMiles ? '' : 'active'"
-                    :aria-expanded="showMiles ? 'false' : 'true'"
+                    :class="showingMiles ? '' : 'active'"
+                    :aria-expanded="showingMiles ? 'false' : 'true'"
                     variant="transparent"
                     aria-controls="display_kilometres"
                 >
@@ -87,15 +87,19 @@ export default {
             type: String,
             default: 'km',
         },
+        showMiles: {
+            type: Boolean,
+            default: true,
+        },
     },
     data() {
         return {
-            showMiles: true,
+            showingMiles: this.showMiles,
         };
     },
     methods: {
         handleClick(value) {
-            this.showMiles = value;
+            this.showingMiles = value;
         },
     },
 };
