@@ -58,21 +58,16 @@ export default {
                 label="Days"
             />
         </VsSummaryBoxListItem>
-        <VsSummaryBoxListItem>
-            <VsSummaryBoxDistanceDisplay
-                :miles=itineraries.sampleItinerary.totalMiles
-                :kilometres=itineraries.sampleItinerary.totalKM
-                miles-label="miles"
-                kilometres-label="kilometres"
-            />
-            <VsSummaryBoxDistanceLabel
-                distance-label="Distance"
-                kilometres-abbr="km"
-                kilometres-label="kilometres"
-                miles-abbr="mi"
-                miles-label="miles"
-            />
-        </VsSummaryBoxListItem>
+        <VsSummaryBoxDistanceListItem
+            :miles=itineraries.sampleItinerary.totalMiles
+            :kilometres=itineraries.sampleItinerary.totalKM
+            distance-label="Distance"
+            miles-label="miles"
+            miles-abbr="mi"
+            kilometres-label="kilometres"
+            kilometres-abbr="km"
+        >
+        </VsSummaryBoxDistanceListItem>
         <VsSummaryBoxListItem>
             <VsSummaryBoxIconWithLabel
                 :icon=itineraries.sampleItinerary.transport.key
