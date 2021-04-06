@@ -47,4 +47,8 @@
 		</#if>
 
 	</#list>
+
+	<#if otyml?? && otyml?has_content>
+		<@moduleBuilder otyml />
+	</#if>
 </div>

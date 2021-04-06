@@ -25,8 +25,7 @@
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-listicle-item" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
-    
-    
+
 	<vs-container slot="upper" class="py-lg-4">
 		<vs-row>
 			<vs-col cols="12" lg="8">
@@ -62,7 +61,7 @@
         </ol>
 
 
-       <#if document.listicleClosing??>
+        <#if document.listicleClosing??>
             <vs-row class="mb-6">
                 <vs-col cols="12">
                     <vs-panel>
@@ -78,9 +77,9 @@
                     </vs-panel>
                 </vs-col>
             </vs-row>
-      </#if>
+        </#if>
 
-        <#if otyml??>
+        <#if otyml?? && otyml?has_content>
             <@moduleBuilder otyml />
         </#if>
 	</vs-container>

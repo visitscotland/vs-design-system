@@ -1,23 +1,22 @@
 package com.visitscotland.brxm.components.content;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.dms.LocationLoader;
+import com.visitscotland.brxm.dms.ProductSearchBuilder;
+import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.factory.ImageFactory;
+import com.visitscotland.brxm.factory.LinkModulesFactory;
 import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
-import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.HorizontalListLinksModule;
-import com.visitscotland.brxm.config.VsComponentManager;
-import com.visitscotland.brxm.factory.ImageFactory;
-import com.visitscotland.brxm.factory.LinkModulesFactory;
-import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.dms.ProductSearchBuilder;
+import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
-import com.visitscotland.brxm.services.CommonUtilsService;
-import com.visitscotland.brxm.utils.PageTemplateBuilder;
 import com.visitscotland.dataobjects.DataType;
 import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
@@ -43,6 +42,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     public static final String EDIT_PATH = "path";
     public static final String FACILITIES = "keyFacilities";
     public static final String HERO_COORDINATES = "heroCoordinates";
+    public static final String OTYML = "otyml";
 
     private ResourceBundleService bundle;
     private LinkService linksService;
@@ -64,6 +64,8 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
         addDocumentPath(request);
         addProductSearchBuilder(request);
+
+        addOTYML(request);
 
         initPage(request);
     }
@@ -101,12 +103,11 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @param page Page
      * @param locale Locale
      */
-    protected HorizontalListLinksModule addOTYML(Page page, Locale locale) {
-        HorizontalListLinksModule otyml = null;
+    protected void addOTYML(HstRequest request) {
+        Page page = getDocument(request);
         if(page.getOtherThings()!=null) {
-            otyml = linksFactory.horizontalListLayout(page.getOtherThings(), locale);
+            request.setAttribute(OTYML, linksFactory.horizontalListLayout(page.getOtherThings(), request.getLocale()));
         }
-        return otyml;
     }
 
     /**
@@ -158,7 +159,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         final String HERO_IMAGE = "heroImage";
         final String ALERTS = "alerts";
         List<String> alerts = validateDesiredFields(getDocument(request));
-        Module introModule = new Module<TYPE>();
+        Module<TYPE> introModule = new Module<>();
 
         FlatImage heroImage = imageFactory.createImage(getDocument(request).getHeroImage(), introModule, request.getLocale());
 
@@ -169,6 +170,11 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         }
     }
 
+    /**
+     * TODO: This method seems not to be in use
+     * @param item
+     * @return
+     */
     protected List<String> validateDesiredFields (Page item){
         List<String> response =  new ArrayList<>();
         if (item.getTeaser() == null || item.getTeaser().isEmpty()) {
