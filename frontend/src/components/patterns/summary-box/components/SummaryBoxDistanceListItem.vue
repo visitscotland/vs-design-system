@@ -8,7 +8,7 @@
             data-test="vs-summary-box-distance-display"
         >
             <span
-                v-if="isShowingMiles"
+                v-if="showMiles"
                 id="display_miles"
             >{{ miles }}</span>
             <span
@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import summaryBoxStore from '@components/patterns/summary-box/summaryBox.store';
 import VsButton from '@components/elements/button/Button';
 
 /**
@@ -94,23 +93,9 @@ export default {
             showMiles: true,
         };
     },
-    computed: {
-        isShowingMiles() {
-            return summaryBoxStore.getters['summaryBox/getShowMiles'];
-        },
-    },
-    watch: {
-        isShowingMiles() {
-            this.toggleShowMiles();
-        },
-    },
-    summaryBoxStore,
     methods: {
         handleClick(value) {
-            return summaryBoxStore.dispatch('summaryBox/setShowMiles', value);
-        },
-        toggleShowMiles() {
-            this.showMiles = this.isShowingMiles;
+            this.showMiles = value;
         },
     },
 };

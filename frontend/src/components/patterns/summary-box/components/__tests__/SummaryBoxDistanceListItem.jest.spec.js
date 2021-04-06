@@ -77,7 +77,7 @@ describe('VsSummaryBoxDistanceListItem', () => {
             });
             expect(wrapper.html()).toContain('<strong class="d-block">Entfernung</strong>');
         });
-    
+
         it('should accept an milesLabel property', () => {
             const label = 'meilen';
             const wrapper = factoryShallowMount({
@@ -85,14 +85,14 @@ describe('VsSummaryBoxDistanceListItem', () => {
             });
             expect(wrapper.html()).toContain(label);
         });
-    
+
         it('should accept an milesAbbr property', () => {
             const wrapper = factoryShallowMount({
                 milesAbbr: 'test-abbreviation',
             });
             expect(wrapper.html()).toContain('<abbr title="miles">test-abbreviation</abbr>');
         });
-    
+
         it('should accept an kilometresLabel property', () => {
             const label = 'kilomètres';
             const wrapper = factoryShallowMount({
@@ -100,29 +100,28 @@ describe('VsSummaryBoxDistanceListItem', () => {
             });
             expect(wrapper.html()).toContain(label);
         });
-    
+
         it('should accept an kilometresAbbr property', () => {
             const wrapper = factoryShallowMount({
                 kilometresAbbr: 'booya!',
             });
             expect(wrapper.html()).toContain('<abbr title="kilometres">booya!</abbr>');
         });
-    
+
         it('should call the handleClick method on click of miles button', () => {
             const wrapper = factoryMount();
             wrapper.find('[aria-controls="display_miles"]').trigger('click');
-    
+
             expect(spyHandleClick).toBeCalled();
             expect(spyHandleClick).toHaveBeenCalledWith(true);
         });
-    
+
         it('should call the handleClick method on click of kilometres button', () => {
             const wrapper = factoryMount();
             wrapper.find('[aria-controls="display_kilometres"]').trigger('click');
-    
+
             expect(spyHandleClick).toBeCalled();
             expect(spyHandleClick).toHaveBeenCalledWith(false);
         });
     });
-
 });
