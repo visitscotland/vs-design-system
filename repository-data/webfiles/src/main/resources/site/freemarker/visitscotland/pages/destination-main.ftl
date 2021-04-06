@@ -26,7 +26,7 @@
         <@moduleBuilder item />
 	</#list>
 
-    <#if otyml?? && otyml?has_content>
-        <@moduleBuilder otyml />
+    <#if otyml??>
+        <@horizontalList otyml />
     </#if>
 </div>

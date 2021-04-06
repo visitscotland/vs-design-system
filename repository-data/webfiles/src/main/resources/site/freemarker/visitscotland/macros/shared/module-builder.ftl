@@ -39,7 +39,7 @@
             <@megalinks item=module type=module.getType() theme=themeName />
 
         <#elseif moduleType == "HorizontalListLinksModule">
-            <@otyml module/>
+            <@horizontalList module/>
 
         <#elseif moduleType == "ICentreModule">
             <@icentre module/>

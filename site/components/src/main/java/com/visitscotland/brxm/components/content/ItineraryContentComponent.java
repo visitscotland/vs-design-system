@@ -47,10 +47,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
+
         generateStops(request);
         addHeroCoordinates(request);
-
-        addOTYML(request);
     }
 
 

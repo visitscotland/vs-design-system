@@ -84,6 +84,6 @@
         </#list>
     </vs-itinerary>
     <#if otyml??>
-        <@moduleBuilder otyml />
+        <@horizontalList otyml />
     </#if>
 </div>
