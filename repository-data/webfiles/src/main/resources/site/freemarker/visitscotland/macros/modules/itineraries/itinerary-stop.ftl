@@ -93,8 +93,8 @@
                         <#if prod.address.city?? && prod.address.city?has_content>
                             <span>${prod.address.city},</span>
                         </#if>
-                        <#if prod.address.postcode?? && prod.address.postcode?has_content>
-                            <span>${prod.address.postcode}</span>
+                        <#if prod.address.postCode?? && prod.address.postCode?has_content>
+                            <span>${prod.address.postCode}</span>
                         </#if>
                     </vs-address>
                 </#if>
