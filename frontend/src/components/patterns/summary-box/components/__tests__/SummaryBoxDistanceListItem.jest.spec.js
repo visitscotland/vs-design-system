@@ -4,29 +4,23 @@ import VsSummaryBoxDistanceListItem from '../SummaryBoxDistanceListItem';
 
 const spyHandleClick = jest.spyOn(VsSummaryBoxDistanceListItem.methods, 'handleClick');
 
-const factoryShallowMount = (propsData, computed) => shallowMount(VsSummaryBoxDistanceListItem, {
+const factoryShallowMount = (propsData) => shallowMount(VsSummaryBoxDistanceListItem, {
     propsData: {
         miles: '10',
         milesLabel: 'miles',
         kilometres: '20',
         kilometresLabel: 'kilometres',
         ...propsData,
-    },
-    computed: {
-        ...computed,
     },
 });
 
-const factoryMount = (propsData, computed) => mount(VsSummaryBoxDistanceListItem, {
+const factoryMount = (propsData) => mount(VsSummaryBoxDistanceListItem, {
     propsData: {
         miles: '10',
         milesLabel: 'miles',
         kilometres: '20',
         kilometresLabel: 'kilometres',
         ...propsData,
-    },
-    computed: {
-        ...computed,
     },
 });
 
@@ -37,34 +31,34 @@ describe('VsSummaryBoxDistanceListItem', () => {
     });
 
     describe(':props', () => {
-        it('if `showMiles` is true in the store, it should accept and render a `miles` property', () => {
-            const wrapper = factoryShallowMount(null, {
-                isShowingMiles: () => true,
+        it('if `showMiles` is true, it should accept and render a `miles` property', () => {
+            const wrapper = factoryShallowMount({
+                showMiles: true,
             });
 
             expect(wrapper.text()).toContain('10');
         });
 
-        it('if `showMiles` is false in the store, it should accept and render a `kilometres` property', () => {
-            const wrapper = factoryShallowMount(null, {
-                isShowingMiles: () => false,
+        it('if `showMiles` is false, it should accept and render a `kilometres` property', () => {
+            const wrapper = factoryShallowMount({
+                showMiles: false,
             });
 
             expect(wrapper.text()).toContain('20');
         });
 
-        it('if `showMiles` is true in the store, it should render a `display_miles` div with the miles value', () => {
-            const wrapper = factoryShallowMount(null, {
-                isShowingMiles: () => true,
+        it('if `showMiles` is true, it should render a `display_miles` div with the miles value', () => {
+            const wrapper = factoryShallowMount({
+                showMiles: true,
             });
 
             const milesDiv = wrapper.find('#display_miles');
             expect(milesDiv.exists()).toBe(true);
         });
 
-        it('if `showMiles` is false in the store, it should render a `display_kilometres` div with the km value', () => {
-            const wrapper = factoryShallowMount(null, {
-                isShowingMiles: () => false,
+        it('if `showMiles` is false, it should render a `display_kilometres` div with the km value', () => {
+            const wrapper = factoryShallowMount({
+                showMiles: false,
             });
 
             const kmDiv = wrapper.find('#display_kilometres');
