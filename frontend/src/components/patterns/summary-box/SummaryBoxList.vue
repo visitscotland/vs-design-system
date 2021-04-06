@@ -50,14 +50,10 @@ export default {
   ```jsx
   <div class="position-relative" style="height: 400px;">
     <VsSummaryBoxList>
-       <VsSummaryBoxListItem>
-            <VsSummaryBoxDisplay
-                :text=itineraries.sampleItinerary.totalDays
-            />
-            <VsSummaryBoxLabel
-                label="Days"
-            />
-        </VsSummaryBoxListItem>
+       <VsSummaryBoxListItem
+            :text=itineraries.sampleItinerary.totalDays
+            label="Days"
+        />
         <VsSummaryBoxDistanceListItem
             :miles=itineraries.sampleItinerary.totalMiles
             :kilometres=itineraries.sampleItinerary.totalKM
@@ -68,24 +64,16 @@ export default {
             kilometres-abbr="km"
         >
         </VsSummaryBoxDistanceListItem>
-        <VsSummaryBoxListItem>
-            <VsSummaryBoxIconWithLabel
-                :icon=itineraries.sampleItinerary.transport.key
-                :label=itineraries.sampleItinerary.transport.value
-            />
-            <VsSummaryBoxLabel
-                label="Transport"
-            />
-        </VsSummaryBoxListItem>
-        <VsSummaryBoxListItem>
-            <VsSummaryBoxIconWithLabel
-                :icon=itineraries.sampleItinerary.theme.key
-                :label=itineraries.sampleItinerary.theme.value
-            />
-            <VsSummaryBoxLabel
-                label="Main theme"
-            />
-        </VsSummaryBoxListItem>
+        <VsSummaryBoxListItem
+            :icon=itineraries.sampleItinerary.transport.key
+            :iconLabel=itineraries.sampleItinerary.transport.value
+            label="Transport"
+        />
+        <VsSummaryBoxListItem
+            :icon=itineraries.sampleItinerary.transport.key
+            :iconLabel=itineraries.sampleItinerary.transport.value
+            label="Main theme"
+        />
     </VsSummaryBoxList>
     </div>
   ```
