@@ -1,16 +1,14 @@
-package com.visitscotland.brxm.translation.report;
+package com.visitscotland.brxm.report.translation;
 
+import com.visitscotland.brxm.report.ReportException;
 import com.visitscotland.brxm.translation.SessionFactory;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
+import com.visitscotland.brxm.utils.Language;
 import org.hippoecm.repository.api.HippoNode;
-import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.api.WorkflowException;
-import org.hippoecm.repository.impl.NodeDecorator;
-import org.hippoecm.repository.standardworkflow.EditableWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.jcr.*;
@@ -18,49 +16,48 @@ import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class TranslationReportService {
 
-    private static final Logger log = LoggerFactory.getLogger(TranslationReportService.class);
-    private static final String VS_TRANSLATION_FLAG = "visitscotland:translationFlag";
-    private static final String VS_TRANSLATION_PRIORITY = "visitscotland:translationPriority";
-    private static final String LAST_MODIFIED_BY_PROPERTY = "hippostdpubwf:lastModifiedBy";
-    private static final String LAST_MODIFIED_DATE_PROPERTY = "hippostdpubwf:lastModificationDate";
-    private static final String EDIT_WORKFLOW_NAME = "editing";
-    private static final Set<String> SUPPORTED_LOCALES = new HashSet<>(Arrays.asList("en", "fr", "nl", "it", "de", "es"));
+    private final Logger log = LoggerFactory.getLogger(TranslationReportService.class);
+    private final String VS_TRANSLATION_FLAG = "visitscotland:translationFlag";
+    private final String LAST_MODIFIED_BY_PROPERTY = "hippostdpubwf:lastModifiedBy";
+    private final String LAST_MODIFIED_DATE_PROPERTY = "hippostdpubwf:lastModificationDate";
+    private final String VS_TRANSLATION_PRIORITY = "visitscotland:translationPriority";
+    private final List<String> SUPPORTED_LOCALES = Language.getLocales().stream().map(Locale::getLanguage).collect(Collectors.toList());
     private Set<String> cachedPageTypes;
     private Set<String> cachedModuleTypes;
 
     private final SessionFactory sessionFactory;
     private final JcrDocumentFactory jcrDocumentFactory;
-    private final JcrQueryService jcrQueryService;
+    private final JcrUtilService jcrUtilService;
 
-    @Autowired
-    public TranslationReportService(SessionFactory sessionFactory, JcrDocumentFactory jcrDocumentFactory, JcrQueryService jcrQueryService) {
+    public TranslationReportService(SessionFactory sessionFactory, JcrDocumentFactory jcrDocumentFactory, JcrUtilService jcrUtilService) {
         this.sessionFactory = sessionFactory;
         this.jcrDocumentFactory = jcrDocumentFactory;
-        this.jcrQueryService = jcrQueryService;
+        this.jcrUtilService = jcrUtilService;
     }
 
     public void setTranslationPriority(String handleId, TranslationPriority priority) {
         try {
             Node jcrNode = sessionFactory.getJcrSession().getNodeByIdentifier(handleId);
             JcrDocument doc = jcrDocumentFactory.createFromNode(jcrNode);
-            setTranslationPriority(doc, priority);
+            jcrUtilService.setTranslationPriority(doc, priority);
         } catch (ItemNotFoundException ex) {
-            throw new TranslationReportException("Can not find item", ex);
+            throw new ReportException("Can not find item", ex);
         } catch (RepositoryException | RemoteException ex) {
-            throw new TranslationReportException("Failed to update item", ex);
+            throw new ReportException("Failed to update item", ex);
         } catch (WorkflowException ex) {
-            throw new TranslationReportException("Document being modified by another user", ex);
+            throw new ReportException("Document being modified by another user", ex);
         }
     }
 
-    public List<TranslationModel> getUntranslatedDocuments(String targetLocale) {
-        List<TranslationModel> docModels = new ArrayList<>();
+    public List<DocumentTranslationReportModel> getUntranslatedDocuments(String targetLocale) {
+        List<DocumentTranslationReportModel> docModels = new ArrayList<>();
         try {
-            for (JcrDocument englishDoc : jcrQueryService.getAllEnglishDocuments()) {
+            for (JcrDocument englishDoc : jcrUtilService.getAllUnpublishedDocuments()) {
                 List<String> translatedLocales = new ArrayList<>();
                 List<String> sendForTranslationLocales = new ArrayList<>();
                 TranslationStatus infoStatus = TranslationStatus.NOT_SENT_FOR_TRANSLATION;
@@ -82,14 +79,14 @@ public class TranslationReportService {
                 TranslationPriority translationPriority = getNodeTranslationPriority(englishDoc);
                 Node unpublished = englishDoc.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
                 String primaryNodeType = unpublished.getProperty("jcr:primaryType").getString().replace("visitscotland:", "");
-                String lastModifiedBy = unpublished.getProperty(LAST_MODIFIED_BY_PROPERTY).getString();
+                String lastModifiedBy = unpublished.hasProperty(LAST_MODIFIED_BY_PROPERTY) ? unpublished.getProperty(LAST_MODIFIED_BY_PROPERTY).getString() : "";
                 String lastModified = getDateAsIsoString(unpublished, LAST_MODIFIED_DATE_PROPERTY);
-                docModels.add(new TranslationModel(englishDoc.getHandle().getIdentifier(), displayName,
+                docModels.add(new DocumentTranslationReportModel(englishDoc.getHandle().getIdentifier(), displayName,
                         infoStatus.toString(), translationPriority, translatedLocales, sendForTranslationLocales,
                         primaryNodeType, lastModified, lastModifiedBy, getDocumentPublishStatus(englishDoc)));
             }
         } catch (RepositoryException ex) {
-            throw new TranslationReportException("Failed to access repository", ex);
+            throw new ReportException("Failed to access repository", ex);
         }
 
         return docModels;
@@ -97,9 +94,11 @@ public class TranslationReportService {
 
     public Set<String> getPageTypes() {
         try {
-            if (cachedPageTypes == null) cachedPageTypes = jcrQueryService.getTypesDeriving("visitscotland:Page");
+            if (cachedPageTypes == null) {
+                cachedPageTypes = jcrUtilService.getTypesDeriving("visitscotland:Page");
+            }
         } catch (RepositoryException ex) {
-            throw new TranslationReportException("Failed to access repository", ex);
+            throw new ReportException("Failed to access repository", ex);
         }
 
         return cachedPageTypes;
@@ -107,9 +106,12 @@ public class TranslationReportService {
 
     public Set<String> getModuleTypes() {
         try {
-            if (cachedModuleTypes == null) cachedModuleTypes = jcrQueryService.getTypesDeriving("visitscotland:basedocument");
+            if (cachedModuleTypes == null) {
+                cachedModuleTypes = jcrUtilService.getTypesDeriving("visitscotland:basedocument");
+                cachedModuleTypes.remove("Page");
+            }
         } catch (RepositoryException ex) {
-            throw new TranslationReportException("Failed to access repository", ex);
+            throw new ReportException("Failed to access repository", ex);
         }
 
         return cachedModuleTypes;
@@ -119,48 +121,35 @@ public class TranslationReportService {
         return SUPPORTED_LOCALES.contains(locale);
     }
 
-    private static String getDateAsIsoString(Node node, String property) throws RepositoryException {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-        df.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return df.format(node.getProperty(property).getDate().getTime());
-    }
-
-
-    private void setTranslationPriority(JcrDocument document, TranslationPriority priority) throws RepositoryException, WorkflowException, RemoteException {
-        Workflow editing = sessionFactory.getUserSession().getWorkflowManager().getWorkflow(EDIT_WORKFLOW_NAME, document.getHandle());
-        Node unpublishedNode = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
-        Session jcrSession = sessionFactory.getJcrSession();
-        if (!document.getLocaleName().equals("en")) {
-            throw new IllegalArgumentException("Can not set " + VS_TRANSLATION_PRIORITY + " on Node with locale" + document.getLocaleName());
-        }
-
-        if (editing instanceof EditableWorkflow) {
-            EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
-            editableWorkflow.obtainEditableInstance();
-            try {
-                unpublishedNode.setProperty(VS_TRANSLATION_PRIORITY, priority.toString());
-            } finally {
-                editableWorkflow.disposeEditableInstance();
-            }
-
-            jcrSession.save();
-            jcrSession.refresh(true);
-        } else {
-            throw new IllegalStateException("Unable to get EditableWorkflow");
+    private String getDateAsIsoString(Node node, String property) throws RepositoryException {
+        if (!node.hasProperty(property)) return "";
+        try {
+            Calendar dateProp = node.getProperty(property).getDate();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+            df.setTimeZone(TimeZone.getTimeZone("UTC"));
+            return df.format(dateProp.getTime());
+        } catch (ValueFormatException ex) {
+            return "";
         }
     }
 
-    private static PublishStatus getDocumentPublishStatus(JcrDocument document) throws RepositoryException {
+    private PublishStatus getDocumentPublishStatus(JcrDocument document) throws RepositoryException {
         Node unpublishedNode = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
-        if (unpublishedNode == null) return PublishStatus.NOT_LIVE;
-        String state = unpublishedNode.getProperty("hippostd:stateSummary").getString();
-        if (state.equals("live")) return PublishStatus.CURR_VERSION_LIVE;
-        if (state.equals("new")) return PublishStatus.NOT_LIVE;
-        if (state.equals("changed")) return PublishStatus.PREV_VERSION_LIVE;
-        return PublishStatus.UNKNOWN;
+        if (unpublishedNode == null) {
+            return PublishStatus.NOT_LIVE;
+        }
+        switch (unpublishedNode.getProperty("hippostd:stateSummary").getString()) {
+            case "live":
+                return PublishStatus.CURR_VERSION_LIVE;
+            case "new":
+                return PublishStatus.NOT_LIVE;
+            case "changed":
+                return PublishStatus.PREV_VERSION_LIVE;
+            default: return PublishStatus.UNKNOWN;
+        }
     }
 
-    private static TranslationPriority getNodeTranslationPriority(JcrDocument document) throws RepositoryException {
+    private TranslationPriority getNodeTranslationPriority(JcrDocument document) throws RepositoryException {
         Node node = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
         String priorityString = node.hasProperty(VS_TRANSLATION_PRIORITY) ?
                 node.getProperty(VS_TRANSLATION_PRIORITY).getString() : "";
@@ -174,7 +163,16 @@ public class TranslationReportService {
         return TranslationPriority.NORMAL;
     }
 
-    private static TranslationStatus getDocumentTranslationStatus(JcrDocument englishDoc, String locale) throws RepositoryException {
+    /**
+     * Determines the translation status of a given document (i.e. Untranslated, Sent for translation or Untranslated)
+     *
+     * Depends on value of the visitscotland:translationFlag. This is a boolean, but encodes three different states
+     *      - Empty/missing: The document has not been sent for translation yet
+     *      - true           Set when the document has been sent for translation
+     *      - false          Set when the document has been translated. If the english document is edited, this field
+     *                       is then reset to empty.
+     */
+    private TranslationStatus getDocumentTranslationStatus(JcrDocument englishDoc, String locale) throws RepositoryException {
         if (locale.equals("en")) return TranslationStatus.TRANSLATED;
         if (!englishDoc.getTranslationLocaleNames().contains(locale)) {
             // If the clone has not been created, then the document can not have been sent for translation

@@ -42,6 +42,26 @@ public final class MockNodeBuilder {
         return this;
     }
 
+    public MockNodeBuilder translatable(String primaryNodeType) throws Exception {
+        return withNodeType("hippostd:publishable").withNodeType("hippotranslation:translated")
+                .withProperty("jcr:primaryType", primaryNodeType);
+    }
+
+    public MockNodeBuilder modified(String modifiedBy, Calendar modifiedAt) throws Exception {
+        return withProperty("hippostdpubwf:lastModifiedBy", modifiedBy)
+            .withProperty("hippostdpubwf:lastModificationDate", modifiedAt);
+    }
+
+    public MockNodeBuilder modified(String modifiedBy) throws Exception {
+        return withProperty("hippostdpubwf:lastModifiedBy", modifiedBy)
+                .withProperty("hippostdpubwf:lastModificationDate", Calendar.getInstance());
+    }
+
+    public MockNodeBuilder withState(String publishState, String stateSummary) throws Exception{
+        return withProperty("hippostd:state", publishState)
+                .withProperty("hippostd:stateSummary", stateSummary);
+    }
+
     public MockNodeBuilder withProperty(String propertyPath, Value[] valueArray) throws Exception {
         Property mockProperty = mock(Property.class);
         lenient().when(mockProperty.getValues()).thenReturn(valueArray);
@@ -67,9 +87,20 @@ public final class MockNodeBuilder {
     public MockNodeBuilder withProperty(String propertyPath, boolean propertyValue) throws Exception {
         Property mockProperty = mock(Property.class);
         lenient().when(mockProperty.getBoolean()).thenReturn(propertyValue);
-        lenient().when(mockProperty.getString()).thenReturn(Boolean.toString(propertyValue));
         properties.put(propertyPath, mockProperty);
         return this;
+    }
+
+    public MockNodeBuilder withTranslationFlag(Boolean flag) throws Exception {
+        if (flag == null){
+            return withProperty("visitscotland:translationFlag", "");
+        } else {
+            Property mockProperty = mock(Property.class);
+            lenient().when(mockProperty.getBoolean()).thenReturn(flag);
+            lenient().when(mockProperty.getString()).thenReturn(flag.toString());
+            properties.put("visitscotland:translationFlag", mockProperty);
+            return this;
+        }
     }
 
     public MockNodeBuilder withProperty(String propertyPath, Property property) throws Exception {

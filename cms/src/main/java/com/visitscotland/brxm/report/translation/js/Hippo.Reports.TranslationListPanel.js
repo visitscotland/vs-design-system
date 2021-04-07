@@ -125,11 +125,12 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                     console.log("afterEdit", e.record.id, e.record.json.handleId, e.originalValue, e.value, e)
 
                     self.updatePriority(e.record.json.handleId, e.value)
-                        .done(function() {
+                        .then(() => {
                             console.log("Success!");
-                        })
-                        .fail(function() {
-                            console.error("Failure to update priority. Restoring previous priority to " + e.originalValue);
+                            this.store.proxy.invalidateCache();
+                            this.store.reload();
+                        }).catch(err =>  {
+                            console.error("Failure to update priority. Restoring previous priority to " + e.originalValue, err);
                             // Restore previous value
                             e.record.reject()
                         })
@@ -330,15 +331,14 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
     },
 
     updatePriority: function(handleId, priority) {
-        return $.ajax({
-            url: "/cms/translation/" + handleId + "/priority",
-            type: "POST",
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({priority: priority})
+        return fetch("/cms/translation/" + handleId + "/priority", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({priority: priority})
         });
     },
-
 
     loadStore: function() {
         this.store.load({

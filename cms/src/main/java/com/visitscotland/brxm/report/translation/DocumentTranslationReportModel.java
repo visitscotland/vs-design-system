@@ -1,12 +1,12 @@
-package com.visitscotland.brxm.translation.report;
+package com.visitscotland.brxm.report.translation;
 
 import java.util.List;
 
-public class TranslationModel {
-    public TranslationModel(String handleId, String displayName, String translationStatus,
-                            TranslationPriority translationPriority, List<String> translatedLocales,
-                            List<String> sentForTranslationLocales, String type, String lastModified,String lastModifiedBy,
-                            PublishStatus publishStatus) {
+public class DocumentTranslationReportModel {
+    public DocumentTranslationReportModel(String handleId, String displayName, String translationStatus,
+                                          TranslationPriority translationPriority, List<String> translatedLocales,
+                                          List<String> sentForTranslationLocales, String type, String lastModified, String lastModifiedBy,
+                                          PublishStatus publishStatus) {
         this.handleId = handleId;
         this.displayName = displayName;
         this.translatedLocales = translatedLocales;

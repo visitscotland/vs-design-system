@@ -1,6 +1,5 @@
-package com.visitscotland.brxm.sample_report;
+package com.visitscotland.brxm.report.sample;
 
-import com.visitscotland.brxm.translation.report.TranslationReportService;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;

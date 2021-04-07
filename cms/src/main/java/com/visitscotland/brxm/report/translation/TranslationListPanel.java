@@ -1,14 +1,9 @@
-package com.visitscotland.brxm.translation.report;
+package com.visitscotland.brxm.report.translation;
 
-import com.onehippo.cms7.reports.plugins.documentlist.DocumentListPanel;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
-import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
-import org.apache.wicket.request.resource.CssResourceReference;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.hippoecm.frontend.model.JcrNodeModel;
 import org.hippoecm.frontend.plugin.IPluginContext;
@@ -37,18 +32,19 @@ public class TranslationListPanel extends ReportPanel {
     // Added to page in order they appear in this list
     private static final List<String> JS_FILES = Arrays.asList("js/constants.js", "js/Hippo.Reports.PageableHttpProxy.js",
             "js/Hippo.Reports.SimpleArrayStore.js", "js/reportFilterComponents.js",  "js/Hippo.Reports.TranslationListPanel.js");
-    private static final CssResourceReference CSS = new CssResourceReference(DocumentListPanel.class, "Hippo.Reports.DocumentList.css");
     private static final Logger log = LoggerFactory.getLogger(TranslationListPanel.class);
 
     public TranslationListPanel(IPluginContext context, IPluginConfig config) {
         super(context, config);
         this.addEventListener("documentSelected", new ExtEventListener() {
+            @Override
             public void onEvent(AjaxRequestTarget target, Map<String, JSONArray> parameters) {
                 getParameter("handleId", parameters).ifPresent(TranslationListPanel.this::browseToDocument);
             }
         });
     }
 
+    @Override
     protected ExtEventAjaxBehavior newExtEventBehavior(String event) {
         if (event.equals("documentSelected")) {
             return new ExtEventAjaxBehavior("handleId");
@@ -64,7 +60,6 @@ public class TranslationListPanel extends ReportPanel {
         JS_FILES.forEach((String file) -> {
             response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(TranslationListPanel.class, file)));
         });
-        response.render(CssHeaderItem.forReference(CSS));
     }
 
     protected void preRenderExtHead(StringBuilder js) {

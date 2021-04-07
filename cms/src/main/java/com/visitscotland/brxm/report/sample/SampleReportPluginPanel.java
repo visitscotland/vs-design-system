@@ -1,4 +1,4 @@
-package com.visitscotland.brxm.sample_report;
+package com.visitscotland.brxm.report.sample;
 
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;

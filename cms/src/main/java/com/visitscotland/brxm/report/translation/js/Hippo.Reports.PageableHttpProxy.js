@@ -59,6 +59,10 @@ Ext.extend(Hippo.Reports.PageableHttpProxy, Ext.data.HttpProxy, {
         }
     },
 
+    invalidateCache: function() {
+        this.records = undefined;
+    },
+
     buildJsonObject: function(records, params, success) {
         if (params["params"] !== undefined) params = params.params;
         const start = params.start === undefined ? 0 : params.start;

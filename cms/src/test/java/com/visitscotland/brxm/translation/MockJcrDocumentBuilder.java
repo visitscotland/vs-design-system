@@ -84,7 +84,9 @@ public final class MockJcrDocumentBuilder {
             // Add mocks for getTranslation(lcoale) - returns hippo:handle given a locale
             // Also mocks out getTranslationLocaleNames() that returns all available locale names
             Set<String> possibleLocaleNames = new HashSet<>();
-            possibleLocaleNames.add(this.localeName);
+            if (this.localeName != null) {
+                possibleLocaleNames.add(this.localeName);
+            }
             for (JcrDocument jcrDocument : translationSet) {
                 // Need this intermediate variable to work around Mockito restriction
                 Node handle = jcrDocument.getHandle();

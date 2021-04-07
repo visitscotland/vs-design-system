@@ -1,4 +1,4 @@
-package com.visitscotland.brxm.translation.report;
+package com.visitscotland.brxm.report.translation;
 
 import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.request.resource.PackageResourceReference;
