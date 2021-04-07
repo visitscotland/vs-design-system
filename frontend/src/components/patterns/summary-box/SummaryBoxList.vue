@@ -70,8 +70,8 @@ export default {
             label="Transport"
         />
         <VsSummaryBoxListItem
-            :icon=itineraries.sampleItinerary.transport.key
-            :iconLabel=itineraries.sampleItinerary.transport.value
+            :icon=itineraries.sampleItinerary.theme.key
+            :iconLabel=itineraries.sampleItinerary.theme.value
             label="Main theme"
         />
     </VsSummaryBoxList>
