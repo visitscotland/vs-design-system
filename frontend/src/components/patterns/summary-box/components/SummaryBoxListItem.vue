@@ -79,12 +79,12 @@ export default {
 <style lang="scss" scoped>
 .vs-summary-box-list-item {
     flex-grow: 1;
-    flex-basis: calc(50% - 1rem);
-    margin: 0.5rem;
+    flex-basis: calc(50% - #{$spacer-4});
+    margin: $spacer-2;
     @include media-breakpoint-up(md) {
         flex-grow: 1;
-        flex-basis: calc(50% - 1.5rem);
-        margin: 0.75rem;
+        flex-basis: calc(50% - #{$spacer-6});
+        margin: $spacer-3;
     }
 
     &::after {
@@ -98,14 +98,14 @@ export default {
 .vs-summary-box-list-item-label {
     bottom: 5px;
     left: 0;
-    line-height: 1rem;
+    line-height: $line_height_xs;
 
     strong {
         display: block;
-        font-size: 0.875rem;
-        line-height: 1.125rem;
+        font-size: $small-font-size;
+        line-height: $line_height_standard;
         @include media-breakpoint-up(lg) {
-            font-size: 1.125rem;
+            font-size: $lead-font-size
         }
     }
 }
@@ -118,7 +118,7 @@ export default {
         font-family: $headings-font-family-thin;
     }
     @include media-breakpoint-up(lg) {
-        font-size: 1.75rem;
+        font-size: $spacer-7;
     }
 }
 
@@ -130,13 +130,13 @@ export default {
         width: auto;
     }
     .text-wrapper {
-        font-size: 0.875rem;
-        line-height: 1rem;
+        font-size: $small-font-size;
+        line-height: $line_height_xs;
         max-width: 50%;
         word-wrap: break-word;
         @include media-breakpoint-up(lg) {
-            font-size: 1rem;
-            line-height: 1.25rem;
+            font-size: $spacer-4;
+            line-height: $line_height_standard;
         }
     }
 }
