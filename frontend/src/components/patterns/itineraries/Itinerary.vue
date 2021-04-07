@@ -249,7 +249,7 @@ export default {
           </VsCol>
           <VsCol cols="12" md="6" lg="5" xl="4">
             <VsSummaryBoxList>
-            <VsSummaryBoxListItem
+                <VsSummaryBoxListItem
                     :text=itineraries.sampleItinerary.totalDays
                     label="Days"
                 />
