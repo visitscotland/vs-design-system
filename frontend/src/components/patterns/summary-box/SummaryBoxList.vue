@@ -11,9 +11,9 @@
 
 <script>
 /**
- * Summary Box List - Wraps a number of VsSummaryBoxListItem components
+ * Summary Box - Wraps a number of VsSummaryBoxListItem and VsSummaryBoxDistanceListItem components
  *
- * @displayName Summary Box List
+ * @displayName Summary Box
  */
 export default {
     name: 'VsSummaryBoxList',
