@@ -20,7 +20,7 @@
             <strong class="d-block">{{ distanceLabel }}</strong>
             <div class="d-flex justify-content-center align-items-center">
                 <VsButton
-                    @click.native="handleClick(true)"
+                    @click.native="toggleShowMiles(true)"
                     :class="showingMiles ? 'active' : ''"
                     :aria-expanded="showingMiles ? 'true' : 'false'"
                     variant="transparent"
@@ -30,7 +30,7 @@
                 </VsButton>
                 <span class="separator">/</span>
                 <VsButton
-                    @click.native="handleClick(false)"
+                    @click.native="toggleShowMiles(false)"
                     :class="showingMiles ? '' : 'active'"
                     :aria-expanded="showingMiles ? 'false' : 'true'"
                     variant="transparent"
@@ -98,7 +98,7 @@ export default {
         };
     },
     methods: {
-        handleClick(value) {
+        toggleShowMiles(value) {
             this.showingMiles = value;
         },
     },

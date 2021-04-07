@@ -2,7 +2,7 @@ import { shallowMount, mount } from '@vue/test-utils';
 
 import VsSummaryBoxDistanceListItem from '../SummaryBoxDistanceListItem';
 
-const spyHandleClick = jest.spyOn(VsSummaryBoxDistanceListItem.methods, 'handleClick');
+const spyToggleShowMiles = jest.spyOn(VsSummaryBoxDistanceListItem.methods, 'toggleShowMiles');
 
 const factoryShallowMount = (propsData) => shallowMount(VsSummaryBoxDistanceListItem, {
     propsData: {
@@ -106,16 +106,16 @@ describe('VsSummaryBoxDistanceListItem', () => {
             const wrapper = factoryMount();
             wrapper.find('[aria-controls="display_miles"]').trigger('click');
 
-            expect(spyHandleClick).toBeCalled();
-            expect(spyHandleClick).toHaveBeenCalledWith(true);
+            expect(spyToggleShowMiles).toBeCalled();
+            expect(spyToggleShowMiles).toHaveBeenCalledWith(true);
         });
 
         it('should call the handleClick method on click of kilometres button', () => {
             const wrapper = factoryMount();
             wrapper.find('[aria-controls="display_kilometres"]').trigger('click');
 
-            expect(spyHandleClick).toBeCalled();
-            expect(spyHandleClick).toHaveBeenCalledWith(false);
+            expect(spyToggleShowMiles).toBeCalled();
+            expect(spyToggleShowMiles).toHaveBeenCalledWith(false);
         });
     });
 });
