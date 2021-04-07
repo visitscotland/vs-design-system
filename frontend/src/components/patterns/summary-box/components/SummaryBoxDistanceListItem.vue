@@ -108,12 +108,12 @@ export default {
 <style lang="scss" scoped>
 .vs-summary-box-distance-list-item {
     flex-grow: 1;
-    flex-basis: calc(50% - 1rem);
-    margin: 0.5rem;
+    flex-basis: calc(50% - #{$spacer-4});
+    margin: $spacer-2;
     @include media-breakpoint-up(md) {
         flex-grow: 1;
-        flex-basis: calc(50% - 1.5rem);
-        margin: 0.75rem;
+        flex-basis: calc(50% - #{$spacer-6});
+        margin: $spacer-3;
     }
 
     &::after {
@@ -129,30 +129,30 @@ export default {
     font-size: 1.625rem;
     top: 20%;
     @include media-breakpoint-up(lg) {
-        font-size: 1.75rem;
+        font-size: $spacer-7;
     }
 
     span {
         display: block;
-        padding: 0 .25em;
+        padding: 0 $spacer-1;
         word-break: break-word;
-        line-height: 1;
+        line-height: $line_height_xs;
     }
 }
 
 .vs-summary-box-distance-label {
     bottom: 5px;
     left: 0;
-    line-height: 1rem;
+    line-height: $line_height_xs;
     @include media-breakpoint-up(lg) {
-        line-height: 1.125rem;
+        line-height: $line_height_standard;
     }
 
     strong,
     .btn {
-        font-size: 0.875rem;
+        font-size: $small-font-size;
         @include media-breakpoint-up(lg) {
-            font-size: 1.125rem;
+            font-size: $lead-font-size;
         }
     }
     .btn {
