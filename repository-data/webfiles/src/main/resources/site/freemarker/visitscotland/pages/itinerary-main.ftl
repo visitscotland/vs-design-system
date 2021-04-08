@@ -41,8 +41,8 @@
     <@cmsErrors errors=alerts!"" editMode=editMode />
      <@hst.link var="hero" hippobean=document.heroImage.original/>
 
-    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="light" areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />	
-    
+    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="light" areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />
+
     <vs-itinerary>
         <@itineraryMap days=document.days />
         <#list document.days as day>
@@ -67,7 +67,7 @@
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
                                 <vs-tooltip title="${label("transports", "${transport}")}">
-                                    <vs-icon name="${transport}" variant="dark" size="md"></vs-icon>
+                                    <vs-icon name="${transport}" variant="dark" size="md" smallSize="xs"></vs-icon>
                                 </vs-tooltip>
                                 <span class="sr-only">${label("transports", "${transport}")}</span>
                             </dd>
