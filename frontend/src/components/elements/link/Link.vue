@@ -5,8 +5,9 @@
             `vs-link--variant-${variant}`,
         ]"
         :href="href"
-        :target="type === 'external' ? '_blank' : '_self'"
+        target="_self"
         :download="type === 'download'"
+        :disabled="disabled"
     >
         <slot />
         <VsIcon
@@ -74,6 +75,13 @@ export default {
             type: String,
             default: 'xs',
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+        },
+        /**
+        * Option to disable the link
+        */
+        disabled: {
+            type: Boolean,
+            default: false,
         },
     },
     computed: {
