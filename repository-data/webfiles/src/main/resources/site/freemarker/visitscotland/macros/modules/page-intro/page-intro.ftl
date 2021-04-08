@@ -57,10 +57,8 @@
         <#if days?has_content>
             <#if firstStop?has_content && lastStop?has_content>
                 <template slot="vsIntroStartFinish">
-                    <dl class="list-inline">
-                        <dt class="list-inline-item">${label("itinerary", "start-finish")}</dt>
-                        <dd class="list-inline-item">${firstStop} / ${lastStop}</dd>
-                    </dl>
+                    <dt class="list-inline-item">${label("itinerary", "start-finish")}</dt>
+                    <dd class="list-inline-item">${firstStop} / ${lastStop}</dd>
                 </template>
             </#if>
         
