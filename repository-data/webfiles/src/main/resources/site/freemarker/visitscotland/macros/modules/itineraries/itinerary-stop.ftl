@@ -96,9 +96,9 @@
                                 <#assign filterAddressArr = filterAddressArr + [ addrLine ] />
                             </#if>
                         </#list>
-                        <#--  Display each line from the address, only display a comma if not last  -->
+                        <#--  Display each line from the address, comma separated  -->
                         <#list filterAddressArr as addressLine>
-                            <span>${addressLine}<#if !addressLine?is_last>,</#if></span>
+                            <span>${addressLine}<#sep>,</span>
                         </#list>
                     </vs-address>
                 </#if>
