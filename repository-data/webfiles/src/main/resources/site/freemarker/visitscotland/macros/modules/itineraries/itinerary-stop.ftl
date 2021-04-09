@@ -89,16 +89,12 @@
                             prod.address.city!"",
                             prod.address.postCode!""
                         ]/>
-                        <#--  Filter out empty strings in address  -->
-                        <#assign filterAddressArr = [] />
-                        <#list addressArr as addrLine>
-                            <#if addrLine != "">
-                                <#assign filterAddressArr = filterAddressArr + [ addrLine ] />
-                            </#if>
-                        </#list>
+
                         <#--  Display each line from the address, comma separated  -->
-                        <#list filterAddressArr as addressLine>
-                            <span>${addressLine}<#sep>,</span>
+                        <#list addressArr as addressLine>
+                            <#if addressLine != "">
+                                <span>${addressLine}<#sep>,</span>
+                            </#if>
                         </#list>
                     </vs-address>
                 </#if>
