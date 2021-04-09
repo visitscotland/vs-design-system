@@ -69,7 +69,7 @@ describe('VsSummaryBoxDistanceListItem', () => {
             const wrapper = factoryShallowMount({
                 distanceLabel: 'Entfernung',
             });
-            expect(wrapper.html()).toContain('<strong class="d-block">Entfernung</strong>');
+            expect(wrapper.html()).toContain('Entfernung');
         });
 
         it('should accept an milesLabel property', () => {

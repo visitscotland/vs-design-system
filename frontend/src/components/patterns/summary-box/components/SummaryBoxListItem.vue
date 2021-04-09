@@ -1,10 +1,10 @@
 <template>
     <li
-        class="vs-summary-box-list-item position-relative"
+        class="vs-summary-box-item position-relative"
         data-test="vs-summary-box-list-item"
     >
         <div
-            class="vs-summary-box-list-item-display position-absolute d-block text-center w-100"
+            class="vs-summary-box-item__display position-absolute d-block text-center w-100"
             data-test="vs-summary-box-list-item-display"
             v-if="text"
         >
@@ -12,7 +12,7 @@
         </div>
 
         <div
-            class="vs-summary-box-list-item-icon-with-label d-flex align-items-end
+            class="vs-summary-box-item__icon d-flex align-items-end
             position-absolute justify-content-center w-100"
             data-test="vs-summary-box-list-item-icon-with-label"
             v-if="icon"
@@ -31,11 +31,11 @@
         </div>
 
         <div
-            class="text-center vs-summary-box-list-item-label d-block position-absolute w-100"
+            class="text-center vs-summary-box-item__label d-block position-absolute w-100"
             data-test="vs-summary-box-list-item-label"
             v-if="label"
         >
-            <strong>{{ label }}</strong>
+            <span class="vs-summary-box-item__label-inner">{{ label }}</span>
         </div>
     </li>
 </template>
@@ -56,18 +56,31 @@ export default {
         VsIcon,
     },
     props: {
+        /**
+         * The highlighted, large text in the centre of the list item
+         */
         text: {
             type: String,
             default: '',
         },
+        /**
+         * Smaller text at the bottom of the list item
+         */
         label: {
             type: String,
             default: '',
         },
+        /**
+         * An icon that appears in the centre of the list item, should
+         * be used instead of text rather than as well as
+         */
         icon: {
             type: String,
             default: '',
         },
+        /**
+         * A text label that appears next to an icon, if an icon is set
+         */
         iconLabel: {
             type: String,
             default: '',
@@ -77,10 +90,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vs-summary-box-list-item {
+.vs-summary-box-item {
     flex-grow: 1;
     flex-basis: calc(50% - #{$spacer-4});
     margin: $spacer-2;
+
     @include media-breakpoint-up(md) {
         flex-grow: 1;
         flex-basis: calc(50% - #{$spacer-6});
@@ -95,45 +109,51 @@ export default {
     }
 }
 
-.vs-summary-box-list-item-label {
+.vs-summary-box-item__label {
     bottom: 5px;
     left: 0;
     line-height: $line_height_xs;
 
-    strong {
+    .vs-summary-box-item__label-inner {
         display: block;
         font-size: $small-font-size;
         line-height: $line_height_standard;
+        font-weight: $font-weight-bold;
+
         @include media-breakpoint-up(lg) {
             font-size: $lead-font-size
         }
     }
 }
 
-.vs-summary-box-list-item-display {
+.vs-summary-box-item__display {
     top: 20%;
     font-family: $headings-font-family;
     font-size: 1.625rem;
+
     .divider {
         font-family: $headings-font-family-thin;
     }
+
     @include media-breakpoint-up(lg) {
         font-size: $spacer-7;
     }
 }
 
-.vs-summary-box-list-item-icon-with-label {
+.vs-summary-box-item__icon {
     bottom: 35%;
 
     .icon-wrapper {
         max-width: 40%;
         width: auto;
     }
+
     .text-wrapper {
         font-size: $small-font-size;
         line-height: $line_height_xs;
         max-width: 50%;
         word-wrap: break-word;
+
         @include media-breakpoint-up(lg) {
             font-size: $spacer-4;
             line-height: $line_height_standard;
@@ -144,17 +164,19 @@ export default {
 
 <docs>
   ```jsx
-    <ul style="width: 200px; list-style-type: none;">
-        <VsSummaryBoxListItem
-            :text=itineraries.sampleItinerary.totalDays
-            label="Days"
-        >
-        </VsSummaryBoxListItem>
-        <VsSummaryBoxListItem
-            :icon=itineraries.sampleItinerary.transport.key
-            :iconLabel=itineraries.sampleItinerary.transport.value
-        >
-        </VsSummaryBoxListItem>
-    </ul>
+    <div class="position-relative" style="height: 200px;">
+        <VsSummaryBoxList>
+            <VsSummaryBoxListItem
+                :text=itineraries.sampleItinerary.totalDays
+                label="Days"
+            >
+            </VsSummaryBoxListItem>
+            <VsSummaryBoxListItem
+                :icon=itineraries.sampleItinerary.transport.key
+                :iconLabel=itineraries.sampleItinerary.transport.value
+            >
+            </VsSummaryBoxListItem>
+        </VsSummaryBoxList>
+    </div>
   ```
 </docs>
