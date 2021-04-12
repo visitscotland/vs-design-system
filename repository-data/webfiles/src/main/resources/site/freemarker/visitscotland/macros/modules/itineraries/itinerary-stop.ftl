@@ -81,7 +81,6 @@
 
                 <#if prod.address.line1?? && prod.address.line1?has_content>
                     <vs-address>
-                        <#--  Convert the address to a filterable, ordered array  -->
                         <#assign addressArr = [
                             prod.address.line1!"",
                             prod.address.line2!"",
@@ -90,11 +89,29 @@
                             prod.address.postCode!""
                         ]/>
 
-                        <#--  Display each line from the address, comma separated  -->
-                        <#list addressArr as addressLine>
-                            <#if addressLine != "">
-                                <span>${addressLine}<#sep>,</span>
+                        <#--
+                            Filter out empty strings in address
+
+                            It would be tidier to do this within the loop below, but that
+                            causes <#sep> to incorrectly assume that the postCode is always
+                            a value that needs a comma before it, even if it is an empty
+                            string. The ideal solution would be to iterate over
+
+                            addressArr?filter()
+
+                            rather than constructing a whole filtered copy of the array
+                            for readability but that is not doable until we reach a future
+                            version of freemarker (2.3.29).
+                        -->
+                        <#assign filterAddressArr = [] />
+                        <#list addressArr as addrLine>
+                            <#if addrLine != "">
+                                <#assign filterAddressArr = filterAddressArr + [ addrLine ] />
                             </#if>
+                        </#list>
+
+                        <#list filterAddressArr as addressLine>
+                            <span>${addressLine}<#sep>,</span>
                         </#list>
                     </vs-address>
                 </#if>
