@@ -4,6 +4,7 @@
         :class="introClasses"
         data-test="vs-page-intro"
     >
+        <!-- @slot Slot for hero component  -->
         <slot name="vsIntroHero" />
 
         <section class="vs-page-intro__wrapper">
