@@ -234,7 +234,7 @@ export default {
 
         @include media-breakpoint-up(xl) {
             .vs-stretched-link-card__title {
-                font-size: $h6-font-size;
+                font-size: $small-font-size;
                 line-height: $line-height-s;
             }
 
