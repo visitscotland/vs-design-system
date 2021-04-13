@@ -129,7 +129,7 @@ class PageTemplateBuilderTest {
         assertEquals(4, items.size());
 
         for (int i = 0; i < 4; i++) {
-            assertEquals(PageTemplateBuilder.themes[i % 3], items.get(i).getTheme());
+            assertEquals(i % PageTemplateBuilder.THEMES, items.get(i).getThemeIndex());
         }
     }
 
@@ -156,7 +156,7 @@ class PageTemplateBuilderTest {
         assertEquals(4, items.size());
 
         for (int i = 0; i < 4; i++) {
-            assertEquals(PageTemplateBuilder.themes[i != 3 ? 0 : 1], items.get(i).getTheme());
+            assertEquals(i != 3 ? 0 : 1, items.get(i).getThemeIndex());
         }
     }
 
@@ -179,7 +179,7 @@ class PageTemplateBuilderTest {
         LinksModule firstModuleWithTitle = ((List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
 
         //Compare that the result is identical
-        assertEquals(firstModuleWithoutTitle.getTheme(), firstModuleWithTitle.getTheme());
+        assertEquals(firstModuleWithoutTitle.getThemeIndex(), firstModuleWithTitle.getThemeIndex());
     }
 
     /**
@@ -267,7 +267,6 @@ class PageTemplateBuilderTest {
 
         assertEquals(1, items.size());
         assertEquals(module.getType(), items.get(0).getType());
-        assertEquals(PageTemplateBuilder.NEUTRAL_THEME, items.get(0).getTheme());
     }
 
     @Test
@@ -281,7 +280,7 @@ class PageTemplateBuilderTest {
         LinksModule module = (LinksModule) ((List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
 
         assertNotNull(request.getAttribute(PageTemplateBuilder.INTRO_THEME));
-        assertEquals(request.getAttribute(PageTemplateBuilder.INTRO_THEME), module.getTheme());
+        assertEquals(request.getAttribute(PageTemplateBuilder.INTRO_THEME), module.getThemeIndex());
     }
 
     @Test
@@ -290,8 +289,7 @@ class PageTemplateBuilderTest {
         when(utils.getAllowedDocuments(page)).thenReturn(Collections.emptyList());
         builder.addModules(request);
 
-        assertEquals(PageTemplateBuilder.NEUTRAL_THEME,
-                request.getAttribute(PageTemplateBuilder.INTRO_THEME));
+        assertNull(request.getAttribute(PageTemplateBuilder.INTRO_THEME));
     }
 
     @Test
