@@ -9,6 +9,7 @@
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/shared/module-builder.ftl">
+<#include "../macros/modules/otyml/otyml.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Itinerary" -->
@@ -61,7 +62,7 @@
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
                                 <vs-tooltip title="${label("transports", "${transport}")}">
-                                    <vs-icon name="${transport}" variant="dark" size="md"></vs-icon>
+                                    <vs-icon name="${transport}" variant="dark" size="md" smallSize="xs"></vs-icon>
                                 </vs-tooltip>
                                 <span class="sr-only">${label("transports", "${transport}")}</span>
                             </dd>
