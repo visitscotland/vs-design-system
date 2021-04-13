@@ -29,14 +29,13 @@ public class PageTemplateBuilder {
     //Static Constant
     static final String INTRO_THEME = "introTheme";
     static final String PAGE_ITEMS = "pageItems";
-    static final String[] themes = {"theme1", "theme2", "theme3"};
+
     static final String[] alignment = {"right", "left"};
 
     /**
-     * @deprecated to be removed by after VS-2441 is completed
+     * TODO: Convert into property?
      */
-    @Deprecated
-    public static final String NEUTRAL_THEME = themes[1];
+    static final Integer THEMES = 3;
 
     //Utils
     private final DocumentUtilsService documentUtils;
@@ -124,7 +123,7 @@ public class PageTemplateBuilder {
             page.style--;
         }
 
-        al.setTheme(themes[page.style++ % themes.length]);
+        al.setThemeIndex(page.style++ % THEMES);
         al.setHippoBean(item);
 
         page.modules.add(al);
@@ -156,7 +155,6 @@ public class PageTemplateBuilder {
         OTYML otyml = getDocument(request).getOtherThings();
         if(otyml!=null) {
             HorizontalListLinksModule al = linksFactory.horizontalListLayout(otyml, request.getLocale());
-            al.setTheme(NEUTRAL_THEME);
             modules.add(al);
         }
     }
@@ -168,9 +166,7 @@ public class PageTemplateBuilder {
      */
     private void setIntroTheme(HstRequest request, List<Module> modules){
         if(!modules.isEmpty() && modules.get(0) instanceof LinksModule){
-            request.setAttribute(INTRO_THEME, ((LinksModule) modules.get(0)).getTheme());
-        }else{
-            request.setAttribute(INTRO_THEME, NEUTRAL_THEME);
+            request.setAttribute(INTRO_THEME, ((LinksModule) modules.get(0)).getThemeIndex());
         }
     }
 

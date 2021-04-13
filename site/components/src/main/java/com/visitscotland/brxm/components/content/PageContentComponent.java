@@ -105,7 +105,6 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         HorizontalListLinksModule otyml = null;
         if(page.getOtherThings()!=null) {
             otyml = linksFactory.horizontalListLayout(page.getOtherThings(), locale);
-            otyml.setTheme(PageTemplateBuilder.NEUTRAL_THEME);
         }
         return otyml;
     }

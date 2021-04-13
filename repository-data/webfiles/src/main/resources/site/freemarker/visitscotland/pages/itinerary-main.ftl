@@ -1,20 +1,15 @@
 <#compress>
 <#include "../../include/imports.ftl">
-
-<#--  <#include "../../frontend/stores/vs-store-itineraries-store.ftl">  -->
-<#include "../../frontend/components/vs-page-intro.ftl">
 <#include "../../frontend/components/vs-icon.ftl">
-
 <#include "../../frontend/components/vs-tooltip.ftl">
-
 <#include "../../frontend/components/vs-itinerary-day.ftl">
 <#include "../../frontend/components/vs-itinerary.ftl">
-
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/modules/itineraries/itinerary-map.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/shared/module-builder.ftl">
+<#include "../macros/modules/otyml/otyml.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Itinerary" -->
@@ -39,9 +34,9 @@
 <div class="has-edit-button">
     <@hst.manageContent hippobean=document documentTemplateQuery="new-day" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
-     <@hst.link var="hero" hippobean=document.heroImage.original/>
+    <@hst.link var="hero" hippobean=document.heroImage.original/>
 
-    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="light" areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />
+    <@pageIntro content=document heroImage=heroImage hero=hero areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />
 
     <vs-itinerary>
         <@itineraryMap days=document.days />
@@ -89,7 +84,8 @@
             </vs-itinerary-day>
         </#list>
     </vs-itinerary>
-    <#if otyml??>
-        <@moduleBuilder otyml "theme1" />
-    </#if>
+    <!-- commented out to prevent stack trace errors - needs fixing -->
+    <#--  <#if otyml??>
+        <@moduleBuilder module />
+    </#if>  -->
 </div>
