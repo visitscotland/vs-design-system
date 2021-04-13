@@ -29,34 +29,6 @@
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
     <@pageIntro content=document heroImage="" hero="" areas="" days="" firstStop="" lastStop="" />
-    
-    
-	<#--  <vs-container slot="upper" class="py-lg-4">
-		<vs-row>
-			<vs-col cols="12" lg="8">
-				<@hst.include ref="breadcrumb"/>
-			</vs-col>
-		</vs-row>
-
-		<vs-row>
-			<vs-col cols="10" lg="8">
-				<vs-heading level="1">${document.title}</vs-heading>
-			</vs-col>
-			<vs-col cols="2">
-				<div class="d-flex justify-content-center justify-content-sm-end">
-					<vs-social-share></vs-social-share>
-				</div>
-			</vs-col>
-		</vs-row>
-
-        <vs-row class="mb-6">
-            <vs-col cols="12" lg="8">
-                <vs-rich-text-wrapper variant="lead">
-                    <@hst.html hippohtml=document.introduction/>
-                </vs-rich-text-wrapper>
-            </vs-col>
-        </vs-row>  -->
-
         <vs-container class="mt-6">
             <vs-row>
                 <vs-col cols="12">
@@ -70,7 +42,6 @@
                 </vs-col>
             </vs-row>
         </vs-container>
-
 
         <#if document.listicleClosing??>
                 <vs-row class="mb-6">
