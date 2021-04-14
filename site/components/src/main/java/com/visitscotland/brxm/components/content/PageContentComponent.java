@@ -1,24 +1,20 @@
 package com.visitscotland.brxm.components.content;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.dms.LocationLoader;
+import com.visitscotland.brxm.dms.ProductSearchBuilder;
+import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.factory.ImageFactory;
+import com.visitscotland.brxm.factory.LinkModulesFactory;
 import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
-import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.HorizontalListLinksModule;
-import com.visitscotland.brxm.config.VsComponentManager;
-import com.visitscotland.brxm.factory.ImageFactory;
-import com.visitscotland.brxm.factory.LinkModulesFactory;
-import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.dms.ProductSearchBuilder;
-import com.visitscotland.brxm.services.LinkService;
-import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.services.CommonUtilsService;
-import com.visitscotland.brxm.utils.PageTemplateBuilder;
-import com.visitscotland.dataobjects.DataType;
+import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
@@ -44,14 +40,12 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     public static final String FACILITIES = "keyFacilities";
     public static final String HERO_COORDINATES = "heroCoordinates";
 
-    private ResourceBundleService bundle;
     private LinkService linksService;
     private LocationLoader locationLoader;
     private LinkModulesFactory linksFactory;
     private ImageFactory imageFactory;
 
     public PageContentComponent(){
-        bundle = VsComponentManager.get(ResourceBundleService.class);
         linksService = VsComponentManager.get(LinkService.class);
         locationLoader = VsComponentManager.get(LocationLoader.class);
         linksFactory = VsComponentManager.get(LinkModulesFactory.class);
@@ -150,11 +144,14 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @param item Compound for DMSLink, PSRLink , External Link or CMS link
      * @return FlatLink
      */
-    protected FlatLink createLink(HstRequest request, HippoCompound item) {
+    private FlatLink createLink(HstRequest request, HippoCompound item) {
         return linksService.createLink(request.getLocale(), item);
     }
 
-    protected void initPage (HstRequest request){
+    /**
+     * TODO Refactor and remove this method
+     */
+    private void initPage (HstRequest request){
         final String HERO_IMAGE = "heroImage";
         final String ALERTS = "alerts";
         List<String> alerts = validateDesiredFields(getDocument(request));
@@ -169,7 +166,10 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         }
     }
 
-    protected List<String> validateDesiredFields (Page item){
+    /**
+     * TODO Refactor and remove this method
+     */
+    private List<String> validateDesiredFields (Page item){
         List<String> response =  new ArrayList<>();
         if (item.getTeaser() == null || item.getTeaser().isEmpty()) {
             response.add("Teaser field should be provided");

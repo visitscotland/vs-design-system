@@ -78,7 +78,13 @@ public class DMSConstants {
         public static final String END_TIME = "endTime";
         public static final String OPENING_DAY = "day";
         public static final String OPENING_STATE = "state";
-        public static final String OPENING_PROVISIONAL = "provisional";
+        //TODO Change again
+        public static final String OPENING_PROVISIONAL = "provivisional";
+        public static final String URL = "url";
+        public static final String TIME_TO_EXPLORE = "timeToExplore";
+        public static final String PRICE = "price";
+        public static final String DISPLAY_PRICE = "displayPrice";
+
     }
 
     //Endpoints
