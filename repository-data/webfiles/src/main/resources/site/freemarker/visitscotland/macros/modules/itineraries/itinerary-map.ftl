@@ -4,7 +4,7 @@
 <#include "../../../../frontend/components/vs-itinerary-map-marker.ftl">
 
 <#-- @ftlvariable name="stop" type="com.visitscotland.brxm.hippobeans.Stop" -->
-<#-- @ftlvariable name="prod" type="com.visitscotland.brxm.model.FlatStop" -->
+<#-- @ftlvariable name="prod" type="com.visitscotland.brxm.model.ItineraryStopModule" -->
 
 <#macro itineraryMap days>
     <vs-itinerary-map

@@ -1,6 +1,8 @@
 package com.visitscotland.brxm.dms;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.visitscotland.brxm.model.FlatLink;
+import com.visitscotland.brxm.model.ProductCard;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.dataobjects.DataType;
 import org.springframework.stereotype.Component;
@@ -54,6 +56,27 @@ public class DMSUtils {
             }
         } else {
             return bundle.getResourceBundle(ITINERARY_BUNDLE, "stop.closed", locale);
+        }
+    }
+
+    /**
+     * TODO: UNIT TEST & DOCUMENT
+     */
+    public void setOpeningTimes(JsonNode product, ProductCard card, Locale locale){
+        if (product.has(OPENING)) {
+            JsonNode opening = product.get(OPENING);
+            //TODO adjust the message to designs when ready
+            if ((opening.has(OPENING_STATE)) && (!opening.get(OPENING_STATE).asText().equalsIgnoreCase("unknown"))) {
+                //TODO create ResourceBundle usually & provisionally
+                String openingMessage = bundle.getResourceBundle(ITINERARY_BUNDLE, opening.get(OPENING_PROVISIONAL).asBoolean() == false ? "usually" : "provisionally",locale)
+                        + " " + opening.get(OPENING_STATE).asText() + " " + opening.get(OPENING_DAY).asText();
+                if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
+                    openingMessage = openingMessage + ": " + opening.get(START_TIME).asText() + "-" + opening.get(END_TIME).asText();
+                }
+                card.setOpen(openingMessage);
+                card.setOpenLink(new FlatLink(bundle.getResourceBundle(ITINERARY_BUNDLE, "stop.opening",locale),
+                        card.getCtaLink().getLink() + "#opening", null));
+            }
         }
     }
 }

@@ -186,46 +186,4 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
         return response;
     }
-
-    /**
-     * TODO: Remove this method after the refactoring of itineraries
-     */
-    @Deprecated
-    protected static void checkImageErrors(FlatImage image, Locale locale, List<String> errors){
-        if (image.getAltText() == null || image.getAltText().isEmpty()){
-            image.setAltText(image.getCmsImage().getAltText());
-            errors.add("Alt text field not provided for " + locale.getDisplayLanguage());
-            logger.warn(CommonUtilsService.contentIssue("Please add alt text in %s for the image : %s - %s",
-                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
-        }
-        if (image.getDescription() == null || image.getDescription().isEmpty()){
-            image.setDescription(image.getCmsImage().getDescription());
-            errors.add("Caption field not provided for " + locale.getDisplayLanguage());
-            logger.warn(CommonUtilsService.contentIssue("Please add a caption in %s for the image : %s - %s",
-                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
-        }
-    }
-
-    /**
-     * TODO: Remove this method after the refactoring of itineraries
-     *
-     * @deprecated use DMSUtils.getFacilities instead
-     */
-    @Deprecated
-    protected List<DataType> getFacilities (JsonNode product){
-        List<DataType> facilities = null;
-        if (product.has(FACILITIES)){
-            facilities = new ArrayList<>();
-            JsonNode keyFacilitiesList = product.get(FACILITIES);
-
-            if (keyFacilitiesList.isArray()) {
-                for (JsonNode facility : keyFacilitiesList) {
-                    DataType dataType = new DataType(facility.get("id").asText(),facility.get("name").asText());
-                    facilities.add(dataType);
-                }
-            }
-        }
-        return facilities;
-    }
-
 }

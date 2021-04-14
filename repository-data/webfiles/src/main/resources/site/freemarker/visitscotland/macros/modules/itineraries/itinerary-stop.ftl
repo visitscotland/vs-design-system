@@ -14,7 +14,7 @@
 
 <#macro itineraryStop stop lastStop>
 <#-- @ftlvariable name="stop" type="com.visitscotland.brxm.hippobeans.Stop" -->
-<#-- @ftlvariable name="prod" type="com.visitscotland.brxm.model.FlatStop" -->
+<#-- @ftlvariable name="prod" type="com.visitscotland.brxm.model.ItineraryStopModule" -->
 
     <#assign prod = stops[stop.identifier]>
     <#assign image = "" />

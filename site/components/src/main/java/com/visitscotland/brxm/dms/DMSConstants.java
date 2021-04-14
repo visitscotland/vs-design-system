@@ -55,11 +55,6 @@ public class DMSConstants {
         public static final String AVAILABILITY = "avail";
     }
 
-    /**
-     * Note: This interface is marked by SonarQube as a Critical issue, however since those constant are translated
-     * into parameters later on, AND they really belong to the dms project, this is a perfectly reasonable use for a
-     * constants interface.
-     */
     public final class DMSProduct {
 
         private DMSProduct (){
@@ -77,6 +72,13 @@ public class DMSConstants {
         public static final String ADDRESS = "address";
         public static final String LOCATION = "city";
         public static final String FACILITIES = "keyFacilities";
+
+        public static final String OPENING = "todayOpeningTime";
+        public static final String START_TIME = "startTime";
+        public static final String END_TIME = "endTime";
+        public static final String OPENING_DAY = "day";
+        public static final String OPENING_STATE = "state";
+        public static final String OPENING_PROVISIONAL = "provisional";
     }
 
     //Endpoints

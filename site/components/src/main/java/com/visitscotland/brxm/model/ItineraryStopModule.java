@@ -8,7 +8,7 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class FlatStop {
+public class ItineraryStopModule extends Module<Stop> implements ProductCard {
 
     private String identifier;
 
@@ -17,7 +17,7 @@ public class FlatStop {
     private String subTitle;
     private HippoHtml description;
     private FlatImage image;
-    private String timeToexplore;
+    private String timeToExplore;
     private String tipsTitle;
     private FlatLink ctaLink;
     private HippoHtml tipsBody;
@@ -29,21 +29,19 @@ public class FlatStop {
     private BigDecimal distance;
 
     private Coordinates coordinates;
-    private List<String> errorMessages;
 
-    public FlatStop() {
+    private String location;
+
+    public ItineraryStopModule() {
 
     }
 
-    public FlatStop(Stop stop) {
-        this.identifier = stop.getIdentifier();
-        this.title = stop.getTitle();
-        this.description = stop.getDescription();
+    public String getLocation() {
+        return location;
+    }
 
-        if (stop.getStopTip()!=null){
-            this.tipsTitle = stop.getStopTip().getTitle();
-            this.tipsBody = stop.getStopTip().getCopy();
-        }
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getIdentifier() {
@@ -86,12 +84,12 @@ public class FlatStop {
         this.image = image;
     }
 
-    public String getTimeToexplore() {
-        return timeToexplore;
+    public String getTimeToExplore() {
+        return timeToExplore;
     }
 
-    public void setTimeToexplore(String timeToexplore) {
-        this.timeToexplore = timeToexplore;
+    public void setTimeToExplore(String timeToExplore) {
+        this.timeToExplore = timeToExplore;
     }
 
     public String getTipsTitle() {
@@ -172,14 +170,6 @@ public class FlatStop {
 
     public void setOpenLink(FlatLink openLink) {
         this.openLink = openLink;
-    }
-
-    public List<String> getErrorMessages() {
-        return errorMessages;
-    }
-
-    public void setErrorMessages(List<String> errorMessages) {
-        this.errorMessages = errorMessages;
     }
 
     public BigDecimal getDistance() {
