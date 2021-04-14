@@ -53,6 +53,8 @@ class HTMLtoVueTransformerTest {
                 "<a href=\"https://www.gov.scot/coronavirus-covid-19/\">Link 2</a> & " +
                 "<a href=\"https://protect.scot/\">Link 3</a> </p>";
 
+        when(linkService.getType(any())).thenReturn(LinkType.EXTERNAL);
+
         String result = transformer.processLinks(HTML);
         Matcher matcher = Pattern.compile("<vs-link ").matcher(result);
         int count = 0;
