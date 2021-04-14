@@ -31,7 +31,7 @@ public class TranslationListPanel extends ReportPanel {
     // Javascript files needed for the translation report
     // Added to page in order they appear in this list
     private static final List<String> JS_FILES = Arrays.asList("js/constants.js", "js/Hippo.Reports.PageableHttpProxy.js",
-            "js/Hippo.Reports.SimpleArrayStore.js", "js/reportFilterComponents.js",  "js/Hippo.Reports.TranslationListPanel.js");
+            "js/Hippo.Reports.SimpleArrayStore.js", "js/reportFilterComponents.js",  "js/reportExport.js", "js/Hippo.Reports.TranslationListPanel.js");
     private static final Logger log = LoggerFactory.getLogger(TranslationListPanel.class);
 
     public TranslationListPanel(IPluginContext context, IPluginConfig config) {

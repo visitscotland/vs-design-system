@@ -193,7 +193,13 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                             text: "Document type",
                             style: SIDEBAR_LABEL_STYLE
                         },
-                        Hippo.Reports.pageOrModuleFilterComboConfig
+                        Hippo.Reports.pageOrModuleFilterComboConfig,
+                        {
+                            xtype: "button",
+                            text: "Download",
+                            style: SIDEBAR_LABEL_STYLE,
+                            handler: self.downloadRecordsAsCsv
+                        }
                     ]
 
                 }
@@ -367,6 +373,14 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
     destroy: function() {
         Hippo.Reports.TranslationListPanel.superclass.destroy.call(this);
         Hippo.Reports.RefreshObservableInstance.removeListener("refresh", this.loadStore, this);
+    },
+
+    downloadRecordsAsCsv: function() {
+        const gridStore = Ext.getCmp(GRID_ID).getStore();
+        const sortInfo = gridStore.sortInfo;
+        const records = gridStore.proxy.getFilteredRecords({sort: sortInfo.field, dir: sortInfo.direction});
+        const csv = Hippo.Reports.recordsToCsv(records, ["displayName", "translatedLocales"], ["Document", "Translated Locales"])
+        Hippo.Reports.downloadFile("translation-report.csv", "text/csv", csv);
     }
 
 });

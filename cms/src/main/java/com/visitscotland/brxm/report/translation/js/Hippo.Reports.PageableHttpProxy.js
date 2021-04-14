@@ -40,10 +40,18 @@ Ext.extend(Hippo.Reports.PageableHttpProxy, Ext.data.HttpProxy, {
         }
     },
 
+
+    getFilteredRecords(params) {
+        if (this.records === undefined) return [];
+        params.start = 0
+        params.limit = this.records.length;
+        return this.buildJsonObject(this.records, params, true).records;
+    },
+
     setParams: function(params) {
         this.additionalParams = params;
         // When params are changed, force a refresh of server data
-        this.records = undefined;
+        this.invalidateCache();
     },
 
     onRequestCompleteCallback: function(loadStoreCb) {
