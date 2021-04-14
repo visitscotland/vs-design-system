@@ -426,6 +426,13 @@ export default {
                     </div>
                     <VsSvg slot="svg" path="highland-cow" />
                 </VsItineraryTips>
+                <VsAddress v-if="stop.address && stop.address.line1">
+                    <span v-if="stop.address.line1">{{ stop.address.line1 }},</span>
+                    <span v-if="stop.address.line2">{{ stop.address.line2 }},</span>
+                    <span v-if="stop.address.line3">{{ stop.address.line3 }},</span>
+                    <span v-if="stop.address.city">{{ stop.address.city }},</span>
+                    <span v-if="stop.address.postcode">{{ stop.address.postcode }}</span>
+                </VsAddress>
                 <VsIconList v-if="stop.facilities.length" title="Key facilities">
                     <VsIconListItem
                         v-for="(facility, facilitiesIndex) in stop.facilities"
