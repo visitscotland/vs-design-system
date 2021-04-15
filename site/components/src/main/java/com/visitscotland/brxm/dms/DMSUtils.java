@@ -39,13 +39,19 @@ public class DMSUtils {
     /**
      * TODO this method returns the current open state, and it could be affected by the cache, ask WEBOPS and move it to front end if needed
      * TODO This method is only intended for Itineraries? Should be part of itineraries factory? Otherwise, the bundle keys should be more general
+     *
+     * TODO to be removed after the refactoring of itineraries
+     *
+     * @deprecated
      */
+    @Deprecated
     public String currentOpenStatus(String starTime, String endTime, Locale locale) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");
         LocalTime starts = LocalTime.parse(starTime, formatter);
         LocalTime ends = LocalTime.parse(endTime, formatter);
         LocalTime currentTime = LocalTime.now(ZoneId.of("+1"));
+
         if (currentTime.isAfter(starts) && currentTime.isBefore(ends)) {
             if (currentTime.plusMinutes(30).isAfter(ends)) {
                 return bundle.getResourceBundle(ITINERARY_BUNDLE, "stop.close.soon", locale);

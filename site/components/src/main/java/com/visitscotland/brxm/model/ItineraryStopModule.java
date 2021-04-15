@@ -8,7 +8,7 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class ItineraryStopModule extends Module<Stop> implements ProductCard {
+public class ItineraryStopModule extends Module<Stop>{
 
     private String identifier;
 

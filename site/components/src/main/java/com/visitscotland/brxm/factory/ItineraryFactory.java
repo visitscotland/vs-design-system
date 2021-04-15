@@ -3,21 +3,19 @@ package com.visitscotland.brxm.factory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.DMSUtils;
-import com.visitscotland.brxm.hippobeans.DMSLink;
-import com.visitscotland.brxm.hippobeans.Itinerary;
-import com.visitscotland.brxm.hippobeans.ItineraryExternalLink;
-import com.visitscotland.brxm.hippobeans.Stop;
+import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.model.*;
 import com.visitscotland.brxm.model.Coordinates;
-import com.visitscotland.brxm.model.FlatLink;
-import com.visitscotland.brxm.model.ItineraryStopModule;
-import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.services.CommonUtilsService;
+import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
+import com.visitscotland.utils.CoordinateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.Locale;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
@@ -29,31 +27,105 @@ public class ItineraryFactory {
 
     private static final String BUNDLE_FILE = "itinerary";
 
-    private ResourceBundleService bundle;
-    private DMSDataService dmsData;
-    private ImageFactory imageFactory;
-    private DMSUtils utils;
+    private final ResourceBundleService bundle;
+    private final DMSDataService dmsData;
+    private final ImageFactory imageFactory;
+    private final DMSUtils utils;
+    private final DocumentUtilsService documentUtils;
 
-    public ItineraryFactory(ResourceBundleService bundle, DMSDataService dmsData, ImageFactory imageFactory, DMSUtils utils) {
+    public ItineraryFactory(ResourceBundleService bundle, DMSDataService dmsData, ImageFactory imageFactory, DMSUtils utils, DocumentUtilsService documentUtils) {
         this.bundle = bundle;
         this.dmsData = dmsData;
         this.imageFactory = imageFactory;
         this.utils = utils;
+        this.documentUtils = documentUtils;
     }
 
     /**
-     * Genarates the information forone Stop from the
-     * @param locale
-     * @param stop
-     * @param itinerary
-     * @return
+     * Collects the information about an itinerary and enhances the information in it
+     */
+    public ItineraryPage buildItinerary (Itinerary itinerary, Locale locale){
+        final boolean calculateDistance = (itinerary.getDistance() == 0);
+
+        ItineraryPage page = new ItineraryPage();
+        ItineraryStopModule firstStop = null;
+        ItineraryStopModule lastStop = null;
+        BigDecimal totalDistance = BigDecimal.ZERO;
+        Coordinates prevCoordinates = null;
+        int index = 1;
+
+        page.setDocument(itinerary);
+        page.setDays(documentUtils.getAllowedDocuments(itinerary, Day.class));
+
+        for (Day day : documentUtils.getAllowedDocuments(itinerary, Day.class)) {
+            for (Stop stop : day.getStops()) {
+                ItineraryStopModule module = generateStop(locale, stop, itinerary, index++);
+
+                lastStop = module;
+                if (firstStop == null) {
+                    firstStop = lastStop;
+                }
+
+                if (calculateDistance) {
+                    if (prevCoordinates != null && module.getCoordinates() != null) {
+                        BigDecimal distancePrevStop = getDistanceStops(module.getCoordinates(), prevCoordinates);
+                        totalDistance = totalDistance.add(distancePrevStop);
+
+                        //TODO Why this is only populated when distance is 0?
+                        module.setDistance(distancePrevStop);
+                    }
+                    prevCoordinates = module.getCoordinates();
+                }
+
+                page.addStop(module);
+            }
+        }
+
+        page.setDistance(calculateDistance ? totalDistance :BigDecimal.valueOf(itinerary.getDistance()));
+
+        populateFirstAndLastStopTexts(page, firstStop, lastStop);
+
+        return page;
+    }
+
+    /**
+     * Populates the first stop text and the last stop text depending on whether they have been set or not in the
+     * Itinerary document
+     */
+    private void populateFirstAndLastStopTexts(ItineraryPage page, ItineraryStopModule first, ItineraryStopModule last){
+        Itinerary itinerary = page.getDocument();
+
+        if (Contract.isEmpty(itinerary.getStart()) && first != null) {
+            page.setFirstStopLocation(first.getSubTitle());
+        } else {
+            page.setFirstStopLocation(itinerary.getStart());
+        }
+
+        if(Contract.isEmpty(itinerary.getFinish()) && last != null) {
+            page.setLastStopLocation(last.getSubTitle());
+        } else {
+            page.setLastStopLocation(itinerary.getFinish());
+        }
+    }
+
+    /**
+     * Method to calculate the distance between stops
+     */
+    private BigDecimal getDistanceStops(Coordinates current, Coordinates previous) {
+        return CoordinateUtils.haversineDistance(
+                BigDecimal.valueOf(previous.getLatitude()), BigDecimal.valueOf(previous.getLongitude()),
+                BigDecimal.valueOf(current.getLatitude()), BigDecimal.valueOf(current.getLongitude()),
+                true, "#,###,##0.0");
+    }
+
+    /**
+     * Transform an Stop document in a ItineraryStopModule and add extra information depending on the type
      */
     public ItineraryStopModule generateStop(Locale locale, Stop stop, Itinerary itinerary, Integer index){
         ItineraryStopModule module = initializeStop(stop);
         module.setIndex(index);
 
         if (stop.getImage() != null) {
-            //TODO Use imageFactory
             module.setImage(imageFactory.createImage(stop.getImage(), module, locale));
         }
 
@@ -63,10 +135,10 @@ public class ItineraryFactory {
             processExternalStop(locale, module, (ItineraryExternalLink) stop.getStopItem());
         } else {
             module.addErrorMessage("The product's id  was not provided");
-            logger.warn(CommonUtilsService.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), module.getIndex()));
+            if (logger.isWarnEnabled()) {
+                logger.warn(CommonUtilsService.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), module.getIndex()));
+            }
         }
-
-        //TODO: Check coordinates for externalLinks
 
         if (module.getImage() == null){
             module.addErrorMessage("An image should be provided for external links");
@@ -86,8 +158,6 @@ public class ItineraryFactory {
 
     /**
      * Creates an Stop from the stop Document type
-     * @param stop
-     * @return
      */
     private ItineraryStopModule initializeStop(Stop stop) {
         ItineraryStopModule module = new ItineraryStopModule();
@@ -111,7 +181,7 @@ public class ItineraryFactory {
     }
 
     /**
-     * Extracts all relevant information external link in order to enhance the stop
+     * Extracts all relevant information for an External link in order to enhance the stop
      */
     public void processExternalStop(Locale locale, ItineraryStopModule module, ItineraryExternalLink externalLink) {
         module.setTimeToExplore(generateTimeToExplore(externalLink.getTimeToExplore(), locale));
@@ -135,7 +205,9 @@ public class ItineraryFactory {
 
         if (product == null) {
             module.addErrorMessage("The product id does not match in the DMS");
-            logger.warn(CommonUtilsService.contentIssue("The product id does not match in the DMS for %s, Stop %s", itinerary.getName(), module.getIndex()));
+            if (logger.isWarnEnabled()) {
+                logger.warn(CommonUtilsService.contentIssue("The product id does not match in the DMS for %s, Stop %s", itinerary.getName(), module.getIndex()));
+            }
             return;
         }
 
