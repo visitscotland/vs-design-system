@@ -25,7 +25,7 @@
             :size="iconSize"
             :padding="0"
             :orientation="iconOrientation"
-            :variant="calcIconVariant"
+            :variant="iconVariantOverride || calcIconVariant"
         />
         <!-- @slot The button content goes here -->
         <slot />
@@ -141,6 +141,18 @@ export default {
         iconOnly: {
             type: Boolean,
             default: false,
+        },
+        /**
+         * The variant to be used for a contained icon, generally this is
+         * automatically calculated based on the button variant but in a few
+         * unusual cases it is desirable to manually set it
+         */
+        iconVariantOverride: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(
+                /(primary|secondary|light|dark|reverse-white|secondary-teal)/,
+            ),
         },
     },
     data() {
