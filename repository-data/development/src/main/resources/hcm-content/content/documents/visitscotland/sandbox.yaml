@@ -4649,8 +4649,9 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 668f9ef6-e5cb-4544-86c9-b38d01ce1243
             hippo:availability: []
-            hippostd:holder: admin
+            hippostd:retainable: false
             hippostd:state: draft
+            hippostd:transferable: false
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
             hippostdpubwf:lastModificationDate: 2021-03-05T12:05:08.011Z
@@ -8908,9 +8909,9 @@
               jcr:mixinTypes: ['mix:referenceable']
               jcr:uuid: b9cca612-aa5e-4826-ac6e-5399f1544203
               hippo:availability: []
-              hippostd:holder: admin
               hippostd:retainable: false
               hippostd:state: draft
+              hippostd:transferable: false
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-12-10T13:26:48.003Z
               hippostdpubwf:lastModificationDate: 2021-03-19T10:38:58.069Z
@@ -10321,16 +10322,17 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: f829b041-1108-4836-b95a-77f23a4d2a05
         hippo:name: How do I climb Ben Nevis safely
-        hippo:versionHistory: 199d7731-10e1-4fbc-aa4e-337d24714904
+        hippo:versionHistory: 5ead9beb-9c97-49cb-ae48-ad6a897d0d05
         /how-do-i-climb-ben-nevis-safely[1]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 54a21331-8c54-4985-8154-982099a6d826
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T15:08:19.202Z
+          hippostdpubwf:lastModificationDate: 2021-04-15T16:42:17.045+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
@@ -10354,7 +10356,9 @@
                 <h5>How do I climb Ben Nevis safely?</h5>
 
                 <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
+                 <li>
+                 <h5>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</h5>
+                 </li>
                  <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
                  <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
                  <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
@@ -10391,10 +10395,11 @@
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
           jcr:uuid: b466be74-ddc9-49f4-ae3c-a0ca3360188a
           hippo:availability: [preview]
+          hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T15:08:19.165Z
+          hippostdpubwf:lastModificationDate: 2021-04-15T16:42:26.637+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
@@ -10418,7 +10423,9 @@
                 <h5>How do I climb Ben Nevis safely?</h5>
 
                 <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
+                 <li>
+                 <h5>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</h5>
+                 </li>
                  <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
                  <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
                  <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
@@ -10455,12 +10462,13 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 1c9b0df9-8f7a-48b3-93ab-2032d20ecda7
           hippo:availability: [live]
+          hippostd:retainable: false
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T15:08:19.165Z
+          hippostdpubwf:lastModificationDate: 2021-04-15T16:42:26.637+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T16:36:23.438Z
+          hippostdpubwf:publicationDate: 2021-04-15T16:42:28.644+01:00
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
           visitscotland:anchor: introduction
@@ -10483,7 +10491,9 @@
                 <h5>How do I climb Ben Nevis safely?</h5>
 
                 <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
+                 <li>
+                 <h5>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</h5>
+                 </li>
                  <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
                  <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
                  <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
