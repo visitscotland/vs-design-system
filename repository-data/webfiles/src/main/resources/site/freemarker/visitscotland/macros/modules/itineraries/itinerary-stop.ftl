@@ -7,6 +7,7 @@
 <#include "../../../../frontend/components/vs-link.ftl">
 <#include "../../../../frontend/components/vs-svg.ftl">
 <#include "../../../../frontend/components/vs-button.ftl">
+<#include "../../../../frontend/components/vs-address.ftl">
 
 <#include "../../global/key-facilities.ftl">
 <#include "../../global/image-with-caption.ftl">
@@ -51,24 +52,6 @@
                     ${prod.ctaLink.label}
                 </vs-link>
             </#if>
-            </br>
-            <#--TODO Include Address, Address fields allow null and the fields are:
-           <#if prod.address.line1?? && prod.address.line1?has_content>
-                  </br>ADDRESS</br>
-                  ${prod.address.line1}</br>
-              <#if prod.address.line2?? && prod.address.line2?has_content>
-                      ${prod.address.line2}</br>
-              </#if>
-                 <#if prod.address.line3?? && prod.address.line3?has_content>
-                      ${prod.address.line3}</br>
-              </#if>
-                  <#if prod.address.city?? && prod.address.city?has_content>
-                      ${prod.address.city}</br>
-              </#if>
-              <#if prod.address.postCode?? && prod.address.postCode?has_content>
-                      ${prod.address.postCode}</br>
-              </#if>
-           </#if>-->
             <#--TODO show open times the field is:
         </br>
              <#if prod.openLink?? && prod.openLink.link?? && prod.openLink.link?has_content>
@@ -94,6 +77,43 @@
                         <vs-description-list-item title class="mb-0 mr-0 pr-1 col-auto">${label("itinerary", "stop.time-to-explore")}</vs-description-list-item>
                         <vs-description-list-item class="mb-0 col-auto px-0">${prod.timeToExplore}</vs-description-list-item>
                     </vs-description-list>
+                </#if>
+
+                <#if prod.address.line1?? && prod.address.line1?has_content>
+                    <vs-address>
+                        <#assign addressArr = [
+                            prod.address.line1!"",
+                            prod.address.line2!"",
+                            prod.address.line3!"",
+                            prod.address.city!"",
+                            prod.address.postCode!""
+                        ]/>
+
+                        <#--
+                            Filter out empty strings in address
+
+                            It would be tidier to do this within the loop below, but that
+                            causes <#sep> to incorrectly assume that the postCode is always
+                            a value that needs a comma before it, even if it is an empty
+                            string. The ideal solution would be to iterate over
+
+                            addressArr?filter()
+
+                            rather than constructing a whole filtered copy of the array
+                            for readability but that is not doable until we reach a future
+                            version of freemarker (2.3.29).
+                        -->
+                        <#assign filterAddressArr = [] />
+                        <#list addressArr as addrLine>
+                            <#if addrLine != "">
+                                <#assign filterAddressArr = filterAddressArr + [ addrLine ] />
+                            </#if>
+                        </#list>
+
+                        <#list filterAddressArr as addressLine>
+                            <span>${addressLine}<#sep>,</span>
+                        </#list>
+                    </vs-address>
                 </#if>
 
                 <#if (prod.tipsTitle?? && prod.tipsTitle?has_content)>
