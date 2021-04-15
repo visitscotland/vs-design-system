@@ -22,7 +22,7 @@
             :class="{ 'mr-2': !iconOnly }"
             v-if="icon"
             :name="icon"
-            :size="iconSize"
+            :size="iconSizeOverride || calcIconSize"
             :padding="0"
             :orientation="iconOrientation"
             :variant="iconVariantOverride || calcIconVariant"
@@ -154,6 +154,16 @@ export default {
                 /(primary|secondary|light|dark|reverse-white|secondary-teal)/,
             ),
         },
+        /**
+         * The size to be used for a contained icon, generally this is
+         * automatically calculated based on the button variant but in a few
+         * unusual cases it is desirable to manually set it
+         */
+        iconSizeOverride: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+        },
     },
     data() {
         return {
@@ -165,7 +175,7 @@ export default {
         backgroundClass() {
             return this.background ? [`btn-bg-${this.background}`] : null;
         },
-        iconSize() {
+        calcIconSize() {
             switch (this.size) {
             case 'sm':
                 return 'xs';
