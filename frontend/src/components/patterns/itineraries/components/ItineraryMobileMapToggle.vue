@@ -3,19 +3,15 @@
         class="vs-itinerary-mobile-map-toggle"
         variant="primary"
         @click.native="toggleMap()"
+        :icon="showMap ? 'list' : 'map'"
+        icon-variant-override="reverse-white"
+        icon-size-override="md"
     >
-        <VsIcon
-            :name="showMap ? 'list' : 'map'"
-            variant="reverse-white"
-            size="md"
-        />
-
         {{ showMap ? 'List View' : 'Map View' }}
     </VsButton>
 </template>
 
 <script>
-import VsIcon from '@components/elements/icon/Icon';
 import VsButton from '@components/elements/button/Button';
 
 /**
@@ -29,7 +25,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsIcon,
         VsButton,
     },
     data() {
