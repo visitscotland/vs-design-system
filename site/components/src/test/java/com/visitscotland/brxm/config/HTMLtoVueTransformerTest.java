@@ -29,19 +29,20 @@ class HTMLtoVueTransformerTest {
     @InjectMocks
     HTMLtoVueTransformer transformer;
 
-    @Test
-    @DisplayName("Identifies a single a tag and adds the type")
-    void links_external(){
+    @ParameterizedTest
+    @DisplayName("VS-2383 - Internal links return type default ")
+    @CsvSource({"INTERNAL,default", "EXTERNAL,external", "DOWNLOAD, download"})
+    void links_external(LinkType type, String output){
         final String HTML = "<p>Take a look at the " +
                 "<a href=\"https://community.visitscotland.com/\" title=\"iKnow Community\" target=\"_blank\">iKnow Scotland Community</a>" +
                 " to share your tips and pick up a couple more for your next break or day out in Scotland.</p>";
 
-        when(linkService.getType("https://community.visitscotland.com/")).thenReturn(LinkType.EXTERNAL);
+        when(linkService.getType("https://community.visitscotland.com/")).thenReturn(type);
 
         String result = transformer.processLinks(HTML);
 
         Assertions.assertTrue(result.contains("<vs-link "));
-        Assertions.assertTrue(result.contains(" type=\"external\""));
+        Assertions.assertTrue(result.contains(" type=\""+output+"\""));
     }
 
     @Test
@@ -51,6 +52,8 @@ class HTMLtoVueTransformerTest {
                 "<a href=\"https://www.gov.scot/\">Link 1</a>, " +
                 "<a href=\"https://www.gov.scot/coronavirus-covid-19/\">Link 2</a> & " +
                 "<a href=\"https://protect.scot/\">Link 3</a> </p>";
+
+        when(linkService.getType(any())).thenReturn(LinkType.EXTERNAL);
 
         String result = transformer.processLinks(HTML);
         Matcher matcher = Pattern.compile("<vs-link ").matcher(result);

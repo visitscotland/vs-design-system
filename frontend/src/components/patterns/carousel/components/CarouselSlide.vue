@@ -85,7 +85,7 @@ export default {
         linkType: {
             type: String,
             required: true,
-            validator: (value) => value.match(/(external|internal|download)/),
+            validator: (value) => value.match(/(default|external|internal|download)/),
         },
         /**
         * The link destination
