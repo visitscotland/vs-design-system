@@ -156,7 +156,7 @@ export default {
         },
         /**
          * The size to be used for a contained icon, generally this is
-         * automatically calculated based on the button variant but in a few
+         * automatically calculated based on the button size but in a few
          * unusual cases it is desirable to manually set it
          */
         iconSizeOverride: {
