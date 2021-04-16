@@ -22,7 +22,7 @@
 
 <#macro moduleBuilder module colourScheme=[]>
 
-    <#assign themeName = themeCalculator(module.themeIndex, colourScheme)>
+    <#assign themeName = themeCalculator(module, colourScheme)>
 
     <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
         <#assign moduleType = "megalinks">

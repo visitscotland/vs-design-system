@@ -14,18 +14,11 @@
         <#assign colourScheme = colourSchemeParam>
     </#if>
 
-    <#if index?has_content>
+    <#if module.themeIndex?has_content>
         <#return colourScheme[index]>
+    <#elseif module.getType() == "ICentreModule">
+        <#return "grey">
     <#else>
         <#return "light">
     </#if>
-
-<#-- TODO: Review the following code for iCentreModules -->
-<#--    <#if module.themeIndex?has_content>-->
-<#--        <#return colourScheme[module.themeIndex]>-->
-<#--    <#elseif module.getType="ICentreModule">-->
-<#--        <#return "grey">-->
-<#--    <#else>-->
-<#--        <#return "light">    -->
-<#--    </#if>-->
 </#function>

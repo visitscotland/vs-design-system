@@ -175,6 +175,10 @@ export default {
         }
     }
 }
+
+.theme-grey {
+    background-color: $color-gray-tint-7;
+}
 </style>
 
 <docs>
