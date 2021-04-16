@@ -12,7 +12,7 @@
         </div>
 
         <div
-            class="vs-summary-box-item__icon d-flex align-items-end
+            class="vs-summary-box-item__icon d-flex align-items-center
             position-absolute justify-content-center w-100"
             data-test="vs-summary-box-list-item-icon-with-label"
             v-if="icon"
@@ -25,7 +25,7 @@
                     size="xl"
                 />
             </div>
-            <div class="text-wrapper d-block w-auto mx-1">
+            <div class="text-wrapper d-block w-auto mx-1 pl-1">
                 <span>{{ iconLabel }}</span>
             </div>
         </div>
@@ -110,7 +110,7 @@ export default {
 }
 
 .vs-summary-box-item__label {
-    bottom: 5px;
+    bottom: $spacer-3;
     left: 0;
     line-height: $line_height_xs;
 
@@ -127,9 +127,10 @@ export default {
 }
 
 .vs-summary-box-item__display {
-    top: 20%;
     font-family: $headings-font-family;
     font-size: 1.625rem;
+    top: 40%;
+    transform: translateY(-50%);
 
     .divider {
         font-family: $headings-font-family-thin;
