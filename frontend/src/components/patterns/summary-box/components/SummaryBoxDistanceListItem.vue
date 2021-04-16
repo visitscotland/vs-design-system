@@ -164,7 +164,8 @@ export default {
 .vs-summary-box-distance__display {
     font-family: $headings-font-family;
     font-size: 1.625rem;
-    top: 20%;
+    top: 40%;
+    transform: translateY(-50%);
 
     @include media-breakpoint-up(lg) {
         font-size: $spacer-7;
@@ -179,7 +180,7 @@ export default {
 }
 
 .vs-summary-box-distance__label {
-    bottom: 5px;
+    bottom: $spacer-3;
     left: 0;
     line-height: $line_height_xs;
 
