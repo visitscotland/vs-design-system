@@ -122,6 +122,9 @@
 
 [visitscotland:default] > hippogallery:imageset, hippogallery:relaxed
 
+[visitscotland:iKnowCommunityTag] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:imageData] > hippo:compound, hippostd:relaxed
   orderable
 
