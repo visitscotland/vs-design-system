@@ -78,7 +78,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                     {name: "publishStatus", dataIndex: "publishStatus", header: "", sortable: true, renderer: this.renderPublishStatus, width: 5},
                     {name: "name", dataIndex: "displayName", header: "Document", sortable: true, width: 25},
                     {name: "type", dataIndex: "type", header: "Type", sortable: true, width: 10},
-                    {name: "lastModified", dataIndex: "lastModified", header: "Last modified", sortable: true, renderer: this.renderDateTime, width: 5},
+                    {name: "lastModified", dataIndex: "lastModified", header: "Last modified", sortable: true, renderer: {fn: this.renderDateTime, scope: self}, width: 5},
                     {name: "lastModifiedBy", dataIndex: "lastModifiedBy", header: "Modified by", sortable: true, width: 5},
                     {name: "translatedLocales", dataIndex: "translatedLocales", header: "Translated", renderer: this.renderFlags, width: 10},
                     {name: "sentForTranslationLocales", dataIndex: "sentForTranslationLocales", header: "Sent for translation", renderer: this.renderFlags, width: 10},
@@ -198,7 +198,10 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                             xtype: "button",
                             text: "Download",
                             style: SIDEBAR_LABEL_STYLE,
-                            handler: self.downloadRecordsAsCsv
+                            listeners: {
+                                click: self.downloadRecordsAsCsv,
+                                scope: self
+                            }
                         }
                     ]
 
@@ -288,10 +291,13 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
     },
 
     renderDateTime: function(iso) {
-        const date = new Date(iso);
-        const display = date.dateFormat("d M y")
-        const onHover = date.toLocaleString()
-        return '<p title="' + onHover + '">' + display + '</p>'
+        const onHover = new Date(iso).toLocaleString()
+        return '<p title="' + onHover + '">' + this.isoDateTimeToDayMonthYear(iso) + '</p>'
+    },
+
+    isoDateTimeToDayMonthYear(iso) {
+        if (iso === undefined) return undefined;
+        return new Date(iso).dateFormat("d M y")
     },
 
     renderPublishStatus: function(status) {
@@ -311,6 +317,19 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             " <svg class=\"hi hi-file-text hi-l\"><use xlink:href=\"#hi-file-text-l\"></use></svg>" +
             " <svg class=\"hi " + topIcon + " hi-m hi-left hi-top\"><use xlink:href=\"#"+ topIcon +"-m\"></use></svg>" +
             " <svg class=\"hi " + bottomIcon +  " hi-m hi-left hi-bottom\"><use xlink:href=\"#" + bottomIcon + "-m\"></use></svg></div>"
+    },
+
+    publishStatusToString: function(status) {
+        switch(status) {
+            case "NOT_LIVE":
+                return "Not live"
+            case "PREV_VERSION_LIVE":
+                return "Previous version live"
+            case "CURR_VERSION_LIVE":
+                return "Live"
+            default:
+                return status
+        }
     },
 
     renderTranslationPriority: function(priority) {
@@ -379,7 +398,14 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         const gridStore = Ext.getCmp(GRID_ID).getStore();
         const sortInfo = gridStore.sortInfo;
         const records = gridStore.proxy.getFilteredRecords({sort: sortInfo.field, dir: sortInfo.direction});
-        const csv = Hippo.Reports.recordsToCsv(records, ["displayName", "translatedLocales"], ["Document", "Translated Locales"])
+        let self = this;
+        records.forEach((record) => {
+            record.data.lastModified = self.isoDateTimeToDayMonthYear(record.data.lastModified);
+            record.data.publishStatus = self.publishStatusToString(record.data.publishStatus);
+        });
+        const csv = Hippo.Reports.recordsToCsv(records, ["displayName", "translatedLocales", "sentForTranslationLocales", "translationStatus",
+            "translationPriority", "lastModified", "lastModifiedBy", "publishStatus", "type"],
+            ["Document", "Translated Locales", "Sent for Translation Locales", "Translation Status", "Translation Priority", "Last Modified", "Last Modified By", "Publish Status", "Type"])
         Hippo.Reports.downloadFile("translation-report.csv", "text/csv", csv);
     }
 

@@ -52,22 +52,22 @@ definitions:
     /hippo:configuration/hippo:frontend/cms/hippo-reports/sample-report-plugin:
       .meta:order-before: sample-report-panel-plugin
       jcr:primaryType: frontend:plugin
-      plugin.class: com.visitscotland.brxm.sample_report.HtmlRenderPlugin
+      plugin.class: com.visitscotland.brxm.report.sample.HtmlRenderPlugin
       wicket.id: service.reports.sample-report
       height: '600'
       background: 'true'
     /hippo:configuration/hippo:frontend/cms/hippo-reports/sample-report-panel-plugin:
       jcr:primaryType: frontend:plugin
-      plugin.class: com.visitscotland.brxm.sample_report.SampleReportPluginPanel
+      plugin.class: com.visitscotland.brxm.report.sample.SampleReportPluginPanel
     /hippo:configuration/hippo:frontend/cms/hippo-reports/translation-report-portal-panel:
       .meta:order-before: translation-report-plugin
       jcr:primaryType: frontend:plugin
-      plugin.class: com.visitscotland.brxm.translation.report.TranslationReportPortalPanel
+      plugin.class: com.visitscotland.brxm.report.translation.TranslationReportPortalPanel
     /hippo:configuration/hippo:frontend/cms/hippo-reports/translation-report-plugin:
       .meta:order-before: sample-report-plugin
       jcr:primaryType: frontend:plugin
       background: 'true'
       height: '600'
-      plugin.class: com.visitscotland.brxm.translation.report.TranslationReportPlugin
+      plugin.class: com.visitscotland.brxm.report.translation.TranslationReportPlugin
       wicket.id: service.reports.translationreport
       width: '1'
