@@ -12,6 +12,13 @@
 </template>
 
 <script>
+/**
+ * The main header for the site,
+ * includes slots for global menu and meganav
+ *
+ * @displayName Header
+ */
+
 export default {
     name: 'VsHeader',
     status: 'prototype',
@@ -20,8 +27,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-header {
     position: relative;
     z-index: 10;
@@ -33,7 +38,7 @@ export default {
     .header__top-main {
         height: 28px;
             font-size: $font-size-base;
-            font-weight: 400;
+            font-weight: $font-weight-normal;
 
         @include media-breakpoint-up(md) {
             height: 35px;

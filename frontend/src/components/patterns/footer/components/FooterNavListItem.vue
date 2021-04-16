@@ -1,9 +1,14 @@
 <template>
-    <li class="vs-footer-nav-list-item">
+    <li
+        class="vs-footer-nav-list-item"
+        data-test="vs-footer-nav-list-item"
+        role="menuitem"
+    >
         <VsLink
             :href="href"
             :type="type"
             variant="dark"
+            data-test="vs-footer-nav-list-item__link"
         >
             {{ linkText }}
         </VsLink>
@@ -16,6 +21,8 @@ import VsLink from '@components/elements/link/Link';
 /**
  * The FooterNavListItems is used inside the FooterNavList to
  * show an indivudal footer link.
+ *
+ * @displayName Footer Nav List Item
  */
 
 export default {
@@ -37,8 +44,8 @@ export default {
         */
         type: {
             type: String,
-            default: null,
-            validator: (value) => value.match(/(external|internal|download)/),
+            default: 'default',
+            validator: (value) => value.match(/(default|external|internal|download)/),
         },
         /**
          * Text to show for the link
@@ -85,10 +92,10 @@ export default {
 
 <docs>
   ```js
-    <vs-footer>
-        <vs-footer-nav-list break-point="md">
-            <vs-col cols="12" md="6">
-                <vs-footer-accordion-item
+    <VsFooter>
+        <VsFooterNavList break-point="md">
+            <VsCol cols="12" md="6">
+                <VsFooterAccordionItem
                     :open-by-default="false"
                     title="Visitor information"
                     variant="dark"
@@ -96,36 +103,36 @@ export default {
                     class="border-left-0"
                 >
                     <span slot="icon-open">
-                        <vs-icon name="chevron" variant="light" size="xs" />
+                        <VsIcon name="chevron" variant="light" size="xs" />
                     </span>
 
                     <span slot="icon-closed">
-                        <vs-icon name="chevron" orientation="right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
                     </span>
 
-                    <vs-list unstyled>
-                        <vs-footer-nav-list-item
+                    <VsList unstyled>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="Brochures"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="VisitScotland iCentres"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="iKnow Scotland Community"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
                             type="external"
                             link-text="VisitScotland Awards"
-                        ></vs-footer-nav-list-item>
-                    </vs-list>
-                </vs-footer-accordion-item>
-            </vs-col>
-        </vs-footer-nav-list>
-    </vs-footer>
+                        ></VsFooterNavListItem>
+                    </VsList>
+                </VsFooterAccordionItem>
+            </VsCol>
+        </VsFooterNavList>
+    </VsFooter>
 
   ```
 </docs>

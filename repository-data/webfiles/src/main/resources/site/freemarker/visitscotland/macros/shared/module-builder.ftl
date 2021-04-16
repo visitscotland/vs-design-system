@@ -1,36 +1,57 @@
 <#include "../../../include/imports.ftl">
 <#include "../global/cms-errors.ftl">
 <#include "../modules/megalinks/megalinks.ftl">
+<#include "../modules/article/article.ftl">
+<#include "../modules/long-copy/long-copy.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
-<#include "../modules/megalinks/megalinks-horizontal-list.ftl">
+<#include "theme-calculator.ftl">
+<#include "../modules/otyml/otyml.ftl">
 
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
-<#-- @ftlvariable name="pageItems" type="com.visitscotland.brmx.beans.Megalinks" -->
-<#-- @ftlvariable name="image" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
+<#-- @ftlvariable name="pageItems" type="com.visitscotland.brxm.hippobeans.Megalinks" -->
+<#-- @ftlvariable name="image" type="com.visitscotland.brxm.model.FlatImage" -->
 
-<#-- @ftlvariable name="heroImage" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.model.FlatImage" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.model.Coordinates" -->
 
-<#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
+<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.hippobeans.Image" -->
 
-<#--TODO Control abput colours, change style="background-color:${style}  -->
-<#macro moduleBuilder module theme>
-    <div class="has-edit-button" style="background-color:${theme}">
-        <#-- all Megalinks modules -->
-        <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
-            <@megalinks item=module type=module.getType() />
+<#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.megalinks.LinksModule" -->
 
-        <#elseif module.getType()== "HorizontalListLinksModule">
-            <@horizontalList module/>
+<#macro moduleBuilder module colourScheme=[]>
 
-        <#elseif module.getType()== "ICentreModule">
+    <#assign themeName = themeCalculator(module.themeIndex, colourScheme)>
+
+    <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
+        <#assign moduleType = "megalinks">
+    <#else>
+        <#assign moduleType = module.getType()>
+    </#if>
+
+    <div class="has-edit-button theme-${themeName}">
+        <#if module.hippoBean?? >
+            <@hst.manageContent hippobean=module.hippoBean />
+        </#if>
+        <#if moduleType == "megalinks">
+            <#-- all Megalinks modules except HorizontalListLinksModule -->
+            <@megalinks item=module type=module.getType() theme=themeName />
+
+        <#elseif moduleType == "HorizontalListLinksModule">
+            <@otyml module/>
+
+        <#elseif moduleType == "ICentreModule">
             <@icentre module/>
 
-        <#elseif module.getType()== "IKnowModule">
+        <#elseif moduleType == "IKnowModule">
             <@iknow module/>
 
+        <#elseif module.getType()== "ArticleModule">
+            <@article module/>
+
+        <#elseif module.getType()== "LongCopyModule">
+            <@longCopy module/>
         </#if>
     </div>
 </#macro>

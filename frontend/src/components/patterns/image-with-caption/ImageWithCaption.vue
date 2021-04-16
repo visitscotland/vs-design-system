@@ -3,7 +3,10 @@
         class="vs-image-with-caption position-relative"
         :class="{ 'vs-image-with-caption--closed-default': closedDefaultCaption }"
     >
-        <div class="vs-image-with-caption__image-wrapper">
+        <div
+            class="vs-image-with-caption__image-wrapper"
+            :class="mobileOverlap ? 'vs-image-with-caption__image-wrapper--overlapped' : ''"
+        >
             <slot>
                 <VsImg
                     v-if="imageSrc"
@@ -18,11 +21,18 @@
             <VsButton
                 variant="outline-transparent"
                 class="vs-image-with-caption__toggle-caption-btn position-absolute"
+                aria-label="Expand caption"
                 :animate="false"
                 :aria-controls="'image_' + imageSrc"
                 :aria-expanded="showCaption ? 'true' : 'false'"
                 @click.native="toggleCaption"
             >
+                <span
+                    class="sr-only"
+                >
+                    {{ captionButtonText }}
+                </span>
+
                 <VsIcon
                     v-if="showCaption"
                     name="close-circle"
@@ -43,9 +53,10 @@
         </div>
 
         <div
-            :class="{
-                'd-block': showCaption,
-            }"
+            :class="[
+                { 'd-block': showCaption },
+                `vs-image-with-caption__caption-wrapper--${textAlign}`
+            ]"
             class="vs-image-with-caption__caption-wrapper"
             :id="'image_' + imageSrc"
         >
@@ -98,6 +109,7 @@
 </template>
 
 <script>
+
 // eslint-disable-next-line no-unused-vars
 import { lazysizes } from 'lazysizes';
 import VsSvg from '@components/elements/svg/Svg';
@@ -110,6 +122,8 @@ import designTokens from '@/assets/tokens/tokens.json';
 
 /**
  * Image with toggle to open a caption and image location map
+ *
+ * @displayName Image With Caption
  */
 export default {
     name: 'VsImageWithCaption',
@@ -182,6 +196,27 @@ export default {
             default: 'fullwidth',
             validator: (value) => value.match(/(fullwidth|large)/),
         },
+
+        /**
+         * Option to choose text alignment
+         * `left, right`
+         */
+        textAlign: {
+            type: String,
+            default: 'left',
+            validator: (value) => value.match(/(left|right)/),
+        },
+
+        /**
+         * Option if the mobile view is overlapped at the bottom
+        */
+        mobileOverlap: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+        * Text for mobile caption toggle button
+        */
     },
     data() {
         return {
@@ -195,6 +230,9 @@ export default {
         },
         isLargeCaption() {
             return this.variant === 'large';
+        },
+        captionButtonText() {
+            return this.showCaption ? 'Close image caption' : 'Open image caption';
         },
     },
     methods: {
@@ -229,6 +267,13 @@ export default {
             }
         }
     }
+
+    &--overlapped {
+        .vs-image-with-caption__toggle-caption-btn {
+            bottom: $spacer-9;
+            right: $spacer-4;
+        }
+    }
 }
 
 .vs-image-with-caption__caption-wrapper {
@@ -254,11 +299,11 @@ export default {
         .vs-image-with-caption__image-caption,
         .vs-image-with-caption__image-credit {
             font-size: $small-font-size;
-            line-height: $standard-line-height;
+            line-height: $line-height-standard;
         }
 
         .vs-image-with-caption__image-caption {
-            font-weight: $semibold-font-weight;
+            font-weight: $font-weight-semi-bold;
         }
 
         .vs-image-with-caption__image-credit {
@@ -326,6 +371,15 @@ export default {
             }
         }
     }
+
+    @include media-breakpoint-up(md) {
+        &--right {
+            figcaption.vs-image-with-caption__fullwidth-caption p,
+            figcaption.vs-image-with-caption__large-caption p {
+                text-align: right;
+            }
+        }
+    }
 }
 
 @include no-js {
@@ -368,7 +422,7 @@ export default {
   ```jsx
 
     <h3>Large Caption Style</h3>
-    <vs-image-with-caption
+    <VsImageWithCaption
         v-for="(item, index) in imageWithCaption.imageExamples.large"
         :altText="item.altText"
         :image-src="item.imageSrc"
@@ -379,13 +433,13 @@ export default {
         style="max-width:700px"
         class="mb-11"
     >
-        <vs-img
+        <VsImg
             class="lazyload"
             :src="item.imageSrc"
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
-        </vs-img>
+        </VsImg>
 
         <span slot="caption" v-if="item.caption">
             {{ item.caption }}
@@ -394,10 +448,10 @@ export default {
         <span slot="credit" v-if="item.credit">
             &copy; {{ item.credit }}
         </span>
-    </vs-image-with-caption>
+    </VsImageWithCaption>
 
     <h3 style="margin-top: 7rem;">Fullwidth Caption Style</h3>
-    <vs-image-with-caption
+    <VsImageWithCaption
         v-for="(item, index) in imageWithCaption.imageExamples.fullwidth"
         :altText="item.altText"
         :closedDefaultCaption="item.isSmall"
@@ -406,13 +460,13 @@ export default {
         variant="fullwidth"
         style="max-width:700px"
     >
-        <vs-img
+        <VsImg
             class="lazyload"
             :src="item.imageSrc"
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
-        </vs-img>
+        </VsImg>
 
         <span slot="caption" v-if="item.caption">
             {{ item.caption }}
@@ -421,9 +475,9 @@ export default {
         <span slot="credit" v-if="item.credit">
             &copy; {{ item.credit }}
         </span>
-    </vs-image-with-caption>
+    </VsImageWithCaption>
 
-    <vs-image-with-caption
+    <VsImageWithCaption
         v-for="(item, index) in imageWithCaption.imageExamples.small"
         :altText="item.altText"
         :closedDefaultCaption="item.isSmall"
@@ -432,13 +486,13 @@ export default {
         variant="fullwidth"
         style="max-width:300px"
     >
-        <vs-img
+        <VsImg
             class="lazyload"
             :src="item.imageSrc"
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
-        </vs-img>
+        </VsImg>
 
         <span slot="caption" v-if="item.caption">
             {{ item.caption }}
@@ -447,10 +501,10 @@ export default {
         <span slot="credit" v-if="item.credit">
             &copy; {{ item.credit }}
         </span>
-    </vs-image-with-caption>
+    </VsImageWithCaption>
 
     <h3 style="margin-top: 5rem;">Social images</h3>
-    <vs-image-with-caption
+    <VsImageWithCaption
         v-for="(item, index) in imageWithCaption.imageExamples.social"
         :altText="item.altText"
         :image-src="item.imageSrc"
@@ -460,15 +514,15 @@ export default {
         :variant="item.variant"
         style="max-width:700px"
     >
-        <vs-img
+        <VsImg
             class="lazyload"
             :src="item.imageSrc"
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
-        </vs-img>
+        </VsImg>
 
-        <vs-svg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
+        <VsSvg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
 
         <span slot="caption" v-if="item.caption">
             {{ item.caption }}
@@ -481,7 +535,7 @@ export default {
             :source="item.source"
         >
         </VsSocialCreditLink>
-    </vs-image-with-caption>
+    </VsImageWithCaption>
 
   ```
 </docs>

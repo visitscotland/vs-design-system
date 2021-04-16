@@ -34,7 +34,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-11-10T16:17:16.176Z
+          hippostdpubwf:lastModificationDate: 2020-12-10T15:06:00.642Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
@@ -56,6 +56,7 @@
             birds soaring in the skies overhead.
           visitscotland:theme: islands
           visitscotland:title: Short Break in Orkney – 4 Day Itinerary
+          visitscotland:translation: ''
           visitscotland:transports: [cycling]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink

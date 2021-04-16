@@ -11,12 +11,12 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 291010aa-d756-4247-a56f-15bc6ea463ba
+          jcr:uuid: a9427778-20d5-498d-b128-ab6141e4c307
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          hipposysedit:validators: ['visitscotland:link-image-validator']
+          hipposysedit:validators: ['visitscotland:link-image-validator', 'visitscotland:location-validator']
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -85,7 +85,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
           visitscotland:subtitle: ''
-          jcr:uuid: 648ae10a-06d5-4d4d-bc6d-eb97ffe864dc
+          jcr:uuid: b36dad79-c1b2-4bb6-9989-6e1e4d423f26
           hippostdpubwf:lastModificationDate: 2020-02-11T16:18:17.876Z
           hippostdpubwf:creationDate: 2020-02-11T16:18:17.876Z
           visitscotland:translation: ''
@@ -113,15 +113,16 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /subtitle:
             jcr:primaryType: frontend:plugin
-            caption: Subtitle
+            caption: Location
             field: subtitle
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: Fill this in for external links, or use to override DMS.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /description:
             jcr:primaryType: frontend:plugin
-            caption: Description
+            caption: Copy
             field: description
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
@@ -141,7 +142,7 @@ definitions:
             field: images
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: This Image is required if the Main Product is not a DMS product
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1
@@ -158,12 +159,13 @@ definitions:
               maxitems: 1
           /extraLinks:
             jcr:primaryType: frontend:plugin
-            caption: Optional CTA
+            caption: Additional CTA
             compoundList: visitscotland:CMSLink,visitscotland:DMSLink,visitscotland:ExternalLink,visitscotland:ProductSearchLink
             contentPickerType: links
             field: extraLinks
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1

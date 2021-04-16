@@ -11,6 +11,8 @@
  *
  * This is a development only tool to help visualise
  * components/functionalities to be finished.
+ *
+ * @displayName Prototype
  */
 
 export default {
@@ -40,25 +42,25 @@ export default {
 <docs>
 ```jsx
     <h4>Originals</h4>
-    <bs-wrapper class="d-flex mb-4">
-        <vs-button class="mr-2 mb-2">Button</vs-button>
-    </bs-wrapper>
+    <BsWrapper class="d-flex mb-4">
+        <VsButton class="mr-2 mb-2">Button</VsButton>
+    </BsWrapper>
 
-    <bs-wrapper class="d-flex mb-4">
-        <vs-icon name="search" />
-    </bs-wrapper>
+    <BsWrapper class="d-flex mb-4">
+        <VsIcon name="search" />
+    </BsWrapper>
 
     <h4 class="mt-8">Prototypes</h4>
-    <bs-wrapper class="d-flex mb-4">
-        <vs-prototype>
-            <vs-button class="mr-2 mb-2">Button</vs-button>
-        </vs-prototype>
-    </bs-wrapper>
+    <BsWrapper class="d-flex mb-4">
+        <VsPrototype>
+            <VsButton class="mr-2 mb-2">Button</VsButton>
+        </VsPrototype>
+    </BsWrapper>
 
-    <bs-wrapper class="d-flex mb-4">
-        <vs-prototype>
-            <vs-icon name="search" />
-        </vs-prototype>
-    </bs-wrapper>
+    <BsWrapper class="d-flex mb-4">
+        <VsPrototype>
+            <VsIcon name="search" />
+        </VsPrototype>
+    </BsWrapper>
 ```
 </docs>

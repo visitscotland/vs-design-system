@@ -78,8 +78,12 @@ import VsIcon from '@components/elements/icon/Icon';
 import VsFormInput from '@components/elements/form-input/FormInput';
 
 import { BForm, BFormInvalidFeedback } from 'bootstrap-vue';
-import { getters } from '../drawer/drawer.store';
 
+/**
+ * TODO: Document Usage
+ *
+ * @displayName Site Search
+ */
 export default {
     name: 'VsSiteSearch',
     status: 'prototype',
@@ -127,19 +131,8 @@ export default {
         };
     },
     computed: {
-        drawerModule() {
-            return getters['drawer/module'];
-        },
         isValid() {
             return this.searchTerm.length > 0;
-        },
-    },
-    watch: {
-        drawerModule(newValue) {
-            if (newValue !== 'site-search') {
-                this.clearSearchField();
-                this.resetValidation();
-            }
         },
     },
     methods: {
@@ -174,8 +167,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/forms";
-@import "~bootstrap/scss/input-group";
 
 .vs-site-search__input {
     &::placeholder {
@@ -206,7 +197,7 @@ export default {
 <docs>
   ```jsx
   <div>
-    <vs-site-search />
+    <VsSiteSearch />
   </div>
   ```
 </docs>

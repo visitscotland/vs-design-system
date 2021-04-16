@@ -1,18 +1,29 @@
 <#include "../../../../include/imports.ftl">
 <#include "../../../../frontend/components/vs-megalinks.ftl">
 <#include "./multi-image/megalinks-multi-image.ftl">
+<#include "./link-list/megalinks-link-list.ftl">
+<#include "./single-image/megalinks-single-image.ftl">
 
-<#macro megalinks item type>
-    <#if item.cta??>
-        <#assign ctaExists = "true" />
-    <#else>
-        <#assign ctaExists = "false" />
+<#macro megalinks item type theme>
+
+    <#if type=="MultiImageLinksModule">
+        <#assign variant = "multi-image">
+    <#elseif type=="ListLinksModule">
+        <#assign variant = "link-list">
+    <#elseif type=="SingleImageLinksModule">
+        <#assign variant = "single-image">
     </#if>
 
-    
-    <vs-megalinks <#if ctaExists == "true">button-link="${item.cta.link}"</#if>>
-        <@hst.manageContent hippobean=item.megalinkItem />
+    <#if item.teaserVisible??>
+        <#assign showTeaser = item.teaserVisible?string('true', 'false') />
+    </#if>
 
+    <vs-megalinks 
+        variant="${variant}"
+        title="${item.title}"
+        theme="${theme}"
+        <#if item.cta?? && type != "SingleImageLinksModule">button-link="${item.cta.link}"</#if>
+    >
         <template slot="vsMegalinksHeading">
             ${item.title}
         </template>
@@ -22,18 +33,22 @@
         >
             <@hst.html hippohtml=item.introduction/>
         </vs-rich-text-wrapper>
+
         <#if type == "MultiImageLinksModule">
-            <@multiImage item=item /> 
+            <@multiImage item=item showTeaser=showTeaser theme=theme />
+
+        <#elseif type == "ListLinksModule">
+            <@linkList item=item showTeaser=showTeaser theme=theme />
+
+        <#elseif type == "SingleImageLinksModule">
+            <@singleImage item=item theme=theme /> 
         </#if>
 
-        <#if type == "SingleImageLinksModule">
-            <@multiImage item=item /> 
-        </#if>
-
-        <#if ctaExists == "true">
+        <#if item.cta?? >     
             <template slot="vsMegalinksButton">
                 ${item.cta.label}
             </template>
         </#if>
+         
     </vs-megalinks>
 </#macro>

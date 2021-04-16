@@ -1,7 +1,7 @@
 <template>
     <VsLink
         :href="href"
-        :type="external"
+        type="external"
         :class="icon"
         class="button-square-social"
         :aria-label="icon"
@@ -15,14 +15,15 @@
 </template>
 
 <script>
-/**
- * The ButtonSquareSocial is a square button that takes an icon
- * and href to display button with corresponding social colour.
- */
-
 import VsLink from '@components/elements/link/Link';
 import VsIcon from '@components/elements/icon/Icon';
 
+/**
+ * The ButtonSquareSocial is a square button that takes an icon
+ * and href to display button with corresponding social colour.
+ *
+ * @displayName Button Square Social
+ */
 export default {
     name: 'VsButtonSquareSocial',
     status: 'prototype',
@@ -120,10 +121,10 @@ export default {
 </style>
 <docs>
   ```js
-    <vs-button-square-social
+    <VsButtonSquareSocial
         href="#"
         icon="youtube"
     >
-    </vs-button-square-social>
+    </VsButtonSquareSocial>
   ```
 </docs>

@@ -4,10 +4,12 @@
         :class="{
             'vs-icon': true,
             [`vs-icon--size-${size}`]: true,
+            [`vs-icon--sm-size-${smallSize}`]: smallSize,
             [`vs-icon--${formattedName}`]: true,
             [`vs-icon--variant-${variant}`]: variant,
             ['icon--' + orientation]: orientation,
         }"
+        :style="[customColour ? {fill: customColour} : {}]"
         v-bind="$attrs"
     />
 </template>
@@ -26,6 +28,8 @@ const iconPath = 'icons/';
  *
  * Our icons come in specific sizes - xxs, xs, sm, md, lg and xl - and can be any colour,
  * including any of the theme colours.
+ *
+ * @displayName Icon
  */
 export default {
     name: 'VsIcon',
@@ -45,15 +49,25 @@ export default {
         },
         /**
          * The fill color of the SVG icon.
-         * `primary, secondary, success, danger, warning, info,
-         * light, dark, reverse-white, primary-purple, secondary-teal`
+         * `primary, secondary, light, dark,
+         * reverse-white, secondary-teal`
          */
         variant: {
             type: String,
             default: null,
             validator: (value) => value.match(
-                /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/,
+                /(primary|secondary|light|dark|reverse-white|secondary-teal)/,
             ),
+        },
+        /**
+         * Accepts a colour (hex code or colour name) to fill the icon, if this is
+         * set it will override the given variant. This should be used for individual
+         * exceptions but if one is being used regularly it should likely be a variant
+         * instead.
+         */
+        customColour: {
+            type: String,
+            default: null,
         },
         /**
         * The orientation of the icon. Defaults to 'up'.
@@ -67,12 +81,22 @@ export default {
             ),
         },
         /**
-         * The size of the icon. Defaults to medium.
-         * `small, medium, large`
-         */
+        * Size of icon, defaults to medium
+        * `xxs, xs, sm, md, lg, xl`)
+        */
         size: {
             type: String,
             default: 'md',
+            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+        },
+        /**
+        * Size of icon at small and extra small viewport, defaults to null,
+        * the size falls back to the regular size if not set
+        * `xxs, xs, sm, md, lg, xl`)
+        */
+        smallSize: {
+            type: String,
+            default: null,
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
     },
@@ -159,6 +183,10 @@ export default {
                     key: 'walking',
                     value: 'walk',
                 },
+                {
+                    key: 'transport',
+                    value: 'transport',
+                },
             ],
         };
     },
@@ -197,14 +225,9 @@ $sizes: (
 $variants: (
     primary: $color-theme-primary,
     secondary: $color-theme-secondary,
-    success: $color-theme-success,
-    danger: $color-theme-danger,
-    warning: $color-theme-warning,
-    info: $color-theme-info,
     light: $color-theme-light,
     dark: $color-theme-dark,
     reverse-white: $color-white,
-    primary-purple: $color-theme-primary-purple,
     secondary-teal: $color-theme-secondary-teal,
 );
 
@@ -218,13 +241,36 @@ $variants: (
         &.vs-icon--size-#{$size} {
             height: $this-size;
             width: $this-size;
+            font-size: $this-size;
             padding: 0;
+        }
+    }
+
+    // This is awkward but these have to be two separate loops through
+    // the sizes. If you have one loop generating both sets you run into
+    // specificity issues as the classes go sm-xs xs sm-sm sm etc etc,
+    // and the later non-sm classes override the earlier sm ones
+    @each $size in map-keys($sizes) {
+        $this-size: map-get($sizes, $size);
+
+        @include media-breakpoint-down(sm) {
+            &.vs-icon--sm-size-#{$size} {
+                height: $this-size;
+                width: $this-size;
+                font-size: $this-size;
+                padding: 0;
+            }
         }
     }
 
     @each $variant in map-keys($variants) {
         &.vs-icon--variant-#{$variant} {
             fill: map-get($variants, $variant);
+
+             &.icon--reverse {
+                fill: $color-white;
+                background: map-get($variants, $variant);
+            }
         }
     }
 
@@ -247,49 +293,51 @@ $variants: (
   <div>
 
     <h3>Default</h3>
-    <vs-icon name="search" />
+    <VsIcon name="search" />
 
     <h3 class="mt-8">Variant</h3>
-    <vs-icon name="user" variant="primary" />
-    <vs-icon name="user" variant="secondary" />
-    <vs-icon name="user" variant="success" />
-    <vs-icon name="user" variant="warning" />
-    <vs-icon name="user" variant="info" />
-    <vs-icon name="user" variant="danger" />
-    <vs-icon name="user" variant="dark" />
-    <vs-icon name="user" variant="light" />
+    <VsIcon name="user" variant="primary" />
+    <VsIcon name="user" variant="secondary" />
+    <VsIcon name="user" variant="light" />
+    <VsIcon name="user" variant="dark" />
+    <VsIcon name="user" variant="reverse-white" />
+    <VsIcon name="user" variant="secondary-teal" />
+
+    <h3 class="mt-8">Custom Colour</h3>
+    <VsIcon name="user" customColour="#ff0000" />
+    <VsIcon name="user" customColour="gold" />
 
     <h3 class="mt-8">Size</h3>
 
     <div class="d-flex">
         <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xxs</h4>
-            <vs-icon name="favourite" size="xxs" />
+            <VsIcon name="favourite" size="xxs" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xs</h4>
-            <vs-icon name="favourite" size="xs" />
+            <VsIcon name="favourite" size="xs" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">
             <h4>sm</h4>
-            <vs-icon name="favourite" size="sm" />
+            <VsIcon name="favourite" size="sm" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">
             <h4>md</h4>
-            <vs-icon name="favourite" size="md" />
+            <VsIcon name="favourite" size="md" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">
             <h4>lg</h4>
-            <vs-icon name="favourite" size="lg" />
+            <VsIcon name="favourite" size="lg" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xl</h4>
-            <vs-icon name="favourite" size="xl" />
+            <VsIcon name="favourite" size="xl" />
             </div>
         </div>
 
@@ -297,19 +345,19 @@ $variants: (
         <div class="d-flex">
             <div class="d-flex flex-column mr-3 align-items-center">
                 <h4>Up</h4>
-                <vs-icon name="chevron" orientation="up" />
+                <VsIcon name="chevron" orientation="up" />
             </div>
             <div class="d-flex flex-column mr-3 align-items-center">
                 <h4>Down</h4>
-                <vs-icon name="chevron" orientation="down" />
+                <VsIcon name="chevron" orientation="down" />
             </div>
             <div class="d-flex flex-column mr-3 align-items-center">
                 <h4>Left</h4>
-                <vs-icon name="chevron" orientation="left" />
+                <VsIcon name="chevron" orientation="left" />
             </div>
             <div class="d-flex flex-column mr-3 align-items-center">
                 <h4>Right</h4>
-                <vs-icon name="chevron" orientation="right" />
+                <VsIcon name="chevron" orientation="right" />
             </div>
         </div>
     </div>

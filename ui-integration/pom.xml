@@ -33,8 +33,8 @@
             <configuration>
               <installDirectory>target</installDirectory>
               <workingDirectory>target</workingDirectory>
-              <nodeVersion>v10.16.3</nodeVersion>
-              <yarnVersion>v1.21.1</yarnVersion>
+              <nodeVersion>v12.18.4</nodeVersion>
+              <yarnVersion>v1.22.4</yarnVersion>
               <!--<npmVersion>v6.9.0</npmVersion>-->
             </configuration>
             
@@ -46,12 +46,12 @@
                 </goals>
               </execution>
               <execution>
-                <id>yarn add node-gyp</id>
+                <id>yarn add node-gyp@7.1.2</id>
                 <goals>
                   <goal>yarn</goal>
                 </goals>
                 <configuration>
-                  <arguments>global add node-gyp</arguments>
+                  <arguments>global add node-gyp@7.1.2</arguments>
                 </configuration>
               </execution>
               <execution>

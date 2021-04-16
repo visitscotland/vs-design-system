@@ -1,6 +1,7 @@
 <template>
     <VsAccordionItem
         class="vs-footer-accordion-item mb-md-4"
+        data-test="vs-footer-accordion-item"
         :data-unique-id="getUniqueId"
         :control-id="controlId"
         :item-break-point="itemBreakPoint"
@@ -27,11 +28,13 @@
 </template>
 
 <script>
-import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
+import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
 
 /**
  * The FooterAccordionItem is an accordion item used inside the FooterNavList.
  * It's a wrapper for FooterNavListItems in the footer.
+ *
+ * @displayName Footer Accordion Item
  */
 
 export default {
@@ -104,7 +107,7 @@ export default {
         background-color: $color-gray-shade-7;
         color: $color-white;
         font-family: $font-family-sans-serif;
-        font-weight: 600;
+        font-weight: $font-weight-semi-bold;
     }
 
      .vs-accordion-item__panel.card-body {
@@ -113,12 +116,12 @@ export default {
         border-top: 1px solid $color-gray-shade-2;
     }
 
-    .btn.vs-accordion__toggle {
+    .btn.vs-accordion-toggle {
         text-transform: none !important;
         letter-spacing: initial;
         padding: $spacer-3;
         line-height: $line-height-xs;
-        font-weight: 500;
+        font-weight: $font-weight-semi-bold;
         text-align: left;
 
         &:hover {
@@ -137,7 +140,7 @@ export default {
     }
 
     @include media-breakpoint-up(sm) {
-        .btn.vs-accordion__toggle {
+        .btn.vs-accordion-toggle {
             padding: $spacer-3 $spacer-6;
         }
     }
@@ -163,10 +166,10 @@ export default {
 
 <docs>
   ```js
-    <vs-footer>
-        <vs-footer-nav-list break-point="md">
-            <vs-col cols="12" md="6">
-                <vs-footer-accordion-item
+    <VsFooter>
+        <VsFooterNavList break-point="md">
+            <VsCol cols="12" md="6">
+                <VsFooterAccordionItem
                     :open-by-default="false"
                     title="Visitor information"
                     variant="dark"
@@ -174,34 +177,34 @@ export default {
                     class="border-left-0"
                 >
                     <span slot="icon-open">
-                        <vs-icon name="chevron" variant="light" size="xs" />
+                        <VsIcon name="chevron" variant="light" size="xs" />
                     </span>
 
                     <span slot="icon-closed">
-                        <vs-icon name="chevron" orientation="right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
                     </span>
 
-                    <vs-list unstyled>
-                        <vs-footer-nav-list-item
+                    <VsList unstyled>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="Brochures"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="VisitScotland iCentres"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="iKnow Scotland Community"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="VisitScotland Awards"
-                        ></vs-footer-nav-list-item>
-                    </vs-list>
-                </vs-footer-accordion-item>
-            </vs-col>
-        </vs-footer-nav-list>
-    </vs-footer>
+                        ></VsFooterNavListItem>
+                    </VsList>
+                </VsFooterAccordionItem>
+            </VsCol>
+        </VsFooterNavList>
+    </VsFooter>
   ```
 </docs>

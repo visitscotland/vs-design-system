@@ -11,20 +11,12 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 37f9b6d2-c16c-474d-aeb4-96f48f652ea6
+          jcr:uuid: f84a1c0f-a8b3-478b-a302-755904b626ee
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          hipposysedit:validators: ['visitscotland:link-image-validator']
-          /tipsTitle:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:tipsTitle
-            hipposysedit:primary: false
-            hipposysedit:type: String
+          hipposysedit:validators: ['visitscotland:link-image-validator', 'visitscotland:location-validator']
           /description:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -34,14 +26,6 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
             hipposysedit:validators: [required, non-empty]
-          /tips:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:tips
-            hipposysedit:primary: false
-            hipposysedit:type: hippostd:html
           /product:
             jcr:primaryType: hipposysedit:field
             hipposysedit:multiple: true
@@ -82,6 +66,15 @@ definitions:
             hipposysedit:path: visitscotland:translation
             hipposysedit:primary: false
             hipposysedit:type: OpenUiString
+          /StopTip:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:StopTip
+            hipposysedit:primary: false
+            hipposysedit:type: visitscotland:StopTip
+            hipposysedit:validators: [optional]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -93,17 +86,13 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: f6df8008-9dc3-4370-89aa-43fd408e4606
+          jcr:uuid: 6f4a1ba2-8e59-4445-bc80-027a1ea2c425
           hippostdpubwf:lastModificationDate: 2019-12-05T15:13:21.853Z
           hippostdpubwf:creationDate: 2019-12-05T15:13:21.853Z
-          visitscotland:tipsTitle: ''
           visitscotland:title: ''
           visitscotland:subtitle: ''
           visitscotland:translation: ''
           /visitscotland:description:
-            jcr:primaryType: hippostd:html
-            hippostd:content: ''
-          /visitscotland:tips:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
           /visitscotland:image:
@@ -125,15 +114,16 @@ definitions:
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
           /title:
             jcr:primaryType: frontend:plugin
-            caption: Title
+            caption: Stop Name
             field: title
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /subtitle:
             jcr:primaryType: frontend:plugin
-            caption: Location (Subtitle)
+            caption: External Location/Override DMS
             field: subtitle
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
@@ -142,7 +132,7 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /description:
             jcr:primaryType: frontend:plugin
-            caption: Description
+            caption: Copy
             field: description
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
@@ -160,7 +150,7 @@ definitions:
             field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: This Image is required if the Product is not a DMS product
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /product:
@@ -175,29 +165,15 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1
-          /tipsTitle:
+          /StopTip:
             jcr:primaryType: frontend:plugin
-            caption: Pull Out Title
-            field: tipsTitle
-            hint: Title is required if pull out is added
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /tips:
-            jcr:primaryType: frontend:plugin
-            caption: Pull out Information
-            field: tips
-            hint: ''
+            caption: Tip
+            field: StopTip
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
-                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
-                , removeButtons: ''PickImage,Youtube,Table''}'
-              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
-                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
           /translation:
             jcr:primaryType: frontend:plugin
             caption: Translation

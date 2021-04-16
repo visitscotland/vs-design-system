@@ -1,13 +1,18 @@
 <template>
-    <div class="social-credit">
+    <div
+        class="social-credit"
+        data-test="vs-social-credit-link"
+    >
         <VsIcon
             v-if="source"
             :name="source"
             variant="light"
             size="xs"
+            data-test="vs-social-credit-link__icon"
         />
         <VsLink
             class="social-credit__link"
+            data-test="vs-social-credit-link__link"
             :href="socialPostUrl"
             external
         >
@@ -20,6 +25,11 @@
 import VsLink from '@components/elements/link/Link';
 import VsIcon from '@components/elements/icon/Icon';
 
+/**
+ * TODO: Document Usage
+ *
+ * @displayName Social Credit Link
+ */
 export default {
     name: 'VsSocialCreditLink',
     status: 'prototype',
@@ -51,7 +61,7 @@ export default {
          */
         source: {
             type: String,
-            default: '',
+            required: true,
             validator: (value) => value.match(/(instagram)/),
         },
     },
@@ -66,7 +76,7 @@ export default {
         color: $color-white !important;
         font-weight: $font-weight-light;
         font-size: $small-font-size;
-        line-height: $standard-line-height;
+        line-height: $line-height-standard;
         margin-bottom: $spacer-0;
 
         &:hover,
@@ -75,7 +85,7 @@ export default {
         }
 
         &:focus {
-            font-weight: $semibold-font-weight !important;
+            font-weight: $font-weight-semi-bold !important;
             outline: 0 !important;
         }
 
