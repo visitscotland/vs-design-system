@@ -116,7 +116,7 @@ export default {
     &__link{
         .vs-link--variant-primary{
             color: $color-secondary-gray-shade-3;
-            transition: $duration-base color;
+            transition: 0.2s color;
 
             @include media-breakpoint-up(lg) {
                 color: $color-secondary-gray;
