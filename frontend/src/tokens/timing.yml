@@ -5,9 +5,11 @@
 
 props:
   duration_quickly:
-    value: "0.08s"
+    value: ".08s"
+  duration_base:
+    value: ".2s"
   duration_slowly:
-    value: "0.5s"
+    value: ".5s"
 global:
   type: number
   category: time

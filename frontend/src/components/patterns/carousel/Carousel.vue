@@ -364,7 +364,7 @@ export default {
 
         &__track {
             flex-wrap: nowrap;
-            transition: transform 0.6s ease-out;
+            transition: transform $duration-slowly ease-out;
 
             & > [class^="col-"] {
                 display: flex;
