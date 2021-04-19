@@ -85,7 +85,7 @@ export default {
     &__cta-link{
         text-decoration: none;
         padding: 0.12rem $spacer-5;
-        transition: 0.2s color;
+        transition: $duration-base color;
 
         &:hover{
             color: $color-secondary-gray-shade-3;
