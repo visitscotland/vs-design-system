@@ -162,8 +162,7 @@ export default {
         .vs-carousel-slide__card {
             flex-shrink: 0;
             opacity: 0.5;
-            transition: opacity 0.3s ease;
-            transition-delay: 0.6s;
+            transition: $duration-slowly;
             padding: $spacer-2;
             max-width: 100%;
 
@@ -212,7 +211,7 @@ export default {
                 padding: $spacer-2;
                 border: none;
                 height: 100%;
-                transition: box-shadow 800ms;
+                transition: box-shadow $duration-slowly;
 
                 &:hover {
                     box-shadow: 10px 10px 20px $color-gray-tint-4;
