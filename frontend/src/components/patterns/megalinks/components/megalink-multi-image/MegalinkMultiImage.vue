@@ -122,7 +122,7 @@ export default {
         background: transparent;
         position: relative;
         margin-bottom: $spacer-8;
-        transition: box-shadow 800ms;
+        transition: box-shadow $duration-slowly;
 
         .vs-stretched-link {
             color: $color-base-text;
