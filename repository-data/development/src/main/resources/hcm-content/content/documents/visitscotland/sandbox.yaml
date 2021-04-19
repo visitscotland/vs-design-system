@@ -1693,98 +1693,18 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: af7bc15d-bc33-4b84-ad01-e77eb5acde61
         hippo:name: Edinburgh
-        hippo:versionHistory: 62980d2e-1781-45ad-bbc1-4e2a70b4bb48
+        hippo:versionHistory: 008a2bcb-9a11-4752-8e3c-9a7eaedf4b8d
         /content[1]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 76bab125-f189-4ab2-ae52-8d216ed96af5
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-26T13:13:24.462Z
+          hippostdpubwf:lastModificationDate: 2021-04-19T15:39:41.116+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: ''
-          visitscotland:location: Edinburgh
-          visitscotland:seoDescription: Edinburgh seo description
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Edinburgh seo title
-          visitscotland:teaser: Edinburgh city teaser
-          visitscotland:title: Edinburgh With an abundance of history, top quality
-            attractions and beautiful architecture, Edinburgh is a city that you won’t
-            forget in a hurry. Explore the Medieval Old Town and the elegant Georgian
-            New Town, which sit side by side, and visit unique attractions throughout
-            the city on a holiday in Edinburgh.  Whether you’re short of time and
-            can only manage a weekend break, planning a full-blown city break or are
-            visiting Edinburgh as part of a wider holiday in Scotland, there’s lots
-            to fill your time, from unforgettable historic sites and world-class festivals
-            to fantastic shopping and mouth-watering dining.
-          visitscotland:translation: ''
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>With an abundance of history, top quality attractions and beautiful architecture, Edinburgh is a city that you won’t forget in a hurry. Explore the Medieval Old Town and the elegant Georgian New Town, which sit side by side, and visit unique attractions throughout the city on a holiday in Edinburgh.</p>
-
-              <p>Whether you’re short of time and can only manage a weekend break, planning a full-blown city break or are visiting Edinburgh as part of a wider holiday in Scotland, there’s lots to fill your time, from unforgettable historic sites and world-class festivals to fantastic shopping and mouth-watering dining.</p>
-        /content[2]:
-          jcr:primaryType: visitscotland:Destination
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 7b6014dc-600c-4f35-8e3c-02ebf2b309ea
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-26T13:05:31.241Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: ''
-          visitscotland:location: Edinburgh
-          visitscotland:seoDescription: Edinburgh seo description
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Edinburgh seo title
-          visitscotland:teaser: Edinburgh city teaser
-          visitscotland:title: Edinburgh With an abundance of history, top quality
-            attractions and beautiful architecture, Edinburgh is a city that you won’t
-            forget in a hurry. Explore the Medieval Old Town and the elegant Georgian
-            New Town, which sit side by side, and visit unique attractions throughout
-            the city on a holiday in Edinburgh.  Whether you’re short of time and
-            can only manage a weekend break, planning a full-blown city break or are
-            visiting Edinburgh as part of a wider holiday in Scotland, there’s lots
-            to fill your time, from unforgettable historic sites and world-class festivals
-            to fantastic shopping and mouth-watering dining.
-          visitscotland:translation: ''
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>With an abundance of history, top quality attractions and beautiful architecture, Edinburgh is a city that you won’t forget in a hurry. Explore the Medieval Old Town and the elegant Georgian New Town, which sit side by side, and visit unique attractions throughout the city on a holiday in Edinburgh.</p>
-
-              <p>Whether you’re short of time and can only manage a weekend break, planning a full-blown city break or are visiting Edinburgh as part of a wider holiday in Scotland, there’s lots to fill your time, from unforgettable historic sites and world-class festivals to fantastic shopping and mouth-watering dining.</p>
-        /content[3]:
-          jcr:primaryType: visitscotland:Destination
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: af10c61f-4f4d-412d-ab7a-267834ee4201
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-05-25T18:02:22.368+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-07-13T10:35:12.588+01:00
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -1794,6 +1714,7 @@
           visitscotland:seoTitle: Edinburgh seo title
           visitscotland:teaser: Edinburgh city teaser
           visitscotland:title: Edinburgh
+          visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
@@ -1806,6 +1727,193 @@
               <p>With an abundance of history, top quality attractions and beautiful architecture, Edinburgh is a city that you won’t forget in a hurry. Explore the Medieval Old Town and the elegant Georgian New Town, which sit side by side, and visit unique attractions throughout the city on a holiday in Edinburgh.</p>
 
               <p>Whether you’re short of time and can only manage a weekend break, planning a full-blown city break or are visiting Edinburgh as part of a wider holiday in Scotland, there’s lots to fill your time, from unforgettable historic sites and world-class festivals to fantastic shopping and mouth-watering dining.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>With an abundance of history, top quality attractions
+                and beautiful architecture, Edinburgh is a city that you won’t forget
+                in a hurry. Explore the Medieval Old Town and the elegant Georgian
+                New Town, which sit side by side, and visit unique attractions throughout
+                the city on a holiday in Edinburgh.</p>
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 7b6014dc-600c-4f35-8e3c-02ebf2b309ea
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
+          hippostdpubwf:lastModificationDate: 2021-04-19T15:40:04.769+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Edinburgh seo description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Edinburgh seo title
+          visitscotland:teaser: Edinburgh city teaser
+          visitscotland:title: Edinburgh
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>With an abundance of history, top quality attractions and beautiful architecture, Edinburgh is a city that you won’t forget in a hurry. Explore the Medieval Old Town and the elegant Georgian New Town, which sit side by side, and visit unique attractions throughout the city on a holiday in Edinburgh.</p>
+
+              <p>Whether you’re short of time and can only manage a weekend break, planning a full-blown city break or are visiting Edinburgh as part of a wider holiday in Scotland, there’s lots to fill your time, from unforgettable historic sites and world-class festivals to fantastic shopping and mouth-watering dining.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>With an abundance of history, top quality attractions
+                and beautiful architecture, Edinburgh is a city that you won’t forget
+                in a hurry. Explore the Medieval Old Town and the elegant Georgian
+                New Town, which sit side by side, and visit unique attractions throughout
+                the city on a holiday in Edinburgh.</p>
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: af10c61f-4f4d-412d-ab7a-267834ee4201
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
+          hippostdpubwf:lastModificationDate: 2021-04-19T15:40:04.769+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-04-19T15:40:07.194+01:00
+          hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Edinburgh seo description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Edinburgh seo title
+          visitscotland:teaser: Edinburgh city teaser
+          visitscotland:title: Edinburgh
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>With an abundance of history, top quality attractions and beautiful architecture, Edinburgh is a city that you won’t forget in a hurry. Explore the Medieval Old Town and the elegant Georgian New Town, which sit side by side, and visit unique attractions throughout the city on a holiday in Edinburgh.</p>
+
+              <p>Whether you’re short of time and can only manage a weekend break, planning a full-blown city break or are visiting Edinburgh as part of a wider holiday in Scotland, there’s lots to fill your time, from unforgettable historic sites and world-class festivals to fantastic shopping and mouth-watering dining.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>With an abundance of history, top quality attractions
+                and beautiful architecture, Edinburgh is a city that you won’t forget
+                in a hurry. Explore the Medieval Old Town and the elegant Georgian
+                New Town, which sit side by side, and visit unique attractions throughout
+                the city on a holiday in Edinburgh.</p>
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
       /featured-layout:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
