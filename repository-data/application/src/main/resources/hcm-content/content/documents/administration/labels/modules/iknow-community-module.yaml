@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 13872ee0-c264-4acc-88d3-0c19918ea6f4
   hippo:name: iKnow Community Module
-  hippo:versionHistory: 2c9ff066-1720-4610-9489-5ba5b4d8b4a7
+  hippo:versionHistory: 63a23392-c523-4f82-831a-e217a0cc6d1d
   /iknow-community-module[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,13 +13,13 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-04-16T10:58:38.421+01:00
-    hippostdpubwf:lastModificationDate: 2021-04-16T11:03:57.424+01:00
+    hippostdpubwf:lastModificationDate: 2021-04-16T16:50:04.668+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '']
     resourcebundle:id: iknow-community
     resourcebundle:keys: [iknow-community.title.default, iknow-community.copy.default]
     resourcebundle:messages: [Traveller tips & secrets, 'If you''re looking for the
-        BEST tips, secrets and hidden gems, then look no further.\nTalk to people
+        BEST tips, secrets and hidden gems, then look no further.<br />Talk to people
         in the iKnow and share your own stories in our iKnow Community']
   /iknow-community-module[2]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -30,13 +30,13 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-04-16T10:58:38.421+01:00
-    hippostdpubwf:lastModificationDate: 2021-04-16T11:03:44.768+01:00
+    hippostdpubwf:lastModificationDate: 2021-04-16T16:50:04.578+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '']
     resourcebundle:id: iknow-community
     resourcebundle:keys: [iknow-community.title.default, iknow-community.copy.default]
     resourcebundle:messages: [Traveller tips & secrets, 'If you''re looking for the
-        BEST tips, secrets and hidden gems, then look no further.\nTalk to people
+        BEST tips, secrets and hidden gems, then look no further.<br />Talk to people
         in the iKnow and share your own stories in our iKnow Community']
   /iknow-community-module[3]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -47,12 +47,12 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-04-16T10:58:38.421+01:00
-    hippostdpubwf:lastModificationDate: 2021-04-16T11:03:44.768+01:00
+    hippostdpubwf:lastModificationDate: 2021-04-16T16:50:04.578+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-04-16T11:04:06.326+01:00
+    hippostdpubwf:publicationDate: 2021-04-16T16:50:09.161+01:00
     resourcebundle:descriptions: ['', '']
     resourcebundle:id: iknow-community
     resourcebundle:keys: [iknow-community.title.default, iknow-community.copy.default]
     resourcebundle:messages: [Traveller tips & secrets, 'If you''re looking for the
-        BEST tips, secrets and hidden gems, then look no further.\nTalk to people
+        BEST tips, secrets and hidden gems, then look no further.<br />Talk to people
         in the iKnow and share your own stories in our iKnow Community']
