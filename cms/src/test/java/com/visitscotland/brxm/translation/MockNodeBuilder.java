@@ -55,6 +55,13 @@ public final class MockNodeBuilder {
         return this;
     }
 
+    public MockNodeBuilder withProperty(String propertyPath, Long propertyValue) throws RepositoryException {
+        Property mockProperty = mock(Property.class);
+        when(mockProperty.getLong()).thenReturn(propertyValue);
+        properties.put(propertyPath, mockProperty);
+        return this;
+    }
+
     public MockNodeBuilder withProperty(String propertyPath, boolean propertyValue) throws Exception {
         Property mockProperty = mock(Property.class);
         lenient().when(mockProperty.getBoolean()).thenReturn(propertyValue);
