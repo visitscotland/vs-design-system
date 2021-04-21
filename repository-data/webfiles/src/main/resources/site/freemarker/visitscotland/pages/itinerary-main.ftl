@@ -13,8 +13,7 @@
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Itinerary" -->
-<#-- @ftlvariable name="firstStopLocation" type="java.lang.String" -->
-<#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
+<#-- @ftlvariable name="itinerary" type="com.visitscotland.brxm.model.ItineraryPage" -->
 <#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.model.FlatImage" -->
 <#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.model.Coordinates" -->
 
@@ -36,7 +35,7 @@
     <@cmsErrors errors=alerts!"" editMode=editMode />
     <@hst.link var="hero" hippobean=document.heroImage.original/>
 
-    <@pageIntro content=document heroImage=heroImage hero=hero areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />
+    <@pageIntro content=document heroImage=heroImage hero=hero areas=document.areas days=itinerary.days firstStop=itinerary.firstStopLocation lastStop=itinerary.lastStopLocation />
 
     <vs-itinerary>
         <@itineraryMap days=document.days />

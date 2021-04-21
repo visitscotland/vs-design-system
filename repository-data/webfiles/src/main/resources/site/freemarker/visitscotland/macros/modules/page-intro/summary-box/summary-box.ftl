@@ -12,8 +12,8 @@
 <vs-col cols="12" md="6" lg="5" xl="4">
     <vs-summary-box-list>
         <vs-summary-box-list-item>
-            <vs-summary-box-display text="${document.days?size}"/></vs-summary-box-display>
-            <#if days = "1">
+            <vs-summary-box-display text="${days?size}"/></vs-summary-box-display>
+            <#if days?size == 1>
                 <vs-summary-box-label label="${label('itinerary', 'day')}"></vs-summary-box-label>
             <#else>
                 <vs-summary-box-label label="${label('itinerary', 'days')}"></vs-summary-box-label>

@@ -147,6 +147,8 @@ public class ItineraryFactory {
         //Check with JL this statement was changed
         if (!Contract.isEmpty(stop.getSubtitle())) {
             module.setSubTitle(stop.getSubtitle());
+        }else{
+            module.setSubTitle(module.getLocation());
         }
 
         if (module.getSubTitle() == null){
