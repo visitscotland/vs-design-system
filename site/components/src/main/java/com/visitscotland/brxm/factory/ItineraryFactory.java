@@ -144,7 +144,6 @@ public class ItineraryFactory {
             module.addErrorMessage("An image should be provided for external links");
         }
 
-        //Check with JL this statement was changed
         if (!Contract.isEmpty(stop.getSubtitle())) {
             module.setSubTitle(stop.getSubtitle());
         }else{
@@ -240,7 +239,7 @@ public class ItineraryFactory {
         }
 
         if (product.has(OPENING)){
-            module.setOpen(utils.setOpeningTimes(product, locale));
+            module.setOpening(product.get(OPENING));
             module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
                     module.getCtaLink().getLink() + "#opening", null));
         }

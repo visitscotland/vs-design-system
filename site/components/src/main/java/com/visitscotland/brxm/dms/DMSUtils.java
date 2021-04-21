@@ -67,13 +67,15 @@ public class DMSUtils {
      * Returns the Opening times text depending on the information returned by the product card or null if that data
      * cannot be inferred
      *
-     * TODO: UNIT TEST
+     * TODO: Remove it once the front end has implemented the same solution, keep it as reference
+     *
+     *  @deprecated This method will be implemented in VUE. Keep it as reference, remove it once front end is ready
      */
+    @Deprecated
     public String setOpeningTimes(JsonNode product, Locale locale){
         if (product.has(OPENING)) {
             JsonNode opening = product.get(OPENING);
 
-            //TODO adjust the message to designs when ready
             if ((opening.has(OPENING_STATE)) && (!opening.get(OPENING_STATE).asText().equalsIgnoreCase("unknown"))) {
                 String openingMessage = bundle.getResourceBundle(ITINERARY_BUNDLE, !opening.get(OPENING_PROVISIONAL).asBoolean() ? "usually" : "provisionally",locale)
                         + " " + opening.get(OPENING_STATE).asText() + " " + opening.get(OPENING_DAY).asText();
