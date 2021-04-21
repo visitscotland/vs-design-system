@@ -160,11 +160,11 @@ export default {
     }
 
     .vs-itinerary__map-toggle-button {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: $spacer-4;
+        padding-right: $spacer-4;
 
         svg {
-            margin-right: 10px;
+            margin-right: $spacer-3;
         }
     }
 
