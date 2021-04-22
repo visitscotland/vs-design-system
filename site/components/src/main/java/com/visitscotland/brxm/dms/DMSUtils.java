@@ -37,12 +37,10 @@ public class DMSUtils {
     }
 
     /**
-     * TODO this method returns the current open state, and it could be affected by the cache, ask WEBOPS and move it to front end if needed
-     * TODO This method is only intended for Itineraries? Should be part of itineraries factory? Otherwise, the bundle keys should be more general
      *
      * TODO to be removed after the refactoring of itineraries
      *
-     * @deprecated
+     * @deprecated This method will be implemented in VUE. Keep it as reference, remove it once front end is ready
      */
     @Deprecated
     public String currentOpenStatus(String starTime, String endTime, Locale locale) {
@@ -72,7 +70,7 @@ public class DMSUtils {
      *  @deprecated This method will be implemented in VUE. Keep it as reference, remove it once front end is ready
      */
     @Deprecated
-    public String setOpeningTimes(JsonNode product, Locale locale){
+    public String getOpeningTimes(JsonNode product, Locale locale){
         if (product.has(OPENING)) {
             JsonNode opening = product.get(OPENING);
 

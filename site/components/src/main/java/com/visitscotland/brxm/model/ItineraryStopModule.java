@@ -30,20 +30,6 @@ public class ItineraryStopModule extends Module<Stop>{
 
     private Coordinates coordinates;
 
-    private String location;
-
-    public ItineraryStopModule() {
-
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getIdentifier() {
         return identifier;
     }
