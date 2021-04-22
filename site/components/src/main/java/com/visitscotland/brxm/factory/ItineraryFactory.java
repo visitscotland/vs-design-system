@@ -67,12 +67,7 @@ public class ItineraryFactory {
                 }
 
                 if (calculateDistance && module.getCoordinates() != null) {
-                    if (prevCoordinates != null) {
-                        //TODO: Review
-                        BigDecimal distancePrevStop = getDistanceStops(module.getCoordinates(), prevCoordinates);
-                        totalDistance = totalDistance.add(distancePrevStop);
-                    }
-
+                    totalDistance = totalDistance.add(getDistanceStops(prevCoordinates, module.getCoordinates()));
                     prevCoordinates = module.getCoordinates();
                 }
 
@@ -110,7 +105,7 @@ public class ItineraryFactory {
     /**
      * Method to calculate the distance between stops
      */
-    private BigDecimal getDistanceStops(Coordinates current, Coordinates previous) {
+    private BigDecimal getDistanceStops(Coordinates previous, Coordinates current) {
         if (previous == null || current == null){
             return BigDecimal.ZERO;
         } else {
@@ -212,9 +207,7 @@ public class ItineraryFactory {
         module.setCtaLink(new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), product.get(URL).asText(), LinkType.INTERNAL));
         module.setFacilities(utils.getKeyFacilities(product));
 
-        //TODO: Create a test for this case. At this point the image should have been set
         if (module.getImage() == null && product.has(IMAGE)) {
-            //TODO: Check this in Freemarker
             module.setImage(imageFactory.createImage(product, module));
         }
 

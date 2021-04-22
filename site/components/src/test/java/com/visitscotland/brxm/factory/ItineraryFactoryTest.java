@@ -15,6 +15,7 @@ import com.visitscotland.brxm.model.ItineraryStopModule;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -70,15 +71,23 @@ class ItineraryFactoryTest {
 
     @Test
     @DisplayName("Create a simple itinerary with one stop")
-    void singleStop() {
-        List<Day> days = new ItineraryDayMockBuilder().addStop().buildAsList();
+    void simpleStop() {
+        List<Day> days = new ItineraryDayMockBuilder().addStop().title("Title").subtitle("location")
+                .addDescription().tip("Don't miss", true).buildAsList();
 
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
 
         ItineraryPage iti = factory.buildItinerary(itinerary, Locale.UK);
+        ItineraryStopModule module = getSingleStop(iti);
         assertNotNull(iti);
         assertEquals(1, iti.getDays().size());
         assertEquals(1, iti.getStops().size());
+        assertEquals("Title", module.getTitle());
+        assertEquals("location", module.getSubTitle());
+        assertEquals("Don't miss", module.getTipsTitle());
+        assertNotNull(module.getDescription());
+        assertNotNull(module.getTipsBody());
+
     }
 
     @ParameterizedTest

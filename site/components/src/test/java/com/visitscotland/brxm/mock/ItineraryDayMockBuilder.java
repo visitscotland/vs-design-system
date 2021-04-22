@@ -1,6 +1,7 @@
 package com.visitscotland.brxm.mock;
 
 import com.visitscotland.brxm.hippobeans.*;
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.mockito.Answers;
 
 import java.util.ArrayList;
@@ -38,6 +39,54 @@ public class ItineraryDayMockBuilder {
         return this;
     }
 
+    public ItineraryDayMockBuilder title(String title) {
+        if (currentStop == null){
+            //TODO MockException
+            throw new RuntimeException("The stop hasn't been defined");
+        }
+        when(currentStop.getTitle()).thenReturn(title);
+
+        return this;
+    }
+
+    public ItineraryDayMockBuilder subtitle(String subtitle) {
+        if (currentStop == null){
+            //TODO MockException
+            throw new RuntimeException("The stop hasn't been defined");
+        }
+        when(currentStop.getSubtitle()).thenReturn(subtitle);
+
+        return this;
+    }
+
+    public ItineraryDayMockBuilder tip(String title, boolean copy) {
+        if (currentStop == null){
+            //TODO MockException
+            throw new RuntimeException("The stop hasn't been defined");
+        }
+        StopTip tip = mock(StopTip.class);
+        if (title != null){
+            when(tip.getTitle()).thenReturn(title);
+        }
+        if (copy){
+            when(tip.getCopy()).thenReturn(mock(HippoHtml.class));
+        }
+
+        when(currentStop.getStopTip()).thenReturn(tip);
+
+        return this;
+    }
+
+    public ItineraryDayMockBuilder addDescription(){
+        if (currentStop == null){
+            //TODO MockException
+            throw new RuntimeException("The stop hasn't been defined");
+        }
+        when(currentStop.getDescription()).thenReturn(mock(HippoHtml.class));
+
+        return this;
+    }
+
     public ItineraryDayMockBuilder addDmsStop(String dmsId) {
         addStop();
         dmsLink = mock(DMSLink.class);
@@ -62,12 +111,6 @@ public class ItineraryDayMockBuilder {
         when(currentStop.getIdentifier()).thenReturn(url);
 
         when(currentStop.getImage()).thenReturn(mock(Image.class));
-
-        return this;
-    }
-
-    public ItineraryDayMockBuilder subtitle(String subtitle){
-        when(currentStop.getSubtitle()).thenReturn(subtitle);
 
         return this;
     }
