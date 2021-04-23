@@ -233,8 +233,8 @@ public class ItineraryFactory {
 
         if (product.has(OPENING)){
             module.setOpening(product.get(OPENING));
-            module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
-                    module.getCtaLink().getLink() + "#opening", null));
         }
+        module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
+                module.getCtaLink().getLink() + "#opening", null));
     }
 }
