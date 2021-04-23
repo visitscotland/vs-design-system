@@ -11,11 +11,6 @@ public class IknowCommunity extends BaseDocument {
         return getSingleProperty("visitscotland:title");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:tagscheckboxes")
-    public String[] getTagscheckboxes() {
-        return getMultipleProperty("visitscotland:tagscheckboxes");
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:tags")
     public String[] getTags() {
         return getMultipleProperty("visitscotland:tags");
@@ -24,5 +19,15 @@ public class IknowCommunity extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:copy")
     public String getCopy() {
         return getSingleProperty("visitscotland:copy");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:diff")
+    public String getDiff() {
+        return getSingleProperty("visitscotland:diff");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
+    public Boolean getTranslationFlag() {
+        return getSingleProperty("visitscotland:translationFlag");
     }
 }

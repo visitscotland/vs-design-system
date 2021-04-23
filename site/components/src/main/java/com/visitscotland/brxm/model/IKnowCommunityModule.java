@@ -6,6 +6,7 @@ public class IKnowCommunityModule extends Module {
 
     private String title;
     private String copy;
+    private FlatLink link;
     private List<FlatLink> tags;
 
     public String getTitle() {
@@ -30,5 +31,13 @@ public class IKnowCommunityModule extends Module {
 
     public void setTags(List<FlatLink> tags) {
         this.tags = tags;
+    }
+
+    public FlatLink getLink() {
+        return link;
+    }
+
+    public void setLink(FlatLink link) {
+        this.link = link;
     }
 }

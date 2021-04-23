@@ -52,7 +52,7 @@
 [visitscotland:IKnow] > hippo:compound, hippostd:relaxed
   orderable
 
-[visitscotland:IknowCommunity] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+[visitscotland:IknowCommunity] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
 [visitscotland:Image] > hippogallery:imageset, hippogallery:relaxed
@@ -121,9 +121,6 @@
   orderable
 
 [visitscotland:default] > hippogallery:imageset, hippogallery:relaxed
-
-[visitscotland:iKnowCommunityTag] > hippo:compound, hippostd:relaxed
-  orderable
 
 [visitscotland:imageData] > hippo:compound, hippostd:relaxed
   orderable

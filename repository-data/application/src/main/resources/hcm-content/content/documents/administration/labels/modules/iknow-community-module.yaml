@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 13872ee0-c264-4acc-88d3-0c19918ea6f4
   hippo:name: iKnow Community Module
-  hippo:versionHistory: 63a23392-c523-4f82-831a-e217a0cc6d1d
+  hippo:versionHistory: f28f440c-8372-4b11-b003-a24327983190
   /iknow-community-module[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,14 +13,16 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-04-16T10:58:38.421+01:00
-    hippostdpubwf:lastModificationDate: 2021-04-16T16:50:04.668+01:00
+    hippostdpubwf:lastModificationDate: 2021-04-23T10:00:41.654+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '']
+    resourcebundle:descriptions: ['', '', '', '']
     resourcebundle:id: iknow-community
-    resourcebundle:keys: [iknow-community.title.default, iknow-community.copy.default]
+    resourcebundle:keys: [iknow-community.title.default, iknow-community.copy.default,
+      iknow-community.link.label, iknow-community.link.url]
     resourcebundle:messages: [Traveller tips & secrets, 'If you''re looking for the
         BEST tips, secrets and hidden gems, then look no further.<br />Talk to people
-        in the iKnow and share your own stories in our iKnow Community']
+        in the iKnow and share your own stories in our iKnow Community', Join the
+        conversation, 'https://community.visitscotland.com/']
   /iknow-community-module[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -30,14 +32,16 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-04-16T10:58:38.421+01:00
-    hippostdpubwf:lastModificationDate: 2021-04-16T16:50:04.578+01:00
+    hippostdpubwf:lastModificationDate: 2021-04-23T10:01:00.285+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '']
+    resourcebundle:descriptions: ['', '', '', '']
     resourcebundle:id: iknow-community
-    resourcebundle:keys: [iknow-community.title.default, iknow-community.copy.default]
+    resourcebundle:keys: [iknow-community.title.default, iknow-community.copy.default,
+      iknow-community.link.label, iknow-community.link.url]
     resourcebundle:messages: [Traveller tips & secrets, 'If you''re looking for the
         BEST tips, secrets and hidden gems, then look no further.<br />Talk to people
-        in the iKnow and share your own stories in our iKnow Community']
+        in the iKnow and share your own stories in our iKnow Community', Join the
+        conversation, 'https://community.visitscotland.com/']
   /iknow-community-module[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -47,12 +51,14 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-04-16T10:58:38.421+01:00
-    hippostdpubwf:lastModificationDate: 2021-04-16T16:50:04.578+01:00
+    hippostdpubwf:lastModificationDate: 2021-04-23T10:01:00.285+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-04-16T16:50:09.161+01:00
-    resourcebundle:descriptions: ['', '']
+    hippostdpubwf:publicationDate: 2021-04-23T10:01:02.180+01:00
+    resourcebundle:descriptions: ['', '', '', '']
     resourcebundle:id: iknow-community
-    resourcebundle:keys: [iknow-community.title.default, iknow-community.copy.default]
+    resourcebundle:keys: [iknow-community.title.default, iknow-community.copy.default,
+      iknow-community.link.label, iknow-community.link.url]
     resourcebundle:messages: [Traveller tips & secrets, 'If you''re looking for the
         BEST tips, secrets and hidden gems, then look no further.<br />Talk to people
-        in the iKnow and share your own stories in our iKnow Community']
+        in the iKnow and share your own stories in our iKnow Community', Join the
+        conversation, 'https://community.visitscotland.com/']

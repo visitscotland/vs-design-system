@@ -38,7 +38,7 @@ public class MultiValueNumberSelectedValidator implements Validator<Node> {
     public MultiValueNumberSelectedValidator(final Node config) {
         try {
             if (!config.hasProperty(TARGET_FIELD)) {
-                throw new ValidationContextException("A targetField must be provided for TagNumberSelectedValidator");
+                throw new ValidationContextException("A targetField must be provided for MultiValueNumberSelectedValidator");
             }
             targetField = config.getProperty(TARGET_FIELD).getString();
             if (config.hasProperty(MIN_LENGTH)) {
@@ -51,7 +51,7 @@ public class MultiValueNumberSelectedValidator implements Validator<Node> {
                 throw new ValidationContextException("A maxLength and/or a minLength property must be provided to validator");
             }
         } catch (RepositoryException ex) {
-            throw new ValidationContextException("Cannot read required properties for the TagNumberSelectedValidator. Verify the node ", ex);
+            throw new ValidationContextException("Cannot read required properties for the MultiValueNumberSelectedValidator. Verify the node ", ex);
         }
     }
 
@@ -60,7 +60,7 @@ public class MultiValueNumberSelectedValidator implements Validator<Node> {
     public Optional<Violation> validate(ValidationContext validationContext, Node node) {
         try {
             if (!node.hasProperty(targetField)) {
-                logger.error("Can not run TagNumberSelectedValidator as node {} has not field {}", node.getPath(), targetField);
+                logger.error("Can not run TagNumberSelectedValidator as node {} has no field {}", node.getPath(), targetField);
                 return Optional.empty();
             }
 

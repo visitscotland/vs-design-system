@@ -121,4 +121,19 @@ class IKnowCommunityFactoryTest {
         Assertions.assertEquals(LinkType.INTERNAL, module.getTags().get(0).getType());
     }
 
+    @DisplayName("Community link added to module")
+    @Test
+    void communityLink() {
+        when(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.url", Locale.UK))
+                .thenReturn("url");
+        when(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.label", Locale.UK))
+                .thenReturn("label");
+        IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().copy("copy").title("title").tags(Collections.emptyList()).build();
+        IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
+
+        Assertions.assertEquals("url", module.getLink().getLink());
+        Assertions.assertEquals("label", module.getLink().getLabel());
+        Assertions.assertEquals(LinkType.INTERNAL, module.getLink().getType());
+    }
+
 }

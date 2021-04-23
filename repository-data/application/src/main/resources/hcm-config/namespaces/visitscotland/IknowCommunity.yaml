@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 5013f516-4341-4037-b66d-397f7492f921
+          jcr:uuid: 7f16ad43-a4eb-44c2-a53d-4dc751d8cbdc
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -26,81 +26,15 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: String
             hipposysedit:validators: ['visitscotland:short-string-validator']
-          /tagscheckboxes:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: true
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:tagscheckboxes
-            hipposysedit:primary: false
-            hipposysedit:type: String
-            hipposysedit:validators: [required]
-          /tagsCB:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:multiple: true
-            hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:tagsCB
-            hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
           /tags:
             jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
+            hipposysedit:mandatory: true
             hipposysedit:multiple: true
             hipposysedit:ordered: false
             hipposysedit:path: visitscotland:tags
             hipposysedit:primary: false
             hipposysedit:validators: ['']
             hipposysedit:type: String
-          /copy:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:copy
-            hipposysedit:primary: false
-            hipposysedit:type: Text
-        /hipposysedit:nodetype[2]:
-          jcr:primaryType: hipposysedit:nodetype
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: d231f972-cd51-491b-a79c-86b46253d4b9
-          hipposysedit:node: true
-          hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
-            'hippotranslation:translated']
-          hipposysedit:validators: ['visitscotland:iknow-community-tag-validator']
-          /title:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:title
-            hipposysedit:primary: false
-            hipposysedit:type: String
-            hipposysedit:validators: ['visitscotland:short-string-validator']
-          /tagscheckboxes:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: true
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:tagscheckboxes
-            hipposysedit:primary: false
-            hipposysedit:type: String
-            hipposysedit:validators: [required]
-          /tagsCB:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:multiple: true
-            hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:tagsCB
-            hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
-          /tags:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: true
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:tags
-            hipposysedit:primary: false
-            hipposysedit:type: String
-            hipposysedit:validators: ['']
           /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -121,41 +55,11 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 87155845-5a81-45f0-8d78-eaa7f527d358
+          jcr:uuid: 8fc2ebc0-2266-4808-9587-0df57d51d7c4
           hippostdpubwf:lastModificationDate: 2020-11-25T16:59:04.086Z
           hippostdpubwf:creationDate: 2020-11-25T16:59:04.086Z
-          visitscotland:tagscheckboxes: [visitscotland]
-          visitscotland:tags: [visitscotland]
+          visitscotland:tags: []
           visitscotland:copy: ''
-          /visitscotland:tagsCB[1]:
-            jcr:primaryType: visitscotland:iKnowCommunityTag
-            visitscotland:tag: visitscotland
-          /visitscotland:tagsCB[2]:
-            jcr:primaryType: visitscotland:iKnowCommunityTag
-            visitscotland:tag: ''
-        /hipposysedit:prototype[2]:
-          jcr:primaryType: nt:unstructured
-          jcr:mixinTypes: ['hippostd:publishableSummary', 'hippostd:relaxed', 'hippostdpubwf:document',
-            'hippotranslation:translated', 'mix:referenceable']
-          jcr:uuid: 8b152431-91ec-44a5-ba28-5665402752ea
-          hippostd:holder: holder
-          hippostd:state: draft
-          hippostdpubwf:createdBy: ''
-          hippostdpubwf:creationDate: 2020-11-25T16:59:04.086Z
-          hippostdpubwf:lastModificationDate: 2020-11-25T16:59:04.086Z
-          hippostdpubwf:lastModifiedBy: ''
-          hippotranslation:id: document-type-locale-id
-          hippotranslation:locale: document-type-locale
-          visitscotland:copy: ''
-          visitscotland:tags: [visitscotland]
-          visitscotland:tagscheckboxes: [visitscotland]
-          visitscotland:title: ''
-          /visitscotland:tagsCB[1]:
-            jcr:primaryType: visitscotland:iKnowCommunityTag
-            visitscotland:tag: visitscotland
-          /visitscotland:tagsCB[2]:
-            jcr:primaryType: visitscotland:iKnowCommunityTag
-            visitscotland:tag: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -189,7 +93,7 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /tags:
             jcr:primaryType: frontend:plugin
-            caption: Tags
+            caption: Tags *
             field: tags
             multiselect.type: palette
             palette.alloworder: true
@@ -201,29 +105,3 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               source: /content/documents/administration/options/iknow-community-tags
-          /tagscheckboxes:
-            jcr:primaryType: frontend:plugin
-            caption: TagsCheckboxes
-            field: tagscheckboxes
-            multiselect.type: checkboxes
-            palette.alloworder: false
-            palette.maxrows: '10'
-            plugin.class: org.onehippo.forge.selection.frontend.plugin.DynamicMultiSelectPlugin
-            selectlist.maxrows: '10'
-            valuelist.provider: service.valuelist.default
-            wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              source: /content/documents/administration/options/iknow-community-tags
-          /tagsCB:
-            jcr:primaryType: frontend:plugin
-            caption: Tags Content Blocks
-            compoundList: visitscotland:iKnowCommunityTag
-            contentPickerType: links
-            field: tagsCB
-            plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
-            wicket.id: ${cluster.id}.field
-            hint: ''
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              maxitems: 6

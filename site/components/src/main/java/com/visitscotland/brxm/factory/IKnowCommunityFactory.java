@@ -51,6 +51,9 @@ public class IKnowCommunityFactory {
             iKnowCommunityModule.setCopy(iknowCommunity.getCopy());
         }
 
+        iKnowCommunityModule.setLink(new FlatLink(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.label", locale),
+                bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.url", locale), LinkType.INTERNAL));
+
         Map<String, String> tagValueMap = utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER);
         List<FlatLink> tagLinks = Arrays.stream(iknowCommunity.getTags()).map(tagKey -> {
             if (!tagValueMap.containsKey(tagKey)) {

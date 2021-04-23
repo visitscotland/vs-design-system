@@ -34,13 +34,14 @@ class MultiValueNumberSelectedValidatorTest {
     @DisplayName("When target field not provided, then constructor throws exception")
     @Test
     void targetFieldNotProvided() throws Exception  {
-        Node node = mock(Node.class);
+        Node node = mock(Node.class, withSettings().lenient());
         // Lenient as failure of earlier check (targetField) means that this property is never checked
         // However, we don't want the order of the checks carried out in the constructor to impact the test result
-        Property maxValueProp = mock(Property.class);
-        lenient().when(maxValueProp.getLong()).thenReturn(5L);
-        lenient().when(node.hasProperty("maxLength")).thenReturn(true);
-        lenient().when(node.getProperty("maxValue")).thenReturn(maxValueProp);
+        Property maxValueProp = mock(Property.class, withSettings().lenient());
+        when(maxValueProp.getLong()).thenReturn(5L);
+        when(node.hasProperty("targetField")).thenReturn(false);
+        when(node.hasProperty("maxLength")).thenReturn(true);
+        when(node.getProperty("maxValue")).thenReturn(maxValueProp);
 
         Assertions.assertThrows(ValidationContextException.class, () -> {
              new MultiValueNumberSelectedValidator(node);
@@ -115,6 +116,20 @@ class MultiValueNumberSelectedValidatorTest {
 
     static Stream<Arguments> validationFailuresArgSource() {
         return Stream.of(Arguments.of(2L, 4L), Arguments.of(6L, 6L), Arguments.of(null, 4L), Arguments.of(6L, null));
+    }
+
+    @DisplayName("When targetField not found on document, then validation passes")
+    @Test
+    void targetFieldNotFoundOnNode() throws Exception {
+        MockNodeBuilder configNodeBuilder = new MockNodeBuilder()
+                .withProperty("targetField", ("fieldDoesNotExist"))
+                .withProperty("minLength", 2L)
+                .withProperty("maxLength", 4L);
+
+        Node documentNode = mock(Node.class);
+        MultiValueNumberSelectedValidator validator = new MultiValueNumberSelectedValidator(configNodeBuilder.build());
+        Optional<Violation> validateResult = validator.validate(context, documentNode);
+        Assertions.assertFalse(validateResult.isPresent());
     }
 
 
