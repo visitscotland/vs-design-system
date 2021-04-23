@@ -24,25 +24,11 @@ public class ItineraryStopModule extends Module<Stop>{
     private List<DataType> facilities;
     private JsonNode address;
     private String price;
-    private String open;
+    private JsonNode opening;
     private FlatLink openLink;
     private BigDecimal distance;
 
     private Coordinates coordinates;
-
-    private String location;
-
-    public ItineraryStopModule() {
-
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
     public String getIdentifier() {
         return identifier;
@@ -156,12 +142,12 @@ public class ItineraryStopModule extends Module<Stop>{
         this.price = price;
     }
 
-    public String getOpen() {
-        return open;
+    public JsonNode getOpening() {
+        return opening;
     }
 
-    public void setOpen(String open) {
-        this.open = open;
+    public void setOpening(JsonNode opening) {
+        this.opening = opening;
     }
 
     public FlatLink getOpenLink() {

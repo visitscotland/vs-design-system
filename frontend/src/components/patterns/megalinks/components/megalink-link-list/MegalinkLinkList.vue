@@ -9,7 +9,6 @@
             class="vs-megalink-link-list__wrapper"
             :img-src="imgSrc"
             :img-alt="imgAlt"
-            icon-size="xxs"
             :theme="theme"
         >
             <span
@@ -75,16 +74,7 @@ export default {
         linkType: {
             type: String,
             required: true,
-            validator: (value) => value.match(/(external|internal|download)/),
-        },
-        /**
-        * Size of the link icon - defaults to 'xs'
-        * `xxs, xs, sm, md, lg, xl`)
-        */
-        iconSize: {
-            type: String,
-            default: 'xs',
-            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+            validator: (value) => value.match(/(default|external|internal|download)/),
         },
         /**
         * The component color theme

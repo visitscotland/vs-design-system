@@ -25,7 +25,7 @@ public class ItineraryFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ItineraryFactory.class);
 
-    private static final String BUNDLE_FILE = "itinerary";
+    static final String BUNDLE_FILE = "itinerary";
 
     private final ResourceBundleService bundle;
     private final DMSDataService dmsData;
@@ -45,7 +45,7 @@ public class ItineraryFactory {
      * Collects the information about an itinerary and enhances the information in it
      */
     public ItineraryPage buildItinerary (Itinerary itinerary, Locale locale){
-        final boolean calculateDistance = (itinerary.getDistance() == 0);
+        final boolean calculateDistance = (itinerary.getDistance() == null || itinerary.getDistance() == 0);
 
         ItineraryPage page = new ItineraryPage();
         ItineraryStopModule firstStop = null;
@@ -57,7 +57,7 @@ public class ItineraryFactory {
         page.setDocument(itinerary);
         page.setDays(documentUtils.getAllowedDocuments(itinerary, Day.class));
 
-        for (Day day : documentUtils.getAllowedDocuments(itinerary, Day.class)) {
+        for (Day day : page.getDays()) {
             for (Stop stop : day.getStops()) {
                 ItineraryStopModule module = generateStop(locale, stop, itinerary, index++);
 
@@ -66,14 +66,8 @@ public class ItineraryFactory {
                     firstStop = lastStop;
                 }
 
-                if (calculateDistance) {
-                    if (prevCoordinates != null && module.getCoordinates() != null) {
-                        BigDecimal distancePrevStop = getDistanceStops(module.getCoordinates(), prevCoordinates);
-                        totalDistance = totalDistance.add(distancePrevStop);
-
-                        //TODO Why this is only populated when distance is 0?
-                        module.setDistance(distancePrevStop);
-                    }
+                if (calculateDistance && module.getCoordinates() != null) {
+                    totalDistance = totalDistance.add(getDistanceStops(prevCoordinates, module.getCoordinates()));
                     prevCoordinates = module.getCoordinates();
                 }
 
@@ -111,11 +105,15 @@ public class ItineraryFactory {
     /**
      * Method to calculate the distance between stops
      */
-    private BigDecimal getDistanceStops(Coordinates current, Coordinates previous) {
-        return CoordinateUtils.haversineDistance(
-                BigDecimal.valueOf(previous.getLatitude()), BigDecimal.valueOf(previous.getLongitude()),
-                BigDecimal.valueOf(current.getLatitude()), BigDecimal.valueOf(current.getLongitude()),
-                true, "#,###,##0.0");
+    private BigDecimal getDistanceStops(Coordinates previous, Coordinates current) {
+        if (previous == null || current == null){
+            return BigDecimal.ZERO;
+        } else {
+            return CoordinateUtils.haversineDistance(
+                    BigDecimal.valueOf(previous.getLatitude()), BigDecimal.valueOf(previous.getLongitude()),
+                    BigDecimal.valueOf(current.getLatitude()), BigDecimal.valueOf(current.getLongitude()),
+                    true, "#,###,##0.0");
+        }
     }
 
     /**
@@ -133,24 +131,16 @@ public class ItineraryFactory {
             processDMSStop(locale, itinerary, module, (DMSLink) stop.getStopItem());
         } else if (stop.getStopItem() instanceof ItineraryExternalLink) {
             processExternalStop(locale, module, (ItineraryExternalLink) stop.getStopItem());
-        } else {
-            module.addErrorMessage("The product's id  was not provided");
-            if (logger.isWarnEnabled()) {
-                logger.warn(CommonUtilsService.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), module.getIndex()));
-            }
+        } else if (logger.isWarnEnabled()) {
+            logger.warn(CommonUtilsService.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), module.getIndex()));
         }
 
-        if (module.getImage() == null){
-            module.addErrorMessage("An image should be provided for external links");
+        if (module.getImage() == null && logger.isWarnEnabled()) {
+            logger.warn(CommonUtilsService.contentIssue("An image could not be found for %s, Stop %s", itinerary.getName(), module.getIndex()));
         }
 
-        //Check with JL this statement was changed
-        if (!Contract.isEmpty(stop.getSubtitle())) {
-            module.setSubTitle(stop.getSubtitle());
-        }
-
-        if (module.getSubTitle() == null){
-            module.addErrorMessage(String.format("The stop %s does not have a subtitle.", module.getIndex()));
+        if (module.getSubTitle() == null && logger.isWarnEnabled()) {
+            logger.warn(CommonUtilsService.contentIssue("The stop %s does not have a subtitle. Itinerary %s", module.getIndex(), itinerary.getName()));
         }
 
         return module;
@@ -164,6 +154,7 @@ public class ItineraryFactory {
         module.setIdentifier(stop.getIdentifier());
         module.setTitle(stop.getTitle());
         module.setDescription(stop.getDescription());
+        module.setSubTitle(stop.getSubtitle());
 
         if (stop.getStopTip()!=null){
             module.setTipsTitle(stop.getStopTip().getTitle());
@@ -184,7 +175,9 @@ public class ItineraryFactory {
      * Extracts all relevant information for an External link in order to enhance the stop
      */
     public void processExternalStop(Locale locale, ItineraryStopModule module, ItineraryExternalLink externalLink) {
-        module.setTimeToExplore(generateTimeToExplore(externalLink.getTimeToExplore(), locale));
+        if (!Contract.isEmpty(externalLink.getTimeToExplore())) {
+            module.setTimeToExplore(generateTimeToExplore(externalLink.getTimeToExplore(), locale));
+        }
 
         if (externalLink.getExternalLink() != null) {
             FlatLink ctaLink = new FlatLink(bundle.getCtaLabel(externalLink.getExternalLink().getLabel(), locale),
@@ -212,8 +205,23 @@ public class ItineraryFactory {
         }
 
         module.setCtaLink(new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), product.get(URL).asText(), LinkType.INTERNAL));
-        module.setCoordinates(new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble()));
         module.setFacilities(utils.getKeyFacilities(product));
+
+        if (module.getImage() == null && product.has(IMAGE)) {
+            module.setImage(imageFactory.createImage(product, module));
+        }
+
+        if (product.has(ADDRESS)) {
+            JsonNode address = product.get(ADDRESS);
+            module.setAddress(address);
+            if (address.has(LOCATION) && Contract.isEmpty(module.getSubTitle())){
+                module.setSubTitle(address.get(LOCATION).asText());
+            }
+        }
+
+        if (product.has(LATITUDE) && product.has(LONGITUDE)) {
+            module.setCoordinates(new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble()));
+        }
 
         if (product.has(TIME_TO_EXPLORE)) {
             module.setTimeToExplore(generateTimeToExplore(product.get(TIME_TO_EXPLORE).asText(), locale));
@@ -223,22 +231,8 @@ public class ItineraryFactory {
             module.setPrice(product.get(PRICE).get(DISPLAY_PRICE).asText());
         }
 
-        //TODO: Create a test for this case. At this point the image should have been set
-        if (module.getImage() == null && product.has(IMAGE)) {
-            //TODO: Check this in Freemarker
-            module.setImage(imageFactory.createImage(product, module));
-        }
-
-        if (product.has(ADDRESS)) {
-            JsonNode address = product.get(ADDRESS);
-            module.setAddress(address);
-            if (address.has(LOCATION)){
-                module.setLocation(address.get(LOCATION).asText());
-            }
-        }
-
         if (product.has(OPENING)){
-            module.setOpen(utils.setOpeningTimes(product, locale));
+            module.setOpening(product.get(OPENING));
             module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
                     module.getCtaLink().getLink() + "#opening", null));
         }

@@ -80,9 +80,11 @@
                             <vs-description-list-item title>
                                 ${label("itinerary", "highlights")}
                             </vs-description-list-item>
-                            <vs-description-list-item>
-                                <div style="white-space: pre-wrap">${document.highlights}</div>
-                            </vs-description-list-item>
+                            <#list document.highlights as highlight>
+                                <vs-description-list-item>
+                                    ${highlight}${"\n"}
+                                </vs-description-list-item>
+                            </#list>
                         </vs-description-list>
                         <vs-description-list class="mb-8">
                             <vs-description-list-item title>

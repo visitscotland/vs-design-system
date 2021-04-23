@@ -65,6 +65,7 @@ public class ItineraryPage {
     public void setStops(Map<String, ItineraryStopModule> stops) {
         this.stops = stops;
     }
+
     public void addStop(ItineraryStopModule module){
         if (stops == null){
             stops = new HashMap<>();
