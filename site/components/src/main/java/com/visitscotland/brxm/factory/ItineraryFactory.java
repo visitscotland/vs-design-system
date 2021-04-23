@@ -236,5 +236,6 @@ public class ItineraryFactory {
             module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
                     module.getCtaLink().getLink() + "#opening", null));
         }
+
     }
 }
