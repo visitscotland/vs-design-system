@@ -21,23 +21,28 @@
 <#include "../../../../frontend/components/vs-image-location-map.ftl">
 <#include "../../shared/theme-calculator.ftl">
 
-<#macro pageIntro content heroImage hero areas=[] days="" firstStop="" lastStop="">
+<#macro pageIntro content heroDetails firstStop="" lastStop="">
     <#assign themeName = themeCalculator(introTheme)>
+
+    <#if content.heroImage?has_content>
+        <@hst.link var="hero" hippobean=content.heroImage.original/>
+    </#if>
+    
 <div class="has-edit-button">
-    <vs-page-intro background="${themeName}" <#if heroImage?has_content>hero-intro</#if> <#if days?has_content>is-itinerary</#if>>
-        <#if heroImage?has_content>
+    <vs-page-intro background="${themeName}" <#if heroDetails?has_content>hero-intro</#if> <#if content.days?has_content>is-itinerary</#if>>
+        <#if heroDetails?has_content>
             <vs-hero
                 slot="vsIntroHero"
-                alt-text="${heroImage.altText!''}"
-                credit="${heroImage.credit!''}"
-                caption="${heroImage.description!''}"
+                alt-text="${heroDetails.altText!''}"
+                credit="${heroDetails.credit!''}"
+                caption="${heroDetails.description!''}"
                 image-src="${hero}"
                 latitude="${(heroCoordinates.latitude)!''}"
                 longitude="${(heroCoordinates.longitude)!''}"
             >
                 <vs-img
                     src="${hero}"
-                    alt="${heroImage.altText!''}"
+                    alt="${heroDetails.altText!''}"
                 > </vs-img>
             </vs-hero>
         </#if>
@@ -54,7 +59,7 @@
             <@hst.html hippohtml=document.introduction/>
         </template>
 
-        <#if days?has_content>
+        <#if content.days?has_content>
             <#if firstStop?has_content && lastStop?has_content>
                 <template slot="vsIntroStartFinish">
                     <dt class="list-inline-item">${label("itinerary", "start-finish")}</dt>
@@ -63,11 +68,11 @@
             </#if>
         
             <template slot="VsIntroSummaryBox">
-                <@summaryBox days />
+                <@summaryBox content.days />
             </template>
         </#if>
 
-        <#if areas?has_content>
+        <#if content.areas?has_content>
             <vs-container slot="VsIntroLower">
                 <vs-row>
                     <vs-col cols="12" lg="11" offset-lg="1">
@@ -83,7 +88,7 @@
                             <vs-description-list-item title>
                                 ${label("itinerary", "areas-covered")}
                             </vs-description-list-item>
-                            <#list areas as area>
+                            <#list content.areas as area>
                                 <vs-description-list-item>
                                     ${label("areas", "${area}")}${"\n"}
                                 </vs-description-list-item>

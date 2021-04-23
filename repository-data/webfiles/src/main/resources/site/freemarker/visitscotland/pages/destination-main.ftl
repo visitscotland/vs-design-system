@@ -20,7 +20,7 @@
 
     <@hst.link var="hero" hippobean=heroImage.cmsImage.original/>
 
-    <@pageIntro content=document heroImage=heroImage hero=hero />
+    <@pageIntro content=document heroDetails=heroImage />
 
 	<#list pageItems as item>
         <@moduleBuilder item />

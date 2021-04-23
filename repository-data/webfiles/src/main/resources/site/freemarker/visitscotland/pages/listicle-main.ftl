@@ -28,7 +28,7 @@
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-listicle-item" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
-    <@pageIntro content=document heroImage="" hero="" areas="" days="" firstStop="" lastStop="" />
+    <@pageIntro content=document heroDetails="" />
         <vs-container class="mt-6">
             <vs-row>
                 <vs-col cols="12">

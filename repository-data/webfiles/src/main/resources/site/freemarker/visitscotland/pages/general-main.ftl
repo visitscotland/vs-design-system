@@ -31,9 +31,9 @@
 
 
     <#if standardTemplate>
-        <@pageIntro content=document heroImage=heroImage hero=heroImage hero=hero />
+        <@pageIntro content=document heroDetails=heroImage />
     <#else>
-        <@pageIntro content=document heroImage="" hero="" />
+        <@pageIntro content=document heroDetails="" />
     </#if>
 
   <#--TODO Control abput colours, change style="background-color:${style}  -->
