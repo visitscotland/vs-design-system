@@ -68,7 +68,7 @@
             </#if>
         
             <template slot="VsIntroSummaryBox">
-                <@summaryBox itinerary.days />
+                <@summaryBox itinerary />
             </template>
         </#if>
 

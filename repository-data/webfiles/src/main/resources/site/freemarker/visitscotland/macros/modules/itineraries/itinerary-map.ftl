@@ -16,7 +16,7 @@
         :stops="[
             <#list days as day>
             <#list day.stops as stop>
-                <#assign prod = stops[stop.identifier]>
+                <#assign prod = itinerary.stops[stop.identifier]>
                 <#assign image = "" />
                 <#if prod.image??>
                     <#if prod.image.cmsImage??>

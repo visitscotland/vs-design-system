@@ -38,26 +38,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
         request.setAttribute(ITINERARY, itineraryFactory.buildItinerary(getDocument(request), request.getLocale()));
 
-        //TODO: Remove this code after Refactoring the ftls
-        generateStops(request);
-    }
-
-    /**
-     * @deprecated TODO: The following method needs to be removed after Refactoring the ftls
-     */
-    @Deprecated
-    private void generateStops(HstRequest request) {
-        final String STOPS_MAP = "stops";
-        final String DISTANCE = "distance";
-        final String FIRST_STOP_LOCATION = "firstStopLocation";
-        final String LAST_STOP_LOCATION = "lastStopLocation";
-
-        ItineraryPage page = itineraryFactory.buildItinerary(getDocument(request), request.getLocale());
-
-        request.setAttribute(STOPS_MAP, page.getStops());
-        request.setAttribute(DISTANCE, page.getDistance());
-        request.setAttribute(FIRST_STOP_LOCATION, page.getFirstStopLocation());
-        request.setAttribute(LAST_STOP_LOCATION, page.getLastStopLocation());
     }
 
     public void addProductSearchBuilder(HstRequest request) {

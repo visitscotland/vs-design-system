@@ -17,7 +17,7 @@
 <#-- @ftlvariable name="stop" type="com.visitscotland.brxm.hippobeans.Stop" -->
 <#-- @ftlvariable name="prod" type="com.visitscotland.brxm.model.ItineraryStopModule" -->
 
-    <#assign prod = stops[stop.identifier]>
+    <#assign prod = itinerary.stops[stop.identifier]>
     <#assign image = "" />
 
     <#if prod.image??>

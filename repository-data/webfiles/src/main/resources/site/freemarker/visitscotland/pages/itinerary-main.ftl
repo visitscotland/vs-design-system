@@ -39,8 +39,8 @@
     <#--  <@pageIntro content=document heroImage=heroImage hero=hero areas=document.areas days=itinerary.days firstStop=itinerary.firstStopLocation lastStop=itinerary.lastStopLocation />  -->
 
     <vs-itinerary>
-        <@itineraryMap days=document.days />
-        <#list document.days as day>
+        <@itineraryMap days=itinerary.days />
+        <#list itinerary.days as day>
             <#assign dayNumber++>
             <#assign dayTransport = "">
             <vs-itinerary-day 
