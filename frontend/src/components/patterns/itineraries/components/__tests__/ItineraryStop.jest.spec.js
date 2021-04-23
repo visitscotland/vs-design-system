@@ -6,24 +6,24 @@ const earlyTime = {
     hours: 8,
     mins: 30,
     day: 4,
-}
+};
 
 const midTime = {
     hours: 14,
     mins: 59,
     day: 4,
-}
+};
 
 const lateTime = {
     hours: 18,
     mins: 1,
     day: 4,
-}
+};
 
 const opening = '09:00AM';
 const closing = '17:00PM';
 
-const factoryShallowMount = (propsData) => shallowMount(VsItineraryStop, {
+const factoryShallowMount = () => shallowMount(VsItineraryStop, {
     propsData: {
         stopLabel: 'Test stop label',
         stopNumber: '0',
@@ -87,13 +87,19 @@ describe('VsItineraryStop', () => {
         });
 
         it('renders content inserted into the slot when the stop is closed, open or closing soon', async() => {
-            await wrapper.setData({ openingMessage: 'closed' });
+            await wrapper.setData({
+                openingMessage: 'closed',
+            });
             expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Closed');
 
-            await wrapper.setData({ openingMessage: 'open' });
+            await wrapper.setData({
+                openingMessage: 'open',
+            });
             expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Open');
 
-            await wrapper.setData({ openingMessage: 'closing soon' });
+            await wrapper.setData({
+                openingMessage: 'closing soon',
+            });
             expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Closing soon');
         });
 
@@ -120,25 +126,33 @@ describe('VsItineraryStop', () => {
 
     describe(':methods', () => {
         it('should display closed text if the current time is before the opening time', async() => {
-            await wrapper.setData({ currentTime: earlyTime });
+            await wrapper.setData({
+                currentTime: earlyTime,
+            });
             await wrapper.vm.compareTimes(earlyTime, opening, closing);
             expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Closed');
         });
 
         it('should display closed text if the current time is after the closing time', async() => {
-            await wrapper.setData({ currentTime: lateTime });
+            await wrapper.setData({
+                currentTime: lateTime,
+            });
             await wrapper.vm.compareTimes(lateTime, opening, closing);
             expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Closed');
         });
 
         it('should display open text if the current time is after the opening time and before the closed time', async() => {
-            await wrapper.setData({ currentTime: midTime });
+            await wrapper.setData({
+                currentTime: midTime,
+            });
             await wrapper.vm.compareTimes(midTime, opening, closing);
             expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Open');
         });
 
         it('should not render the times slot if the dayName prop does not match current day', async() => {
-            await wrapper.setProps({dayName: 'asdf'});
+            await wrapper.setProps({
+                dayName: 'asdf',
+            });
             await wrapper.vm.compareTimes(midTime, opening, closing);
             expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').exists()).toBe(false);
         });
