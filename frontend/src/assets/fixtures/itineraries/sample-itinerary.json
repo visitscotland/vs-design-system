@@ -97,7 +97,10 @@
                     },
                     "latitude": "56.18974",
                     "longitude": "-2.81868",
-                    "facilities": []
+                    "facilities": [],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "2",
@@ -135,7 +138,10 @@
                             "key": "accessparkdrop",
                             "value": "Accessible Parking and Dropoff"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "11:00AM",
+                    "closing": "14:10PM"
                 },
                 {
                     "stopCount": "3",
@@ -166,7 +172,10 @@
                             "key": "accessparkdrop",
                             "value": "Accessible Parking and Dropoff"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "17:00PM"
                 },
                 {
                     "stopCount": "4",
@@ -188,7 +197,10 @@
                     },
                     "latitude": "56.22448",
                     "longitude": "-2.70087",
-                    "facilities": []
+                    "facilities": [],
+                    "info": "This is the info",
+                    "opening": "12:00AM",
+                    "closing": "15:00PM"
                 }
             ]
         },
@@ -242,7 +254,10 @@
                             "key": "dsblaccess",
                             "value": "Disabled Access"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "6",
@@ -269,7 +284,10 @@
                             "key": "parking",
                             "value": "Parking"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "7",
@@ -304,7 +322,10 @@
                             "key": "dsblaccess",
                             "value": "Disabled Access"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "8",
@@ -326,7 +347,10 @@
                     },
                     "latitude": "56.33659",
                     "longitude": "-2.78282",
-                    "facilities": []
+                    "facilities": [],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 }
             ]
         },
@@ -384,7 +408,10 @@
                             "key": "dsblaccess",
                             "value": "Disabled Access"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "10",
@@ -416,7 +443,10 @@
                             "key": "accessparkdrop",
                             "value": "Accessible Parking and Dropoff"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "16:00PM"
                 },
                 {
                     "stopCount": "11",
@@ -443,7 +473,10 @@
                             "key": "accessparkdrop",
                             "value": "Accessible Parking and Dropoff"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "12:00PM"
                 },
                 {
                     "stopCount": "12",
@@ -478,7 +511,10 @@
                             "key": "dsblaccess",
                             "value": "Disabled Access"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 }
             ]
         },
@@ -519,7 +555,10 @@
                     },
                     "latitude": "56.740190",
                     "longitude": "-2.463880",
-                    "facilities": []
+                    "facilities": [],
+                    "info": "This is the info",
+                    "opening": "04:00PM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "14",
@@ -558,7 +597,10 @@
                             "key": "dsblaccess",
                             "value": "Disabled Access"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "15",
@@ -589,7 +631,10 @@
                             "key": "accessparkdrop",
                             "value": "Accessible Parking and Dropoff"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 }
             ]
         }
