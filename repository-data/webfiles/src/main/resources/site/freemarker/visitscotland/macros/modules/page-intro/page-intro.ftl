@@ -21,15 +21,15 @@
 <#include "../../../../frontend/components/vs-image-location-map.ftl">
 <#include "../../shared/theme-calculator.ftl">
 
-<#macro pageIntro content heroDetails firstStop="" lastStop="">
+<#macro pageIntro content heroDetails="" itinerary="">
     <#assign themeName = themeCalculator(introTheme)>
 
-    <#if content.heroImage?has_content>
+    <#if content.heroImage??>
         <@hst.link var="hero" hippobean=content.heroImage.original/>
     </#if>
     
 <div class="has-edit-button">
-    <vs-page-intro background="${themeName}" <#if heroDetails?has_content>hero-intro</#if> <#if content.days?has_content>is-itinerary</#if>>
+    <vs-page-intro background="${themeName}" <#if heroDetails?has_content>hero-intro</#if> <#if itinerary?has_content>is-itinerary</#if>>
         <#if heroDetails?has_content>
             <vs-hero
                 slot="vsIntroHero"
@@ -59,16 +59,16 @@
             <@hst.html hippohtml=document.introduction/>
         </template>
 
-        <#if content.days?has_content>
-            <#if firstStop?has_content && lastStop?has_content>
+        <#if itinerary?has_content>
+            <#if itinerary.firstStopLocation?has_content && itinerary.lastStopLocation?has_content>
                 <template slot="vsIntroStartFinish">
                     <dt class="list-inline-item">${label("itinerary", "start-finish")}</dt>
-                    <dd class="list-inline-item">${firstStop} / ${lastStop}</dd>
+                    <dd class="list-inline-item">${itinerary.firstStopLocation} / ${itinerary.lastStopLocation}</dd>
                 </template>
             </#if>
         
             <template slot="VsIntroSummaryBox">
-                <@summaryBox content.days />
+                <@summaryBox itinerary.days />
             </template>
         </#if>
 

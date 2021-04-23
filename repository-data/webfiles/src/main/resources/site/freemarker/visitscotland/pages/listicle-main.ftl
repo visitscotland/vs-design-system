@@ -28,41 +28,41 @@
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-listicle-item" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
-    <@pageIntro content=document heroDetails="" />
-        <vs-container class="mt-6">
-            <vs-row>
-                <vs-col cols="12">
-                    <ol style="list-style:none; margin:0; padding:0;">
-                        <#if items?? && items?has_content >
-                            <#list items as listItem>
-                                <@listicleItem item=listItem />
-                            </#list>
-                        </#if>
-                    </ol>
-                </vs-col>
-            </vs-row>
-        </vs-container>
+    <@pageIntro content=document />
+    <vs-container class="mt-6">
+        <vs-row>
+            <vs-col cols="12">
+                <ol style="list-style:none; margin:0; padding:0;">
+                    <#if items?? && items?has_content >
+                        <#list items as listItem>
+                            <@listicleItem item=listItem />
+                        </#list>
+                    </#if>
+                </ol>
+            </vs-col>
+        </vs-row>
+    </vs-container>
 
-        <#if document.listicleClosing??>
-                <vs-row class="mb-6">
-                    <vs-col cols="12">
-                        <vs-panel>
-                            <#if document.listicleClosing.title?has_content>
-                                <template slot="vs-panel-title">
-                                    <vs-heading thin level="4">${document.listicleClosing.title}</vs-heading>
-                                </template>
-                            </#if>
+    <#if document.listicleClosing??>
+        <vs-row class="mb-6">
+            <vs-col cols="12">
+                <vs-panel>
+                    <#if document.listicleClosing.title?has_content>
+                        <template slot="vs-panel-title">
+                            <vs-heading thin level="4">${document.listicleClosing.title}</vs-heading>
+                        </template>
+                    </#if>
 
-                            <vs-rich-text-wrapper variant="lead">
-                                <@hst.html hippohtml=document.listicleClosing.copy/>
-                            </vs-rich-text-wrapper>
-                        </vs-panel>
-                    </vs-col>
-                </vs-row>
-        </#if>
-        <!-- commented out to prevent stack trace errors - needs fixing -->
-        <#--  <#if otyml??>
-            <@moduleBuilder module />
-        </#if>  -->
-	</vs-container>
+                    <vs-rich-text-wrapper variant="lead">
+                        <@hst.html hippohtml=document.listicleClosing.copy/>
+                    </vs-rich-text-wrapper>
+                </vs-panel>
+            </vs-col>
+        </vs-row>
+    </#if>
+
+    <!-- commented out to prevent stack trace errors - needs fixing -->
+    <#--  <#if otyml??>
+        <@moduleBuilder module />
+    </#if>  -->
 </div>

@@ -7,7 +7,7 @@
 <#macro summaryBox days>
 <vs-col cols="12" md="6" lg="5" xl="4">
     <vs-summary-box-list>
-        <#if days = "1">
+        <#if days?size = 1>
             <#assign daysLabel = label('itinerary', 'day')>
         <#else>
             <#assign daysLabel = label('itinerary', 'days')>
@@ -15,7 +15,7 @@
         <vs-summary-box-list-item
             text="${document.days?size}"
             label="${daysLabel}"
-        >
+        />
         </vs-summary-box-list-item>
         <vs-summary-box-distance-list-item
             miles="${distance}"
@@ -29,13 +29,13 @@
         <vs-summary-box-list-item
             icon="${mainTransport}"
             icon-label="${label("transports", "${mainTransport}")}"
-            label="${label("itinerary", "transport")}">
+            label="${label("itinerary", "transport")}"
         >
         </vs-summary-box-list-item>
         <vs-summary-box-list-item
             icon="${document.theme}"
             icon-label="${label("themes", "${document.theme}")}"
-            label="${label("itinerary", "theme")}">
+            label="${label("itinerary", "theme")}"
         >
         </vs-summary-box-list-item>
     </vs-summary-box-list>

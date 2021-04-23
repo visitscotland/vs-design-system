@@ -33,10 +33,10 @@
     <#if standardTemplate>
         <@pageIntro content=document heroDetails=heroImage />
     <#else>
-        <@pageIntro content=document heroDetails="" />
+        <@pageIntro content=document />
     </#if>
 
-  <#--TODO Control abput colours, change style="background-color:${style}  -->
+    <#--TODO Control abput colours, change style="background-color:${style}  -->
 	<#list pageItems as module>
 
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a common macro to control it-->
