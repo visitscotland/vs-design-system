@@ -22,7 +22,7 @@
 <#include "../../shared/theme-calculator.ftl">
 
 <#macro pageIntro content heroImage hero areas=[] days="" firstStop="" lastStop="">
-    <#assign themeName = themeCalculator(introTheme)>
+    <#assign themeName = themeCalculator("", [], introTheme)>
 <div class="has-edit-button">
     <vs-page-intro background="${themeName}" <#if heroImage?has_content>hero-intro</#if> <#if days?has_content>is-itinerary</#if>>
         <#if heroImage?has_content>

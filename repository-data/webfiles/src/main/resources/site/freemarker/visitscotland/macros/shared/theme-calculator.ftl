@@ -1,7 +1,7 @@
-<#function themeCalculator module="" colourSchemeParam=[]>
+<#function themeCalculator module="" colourSchemeParam=[] indexOverride="">
     <#assign colourScheme = ["light", "light", "dark"]>
 
-    <#if colourSchemeParam?size = 0>
+    <#if colourSchemeParam?size == 0>
         <#if breadcrumbs?? && breadcrumbs.items?size == 2>
             <!-- Note: There was a requirement about level 2 starting on light but It hasn't been either confirmed or discarded yet -->
             <!-- The following line allow to make the difference. Otherwise this if block can be simplified -->
@@ -14,8 +14,10 @@
         <#assign colourScheme = colourSchemeParam>
     </#if>
 
-    <#if module.themeIndex?has_content>
-        <#return colourScheme[index]>
+    <#if indexOverride?has_content>
+        <#return colourScheme[indexOverride]>
+    <#elseif module.themeIndex?has_content>
+        <#return colourScheme[module.themeIndex]>
     <#elseif module.getType() == "ICentreModule">
         <#return "grey">
     <#else>
