@@ -300,39 +300,30 @@ export default {
         <template slot="VsIntroSummaryBox">
             <VsCol cols="12" md="6" lg="5" xl="4">
                 <VsSummaryBoxList>
-                    <VsSummaryBoxListItem>
-                        <VsSummaryBoxDisplay :text=itineraries.sampleItinerary.totalDays />
-                        <VsSummaryBoxLabel label="Days" />
-                    </VsSummaryBoxListItem>
-                    <VsSummaryBoxListItem>
-                        <VsSummaryBoxDistanceDisplay
-                            :miles=itineraries.sampleItinerary.totalMiles
-                            :kilometres=itineraries.sampleItinerary.totalKM
-                            miles-label="miles"
-                            kilometres-label="kilometres"
-                        />
-                        <VsSummaryBoxDistanceLabel
-                            distance-label="Distance"
-                            kilometres-abbr="km"
-                            kilometres-label="kilometres"
-                            miles-abbr="mi"
-                            miles-label="miles"
-                        />
-                    </VsSummaryBoxListItem>
-                    <VsSummaryBoxListItem>
-                        <VsSummaryBoxIconWithLabel
-                            :icon=itineraries.sampleItinerary.transport.key
-                            :label=itineraries.sampleItinerary.transport.value
-                        />
-                        <VsSummaryBoxLabel label="Transport" />
-                    </VsSummaryBoxListItem>
-                    <VsSummaryBoxListItem>
-                        <VsSummaryBoxIconWithLabel
-                            :icon=itineraries.sampleItinerary.theme.key
-                            :label=itineraries.sampleItinerary.theme.value
-                        />
-                        <VsSummaryBoxLabel label="Main theme" />
-                    </VsSummaryBoxListItem>
+                    <VsSummaryBoxListItem
+                        :text=itineraries.sampleItinerary.totalDays
+                        label="Days"
+                    />
+                    <VsSummaryBoxDistanceListItem
+                        :miles=itineraries.sampleItinerary.totalMiles
+                        :kilometres=itineraries.sampleItinerary.totalKM
+                        distance-label="Distance"
+                        miles-label="miles"
+                        miles-abbr="mi"
+                        kilometres-label="kilometres"
+                        kilometres-abbr="km"
+                    >
+                    </VsSummaryBoxDistanceListItem>
+                    <VsSummaryBoxListItem
+                        :icon=itineraries.sampleItinerary.transport.key
+                        :iconLabel=itineraries.sampleItinerary.transport.value
+                        label="Transport"
+                    />
+                    <VsSummaryBoxListItem
+                        :icon=itineraries.sampleItinerary.theme.key
+                        :iconLabel=itineraries.sampleItinerary.theme.value
+                        label="Main theme"
+                    />
                 </VsSummaryBoxList>
           </VsCol>
         </template>
