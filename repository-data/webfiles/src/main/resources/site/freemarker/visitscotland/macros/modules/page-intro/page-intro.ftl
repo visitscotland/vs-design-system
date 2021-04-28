@@ -99,7 +99,7 @@
                                 </vs-description-list-item>
                                 <#list  itinerary.document.areas as area>
                                     <vs-description-list-item>
-                                        ${label("areas", "${area}")}${"\n"}
+                                        ${label("areas", "${area}")}
                                     </vs-description-list-item>
                                 </#list>
                             </vs-description-list>
