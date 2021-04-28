@@ -310,10 +310,11 @@
         jcr:mixinTypes: ['mix:versionable']
         jcr:uuid: d878f30b-3507-406c-a28f-bdebcc189e41
         hippo:availability: [preview]
+        hippostd:retainable: false
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2021-02-18T17:55:52.224Z
+        hippostdpubwf:lastModificationDate: 2021-04-28T12:13:01.467+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
         hippotranslation:locale: en
@@ -321,8 +322,8 @@
         visitscotland:breadcrumb: Hola
         visitscotland:distance: 10.4
         visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
+        visitscotland:highlights: [Glenfinnan Viaduct, Jacobite Steam Train, Glen
+            Etive, The Elephant House]
         visitscotland:popular: false
         visitscotland:seoDescription: It was in Scotland's capital city that JK Rowling
           started to plot the adventures
@@ -454,10 +455,12 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 00b5edad-35c2-4bb0-b9e1-1364f0bd9f85
         hippo:availability: []
+        hippostd:retainable: false
         hippostd:state: draft
+        hippostd:transferable: false
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2021-02-18T17:55:52.647Z
+        hippostdpubwf:lastModificationDate: 2021-04-28T12:13:01.626+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
         hippotranslation:locale: en
@@ -465,8 +468,8 @@
         visitscotland:breadcrumb: Hola
         visitscotland:distance: 10.4
         visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
+        visitscotland:highlights: [Glenfinnan Viaduct, Jacobite Steam Train, Glen
+            Etive, The Elephant House]
         visitscotland:popular: false
         visitscotland:seoDescription: It was in Scotland's capital city that JK Rowling
           started to plot the adventures
