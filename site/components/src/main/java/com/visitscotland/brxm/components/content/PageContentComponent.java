@@ -3,25 +3,16 @@ package com.visitscotland.brxm.components.content;
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.factory.LinkModulesFactory;
-import com.visitscotland.brxm.config.VsComponentManager;
-import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.dms.ProductSearchBuilder;
-import com.visitscotland.brxm.dms.model.LocationObject;
-import com.visitscotland.brxm.factory.ImageFactory;
-import com.visitscotland.brxm.factory.LinkModulesFactory;
 import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
-import com.visitscotland.brxm.model.megalinks.HorizontalListLinksModule;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Locale;
 
 
 public class PageContentComponent<T extends Page> extends EssentialsContentComponent {
@@ -47,7 +38,7 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
         addDocumentPath(request);
         addHeroImage(request);
 
-        addOTYML(getDocument(request), request.getLocale());
+        addOTYML(request);
     }
 
     /**
@@ -70,9 +61,6 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
 
     /**
      * Set the OTYML module if present
-     *
-     * @param page   Page
-     * @param locale Locale
      */
     protected void addOTYML(HstRequest request) {
         Page page = getDocument(request);
