@@ -23,7 +23,6 @@
 
 <#assign mainTransport = "">
 <#assign dayNumber = 0>
-<#assign stopNumber = 0>
 <#assign lastStop = 0>
 
 <#if document.transports?has_content >
@@ -39,7 +38,7 @@
     <#--  <@pageIntro content=document heroImage=heroImage hero=hero areas=document.areas days=itinerary.days firstStop=itinerary.firstStopLocation lastStop=itinerary.lastStopLocation />  -->
 
     <vs-itinerary>
-        <@itineraryMap days=itinerary.days />
+        <@itineraryMap itinerary />
         <#list itinerary.days as day>
             <#assign dayNumber++>
             <#assign dayTransport = "">
@@ -77,8 +76,8 @@
                 <!-- STOP STARTS HERE -->
                 <#assign lastStop = lastStop + day.stops?size>
                 <#list day.stops as stop>
-                    <#assign stopNumber++>
-                    <@itineraryStop stop=stop lastStop=(stopNumber==lastStop)?c/>
+                    <#assign stopModule = itinerary.stops[stop.identifier]>
+                    <@itineraryStop stop=stopModule isLastStop=(stopModule.index==lastStop)?c/>
                 </#list>
                 <!-- STOP ENDS HERE -->
             </vs-itinerary-day>
