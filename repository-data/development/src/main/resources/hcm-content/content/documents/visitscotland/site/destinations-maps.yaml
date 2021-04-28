@@ -43,8 +43,8 @@
           visitscotland:breadcrumb: ''
           visitscotland:distance: 0.0
           visitscotland:finish: Kirkwall
-          visitscotland:highlights: "Heart of Neolithic Orkney World Heritage Site\
-            \  \r\nIsle of Hoy  \r\nYesnaby Sea Cliffs \r\nNorth Ronaldsay"
+          visitscotland:highlights: [Heart of Neolithic, Orkney World Heritage Site,
+            Isle of Hoy, Yesnaby Sea Cliffs, North Ronaldsay]
           visitscotland:popular: false
           visitscotland:seoDescription: Taste the smoky influences in Orkney whisky,
             see rare birds soaring in the skies overhead, walk amongst historic sites
@@ -57,6 +57,7 @@
             birds soaring in the skies overhead.
           visitscotland:theme: islands
           visitscotland:title: Short Break in Orkney – 4 Day Itinerary
+          visitscotland:translation: ''
           visitscotland:transports: [cycling]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink

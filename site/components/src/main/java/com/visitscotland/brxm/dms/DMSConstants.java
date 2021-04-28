@@ -78,7 +78,7 @@ public class DMSConstants {
         public static final String END_TIME = "endTime";
         public static final String OPENING_DAY = "day";
         public static final String OPENING_STATE = "state";
-        //TODO Change again
+        //TODO Fix property as part of VS-1487
         public static final String OPENING_PROVISIONAL = "provivisional";
         public static final String URL = "url";
         public static final String TIME_TO_EXPLORE = "timeToExplore";
