@@ -45,7 +45,7 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
      * TODO Hero Image & Alerts need to be refactored?
      *
      * - Alerts are only used for issues related with the hero image at the moment
-     * - Hero Image is not necesary for all document types. Is it better to add the field in order to keep consistency?
+     * - Hero Image is not necessary for all document types. Is it better to add the field in order to keep consistency?
      *
      */
     private void addHeroImage(HstRequest request){
