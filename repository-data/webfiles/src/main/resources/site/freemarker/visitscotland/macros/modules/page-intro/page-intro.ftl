@@ -45,8 +45,8 @@
                 credit="${heroDetails.credit!''}"
                 caption="${heroDetails.description!''}"
                 image-src="${heroSrc}"
-                latitude="${(heroCoordinates.latitude)!''}"
-                longitude="${(heroCoordinates.longitude)!''}"
+                latitude="${(heroImage.coordinates.latitude)!''}"
+                longitude="${(heroImage.coordinates.longitude)!''}"
             >
                 <vs-img
                     src="${heroSrc}"
