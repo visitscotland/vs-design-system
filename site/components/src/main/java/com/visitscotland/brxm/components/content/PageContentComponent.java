@@ -72,9 +72,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         LocationObject location = locationLoader.getLocation(getDocument(request).getHeroImage().getLocation(), request.getLocale());
 
         if (location != null) {
-            Coordinates coordinates = new Coordinates();
-            coordinates.setLatitude(location.getLatitude());
-            coordinates.setLongitude(location.getLongitude());
+            Coordinates coordinates = new Coordinates(location.getLatitude(), location.getLongitude());
             request.setAttribute(HERO_COORDINATES, coordinates);
         }
     }

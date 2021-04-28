@@ -151,7 +151,7 @@ public class ItineraryFactory {
      */
     private ItineraryStopModule initializeStop(Stop stop) {
         ItineraryStopModule module = new ItineraryStopModule();
-        module.setIdentifier(stop.getIdentifier());
+        module.setHippoBean(stop);
         module.setTitle(stop.getTitle());
         module.setDescription(stop.getDescription());
         module.setSubTitle(stop.getSubtitle());
