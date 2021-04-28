@@ -14,7 +14,7 @@
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/shared/module-builder.ftl">
-<#include "../macros/modules/otyml/otyml.ftl">
+<#include "../macros/modules/horizontal-list/horizontal-list.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
 
 <#-- Implicit Request Objects -->
