@@ -19,7 +19,8 @@
 
 <#-- Template defined objects -->
 <#-- @ftlvariable name="day" type="com.visitscotland.brxm.hippobeans.Day" -->
-<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.hippobeans.Image" -->
+<#-- @ftlvariable name="stop" type="com.visitscotland.brxm.hippobeans.Stop" -->
+
 
 <#assign mainTransport = "">
 <#assign dayNumber = 0>
@@ -32,7 +33,6 @@
 <div class="has-edit-button">
     <@hst.manageContent hippobean=document documentTemplateQuery="new-day" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
-    <@hst.link var="hero" hippobean=document.heroImage.original/>
 
     <@pageIntro content=document heroDetails=heroImage itinerary=itinerary />
     <#--  <@pageIntro content=document heroImage=heroImage hero=hero areas=document.areas days=itinerary.days firstStop=itinerary.firstStopLocation lastStop=itinerary.lastStopLocation />  -->
@@ -41,7 +41,7 @@
         <@itineraryMap itinerary />
         <#list itinerary.days as day>
             <#assign dayNumber++>
-            <#assign dayTransport = "">
+
             <vs-itinerary-day 
                 slot="list"
                 :default-show="${(dayNumber < 3)?c}"
@@ -67,6 +67,8 @@
                             </dd>
                         </#list>
                     </vs-description-list>
+                <#else>
+                    <#assign dayTransport = "">
                 </#if>
 
                 <div slot="day-introduction">

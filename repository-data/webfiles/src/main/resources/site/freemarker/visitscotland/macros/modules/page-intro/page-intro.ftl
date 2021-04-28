@@ -21,7 +21,13 @@
 <#include "../../../../frontend/components/vs-image-location-map.ftl">
 <#include "../../shared/theme-calculator.ftl">
 
+
+<#-- @ftlvariable name="content" type="com.visitscotland.brxm.hippobeans.Page" -->
+<#-- @ftlvariable name="heroDetails" type="com.visitscotland.brxm.model.FlatImage" -->
+<#-- @ftlvariable name="itinerary" type="com.visitscotland.brxm.model.ItineraryPage" -->
+
 <#macro pageIntro content heroDetails="" itinerary="">
+
     <#assign themeName = themeCalculator(introTheme)>
 
     <#if content.heroImage??>
@@ -31,17 +37,19 @@
 <div class="has-edit-button">
     <vs-page-intro background="${themeName}" <#if heroDetails?has_content>hero-intro</#if> <#if itinerary?has_content>is-itinerary</#if>>
         <#if heroDetails?has_content>
+            <@hst.link var="heroSrc" hippobean=heroImage.cmsImage.original/>
+
             <vs-hero
                 slot="vsIntroHero"
                 alt-text="${heroDetails.altText!''}"
                 credit="${heroDetails.credit!''}"
                 caption="${heroDetails.description!''}"
-                image-src="${hero}"
+                image-src="${heroSrc}"
                 latitude="${(heroCoordinates.latitude)!''}"
                 longitude="${(heroCoordinates.longitude)!''}"
             >
                 <vs-img
-                    src="${hero}"
+                    src="${heroSrc}"
                     alt="${heroDetails.altText!''}"
                 > </vs-img>
             </vs-hero>
@@ -52,11 +60,11 @@
         </template>
 
         <template slot="vsIntroHeading">
-            ${document.title}
+            ${content.title}
         </template>
 
         <template slot="vsIntroContent">
-            <@hst.html hippohtml=document.introduction/>
+            <@hst.html hippohtml=content.introduction/>
         </template>
 
         <#if itinerary?has_content>
@@ -70,35 +78,35 @@
             <template slot="VsIntroSummaryBox">
                 <@summaryBox itinerary />
             </template>
-        </#if>
 
-        <#if content.areas?has_content>
-            <vs-container slot="VsIntroLower">
-                <vs-row>
-                    <vs-col cols="12" lg="11" offset-lg="1">
-                        <vs-description-list class="mb-6">
-                            <vs-description-list-item title>
-                                ${label("itinerary", "highlights")}
-                            </vs-description-list-item>
-                            <#list document.highlights as highlight>
-                                <vs-description-list-item>
-                                    ${highlight}${"\n"}
+            <#if itinerary.document.areas?has_content>
+                <vs-container slot="VsIntroLower">
+                    <vs-row>
+                        <vs-col cols="12" lg="11" offset-lg="1">
+                            <vs-description-list class="mb-6">
+                                <vs-description-list-item title>
+                                    ${label("itinerary", "highlights")}
                                 </vs-description-list-item>
-                            </#list>
-                        </vs-description-list>
-                        <vs-description-list class="mb-8">
-                            <vs-description-list-item title>
-                                ${label("itinerary", "areas-covered")}
-                            </vs-description-list-item>
-                            <#list content.areas as area>
-                                <vs-description-list-item>
-                                    ${label("areas", "${area}")}${"\n"}
+                                <#list itinerary.document.highlights as highlight>
+                                    <vs-description-list-item>
+                                        ${highlight}
+                                    </vs-description-list-item>
+                                </#list>
+                            </vs-description-list>
+                            <vs-description-list class="mb-8">
+                                <vs-description-list-item title>
+                                    ${label("itinerary", "areas-covered")}
                                 </vs-description-list-item>
-                            </#list>
-                        </vs-description-list>
-                    </vs-col>
-                </vs-row>
-            </vs-container>
+                                <#list  itinerary.document.areas as area>
+                                    <vs-description-list-item>
+                                        ${label("areas", "${area}")}${"\n"}
+                                    </vs-description-list-item>
+                                </#list>
+                            </vs-description-list>
+                        </vs-col>
+                    </vs-row>
+                </vs-container>
+            </#if>
         </#if>
     </vs-page-intro>
 </div>

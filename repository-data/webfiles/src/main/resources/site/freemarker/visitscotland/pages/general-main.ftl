@@ -15,18 +15,14 @@
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.General" -->
 <#-- @ftlvariable name="pageItems" type="com.visitscotland.brxm.hippobeans.Megalinks" -->
-<#-- @ftlvariable name="image" type="com.visitscotland.brxm.model.FlatImage" -->
 
 <#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.model.FlatImage" -->
 <#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.model.Coordinates" -->
-
-<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.hippobeans.Image" -->
 
 <#assign standardTemplate = (document.theme == "Standard") />
 
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />
-    <@hst.link var="hero" hippobean=document.heroImage.original/>
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
 

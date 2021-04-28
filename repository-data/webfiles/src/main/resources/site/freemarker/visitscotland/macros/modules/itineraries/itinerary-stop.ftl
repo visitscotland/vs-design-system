@@ -100,6 +100,8 @@
                             rather than constructing a whole filtered copy of the array
                             for readability but that is not doable until we reach a future
                             version of freemarker (2.3.29).
+
+                            TODO: Upgrade to freemarker version 2.3.29.
                         -->
                         <#assign filterAddressArr = [] />
                         <#list addressArr as addrLine>
