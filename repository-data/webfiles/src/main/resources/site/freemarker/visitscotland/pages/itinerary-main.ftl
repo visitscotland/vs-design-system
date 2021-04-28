@@ -35,7 +35,6 @@
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
     <@pageIntro content=document heroDetails=heroImage itinerary=itinerary />
-    <#--  <@pageIntro content=document heroImage=heroImage hero=hero areas=document.areas days=itinerary.days firstStop=itinerary.firstStopLocation lastStop=itinerary.lastStopLocation />  -->
 
     <vs-itinerary>
         <@itineraryMap itinerary />
