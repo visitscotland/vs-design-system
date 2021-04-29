@@ -21,23 +21,36 @@
 <#include "../../../../frontend/components/vs-image-location-map.ftl">
 <#include "../../shared/theme-calculator.ftl">
 
-<#macro pageIntro content heroImage hero areas=[] days="" firstStop="" lastStop="">
+
+<#-- @ftlvariable name="content" type="com.visitscotland.brxm.hippobeans.Page" -->
+<#-- @ftlvariable name="heroDetails" type="com.visitscotland.brxm.model.FlatImage" -->
+<#-- @ftlvariable name="itinerary" type="com.visitscotland.brxm.model.ItineraryPage" -->
+
+<#macro pageIntro content heroDetails="" itinerary="">
+
     <#assign themeName = themeCalculator("", [], introTheme)>
+
+    <#if content.heroImage??>
+        <@hst.link var="hero" hippobean=content.heroImage.original/>
+    </#if>
+    
 <div class="has-edit-button">
-    <vs-page-intro background="${themeName}" <#if heroImage?has_content>hero-intro</#if> <#if days?has_content>is-itinerary</#if>>
-        <#if heroImage?has_content>
+    <vs-page-intro background="${themeName}" <#if heroDetails?has_content>hero-intro</#if> <#if itinerary?has_content>is-itinerary</#if>>
+        <#if heroDetails?has_content>
+            <@hst.link var="heroSrc" hippobean=heroImage.cmsImage.original/>
+
             <vs-hero
                 slot="vsIntroHero"
-                alt-text="${heroImage.altText!''}"
-                credit="${heroImage.credit!''}"
-                caption="${heroImage.description!''}"
-                image-src="${hero}"
-                latitude="${(heroCoordinates.latitude)!''}"
-                longitude="${(heroCoordinates.longitude)!''}"
+                alt-text="${heroDetails.altText!''}"
+                credit="${heroDetails.credit!''}"
+                caption="${heroDetails.description!''}"
+                image-src="${heroSrc}"
+                latitude="${(heroImage.coordinates.latitude)!''}"
+                longitude="${(heroImage.coordinates.longitude)!''}"
             >
                 <vs-img
-                    src="${hero}"
-                    alt="${heroImage.altText!''}"
+                    src="${heroSrc}"
+                    alt="${heroDetails.altText!''}"
                 > </vs-img>
             </vs-hero>
         </#if>
@@ -47,51 +60,53 @@
         </template>
 
         <template slot="vsIntroHeading">
-            ${document.title}
+            ${content.title}
         </template>
 
         <template slot="vsIntroContent">
-            <@hst.html hippohtml=document.introduction/>
+            <@hst.html hippohtml=content.introduction/>
         </template>
 
-        <#if days?has_content>
-            <#if firstStop?has_content && lastStop?has_content>
+        <#if itinerary?has_content>
+            <#if itinerary.firstStopLocation?has_content && itinerary.lastStopLocation?has_content>
                 <template slot="vsIntroStartFinish">
                     <dt class="list-inline-item">${label("itinerary", "start-finish")}</dt>
-                    <dd class="list-inline-item">${firstStop} / ${lastStop}</dd>
+                    <dd class="list-inline-item">${itinerary.firstStopLocation} / ${itinerary.lastStopLocation}</dd>
                 </template>
             </#if>
         
             <template slot="VsIntroSummaryBox">
-                <@summaryBox days />
+                <@summaryBox itinerary />
             </template>
-        </#if>
 
-        <#if areas?has_content>
-            <vs-container slot="VsIntroLower">
-                <vs-row>
-                    <vs-col cols="12" lg="11" offset-lg="1">
-                        <vs-description-list class="mb-6">
-                            <vs-description-list-item title>
-                                ${label("itinerary", "highlights")}
-                            </vs-description-list-item>
-                            <vs-description-list-item>
-                                <div style="white-space: pre-wrap">${document.highlights}</div>
-                            </vs-description-list-item>
-                        </vs-description-list>
-                        <vs-description-list class="mb-8">
-                            <vs-description-list-item title>
-                                ${label("itinerary", "areas-covered")}
-                            </vs-description-list-item>
-                            <#list areas as area>
-                                <vs-description-list-item>
-                                    ${label("areas", "${area}")}${"\n"}
+            <#if itinerary.document.areas?has_content>
+                <vs-container slot="VsIntroLower">
+                    <vs-row>
+                        <vs-col cols="12" lg="11" offset-lg="1">
+                            <vs-description-list class="mb-6">
+                                <vs-description-list-item title>
+                                    ${label("itinerary", "highlights")}
                                 </vs-description-list-item>
-                            </#list>
-                        </vs-description-list>
-                    </vs-col>
-                </vs-row>
-            </vs-container>
+                                <#list itinerary.document.highlights as highlight>
+                                    <vs-description-list-item>
+                                        ${highlight}
+                                    </vs-description-list-item>
+                                </#list>
+                            </vs-description-list>
+                            <vs-description-list class="mb-8">
+                                <vs-description-list-item title>
+                                    ${label("itinerary", "areas-covered")}
+                                </vs-description-list-item>
+                                <#list  itinerary.document.areas as area>
+                                    <vs-description-list-item>
+                                        ${label("areas", "${area}")}
+                                    </vs-description-list-item>
+                                </#list>
+                            </vs-description-list>
+                        </vs-col>
+                    </vs-row>
+                </vs-container>
+            </#if>
         </#if>
     </vs-page-intro>
 </div>

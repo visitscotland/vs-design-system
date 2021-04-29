@@ -8,50 +8,28 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class FlatStop {
-
-    private String identifier;
+public class ItineraryStopModule extends Module<Stop>{
 
     private Integer index;
     private String title;
     private String subTitle;
     private HippoHtml description;
     private FlatImage image;
-    private String timeToexplore;
+    private String timeToExplore;
     private String tipsTitle;
     private FlatLink ctaLink;
     private HippoHtml tipsBody;
     private List<DataType> facilities;
     private JsonNode address;
     private String price;
-    private String open;
+    private JsonNode opening;
     private FlatLink openLink;
     private BigDecimal distance;
 
     private Coordinates coordinates;
-    private List<String> errorMessages;
-
-    public FlatStop() {
-
-    }
-
-    public FlatStop(Stop stop) {
-        this.identifier = stop.getIdentifier();
-        this.title = stop.getTitle();
-        this.description = stop.getDescription();
-
-        if (stop.getStopTip()!=null){
-            this.tipsTitle = stop.getStopTip().getTitle();
-            this.tipsBody = stop.getStopTip().getCopy();
-        }
-    }
 
     public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+        return getHippoBean() != null? getHippoBean().getIdentifier(): null;
     }
 
     public Integer getIndex() {
@@ -86,12 +64,12 @@ public class FlatStop {
         this.image = image;
     }
 
-    public String getTimeToexplore() {
-        return timeToexplore;
+    public String getTimeToExplore() {
+        return timeToExplore;
     }
 
-    public void setTimeToexplore(String timeToexplore) {
-        this.timeToexplore = timeToexplore;
+    public void setTimeToExplore(String timeToExplore) {
+        this.timeToExplore = timeToExplore;
     }
 
     public String getTipsTitle() {
@@ -158,12 +136,12 @@ public class FlatStop {
         this.price = price;
     }
 
-    public String getOpen() {
-        return open;
+    public JsonNode getOpening() {
+        return opening;
     }
 
-    public void setOpen(String open) {
-        this.open = open;
+    public void setOpening(JsonNode opening) {
+        this.opening = opening;
     }
 
     public FlatLink getOpenLink() {
@@ -172,14 +150,6 @@ public class FlatStop {
 
     public void setOpenLink(FlatLink openLink) {
         this.openLink = openLink;
-    }
-
-    public List<String> getErrorMessages() {
-        return errorMessages;
-    }
-
-    public void setErrorMessages(List<String> errorMessages) {
-        this.errorMessages = errorMessages;
     }
 
     public BigDecimal getDistance() {
