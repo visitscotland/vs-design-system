@@ -5,7 +5,18 @@
             v-show="!isDesktop && withinItineraryMain"
         >
             <div class="d-flex justify-content-center pb-2">
-                <VsItineraryMobileMapToggle @click.native="toggleShowMap()" />
+                <VsButton
+                    class="vs-itinerary__map-toggle-button"
+                    @click.native="toggleShowMap()"
+                >
+                    <VsIcon
+                        :name="showMap ? 'list' : 'map'"
+                        variant="reverse-white"
+                        size="md"
+                    />
+
+                    {{ showMap ? 'List View' : 'Map View' }}
+                </VsButton>
             </div>
         </div>
         <div
@@ -39,7 +50,8 @@ import {
     VsRow,
     VsCol,
 } from '@components/elements/layout';
-import VsItineraryMobileMapToggle from '@components/patterns/itineraries/components/ItineraryMobileMapToggle';
+import VsButton from '@components/elements/button/Button';
+import VsIcon from '@components/elements/icon/Icon';
 import VsAccordion from '@components/patterns/accordion/Accordion';
 
 /**
@@ -57,8 +69,9 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
-        VsItineraryMobileMapToggle,
         VsAccordion,
+        VsButton,
+        VsIcon,
     },
     data() {
         return {
@@ -148,6 +161,15 @@ export default {
 
          @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
             position: relative;
+        }
+    }
+
+    .vs-itinerary__map-toggle-button {
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        svg {
+            margin-right: 10px;
         }
     }
 
