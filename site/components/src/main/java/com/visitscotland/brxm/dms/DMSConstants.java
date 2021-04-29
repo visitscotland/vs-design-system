@@ -73,7 +73,7 @@ public class DMSConstants {
         public static final String LOCATION = "city";
         public static final String FACILITIES = "keyFacilities";
 
-        public static final String OPENING = "todayOpeningTime";
+        public static final String OPENING = "opening";
         public static final String START_TIME = "startTime";
         public static final String END_TIME = "endTime";
         public static final String OPENING_DAY = "day";

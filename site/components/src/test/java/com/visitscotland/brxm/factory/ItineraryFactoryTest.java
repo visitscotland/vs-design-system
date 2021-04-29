@@ -257,7 +257,7 @@ class ItineraryFactoryTest {
     void dmsStop_openingTimes() throws JsonProcessingException {
         final String JSON = "{" +
                 " \"url\":\"https://mock.visitscotland.com/info/fake-product-p123\", " +
-                " \"todayOpeningTime\": {}" +
+                " \"opening\": {}" +
                 "}";
         JsonNode node = new ObjectMapper().readTree(JSON);
         List<Day> days = new ItineraryDayMockBuilder().addDmsStop("123").addImage().buildAsList();
