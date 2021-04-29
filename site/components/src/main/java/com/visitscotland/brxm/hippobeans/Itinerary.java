@@ -32,15 +32,6 @@ public class Itinerary extends Page {
         return getMultipleProperty("visitscotland:areas");
     }
 
-    /** 
-     * TODO: Remove this method after the refactoring of itineraries
-     * @deprecated Instead of this, you should invoke {@code new DocumentUtils().getSiblingDocuments()}
-     */
-    @Deprecated
-    public List<com.visitscotland.brxm.hippobeans.Day> getDays() {
-        return getPageChildrenByType(com.visitscotland.brxm.hippobeans.Day.class);
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:transports")
     public String[] getTransports() {
         return getMultipleProperty("visitscotland:transports");

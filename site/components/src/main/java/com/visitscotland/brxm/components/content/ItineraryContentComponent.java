@@ -33,11 +33,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
-        addHeroCoordinates(request);
         addProductSearchBuilder(request);
 
         request.setAttribute(ITINERARY, itineraryFactory.buildItinerary(getDocument(request), request.getLocale()));
-
     }
 
     public void addProductSearchBuilder(HstRequest request) {

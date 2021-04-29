@@ -1,21 +1,14 @@
 package com.visitscotland.brxm.components.content;
 
 import com.visitscotland.brxm.config.VsComponentManager;
-import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.dms.ProductSearchBuilder;
-import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.factory.LinkModulesFactory;
 import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
-import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.HorizontalListLinksModule;
 import com.visitscotland.utils.Contract;
-import freemarker.ext.beans.BeansWrapper;
-import freemarker.template.TemplateHashModel;
-import freemarker.template.TemplateModelException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
@@ -25,20 +18,17 @@ import org.slf4j.LoggerFactory;
 import java.util.Locale;
 
 
-public class PageContentComponent<TYPE extends Page> extends EssentialsContentComponent {
+public class PageContentComponent<T extends Page> extends EssentialsContentComponent {
 
     private static final Logger logger = LoggerFactory.getLogger(PageContentComponent.class);
 
     public static final String DOCUMENT = "document";
     public static final String EDIT_PATH = "path";
-    public static final String HERO_COORDINATES = "heroCoordinates";
 
-    private LocationLoader locationLoader;
     private LinkModulesFactory linksFactory;
     private ImageFactory imageFactory;
 
     public PageContentComponent() {
-        locationLoader = VsComponentManager.get(LocationLoader.class);
         linksFactory = VsComponentManager.get(LinkModulesFactory.class);
         imageFactory = VsComponentManager.get(ImageFactory.class);
     }
@@ -48,34 +38,23 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         super.doBeforeRender(request, response);
 
         addDocumentPath(request);
+        addHeroImage(request);
+    }
 
+    /**
+     * - Alerts are only used for issues related with the hero image at the moment
+     * - Hero Image is not necessary for all document types. Is it better to add the field in order to keep consistency?
+     */
+    private void addHeroImage(HstRequest request){
         final String HERO_IMAGE = "heroImage";
         final String ALERTS = "alerts";
-        Module introModule = new Module<TYPE>();
+        Module<T> introModule = new Module<>();
 
         FlatImage heroImage = imageFactory.createImage(getDocument(request).getHeroImage(), introModule, request.getLocale());
-
-        //TODO Hero Image & Alerts need to be refactored
         request.setAttribute(HERO_IMAGE, heroImage);
 
         if (!Contract.isEmpty(introModule.getErrorMessages())) {
             request.setAttribute(ALERTS, introModule.getErrorMessages());
-        }
-    }
-
-    /**
-     * Set the coordinates for Hero images
-     *
-     * @param request HstRequest
-     */
-    protected void addHeroCoordinates(HstRequest request) {
-        LocationObject location = locationLoader.getLocation(getDocument(request).getHeroImage().getLocation(), request.getLocale());
-
-        if (location != null) {
-            Coordinates coordinates = new Coordinates();
-            coordinates.setLatitude(location.getLatitude());
-            coordinates.setLongitude(location.getLongitude());
-            request.setAttribute(HERO_COORDINATES, coordinates);
         }
     }
 
@@ -99,9 +78,9 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @param request HstRequest
      * @return the master document of
      */
-    protected TYPE getDocument(HstRequest request) {
+    protected T getDocument(HstRequest request) {
         if (request.getAttribute(DOCUMENT) instanceof Page) {
-            return (TYPE) request.getAttribute(DOCUMENT);
+            return (T) request.getAttribute(DOCUMENT);
         } else {
             logger.error("The master document is not an instance of Page.", new ClassCastException());
             return null;

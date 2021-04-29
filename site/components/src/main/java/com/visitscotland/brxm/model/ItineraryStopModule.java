@@ -10,8 +10,6 @@ import java.util.List;
 
 public class ItineraryStopModule extends Module<Stop>{
 
-    private String identifier;
-
     private Integer index;
     private String title;
     private String subTitle;
@@ -31,11 +29,7 @@ public class ItineraryStopModule extends Module<Stop>{
     private Coordinates coordinates;
 
     public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+        return getHippoBean() != null? getHippoBean().getIdentifier(): null;
     }
 
     public Integer getIndex() {
