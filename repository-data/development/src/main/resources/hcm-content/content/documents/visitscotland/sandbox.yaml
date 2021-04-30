@@ -2024,98 +2024,18 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: af7bc15d-bc33-4b84-ad01-e77eb5acde61
         hippo:name: Edinburgh
-        hippo:versionHistory: 62980d2e-1781-45ad-bbc1-4e2a70b4bb48
+        hippo:versionHistory: 008a2bcb-9a11-4752-8e3c-9a7eaedf4b8d
         /content[1]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 76bab125-f189-4ab2-ae52-8d216ed96af5
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-26T13:13:24.462Z
+          hippostdpubwf:lastModificationDate: 2021-04-19T15:39:41.116+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: ''
-          visitscotland:location: Edinburgh
-          visitscotland:seoDescription: Edinburgh seo description
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Edinburgh seo title
-          visitscotland:teaser: Edinburgh city teaser
-          visitscotland:title: Edinburgh With an abundance of history, top quality
-            attractions and beautiful architecture, Edinburgh is a city that you won’t
-            forget in a hurry. Explore the Medieval Old Town and the elegant Georgian
-            New Town, which sit side by side, and visit unique attractions throughout
-            the city on a holiday in Edinburgh.  Whether you’re short of time and
-            can only manage a weekend break, planning a full-blown city break or are
-            visiting Edinburgh as part of a wider holiday in Scotland, there’s lots
-            to fill your time, from unforgettable historic sites and world-class festivals
-            to fantastic shopping and mouth-watering dining.
-          visitscotland:translation: ''
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>With an abundance of history, top quality attractions and beautiful architecture, Edinburgh is a city that you won’t forget in a hurry. Explore the Medieval Old Town and the elegant Georgian New Town, which sit side by side, and visit unique attractions throughout the city on a holiday in Edinburgh.</p>
-
-              <p>Whether you’re short of time and can only manage a weekend break, planning a full-blown city break or are visiting Edinburgh as part of a wider holiday in Scotland, there’s lots to fill your time, from unforgettable historic sites and world-class festivals to fantastic shopping and mouth-watering dining.</p>
-        /content[2]:
-          jcr:primaryType: visitscotland:Destination
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 7b6014dc-600c-4f35-8e3c-02ebf2b309ea
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-26T13:05:31.241Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: ''
-          visitscotland:location: Edinburgh
-          visitscotland:seoDescription: Edinburgh seo description
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Edinburgh seo title
-          visitscotland:teaser: Edinburgh city teaser
-          visitscotland:title: Edinburgh With an abundance of history, top quality
-            attractions and beautiful architecture, Edinburgh is a city that you won’t
-            forget in a hurry. Explore the Medieval Old Town and the elegant Georgian
-            New Town, which sit side by side, and visit unique attractions throughout
-            the city on a holiday in Edinburgh.  Whether you’re short of time and
-            can only manage a weekend break, planning a full-blown city break or are
-            visiting Edinburgh as part of a wider holiday in Scotland, there’s lots
-            to fill your time, from unforgettable historic sites and world-class festivals
-            to fantastic shopping and mouth-watering dining.
-          visitscotland:translation: ''
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>With an abundance of history, top quality attractions and beautiful architecture, Edinburgh is a city that you won’t forget in a hurry. Explore the Medieval Old Town and the elegant Georgian New Town, which sit side by side, and visit unique attractions throughout the city on a holiday in Edinburgh.</p>
-
-              <p>Whether you’re short of time and can only manage a weekend break, planning a full-blown city break or are visiting Edinburgh as part of a wider holiday in Scotland, there’s lots to fill your time, from unforgettable historic sites and world-class festivals to fantastic shopping and mouth-watering dining.</p>
-        /content[3]:
-          jcr:primaryType: visitscotland:Destination
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: af10c61f-4f4d-412d-ab7a-267834ee4201
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-05-25T18:02:22.368+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-07-13T10:35:12.588+01:00
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -2125,6 +2045,7 @@
           visitscotland:seoTitle: Edinburgh seo title
           visitscotland:teaser: Edinburgh city teaser
           visitscotland:title: Edinburgh
+          visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
@@ -2137,6 +2058,193 @@
               <p>With an abundance of history, top quality attractions and beautiful architecture, Edinburgh is a city that you won’t forget in a hurry. Explore the Medieval Old Town and the elegant Georgian New Town, which sit side by side, and visit unique attractions throughout the city on a holiday in Edinburgh.</p>
 
               <p>Whether you’re short of time and can only manage a weekend break, planning a full-blown city break or are visiting Edinburgh as part of a wider holiday in Scotland, there’s lots to fill your time, from unforgettable historic sites and world-class festivals to fantastic shopping and mouth-watering dining.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>With an abundance of history, top quality attractions
+                and beautiful architecture, Edinburgh is a city that you won’t forget
+                in a hurry. Explore the Medieval Old Town and the elegant Georgian
+                New Town, which sit side by side, and visit unique attractions throughout
+                the city on a holiday in Edinburgh.</p>
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 7b6014dc-600c-4f35-8e3c-02ebf2b309ea
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
+          hippostdpubwf:lastModificationDate: 2021-04-19T15:40:04.769+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Edinburgh seo description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Edinburgh seo title
+          visitscotland:teaser: Edinburgh city teaser
+          visitscotland:title: Edinburgh
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>With an abundance of history, top quality attractions and beautiful architecture, Edinburgh is a city that you won’t forget in a hurry. Explore the Medieval Old Town and the elegant Georgian New Town, which sit side by side, and visit unique attractions throughout the city on a holiday in Edinburgh.</p>
+
+              <p>Whether you’re short of time and can only manage a weekend break, planning a full-blown city break or are visiting Edinburgh as part of a wider holiday in Scotland, there’s lots to fill your time, from unforgettable historic sites and world-class festivals to fantastic shopping and mouth-watering dining.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>With an abundance of history, top quality attractions
+                and beautiful architecture, Edinburgh is a city that you won’t forget
+                in a hurry. Explore the Medieval Old Town and the elegant Georgian
+                New Town, which sit side by side, and visit unique attractions throughout
+                the city on a holiday in Edinburgh.</p>
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: af10c61f-4f4d-412d-ab7a-267834ee4201
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
+          hippostdpubwf:lastModificationDate: 2021-04-19T15:40:04.769+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-04-19T15:40:07.194+01:00
+          hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Edinburgh seo description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Edinburgh seo title
+          visitscotland:teaser: Edinburgh city teaser
+          visitscotland:title: Edinburgh
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>With an abundance of history, top quality attractions and beautiful architecture, Edinburgh is a city that you won’t forget in a hurry. Explore the Medieval Old Town and the elegant Georgian New Town, which sit side by side, and visit unique attractions throughout the city on a holiday in Edinburgh.</p>
+
+              <p>Whether you’re short of time and can only manage a weekend break, planning a full-blown city break or are visiting Edinburgh as part of a wider holiday in Scotland, there’s lots to fill your time, from unforgettable historic sites and world-class festivals to fantastic shopping and mouth-watering dining.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>With an abundance of history, top quality attractions
+                and beautiful architecture, Edinburgh is a city that you won’t forget
+                in a hurry. Explore the Medieval Old Town and the elegant Georgian
+                New Town, which sit side by side, and visit unique attractions throughout
+                the city on a holiday in Edinburgh.</p>
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
       /featured-layout:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -4446,770 +4554,401 @@
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
               hippostd:content: ''
-            /visitscotland:links:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-        /content[3]:
-          jcr:primaryType: visitscotland:General
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 75f737eb-4973-40cb-845c-d61ed078fbe1
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-09-30T14:13:40.167+01:00
-          hippostdpubwf:lastModificationDate: 2020-09-30T14:14:56.497+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-09-30T14:46:53.948+01:00
-          hippotranslation:id: 58ee69d1-6791-448e-83e5-5d42e1c1add9
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: standard
-          visitscotland:seoDescription: meta
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: meta
-          visitscotland:teaser: This is a standard page example
-          visitscotland:theme: Standard
-          visitscotland:title: Standard Page
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is a standard page example</p>
-      /list-layout-copy:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: d7504245-b9f9-4f32-8252-e298c11d9d05
-        hippo:name: List Layout (copy)
-        hippo:versionHistory: dece8bd4-ad2e-4cc0-9f73-666381e513ee
-        /list-layout-copy[1]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:versionable']
-          jcr:uuid: dd11de91-7253-4e1a-ad56-e9295d2a2082
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:42:52.341+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: ef0d04fd-c356-4223-948f-1c1975cdbed5
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (6 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems[1]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-          /visitscotland:megalinkItems[2]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-          /visitscotland:megalinkItems[3]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-          /visitscotland:megalinkItems[4]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: true
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-          /visitscotland:megalinkItems[5]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /visitscotland:megalinkItems[6]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
-          /visitscotland:products:
-            jcr:primaryType: visitscotland:DMSLink
-            visitscotland:label: Button labels
-            visitscotland:product: '238761'
-        /list-layout-copy[2]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 725bec0d-6fe0-4e84-ad3e-7aeff02bc8c8
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:42:52.341+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-01T14:53:40.706+01:00
-          hippotranslation:id: ef0d04fd-c356-4223-948f-1c1975cdbed5
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (6 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems[1]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-          /visitscotland:megalinkItems[2]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-          /visitscotland:megalinkItems[3]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-          /visitscotland:megalinkItems[4]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: true
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-          /visitscotland:megalinkItems[5]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /visitscotland:megalinkItems[6]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
-          /visitscotland:products:
-            jcr:primaryType: visitscotland:DMSLink
-            visitscotland:label: Button labels
-            visitscotland:product: '238761'
-        /list-layout-copy[3]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: e389b155-c006-43ff-abcc-4b6a7cfaed84
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:39:35.779+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: ef0d04fd-c356-4223-948f-1c1975cdbed5
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (6 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems[1]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-          /visitscotland:megalinkItems[2]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-          /visitscotland:megalinkItems[3]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-          /visitscotland:megalinkItems[4]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: true
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-          /visitscotland:megalinkItems[5]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /visitscotland:megalinkItems[6]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
-          /visitscotland:products:
-            jcr:primaryType: visitscotland:DMSLink
-            visitscotland:label: Button labels
-            visitscotland:product: '238761'
-      /list-layout-copy-2:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 9fc4365b-59f2-467b-a1c5-ce580aeef249
-        hippo:name: List Layout 2 (1 item)
-        hippo:versionHistory: 53c89ab4-3225-44bd-9cd2-7f8319ddcd7d
-        /list-layout-copy-2[1]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:versionable']
-          jcr:uuid: 506a7501-9eba-4811-8ea2-6c86346d7fa4
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:46:15.257+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: a991e165-3d9e-4d6b-9951-c4a497561cdd
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (1 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-        /list-layout-copy-2[2]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: f5db2500-b8c7-48d3-ab72-98e8c8ca71da
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:49:16.347+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: a991e165-3d9e-4d6b-9951-c4a497561cdd
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (1 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-        /list-layout-copy-2[3]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 5fe0fc69-2818-4cc5-9f16-5089bc765aad
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:46:15.257+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-01T14:53:40.909+01:00
-          hippotranslation:id: a991e165-3d9e-4d6b-9951-c4a497561cdd
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (1 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-      /list-layout-1-item:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: de088bfa-858e-4f19-98f1-a44840e58e75
-        hippo:name: List Layout (1 item)
-        hippo:versionHistory: 4f4df7ec-08e4-4c4d-a57c-eb316aaf636d
-        /list-layout-1-item[1]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:versionable']
-          jcr:uuid: 6a5d4ae4-7f91-4873-bfaf-747bf470182b
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:46:15.257+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 21992605-b5f0-4f92-8b6c-0927a27a3e1b
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (1 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-        /list-layout-1-item[2]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 5276a8f4-1703-4f2e-bd47-5081a01953d3
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:46:15.257+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-01T14:53:40.815+01:00
-          hippotranslation:id: 21992605-b5f0-4f92-8b6c-0927a27a3e1b
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (1 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-    /simple:
-      jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-      jcr:uuid: eb3238c7-e5dc-4577-bcf7-0a150deb20c3
-      hippostd:foldertype: [new-translated-folder-test, new-document]
-      hippotranslation:id: 74a7c361-8eca-427d-9136-c35657d9606c
-      hippotranslation:locale: en
-      /content:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 229790b3-e75d-448a-acf1-4543ac74d450
-        hippo:name: Simple Page Demo
-        hippo:versionHistory: 58291e97-e673-408a-8ec6-0114228bdd46
-        /content[1]:
-          jcr:primaryType: visitscotland:General
-          jcr:mixinTypes: ['mix:versionable']
-          jcr:uuid: 88fd63e0-cbda-4584-b44a-1454d855eeda
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-09-30T14:13:40.167+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T12:51:39.985+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: c3c00121-a15b-4105-8387-d9fe4a5df51f
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: simple
-          visitscotland:seoDescription: meta
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: meta
-          visitscotland:teaser: This is a standard page example
-          visitscotland:theme: Simple
-          visitscotland:title: Standard Page
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is a standard page example</p>
-        /content[2]:
-          jcr:primaryType: visitscotland:General
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 992200ce-0f7b-4f84-bf92-f19498df0bab
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-09-30T14:13:40.167+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T12:51:40.046+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: c3c00121-a15b-4105-8387-d9fe4a5df51f
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: simple
-          visitscotland:seoDescription: meta
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: meta
-          visitscotland:teaser: This is a standard page example
-          visitscotland:theme: Simple
-          visitscotland:title: Standard Page
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is a standard page example</p>
-        /content[3]:
-          jcr:primaryType: visitscotland:General
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 935ab40f-4d32-4508-89b6-507beebaa743
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-09-30T14:13:40.167+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T12:51:39.985+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-01T12:51:57.740+01:00
-          hippotranslation:id: c3c00121-a15b-4105-8387-d9fe4a5df51f
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: simple
-          visitscotland:seoDescription: meta
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: meta
-          visitscotland:teaser: This is a standard page example
-          visitscotland:theme: Simple
-          visitscotland:title: Standard Page
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is a standard page example</p>
-      /list-layout-copy-3:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: c8954124-26e4-4a6a-a459-09f9c68fca4d
-        hippo:name: List Layout (copy 3)
-        hippo:versionHistory: 9bd1c4c4-8849-4cf1-8b1f-d0e146c87c18
-        /list-layout-copy-3[1]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:versionable']
-          jcr:uuid: 88e56541-8e5f-4956-b123-55aea186594f
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:42:52.341+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 7aa9e96b-038d-4618-a8f0-a5507408bf23
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (6 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems[1]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-          /visitscotland:megalinkItems[2]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-          /visitscotland:megalinkItems[3]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-          /visitscotland:megalinkItems[4]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: true
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-          /visitscotland:megalinkItems[5]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /visitscotland:megalinkItems[6]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
-          /visitscotland:products:
-            jcr:primaryType: visitscotland:DMSLink
-            visitscotland:label: Button labels
-            visitscotland:product: '238761'
-        /list-layout-copy-3[2]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 51ff71fc-4df1-49a1-8540-7245c972dc72
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:42:52.341+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-01T14:53:41.172+01:00
-          hippotranslation:id: 7aa9e96b-038d-4618-a8f0-a5507408bf23
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (6 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems[1]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-          /visitscotland:megalinkItems[2]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-          /visitscotland:megalinkItems[3]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-          /visitscotland:megalinkItems[4]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: true
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-          /visitscotland:megalinkItems[5]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /visitscotland:megalinkItems[6]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
-          /visitscotland:products:
-            jcr:primaryType: visitscotland:DMSLink
-            visitscotland:label: Button labels
-            visitscotland:product: '238761'
-      /list-layout-2-1-item-copy:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 1f5c748b-bba2-4e91-89e4-12ac4831f74f
-        hippo:name: List Layout 2 (1 item) (copy)
-        hippo:versionHistory: e28711df-d29e-455d-ba06-f26530172557
-        /list-layout-2-1-item-copy[1]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:versionable']
-          jcr:uuid: 145344c6-9f05-46c1-b880-b930f1d07032
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:46:15.257+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: c1658e70-cc23-4473-b401-a20397187e63
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (1 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-        /list-layout-2-1-item-copy[2]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 89138d1c-18c2-40c5-9d28-20e852752d1c
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:46:15.257+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-01T14:53:41.328+01:00
-          hippotranslation:id: c1658e70-cc23-4473-b401-a20397187e63
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (1 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-      /list-layout-1-item-copy:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 7cb6cb3f-8c69-4f38-887e-2133530caa50
-        hippo:name: List Layout (1 item) (copy)
-        hippo:versionHistory: 7f8723e4-4ed3-4f1f-8bc3-f7dc9ceeb52b
-        /list-layout-1-item-copy[1]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:versionable']
-          jcr:uuid: 4bcade77-753a-4cba-a0ba-70f1f76f125b
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:46:15.257+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 339d74f5-b69e-435e-8d58-2cfd51cb2fc3
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (1 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-        /list-layout-1-item-copy[2]:
-          jcr:primaryType: visitscotland:Megalinks
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 02bb2425-9588-4637-88d6-b33ccb6a9842
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T14:46:15.257+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-01T14:53:41.062+01:00
-          hippotranslation:id: 339d74f5-b69e-435e-8d58-2cfd51cb2fc3
-          hippotranslation:locale: en
-          visitscotland:hideTeaser: false
-          visitscotland:list: true
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (1 items) - List view
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>This is an example of List layout for Megalink module</p>
-          /visitscotland:megalinkItems:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-  /shared:
-    jcr:primaryType: hippostd:folder
-    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-    jcr:uuid: b2f31321-812c-43ce-ae1d-2f4ddd646c7e
-    hippostd:foldertype: []
-    hippotranslation:id: f4395723-4f13-4978-a829-b7ab231dbdb7
-    hippotranslation:locale: en
-    /itinerary-stops:
-      jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['frontend:orderChildFolders', 'hippo:named', 'hippotranslation:translated',
-        'mix:versionable']
-      jcr:uuid: 002105be-e6f8-4ce1-ba89-993cf9eae90a
-      hippo:name: Itinerary stops (Back end Devs)
-      hippostd:foldertype: [new-translated-folder-stops]
-      hippotranslation:id: 9220ace8-2ee8-4cd0-8010-b2764284f7f7
-      hippotranslation:locale: en
-      /crathes-castle:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: e8202d3f-3d3e-43e2-8075-3cf9b212df05
-        hippo:name: Crathes Castle
-        hippo:versionHistory: 00c8f5fd-eddf-4758-ac4e-0d0e9d220134
-        /crathes-castle[1]:
-          jcr:primaryType: visitscotland:Stop
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: afcc48a6-6945-497a-9b84-9119920ac0bc
-          hippo:availability: []
-          hippostd:retainable: false
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T12:55:05.069Z
-          hippostdpubwf:lastModificationDate: 2021-04-28T14:11:09.912+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 2d502027-288c-49ee-ac6b-53c4c7c7182c
-          hippotranslation:locale: en
-          visitscotland:subtitle: ''
-          visitscotland:tipsTitle: ''
-          visitscotland:title: Crathes Castle
-          visitscotland:translation: ''
-          /visitscotland:description:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>Pick up the trail again and head on a five minute
-              drive to the spooky Crathes Castle, a favourite place of Queen Victoria
-              and one where she often stayed. Explore the wonderland grounds and marvel
-              at the ornate gargoyles and fairytale turrets. On your tour of the castle
-              you'll learn about the castle's intriguing history along with the story
-              of its resident ghosts, the Green Lady and her infant child. It is even
-              said that Queen Victoria witnessed the ghostly pair herself.</p>
-          /visitscotland:tips:
-            jcr:primaryType: hippostd:html
-            hippostd:content: ''
-          /visitscotland:product:
-            jcr:primaryType: visitscotland:DMSLink
-            visitscotland:label: ''
-            visitscotland:product: '254191'
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:product: '249181'
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+        /casa-jose:
+          jcr:primaryType: hippo:handle
+          jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+          jcr:uuid: 94bde36e-54e1-4aee-8d25-28def2719c55
+          hippo:name: Casa Jose
+          hippo:versionHistory: d4db18a7-7f8d-4a2f-aa52-3019f283c320
+          /casa-jose[1]:
+            jcr:primaryType: visitscotland:Stop
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: a48683af-440e-40d6-8c37-df5fa6ae5ff9
+            hippo:availability: [live]
+            hippostd:state: published
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
+            hippostdpubwf:lastModificationDate: 2020-10-21T14:38:02.529+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippostdpubwf:publicationDate: 2020-10-21T15:11:27.592+01:00
+            hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
+            hippotranslation:locale: en
+            visitscotland:subtitle: ''
+            visitscotland:tipsTitle: ''
+            visitscotland:title: Casa Jose
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Short description.</p>
+            /visitscotland:tips:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Example tips invalid</p>
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:ItineraryExternalLink
+              visitscotland:timeToExplore: '1'
+              /visitscotland:Coordinates:
+                jcr:primaryType: visitscotland:Coordinates
+                visitscotland:latitude: 56.94939333333334
+                visitscotland:longitude: -4.824278333333333
+              /visitscotland:ExternalLink:
+                jcr:primaryType: visitscotland:ExternalLink
+                visitscotland:label: ''
+                visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /casa-jose[2]:
+            jcr:primaryType: visitscotland:Stop
+            jcr:mixinTypes: ['mix:versionable']
+            jcr:uuid: 0166e6a3-0410-4a88-9b4a-a93d97c5b63c
+            hippo:availability: [preview]
+            hippostd:state: unpublished
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
+            hippostdpubwf:lastModificationDate: 2020-11-25T15:39:49.581Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
+            hippotranslation:locale: en
+            visitscotland:subtitle: adad
+            visitscotland:tipsTitle: ''
+            visitscotland:title: Casa Jose
+            visitscotland:translation: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Short description.</p>
+            /visitscotland:tips:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Example tips invalid</p>
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:ItineraryExternalLink
+              visitscotland:timeToExplore: '1'
+              /visitscotland:Coordinates:
+                jcr:primaryType: visitscotland:Coordinates
+                visitscotland:latitude: 56.94939333333334
+                visitscotland:longitude: -4.824278333333333
+              /visitscotland:ExternalLink:
+                jcr:primaryType: visitscotland:ExternalLink
+                visitscotland:label: ''
+                visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /casa-jose[3]:
+            jcr:primaryType: visitscotland:Stop
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: 27ea31d2-a3a6-4ea1-972a-5d92fda60d95
+            hippo:availability: []
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
+            hippostdpubwf:lastModificationDate: 2021-01-07T11:45:13.465Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
+            hippotranslation:locale: en
+            visitscotland:subtitle: adad
+            visitscotland:tipsTitle: ''
+            visitscotland:title: Casa Jose
+            visitscotland:translation: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Short description.</p>
+            /visitscotland:tips:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Example tips invalid</p>
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:ItineraryExternalLink
+              visitscotland:timeToExplore: '1'
+              /visitscotland:Coordinates:
+                jcr:primaryType: visitscotland:Coordinates
+                visitscotland:latitude: 56.94939333333334
+                visitscotland:longitude: -4.824278333333333
+              /visitscotland:ExternalLink:
+                jcr:primaryType: visitscotland:ExternalLink
+                visitscotland:label: ''
+                visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+      /d:
+        jcr:primaryType: hippostd:folder
+        jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+        jcr:uuid: a6775de8-e5be-4004-994d-019542445718
+        hippostd:foldertype: [new-translated-folder-stops, new-stop]
+        hippotranslation:id: 84c17dc5-188f-41c0-b751-c8b14fb15522
+        hippotranslation:locale: en
+        /drum-castle:
+          jcr:primaryType: hippo:handle
+          jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+          jcr:uuid: 7bd9fe86-c251-4846-ab1c-d617a1de80ca
+          hippo:name: Drum Castle
+          /drum-castle[1]:
+            jcr:primaryType: visitscotland:Stop
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: ba9caeae-f3d4-40bb-babc-87df83a33276
+            hippo:availability: []
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-02-07T12:53:57.587Z
+            hippostdpubwf:lastModificationDate: 2020-04-10T16:43:11.687+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 01121e40-fd77-4ac9-854f-8e4fad6c1e5d
+            hippotranslation:locale: en
+            visitscotland:subtitle: ''
+            visitscotland:tipsTitle: ''
+            visitscotland:title: Drum Castle
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Begin the trail at the spectacular Drum Castle,
+                located in Drumoak just outside Aberdeen, which combines a 13th century
+                tower, a Jacobean mansion house and Victorian architecture. Take a
+                tour of the castle and marvel at the fascinating combination of Scottish
+                history and Victorian fashion, and wander the grounds and the magnificent
+                historic rose garden.&nbsp;&nbsp;</p>
+            /visitscotland:tips:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '254211'
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /drum-castle[2]:
+            jcr:primaryType: visitscotland:Stop
+            jcr:mixinTypes: ['mix:versionable']
+            jcr:uuid: d893a9b3-0cf9-48f0-83fe-968065758348
+            hippo:availability: [preview]
+            hippostd:state: unpublished
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-02-07T12:53:57.587Z
+            hippostdpubwf:lastModificationDate: 2020-04-10T13:49:43.188+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 01121e40-fd77-4ac9-854f-8e4fad6c1e5d
+            hippotranslation:locale: en
+            visitscotland:subtitle: ''
+            visitscotland:tipsTitle: ''
+            visitscotland:title: Drum Castle
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Begin the trail at the spectacular Drum Castle,
+                located in Drumoak just outside Aberdeen, which combines a 13th century
+                tower, a Jacobean mansion house and Victorian architecture. Take a
+                tour of the castle and marvel at the fascinating combination of Scottish
+                history and Victorian fashion, and wander the grounds and the magnificent
+                historic rose garden.&nbsp;&nbsp;</p>
+            /visitscotland:tips:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '254211'
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /drum-castle[3]:
+            jcr:primaryType: visitscotland:Stop
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: a6a166e2-d96e-4f7e-b6cf-03da38e4b435
+            hippo:availability: [live]
+            hippostd:state: published
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-02-07T12:53:57.587Z
+            hippostdpubwf:lastModificationDate: 2020-04-10T13:49:43.188+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippostdpubwf:publicationDate: 2020-06-12T09:13:34.154+01:00
+            hippotranslation:id: 01121e40-fd77-4ac9-854f-8e4fad6c1e5d
+            hippotranslation:locale: en
+            visitscotland:subtitle: ''
+            visitscotland:tipsTitle: ''
+            visitscotland:title: Drum Castle
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Begin the trail at the spectacular Drum Castle,
+                located in Drumoak just outside Aberdeen, which combines a 13th century
+                tower, a Jacobean mansion house and Victorian architecture. Take a
+                tour of the castle and marvel at the fascinating combination of Scottish
+                history and Victorian fashion, and wander the grounds and the magnificent
+                historic rose garden.&nbsp;&nbsp;</p>
+            /visitscotland:tips:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '254211'
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+      /e:
+        jcr:primaryType: hippostd:folder
+        jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+        jcr:uuid: ce8d985d-eb90-47ed-b7fe-892d8bb42911
+        hippostd:foldertype: [new-translated-folder-stops, new-stop]
+        hippotranslation:id: 6925c35c-bde9-4d70-acd3-624eeda3c61c
+        hippotranslation:locale: en
+        /edinburgh-castle:
+          jcr:primaryType: hippo:handle
+          jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+          jcr:uuid: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
+          hippo:name: Edinburgh castle
+          /edinburgh-castle[1]:
+            jcr:primaryType: visitscotland:Stop
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: 668f9ef6-e5cb-4544-86c9-b38d01ce1243
+            hippo:availability: []
+            hippostd:retainable: false
+            hippostd:state: draft
+            hippostd:transferable: false
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
+            hippostdpubwf:lastModificationDate: 2021-03-05T12:05:08.011Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 031ee49b-b582-4764-b4f6-da2121ddecb8
+            hippotranslation:locale: en
+            visitscotland:subtitle: ''
+            visitscotland:tipsTitle: Edinburgh Castle - Sample Pullout Title
+            visitscotland:title: Edinburgh castle
+            visitscotland:translation: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Edinburgh castle is a really nice attraction and
+                this is an example for description</p>
+            /visitscotland:tips:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '245821'
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /edinburgh-castle[2]:
+            jcr:primaryType: visitscotland:Stop
+            jcr:mixinTypes: ['mix:versionable']
+            jcr:uuid: 450e0bcd-7c93-447b-9e7a-8bc6775a8dad
+            hippo:availability: [preview]
+            hippostd:state: unpublished
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
+            hippostdpubwf:lastModificationDate: 2020-04-09T18:16:12.706+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 031ee49b-b582-4764-b4f6-da2121ddecb8
+            hippotranslation:locale: en
+            visitscotland:subtitle: ''
+            visitscotland:tipsTitle: Edinburgh Castle - Sample Pullout Title
+            visitscotland:title: Edinburgh castle
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Edinburgh castle is a really nice attraction and
+                this is an example for description</p>
+            /visitscotland:tips:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '245821'
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /edinburgh-castle[3]:
+            jcr:primaryType: visitscotland:Stop
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: e10310a1-8c67-47e0-9b5b-8bc049f3bf3d
+            hippo:availability: [live]
+            hippostd:state: published
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
+            hippostdpubwf:lastModificationDate: 2020-04-09T18:16:12.706+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippostdpubwf:publicationDate: 2020-04-09T18:16:15.079+01:00
+            hippotranslation:id: 031ee49b-b582-4764-b4f6-da2121ddecb8
+            hippotranslation:locale: en
+            visitscotland:subtitle: ''
+            visitscotland:tipsTitle: Edinburgh Castle - Sample Pullout Title
+            visitscotland:title: Edinburgh castle
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Edinburgh castle is a really nice attraction and
+                this is an example for description</p>
+            /visitscotland:tips:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '245821'
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: 8146bf76-128d-410d-ab6d-c68e3fe389e1
@@ -9539,10 +9278,12 @@
             hippo:name: Outer Hebrides - Vegetarian
             /outer-hebrides-veggie[1]:
               jcr:primaryType: visitscotland:SharedLink
-              jcr:mixinTypes: ['mix:versionable']
-              jcr:uuid: 9af1f064-4922-4a3f-9cad-38a0d7938b8c
-              hippo:availability: [preview]
-              hippostd:state: unpublished
+              jcr:mixinTypes: ['mix:referenceable']
+              jcr:uuid: b9cca612-aa5e-4826-ac6e-5399f1544203
+              hippo:availability: []
+              hippostd:retainable: false
+              hippostd:state: draft
+              hippostd:transferable: false
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
               hippostdpubwf:lastModificationDate: 2020-07-10T14:19:34.982+01:00
@@ -10734,16 +10475,17 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: f829b041-1108-4836-b95a-77f23a4d2a05
         hippo:name: How do I climb Ben Nevis safely
-        hippo:versionHistory: 199d7731-10e1-4fbc-aa4e-337d24714904
+        hippo:versionHistory: 5ead9beb-9c97-49cb-ae48-ad6a897d0d05
         /how-do-i-climb-ben-nevis-safely[1]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 54a21331-8c54-4985-8154-982099a6d826
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T15:08:19.202Z
+          hippostdpubwf:lastModificationDate: 2021-04-15T16:42:17.045+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
@@ -10767,7 +10509,9 @@
                 <h5>How do I climb Ben Nevis safely?</h5>
 
                 <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
+                 <li>
+                 <h5>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</h5>
+                 </li>
                  <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
                  <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
                  <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
@@ -10804,10 +10548,11 @@
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
           jcr:uuid: b466be74-ddc9-49f4-ae3c-a0ca3360188a
           hippo:availability: [preview]
+          hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T15:08:19.165Z
+          hippostdpubwf:lastModificationDate: 2021-04-15T16:42:26.637+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
@@ -10831,7 +10576,9 @@
                 <h5>How do I climb Ben Nevis safely?</h5>
 
                 <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
+                 <li>
+                 <h5>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</h5>
+                 </li>
                  <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
                  <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
                  <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
@@ -10868,12 +10615,13 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 1c9b0df9-8f7a-48b3-93ab-2032d20ecda7
           hippo:availability: [live]
+          hippostd:retainable: false
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T15:08:19.165Z
+          hippostdpubwf:lastModificationDate: 2021-04-15T16:42:26.637+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T16:36:23.438Z
+          hippostdpubwf:publicationDate: 2021-04-15T16:42:28.644+01:00
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
           visitscotland:anchor: introduction
@@ -10896,7 +10644,9 @@
                 <h5>How do I climb Ben Nevis safely?</h5>
 
                 <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
+                 <li>
+                 <h5>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</h5>
+                 </li>
                  <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
                  <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
                  <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
