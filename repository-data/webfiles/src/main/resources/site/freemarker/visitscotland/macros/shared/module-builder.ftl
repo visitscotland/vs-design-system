@@ -5,6 +5,7 @@
 <#include "../modules/long-copy/long-copy.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
+<#include "theme-calculator.ftl">
 <#include "../modules/otyml/otyml.ftl">
 
 <#-- Implicit Request Objects -->
@@ -17,12 +18,11 @@
 
 <#-- @ftlvariable name="hero" type="com.visitscotland.brxm.hippobeans.Image" -->
 
-<#macro moduleBuilder module theme>
-    <#if theme="theme1">
-        <#assign themeName = "dark">
-    <#elseif theme="theme2">
-        <#assign themeName = "light">
-    </#if>
+<#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.megalinks.LinksModule" -->
+
+<#macro moduleBuilder module colourScheme=[]>
+
+    <#assign themeName = themeCalculator(module.themeIndex, colourScheme)>
 
     <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
         <#assign moduleType = "megalinks">
@@ -35,7 +35,7 @@
             <@hst.manageContent hippobean=module.hippoBean />
         </#if>
         <#if moduleType == "megalinks">
-            <#-- all Megalinks modules -->
+            <#-- all Megalinks modules except HorizontalListLinksModule -->
             <@megalinks item=module type=module.getType() theme=themeName />
 
         <#elseif moduleType == "HorizontalListLinksModule">
