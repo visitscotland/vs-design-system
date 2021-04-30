@@ -1,16 +1,31 @@
 <template>
-    <VsCol
-        class="article"
+    <article
+        class="vs-article"
         data-test="vs-article"
-        :tag="tag"
         v-bind="$attrs"
     >
-        <slot />
-    </VsCol>
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="12"
+                    lg="10"
+                    offset="0"
+                    offset-lg="1"
+                >
+                    <div class="vs-article__wrapper">
+                        <slot name="vsArticleImg" />
+                        <slot />
+                    </div>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
+    </article>
 </template>
 
 <script>
-import { VsCol } from '@components/elements/layout';
+import {
+    VsCol, VsRow, VsContainer,
+} from '@components/elements/layout';
 
 /**
  * The Article component is a wrapper for article content, generally wrapped in content sections
@@ -23,57 +38,95 @@ export default {
     release: '0.0.1',
     components: {
         VsCol,
+        VsRow,
+        VsContainer,
     },
     props: {
-        /**
-         * The html element name used for the component
-         */
-        tag: {
-            type: String,
-            default: 'article',
-        },
     },
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.vs-article {
+    &__wrapper{
+        border: 1px solid $color-gray-tint-5;
+    }
+}
+</style>
 
 <docs>
   ```jsx
 
-<VsContainer>
-    <VsRow>
-        <VsArticle md="12" xl="8" >
-            <VsContentSection title="First section" lead>
-                <p>This is the lead section of the article. </p>
-                <p>This article has breakpoint-specific column widths,
-                meaning it's width is dynamic according to the xs, sm, md,
-                lg, xl and xxl attributes applied to it and the browser width.</p>
-            </VsContentSection>
-            <VsContentSection title="Second section">
-                <p>This is the second section of the article.</p>
+<VsPageIntro background="light" :heroIntro="false" :isItinerary="false">
+    <template slot="vsIntroBreadcrumb">
+        <VsBreadcrumb>
+            <VsBreadcrumbItem
+            v-for="(item, index) in breadcrumb.breadcrumb"
+            :key="index"
+            :href="item.href"
+            :active="item.active"
+            :text="item.name"
+            >
+            </VsBreadcrumbItem>
+        </VsBreadcrumb>
+    </template>
+    <template slot="vsIntroHeading">
+        Ben Nevis Scotland's Tallest Peak
+    </template>
 
-                <p>Theme whimsical whimsical colorful simple organized
-                darn cute, fun adventure simple organized. Traveler wanderlust modern
-                blogger fun, website wanderlust theme design fun. Design darn colorful
-                whimsical traveling wanderlust whimsical traveler clean, colorful
-                website pretty excursion simple.</p>
+    <template slot="vsIntroContent">
+        <div v-html="itineraries.sampleItinerary.introduction" />
+    </template>
+</VsPageIntro>
 
-                <p>Travel Travel wanderlust adventure colorful traveling modern Travel expedition.
-                Theme Travel expedition expedition cute traveler expedition. Excursion
-                traveling traveling travelblogger darn clean fun. Adventure website pretty
-                WordPress design, design whimsical webdesign expedition whimsical. Design
-                traveling darn website simple website pretty traveler.</p>
-            </VsContentSection>
-        </VsArticle>
+<VsArticle>
+    <template slot="vsArticleImg">
+        <VsImageWithCaption
+            v-for="(item, index) in imageWithCaption.imageExamples.fullwidth"
+            :altText="item.altText"
+            :closedDefaultCaption="item.isSmall"
+            :image-src="item.imageSrc"
+            :key="`fullwidth1-${index}`"
+            variant="fullwidth"
+        >
+            <VsImg
+                class="lazyload"
+                :src="item.imageSrc"
+                :data-srcset="item.imageSrc"
+                :alt="item.altText"
+                data-sizes="auto">
+            </VsImg>
 
-        <VsSidebar>
-            <VsContentSection tag="aside" heading="Aside section title">
-                Sidebar/aside content section
-            </VsContentSection>
-        </VsSidebar>
-    </VsRow>
-</VsContainer>
+            <span slot="caption" v-if="item.caption">
+                {{ item.caption }}
+            </span>
+
+            <span slot="credit" v-if="item.credit">
+                &copy; {{ item.credit }}
+            </span>
+        </VsImageWithCaption>
+    </template>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris orci eros,
+        malesuada vitae tempor in, venenatis. Aliquam erat volutpat. Morbi placerat
+        fringilla nibh sed scelerisque. Etiam lacinia dolor porta sollicitudin.
+        Duis nec nunc suscipit, sagittis turpis et, bibendum arcu.
+    </p>
+
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris orci eros,
+        malesuada vitae tempor in, venenatis. Aliquam erat volutpat. Morbi placerat
+        fringilla nibh sed scelerisque. Etiam lacinia dolor porta sollicitudin.
+        Duis nec nunc suscipit, sagittis turpis et, bibendum arcu.
+    </p>
+
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris orci eros,
+        malesuada vitae tempor in, venenatis. Aliquam erat volutpat. Morbi placerat
+        fringilla nibh sed scelerisque. Etiam lacinia dolor porta sollicitudin.
+        Duis nec nunc suscipit, sagittis turpis et, bibendum arcu.
+    </p>
+</VsArticle>
 
   ```
 </docs>
