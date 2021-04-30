@@ -31,4 +31,8 @@ public class General extends Page {
         return getSingleProperty("visitscotland:translation");
     }
 
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
+    public String getTranslationPriority() {
+        return getSingleProperty("visitscotland:translationPriority");
+    }
 }

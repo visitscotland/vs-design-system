@@ -27,6 +27,14 @@
 
   <dependencies>
     <dependency>
+      <artifactId>hippo-addon-reporting-dashboard-frontend</artifactId>
+      <groupId>com.onehippo.cms7</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>hippo-addon-reporting-dashboard-repository</artifactId>
+      <groupId>com.onehippo.cms7</groupId>
+    </dependency>
+    <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>visitscotland-cms-dependencies</artifactId>
       <version>${project.version}</version>
