@@ -17,7 +17,7 @@ public class General extends Page {
                 "visitscotland:TourismInformation",
                 "visitscotland:LongContent",
                 "visitscotland:LongCopy",
-                "visitscotland:Article"};
+                "visitscotland:Article" };
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
@@ -30,4 +30,8 @@ public class General extends Page {
         return getSingleProperty("visitscotland:translation");
     }
 
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
+    public String getTranslationPriority() {
+        return getSingleProperty("visitscotland:translationPriority");
+    }
 }
