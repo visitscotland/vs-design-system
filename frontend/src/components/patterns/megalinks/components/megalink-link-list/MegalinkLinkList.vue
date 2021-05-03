@@ -118,7 +118,7 @@ export default {
             border: none;
             height: 100%;
             background: transparent;
-            transition: box-shadow $duration-slowly;
+            transition: box-shadow 800ms;
 
             &:hover {
                 box-shadow: 10px 10px 20px $color-gray-tint-4;
