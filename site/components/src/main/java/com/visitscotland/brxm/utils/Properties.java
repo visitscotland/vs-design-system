@@ -15,6 +15,8 @@ public class Properties {
 
     private static final Logger logger = LoggerFactory.getLogger(Properties.class.getName());
 
+    static final String BUNDLE_ID = "config.cms";
+
     public static final String INSTAGRAM_API = "instagram.api";
     public static final String INSTAGRAM_TOKEN ="instagram.accesstoken";
     public static final String INSTAGRAM_URL ="instagram.post-url";
@@ -28,7 +30,6 @@ public class Properties {
     public static final String DMS_DATA_TIMEOUT = "dms-data.timeout";
     public static final String DMS_DATA_TRIES = "dms-data.tries";
     public static final String DMS_DATA_SLEEP_TIME = "dms-data.sleep-time";
-    private static final String CONFIGURATION = "config.cms";
 
     private final ResourceBundleService bundle;
 
@@ -84,9 +85,8 @@ public class Properties {
         return readInteger(DMS_DATA_SLEEP_TIME);
     }
 
-    //TODO Test
     public Charset getDmsEncoding() {
-        String value = bundle.getResourceBundle(CONFIGURATION, DMS_DATA_ENCODING, Locale.UK);
+        String value = bundle.getResourceBundle(BUNDLE_ID, DMS_DATA_ENCODING, Locale.UK);
         try{
             if (!Contract.isEmpty(value)) {
                 return Charset.forName(value);
@@ -97,14 +97,13 @@ public class Properties {
         return StandardCharsets.UTF_8;
     }
 
-    //TODO Test
     private String readString(String key){
-        String value = bundle.getResourceBundle(CONFIGURATION, key, Locale.UK);
+        String value = bundle.getResourceBundle(BUNDLE_ID, key, Locale.UK);
 
         if (Contract.isEmpty(value)) {
-            logger.warn("The property {} hasn't been set in the resourceBundle {}", key, CONFIGURATION);
+            logger.warn("The property {} hasn't been set in the resourceBundle {}", key, BUNDLE_ID);
         } else if (value.startsWith("$")){
-            String env = System.getenv(value.substring(1));
+            String env = getEnvironmentVariable(value.substring(1));
             if (env != null){
                 return env;
             }
@@ -115,12 +114,16 @@ public class Properties {
         return "";
     }
 
-    //TODO test
     private Integer readInteger(String key){
-        String value = bundle.getResourceBundle(CONFIGURATION, key, Locale.UK);
+        String value = bundle.getResourceBundle(BUNDLE_ID, key, Locale.UK);
         try {
             if (Contract.isEmpty(value)){
-                logger.warn("The property {} hasn't been set in the resourceBundle {}", key, CONFIGURATION);
+                logger.warn("The property {} hasn't been set in the resourceBundle {}", key, BUNDLE_ID);
+            } else if (value.startsWith("$")){
+                String env = getEnvironmentVariable(value.substring(1));
+                if (env != null){
+                    return Integer.valueOf(env);
+                }
             } else {
                 return Integer.valueOf(value);
             }
@@ -128,5 +131,13 @@ public class Properties {
             logger.error("The property value of the property {} cannot be casted to Integer. '{}' is not allowed.", key,value);
         }
         return 0;
+    }
+
+    String getEnvironmentVariable(String name){
+        try {
+            return System.getenv(name);
+        } catch (RuntimeException e){
+            return null;
+        }
     }
 }
