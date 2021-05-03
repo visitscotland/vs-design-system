@@ -56,7 +56,7 @@ export default {
     left: 50%;
     transform: translate(-50%);
     top: 0;
-    transition: background-color $duration-base;
+    transition: background-color 250ms;
     z-index: $zindex-fixed;
 
     &:focus {
