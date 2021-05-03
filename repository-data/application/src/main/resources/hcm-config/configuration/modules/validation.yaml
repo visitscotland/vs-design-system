@@ -43,6 +43,10 @@ definitions:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator
       maxLength: '250'
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:extraextralong-string-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator
+      maxLength: '375'
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:seotitle-string-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator

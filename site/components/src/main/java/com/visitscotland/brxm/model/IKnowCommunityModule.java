@@ -1,8 +1,10 @@
 package com.visitscotland.brxm.model;
 
+import com.visitscotland.brxm.hippobeans.IknowCommunity;
+
 import java.util.List;
 
-public class IKnowCommunityModule extends Module {
+public class IKnowCommunityModule extends Module<IknowCommunity> {
 
     private String title;
     private String copy;
