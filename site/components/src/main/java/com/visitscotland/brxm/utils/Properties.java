@@ -20,13 +20,14 @@ public class Properties {
     public static final String INSTAGRAM_URL ="instagram.post-url";
     public static final String LOCALHOST = "localhost";
     public static final String HELPDESK_EMAIL = "helpdesk-email";
-    public static final String DMS_HOST = "dms.host";
-    public static final String DMS_ENCODING = "dms.encoding";
-    public static final String DMS_TOKEN = "dms.token";
-    public static final String DMS_TIMEOUT = "dms.timeout";
-    public static final String DMS_TRIES = "dms.tries";
-    public static final String DMS_SLEEP_TIME = "dms.sleep-time";
+    public static final String DMS_HOST = "vs-dms-products.url";
     public static final String DMS_MAP_DEFAULT_DISTANCE = "dms.default-distance";
+    public static final String DMS_DATA_HOST = "dms-data.url";
+    public static final String DMS_DATA_ENCODING = "dms-data.encoding";
+    public static final String DMS_DATA_API_KEY = "dms-data.api-key";
+    public static final String DMS_DATA_TIMEOUT = "dms-data.timeout";
+    public static final String DMS_DATA_TRIES = "dms-data.tries";
+    public static final String DMS_DATA_SLEEP_TIME = "dms-data.sleep-time";
     private static final String CONFIGURATION = "config.cms";
 
     private final ResourceBundleService bundle;
@@ -59,37 +60,39 @@ public class Properties {
         return readString(DMS_HOST);
     }
 
+    public String getDmsDataHost() {
+        return readString(DMS_DATA_HOST);
+    }
+
     public String getDmsMapDefaultDistance() {
         return readString(DMS_MAP_DEFAULT_DISTANCE);
     }
 
-
-
     public String getDmsToken() {
-        return readString(DMS_TOKEN);
+        return readString(DMS_DATA_API_KEY);
     }
 
     public Integer getDmsTimeout() {
-        return readInteger(DMS_TIMEOUT);
+        return readInteger(DMS_DATA_TIMEOUT);
     }
 
     public Integer getDmsTries() {
-        return readInteger(DMS_TRIES);
+        return readInteger(DMS_DATA_TRIES);
     }
 
     public Integer getDmsWaitTime() {
-        return readInteger(DMS_SLEEP_TIME);
+        return readInteger(DMS_DATA_SLEEP_TIME);
     }
 
     //TODO Test
     public Charset getDmsEncoding() {
-        String value = bundle.getResourceBundle(CONFIGURATION, DMS_ENCODING, Locale.UK);
+        String value = bundle.getResourceBundle(CONFIGURATION, DMS_DATA_ENCODING, Locale.UK);
         try{
             if (!Contract.isEmpty(value)) {
                 return Charset.forName(value);
             }
         } catch (Exception e){
-            logger.warn("{} is not a valid value for the property {}", value, DMS_ENCODING);
+            logger.warn("{} is not a valid value for the property {}", value, DMS_DATA_ENCODING);
         }
         return StandardCharsets.UTF_8;
     }
