@@ -1,15 +1,14 @@
 package com.visitscotland.brxm.utils;
 
 import com.visitscotland.brxm.components.content.GeneralContentComponent;
+import com.visitscotland.brxm.factory.*;
 import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.model.ICentreModule;
 import com.visitscotland.brxm.model.IKnowModule;
 import com.visitscotland.brxm.model.LongCopyModule;
 import com.visitscotland.brxm.model.Module;
-import com.visitscotland.brxm.model.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.model.megalinks.LinksModule;
 import com.visitscotland.brxm.model.megalinks.SingleImageLinksModule;
-import com.visitscotland.brxm.factory.*;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -86,7 +85,6 @@ public class PageTemplateBuilder {
             }
         }
 
-        addOTYMLModule(request, page.modules);
         setIntroTheme(request, page.modules);
 
         request.setAttribute(PAGE_ITEMS, page.modules);
@@ -144,19 +142,6 @@ public class PageTemplateBuilder {
         iKnowModule.setHippoBean(touristInfo);
 
         page.modules.add(iKnowModule);
-    }
-
-    /**
-     * Adds the a OTYML (Other Things You Might Like) module at the end of the list
-     * @param request
-     * @param modules
-     */
-    private void addOTYMLModule(HstRequest request, List<Module> modules){
-        OTYML otyml = getDocument(request).getOtherThings();
-        if(otyml!=null) {
-            HorizontalListLinksModule al = linksFactory.horizontalListLayout(otyml, request.getLocale());
-            modules.add(al);
-        }
     }
 
     /**
