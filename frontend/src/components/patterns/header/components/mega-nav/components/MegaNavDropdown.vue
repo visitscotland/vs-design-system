@@ -201,7 +201,7 @@ export default {
                 width: 0;
                 height: 4px;
                 background: $color-pink;
-                transition: width $duration-base linear;
+                transition: width 0.2s linear;
                 border: 0;
                 margin: 0;
             }
@@ -277,7 +277,7 @@ export default {
                 width: 100%;
                 height: 4px;
                 background: $color-base-text;
-                transition: width $duration-base linear;
+                transition: width 0.2s linear;
                 border: 0;
                 margin: 0;
             }
