@@ -14,7 +14,7 @@
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/shared/module-builder.ftl">
-<#include "../macros/modules/otyml/otyml.ftl">
+<#include "../macros/modules/horizontal-list/horizontal-list.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
 
 <#-- Implicit Request Objects -->
@@ -53,16 +53,17 @@
                         </template>
                     </#if>
 
-                    <vs-rich-text-wrapper variant="lead">
-                        <@hst.html hippohtml=document.listicleClosing.copy/>
-                    </vs-rich-text-wrapper>
-                </vs-panel>
-            </vs-col>
-        </vs-row>
+                            <vs-rich-text-wrapper variant="lead">
+                                <@hst.html hippohtml=document.listicleClosing.copy/>
+                            </vs-rich-text-wrapper>
+                        </vs-panel>
+                    </vs-col>
+                </vs-row>
+        </#if>
+
+    <#if otyml??>
+        <@horizontalList otyml />
     </#if>
 
-    <!-- commented out to prevent stack trace errors - needs fixing -->
-    <#--  <#if otyml??>
-        <@moduleBuilder module />
-    </#if>  -->
+	</vs-container>
 </div>
