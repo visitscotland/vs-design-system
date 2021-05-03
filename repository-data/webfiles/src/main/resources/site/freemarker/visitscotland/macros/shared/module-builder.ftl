@@ -7,7 +7,7 @@
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 <#include "theme-calculator.ftl">
-<#include "../modules/otyml/otyml.ftl">
+<#include "../modules/horizontal-list/horizontal-list.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
@@ -40,7 +40,7 @@
             <@megalinks item=module type=module.getType() theme=themeName />
 
         <#elseif moduleType == "HorizontalListLinksModule">
-            <@otyml module/>
+            <@horizontalList module/>
 
         <#elseif moduleType == "ICentreModule">
             <@icentre module/>
