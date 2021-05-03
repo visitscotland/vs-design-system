@@ -58,7 +58,7 @@ export default {
 .vs-form-input {
   &.form-control {
     border-color: $color-gray-tint-1;
-    transition: box-shadow $duration-base;
+    transition: box-shadow 250ms ease;
 
     &:focus {
       border-color: $color-gray-tint-1;

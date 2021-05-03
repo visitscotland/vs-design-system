@@ -132,7 +132,7 @@ export default {
 
 <style lang="scss">
     .card.vs-stretched-link-card {
-        transition: box-shadow $duration-slowly;
+        transition: box-shadow 800ms;
         border: none;
         position: relative;
 
