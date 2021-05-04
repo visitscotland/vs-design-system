@@ -175,10 +175,6 @@ export default {
         }
     }
 }
-
-.theme-grey {
-    background-color: $theme-grey;
-}
 </style>
 
 <docs>
