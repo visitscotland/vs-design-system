@@ -39,6 +39,9 @@
             <!-- @slot The description content for the stop -->
             <slot name="stop-description" />
 
+            <!-- @slot The tips content for the stop -->
+            <slot name="stop-tips" />
+
             <div class="vs-itinerary-stop__details-container">
                 <div
                     class="vs-itinerary-stop__address"
@@ -49,80 +52,23 @@
                     <slot name="stop-address" />
                 </div>
 
-                <!-- @slot The tips content for the stop -->
-                <slot name="stop-tips" />
-
-                <div
-                    class="vs-itinerary-stop__info"
-                >
-                    <VsIcon
-                        name="information"
-                        class="vs-address__map-marker mr-2"
-                    />
-                    <div>
-                        <p
-                            v-if="openingMessage !== 'none'"
-                            class="vs-itinerary-stop__times"
-                            data-test="vs-itinerary-stop-times"
-                        >
-                            <template v-if="openingMessage === 'closed'">
-                                <!-- @slot The text if the stop is closed -->
-                                <slot name="stop-closed" />
-                            </template>
-                            <template v-else-if="openingMessage === 'open'">
-                                <!-- @slot The text if the stop is open -->
-                                <slot name="stop-open" />
-                            </template>
-                            <template v-else-if="openingMessage === 'closing soon'">
-                                <!-- @slot The text if the stop is closing soon -->
-                                <slot name="stop-closing-soon" />
-                            </template>
-                            <br>
-                        </p>
-
-                        <p
-                            v-if="!!this.$slots['stop-opening-text']"
-                            data-test="vs-itinerary-stop-opening"
-                        >
-                            <!-- @slot The info content for the stop -->
-                            <slot name="stop-opening-text" />
-                        </p>
-
-                        <p
-                            v-if="!!this.$slots['stop-link-text'] && openingTimesLink !== null"
-                            data-test="vs-stop-link"
-                        >
-                            <VsLink :href="openingTimesLink">
-                                <!-- @slot The link to opening time details -->
-                                <slot name="stop-link-text" />
-                            </VsLink>
-                        </p>
-
-                        <p
-                            v-if="!!this.$slots['stop-charge-text']"
-                            data-test="vs-stop-charge-text"
-                        >
-                            <slot name="stop-charge-text" />
-                        </p>
-                    </div>
-                </div>
+                <!-- @slot The opening hours components for the stop -->
+                <slot name="stop-info" />
             </div>
 
             <!-- @slot The facilities content for the stop -->
             <slot name="stop-facilities" />
-
-            <template v-if="!!this.$slots['stop-button']">
-                <!-- @slot The button content for the stop -->
-                <slot name="stop-button" />
-            </template>
         </div>
+        <template v-if="!!this.$slots['stop-buttons']">
+            <!-- @slot The button content for the stop -->
+            <slot name="stop-buttons" />
+        </template>
     </li>
 </template>
 
 <script>
 import VsIcon from '@components/elements/icon/Icon';
 import VsHeading from '@components/elements/heading/Heading';
-import VsLink from '@components/elements/link/Link';
 
 /**
  * Itinerary Day list items.
@@ -137,7 +83,6 @@ export default {
     components: {
         VsHeading,
         VsIcon,
-        VsLink,
     },
     props: {
         /**
@@ -161,174 +106,7 @@ export default {
             type: String,
             required: true,
         },
-        /**
-        * Opening time of stop
-        */
-        openingTime: {
-            type: String,
-            required: false,
-            default: null,
-        },
-        /**
-        * Closing time of stop
-        */
-        closingTime: {
-            type: String,
-            required: false,
-            default: null,
-        },
-        /**
-        * URL for full opening times details
-        */
-        openingTimesLink: {
-            type: String,
-            required: false,
-            default: null,
-        },
-        /**
-        * Day of week provided by server
-        * used to ensure that days match
-        * so there's not confusion between
-        * time zones
-        */
-        dayName: {
-            type: String,
-            required: true,
-        },
 
-    },
-    data() {
-        return {
-            openingMessage: '',
-            currentTime: {
-            },
-        };
-    },
-    mounted() {
-        this.getCurrentTime();
-        this.compareTimes(this.currentTime, this.openingTime, this.closingTime);
-    },
-    methods: {
-        getCurrentTime() {
-            // refactor to UTC (with daylight saving)
-            const date = new Date();
-            const hours = date.getHours();
-            const minutes = date.getMinutes();
-            const day = date.getDay();
-
-            this.currentTime.hours = hours;
-            this.currentTime.minutes = minutes;
-            this.currentTime.day = day;
-        },
-        compareTimes(currentTime, startTime, endTime) {
-            // get current day to compare with
-            const currentDay = this.returnDayName(currentTime.day);
-
-            // split out start and end time into hours and minutes and
-            // establish whether they're AM or PM
-            let startTimeHours = parseInt(startTime.substring(0, startTime.indexOf(':')), 10);
-            const startTimeMins = parseInt(startTime.substring(startTime.indexOf(':') + 1, startTime.length - 2), 10);
-            const startTimeAMPM = this.determineAMPM(startTime);
-
-            let endTimeHours = parseInt(endTime.substring(0, endTime.indexOf(':')), 10);
-            const endTimeMins = parseInt(endTime.substring(endTime.indexOf(':') + 1, endTime.length - 2), 10);
-            const endTimeAMPM = this.determineAMPM(endTime);
-
-            // adjust time for 24 clock if not done already
-            if (startTimeAMPM === 'PM' && startTimeHours < 13) {
-                startTimeHours += 12;
-            }
-
-            if (endTimeAMPM === 'PM' && endTimeHours < 13) {
-                endTimeHours += 12;
-            }
-
-            const closingSoonTime = this.calculateClosingSoon(endTimeHours, endTimeMins);
-
-            // work out what type of message should show
-            if (currentDay !== this.dayName) {
-                this.openingMessage = 'none';
-            } else if (startTimeHours > currentTime.hours
-                || (startTimeHours === currentTime.hours && startTimeMins > currentTime.minutes)
-                || endTimeHours < currentTime.hours
-                || (endTimeHours === currentTime.hours && endTimeMins < currentTime.minutes)) {
-                this.openingMessage = 'closed';
-            } else if (this.withinClosingSoonTime(currentTime, closingSoonTime)) {
-                this.openingMessage = 'closing soon';
-            } else {
-                this.openingMessage = 'open';
-            }
-        },
-        returnDayName(day) {
-            // change day from an integer to a name to match against day name supplied by CMS
-            let text = '';
-
-            switch (day) {
-            case 1:
-                text = 'Monday';
-                break;
-            case 2:
-                text = 'Tuesday';
-                break;
-            case 3:
-                text = 'Wednesday';
-                break;
-            case 4:
-                text = 'Thursday';
-                break;
-            case 5:
-                text = 'Friday';
-                break;
-            case 6:
-                text = 'Saturday';
-                break;
-            case 7:
-                text = 'Sunday';
-                break;
-            default:
-                text = '';
-            };
-
-            return text;
-        },
-        calculateClosingSoon(endTimeHours, endTimeMinutes) {
-            // calculate 30 minutes before the end time so we can display 'closing soon'
-            // if the current time is within that
-            let closingSoonHours;
-            let closingSoonMinutes;
-            if (endTimeMinutes < 30) {
-                closingSoonHours = endTimeHours - 1;
-                closingSoonMinutes = 60 + (endTimeMinutes - 30);
-            } else {
-                closingSoonHours = endTimeHours;
-                closingSoonMinutes = endTimeMinutes - 30;
-            }
-
-            return {
-                hours: closingSoonHours,
-                mins: closingSoonMinutes,
-            };
-        },
-        withinClosingSoonTime(currentTime, closingSoonTime) {
-            // compare current time against closing soon time
-            if (closingSoonTime.hours > currentTime.hours
-                || (closingSoonTime.hours === currentTime.hours
-                    && closingSoonTime.mins > currentTime.minutes)
-            ) {
-                return false;
-            }
-
-            return true;
-        },
-        determineAMPM(time) {
-            let AMPM;
-
-            if (time.includes('AM') || time.includes('PM')) {
-                AMPM = time.includes('AM') ? 'AM' : 'PM';
-            }
-
-            return AMPM;
-        },
     },
 };
 </script>
@@ -405,11 +183,6 @@ export default {
         @include media-breakpoint-up(md) {
             padding: $spacer-6 0;
         }
-        display: flex;
-    }
-
-    &__times {
-        margin-bottom: 0;
     }
 }
 </style>
@@ -426,41 +199,38 @@ export default {
                         :stopNumber="stop.stopCount"
                         stopLabel="Stop"
                         :stopTitle="stop.title"
-                        :openingTime="stop.opening"
-                        :closingTime="stop.closing"
-                        dayName="Thursday"
-                        openingTimesLink="https://www.visitscotland.com"
                     >
+                        <template slot="stop-image">
+                            <VsImageWithCaption
+                                slot="stop-image"
+                                :altText="stop.image.altText"
+                                :image-src="stop.image.imageSrc"
+                                variant="fullwidth"
+                            >
+                                <VsImg
+                                    class="lazyload"
+                                    :src="stop.image.imageSrc"
+                                    :data-srcset="stop.image.imageSrc"
+                                    :alt="stop.image.altText"
+                                    data-sizes="auto">
+                                </VsImg>
 
-                        <VsImageWithCaption
-                            slot="stop-image"
-                            :altText="stop.image.altText"
-                            :image-src="stop.image.imageSrc"
-                            variant="fullwidth"
-                        >
-                            <VsImg
-                                class="lazyload"
-                                :src="stop.image.imageSrc"
-                                :data-srcset="stop.image.imageSrc"
-                                :alt="stop.image.altText"
-                                data-sizes="auto">
-                            </VsImg>
+                                <VsSvg
+                                    slot="toggle-icon"
+                                    path="info-toggle"
+                                    height="24"
+                                    width="24"
+                                />
 
-                            <VsSvg
-                                slot="toggle-icon"
-                                path="info-toggle"
-                                height="24"
-                                width="24"
-                            />
+                                <span slot="caption">
+                                    {{ stop.image.caption }}
+                                </span>
 
-                            <span slot="caption">
-                                {{ stop.image.caption }}
-                            </span>
-
-                            <span slot="credit">
-                                &copy; {{ stop.image.credit }}
-                            </span>
-                        </VsImageWithCaption>
+                                <span slot="credit">
+                                    &copy; {{ stop.image.credit }}
+                                </span>
+                            </VsImageWithCaption>
+                        </template>
                         <div v-html="stop.description" slot="stop-description"></div>
                         <VsLink href="stop.href">
                             Find out more
@@ -473,11 +243,13 @@ export default {
                                 {{stop.timeToExplore}}
                             </VsDescriptionListItem>
                         </VsDescriptionList>
-                        <VsItineraryTips v-if="stop.tips.tipsBody.length
-                            || stop.tips.tipsTitle.length">
-                            <div slot="stop-tips">
-                            <strong>{{stop.tips.tipsTitle}}</strong>
-                            <div v-html="stop.tips.tipsBody"></div>
+                        <VsItineraryTips
+                            v-if="stop.tips.tipsTitle.length > 0 && stop.tips.tipsBody.length > 0"
+                            slot="stop-tips"
+                        >
+                            <div slot="text">
+                                <strong>{{stop.tips.tipsTitle}}</strong>
+                                <div v-html="stop.tips.tipsBody"></div>
                             </div>
                             <VsSvg slot="svg" path="highland-cow" />
                         </VsItineraryTips>
@@ -495,35 +267,29 @@ export default {
                             </VsAddress>
                         </template>
 
-                        <template
-                            v-if="stop.info"
+                        <VsItineraryStopInfo
+                            :openingHours="itineraries.sampleItinerary.openingHours"
+                            openingTimesLink="https://www.visitscotland.com"
+                            closedText="Closed"
+                            closingSoonText="Closing soon"
+                            openText="Open"
+                            hoursLinkUrl="https://www.visitscotland.com"
+                            usualText="Usually"
+                            provisionalText="Provisionally"
                             slot="stop-info"
                         >
-                            {{ stop.info }}
-                        </template>
-                        <template slot="stop-closed">
-                            Closed
-                        </template>
+                            <template slot="stop-to">
+                                to
+                            </template>
 
-                        <template slot="stop-open">
-                            Open now
-                        </template>
+                            <template slot="stop-link-text">
+                                Check opening times
+                            </template>
 
-                        <template slot="stop-closing-soon">
-                            Closing soon
-                        </template>
-
-                        <template slot="stop-opening-text">
-                            Usually open
-                        </template>
-
-                        <template slot="stop-link-text">
-                            Check opening times
-                        </template>
-
-                        <template slot="stop-charge-text">
-                            Admission charge
-                        </template>
+                            <template slot="stop-charge-text">
+                                Admission charge
+                            </template>
+                        </VsItineraryStopInfo>
 
                         <VsIconList
                             v-if="stop.facilities.length"
@@ -539,7 +305,7 @@ export default {
                         </VsIconList>
                         <!-- mimic only showing these links on the last stop of the day -->
                         <VsItineraryBorderOverlapWrapper
-                            slot="nearby-links"
+                            slot="stop-buttons"
                             v-if="index == itineraries.sampleItinerary.days[0].stops.length - 1"
                         >
                             <VsButton
