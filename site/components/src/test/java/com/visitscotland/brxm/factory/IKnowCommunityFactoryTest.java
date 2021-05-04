@@ -124,7 +124,7 @@ class IKnowCommunityFactoryTest {
     @DisplayName("Community link added to module")
     @Test
     void communityLink() {
-        when(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.url", Locale.UK))
+        when(properties.getIknowCommunityUrl())
                 .thenReturn("url");
         when(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.label", Locale.UK))
                 .thenReturn("label");

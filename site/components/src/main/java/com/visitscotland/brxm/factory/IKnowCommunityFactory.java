@@ -52,7 +52,7 @@ public class IKnowCommunityFactory {
         }
 
         iKnowCommunityModule.setLink(new FlatLink(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.label", locale),
-                bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.url", locale), LinkType.INTERNAL));
+                this.properties.getIknowCommunityUrl(), LinkType.INTERNAL));
 
         Map<String, String> tagValueMap = utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER);
         List<FlatLink> tagLinks = Arrays.stream(iknowCommunity.getTags()).map(tagKey -> {
