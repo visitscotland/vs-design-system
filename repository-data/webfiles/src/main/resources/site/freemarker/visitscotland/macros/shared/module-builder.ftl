@@ -7,6 +7,7 @@
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 <#include "theme-calculator.ftl">
 <#include "../modules/otyml/otyml.ftl">
+<#include "../../../frontend/components/vs-theme-wrapper.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
@@ -30,7 +31,11 @@
         <#assign moduleType = module.getType()>
     </#if>
 
-    <div class="has-edit-button theme-${themeName}">
+    <#if themeName?? && themeName != "" >
+        <vs-theme-wrapper class="theme-${themeName}">
+    </#if>
+
+    <div class="has-edit-button">
         <#if module.hippoBean?? >
             <@hst.manageContent hippobean=module.hippoBean />
         </#if>
@@ -54,4 +59,8 @@
             <@longCopy module/>
         </#if>
     </div>
+
+    <#if themeName?? && themeName != "" >
+        </vs-theme-wrapper>
+    </#if>
 </#macro>

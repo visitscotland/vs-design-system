@@ -16,11 +16,11 @@
 
     <#if indexOverride?has_content>
         <#return colourScheme[indexOverride]>
-    <#elseif module.themeIndex?has_content>
+    <#elseif module?? && module.themeIndex?? && module.themeIndex?has_content>
         <#return colourScheme[module.themeIndex]>
-    <#elseif module.getType() == "ICentreModule">
+    <#elseif module?? && module.getType() == "ICentreModule">
         <#return "grey">
     <#else>
-        <#return "light">
+        <#return "">
     </#if>
 </#function>

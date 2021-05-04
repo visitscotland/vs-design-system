@@ -51,6 +51,8 @@ import {
 
 /**
 * Header intro and button wrapper for module content
+*
+* @displayName Module Wrapper
 */
 export default {
     name: 'VsModuleWrapper',
