@@ -16,9 +16,9 @@
 
     <#if indexOverride?has_content>
         <#return colourScheme[indexOverride]>
-    <#elseif module?? && module.themeIndex?? && module.themeIndex?has_content>
+    <#elseif module?has_content && module.themeIndex?has_content>
         <#return colourScheme[module.themeIndex]>
-    <#elseif module?? && module.getType() == "ICentreModule">
+    <#elseif module?has_content && module.getType() == "ICentreModule">
         <#return "grey">
     <#else>
         <#return "">
