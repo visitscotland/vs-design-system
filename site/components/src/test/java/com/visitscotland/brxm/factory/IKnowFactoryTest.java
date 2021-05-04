@@ -70,10 +70,10 @@ class IKnowFactoryTest {
         when(bundle.getResourceBundle(ICentreFactory.BUNDLE_ID,"iknow.link.label", Locale.UK))
                 .thenReturn("link text");
 
-        IKnowModule module = factory.getIKnowModule(mockBuilder.build().getIKnow(), location, Locale.UK);
+        IKnowModule module = factory.getIKnowModule(mockBuilder.addIKnowDescription("").build().getIKnow(), location, Locale.UK);
 
         assertEquals("default title", module.getTitle());
-        assertEquals("default description", module.getDescription());
+        assertEquals("default description", module.getDescription().getContent());
         assertEquals("link text", module.getLink().getLabel());
 
         ArgumentCaptor<String> locationCaptor = ArgumentCaptor.forClass(String.class);
@@ -99,8 +99,8 @@ class IKnowFactoryTest {
         IKnowModule module = factory.getIKnowModule(iknow, "Edinburgh", Locale.UK);
 
         assertEquals("idunno", module.getTitle());
-        assertEquals("description", module.getDescription());
-        assertEquals(iknow.getDescription(), module.getDescription());
+        assertEquals("description", module.getDescription().getContent());
+        assertEquals(iknow.getDescription().getContent(), module.getDescription().getContent());
     }
 
 }

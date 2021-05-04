@@ -50,12 +50,12 @@ class IKnowCommunityFactoryTest {
                 .thenReturn("default copy");
         when(utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER))
                 .thenReturn(Collections.emptyMap());
-        IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().tags(Collections.emptyList()).build();
+        IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().copy("").tags(Collections.emptyList()).build();
 
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
 
         Assertions.assertEquals("default title", module.getTitle());
-        Assertions.assertEquals("default copy", module.getCopy());
+        Assertions.assertEquals("default copy", module.getCopy().getContent());
         Assertions.assertEquals(0, module.getTags().size());
     }
 
@@ -70,7 +70,7 @@ class IKnowCommunityFactoryTest {
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
 
         Assertions.assertEquals("title", module.getTitle());
-        Assertions.assertEquals("copy", module.getCopy());
+        Assertions.assertEquals("copy", module.getCopy().getContent());
         Assertions.assertEquals(0, module.getTags().size());
     }
 
@@ -88,7 +88,7 @@ class IKnowCommunityFactoryTest {
         valueMap.put("third", "Third Label");
         when(utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER)).thenReturn(valueMap);
         IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder()
-                .title("title").copy("copy").tags(Arrays.asList("first", "second")).build();
+                .title("title").emptyCopy().tags(Arrays.asList("first", "second")).build();
 
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
 
@@ -111,7 +111,7 @@ class IKnowCommunityFactoryTest {
                 .thenReturn("subdomain/");
         when(utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER)).thenReturn(Collections.emptyMap());
         IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder()
-                .title("title").copy("copy").tags(Collections.singletonList("third")).build();
+                .title("title").emptyCopy().tags(Collections.singletonList("third")).build();
 
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
 
@@ -126,9 +126,12 @@ class IKnowCommunityFactoryTest {
     void communityLink() {
         when(properties.getIknowCommunityUrl())
                 .thenReturn("url");
-        when(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.label", Locale.UK))
+        lenient().when(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.label", Locale.UK))
                 .thenReturn("label");
-        IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().copy("copy").title("title").tags(Collections.emptyList()).build();
+        lenient().when(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.copy.default", Locale.UK))
+                .thenReturn("copy default");
+
+        IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().emptyCopy().title("title").tags(Collections.emptyList()).build();
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
 
         Assertions.assertEquals("url", module.getLink().getLink());

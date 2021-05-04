@@ -2,6 +2,7 @@ package com.visitscotland.brxm.hippobeans;
 
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:IknowCommunity")
 @Node(jcrType = "visitscotland:IknowCommunity")
@@ -17,8 +18,8 @@ public class IknowCommunity extends BaseDocument {
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:copy")
-    public String getCopy() {
-        return getSingleProperty("visitscotland:copy");
+    public HippoHtml getCopy() {
+        return getHippoHtml("visitscotland:copy");
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:diff")
