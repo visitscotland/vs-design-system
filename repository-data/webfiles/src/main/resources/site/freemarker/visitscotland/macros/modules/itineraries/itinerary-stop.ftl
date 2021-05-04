@@ -114,22 +114,22 @@
             
             <#if stop.opening??>
                
-                <span slot="stop-info">                    
+                <span slot="stop-info">
                     <vs-itinerary-stop-info
                         opening-hours='${stop.opening}'
-                        opening-times-link="https://www.visitscotland.com"
-                        closed-text="Closed"
-                        closing-soon-text="Closing soon"
-                        open-text="Open"
-                        usual-text="Usually"
-                        provisional-text="Provisionally"
+                        opening-times-link="<#if stop.url?has_content>https://www.visitscotland.com/${stop.url}</#if>"
+                        closed-text='${label("itinerary", "stop.closed")}'
+                        closing-soon-text='${label("itinerary", "stop.close.soon")}'
+                        open-text='${label("itinerary", "stop.open")}'
+                        usual-text='${label("itinerary", "stop.usually")}'
+                        provisional-text='${label("itinerary", "stop.provisionally")}'
                     >
                         <template slot="stop-to">
-                            to
+                            ${label("itinerary", "stop.to")}
                         </template>
 
                         <template slot="stop-link-text">
-                            Check opening times
+                            ${label("itinerary", "stop.opening")}
                         </template>
 
                         <template slot="stop-charge-text">
@@ -172,38 +172,6 @@
                     </vs-button>
                 </vs-itinerary-border-overlap-wrapper>
             </#if>
-
-            <#-- <#if prod.openLink?? && prod.openLink.link?? && prod.openLink.link?has_content>
-                </br>OPENINGS </br>
-                <VsItineraryStopInfo
-                    :openingHours="itineraries.sampleItinerary.openingHours"
-                    openingTimesLink="https://www.visitscotland.com"
-                    closedText="Closed"
-                    closingSoonText="Closing soon"
-                    openText="Open"
-                    hoursLinkUrl="https://www.visitscotland.com"
-                    usualText="Usually"
-                    provisionalText="Provisionally"
-                    slot="stop-info"
-                >
-                    <template slot="stop-to">
-                        to
-                    </template>
-
-                    <template slot="stop-link-text">
-                        Check opening times
-                    </template>
-
-                    <template slot="stop-charge-text">
-                        Admission charge
-                    </template>
-                </VsItineraryStopInfo>
-                 ${prod.open}</br>
-                <vs-link href="${prod.openLink.link}">
-                    ${prod.openLink.label}
-                </vs-link>
-            </#if>  -->
-
             
         </#if>        
     </vs-itinerary-stop>
