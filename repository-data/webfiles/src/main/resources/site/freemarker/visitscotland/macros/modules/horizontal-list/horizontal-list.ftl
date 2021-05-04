@@ -2,7 +2,7 @@
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
 <#include "../carousel/carousel.ftl">
 
-<#macro otyml item>
+<#macro horizontalList item>
     <vs-module-wrapper>
         <template slot="vsModuleWrapperHeading">
             ${item.title}

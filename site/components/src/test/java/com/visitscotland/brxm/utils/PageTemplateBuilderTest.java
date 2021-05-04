@@ -254,8 +254,11 @@ class PageTemplateBuilderTest {
 
     /**
      * Build a page with one OTYML section associated.
+     *
+     * TODO: Do we want to move this test to PageContentComponent Test?
      */
     @Test
+    @Disabled("OTYML is no longer controlled by PageTemplateBuilder but PageContentComponent")
     void addOTYMLModule() {
         HorizontalListLinksModule module = new HorizontalListLinksModule();
 

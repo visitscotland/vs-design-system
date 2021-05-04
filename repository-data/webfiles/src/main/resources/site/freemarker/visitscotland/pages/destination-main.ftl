@@ -21,4 +21,8 @@
 	<#list pageItems as item>
         <@moduleBuilder item />
 	</#list>
+
+    <#if otyml??>
+        <@horizontalList otyml />
+    </#if>
 </div>
