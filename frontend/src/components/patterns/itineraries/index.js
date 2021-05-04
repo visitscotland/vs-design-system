@@ -1,9 +1,9 @@
 import VsItinerary from './Itinerary';
 import VsItineraryDay from './components/ItineraryDay';
 import VsItineraryStop from './components/ItineraryStop';
+import VsItineraryStopInfo from './components/ItineraryStopInfo';
 import VsItineraryTips from './components/ItineraryTips';
 import VsItineraryBorderOverlapWrapper from './components/ItineraryBorderOverlapWrapper';
-import VsItineraryOpeningInfo from './components/VsItineraryOpeningInfo';
 import VsItineraryMap from './components/itinerary-map/ItineraryMap';
 
 export {
@@ -12,6 +12,6 @@ export {
     VsItineraryStop,
     VsItineraryBorderOverlapWrapper,
     VsItineraryTips,
-    VsItineraryOpeningInfo,
+    VsItineraryStopInfo,
     VsItineraryMap,
 };
