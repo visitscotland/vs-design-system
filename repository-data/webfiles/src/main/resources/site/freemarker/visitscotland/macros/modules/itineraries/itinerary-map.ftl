@@ -9,7 +9,7 @@
 <#macro itineraryMap itinerary>
     <vs-itinerary-map
         slot="map"
-        access-token= ${label("config.cms", "maptiler.devkey")}
+        access-token= ${label("config.cms", "maptiler.key")}
         overview-map-longitude="57.81"
         overview-map-latitude="-4.13"
         overview-map-zoom="5"

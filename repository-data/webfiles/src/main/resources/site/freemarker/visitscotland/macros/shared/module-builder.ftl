@@ -3,10 +3,12 @@
 <#include "../modules/megalinks/megalinks.ftl">
 <#include "../modules/article/article.ftl">
 <#include "../modules/long-copy/long-copy.ftl">
+<#include "../modules/iknow-community/iknow-community.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
-<#include "theme-calculator.ftl">
 <#include "../modules/otyml/otyml.ftl">
+<#include "../modules/horizontal-list/horizontal-list.ftl">
+<#include "theme-calculator.ftl">
 <#include "../../../frontend/components/vs-theme-wrapper.ftl">
 
 <#-- Implicit Request Objects -->
@@ -44,7 +46,7 @@
             <@megalinks item=module type=module.getType() theme=themeName />
 
         <#elseif moduleType == "HorizontalListLinksModule">
-            <@otyml module/>
+            <@horizontalList module/>
 
         <#elseif moduleType == "ICentreModule">
             <@icentre module/>
@@ -57,6 +59,9 @@
 
         <#elseif module.getType()== "LongCopyModule">
             <@longCopy module/>
+
+        <#elseif module.getType()== "IKnowCommunityModule">
+            <@iknowCommunity module/>
         </#if>
     </div>
 
