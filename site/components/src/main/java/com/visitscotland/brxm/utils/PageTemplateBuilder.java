@@ -3,10 +3,7 @@ package com.visitscotland.brxm.utils;
 import com.visitscotland.brxm.components.content.GeneralContentComponent;
 import com.visitscotland.brxm.factory.*;
 import com.visitscotland.brxm.hippobeans.*;
-import com.visitscotland.brxm.model.ICentreModule;
-import com.visitscotland.brxm.model.IKnowModule;
-import com.visitscotland.brxm.model.LongCopyModule;
-import com.visitscotland.brxm.model.Module;
+import com.visitscotland.brxm.model.*;
 import com.visitscotland.brxm.model.megalinks.LinksModule;
 import com.visitscotland.brxm.model.megalinks.SingleImageLinksModule;
 import com.visitscotland.brxm.services.DocumentUtilsService;
@@ -45,14 +42,16 @@ public class PageTemplateBuilder {
     private final IKnowFactory iKnowFactory;
     private final ArticleFactory articleFactory;
     private final LongCopyFactory longCopyFactory;
+    private final IKnowCommunityFactory iKnowCommunityFactory;
 
-    public PageTemplateBuilder(DocumentUtilsService documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy) {
+    public PageTemplateBuilder(DocumentUtilsService documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
         this.documentUtils = documentUtils;
         this.articleFactory = article;
         this.longCopyFactory = longcopy;
+        this.iKnowCommunityFactory = iKnowCommunityFactory;
     }
 
     private Page getDocument(HstRequest request) {
@@ -77,6 +76,8 @@ public class PageTemplateBuilder {
                     page.modules.add(articleFactory.getModule(request, (Article) item));
                 } else if (item instanceof LongCopy){
                     processLongCopy(request, page, (LongCopy) item);
+                } else if (item instanceof IknowCommunity) {
+                    processIKnowCommunity(request, page, (IknowCommunity) item);
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
@@ -88,6 +89,12 @@ public class PageTemplateBuilder {
         setIntroTheme(request, page.modules);
 
         request.setAttribute(PAGE_ITEMS, page.modules);
+    }
+
+    private void processIKnowCommunity(HstRequest request, PageConfiguration page, IknowCommunity iknowCommunity) {
+        IKnowCommunityModule iKnowCommunityModule = iKnowCommunityFactory.getIKnowCommunityModule(iknowCommunity, request.getLocale());
+        iKnowCommunityModule.setHippoBean(iknowCommunity);
+        page.modules.add(iKnowCommunityModule);
     }
 
     /**

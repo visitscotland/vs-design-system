@@ -1,37 +1,49 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/TourismInformation:
+    /hippo:namespaces/visitscotland/IknowCommunity:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: 60d13dc8-9942-4896-98b9-965d1526f655
+      jcr:uuid: 8bde753d-86e8-4df1-bf8f-c94e003585d5
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: e4d176a4-1117-44ce-9506-7dfea4665d12
+        jcr:uuid: 86c07cf7-63f3-4ae4-ad12-c255a245fc56
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 07b2d45d-4dd4-4a54-ad26-c89d7b5f1f11
+          jcr:uuid: 2c743db7-0824-47f4-a273-def98f02c939
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /ICentre:
+          hipposysedit:validators: ['visitscotland:iknow-community-tag-validator']
+          /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:ICentre
+            hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
-            hipposysedit:type: visitscotland:ICentre
-          /IKnow:
+            hipposysedit:type: String
+            hipposysedit:validators: ['visitscotland:short-string-validator']
+          /tags:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: true
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:tags
+            hipposysedit:primary: false
+            hipposysedit:validators: ['']
+            hipposysedit:type: String
+          /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:IKnow
+            hipposysedit:path: visitscotland:copy
             hipposysedit:primary: false
-            hipposysedit:type: visitscotland:IKnow
+            hipposysedit:type: Text
+            hipposysedit:validators: ['visitscotland:extraextralong-string-validator']
           /translation:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -43,7 +55,7 @@ definitions:
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:TourismInformation
+          jcr:primaryType: visitscotland:IknowCommunity
           hippostd:holder: holder
           hippostd:state: draft
           hippostdpubwf:createdBy: ''
@@ -51,27 +63,13 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 8a95c9a2-3fb5-42ac-bf03-4ce2918c1df2
-          hippostdpubwf:lastModificationDate: 2020-07-31T16:41:13.276+01:00
-          hippostdpubwf:creationDate: 2020-07-31T16:41:13.276+01:00
+          visitscotland:title: ''
+          jcr:uuid: 81b6eb11-be7f-4156-ba31-3b20b181b0f4
+          hippostdpubwf:lastModificationDate: 2020-11-25T16:59:04.086Z
+          hippostdpubwf:creationDate: 2020-11-25T16:59:04.086Z
+          visitscotland:tags: []
+          visitscotland:copy: ''
           visitscotland:translation: ''
-          /visitscotland:ICentre:
-            jcr:primaryType: visitscotland:ICentre
-            visitscotland:description: ''
-            visitscotland:title: ''
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-          /visitscotland:IKnow:
-            jcr:primaryType: visitscotland:IKnow
-            visitscotland:title: ''
-            visitscotland:description: ''
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -83,23 +81,40 @@ definitions:
             jcr:primaryType: frontend:plugin
             item: ${cluster.id}.field
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
-          /ICentre:
+          /title:
             jcr:primaryType: frontend:plugin
-            caption: ICentre
-            field: ICentre
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /IKnow:
-            jcr:primaryType: frontend:plugin
-            caption: IKnow
-            field: IKnow
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
+            caption: Override Title
+            field: title
             hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              size: ''
+              maxlength: ''
+          /copy:
+            jcr:primaryType: frontend:plugin
+            caption: Override Copy
+            field: copy
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /tags:
+            jcr:primaryType: frontend:plugin
+            caption: Tags *
+            field: tags
+            multiselect.type: palette
+            palette.alloworder: true
+            palette.maxrows: '6'
+            plugin.class: org.onehippo.forge.selection.frontend.plugin.DynamicMultiSelectPlugin
+            selectlist.maxrows: '6'
+            valuelist.provider: service.valuelist.default
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              source: /content/documents/administration/options/iknow-community-tags
           /translation:
             jcr:primaryType: frontend:plugin
             caption: Translation
