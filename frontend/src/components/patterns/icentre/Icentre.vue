@@ -177,7 +177,7 @@ export default {
 }
 
 .theme-grey {
-    background-color: $color-gray-tint-7;
+    background-color: $theme-grey;
 }
 </style>
 
