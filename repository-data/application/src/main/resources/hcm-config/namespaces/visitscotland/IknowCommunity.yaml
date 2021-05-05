@@ -43,7 +43,7 @@ definitions:
             hipposysedit:path: visitscotland:translation
             hipposysedit:primary: false
             hipposysedit:type: OpenUiString
-          /html:
+          /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
@@ -96,7 +96,7 @@ definitions:
           /copy:
             jcr:primaryType: frontend:plugin
             caption: Override Copy
-            field: html
+            field: copy
             hint: Max length suggestion is 250.
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field

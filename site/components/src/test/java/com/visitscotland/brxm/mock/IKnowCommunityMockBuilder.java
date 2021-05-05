@@ -28,13 +28,8 @@ public class IKnowCommunityMockBuilder {
         when(mock.getCopy()).thenReturn(hippoHtml);
         return this;
     }
-    public IKnowCommunityMockBuilder emptyCopy() {
-        HippoHtml hippoHtml = mock(HippoHtml.class);
-        when(mock.getCopy()).thenReturn(hippoHtml);
-        return this;
-    }
 
-        public IKnowCommunityMockBuilder tags(List<String> tags) {
+    public IKnowCommunityMockBuilder tags(List<String> tags) {
         when(mock.getTags()).thenReturn(tags.toArray(new String[0]));
         return this;
     }

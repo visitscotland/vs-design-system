@@ -100,7 +100,6 @@ class IKnowFactoryTest {
 
         assertEquals("idunno", module.getTitle());
         assertEquals("description", module.getDescription().getContent());
-        assertEquals(iknow.getDescription().getContent(), module.getDescription().getContent());
     }
 
 }

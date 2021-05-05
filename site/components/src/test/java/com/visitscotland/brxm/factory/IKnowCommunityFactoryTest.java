@@ -87,8 +87,7 @@ class IKnowCommunityFactoryTest {
         valueMap.put("second", "Second Label");
         valueMap.put("third", "Third Label");
         when(utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER)).thenReturn(valueMap);
-        IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder()
-                .title("title").emptyCopy().tags(Arrays.asList("first", "second")).build();
+        IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().tags(Arrays.asList("first", "second")).build();
 
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
 
@@ -110,8 +109,7 @@ class IKnowCommunityFactoryTest {
         when(properties.getIknowCommunityTaggedDiscussion())
                 .thenReturn("subdomain/");
         when(utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER)).thenReturn(Collections.emptyMap());
-        IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder()
-                .title("title").emptyCopy().tags(Collections.singletonList("third")).build();
+        IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().tags(Collections.singletonList("third")).build();
 
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
 
@@ -128,10 +126,8 @@ class IKnowCommunityFactoryTest {
                 .thenReturn("url");
         lenient().when(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.label", Locale.UK))
                 .thenReturn("label");
-        lenient().when(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.copy.default", Locale.UK))
-                .thenReturn("copy default");
 
-        IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().emptyCopy().title("title").tags(Collections.emptyList()).build();
+        IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().tags(Collections.emptyList()).build();
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
 
         Assertions.assertEquals("url", module.getLink().getLink());
