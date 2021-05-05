@@ -119,21 +119,19 @@
             
             <#if stop.opening??>
                
-                <span slot="stop-info">
+                <template slot="stop-info">
                     <vs-itinerary-stop-info
                         opening-hours='${stop.opening}'
-                        opening-times-link="<#if stop.openLink?has_content>${stop.openLink}</#if>"
+                        opening-times-link="<#if stop.openLink?has_content>${stop.openLink.link}</#if>"
                         closed-text='${label("itinerary", "stop.closed")}'
                         closing-soon-text='${label("itinerary", "stop.close.soon")}'
                         open-text='${label("itinerary", "stop.open")}'
                         usual-text='${label("itinerary", "stop.usually")}'
                         provisional-text='${label("itinerary", "stop.provisionally")}'
-                        temporary-closed-text='${label("itinerary", "stop.temporarily-closed")}'
+                        temporarily-closed-text='${label("itinerary", "stop.temporarily-closed")}'
+                        to-text='${label("itinerary", "stop.to")}'
+                        and-text='${label("itinerary", "stop.and")}'
                     >
-                        <template slot="stop-to">
-                            ${label("itinerary", "stop.to")}
-                        </template>
-
                         <template slot="stop-link-text">
                             ${label("itinerary", "stop.opening")}
                         </template>
@@ -144,7 +142,7 @@
                             </#if>
                         </template>
                     </vs-itinerary-stop-info>
-                </span>
+                </template>
                 
             </#if>
 

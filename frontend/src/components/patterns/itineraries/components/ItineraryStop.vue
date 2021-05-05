@@ -278,6 +278,8 @@ export default {
                             provisionalText="Provisionally"
                             slot="stop-info"
                             temporarilyClosedText="Temporarily closed"
+                            toText="to"
+                            andText="and"
                         >
                             <template slot="stop-to">
                                 to
