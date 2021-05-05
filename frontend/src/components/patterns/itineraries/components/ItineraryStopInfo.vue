@@ -7,14 +7,11 @@
         <div>
             <!-- TO DO: update to not show if there's not start and/or end time -->
             <p
-                v-if="isCurrentTimeframe
-                    && (currentDayData[0].startTime || currentDayData[0].startTime .length > 0)
-                    && (currentDayData[0].endTime || currentDayData[0].endTime.length > 0)"
+                v-if="isCurrentTimeframe && hoursMessage"
                 class="itinerary-stop-info__times"
                 data-test="vs-itinerary-stop-times"
             >
-                {{ hoursMessage ? hoursMessage : currentDayData[0].state.charAt(0).toUpperCase()
-                    + currentDayData[0].state.slice(1) }}.
+                {{ hoursMessage }}
 
                 <template v-if="!closedLongTerm">
                     <br>{{ provisionalMessage }}.
@@ -121,6 +118,20 @@ export default {
             type: String,
             required: true,
         },
+        /**
+        * Text for 'To'
+        */
+        toText: {
+            type: String,
+            required: true,
+        },
+        /**
+        * Text for 'and'
+        */
+        andText: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
@@ -141,7 +152,7 @@ export default {
         hoursMessage() {
             let message = '';
             if (this.closedLongTerm) {
-                message = this.temporaryClosedText;
+                message = this.temporarilyClosedText;
             } else if (this.currentDayData.length > 0) {
                 const state = this.openingMessage;
                 switch (state) {
@@ -164,10 +175,13 @@ export default {
         provisionalMessage() {
             // format the message for "provisionally open/closed" and all variants of this
             let provisionalMsg = '';
-            if (this.currentDayData[0].provisional) {
-                provisionalMsg = `${this.provisionalText} ${this.currentDayData[0].state}  ${this.currentDayData[0].day}`;
-            } else {
-                provisionalMsg = `${this.usualText} ${this.currentDayData[0].state} ${this.currentDayData[0].day}`;
+
+            if (typeof this.currentDayData[0] !== 'undefined') {
+                if (this.currentDayData[0].provisional) {
+                    provisionalMsg = `${this.provisionalText} ${this.currentDayData[0].state}  ${this.currentDayData[0].day}`;
+                } else {
+                    provisionalMsg = `${this.usualText} ${this.currentDayData[0].state} ${this.currentDayData[0].day}`;
+                }
             }
 
             // add open/closed times if they exist
@@ -176,11 +190,11 @@ export default {
                 && this.currentDayData[this.dayDataIndex].startTime !== ''
                 && this.currentDayData[this.dayDataIndex].endTime !== '') {
                 this.currentDayData.forEach((timePeriod, index) => {
-                    provisionalMsg += ` ${timePeriod.startTime} to ${timePeriod.endTime}`;
+                    provisionalMsg += ` ${timePeriod.startTime} ${this.toText} ${timePeriod.endTime}`;
 
                     // if there's more than one time then concatenate them
                     if (index + 1 < this.currentDayData.length) {
-                        provisionalMsg += ' and ';
+                        provisionalMsg += ` ${this.andText} `;
                     }
                 });
             }
@@ -261,33 +275,37 @@ export default {
                 const openTime = openingData[index].startTime;
                 const closeTime = openingData[index].endTime;
 
-                // split out start and end time into hours and minutes and
-                // establish whether they're AM or PM
-                const startTimeHours = parseInt(openTime.substring(0, openTime.indexOf(':')), 10);
-                const startTimeMins = parseInt(openTime.substring(openTime.indexOf(':') + 1, openTime.length), 10);
+                if (closeTime.length > 0) {
+                    // split out start and end time into hours and minutes and
+                    // establish whether they're AM or PM
+                    const startTimeHours = parseInt(openTime.substring(0, openTime.indexOf(':')), 10);
+                    const startTimeMins = parseInt(openTime.substring(openTime.indexOf(':') + 1, openTime.length), 10);
 
-                const endTimeHours = parseInt(closeTime.substring(0, closeTime.indexOf(':')), 10);
-                const endTimeMins = parseInt(closeTime.substring(closeTime.indexOf(':') + 1, closeTime.length), 10);
+                    const endTimeHours = parseInt(closeTime.substring(0, closeTime.indexOf(':')), 10);
+                    const endTimeMins = parseInt(closeTime.substring(closeTime.indexOf(':') + 1, closeTime.length), 10);
 
-                const closingSoonTime = this.calculateClosingSoon(endTimeHours, endTimeMins);
+                    const closingSoonTime = this.calculateClosingSoon(endTimeHours, endTimeMins);
 
-                // work out what type of message should show
-                if (startTimeHours > currentTime.hours
-                    || (startTimeHours === currentTime.hours && startTimeMins > currentTime.minutes)
-                    || endTimeHours < currentTime.hours
-                    || (endTimeHours === currentTime.hours && endTimeMins < currentTime.minutes)) {
-                    this.openingMessage = 'closed';
-                } else if (this.withinClosingSoonTime(currentTime, closingSoonTime)) {
-                    this.openingMessage = 'closing soon';
-                } else {
-                    this.openingMessage = 'open';
-                }
+                    // work out what type of message should show)
+                    if (startTimeHours > currentTime.hours
+                        || (startTimeHours === currentTime.hour
+                            && startTimeMins > currentTime.minutes)
+                        || endTimeHours < currentTime.hours
+                        || (endTimeHours === currentTime.hours
+                            && endTimeMins < currentTime.minutes)) {
+                        this.openingMessage = 'closed';
+                    } else if (this.withinClosingSoonTime(currentTime, closingSoonTime)) {
+                        this.openingMessage = 'closing soon';
+                    } else {
+                        this.openingMessage = 'open';
+                    }
 
-                // check if there's more data for the current day, eg. if the
-                // stop has morning and afternoon opening hours
-                if (this.openingMessage === 'closed' && openingData.length > index + 1) {
-                    this.dayDataIndex += 1;
-                    this.compareTimes(this.currentTime, this.currentDayData, this.dayDataIndex);
+                    // check if there's more data for the current day, eg. if the
+                    // stop has morning and afternoon opening hours
+                    if (this.openingMessage === 'closed' && openingData.length > index + 1) {
+                        this.dayDataIndex += 1;
+                        this.compareTimes(this.currentTime, this.currentDayData, this.dayDataIndex);
+                    }
                 }
             }
         },
@@ -383,11 +401,9 @@ export default {
         usualText="Usually"
         provisionalText="Provisionally"
         temporarilyClosedText="Temporarily closed"
+        toText="to"
+        andText="and"
     >
-        <template slot="stop-to">
-            to
-        </template>
-
         <template slot="stop-link-text">
             Check opening times
         </template>
