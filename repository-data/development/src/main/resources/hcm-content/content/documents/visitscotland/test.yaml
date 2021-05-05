@@ -1957,16 +1957,17 @@
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 4188568a-5d17-4ac3-9c58-7d958beb07cb
-        hippo:versionHistory: a9e7aa8f-1b81-43ea-add2-009c4f30dd68
+        hippo:versionHistory: 0d548384-4f8b-4df6-8e00-9282ad3d58d4
         /content[1]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 23e25c0b-91b5-451b-9a02-0f7369d76686
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-03T10:06:35.848Z
-          hippostdpubwf:lastModificationDate: 2020-12-03T10:07:52.885Z
+          hippostdpubwf:lastModificationDate: 2021-05-05T12:01:55.984+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d06eabd8-f0c4-429f-8e26-5cc28208bf45
           hippotranslation:locale: en
@@ -1992,15 +1993,28 @@
               justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
               Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
               a dignissim nec, ultrices nec lectus.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: Other Things You Might Like Something Something
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>These are things, maybe you'll like them?</p>
+            /visitscotland:links:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
         /content[2]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
           jcr:uuid: 0ff698db-9a0d-489a-9ce7-f344bbc5ab07
           hippo:availability: [preview]
+          hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-03T10:06:35.848Z
-          hippostdpubwf:lastModificationDate: 2020-12-03T10:07:48.750Z
+          hippostdpubwf:lastModificationDate: 2021-05-05T12:01:55.880+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d06eabd8-f0c4-429f-8e26-5cc28208bf45
           hippotranslation:locale: en
@@ -2026,17 +2040,30 @@
               justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
               Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
               a dignissim nec, ultrices nec lectus.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: Other Things You Might Like Something Something
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>These are things, maybe you'll like them?</p>
+            /visitscotland:links:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
         /content[3]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 98b0317b-76b5-4e50-b0b8-cee48ca16b84
           hippo:availability: [live]
+          hippostd:retainable: false
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-03T10:06:35.848Z
-          hippostdpubwf:lastModificationDate: 2020-12-03T10:07:48.750Z
+          hippostdpubwf:lastModificationDate: 2021-05-05T12:01:55.880+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-12-03T10:07:56.377Z
+          hippostdpubwf:publicationDate: 2021-05-05T12:02:01.283+01:00
           hippotranslation:id: d06eabd8-f0c4-429f-8e26-5cc28208bf45
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -2061,6 +2088,18 @@
               justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
               Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
               a dignissim nec, ultrices nec lectus.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: Other Things You Might Like Something Something
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>These are things, maybe you'll like them?</p>
+            /visitscotland:links:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
       /icentre-module:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
