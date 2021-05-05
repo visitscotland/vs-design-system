@@ -46,6 +46,11 @@
         <#if stop?? && stop.description?? && stop.description?has_content>
             <template slot="stop-description">
                 <@hst.html hippohtml=stop.description/>
+                <#if stop.ctaLink?? && stop.ctaLink.link?? && stop.ctaLink.link?has_content>
+                    <vs-link href="${stop.ctaLink.link}">
+                        ${stop.ctaLink.label}
+                    </vs-link>
+                </#if>
 
                 <#if stop.timeToExplore?? && stop.timeToExplore?has_content>
                     <vs-description-list class="my-4 mb-0 justify-content-start" inline slot="stop">
