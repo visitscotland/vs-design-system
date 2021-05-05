@@ -5,8 +5,11 @@
             class="vs-address__map-marker mr-2"
         />
         <div>
+            <!-- TO DO: update to not show if there's not start and/or end time -->
             <p
-                v-if="currentDayData.length > 0 && isCurrentTimeframe"
+                v-if="isCurrentTimeframe
+                    && (currentDayData[0].startTime || currentDayData[0].startTime .length > 0)
+                    && (currentDayData[0].endTime || currentDayData[0].endTime.length > 0)"
                 class="itinerary-stop-info__times"
                 data-test="vs-itinerary-stop-times"
             >
@@ -111,6 +114,13 @@ export default {
             type: String,
             required: true,
         },
+        /**
+        * Text for 'Tempoprarily closed'
+        */
+        temporarilyClosedText: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
@@ -130,17 +140,19 @@ export default {
     computed: {
         hoursMessage() {
             let message = '';
-            if (this.currentDayData.length > 0) {
+            if (this.closedLongTerm) {
+                message = this.temporaryClosedText;
+            } else if (this.currentDayData.length > 0) {
                 const state = this.openingMessage;
                 switch (state) {
                 case 'closed':
-                    message = `${this.closedText}`;
+                    message = this.closedText;
                     break;
                 case 'closing soon':
-                    message = `${this.closingSoonText}`;
+                    message = this.closingSoonText;
                     break;
                 case 'open':
-                    message = `${this.openText}`;
+                    message = this.openText;
                     break;
                 default:
                     message = '';
@@ -160,7 +172,9 @@ export default {
 
             // add open/closed times if they exist
             if (this.currentDayData[this.dayDataIndex].startTime !== 'undefined'
-                && typeof this.currentDayData[this.dayDataIndex].endTime !== 'undefined') {
+                && typeof this.currentDayData[this.dayDataIndex].endTime !== 'undefined'
+                && this.currentDayData[this.dayDataIndex].startTime !== ''
+                && this.currentDayData[this.dayDataIndex].endTime !== '') {
                 this.currentDayData.forEach((timePeriod, index) => {
                     provisionalMsg += ` ${timePeriod.startTime} to ${timePeriod.endTime}`;
 
@@ -223,17 +237,21 @@ export default {
                 if (nowDate < endDate && nowDate > startDate) {
                     this.isCurrentTimeframe = true;
                 }
+            } else {
+                this.isCurrentTimeframe = true;
             }
         },
         getCurrentHoursInfo() {
             const currentDay = this.returnDayName(this.currentTime.day);
 
-            // find the data that matches today's day name
-            const dayMatch = this.parsedHours.days.filter((day) => day.key === currentDay);
+            if (typeof this.parsedHours.days !== 'undefined') {
+                // find the data that matches today's day name
+                const dayMatch = this.parsedHours.days.filter((day) => day.key === currentDay);
 
-            if (typeof dayMatch !== 'undefined') {
-                this.currentDayData = dayMatch;
-                this.compareTimes(this.currentTime, this.currentDayData, this.dayDataIndex);
+                if (typeof dayMatch !== 'undefined') {
+                    this.currentDayData = dayMatch;
+                    this.compareTimes(this.currentTime, this.currentDayData, this.dayDataIndex);
+                }
             }
         },
         compareTimes(currentTime, openingData, index) {
@@ -257,8 +275,7 @@ export default {
                 if (startTimeHours > currentTime.hours
                     || (startTimeHours === currentTime.hours && startTimeMins > currentTime.minutes)
                     || endTimeHours < currentTime.hours
-                    || (endTimeHours === currentTime.hours && endTimeMins < currentTime.minutes)
-                    || this.closedLongTerm) {
+                    || (endTimeHours === currentTime.hours && endTimeMins < currentTime.minutes)) {
                     this.openingMessage = 'closed';
                 } else if (this.withinClosingSoonTime(currentTime, closingSoonTime)) {
                     this.openingMessage = 'closing soon';
@@ -342,10 +359,15 @@ export default {
 <style lang="scss">
     .itinerary-stop-info {
         display: flex;
-        margin-top: $spacer-6;
+        margin-top: $spacer-0;
+        max-width: 50%;
 
         &__times {
             margin-bottom: 0;
+        }
+
+        @include media-breakpoint-up(md) {
+             margin-top: $spacer-6;
         }
     }
 </style>
@@ -360,6 +382,7 @@ export default {
         openText="Open"
         usualText="Usually"
         provisionalText="Provisionally"
+        temporarilyClosedText="Temporarily closed"
     >
         <template slot="stop-to">
             to

@@ -128,6 +128,7 @@
                         open-text='${label("itinerary", "stop.open")}'
                         usual-text='${label("itinerary", "stop.usually")}'
                         provisional-text='${label("itinerary", "stop.provisionally")}'
+                        temporary-closed-text='${label("itinerary", "stop.temporarily-closed")}'
                     >
                         <template slot="stop-to">
                             ${label("itinerary", "stop.to")}
