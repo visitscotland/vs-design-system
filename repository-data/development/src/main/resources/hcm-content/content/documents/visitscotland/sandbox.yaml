@@ -371,11 +371,12 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 1d990574-0974-47c6-8a69-8122541783ac
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2021-04-28T14:05:58.855+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-04T18:42:08.344+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
@@ -5168,7 +5169,7 @@
         'mix:versionable']
       jcr:uuid: 002105be-e6f8-4ce1-ba89-993cf9eae90a
       hippo:name: Itinerary stops (Back end Devs)
-      hippostd:foldertype: [new-translated-folder-stops]
+      hippostd:foldertype: [new-translated-folder-stops, new-stop]
       hippotranslation:id: 9220ace8-2ee8-4cd0-8010-b2764284f7f7
       hippotranslation:locale: en
       /crathes-castle:
@@ -5826,7 +5827,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: c70896ac-cf88-429e-9399-c08ccd7a9ffe
         hippo:name: Test version 14
-        hippo:versionHistory: 610cecac-3df5-44db-9b35-fd6e6653cbfc
+        hippo:versionHistory: 8892bc95-d9fe-4396-9ccb-5f7738be5e33
         /test-version-14[1]:
           jcr:primaryType: visitscotland:Stop
           jcr:mixinTypes: ['mix:referenceable']
@@ -5836,7 +5837,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-09T09:35:33.720Z
-          hippostdpubwf:lastModificationDate: 2021-04-28T14:14:13.947+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-04T18:35:37.715+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: b37fa49d-ec97-47cd-9d5a-b7bbcd7c1d3d
           hippotranslation:locale: en
@@ -5862,7 +5863,7 @@
           /visitscotland:product:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
-            visitscotland:product: '246891'
+            visitscotland:product: '233891'
         /test-version-14[2]:
           jcr:primaryType: visitscotland:Stop
           jcr:mixinTypes: ['mix:versionable']
@@ -5872,7 +5873,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-09T09:35:33.720Z
-          hippostdpubwf:lastModificationDate: 2021-04-28T14:14:15.384+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-04T18:35:37.439+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: b37fa49d-ec97-47cd-9d5a-b7bbcd7c1d3d
           hippotranslation:locale: en
@@ -5898,7 +5899,7 @@
           /visitscotland:product:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
-            visitscotland:product: '246891'
+            visitscotland:product: '233891'
         /test-version-14[3]:
           jcr:primaryType: visitscotland:Stop
           jcr:mixinTypes: ['mix:referenceable']
@@ -5908,9 +5909,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-09T09:35:33.720Z
-          hippostdpubwf:lastModificationDate: 2021-04-28T14:14:15.384+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-04T18:35:37.439+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-04-28T14:14:29.502+01:00
+          hippostdpubwf:publicationDate: 2021-05-04T18:35:42.582+01:00
           hippotranslation:id: b37fa49d-ec97-47cd-9d5a-b7bbcd7c1d3d
           hippotranslation:locale: en
           visitscotland:subtitle: ''
@@ -5935,7 +5936,7 @@
           /visitscotland:product:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
-            visitscotland:product: '246891'
+            visitscotland:product: '233891'
       /st-magnus-cathedral:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -6693,7 +6694,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 98ec3739-fc67-45b3-bbdb-e21478facbb7
         hippo:name: Old Town
-        hippo:versionHistory: e8caf7f3-ff0a-4ab2-8ba8-f77f4b7ab805
+        hippo:versionHistory: eaf37c2b-0c45-40a2-a387-9b91bcbb56a5
         /old-town[1]:
           jcr:primaryType: visitscotland:Stop
           jcr:mixinTypes: ['mix:referenceable']
@@ -6703,7 +6704,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-10T09:30:38.918Z
-          hippostdpubwf:lastModificationDate: 2021-04-28T14:13:47.176+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-04T18:42:26.148+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: ddabe0ef-dc56-44cb-94bf-e820df329d7a
           hippotranslation:locale: en
@@ -6730,7 +6731,7 @@
           /visitscotland:product:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
-            visitscotland:product: '918411'
+            visitscotland:product: '1756231'
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -6752,7 +6753,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-10T09:30:38.918Z
-          hippostdpubwf:lastModificationDate: 2021-04-28T14:13:48.359+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-04T18:42:26.080+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: ddabe0ef-dc56-44cb-94bf-e820df329d7a
           hippotranslation:locale: en
@@ -6779,7 +6780,7 @@
           /visitscotland:product:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
-            visitscotland:product: '918411'
+            visitscotland:product: '1756231'
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -6801,9 +6802,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-10T09:30:38.918Z
-          hippostdpubwf:lastModificationDate: 2021-04-28T14:13:48.359+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-04T18:42:26.080+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-04-28T14:14:30.494+01:00
+          hippostdpubwf:publicationDate: 2021-05-04T18:42:28.717+01:00
           hippotranslation:id: ddabe0ef-dc56-44cb-94bf-e820df329d7a
           hippotranslation:locale: en
           visitscotland:subtitle: ''
@@ -6829,7 +6830,7 @@
           /visitscotland:product:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
-            visitscotland:product: '918411'
+            visitscotland:product: '1756231'
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -7697,7 +7698,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
-          hippostdpubwf:lastModificationDate: 2021-04-28T14:11:23.210+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-04T18:44:09.327+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 031ee49b-b582-4764-b4f6-da2121ddecb8
           hippotranslation:locale: en
@@ -7715,7 +7716,7 @@
           /visitscotland:product:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
-            visitscotland:product: '245821'
+            visitscotland:product: '246591'
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -7737,7 +7738,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
-          hippostdpubwf:lastModificationDate: 2021-04-28T14:11:24.335+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-04T18:44:09.187+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 031ee49b-b582-4764-b4f6-da2121ddecb8
           hippotranslation:locale: en
@@ -7755,7 +7756,7 @@
           /visitscotland:product:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
-            visitscotland:product: '245821'
+            visitscotland:product: '246591'
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
