@@ -94,8 +94,7 @@ public class ICentreFactory {
         if (module.getImage() == null) {
             FlatImage image = new FlatImage();
 
-            //TODO: Create labels
-            //TODO: Get CMS Image
+            //TODO: Default image is not getting alt tex - caption information.
 
             try {
                 image.setCmsImage(utils.getDocumentFromNode(bundle.getResourceBundle(BUNDLE_ID, "icentre.image.default", locale)));
