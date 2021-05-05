@@ -122,7 +122,7 @@
                 <span slot="stop-info">
                     <vs-itinerary-stop-info
                         opening-hours='${stop.opening}'
-                        opening-times-link="<#if stop.url?has_content>https://www.visitscotland.com/${stop.url}</#if>"
+                        opening-times-link="<#if stop.openLink?has_content>${stop.openLink}</#if>"
                         closed-text='${label("itinerary", "stop.closed")}'
                         closing-soon-text='${label("itinerary", "stop.close.soon")}'
                         open-text='${label("itinerary", "stop.open")}'
