@@ -63,7 +63,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Override Copy
             field: description
-            hint: ''
+            hint: 'Display guidance info - 250 characters'
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
