@@ -1,6 +1,11 @@
 <template>
-    <section class="vs-module-wrapper">
-        <VsContainer>
+    <section
+        class="vs-module-wrapper"
+        v-bind="$attrs"
+    >
+        <VsContainer
+            v-if="!!this.$slots['vsModuleWrapperHeading'] || !!this.$slots['vsModuleWrapperIntro']"
+        >
             <VsRow>
                 <VsCol
                     cols="10"
@@ -89,6 +94,15 @@ export default {
         @include media-breakpoint-up(sm) {
             padding-top: $spacer-12;
             padding-bottom: $spacer-12;
+        }
+
+        &.theme-grey {
+            background-color: $theme-grey;
+        }
+
+        &.theme-dark {
+            background-color: $theme-dark;
+            color: $color-white;
         }
     }
 </style>
