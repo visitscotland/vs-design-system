@@ -137,6 +137,30 @@
                         {
                             "key": "accessparkdrop",
                             "value": "Accessible Parking and Dropoff"
+                        },
+                        {
+                            "key": "parking",
+                            "value": "Parking"
+                        },
+                        {
+                            "key": "accessparkdrop",
+                            "value": "Accessible Parking and Dropoff"
+                        },
+                        {
+                            "key": "parking",
+                            "value": "Parking"
+                        },
+                        {
+                            "key": "accessparkdrop",
+                            "value": "Accessible Parking and Dropoff"
+                        },
+                        {
+                            "key": "parking",
+                            "value": "Parking"
+                        },
+                        {
+                            "key": "accessparkdrop",
+                            "value": "Accessible Parking and Dropoff"
                         }
                     ],
                     "info": "This is the info",
@@ -672,7 +696,7 @@
                 "key": "wednesday",
                 "day": "Wednesdays",
                 "startTime": "09:30",
-                "endTime": "18:00",
+                "endTime": "12:30",
                 "state": "open",
                 "provisional": true
             },

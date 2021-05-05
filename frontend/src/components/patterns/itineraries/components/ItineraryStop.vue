@@ -277,6 +277,7 @@ export default {
                             usualText="Usually"
                             provisionalText="Provisionally"
                             slot="stop-info"
+                            temporarilyClosedText="Temporarily closed"
                         >
                             <template slot="stop-to">
                                 to
