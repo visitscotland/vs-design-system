@@ -9,6 +9,7 @@ import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.services.ResourceBundleService;
+import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import com.visitscotland.utils.CoordinateUtils;
 import org.slf4j.Logger;
@@ -32,13 +33,16 @@ public class ItineraryFactory {
     private final ImageFactory imageFactory;
     private final DMSUtils utils;
     private final DocumentUtilsService documentUtils;
+    private final Properties properties;
 
-    public ItineraryFactory(ResourceBundleService bundle, DMSDataService dmsData, ImageFactory imageFactory, DMSUtils utils, DocumentUtilsService documentUtils) {
+
+    public ItineraryFactory(ResourceBundleService bundle, DMSDataService dmsData, ImageFactory imageFactory, DMSUtils utils, DocumentUtilsService documentUtils, Properties properties) {
         this.bundle = bundle;
         this.dmsData = dmsData;
         this.imageFactory = imageFactory;
         this.utils = utils;
         this.documentUtils = documentUtils;
+        this.properties = properties;
     }
 
     /**
@@ -235,8 +239,10 @@ public class ItineraryFactory {
             JsonNode opening = product.get(OPENING);
             module.setOpening(opening);
             module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
-                    module.getCtaLink().getLink() + "#opening", null));
+                    properties.getDmsHost() + module.getCtaLink().getLink() + "#opening", null));
         }
 
     }
+
+
 }
