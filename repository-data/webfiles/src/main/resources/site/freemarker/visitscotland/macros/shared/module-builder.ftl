@@ -9,7 +9,6 @@
 <#include "../modules/otyml/otyml.ftl">
 <#include "../modules/horizontal-list/horizontal-list.ftl">
 <#include "theme-calculator.ftl">
-<#include "../../../frontend/components/vs-module-wrapper.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
@@ -33,33 +32,31 @@
         <#assign moduleType = module.getType()>
     </#if>
 
-    <vs-module-wrapper class="theme-${themeName}">
-        <div class="has-edit-button">
-            <#if module.hippoBean?? >
-                <@hst.manageContent hippobean=module.hippoBean />
-            </#if>
-            <#if moduleType == "megalinks">
-                <#-- all Megalinks modules except HorizontalListLinksModule -->
-                <@megalinks item=module type=module.getType() theme=themeName />
+    <div class="has-edit-button">
+        <#if module.hippoBean?? >
+            <@hst.manageContent hippobean=module.hippoBean />
+        </#if>
+        <#if moduleType == "megalinks">
+            <#-- all Megalinks modules except HorizontalListLinksModule -->
+            <@megalinks item=module type=module.getType() theme=themeName />
 
-            <#elseif moduleType == "HorizontalListLinksModule">
-                <@horizontalList module/>
+        <#elseif moduleType == "HorizontalListLinksModule">
+            <@horizontalList module themeName/>
 
-            <#elseif moduleType == "ICentreModule">
-                <@icentre module/>
+        <#elseif moduleType == "ICentreModule">
+            <@icentre module themeName/>
 
-            <#elseif moduleType == "IKnowModule">
-                <@iknow module/>
+        <#elseif moduleType == "IKnowModule">
+            <@iknow module themeName/>
 
-            <#elseif module.getType()== "ArticleModule">
-                <@article module/>
+        <#elseif module.getType()== "ArticleModule">
+            <@article module/>
 
-            <#elseif module.getType()== "LongCopyModule">
-                <@longCopy module/>
+        <#elseif module.getType()== "LongCopyModule">
+            <@longCopy module/>
 
-            <#elseif module.getType()== "IKnowCommunityModule">
-                <@iknowCommunity module/>
-            </#if>
-        </div>
-    </vs-module-wrapper>
+        <#elseif module.getType()== "IKnowCommunityModule">
+            <@iknowCommunity module/>
+        </#if>
+    </div>
 </#macro>

@@ -1,14 +1,17 @@
 <#include "../../../../include/imports.ftl">
 <#include "../carousel/carousel.ftl">
+<#include "../../../../frontend/components/vs-module-wrapper.ftl">
 
-<#macro horizontalList item>
-    <template slot="vsModuleWrapperHeading">
-        ${item.title}
-    </template>
+<#macro horizontalList item themeName>
+    <vs-module-wrapper class="theme-${themeName}">
+        <template slot="vsModuleWrapperHeading">
+            ${item.title}
+        </template>
 
-    <template slot="vsModuleWrapperIntro">
-        <@hst.html hippohtml=item.introduction/>
-    </template>
+        <template slot="vsModuleWrapperIntro">
+            <@hst.html hippohtml=item.introduction/>
+        </template>
 
-    <@carousel item />
+        <@carousel item />
+    </vs-module-wrapper>
 </#macro>
