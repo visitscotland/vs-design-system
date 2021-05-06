@@ -118,7 +118,6 @@
             </#if>
             
             <#if stop.opening??>
-               
                 <template slot="stop-info">
                     <vs-itinerary-stop-info
                         opening-hours='${stop.opening}'
@@ -136,11 +135,11 @@
                             ${label("itinerary", "stop.opening")}
                         </template>
 
-                        <template slot="stop-charge-text">
-                            <#if stop.price??>
+                        <#if stop.price??>
+                            <template slot="stop-charge-text">
                                 ${stop.price}
-                            </#if>
-                        </template>
+                            </template>
+                        </#if>
                     </vs-itinerary-stop-info>
                 </template>
                 
