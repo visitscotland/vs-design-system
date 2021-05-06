@@ -86,22 +86,7 @@ export default {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: $spacer-8;
     background: $white;
-
-    @include media-breakpoint-up(md) {
-        padding: $spacer-8 $spacer-8 $spacer-0;
-    }
-
-    @include media-breakpoint-up(lg) {
-        padding: $spacer-11 $spacer-11 $spacer-0;
-    }
-
-    >.container {
-        @include media-breakpoint-down(md) {
-            padding: 0;
-        }
-    }
 
     &__main-content {
         text-align: center;
