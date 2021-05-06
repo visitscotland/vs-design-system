@@ -14,7 +14,7 @@
         <#assign image = module.image.externalImage!'' />
     </#if>
 
-    <vs-container slot="upper" class="py-lg-4 px-sm-0" >
+    <vs-container>
         <vs-icentre>
             <template slot="icentreHeading">
                 <vs-heading level="2">${module.title}</vs-heading>
