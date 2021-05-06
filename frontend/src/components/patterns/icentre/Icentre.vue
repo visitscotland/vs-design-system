@@ -101,16 +101,6 @@ export default {
 
 <style lang="scss">
 .vs-icentre {
-    padding: $spacer-8 $spacer-0;
-
-    @include media-breakpoint-up(md) {
-        padding: $spacer-8 $spacer-0;
-    }
-
-    @include media-breakpoint-up(lg) {
-        padding: $spacer-11 $spacer-0;
-    }
-
     &__heading {
         margin-bottom: $spacer-9;
 
