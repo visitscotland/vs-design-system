@@ -1,5 +1,8 @@
 <template>
-    <div class="itinerary-stop-info">
+    <div
+        class="itinerary-stop-info"
+        data-test="vs-itinerary-stop-info"
+    >
         <VsIcon
             name="information"
             class="vs-address__map-marker mr-2"
@@ -184,7 +187,8 @@ export default {
             }
 
             // add open/closed times if they exist
-            if (this.currentDayData[this.dayDataIndex].startTime !== 'undefined'
+            if (typeof this.currentDayData[this.dayDataIndex] !== 'undefined'
+                && typeof this.currentDayData[this.dayDataIndex].startTime !== 'undefined'
                 && typeof this.currentDayData[this.dayDataIndex].endTime !== 'undefined'
                 && this.currentDayData[this.dayDataIndex].startTime !== ''
                 && this.currentDayData[this.dayDataIndex].endTime !== '') {
