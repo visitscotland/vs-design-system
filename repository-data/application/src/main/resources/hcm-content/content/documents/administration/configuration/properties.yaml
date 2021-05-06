@@ -26,15 +26,15 @@
       '', Protocol and host for vs-dms-product., "Authentication key for Instagram\
         \ request\r\n\r\nThis token is configured by the environment variable INSTAGRAM_KEY,\
         \ but it can be overridden here if needed.\r\n\r\nDo not commit a value for\
-        \ this variable to the repository!!", '', '']
+        \ this variable to the repository!!", '', '', '', '']
     resourcebundle:id: config.cms
     resourcebundle:keys: [instagram.api, localhost, dms.encoding, dms.token, dms.timeout,
       dms.tries, dms.sleep-time, helpdesk-email, dms.host, instagram.accesstoken,
-      instagram.post-url, maptiler.key]
+      instagram.post-url, iknow-community.url, iknow-community.tagged-discussion, maptiler.key]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       'http://localhost:8080/site', UTF-8, $DMS_TOKEN, '2000', '3', '60000', helpdesk@visitscotland.com,
       'http://172.28.81.65:8089', $INSTAGRAM_KEY, 'https://www.instagram.com/p/',
-      SZGAUFW8iNcUjjJgrkgf]
+      'https://community.visitscotland.com/', discussions/tagged/, SZGAUFW8iNcUjjJgrkgf]
   /properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -57,15 +57,15 @@
       '', Protocol and host for vs-dms-product., "Authentication key for Instagram\
         \ request\r\n\r\nThis token is configured by the environment variable INSTAGRAM_KEY,\
         \ but it can be overridden here if needed.\r\n\r\nDo not commit a value for\
-        \ this variable to the repository!!", '', '']
+        \ this variable to the repository!!", '', '', '', '']
     resourcebundle:id: config.cms
     resourcebundle:keys: [instagram.api, localhost, dms.encoding, dms.token, dms.timeout,
       dms.tries, dms.sleep-time, helpdesk-email, dms.host, instagram.accesstoken,
-      instagram.post-url, maptiler.key]
+      instagram.post-url, iknow-community.url, iknow-community.tagged-discussion, maptiler.key]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       'http://localhost:8080/site', UTF-8, $DMS_TOKEN, '2000', '3', '60000', helpdesk@visitscotland.com,
       'http://172.28.81.65:8089', $INSTAGRAM_KEY, 'https://www.instagram.com/p/',
-      SZGAUFW8iNcUjjJgrkgf]
+      'https://community.visitscotland.com/', discussions/tagged/, SZGAUFW8iNcUjjJgrkgf]
   /properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -89,12 +89,12 @@
       '', Protocol and host for vs-dms-product., "Authentication key for Instagram\
         \ request\r\n\r\nThis token is configured by the environment variable INSTAGRAM_KEY,\
         \ but it can be overridden here if needed.\r\n\r\nDo not commit a value for\
-        \ this variable to the repository!!", '', '']
+        \ this variable to the repository!!", '', '', '', '']
     resourcebundle:id: config.cms
     resourcebundle:keys: [instagram.api, localhost, dms.encoding, dms.token, dms.timeout,
       dms.tries, dms.sleep-time, helpdesk-email, dms.host, instagram.accesstoken,
-      instagram.post-url, maptiler.key]
+      instagram.post-url, iknow-community.url, iknow-community.tagged-discussion, maptiler.key]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       'http://localhost:8080/site', UTF-8, $DMS_TOKEN, '2000', '3', '60000', helpdesk@visitscotland.com,
       'http://172.28.81.65:8089', $INSTAGRAM_KEY, 'https://www.instagram.com/p/',
-      SZGAUFW8iNcUjjJgrkgf]
+      'https://community.visitscotland.com/', discussions/tagged/, SZGAUFW8iNcUjjJgrkgf]

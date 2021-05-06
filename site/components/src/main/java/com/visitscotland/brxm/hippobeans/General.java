@@ -17,7 +17,8 @@ public class General extends Page {
                 "visitscotland:TourismInformation",
                 "visitscotland:LongContent",
                 "visitscotland:LongCopy",
-                "visitscotland:Article" };
+                "visitscotland:Article",
+                "visitscotland:IknowCommunity"};
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")

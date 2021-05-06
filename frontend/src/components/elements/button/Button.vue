@@ -22,10 +22,10 @@
             :class="{ 'mr-2': !iconOnly }"
             v-if="icon"
             :name="icon"
-            :size="iconSize"
+            :size="iconSizeOverride || calcIconSize"
             :padding="0"
             :orientation="iconOrientation"
-            :variant="calcIconVariant"
+            :variant="iconVariantOverride || calcIconVariant"
         />
         <!-- @slot The button content goes here -->
         <slot />
@@ -142,6 +142,28 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+         * The variant to be used for a contained icon, generally this is
+         * automatically calculated based on the button variant but in a few
+         * unusual cases it is desirable to manually set it
+         */
+        iconVariantOverride: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(
+                /(primary|secondary|light|dark|reverse-white|secondary-teal)/,
+            ),
+        },
+        /**
+         * The size to be used for a contained icon, generally this is
+         * automatically calculated based on the button size but in a few
+         * unusual cases it is desirable to manually set it
+         */
+        iconSizeOverride: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+        },
     },
     data() {
         return {
@@ -153,7 +175,7 @@ export default {
         backgroundClass() {
             return this.background ? [`btn-bg-${this.background}`] : null;
         },
-        iconSize() {
+        calcIconSize() {
             switch (this.size) {
             case 'sm':
                 return 'xs';

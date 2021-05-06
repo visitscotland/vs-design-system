@@ -3,6 +3,7 @@
 <#include "../modules/megalinks/megalinks.ftl">
 <#include "../modules/article/article.ftl">
 <#include "../modules/long-copy/long-copy.ftl">
+<#include "../modules/iknow-community/iknow-community.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 <#include "theme-calculator.ftl">
@@ -52,6 +53,9 @@
 
         <#elseif module.getType()== "LongCopyModule">
             <@longCopy module/>
+
+        <#elseif module.getType()== "IKnowCommunityModule">
+            <@iknowCommunity module/>
         </#if>
     </div>
 </#macro>
