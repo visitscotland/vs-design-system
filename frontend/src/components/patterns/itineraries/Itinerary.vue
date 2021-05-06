@@ -8,13 +8,10 @@
                 <VsButton
                     class="vs-itinerary__map-toggle-button"
                     @click.native="toggleShowMap()"
+                    :icon="showMap ? 'list' : 'map'"
+                    icon-variant-override="reverse-white"
+                    icon-size-override="md"
                 >
-                    <VsIcon
-                        :name="showMap ? 'list' : 'map'"
-                        variant="reverse-white"
-                        size="md"
-                    />
-
                     {{ showMap ? 'List View' : 'Map View' }}
                 </VsButton>
             </div>
@@ -51,7 +48,6 @@ import {
     VsCol,
 } from '@components/elements/layout';
 import VsButton from '@components/elements/button/Button';
-import VsIcon from '@components/elements/icon/Icon';
 import VsAccordion from '@components/patterns/accordion/Accordion';
 
 /**
@@ -71,7 +67,6 @@ export default {
         VsCol,
         VsAccordion,
         VsButton,
-        VsIcon,
     },
     data() {
         return {
@@ -165,11 +160,11 @@ export default {
     }
 
     .vs-itinerary__map-toggle-button {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: $spacer-4;
+        padding-right: $spacer-4;
 
         svg {
-            margin-right: 10px;
+            margin-right: $spacer-3;
         }
     }
 
