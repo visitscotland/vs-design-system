@@ -43,4 +43,8 @@
 		</#if>
 
 	</#list>
+
+	<#if otyml??>
+		<@horizontalList otyml />
+	</#if>
 </div>

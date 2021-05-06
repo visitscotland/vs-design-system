@@ -30,6 +30,8 @@ public class Properties {
     public static final String DMS_DATA_TIMEOUT = "dms-data.timeout";
     public static final String DMS_DATA_TRIES = "dms-data.tries";
     public static final String DMS_DATA_SLEEP_TIME = "dms-data.sleep-time";
+    private static final String IKNOW_COMMUNITY_URL = "iknow-community.url";
+    private static final String IKNOW_COMMUNITY_TAGGED_DISCUSSION= "iknow-community.tagged-discussion";
 
     private final ResourceBundleService bundle;
 
@@ -85,6 +87,16 @@ public class Properties {
         return readInteger(DMS_DATA_SLEEP_TIME);
     }
 
+    public String getIknowCommunityUrl() {
+        return readString(IKNOW_COMMUNITY_URL);
+    }
+
+    public String getIknowCommunityTaggedDiscussion() {
+        return readString(IKNOW_COMMUNITY_TAGGED_DISCUSSION);
+    }
+
+
+    //TODO Test
     public Charset getDmsEncoding() {
         String value = bundle.getResourceBundle(BUNDLE_ID, DMS_DATA_ENCODING, Locale.UK);
         try{
