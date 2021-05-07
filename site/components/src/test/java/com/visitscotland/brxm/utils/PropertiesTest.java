@@ -126,14 +126,23 @@ class PropertiesTest {
     @Test
     @DisplayName("As requested by WebOps, links to vs-dms-products URLs will be relative when use relative urls is active")
     void getDmsHost(){
-
         when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.DMS_HOST, Locale.UK)).thenReturn("http://test-dms.visitscotland.com");
         when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.USE_RELATIVE_URLS, Locale.UK)).thenReturn("false");
-
         assertEquals("http://test-dms.visitscotland.com", properties.getDmsHost());
 
         when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.USE_RELATIVE_URLS, Locale.UK)).thenReturn("true");
-
         assertEquals("", properties.getDmsHost());
+    }
+
+    @Test
+    @DisplayName("getInstagramURL() Composes the token from the app-id and the client-token (PR-383)")
+    void getInstagramURL(){
+
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.INSTAGRAM_APP_ID, Locale.UK)).thenReturn("{app-id}");
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.INSTAGRAM_ACCESS_TOKEN, Locale.UK)).thenReturn("{client-token}");
+        assertEquals("{app-id}|{client-token}", properties.getInstagramToken());
+
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.INSTAGRAM_ACCESS_TOKEN, Locale.UK)).thenReturn("");
+        assertEquals("{app-id}", properties.getInstagramToken());
     }
 }
