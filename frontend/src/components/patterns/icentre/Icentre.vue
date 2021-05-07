@@ -14,11 +14,6 @@
                     offset-lg="3"
                     class="vs-icentre__intro-content"
                 >
-                    <div class="vs-icentre__heading">
-                        <!-- @slot Holds the heading (vs-heading expected) -->
-                        <slot name="icentreHeading" />
-                    </div>
-
                     <VsSvg
                         class="vs-icentre__logo"
                         path="iCentre"

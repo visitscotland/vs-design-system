@@ -41,10 +41,6 @@ describe('VsIknowParterItem', () => {
     });
 
     describe(':slots', () => {
-        it('renders content inserted in the `iknow-heading` slot', () => {
-            expect(wrapper.text()).toContain(headingSlot);
-        });
-
         it('renders content inserted in the `iknow-text` slot', () => {
             expect(wrapper.text()).toContain(textSlot);
         });

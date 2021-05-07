@@ -14,9 +14,6 @@
                     order-md="2"
                     class="vs-iknow-partner-item__main-content"
                 >
-                    <!-- @slot Holds the component heading -->
-                    <slot name="iknowHeading" />
-
                     <VsSvg
                         class="vs-iknow-partner-item__logo"
                         path="iKnowScotland"
