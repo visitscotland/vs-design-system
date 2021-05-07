@@ -1,7 +1,10 @@
 package com.visitscotland.brxm.hippobeans;
 
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
+
+import java.util.List;
 
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
@@ -27,5 +30,10 @@ public class Widget extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
     public String getTranslationPriority() {
         return getSingleProperty("visitscotland:translationPriority");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:components", allowModifications = false)
+    public List<HippoBean> getComponents() {
+        return getLinkedBeans("visitscotland:components", HippoBean.class);
     }
 }
