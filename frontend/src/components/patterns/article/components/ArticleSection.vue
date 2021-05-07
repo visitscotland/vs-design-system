@@ -1,37 +1,18 @@
 <template>
-    <article
-        class="vs-article"
-        data-test="vs-article"
-        v-bind="$attrs"
+    <div
+        class="vs-article-section"
+        data-test="vs-article-section"
     >
         <VsContainer>
             <VsRow>
-                <VsCol
-                    cols="12"
-                    lg="10"
-                    offset="0"
-                    offset-lg="1"
-                >
-                    <div class="vs-article__wrapper">
-                        <slot name="vsArticleImg" />
-
-                        <VsHeading
-                            level="2"
-                            class="text-center"
-                        >
-                            <slot name="vsArticleTitle" />
-                        </VsHeading>
-
-                        <VsRichTextWrapper variant="lead">
-                            <slot name="vsArticleIntro" />
-                        </VsRichTextWrapper>
-
+                <VsCol cols="12">
+                    <VsRichTextWrapper>
                         <slot />
-                    </div>
+                    </VsRichTextWrapper>
                 </VsCol>
             </VsRow>
         </VsContainer>
-    </article>
+    </div>
 </template>
 
 <script>
@@ -42,10 +23,10 @@ import {
 /**
  * The Article component is a wrapper for article content, generally wrapped in content sections
  *
- * @displayName Article
+ * @displayName Article Section
  */
 export default {
-    name: 'VsArticle',
+    name: 'VsArticleSection',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -59,10 +40,8 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-article {
-    &__wrapper{
-        border: 1px solid $color-gray-tint-5;
-    }
+.vs-article-section {
+
 }
 </style>
 
@@ -129,6 +108,42 @@ export default {
         whilst the Carn Mor Dearg Arête route presents a more challenging climb
         for more experienced hikers.
     </template>
+
+    <VsArticleSection>
+        <VsHeading level="6">
+            How do I climb Ben Nevis safely?
+        </VsHeading>
+
+        <p>
+            The difficulty of this hike is often under-estimated so always be
+            prepared and take the walk at your own pace. If you are not confident in your
+            own sense of direction, there are local guided walking tours available.
+            Remember this is the UK's highest mountain!
+        </p>
+        <p>
+            Make sure someone knows where you're headed and ensure that you have
+            plenty of time to get back well before nightfall.
+        </p>
+        <p>
+            Any ascent in snow requires a high degree of fitness, winter equipment and the
+            skills to use them and mountaineering and navigation experience. Bear in mind
+            snow can cover parts of the 'tourist' path into the summer months. If you're at
+            all unsure, local mountain guides can advise and guide you to the summit and back.
+        </p>
+        <p>
+            Make sure you fill in a mountain safety route card and leave it with someone you trust.
+            For more information on keeping safe on Ben Nevis, see these tips from
+            Mountaineering Scotland and Walk Highlands.
+        </p>
+
+        <VsHeading level="6">
+            Is Ben Nevis suitable for children to climb?
+        </VsHeading>
+        <p>
+            Absolutely, as long as they are prepared for all weather conditions and keen for
+            a challenge. The Carn Mor Dearg Arete route is generally not advised for children.
+        </p>
+    </VsArticleSection>
 
 </VsArticle>
 
