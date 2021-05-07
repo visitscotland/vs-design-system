@@ -11,19 +11,11 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: e42f5eea-8f1c-43b5-b823-b083ef0f9dea
+          jcr:uuid: f9d53fbb-1f48-4096-ba17-00858fd4c54d
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /component:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:component
-            hipposysedit:primary: false
-            hipposysedit:type: String
           /translation:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -32,6 +24,13 @@ definitions:
             hipposysedit:path: visitscotland:translation
             hipposysedit:primary: false
             hipposysedit:type: OpenUiString
+          /components:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:multiple: true
+            hipposysedit:ordered: true
+            hipposysedit:path: visitscotland:components
+            hipposysedit:type: hippo:compound
+            hipposysedit:validators: [contentblocks-validator, required]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -43,8 +42,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          visitscotland:component: ''
-          jcr:uuid: 90b6e23c-65d2-4b73-b9c3-ce09a3078273
+          jcr:uuid: 9302775a-87b8-4d60-af47-c3da26f39e78
           hippostdpubwf:lastModificationDate: 2019-11-12T09:09:11.962Z
           hippostdpubwf:creationDate: 2019-11-12T09:09:11.962Z
           visitscotland:translation: ''
@@ -71,14 +69,18 @@ definitions:
             item: ${cluster.id}.right.item
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
             wicket.id: ${cluster.id}.right
-          /component:
+          /components:
             jcr:primaryType: frontend:plugin
-            caption: UI - Widget component
-            field: component
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.right.item
+            caption: Components
+            compoundList: visitscotland:MegalinkItem,visitscotland:ProductsSearch
+            contentPickerType: links
+            field: components
+            plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              maxitems: 2
           /translation:
             jcr:primaryType: frontend:plugin
             caption: Translation
