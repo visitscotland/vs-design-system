@@ -48,27 +48,45 @@ export default {
 <docs>
   ```jsx
 
-<VsPageIntro background="light" :heroIntro="false" :isItinerary="false">
-    <template slot="vsIntroBreadcrumb">
-        <VsBreadcrumb>
-            <VsBreadcrumbItem
-            v-for="(item, index) in breadcrumb.breadcrumb"
-            :key="index"
-            :href="item.href"
-            :active="item.active"
-            :text="item.name"
-            >
-            </VsBreadcrumbItem>
-        </VsBreadcrumb>
-    </template>
-    <template slot="vsIntroHeading">
-        Ben Nevis Scotland's Tallest Peak
-    </template>
+<VsPageIntro background="dark" :heroIntro="true" :isItinerary="false" class="mb-8">
+      <VsHero
+        slot="vsIntroHero"
+        :altText="itineraries.sampleItinerary.image.altText"
+        :credit="itineraries.sampleItinerary.image.credit"
+        :caption="itineraries.sampleItinerary.image.caption"
+        :image-src="itineraries.sampleItinerary.image.imageSrc"
+        :latitude="itineraries.sampleItinerary.image.latitude"
+        :longitude="itineraries.sampleItinerary.image.longitude"
+      >
+      <img
+        class="lazyload"
+        :src="itineraries.sampleItinerary.image.imageSrc"
+        srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        :data-srcset="itineraries.sampleItinerary.image.imageSrc"
+        :alt="itineraries.sampleItinerary.image.altText"
+        data-sizes="auto"
+        />
+      </VsHero>
+        <template slot="vsIntroBreadcrumb">
+            <VsBreadcrumb>
+              <VsBreadcrumbItem
+                v-for="(item, index) in breadcrumb.breadcrumb"
+                :key="index"
+                :href="item.href"
+                :active="item.active"
+                :text="item.name"
+                >
+              </VsBreadcrumbItem>
+            </VsBreadcrumb>
+        </template>
+        <template slot="vsIntroHeading">
+            {{itineraries.sampleItinerary.h1Heading}}
+        </template>
 
-    <template slot="vsIntroContent">
-        <div v-html="itineraries.sampleItinerary.introduction" />
-    </template>
-</VsPageIntro>
+        <template slot="vsIntroContent">
+            <div v-html="itineraries.sampleItinerary.introduction" />
+        </template>
+    </VsPageIntro>
 
 <VsArticle>
     <template slot="vsArticleImg">
