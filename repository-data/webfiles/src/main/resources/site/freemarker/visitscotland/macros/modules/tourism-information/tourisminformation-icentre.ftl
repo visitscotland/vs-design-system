@@ -16,12 +16,11 @@
     </#if>
 
     <vs-module-wrapper class="theme-${themeName}">
+        <template slot="vsModuleWrapperHeading">
+            ${module.title}
+        </template>
         <vs-container>
             <vs-icentre>
-                <template slot="icentreHeading">
-                    <vs-heading level="2">${module.title}</vs-heading>
-                </template>
-
                 <template slot="icentreImageWithCaption">
                     <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
                 </template>

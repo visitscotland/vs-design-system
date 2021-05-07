@@ -7,11 +7,11 @@
 <#macro iknow module themeName>
 
     <vs-module-wrapper class="theme-${themeName}">
+        <span slot="vsModuleWrapperHeading">
+            ${module.title}
+        </span>
         <vs-container>
             <vs-iknow-partner-item>
-                <span slot="iknowHeading">
-                    <vs-heading level="2">${module.title}</vs-heading>
-                </span>
                 <span slot="iknowText">
                     ${module.description}
                 </span>
