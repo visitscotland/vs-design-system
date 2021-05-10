@@ -9,14 +9,21 @@
         />
         <div>
             <p
-                v-if="isCurrentTimeframe && hoursMessage"
+                v-if="isCurrentTimeframe
+                    && (hoursMessage || (!closedLongTerm &&
+                        typeof currentDayData[0].state !== 'undefined'))"
                 class="itinerary-stop-info__times"
                 data-test="vs-itinerary-stop-times"
             >
-                {{ hoursMessage }}
+                <template v-if="hoursMessage.length > 0">
+                    {{ hoursMessage }}<br>
+                </template>
 
-                <template v-if="!closedLongTerm">
-                    <br>{{ provisionalMessage }}.
+                <template
+                    v-if="!closedLongTerm
+                        && typeof currentDayData[0].state !== 'undefined'"
+                >
+                    {{ provisionalMessage }}.
                 </template>
                 <br>
             </p>
@@ -35,6 +42,7 @@
                 v-if="!!this.$slots['stop-charge-text']"
                 data-test="vs-stop-charge-text"
             >
+                <!-- @slot The admission charge text -->
                 <slot name="stop-charge-text" />
             </p>
         </div>
@@ -42,16 +50,17 @@
 </template>
 
 <script>
+
+import VsIcon from '@components/elements/icon/Icon';
+import VsLink from '@components/elements/link/Link';
+
 /**
  * Itinerary stop information. Dynamically shows whether a stop is open,
  * closed or closing soon, depending on the current UK time. Also shows
  * links to opening times and admission fee information.
  *
  * @displayName Itinerary Stop Info
- */
-
-import VsIcon from '@components/elements/icon/Icon';
-import VsLink from '@components/elements/link/Link';
+*/
 
 export default {
     name: 'VsItineraryStopInfo',
@@ -313,6 +322,10 @@ export default {
                     this.compareTimes(this.currentTime, this.currentDayData, this.dayDataIndex);
                 }
             }
+
+            // if (typeof openingData[0].state !== 'undefined' && openingData[0].state.length > 0) {
+            //     this.openingMessage = openingData[0].state;
+            // }
         },
         returnDayName(day) {
             // change day from an integer to a name to match against day name supplied by CMS
