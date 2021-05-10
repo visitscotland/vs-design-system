@@ -121,7 +121,7 @@
                 <template slot="stop-info">
                     <vs-itinerary-stop-info
                         opening-hours='${stop.opening}'
-                        opening-times-link="<#if stop.openLink?has_content>${stop.openLink.link}</#if>"
+                        opening-times-link='${stop.openLink}'
                         closed-text='${label("itinerary", "stop.closed")}'
                         closing-soon-text='${label("itinerary", "stop.close.soon")}'
                         open-text='${label("itinerary", "stop.open")}'
