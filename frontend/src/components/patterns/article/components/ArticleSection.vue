@@ -1,25 +1,35 @@
 <template>
     <div
         class="vs-article-section"
+        :class="sidebarAlignClass"
         data-test="vs-article-section"
     >
-        <VsContainer>
-            <VsRow>
-                <VsCol cols="12">
-                    <VsRichTextWrapper>
-                        <slot />
-                    </VsRichTextWrapper>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
+        <VsRow>
+            <VsCol
+                cols="12"
+                md="4"
+                lg="5"
+                xl="4"
+                :order="sidebarAlign === 'right' ? '2' : ''"
+            >
+                <slot name="articleSidebar" />
+            </VsCol>
+            <VsCol
+                cols="12"
+                md="8"
+                lg="7"
+                offset-xl="1"
+            >
+                <VsRichTextWrapper>
+                    <slot />
+                </VsRichTextWrapper>
+            </VsCol>
+        </VsRow>
     </div>
 </template>
 
 <script>
-import {
-    VsCol, VsRow, VsContainer,
-} from '@components/elements/layout';
-
+import { VsCol, VsRow } from '@components/elements/layout';
 /**
  * The Article component is a wrapper for article content, generally wrapped in content sections
  *
@@ -32,61 +42,57 @@ export default {
     components: {
         VsCol,
         VsRow,
-        VsContainer,
     },
     props: {
+        sidebarAlign: {
+            type: String,
+            default: 'left',
+        },
+    },
+    computed: {
+        sidebarAlignClass() {
+            return this.sidebarAlign === 'right'
+                ? 'vs-article-section--sidebar-right'
+                : 'vs-article-section--sidebar-left';
+        },
     },
 };
 </script>
 
 <style lang="scss">
 .vs-article-section {
+    &--sidebar-right{
+        @include media-breakpoint-up(md) {
+            margin-right: -5%;
+        }
 
+        @include media-breakpoint-up(lg) {
+            margin-right: -15%;
+        }
+
+        @include media-breakpoint-up(xl) {
+            margin-right: -25%;
+        }
+    }
+
+    &--sidebar-left{
+        @include media-breakpoint-up(md) {
+            margin-left: -5%;
+        }
+
+        @include media-breakpoint-up(lg) {
+            margin-left: -15%;
+        }
+
+        @include media-breakpoint-up(xl) {
+            margin-left: -25%;
+        }
+    }
 }
 </style>
 
 <docs>
   ```jsx
-
-<VsPageIntro background="dark" :heroIntro="true" :isItinerary="false" class="mb-8">
-      <VsHero
-        slot="vsIntroHero"
-        :altText="itineraries.sampleItinerary.image.altText"
-        :credit="itineraries.sampleItinerary.image.credit"
-        :caption="itineraries.sampleItinerary.image.caption"
-        :image-src="itineraries.sampleItinerary.image.imageSrc"
-        :latitude="itineraries.sampleItinerary.image.latitude"
-        :longitude="itineraries.sampleItinerary.image.longitude"
-      >
-      <img
-        class="lazyload"
-        :src="itineraries.sampleItinerary.image.imageSrc"
-        srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-        :data-srcset="itineraries.sampleItinerary.image.imageSrc"
-        :alt="itineraries.sampleItinerary.image.altText"
-        data-sizes="auto"
-        />
-      </VsHero>
-        <template slot="vsIntroBreadcrumb">
-            <VsBreadcrumb>
-              <VsBreadcrumbItem
-                v-for="(item, index) in breadcrumb.breadcrumb"
-                :key="index"
-                :href="item.href"
-                :active="item.active"
-                :text="item.name"
-                >
-              </VsBreadcrumbItem>
-            </VsBreadcrumb>
-        </template>
-        <template slot="vsIntroHeading">
-            {{itineraries.sampleItinerary.h1Heading}}
-        </template>
-
-        <template slot="vsIntroContent">
-            <div v-html="itineraries.sampleItinerary.introduction" />
-        </template>
-    </VsPageIntro>
 
 <VsArticle>
     <template slot="vsArticleImg">
@@ -127,7 +133,111 @@ export default {
         for more experienced hikers.
     </template>
 
-    <VsArticleSection>
+    <VsArticleSection sidebar-align="left">
+        <template slot="articleSidebar">
+            <VsArticleSidebar>
+                <template slot="vsArticleSidebarImg">
+                    <VsImageWithCaption
+                        altText="An image"
+                        image-src="fixtures\image-with-caption\images\city-country-breaks.jpg"
+                    >
+                        <span slot="caption">
+                            A nice image
+                        </span>
+
+                        <span slot="credit">
+                            &copy; Gemma Stephen
+                        </span>
+                    </VsImageWithCaption>
+                </template>
+                <template slot="vsArticleSidebarQuote">
+                    <VsQuote>
+                        <p slot="quoteContent">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                            ac urna non metus tempor accumsan ut non risus. In turpis est,
+                            imperdiet eu sagittis ac, sodales quis nunc. Ut sagittis vulputate
+                            lacinia. Vivamus faucibus lorem leo, nec laoreet ligula auctor a.
+                            Donec id eros a ipsum facilisis lacinia nec ac nunc.
+                        </p>
+                        <span slot="quoteAuthorName">Penny</span>
+                        <span slot="quoteAuthorTitle">
+                            Visitor Services Advisor at Edinburgh iCentre
+                        </span>
+                    </VsQuote>
+                </template>
+                </VsArticleSidebar>
+        </template>
+
+        <VsHeading level="6">
+            How do I climb Ben Nevis safely?
+        </VsHeading>
+
+        <p>
+            The difficulty of this hike is often under-estimated so always be
+            prepared and take the walk at your own pace. If you are not confident in your
+            own sense of direction, there are local guided walking tours available.
+            Remember this is the UK's highest mountain!
+        </p>
+        <p>
+            Make sure someone knows where you're headed and ensure that you have
+            plenty of time to get back well before nightfall.
+        </p>
+        <p>
+            Any ascent in snow requires a high degree of fitness, winter equipment and the
+            skills to use them and mountaineering and navigation experience. Bear in mind
+            snow can cover parts of the 'tourist' path into the summer months. If you're at
+            all unsure, local mountain guides can advise and guide you to the summit and back.
+        </p>
+        <p>
+            Make sure you fill in a mountain safety route card and leave it with someone you trust.
+            For more information on keeping safe on Ben Nevis, see these tips from
+            Mountaineering Scotland and Walk Highlands.
+        </p>
+
+        <VsHeading level="6">
+            Is Ben Nevis suitable for children to climb?
+        </VsHeading>
+        <p>
+            Absolutely, as long as they are prepared for all weather conditions and keen for
+            a challenge. The Carn Mor Dearg Arete route is generally not advised for children.
+        </p>
+    </VsArticleSection>
+
+    <VsArticleSection sidebar-align="right">
+        <template slot="articleSidebar">
+            <VsArticleSidebar>
+                <template slot="vsArticleSidebarImg">
+                    <VsImageWithCaption
+                        altText="An image"
+                        image-src="fixtures\image-with-caption\images\city-country-breaks.jpg"
+                    >
+                        <span slot="caption">
+                            A nice image
+                        </span>
+
+                        <span slot="credit">
+                            &copy; Gemma Stephen
+                        </span>
+                    </VsImageWithCaption>
+                </template>
+                <template slot="vsArticleSidebarQuote">
+                    <VsQuote>
+                        <p slot="quoteContent">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                            ac urna non metus tempor accumsan ut non risus. In turpis est,
+                            imperdiet eu sagittis ac, sodales quis nunc. Ut sagittis vulputate
+                            lacinia. Vivamus faucibus lorem leo, nec laoreet ligula auctor a.
+                            Donec id eros a ipsum facilisis lacinia nec ac nunc.
+                        </p>
+                        <span slot="quoteAuthorName">Penny</span>
+                        <span slot="quoteAuthorTitle">
+                            Visitor Services Advisor at Edinburgh iCentre
+                        </span>
+                    </VsQuote>
+                </template>
+                </VsArticleSidebar>
+        </template>
+
         <VsHeading level="6">
             How do I climb Ben Nevis safely?
         </VsHeading>

@@ -15,18 +15,32 @@
                     <div class="vs-article__wrapper">
                         <slot name="vsArticleImg" />
 
-                        <VsHeading
-                            level="2"
-                            class="text-center"
-                        >
-                            <slot name="vsArticleTitle" />
-                        </VsHeading>
+                        <VsRow>
+                            <VsCol
+                                cols="12"
+                                lg="10"
+                                offset="0"
+                                offset-lg="1"
+                            >
+                                <div class="vs-article__content">
+                                    <VsHeading
+                                        level="2"
+                                        class="text-center mb-9"
+                                    >
+                                        <slot name="vsArticleTitle" />
+                                    </VsHeading>
 
-                        <VsRichTextWrapper variant="lead">
-                            <slot name="vsArticleIntro" />
-                        </VsRichTextWrapper>
+                                    <VsRichTextWrapper
+                                        variant="lead"
+                                        class="text-center mb-10"
+                                    >
+                                        <slot name="vsArticleIntro" />
+                                    </VsRichTextWrapper>
 
-                        <slot />
+                                    <slot />
+                                </div>
+                            </VsCol>
+                        </VsRow>
                     </div>
                 </VsCol>
             </VsRow>
@@ -62,34 +76,20 @@ export default {
 .vs-article {
     &__wrapper{
         border: 1px solid $color-gray-tint-5;
+
+        figure{
+            margin-bottom: 0;
+        }
+    }
+
+    &__content{
+        margin: $spacer-11 0;
     }
 }
 </style>
 
 <docs>
   ```jsx
-
-<VsPageIntro background="light" :heroIntro="false" :isItinerary="false">
-    <template slot="vsIntroBreadcrumb">
-        <VsBreadcrumb>
-            <VsBreadcrumbItem
-            v-for="(item, index) in breadcrumb.breadcrumb"
-            :key="index"
-            :href="item.href"
-            :active="item.active"
-            :text="item.name"
-            >
-            </VsBreadcrumbItem>
-        </VsBreadcrumb>
-    </template>
-    <template slot="vsIntroHeading">
-        Ben Nevis Scotland's Tallest Peak
-    </template>
-
-    <template slot="vsIntroContent">
-        <div v-html="itineraries.sampleItinerary.introduction" />
-    </template>
-</VsPageIntro>
 
 <VsArticle>
     <template slot="vsArticleImg">
