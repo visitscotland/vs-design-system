@@ -236,7 +236,7 @@ public class ItineraryFactory {
         }
 
         if (product.has(OPENING)){
-            String opening = product.get(OPENING).toString();
+            JsonNode opening = product.get(OPENING);
             module.setOpening(opening);
             module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
                     properties.getDmsHost() + module.getCtaLink().getLink() + "#opening", null));
