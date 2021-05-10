@@ -22,7 +22,7 @@ public class ItineraryStopModule extends Module<Stop>{
     private List<DataType> facilities;
     private JsonNode address;
     private String price;
-    private JsonNode opening;
+    private String opening;
     private FlatLink openLink;
     private BigDecimal distance;
 
@@ -136,11 +136,11 @@ public class ItineraryStopModule extends Module<Stop>{
         this.price = price;
     }
 
-    public JsonNode getOpening() {
+    public String getOpening() {
         return opening;
     }
 
-    public void setOpening(JsonNode opening) {
+    public void setOpening(String opening) {
         this.opening = opening;
     }
 
