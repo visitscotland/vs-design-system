@@ -672,7 +672,7 @@
                 "key": "monday",
                 "day": "Mondays",
                 "startTime": "09:30",
-                "endTime": "18:00",
+                "endTime": "12:00",
                 "state": "open",
                 "provisional": true
             },
@@ -712,9 +712,17 @@
                 "key": "thursday",
                 "day": "Thursdays",
                 "startTime": "09:30",
-                "endTime": "18:00",
+                "endTime": "14:50",
                 "state": "open",
-                "provisional": true
+                "provisional": false
+            },
+            {
+                "key": "thursday",
+                "day": "Thursdays",
+                "startTime": "19:30",
+                "endTime": "22:00",
+                "state": "open",
+                "provisional": false
             },
             {
                 "key":"friday",
