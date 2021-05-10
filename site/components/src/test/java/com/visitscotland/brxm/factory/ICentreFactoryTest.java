@@ -199,8 +199,10 @@ class ICentreFactoryTest {
         //Case 1: No image Defined => Default Image.
         when(utils.getDocumentFromNode((String) null)).thenReturn(defaultImage);
         module = factory.getModule(mockBuilder.build().getICentre(), Locale.UK, null);
+        FlatImage cmsIcentreImage = new FlatImage();
+        cmsIcentreImage.setCmsImage(defaultImage);
         assertNull(module.getImage().getExternalImage());
-        assertEquals(defaultImage, module.getImage().getCmsImage());
+        assertEquals(defaultImage, cmsIcentreImage.getCmsImage());
 
         //Case 2: No image Defined but DMS ID provided => Image from DMS
         JsonNode node = new ObjectMapper().readTree(MOCK_JSON);
