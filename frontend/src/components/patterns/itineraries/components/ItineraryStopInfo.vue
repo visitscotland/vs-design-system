@@ -214,11 +214,10 @@ export default {
             return provisionalMsg;
         },
     },
-    mounted() {
-        // if the opening hours data comes through as a string
-        // transform it into an object
+    created() {
         if (typeof this.openingHours !== 'object') {
-            this.parsedHours = JSON.parse(this.openingHours);
+            const json = this.openingHours.replace(/'/g, '"');
+            this.parsedHours = JSON.parse(json);
         } else {
             this.parsedHours = this.openingHours;
         }
@@ -227,7 +226,10 @@ export default {
         if (this.parsedHours.closedLongTerm) {
             this.closedLongTerm = true;
         }
-
+    },
+    mounted() {
+        // if the opening hours data comes through as a string
+        // transform it into an object
         this.getCurrentTime();
         this.isActiveDate();
         this.getCurrentHoursInfo();
