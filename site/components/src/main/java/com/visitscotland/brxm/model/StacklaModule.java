@@ -5,17 +5,26 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 public class StacklaModule extends Module<Stackla> {
 
-    public StacklaModule(String title, HippoHtml copy, String dataId, String dataHash) {
+    private String title;
+    private HippoHtml copy;
+    private String dataId;
+    private String dataHash;
+
+    public void setTitle(String title) {
         this.title = title;
-        this.copy = copy;
-        this.dataId = dataId;
-        this.dataHash = dataHash;
     }
 
-    private final String title;
-    private final HippoHtml copy;
-    private final String dataId;
-    private final String dataHash;
+    public void setCopy(HippoHtml copy) {
+        this.copy = copy;
+    }
+
+    public void setDataId(String dataId) {
+        this.dataId = dataId;
+    }
+
+    public void setDataHash(String dataHash) {
+        this.dataHash = dataHash;
+    }
 
     public String getTitle() {
         return title;
