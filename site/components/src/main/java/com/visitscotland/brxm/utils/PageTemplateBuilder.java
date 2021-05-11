@@ -43,8 +43,9 @@ public class PageTemplateBuilder {
     private final ArticleFactory articleFactory;
     private final LongCopyFactory longCopyFactory;
     private final IKnowCommunityFactory iKnowCommunityFactory;
+    private final StacklaFactory stacklaFactory;
 
-    public PageTemplateBuilder(DocumentUtilsService documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory) {
+    public PageTemplateBuilder(DocumentUtilsService documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
@@ -52,6 +53,7 @@ public class PageTemplateBuilder {
         this.articleFactory = article;
         this.longCopyFactory = longcopy;
         this.iKnowCommunityFactory = iKnowCommunityFactory;
+        this.stacklaFactory = stacklaFactory;
     }
 
     private Page getDocument(HstRequest request) {
@@ -78,6 +80,8 @@ public class PageTemplateBuilder {
                     processLongCopy(request, page, (LongCopy) item);
                 } else if (item instanceof IknowCommunity) {
                     processIKnowCommunity(request, page, (IknowCommunity) item);
+                } else if (item instanceof Stackla) {
+                    processStackla(page, (Stackla) item);
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
@@ -89,6 +93,12 @@ public class PageTemplateBuilder {
         setIntroTheme(request, page.modules);
 
         request.setAttribute(PAGE_ITEMS, page.modules);
+    }
+
+    private void processStackla(PageConfiguration page, Stackla document) {
+        StacklaModule stacklaModule = stacklaFactory.getStacklaModule(document);
+        stacklaModule.setHippoBean(document);
+        page.modules.add(stacklaModule);
     }
 
     private void processIKnowCommunity(HstRequest request, PageConfiguration page, IknowCommunity iknowCommunity) {
