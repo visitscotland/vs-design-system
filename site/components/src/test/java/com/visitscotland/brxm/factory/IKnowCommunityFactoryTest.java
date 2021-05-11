@@ -38,11 +38,6 @@ class IKnowCommunityFactoryTest {
     private static final String BUNDLE_ID = "iknow-community";
     private static final String TAG_VALUE_LIST_IDENTIFIER = "iknow-community-tags";
 
-//    @BeforeEach
-//    void init() {
-//        factory = new IKnowCommunityFactory(utils, bundle, properties);
-//    }
-
     @DisplayName("When no title or copy provided then default title and copy are used")
     @Test
     void whenNoTitleOrCopyProvided_thenDefaultTitleAndCopyUsed() {
