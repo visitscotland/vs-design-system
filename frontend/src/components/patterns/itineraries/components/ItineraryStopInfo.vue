@@ -323,10 +323,6 @@ export default {
                     this.compareTimes(this.currentTime, this.currentDayData, this.dayDataIndex);
                 }
             }
-
-            // if (typeof openingData[0].state !== 'undefined' && openingData[0].state.length > 0) {
-            //     this.openingMessage = openingData[0].state;
-            // }
         },
         returnDayName(day) {
             // change day from an integer to a name to match against day name supplied by CMS
