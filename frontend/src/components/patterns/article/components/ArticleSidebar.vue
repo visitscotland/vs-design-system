@@ -5,7 +5,7 @@
     >
         <slot name="vsArticleSidebarImg" />
 
-        <div class="mt-8">
+        <div class="pt-8 pb-1">
             <slot name="vsArticleSidebarQuote" />
         </div>
     </div>
