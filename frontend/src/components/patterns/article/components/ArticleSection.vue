@@ -1,6 +1,6 @@
 <template>
     <div
-        class="vs-article-section"
+        class="vs-article-section mb-8 mb-md-10"
         :class="sidebarAlignClass"
         data-test="vs-article-section"
     >
@@ -10,6 +10,7 @@
                 md="4"
                 lg="5"
                 xl="4"
+                :offset-xl="sidebarAlign === 'right' ? '1' : ''"
                 :order="sidebarAlign === 'right' ? '2' : ''"
             >
                 <slot name="articleSidebar" />
@@ -18,7 +19,7 @@
                 cols="12"
                 md="8"
                 lg="7"
-                offset-xl="1"
+                :offset-xl="sidebarAlign === 'left' ? '1' : ''"
             >
                 <VsRichTextWrapper>
                     <slot />
@@ -64,28 +65,32 @@ export default {
     &--sidebar-right{
         @include media-breakpoint-up(md) {
             margin-right: -5%;
+            padding-left: $spacer-10;
         }
 
         @include media-breakpoint-up(lg) {
             margin-right: -15%;
+            padding-left: 0;
         }
 
         @include media-breakpoint-up(xl) {
-            margin-right: -25%;
+            margin-right: -22%;
         }
     }
 
     &--sidebar-left{
         @include media-breakpoint-up(md) {
             margin-left: -5%;
+            padding-right: $spacer-10;
         }
 
         @include media-breakpoint-up(lg) {
             margin-left: -15%;
+            padding-right: 0;
         }
 
         @include media-breakpoint-up(xl) {
-            margin-left: -25%;
+            margin-left: -22%;
         }
     }
 }
@@ -104,14 +109,6 @@ export default {
             :key="`fullwidth1-${index}`"
             variant="fullwidth"
         >
-            <VsImg
-                class="lazyload"
-                :src="item.imageSrc"
-                :data-srcset="item.imageSrc"
-                :alt="item.altText"
-                data-sizes="auto">
-            </VsImg>
-
             <span slot="caption" v-if="item.caption">
                 {{ item.caption }}
             </span>
@@ -165,8 +162,12 @@ export default {
                         </span>
                     </VsQuote>
                 </template>
-                </VsArticleSidebar>
+            </VsArticleSidebar>
         </template>
+
+        <VsHeading level="3">
+            Experiencing Ben Nevis
+        </VsHeading>
 
         <VsHeading level="6">
             How do I climb Ben Nevis safely?
@@ -220,6 +221,86 @@ export default {
                         </span>
                     </VsImageWithCaption>
                 </template>
+            </VsArticleSidebar>
+        </template>
+
+        <VsHeading level="6">
+            How do I climb Ben Nevis safely?
+        </VsHeading>
+
+        <p>
+            The difficulty of this hike is often under-estimated so always be
+            prepared and take the walk at your own pace. If you are not confident in your
+            own sense of direction, there are local guided walking tours available.
+            Remember this is the UK's highest mountain!
+        </p>
+        <p>
+            Make sure someone knows where you're headed and ensure that you have
+            plenty of time to get back well before nightfall.
+        </p>
+        <p>
+            Any ascent in snow requires a high degree of fitness, winter equipment and the
+            skills to use them and mountaineering and navigation experience. Bear in mind
+            snow can cover parts of the 'tourist' path into the summer months. If you're at
+            all unsure, local mountain guides can advise and guide you to the summit and back.
+        </p>
+        <p>
+            Make sure you fill in a mountain safety route card and leave it with someone you trust.
+            For more information on keeping safe on Ben Nevis, see these tips from
+            Mountaineering Scotland and Walk Highlands.
+        </p>
+
+        <VsHeading level="6">
+            Is Ben Nevis suitable for children to climb?
+        </VsHeading>
+        <p>
+            Absolutely, as long as they are prepared for all weather conditions and keen for
+            a challenge. The Carn Mor Dearg Arete route is generally not advised for children.
+        </p>
+    </VsArticleSection>
+
+    <VsArticleSection sidebar-align="right">
+        <template slot="articleSidebar">
+            <VsArticleSidebar />
+        </template>
+        <VsHeading level="6">
+            How do I climb Ben Nevis safely?
+        </VsHeading>
+
+        <p>
+            The difficulty of this hike is often under-estimated so always be
+            prepared and take the walk at your own pace. If you are not confident in your
+            own sense of direction, there are local guided walking tours available.
+            Remember this is the UK's highest mountain!
+        </p>
+        <p>
+            Make sure someone knows where you're headed and ensure that you have
+            plenty of time to get back well before nightfall.
+        </p>
+        <p>
+            Any ascent in snow requires a high degree of fitness, winter equipment and the
+            skills to use them and mountaineering and navigation experience. Bear in mind
+            snow can cover parts of the 'tourist' path into the summer months. If you're at
+            all unsure, local mountain guides can advise and guide you to the summit and back.
+        </p>
+        <p>
+            Make sure you fill in a mountain safety route card and leave it with someone you trust.
+            For more information on keeping safe on Ben Nevis, see these tips from
+            Mountaineering Scotland and Walk Highlands.
+        </p>
+
+        <VsHeading level="6">
+            Is Ben Nevis suitable for children to climb?
+        </VsHeading>
+        <p>
+            Absolutely, as long as they are prepared for all weather conditions and keen for
+            a challenge. The Carn Mor Dearg Arete route is generally not advised for children.
+        </p>
+    </VsArticleSection>
+
+    <VsArticleSection sidebar-align="right">
+        <template slot="articleSidebar">
+            <VsArticleSidebar>
                 <template slot="vsArticleSidebarQuote">
                     <VsQuote>
                         <p slot="quoteContent">
@@ -235,7 +316,7 @@ export default {
                         </span>
                     </VsQuote>
                 </template>
-                </VsArticleSidebar>
+            </VsArticleSidebar>
         </template>
 
         <VsHeading level="6">
