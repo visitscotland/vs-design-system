@@ -79,9 +79,9 @@ public class PageTemplateBuilder {
                 } else if (item instanceof LongCopy){
                     processLongCopy(request, page, (LongCopy) item);
                 } else if (item instanceof IknowCommunity) {
-                    processIKnowCommunity(request, page, (IknowCommunity) item);
+                    page.modules.add(iKnowCommunityFactory.getIKnowCommunityModule((IknowCommunity) item, request.getLocale()));
                 } else if (item instanceof Stackla) {
-                    processStackla(page, (Stackla) item);
+                    page.modules.add(stacklaFactory.getStacklaModule((Stackla) item));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
@@ -93,18 +93,6 @@ public class PageTemplateBuilder {
         setIntroTheme(request, page.modules);
 
         request.setAttribute(PAGE_ITEMS, page.modules);
-    }
-
-    private void processStackla(PageConfiguration page, Stackla document) {
-        StacklaModule stacklaModule = stacklaFactory.getStacklaModule(document);
-        stacklaModule.setHippoBean(document);
-        page.modules.add(stacklaModule);
-    }
-
-    private void processIKnowCommunity(HstRequest request, PageConfiguration page, IknowCommunity iknowCommunity) {
-        IKnowCommunityModule iKnowCommunityModule = iKnowCommunityFactory.getIKnowCommunityModule(iknowCommunity, request.getLocale());
-        iKnowCommunityModule.setHippoBean(iknowCommunity);
-        page.modules.add(iKnowCommunityModule);
     }
 
     /**

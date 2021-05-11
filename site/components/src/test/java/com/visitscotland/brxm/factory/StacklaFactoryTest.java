@@ -4,21 +4,17 @@ import com.visitscotland.brxm.hippobeans.Stackla;
 import com.visitscotland.brxm.mock.StacklaMockBuilder;
 import com.visitscotland.brxm.model.StacklaModule;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class StacklaFactoryTest {
 
+    @InjectMocks
     StacklaFactory stacklaFactory;
-
-    @BeforeEach
-    public void init() {
-        this.stacklaFactory = new StacklaFactory();
-    }
 
     @DisplayName("All information from stackla bean is passed into stackla module")
     @Test

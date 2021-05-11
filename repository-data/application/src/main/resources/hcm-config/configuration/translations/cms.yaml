@@ -31,5 +31,3 @@ definitions:
       visitscotland:external-document-validator: 'The document is not valid or the link might be broken'
       visitscotland:url-validator: Enter a valid website URL
       visitscotland:iknow-community-tag-validator: 'Between 2 and 10 tags must be provided.'
-      visitscotland:stackla-data-id: 'Max length is 10.'
-      visitscotland:stackla-data-hash: 'Max length is 20.'

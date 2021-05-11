@@ -64,11 +64,3 @@ definitions:
       minLength: 2
       maxLength: 10
       targetField: visitscotland:tags
-    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:stackla-data-hash:
-      jcr:primaryType: hipposys:moduleconfig
-      hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator
-      maxLength: '20'
-    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:stackla-data-id:
-      jcr:primaryType: hipposys:moduleconfig
-      hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator
-      maxLength: '10'

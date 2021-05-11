@@ -13,7 +13,9 @@ public class StacklaFactory {
 
     public StacklaModule getStacklaModule(Stackla document) {
         logger.info("Creating stacklaModule for {}", document.getPath());
-        return new StacklaModule(document.getTitle(), document.getCopy(), document.getStacklaId(), document.getStacklaHash());
+        StacklaModule stacklaModule = new  StacklaModule(document.getTitle(), document.getCopy(), document.getStacklaId(), document.getStacklaHash());
+        stacklaModule.setHippoBean(document);
+        return stacklaModule;
     }
 
 

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -31,15 +32,16 @@ class IKnowCommunityFactoryTest {
     @Mock
     Properties properties;
 
+    @InjectMocks
     IKnowCommunityFactory factory;
 
     private static final String BUNDLE_ID = "iknow-community";
     private static final String TAG_VALUE_LIST_IDENTIFIER = "iknow-community-tags";
 
-    @BeforeEach
-    void init() {
-        factory = new IKnowCommunityFactory(utils, bundle, properties);
-    }
+//    @BeforeEach
+//    void init() {
+//        factory = new IKnowCommunityFactory(utils, bundle, properties);
+//    }
 
     @DisplayName("When no title or copy provided then default title and copy are used")
     @Test

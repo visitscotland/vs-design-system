@@ -24,7 +24,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required, 'visitscotland:short-string-validator']
+            hipposysedit:validators: [required]
           /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -41,7 +41,7 @@ definitions:
             hipposysedit:path: visitscotland:stacklaId
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required, 'visitscotland:stackla-data-id']
+            hipposysedit:validators: [required]
           /stacklaHash:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -50,7 +50,7 @@ definitions:
             hipposysedit:path: visitscotland:stacklaHash
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required, 'visitscotland:stackla-data-hash']
+            hipposysedit:validators: [required]
           /translation:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
