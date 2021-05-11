@@ -123,7 +123,7 @@
                     <#--  ${replaced}  -->
                     <vs-itinerary-stop-info
                         opening-hours="${replaced}"
-                        opening-times-link='${stop.openLink}'
+                        opening-times-link='${stop.openLink.link}'
                         closed-text='${label("itinerary", "stop.closed")}'
                         closing-soon-text='${label("itinerary", "stop.close.soon")}'
                         open-text='${label("itinerary", "stop.open")}'

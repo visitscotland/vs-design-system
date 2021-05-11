@@ -25,7 +25,6 @@
                 >
                     {{ provisionalMessage }}.
                 </template>
-                <br>
             </p>
 
             <p
