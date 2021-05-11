@@ -124,8 +124,8 @@ class IKnowCommunityFactoryTest {
     void communityLink() {
         when(properties.getIknowCommunityUrl())
                 .thenReturn("url");
-        lenient().when(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.label", Locale.UK))
-                .thenReturn("label");
+        when(bundle.getResourceBundle(eq(BUNDLE_ID), any(), eq(Locale.UK)))
+                .thenAnswer(invocation -> invocation.getArgument(1).equals("iknow-community.link.label") ? "label" : "");
 
         IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().tags(Collections.emptyList()).build();
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
