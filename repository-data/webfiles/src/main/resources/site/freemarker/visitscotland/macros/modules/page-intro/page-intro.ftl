@@ -82,7 +82,7 @@
             <#if itinerary.document.areas?has_content>
                 <vs-container slot="VsIntroLower">
                     <vs-row>
-                        <vs-col cols="12" lg="11" xl="6" offset-lg="1">
+                        <vs-col cols="12" lg="5" xl="6" offset-lg="1">
                             <vs-description-list class="mb-6">
                                 <vs-description-list-item title>
                                     ${label("itinerary", "highlights")}
