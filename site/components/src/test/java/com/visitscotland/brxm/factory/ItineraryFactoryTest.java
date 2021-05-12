@@ -164,7 +164,7 @@ class ItineraryFactoryTest {
     @DisplayName("Creates a simple stop from a DMSLink")
     void dmsStop_basic() throws JsonProcessingException {
         final String JSON = "{" +
-                " \"url\":\"https://mock.visitscotland.com/info/fake-product-p123\", " +
+                " \"url\":\"/info/fake-product-p123\", " +
                 " \"name\":\"Fake Product\", " +
                 " \"latitude\": 55.98129618868665, " +
                 " \"longitude\": -3.1749625514667117, " +
@@ -187,7 +187,7 @@ class ItineraryFactoryTest {
         assertTrue(Contract.isEmpty(module.getErrorMessages()));
         assertEquals(55.98129618868665, module.getCoordinates().getLatitude());
         assertEquals(-3.1749625514667117, module.getCoordinates().getLongitude());
-        assertTrue(module.getCtaLink().getLink().contains("https://mock.visitscotland.com/info/fake-product-p123"));
+        assertEquals("https://mock.visitscotland.com/info/fake-product-p123", module.getCtaLink().getLink());
         assertEquals("Find out more", module.getCtaLink().getLabel());
         assertEquals("Edinburgh", module.getSubTitle());
         verify(imageFactory).createImage(any(), any());
@@ -274,7 +274,7 @@ class ItineraryFactoryTest {
         ItineraryStopModule module = getSingleStop(factory.buildItinerary(itinerary, Locale.UK));
         assertNotNull(module.getOpening());
         assertEquals("show times", module.getOpenLink().getLabel());
-        assertTrue(module.getOpenLink().getLink().contains("https://mock.visitscotland.com/info/fake-product-p123#opening"));
+        assertEquals("https://mock.visitscotland.com/info/fake-product-p123#opening", module.getOpenLink().getLink());
     }
 
     @Test
