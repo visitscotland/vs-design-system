@@ -197,7 +197,7 @@ export default {
         </VsImageWithCaption>
 
         <span slot="icentreQuote">
-            <VsQuote>
+            <VsQuote variant="wide">
                 <VsImg
                     src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     alt="This is the alt text"
