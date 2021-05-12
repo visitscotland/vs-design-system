@@ -31,11 +31,9 @@ public class ImageValidator implements Validator<Node> {
     public Optional<Violation> validate(final ValidationContext context, final Node document) {
         try {
             String nodeId = document.getProperty(HIPPO_DOCBASE).getValue().getString();
-            if (!nodeId.equals(EMPTY_IMAGE)) {
-                Node childNode = sessionFactory.getHippoNodeByIdentifier(nodeId);
-                if (!childNode.hasProperty(Image.CREDIT) || !childNode.hasProperty(Image.ALT_TEXT)) {
-                    return Optional.of(context.createViolation());
-                }
+            Node childNode = sessionFactory.getHippoNodeByIdentifier(nodeId);
+            if (!childNode.hasProperty(Image.CREDIT) || !childNode.hasProperty(Image.ALT_TEXT)) {
+                return Optional.of(context.createViolation());
             }
         } catch (RepositoryException e) {
             return Optional.of(context.createViolation());
