@@ -3,7 +3,7 @@
 # - The SNAPSHOT version must go at the end and It should correspond with the version of the artefact,
 # - Only One SNAPSHOT must exist in this file
 #
-# Check Concluence for a more in detail explanation. For a detailed explanation: TBD
+# Check Confluence for a more in detail explanation. For a detailed explanation: TBD
 action-lists:
-- 0.0.0:
-    /content/documents/administration/labels/dummy: delete
+- 0.1.0:
+    /content/documents/administration/configuration/properties: reload
