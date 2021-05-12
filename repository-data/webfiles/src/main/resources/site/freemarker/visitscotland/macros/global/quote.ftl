@@ -1,5 +1,5 @@
-<#macro quote authorImage content authorName authorTitle link="">
-    <vs-quote>
+<#macro quote authorImage content authorName authorTitle link="" variant="narrow">
+    <vs-quote variant="${variant}">
         <#if authorImage?has_content>
             <vs-img
                 alt="${(authorImage)!'${label("essentials.global", "default.alt-text")}'}"
