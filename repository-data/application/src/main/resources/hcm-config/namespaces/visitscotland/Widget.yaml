@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: f9d53fbb-1f48-4096-ba17-00858fd4c54d
+          jcr:uuid: 4ec93cc7-aa45-401b-8588-20bff1dbd507
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -24,13 +24,6 @@ definitions:
             hipposysedit:path: visitscotland:translation
             hipposysedit:primary: false
             hipposysedit:type: OpenUiString
-          /components:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:multiple: true
-            hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:components
-            hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator, required]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -42,7 +35,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 9302775a-87b8-4d60-af47-c3da26f39e78
+          jcr:uuid: 530011bf-772e-4d33-86ce-0750edcb38c0
           hippostdpubwf:lastModificationDate: 2019-11-12T09:09:11.962Z
           hippostdpubwf:creationDate: 2019-11-12T09:09:11.962Z
           visitscotland:translation: ''
@@ -69,18 +62,6 @@ definitions:
             item: ${cluster.id}.right.item
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
             wicket.id: ${cluster.id}.right
-          /components:
-            jcr:primaryType: frontend:plugin
-            caption: Components
-            compoundList: visitscotland:MegalinkItem,visitscotland:ProductsSearch
-            contentPickerType: links
-            field: components
-            plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            hint: ''
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              maxitems: 2
           /translation:
             jcr:primaryType: frontend:plugin
             caption: Translation
