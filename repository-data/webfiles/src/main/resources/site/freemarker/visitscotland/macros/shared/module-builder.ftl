@@ -8,6 +8,7 @@
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 <#include "../modules/otyml/otyml.ftl">
 <#include "../modules/horizontal-list/horizontal-list.ftl">
+<#include "../modules/stackla/stackla.ftl">
 <#include "theme-calculator.ftl">
 
 <#-- Implicit Request Objects -->
@@ -57,6 +58,9 @@
 
         <#elseif module.getType()== "IKnowCommunityModule">
             <@iknowCommunity module/>
+
+        <#elseif module.getType()== "StacklaModule">
+            <@stackla module/>
         </#if>
     </div>
 </#macro>

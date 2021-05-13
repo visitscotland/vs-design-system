@@ -63,6 +63,7 @@ public class IKnowCommunityFactory {
         }).collect(Collectors.toList());
 
         iKnowCommunityModule.setTags(tagLinks);
+        iKnowCommunityModule.setHippoBean(iknowCommunity);
         return iKnowCommunityModule;
     }
 

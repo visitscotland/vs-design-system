@@ -43,8 +43,9 @@ public class PageTemplateBuilder {
     private final ArticleFactory articleFactory;
     private final LongCopyFactory longCopyFactory;
     private final IKnowCommunityFactory iKnowCommunityFactory;
+    private final StacklaFactory stacklaFactory;
 
-    public PageTemplateBuilder(DocumentUtilsService documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory) {
+    public PageTemplateBuilder(DocumentUtilsService documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
@@ -52,6 +53,7 @@ public class PageTemplateBuilder {
         this.articleFactory = article;
         this.longCopyFactory = longcopy;
         this.iKnowCommunityFactory = iKnowCommunityFactory;
+        this.stacklaFactory = stacklaFactory;
     }
 
     private Page getDocument(HstRequest request) {
@@ -77,7 +79,9 @@ public class PageTemplateBuilder {
                 } else if (item instanceof LongCopy){
                     processLongCopy(request, page, (LongCopy) item);
                 } else if (item instanceof IknowCommunity) {
-                    processIKnowCommunity(request, page, (IknowCommunity) item);
+                    page.modules.add(iKnowCommunityFactory.getIKnowCommunityModule((IknowCommunity) item, request.getLocale()));
+                } else if (item instanceof Stackla) {
+                    page.modules.add(stacklaFactory.getStacklaModule((Stackla) item));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
@@ -89,12 +93,6 @@ public class PageTemplateBuilder {
         setIntroTheme(request, page.modules);
 
         request.setAttribute(PAGE_ITEMS, page.modules);
-    }
-
-    private void processIKnowCommunity(HstRequest request, PageConfiguration page, IknowCommunity iknowCommunity) {
-        IKnowCommunityModule iKnowCommunityModule = iKnowCommunityFactory.getIKnowCommunityModule(iknowCommunity, request.getLocale());
-        iKnowCommunityModule.setHippoBean(iknowCommunity);
-        page.modules.add(iKnowCommunityModule);
     }
 
     /**
