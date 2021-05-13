@@ -23,8 +23,4 @@ public class CannedSearch extends BaseDocument {
         return getBean("visitscotland:criteria", ProductsSearch.class);
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:criteria")
-    public ProductsSearch getCriteria() {
-        return getBean("visitscotland:criteria", ProductsSearch.class);
-    }
 }
