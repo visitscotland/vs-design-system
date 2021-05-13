@@ -12,12 +12,6 @@ import java.util.List;
 @Node(jcrType = "visitscotland:FeaturedWidget")
 public class FeaturedWidget extends Widget {
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:megaLinkItems")
-    public List<MegalinkItem> getMegaLinkItems() {
-        return getChildBeansByName("visitscotland:megaLinkItems",
-                MegalinkItem.class);
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:items", allowModifications = false)
     public List<MegalinkItem> getItems() {
         return getLinkedBeans("visitscotland:items", MegalinkItem.class);

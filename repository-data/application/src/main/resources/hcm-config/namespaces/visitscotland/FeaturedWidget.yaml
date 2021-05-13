@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: dc6ad08a-8a59-4066-94ff-e80981c87377
+          jcr:uuid: 5bdc00e2-431a-4298-855b-86cba167bd11
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Widget', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -22,14 +22,6 @@ definitions:
             hipposysedit:path: visitscotland:items
             hipposysedit:type: hippo:compound
             hipposysedit:validators: [contentblocks-validator]
-          /megaLinkItems:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: true
-            hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:megaLinkItems
-            hipposysedit:primary: false
-            hipposysedit:type: visitscotland:MegalinkItem
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -42,15 +34,9 @@ definitions:
           hippotranslation:locale: document-type-locale
           visitscotland:translation: ''
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 1ac62448-a30d-4d04-be01-0fa7a3fa1e6a
+          jcr:uuid: 7bb35eeb-5b5f-459d-a08b-99d3c8859531
           hippostdpubwf:lastModificationDate: 2021-05-12T09:57:59.465+01:00
           hippostdpubwf:creationDate: 2021-05-12T09:57:59.466+01:00
-          /visitscotland:megaLinkItems:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
           /visitscotland:items:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
@@ -80,15 +66,6 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 2
-          /megaLinkItems:
-            jcr:primaryType: frontend:plugin
-            caption: Featured Item
-            field: megaLinkItems
-            hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /translation:
             jcr:primaryType: frontend:plugin
             caption: Translation
