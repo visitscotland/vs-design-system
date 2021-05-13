@@ -8,6 +8,7 @@
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 <#include "theme-calculator.ftl">
 <#include "../modules/horizontal-list/horizontal-list.ftl">
+<#include "../modules/stackla/stackla.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
@@ -56,6 +57,9 @@
 
         <#elseif module.getType()== "IKnowCommunityModule">
             <@iknowCommunity module/>
+
+        <#elseif module.getType()== "StacklaModule">
+            <@stackla module/>
         </#if>
     </div>
 </#macro>
