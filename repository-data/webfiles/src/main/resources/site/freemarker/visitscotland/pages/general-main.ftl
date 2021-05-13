@@ -37,9 +37,9 @@
 
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a common macro to control it-->
 		<#if standardTemplate >
-			<@moduleBuilder module=module colourScheme=["light", "light", "light"] />
-		<#else>
 			<@moduleBuilder module />
+		<#else>
+			<@moduleBuilder module=module colourScheme=["light", "light", "light"] />
 		</#if>
 
 	</#list>
