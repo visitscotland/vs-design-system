@@ -222,7 +222,7 @@ export default {
             }
 
             .megalink-multi-image__content {
-                font-size: $lead-font-size;
+                font-size: $font-size-md;
                 margin-top: $spacer-8;
                 line-height: $line-height-m;
             }
