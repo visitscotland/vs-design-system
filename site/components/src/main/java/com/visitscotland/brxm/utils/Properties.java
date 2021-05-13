@@ -15,21 +15,26 @@ public class Properties {
 
     private static final Logger logger = LoggerFactory.getLogger(Properties.class.getName());
 
-    public static final String INSTAGRAM_API = "instagram.api";
-    public static final String INSTAGRAM_TOKEN ="instagram.accesstoken";
-    public static final String INSTAGRAM_URL ="instagram.post-url";
-    public static final String LOCALHOST = "localhost";
-    public static final String HELPDESK_EMAIL = "helpdesk-email";
-    public static final String DMS_HOST = "dms.host";
-    public static final String DMS_ENCODING = "dms.encoding";
-    public static final String DMS_TOKEN = "dms.token";
-    public static final String DMS_TIMEOUT = "dms.timeout";
-    public static final String DMS_TRIES = "dms.tries";
-    public static final String DMS_SLEEP_TIME = "dms.sleep-time";
-    public static final String DMS_MAP_DEFAULT_DISTANCE = "dms.default-distance";
-    private static final String CONFIGURATION = "config.cms";
-    private static final String IKNOW_COMMUNITY_URL = "iknow-community.url";
-    private static final String IKNOW_COMMUNITY_TAGGED_DISCUSSION= "iknow-community.tagged-discussion";
+    static final String BUNDLE_ID = "config.cms";
+
+    static final String INSTAGRAM_API = "instagram.api";
+    static final String INSTAGRAM_ACCESS_TOKEN ="instagram.accesstoken";
+    static final String INSTAGRAM_APP_ID ="instagram.app-id";
+    static final String INSTAGRAM_URL ="instagram.post-url";
+    static final String LOCALHOST = "localhost";
+    static final String HELPDESK_EMAIL = "helpdesk-email";
+    static final String DMS_HOST = "vs-dms-products.url";
+    static final String DMS_MAP_DEFAULT_DISTANCE = "dms.default-distance";
+    static final String DMS_DATA_HOST = "dms-data.url";
+    static final String DMS_DATA_ENCODING = "dms-data.encoding";
+    static final String DMS_DATA_API_KEY = "dms-data.api-key";
+    static final String DMS_DATA_TIMEOUT = "dms-data.timeout";
+    static final String DMS_DATA_TRIES = "dms-data.tries";
+    static final String DMS_DATA_SLEEP_TIME = "dms-data.sleep-time";
+    static final String IKNOW_COMMUNITY_URL = "iknow-community.url";
+    static final String IKNOW_COMMUNITY_TAGGED_DISCUSSION = "iknow-community.tagged-discussion";
+    static final String USE_RELATIVE_URLS = "use-relative-urls";
+
 
     private final ResourceBundleService bundle;
 
@@ -50,7 +55,12 @@ public class Properties {
     }
 
     public String getInstagramToken() {
-        return readString(INSTAGRAM_TOKEN);
+        String accessCode = readString(INSTAGRAM_ACCESS_TOKEN);
+        if (Contract.isEmpty(accessCode)){
+            return readString(INSTAGRAM_APP_ID);
+        } else {
+            return readString(INSTAGRAM_APP_ID) +"|"+accessCode;
+        }
     }
 
     public String getHelpdeskEmail() {
@@ -58,29 +68,36 @@ public class Properties {
     }
 
     public String getDmsHost() {
-        return readString(DMS_HOST);
+        if (readBoolean(USE_RELATIVE_URLS)){
+            return "";
+        } else {
+            return readString(DMS_HOST);
+        }
     }
 
+    public String getDmsDataHost() {
+        return readString(DMS_DATA_HOST);
+    }
+
+    //TODO: This property doesn't seem to be in use. Should it be removed?
     public String getDmsMapDefaultDistance() {
         return readString(DMS_MAP_DEFAULT_DISTANCE);
     }
 
-
-
     public String getDmsToken() {
-        return readString(DMS_TOKEN);
+        return readString(DMS_DATA_API_KEY);
     }
 
     public Integer getDmsTimeout() {
-        return readInteger(DMS_TIMEOUT);
+        return readInteger(DMS_DATA_TIMEOUT);
     }
 
     public Integer getDmsTries() {
-        return readInteger(DMS_TRIES);
+        return readInteger(DMS_DATA_TRIES);
     }
 
     public Integer getDmsWaitTime() {
-        return readInteger(DMS_SLEEP_TIME);
+        return readInteger(DMS_DATA_SLEEP_TIME);
     }
 
     public String getIknowCommunityUrl() {
@@ -91,50 +108,63 @@ public class Properties {
         return readString(IKNOW_COMMUNITY_TAGGED_DISCUSSION);
     }
 
-
-    //TODO Test
     public Charset getDmsEncoding() {
-        String value = bundle.getResourceBundle(CONFIGURATION, DMS_ENCODING, Locale.UK);
+        String value = getProperty(DMS_DATA_ENCODING);
         try{
             if (!Contract.isEmpty(value)) {
                 return Charset.forName(value);
             }
         } catch (Exception e){
-            logger.warn("{} is not a valid value for the property {}", value, DMS_ENCODING);
+            logger.warn("{} is not a valid value for the property {}", value, DMS_DATA_ENCODING);
         }
         return StandardCharsets.UTF_8;
     }
 
-    //TODO Test
-    private String readString(String key){
-        String value = bundle.getResourceBundle(CONFIGURATION, key, Locale.UK);
-
-        if (Contract.isEmpty(value)) {
-            logger.warn("The property {} hasn't been set in the resourceBundle {}", key, CONFIGURATION);
-        } else if (value.startsWith("$")){
-            String env = System.getenv(value.substring(1));
-            if (env != null){
-                return env;
-            }
-        } else  {
+    public String readString(String key){
+        String value = getProperty(key);
+        if (value != null){
             return value;
+        } else {
+            return "";
         }
-
-        return "";
     }
 
-    //TODO test
-    private Integer readInteger(String key){
-        String value = bundle.getResourceBundle(CONFIGURATION, key, Locale.UK);
+    public int readInteger(String key){
+        String value = getProperty(key);
+
         try {
-            if (Contract.isEmpty(value)){
-                logger.warn("The property {} hasn't been set in the resourceBundle {}", key, CONFIGURATION);
-            } else {
-                return Integer.valueOf(value);
+            if (value != null){
+                return Integer.parseInt(value);
             }
         } catch (NumberFormatException nfe){
             logger.error("The property value of the property {} cannot be casted to Integer. '{}' is not allowed.", key,value);
         }
         return 0;
+    }
+
+    public boolean readBoolean(String key){
+        return Boolean.parseBoolean(getProperty(key));
+    }
+
+    private String getProperty(String key){
+        String value = bundle.getResourceBundle(BUNDLE_ID, key, Locale.UK);
+
+        if (Contract.isEmpty(value)){
+            logger.warn("The property {} hasn't been set in the resourceBundle {}", key, BUNDLE_ID);
+        } else if (value.startsWith("$")){
+            return getEnvironmentVariable(value.substring(1));
+        } else {
+            return value;
+        }
+
+        return null;
+    }
+
+    String getEnvironmentVariable(String name){
+        try {
+            return System.getenv(name);
+        } catch (RuntimeException e){
+            return null;
+        }
     }
 }

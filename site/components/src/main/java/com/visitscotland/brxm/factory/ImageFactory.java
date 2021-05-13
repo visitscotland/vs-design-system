@@ -88,6 +88,7 @@ public class ImageFactory {
             image.setDescription(data.getCaption());
         }
 
+        image.setCredit(cmsImage.getCredit());
         if (Contract.isEmpty(image.getAltText())) {
             String message = "The image does not have an Alternative Text for the language " + locale;
             module.addErrorMessage(message);

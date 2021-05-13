@@ -112,6 +112,9 @@
 [visitscotland:SingleImageModule] > hippo:compound, hippostd:relaxed
   orderable
 
+[visitscotland:Stackla] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
+  orderable
+
 [visitscotland:Stop] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 

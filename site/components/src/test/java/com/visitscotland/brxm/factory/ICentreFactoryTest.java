@@ -179,7 +179,6 @@ class ICentreFactoryTest {
         // - Default to generic image of from any iCentre
         // - Option to pull an image from DMS (to match a location mentioned within quote, using CTA link to DMS listing page)
         ICentreModule module;
-        Image defaultImage = mock(Image.class);
         when(bundle.getResourceBundle(eq(ICentreFactory.BUNDLE_ID), any(), eq(Locale.UK))).thenReturn(null);
 
         //Definition of the Quote when != null
@@ -195,12 +194,17 @@ class ICentreFactoryTest {
         cmsImage.setCmsImage(mock(Image.class));
         when(imageFactory.createImage(any(Image.class), any(), any())).thenReturn(cmsImage);
 
+        //Definition of the default Image
+        Image defaultCMSImage = mock(Image.class);
+        FlatImage defaultImage = new FlatImage();
+        defaultImage.setCmsImage(defaultCMSImage);
+        when(utils.getDocumentFromNode((String) null)).thenReturn(defaultCMSImage);
+        when(imageFactory.createImage(eq(defaultCMSImage), any(), any())).thenReturn(defaultImage);
 
         //Case 1: No image Defined => Default Image.
-        when(utils.getDocumentFromNode((String) null)).thenReturn(defaultImage);
         module = factory.getModule(mockBuilder.build().getICentre(), Locale.UK, null);
         assertNull(module.getImage().getExternalImage());
-        assertEquals(defaultImage, module.getImage().getCmsImage());
+        assertEquals(defaultImage, module.getImage());
 
         //Case 2: No image Defined but DMS ID provided => Image from DMS
         JsonNode node = new ObjectMapper().readTree(MOCK_JSON);
@@ -211,7 +215,7 @@ class ICentreFactoryTest {
 
         //Case 3: Image defined in the document => Defined Image
         module = factory.getModule(mockBuilder.addICentreImage().build().getICentre(), Locale.CANADA_FRENCH, "St. Kilda");
-        assertNotEquals(defaultImage, module.getImage().getCmsImage());
+        assertEquals(cmsImage, module.getImage());
         assertNull(module.getImage().getExternalImage());
     }
 
