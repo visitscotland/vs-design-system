@@ -47,6 +47,11 @@ export default {
 
     &.vs-rich-text-wrapper--variant-lead.lead * {
         line-height: $line-height-lead;
+        font-size: $lead-font-size;
+
+        @include media-breakpoint-up(md) {
+            font-size: $lead-font-size * 1.1;
+        }
     }
 }
 
