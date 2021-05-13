@@ -14,7 +14,7 @@ public class Destination extends Page {
     @Override
     public String[] getChildJcrTypes() {
         return new String[] { "visitscotland:Megalinks",
-                "visitscotland:TourismInformation", "visitscotland:IknowCommunity" };
+                "visitscotland:TourismInformation", "visitscotland:IknowCommunity", "visitscotland:Stackla"};
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
