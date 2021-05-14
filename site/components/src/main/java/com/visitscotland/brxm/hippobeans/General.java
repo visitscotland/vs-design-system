@@ -15,11 +15,11 @@ public class General extends Page {
     public String[] getChildJcrTypes() {
         return new String[] { "visitscotland:Megalinks",
                 "visitscotland:TourismInformation",
-                "visitscotland:LongContent",
                 "visitscotland:LongCopy",
                 "visitscotland:Article",
                 "visitscotland:IknowCommunity",
-                "visitscotland:Stackla"};
+                "visitscotland:Stackla",
+                "visitscotland:MarketoForm"};
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
