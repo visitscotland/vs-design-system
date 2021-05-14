@@ -54,7 +54,7 @@ export default {
 .vs-icon-list__item {
     display: inline-table;
     text-align: center;
-    width: 33%;
+    width: 90px;
     margin-bottom: $spacer-4;
     padding: 0 $spacer-1;
     font-size: $small-font-size;
@@ -62,10 +62,6 @@ export default {
 
     svg {
         margin-bottom: $spacer-3;
-    }
-
-    @include media-breakpoint-up(md) {
-        width: 20%;
     }
 }
 </style>
