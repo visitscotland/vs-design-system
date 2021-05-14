@@ -64,3 +64,8 @@ definitions:
       minLength: 2
       maxLength: 10
       targetField: visitscotland:tags
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:otyml-link-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: com.visitscotland.brxm.validator.MultiValueNumberSelectedValidator
+      minLength: 5
+      targetField: visitscotland:links
