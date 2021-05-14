@@ -39,6 +39,8 @@ props:
       value: "{!font_size_base} * 0.875"
     - name: lead-font-size
       value: "{!font_size_base} * 1.125"
+    - name: lead-font-size-desktop
+      value: "{!font_size_base} * 1.25"
     - name: small-font-size
       value: "{!font_size_base} * .875"
     - name: nav-lvl1-desktop-font-size
