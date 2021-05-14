@@ -28,7 +28,7 @@
 
 <#macro pageIntro content heroDetails="" itinerary="">
 
-    <#assign themeName = themeCalculator("", [], introTheme)>
+    <#assign themeName = themeCalculator(introTheme)>
 
     <#if content.heroImage??>
         <@hst.link var="hero" hippobean=content.heroImage.original/>
