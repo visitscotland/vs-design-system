@@ -21,8 +21,4 @@ public class Listicle extends Page {
         return getBean("visitscotland:ListicleClosing", ListicleClosing.class);
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:newsletter")
-    public Boolean getNewsletter() {
-        return getSingleProperty("visitscotland:newsletter");
-    }
 }
