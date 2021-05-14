@@ -62,4 +62,9 @@ public class Itinerary extends Page {
     public String getTranslationPriority() {
         return getSingleProperty("visitscotland:translationPriority");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:newsletter")
+    public Boolean getNewsletter() {
+        return getSingleProperty("visitscotland:newsletter");
+    }
 }
