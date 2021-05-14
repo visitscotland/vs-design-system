@@ -6,7 +6,7 @@
 <#include "../../global/quote.ftl">
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
 
-<#macro icentre module themeName>
+<#macro icentre module themeName="">
     <#if module.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=module.image.cmsImage.original/>

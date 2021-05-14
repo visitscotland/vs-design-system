@@ -4,7 +4,7 @@
 <#include "../../../../frontend/components/vs-iknow-partner-item.ftl">
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
 
-<#macro iknow module themeName>
+<#macro iknow module themeName="">
 
     <vs-module-wrapper class="theme-${themeName}">
         <span slot="vsModuleWrapperHeading">
