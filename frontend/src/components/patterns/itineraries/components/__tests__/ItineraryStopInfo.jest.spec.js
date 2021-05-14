@@ -2,24 +2,6 @@ import { shallowMount } from '@vue/test-utils';
 import VsItineraryStopInfo from '../ItineraryStopInfo';
 import openingTimesData from './data/openingTimesData.json';
 
-// const earlyTime = {
-//     hours: 8,
-//     mins: 30,
-//     day: 4,
-// };
-
-// const midTime = {
-//     hours: 14,
-//     mins: 59,
-//     day: 4,
-// };
-
-// const lateTime = {
-//     hours: 18,
-//     mins: 1,
-//     day: 4,
-// };
-
 const currentDayData = [{
     key: 'thursday',
     day: 'Thursdays',
