@@ -11,10 +11,23 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 5bdc00e2-431a-4298-855b-86cba167bd11
+          jcr:uuid: 1154091c-a22a-45e6-b1d7-87a2ba7868b4
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Widget', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
+          /items:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:multiple: true
+            hipposysedit:ordered: true
+            hipposysedit:path: visitscotland:items
+            hipposysedit:type: hippo:compound
+            hipposysedit:validators: [contentblocks-validator]
+        /hipposysedit:nodetype[2]:
+          jcr:primaryType: hipposysedit:nodetype
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 9e244495-8734-4404-9b14-f27ec463ebf4
+          hipposysedit:node: true
+          hipposysedit:supertype: ['visitscotland:Widget', 'hippostd:relaxed', 'hippotranslation:translated']
           /items:
             jcr:primaryType: hipposysedit:field
             hipposysedit:multiple: true
@@ -34,7 +47,7 @@ definitions:
           hippotranslation:locale: document-type-locale
           visitscotland:translation: ''
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 7bb35eeb-5b5f-459d-a08b-99d3c8859531
+          jcr:uuid: 00d12a4f-494f-4aab-b74f-02d66dbb6291
           hippostdpubwf:lastModificationDate: 2021-05-12T09:57:59.465+01:00
           hippostdpubwf:creationDate: 2021-05-12T09:57:59.466+01:00
           /visitscotland:items:
@@ -43,6 +56,23 @@ definitions:
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+        /hipposysedit:prototype[2]:
+          jcr:primaryType: nt:unstructured
+          jcr:mixinTypes: ['hippostd:publishableSummary', 'hippostd:relaxed', 'hippostdpubwf:document',
+            'hippotranslation:translated', 'mix:referenceable', 'visitscotland:translatable']
+          jcr:uuid: 528cbb88-15af-48f5-97f5-49ef20bdbb6c
+          hippostd:holder: holder
+          hippostd:state: draft
+          hippostdpubwf:createdBy: ''
+          hippostdpubwf:creationDate: 2021-05-12T09:57:59.466+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-12T09:57:59.465+01:00
+          hippostdpubwf:lastModifiedBy: ''
+          hippotranslation:id: document-type-locale-id
+          hippotranslation:locale: document-type-locale
+          visitscotland:translation: ''
+          /visitscotland:items:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -57,7 +87,7 @@ definitions:
           /items:
             jcr:primaryType: frontend:plugin
             caption: Items
-            compoundList: visitscotland:MegalinkItem
+            compoundList: visitscotland:CMSLink,hippo:mirror
             contentPickerType: links
             field: items
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
