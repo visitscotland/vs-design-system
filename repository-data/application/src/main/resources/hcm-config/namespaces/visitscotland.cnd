@@ -82,6 +82,9 @@
 [visitscotland:LongCopy] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
 
+[visitscotland:MarketoForm] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
 [visitscotland:MegalinkItem] > hippo:compound, hippostd:relaxed
   orderable
 
