@@ -7,23 +7,25 @@
         <VsRow>
             <VsCol
                 cols="12"
-                md="4"
-                lg="5"
+                md="5"
                 xl="4"
+                class="col-xxl-3"
                 :offset-xl="sidebarAlign === 'right' ? '1' : ''"
-                :order="sidebarAlign === 'right' ? '2' : ''"
+                :order-md="sidebarAlign === 'right' ? '2' : ''"
             >
                 <slot name="articleSidebar" />
             </VsCol>
             <VsCol
                 cols="12"
-                md="8"
-                lg="7"
+                md="7"
+                class="col-xxl-8"
                 :offset-xl="sidebarAlign === 'left' ? '1' : ''"
             >
-                <VsRichTextWrapper>
-                    <slot />
-                </VsRichTextWrapper>
+                <div class="mx-6 mx-md-0">
+                    <VsRichTextWrapper>
+                        <slot />
+                    </VsRichTextWrapper>
+                </div>
             </VsCol>
         </VsRow>
     </div>
@@ -64,33 +66,37 @@ export default {
 .vs-article-section {
     &--sidebar-right{
         @include media-breakpoint-up(md) {
-            margin-right: -5%;
-            padding-left: $spacer-10;
+            margin-right: -16.8%;
         }
 
         @include media-breakpoint-up(lg) {
-            margin-right: -15%;
-            padding-left: 0;
+            margin-right: -14%;
         }
 
         @include media-breakpoint-up(xl) {
-            margin-right: -22%;
+            margin-right: -14.9%;
+        }
+
+        @include media-breakpoint-up(xxl) {
+            margin-right: -14.2%;
         }
     }
 
     &--sidebar-left{
         @include media-breakpoint-up(md) {
-            margin-left: -5%;
-            padding-right: $spacer-10;
+            margin-left: -16.8%;
         }
 
         @include media-breakpoint-up(lg) {
-            margin-left: -15%;
-            padding-right: 0;
+            margin-left: -14%;
         }
 
         @include media-breakpoint-up(xl) {
-            margin-left: -22%;
+            margin-left: -14.9%;
+        }
+
+        @include media-breakpoint-up(xxl) {
+            margin-left: -14.2%;
         }
     }
 }
