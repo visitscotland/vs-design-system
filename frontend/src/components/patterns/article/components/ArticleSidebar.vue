@@ -1,11 +1,12 @@
 <template>
     <div
         class="vs-article-sidebar"
+        :class="sidebarAlignClass"
         data-test="vs-article-sidebar"
     >
         <slot name="vsArticleSidebarImg" />
 
-        <div class="pt-8 pb-1">
+        <div class="vs-article-sidebar__quote-wrapper">
             <slot name="vsArticleSidebarQuote" />
         </div>
     </div>
@@ -23,12 +24,49 @@ export default {
     release: '0.0.1',
     components: {
     },
+    props: {
+        sidebarAlign: {
+            type: String,
+            default: 'left',
+        },
+    },
+    computed: {
+        sidebarAlignClass() {
+            return this.sidebarAlign === 'right'
+                ? 'vs-article-sidebar--sidebar-right'
+                : 'vs-article-sidebar--sidebar-left';
+        },
+    },
 };
 </script>
 
 <style lang="scss">
 .vs-article-sidebar {
     background: $color-white;
+
+    &__quote-wrapper{
+        padding: $spacer-8 $spacer-6;
+    }
+
+    @include media-breakpoint-up(md) {
+        padding: $spacer-8 $spacer-0 $spacer-1;
+    }
+
+    @include media-breakpoint-up(md) {
+        &--sidebar-right{
+            .vs-article-sidebar__quote-wrapper{
+                padding-left: $spacer-0;
+                padding-right: $spacer-8;
+            }
+        }
+
+        &--sidebar-left{
+            .vs-article-sidebar__quote-wrapper{
+                padding-left: $spacer-8;
+                padding-right: $spacer-0;
+            }
+        }
+    }
 }
 </style>
 
