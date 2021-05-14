@@ -77,4 +77,9 @@ public class Page extends BaseDocument implements TranslationParent, Linkable {
     public String getTranslationPriority() {
         return getSingleProperty("visitscotland:translationPriority");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:newsletter")
+    public Boolean getNewsletter() {
+        return getSingleProperty("visitscotland:newsletter");
+    }
 }
