@@ -1,5 +1,4 @@
 /content/documents/www.visitscotland.com-it/sandbox:
-  .meta:order-before: test
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
   jcr:uuid: 12ecfbcd-c031-4a49-990e-451e1a85555d

@@ -1,7 +1,11 @@
-const { merge } = require("lodash")
+const { merge } = require('lodash');
+const dotenv = require('dotenv');
+
+const trHippo = require('./system.transform-response.hippo');
+const trContentful = require('./system.transform-response.contentful');
 
 if (!process.env.VS_DS_REMOTE_CONFIG_URL) {
-  require("dotenv").config()
+    dotenv.config();
 }
 
 /**
@@ -39,30 +43,32 @@ if (!process.env.VS_DS_REMOTE_CONFIG_URL) {
 // }
 
 const commonConfig = {
-  uriBase: process.env.VS_DS_REMOTE_CONFIG_URL,
-  requestOptions: {
-    strictSSL: process.env.VS_DS_REMOTE_CONFIG_STRICT_SSL !== "false",
-  },
-}
+    uriBase: process.env.VS_DS_REMOTE_CONFIG_URL,
+    requestOptions: {
+        strictSSL: process.env.VS_DS_REMOTE_CONFIG_STRICT_SSL !== 'false',
+    },
+};
 
-const hippo = merge({}, commonConfig, {
-  requestOptions: {
-    transform: require("../build/system.transform-response.hippo").transformRawResponse,
-  },
-})
+const hippo = merge({
+}, commonConfig, {
+    requestOptions: {
+        transform: trHippo.transformRawResponse,
+    },
+});
 
-const contentful = merge({}, commonConfig, {
-  uriParams: {
-    access_token: process.env.VS_DS_REMOTE_CONFIG_CONTENTFUL_TOKEN,
-    content_type: "instance",
-    include: 5,
-  },
-  requestOptions: {
-    transform: require("../build/system.transform-response.contentful").transformRawResponse,
-  },
-})
+const contentful = merge({
+}, commonConfig, {
+    uriParams: {
+        access_token: process.env.VS_DS_REMOTE_CONFIG_CONTENTFUL_TOKEN,
+        content_type: 'instance',
+        include: 5,
+    },
+    requestOptions: {
+        transform: trContentful.transformRawResponse,
+    },
+});
 
 module.exports = {
-  hippo,
-  contentful,
-}
+    hippo,
+    contentful,
+};

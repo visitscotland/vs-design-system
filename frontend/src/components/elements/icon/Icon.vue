@@ -2,19 +2,22 @@
     <VsSvg
         :path="path"
         :class="{
-            icon: true,
-            ['icon-' + size]: true,
-            ['icon-' + formattedName]: true,
-            ['icon-' + variant]: variant,
+            'vs-icon': true,
+            [`vs-icon--size-${size}`]: true,
+            [`vs-icon--sm-size-${smallSize}`]: smallSize,
+            [`vs-icon--${formattedName}`]: true,
+            [`vs-icon--variant-${variant}`]: variant,
+            ['icon--' + orientation]: orientation,
         }"
+        :style="[customColour ? {fill: customColour} : {}]"
         v-bind="$attrs"
     />
 </template>
 
 <script>
 import { get } from 'lodash';
-import VsSvg from '../svg';
 import designTokens from '@/assets/tokens/tokens.raw.json';
+import VsSvg from '../svg';
 
 const iconPath = 'icons/';
 
@@ -25,6 +28,8 @@ const iconPath = 'icons/';
  *
  * Our icons come in specific sizes - xxs, xs, sm, md, lg and xl - and can be any colour,
  * including any of the theme colours.
+ *
+ * @displayName Icon
  */
 export default {
     name: 'VsIcon',
@@ -35,7 +40,7 @@ export default {
     },
     props: {
         /**
-         * The name of the icon to display.
+         * The name of the icon to display, which will be the name of the icon file
          */
         name: {
             type: String,
@@ -44,23 +49,54 @@ export default {
         },
         /**
          * The fill color of the SVG icon.
-         * `primary, secondary, success, danger, warning, info,
-         * light, dark, reverse-white, primary-purple, secondary-teal`
+         * `primary, secondary, light, dark,
+         * reverse-white, secondary-teal`
          */
         variant: {
             type: String,
             default: null,
             validator: (value) => value.match(
-                /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/,
+                /(primary|secondary|light|dark|reverse-white|secondary-teal)/,
             ),
         },
         /**
-         * The size of the icon. Defaults to medium.
-         * `small, medium, large`
+         * Accepts a colour (hex code or colour name) to fill the icon, if this is
+         * set it will override the given variant. This should be used for individual
+         * exceptions but if one is being used regularly it should likely be a variant
+         * instead.
          */
+        customColour: {
+            type: String,
+            default: null,
+        },
+        /**
+        * The orientation of the icon. Defaults to 'up'.
+        * `up, left, right, down`
+        */
+        orientation: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(
+                /(up|down|left|right)/,
+            ),
+        },
+        /**
+        * Size of icon, defaults to medium
+        * `xxs, xs, sm, md, lg, xl`)
+        */
         size: {
             type: String,
             default: 'md',
+            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+        },
+        /**
+        * Size of icon at small and extra small viewport, defaults to null,
+        * the size falls back to the regular size if not set
+        * `xxs, xs, sm, md, lg, xl`)
+        */
+        smallSize: {
+            type: String,
+            default: null,
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
     },
@@ -147,6 +183,10 @@ export default {
                     key: 'walking',
                     value: 'walk',
                 },
+                {
+                    key: 'transport',
+                    value: 'transport',
+                },
             ],
         };
     },
@@ -171,11 +211,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-// @include reset;
-
-@mixin icon-dimensions($size, $dimension) {
-}
+<style lang="scss">
 
 $sizes: (
     xxs: $icon-size-xxs,
@@ -189,109 +225,141 @@ $sizes: (
 $variants: (
     primary: $color-theme-primary,
     secondary: $color-theme-secondary,
-    success: $color-theme-success,
-    danger: $color-theme-danger,
-    warning: $color-theme-warning,
-    info: $color-theme-info,
     light: $color-theme-light,
     dark: $color-theme-dark,
     reverse-white: $color-white,
-    primary-purple: $color-theme-primary-purple,
     secondary-teal: $color-theme-secondary-teal,
 );
 
-.icon {
+.vs-icon {
     fill: $color-black;
     overflow: visible;
 
     @each $size in map-keys($sizes) {
         $this-size: map-get($sizes, $size);
 
-        &.icon-#{$size} {
+        &.vs-icon--size-#{$size} {
             height: $this-size;
             width: $this-size;
+            font-size: $this-size;
             padding: 0;
+        }
+    }
 
-            &.icon-reverse {
-                border-radius: $this-size / 2;
+    // This is awkward but these have to be two separate loops through
+    // the sizes. If you have one loop generating both sets you run into
+    // specificity issues as the classes go sm-xs xs sm-sm sm etc etc,
+    // and the later non-sm classes override the earlier sm ones
+    @each $size in map-keys($sizes) {
+        $this-size: map-get($sizes, $size);
+
+        @include media-breakpoint-down(sm) {
+            &.vs-icon--sm-size-#{$size} {
+                height: $this-size;
+                width: $this-size;
+                font-size: $this-size;
+                padding: 0;
             }
         }
     }
 
     @each $variant in map-keys($variants) {
-        &.icon-#{$variant} {
+        &.vs-icon--variant-#{$variant} {
             fill: map-get($variants, $variant);
 
-            &.icon-reverse {
+             &.icon--reverse {
                 fill: $color-white;
                 background: map-get($variants, $variant);
             }
         }
     }
+
+    &.icon--down {
+        transform: rotate(180deg);
+    }
+
+    &.icon--left {
+        transform: rotate(270deg);
+    }
+
+    &.icon--right {
+        transform: rotate(90deg);
+    }
 }
 </style>
 
 <docs>
-  ```jsx
+```jsx
   <div>
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
-        <h3>Default</h3>
-        <vs-icon name="search" />
-      </bs-wrapper>
-    </bs-wrapper>
 
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
-        <h3>Variant</h3>
-        <vs-icon name="user" variant="primary" />
-        <vs-icon name="user" variant="secondary" />
-        <vs-icon name="user" variant="success" />
-        <vs-icon name="user" variant="warning" />
-        <vs-icon name="user" variant="info" />
-        <vs-icon name="user" variant="danger" />
-        <vs-icon name="user" variant="dark" />
-        <vs-icon name="user" variant="light" />
-      </bs-wrapper>
-    </bs-wrapper>
+    <h3>Default</h3>
+    <VsIcon name="search" />
 
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
-        <h3>Size</h3>
+    <h3 class="mt-8">Variant</h3>
+    <VsIcon name="user" variant="primary" />
+    <VsIcon name="user" variant="secondary" />
+    <VsIcon name="user" variant="light" />
+    <VsIcon name="user" variant="dark" />
+    <VsIcon name="user" variant="reverse-white" />
+    <VsIcon name="user" variant="secondary-teal" />
 
-        <bs-wrapper class="d-flex">
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+    <h3 class="mt-8">Custom Colour</h3>
+    <VsIcon name="user" customColour="#ff0000" />
+    <VsIcon name="user" customColour="gold" />
+
+    <h3 class="mt-8">Size</h3>
+
+    <div class="d-flex">
+        <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xxs</h4>
-            <vs-icon name="favourite" size="xxs" />
-          </bs-wrapper>
+            <VsIcon name="favourite" size="xxs" />
+            </div>
 
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xs</h4>
-            <vs-icon name="favourite" size="xs" />
-          </bs-wrapper>
+            <VsIcon name="favourite" size="xs" />
+            </div>
 
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <div class="d-flex flex-column mr-3 align-items-center">
             <h4>sm</h4>
-            <vs-icon name="favourite" size="sm" />
-          </bs-wrapper>
+            <VsIcon name="favourite" size="sm" />
+            </div>
 
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <div class="d-flex flex-column mr-3 align-items-center">
             <h4>md</h4>
-            <vs-icon name="favourite" size="md" />
-          </bs-wrapper>
+            <VsIcon name="favourite" size="md" />
+            </div>
 
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <div class="d-flex flex-column mr-3 align-items-center">
             <h4>lg</h4>
-            <vs-icon name="favourite" size="lg" />
-          </bs-wrapper>
+            <VsIcon name="favourite" size="lg" />
+            </div>
 
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xl</h4>
-            <vs-icon name="favourite" size="xl" />
-          </bs-wrapper>
-        </bs-wrapper>
-      </bs-wrapper>
-    </bs-wrapper>
-  </div>
-  ```
+            <VsIcon name="favourite" size="xl" />
+            </div>
+        </div>
+
+        <h3 class="mt-8">Orientation</h3>
+        <div class="d-flex">
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Up</h4>
+                <VsIcon name="chevron" orientation="up" />
+            </div>
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Down</h4>
+                <VsIcon name="chevron" orientation="down" />
+            </div>
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Left</h4>
+                <VsIcon name="chevron" orientation="left" />
+            </div>
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Right</h4>
+                <VsIcon name="chevron" orientation="right" />
+            </div>
+        </div>
+    </div>
+```
 </docs>

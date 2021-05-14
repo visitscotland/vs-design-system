@@ -1,9 +1,14 @@
 <template>
-    <li class="vs-footer-nav-list-item">
+    <li
+        class="vs-footer-nav-list-item"
+        data-test="vs-footer-nav-list-item"
+        role="menuitem"
+    >
         <VsLink
             :href="href"
-            :external="external"
+            :type="type"
             variant="dark"
+            data-test="vs-footer-nav-list-item__link"
         >
             {{ linkText }}
         </VsLink>
@@ -16,6 +21,8 @@ import VsLink from '@components/elements/link/Link';
 /**
  * The FooterNavListItems is used inside the FooterNavList to
  * show an indivudal footer link.
+ *
+ * @displayName Footer Nav List Item
  */
 
 export default {
@@ -32,11 +39,13 @@ export default {
             default: null,
         },
         /**
-         * Option to create external link which will open URL in blank target and add icon
-         */
-        external: {
-            type: Boolean,
-            default: false,
+        * Option to create link type which defines icon and whether it opens in a new tab
+        * `external, internal, download`
+        */
+        type: {
+            type: String,
+            default: 'default',
+            validator: (value) => value.match(/(default|external|internal|download)/),
         },
         /**
          * Text to show for the link
@@ -56,15 +65,17 @@ export default {
     line-height: $line-height-s;
     padding: $spacer-3 $spacer-8;
 
-    .vs-link.dark {
-        color: $color-white;
-        text-decoration: none;
+    .vs-link {
+        &--variant-dark {
+            color: $color-white;
+            text-decoration: none;
+        }
 
         &:hover {
             text-decoration: underline;
         }
 
-        .icon {
+        .vs-icon {
             fill: $color-white;
         }
     }
@@ -81,50 +92,47 @@ export default {
 
 <docs>
   ```js
-    <vs-footer>
-        <vs-footer-nav-list break-point="md">
-            <vs-col cols="12" md="6">
-                <vs-footer-accordion-item
+    <VsFooter>
+        <VsFooterNavList break-point="md">
+            <VsCol cols="12" md="6">
+                <VsFooterAccordionItem
                     :open-by-default="false"
+                    title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
                     class="border-left-0"
                 >
-                    <span slot="title">
-                        Visitor information
-                    </span>
-
                     <span slot="icon-open">
-                        <vs-icon name="chevron-up" variant="light" size="xs" />
+                        <VsIcon name="chevron" variant="light" size="xs" />
                     </span>
 
                     <span slot="icon-closed">
-                        <vs-icon name="chevron-right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
                     </span>
 
-                    <vs-list unstyled>
-                        <vs-footer-nav-list-item
+                    <VsList unstyled>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="Brochures"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="VisitScotland iCentres"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
                             link-text="iKnow Scotland Community"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
+                        ></VsFooterNavListItem>
+                        <VsFooterNavListItem
                             href="#"
-                            external
+                            type="external"
                             link-text="VisitScotland Awards"
-                        ></vs-footer-nav-list-item>
-                    </vs-list>
-                </vs-footer-accordion-item>
-            </vs-col>
-        </vs-footer-nav-list>
-    </vs-footer>
+                        ></VsFooterNavListItem>
+                    </VsList>
+                </VsFooterAccordionItem>
+            </VsCol>
+        </VsFooterNavList>
+    </VsFooter>
 
   ```
 </docs>

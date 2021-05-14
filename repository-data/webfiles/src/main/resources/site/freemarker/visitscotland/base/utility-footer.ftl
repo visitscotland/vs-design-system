@@ -1,31 +1,22 @@
+<#compress>
 <#include "../../include/imports.ftl">
 <#include "../../frontend/components/vs-footer-utility-list.ftl">
 <#include "../../frontend/components/vs-footer-nav-list-item.ftl">
 
-<#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
-<#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
-<#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsHstSiteMenuItemImpl" -->
+<#-- @ftlvariable name="menu" type="com.visitscotland.brxm.components.navigation.RootMenuItem" -->
+<#-- @ftlvariable name="item" type="com.visitscotland.brxm.components.navigation.MenuItem" -->
 
-<#if enhancedMenu??>
+</#compress>
+<#if menu??>
     <div class="has-edit-button">
-        <#list enhancedMenu as item>
+        <#list menu.siteMenuItems as item>
             <vs-footer-utility-list>
                 <#list item.childMenuItems as childItem>
                     <#if childItem.title?has_content>
-                        <#assign href = "">
-                        <#assign external = false>
-
-                        <#if childItem.hstLink??>
-                            <#assign href><@hst.link link=childItem.hstLink/></#assign>
-                        <#elseif childItem.externalLink??>
-                            <#assign href>${childItem.externalLink}</#assign>
-                            <#assign external = true>
-                        </#if>
-
                         <vs-footer-nav-list-item
-                            href="${href}"
+                            href="${getUrl(childItem)}"
                             link-text="${childItem.title}"
-                            :external="<#if external>true<#else>false</#if>"
+                            type="<#if childItem.externalLink??>external<#else>default</#if>"
                         ></vs-footer-nav-list-item>
                     </#if>
                 </#list>

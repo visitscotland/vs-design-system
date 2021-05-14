@@ -2,7 +2,7 @@
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
   jcr:uuid: 423398ef-2f28-4e88-990f-81f2570aca24
-  hippostd:foldertype: [new-translated-folder, new-document]
+  hippostd:foldertype: [new-translated-folder-test]
   hippotranslation:id: e41853ef-6556-429d-b5dc-fec0d53afcbb
   hippotranslation:locale: en
   /translation:
@@ -1938,3 +1938,657 @@
             /visitscotland:stops[2]:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 6f33fa43-9b2b-4c17-b355-df6a60896ccd
+  /modules:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: 21c33fbb-9daa-4204-b933-80762a10ec20
+    hippostd:foldertype: [new-translated-folder-test, new-document]
+    hippotranslation:id: 089c5584-ef84-4e7f-9033-bb81b7fc19c1
+    hippotranslation:locale: en
+    /icentre-module:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 51888f27-503a-4f3c-bf95-ee8e9e30760a
+      hippo:name: iCentre Module (no quote)
+      hippostd:foldertype: [new-translated-folder-test, new-document]
+      hippotranslation:id: f009fbea-85a6-4a78-a9e4-03b6cd9eb34f
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 4188568a-5d17-4ac3-9c58-7d958beb07cb
+        hippo:versionHistory: a9e7aa8f-1b81-43ea-add2-009c4f30dd68
+        /content[1]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 23e25c0b-91b5-451b-9a02-0f7369d76686
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-03T10:06:35.848Z
+          hippostdpubwf:lastModificationDate: 2020-12-03T10:07:52.885Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: d06eabd8-f0c4-429f-8e26-5cc28208bf45
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Glasgow
+          visitscotland:seoDescription: iCentre Module
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iCentre Module
+          visitscotland:teaser: Testing testing testing testing
+          visitscotland:title: iCentre Module
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Morbi sit amet lacus auctor, vehicula dui vitae, bibendum quam.
+              Etiam pulvinar neque ac malesuada vehicula. Pellentesque nec erat sed
+              justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
+              Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
+              a dignissim nec, ultrices nec lectus.</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 0ff698db-9a0d-489a-9ce7-f344bbc5ab07
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-03T10:06:35.848Z
+          hippostdpubwf:lastModificationDate: 2020-12-03T10:07:48.750Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: d06eabd8-f0c4-429f-8e26-5cc28208bf45
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Glasgow
+          visitscotland:seoDescription: iCentre Module
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iCentre Module
+          visitscotland:teaser: Testing testing testing testing
+          visitscotland:title: iCentre Module
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Morbi sit amet lacus auctor, vehicula dui vitae, bibendum quam.
+              Etiam pulvinar neque ac malesuada vehicula. Pellentesque nec erat sed
+              justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
+              Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
+              a dignissim nec, ultrices nec lectus.</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 98b0317b-76b5-4e50-b0b8-cee48ca16b84
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-03T10:06:35.848Z
+          hippostdpubwf:lastModificationDate: 2020-12-03T10:07:48.750Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-12-03T10:07:56.377Z
+          hippotranslation:id: d06eabd8-f0c4-429f-8e26-5cc28208bf45
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Glasgow
+          visitscotland:seoDescription: iCentre Module
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iCentre Module
+          visitscotland:teaser: Testing testing testing testing
+          visitscotland:title: iCentre Module
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Morbi sit amet lacus auctor, vehicula dui vitae, bibendum quam.
+              Etiam pulvinar neque ac malesuada vehicula. Pellentesque nec erat sed
+              justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
+              Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
+              a dignissim nec, ultrices nec lectus.</p>
+      /icentre-module:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 03725771-d1ed-4b0b-bc1e-87afcfd54eef
+        hippo:name: iCentre Module
+        hippo:versionHistory: cfb0e7b8-fcaf-436c-9cd7-fa59a3b131a1
+        /icentre-module[1]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 97157744-2cdd-4bdc-b318-1012b874ccdb
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-03T10:09:14.710Z
+          hippostdpubwf:lastModificationDate: 2020-12-03T10:12:34.537Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 74da7c77-eb0e-434f-8a77-61082d14664e
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: A tip from your local experts
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>iKnow Scotland is a network of accredited VisitScotland
+                partners, with excellent local expertise. Wherever you see the iKnow
+                logo you can trust that you'll receive excellent advice on how to
+                get the most from your visit, with travel advice and insider tips
+                about the must-see attractions in the local area.</p>
+        /icentre-module[2]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 410c63b6-8899-4bfb-8089-7f4039dd196c
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-03T10:09:14.710Z
+          hippostdpubwf:lastModificationDate: 2020-12-03T10:12:34.501Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 74da7c77-eb0e-434f-8a77-61082d14664e
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: A tip from your local experts
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>iKnow Scotland is a network of accredited VisitScotland
+                partners, with excellent local expertise. Wherever you see the iKnow
+                logo you can trust that you'll receive excellent advice on how to
+                get the most from your visit, with travel advice and insider tips
+                about the must-see attractions in the local area.</p>
+        /icentre-module[3]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 083ab033-a6f1-4195-9be6-4e1caf174d58
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-03T10:09:14.710Z
+          hippostdpubwf:lastModificationDate: 2020-12-03T10:12:34.501Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-12-03T10:12:38.344Z
+          hippotranslation:id: 74da7c77-eb0e-434f-8a77-61082d14664e
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: A tip from your local experts
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>iKnow Scotland is a network of accredited VisitScotland
+                partners, with excellent local expertise. Wherever you see the iKnow
+                logo you can trust that you'll receive excellent advice on how to
+                get the most from your visit, with travel advice and insider tips
+                about the must-see attractions in the local area.</p>
+    /icentre-module-quote:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: e05551e9-4383-41bf-a62e-9e0cec04931b
+      hippo:name: iCentre Module (quote)
+      hippostd:foldertype: [new-translated-folder-test, new-document]
+      hippotranslation:id: c30da529-d402-4367-bca9-40955d4ce0ce
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
+        hippo:versionHistory: af63efa8-3758-4703-a510-25430e0181bc
+        /content[1]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 1eafae57-6087-402d-a87a-aa4608e5b00f
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-03T10:12:55.003Z
+          hippostdpubwf:lastModificationDate: 2020-12-03T10:13:40.081Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 8b2adec8-b227-4639-9c85-3322281062b3
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Argyll & The Isles
+          visitscotland:seoDescription: iCentre Module
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iCentre Module
+          visitscotland:teaser: Testing testing testing testing
+          visitscotland:title: iCentre Module
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Morbi sit amet lacus auctor, vehicula dui vitae, bibendum quam.
+              Etiam pulvinar neque ac malesuada vehicula. Pellentesque nec erat sed
+              justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
+              Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
+              a dignissim nec, ultrices nec lectus.</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: c211f313-94b8-471d-917e-038e4998f6ca
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-03T10:12:55.003Z
+          hippostdpubwf:lastModificationDate: 2020-12-03T10:13:40.036Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 8b2adec8-b227-4639-9c85-3322281062b3
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Argyll & The Isles
+          visitscotland:seoDescription: iCentre Module
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iCentre Module
+          visitscotland:teaser: Testing testing testing testing
+          visitscotland:title: iCentre Module
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Morbi sit amet lacus auctor, vehicula dui vitae, bibendum quam.
+              Etiam pulvinar neque ac malesuada vehicula. Pellentesque nec erat sed
+              justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
+              Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
+              a dignissim nec, ultrices nec lectus.</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 0ca8e6b0-9feb-46f1-aa80-44c59c5bfa18
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-03T10:12:55.003Z
+          hippostdpubwf:lastModificationDate: 2020-12-03T10:13:40.036Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-12-03T10:13:42.888Z
+          hippotranslation:id: 8b2adec8-b227-4639-9c85-3322281062b3
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Argyll & The Isles
+          visitscotland:seoDescription: iCentre Module
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iCentre Module
+          visitscotland:teaser: Testing testing testing testing
+          visitscotland:title: iCentre Module
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>This is just an example, please don't test. Usually
+              there would be an example of the module to be tested below this text,
+              but this is just an example to show the process needed.</p>
+    /other-things-you-might-like:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 7718fd0e-cfdd-4e82-ae48-73e16b4eca4d
+      hippo:name: Other things you might like
+      hippostd:foldertype: [new-translated-folder-test, new-document]
+      hippotranslation:id: b0dda8db-05cd-42cd-b946-fd039634e1e2
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 44ad86b4-a8b2-45a3-901d-66751d2345a9
+        hippo:name: Other things you might like
+        hippo:versionHistory: 961d65f4-1d75-4664-9730-04230b164146
+        /content[1]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 2448d23a-f68d-495e-926b-106c36111a76
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-09T15:40:45.161Z
+          hippostdpubwf:lastModificationDate: 2020-12-10T13:23:34.247Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ce016ad4-7038-4e88-a11c-6f20c8b66c33
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Aberdeen
+          visitscotland:seoDescription: Destination meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Destination meta title
+          visitscotland:teaser: A module using a carousel
+          visitscotland:title: Other things you might like
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>This is a module that uses a carousel to show multiple
+              links.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <p>This is the introduction to the Other Things You Might Like module.</p>
+
+                <p>Nam quam justo, viverra ac ante nec, suscipit pellentesque enim. Vestibulum rhoncus vitae massa non varius. Proin fringilla porta ex sed dapibus.</p>
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+            /visitscotland:links[6]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+            /visitscotland:links[7]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+            /visitscotland:links[8]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+            /visitscotland:links[9]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[10]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: c6ba8ec4-586f-4d8e-95ab-d1b22241a45a
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-09T15:40:45.161Z
+          hippostdpubwf:lastModificationDate: 2020-12-10T13:28:56.627Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ce016ad4-7038-4e88-a11c-6f20c8b66c33
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Aberdeen
+          visitscotland:seoDescription: Destination meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Destination meta title
+          visitscotland:teaser: A module using a carousel
+          visitscotland:title: Other things you might like
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>This is a module that uses a carousel to show multiple
+              links.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <p>This is the introduction to the Other Things You Might Like module.</p>
+
+                <p>Nam quam justo, viverra ac ante nec, suscipit pellentesque enim. Vestibulum rhoncus vitae massa non varius. Proin fringilla porta ex sed dapibus.</p>
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+            /visitscotland:links[6]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+            /visitscotland:links[7]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+            /visitscotland:links[8]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+            /visitscotland:links[9]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[10]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 9d33c189-56b0-4e4e-8a2e-2d3b5bbb5f59
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-09T15:40:45.161Z
+          hippostdpubwf:lastModificationDate: 2020-12-10T13:28:56.627Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-12-10T13:29:00.844Z
+          hippotranslation:id: ce016ad4-7038-4e88-a11c-6f20c8b66c33
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Aberdeen
+          visitscotland:seoDescription: Destination meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Destination meta title
+          visitscotland:teaser: A module using a carousel
+          visitscotland:title: Other things you might like
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>This is a module that uses a carousel to show multiple
+              links.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <p>This is the introduction to the Other Things You Might Like module.</p>
+
+                <p>Nam quam justo, viverra ac ante nec, suscipit pellentesque enim. Vestibulum rhoncus vitae massa non varius. Proin fringilla porta ex sed dapibus.</p>
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+            /visitscotland:links[6]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+            /visitscotland:links[7]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+            /visitscotland:links[8]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+            /visitscotland:links[9]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[10]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6

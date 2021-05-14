@@ -11,12 +11,14 @@
 import {
     isFunction, get, isNumber,
 } from 'lodash';
-import VsSkipToButton from './SkipToButton';
+import VsSkipToButton from './components/SkipToButton';
 
 /**
  * The SkipTo component provides users of assistive
  * technologies with a focusable control that moves the
  * focus to a provided target element when activated.
+ *
+ * @displayName Skip To
  */
 export default {
     name: 'VsSkipTo',
@@ -65,46 +67,46 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>
 
 <docs>
   ```js
 
   new Vue({
     template: `
-      <bs-wrapper class="d-flex flex-row">
-        <bs-wrapper class="card mr-2" style="width:10rem" tabindex="10000">
-          <bs-wrapper class="card-body">
+      <BsWrapper class="d-flex flex-row">
+        <BsWrapper class="card mr-2" style="width:10rem" tabindex="10000">
+          <BsWrapper class="card-body">
             Click here then press tab to navigate
-          </bs-wrapper>
-        </bs-wrapper>
+          </BsWrapper>
+        </BsWrapper>
 
-        <vs-skip-to :target="ref" @activated="activated('ref')" tabindex="10001">
+        <VsSkipTo :target="ref" @activated="activated('ref')" tabindex="10001">
           Skip to Vue ref target
-        </vs-skip-to>
+        </VsSkipTo>
 
-        <vs-skip-to :target="element" @activated="activated('HTML element')" tabindex="10002">
+        <VsSkipTo :target="element" @activated="activated('HTML element')" tabindex="10002">
           Skip to HTML Element target
-        </vs-skip-to>
+        </VsSkipTo>
 
-        <bs-wrapper class="card mr-2" style="width:10rem" tabindex="10003">
-          <bs-wrapper class="card-body">
+        <BsWrapper class="card mr-2" style="width:10rem" tabindex="10003">
+          <BsWrapper class="card-body">
             Thing to skip
-          </bs-wrapper>
-        </bs-wrapper>
+          </BsWrapper>
+        </BsWrapper>
 
-        <bs-wrapper ref="refTarget" class="card mr-2" style="width:10rem" tabindex="10004">
-          <bs-wrapper class="card-body">
+        <BsWrapper ref="refTarget" class="card mr-2" style="width:10rem" tabindex="10004">
+          <BsWrapper class="card-body">
             This target was passed as a Vue ref
-          </bs-wrapper>
-        </bs-wrapper>
+          </BsWrapper>
+        </BsWrapper>
 
-        <bs-wrapper id="element-target" class="card" style="width:10rem" tabindex="10005">
-          <bs-wrapper class="card-body">
+        <BsWrapper id="element-target" class="card" style="width:10rem" tabindex="10005">
+          <BsWrapper class="card-body">
             This target was passed as an HTML Element
-          </bs-wrapper>
-        </bs-wrapper>
-      </bs-wrapper>
+          </BsWrapper>
+        </BsWrapper>
+      </BsWrapper>
     `,
     data() {
       return {
@@ -122,7 +124,6 @@ export default {
       this.ref = this.$refs.refTarget
     },
   })
-
 
   ```
 </docs>
