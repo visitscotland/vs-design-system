@@ -8,6 +8,7 @@
             <VsRow>
                 <VsCol
                     cols="12"
+                    :class="{ 'col-xxl-10 offset-xxl-1': isStandardPage }"
                 >
                     <div class="vs-article__wrapper mb-9 mb-md-11">
                         <slot name="vsArticleImg" />
@@ -66,6 +67,10 @@ export default {
         VsContainer,
     },
     props: {
+        isStandardPage: {
+            type: Boolean,
+            default: false,
+        },
     },
 };
 </script>
@@ -85,7 +90,25 @@ export default {
 <docs>
   ```jsx
 
-  <VsPageIntro background="light" :heroIntro="false" :isItinerary="false">
+  <VsPageIntro background="dark" :heroIntro="true" :isItinerary="false" class="mb-8">
+      <VsHero
+        slot="vsIntroHero"
+        :altText="itineraries.sampleItinerary.image.altText"
+        :credit="itineraries.sampleItinerary.image.credit"
+        :caption="itineraries.sampleItinerary.image.caption"
+        :image-src="itineraries.sampleItinerary.image.imageSrc"
+        :latitude="itineraries.sampleItinerary.image.latitude"
+        :longitude="itineraries.sampleItinerary.image.longitude"
+      >
+        <img
+            class="lazyload"
+            :src="itineraries.sampleItinerary.image.imageSrc"
+            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            :data-srcset="itineraries.sampleItinerary.image.imageSrc"
+            :alt="itineraries.sampleItinerary.image.altText"
+            data-sizes="auto"
+            />
+      </VsHero>
         <template slot="vsIntroBreadcrumb">
             <VsBreadcrumb>
               <VsBreadcrumbItem
@@ -107,7 +130,7 @@ export default {
         </template>
     </VsPageIntro>
 
-<VsArticle>
+<VsArticle isStandardPage>
     <template slot="vsArticleImg">
         <VsImageWithCaption
             v-for="(item, index) in imageWithCaption.imageExamples.fullwidth"
@@ -138,7 +161,7 @@ export default {
         for more experienced hikers.
     </template>
 
-    <VsArticleSection sidebar-align="left">
+    <VsArticleSection sidebar-align="left" isStandardPage>
         <template slot="articleSidebar">
             <VsArticleSidebar sidebar-align="left">
                 <template slot="vsArticleSidebarImg">
@@ -213,7 +236,7 @@ export default {
     </VsArticleSection>
 </VsArticle>
 
-<VsArticle>
+<VsArticle isStandardPage>
     <template slot="vsArticleTitle">
         Routes to the Summit
     </template>
@@ -225,7 +248,7 @@ export default {
         more experienced hikers.
     </template>
 
-    <VsArticleSection sidebar-align="left">
+    <VsArticleSection sidebar-align="left" isStandardPage>
         <template slot="articleSidebar">
             <VsArticleSidebar sidebar-align="left">
                 <template slot="vsArticleSidebarQuote">
@@ -268,7 +291,7 @@ export default {
         </p>
     </VsArticleSection>
 
-    <VsArticleSection sidebar-align="right">
+    <VsArticleSection sidebar-align="right" isStandardPage>
         <template slot="articleSidebar">
             <VsArticleSidebar sidebar-align="right">
                 <template slot="vsArticleSidebarImg">
@@ -361,7 +384,7 @@ export default {
     </VsArticleSection>
 </VsArticle>
 
-<VsArticle>
+<VsArticle isStandardPage>
     <template slot="vsArticleImg">
         <VsImageWithCaption
             v-for="(item, index) in imageWithCaption.imageExamples.fullwidth"
@@ -393,7 +416,7 @@ export default {
         for more experienced hikers.
     </template>
 
-    <VsArticleSection sidebar-align="left">
+    <VsArticleSection sidebar-align="left" isStandardPage>
         <template slot="articleSidebar">
             <VsArticleSidebar sidebar-align="left">
                 <template slot="vsArticleSidebarQuote">
