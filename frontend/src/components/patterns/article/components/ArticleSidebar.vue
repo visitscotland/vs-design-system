@@ -28,6 +28,7 @@ export default {
         sidebarAlign: {
             type: String,
             default: 'left',
+            validator: (value) => value.match(/(left|right)/),
         },
     },
     computed: {
@@ -46,10 +47,10 @@ export default {
 
     &__quote-wrapper{
         padding: $spacer-8 $spacer-6;
-    }
 
-    @include media-breakpoint-up(md) {
-        padding: $spacer-8 $spacer-0 $spacer-1;
+        @include media-breakpoint-up(md) {
+            padding: $spacer-8 $spacer-0 $spacer-1;
+        }
     }
 
     @include media-breakpoint-up(md) {
