@@ -17,7 +17,6 @@ import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
  */
 public class ImageValidator implements Validator<Node> {
 
-    private static final String EMPTY_IMAGE = "cafebabe-cafe-babe-cafe-babecafebabe";
     private SessionFactory sessionFactory;
 
     public ImageValidator() {
