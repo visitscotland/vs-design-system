@@ -43,31 +43,17 @@ export default {
 .vs-icon-list {
     text-align: center;
 
-    &__title {
+    .vs-icon-list__title {
         font-size: $h4-font-size;
         font-weight: $lead-font-weight;
         margin-bottom: $spacer-5;
     }
 
-    &__list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+    .vs-icon-list__list {
+        display: inline-block;
         margin: 0 auto;
         padding: 0;
         text-align: left;
-    }
-
-    @include media-breakpoint-up(md) {
-        &__list {
-            padding: 0 $spacer-5;
-        }
-    }
-
-    @include media-breakpoint-up(xxl) {
-        &__list {
-            padding: 0 $spacer-10;
-        }
     }
 }
 </style>
