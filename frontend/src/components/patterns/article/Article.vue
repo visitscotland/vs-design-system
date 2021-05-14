@@ -8,9 +8,6 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    lg="10"
-                    offset="0"
-                    offset-lg="1"
                 >
                     <div class="vs-article__wrapper mb-9 mb-md-11">
                         <slot name="vsArticleImg" />
@@ -18,25 +15,26 @@
                         <VsRow>
                             <VsCol
                                 cols="12"
-                                lg="10"
-                                offset="0"
-                                offset-lg="1"
+                                md="10"
+                                offset-md="1"
                             >
-                                <div class="vs-article__content mx-6 mx-md-0 mt-9 mt-md-11">
+                                <div class="vs-article__header mx-6 mx-md-0 mt-9 mt-lg-11">
                                     <VsHeading
                                         level="2"
-                                        class="text-center mb-8 mb-md-9"
+                                        class="text-center mb-8 mb-lg-9"
                                     >
                                         <slot name="vsArticleTitle" />
                                     </VsHeading>
 
                                     <VsRichTextWrapper
                                         variant="lead"
-                                        class="text-center mb-9 mb-md-10"
+                                        class="text-center mb-9 mb-lg-10"
                                     >
                                         <slot name="vsArticleIntro" />
                                     </VsRichTextWrapper>
+                                </div>
 
+                                <div class="vs-article__content">
                                     <slot />
                                 </div>
                             </VsCol>
@@ -87,6 +85,28 @@ export default {
 <docs>
   ```jsx
 
+  <VsPageIntro background="light" :heroIntro="false" :isItinerary="false">
+        <template slot="vsIntroBreadcrumb">
+            <VsBreadcrumb>
+              <VsBreadcrumbItem
+                v-for="(item, index) in breadcrumb.breadcrumb"
+                :key="index"
+                :href="item.href"
+                :active="item.active"
+                :text="item.name"
+                >
+              </VsBreadcrumbItem>
+            </VsBreadcrumb>
+        </template>
+        <template slot="vsIntroHeading">
+            {{itineraries.sampleItinerary.h1Heading}}
+        </template>
+
+        <template slot="vsIntroContent">
+            <div v-html="itineraries.sampleItinerary.introduction" />
+        </template>
+    </VsPageIntro>
+
 <VsArticle>
     <template slot="vsArticleImg">
         <VsImageWithCaption
@@ -120,7 +140,7 @@ export default {
 
     <VsArticleSection sidebar-align="left">
         <template slot="articleSidebar">
-            <VsArticleSidebar>
+            <VsArticleSidebar sidebar-align="left">
                 <template slot="vsArticleSidebarImg">
                     <VsImageWithCaption
                         altText="An image"
@@ -207,7 +227,7 @@ export default {
 
     <VsArticleSection sidebar-align="left">
         <template slot="articleSidebar">
-            <VsArticleSidebar>
+            <VsArticleSidebar sidebar-align="left">
                 <template slot="vsArticleSidebarQuote">
                     <VsQuote>
                         <p slot="quoteContent">
@@ -250,7 +270,7 @@ export default {
 
     <VsArticleSection sidebar-align="right">
         <template slot="articleSidebar">
-            <VsArticleSidebar>
+            <VsArticleSidebar sidebar-align="right">
                 <template slot="vsArticleSidebarImg">
                     <VsImageWithCaption
                         altText="An image"
@@ -375,7 +395,7 @@ export default {
 
     <VsArticleSection sidebar-align="left">
         <template slot="articleSidebar">
-            <VsArticleSidebar>
+            <VsArticleSidebar sidebar-align="left">
                 <template slot="vsArticleSidebarQuote">
                     <VsQuote>
                         <p slot="quoteContent">
