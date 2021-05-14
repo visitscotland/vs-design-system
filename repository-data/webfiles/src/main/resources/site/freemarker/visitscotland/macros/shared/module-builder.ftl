@@ -6,7 +6,6 @@
 <#include "../modules/iknow-community/iknow-community.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
-<#include "../modules/otyml/otyml.ftl">
 <#include "../modules/horizontal-list/horizontal-list.ftl">
 <#include "../modules/stackla/stackla.ftl">
 <#include "theme-calculator.ftl">
