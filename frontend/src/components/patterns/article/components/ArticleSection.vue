@@ -9,7 +9,7 @@
                 cols="12"
                 md="5"
                 xl="4"
-                class="col-xxl-3"
+                :class="isStandardPage ? 'col-xxl-4' : 'col-xxl-3'"
                 :offset-xl="sidebarAlign === 'right' ? '1' : ''"
                 :order-md="sidebarAlign === 'right' ? '2' : ''"
             >
@@ -18,7 +18,7 @@
             <VsCol
                 cols="12"
                 md="7"
-                class="col-xxl-8"
+                class="isStandardPage ? 'col-xxl-7' : 'col-xxl-8'"
                 :offset-xl="sidebarAlign === 'left' ? '1' : ''"
             >
                 <div class="mx-6 mx-md-0">
@@ -50,6 +50,11 @@ export default {
         sidebarAlign: {
             type: String,
             default: 'left',
+            validator: (value) => value.match(/(left|right)/),
+        },
+        isStandardPage: {
+            type: Boolean,
+            default: false,
         },
     },
     computed: {
@@ -136,7 +141,7 @@ export default {
         for more experienced hikers.
     </template>
 
-    <VsArticleSection sidebar-align="left">
+    <VsArticleSection sidebar-align="left" isStandardPage>
         <template slot="articleSidebar">
             <VsArticleSidebar>
                 <template slot="vsArticleSidebarImg">
@@ -210,7 +215,7 @@ export default {
         </p>
     </VsArticleSection>
 
-    <VsArticleSection sidebar-align="right">
+    <VsArticleSection sidebar-align="right" isStandardPage>
         <template slot="articleSidebar">
             <VsArticleSidebar>
                 <template slot="vsArticleSidebarImg">
@@ -265,7 +270,7 @@ export default {
         </p>
     </VsArticleSection>
 
-    <VsArticleSection sidebar-align="right">
+    <VsArticleSection sidebar-align="right" isStandardPage>
         <template slot="articleSidebar">
             <VsArticleSidebar />
         </template>
@@ -304,7 +309,7 @@ export default {
         </p>
     </VsArticleSection>
 
-    <VsArticleSection sidebar-align="right">
+    <VsArticleSection sidebar-align="right" isStandardPage>
         <template slot="articleSidebar">
             <VsArticleSidebar>
                 <template slot="vsArticleSidebarQuote">
