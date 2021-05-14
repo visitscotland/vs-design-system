@@ -2,6 +2,7 @@ package com.visitscotland.brxm.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.hippobeans.ICentre;
+import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.ICentreModule;
@@ -92,16 +93,12 @@ public class ICentreFactory {
 
         //Default the Image if hasn't be set
         if (module.getImage() == null) {
-            FlatImage image = new FlatImage();
-
-            //TODO: Default image is not getting alt tex - caption information.
-
             try {
-                image.setCmsImage(utils.getDocumentFromNode(bundle.getResourceBundle(BUNDLE_ID, "icentre.image.default", locale)));
+                Image defaultImage = utils.getDocumentFromNode(bundle.getResourceBundle(BUNDLE_ID, "icentre.image.default", locale));
+                module.setImage(imageFactory.createImage(defaultImage,module,locale));
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            module.setImage(image);
         }
 
         return module;
