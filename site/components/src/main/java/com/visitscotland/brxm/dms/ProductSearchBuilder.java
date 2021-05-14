@@ -52,7 +52,7 @@ public class ProductSearchBuilder {
 
 
 
-    //TODO Convert into property --> getDmsMapDefaultDistance
+    //TODO Convert into property --> getDmsMapDefaultDistance.
     static final Double DEFAULT_PROXIMITY = 10.0;
 
 

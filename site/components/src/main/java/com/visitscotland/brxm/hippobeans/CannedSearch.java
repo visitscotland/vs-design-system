@@ -23,4 +23,8 @@ public class CannedSearch extends BaseDocument {
         return getBean("visitscotland:criteria", ProductsSearch.class);
     }
 
+    @HippoEssentialsGenerated(internalName = "visitscotland:viewAll")
+    public String getViewAll() {
+        return getSingleProperty("visitscotland:viewAll");
+    }
 }
