@@ -26,4 +26,9 @@ public class MarketoForm extends BaseDocument {
     public HippoBean getThankYouPage() {
         return getLinkedBean("visitscotland:thankYouPage", HippoBean.class);
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
+    }
 }
