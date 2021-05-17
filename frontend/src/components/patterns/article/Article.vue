@@ -11,6 +11,7 @@
                     :class="{ 'col-xxl-10 offset-xxl-1': isStandardPage }"
                 >
                     <div class="vs-article__wrapper mb-9 mb-md-11">
+                        <!-- @slot Slot to contain the header image for this article -->
                         <slot name="vsArticleImg" />
 
                         <VsRow>
@@ -24,6 +25,7 @@
                                         level="2"
                                         class="text-center mb-8 mb-lg-9"
                                     >
+                                        <!-- @slot Slot to contain the title for this article -->
                                         <slot name="vsArticleTitle" />
                                     </VsHeading>
 
@@ -31,11 +33,14 @@
                                         variant="lead"
                                         class="text-center mb-9 mb-lg-10"
                                     >
+                                        <!-- @slot Slot to contain the intro for this article -->
                                         <slot name="vsArticleIntro" />
                                     </VsRichTextWrapper>
                                 </div>
 
                                 <div class="vs-article__content">
+                                    <!-- @slot Default slot to contain the main
+                                    content for this article -->
                                     <slot />
                                 </div>
                             </VsCol>
@@ -51,9 +56,11 @@
 import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/layout';
+import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
+import VsHeading from '@components/elements/heading/Heading';
 
 /**
- * The Article component is a wrapper for article content, generally wrapped in content sections
+ * The Article component is used for long content sections and is made up of ArticleSections
  *
  * @displayName Article
  */
@@ -65,8 +72,14 @@ export default {
         VsCol,
         VsRow,
         VsContainer,
+        VsRichTextWrapper,
+        VsHeading,
     },
     props: {
+        /**
+         * If isStandardPage is true, the layout will change on larger viewports
+         *  to be displayed as 10 cols instead of 12.
+         */
         isStandardPage: {
             type: Boolean,
             default: false,
@@ -380,83 +393,6 @@ export default {
             Although the Mountain Track is reasonably easy to follow on a clear day,
             it's essential to have both a map and a compass and know how to use them
             especially if there is poor visibility during the climb.
-        </p>
-    </VsArticleSection>
-</VsArticle>
-
-<VsArticle isStandardPage>
-    <template slot="vsArticleImg">
-        <VsImageWithCaption
-            v-for="(item, index) in imageWithCaption.imageExamples.fullwidth"
-            :altText="item.altText"
-            :closedDefaultCaption="item.isSmall"
-            :image-src="item.imageSrc"
-            :key="`fullwidth1-${index}`"
-            variant="fullwidth"
-        >
-
-            <span slot="caption" v-if="item.caption">
-                {{ item.caption }}
-            </span>
-
-            <span slot="credit" v-if="item.credit">
-                &copy; {{ item.credit }}
-            </span>
-        </VsImageWithCaption>
-    </template>
-
-    <template slot="vsArticleTitle">
-        The mountain with its head in the clouds
-    </template>
-
-    <template slot="vsArticleIntro">
-        There are two main walking routes up Ben Nevis. The Mountain Track
-        (sometimes called the Tourist Track or the Pony Track) is used by most walkers,
-        whilst the Carn Mor Dearg Arête route presents a more challenging climb
-        for more experienced hikers.
-    </template>
-
-    <VsArticleSection sidebar-align="left" isStandardPage>
-        <template slot="articleSidebar">
-            <VsArticleSidebar sidebar-align="left">
-                <template slot="vsArticleSidebarQuote">
-                    <VsQuote>
-                        <p slot="quoteContent">
-                            Scotland’s largest mountain was once a massive active volcano
-                            which exploded and collapsed inwards on itself millions of years ago.”
-                        </p>
-                        <span slot="quoteAuthorName">Penny</span>
-                        <span slot="quoteAuthorTitle">
-                            Visitor Services Advisor at Edinburgh iCentre
-                        </span>
-                    </VsQuote>
-                </template>
-            </VsArticleSidebar>
-        </template>
-
-        <VsHeading level="3">
-            Experiencing Ben Nevis
-        </VsHeading>
-
-        <VsHeading level="6">
-            How do I climb Ben Nevis safely?
-        </VsHeading>
-
-        <p>
-            The difficulty of this hike is often under-estimated so always be
-            prepared and take the walk at your own pace. If you are not confident in your
-            own sense of direction, there are local guided walking tours available.
-            Remember this is the UK's highest mountain!
-        </p>
-        <p>
-            Make sure someone knows where you're headed and ensure that you have
-            plenty of time to get back well before nightfall.
-        </p>
-        <p>
-            Any ascent in snow requires a high degree of fitness, winter equipment and the
-            skills to use them and mountaineering and navigation experience. Bear in mind
-            snow can cover parts of the 'tourist' path into the summer months. If you're at
-            all unsure, local mountain guides can advise and guide you to the summit and back.
         </p>
     </VsArticleSection>
 </VsArticle>
