@@ -13,6 +13,7 @@
                 :offset-xl="sidebarAlign === 'right' ? '1' : ''"
                 :order-md="sidebarAlign === 'right' ? '2' : ''"
             >
+                <!-- @slot Slot to contain the article sidebar -->
                 <slot name="articleSidebar" />
             </VsCol>
             <VsCol
@@ -23,6 +24,7 @@
             >
                 <div class="mx-6 mx-md-0">
                     <VsRichTextWrapper>
+                        <!-- @slot Default slot to contain the copy for this article -->
                         <slot />
                     </VsRichTextWrapper>
                 </div>
@@ -33,8 +35,11 @@
 
 <script>
 import { VsCol, VsRow } from '@components/elements/layout';
+import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 /**
- * The Article component is a wrapper for article content, generally wrapped in content sections
+ * The ArticleSection component is used within an Article to alternate paragraphs.
+ * Each section can have one ArticleSidebar which is automatically
+ * displayed left or right of the section.
  *
  * @displayName Article Section
  */
@@ -45,13 +50,21 @@ export default {
     components: {
         VsCol,
         VsRow,
+        VsRichTextWrapper,
     },
     props: {
+        /**
+         * This sets the alignment of the sidebar left or right of the section
+         */
         sidebarAlign: {
             type: String,
             default: 'left',
             validator: (value) => value.match(/(left|right)/),
         },
+        /**
+         * If isStandardPage is true, the layout will change on larger viewports
+         *  to be displayed as 10 cols instead of 12.
+         */
         isStandardPage: {
             type: Boolean,
             default: false,
@@ -110,6 +123,28 @@ export default {
 <docs>
   ```jsx
 
+<VsPageIntro background="light" :heroIntro="false">
+    <template slot="vsIntroBreadcrumb">
+        <VsBreadcrumb>
+            <VsBreadcrumbItem
+            v-for="(item, index) in breadcrumb.breadcrumb"
+            :key="index"
+            :href="item.href"
+            :active="item.active"
+            :text="item.name"
+            >
+            </VsBreadcrumbItem>
+        </VsBreadcrumb>
+    </template>
+    <template slot="vsIntroHeading">
+        {{itineraries.sampleItinerary.h1Heading}}
+    </template>
+
+    <template slot="vsIntroContent">
+        <div v-html="itineraries.sampleItinerary.introduction" />
+    </template>
+</VsPageIntro>
+
 <VsArticle>
     <template slot="vsArticleImg">
         <VsImageWithCaption
@@ -141,7 +176,7 @@ export default {
         for more experienced hikers.
     </template>
 
-    <VsArticleSection sidebar-align="left" isStandardPage>
+    <VsArticleSection sidebar-align="left">
         <template slot="articleSidebar">
             <VsArticleSidebar>
                 <template slot="vsArticleSidebarImg">
@@ -215,7 +250,7 @@ export default {
         </p>
     </VsArticleSection>
 
-    <VsArticleSection sidebar-align="right" isStandardPage>
+    <VsArticleSection sidebar-align="right">
         <template slot="articleSidebar">
             <VsArticleSidebar>
                 <template slot="vsArticleSidebarImg">
@@ -270,7 +305,7 @@ export default {
         </p>
     </VsArticleSection>
 
-    <VsArticleSection sidebar-align="right" isStandardPage>
+    <VsArticleSection sidebar-align="right">
         <template slot="articleSidebar">
             <VsArticleSidebar />
         </template>
@@ -309,7 +344,7 @@ export default {
         </p>
     </VsArticleSection>
 
-    <VsArticleSection sidebar-align="right" isStandardPage>
+    <VsArticleSection sidebar-align="left">
         <template slot="articleSidebar">
             <VsArticleSidebar>
                 <template slot="vsArticleSidebarQuote">
@@ -364,7 +399,6 @@ export default {
             a challenge. The Carn Mor Dearg Arete route is generally not advised for children.
         </p>
     </VsArticleSection>
-
 </VsArticle>
 
   ```
