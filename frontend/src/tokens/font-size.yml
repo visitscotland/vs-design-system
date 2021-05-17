@@ -39,7 +39,7 @@ props:
       value: "{!font_size_base} * 0.875"
     - name: lead-font-size
       value: "{!font_size_base} * 1.125"
-    - name: lead-font-size-desktop
+    - name: lead-font-size-md
       value: "{!font_size_base} * 1.25"
     - name: small-font-size
       value: "{!font_size_base} * .875"
