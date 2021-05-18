@@ -243,18 +243,19 @@ public class ProductSearchBuilder {
      * @return
      */
     public String build(){
-        return buildUrl(String.format(DMSConstants.PRODUCT_SEARCH, path));
+        return buildSearchUrl(String.format(DMSConstants.PRODUCT_SEARCH, path), false);
     }
 
     public String buildDataMap(){
-        return buildUrl(DMSConstants.PRODUCT_SEARCH_DATA_MAP);
+        return buildSearchUrl(DMSConstants.PRODUCT_SEARCH_DATA_MAP, true);
     }
 
-    private String buildUrl(String path){
+    private String buildSearchUrl(String path, boolean dataEndpoint){
         if (productTypes == null){
             throw new VsException("No types have been defined for this search");
         }
-        if (Contract.isEmpty(properties.getDmsHost())){
+
+        if (Contract.isEmpty(properties.getDmsHost()) || dataEndpoint){
             return composeUrl(path);
         } else {
             return composeUrl(properties.getDmsHost() + path);
