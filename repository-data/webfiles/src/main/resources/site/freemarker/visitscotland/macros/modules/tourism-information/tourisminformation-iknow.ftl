@@ -11,7 +11,7 @@
                 <vs-heading level="2">${module.title}</vs-heading>
             </span>
             <span slot="iknowText">
-                ${module.description}
+                <@hst.html hippohtml=module.description/>
             </span>
             <span slot="iknowCta">
                 <vs-link href="${module.link.link}">${module.link.label}</vs-link>

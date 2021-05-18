@@ -6,6 +6,7 @@ import com.visitscotland.brxm.model.IKnowCommunityModule;
 import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
+import com.visitscotland.brxm.utils.HippoHtmlWrapper;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
@@ -45,11 +46,8 @@ public class IKnowCommunityFactory {
             iKnowCommunityModule.setTitle(iknowCommunity.getTitle());
         }
 
-        if (Contract.isEmpty(iknowCommunity.getCopy())){
-            iKnowCommunityModule.setCopy(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.copy.default", locale));
-        } else {
-            iKnowCommunityModule.setCopy(iknowCommunity.getCopy());
-        }
+        String defaultCopy = bundle.getResourceBundle(BUNDLE_ID, "iknow-community.copy.default", locale);
+        iKnowCommunityModule.setCopy(new HippoHtmlWrapper(iknowCommunity.getCopy(), defaultCopy));
 
         iKnowCommunityModule.setLink(new FlatLink(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.label", locale),
                 this.properties.getIknowCommunityUrl(), LinkType.INTERNAL));

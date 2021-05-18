@@ -7,6 +7,7 @@ import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.services.ResourceBundleService;
+import com.visitscotland.brxm.utils.HippoHtmlWrapper;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
@@ -41,11 +42,8 @@ public class IKnowFactory {
             module.setTitle(document.getTitle());
         }
 
-        if (Contract.isEmpty(document.getDescription())){
-            module.setDescription(bundle.getResourceBundle(BUNDLE_ID,"iknow.description.default", locale));
-        } else {
-            module.setDescription(document.getDescription());
-        }
+        String defaultDescription = bundle.getResourceBundle(BUNDLE_ID,"iknow.description.default", locale);
+        module.setDescription(new HippoHtmlWrapper(document.getDescription(), defaultDescription));
 
         FlatLink link = new FlatLink();
 

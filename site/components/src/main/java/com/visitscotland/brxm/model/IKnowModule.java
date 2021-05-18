@@ -1,9 +1,11 @@
 package com.visitscotland.brxm.model;
 
+import com.visitscotland.brxm.utils.HippoHtmlWrapper;
+
 public class IKnowModule extends Module{
 
     private String title;
-    private String description;
+    private HippoHtmlWrapper description;
     private FlatLink link;
 
     public String getTitle() {
@@ -14,11 +16,11 @@ public class IKnowModule extends Module{
         this.title = title;
     }
 
-    public String getDescription() {
+    public HippoHtmlWrapper getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(HippoHtmlWrapper description) {
         this.description = description;
     }
 
