@@ -9,6 +9,7 @@
                 cols="12"
                 md="5"
                 xl="4"
+                data-test="vs-article-section__sidebar"
                 :class="isStandardPage ? 'col-xxl-4' : 'col-xxl-3'"
                 :offset-xl="sidebarAlign === 'right' ? '1' : ''"
                 :order-md="sidebarAlign === 'right' ? '2' : ''"
@@ -19,7 +20,7 @@
             <VsCol
                 cols="12"
                 md="7"
-                class="isStandardPage ? 'col-xxl-7' : 'col-xxl-8'"
+                data-test="vs-article-section__content"
                 :offset-xl="sidebarAlign === 'left' ? '1' : ''"
             >
                 <div class="mx-6 mx-md-0">

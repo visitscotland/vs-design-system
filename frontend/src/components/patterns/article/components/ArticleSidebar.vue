@@ -38,8 +38,8 @@ export default {
     computed: {
         sidebarAlignClass() {
             return this.sidebarAlign === 'right'
-                ? 'vs-article-sidebar--sidebar-right'
-                : 'vs-article-sidebar--sidebar-left';
+                ? 'vs-article-sidebar--right'
+                : 'vs-article-sidebar--left';
         },
     },
 };
@@ -58,14 +58,14 @@ export default {
     }
 
     @include media-breakpoint-up(md) {
-        &--sidebar-right{
+        &--right{
             .vs-article-sidebar__quote-wrapper{
                 padding-left: $spacer-0;
                 padding-right: $spacer-8;
             }
         }
 
-        &--sidebar-left{
+        &--left{
             .vs-article-sidebar__quote-wrapper{
                 padding-left: $spacer-8;
                 padding-right: $spacer-0;
