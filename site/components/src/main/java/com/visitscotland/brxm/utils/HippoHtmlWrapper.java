@@ -15,9 +15,13 @@ public class HippoHtmlWrapper extends HippoHtml {
         this.base = base;
     }
 
+    public HippoHtmlWrapper(String defaultHtml) {
+        this(new HippoHtml(), defaultHtml);
+    }
+
     @Override
     public String getContent() {
-        return base.getContent().isEmpty() ? defaultHtml : base.getContent();
+        return base.getContent() == null || base.getContent().isEmpty() ? defaultHtml : base.getContent();
     }
 
 }
