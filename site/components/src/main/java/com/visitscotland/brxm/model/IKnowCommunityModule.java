@@ -1,13 +1,14 @@
 package com.visitscotland.brxm.model;
 
 import com.visitscotland.brxm.hippobeans.IknowCommunity;
+import com.visitscotland.brxm.utils.HippoHtmlWrapper;
 
 import java.util.List;
 
 public class IKnowCommunityModule extends Module<IknowCommunity> {
 
     private String title;
-    private String copy;
+    private HippoHtmlWrapper copy;
     private FlatLink link;
     private List<FlatLink> tags;
 
@@ -19,11 +20,11 @@ public class IKnowCommunityModule extends Module<IknowCommunity> {
         this.title = title;
     }
 
-    public String getCopy() {
+    public HippoHtmlWrapper getCopy() {
         return copy;
     }
 
-    public void setCopy(String copy) {
+    public void setCopy(HippoHtmlWrapper copy) {
         this.copy = copy;
     }
 
