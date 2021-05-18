@@ -64,10 +64,10 @@ class MultiValueNumberSelectedValidatorTest {
         });
     }
 
-    @DisplayName("Validation passes - various examples")
+    @DisplayName("Property validation passes - various examples")
     @ParameterizedTest
     @MethodSource("validationPassesArgSource")
-    void validationPassesExamples(Long minLength, Long maxLength) throws Exception {
+    void propertyValidationPassesExamples(Long minLength, Long maxLength) throws Exception {
         MockNodeBuilder configNodeBuilder = new MockNodeBuilder()
                 .withProperty("targetField", "field");
         if (minLength != null) {
@@ -91,10 +91,10 @@ class MultiValueNumberSelectedValidatorTest {
                 Arguments.of(null, 5L), Arguments.of(5L, null), Arguments.of(null, 7L), Arguments.of(3L, null));
     }
 
-    @DisplayName("Validation failures - various examples")
+    @DisplayName("Property validation failures - various examples")
     @ParameterizedTest
     @MethodSource("validationFailuresArgSource")
-    void validationFailuresExamples(Long minLength, Long maxLength) throws Exception {
+    void propertyValidationFailuresExamples(Long minLength, Long maxLength) throws Exception {
         when(context.createViolation()).thenReturn(mock(Violation.class));
         MockNodeBuilder configNodeBuilder = new MockNodeBuilder()
                 .withProperty("targetField", "field");
@@ -117,6 +117,62 @@ class MultiValueNumberSelectedValidatorTest {
     static Stream<Arguments> validationFailuresArgSource() {
         return Stream.of(Arguments.of(2L, 4L), Arguments.of(6L, 6L), Arguments.of(null, 4L), Arguments.of(6L, null));
     }
+
+    @DisplayName("Node validation passes - various examples")
+    @ParameterizedTest
+    @MethodSource("validationPassesArgSource")
+    void nodeValidationPasses(Long minLength, Long maxLength) throws Exception {
+        MockNodeBuilder configNodeBuilder = new MockNodeBuilder()
+                .withProperty("targetField", "field");
+
+        if (minLength != null) {
+            configNodeBuilder.withProperty("minLength", minLength);
+        }
+        if (maxLength != null) {
+            configNodeBuilder.withProperty("maxLength", maxLength);
+        }
+        MultiValueNumberSelectedValidator validator = new MultiValueNumberSelectedValidator(configNodeBuilder.build());
+        Node documentNode = new MockNodeBuilder()
+                .withChildNode("field", new MockNodeBuilder().build())
+                .withChildNode("field", new MockNodeBuilder().build())
+                .withChildNode("field", new MockNodeBuilder().build())
+                .withChildNode("field", new MockNodeBuilder().build())
+                .withChildNode("field", new MockNodeBuilder().build())
+                .build();
+        when(documentNode.hasNode("field")).thenReturn(true);
+
+        Optional<Violation> validateResult = validator.validate(context, documentNode);
+        Assertions.assertFalse(validateResult.isPresent());
+    }
+
+    @DisplayName("Node validation failures - various examples")
+    @ParameterizedTest
+    @MethodSource("validationFailuresArgSource")
+    void nodeValidationFailures(Long minLength, Long maxLength) throws Exception {
+        when(context.createViolation()).thenReturn(mock(Violation.class));
+        MockNodeBuilder configNodeBuilder = new MockNodeBuilder()
+                .withProperty("targetField", "field");
+
+        if (minLength != null) {
+            configNodeBuilder.withProperty("minLength", minLength);
+        }
+        if (maxLength != null) {
+            configNodeBuilder.withProperty("maxLength", maxLength);
+        }
+        MultiValueNumberSelectedValidator validator = new MultiValueNumberSelectedValidator(configNodeBuilder.build());
+        Node documentNode = new MockNodeBuilder()
+                .withChildNode("field", new MockNodeBuilder().build())
+                .withChildNode("field", new MockNodeBuilder().build())
+                .withChildNode("field", new MockNodeBuilder().build())
+                .withChildNode("field", new MockNodeBuilder().build())
+                .withChildNode("field", new MockNodeBuilder().build())
+                .build();
+        when(documentNode.hasNode("field")).thenReturn(true);
+
+        Optional<Violation> validateResult = validator.validate(context, documentNode);
+        Assertions.assertTrue(validateResult.isPresent());
+    }
+
 
     @DisplayName("When targetField not found on document, then validation passes")
     @Test

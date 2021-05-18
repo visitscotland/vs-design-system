@@ -30,4 +30,14 @@ public class IknowCommunity extends BaseDocument {
     public Boolean getTranslationFlag() {
         return getSingleProperty("visitscotland:translationFlag");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
+    public String getTranslationPriority() {
+        return getSingleProperty("visitscotland:translationPriority");
+    }
 }
