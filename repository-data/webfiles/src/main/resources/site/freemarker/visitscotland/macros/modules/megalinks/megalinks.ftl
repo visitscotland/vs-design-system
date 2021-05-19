@@ -4,7 +4,7 @@
 <#include "./link-list/megalinks-link-list.ftl">
 <#include "./single-image/megalinks-single-image.ftl">
 
-<#macro megalinks item type theme>
+<#macro megalinks item type theme="">
 
     <#if type=="MultiImageLinksModule">
         <#assign variant = "multi-image">
