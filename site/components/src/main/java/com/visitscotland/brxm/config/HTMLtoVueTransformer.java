@@ -39,8 +39,8 @@ public class HTMLtoVueTransformer {
          * 2. Attributes for the heading tag
          * 3. Content of the tag
          */
-        Pattern h2Tag = Pattern.compile("<h(\\d)(.*?)>(.*?)</h2>");
-        Matcher matcher = h2Tag.matcher(html);
+        Pattern headingTag = Pattern.compile("<h(\\d)(.*?)>(.*?)</h\\1>");
+        Matcher matcher = headingTag.matcher(html);
         String output = html;
 
         while (matcher.find()) {
@@ -77,7 +77,7 @@ public class HTMLtoVueTransformer {
         while (matcher.find()) {
             String a = matcher.group();
             LinkType type = linkService.getType(matcher.group(2));
-            String vsLink = a.replace(matcher.group(1), "<vs-link type=\""+type+"\" ")
+            String vsLink = a.replace(matcher.group(1), "<vs-link type=\""+type.getRichTextType()+"\" ")
                     .replace(matcher.group(3),"</vs-link>");
             output = output.replace(a, vsLink);
         }

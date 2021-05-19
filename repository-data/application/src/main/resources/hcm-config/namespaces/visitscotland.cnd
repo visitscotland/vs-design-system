@@ -27,6 +27,7 @@
   mixin
   - visitscotland:translationFlag (boolean)
   - visitscotland:diff (string)
+  - visitscotland:translationPriority (string)
 
 [visitscotland:Day] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
@@ -43,6 +44,12 @@
 [visitscotland:ExternalLink] > hippo:compound, hippostd:relaxed
   orderable
 
+[visitscotland:Widget] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
+  orderable
+
+[visitscotland:FeaturedWidget] > hippostd:relaxed, hippotranslation:translated, visitscotland:Widget
+  orderable
+
 [visitscotland:General] > hippostd:relaxed, hippotranslation:translated, visitscotland:Page, visitscotland:translatable
   orderable
 
@@ -50,6 +57,9 @@
   orderable
 
 [visitscotland:IKnow] > hippo:compound, hippostd:relaxed
+  orderable
+
+[visitscotland:IknowCommunity] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
 [visitscotland:Image] > hippogallery:imageset, hippogallery:relaxed
@@ -102,6 +112,9 @@
 [visitscotland:SingleImageModule] > hippo:compound, hippostd:relaxed
   orderable
 
+[visitscotland:Stackla] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
+  orderable
+
 [visitscotland:Stop] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
@@ -109,9 +122,6 @@
   orderable
 
 [visitscotland:TourismInformation] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
-  orderable
-
-[visitscotland:Widget] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
 [visitscotland:contentdocument] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable

@@ -40,7 +40,6 @@
                     :type="type"
                     class="stretched-link"
                     :class="disabled ? 'stretched-link--disabled' : ''"
-                    :icon-size="iconSize"
                     :variant="theme === 'dark' ? 'dark' : 'primary'"
                     data-test="vs-stretched-link"
                     :disabled="disabled"
@@ -96,16 +95,7 @@ export default {
         type: {
             type: String,
             required: true,
-            validator: (value) => value.match(/(external|internal|download)/),
-        },
-        /**
-        * Size of the link icon - defaults to 'xs'
-        * `xxs, xs, sm, md, lg, xl`)
-        */
-        iconSize: {
-            type: String,
-            default: 'xs',
-            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+            validator: (value) => value.match(/(default|external|internal|download)/),
         },
         /**
         * The component color theme
@@ -234,7 +224,7 @@ export default {
 
         @include media-breakpoint-up(xl) {
             .vs-stretched-link-card__title {
-                font-size: $h6-font-size;
+                font-size: $small-font-size;
                 line-height: $line-height-s;
             }
 

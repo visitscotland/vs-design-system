@@ -84,7 +84,7 @@ export default {
         linkType: {
             type: String,
             required: true,
-            validator: (value) => value.match(/(external|internal|download)/),
+            validator: (value) => value.match(/(default|external|internal|download)/),
         },
         /**
         * The link destination
@@ -193,7 +193,7 @@ export default {
             margin-bottom: $spacer-11;
 
             .vs-megalink-multi-image__title {
-                font-size: $h6-font-size;
+                font-size: $small-font-size;
                 line-height: $line-height-s;
             }
 

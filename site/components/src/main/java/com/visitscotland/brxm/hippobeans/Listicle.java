@@ -6,7 +6,6 @@ import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerat
 @HippoEssentialsGenerated(internalName = "visitscotland:Listicle")
 @Node(jcrType = "visitscotland:Listicle")
 public class Listicle extends Page {
-
     @HippoEssentialsGenerated(internalName = "visitscotland:descOrder")
     public Boolean getDescOrder() {
         return getSingleProperty("visitscotland:descOrder");
@@ -21,4 +20,5 @@ public class Listicle extends Page {
     public ListicleClosing getListicleClosing() {
         return getBean("visitscotland:ListicleClosing", ListicleClosing.class);
     }
+
 }

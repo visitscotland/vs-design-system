@@ -1,15 +1,11 @@
 package com.visitscotland.brxm.utils;
 
 import com.visitscotland.brxm.components.content.GeneralContentComponent;
+import com.visitscotland.brxm.factory.*;
 import com.visitscotland.brxm.hippobeans.*;
-import com.visitscotland.brxm.model.ICentreModule;
-import com.visitscotland.brxm.model.IKnowModule;
-import com.visitscotland.brxm.model.LongCopyModule;
-import com.visitscotland.brxm.model.Module;
-import com.visitscotland.brxm.model.megalinks.HorizontalListLinksModule;
+import com.visitscotland.brxm.model.*;
 import com.visitscotland.brxm.model.megalinks.LinksModule;
 import com.visitscotland.brxm.model.megalinks.SingleImageLinksModule;
-import com.visitscotland.brxm.factory.*;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -29,14 +25,13 @@ public class PageTemplateBuilder {
     //Static Constant
     static final String INTRO_THEME = "introTheme";
     static final String PAGE_ITEMS = "pageItems";
-    static final String[] themes = {"theme1", "theme2", "theme3"};
+
     static final String[] alignment = {"right", "left"};
 
     /**
-     * @deprecated to be removed by after VS-2441 is completed
+     * TODO: Convert into property?
      */
-    @Deprecated
-    public static final String NEUTRAL_THEME = themes[1];
+    static final Integer THEMES = 3;
 
     //Utils
     private final DocumentUtilsService documentUtils;
@@ -47,14 +42,18 @@ public class PageTemplateBuilder {
     private final IKnowFactory iKnowFactory;
     private final ArticleFactory articleFactory;
     private final LongCopyFactory longCopyFactory;
+    private final IKnowCommunityFactory iKnowCommunityFactory;
+    private final StacklaFactory stacklaFactory;
 
-    public PageTemplateBuilder(DocumentUtilsService documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy) {
+    public PageTemplateBuilder(DocumentUtilsService documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
         this.documentUtils = documentUtils;
         this.articleFactory = article;
         this.longCopyFactory = longcopy;
+        this.iKnowCommunityFactory = iKnowCommunityFactory;
+        this.stacklaFactory = stacklaFactory;
     }
 
     private Page getDocument(HstRequest request) {
@@ -79,6 +78,10 @@ public class PageTemplateBuilder {
                     page.modules.add(articleFactory.getModule(request, (Article) item));
                 } else if (item instanceof LongCopy){
                     processLongCopy(request, page, (LongCopy) item);
+                } else if (item instanceof IknowCommunity) {
+                    page.modules.add(iKnowCommunityFactory.getIKnowCommunityModule((IknowCommunity) item, request.getLocale()));
+                } else if (item instanceof Stackla) {
+                    page.modules.add(stacklaFactory.getStacklaModule((Stackla) item));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
@@ -87,7 +90,6 @@ public class PageTemplateBuilder {
             }
         }
 
-        addOTYMLModule(request, page.modules);
         setIntroTheme(request, page.modules);
 
         request.setAttribute(PAGE_ITEMS, page.modules);
@@ -124,7 +126,7 @@ public class PageTemplateBuilder {
             page.style--;
         }
 
-        al.setTheme(themes[page.style++ % themes.length]);
+        al.setThemeIndex(page.style++ % THEMES);
         al.setHippoBean(item);
 
         page.modules.add(al);
@@ -148,29 +150,13 @@ public class PageTemplateBuilder {
     }
 
     /**
-     * Adds the a OTYML (Other Things You Might Like) module at the end of the list
-     * @param request
-     * @param modules
-     */
-    private void addOTYMLModule(HstRequest request, List<Module> modules){
-        OTYML otyml = getDocument(request).getOtherThings();
-        if(otyml!=null) {
-            HorizontalListLinksModule al = linksFactory.horizontalListLayout(otyml, request.getLocale());
-            al.setTheme(NEUTRAL_THEME);
-            modules.add(al);
-        }
-    }
-
-    /**
      * Sets the theme for the intro of the page based on the list of modules.
      * @param request
      * @param modules
      */
     private void setIntroTheme(HstRequest request, List<Module> modules){
         if(!modules.isEmpty() && modules.get(0) instanceof LinksModule){
-            request.setAttribute(INTRO_THEME, ((LinksModule) modules.get(0)).getTheme());
-        }else{
-            request.setAttribute(INTRO_THEME, NEUTRAL_THEME);
+            request.setAttribute(INTRO_THEME, ((LinksModule) modules.get(0)).getThemeIndex());
         }
     }
 
