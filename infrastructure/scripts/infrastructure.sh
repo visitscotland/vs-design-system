@@ -377,7 +377,7 @@ getBranchListFromWorkspace() {
   #           for PR in [logic above | grep _PR] check PR's workspace/ci for vs-container-name file
   #           cat the file for a branch name and add those branches to BRANCH_LIST (some)
   
-  for PR in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME/PR-"; do
+  for PR in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME/PR-"`; do
     unset BRANCH VS_LAST_ENV_FOUND VS_CONTAINER_NAME_FILE_FOUND
     if [ ! -z "$PR" ] && [ -d $PR ]; then
       echo " - found PR $PR, looking for $VS_LAST_ENV or $VS_CONTAINER_NAME_FILE"
