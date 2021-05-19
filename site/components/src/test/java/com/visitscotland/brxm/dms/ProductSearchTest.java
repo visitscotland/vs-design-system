@@ -92,16 +92,15 @@ class ProductSearchTest {
     }
 
     @Test()
-    @DisplayName("Constructs fully qualified URLs when the parameter dms.host is set on the CMS")
+    @DisplayName("Constructs a relative URL for the map endpoint")
     void productSearch_fullQualified() {
-        when(properties.getDmsHost()).thenReturn("https://www.visitscotland.com");
+        lenient().when(properties.getDmsHost()).thenReturn("https://www.visitscotland.com");
+        lenient().when(properties.getDmsDataHost()).thenReturn("https://data.visitscotland.com");
+
         String url = createBuilder().productTypes(DEFAULT_TYPE).buildDataMap();
 
-        assertTrue(
-                url.contains(DMSConstants.PRODUCT_SEARCH_DATA_MAP),
-                "The Generated URL is expected to contain " + DMSConstants.PRODUCT_SEARCH_DATA_MAP + ": " + url);
-        assertTrue(url.startsWith("https://www.visitscotland.com/data"),
-                "The URL is expected to be fully qualified: " + url);
+        assertTrue(url.startsWith(DMSConstants.PRODUCT_SEARCH_DATA_MAP),
+                "The URL is expected to be a Dms data endpoint: " + url);
         validateUrl(url);
     }
 

@@ -62,4 +62,5 @@ public class Itinerary extends Page {
     public String getTranslationPriority() {
         return getSingleProperty("visitscotland:translationPriority");
     }
+
 }

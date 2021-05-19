@@ -3,10 +3,7 @@ package com.visitscotland.brxm.utils;
 import com.visitscotland.brxm.components.content.GeneralContentComponent;
 import com.visitscotland.brxm.factory.*;
 import com.visitscotland.brxm.hippobeans.*;
-import com.visitscotland.brxm.model.ICentreModule;
-import com.visitscotland.brxm.model.IKnowModule;
-import com.visitscotland.brxm.model.LongCopyModule;
-import com.visitscotland.brxm.model.Module;
+import com.visitscotland.brxm.model.*;
 import com.visitscotland.brxm.model.megalinks.LinksModule;
 import com.visitscotland.brxm.model.megalinks.SingleImageLinksModule;
 import com.visitscotland.brxm.services.DocumentUtilsService;
@@ -45,14 +42,18 @@ public class PageTemplateBuilder {
     private final IKnowFactory iKnowFactory;
     private final ArticleFactory articleFactory;
     private final LongCopyFactory longCopyFactory;
+    private final IKnowCommunityFactory iKnowCommunityFactory;
+    private final StacklaFactory stacklaFactory;
 
-    public PageTemplateBuilder(DocumentUtilsService documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy) {
+    public PageTemplateBuilder(DocumentUtilsService documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
         this.documentUtils = documentUtils;
         this.articleFactory = article;
         this.longCopyFactory = longcopy;
+        this.iKnowCommunityFactory = iKnowCommunityFactory;
+        this.stacklaFactory = stacklaFactory;
     }
 
     private Page getDocument(HstRequest request) {
@@ -77,6 +78,10 @@ public class PageTemplateBuilder {
                     page.modules.add(articleFactory.getModule(request, (Article) item));
                 } else if (item instanceof LongCopy){
                     processLongCopy(request, page, (LongCopy) item);
+                } else if (item instanceof IknowCommunity) {
+                    page.modules.add(iKnowCommunityFactory.getIKnowCommunityModule((IknowCommunity) item, request.getLocale()));
+                } else if (item instanceof Stackla) {
+                    page.modules.add(stacklaFactory.getStacklaModule((Stackla) item));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
