@@ -13,7 +13,7 @@
         <vs-container>
             <vs-iknow-partner-item>
                 <span slot="iknowText">
-                    ${module.description}
+                    <@hst.html hippohtml=module.description/>
                 </span>
                 <span slot="iknowCta">
                     <vs-link href="${module.link.link}">${module.link.label}</vs-link>
