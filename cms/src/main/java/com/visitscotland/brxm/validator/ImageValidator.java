@@ -2,6 +2,7 @@ package com.visitscotland.brxm.validator;
 
 import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.translation.SessionFactory;
+import com.visitscotland.utils.Contract;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.Validator;
 import org.onehippo.cms.services.validation.api.Violation;
@@ -31,8 +32,15 @@ public class ImageValidator implements Validator<Node> {
         try {
             String nodeId = document.getProperty(HIPPO_DOCBASE).getValue().getString();
             Node childNode = sessionFactory.getHippoNodeByIdentifier(nodeId);
-            if (!childNode.hasProperty(Image.CREDIT) || !childNode.hasProperty(Image.ALT_TEXT)) {
+            if (!childNode.hasProperty("hippogallery:description") || !childNode.hasProperty(Image.ALT_TEXT)) {
                 return Optional.of(context.createViolation());
+            }else{
+                if (childNode.hasProperty(Image.ALT_TEXT) && Contract.isEmpty(childNode.getProperty(Image.ALT_TEXT).getString())) {
+                    return Optional.of(context.createViolation());
+                }
+                if (childNode.hasProperty("hippogallery:description") && Contract.isEmpty(childNode.getProperty("hippogallery:description").getString())) {
+                    return Optional.of(context.createViolation());
+                }
             }
         } catch (RepositoryException e) {
             return Optional.of(context.createViolation());
