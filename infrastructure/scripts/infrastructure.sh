@@ -70,7 +70,7 @@ if [ -z "$VS_SSR_PROXY_ON" ]; then VS_SSR_PROXY_ON="TRUE"; fi
 if [ -z "$VS_SSR_APP_PORT" ]; then VS_SSR_APP_PORT=8082; fi
 #  ==== Other Variables ====
 VS_JENKINS_LAST_ENV=jenkins-last-env
-VS_VS_LAST_ENV=vs-last-env
+VS_LAST_ENV=vs-last-env
 VS_LAST_ENV_QUOTED_SUFFIX=.quoted
 VS_LAST_ENV_GROOVY_SUFFIX=.groovy
 VS_CONTAINER_NAME_FILE=vs-container-name
@@ -382,16 +382,17 @@ getBranchListFromWorkspace() {
     PR_DIR=`cat $JENKINS_HOME/workspace/workspaces.txt | grep -a1 "$PR" | tail -1`
     unset BRANCH VS_LAST_ENV_FOUND VS_CONTAINER_NAME_FILE_FOUND
     if [ ! -z "$JENKINS_HOME/workspace/$PR_DIR" ] && [ -d $JENKINS_HOME/workspace/$PR_DIR ]; then
-      echo " - found PR $PR_DIR, looking for $VS_VS_LAST_ENV or $VS_CONTAINER_NAME_FILE"
+      echo " - found PR $PR_DIR, looking for $VS_LAST_ENV or $VS_CONTAINER_NAME_FILE"
       VS_LAST_ENV_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_LAST_ENV"`
       VS_CONTAINER_NAME_FILE_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_CONTAINER_NAME_FILE"`
-      if [ ! -z "$VS_LAST_ENV_FOUND" ] && [ -a $VS_LAST_ENV_FOUND ]; then
+      echo "found VS_LAST_ENV=$VS_LAST_ENV, VS_CONTAINER_NAME_FILE_FOUND=$VS_CONTAINER_NAME_FILE_FOUND"
+      if [ ! -z "$JENKINS_HOME/workspace/$PR_DIR/$VS_LAST_ENV_FOUND" ] && [ -a $JENKINS_HOME/workspace/$PR_DIR/$VS_LAST_ENV_FOUND ]; then
         echo "found $VS_LAST_ENV_FOUND"
         BRANCH=`cat $VS_LAST_ENV_FOUND | egrep "(VS_)(CHANGE_BRANCH|CONTAINER_NAME)=" | sed -e "s/.*=//g" | head -1`
         echo "$BRANCH in 1"
         if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for $PR in $VS_LAST_ENV_FOUND"; fi
         if [ ! -z "$BRANCH" ]; then BRANCH_LIST="$BRANCH_LIST $BRANCH"; fi
-      elif [ ! -z "$VS_CONTAINER_NAME_FILE_FOUND" ] && [ -a $VS_CONTAINER_NAME_FILE_FOUND ]; then
+      elif [ ! -z "$JENKINS_HOME/workspace/$PR_DIR/$VS_CONTAINER_NAME_FILE_FOUND" ] && [ -a $JENKINS_HOME/workspace/$PR_DIR/$VS_CONTAINER_NAME_FILE_FOUND ]; then
         echo "found $VS_CONTAINER_NAME_FILE_FOUND"
         BRANCH=`cat $VS_CONTAINER_NAME_FILE_FOUND | head -1`
         echo "$BRANCH in 2"
@@ -773,12 +774,12 @@ containerStartHippo() {
 }
 
 exportVSVariables() {
-  echo "`eval $VS_LOG_DATESTAMP` INFO [`basename $0`] exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD" | tee -a $VS_SCRIPT_LOG
-  set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
+  echo "`eval $VS_LOG_DATESTAMP` INFO [`basename $0`] exporting VS variables to $VS_LAST_ENV and $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD" | tee -a $VS_SCRIPT_LOG
+  set | egrep "^(VS_)" | tee $VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
 }
 
 copyVSVariables() {
-  echo " - writing VS variables from $VS_VS_LAST_ENV and $VS_JENKINS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
+  echo " - writing VS variables from $VS_LAST_ENV and $VS_JENKINS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
   # to-do: gp - set VS_TARGET in defaultSettings
   if [ ! -d $VS_BUILD_PROPERTIES_TARGET_DIR ]; then
     echo " - $VS_BUILD_PROPERTIES_TARGET_DIR does not exist, creating"
@@ -786,7 +787,7 @@ copyVSVariables() {
   fi
   echo "# properties from $BUILD_TAG" > $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME
   if [ -a $VS_JENKINS_LAST_ENV ]; then cat $VS_JENKINS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME; fi
-  if [ -a $VS_VS_LAST_ENV ]; then cat $VS_VS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME; fi
+  if [ -a $VS_LAST_ENV ]; then cat $VS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME; fi
 }
 
 createBuildReport() {
