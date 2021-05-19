@@ -23,14 +23,6 @@ describe('VsIknowParterItem', () => {
     });
 
     describe(':slots', () => {
-        it('renders content inserted in the `icentreHeading` slot', () => {
-            const headingContent = 'Icentre test heading';
-            const wrapper = factoryShallowMount({
-                icentreHeading: headingContent,
-            });
-
-            expect(wrapper.text()).toContain(headingContent);
-        });
         it('renders content inserted in the `icentreImageWithCaption` slot', () => {
             const imageContent = 'This slot normally takes an imageWithCaption component';
             const wrapper = factoryShallowMount({
