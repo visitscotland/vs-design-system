@@ -69,18 +69,20 @@ describe('VsCarousel', () => {
             const wrapper = factoryShallowMount();
 
             await wrapper.setData({
-                currentPage: 0,
+                currentPage: 1,
                 totalSlides: 10,
                 currentWidth: 'lg',
             });
 
+            await wrapper.vm.initNavigation();
+
             await wrapper.find('.vs-carousel__control--next').trigger('click');
 
-            expect(wrapper.vm.currentPage).toBe(1);
+            expect(wrapper.vm.currentPage).toBe(2);
 
             await wrapper.find('.vs-carousel__control--prev').trigger('click');
 
-            expect(wrapper.vm.currentPage).toBe(0);
+            expect(wrapper.vm.currentPage).toBe(1);
         });
 
         it('sets the correct active page on clicking navigation item', async() => {
@@ -102,6 +104,7 @@ describe('VsCarousel', () => {
             const wrapper = factoryShallowMount();
 
             await wrapper.setData({
+                currentPage: 2,
                 prevDisabled: false,
             });
 
