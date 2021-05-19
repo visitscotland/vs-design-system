@@ -1,6 +1,6 @@
 <template>
     <div
-        class="itinerary-stop-info"
+        class="vs-itinerary-stop-info"
         data-test="vs-itinerary-stop-info"
     >
         <VsIcon
@@ -395,7 +395,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .itinerary-stop-info {
+    .vs-itinerary-stop-info {
         display: flex;
         margin-top: $spacer-0;
         max-width: 50%;
