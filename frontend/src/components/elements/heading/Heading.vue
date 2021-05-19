@@ -69,6 +69,15 @@ $font-sizes: (
     6: $h6-font-size,
 );
 
+$md-font-sizes: (
+    1: $h1-font-size-md,
+    2: $h2-font-size-md,
+    3: $h3-font-size-md,
+    4: $h4-font-size-md,
+    5: $h5-font-size-md,
+    6: $h6-font-size-md,
+);
+
 /* Update font sizes */
 $sub-font-sizes: (
     2: $h2-sub-font-size,
@@ -82,6 +91,17 @@ $sub-font-sizes: (
         @at-root h#{$level}#{&} {
             letter-spacing: $size * 0.1;
             margin-bottom: $size;
+            font-size: $size;
+        }
+    }
+
+    @each $level, $size in $md-font-sizes {
+        @at-root h#{$level}#{&} {
+            @include media-breakpoint-up(md) {
+                letter-spacing: $size * 0.1;
+                margin-bottom: $size;
+                font-size: $size;
+            }
         }
     }
 
