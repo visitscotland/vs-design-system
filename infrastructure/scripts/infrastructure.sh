@@ -393,6 +393,7 @@ getBranchListFromWorkspace() {
         if [ "$VS_DEBUG" = "TRUE" ]; then echo " - no branch found for $PR"; fi
       fi
     fi
+  done
   echo ""
 }
 
