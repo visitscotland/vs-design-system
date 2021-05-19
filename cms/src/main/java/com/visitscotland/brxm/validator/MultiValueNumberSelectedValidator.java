@@ -7,8 +7,7 @@ import org.onehippo.cms.services.validation.api.Violation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.Node;
-import javax.jcr.RepositoryException;
+import javax.jcr.*;
 import java.util.Optional;
 
 /**
@@ -16,7 +15,7 @@ import java.util.Optional;
  * The configuration options are as follows
  *      minLength:      The min number of selected items allowed
  *      maxLength:      The max number of selected items allowed
- *      targetField:    The field to apply validation to
+ *      targetField:    The field to apply validation to. Can be either a property of a child node
  *
  * targetField must be supplied. Either minLength or maxLength must be supplied, or both.
  *
@@ -58,24 +57,42 @@ public class MultiValueNumberSelectedValidator implements Validator<Node> {
 
     @Override
     public Optional<Violation> validate(ValidationContext validationContext, Node node) {
-        try {
-            if (!node.hasProperty(targetField)) {
-                logger.error("Can not run TagNumberSelectedValidator as node {} has no field {}", node.getPath(), targetField);
-                return Optional.empty();
-            }
-
-            int numTags = node.getProperty(targetField).getValues().length;
-            if (minLength != null && numTags < minLength) {
-                return Optional.of(validationContext.createViolation());
-            }
-            if (maxLength != null && numTags > maxLength) {
-                return Optional.of(validationContext.createViolation());
-            }
-
-            return Optional.empty();
-        } catch (RepositoryException ex) {
-            logger.error("Failed to validate tag field", ex);
+        Optional<Integer> itemCount = countNumberOfItems(node);
+        if (!itemCount.isPresent()) {
             return Optional.empty();
         }
+        int numItems = itemCount.get();
+        if (minLength != null && numItems < minLength) {
+            return Optional.of(validationContext.createViolation());
+        }
+        if (maxLength != null && numItems > maxLength) {
+            return Optional.of(validationContext.createViolation());
+        }
+
+        return Optional.empty();
+    }
+
+    private Optional<Integer> countNumberOfItems(Node node) {
+        try {
+            // Simple primitive types (e..g String) will just be a property
+            // More complex types are represented as child nodes
+            if (node.hasProperty(targetField)) {
+                return Optional.of(node.getProperty(targetField).getValues().length);
+            }
+            if (node.hasNode(targetField)) {
+                int count = 0;
+                NodeIterator childNodes = node.getNodes(targetField);
+                while (childNodes.hasNext()) {
+                    count++;
+                    childNodes.nextNode();
+                }
+                return Optional.of(count);
+            }
+            logger.error("Can not run MultiValueNumberSelectedValidator as node {} has no property or child {}", node.getPath(), targetField);
+        } catch (RepositoryException ex) {
+            logger.error("Repository error when running multi value validator", ex);
+        }
+
+        return Optional.empty();
     }
 }
