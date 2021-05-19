@@ -29,7 +29,7 @@
     <#if standardTemplate>
         <@pageIntro content=document heroDetails=heroImage />
     <#else>
-        <@pageIntro content=document />
+        <@pageIntro content=document simplePage=!standardTemplate/>
     </#if>
 
     <#--TODO Control abput colours, change style="background-color:${style}  -->
