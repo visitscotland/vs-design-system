@@ -1,6 +1,8 @@
 package com.visitscotland.brxm.mock;
 
 import com.visitscotland.brxm.hippobeans.IknowCommunity;
+import com.visitscotland.brxm.utils.HippoHtmlWrapper;
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.mockito.Mockito;
 
 import java.util.List;
@@ -21,7 +23,9 @@ public class IKnowCommunityMockBuilder {
     }
 
     public IKnowCommunityMockBuilder copy(String copy) {
-        when(mock.getCopy()).thenReturn(copy);
+        HippoHtml hippoHtml = mock(HippoHtml.class);
+        when(hippoHtml.getContent()).thenReturn(copy);
+        when(mock.getCopy()).thenReturn(hippoHtml);
         return this;
     }
 
