@@ -73,6 +73,7 @@ VS_JENKINS_LAST_ENV=jenkins-last-env
 VS_VS_LAST_ENV=vs-last-env
 VS_LAST_ENV_QUOTED_SUFFIX=.quoted
 VS_LAST_ENV_GROOVY_SUFFIX=.groovy
+VS_CONTAINER_NAME_FILE=vs-container-name
 
 # ====/ADJUSTABLE VARIABLES ====
 
@@ -381,7 +382,7 @@ getBranchListFromWorkspace() {
     PR_DIR=`cat $JENKINS_HOME/workspace/workspaces.txt | grep -a1 "$PR" | tail -1`
     unset BRANCH VS_LAST_ENV_FOUND VS_CONTAINER_NAME_FILE_FOUND
     if [ ! -z "$JENKINS_HOME/workspace/$PR_DIR" ] && [ -d $JENKINS_HOME/workspace/$PR_DIR ]; then
-      echo " - found PR $PR_DIR, looking for $VS_LAST_ENV or $VS_CONTAINER_NAME_FILE"
+      echo " - found PR $PR_DIR, looking for $VS_VS_LAST_ENV or $VS_CONTAINER_NAME_FILE"
       VS_LAST_ENV_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_LAST_ENV"`
       VS_CONTAINER_NAME_FILE_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_CONTAINER_NAME_FILE"`
       if [ ! -z "$VS_LAST_ENV_FOUND" ] && [ -a $VS_LAST_ENV_FOUND ]; then
