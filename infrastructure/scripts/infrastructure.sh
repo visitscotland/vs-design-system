@@ -382,27 +382,28 @@ getBranchListFromWorkspace() {
     PR_DIR=`cat $JENKINS_HOME/workspace/workspaces.txt | grep -a1 "$PR" | tail -1`
     unset BRANCH VS_LAST_ENV_FOUND VS_CONTAINER_NAME_FILE_FOUND
     if [ ! -z "$JENKINS_HOME/workspace/$PR_DIR" ] && [ -d $JENKINS_HOME/workspace/$PR_DIR ]; then
-      echo " - found PR $PR_DIR, looking for $VS_LAST_ENV or $VS_CONTAINER_NAME_FILE in $JENKINS_HOME/workspace/$PR_DIR"
+#      echo " - found PR $PR_DIR, looking for $VS_LAST_ENV or $VS_CONTAINER_NAME_FILE in $JENKINS_HOME/workspace/$PR_DIR"
       VS_LAST_ENV_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_LAST_ENV"`
       VS_CONTAINER_NAME_FILE_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_CONTAINER_NAME_FILE"`
-      echo "found VS_LAST_ENV_FOUND=$VS_LAST_ENV_FOUND, VS_CONTAINER_NAME_FILE_FOUND=$VS_CONTAINER_NAME_FILE_FOUND"
+#      echo "found VS_LAST_ENV_FOUND=$VS_LAST_ENV_FOUND, VS_CONTAINER_NAME_FILE_FOUND=$VS_CONTAINER_NAME_FILE_FOUND"
       if [ ! -z "$VS_CONTAINER_NAME_FILE_FOUND" ] && [ -a $VS_CONTAINER_NAME_FILE_FOUND ]; then
-        echo "found $VS_CONTAINER_NAME_FILE_FOUND"
+#        echo "found $VS_CONTAINER_NAME_FILE_FOUND"
         BRANCH=`cat $VS_CONTAINER_NAME_FILE_FOUND | head -1`
-        echo "BRANCH=$BRANCH in 2"
-        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for $PR in $VS_CONTAINER_NAME_FILE"; fi
+#        echo "BRANCH=$BRANCH in 2"
+        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for `basename $PR` in $VS_CONTAINER_NAME_FILE"; fi
         if [ ! -z "$BRANCH" ]; then BRANCH_LIST="$BRANCH_LIST $BRANCH"; fi
       elif [ ! -z "$VS_LAST_ENV_FOUND" ] && [ -a $VS_LAST_ENV_FOUND ]; then
-        echo "found $VS_LAST_ENV_FOUND"
+#        echo "found $VS_LAST_ENV_FOUND"
         BRANCH=`cat $VS_LAST_ENV_FOUND | egrep "(VS_)(CHANGE_BRANCH|CONTAINER_NAME)=" | sed -e "s/.*=//g" | head -1`
-        echo "BRANCH=$BRANCH in 1"
-        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for $PR in $VS_LAST_ENV_FOUND"; fi
+#        echo "BRANCH=$BRANCH in 1"
+        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for `basename $PR` in $VS_LAST_ENV"; fi
         if [ ! -z "$BRANCH" ]; then BRANCH_LIST="$BRANCH_LIST $BRANCH"; fi
       else
         if [ "$VS_DEBUG" = "TRUE" ]; then echo " - no branch found for $PR"; fi
       fi
     fi
   done
+  echo $BRANCH_LIST
   echo ""
 }
 
