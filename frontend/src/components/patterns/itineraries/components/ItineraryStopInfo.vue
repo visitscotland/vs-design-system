@@ -214,17 +214,7 @@ export default {
         },
     },
     created() {
-        if (typeof this.openingHours !== 'object') {
-            const json = this.openingHours.replace(/'/g, '"');
-            this.parsedHours = JSON.parse(json);
-        } else {
-            this.parsedHours = this.openingHours;
-        }
-
-        // if the stop is closed long term then mark it as such
-        if (this.parsedHours.closedLongTerm) {
-            this.closedLongTerm = true;
-        }
+        this.parseIncomingData();
     },
     mounted() {
         // if the opening hours data comes through as a string
@@ -234,6 +224,19 @@ export default {
         this.getCurrentHoursInfo();
     },
     methods: {
+        parseIncomingData() {
+            if (typeof this.openingHours !== 'object') {
+                const json = this.openingHours.replace(/'/g, '"');
+                this.parsedHours = JSON.parse(json);
+            } else {
+                this.parsedHours = this.openingHours;
+            }
+
+            // if the stop is closed long term then mark it as such
+            if (this.parsedHours.closedLongTerm) {
+                this.closedLongTerm = true;
+            }
+        },
         getCurrentTime() {
             const date = new Date();
             const ukTime = date.toLocaleTimeString('en-GB', {
@@ -253,7 +256,6 @@ export default {
         isActiveDate() {
             // check that we're currently in the active dates for the supplied hours -
             // if not the times shouldn't be shown
-
             if (typeof this.parsedHours.period !== 'undefined') {
                 // reformat current date so it can be transformed into a JS date more reliably
                 // NB: this format isn't recognised by IE11 so the dynamic info won't show
@@ -264,6 +266,8 @@ export default {
 
                 if (nowDate < endDate && nowDate > startDate) {
                     this.isCurrentTimeframe = true;
+                } else {
+                    this.isCurrentTimeframe = false;
                 }
             } else {
                 this.isCurrentTimeframe = true;

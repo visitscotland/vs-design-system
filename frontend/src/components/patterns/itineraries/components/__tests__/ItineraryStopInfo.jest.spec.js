@@ -1,6 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import VsItineraryStopInfo from '../ItineraryStopInfo';
 import openingTimesData from './data/openingTimesData.json';
+import openingTimesDataClosed from './data/openingTimesDataClosed.json';
 
 const currentDayData = [{
     key: 'thursday',
@@ -18,21 +19,39 @@ const currentDayDataUsual = [{
     state: 'open',
     provisional: false,
 }];
+const dayDataMultiple = [
+    {
+        key: 'thursday',
+        day: 'Thursdays',
+        startTime: '09:30',
+        endTime: '12:00',
+        state: 'open',
+        provisional: false,
+    },
+    {
+        key: 'thursday',
+        day: 'Thursdays',
+        startTime: '12:30',
+        endTime: '18:00',
+        state: 'open',
+        provisional: false,
+    },
+];
 
 const factoryShallowMount = () => shallowMount(VsItineraryStopInfo, {
     propsData: {
         openingTime: '09:00',
         closingTime: '17:00',
         openingTimesLink: 'http://www.visitscotland.com',
-        openingHours: openingTimesData,
+        openingHours: openingTimesData.openingHours,
         closedText: 'Closed',
         closingSoonText: 'Closing soon',
         openText: 'Open',
         usualText: 'Usually',
         provisionalText: 'Provisionally',
         temporarilyClosedText: 'Temporarily closed',
-        toText: 'to',
-        andText: 'and',
+        toText: 'To text',
+        andText: 'And text',
     },
     slots: {
         'stop-link-text': 'All opening times',
@@ -43,6 +62,16 @@ const factoryShallowMount = () => shallowMount(VsItineraryStopInfo, {
 let wrapper;
 beforeEach(async() => {
     wrapper = factoryShallowMount();
+
+    await wrapper.setData({
+        currentDayData,
+        dayDataIndex: 0,
+        openingMessage: 'open',
+        isCurrentTimeframe: false,
+        parsedHours: openingTimesData.openingHours,
+    });
+
+    await wrapper.vm.isActiveDate();
 });
 
 describe('VsItineraryStopInfo', () => {
@@ -52,17 +81,13 @@ describe('VsItineraryStopInfo', () => {
 
     describe(':props', () => {
         it('renders content inserted into the slot when the stop is closed, open or closing soon', async() => {
+            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Open');
+
             await wrapper.setData({
                 openingMessage: 'closed',
-                currentDayData,
             });
 
             expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Closed');
-
-            await wrapper.setData({
-                openingMessage: 'open',
-            });
-            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Open');
 
             await wrapper.setData({
                 openingMessage: 'closing soon',
@@ -73,7 +98,6 @@ describe('VsItineraryStopInfo', () => {
         it('renders the correct provisional/usual text', async() => {
             await wrapper.setData({
                 openingMessage: 'closed',
-                currentDayData,
             });
 
             expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Provisionally');
@@ -89,12 +113,23 @@ describe('VsItineraryStopInfo', () => {
             wrapper.setData({
                 closedLongTerm: true,
                 openingMessage: 'closed',
-                currentDayData,
             });
 
             await wrapper.vm.$nextTick();
 
             expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Temporarily closed');
+        });
+
+        it('renders the to text prop correctly', async() => {
+            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('To text');
+        });
+
+        it('renders the and text prop correctly', async() => {
+            await wrapper.setData({
+                currentDayData: dayDataMultiple,
+            });
+
+            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('And text');
         });
     });
 
@@ -108,11 +143,63 @@ describe('VsItineraryStopInfo', () => {
         });
 
         it('renders content inserted into the vs-stop-charge-text slot', async() => {
-            await wrapper.setData({
-                openingMessage: 'open',
-            });
-            await wrapper.vm.$nextTick();
             expect(wrapper.find('[data-test="vs-stop-charge-text"]').text()).toBe('Free admission');
+        });
+    });
+
+    describe(':methods', () => {
+        it('correctly defines whether or not todays date is within the active date parameters', async() => {
+            expect(wrapper.vm.isCurrentTimeframe).toBe(true);
+        });
+
+        it('test', async() => {
+            await wrapper.setProps({
+                openingHours: openingTimesDataClosed.openingHours,
+            });
+            await wrapper.setData({
+                parsedHours: openingTimesDataClosed.openingHours,
+            });
+
+            await wrapper.vm.isActiveDate();
+            expect(wrapper.vm.isCurrentTimeframe).toBe(false);
+        });
+
+        it('shows the correct opening message depending on time', async() => {
+            await wrapper.setData({
+                currentTime: {
+                    day: 4,
+                    hours: 18,
+                    minutes: 30,
+                },
+            });
+
+            wrapper.vm.getCurrentHoursInfo();
+
+            expect(wrapper.vm.openingMessage).toBe('closed');
+
+            await wrapper.setData({
+                currentTime: {
+                    day: 4,
+                    hours: 12,
+                    minutes: 30,
+                },
+            });
+
+            wrapper.vm.getCurrentHoursInfo();
+
+            expect(wrapper.vm.openingMessage).toBe('open');
+
+            await wrapper.setData({
+                currentTime: {
+                    day: 4,
+                    hours: 17,
+                    minutes: 40,
+                },
+            });
+
+            wrapper.vm.getCurrentHoursInfo();
+
+            expect(wrapper.vm.openingMessage).toBe('closing soon');
         });
     });
 });
