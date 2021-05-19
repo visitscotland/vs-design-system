@@ -7,6 +7,7 @@
         icon="close"
         :icon-only="true"
         icon-variant-override="secondary"
+        data-test="vs-close-button"
     >
         <span class="sr-only"><slot /></span>
     </VsButton>
