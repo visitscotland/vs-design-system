@@ -26,9 +26,14 @@
 <#-- @ftlvariable name="heroDetails" type="com.visitscotland.brxm.model.FlatImage" -->
 <#-- @ftlvariable name="itinerary" type="com.visitscotland.brxm.model.ItineraryPage" -->
 
-<#macro pageIntro content heroDetails="" itinerary="">
+<#macro pageIntro content heroDetails="" itinerary="" simplePage="" >
 
-    <#assign themeName = themeCalculator(introTheme)>
+    <#if simplePage?has_content >
+        <#assign themeName = themeCalculator("light", "", [])>
+    <#else>
+        <#assign themeName = themeCalculator(introTheme, "", [])>
+    </#if>
+
 
     <#if content.heroImage??>
         <@hst.link var="hero" hippobean=content.heroImage.original/>
@@ -82,7 +87,7 @@
             <#if itinerary.document.areas?has_content>
                 <vs-container slot="VsIntroLower">
                     <vs-row>
-                        <vs-col cols="12" lg="11" offset-lg="1">
+                        <vs-col cols="12" lg="5" xl="6" offset-lg="1">
                             <vs-description-list class="mb-6">
                                 <vs-description-list-item title>
                                     ${label("itinerary", "highlights")}
