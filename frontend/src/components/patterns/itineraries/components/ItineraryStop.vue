@@ -207,14 +207,6 @@ export default {
                                 :image-src="stop.image.imageSrc"
                                 variant="fullwidth"
                             >
-                                <VsImg
-                                    class="lazyload"
-                                    :src="stop.image.imageSrc"
-                                    :data-srcset="stop.image.imageSrc"
-                                    :alt="stop.image.altText"
-                                    data-sizes="auto">
-                                </VsImg>
-
                                 <VsSvg
                                     slot="toggle-icon"
                                     path="info-toggle"
