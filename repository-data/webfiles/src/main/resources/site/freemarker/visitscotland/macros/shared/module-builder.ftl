@@ -6,9 +6,9 @@
 <#include "../modules/iknow-community/iknow-community.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
-<#include "theme-calculator.ftl">
 <#include "../modules/horizontal-list/horizontal-list.ftl">
 <#include "../modules/stackla/stackla.ftl">
+<#include "theme-calculator.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
@@ -24,7 +24,7 @@
 
 <#macro moduleBuilder module colourScheme=[]>
 
-    <#assign themeName = themeCalculator(module.themeIndex, colourScheme)>
+    <#assign themeName = themeCalculator(module.themeIndex, module, colourScheme)>
 
     <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
         <#assign moduleType = "megalinks">
@@ -32,7 +32,7 @@
         <#assign moduleType = module.getType()>
     </#if>
 
-    <div class="has-edit-button theme-${themeName}">
+    <div class="has-edit-button">
         <#if module.hippoBean?? >
             <@hst.manageContent hippobean=module.hippoBean />
         </#if>
@@ -41,13 +41,13 @@
             <@megalinks item=module type=module.getType() theme=themeName />
 
         <#elseif moduleType == "HorizontalListLinksModule">
-            <@horizontalList module/>
+            <@horizontalList module themeName/>
 
         <#elseif moduleType == "ICentreModule">
-            <@icentre module/>
+            <@icentre module themeName/>
 
         <#elseif moduleType == "IKnowModule">
-            <@iknow module/>
+            <@iknow module themeName/>
 
         <#elseif module.getType()== "ArticleModule">
             <@article module/>
