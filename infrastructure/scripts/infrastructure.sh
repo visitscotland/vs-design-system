@@ -385,10 +385,10 @@ getBranchListFromWorkspace() {
       VS_LAST_ENV_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_LAST_ENV"`
       VS_CONTAINER_NAME_FILE_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_CONTAINER_NAME_FILE"`
       if [ ! -z "$VS_LAST_ENV_FOUND" ] && [ -a $VS_LAST_ENV_FOUND ]; then
-        BRANCH=`cat $VS_LAST_ENV_FOUND | egrep "(VS_)CHANGE_BRANCH=" | sed -e "s/.*=//g"`
+        BRANCH=`cat $VS_LAST_ENV_FOUND | egrep "(VS_)(CHANGE_BRANCH|CONTAINER_NAME)=" | sed -e "s/.*=//g" | head -1`
         if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for $PR in $VS_LAST_ENV_FOUND"; fi
-      elif [ ! -z "VS_CONTAINER_NAME_FILE" ] && [ -a $VS_CONTAINER_NAME_FILE ]; then
-        BRANCH=`cat $VS_CONTAINER_NAME_FILE | head -1`
+      elif [ ! -z "VS_CONTAINER_NAME_FILE_FOUND" ] && [ -a $VS_CONTAINER_NAME_FILE_FOUND ]; then
+        BRANCH=`cat $VS_CONTAINER_NAME_FILE_FOUND | head -1`
         if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for $PR in $VS_CONTAINER_NAME_FILE"; fi
       else
         if [ "$VS_DEBUG" = "TRUE" ]; then echo " - no branch found for $PR"; fi
@@ -672,8 +672,8 @@ containerUpdates() {
     if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "$THIS_LOCAL_FILE" ]; then
       echo " - sums match, an updated version of $THIS_FILE is available, copying to container"
       docker exec $VS_CONTAINER_NAME cp $THIS_FILE $THIS_FILE.old 2>>$VS_CONTAINER_CONSOLE_FILE
-      docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE 2>>VS_CONTAINER_CONSOLE_FILE
-      THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>>VS_CONTAINER_CONSOLE_FILE | awk '{print $1}'`
+      docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE 2>>$VS_CONTAINER_CONSOLE_FILE
+      THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>>$VS_CONTAINER_CONSOLE_FILE | awk '{print $1}'`
       echo " - sum now: $THIS_TEST"
     else
       echo " - no match"
