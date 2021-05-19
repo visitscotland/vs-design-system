@@ -374,8 +374,25 @@ getBranchListFromWorkspace() {
     BRANCH_LIST="$BRANCH_LIST $BRANCH"
   done
   # to-do: gp add for loop to check for vs-container-name map files in _PR only (avoid doubles)
-  #           for PR in [logic above | grep _PR] check PR's workspace/ci for vs-contanier-name file
+  #           for PR in [logic above | grep _PR] check PR's workspace/ci for vs-container-name file
   #           cat the file for a branch name and add those branches to BRANCH_LIST (some)
+  
+  for PR in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME/PR-"; do
+    unset BRANCH VS_LAST_ENV_FOUND VS_CONTAINER_NAME_FILE_FOUND
+    if [ !- z "$PR" ] && [ -d $PR ]; then
+      echo " - found PR $PR, looking for $VS_LAST_ENV or $VS_CONTAINER_NAME_FILE"
+      VS_LAST_ENV_FOUND=`find $JENKINS_HOME/workspace/$VS_PR_DIR -name "$VS_LAST_ENV"`
+      VS_CONTAINER_NAME_FILE_FOUND=`find $JENKINS_HOME/workspace/$VS_PR_DIR -name "$VS_CONTAINER_NAME_FILE"
+      if [ !-z "$VS_LAST_ENV_FOUND" ] && [ -a $VS_LAST_ENV_FOUND ]; then
+        BRANCH=`cat $VS_LAST_ENV_FOUND | grep "VS_CONTAINER_NAME=" | sed -e "s/.*=//g"`
+        if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH for $PR"; fi
+      elif [ !-z "VS_CONTAINER_NAME_FILE" ] && [ -a $VS_CONTAINER_NAME_FILE ]; then
+        BRANCH=`cat $VS_CONTAINER_NAME_FILE | head -1`
+        if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH for $PR"; fi
+      else
+        if [ "$VS_DEBUG" = "TRUE" ]; then echo " - no branch found for $PR"; fi
+      fi
+    fi
   echo ""
 }
 
