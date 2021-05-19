@@ -43,6 +43,8 @@ public class DMSConstants {
         public static final String PROXIMITY_PIN_PARAM = "areaproxdist";
         public static final String ORDER_PARAM = "c";
         public static final String AVAILABILITY = "avail";
+        public static final String OFFERS = "offers";
+        public static final String FREE = "maxprice";
     }
 
     public static final class DMSProduct {

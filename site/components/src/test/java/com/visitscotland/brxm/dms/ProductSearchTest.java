@@ -439,6 +439,36 @@ class ProductSearchTest {
     }
 
     @Test
+    @DisplayName("Offers - Show results with any offers")
+    void offers() {
+        mockLocationLoader("Edinburgh");
+        String url = createBuilder().productTypes(DEFAULT_TYPE)
+                .location("Edinburgh").offers(true)
+                .proximity(null)
+                .build();
+
+        validateUrl(url);
+        assertTrue(url.contains("offers=" + true),
+                String.format("The Generated URL is expected to have no order (%s) ", url)
+        );
+    }
+
+    @Test
+    @DisplayName("Free entry - Show products with free entry")
+    void free_entry() {
+        mockLocationLoader("Edinburgh");
+        String url = createBuilder().productTypes(DEFAULT_TYPE)
+                .location("Edinburgh").free(true)
+                .proximity(null)
+                .build();
+
+        validateUrl(url);
+        assertTrue(url.contains("maxprice=" + 0),
+                String.format("The Generated URL is expected to have no order (%s) ", url)
+        );
+    }
+
+    @Test
     @DisplayName("Coordinate parameters are added (lat, lon)")
     void coordinates() {
         String url = createBuilder().productTypes(DEFAULT_TYPE)
@@ -500,4 +530,6 @@ class ProductSearchTest {
         //No space character in it
         assertFalse(url.contains(" "), "The url should not contain spaces " + url);
     }
+
+
 }
