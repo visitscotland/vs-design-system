@@ -378,11 +378,12 @@ getBranchListFromWorkspace() {
   #           cat the file for a branch name and add those branches to BRANCH_LIST (some)
   
   for PR in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME/PR-"`; do
+    PR_DIR=`cat $JENKINS_HOME/workspace/workspaces.txt | grep -a1 "$PR" | tail -1`
     unset BRANCH VS_LAST_ENV_FOUND VS_CONTAINER_NAME_FILE_FOUND
-    if [ ! -z "$PR" ] && [ -d $PR ]; then
-      echo " - found PR $PR, looking for $VS_LAST_ENV or $VS_CONTAINER_NAME_FILE"
-      VS_LAST_ENV_FOUND=`find $JENKINS_HOME/workspace/$VS_PR_DIR -name "$VS_LAST_ENV"`
-      VS_CONTAINER_NAME_FILE_FOUND=`find $JENKINS_HOME/workspace/$VS_PR_DIR -name "$VS_CONTAINER_NAME_FILE"`
+    if [ ! -z "$PR_DIR" ] && [ -d $PR_DIR ]; then
+      echo " - found PR $PR_DIR, looking for $VS_LAST_ENV or $VS_CONTAINER_NAME_FILE"
+      VS_LAST_ENV_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_LAST_ENV"`
+      VS_CONTAINER_NAME_FILE_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_CONTAINER_NAME_FILE"`
       if [ ! -z "$VS_LAST_ENV_FOUND" ] && [ -a $VS_LAST_ENV_FOUND ]; then
         BRANCH=`cat $VS_LAST_ENV_FOUND | grep "VS_CONTAINER_NAME=" | sed -e "s/.*=//g"`
         if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH for $PR"; fi
