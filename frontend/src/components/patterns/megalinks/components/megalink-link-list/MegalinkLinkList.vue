@@ -201,7 +201,7 @@ export default {
                         -webkit-line-clamp: 3;
                         -webkit-box-orient: vertical;
                         overflow: hidden;
-                        font-size: $lead-font-size;
+                        font-size: $font-size-md;
                         margin-bottom: 0;
                     }
                 }
