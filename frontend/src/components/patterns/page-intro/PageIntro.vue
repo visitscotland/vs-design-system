@@ -186,7 +186,7 @@ export default {
 
         .container {
             background: $color-white;
-            padding-bottom: $spacer-8;
+            padding-bottom: $spacer-9;
         }
     }
 
