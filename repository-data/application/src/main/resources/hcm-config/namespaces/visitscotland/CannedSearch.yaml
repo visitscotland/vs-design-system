@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: dd70b14c-4b05-44d8-b6b1-0fafe7645fe1
+          jcr:uuid: ceb4274c-8815-42fd-afa2-f603bc482a87
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -62,7 +62,7 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 0d07918f-9ad9-40f0-a446-9fad065be61e
+          jcr:uuid: cff5c879-226e-41d4-a5bb-6c3073c15e76
           hippostdpubwf:lastModificationDate: 2021-05-11T15:47:43.297+01:00
           hippostdpubwf:creationDate: 2021-05-11T15:47:43.297+01:00
           visitscotland:viewAll: ''
@@ -78,6 +78,8 @@ definitions:
             visitscotland:location: ''
             visitscotland:officialrating: []
             visitscotland:productType: ''
+            visitscotland:free: false
+            visitscotland:offers: false
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -103,8 +105,14 @@ definitions:
             field: copy
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
+                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
+                , removeButtons: ''PickImage,Youtube,Table''}'
           /criteria:
             jcr:primaryType: frontend:plugin
             caption: Criteria
