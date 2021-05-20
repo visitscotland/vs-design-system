@@ -323,7 +323,7 @@ manageContainers() {
     echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be stopped and removed"
     stopContainers
     deleteContainers
-  elif [ ! "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ ! "$CONTAINER_STATUS" == "running" ]; then
+  elif [ ! "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ ! "$CONTAINER_STATUS" == "running" ] && [ ! -z "$CONTAINER_ID" ]; then
     echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be removed"
     deleteContainers
   else
