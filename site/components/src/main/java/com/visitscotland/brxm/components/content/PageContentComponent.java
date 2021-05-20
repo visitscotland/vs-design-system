@@ -78,7 +78,7 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
 
     protected void addNewsletterSignup(HstRequest request) {
         Page page = getDocument(request);
-        if (page.getNewsletter()) {
+        if (page.getNewsletter() != null && page.getNewsletter()) {
             SignpostModule signpost = signpostFactory.createNewsletterSignpostModule(request.getLocale());
             request.setAttribute(NEWSLETTER_SIGNPOST, signpost);
         }
