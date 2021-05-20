@@ -121,7 +121,7 @@ export default {
         font-weight: $font-weight-bold;
 
         @include media-breakpoint-up(lg) {
-            font-size: $lead-font-size
+            font-size: $font-size-md
         }
     }
 }
