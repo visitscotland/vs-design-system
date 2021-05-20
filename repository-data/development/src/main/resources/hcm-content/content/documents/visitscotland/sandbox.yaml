@@ -2952,21 +2952,19 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 6033a92f-4d87-419b-a18f-0c85eb0a41e4
         hippo:name: iCentre
-        hippo:versionHistory: 394e04a2-ef66-424d-bcbd-9e9f19cf14f4
+        hippo:versionHistory: e044e857-88bd-41d6-8e81-a9d0fa1e1edf
         /icentre[1]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: d6d547f6-3654-4f51-8ac8-b10f428ea62e
           hippo:availability: []
-          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-05T13:56:10.404+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.659+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
-          visitscotland:translation: ''
           /visitscotland:ICentre:
             jcr:primaryType: visitscotland:ICentre
             visitscotland:description: ''
@@ -3003,26 +3001,8 @@
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:quote:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: Anna
-              visitscotland:role: Tester
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Lorem ipsum, or lipsum as it is sometimes known,
-                  is dummy text used in laying out print</p>
-              /visitscotland:product:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
-            visitscotland:description: ''
             visitscotland:title: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
@@ -3035,15 +3015,13 @@
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
           jcr:uuid: 51829c8d-d52c-4663-8961-0f6834f615a7
           hippo:availability: [preview]
-          hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-05T13:56:22.938+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.389+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
-          visitscotland:translation: ''
           /visitscotland:ICentre:
             jcr:primaryType: visitscotland:ICentre
             visitscotland:description: ''
@@ -3080,26 +3058,8 @@
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:quote:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: Anna
-              visitscotland:role: Tester
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Lorem ipsum, or lipsum as it is sometimes known,
-                  is dummy text used in laying out print</p>
-              /visitscotland:product:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
-            visitscotland:description: ''
             visitscotland:title: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
@@ -3112,16 +3072,14 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: e579d854-1c60-4c02-897b-ae10b0a4f8c6
           hippo:availability: [live]
-          hippostd:retainable: false
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-05T13:56:22.938+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.389+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-05T13:56:25.005+01:00
+          hippostdpubwf:publicationDate: 2020-10-23T10:09:29.484+01:00
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
-          visitscotland:translation: ''
           /visitscotland:ICentre:
             jcr:primaryType: visitscotland:ICentre
             visitscotland:description: ''
@@ -3158,26 +3116,8 @@
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:quote:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: Anna
-              visitscotland:role: Tester
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Lorem ipsum, or lipsum as it is sometimes known,
-                  is dummy text used in laying out print</p>
-              /visitscotland:product:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
-            visitscotland:description: ''
             visitscotland:title: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
@@ -3635,184 +3575,6 @@
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-      /icentre:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 6033a92f-4d87-419b-a18f-0c85eb0a41e4
-        hippo:name: iCentre
-        hippo:versionHistory: e044e857-88bd-41d6-8e81-a9d0fa1e1edf
-        /icentre[1]:
-          jcr:primaryType: visitscotland:TourismInformation
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: d6d547f6-3654-4f51-8ac8-b10f428ea62e
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.659+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
-          hippotranslation:locale: en
-          /visitscotland:ICentre:
-            jcr:primaryType: visitscotland:ICentre
-            visitscotland:description: ''
-            visitscotland:title: ''
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-            /visitscotland:quotes:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: Peter
-              visitscotland:productId: '1674401'
-              visitscotland:role: Senior Software Engineer
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Reusable module for long text-only content. &nbsp;This
-                  will house very long content such as policies and Ts&amp;Cs, removing
-                  the need to use multiple long content modules to a single page,
-                  which would be difficult for the Content team to maintain.</p>
-              /visitscotland:products:
-                jcr:primaryType: visitscotland:MegalinkItem
-                visitscotland:feature: false
-                /visitscotland:link:
-                  jcr:primaryType: hippo:mirror
-                  hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
-              /visitscotland:product:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-          /visitscotland:IKnow:
-            jcr:primaryType: visitscotland:IKnow
-            visitscotland:title: ''
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: <p>This is the place to get the inside track on Scotland.
-                A place for friendly and spirited people to share experiences, pick
-                up tips, ask questions and get insider advice on all the best places
-                to visit in Scotland.</p>
-        /icentre[2]:
-          jcr:primaryType: visitscotland:TourismInformation
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 51829c8d-d52c-4663-8961-0f6834f615a7
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.389+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
-          hippotranslation:locale: en
-          /visitscotland:ICentre:
-            jcr:primaryType: visitscotland:ICentre
-            visitscotland:description: ''
-            visitscotland:title: ''
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-            /visitscotland:quotes:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: Peter
-              visitscotland:productId: '1674401'
-              visitscotland:role: Senior Software Engineer
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Reusable module for long text-only content. &nbsp;This
-                  will house very long content such as policies and Ts&amp;Cs, removing
-                  the need to use multiple long content modules to a single page,
-                  which would be difficult for the Content team to maintain.</p>
-              /visitscotland:products:
-                jcr:primaryType: visitscotland:MegalinkItem
-                visitscotland:feature: false
-                /visitscotland:link:
-                  jcr:primaryType: hippo:mirror
-                  hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
-              /visitscotland:product:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-          /visitscotland:IKnow:
-            jcr:primaryType: visitscotland:IKnow
-            visitscotland:title: ''
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: <p>This is the place to get the inside track on Scotland.
-                A place for friendly and spirited people to share experiences, pick
-                up tips, ask questions and get insider advice on all the best places
-                to visit in Scotland.</p>
-        /icentre[3]:
-          jcr:primaryType: visitscotland:TourismInformation
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: e579d854-1c60-4c02-897b-ae10b0a4f8c6
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.389+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-23T10:09:29.484+01:00
-          hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
-          hippotranslation:locale: en
-          /visitscotland:ICentre:
-            jcr:primaryType: visitscotland:ICentre
-            visitscotland:description: ''
-            visitscotland:title: ''
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-            /visitscotland:quotes:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: Peter
-              visitscotland:productId: '1674401'
-              visitscotland:role: Senior Software Engineer
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Reusable module for long text-only content. &nbsp;This
-                  will house very long content such as policies and Ts&amp;Cs, removing
-                  the need to use multiple long content modules to a single page,
-                  which would be difficult for the Content team to maintain.</p>
-              /visitscotland:products:
-                jcr:primaryType: visitscotland:MegalinkItem
-                visitscotland:feature: false
-                /visitscotland:link:
-                  jcr:primaryType: hippo:mirror
-                  hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
-              /visitscotland:product:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-          /visitscotland:IKnow:
-            jcr:primaryType: visitscotland:IKnow
-            visitscotland:title: ''
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: <p>This is the place to get the inside track on Scotland.
-                A place for friendly and spirited people to share experiences, pick
-                up tips, ask questions and get insider advice on all the best places
-                to visit in Scotland.</p>
     /the-outer-hebrides:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -14805,11 +14567,10 @@
       hippostd:transferable: false
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-05T08:35:34.459+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-05T08:39:05.262+01:00
+      hippostdpubwf:lastModificationDate: 2021-05-20T21:37:09.096+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 85dbbd57-b66d-4e36-b9ee-a5473102db82
       hippotranslation:locale: en
-      visitscotland:layout: ''
       visitscotland:teaserVisible: true
       visitscotland:title: Links to some itineraries examples
       visitscotland:translation: ''
@@ -14970,7 +14731,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 2cd6819b-dc3e-4884-9942-f3b64c744de1
     hippo:name: Page to link examples
-    hippo:versionHistory: 04060e04-7f1f-4114-be84-1e2f6a54fb56
+    hippo:versionHistory: 4a2f4503-5ee7-4dd4-9f59-4d51ec02684d
     /content[1]:
       jcr:primaryType: visitscotland:General
       jcr:mixinTypes: ['mix:referenceable']
@@ -14980,11 +14741,12 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-05T08:37:23.254+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-05T14:00:30.926+01:00
+      hippostdpubwf:lastModificationDate: 2021-05-20T21:40:28.118+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 1fb36368-cd11-4460-97ff-60ab59cf72da
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:newsletter: false
       visitscotland:seoDescription: examples
       visitscotland:seoNoIndex: false
       visitscotland:seoTitle: examples
@@ -15000,8 +14762,12 @@
         hippo:values: []
       /visitscotland:introduction:
         jcr:primaryType: hippostd:html
-        hippostd:content: <p>This page contains links to different examples to show
-          different page types or/and modules examples</p>
+        hippostd:content: |-
+          <p>This page contains links to different examples created by developer&nbsp;to show different page types such as Destinations, Itineraries, Listicles or General (Standard or Simple layout) using differnts modules allowed per type.</p>
+
+          <p>In order to display these examoples different megalinks modules have been used. Featured, List, Single Image or Horizontal links.</p>
+
+          <p>OTYML module is also provided with some links to external pages, pdfs...</p>
       /visitscotland:otherThings:
         jcr:primaryType: visitscotland:OTYML
         visitscotland:title: ''
@@ -15048,11 +14814,12 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-05T08:37:23.254+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-05T14:00:30.852+01:00
+      hippostdpubwf:lastModificationDate: 2021-05-20T21:40:27.961+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 1fb36368-cd11-4460-97ff-60ab59cf72da
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:newsletter: false
       visitscotland:seoDescription: examples
       visitscotland:seoNoIndex: false
       visitscotland:seoTitle: examples
@@ -15068,8 +14835,12 @@
         hippo:values: []
       /visitscotland:introduction:
         jcr:primaryType: hippostd:html
-        hippostd:content: <p>This page contains links to different examples to show
-          different page types or/and modules examples</p>
+        hippostd:content: |-
+          <p>This page contains links to different examples created by developer&nbsp;to show different page types such as Destinations, Itineraries, Listicles or General (Standard or Simple layout) using differnts modules allowed per type.</p>
+
+          <p>In order to display these examoples different megalinks modules have been used. Featured, List, Single Image or Horizontal links.</p>
+
+          <p>OTYML module is also provided with some links to external pages, pdfs...</p>
       /visitscotland:otherThings:
         jcr:primaryType: visitscotland:OTYML
         visitscotland:title: ''
@@ -15116,12 +14887,13 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-05T08:37:23.254+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-05T14:00:30.852+01:00
+      hippostdpubwf:lastModificationDate: 2021-05-20T21:40:27.961+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-05-05T14:00:34.691+01:00
+      hippostdpubwf:publicationDate: 2021-05-20T21:41:26.404+01:00
       hippotranslation:id: 1fb36368-cd11-4460-97ff-60ab59cf72da
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:newsletter: false
       visitscotland:seoDescription: examples
       visitscotland:seoNoIndex: false
       visitscotland:seoTitle: examples
@@ -15137,8 +14909,12 @@
         hippo:values: []
       /visitscotland:introduction:
         jcr:primaryType: hippostd:html
-        hippostd:content: <p>This page contains links to different examples to show
-          different page types or/and modules examples</p>
+        hippostd:content: |-
+          <p>This page contains links to different examples created by developer&nbsp;to show different page types such as Destinations, Itineraries, Listicles or General (Standard or Simple layout) using differnts modules allowed per type.</p>
+
+          <p>In order to display these examoples different megalinks modules have been used. Featured, List, Single Image or Horizontal links.</p>
+
+          <p>OTYML module is also provided with some links to external pages, pdfs...</p>
       /visitscotland:otherThings:
         jcr:primaryType: visitscotland:OTYML
         visitscotland:title: ''
