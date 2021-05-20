@@ -37,6 +37,22 @@ const dayDataMultiple = [
         provisional: false,
     },
 ];
+const dayDataNoTimes = [{
+    key: 'thursday',
+    day: 'Thursdays',
+    startTime: '',
+    endTime: '',
+    provisional: false,
+}];
+
+const dayDataClosedState = [{
+    key: 'thursday',
+    day: 'Thursdays',
+    startTime: '',
+    endTime: '',
+    state: 'closed',
+    provisional: false,
+}];
 
 const factoryShallowMount = () => shallowMount(VsItineraryStopInfo, {
     propsData: {
@@ -81,18 +97,18 @@ describe('VsItineraryStopInfo', () => {
 
     describe(':props', () => {
         it('renders content inserted into the slot when the stop is closed, open or closing soon', async() => {
-            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Open');
+            expect(wrapper.find('[data-test="vs-itinerary-stop-status"]').text()).toContain('Open');
 
             await wrapper.setData({
                 openingMessage: 'closed',
             });
 
-            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Closed');
+            expect(wrapper.find('[data-test="vs-itinerary-stop-status"]').text()).toContain('Closed');
 
             await wrapper.setData({
                 openingMessage: 'closing soon',
             });
-            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Closing soon');
+            expect(wrapper.find('[data-test="vs-itinerary-stop-status"]').text()).toContain('Closing soon');
         });
 
         it('renders the correct provisional/usual text', async() => {
@@ -100,13 +116,13 @@ describe('VsItineraryStopInfo', () => {
                 openingMessage: 'closed',
             });
 
-            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Provisionally');
+            expect(wrapper.find('[data-test="vs-itinerary-stop-hours"]').text()).toContain('Provisionally');
 
             await wrapper.setData({
                 currentDayData: currentDayDataUsual,
             });
 
-            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Usually');
+            expect(wrapper.find('[data-test="vs-itinerary-stop-hours"]').text()).toContain('Usually');
         });
 
         it('renders the correct text if it is long term closed', async() => {
@@ -117,19 +133,46 @@ describe('VsItineraryStopInfo', () => {
 
             await wrapper.vm.$nextTick();
 
-            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('Temporarily closed');
+            expect(wrapper.find('[data-test="vs-itinerary-stop-status"]').text()).toContain('Temporarily closed');
         });
 
-        it('renders the to text prop correctly', async() => {
-            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('To text');
+        it('renders the `to` text prop correctly', async() => {
+            expect(wrapper.find('[data-test="vs-itinerary-stop-hours"]').text()).toContain('To text');
         });
 
-        it('renders the and text prop correctly', async() => {
+        it('renders the `and` text prop correctly', async() => {
             await wrapper.setData({
                 currentDayData: dayDataMultiple,
             });
 
-            expect(wrapper.find('[data-test="vs-itinerary-stop-times"]').text()).toContain('And text');
+            expect(wrapper.find('[data-test="vs-itinerary-stop-hours"]').text()).toContain('And text');
+        });
+
+        it('only shows the opening hours link if a prop is supplied', async() => {
+            await wrapper.setProps({
+                openingTimesLink: null,
+            });
+
+            expect(wrapper.find('[data-test="vs-stop-link"]').exists()).toBe(false);
+        });
+    });
+
+    describe(':computed', () => {
+        it('only does not render an opening status messages if hoursMessage is not defined', async() => {
+            await wrapper.setData({
+                currentDayData: dayDataNoTimes,
+                openingMessage: '',
+            });
+
+            const currentTime = {
+                day: 4,
+                hours: 12,
+                minutes: 30,
+            };
+
+            await wrapper.vm.compareTimes(currentTime, dayDataNoTimes, 0);
+
+            expect(wrapper.find('[data-test="vs-itinerary-stop-status"]').exists()).toBe(false);
         });
     });
 
@@ -152,19 +195,7 @@ describe('VsItineraryStopInfo', () => {
             expect(wrapper.vm.isCurrentTimeframe).toBe(true);
         });
 
-        it('test', async() => {
-            await wrapper.setProps({
-                openingHours: openingTimesDataClosed.openingHours,
-            });
-            await wrapper.setData({
-                parsedHours: openingTimesDataClosed.openingHours,
-            });
-
-            await wrapper.vm.isActiveDate();
-            expect(wrapper.vm.isCurrentTimeframe).toBe(false);
-        });
-
-        it('shows the correct opening message depending on time', async() => {
+        it('sets the openingMessage data to `closed` if the current time is outside of the opening hours', async() => {
             await wrapper.setData({
                 currentTime: {
                     day: 4,
@@ -176,7 +207,9 @@ describe('VsItineraryStopInfo', () => {
             wrapper.vm.getCurrentHoursInfo();
 
             expect(wrapper.vm.openingMessage).toBe('closed');
+        });
 
+        it('sets the openingMessage data to `open` if the current time is inside the opening hours', async() => {
             await wrapper.setData({
                 currentTime: {
                     day: 4,
@@ -188,7 +221,9 @@ describe('VsItineraryStopInfo', () => {
             wrapper.vm.getCurrentHoursInfo();
 
             expect(wrapper.vm.openingMessage).toBe('open');
+        });
 
+        it('sets the openingMessage data to `closing` if the current time is within 30 mins of the closing time', async() => {
             await wrapper.setData({
                 currentTime: {
                     day: 4,
@@ -200,6 +235,50 @@ describe('VsItineraryStopInfo', () => {
             wrapper.vm.getCurrentHoursInfo();
 
             expect(wrapper.vm.openingMessage).toBe('closing soon');
+        });
+
+        it('shows closed message if the state is set to `closed`', async() => {
+            const currentTime = {
+                day: 4,
+                hours: 12,
+                minutes: 0,
+            };
+
+            await wrapper.vm.compareTimes(currentTime, dayDataClosedState, 0);
+
+            expect(wrapper.find('[data-test="vs-itinerary-stop-status"]').html()).toContain('Closed');
+        });
+
+        it('sets the openingMessage data to blank if no times are in the data', async() => {
+            await wrapper.setData({
+                openingMessage: '',
+            });
+
+            const currentTime = {
+                day: 4,
+                hours: 17,
+                minutes: 40,
+            };
+
+            wrapper.vm.compareTimes(currentTime, dayDataNoTimes, 0);
+
+            expect(wrapper.vm.openingMessage).toBe('');
+            expect(wrapper.find('[data="vs-itinerary-stop-status"]').exists()).toBe(false);
+            expect(wrapper.find('[data="vs-itinerary-stop-hours"]').exists()).toBe(false);
+        });
+
+        it('sets currentTimeframe to false if current date falls outside of the dates in the opening hours data', async() => {
+            await wrapper.setProps({
+                openingHours: openingTimesDataClosed.openingHours,
+            });
+            await wrapper.setData({
+                parsedHours: openingTimesDataClosed.openingHours,
+            });
+
+            await wrapper.vm.isActiveDate();
+            expect(wrapper.vm.isCurrentTimeframe).toBe(false);
+            expect(wrapper.find('[data="vs-itinerary-stop-status"]').exists()).toBe(false);
+            expect(wrapper.find('[data="vs-itinerary-stop-hours"]').exists()).toBe(false);
         });
     });
 });

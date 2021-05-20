@@ -8,24 +8,23 @@
             class="vs-address__map-marker mr-2"
         />
         <div>
-            <p
-                v-if="isCurrentTimeframe
-                    && (hoursMessage || (!closedLongTerm &&
-                        typeof currentDayData[0].state !== 'undefined'))"
-                class="itinerary-stop-info__times"
-                data-test="vs-itinerary-stop-times"
-            >
-                <template v-if="hoursMessage.length > 0">
+            <template v-if="isCurrentTimeframe && typeof currentDayData[0] !== 'undefined'">
+                <p
+                    v-if="hoursMessage.length > 0"
+                    class="itinerary-stop-info__times mb-0"
+                    data-test="vs-itinerary-stop-status"
+                >
                     {{ hoursMessage }}<br>
-                </template>
-
-                <template
+                </p>
+                <p
                     v-if="!closedLongTerm
-                        && typeof currentDayData[0].state !== 'undefined'"
+                        && typeof currentDayData[0].state !== 'undefined'
+                        && provisionalMessage.length > 0"
+                    data-test="vs-itinerary-stop-hours"
                 >
                     {{ provisionalMessage }}.
-                </template>
-            </p>
+                </p>
+            </template>
 
             <p
                 v-if="!!this.$slots['stop-link-text'] && openingTimesLink !== null"
@@ -192,33 +191,32 @@ export default {
                 } else {
                     provisionalMsg = `${this.usualText} ${this.currentDayData[0].state} ${this.currentDayData[0].day}`;
                 }
-            }
 
-            // add open/closed times if they exist
-            if (typeof this.currentDayData[this.dayDataIndex] !== 'undefined'
-                && typeof this.currentDayData[this.dayDataIndex].startTime !== 'undefined'
-                && typeof this.currentDayData[this.dayDataIndex].endTime !== 'undefined'
-                && this.currentDayData[this.dayDataIndex].startTime !== ''
-                && this.currentDayData[this.dayDataIndex].endTime !== '') {
-                this.currentDayData.forEach((timePeriod, index) => {
-                    provisionalMsg += ` ${timePeriod.startTime} ${this.toText} ${timePeriod.endTime}`;
+                // add open/closed times if they exist
+                if (this.currentDayData[0].state !== 'closed'
+                    && typeof this.currentDayData[this.dayDataIndex] !== 'undefined'
+                    && typeof this.currentDayData[this.dayDataIndex].startTime !== 'undefined'
+                    && typeof this.currentDayData[this.dayDataIndex].endTime !== 'undefined'
+                    && this.currentDayData[this.dayDataIndex].startTime !== ''
+                    && this.currentDayData[this.dayDataIndex].endTime !== '') {
+                    this.currentDayData.forEach((timePeriod, index) => {
+                        provisionalMsg += ` ${timePeriod.startTime} ${this.toText} ${timePeriod.endTime}`;
 
-                    // if there's more than one time then concatenate them
-                    if (index + 1 < this.currentDayData.length) {
-                        provisionalMsg += ` ${this.andText} `;
-                    }
-                });
+                        // if there's more than one time then concatenate them
+                        if (index + 1 < this.currentDayData.length) {
+                            provisionalMsg += ` ${this.andText} `;
+                        }
+                    });
+                }
             }
 
             return provisionalMsg;
         },
     },
     created() {
-        this.parseIncomingData();
-    },
-    mounted() {
         // if the opening hours data comes through as a string
         // transform it into an object
+        this.parseIncomingData();
         this.getCurrentTime();
         this.isActiveDate();
         this.getCurrentHoursInfo();
@@ -308,7 +306,9 @@ export default {
                 const closingSoonTime = this.calculateClosingSoon(endTimeHours, endTimeMins);
 
                 // work out what type of message should show
-                if (startTimeHours > currentTime.hours
+                if (openingData[index].state === 'closed') {
+                    this.openingMessage = 'closed';
+                } else if (startTimeHours > currentTime.hours
                     || (startTimeHours === currentTime.hours
                         && startTimeMins > currentTime.minutes)
                     || endTimeHours < currentTime.hours
@@ -327,6 +327,9 @@ export default {
                     this.dayDataIndex += 1;
                     this.compareTimes(this.currentTime, this.currentDayData, this.dayDataIndex);
                 }
+            } else if (openingData[index].state === 'closed') {
+                // if there's no time data, there can still be state data saying it's closed
+                this.openingMessage = 'closed';
             }
         },
         returnDayName(day) {
