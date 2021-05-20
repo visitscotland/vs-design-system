@@ -2024,16 +2024,17 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: af7bc15d-bc33-4b84-ad01-e77eb5acde61
         hippo:name: Edinburgh
-        hippo:versionHistory: 62980d2e-1781-45ad-bbc1-4e2a70b4bb48
+        hippo:versionHistory: d507baa7-d7df-42de-b532-7b4c7d1fcc39
         /content[1]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 76bab125-f189-4ab2-ae52-8d216ed96af5
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-26T13:13:24.462Z
+          hippostdpubwf:lastModificationDate: 2021-05-03T16:15:25.443+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
@@ -2043,15 +2044,7 @@
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Edinburgh seo title
           visitscotland:teaser: Edinburgh city teaser
-          visitscotland:title: Edinburgh With an abundance of history, top quality
-            attractions and beautiful architecture, Edinburgh is a city that you won’t
-            forget in a hurry. Explore the Medieval Old Town and the elegant Georgian
-            New Town, which sit side by side, and visit unique attractions throughout
-            the city on a holiday in Edinburgh.  Whether you’re short of time and
-            can only manage a weekend break, planning a full-blown city break or are
-            visiting Edinburgh as part of a wider holiday in Scotland, there’s lots
-            to fill your time, from unforgettable historic sites and world-class festivals
-            to fantastic shopping and mouth-watering dining.
+          visitscotland:title: Edinburgh
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -2070,10 +2063,11 @@
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
           jcr:uuid: 7b6014dc-600c-4f35-8e3c-02ebf2b309ea
           hippo:availability: [preview]
+          hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-26T13:05:31.241Z
+          hippostdpubwf:lastModificationDate: 2021-05-03T16:15:36.586+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
@@ -2083,15 +2077,7 @@
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Edinburgh seo title
           visitscotland:teaser: Edinburgh city teaser
-          visitscotland:title: Edinburgh With an abundance of history, top quality
-            attractions and beautiful architecture, Edinburgh is a city that you won’t
-            forget in a hurry. Explore the Medieval Old Town and the elegant Georgian
-            New Town, which sit side by side, and visit unique attractions throughout
-            the city on a holiday in Edinburgh.  Whether you’re short of time and
-            can only manage a weekend break, planning a full-blown city break or are
-            visiting Edinburgh as part of a wider holiday in Scotland, there’s lots
-            to fill your time, from unforgettable historic sites and world-class festivals
-            to fantastic shopping and mouth-watering dining.
+          visitscotland:title: Edinburgh
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -2110,12 +2096,13 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: af10c61f-4f4d-412d-ab7a-267834ee4201
           hippo:availability: [live]
+          hippostd:retainable: false
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-05-25T18:02:22.368+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-03T16:15:36.586+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-07-13T10:35:12.588+01:00
+          hippostdpubwf:publicationDate: 2021-05-03T16:15:41.223+01:00
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -2125,6 +2112,7 @@
           visitscotland:seoTitle: Edinburgh seo title
           visitscotland:teaser: Edinburgh city teaser
           visitscotland:title: Edinburgh
+          visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
@@ -2728,16 +2716,17 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 83f02b86-81e0-4e6c-8a5a-0a32b2a64290
         hippo:name: List Layout
-        hippo:versionHistory: f02d6624-63a9-4064-afc6-2cbafab3f0a7
+        hippo:versionHistory: 5405e6df-2c06-4e85-8996-98a5efaeb192
         /list-layout[1]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:versionable']
           jcr:uuid: 7d7da833-cae5-48d6-bb64-e7a27d0f154b
           hippo:availability: [preview]
+          hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-08-17T11:54:11.789+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-03T16:16:12.001+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
           hippotranslation:locale: en
@@ -2745,7 +2734,8 @@
           visitscotland:list: true
           visitscotland:listLayout: true
           visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (6 items) - List view
+          visitscotland:title: Megalinks (8 items) - List view
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of List layout for Megalink module</p>
@@ -2789,15 +2779,28 @@
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: Hola q ase?
             visitscotland:product: '238761'
+          /visitscotland:megalinkItems[7]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[8]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
         /list-layout[2]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: efc0bccb-dd92-49e0-b1e4-6b17bfd1cf78
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-02T09:33:27.976+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-03T16:15:49.189+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
           hippotranslation:locale: en
@@ -2805,7 +2808,8 @@
           visitscotland:list: true
           visitscotland:listLayout: true
           visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (6 items) - List view
+          visitscotland:title: Megalinks (8 items) - List view
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of List layout for Megalink module</p>
@@ -2849,24 +2853,38 @@
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: Hola q ase?
             visitscotland:product: '238761'
+          /visitscotland:megalinkItems[7]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[8]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
         /list-layout[3]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 72965c8c-4af0-4cc2-9c11-1043944e4f02
           hippo:availability: [live]
+          hippostd:retainable: false
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-08-17T11:54:11.789+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-03T16:16:12.001+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-08-17T12:56:52.153+01:00
+          hippostdpubwf:publicationDate: 2021-05-03T16:16:13.991+01:00
           hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
           visitscotland:list: true
           visitscotland:listLayout: true
           visitscotland:teaserVisible: true
-          visitscotland:title: Megalinks (6 items) - List view
+          visitscotland:title: Megalinks (8 items) - List view
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of List layout for Megalink module</p>
@@ -2910,6 +2928,18 @@
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: Hola q ase?
             visitscotland:product: '238761'
+          /visitscotland:megalinkItems[7]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[8]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
       /icentre:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -10740,8 +10770,9 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 54a21331-8c54-4985-8154-982099a6d826
           hippo:availability: []
-          hippostd:holder: admin
+          hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
           hippostdpubwf:lastModificationDate: 2021-04-30T15:34:01.496+01:00
