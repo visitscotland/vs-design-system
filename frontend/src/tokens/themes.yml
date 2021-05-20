@@ -1,0 +1,17 @@
+#
+# THEME TOKENS
+# Use these tokens to set colors for
+# component background themes.
+#
+
+props:
+    - name: theme_grey
+      value: "#EFEFEF"
+      category: "Module Themes"
+    - name: theme_dark
+      value: "#2A2829"
+      category: "Module Themes"
+
+global:
+  type: color
+  category: color
