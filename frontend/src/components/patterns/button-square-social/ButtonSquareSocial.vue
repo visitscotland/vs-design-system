@@ -63,7 +63,7 @@ export default {
         display: block;
         height: 42px;
         width: 42px;
-        transition: all 0.2s;
+        transition: $transition-base;
 
         &.facebook {
             &:hover {
