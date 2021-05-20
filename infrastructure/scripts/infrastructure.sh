@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# MAINTAINER: gavin.park@visitscotland.com, Web Operations 
+
 # ==== TO-DO ====
 # gp: ~line remove echo "$VS_CONTAINER_BASE_PORT" > env_port.txt AND echo "$VS_HOST_IP_ADDRESS" > env_host.txt from report section - once the env vars are used in the LH script
 # gp: create test routine for container/tomcat startup - curl till 200
@@ -198,13 +200,13 @@ defaultSettings() {
   VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_BUILD_MESSAGE=/tmp/$VS_CONTAINER_NAME.msg.notify.build
   VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA=$VS_MAIL_NOTIFY_BUILD_MESSAGE.extra
-  VS_MAIL_NOTIFY_BUILD_SUBJECT="environment was built for $GIT_BRANCH in $VS_PARENT_JOB_NAME"
+  VS_MAIL_NOTIFY_BUILD_SUBJECT="environment was built for $JOB_BASE_NAME in $VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME@$VS_MAIL_DOMAIN"
   # mail settings - site
   if [ -z "$VS_MAIL_MESSAGE_NOTIFY_SITE_TO" ]; then VS_MAIL_MESSAGE_NOTIFY_SITE_TO=$VS_COMMIT_AUTHOR; fi
   VS_MAIL_NOTIFY_SITE_SENDER="$VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_SITE_MESSAGE=/tmp/$VS_CONTAINER_NAME.msg.notify.site
-  VS_MAIL_NOTIFY_SITE_SUBJECT="$VS_PARENT_JOB_NAME environment was built for $GIT_BRANCH"
+  VS_MAIL_NOTIFY_SITE_SUBJECT="$VS_PARENT_JOB_NAME environment was built for $VS_BRANCH_NAME"
   # mail settings - executable
   VS_WD_PARENT="$(basename `echo ${PWD%/*}`)"
   if [ ! -z $VS_MAILER_BIN ]; then
@@ -801,7 +803,7 @@ createBuildReport() {
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "The site instance for branch $VS_BRANCH_NAME should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "To configure your browser session for this branch please follow this link:"
     echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST&vs_ssr_http_port=$VS_CONTAINER_EXT_PORT_SSR&vs_tln_http_port=$VS_CONTAINER_EXT_PORT_TLN&vs_feature_branch=$BRANCH_NAME$VS_PROXY_QS_SSR" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -844,7 +846,7 @@ createBuildReport() {
     echo "$VS_HOST_IP_ADDRESS" > env_host.txt
   else
     EXIT_CODE=127
-    VS_MAIL_NOTIFY_BUILD_SUBJECT="environment build FAILED for $GIT_BRANCH in $VS_PARENT_JOB_NAME"
+    VS_MAIL_NOTIFY_BUILD_SUBJECT="environment build FAILED for $JOB_BASE_NAME in $VS_PARENT_JOB_NAME"
     echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -893,6 +895,11 @@ case $METHOD in
     defaultSettings
     exportVSVariables
     copyVSVariables
+  ;;
+  displayreport)
+    checkVariables
+    defaultSettings
+    createBuildReport
   ;;
   *)
     echo "no function specified - running defaults"

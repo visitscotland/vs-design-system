@@ -287,7 +287,7 @@ pipeline {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') { 
           echo "Lighthouse test failure notification will be emailed to ${env.VS_COMMIT_AUTHOR}"
           script{
-            // replace this sleep with a "wait for 200" in the script
+            // to-do: replace this sleep with a "wait for 200" in the script
             sleep time: 120, unit: 'SECONDS'
             sh 'sh ./testing/lighthouse.sh'
           }
@@ -303,6 +303,9 @@ pipeline {
             reportFiles: 'lhr-**.html',
             reportName: "LH Report"
           ])
+          script{
+          sh 'sh ./infrastructure/scripts/infrastructure.sh displayreport'
+          }
         }
         failure {
           echo "sending failure notice to ${env.VS_COMMIT_AUTHOR}"
