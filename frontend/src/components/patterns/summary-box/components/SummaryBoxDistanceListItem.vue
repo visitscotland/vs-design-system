@@ -193,7 +193,7 @@ export default {
         font-size: $small-font-size;
 
         @include media-breakpoint-up(lg) {
-            font-size: $lead-font-size;
+            font-size: $font-size-md;
         }
     }
 
