@@ -184,8 +184,9 @@ export default {
             max-width: 1340px;
         }
 
-        .row {
+        .container {
             background: $color-white;
+            padding-bottom: $spacer-8;
         }
     }
 
