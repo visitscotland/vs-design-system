@@ -1,9 +1,9 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../frontend/components/vs-module-wrapper.ftl">
 <#include "../carousel/carousel.ftl">
+<#include "../../../../frontend/components/vs-module-wrapper.ftl">
 
-<#macro horizontalList item>
-    <vs-module-wrapper>
+<#macro horizontalList item themeName="">
+    <vs-module-wrapper class="theme-${themeName}">
         <template slot="vsModuleWrapperHeading">
             ${item.title}
         </template>
