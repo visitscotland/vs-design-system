@@ -123,7 +123,7 @@ checkVariables() {
   elif [ "$LOGNAME" = "jenkins" ] && [ -z "$JOB_NAME" ] && [ -e $VS_JENKINS_LAST_ENV ]; then
     echo "$VS_SCRIPTNAME was called from a Jenkins workspace but not by a Jenkins job"
     echo " - setting Jenkins environment variables from last run"
-    source ./jenkins-last-env
+    source $VS_JENKINS_LAST_ENV
   elif [ "$LOGNAME" = "jenkins" ] && [ -z "$JOB_NAME" ] && [ ! -d ./target ] && [ ! -z "$VS_WORKING_DIR" ]; then
     echo "$VS_SCRIPTNAME was not called from within Jenkins workspace"
     echo " - switching to $VS_WORKING_DIR"
@@ -405,7 +405,7 @@ getBranchListFromWorkspace() {
       fi
     fi
   done
-  echo $BRANCH_LIST
+#  echo $BRANCH_LIST
   echo ""
 }
 
@@ -528,7 +528,7 @@ findBasePort() {
     HAS_PORT_ID=`docker ps -a | grep $VS_CONTAINER_BASE_PORT_OVERRIDE | tail -1 | awk '{print $1}'`
     HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
     if [ "$HAS_PORT_NAME" == "$VS_CONTAINER_NAME" ]; then
-      echo " -- success"
+      echo " -- success - port is owned by $HAS_PORT_NAME"
       VS_CONTAINER_BASE_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
       echo " -- VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
     else
@@ -574,7 +574,7 @@ findDynamicPorts() {
         HAS_PORT_ID=`docker ps -a | grep $THIS_PORT | tail -1 | awk '{print $1}'`
         HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
         if [ "$HAS_PORT_NAME" == "$VS_CONTAINER_NAME" ]; then
-          echo " -- success"
+          echo " -- success - port is owned by $HAS_PORT_NAME"
 	  eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
 	  break
 	fi
@@ -897,7 +897,7 @@ case $METHOD in
     copyVSVariables
   ;;
   displayreport)
-    checkVariables
+    #checkVariables
     defaultSettings
     createBuildReport
   ;;
