@@ -1,12 +1,10 @@
 package com.visitscotland.brxm.factory;
 
-import com.visitscotland.brxm.hippobeans.CTALink;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.model.SignpostModule;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoHtmlWrapper;
-import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;

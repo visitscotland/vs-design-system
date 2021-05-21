@@ -1,10 +1,9 @@
 package com.visitscotland.brxm.model;
 
-import com.visitscotland.brxm.hippobeans.CTALink;
 import com.visitscotland.brxm.utils.HippoHtmlWrapper;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
-public class SignpostModule extends Module<CTALink> {
+public class SignpostModule extends Module {
 
     private String title;
     private HippoHtmlWrapper copy;
