@@ -40,13 +40,18 @@ export default {
 <style lang="scss">
 .vs-rich-text-wrapper {
 
-    &.vs-rich-text-wrapper--variant-normal{
+    &--variant-normal{
         font-family: $font-family-base;
         font-size: $font-size-base;
     }
 
-    &.vs-rich-text-wrapper--variant-lead.lead{
+    &--variant-lead {
         line-height: $line-height-lead;
+        font-size: $lead-font-size;
+
+        @include media-breakpoint-up(md) {
+            font-size: $lead-font-size-md;
+        }
     }
 }
 
