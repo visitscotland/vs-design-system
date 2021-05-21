@@ -211,113 +211,122 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 97e64157-de1c-4f91-93db-5062825421b4
     hippo:name: Itinerary Page
-    hippo:versionHistory: cd6b80a0-8c74-4cfe-a7fd-78945f5278b6
+    hippo:versionHistory: 301180a8-9b8d-4163-af37-dd29745c1bb3
     /itineraries[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: 667af60a-2bda-42de-9370-62d8a1cca651
       hippo:availability: []
+      hippostd:retainable: false
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2021-01-22T18:05:10.818Z
+      hippostdpubwf:lastModificationDate: 2021-05-05T16:31:44.007+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
-          a range of time like: 9:00am to 13:00pm', '', '', '']
+          a range of time like: 9:00am to 13:00pm', '', '', '', '', '']
       resourcebundle:id: itinerary
       resourcebundle:keys: [stop.nearby-stay, stop.nearby-eat, stop.cta, stop.title,
         start-finish, days, distance, themes, miles-abbreviation, kilometres-abbreviation,
         transport, day, miles, kilometres, highlights, areas-covered, stop.no-stop,
         stop.time-to-explore, theme, stop.opening, stop.hour, stop.hours, stop.usually,
-        stop.provisionally, stop.today, stop.to, stop.open, stop.closed, stop.close.soon]
+        stop.provisionally, stop.today, stop.to, stop.open, stop.closed, stop.close.soon,
+        stop.temporarily-closed, stop.and]
       resourcebundle:messages: [Nearby places to stay, Nearby places to eat, Find
           out more, Stop, Start / Finish, Days, Distance, Main Themes, mi, km, Transport,
         Day, Miles, Kilometres, Highlights, Areas Covered, The stop doesn't have any
           product linked to the stop, Time to explore, Main Theme, Check opening times,
-        hour, hours, Usually, Provisionally, today, to, Open, Closed, Closing soon]
+        hour, hours, Usually, Provisionally, today, to, Open, Closed, Closing soon,
+        Temporarily closed, and]
       resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_es: ['¿Dónde pasar la noche?', '¿Dónde podría cenar
           y desayunar?', Averigua más informcación, Parada, Inicio / Fin, días, Distancia,
         Temática, mi, km, Transporte, Día, Millas, Kilómetros, Destacado, Areas cubiertas,
-        '', Tiempo recomendado, '', '', '', '', '', '', '', '', '', '', '']
+        '', Tiempo recomendado, '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
     /itineraries[2]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:versionable']
       jcr:uuid: 746ac7fb-2150-4d67-ab63-c25795c4b510
       hippo:availability: [preview]
+      hippostd:retainable: false
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2021-01-22T17:37:07.643Z
+      hippostdpubwf:lastModificationDate: 2021-05-05T16:31:43.927+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
-          a range of time like: 9:00am to 13:00pm', '', '', '']
+          a range of time like: 9:00am to 13:00pm', '', '', '', '', '']
       resourcebundle:id: itinerary
       resourcebundle:keys: [stop.nearby-stay, stop.nearby-eat, stop.cta, stop.title,
         start-finish, days, distance, themes, miles-abbreviation, kilometres-abbreviation,
         transport, day, miles, kilometres, highlights, areas-covered, stop.no-stop,
         stop.time-to-explore, theme, stop.opening, stop.hour, stop.hours, stop.usually,
-        stop.provisionally, stop.today, stop.to, stop.open, stop.closed, stop.close.soon]
+        stop.provisionally, stop.today, stop.to, stop.open, stop.closed, stop.close.soon,
+        stop.temporarily-closed, stop.and]
       resourcebundle:messages: [Nearby places to stay, Nearby places to eat, Find
           out more, Stop, Start / Finish, Days, Distance, Main Themes, mi, km, Transport,
         Day, Miles, Kilometres, Highlights, Areas Covered, The stop doesn't have any
           product linked to the stop, Time to explore, Main Theme, Check opening times,
-        hour, hours, Usually, Provisionally, today, to, Open, Closed, Closing soon]
+        hour, hours, Usually, Provisionally, today, to, Open, Closed, Closing soon,
+        Temporarily closed, and]
       resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_es: ['¿Dónde pasar la noche?', '¿Dónde podría cenar
           y desayunar?', Averigua más informcación, Parada, Inicio / Fin, días, Distancia,
         Temática, mi, km, Transporte, Día, Millas, Kilómetros, Destacado, Areas cubiertas,
-        '', Tiempo recomendado, '', '', '', '', '', '', '', '', '', '', '']
+        '', Tiempo recomendado, '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
     /itineraries[3]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: 2b3e7afc-9074-4751-97ca-905180d7f2d0
       hippo:availability: [live]
+      hippostd:retainable: false
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2021-01-22T17:37:07.643Z
+      hippostdpubwf:lastModificationDate: 2021-05-05T16:31:43.927+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-01-22T17:50:16.401Z
+      hippostdpubwf:publicationDate: 2021-05-05T16:31:46.577+01:00
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
-          a range of time like: 9:00am to 13:00pm', '', '', '']
+          a range of time like: 9:00am to 13:00pm', '', '', '', '', '']
       resourcebundle:id: itinerary
       resourcebundle:keys: [stop.nearby-stay, stop.nearby-eat, stop.cta, stop.title,
         start-finish, days, distance, themes, miles-abbreviation, kilometres-abbreviation,
         transport, day, miles, kilometres, highlights, areas-covered, stop.no-stop,
         stop.time-to-explore, theme, stop.opening, stop.hour, stop.hours, stop.usually,
-        stop.provisionally, stop.today, stop.to, stop.open, stop.closed, stop.close.soon]
+        stop.provisionally, stop.today, stop.to, stop.open, stop.closed, stop.close.soon,
+        stop.temporarily-closed, stop.and]
       resourcebundle:messages: [Nearby places to stay, Nearby places to eat, Find
           out more, Stop, Start / Finish, Days, Distance, Main Themes, mi, km, Transport,
         Day, Miles, Kilometres, Highlights, Areas Covered, The stop doesn't have any
           product linked to the stop, Time to explore, Main Theme, Check opening times,
-        hour, hours, Usually, Provisionally, today, to, Open, Closed, Closing soon]
+        hour, hours, Usually, Provisionally, today, to, Open, Closed, Closing soon,
+        Temporarily closed, and]
       resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_es: ['¿Dónde pasar la noche?', '¿Dónde podría cenar
           y desayunar?', Averigua más informcación, Parada, Inicio / Fin, días, Distancia,
         Temática, mi, km, Transporte, Día, Millas, Kilómetros, Destacado, Areas cubiertas,
-        '', Tiempo recomendado, '', '', '', '', '', '', '', '', '', '', '']
+        '', Tiempo recomendado, '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
