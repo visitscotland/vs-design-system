@@ -8,7 +8,7 @@
             class="vs-address__map-marker mr-2"
         />
         <div>
-            <template v-if="isCurrentTimeframe && typeof currentDayData[0] !== 'undefined'">
+            <template v-if="isCurrentTimeframe">
                 <p
                     v-if="hoursMessage.length > 0"
                     class="itinerary-stop-info__times mb-0"
