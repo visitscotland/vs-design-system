@@ -18,6 +18,7 @@
                 </p>
                 <p
                     v-if="!closedLongTerm
+                        && typeof currentDayData[0] !== 'undefined'
                         && typeof currentDayData[0].state !== 'undefined'
                         && provisionalMessage.length > 0"
                     data-test="vs-itinerary-stop-hours"
