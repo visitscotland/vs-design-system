@@ -52,10 +52,8 @@ public class ProductSearchBuilder {
 
 
 
-    //TODO Convert into property --> getDmsMapDefaultDistance
+    //TODO Convert into property --> getDmsMapDefaultDistance.
     static final Double DEFAULT_PROXIMITY = 10.0;
-
-
 
     //TODO This path should come from DMS?
     static final String PATH_SEE_DO = "see-do";
@@ -70,6 +68,8 @@ public class ProductSearchBuilder {
     private Double longitude;
     private Double latitude;
     private Locale locale;
+    private Boolean offers;
+    private Boolean free;
     private Order order;
 
     private Set<String> categories = new TreeSet<>();
@@ -86,6 +86,8 @@ public class ProductSearchBuilder {
         this.properties = properties;
         this.order = Order.NONE;
         this.proximity = DEFAULT_PROXIMITY;
+        this.offers = false;
+        this.free = false;
     }
 
     /**
@@ -106,6 +108,8 @@ public class ProductSearchBuilder {
             award(ps.getDmsAwards());
             rating(ps.getOfficialrating());
             proximity(ps.getDistance());
+            offers(ps.getOffers());
+            free(ps.getFree());
         }
         return this;
     }
@@ -222,6 +226,17 @@ public class ProductSearchBuilder {
         return this;
     }
 
+    public ProductSearchBuilder offers(Boolean offers){
+        this.offers = offers;
+
+        return this;
+    }
+    public ProductSearchBuilder free(Boolean free){
+        this.free = free;
+
+        return this;
+    }
+
     public ProductSearchBuilder sortBy(String order){
         this.order = Order.fromValue(order);
         return this;
@@ -291,6 +306,12 @@ public class ProductSearchBuilder {
             compose = addParams(compose, LATITUDE_PARAM, latitude.toString());
             compose = addParams(compose, LONGITUDE_PARAM, longitude.toString());
             compose = addParams(compose, PROXIMITY_PIN_PARAM, proximity.toString());
+        }
+        if (free){
+            compose = addParams(compose, FREE, String.valueOf(0));
+        }
+        if (offers){
+            compose = addParams(compose, OFFERS, String.valueOf(true));
         }
 
         //Add categories, awards, facilities and rating
