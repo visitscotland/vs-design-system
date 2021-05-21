@@ -102,3 +102,7 @@
       jcr:primaryType: hst:sitemenuitem
       hst:referencesitemapitem: destinations/megalinks-multi-image-example
       hst:repobased: false
+  /Inspiration Featured Items Widget:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: widget/inspiration---feature-widget
+    hst:repobased: false

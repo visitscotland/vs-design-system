@@ -29,9 +29,9 @@
                 <VsRow>
                     <VsCol
                         cols="12"
-                        md="12"
-                        :lg="heroIntro ? '7' : '12'"
-                        :xl="heroIntro ? '8' : '12'"
+                        :md="heroIntro ? '12' : '10'"
+                        :lg="heroIntro ? '7' : '10'"
+                        :xl="heroIntro ? '8' : '10'"
                         :offset-lg="heroIntro ? '1' : '0'"
                     >
                         <VsHeading level="1">
@@ -184,8 +184,9 @@ export default {
             max-width: 1340px;
         }
 
-        .row {
+        .container {
             background: $color-white;
+            padding-bottom: $spacer-9;
         }
     }
 
@@ -233,7 +234,6 @@ export default {
     &--hero {
         .vs-page-intro__wrapper {
             @include media-breakpoint-up(lg) {
-                padding: 0 $spacer-4;
                 margin-top: -240px;
             }
         }

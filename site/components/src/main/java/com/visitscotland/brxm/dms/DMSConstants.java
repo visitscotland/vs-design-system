@@ -43,6 +43,8 @@ public class DMSConstants {
         public static final String PROXIMITY_PIN_PARAM = "areaproxdist";
         public static final String ORDER_PARAM = "c";
         public static final String AVAILABILITY = "avail";
+        public static final String OFFERS = "offers";
+        public static final String FREE = "maxprice";
     }
 
     public static final class DMSProduct {
@@ -66,13 +68,7 @@ public class DMSConstants {
         public static final String PRICE = "price";
         public static final String DISPLAY_PRICE = "displayPrice";
 
-        //TODO Fix properties as part of VS-1487
-        public static final String OPENING_PROVISIONAL = "provivisional";
-        public static final String OPENING = "todayOpeningTime";
-        public static final String START_TIME = "startTime";
-        public static final String END_TIME = "endTime";
-        public static final String OPENING_DAY = "day";
-        public static final String OPENING_STATE = "state";
+        public static final String OPENING = "opening";
 
     }
 

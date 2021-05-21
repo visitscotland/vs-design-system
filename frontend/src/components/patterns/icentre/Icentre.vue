@@ -14,11 +14,6 @@
                     offset-lg="3"
                     class="vs-icentre__intro-content"
                 >
-                    <div class="vs-icentre__heading">
-                        <!-- @slot Holds the heading (vs-heading expected) -->
-                        <slot name="icentreHeading" />
-                    </div>
-
                     <VsSvg
                         class="vs-icentre__logo"
                         path="iCentre"
@@ -101,16 +96,6 @@ export default {
 
 <style lang="scss">
 .vs-icentre {
-    padding: $spacer-8 $spacer-0;
-
-    @include media-breakpoint-up(md) {
-        padding: $spacer-8 $spacer-0;
-    }
-
-    @include media-breakpoint-up(lg) {
-        padding: $spacer-11 $spacer-0;
-    }
-
     &__heading {
         margin-bottom: $spacer-9;
 
@@ -197,7 +182,7 @@ export default {
         </VsImageWithCaption>
 
         <span slot="icentreQuote">
-            <VsQuote>
+            <VsQuote variant="wide">
                 <VsImg
                     src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     alt="This is the alt text"

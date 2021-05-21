@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 2c743db7-0824-47f4-a273-def98f02c939
+          jcr:uuid: c89c7c83-37c5-41e1-8208-aa5bef20d5b7
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -35,15 +35,6 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:validators: ['']
             hipposysedit:type: String
-          /copy:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:copy
-            hipposysedit:primary: false
-            hipposysedit:type: Text
-            hipposysedit:validators: ['visitscotland:extraextralong-string-validator']
           /translation:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -52,6 +43,14 @@ definitions:
             hipposysedit:path: visitscotland:translation
             hipposysedit:primary: false
             hipposysedit:type: OpenUiString
+          /copy:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:copy
+            hipposysedit:primary: false
+            hipposysedit:type: hippostd:html
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -64,12 +63,14 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 81b6eb11-be7f-4156-ba31-3b20b181b0f4
+          jcr:uuid: b5cb1c2f-ec12-432d-967a-fc4a1d7503b3
           hippostdpubwf:lastModificationDate: 2020-11-25T16:59:04.086Z
           hippostdpubwf:creationDate: 2020-11-25T16:59:04.086Z
           visitscotland:tags: []
-          visitscotland:copy: ''
           visitscotland:translation: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -96,11 +97,17 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Override Copy
             field: copy
-            hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            hint: Max length suggestion is 250.
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
+                \ { \tcountSpacesAsChars: true,     showCharCount: true ,maxCharCount:375\
+                \   }  }"
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
+                , removeButtons: ''PickImage,Youtube,Table''}'
           /tags:
             jcr:primaryType: frontend:plugin
             caption: Tags *

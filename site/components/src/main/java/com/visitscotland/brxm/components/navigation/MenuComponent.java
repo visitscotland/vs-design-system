@@ -103,6 +103,7 @@ public class MenuComponent extends EssentialsMenuComponent {
     }
 
     /**
+     * TODO move to CommonUtilsService
      * Composes the URL from the current request for a non-existing URL.
      */
     private String composeNonExistingURL(Locale locale, HstRequest request){
@@ -112,6 +113,7 @@ public class MenuComponent extends EssentialsMenuComponent {
             languagePath += "/" + locale.getLanguage();
         }
 
+        //TODO This might be wrong if the resource is proxied
         return request.getRequestContext().getBaseURL().getHostName() +
                 request.getRequestContext().getBaseURL().getContextPath() +
                 languagePath + request.getRequestContext().getBaseURL().getPathInfo();

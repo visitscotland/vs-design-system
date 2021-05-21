@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 7a1ec04d-4b26-4f92-90f6-f1f6f388cc4e
+          jcr:uuid: cfb8d677-9617-4a29-8320-98ca2be788bb
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -23,6 +23,7 @@ definitions:
             hipposysedit:path: visitscotland:location
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
+            hipposysedit:validators: [required]
           /producttype:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -31,6 +32,7 @@ definitions:
             hipposysedit:path: visitscotland:productType
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
+            hipposysedit:validators: [required]
           /officialrating:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -48,17 +50,35 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: Double
             hipposysedit:validators: [required]
+          /offers:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:offers
+            hipposysedit:primary: false
+            hipposysedit:type: Boolean
+          /free:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:free
+            hipposysedit:primary: false
+            hipposysedit:type: Boolean
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:ProductsSearch
-          visitscotland:location: ''
+          visitscotland:location: Scotland
           visitscotland:dmsCategories: []
           visitscotland:dmsAwards: []
           visitscotland:dmsFacilities: []
           visitscotland:officialrating: []
           visitscotland:productType: ''
           visitscotland:distance: 10.0
+          visitscotland:free: false
+          visitscotland:offers: false
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -82,23 +102,13 @@ definitions:
             item: ${cluster.id}.right.item
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
             wicket.id: ${cluster.id}.right
-          /location:
-            jcr:primaryType: frontend:plugin
-            caption: Location
-            field: location
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            hint: ''
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              valuelistProvider: service.locationlist.psr
           /productType:
             jcr:primaryType: frontend:plugin
             caption: Product Type
             field: producttype
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.right.item
+            wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               orientation: vertical
@@ -120,6 +130,16 @@ definitions:
             icon.style: 'display: none;'
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /location:
+            jcr:primaryType: frontend:plugin
+            caption: Location
+            field: location
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            hint: ''
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              valuelistProvider: service.locationlist.psr
           /dmsfacilitycselector:
             jcr:primaryType: frontend:plugin
             caption: DMS facility
@@ -131,7 +151,7 @@ definitions:
             mode: ${mode}
             plugin.class: org.onehippo.forge.exdocpicker.impl.field.ExternalDocumentFieldSelectorPlugin
             selection.mode: multiple
-            wicket.id: ${cluster.id}.right.item
+            wicket.id: ${cluster.id}.left.item
             wicket.model: ${wicket.model}
             page.size: 8
             icon.style: 'display: none;'
@@ -148,7 +168,7 @@ definitions:
             mode: ${mode}
             plugin.class: org.onehippo.forge.exdocpicker.impl.field.ExternalDocumentFieldSelectorPlugin
             selection.mode: multiple
-            wicket.id: ${cluster.id}.right.item
+            wicket.id: ${cluster.id}.left.item
             wicket.model: ${wicket.model}
             page.size: 8
             icon.style: 'display: none;'
@@ -164,10 +184,27 @@ definitions:
             plugin.class: org.onehippo.forge.selection.frontend.plugin.DynamicMultiSelectPlugin
             selectlist.maxrows: '10'
             valuelist.provider: service.valuelist.default
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               source: /content/documents/administration/options/official-rating
+          /free:
+            jcr:primaryType: frontend:plugin
+            caption: Free
+            field: free
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /offers:
+            jcr:primaryType: frontend:plugin
+            caption: Only show results with offers
+            field: offers
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
           /distance:
             jcr:primaryType: frontend:plugin
             caption: Distance
