@@ -180,8 +180,8 @@ defaultSettings() {
   # to-do: gp  - write out VS_CONTAINER_NAME to job's workspace/ci/vs-container-name
   if [ -z "$NODE_NAME" ]; then VS_THIS_SERVER=$HOSTNAME; else VS_THIS_SERVER=$NODE_NAME; fi
   if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then
-    VS_BRXM_REPOSITORY="repository"
-    VS_HIPPO_REPOSITORY_PERSIST="TRUE"
+    if [ -z "$VS_BRXM_REPOSITORY" ]; then VS_BRXM_REPOSITORY="repository"; fi
+    if [ -z "$VS_HIPPO_REPOSITORY_PERSIST" ]; then VS_HIPPO_REPOSITORY_PERSIST="TRUE"; fi
   fi
   VS_COMMIT_AUTHOR=`git show -s --pretty="%ae" ${GIT_COMMIT}`
   VS_DATESTAMP=`date +%Y%m%d`
