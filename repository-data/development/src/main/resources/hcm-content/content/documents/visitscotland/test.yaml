@@ -1955,9 +1955,10 @@
       hippotranslation:locale: en
       /content:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 4188568a-5d17-4ac3-9c58-7d958beb07cb
-        hippo:versionHistory: a3374895-4569-4a71-8625-b343cee7ab94
+        hippo:name: iCentre Module no quote landing page
+        hippo:versionHistory: cf8004b2-c47f-4f79-b3cc-2e6b186b8b5e
         /content[1]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
@@ -1965,9 +1966,10 @@
           hippo:availability: []
           hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-03T10:06:35.848Z
-          hippostdpubwf:lastModificationDate: 2021-05-20T14:44:12.596+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-24T11:38:51.556+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d06eabd8-f0c4-429f-8e26-5cc28208bf45
           hippotranslation:locale: en
@@ -2041,7 +2043,7 @@
           hippostdpubwf:creationDate: 2020-12-03T10:06:35.848Z
           hippostdpubwf:lastModificationDate: 2021-05-20T14:46:54.720+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-20T14:46:57.298+01:00
+          hippostdpubwf:publicationDate: 2021-05-24T11:41:43.990+01:00
           hippotranslation:id: d06eabd8-f0c4-429f-8e26-5cc28208bf45
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -2071,8 +2073,8 @@
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 03725771-d1ed-4b0b-bc1e-87afcfd54eef
-        hippo:name: iCentre Module
-        hippo:versionHistory: cfb0e7b8-fcaf-436c-9cd7-fa59a3b131a1
+        hippo:name: iCentre Module no quote
+        hippo:versionHistory: cd6f2f7e-947e-4bfc-9677-de8756f7eaf9
         /icentre-module[1]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
@@ -2149,7 +2151,7 @@
           hippostdpubwf:creationDate: 2020-12-03T10:09:14.710Z
           hippostdpubwf:lastModificationDate: 2020-12-03T10:12:34.501Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-12-03T10:12:38.344Z
+          hippostdpubwf:publicationDate: 2021-05-24T11:41:46.628+01:00
           hippotranslation:id: 74da7c77-eb0e-434f-8a77-61082d14664e
           hippotranslation:locale: en
           visitscotland:translation: ''
@@ -2183,9 +2185,10 @@
       hippotranslation:locale: en
       /content:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
-        hippo:versionHistory: 68416b59-e6d3-48d1-967c-54e12ac8652a
+        hippo:name: Icentre with quote landing
+        hippo:versionHistory: 46dfaabd-10ca-439f-b9b7-1724b879251c
         /content[1]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
@@ -2195,7 +2198,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-03T10:12:55.003Z
-          hippostdpubwf:lastModificationDate: 2021-05-20T14:47:02.248+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-24T11:40:56.799+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 8b2adec8-b227-4639-9c85-3322281062b3
           hippotranslation:locale: en
@@ -2206,7 +2209,7 @@
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: iCentre Module
           visitscotland:teaser: Testing testing testing testing
-          visitscotland:title: iCentre Module
+          visitscotland:title: iCentre Module with quote
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -2231,7 +2234,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-03T10:12:55.003Z
-          hippostdpubwf:lastModificationDate: 2021-05-20T14:47:10.833+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-24T11:41:02.012+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 8b2adec8-b227-4639-9c85-3322281062b3
           hippotranslation:locale: en
@@ -2242,7 +2245,7 @@
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: iCentre Module
           visitscotland:teaser: Testing testing testing testing
-          visitscotland:title: iCentre Module
+          visitscotland:title: iCentre Module with quote
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -2267,9 +2270,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-03T10:12:55.003Z
-          hippostdpubwf:lastModificationDate: 2021-05-20T14:47:10.833+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-24T11:41:02.012+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-20T14:47:12.327+01:00
+          hippostdpubwf:publicationDate: 2021-05-24T11:41:03.926+01:00
           hippotranslation:id: 8b2adec8-b227-4639-9c85-3322281062b3
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -2279,7 +2282,7 @@
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: iCentre Module
           visitscotland:teaser: Testing testing testing testing
-          visitscotland:title: iCentre Module
+          visitscotland:title: iCentre Module with quote
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -2295,6 +2298,152 @@
               justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
               Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
               a dignissim nec, ultrices nec lectus.</p>
+      /icentre-no-quote:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 29747036-1ae2-4d58-8664-6cc118420427
+        hippo:name: iCentre with quote
+        hippo:versionHistory: 8662c2d0-c7e0-4e13-b834-d56543f2e042
+        /icentre-no-quote[1]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: b84df3c8-5e3a-45f8-aff9-02f0d0bd998e
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostd:transferable: false
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-24T11:34:29.256+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-24T11:40:16.479+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 3973b22d-c83a-48ca-8b8d-92f45e0f8074
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 4cdd0883-80e6-4f4f-9fa1-4feec593a22e
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Firstname
+              visitscotland:role: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>This is an example of a quote. Rroin quam mauris,
+                  dapibus nec ex eget, consequat laoreet elit. Nunc ullamcorper ligula
+                  hendrerit odio sagittis aliquam.</p>
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+        /icentre-no-quote[2]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 6e7c230e-d1f7-4e22-8aa2-b418f4845ba6
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-24T11:34:29.256+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-24T11:35:33.340+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 3973b22d-c83a-48ca-8b8d-92f45e0f8074
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 4cdd0883-80e6-4f4f-9fa1-4feec593a22e
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Firstname
+              visitscotland:role: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>This is an example of a quote. Rroin quam mauris,
+                  dapibus nec ex eget, consequat laoreet elit. Nunc ullamcorper ligula
+                  hendrerit odio sagittis aliquam.</p>
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+        /icentre-no-quote[3]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 813e086b-825d-46a3-a578-bfc1a2357620
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-24T11:34:29.256+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-24T11:35:33.340+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-05-24T11:41:08.416+01:00
+          hippotranslation:id: 3973b22d-c83a-48ca-8b8d-92f45e0f8074
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 4cdd0883-80e6-4f4f-9fa1-4feec593a22e
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Firstname
+              visitscotland:role: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>This is an example of a quote. Rroin quam mauris,
+                  dapibus nec ex eget, consequat laoreet elit. Nunc ullamcorper ligula
+                  hendrerit odio sagittis aliquam.</p>
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
     /other-things-you-might-like:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
