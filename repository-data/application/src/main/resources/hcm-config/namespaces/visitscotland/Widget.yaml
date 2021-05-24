@@ -11,19 +11,11 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: e42f5eea-8f1c-43b5-b823-b083ef0f9dea
+          jcr:uuid: 4ec93cc7-aa45-401b-8588-20bff1dbd507
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /component:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:component
-            hipposysedit:primary: false
-            hipposysedit:type: String
           /translation:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -43,8 +35,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          visitscotland:component: ''
-          jcr:uuid: 90b6e23c-65d2-4b73-b9c3-ce09a3078273
+          jcr:uuid: 530011bf-772e-4d33-86ce-0750edcb38c0
           hippostdpubwf:lastModificationDate: 2019-11-12T09:09:11.962Z
           hippostdpubwf:creationDate: 2019-11-12T09:09:11.962Z
           visitscotland:translation: ''
@@ -71,14 +62,6 @@ definitions:
             item: ${cluster.id}.right.item
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
             wicket.id: ${cluster.id}.right
-          /component:
-            jcr:primaryType: frontend:plugin
-            caption: UI - Widget component
-            field: component
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.right.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /translation:
             jcr:primaryType: frontend:plugin
             caption: Translation

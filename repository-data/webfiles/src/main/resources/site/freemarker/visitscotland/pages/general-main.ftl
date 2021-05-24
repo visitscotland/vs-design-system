@@ -29,7 +29,7 @@
     <#if standardTemplate>
         <@pageIntro content=document heroDetails=heroImage />
     <#else>
-        <@pageIntro content=document />
+        <@pageIntro content=document simplePage=!standardTemplate/>
     </#if>
 
     <#--TODO Control abput colours, change style="background-color:${style}  -->
@@ -37,9 +37,9 @@
 
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a common macro to control it-->
 		<#if standardTemplate >
-			<@moduleBuilder module=module colourScheme=["light", "light", "light"] />
-		<#else>
 			<@moduleBuilder module />
+		<#else>
+			<@moduleBuilder module=module colourScheme=["light", "light", "light"] />
 		</#if>
 
 	</#list>

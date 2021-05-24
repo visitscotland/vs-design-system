@@ -36,7 +36,7 @@ definitions:
             hipposysedit:type: hippogallery:image
           /altText:
             jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
+            hipposysedit:mandatory: true
             hipposysedit:multiple: false
             hipposysedit:ordered: false
             hipposysedit:path: visitscotland:altText

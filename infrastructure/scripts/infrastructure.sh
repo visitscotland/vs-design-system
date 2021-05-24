@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# MAINTAINER: gavin.park@visitscotland.com, Web Operations 
+
 # ==== TO-DO ====
 # gp: ~line remove echo "$VS_CONTAINER_BASE_PORT" > env_port.txt AND echo "$VS_HOST_IP_ADDRESS" > env_host.txt from report section - once the env vars are used in the LH script
 # gp: create test routine for container/tomcat startup - curl till 200
@@ -70,9 +72,10 @@ if [ -z "$VS_SSR_PROXY_ON" ]; then VS_SSR_PROXY_ON="TRUE"; fi
 if [ -z "$VS_SSR_APP_PORT" ]; then VS_SSR_APP_PORT=8082; fi
 #  ==== Other Variables ====
 VS_JENKINS_LAST_ENV=jenkins-last-env
-VS_VS_LAST_ENV=vs-last-env
+VS_LAST_ENV=vs-last-env
 VS_LAST_ENV_QUOTED_SUFFIX=.quoted
 VS_LAST_ENV_GROOVY_SUFFIX=.groovy
+VS_CONTAINER_NAME_FILE=vs-container-name
 
 # ====/ADJUSTABLE VARIABLES ====
 
@@ -120,7 +123,7 @@ checkVariables() {
   elif [ "$LOGNAME" = "jenkins" ] && [ -z "$JOB_NAME" ] && [ -e $VS_JENKINS_LAST_ENV ]; then
     echo "$VS_SCRIPTNAME was called from a Jenkins workspace but not by a Jenkins job"
     echo " - setting Jenkins environment variables from last run"
-    source ./jenkins-last-env
+    source $VS_JENKINS_LAST_ENV
   elif [ "$LOGNAME" = "jenkins" ] && [ -z "$JOB_NAME" ] && [ ! -d ./target ] && [ ! -z "$VS_WORKING_DIR" ]; then
     echo "$VS_SCRIPTNAME was not called from within Jenkins workspace"
     echo " - switching to $VS_WORKING_DIR"
@@ -174,6 +177,7 @@ defaultSettings() {
   else
     VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
   fi
+  # to-do: gp  - write out VS_CONTAINER_NAME to job's workspace/ci/vs-container-name
   if [ -z "$NODE_NAME" ]; then VS_THIS_SERVER=$HOSTNAME; else VS_THIS_SERVER=$NODE_NAME; fi
   if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then
     VS_BRXM_REPOSITORY="repository"
@@ -196,13 +200,13 @@ defaultSettings() {
   VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_BUILD_MESSAGE=/tmp/$VS_CONTAINER_NAME.msg.notify.build
   VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA=$VS_MAIL_NOTIFY_BUILD_MESSAGE.extra
-  VS_MAIL_NOTIFY_BUILD_SUBJECT="environment was built for $GIT_BRANCH in $VS_PARENT_JOB_NAME"
+  VS_MAIL_NOTIFY_BUILD_SUBJECT="environment was built for $JOB_BASE_NAME in $VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME@$VS_MAIL_DOMAIN"
   # mail settings - site
   if [ -z "$VS_MAIL_MESSAGE_NOTIFY_SITE_TO" ]; then VS_MAIL_MESSAGE_NOTIFY_SITE_TO=$VS_COMMIT_AUTHOR; fi
   VS_MAIL_NOTIFY_SITE_SENDER="$VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_SITE_MESSAGE=/tmp/$VS_CONTAINER_NAME.msg.notify.site
-  VS_MAIL_NOTIFY_SITE_SUBJECT="$VS_PARENT_JOB_NAME environment was built for $GIT_BRANCH"
+  VS_MAIL_NOTIFY_SITE_SUBJECT="$VS_PARENT_JOB_NAME environment was built for $VS_BRANCH_NAME"
   # mail settings - executable
   VS_WD_PARENT="$(basename `echo ${PWD%/*}`)"
   if [ ! -z $VS_MAILER_BIN ]; then
@@ -367,10 +371,41 @@ getPullRequestListViaCurl() {
 
 getBranchListFromWorkspace() {
   echo "checking for branches and PRs for $VS_PARENT_JOB_NAME listed in workspaces.txt"
+  # to-do: gp - update echo above to reflect changes to branch and PR scan method
   for BRANCH in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME" | sed -e "s/%2F/\//g" | sed "s/.*\//$VS_PARENT_JOB_NAME\_/g"`; do
     if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH"; fi
     BRANCH_LIST="$BRANCH_LIST $BRANCH"
   done
+  # to-do: gp add for loop to check for vs-container-name map files in _PR only (avoid doubles)
+  #           for PR in [logic above | grep _PR] check PR's workspace/ci for vs-container-name file
+  #           cat the file for a branch name and add those branches to BRANCH_LIST (some)
+  
+  for PR in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME/PR-"`; do
+    PR_DIR=`cat $JENKINS_HOME/workspace/workspaces.txt | grep -a1 "$PR" | tail -1`
+    unset BRANCH VS_LAST_ENV_FOUND VS_CONTAINER_NAME_FILE_FOUND
+    if [ ! -z "$JENKINS_HOME/workspace/$PR_DIR" ] && [ -d $JENKINS_HOME/workspace/$PR_DIR ]; then
+#      echo " - found PR $PR_DIR, looking for $VS_LAST_ENV or $VS_CONTAINER_NAME_FILE in $JENKINS_HOME/workspace/$PR_DIR"
+      VS_LAST_ENV_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_LAST_ENV"`
+      VS_CONTAINER_NAME_FILE_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_CONTAINER_NAME_FILE"`
+#      echo "found VS_LAST_ENV_FOUND=$VS_LAST_ENV_FOUND, VS_CONTAINER_NAME_FILE_FOUND=$VS_CONTAINER_NAME_FILE_FOUND"
+      if [ ! -z "$VS_CONTAINER_NAME_FILE_FOUND" ] && [ -a $VS_CONTAINER_NAME_FILE_FOUND ]; then
+#        echo "found $VS_CONTAINER_NAME_FILE_FOUND"
+        BRANCH=`cat $VS_CONTAINER_NAME_FILE_FOUND | head -1`
+#        echo "BRANCH=$BRANCH in 2"
+        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for `basename $PR` in $VS_CONTAINER_NAME_FILE"; fi
+        if [ ! -z "$BRANCH" ]; then BRANCH_LIST="$BRANCH_LIST $BRANCH"; fi
+      elif [ ! -z "$VS_LAST_ENV_FOUND" ] && [ -a $VS_LAST_ENV_FOUND ]; then
+#        echo "found $VS_LAST_ENV_FOUND"
+        BRANCH=`cat $VS_LAST_ENV_FOUND | egrep "(VS_)(CHANGE_BRANCH|CONTAINER_NAME)=" | sed -e "s/.*=//g" | head -1`
+#        echo "BRANCH=$BRANCH in 1"
+        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for `basename $PR` in $VS_LAST_ENV"; fi
+        if [ ! -z "$BRANCH" ]; then BRANCH_LIST="$BRANCH_LIST $BRANCH"; fi
+      else
+        if [ "$VS_DEBUG" = "TRUE" ]; then echo " - no branch found for $PR"; fi
+      fi
+    fi
+  done
+#  echo $BRANCH_LIST
   echo ""
 }
 
@@ -493,7 +528,7 @@ findBasePort() {
     HAS_PORT_ID=`docker ps -a | grep $VS_CONTAINER_BASE_PORT_OVERRIDE | tail -1 | awk '{print $1}'`
     HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
     if [ "$HAS_PORT_NAME" == "$VS_CONTAINER_NAME" ]; then
-      echo " -- success"
+      echo " -- success - port is owned by $HAS_PORT_NAME"
       VS_CONTAINER_BASE_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
       echo " -- VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
     else
@@ -539,7 +574,7 @@ findDynamicPorts() {
         HAS_PORT_ID=`docker ps -a | grep $THIS_PORT | tail -1 | awk '{print $1}'`
         HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
         if [ "$HAS_PORT_NAME" == "$VS_CONTAINER_NAME" ]; then
-          echo " -- success"
+          echo " -- success - port is owned by $HAS_PORT_NAME"
 	  eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
 	  break
 	fi
@@ -648,8 +683,8 @@ containerUpdates() {
     if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "$THIS_LOCAL_FILE" ]; then
       echo " - sums match, an updated version of $THIS_FILE is available, copying to container"
       docker exec $VS_CONTAINER_NAME cp $THIS_FILE $THIS_FILE.old 2>>$VS_CONTAINER_CONSOLE_FILE
-      docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE 2>>VS_CONTAINER_CONSOLE_FILE
-      THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>>VS_CONTAINER_CONSOLE_FILE | awk '{print $1}'`
+      docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE 2>>$VS_CONTAINER_CONSOLE_FILE
+      THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>>$VS_CONTAINER_CONSOLE_FILE | awk '{print $1}'`
       echo " - sum now: $THIS_TEST"
     else
       echo " - no match"
@@ -742,20 +777,20 @@ containerStartHippo() {
 }
 
 exportVSVariables() {
-  echo "`eval $VS_LOG_DATESTAMP` INFO [`basename $0`] exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD" | tee -a $VS_SCRIPT_LOG
-  set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
+  echo "`eval $VS_LOG_DATESTAMP` INFO [`basename $0`] exporting VS variables to $VS_LAST_ENV and $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD" | tee -a $VS_SCRIPT_LOG
+  set | egrep "^(VS_)" | tee $VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
 }
 
 copyVSVariables() {
-  echo " - writing VS variables from $VS_VS_LAST_ENV and $VS_JENKINS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
-  # to-do gp: set VS_TARGET in defaultSettings
+  echo " - writing VS variables from $VS_LAST_ENV and $VS_JENKINS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
+  # to-do: gp - set VS_TARGET in defaultSettings
   if [ ! -d $VS_BUILD_PROPERTIES_TARGET_DIR ]; then
     echo " - $VS_BUILD_PROPERTIES_TARGET_DIR does not exist, creating"
     mkdir -p $VS_BUILD_PROPERTIES_TARGET_DIR
   fi
   echo "# properties from $BUILD_TAG" > $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME
   if [ -a $VS_JENKINS_LAST_ENV ]; then cat $VS_JENKINS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME; fi
-  if [ -a $VS_VS_LAST_ENV ]; then cat $VS_VS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME; fi
+  if [ -a $VS_LAST_ENV ]; then cat $VS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME; fi
 }
 
 createBuildReport() {
@@ -768,7 +803,7 @@ createBuildReport() {
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "The site instance for branch $VS_BRANCH_NAME should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "To configure your browser session for this branch please follow this link:"
     echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST&vs_ssr_http_port=$VS_CONTAINER_EXT_PORT_SSR&vs_tln_http_port=$VS_CONTAINER_EXT_PORT_TLN&vs_feature_branch=$BRANCH_NAME$VS_PROXY_QS_SSR" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -811,7 +846,7 @@ createBuildReport() {
     echo "$VS_HOST_IP_ADDRESS" > env_host.txt
   else
     EXIT_CODE=127
-    VS_MAIL_NOTIFY_BUILD_SUBJECT="environment build FAILED for $GIT_BRANCH in $VS_PARENT_JOB_NAME"
+    VS_MAIL_NOTIFY_BUILD_SUBJECT="environment build FAILED for $JOB_BASE_NAME in $VS_PARENT_JOB_NAME"
     echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -860,6 +895,11 @@ case $METHOD in
     defaultSettings
     exportVSVariables
     copyVSVariables
+  ;;
+  displayreport)
+    #checkVariables
+    defaultSettings
+    createBuildReport
   ;;
   *)
     echo "no function specified - running defaults"

@@ -1996,6 +1996,18 @@
               justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
               Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
               a dignissim nec, ultrices nec lectus.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: Other Things You Might Like Something Something
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>These are things, maybe you'll like them?</p>
+            /visitscotland:links:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
         /content[2]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -2032,6 +2044,18 @@
               justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
               Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
               a dignissim nec, ultrices nec lectus.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: Other Things You Might Like Something Something
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>These are things, maybe you'll like them?</p>
+            /visitscotland:links:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
         /content[3]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
@@ -2069,6 +2093,18 @@
               justo ultricies tristique quis varius nunc. Mauris vitae molestie felis.
               Suspendisse sodales laoreet nulla eu consequat. Donec sapien nibh, vehicula
               a dignissim nec, ultrices nec lectus.</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: Other Things You Might Like Something Something
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>These are things, maybe you'll like them?</p>
+            /visitscotland:links:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
       /icentre-module:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']

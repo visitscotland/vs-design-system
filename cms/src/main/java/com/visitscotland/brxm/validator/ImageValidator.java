@@ -2,6 +2,7 @@ package com.visitscotland.brxm.validator;
 
 import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.translation.SessionFactory;
+import com.visitscotland.utils.Contract;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.Validator;
 import org.onehippo.cms.services.validation.api.Violation;
@@ -17,7 +18,6 @@ import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
  */
 public class ImageValidator implements Validator<Node> {
 
-    private static final String EMPTY_IMAGE = "cafebabe-cafe-babe-cafe-babecafebabe";
     private SessionFactory sessionFactory;
 
     public ImageValidator() {
@@ -31,9 +31,14 @@ public class ImageValidator implements Validator<Node> {
     public Optional<Violation> validate(final ValidationContext context, final Node document) {
         try {
             String nodeId = document.getProperty(HIPPO_DOCBASE).getValue().getString();
-            if (!nodeId.equals(EMPTY_IMAGE)) {
-                Node childNode = sessionFactory.getHippoNodeByIdentifier(nodeId);
-                if (!childNode.hasProperty(Image.CREDIT) || !childNode.hasProperty(Image.ALT_TEXT)) {
+            Node childNode = sessionFactory.getHippoNodeByIdentifier(nodeId);
+            if (!childNode.hasProperty("hippogallery:description") || !childNode.hasProperty(Image.ALT_TEXT)) {
+                return Optional.of(context.createViolation());
+            }else{
+                if (childNode.hasProperty(Image.ALT_TEXT) && Contract.isEmpty(childNode.getProperty(Image.ALT_TEXT).getString())) {
+                    return Optional.of(context.createViolation());
+                }
+                if (childNode.hasProperty("hippogallery:description") && Contract.isEmpty(childNode.getProperty("hippogallery:description").getString())) {
                     return Optional.of(context.createViolation());
                 }
             }
