@@ -5056,21 +5056,22 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:36:38.073+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-24T13:52:31.848+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-25T14:18:23.480+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 3fb03d02-9124-4ec2-8af0-400a9291591f
           hippotranslation:locale: en
           visitscotland:areas: [east]
           visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: Finish point
-          visitscotland:highlights: [Highlight one, HIghlight two]
+          visitscotland:distance: 396.0
+          visitscotland:finish: Perthshire
+          visitscotland:highlights: [Edinburgh's attractions, Fishing villages of
+              East Neuk, St Andrews, RRS Discovery]
           visitscotland:newsletter: true
           visitscotland:popular: false
           visitscotland:seoDescription: Meta description
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Meta title
-          visitscotland:start: Start point
+          visitscotland:start: The City of Edinburgh
           visitscotland:teaser: Itineraries show users pre-defined trips that they
             can take in a single area of Scotland.
           visitscotland:theme: acti
@@ -5098,21 +5099,22 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:36:38.073+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-24T13:52:37.633+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-25T14:20:52.938+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 3fb03d02-9124-4ec2-8af0-400a9291591f
           hippotranslation:locale: en
           visitscotland:areas: [east]
           visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: Finish point
-          visitscotland:highlights: [Highlight one, HIghlight two]
+          visitscotland:distance: 396.0
+          visitscotland:finish: Perthshire
+          visitscotland:highlights: [Edinburgh's attractions, Fishing villages of
+              East Neuk, St Andrews, RRS Discovery]
           visitscotland:newsletter: true
           visitscotland:popular: false
           visitscotland:seoDescription: Meta description
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Meta title
-          visitscotland:start: Start point
+          visitscotland:start: The City of Edinburgh
           visitscotland:teaser: Itineraries show users pre-defined trips that they
             can take in a single area of Scotland.
           visitscotland:theme: acti
@@ -5140,22 +5142,23 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:36:38.073+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-24T13:52:37.633+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-25T14:20:52.938+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-24T13:52:39.377+01:00
+          hippostdpubwf:publicationDate: 2021-05-25T14:20:54.613+01:00
           hippotranslation:id: 3fb03d02-9124-4ec2-8af0-400a9291591f
           hippotranslation:locale: en
           visitscotland:areas: [east]
           visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: Finish point
-          visitscotland:highlights: [Highlight one, HIghlight two]
+          visitscotland:distance: 396.0
+          visitscotland:finish: Perthshire
+          visitscotland:highlights: [Edinburgh's attractions, Fishing villages of
+              East Neuk, St Andrews, RRS Discovery]
           visitscotland:newsletter: true
           visitscotland:popular: false
           visitscotland:seoDescription: Meta description
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Meta title
-          visitscotland:start: Start point
+          visitscotland:start: The City of Edinburgh
           visitscotland:teaser: Itineraries show users pre-defined trips that they
             can take in a single area of Scotland.
           visitscotland:theme: acti
@@ -5187,14 +5190,13 @@
           hippo:availability: []
           hippostd:retainable: false
           hippostd:state: draft
-          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:38:52.578+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-24T12:46:22.689+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-25T14:21:28.400+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 677b511a-e54b-482b-a2b5-7d8615fded44
           hippotranslation:locale: en
-          visitscotland:title: Itinerary day one
+          visitscotland:title: Take in the highlights of Scotland's capital
           visitscotland:translation: ''
           visitscotland:transports: [train, walking]
           /visitscotland:introduction:
@@ -5204,13 +5206,10 @@
               will show the information related to that attraction or destination.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: e8e6faf8-9bfc-4a97-bfca-71b31fc2b2a8
+            hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 030dde79-74ad-441b-b7f2-731cb0312e3c
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: eb8d61ed-ef93-49c4-acf2-f743962bb3f1
         /itinerary-day-one[2]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -5220,11 +5219,11 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:38:52.578+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-24T12:43:11.861+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-25T14:22:08.791+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 677b511a-e54b-482b-a2b5-7d8615fded44
           hippotranslation:locale: en
-          visitscotland:title: Itinerary day one
+          visitscotland:title: Take in the highlights of Scotland's capital
           visitscotland:translation: ''
           visitscotland:transports: [train, walking]
           /visitscotland:introduction:
@@ -5234,13 +5233,10 @@
               will show the information related to that attraction or destination.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: e8e6faf8-9bfc-4a97-bfca-71b31fc2b2a8
+            hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 030dde79-74ad-441b-b7f2-731cb0312e3c
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: eb8d61ed-ef93-49c4-acf2-f743962bb3f1
         /itinerary-day-one[3]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable']
@@ -5250,12 +5246,12 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:38:52.578+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-24T12:43:11.861+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-25T14:22:08.791+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-24T12:43:13.599+01:00
+          hippostdpubwf:publicationDate: 2021-05-25T14:22:56.221+01:00
           hippotranslation:id: 677b511a-e54b-482b-a2b5-7d8615fded44
           hippotranslation:locale: en
-          visitscotland:title: Itinerary day one
+          visitscotland:title: Take in the highlights of Scotland's capital
           visitscotland:translation: ''
           visitscotland:transports: [train, walking]
           /visitscotland:introduction:
@@ -5265,13 +5261,10 @@
               will show the information related to that attraction or destination.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: e8e6faf8-9bfc-4a97-bfca-71b31fc2b2a8
+            hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 030dde79-74ad-441b-b7f2-731cb0312e3c
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: eb8d61ed-ef93-49c4-acf2-f743962bb3f1
       /itinerary-day-two:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -5287,13 +5280,13 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:41:25.787+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-24T12:41:25.787+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-25T14:23:27.464+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 6052afaa-c8fa-4db4-ba0c-8f966e9e11af
           hippotranslation:locale: en
-          visitscotland:title: Itinerary day two
+          visitscotland:title: Explore Fife & St Andrews
           visitscotland:translation: ''
-          visitscotland:transports: [cycling, ferry]
+          visitscotland:transports: [bus, car, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: |-
@@ -5302,13 +5295,13 @@
               <p>Quisque quam nulla, volutpat eu ligula at, dictum bibendum metus. Nullam sodales accumsan urna vitae ultrices. Nullam at facilisis erat, non posuere leo.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: ecb5c98d-b0e0-4a19-bde7-14e9937f418f
+            hippo:docbase: f08b42d8-a08c-4ee1-af96-6d56777936c4
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: e8202d3f-3d3e-43e2-8075-3cf9b212df05
+            hippo:docbase: 7bd9fe86-c251-4846-ab1c-d617a1de80ca
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: f08b42d8-a08c-4ee1-af96-6d56777936c4
+            hippo:docbase: e8202d3f-3d3e-43e2-8075-3cf9b212df05
         /itinerary-day-two[2]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -5318,13 +5311,13 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:41:25.787+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-24T12:42:40.057+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-25T14:23:32.551+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 6052afaa-c8fa-4db4-ba0c-8f966e9e11af
           hippotranslation:locale: en
-          visitscotland:title: Itinerary day two
+          visitscotland:title: Explore Fife & St Andrews
           visitscotland:translation: ''
-          visitscotland:transports: [cycling, ferry]
+          visitscotland:transports: [bus, car, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: |-
@@ -5333,13 +5326,13 @@
               <p>Quisque quam nulla, volutpat eu ligula at, dictum bibendum metus. Nullam sodales accumsan urna vitae ultrices. Nullam at facilisis erat, non posuere leo.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: ecb5c98d-b0e0-4a19-bde7-14e9937f418f
+            hippo:docbase: f08b42d8-a08c-4ee1-af96-6d56777936c4
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: e8202d3f-3d3e-43e2-8075-3cf9b212df05
+            hippo:docbase: 7bd9fe86-c251-4846-ab1c-d617a1de80ca
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: f08b42d8-a08c-4ee1-af96-6d56777936c4
+            hippo:docbase: e8202d3f-3d3e-43e2-8075-3cf9b212df05
         /itinerary-day-two[3]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable']
@@ -5349,14 +5342,14 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:41:25.787+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-24T12:42:40.057+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-25T14:23:32.551+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-24T12:42:41.806+01:00
+          hippostdpubwf:publicationDate: 2021-05-25T14:23:34.126+01:00
           hippotranslation:id: 6052afaa-c8fa-4db4-ba0c-8f966e9e11af
           hippotranslation:locale: en
-          visitscotland:title: Itinerary day two
+          visitscotland:title: Explore Fife & St Andrews
           visitscotland:translation: ''
-          visitscotland:transports: [cycling, ferry]
+          visitscotland:transports: [bus, car, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: |-
@@ -5365,13 +5358,13 @@
               <p>Quisque quam nulla, volutpat eu ligula at, dictum bibendum metus. Nullam sodales accumsan urna vitae ultrices. Nullam at facilisis erat, non posuere leo.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: ecb5c98d-b0e0-4a19-bde7-14e9937f418f
+            hippo:docbase: f08b42d8-a08c-4ee1-af96-6d56777936c4
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: e8202d3f-3d3e-43e2-8075-3cf9b212df05
+            hippo:docbase: 7bd9fe86-c251-4846-ab1c-d617a1de80ca
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: f08b42d8-a08c-4ee1-af96-6d56777936c4
+            hippo:docbase: e8202d3f-3d3e-43e2-8075-3cf9b212df05
     /destination:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']

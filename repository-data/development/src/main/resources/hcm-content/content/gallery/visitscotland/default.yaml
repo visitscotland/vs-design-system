@@ -1230,7 +1230,7 @@
           hippogallery:description: Ben Nevis view
           hippogallery:filename: ben-nevis-view_cropped.jpg
           visitscotland:altText: Ben Nevis view
-          visitscotland:credit: ''
+          visitscotland:credit: Kenny Lam
           visitscotland:location: Fort William & Lochaber
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
@@ -1281,7 +1281,7 @@
           hippogallery:description: Commando monument
           hippogallery:filename: commando_cropped.jpg
           visitscotland:altText: Commando monument
-          visitscotland:credit: ''
+          visitscotland:credit: Kenny Lam
           visitscotland:location: Fort Augustus
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
@@ -1332,7 +1332,7 @@
           hippogallery:description: Gondola
           hippogallery:filename: gondola_cropped.jpg
           visitscotland:altText: Gondola
-          visitscotland:credit: ''
+          visitscotland:credit: Kenny Lam
           visitscotland:location: Aberdeen Airport
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
@@ -1383,7 +1383,7 @@
           hippogallery:description: Mountain stream
           hippogallery:filename: mountain-stream_cropped.jpg
           visitscotland:altText: Mountain stream
-          visitscotland:credit: ''
+          visitscotland:credit: Kenny Lam
           visitscotland:location: Rum
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
@@ -1434,7 +1434,7 @@
           hippogallery:description: Nevis ridge
           hippogallery:filename: nevis-ridge_cropped.jpg
           visitscotland:altText: Nevis ridge
-          visitscotland:credit: ''
+          visitscotland:credit: Kenny Lam
           visitscotland:location: Fort William & Lochaber
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
