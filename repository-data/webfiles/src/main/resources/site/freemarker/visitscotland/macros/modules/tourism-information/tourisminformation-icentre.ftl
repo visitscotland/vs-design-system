@@ -68,7 +68,7 @@
                     </#if>
 
                     <template slot="icentreQuote">
-                        <@quote authorImage=imageQuote content=module.quote.quote authorName=quoteAuthorName authorTitle=quoteAuthorTitle link=quoteLink />
+                        <@quote authorImage=imageQuote content=module.quote.quote authorName=quoteAuthorName authorTitle=quoteAuthorTitle link=quoteLink variant="wide"/>
                     </template>
                 </#if>
             </vs-icentre>

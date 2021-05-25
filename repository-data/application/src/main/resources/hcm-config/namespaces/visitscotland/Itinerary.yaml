@@ -82,6 +82,7 @@ definitions:
             hipposysedit:path: visitscotland:highlights
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: [required]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:

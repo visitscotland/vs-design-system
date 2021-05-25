@@ -179,8 +179,10 @@ export default {
     };
 
     .vs-megalink-multi-image--dark.card {
-        .vs-stretched-link {
-            color: $color-white;
+        .vs-stretched-link-card__title {
+            .stretched-link {
+                color: $color-white;
+            }
         }
 
         &:hover {

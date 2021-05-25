@@ -2,11 +2,7 @@
   .meta:order-before: footer.get-touch
   jcr:primaryType: hst:sitemenuitem
   hst:repobased: false
-  /Iconic views:
+  /Pages and modules examples:
     jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: see-do/landscapes-nature/iconic-scottish-views
-    hst:repobased: false
-  /Victorian Heritage Trail:
-    jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: see-do/attractions/historic/victorian-heritage-trail-itinerary
+    hst:referencesitemapitem: sandbox
     hst:repobased: false
