@@ -159,6 +159,10 @@ export default {
             line-height: $spacer-7;
         }
     }
+
+    figure {
+        margin-bottom: $spacer-0;
+    }
 }
 </style>
 
