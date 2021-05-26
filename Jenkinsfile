@@ -303,9 +303,6 @@ pipeline {
             reportFiles: 'lhr-**.html',
             reportName: "LH Report"
           ])
-          script{
-          sh 'sh ./infrastructure/scripts/infrastructure.sh displayreport'
-          }
         }
         failure {
           echo "sending failure notice to ${env.VS_COMMIT_AUTHOR}"
@@ -328,6 +325,11 @@ pipeline {
   } //end stages
 
   post{
+    success{
+      script{
+        sh 'sh ./infrastructure/scripts/infrastructure.sh displayreport'
+      }
+    }
     aborted{
       script{
         try{
