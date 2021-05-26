@@ -165,8 +165,6 @@ export default {
 <docs>
 ```jsx
     <VsIcentre>
-        <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
-
         <VsImageWithCaption
             imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             altText="This is the alt text"
@@ -212,8 +210,6 @@ export default {
     </VsIcentre>
 
     <VsIcentre>
-        <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
-
         <VsImageWithCaption
             imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             altText="This is the alt text"
