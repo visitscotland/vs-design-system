@@ -57,7 +57,13 @@ if [ -z "$VS_MAIL_NOTIFY_BUILD" ]; then VS_MAIL_NOTIFY_BUILD="TRUE"; fi
 if [ -z "$VS_MAIL_NOTIFY_SITE" ]; then VS_MAIL_NOTIFY_SITE="TRUE"; fi
 #  == brXM Instance Variables ==
 if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then unset VS_CONTAINER_BASE_PORT_OVERRIDE; else echo "VS_CONTAINER_BASE_PORT_OVERRIDE was set to $VS_CONTAINER_BASE_PORT_OVERRIDE before $0 was called"; fi
-if [ -z "$VS_BRXM_INSTANCE_HTTP_HOST" ]; then VS_BRXM_INSTANCE_HTTP_HOST=localhost; fi
+if [ -z "$VS_BRXM_INSTANCE_HTTP_HOST" ]; then
+  if [ ! -z "$VS_PROXY_SERVER_FQDN" ]; then
+    VS_BRXM_INSTANCE_HTTP_HOST="$VS_PROXY_SERVER_FQDN"
+  else
+    VS_BRXM_INSTANCE_HTTP_HOST=localhost
+  fi
+fi
 if [ -z "$VS_BRXM_PERSISTENCE_METHOD" ]; then VS_BRXM_PERSISTENCE_METHOD=h2; fi
 if [ -z "$VS_BRXM_TOMCAT_PORT" ]; then VS_BRXM_TOMCAT_PORT=8080; fi
 if [ -z "$VS_CONTAINER_PORT_INCREMENT" ]; then VS_CONTAINER_PORT_INCREMENT=100; fi
@@ -659,9 +665,9 @@ containerCreateAndStart() {
     echo "about to create a new Docker container with:"
     #VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     if [ "$VS_BRXM_PERSISTENCE_METHOD" == "mysql" ]; then
-      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST='$VS_HIPPO_REPOSITORY_PERSIST' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     else
-      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST='$VS_HIPPO_REPOSITORY_PERSIST' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     fi
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
