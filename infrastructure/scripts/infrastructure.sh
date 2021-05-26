@@ -42,7 +42,14 @@ if [ -z "$VS_DOCKERFILE_NAME" ]; then VS_DOCKERFILE_NAME=vs-brxm; fi
 if [ -z "$VS_DOCKERFILE_LOCN" ]; then VS_DOCKERFILE_LOCN=$VS_DOCKERFILE_PATH/$VS_DOCKERFILE_NAME; fi
 #  ==== Hosting Environment Variables ====
 if [ -z "$VS_PROXY_SERVER_SCHEME" ]; then VS_PROXY_SERVER_SCHEME=https; fi
-if [ -z "$VS_PROXY_SERVER_FQDN" ]; then VS_PROXY_SERVER_FQDN=feature.visitscotland.com; fi
+#if [ -z "$VS_PROXY_SERVER_FQDN" ]; then VS_PROXY_SERVER_FQDN=feature.visitscotland.com; fi
+if [ -z "$VS_PROXY_SERVER_FQDN" ]; then
+  if [ ! -z $JOB_NAME ]; then
+    VS_PROXY_SERVER_FQDN=`pathname $JOB_NAME | sed -e "s/-mb//g"`
+  else
+    VS_PROXY_SERVER_FQDN=feature.visitscotland.com
+  fi
+fi
 #  ==== Mail Variables ====
 if [ -z "$VS_MAIL_DOMAIN" ]; then VS_MAIL_DOMAIN=visitscotland.net; fi
 if [ -z "$VS_MAIL_HOST" ]; then VS_MAIL_HOST=10.1.1.152; fi
