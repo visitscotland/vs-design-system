@@ -45,8 +45,7 @@
                     cols="12"
                     md="10"
                     offset-md="1"
-                    lg="9"
-                    xl="7"
+                    lg="7"
                     offset-lg="5"
                     class="vs-icentre__quote-block-container"
                     v-if="!!this.$slots['icentreQuote']"
@@ -198,9 +197,7 @@ export default {
                     <p slot="quoteContent">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
                         ac urna non metus tempor accumsan ut non risus. In turpis est,
-                        imperdiet eu sagittis ac, sodales quis nunc. Ut sagittis vulputate
-                        lacinia. Vivamus faucibus lorem leo, nec laoreet ligula auctor a.
-                        Donec id eros a ipsum facilisis lacinia nec ac nunc.
+                        imperdiet eu sagittis ac, sodales quis nunc.
                     </p>
                     <span slot="quoteAuthorName">Penny</span>
                     <span slot="quoteAuthorTitle">
