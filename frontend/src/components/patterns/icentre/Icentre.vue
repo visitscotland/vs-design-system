@@ -138,6 +138,7 @@ export default {
 
     &__quote-block-container {
         z-index: 2;
+        text-align: left;
     }
 
     &__quote-block {
