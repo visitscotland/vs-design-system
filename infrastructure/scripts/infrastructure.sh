@@ -45,7 +45,7 @@ if [ -z "$VS_PROXY_SERVER_SCHEME" ]; then VS_PROXY_SERVER_SCHEME=https; fi
 #if [ -z "$VS_PROXY_SERVER_FQDN" ]; then VS_PROXY_SERVER_FQDN=feature.visitscotland.com; fi
 if [ -z "$VS_PROXY_SERVER_FQDN" ]; then
   if [ ! -z $JOB_NAME ]; then
-    VS_PROXY_SERVER_FQDN=`pathname $JOB_NAME | sed -e "s/-mb//g"`
+    VS_PROXY_SERVER_FQDN=`dirname $JOB_NAME | sed -e "s/-mb//g"`
   else
     VS_PROXY_SERVER_FQDN=feature.visitscotland.com
   fi
