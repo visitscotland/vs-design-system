@@ -16,14 +16,14 @@
                 >
                     <VsSvg
                         class="vs-iknow-community__logo"
-                        path="iKnowScotland"
+                        path="iKnowCommunity"
                     />
                 </VsCol>
             </VsRow>
             <VsRow>
                 <VsCol
                     cols="12"
-                    md="5"
+                    md="10"
                     offset-md="1"
                     lg="6"
                     offset-lg="0"
@@ -61,7 +61,11 @@
                     offset-xl="1"
                     class="vs-iknow-community__coo-container py-10"
                 >
-                    <h2>I'm a coo</h2>
+                    <img
+                        class="vs-iknow-community__coo"
+                        src="./assets/coo-puffin.png"
+                        alt="A cartoon image of a highland cow and a puffin"
+                    >
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -114,8 +118,8 @@ export default {
         padding-top: $spacer-4;
     }
 
-    &__coo-container {
-        background-color: red;
+    &__coo {
+        width: 100%;
     }
 }
 </style>
