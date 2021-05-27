@@ -1,6 +1,6 @@
 <template>
     <div
-        class="vs-tag mr-2"
+        class="vs-tag mr-2 mb-4"
         data-test="vs-tag"
     >
         <VsLink
@@ -49,7 +49,7 @@ export default {
     .vs-link {
         display: block;
         text-decoration: none;
-        padding: $spacer-1 $spacer-4;
+        padding: $spacer-1 $spacer-2;
     }
 
     &:hover {
