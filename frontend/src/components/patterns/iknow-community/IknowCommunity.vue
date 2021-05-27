@@ -19,7 +19,6 @@
                         path="iKnowScotland"
                     />
                 </VsCol>
-
             </VsRow>
             <VsRow>
                 <VsCol
@@ -50,6 +49,19 @@
                         <!-- @slot Holds popular tags (html expected) -->
                         <slot name="iknowCommunityTags" />
                     </div>
+                </VsCol>
+                <VsCol
+                    cols="10"
+                    offset="1"
+                    md="6"
+                    offset-md="3"
+                    lg="6"
+                    offset-lg="0"
+                    xl="4"
+                    offset-xl="1"
+                    class="vs-iknow-community__coo-container py-10"
+                >
+                    <h2>I'm a coo</h2>
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -100,6 +112,10 @@ export default {
 
     &__tags {
         padding-top: $spacer-4;
+    }
+
+    &__coo-container {
+        background-color: red;
     }
 }
 </style>
