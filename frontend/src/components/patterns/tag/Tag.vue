@@ -1,6 +1,7 @@
 <template>
     <div
         class="vs-tag mr-2"
+        data-test="vs-tag"
     >
         <VsLink
             :href="href"
@@ -27,6 +28,13 @@ export default {
         VsLink,
     },
     props: {
+        /**
+         * The URL the tag will link to
+         */
+        href: {
+            type: String,
+            default: null,
+        },
     },
 };
 </script>
@@ -57,7 +65,7 @@ export default {
 <docs>
 ```jsx
     <VsTag
-        href="#"
+        href="https://visitscotland.com"
     >
         Activities
     </VsTag>
