@@ -116,14 +116,36 @@ export default {
         <template slot="iknowCommunityLink"><a href="#">Join the conversation</a></template>
 
         <template slot="iknowCommunityTags">
-            <VsButton
+            <VsTag
                 href="#"
-                size="sm"
-                variant="outline-primary"
-                class="mr-2"
             >
                 Activities
-            </VsButton>
+            </VsTag>
+            <VsTag
+                href="#"
+            >
+                Castles
+            </VsTag>
+            <VsTag
+                href="#"
+            >
+                Things to do
+            </VsTag>
+            <VsTag
+                href="#"
+            >
+                History
+            </VsTag>
+            <VsTag
+                href="#"
+            >
+                Days out
+            </VsTag>
+            <VsTag
+                href="#"
+            >
+                Recommendations
+            </VsTag>
         </template>
     </VsIknowCommunity>
 ```
