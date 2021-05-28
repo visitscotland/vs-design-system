@@ -59,7 +59,7 @@
                     offset-lg="0"
                     xl="4"
                     offset-xl="1"
-                    class="vs-iknow-community__coo-container py-10"
+                    class="vs-iknow-community__coo-container"
                 >
                     <img
                         class="vs-iknow-community__coo"
@@ -111,11 +111,17 @@ export default {
     }
 
     &__link {
-        padding-top: $spacer-4;
+        margin-top: $spacer-4;
     }
 
     &__tags {
-        padding-top: $spacer-4;
+        margin-top: $spacer-10;
+    }
+
+    &__coo-container {
+        @include media-breakpoint-up(lg) {
+            padding-top: $spacer-10;
+        }
     }
 
     &__coo {
