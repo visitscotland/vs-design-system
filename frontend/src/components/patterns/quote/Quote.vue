@@ -24,7 +24,7 @@
                 v-if="hasAuthorName"
             >
                 <!-- @slot Holds the name of the author (text expected) -->
-                <slot name="quoteAuthorName" />,
+                <slot name="quoteAuthorName" />
             </p>
             <p
                 class="vs-quote__author-title"
