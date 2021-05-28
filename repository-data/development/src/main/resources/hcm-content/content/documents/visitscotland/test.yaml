@@ -2319,6 +2319,152 @@
             hippostd:content: <p>This is just an example, please don't test. Usually
               there would be an example of the module to be tested below this text,
               but this is just an example to show the process needed.</p>
+      /icentre-module:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 2e5d4b9e-09c9-42d4-95f0-4ef8603158e5
+        hippo:name: iCentre Module
+        hippo:versionHistory: d117a1cf-08be-4829-8d7a-040b039d3fdd
+        /icentre-module[1]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 478ed054-2b03-45e9-acec-e5d1b7a2b2e8
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostd:transferable: false
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-26T11:07:45.887+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-26T11:09:10.113+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 0ed269cf-803f-44d1-8693-cfa665f1e376
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 17f9d549-ba5f-48a2-b234-3a3daf0f5766
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Test
+              visitscotland:role: User
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Suspendisse laoreet semper turpis, et sagittis
+                  nisl commodo eget. Donec elementum eros id pulvinar interdum. Aenean
+                  molestie lobortis ante id pretium.</p>
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+        /icentre-module[2]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 4523e7a9-9bd7-4c03-ade6-92b6d0692252
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-26T11:07:45.887+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-26T11:08:24.018+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 0ed269cf-803f-44d1-8693-cfa665f1e376
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 17f9d549-ba5f-48a2-b234-3a3daf0f5766
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Test
+              visitscotland:role: User
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Suspendisse laoreet semper turpis, et sagittis
+                  nisl commodo eget. Donec elementum eros id pulvinar interdum. Aenean
+                  molestie lobortis ante id pretium.</p>
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+        /icentre-module[3]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 7ea2dd47-474c-4afd-8eb9-c451d9f41f02
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-26T11:07:45.887+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-26T11:08:24.018+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-05-26T11:08:27.798+01:00
+          hippotranslation:id: 0ed269cf-803f-44d1-8693-cfa665f1e376
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 17f9d549-ba5f-48a2-b234-3a3daf0f5766
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Test
+              visitscotland:role: User
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Suspendisse laoreet semper turpis, et sagittis
+                  nisl commodo eget. Donec elementum eros id pulvinar interdum. Aenean
+                  molestie lobortis ante id pretium.</p>
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
     /other-things-you-might-like:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -2631,3 +2777,183 @@
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
+    /iknow-community:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 2a0efe34-ccbd-428b-aa5a-d230a42f4e04
+      hippo:name: IKnow Community
+      hippostd:foldertype: [new-translated-folder-test, new-document]
+      hippotranslation:id: afe26f02-8d1d-47db-8e0c-fe1fba62557b
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 77bf5716-4fa1-48c0-bf5f-b9876779a615
+        hippo:versionHistory: 291b0ed8-966c-474b-b625-b82b2993f46d
+        /content[1]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 770f7c19-f897-41e2-ba20-0248e5004cd2
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-27T16:36:18.197+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-27T16:36:56.113+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 454ff9e0-8833-4a30-b291-d713cae7d7f1
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Glasgow
+          visitscotland:newsletter: true
+          visitscotland:seoDescription: Test
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iKnow community test
+          visitscotland:teaser: Test
+          visitscotland:title: iKnow community test
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum yada yada</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 10b1affa-8a52-4927-8939-308a1d8d91e5
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-27T16:36:18.197+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-27T16:36:55.991+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 454ff9e0-8833-4a30-b291-d713cae7d7f1
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Glasgow
+          visitscotland:newsletter: true
+          visitscotland:seoDescription: Test
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iKnow community test
+          visitscotland:teaser: Test
+          visitscotland:title: iKnow community test
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum yada yada</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 5f4ed48f-5473-4473-b3b9-95f71b804faa
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-27T16:36:18.197+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-27T16:36:55.991+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-05-27T16:37:00.483+01:00
+          hippotranslation:id: 454ff9e0-8833-4a30-b291-d713cae7d7f1
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Glasgow
+          visitscotland:newsletter: true
+          visitscotland:seoDescription: Test
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iKnow community test
+          visitscotland:teaser: Test
+          visitscotland:title: iKnow community test
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum yada yada</p>
+      /iknow-community:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 8b1861fb-432d-455d-a67e-777856fe70f9
+        hippo:name: iKnow Community
+        hippo:versionHistory: dbfc62a2-5d06-48e7-864c-a6f6cc5495c4
+        /iknow-community[1]:
+          jcr:primaryType: visitscotland:IknowCommunity
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 8cc4b0fe-718a-4c98-b074-a86934adafa0
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-27T16:37:14.705+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-27T16:38:24.650+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 0934f2e4-566e-4a88-9970-7cc9095ceae5
+          hippotranslation:locale: en
+          visitscotland:tags: [activities, recommendations, glasgow, history, things-to-do,
+            days-out]
+          visitscotland:title: Travellers' Tips & Secrets
+          visitscotland:translation: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>If you're looking for the BEST tips, secrets and
+              hidden gems, then look no further. Talk to people in the iKnow and share
+              your own stories in our iKnow Community.</p>
+        /iknow-community[2]:
+          jcr:primaryType: visitscotland:IknowCommunity
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: e5d159e1-93c7-4880-889a-66a952607699
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-27T16:37:14.705+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-27T16:38:24.621+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 0934f2e4-566e-4a88-9970-7cc9095ceae5
+          hippotranslation:locale: en
+          visitscotland:tags: [activities, recommendations, glasgow, history, things-to-do,
+            days-out]
+          visitscotland:title: Travellers' Tips & Secrets
+          visitscotland:translation: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>If you're looking for the BEST tips, secrets and
+              hidden gems, then look no further. Talk to people in the iKnow and share
+              your own stories in our iKnow Community.</p>
+        /iknow-community[3]:
+          jcr:primaryType: visitscotland:IknowCommunity
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c6de53be-494e-491d-98a3-921e51396b18
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-27T16:37:14.705+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-27T16:38:24.621+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-05-27T16:38:28.841+01:00
+          hippotranslation:id: 0934f2e4-566e-4a88-9970-7cc9095ceae5
+          hippotranslation:locale: en
+          visitscotland:tags: [activities, recommendations, glasgow, history, things-to-do,
+            days-out]
+          visitscotland:title: Travellers' Tips & Secrets
+          visitscotland:translation: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>If you're looking for the BEST tips, secrets and
+              hidden gems, then look no further. Talk to people in the iKnow and share
+              your own stories in our iKnow Community.</p>
