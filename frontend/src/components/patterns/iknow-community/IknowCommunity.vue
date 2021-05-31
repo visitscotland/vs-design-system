@@ -78,7 +78,8 @@ import VsCol from '@components/elements/layout/Col';
 import VsRow from '@components/elements/layout/Row';
 
 /**
- * Filler
+ * A reuseable item which promotes local expertise and guides
+ * visitors to the iKnow community forum
  *
  * @displayName iKnow Community
  */
