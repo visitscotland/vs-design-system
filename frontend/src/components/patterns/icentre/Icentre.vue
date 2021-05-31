@@ -45,8 +45,7 @@
                     cols="12"
                     md="10"
                     offset-md="1"
-                    lg="9"
-                    xl="7"
+                    lg="7"
                     offset-lg="5"
                     class="vs-icentre__quote-block-container"
                     v-if="!!this.$slots['icentreQuote']"
@@ -139,6 +138,7 @@ export default {
 
     &__quote-block-container {
         z-index: 2;
+        text-align: left;
     }
 
     &__quote-block {
@@ -159,76 +159,84 @@ export default {
             line-height: $spacer-7;
         }
     }
+
+    figure {
+        margin-bottom: $spacer-0;
+    }
 }
 </style>
 
 <docs>
 ```jsx
-    <VsIcentre>
-        <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
+    <VsModuleWrapper class="theme-grey">
+        <VsIcentre>
+            <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
 
-        <VsImageWithCaption
-            imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-            altText="This is the alt text"
-            slot="icentreImageWithCaption">
+            <VsImageWithCaption
+                imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                altText="This is the alt text"
+                slot="icentreImageWithCaption">
 
-            <span slot="caption">
-                A test caption
+                <span slot="caption">
+                    A test caption
+                </span>
+
+                <span slot="credit">
+                    &copy; Some test credits
+                </span>
+            </VsImageWithCaption>
+
+            <span slot="icentreQuote">
+                <VsQuote variant="wide">
+                    <VsImg
+                        src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                        alt="This is the alt text"
+                        data-sizes="auto"
+                        class="lazyload"
+                        slot="quoteImage">
+                    </VsImg>
+                    <p slot="quoteContent">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                        ac urna non metus tempor accumsan ut non risus. In turpis est,
+                        imperdiet eu sagittis ac, sodales quis nunc.
+                    </p>
+                    <span slot="quoteAuthorName">Penny</span>
+                    <span slot="quoteAuthorTitle">
+                        Visitor Services Advisor at Edinburgh iCentre
+                    </span>
+                    <VsButton
+                        href="#"
+                        slot="quoteLink"
+                    >
+                        Signet Library
+                    </VsButton>
+                </VsQuote>
             </span>
 
-            <span slot="credit">
-                &copy; Some test credits
-            </span>
-        </VsImageWithCaption>
+            <p slot="icentreLinks">Test content <a href="#">link</a></p>
+        </VsIcentre>
+    </VsModuleWrapper>
+    <br>
+    <VsModuleWrapper class="theme-grey">
+        <VsIcentre>
+            <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
 
-        <span slot="icentreQuote">
-            <VsQuote variant="wide">
-                <VsImg
-                    src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                    alt="This is the alt text"
-                    data-sizes="auto"
-                    class="lazyload"
-                    slot="quoteImage">
-                </VsImg>
-                <p slot="quoteContent">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                    ac urna non metus tempor accumsan ut non risus. In turpis est,
-                    imperdiet eu sagittis ac, sodales quis nunc. Ut sagittis vulputate
-                    lacinia. Vivamus faucibus lorem leo, nec laoreet ligula auctor a.
-                    Donec id eros a ipsum facilisis lacinia nec ac nunc.
-                </p>
-                <span slot="quoteAuthorName">Penny</span>
-                <span slot="quoteAuthorTitle">Visitor Services Advisor at Edinburgh iCentre</span>
-                <VsButton
-                    href="#"
-                    slot="quoteLink"
-                >
-                    Signet Library
-                </VsButton>
-            </VsQuote>
-        </span>
+            <VsImageWithCaption
+                imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                altText="This is the alt text"
+                slot="icentreImageWithCaption">
 
-        <p slot="icentreLinks">Test content <a href="#">link</a></p>
-    </VsIcentre>
+                <span slot="caption">
+                    A test caption
+                </span>
 
-    <VsIcentre>
-        <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
+                <span slot="credit">
+                    &copy; Some test credits
+                </span>
+            </VsImageWithCaption>
 
-        <VsImageWithCaption
-            imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-            altText="This is the alt text"
-            slot="icentreImageWithCaption">
-
-            <span slot="caption">
-                A test caption
-            </span>
-
-            <span slot="credit">
-                &copy; Some test credits
-            </span>
-        </VsImageWithCaption>
-
-        <p slot="icentreLinks">Test content <a href="#">link</a></p>
-    </VsIcentre>
+            <p slot="icentreLinks">Test content <a href="#">link</a></p>
+        </VsIcentre>
+    </VsModuleWrapper>
 ```
 </docs>
