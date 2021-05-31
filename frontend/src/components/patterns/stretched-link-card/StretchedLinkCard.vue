@@ -55,6 +55,15 @@
                 <!-- @slot Contains body content for the card  -->
                 <slot name="stretchedCardContent" />
             </div>
+            <div
+                class="vs-stretched-link-card__link"
+                data-test="vs-stretched-link-card__link"
+                v-if="!!this.$slots['stretchedCardLink']"
+            >
+                <a :href="link">
+                    <slot name="stretchedCardLink" />
+                </a>
+            </div>
         </div>
     </div>
 </template>
