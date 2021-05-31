@@ -61,11 +61,10 @@
                     offset-xl="1"
                     class="vs-iknow-community__coo-container"
                 >
-                    <img
+                    <VsSvg
                         class="vs-iknow-community__coo"
-                        src="./assets/coo-puffin.png"
-                        alt="A cartoon image of a highland cow and a puffin"
-                    >
+                        path="iKnowCommunity-coo-puffin"
+                    />
                 </VsCol>
             </VsRow>
         </VsContainer>
