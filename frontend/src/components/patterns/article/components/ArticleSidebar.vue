@@ -7,7 +7,10 @@
         <!-- @slot Slot to contain an image for this article section -->
         <slot name="vsArticleSidebarImg" />
 
-        <div class="vs-article-sidebar__quote-wrapper">
+        <div
+            v-if="!!this.$slots['vsArticleSidebarQuote']"
+            class="vs-article-sidebar__quote-wrapper"
+        >
             <!-- @slot Slot to contain an quote for this article section -->
             <slot name="vsArticleSidebarQuote" />
         </div>

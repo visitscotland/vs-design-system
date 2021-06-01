@@ -22,6 +22,7 @@
                 md="7"
                 data-test="vs-article-section__content"
                 :offset-xl="sidebarAlign === 'left' ? '1' : ''"
+                :class="{ 'offset-xxl-1': sidebarAlign === 'right' }"
             >
                 <div class="mx-6 mx-md-0">
                     <VsRichTextWrapper>
@@ -307,9 +308,6 @@ export default {
     </VsArticleSection>
 
     <VsArticleSection sidebar-align="right">
-        <template slot="articleSidebar">
-            <VsArticleSidebar />
-        </template>
         <VsHeading level="6">
             How do I climb Ben Nevis safely?
         </VsHeading>
