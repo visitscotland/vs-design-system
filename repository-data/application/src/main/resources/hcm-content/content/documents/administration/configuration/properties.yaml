@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 74e4ec75-efef-486e-b56d-59292452d399
   hippo:name: Properties
-  hippo:versionHistory: bc038acd-7db7-4f60-9baf-3198d4fb3190
+  hippo:versionHistory: 28e8a372-edcd-48ad-a767-6583d6d277ea
   /properties[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,14 +13,14 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-05-12T11:44:26.703+01:00
+    hippostdpubwf:lastModificationDate: 2021-06-01T16:53:00.307+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', '', Client
-        Token for Instagram request, '', '', URL for the dms data service endpoint,
-      Encoding for requests made to dms data endpoints, "Token that identifies calls\
-        \ made to vs-dms-products as internal calls giving access to wider data\r\n\
-        \r\nThis token is configured by the environment variable VS_API_KEY, but it\
-        \ can be overriden here if needed.\r\n\r\nDo not commit a value for this variable\
+        Token for Instagram request, '', URL for the dms data service endpoint, Encoding
+        for requests made to dms data endpoints, "Token that identifies calls made\
+        \ to vs-dms-products as internal calls giving access to wider data\r\n\r\n\
+        This token is configured by the environment variable VS_API_KEY, but it can\
+        \ be overriden here if needed.\r\n\r\nDo not commit a value for this variable\
         \ to the repository!!", Timeout for requests to the DMS service (in milliseconds),
       Number of tries to get data from vs-dms-products before any other request is
         put into sleep., Time to hold any request to the DMS after a failure. in milliseconds,
@@ -28,13 +28,13 @@
       '', '', App Id for Instagram request]
     resourcebundle:id: config.cms
     resourcebundle:keys: [instagram.api, localhost, helpdesk-email, instagram.accesstoken,
-      instagram.post-url, maptiler.key, dms-data.url, dms-data.encoding, dms-data.api-key,
-      dms-data.timeout, dms-data.tries, dms-data.sleep-time, vs-dms-products.url,
-      iknow-community.url, iknow-community.tagged-discussion, instagram.app-id]
+      instagram.post-url, dms-data.url, dms-data.encoding, dms-data.api-key, dms-data.timeout,
+      dms-data.tries, dms-data.sleep-time, vs-dms-products.url, iknow-community.url,
+      iknow-community.tagged-discussion, instagram.app-id]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       'http://localhost:8080/site', helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec,
-      'https://www.instagram.com/p/', SZGAUFW8iNcUjjJgrkgf, 'http://172.28.81.65:8089/data',
-      UTF-8, $VS_API_KEY, '2000', '3', '60000', 'http://172.28.81.65:8089', 'https://community.visitscotland.com/',
+      'https://www.instagram.com/p/', 'http://172.28.81.65:8089/data', UTF-8, $VS_API_KEY,
+      '2000', '3', '60000', 'http://172.28.81.65:8089', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443']
   /properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -45,14 +45,14 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-05-12T11:42:54.590+01:00
+    hippostdpubwf:lastModificationDate: 2021-06-01T16:53:00.197+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', '', Client
-        Token for Instagram request, '', '', URL for the dms data service endpoint,
-      Encoding for requests made to dms data endpoints, "Token that identifies calls\
-        \ made to vs-dms-products as internal calls giving access to wider data\r\n\
-        \r\nThis token is configured by the environment variable VS_API_KEY, but it\
-        \ can be overriden here if needed.\r\n\r\nDo not commit a value for this variable\
+        Token for Instagram request, '', URL for the dms data service endpoint, Encoding
+        for requests made to dms data endpoints, "Token that identifies calls made\
+        \ to vs-dms-products as internal calls giving access to wider data\r\n\r\n\
+        This token is configured by the environment variable VS_API_KEY, but it can\
+        \ be overriden here if needed.\r\n\r\nDo not commit a value for this variable\
         \ to the repository!!", Timeout for requests to the DMS service (in milliseconds),
       Number of tries to get data from vs-dms-products before any other request is
         put into sleep., Time to hold any request to the DMS after a failure. in milliseconds,
@@ -60,13 +60,13 @@
       '', '', App Id for Instagram request]
     resourcebundle:id: config.cms
     resourcebundle:keys: [instagram.api, localhost, helpdesk-email, instagram.accesstoken,
-      instagram.post-url, maptiler.key, dms-data.url, dms-data.encoding, dms-data.api-key,
-      dms-data.timeout, dms-data.tries, dms-data.sleep-time, vs-dms-products.url,
-      iknow-community.url, iknow-community.tagged-discussion, instagram.app-id]
+      instagram.post-url, dms-data.url, dms-data.encoding, dms-data.api-key, dms-data.timeout,
+      dms-data.tries, dms-data.sleep-time, vs-dms-products.url, iknow-community.url,
+      iknow-community.tagged-discussion, instagram.app-id]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       'http://localhost:8080/site', helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec,
-      'https://www.instagram.com/p/', SZGAUFW8iNcUjjJgrkgf, 'http://172.28.81.65:8089/data',
-      UTF-8, $VS_API_KEY, '2000', '3', '60000', 'http://172.28.81.65:8089', 'https://community.visitscotland.com/',
+      'https://www.instagram.com/p/', 'http://172.28.81.65:8089/data', UTF-8, $VS_API_KEY,
+      '2000', '3', '60000', 'http://172.28.81.65:8089', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443']
   /properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -77,15 +77,15 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-05-12T11:42:54.590+01:00
+    hippostdpubwf:lastModificationDate: 2021-06-01T16:53:00.197+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-05-12T11:43:14.164+01:00
+    hippostdpubwf:publicationDate: 2021-06-01T16:53:05.730+01:00
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', '', Client
-        Token for Instagram request, '', '', URL for the dms data service endpoint,
-      Encoding for requests made to dms data endpoints, "Token that identifies calls\
-        \ made to vs-dms-products as internal calls giving access to wider data\r\n\
-        \r\nThis token is configured by the environment variable VS_API_KEY, but it\
-        \ can be overriden here if needed.\r\n\r\nDo not commit a value for this variable\
+        Token for Instagram request, '', URL for the dms data service endpoint, Encoding
+        for requests made to dms data endpoints, "Token that identifies calls made\
+        \ to vs-dms-products as internal calls giving access to wider data\r\n\r\n\
+        This token is configured by the environment variable VS_API_KEY, but it can\
+        \ be overriden here if needed.\r\n\r\nDo not commit a value for this variable\
         \ to the repository!!", Timeout for requests to the DMS service (in milliseconds),
       Number of tries to get data from vs-dms-products before any other request is
         put into sleep., Time to hold any request to the DMS after a failure. in milliseconds,
@@ -93,11 +93,11 @@
       '', '', App Id for Instagram request]
     resourcebundle:id: config.cms
     resourcebundle:keys: [instagram.api, localhost, helpdesk-email, instagram.accesstoken,
-      instagram.post-url, maptiler.key, dms-data.url, dms-data.encoding, dms-data.api-key,
-      dms-data.timeout, dms-data.tries, dms-data.sleep-time, vs-dms-products.url,
-      iknow-community.url, iknow-community.tagged-discussion, instagram.app-id]
+      instagram.post-url, dms-data.url, dms-data.encoding, dms-data.api-key, dms-data.timeout,
+      dms-data.tries, dms-data.sleep-time, vs-dms-products.url, iknow-community.url,
+      iknow-community.tagged-discussion, instagram.app-id]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       'http://localhost:8080/site', helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec,
-      'https://www.instagram.com/p/', SZGAUFW8iNcUjjJgrkgf, 'http://172.28.81.65:8089/data',
-      UTF-8, $VS_API_KEY, '2000', '3', '60000', 'http://172.28.81.65:8089', 'https://community.visitscotland.com/',
+      'https://www.instagram.com/p/', 'http://172.28.81.65:8089/data', UTF-8, $VS_API_KEY,
+      '2000', '3', '60000', 'http://172.28.81.65:8089', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443']
