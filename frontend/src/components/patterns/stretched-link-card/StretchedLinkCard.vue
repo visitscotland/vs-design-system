@@ -224,6 +224,10 @@ export default {
             flex-direction: row;
         }
 
+        .vs-stretched-link-card__link {
+            margin-top: $spacer-4;
+        }
+
         @include media-breakpoint-up(sm) {
             .vs-stretched-link-card__panels {
                 top: $spacer-2;
