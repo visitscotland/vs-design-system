@@ -87,6 +87,11 @@ module.exports = {
                                     {
                                         removeViewBox: false,
                                     },
+                                    {
+                                        inlineStyles: {
+                                            onlyMatchedOnce: false,
+                                        },
+                                    },
                                 ],
                             },
                         },
