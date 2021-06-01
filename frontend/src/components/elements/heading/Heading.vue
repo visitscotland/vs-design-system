@@ -9,7 +9,10 @@
         <!-- @slot The main heading content goes here -->
         <slot />
 
-        <span class="vs-heading__sub-heading">
+        <span
+            class="vs-heading__sub-heading"
+            v-if="!!this.$slots['sub-heading']"
+        >
             <slot name="sub-heading" />
         </span>
     </Component>
