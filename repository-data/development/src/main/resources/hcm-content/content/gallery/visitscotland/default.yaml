@@ -972,10 +972,10 @@
         /mountain-stream.jpg:
           jcr:primaryType: visitscotland:Image
           hippo:availability: [live, preview]
-          hippogallery:description: Mountain stream - Ben Nevis
+          hippogallery:description: Mountain stream on Ben Nevis
           hippogallery:filename: mountain-stream.jpg
-          visitscotland:altText: Mountain stream - Ben Nevis
-          visitscotland:credit: ''
+          visitscotland:altText: Mountain stream on Ben Nevis
+          visitscotland:credit: VisitScotland
           visitscotland:location: Fort William
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
@@ -1125,10 +1125,10 @@
         /ben-nevis-view.jpg:
           jcr:primaryType: visitscotland:Image
           hippo:availability: [live, preview]
-          hippogallery:description: Ben Nevis View
+          hippogallery:description: Ben Nevis view
           hippogallery:filename: ben-nevis-view.jpg
           visitscotland:altText: Ben Nevis View
-          visitscotland:credit: ''
+          visitscotland:credit: VisitScotland
           visitscotland:location: Fort William
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
@@ -1199,6 +1199,108 @@
               type: binary
               resource: /content/gallery/visitscotland/default/2021/01/gondola.jpg/gondola.jpg/original/original.jpg
             jcr:lastModified: 2021-01-11T14:23:11.625Z
+            jcr:mimeType: image/jpeg
+          /visitscotland:nl:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:fr:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:de:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:es:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:it:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+      /walking-up-ben-nevis.jpg:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 42599f58-1035-40f4-8515-19c615ba486a
+        /walking-up-ben-nevis.jpg:
+          jcr:primaryType: visitscotland:Image
+          hippo:availability: [live, preview]
+          hippogallery:description: Walking up Ben Nevis
+          hippogallery:filename: walking-up-ben-nevis.jpg
+          visitscotland:altText: walking up Ben Nevis
+          visitscotland:credit: Kenny Lam
+          visitscotland:location: Fort William
+          /hippogallery:thumbnail:
+            jcr:primaryType: hippogallery:image
+            hippo:filename: walking-up-ben-nevis.jpg
+            hippogallery:height: 41
+            hippogallery:width: 60
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/walking-up-ben-nevis.jpg/walking-up-ben-nevis.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-05-31T16:33:31.109+01:00
+            jcr:mimeType: image/jpeg
+          /hippogallery:original:
+            jcr:primaryType: hippogallery:image
+            hippogallery:height: 1433
+            hippogallery:width: 2048
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/walking-up-ben-nevis.jpg/walking-up-ben-nevis.jpg/original/original.jpg
+            jcr:lastModified: 2021-05-31T16:33:31.109+01:00
+            jcr:mimeType: image/jpeg
+          /visitscotland:nl:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:fr:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:de:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:es:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:it:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+      /rock-climbing.jpg:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 7cf5d268-21fe-4ae6-8d90-95326c4732da
+        /rock-climbing.jpg:
+          jcr:primaryType: visitscotland:Image
+          hippo:availability: [live, preview]
+          hippogallery:description: Rock cimbing
+          hippogallery:filename: rock-climbing.jpg
+          visitscotland:altText: Rock climbing
+          visitscotland:credit: VisitScotland
+          visitscotland:location: Fort William
+          /hippogallery:thumbnail:
+            jcr:primaryType: hippogallery:image
+            hippo:filename: rock-climbing.jpg
+            hippogallery:height: 33
+            hippogallery:width: 60
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/rock-climbing.jpg/rock-climbing.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-05-31T16:33:32.009+01:00
+            jcr:mimeType: image/jpeg
+          /hippogallery:original:
+            jcr:primaryType: hippogallery:image
+            hippogallery:height: 1141
+            hippogallery:width: 2048
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/rock-climbing.jpg/rock-climbing.jpg/original/original.jpg
+            jcr:lastModified: 2021-05-31T16:33:32.009+01:00
             jcr:mimeType: image/jpeg
           /visitscotland:nl:
             jcr:primaryType: visitscotland:ImageData

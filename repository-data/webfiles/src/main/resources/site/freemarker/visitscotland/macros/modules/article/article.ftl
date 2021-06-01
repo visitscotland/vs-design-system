@@ -51,7 +51,7 @@
                     <#assign alignSidebar = "right" />
                 </#if>
             <#else>
-                <#assign alignSidebar = "left" />
+                <#assign alignSidebar = "right" />
             </#if>
 
             <@articleSection section=section alignSidebar=alignSidebar />
