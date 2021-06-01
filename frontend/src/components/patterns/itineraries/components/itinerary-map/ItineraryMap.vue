@@ -30,7 +30,7 @@ export default {
     props: {
         accessToken: {
             type: String,
-            required: true,
+            required: false,
         },
         labels: {
             type: Object,
@@ -335,7 +335,6 @@ export default {
     })
 
     <vs-itinerary-map
-        :access-token=keysList.keysList[0].mapToken
         overview-map-longitude="57.81"
         overview-map-latitude="-4.13"
         overview-map-zoom="5"
