@@ -96,28 +96,34 @@ describe('VsItineraryStopInfo', () => {
     });
 
     describe(':props', () => {
-        it('renders content inserted into the slot when the stop is closed, open or closing soon', async() => {
+        it('renders content inserted into the slot when the stop is open', () => {
             expect(wrapper.find('[data-test="vs-itinerary-stop-status"]').text()).toContain('Open');
+        });
 
+        it('renders content inserted into the slot when the stop is closed', async() => {
             await wrapper.setData({
                 openingMessage: 'closed',
             });
 
             expect(wrapper.find('[data-test="vs-itinerary-stop-status"]').text()).toContain('Closed');
+        });
 
+        it('renders content inserted into the slot when the stop is closing soon', async() => {
             await wrapper.setData({
                 openingMessage: 'closing soon',
             });
             expect(wrapper.find('[data-test="vs-itinerary-stop-status"]').text()).toContain('Closing soon');
         });
 
-        it('renders the correct provisional/usual text', async() => {
+        it('renders the correct provisional text', async() => {
             await wrapper.setData({
                 openingMessage: 'closed',
             });
 
             expect(wrapper.find('[data-test="vs-itinerary-stop-hours"]').text()).toContain('Provisionally');
+        });
 
+        it('renders the correct usual text', async() => {
             await wrapper.setData({
                 currentDayData: currentDayDataUsual,
             });
