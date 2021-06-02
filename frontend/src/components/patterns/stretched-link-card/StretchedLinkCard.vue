@@ -34,8 +34,14 @@
             <VsHeading
                 level="3"
                 class="card-title vs-stretched-link-card__title"
+                data-test="vs-stretched-link-card__title"
             >
+                <template v-if="!!this.$slots['stretchedCardLink']">
+                    <slot name="stretchedCardHeader" />
+                </template>
+
                 <VsLink
+                    v-else
                     :href="link"
                     :type="type"
                     class="stretched-link"
@@ -55,15 +61,16 @@
                 <!-- @slot Contains body content for the card  -->
                 <slot name="stretchedCardContent" />
             </div>
-            <div
-                class="vs-stretched-link-card__link"
-                data-test="vs-stretched-link-card__link"
+
+            <VsLink
+                :href="link"
+                class="vs-stretched-link-card__link stretched-link"
                 v-if="!!this.$slots['stretchedCardLink']"
+                data-test="vs-stretched-link-card__link"
             >
-                <a :href="link">
-                    <slot name="stretchedCardLink" />
-                </a>
-            </div>
+                <!-- @slot Text for option fake link at bottom of the card -->
+                <slot name="stretchedCardLink" />
+            </VsLink>
         </div>
     </div>
 </template>
@@ -172,6 +179,10 @@ export default {
             &--disabled {
                 cursor: default;
             }
+
+            &:focus {
+                outline: 2px solid $color-pink;
+            }
         }
 
         .vs-link__icon {
@@ -225,7 +236,10 @@ export default {
         }
 
         .vs-stretched-link-card__link {
-            margin-top: $spacer-4;
+            margin: $spacer-4 $spacer-0 $spacer-0;
+            padding: $spacer-2;
+            color: $color-pink;
+            text-decoration: underline;
         }
 
         @include media-breakpoint-up(sm) {
