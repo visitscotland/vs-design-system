@@ -33,7 +33,7 @@ export default {
          */
         href: {
             type: String,
-            default: null,
+            required: true,
         },
     },
 };
