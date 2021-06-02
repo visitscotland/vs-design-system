@@ -24,12 +24,6 @@ public class CommonUtilsService {
 
     private static final Logger logger = LoggerFactory.getLogger(CommonUtilsService.class);
 
-    //TODO add message format for other languages
-    public static final String contentIssue(String message, Object... parameters) {
-        String logMessage = "- [CONTENT] - " + message;
-        return String.format(logMessage, parameters);
-    }
-
     /**
      * Request a page and return the body as String
      *
