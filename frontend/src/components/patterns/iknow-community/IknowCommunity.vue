@@ -59,10 +59,10 @@
                     offset-lg="0"
                     xl="4"
                     offset-xl="1"
-                    class="vs-iknow-community__coo-container"
+                    class="vs-iknow-community__highlight-image-container"
                 >
                     <VsSvg
-                        class="vs-iknow-community__coo"
+                        class="vs-iknow-community__highlight-image"
                         path="iKnowCommunity-coo-puffin"
                     />
                 </VsCol>
@@ -139,7 +139,9 @@ export default {
                 and share your own stories in our iKnow Community.</p>
         </div>
 
-        <template slot="iknowCommunityLink"><a href="#">Join the conversation</a></template>
+        <template slot="iknowCommunityLink">
+            <a href="#">Join the conversation</a>
+        </template>
 
         <template slot="iknowCommunityTags">
             <VsTag
