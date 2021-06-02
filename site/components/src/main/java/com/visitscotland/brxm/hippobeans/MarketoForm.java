@@ -3,6 +3,7 @@ package com.visitscotland.brxm.hippobeans;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:MarketoForm")
 @Node(jcrType = "visitscotland:MarketoForm")
@@ -22,13 +23,28 @@ public class MarketoForm extends BaseDocument {
         return getSingleProperty("visitscotland:munchkinId");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:thankYouPage")
-    public HippoBean getThankYouPage() {
-        return getLinkedBean("visitscotland:thankYouPage", HippoBean.class);
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:translation")
     public String getTranslation() {
         return getSingleProperty("visitscotland:translation");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:diff")
+    public String getDiff() {
+        return getSingleProperty("visitscotland:diff");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
+    public Boolean getTranslationFlag() {
+        return getSingleProperty("visitscotland:translationFlag");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
+    public String getTranslationPriority() {
+        return getSingleProperty("visitscotland:translationPriority");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:guide")
+    public HippoHtml getGuide() {
+        return getHippoHtml("visitscotland:guide");
     }
 }

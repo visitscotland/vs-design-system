@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: f3e36520-0d98-48c2-a88e-e714449ff640
+          jcr:uuid: 32ed2976-e829-470e-bdc8-1af3868b6fe3
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -43,15 +43,6 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: String
             hipposysedit:validators: [required]
-          /thankYouPage:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:thankYouPage
-            hipposysedit:primary: false
-            hipposysedit:type: hippo:mirror
-            hipposysedit:validators: [required]
           /translation:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -82,13 +73,10 @@ definitions:
           visitscotland:title: ''
           visitscotland:marketoId: ''
           visitscotland:munchkinId: ''
-          jcr:uuid: ca631fd5-fa0b-4715-9c9f-13dcab3a9d2d
+          jcr:uuid: 4337de46-254a-42b5-bf3f-d069c480e441
           hippostdpubwf:lastModificationDate: 2021-05-14T11:09:19.663+01:00
           hippostdpubwf:creationDate: 2021-05-14T11:09:19.664+01:00
           visitscotland:translation: ''
-          /visitscotland:thankYouPage:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
           /visitscotland:guide:
             jcr:primaryType: hippostd:html
             hippostd:content: |-
@@ -152,15 +140,6 @@ definitions:
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''Youtube,Table''}'
-          /thankYouPage:
-            jcr:primaryType: frontend:plugin
-            caption: Thank you page
-            field: thankYouPage
-            hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /translation:
             jcr:primaryType: frontend:plugin
             caption: Translation
