@@ -41,6 +41,16 @@ export default {
 
 <style lang="scss">
     .card.vs-mega-nav-featured-item {
+        &:hover {
+            box-shadow: 0px 6px 6px 5px rgba(0,0,41,0.16)
+        }
+
+        &:focus {
+            .vs-stretched-link-card__link {
+                outline: 2px;
+            }
+        }
+
         .card-body {
             position: absolute;
             width: 80%;
@@ -59,6 +69,10 @@ export default {
 
         .vs-stretched-link-card__content {
             display: none;
+        }
+
+        .vs-stretched-link-card__link a {
+            padding: $spacer-2;
         }
 
         @include media-breakpoint-up(md) {
