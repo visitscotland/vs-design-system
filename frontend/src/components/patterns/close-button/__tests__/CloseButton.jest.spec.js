@@ -1,10 +1,10 @@
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 
 import VsCloseButton from '../CloseButton';
 
 const slotContent = 'SR Only Content';
 
-const factoryShallowMount = (propsData) => shallowMount(VsCloseButton, {
+const factoryMount = (propsData) => mount(VsCloseButton, {
     propsData: {
         ...propsData,
     },
@@ -15,18 +15,16 @@ const factoryShallowMount = (propsData) => shallowMount(VsCloseButton, {
 
 let wrapper;
 beforeEach(() => {
-    wrapper = factoryShallowMount();
+    wrapper = factoryMount();
 });
 
 describe('VSCloseButton', () => {
     it('should render a vsbutton-stub', () => {
-        expect(wrapper.element.tagName).toBe('VSBUTTON-STUB');
+        expect(wrapper.find('[data-test="vs-close-button"]').exists()).toBe(true);
     });
 
-    it('should contain a vsicon-stub', () => {
-        const icon = wrapper.find('vsicon-stub');
-
-        expect(icon.exists()).toBe(true);
+    it('should contain a vs-icon', () => {
+        expect(wrapper.find('[data-test="vs-icon"]').exists()).toBe(true);
     });
 
     describe(':slots', () => {

@@ -11,6 +11,7 @@
         }"
         :style="[customColour ? {fill: customColour} : {}]"
         v-bind="$attrs"
+        data-test="vs-icon"
     />
 </template>
 
