@@ -20,7 +20,7 @@
         <#assign image = "" />
     </#if>
 
-    <vs-article isStandardPage>
+    <vs-article>
         <#if image?? && image?has_content>
             <template slot="vsArticleImg">
                 <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>

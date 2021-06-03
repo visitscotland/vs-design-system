@@ -2,7 +2,7 @@
 <#include "article-sidebar.ftl">
 
 <#macro articleSection section alignSidebar>
-    <vs-article-section sidebar-align="${alignSidebar}" isStandardPage>
+    <vs-article-section sidebar-align="${alignSidebar}">
         <template slot="articleSidebar">
             <#if section.quote?? || section.image??>
                 <@articleSidebar section=section alignSidebar=alignSidebar />
