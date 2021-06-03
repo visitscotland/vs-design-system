@@ -55,13 +55,10 @@ props:
       value: "{!font_size_base} * 0.875"
     - name: lead-font-size
       value: "{!font_size_base} * 1.125"
-<<<<<<< HEAD
-    - name: teaser-font-size
-      value: "{!font_size_base} * 1"
-=======
     - name: lead-font-size-md
       value: "{!font_size_base} * 1.25"
->>>>>>> 2008b511edd981240296bfb38689ad9cb727e35b
+    - name: teaser-font-size
+      value: "{!font_size_base} * 1"
     - name: small-font-size
       value: "{!font_size_base} * .875"
     - name: nav-lvl1-desktop-font-size
