@@ -23,6 +23,10 @@ props:
       value: "{!font_size_base} * 1.25"
     - name: h6-font-size
       value: "{!font_size_base} * 1.125"
+    - name: body-font-size
+      value: "{!font_size_base} * 1"
+    - name: body-font-size-md
+      value: "{!font_size_base} * 1.125"
     - name: h3-sub-font-size
       value: "{!font_size_base} * 1"
     - name: h2-sub-font-size
