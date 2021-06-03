@@ -10,7 +10,7 @@
                 md="5"
                 xl="4"
                 data-test="vs-article-section__sidebar"
-                :class="isStandardPage ? 'col-xxl-4' : 'col-xxl-3'"
+                class="col-xxl-4"
                 :offset-xl="sidebarAlign === 'right' ? '1' : ''"
                 :order-md="sidebarAlign === 'right' ? '2' : ''"
             >
@@ -22,7 +22,6 @@
                 md="7"
                 data-test="vs-article-section__content"
                 :offset-xl="sidebarAlign === 'left' ? '1' : ''"
-                :class="{ 'offset-xxl-1': sidebarAlign === 'right' }"
             >
                 <div class="mx-6 mx-md-0">
                     <VsRichTextWrapper>
@@ -62,14 +61,6 @@ export default {
             type: String,
             default: 'left',
             validator: (value) => value.match(/(left|right)/),
-        },
-        /**
-         * If isStandardPage is true, the layout will change on larger viewports
-         *  to be displayed as 10 cols instead of 12.
-         */
-        isStandardPage: {
-            type: Boolean,
-            default: false,
         },
     },
     computed: {
