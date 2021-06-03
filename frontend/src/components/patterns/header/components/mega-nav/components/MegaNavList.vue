@@ -29,6 +29,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .vs-mega-nav-list {
     position: relative;
     padding: 0;

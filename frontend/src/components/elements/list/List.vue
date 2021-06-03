@@ -67,11 +67,11 @@ export default {
             line-height: $line-height-xs;
         }
 
-        ul{
+        ul:not(.vs-mega-nav-list) {
             list-style: none;
             margin: $spacer-4 0 $spacer-5 $spacer-6;
 
-            li{
+            li {
                 &::before{
                     content: "– ";
                     padding-right: 0.6rem;

@@ -40,7 +40,31 @@
                         >
                             {{ subHeading.cta }}
                         </VsMegaNavListItem>
+
+                        asdfasfsd
                     </VsMegaNavList>
+                </template>
+
+                <template
+                    slot="navFeaturedItems"
+                    v-if="item.title === 'Accommodation' || item.title === 'Inspiration'"
+                >
+                    <VsMegaNavFeaturedItem link="www.visitscotland.com">
+                        <template slot="vs-featured-item-header">
+                            From our home to yours – see Scotland virtually
+                        </template>
+
+                        <template slot="vs-featured-item-content">
+                            <p>
+                                Although it’s not possible to come to Scotland at the moment,
+                                thanks to modern technology, you can still see stunning
+                            </p>
+                        </template>
+
+                        <template slot="vs-featured-item-link">
+                            A link to a page
+                        </template>
+                    </VsMegaNavFeaturedItem>
                 </template>
             </VsMegaNavTopMenuItem>
         </template>
@@ -50,7 +74,7 @@
                 <VsMegaNavAccordionItem
                     :title="item.title"
                     level="1"
-                    :control-id="mobileItemIndex"
+                    :control-id="mobileItemIndex.toString()"
                     v-for="(item, mobileItemIndex) in header.mainNav"
                     :key="mobileItemIndex"
                 >
@@ -67,7 +91,7 @@
                     <VsMegaNavAccordionItem
                         :title="subHeading.title"
                         level="2"
-                        :control-id="subHeadingIndex"
+                        :control-id="subHeadingIndex.toString()"
                         v-for="(subHeading, subHeadingIndex) in item.dropdownNav"
                         :key="subHeadingIndex"
                     >
@@ -92,6 +116,28 @@
                             </VsMegaNavListItem>
                         </VsMegaNavList>
                     </VsMegaNavAccordionItem>
+                    <template
+                        v-if="item.title === 'Accommodation' || item.title === 'Inspiration'"
+                    >
+                        <VsMegaNavFeaturedItem link="www.visitscotland.com">
+                            <template slot="vs-featured-item-header">
+                                From our home to yours – see Scotland virtually
+                            </template>
+
+                            <template slot="vs-featured-item-content">
+                                <p>
+                                    Although it’s not possible to come to
+                                    Scotland at the moment, thanks to
+                                    modern technology, you can still see
+                                    stunning
+                                </p>
+                            </template>
+
+                            <template slot="vs-featured-item-link">
+                                A link to a page
+                            </template>
+                        </VsMegaNavFeaturedItem>
+                    </template>
                 </VsMegaNavAccordionItem>
             </VsAccordion>
         </template>
