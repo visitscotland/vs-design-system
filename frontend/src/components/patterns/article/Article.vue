@@ -8,7 +8,7 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    :class="{ 'col-xxl-10 offset-xxl-1': isStandardPage }"
+                    class="col-xxl-10 offset-xxl-1"
                 >
                     <div class="vs-article__wrapper mb-9 mb-md-11">
                         <!-- @slot Slot to contain the header image for this article -->
@@ -75,16 +75,6 @@ export default {
         VsRichTextWrapper,
         VsHeading,
     },
-    props: {
-        /**
-         * If isStandardPage is true, the layout will change on larger viewports
-         *  to be displayed as 10 cols instead of 12.
-         */
-        isStandardPage: {
-            type: Boolean,
-            default: false,
-        },
-    },
 };
 </script>
 
@@ -143,7 +133,7 @@ export default {
         </template>
     </VsPageIntro>
 
-<VsArticle isStandardPage>
+<VsArticle>
     <template slot="vsArticleImg">
         <VsImageWithCaption
             v-for="(item, index) in imageWithCaption.imageExamples.fullwidth"
@@ -174,7 +164,7 @@ export default {
         for more experienced hikers.
     </template>
 
-    <VsArticleSection sidebar-align="left" isStandardPage>
+    <VsArticleSection sidebar-align="left">
         <template slot="articleSidebar">
             <VsArticleSidebar sidebar-align="left">
                 <template slot="vsArticleSidebarImg">
@@ -249,7 +239,7 @@ export default {
     </VsArticleSection>
 </VsArticle>
 
-<VsArticle isStandardPage>
+<VsArticle>
     <template slot="vsArticleTitle">
         Routes to the Summit
     </template>
@@ -261,7 +251,7 @@ export default {
         more experienced hikers.
     </template>
 
-    <VsArticleSection sidebar-align="left" isStandardPage>
+    <VsArticleSection sidebar-align="left">
         <template slot="articleSidebar">
             <VsArticleSidebar sidebar-align="left">
                 <template slot="vsArticleSidebarQuote">
@@ -304,7 +294,7 @@ export default {
         </p>
     </VsArticleSection>
 
-    <VsArticleSection sidebar-align="right" isStandardPage>
+    <VsArticleSection sidebar-align="right">
         <template slot="articleSidebar">
             <VsArticleSidebar sidebar-align="right">
                 <template slot="vsArticleSidebarImg">
