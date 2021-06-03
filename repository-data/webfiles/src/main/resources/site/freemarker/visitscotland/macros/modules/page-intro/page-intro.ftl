@@ -26,9 +26,14 @@
 <#-- @ftlvariable name="heroDetails" type="com.visitscotland.brxm.model.FlatImage" -->
 <#-- @ftlvariable name="itinerary" type="com.visitscotland.brxm.model.ItineraryPage" -->
 
-<#macro pageIntro content heroDetails="" itinerary="">
+<#macro pageIntro content heroDetails="" itinerary="" simplePage="" >
 
-    <#assign themeName = themeCalculator(introTheme)>
+    <#if simplePage?has_content >
+        <#assign themeName = themeCalculator("light", "", [])>
+    <#else>
+        <#assign themeName = themeCalculator(introTheme, "", [])>
+    </#if>
+
 
     <#if content.heroImage??>
         <@hst.link var="hero" hippobean=content.heroImage.original/>

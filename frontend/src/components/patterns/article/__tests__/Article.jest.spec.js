@@ -1,15 +1,21 @@
 import { shallowMount } from '@vue/test-utils';
-
+import VsCol from '@components/elements/layout/Col';
 import VsArticle from '../Article';
 
-const slotContent = 'Article Content';
+const defaultSlotText = 'Article content';
+const titleSlotText = 'Article title';
+const introSlotText = 'Article intro';
+const imgSlotText = 'Article img';
 
 const factoryShallowMount = (propsData) => shallowMount(VsArticle, {
     propsData: {
         ...propsData,
     },
     slots: {
-        default: slotContent,
+        default: defaultSlotText,
+        vsArticleImg: imgSlotText,
+        vsArticleTitle: titleSlotText,
+        vsArticleIntro: introSlotText,
     },
 });
 
@@ -24,18 +30,30 @@ describe('VsArticle', () => {
     });
 
     describe(':props', () => {
-        it('should accept and render a `tag` property', async() => {
-            await wrapper.setProps({
-                tag: 'test-tag',
+        it('Should render correct column class when isStandardPage is true', () => {
+            wrapper = factoryShallowMount({
+                isStandardPage: true,
             });
-
-            expect(wrapper.attributes('tag')).toBe('test-tag');
+            const col = wrapper.findComponent(VsCol);
+            expect(col.classes()).toContain('col-xxl-10', 'offset-xxl-1');
         });
     });
 
     describe(':slots', () => {
-        it('renders content inserted into the default `slot`', () => {
-            expect(wrapper.text()).toContain(slotContent);
+        it('renders content inserted in a vsArticleImg slot', () => {
+            expect(wrapper.text()).toContain(imgSlotText);
+        });
+
+        it('renders content inserted in a vsArticleTitle slot', () => {
+            expect(wrapper.text()).toContain(titleSlotText);
+        });
+
+        it('renders content inserted in a vsArticleIntro slot', () => {
+            expect(wrapper.text()).toContain(introSlotText);
+        });
+
+        it('renders content inserted in the default slot', () => {
+            expect(wrapper.text()).toContain(defaultSlotText);
         });
     });
 });

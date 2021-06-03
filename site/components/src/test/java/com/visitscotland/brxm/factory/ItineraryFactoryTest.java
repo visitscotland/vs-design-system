@@ -14,6 +14,7 @@ import com.visitscotland.brxm.model.ItineraryPage;
 import com.visitscotland.brxm.model.ItineraryStopModule;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.services.ResourceBundleService;
+import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.junit.jupiter.api.DisplayName;
@@ -57,6 +58,8 @@ class ItineraryFactoryTest {
     DMSUtils utils;
     @Mock
     DocumentUtilsService documentUtils;
+    @Mock
+    Properties properties;
 
     @Test
     @DisplayName("Create an itinerary page")
@@ -161,7 +164,7 @@ class ItineraryFactoryTest {
     @DisplayName("Creates a simple stop from a DMSLink")
     void dmsStop_basic() throws JsonProcessingException {
         final String JSON = "{" +
-                " \"url\":\"https://mock.visitscotland.com/info/fake-product-p123\", " +
+                " \"url\":\"/info/fake-product-p123\", " +
                 " \"name\":\"Fake Product\", " +
                 " \"latitude\": 55.98129618868665, " +
                 " \"longitude\": -3.1749625514667117, " +
@@ -175,6 +178,7 @@ class ItineraryFactoryTest {
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
         when(bundle.getCtaLabel("label", Locale.UK)).thenReturn("Find out more");
+        when(properties.getDmsHost()).thenReturn("https://mock.visitscotland.com");
 
         ItineraryPage iti = factory.buildItinerary(itinerary, Locale.UK);
         assertNotNull(iti);
@@ -256,8 +260,8 @@ class ItineraryFactoryTest {
     @DisplayName("DMSStop - Opening Times")
     void dmsStop_openingTimes() throws JsonProcessingException {
         final String JSON = "{" +
-                " \"url\":\"https://mock.visitscotland.com/info/fake-product-p123\", " +
-                " \"todayOpeningTime\": {}" +
+                " \"url\":\"/info/fake-product-p123\", " +
+                " \"opening\": {}" +
                 "}";
         JsonNode node = new ObjectMapper().readTree(JSON);
         List<Day> days = new ItineraryDayMockBuilder().addDmsStop("123").addImage().buildAsList();
@@ -265,6 +269,7 @@ class ItineraryFactoryTest {
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
         when(bundle.getResourceBundle(ItineraryFactory.BUNDLE_FILE, "stop.opening", Locale.UK)).thenReturn("show times");
+        when(properties.getDmsHost()).thenReturn("https://mock.visitscotland.com");
 
         ItineraryStopModule module = getSingleStop(factory.buildItinerary(itinerary, Locale.UK));
         assertNotNull(module.getOpening());

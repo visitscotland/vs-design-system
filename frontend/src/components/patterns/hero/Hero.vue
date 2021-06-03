@@ -255,7 +255,7 @@ export default {
             bottom: 0;
             max-width: 400px;
             position: absolute;
-            right: 1rem;
+            right: 0;
             width: 14rem;
             z-index: 2;
         }

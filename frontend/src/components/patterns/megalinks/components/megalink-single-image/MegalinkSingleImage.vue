@@ -172,7 +172,7 @@ export default {
 
         .vs-megalink-single-image__link-list-item {
             margin-top: $spacer-4;
-            font-size: $lead-font-size;
+            font-size: $font-size-md;
 
             &:first-of-type {
                 margin-bottom: $spacer-0;

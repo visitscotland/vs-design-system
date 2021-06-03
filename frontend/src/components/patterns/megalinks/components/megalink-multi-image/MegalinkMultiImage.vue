@@ -122,7 +122,7 @@ export default {
         background: transparent;
         position: relative;
         margin-bottom: $spacer-8;
-        transition: box-shadow 800ms;
+        transition: box-shadow $duration-slowly;
 
         .vs-stretched-link {
             color: $color-base-text;
@@ -179,8 +179,10 @@ export default {
     };
 
     .vs-megalink-multi-image--dark.card {
-        .vs-stretched-link {
-            color: $color-white;
+        .vs-stretched-link-card__title {
+            .stretched-link {
+                color: $color-white;
+            }
         }
 
         &:hover {
@@ -222,7 +224,7 @@ export default {
             }
 
             .megalink-multi-image__content {
-                font-size: $lead-font-size;
+                font-size: $font-size-md;
                 margin-top: $spacer-8;
                 line-height: $line-height-m;
             }
