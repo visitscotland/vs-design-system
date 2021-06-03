@@ -29,6 +29,13 @@
                 <!-- @slot Slot for dropdown menu list content -->
                 <div class="vs-mega-nav-top-menu-item__columns-wrapper">
                     <slot name="dropdownContent" />
+
+                    <div
+                        class="vs-mega-nav-top-menu-item__featured vs-mega-nav-list"
+                        v-if="hasFeaturedItem"
+                    >
+                        <slot name="navFeaturedItems" />
+                    </div>
                 </div>
             </template>
         </VsMegaNavDropdown>
@@ -68,12 +75,17 @@ export default {
             default: '',
         },
     },
+    computed: {
+        hasFeaturedItem() {
+            return !!this.$slots.navFeaturedItems;
+        },
+    },
 };
 </script>
 
 <style lang="scss">
 
-.vs-mega-nav-top-menu-item{
+.vs-mega-nav-top-menu-item {
     @include media-breakpoint-up(xl) {
         margin-right: $spacer-6;
 
@@ -104,6 +116,12 @@ export default {
         height: 515px;
         overflow: hidden;
         align-content: flex-start;
+    }
+
+    &__featured.vs-mega-nav-list {
+        margin: 1rem 0 1.25rem 1.5rem;
+        position: absolute;
+        right: 0;
     }
 }
 
