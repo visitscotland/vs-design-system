@@ -237,7 +237,6 @@ export default {
 
         .vs-stretched-link-card__link {
             margin: $spacer-4 $spacer-0 $spacer-0;
-            padding: $spacer-2;
             color: $color-pink;
             text-decoration: underline;
         }
