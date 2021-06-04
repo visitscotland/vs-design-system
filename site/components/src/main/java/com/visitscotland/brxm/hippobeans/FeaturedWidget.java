@@ -12,7 +12,7 @@ import java.util.List;
 public class FeaturedWidget extends Widget {
 
     @HippoEssentialsGenerated(internalName = "visitscotland:items", allowModifications = false)
-    public <T extends Linkable> List<T> getItems() {
+    public <T extends Linkable & HippoBean> List<T> getItems() {
         return (List) getLinkedBeans("visitscotland:items", HippoBean.class);
     }
 }

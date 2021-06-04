@@ -9,6 +9,7 @@ import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.model.navigation.FeaturedItem;
 import com.visitscotland.brxm.model.navigation.NavigationWidget;
 import com.visitscotland.brxm.services.CommonUtilsService;
+import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
@@ -39,12 +40,12 @@ public class NavigationFactory {
 
     private ResourceBundleService bundle;
     private HippoUtilsService utils;
-    private LinkFactory linkFactory;
+    private LinkService linkService;
 
-    public NavigationFactory(ResourceBundleService bundle, HippoUtilsService utils, LinkFactory linkFactory) {
+    public NavigationFactory(ResourceBundleService bundle, HippoUtilsService utils, LinkService linkService) {
         this.bundle = bundle;
         this.utils = utils;
-        this.linkFactory = linkFactory;
+        this.linkService = linkService;
     }
 
     public RootMenuItem buildMenu(HstRequest request, HstSiteMenu hstSiteMenu) {
@@ -113,7 +114,7 @@ public class NavigationFactory {
         ArrayList<EnhancedLink> items = new ArrayList<>();
 
         for (Linkable linkable : document.getItems()) {
-            items.add(linkFactory.createEnhancedLink(linkable, locale, widget, false));
+            items.add(linkService.createEnhancedLink(linkable, locale, widget, false));
         }
 
         widget.setLinks(items);
