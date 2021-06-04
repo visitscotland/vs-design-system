@@ -137,12 +137,6 @@ export default {
             width: 100%;
         }
 
-        @include media-breakpoint-up(sm) {
-            display: inline-block;
-            vertical-align: top;
-            margin-bottom: $spacer-5;
-        }
-
         @include media-breakpoint-up(lg) {
             margin-right: $spacer-5;
         }
@@ -150,17 +144,26 @@ export default {
 
     &__content-container {
         display: block;
-
-        @include media-breakpoint-up(sm) {
-            display: inline-block;
-            vertical-align: top;
-        }
     }
 
     &--wide{
+        .vs-quote__author-container {
+            @include media-breakpoint-up(sm) {
+                display: inline-block;
+                vertical-align: top;
+                margin-bottom: $spacer-5;
+            }
+        }
+
         .vs-quote__content-container{
-            @include media-breakpoint-up(lg) {
+            @include media-breakpoint-up(sm) {
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            @include media-breakpoint-up(xl) {
                 width: calc(100% - 15rem);
+                margin-top: -7px;
             }
         }
     }

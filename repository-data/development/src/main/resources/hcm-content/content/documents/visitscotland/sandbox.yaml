@@ -4007,13 +4007,13 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 6033a92f-4d87-419b-a18f-0c85eb0a41e4
         hippo:name: iCentre
-        hippo:versionHistory: e044e857-88bd-41d6-8e81-a9d0fa1e1edf
+        hippo:versionHistory: f7432e37-d2a4-4e9b-bfe2-a04db08bf581
         /icentre[1]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: d6d547f6-3654-4f51-8ac8-b10f428ea62e
           hippo:availability: []
-          hippostd:holder: admin
+          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
@@ -4060,17 +4060,22 @@
                 hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
             /visitscotland:quote:
               jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
+              visitscotland:author: Gemma
+              visitscotland:role: UI Developer
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
               /visitscotland:quote:
                 jcr:primaryType: hippostd:html
-                hippostd:content: ''
+                hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit. Sed eget porta nisl. Morbi eget ornare nibh. Ut vehicula dui
+                  interdum, facilisis erat ac, efficitur est.&nbsp;</p>
+              /visitscotland:product:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''
@@ -4085,13 +4090,15 @@
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
           jcr:uuid: 51829c8d-d52c-4663-8961-0f6834f615a7
           hippo:availability: [preview]
+          hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.389+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-03T15:37:48.210+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
+          visitscotland:translation: ''
           /visitscotland:ICentre:
             jcr:primaryType: visitscotland:ICentre
             visitscotland:description: ''
@@ -4128,6 +4135,24 @@
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Gemma
+              visitscotland:role: UI Developer
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit. Sed eget porta nisl. Morbi eget ornare nibh. Ut vehicula dui
+                  interdum, facilisis erat ac, efficitur est.&nbsp;</p>
+              /visitscotland:product:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''
@@ -4142,14 +4167,16 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: e579d854-1c60-4c02-897b-ae10b0a4f8c6
           hippo:availability: [live]
+          hippostd:retainable: false
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.389+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-03T15:37:48.210+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-23T10:09:29.484+01:00
+          hippostdpubwf:publicationDate: 2021-06-03T15:37:50.370+01:00
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
+          visitscotland:translation: ''
           /visitscotland:ICentre:
             jcr:primaryType: visitscotland:ICentre
             visitscotland:description: ''
@@ -4186,6 +4213,24 @@
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Gemma
+              visitscotland:role: UI Developer
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit. Sed eget porta nisl. Morbi eget ornare nibh. Ut vehicula dui
+                  interdum, facilisis erat ac, efficitur est.&nbsp;</p>
+              /visitscotland:product:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''
@@ -13208,7 +13253,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: ca93dea2-4771-4c6c-8cd2-d90246a97684
         hippo:name: Ben Nevis Page
-        hippo:versionHistory: f088434c-fddb-4347-b248-25936d271868
+        hippo:versionHistory: 47c713a5-e445-49b0-8e48-9592bef1e7bb
         /content[1]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable']
@@ -13218,7 +13263,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:11:21.745Z
-          hippostdpubwf:lastModificationDate: 2021-05-31T16:27:44.465+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-04T16:16:46.524+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: df63baaa-d0e0-4a04-9662-a418f720bd1d
           hippotranslation:locale: en
@@ -13229,7 +13274,7 @@
           visitscotland:seoTitle: Ben Nevis
           visitscotland:teaser: Scotland's landscape is scattered with Munros and
             mist-shrouded hills...
-          visitscotland:theme: Simple
+          visitscotland:theme: Standard
           visitscotland:title: Ben Nevis Scotland's Tallest Peak
           visitscotland:translation: ''
           /visitscotland:heroImage:
@@ -13255,7 +13300,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:11:21.745Z
-          hippostdpubwf:lastModificationDate: 2021-05-31T16:27:58.531+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-04T16:16:50.007+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: df63baaa-d0e0-4a04-9662-a418f720bd1d
           hippotranslation:locale: en
@@ -13266,7 +13311,7 @@
           visitscotland:seoTitle: Ben Nevis
           visitscotland:teaser: Scotland's landscape is scattered with Munros and
             mist-shrouded hills...
-          visitscotland:theme: Simple
+          visitscotland:theme: Standard
           visitscotland:title: Ben Nevis Scotland's Tallest Peak
           visitscotland:translation: ''
           /visitscotland:heroImage:
@@ -13292,9 +13337,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:11:21.745Z
-          hippostdpubwf:lastModificationDate: 2021-05-31T16:27:58.531+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-04T16:16:50.007+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-31T16:28:00.066+01:00
+          hippostdpubwf:publicationDate: 2021-06-04T16:16:51.793+01:00
           hippotranslation:id: df63baaa-d0e0-4a04-9662-a418f720bd1d
           hippotranslation:locale: en
           visitscotland:breadcrumb: Ben Nevis
@@ -13304,7 +13349,7 @@
           visitscotland:seoTitle: Ben Nevis
           visitscotland:teaser: Scotland's landscape is scattered with Munros and
             mist-shrouded hills...
-          visitscotland:theme: Simple
+          visitscotland:theme: Standard
           visitscotland:title: Ben Nevis Scotland's Tallest Peak
           visitscotland:translation: ''
           /visitscotland:heroImage:
@@ -13326,7 +13371,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: f829b041-1108-4836-b95a-77f23a4d2a05
         hippo:name: Experiencing Ben Nevis
-        hippo:versionHistory: fbe150b2-deec-4090-8e51-b496e5f37d69
+        hippo:versionHistory: 75545159-f7d3-48a1-93f4-36e6c9add3d6
         /experiencing-ben-nevis[1]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -13336,7 +13381,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-05-31T16:33:57.563+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-03T17:09:28.466+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
@@ -13350,8 +13395,7 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>Scotland's landscape is scattered with Munros and
-              mist-shrouded hills...</p>
+            hippostd:content: ''
           /visitscotland:paragraph:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
@@ -13372,7 +13416,7 @@
               visitscotland:role: ''
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
@@ -13396,7 +13440,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-05-31T16:35:47.137+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-03T17:09:31.974+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
@@ -13410,8 +13454,7 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>Scotland's landscape is scattered with Munros and
-              mist-shrouded hills...</p>
+            hippostd:content: ''
           /visitscotland:paragraph:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
@@ -13432,7 +13475,7 @@
               visitscotland:role: ''
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
@@ -13456,9 +13499,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-05-31T16:35:47.137+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-03T17:09:31.974+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-31T16:57:23.714+01:00
+          hippostdpubwf:publicationDate: 2021-06-03T17:09:35.140+01:00
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
           visitscotland:anchor: introduction
@@ -13471,8 +13514,7 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>Scotland's landscape is scattered with Munros and
-              mist-shrouded hills...</p>
+            hippostd:content: ''
           /visitscotland:paragraph:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
@@ -13493,7 +13535,7 @@
               visitscotland:role: ''
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
@@ -13513,7 +13555,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: e3bcd461-ebc0-44bb-a53e-4844331bf2b1
         hippo:name: Routes to the summit
-        hippo:versionHistory: a3f577fb-0d99-4a82-a136-04000ba6411e
+        hippo:versionHistory: 652f47f7-85b4-4138-b782-c88a6418e901
         /routes-to-the-summit[1]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -13523,7 +13565,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:15:20.689Z
-          hippostdpubwf:lastModificationDate: 2021-05-31T16:55:16.149+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-04T15:55:44.420+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5e0fc71f-5844-48ba-92e8-97f760987dbf
           hippotranslation:locale: en
@@ -13575,8 +13617,6 @@
                 <p>Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers.</p>
 
                 <p>A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
-
-                <p>&nbsp;</p>
             /visitscotland:media:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: 42599f58-1035-40f4-8515-19c615ba486a
@@ -13585,8 +13625,8 @@
               hippo:values: []
             /visitscotland:Quote:
               jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
+              visitscotland:author: Gemma
+              visitscotland:role: UI Developer
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
@@ -13633,7 +13673,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:15:20.689Z
-          hippostdpubwf:lastModificationDate: 2021-05-31T16:55:29.710+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-04T15:55:49.840+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5e0fc71f-5844-48ba-92e8-97f760987dbf
           hippotranslation:locale: en
@@ -13685,8 +13725,6 @@
                 <p>Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers.</p>
 
                 <p>A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
-
-                <p>&nbsp;</p>
             /visitscotland:media:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: 42599f58-1035-40f4-8515-19c615ba486a
@@ -13695,8 +13733,8 @@
               hippo:values: []
             /visitscotland:Quote:
               jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
+              visitscotland:author: Gemma
+              visitscotland:role: UI Developer
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
@@ -13743,9 +13781,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:15:20.689Z
-          hippostdpubwf:lastModificationDate: 2021-05-31T16:55:29.710+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-04T15:55:49.840+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-31T16:55:31.542+01:00
+          hippostdpubwf:publicationDate: 2021-06-04T15:55:51.579+01:00
           hippotranslation:id: 5e0fc71f-5844-48ba-92e8-97f760987dbf
           hippotranslation:locale: en
           visitscotland:anchor: Routes to the Summit
@@ -13796,8 +13834,6 @@
                 <p>Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers.</p>
 
                 <p>A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
-
-                <p>&nbsp;</p>
             /visitscotland:media:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: 42599f58-1035-40f4-8515-19c615ba486a
@@ -13806,8 +13842,8 @@
               hippo:values: []
             /visitscotland:Quote:
               jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
+              visitscotland:author: Gemma
+              visitscotland:role: UI Developer
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
@@ -13850,7 +13886,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 7b0b8a2c-8ca7-4b45-a4ed-aa4bfdd742c7
         hippo:name: Frequently Asked Questions
-        hippo:versionHistory: e8dad17d-b52f-4eeb-ac0d-03f8cf0b65e4
+        hippo:versionHistory: c5be807e-b1ca-4647-b632-4fb372766ca9
         /frequently-asked-questions[1]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -13860,7 +13896,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-31T16:56:51.879+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-31T17:02:14.952+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-03T17:17:16.746+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 87b258bb-f448-40d6-8b28-56285a41fc7e
           hippotranslation:locale: en
@@ -13961,10 +13997,25 @@
                 <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
             /visitscotland:media:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 7cf5d268-21fe-4ae6-8d90-95326c4732da
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
+            /visitscotland:Quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: ''
+              visitscotland:role: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit. Mauris vitae magna facilisis, finibus erat et, tristique est.
+                  Maecenas aliquet erat vestibulum nunc vulputate viverra.</p>
         /frequently-asked-questions[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -13974,7 +14025,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-31T16:56:51.879+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-31T17:02:24.382+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-03T17:17:51.685+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 87b258bb-f448-40d6-8b28-56285a41fc7e
           hippotranslation:locale: en
@@ -14075,10 +14126,25 @@
                 <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
             /visitscotland:media:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 7cf5d268-21fe-4ae6-8d90-95326c4732da
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
+            /visitscotland:Quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: ''
+              visitscotland:role: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit. Mauris vitae magna facilisis, finibus erat et, tristique est.
+                  Maecenas aliquet erat vestibulum nunc vulputate viverra.</p>
         /frequently-asked-questions[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -14088,9 +14154,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-31T16:56:51.879+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-31T17:02:24.382+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-03T17:17:51.685+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-31T17:02:25.784+01:00
+          hippostdpubwf:publicationDate: 2021-06-03T17:17:53.413+01:00
           hippotranslation:id: 87b258bb-f448-40d6-8b28-56285a41fc7e
           hippotranslation:locale: en
           visitscotland:anchor: faqs
@@ -14190,16 +14256,31 @@
                 <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
             /visitscotland:media:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 7cf5d268-21fe-4ae6-8d90-95326c4732da
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
+            /visitscotland:Quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: ''
+              visitscotland:role: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit. Mauris vitae magna facilisis, finibus erat et, tristique est.
+                  Maecenas aliquet erat vestibulum nunc vulputate viverra.</p>
       /accommodation-near-ben-nevis:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: ca49d53f-0c00-4117-ac4e-1e6c7d9fe0ae
         hippo:name: Accommodation Near Ben Nevis
-        hippo:versionHistory: 464ae960-65f9-446d-91dc-0a9ea215bc05
+        hippo:versionHistory: 3cc7e6fb-9f34-4500-9f15-8a3e4ed4edab
         /accommodation-near-ben-nevis[1]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -14210,7 +14291,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-31T17:11:38.811+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-31T17:19:02.592+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-03T15:33:37.801+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e2a6177d-f3b1-47a8-b23c-c1905a476dee
           hippotranslation:locale: en
@@ -14234,22 +14315,35 @@
               hippostd:content: |-
                 <h3>Nearby attractions</h3>
 
-                <ul>
-                 <li>Head to the&nbsp;<a href="https://www.visitscotland.com/info/see-do/ben-nevis-distillery-p421401" title="">Ben Nevis Distillery</a>, one of Scotland’s oldest distilleries established in 1825. A perfect souvenir for those who have completed the climb, take a tour of the distillery the following day and ease your weary muscles with a dram of single malt. The distillery is at Lochy Bridge, Fort William, around 7 minutes’ drive away from Ben Nevis.</li>
-                 <li>Fort William and Lochaber is a region known as the ‘Outdoor Capital of the UK’ so there is a wide variety of adrenaline pumping activities on offer. Try gorge walking or canyoning with&nbsp;<a href="http://www.verticaldescents.com/" title="" target="_blank">Vertical Descents</a>, or get hooked on a new watersport such as white water funyakking and river rafting with&nbsp;<a href="https://www.activehighs.co.uk/" title="" target="_blank">Active Highs</a>.</li>
-                 <li>In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding. &nbsp;&nbsp;</li>
-                </ul>
+                <p>Head to the&nbsp;<a href="https://www.visitscotland.com/info/see-do/ben-nevis-distillery-p421401" title="">Ben Nevis Distillery</a>, one of Scotland’s oldest distilleries established in 1825. A perfect souvenir for those who have completed the climb, take a tour of the distillery the following day and ease your weary muscles with a dram of single malt. The distillery is at Lochy Bridge, Fort William, around 7 minutes’ drive away from Ben Nevis.</p>
+
+                <p>Fort William and Lochaber is a region known as the ‘Outdoor Capital of the UK’ so there is a wide variety of adrenaline pumping activities on offer. Try gorge walking or canyoning with&nbsp;<a href="http://www.verticaldescents.com/" title="" target="_blank">Vertical Descents</a>, or get hooked on a new watersport such as white water funyakking and river rafting with&nbsp;<a href="https://www.activehighs.co.uk/" title="" target="_blank">Active Highs</a>.</p>
+
+                <p>In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding. &nbsp;&nbsp;</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 7cf5d268-21fe-4ae6-8d90-95326c4732da
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:paragraph[2]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <ul>
-                 <li>There are plenty of beautiful scenic walks in the Fort William area. Take a short stroll through the Nevis Gorge to admire the cascading&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/steallfalls.shtml" title="" target="_blank">Steall Falls</a>, or wander along to the Iron Age&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/dun-deardail.shtml" title="" target="_blank">Dun Deardail</a>&nbsp;fort which boasts a stunning hilltop location and can be reached by following the waymarked path from Glen Nevis.</li>
-                 <li>&nbsp;In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding.&nbsp;</li>
-                 <li>Visit the fascinating and free&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-west-highland-museum-p246721" title="" target="_blank">West Highland Museum</a>&nbsp;in Fort William, and learn all about the north west Highlands Jacobite history, with medals, weapons and one of Bonnie Prince Charlie's silk waistcoats on display.</li>
-                 <li>Take the rail journey of a lifetime aboard the iconic&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-jacobite-steam-train-p292641" title="">Jacobite Steam Train</a>, which departs from Fort William to Mallaig during the summer months along the West Highland Line. It travels over the magnificent Glenfinnan Viaduct which featured in the&nbsp;<a href="https://www.visitscotland.com/see-do/attractions/tv-film/harry-potter-itinerary/" title="">Harry Potter film</a>&nbsp;series.</li>
-                </ul>
+                <p>There are plenty of beautiful scenic walks in the Fort William area. Take a short stroll through the Nevis Gorge to admire the cascading&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/steallfalls.shtml" title="" target="_blank">Steall Falls</a>, or wander along to the Iron Age&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/dun-deardail.shtml" title="" target="_blank">Dun Deardail</a>&nbsp;fort which boasts a stunning hilltop location and can be reached by following the waymarked path from Glen Nevis.</p>
+
+                <p>&nbsp;In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding.&nbsp;</p>
+
+                <p>Visit the fascinating and free&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-west-highland-museum-p246721" title="" target="_blank">West Highland Museum</a>&nbsp;in Fort William, and learn all about the north west Highlands Jacobite history, with medals, weapons and one of Bonnie Prince Charlie's silk waistcoats on display.</p>
+
+                <p>Take the rail journey of a lifetime aboard the iconic&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-jacobite-steam-train-p292641" title="">Jacobite Steam Train</a>, which departs from Fort William to Mallaig during the summer months along the West Highland Line. It travels over the magnificent Glenfinnan Viaduct which featured in the&nbsp;<a href="https://www.visitscotland.com/see-do/attractions/tv-film/harry-potter-itinerary/" title="">Harry Potter film</a>&nbsp;series.</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:paragraph[3]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
@@ -14266,12 +14360,6 @@
                 <p>For incredible views of the mountain, spend the night at the friendly&nbsp;<a href="https://www.visitscotland.com/info/accommodation/glen-nevis-youth-hostel-syha-p213771/" title="">Glen Nevis Youth Hostel</a>. Ideally situated at the foot of Ben Nevis with drying facilities and spacious places to relax, the hostel is a great place to unwind after a long day of walking.</p>
 
                 <p>Look out for places to stay which are part of the&nbsp;<a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Fort+William&amp;locplace=7461&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off&amp;src_awards__0=qaw" title="">Walker's Welcome Scheme</a>, which will cater especially for walkers' needs and provide information and useful facilities throughout your stay.</p>
-            /visitscotland:media:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 42599f58-1035-40f4-8515-19c615ba486a
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
         /accommodation-near-ben-nevis[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -14281,7 +14369,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-31T17:11:38.811+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-31T17:17:30.380+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-03T11:33:36.570+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e2a6177d-f3b1-47a8-b23c-c1905a476dee
           hippotranslation:locale: en
@@ -14305,22 +14393,35 @@
               hippostd:content: |-
                 <h3>Nearby attractions</h3>
 
-                <ul>
-                 <li>Head to the&nbsp;<a href="https://www.visitscotland.com/info/see-do/ben-nevis-distillery-p421401" title="">Ben Nevis Distillery</a>, one of Scotland’s oldest distilleries established in 1825. A perfect souvenir for those who have completed the climb, take a tour of the distillery the following day and ease your weary muscles with a dram of single malt. The distillery is at Lochy Bridge, Fort William, around 7 minutes’ drive away from Ben Nevis.</li>
-                 <li>Fort William and Lochaber is a region known as the ‘Outdoor Capital of the UK’ so there is a wide variety of adrenaline pumping activities on offer. Try gorge walking or canyoning with&nbsp;<a href="http://www.verticaldescents.com/" title="" target="_blank">Vertical Descents</a>, or get hooked on a new watersport such as white water funyakking and river rafting with&nbsp;<a href="https://www.activehighs.co.uk/" title="" target="_blank">Active Highs</a>.</li>
-                 <li>In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding. &nbsp;&nbsp;</li>
-                </ul>
+                <p>Head to the&nbsp;<a href="https://www.visitscotland.com/info/see-do/ben-nevis-distillery-p421401" title="">Ben Nevis Distillery</a>, one of Scotland’s oldest distilleries established in 1825. A perfect souvenir for those who have completed the climb, take a tour of the distillery the following day and ease your weary muscles with a dram of single malt. The distillery is at Lochy Bridge, Fort William, around 7 minutes’ drive away from Ben Nevis.</p>
+
+                <p>Fort William and Lochaber is a region known as the ‘Outdoor Capital of the UK’ so there is a wide variety of adrenaline pumping activities on offer. Try gorge walking or canyoning with&nbsp;<a href="http://www.verticaldescents.com/" title="" target="_blank">Vertical Descents</a>, or get hooked on a new watersport such as white water funyakking and river rafting with&nbsp;<a href="https://www.activehighs.co.uk/" title="" target="_blank">Active Highs</a>.</p>
+
+                <p>In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding. &nbsp;&nbsp;</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 7cf5d268-21fe-4ae6-8d90-95326c4732da
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:paragraph[2]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <ul>
-                 <li>There are plenty of beautiful scenic walks in the Fort William area. Take a short stroll through the Nevis Gorge to admire the cascading&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/steallfalls.shtml" title="" target="_blank">Steall Falls</a>, or wander along to the Iron Age&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/dun-deardail.shtml" title="" target="_blank">Dun Deardail</a>&nbsp;fort which boasts a stunning hilltop location and can be reached by following the waymarked path from Glen Nevis.</li>
-                 <li>&nbsp;In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding.&nbsp;</li>
-                 <li>Visit the fascinating and free&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-west-highland-museum-p246721" title="" target="_blank">West Highland Museum</a>&nbsp;in Fort William, and learn all about the north west Highlands Jacobite history, with medals, weapons and one of Bonnie Prince Charlie's silk waistcoats on display.</li>
-                 <li>Take the rail journey of a lifetime aboard the iconic&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-jacobite-steam-train-p292641" title="">Jacobite Steam Train</a>, which departs from Fort William to Mallaig during the summer months along the West Highland Line. It travels over the magnificent Glenfinnan Viaduct which featured in the&nbsp;<a href="https://www.visitscotland.com/see-do/attractions/tv-film/harry-potter-itinerary/" title="">Harry Potter film</a>&nbsp;series.</li>
-                </ul>
+                <p>There are plenty of beautiful scenic walks in the Fort William area. Take a short stroll through the Nevis Gorge to admire the cascading&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/steallfalls.shtml" title="" target="_blank">Steall Falls</a>, or wander along to the Iron Age&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/dun-deardail.shtml" title="" target="_blank">Dun Deardail</a>&nbsp;fort which boasts a stunning hilltop location and can be reached by following the waymarked path from Glen Nevis.</p>
+
+                <p>&nbsp;In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding.&nbsp;</p>
+
+                <p>Visit the fascinating and free&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-west-highland-museum-p246721" title="" target="_blank">West Highland Museum</a>&nbsp;in Fort William, and learn all about the north west Highlands Jacobite history, with medals, weapons and one of Bonnie Prince Charlie's silk waistcoats on display.</p>
+
+                <p>Take the rail journey of a lifetime aboard the iconic&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-jacobite-steam-train-p292641" title="">Jacobite Steam Train</a>, which departs from Fort William to Mallaig during the summer months along the West Highland Line. It travels over the magnificent Glenfinnan Viaduct which featured in the&nbsp;<a href="https://www.visitscotland.com/see-do/attractions/tv-film/harry-potter-itinerary/" title="">Harry Potter film</a>&nbsp;series.</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:paragraph[3]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
@@ -14337,12 +14438,6 @@
                 <p>For incredible views of the mountain, spend the night at the friendly&nbsp;<a href="https://www.visitscotland.com/info/accommodation/glen-nevis-youth-hostel-syha-p213771/" title="">Glen Nevis Youth Hostel</a>. Ideally situated at the foot of Ben Nevis with drying facilities and spacious places to relax, the hostel is a great place to unwind after a long day of walking.</p>
 
                 <p>Look out for places to stay which are part of the&nbsp;<a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Fort+William&amp;locplace=7461&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off&amp;src_awards__0=qaw" title="">Walker's Welcome Scheme</a>, which will cater especially for walkers' needs and provide information and useful facilities throughout your stay.</p>
-            /visitscotland:media:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 42599f58-1035-40f4-8515-19c615ba486a
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
         /accommodation-near-ben-nevis[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -14352,9 +14447,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-31T17:11:38.811+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-31T17:17:30.380+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-03T11:33:36.570+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-31T17:17:34.101+01:00
+          hippostdpubwf:publicationDate: 2021-06-03T11:33:38.366+01:00
           hippotranslation:id: e2a6177d-f3b1-47a8-b23c-c1905a476dee
           hippotranslation:locale: en
           visitscotland:anchor: Places to Stay & Things to Do
@@ -14377,22 +14472,35 @@
               hippostd:content: |-
                 <h3>Nearby attractions</h3>
 
-                <ul>
-                 <li>Head to the&nbsp;<a href="https://www.visitscotland.com/info/see-do/ben-nevis-distillery-p421401" title="">Ben Nevis Distillery</a>, one of Scotland’s oldest distilleries established in 1825. A perfect souvenir for those who have completed the climb, take a tour of the distillery the following day and ease your weary muscles with a dram of single malt. The distillery is at Lochy Bridge, Fort William, around 7 minutes’ drive away from Ben Nevis.</li>
-                 <li>Fort William and Lochaber is a region known as the ‘Outdoor Capital of the UK’ so there is a wide variety of adrenaline pumping activities on offer. Try gorge walking or canyoning with&nbsp;<a href="http://www.verticaldescents.com/" title="" target="_blank">Vertical Descents</a>, or get hooked on a new watersport such as white water funyakking and river rafting with&nbsp;<a href="https://www.activehighs.co.uk/" title="" target="_blank">Active Highs</a>.</li>
-                 <li>In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding. &nbsp;&nbsp;</li>
-                </ul>
+                <p>Head to the&nbsp;<a href="https://www.visitscotland.com/info/see-do/ben-nevis-distillery-p421401" title="">Ben Nevis Distillery</a>, one of Scotland’s oldest distilleries established in 1825. A perfect souvenir for those who have completed the climb, take a tour of the distillery the following day and ease your weary muscles with a dram of single malt. The distillery is at Lochy Bridge, Fort William, around 7 minutes’ drive away from Ben Nevis.</p>
+
+                <p>Fort William and Lochaber is a region known as the ‘Outdoor Capital of the UK’ so there is a wide variety of adrenaline pumping activities on offer. Try gorge walking or canyoning with&nbsp;<a href="http://www.verticaldescents.com/" title="" target="_blank">Vertical Descents</a>, or get hooked on a new watersport such as white water funyakking and river rafting with&nbsp;<a href="https://www.activehighs.co.uk/" title="" target="_blank">Active Highs</a>.</p>
+
+                <p>In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding. &nbsp;&nbsp;</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 7cf5d268-21fe-4ae6-8d90-95326c4732da
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:paragraph[2]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <ul>
-                 <li>There are plenty of beautiful scenic walks in the Fort William area. Take a short stroll through the Nevis Gorge to admire the cascading&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/steallfalls.shtml" title="" target="_blank">Steall Falls</a>, or wander along to the Iron Age&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/dun-deardail.shtml" title="" target="_blank">Dun Deardail</a>&nbsp;fort which boasts a stunning hilltop location and can be reached by following the waymarked path from Glen Nevis.</li>
-                 <li>&nbsp;In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding.&nbsp;</li>
-                 <li>Visit the fascinating and free&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-west-highland-museum-p246721" title="" target="_blank">West Highland Museum</a>&nbsp;in Fort William, and learn all about the north west Highlands Jacobite history, with medals, weapons and one of Bonnie Prince Charlie's silk waistcoats on display.</li>
-                 <li>Take the rail journey of a lifetime aboard the iconic&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-jacobite-steam-train-p292641" title="">Jacobite Steam Train</a>, which departs from Fort William to Mallaig during the summer months along the West Highland Line. It travels over the magnificent Glenfinnan Viaduct which featured in the&nbsp;<a href="https://www.visitscotland.com/see-do/attractions/tv-film/harry-potter-itinerary/" title="">Harry Potter film</a>&nbsp;series.</li>
-                </ul>
+                <p>There are plenty of beautiful scenic walks in the Fort William area. Take a short stroll through the Nevis Gorge to admire the cascading&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/steallfalls.shtml" title="" target="_blank">Steall Falls</a>, or wander along to the Iron Age&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/dun-deardail.shtml" title="" target="_blank">Dun Deardail</a>&nbsp;fort which boasts a stunning hilltop location and can be reached by following the waymarked path from Glen Nevis.</p>
+
+                <p>&nbsp;In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding.&nbsp;</p>
+
+                <p>Visit the fascinating and free&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-west-highland-museum-p246721" title="" target="_blank">West Highland Museum</a>&nbsp;in Fort William, and learn all about the north west Highlands Jacobite history, with medals, weapons and one of Bonnie Prince Charlie's silk waistcoats on display.</p>
+
+                <p>Take the rail journey of a lifetime aboard the iconic&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-jacobite-steam-train-p292641" title="">Jacobite Steam Train</a>, which departs from Fort William to Mallaig during the summer months along the West Highland Line. It travels over the magnificent Glenfinnan Viaduct which featured in the&nbsp;<a href="https://www.visitscotland.com/see-do/attractions/tv-film/harry-potter-itinerary/" title="">Harry Potter film</a>&nbsp;series.</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:paragraph[3]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
@@ -14409,12 +14517,6 @@
                 <p>For incredible views of the mountain, spend the night at the friendly&nbsp;<a href="https://www.visitscotland.com/info/accommodation/glen-nevis-youth-hostel-syha-p213771/" title="">Glen Nevis Youth Hostel</a>. Ideally situated at the foot of Ben Nevis with drying facilities and spacious places to relax, the hostel is a great place to unwind after a long day of walking.</p>
 
                 <p>Look out for places to stay which are part of the&nbsp;<a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Fort+William&amp;locplace=7461&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off&amp;src_awards__0=qaw" title="">Walker's Welcome Scheme</a>, which will cater especially for walkers' needs and provide information and useful facilities throughout your stay.</p>
-            /visitscotland:media:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 42599f58-1035-40f4-8515-19c615ba486a
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
     /winter-breaks:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
