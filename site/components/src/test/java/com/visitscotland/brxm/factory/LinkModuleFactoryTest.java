@@ -20,8 +20,8 @@ import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -399,6 +399,22 @@ public class LinkModuleFactoryTest {
 
         HorizontalListLinksModule module= factory.horizontalListLayout(otyml,Locale.UK);
         assertEquals("otyml", module.getTitle());
+    }
+
+    @Test
+    @DisplayName("Single link megalink with download link")
+    void singleLinkMegalink_downloadLink() {
+        when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("5MB");
+        when(resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK, true)).thenReturn("download");
+
+        Megalinks doc = new MegalinksMockBuilder().emptySingleImage().megalinkItem(false, LinkType.EXTERNAL, "title").build();
+        LinksModule<EnhancedLink> megalink = factory.getMegalinkModule(doc, Locale.UK);
+
+        Assertions.assertEquals(1, megalink.getLinks().size());
+        EnhancedLink link = megalink.getLinks().get(0);
+        Assertions.assertFalse(link.isFeatured());
+        Assertions.assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, link.getType());
+        Assertions.assertEquals("title (download 5MB)", link.getLabel());
     }
 
 //    @Test

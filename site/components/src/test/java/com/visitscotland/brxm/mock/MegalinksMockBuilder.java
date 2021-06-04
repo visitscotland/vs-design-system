@@ -6,6 +6,9 @@ import com.visitscotland.brxm.factory.LinkModuleFactoryTest;
 import com.visitscotland.brxm.factory.LinkModulesFactory;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.*;
 
 public class MegalinksMockBuilder {
@@ -25,12 +28,16 @@ public class MegalinksMockBuilder {
 
     private Megalinks megalinks;
     private Linkable linkable;
+    private List<MegalinkItem> megalinkItems;
 
     public MegalinksMockBuilder() {
         megalinks = Mockito.mock(Megalinks.class);
     }
 
     public Megalinks build() {
+        if (megalinkItems != null) {
+            when(megalinks.getMegalinkItems()).thenReturn(megalinkItems);
+        }
         return megalinks;
     }
 
@@ -38,6 +45,26 @@ public class MegalinksMockBuilder {
         megalinks = mock(Megalinks.class);
         when (megalinks.getLayout()).thenReturn(LinkModulesFactory.HORIZONTAL_LAYOUT);
 
+        return this;
+    }
+
+    public MegalinksMockBuilder singleImage(SingleImageModule singleImageModule) {
+        when(megalinks.getSingleImageModule()).thenReturn(singleImageModule);
+        return this;
+    }
+
+    public MegalinksMockBuilder emptySingleImage() {
+        SingleImageModule singleImageModule = mock(SingleImageModule.class);
+        Image image = mock(Image.class);
+        when(singleImageModule.getImage()).thenReturn(image);
+        return this.singleImage(singleImageModule);
+    }
+
+    public MegalinksMockBuilder megalinkItem(boolean featured, LinkModuleFactoryTest.LinkType type, String title) {
+        if (megalinkItems == null) {
+            megalinkItems = new ArrayList<>();
+        }
+        megalinkItems.add(createMockItem(featured, type, title));
         return this;
     }
 
@@ -66,10 +93,10 @@ public class MegalinksMockBuilder {
     }
 
     public MegalinkItem mockItem() {
-        return mockItem(false, LinkModuleFactoryTest.LinkType.CMS);
+        return createMockItem(false, LinkModuleFactoryTest.LinkType.CMS, null);
     }
 
-    public MegalinkItem mockItem(boolean featured, LinkModuleFactoryTest.LinkType type) {
+    public MegalinkItem createMockItem(boolean featured, LinkModuleFactoryTest.LinkType type, String title) {
         MegalinkItem item = mock(MegalinkItem.class, withSettings().lenient());
 
         when(item.getFeature()).thenReturn(featured);
@@ -77,7 +104,11 @@ public class MegalinksMockBuilder {
             when(item.getLink()).thenReturn(mockPage());
         } else {
             SharedLink link = mockSharedLink(type);
+            when(link.getLinkType()).thenReturn(mock(ExternalDocument.class));
             when(item.getLink()).thenReturn(link);
+            if (title != null) {
+                when(link.getTitle()).thenReturn(title);
+            }
         }
 
         return item;
