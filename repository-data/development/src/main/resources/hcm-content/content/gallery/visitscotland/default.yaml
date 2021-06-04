@@ -1475,3 +1475,55 @@
             jcr:primaryType: visitscotland:ImageData
             visitscotland:altText: ''
             visitscotland:caption: ''
+      /profileimage.jpg:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: d99094e4-877e-42c6-a152-d5f913133c70
+        hippo:name: profileImage.jpg
+        /profileimage.jpg:
+          jcr:primaryType: visitscotland:Image
+          hippo:availability: [live, preview]
+          hippogallery:description: Alexander McCall Smith
+          hippogallery:filename: profileImage.jpg
+          visitscotland:altText: Alexander McCall Smith
+          visitscotland:credit: ''
+          visitscotland:location: ''
+          /hippogallery:thumbnail:
+            jcr:primaryType: hippogallery:image
+            hippo:filename: profileImage.jpg
+            hippogallery:height: 60
+            hippogallery:width: 60
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/profileimage.jpg/profileimage.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-06-04T08:09:42.678+01:00
+            jcr:mimeType: image/jpeg
+          /hippogallery:original:
+            jcr:primaryType: hippogallery:image
+            hippogallery:height: 225
+            hippogallery:width: 225
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/profileimage.jpg/profileimage.jpg/original/original.jpg
+            jcr:lastModified: 2021-06-04T08:09:42.678+01:00
+            jcr:mimeType: image/jpeg
+          /visitscotland:nl:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:fr:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:de:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:es:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:it:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
