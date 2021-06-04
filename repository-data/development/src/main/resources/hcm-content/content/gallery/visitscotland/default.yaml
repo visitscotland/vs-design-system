@@ -1220,36 +1220,36 @@
             jcr:primaryType: visitscotland:ImageData
             visitscotland:altText: ''
             visitscotland:caption: ''
-      /walking-up-ben-nevis.jpg:
+      /ben-nevis-view_cropped.jpg:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 42599f58-1035-40f4-8515-19c615ba486a
-        /walking-up-ben-nevis.jpg:
+        jcr:uuid: 4cdd0883-80e6-4f4f-9fa1-4feec593a22e
+        /ben-nevis-view_cropped.jpg:
           jcr:primaryType: visitscotland:Image
           hippo:availability: [live, preview]
-          hippogallery:description: Walking up Ben Nevis
-          hippogallery:filename: walking-up-ben-nevis.jpg
-          visitscotland:altText: walking up Ben Nevis
+          hippogallery:description: Ben Nevis view
+          hippogallery:filename: ben-nevis-view_cropped.jpg
+          visitscotland:altText: Ben Nevis view
           visitscotland:credit: Kenny Lam
-          visitscotland:location: Fort William
+          visitscotland:location: Fort William & Lochaber
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
-            hippo:filename: walking-up-ben-nevis.jpg
-            hippogallery:height: 41
+            hippo:filename: ben-nevis-view_cropped.jpg
+            hippogallery:height: 39
             hippogallery:width: 60
             jcr:data:
               type: binary
-              resource: /content/gallery/visitscotland/default/2021/01/walking-up-ben-nevis.jpg/walking-up-ben-nevis.jpg/thumbnail/thumbnail.jpg
-            jcr:lastModified: 2021-05-31T16:33:31.109+01:00
+              resource: /content/gallery/visitscotland/default/2021/01/ben-nevis-view_cropped.jpg/ben-nevis-view_cropped.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-05-20T14:43:47.148+01:00
             jcr:mimeType: image/jpeg
           /hippogallery:original:
             jcr:primaryType: hippogallery:image
-            hippogallery:height: 1433
-            hippogallery:width: 2048
+            hippogallery:height: 981
+            hippogallery:width: 1494
             jcr:data:
               type: binary
-              resource: /content/gallery/visitscotland/default/2021/01/walking-up-ben-nevis.jpg/walking-up-ben-nevis.jpg/original/original.jpg
-            jcr:lastModified: 2021-05-31T16:33:31.109+01:00
+              resource: /content/gallery/visitscotland/default/2021/01/ben-nevis-view_cropped.jpg/ben-nevis-view_cropped.jpg/original/original.jpg
+            jcr:lastModified: 2021-05-20T14:43:47.148+01:00
             jcr:mimeType: image/jpeg
           /visitscotland:nl:
             jcr:primaryType: visitscotland:ImageData
@@ -1271,36 +1271,241 @@
             jcr:primaryType: visitscotland:ImageData
             visitscotland:altText: ''
             visitscotland:caption: ''
-      /rock-climbing.jpg:
+      /commando_cropped.jpg:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 7cf5d268-21fe-4ae6-8d90-95326c4732da
-        /rock-climbing.jpg:
+        jcr:uuid: 81e169c7-a76e-4388-9854-29d03f173ba0
+        /commando_cropped.jpg:
           jcr:primaryType: visitscotland:Image
           hippo:availability: [live, preview]
-          hippogallery:description: Rock cimbing
-          hippogallery:filename: rock-climbing.jpg
-          visitscotland:altText: Rock climbing
-          visitscotland:credit: VisitScotland
-          visitscotland:location: Fort William
+          hippogallery:description: Commando monument
+          hippogallery:filename: commando_cropped.jpg
+          visitscotland:altText: Commando monument
+          visitscotland:credit: Kenny Lam
+          visitscotland:location: Fort Augustus
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
-            hippo:filename: rock-climbing.jpg
-            hippogallery:height: 33
+            hippo:filename: commando_cropped.jpg
+            hippogallery:height: 39
             hippogallery:width: 60
             jcr:data:
               type: binary
-              resource: /content/gallery/visitscotland/default/2021/01/rock-climbing.jpg/rock-climbing.jpg/thumbnail/thumbnail.jpg
-            jcr:lastModified: 2021-05-31T16:33:32.009+01:00
+              resource: /content/gallery/visitscotland/default/2021/01/commando_cropped.jpg/commando_cropped.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-05-20T14:43:47.829+01:00
             jcr:mimeType: image/jpeg
           /hippogallery:original:
             jcr:primaryType: hippogallery:image
-            hippogallery:height: 1141
-            hippogallery:width: 2048
+            hippogallery:height: 634
+            hippogallery:width: 973
             jcr:data:
               type: binary
-              resource: /content/gallery/visitscotland/default/2021/01/rock-climbing.jpg/rock-climbing.jpg/original/original.jpg
-            jcr:lastModified: 2021-05-31T16:33:32.009+01:00
+              resource: /content/gallery/visitscotland/default/2021/01/commando_cropped.jpg/commando_cropped.jpg/original/original.jpg
+            jcr:lastModified: 2021-05-20T14:43:47.829+01:00
+            jcr:mimeType: image/jpeg
+          /visitscotland:nl:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:fr:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:de:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:es:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:it:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+      /gondola_cropped.jpg:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: c0d67ee5-7a22-4fa8-b0b8-335921c3f0e7
+        /gondola_cropped.jpg:
+          jcr:primaryType: visitscotland:Image
+          hippo:availability: [live, preview]
+          hippogallery:description: Gondola
+          hippogallery:filename: gondola_cropped.jpg
+          visitscotland:altText: Gondola
+          visitscotland:credit: Kenny Lam
+          visitscotland:location: Aberdeen Airport
+          /hippogallery:thumbnail:
+            jcr:primaryType: hippogallery:image
+            hippo:filename: gondola_cropped.jpg
+            hippogallery:height: 39
+            hippogallery:width: 60
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/gondola_cropped.jpg/gondola_cropped.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-05-20T14:43:48.009+01:00
+            jcr:mimeType: image/jpeg
+          /hippogallery:original:
+            jcr:primaryType: hippogallery:image
+            hippogallery:height: 1173
+            hippogallery:width: 1761
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/gondola_cropped.jpg/gondola_cropped.jpg/original/original.jpg
+            jcr:lastModified: 2021-05-20T14:43:48.009+01:00
+            jcr:mimeType: image/jpeg
+          /visitscotland:nl:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:fr:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:de:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:es:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:it:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+      /mountain-stream_cropped.jpg:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 886d4960-97d9-45ae-9d1c-a691c1d0cd54
+        /mountain-stream_cropped.jpg:
+          jcr:primaryType: visitscotland:Image
+          hippo:availability: [live, preview]
+          hippogallery:description: Mountain stream
+          hippogallery:filename: mountain-stream_cropped.jpg
+          visitscotland:altText: Mountain stream
+          visitscotland:credit: Kenny Lam
+          visitscotland:location: Rum
+          /hippogallery:thumbnail:
+            jcr:primaryType: hippogallery:image
+            hippo:filename: mountain-stream_cropped.jpg
+            hippogallery:height: 39
+            hippogallery:width: 59
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/mountain-stream_cropped.jpg/mountain-stream_cropped.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-05-20T14:43:48.289+01:00
+            jcr:mimeType: image/jpeg
+          /hippogallery:original:
+            jcr:primaryType: hippogallery:image
+            hippogallery:height: 1224
+            hippogallery:width: 1846
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/mountain-stream_cropped.jpg/mountain-stream_cropped.jpg/original/original.jpg
+            jcr:lastModified: 2021-05-20T14:43:48.289+01:00
+            jcr:mimeType: image/jpeg
+          /visitscotland:nl:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:fr:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:de:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:es:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:it:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+      /nevis-ridge_cropped.jpg:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 3ecbbd83-12e3-4ce4-9f0f-7911a799c2b9
+        /nevis-ridge_cropped.jpg:
+          jcr:primaryType: visitscotland:Image
+          hippo:availability: [live, preview]
+          hippogallery:description: Nevis ridge
+          hippogallery:filename: nevis-ridge_cropped.jpg
+          visitscotland:altText: Nevis ridge
+          visitscotland:credit: Kenny Lam
+          visitscotland:location: Fort William & Lochaber
+          /hippogallery:thumbnail:
+            jcr:primaryType: hippogallery:image
+            hippo:filename: nevis-ridge_cropped.jpg
+            hippogallery:height: 39
+            hippogallery:width: 60
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/nevis-ridge_cropped.jpg/nevis-ridge_cropped.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-05-20T14:43:48.545+01:00
+            jcr:mimeType: image/jpeg
+          /hippogallery:original:
+            jcr:primaryType: hippogallery:image
+            hippogallery:height: 677
+            hippogallery:width: 1026
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/nevis-ridge_cropped.jpg/nevis-ridge_cropped.jpg/original/original.jpg
+            jcr:lastModified: 2021-05-20T14:43:48.545+01:00
+            jcr:mimeType: image/jpeg
+          /visitscotland:nl:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:fr:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:de:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:es:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:it:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+      /profileimage.jpg:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: d99094e4-877e-42c6-a152-d5f913133c70
+        hippo:name: profileImage.jpg
+        /profileimage.jpg:
+          jcr:primaryType: visitscotland:Image
+          hippo:availability: [live, preview]
+          hippogallery:description: Alexander McCall Smith
+          hippogallery:filename: profileImage.jpg
+          visitscotland:altText: Alexander McCall Smith
+          visitscotland:credit: ''
+          visitscotland:location: ''
+          /hippogallery:thumbnail:
+            jcr:primaryType: hippogallery:image
+            hippo:filename: profileImage.jpg
+            hippogallery:height: 60
+            hippogallery:width: 60
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/profileimage.jpg/profileimage.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-06-04T08:09:42.678+01:00
+            jcr:mimeType: image/jpeg
+          /hippogallery:original:
+            jcr:primaryType: hippogallery:image
+            hippogallery:height: 225
+            hippogallery:width: 225
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/profileimage.jpg/profileimage.jpg/original/original.jpg
+            jcr:lastModified: 2021-06-04T08:09:42.678+01:00
             jcr:mimeType: image/jpeg
           /visitscotland:nl:
             jcr:primaryType: visitscotland:ImageData
