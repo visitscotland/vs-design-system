@@ -1,7 +1,0 @@
-/content/documents/visitscotland/site/destinations-maps:
-  jcr:primaryType: hippostd:folder
-  jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-  jcr:uuid: e3bbb7c8-d800-4de3-92bc-d9c63973dccb
-  hippostd:foldertype: [new-translated-folder, new-page, new-module]
-  hippotranslation:id: 34e6e617-eb85-4cad-b6f2-3dee16e1412f
-  hippotranslation:locale: en
