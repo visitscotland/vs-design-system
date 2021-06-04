@@ -1,6 +1,7 @@
 package com.visitscotland.brxm.components.navigation;
 
 import com.visitscotland.brxm.hippobeans.Widget;
+import com.visitscotland.brxm.model.navigation.NavigationWidget;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -80,7 +81,7 @@ class MenuItemTest {
         item.setTitle("title");
         assertEquals("title", item.getTitle());
 
-        Widget w = mock(Widget.class);
+        NavigationWidget w = mock(NavigationWidget.class);
         item.setWidget(w);
         assertEquals(w, item.getWidget());
 
