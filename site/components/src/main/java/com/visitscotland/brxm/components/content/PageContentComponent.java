@@ -68,7 +68,6 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
      * Set the OTYML module if present
      */
     protected void addOTYML(HstRequest request) {
-        logger.info("addOTYML");
         Page page = getDocument(request);
         if (page.getOtherThings() != null) {
             request.setAttribute(OTYML, linksFactory.horizontalListLayout(page.getOtherThings(), request.getLocale()));
