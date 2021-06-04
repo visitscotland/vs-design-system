@@ -4,11 +4,16 @@
         :class="sidebarAlignClass"
         data-test="vs-article-sidebar"
     >
-        <!-- @slot Slot to contain an image for this article section -->
-        <slot name="vsArticleSidebarImg" />
-
+        <div
+            :class="sidebarImgClasses"
+            class="vs-article-sidebar__img-wrapper"
+        >
+            <!-- @slot Slot to contain an image for this article section -->
+            <slot name="vsArticleSidebarImg" />
+        </div>
         <div
             v-if="!!this.$slots['vsArticleSidebarQuote']"
+            :class="sidebarArticleClasses"
             class="vs-article-sidebar__quote-wrapper"
         >
             <!-- @slot Slot to contain an quote for this article section -->
@@ -44,6 +49,16 @@ export default {
                 ? 'vs-article-sidebar--right'
                 : 'vs-article-sidebar--left';
         },
+        sidebarImgClasses() {
+            return !this.$slots.vsArticleSidebarQuote
+                ? 'pb-8'
+                : '';
+        },
+        sidebarArticleClasses() {
+            return !this.$slots.vsArticleSidebarImg
+                ? 'pt-0'
+                : '';
+        },
     },
 };
 </script>
@@ -53,9 +68,12 @@ export default {
     background: $color-white;
 
     &__quote-wrapper{
+        background: $color-white;
+        margin-left: -1px;
         padding: $spacer-8 $spacer-6;
 
         @include media-breakpoint-up(md) {
+            margin-left: 0;
             padding: $spacer-8 $spacer-0 $spacer-1;
         }
     }
