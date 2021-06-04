@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.utils;
 
+import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 /**
@@ -21,7 +22,7 @@ public class HippoHtmlWrapper extends HippoHtml {
 
     @Override
     public String getContent() {
-        return base.getContent() == null || base.getContent().isEmpty() ? defaultHtml : base.getContent();
+        return base.getContent() == null || Contract.isEmpty(base.getContent()) ? defaultHtml : base.getContent();
     }
 
 }
