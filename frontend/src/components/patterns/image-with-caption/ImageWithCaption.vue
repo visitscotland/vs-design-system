@@ -62,12 +62,7 @@
         >
             <figcaption
                 ref="figcaption"
-                :class="[
-                    isLargeCaption
-                        ? 'vs-image-with-caption__large-caption-wrapper'
-                        : 'vs-image-with-caption__fullwidth-caption-wrapper',
-                    closedDefaultCaption ? 'default-closed' : '',
-                ]"
+                :class="captionClasses"
             >
                 <VsRow class="justify-content-center justify-content-sm-start">
                     <VsCol
@@ -232,6 +227,13 @@ export default {
         },
         captionButtonText() {
             return this.showCaption ? 'Close image caption' : 'Open image caption';
+        },
+        captionClasses() {
+            return {
+                'default-closed': this.closedDefaultCaption,
+                'vs-image-with-caption__large-caption-wrapper': this.isLargeCaption,
+                'vs-image-with-caption__fullwidth-caption-wrapper': !this.isLargeCaption,
+            };
         },
     },
     methods: {
