@@ -5188,9 +5188,9 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 56ffd83c-c636-48e5-87ae-d89e11b2ee23
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:38:52.578+01:00
           hippostdpubwf:lastModificationDate: 2021-05-27T12:04:57.702+01:00
@@ -9471,9 +9471,10 @@
           hippo:availability: []
           hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-06-07T11:04:12.101+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-07T14:16:34.179+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en

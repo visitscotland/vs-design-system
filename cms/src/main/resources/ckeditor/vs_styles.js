@@ -7,14 +7,6 @@
             name: 'H3'
         },
         {
-            element: 'h4',
-            name: 'H4'
-        },
-        {
-            element: 'h5',
-            name: 'H5'
-        },
-        {
             element: 'h6',
             name: 'H6'
         }
