@@ -1527,3 +1527,54 @@
             jcr:primaryType: visitscotland:ImageData
             visitscotland:altText: ''
             visitscotland:caption: ''
+      /quote-jp.jpg:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 44c9fd39-a37c-4ea9-ba77-3418e5736149
+        /quote-jp.jpg:
+          jcr:primaryType: visitscotland:Image
+          hippo:availability: [live, preview]
+          hippogallery:description: Penny
+          hippogallery:filename: quote-jp.jpg
+          visitscotland:altText: Penny iCentre photo
+          visitscotland:credit: ''
+          visitscotland:location: Edinburgh
+          /hippogallery:thumbnail:
+            jcr:primaryType: hippogallery:image
+            hippo:filename: quote-jp.jpg
+            hippogallery:height: 40
+            hippogallery:width: 59
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/quote-jp.jpg/quote-jp.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-06-07T11:24:00.832+01:00
+            jcr:mimeType: image/jpeg
+          /hippogallery:original:
+            jcr:primaryType: hippogallery:image
+            hippogallery:height: 160
+            hippogallery:width: 235
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/quote-jp.jpg/quote-jp.jpg/original/original.jpg
+            jcr:lastModified: 2021-06-07T11:24:00.832+01:00
+            jcr:mimeType: image/jpeg
+          /visitscotland:nl:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:fr:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:de:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:es:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:it:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''

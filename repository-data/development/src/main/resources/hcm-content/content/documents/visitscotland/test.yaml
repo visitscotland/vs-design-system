@@ -9333,7 +9333,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: ca93dea2-4771-4c6c-8cd2-d90246a97684
         hippo:name: Ben Nevis Page
-        hippo:versionHistory: 960fce71-efdc-41b7-9be9-328a939898b6
+        hippo:versionHistory: ca7dcd86-2880-4db6-8807-58574754f85c
         /content[1]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable']
@@ -9343,36 +9343,38 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:11:21.745Z
-          hippostdpubwf:lastModificationDate: 2021-05-21T20:57:02.110+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:03:56.585+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: df63baaa-d0e0-4a04-9662-a418f720bd1d
           hippotranslation:locale: en
           visitscotland:breadcrumb: Ben Nevis
           visitscotland:newsletter: true
-          visitscotland:seoDescription: MetaThe mountain with its head in the clouds
+          visitscotland:seoDescription: Scotland's landscape is scattered with Munros
+            and mist-shrouded hills...
           visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Ben Nevis
+          visitscotland:seoTitle: Ben Nevis Scotland's Tallest Peak
           visitscotland:teaser: Scotland's landscape is scattered with Munros and
             mist-shrouded hills...
           visitscotland:theme: Simple
-          visitscotland:title: The mountain with its head in the clouds
+          visitscotland:title: Ben Nevis Scotland's Tallest Peak
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:docbase: 4cdd0883-80e6-4f4f-9fa1-4feec593a22e
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Scotland's landscape is scattered with Munros and mist-shrouded hills, but <a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201" title="">Ben Nevis</a> is the king of them all. In the north west <a href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>, near the town of <a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort William</a> and part of the Grampian Mountain range, the famous peak attracts 125k walkers a year. Whether you're an avid ambler or you just love beautiful landscapes, bagging 'the Ben' is likely to feature near the top of your Scottish bucket list.</p>
-
-              <p>An ancient giant of the land, Ben Nevis was once a massive active volcano which exploded and collapsed inwards on itself millions of years ago. At the summit, there is evidence of an explosion in the form of light-coloured granite. The name itself has two translations from the ancient Gaelic language, meaning 'mountain with its head in the clouds', thanks to its iconic mist-shrouded peak, or it can also mean 'venomous mountain' – you can decide which translation you prefer after the climb!</p>
-
-              <p>Read on for an overview of walking routes up the mountain, or visit <a href="https://www.walkhighlands.co.uk/munros/ben-nevis" title="" target="_blank">Walk Highlands</a> for detailed maps, difficulty levels and walking advice.</p>
-
-              <p>Remember it's never 'easy' to bag a Scottish Munro or Corbett. You'll need a good amount of hillwalking experience, fitness, hill craft and navigation skills using a map and compass,&nbsp;before attempting any Scottish mountains, even more so in winter. Check the <a href="https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis/#article-page-3" title="Ben Nevis Longform FAQs">FAQs section</a> below for safety advice.</p>
+            hippostd:content: <p>Scotland's landscape is scattered with Munros and
+              mist-shrouded hills, but <a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201"
+              title="">Ben Nevis</a> is the king of them all. In the north west <a
+              href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>,
+              near the town of <a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort
+              William</a> and part of the Grampian Mountain range, the famous peak
+              attracts 125k walkers a year. Whether you're an avid ambler or you just
+              love beautiful landscapes, bagging 'the Ben' is likely to feature near
+              the top of your Scottish bucket list.</p>
         /content[2]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -9382,36 +9384,38 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:11:21.745Z
-          hippostdpubwf:lastModificationDate: 2021-05-21T20:57:04.895+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:04:01.918+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: df63baaa-d0e0-4a04-9662-a418f720bd1d
           hippotranslation:locale: en
           visitscotland:breadcrumb: Ben Nevis
           visitscotland:newsletter: true
-          visitscotland:seoDescription: MetaThe mountain with its head in the clouds
+          visitscotland:seoDescription: Scotland's landscape is scattered with Munros
+            and mist-shrouded hills...
           visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Ben Nevis
+          visitscotland:seoTitle: Ben Nevis Scotland's Tallest Peak
           visitscotland:teaser: Scotland's landscape is scattered with Munros and
             mist-shrouded hills...
           visitscotland:theme: Simple
-          visitscotland:title: The mountain with its head in the clouds
+          visitscotland:title: Ben Nevis Scotland's Tallest Peak
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:docbase: 4cdd0883-80e6-4f4f-9fa1-4feec593a22e
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Scotland's landscape is scattered with Munros and mist-shrouded hills, but <a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201" title="">Ben Nevis</a> is the king of them all. In the north west <a href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>, near the town of <a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort William</a> and part of the Grampian Mountain range, the famous peak attracts 125k walkers a year. Whether you're an avid ambler or you just love beautiful landscapes, bagging 'the Ben' is likely to feature near the top of your Scottish bucket list.</p>
-
-              <p>An ancient giant of the land, Ben Nevis was once a massive active volcano which exploded and collapsed inwards on itself millions of years ago. At the summit, there is evidence of an explosion in the form of light-coloured granite. The name itself has two translations from the ancient Gaelic language, meaning 'mountain with its head in the clouds', thanks to its iconic mist-shrouded peak, or it can also mean 'venomous mountain' – you can decide which translation you prefer after the climb!</p>
-
-              <p>Read on for an overview of walking routes up the mountain, or visit <a href="https://www.walkhighlands.co.uk/munros/ben-nevis" title="" target="_blank">Walk Highlands</a> for detailed maps, difficulty levels and walking advice.</p>
-
-              <p>Remember it's never 'easy' to bag a Scottish Munro or Corbett. You'll need a good amount of hillwalking experience, fitness, hill craft and navigation skills using a map and compass,&nbsp;before attempting any Scottish mountains, even more so in winter. Check the <a href="https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis/#article-page-3" title="Ben Nevis Longform FAQs">FAQs section</a> below for safety advice.</p>
+            hippostd:content: <p>Scotland's landscape is scattered with Munros and
+              mist-shrouded hills, but <a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201"
+              title="">Ben Nevis</a> is the king of them all. In the north west <a
+              href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>,
+              near the town of <a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort
+              William</a> and part of the Grampian Mountain range, the famous peak
+              attracts 125k walkers a year. Whether you're an avid ambler or you just
+              love beautiful landscapes, bagging 'the Ben' is likely to feature near
+              the top of your Scottish bucket list.</p>
         /content[3]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable']
@@ -9421,60 +9425,60 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:11:21.745Z
-          hippostdpubwf:lastModificationDate: 2021-05-21T20:57:04.895+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:04:01.918+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-21T20:57:06.988+01:00
+          hippostdpubwf:publicationDate: 2021-06-07T11:04:03.890+01:00
           hippotranslation:id: df63baaa-d0e0-4a04-9662-a418f720bd1d
           hippotranslation:locale: en
           visitscotland:breadcrumb: Ben Nevis
           visitscotland:newsletter: true
-          visitscotland:seoDescription: MetaThe mountain with its head in the clouds
+          visitscotland:seoDescription: Scotland's landscape is scattered with Munros
+            and mist-shrouded hills...
           visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Ben Nevis
+          visitscotland:seoTitle: Ben Nevis Scotland's Tallest Peak
           visitscotland:teaser: Scotland's landscape is scattered with Munros and
             mist-shrouded hills...
           visitscotland:theme: Simple
-          visitscotland:title: The mountain with its head in the clouds
+          visitscotland:title: Ben Nevis Scotland's Tallest Peak
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:docbase: 4cdd0883-80e6-4f4f-9fa1-4feec593a22e
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Scotland's landscape is scattered with Munros and mist-shrouded hills, but <a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201" title="">Ben Nevis</a> is the king of them all. In the north west <a href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>, near the town of <a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort William</a> and part of the Grampian Mountain range, the famous peak attracts 125k walkers a year. Whether you're an avid ambler or you just love beautiful landscapes, bagging 'the Ben' is likely to feature near the top of your Scottish bucket list.</p>
-
-              <p>An ancient giant of the land, Ben Nevis was once a massive active volcano which exploded and collapsed inwards on itself millions of years ago. At the summit, there is evidence of an explosion in the form of light-coloured granite. The name itself has two translations from the ancient Gaelic language, meaning 'mountain with its head in the clouds', thanks to its iconic mist-shrouded peak, or it can also mean 'venomous mountain' – you can decide which translation you prefer after the climb!</p>
-
-              <p>Read on for an overview of walking routes up the mountain, or visit <a href="https://www.walkhighlands.co.uk/munros/ben-nevis" title="" target="_blank">Walk Highlands</a> for detailed maps, difficulty levels and walking advice.</p>
-
-              <p>Remember it's never 'easy' to bag a Scottish Munro or Corbett. You'll need a good amount of hillwalking experience, fitness, hill craft and navigation skills using a map and compass,&nbsp;before attempting any Scottish mountains, even more so in winter. Check the <a href="https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis/#article-page-3" title="Ben Nevis Longform FAQs">FAQs section</a> below for safety advice.</p>
-      /how-do-i-climb-ben-nevis-safely:
+            hippostd:content: <p>Scotland's landscape is scattered with Munros and
+              mist-shrouded hills, but <a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201"
+              title="">Ben Nevis</a> is the king of them all. In the north west <a
+              href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>,
+              near the town of <a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort
+              William</a> and part of the Grampian Mountain range, the famous peak
+              attracts 125k walkers a year. Whether you're an avid ambler or you just
+              love beautiful landscapes, bagging 'the Ben' is likely to feature near
+              the top of your Scottish bucket list.</p>
+      /experiencing-ben-nevis:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: f829b041-1108-4836-b95a-77f23a4d2a05
-        hippo:name: How do I climb Ben Nevis safely
-        hippo:versionHistory: 199d7731-10e1-4fbc-aa4e-337d24714904
-        /how-do-i-climb-ben-nevis-safely[1]:
+        hippo:name: Experiencing Ben Nevis
+        hippo:versionHistory: b0702a43-a486-4081-b991-10727ed74bd8
+        /experiencing-ben-nevis[1]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 54a21331-8c54-4985-8154-982099a6d826
           hippo:availability: []
           hippostd:retainable: false
           hippostd:state: draft
-          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-04-30T15:34:01.496+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:04:12.101+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
           visitscotland:anchor: introduction
-          visitscotland:title: 'Introduction: The Mountain with its head in the clouds
-            means that its raining'
+          visitscotland:title: The mountain with its head in the clouds
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
@@ -9483,26 +9487,30 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: ''
+            hippostd:content: <p>In light of COVID-19, everyone's health and safety
+              is the most important thing. Please follow the advice of the&nbsp;<a
+              href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+              title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+              and always stay 2 metres away from those outwith your own household
+              both indoors and outdoors.*</p>
           /visitscotland:paragraph:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <h5>How do I climb Ben Nevis safely?</h5>
+                <h3>Experiencing Ben Nevis</h3>
 
-                <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
-                 <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
-                 <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
-                 <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
-                </ul>
+                <h6>Scotland's landscape is scattered with Munros and mist-shrouded hills...</h6>
 
-                <p>For more information on keeping safe on Ben Nevis, see these tips from <a href="https://www.mountaineering.scot/activities/hillwalking" title="" target="_blank">Mountaineering Scotland</a> and <a href="https://www.walkhighlands.co.uk/safety/" title="" target="_blank">Walk Highlands</a>.</p>
+                <p>But&nbsp;<a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201" title="">Ben Nevis</a>&nbsp;is the king of them all. In the north west&nbsp;<a href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>, near the town of&nbsp;<a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort William</a>&nbsp;and part of the Grampian Mountain range, the famous peak attracts 125k walkers a year. Whether you're an avid ambler or you just love beautiful landscapes, bagging 'the Ben' is likely to feature near the top of your Scottish bucket list.</p>
 
-                <h5>Is Ben Nevis suitable for children to climb?</h5>
+                <p>An ancient giant of the land, Ben Nevis was once a massive active volcano which exploded and collapsed inwards on itself millions of years ago. At the summit, there is evidence of an explosion in the form of light-coloured granite. The name itself has two translations from the ancient Gaelic language, meaning 'mountain with its head in the clouds', thanks to its iconic mist-shrouded peak, or it can also mean 'venomous mountain' – you can decide which translation you prefer after the climb!</p>
 
-                <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
+                <p>Read on for an overview of walking routes up the mountain, or visit&nbsp;<a href="https://www.walkhighlands.co.uk/munros/ben-nevis" title="" target="_blank">Walk Highlands</a>&nbsp;for detailed maps, difficulty levels and walking advice.</p>
+
+                <p>Remember it's never 'easy' to bag a Scottish Munro or Corbett. You'll need a good amount of hillwalking experience, fitness, hill craft and navigation skills using a map and compass,&nbsp;before attempting any Scottish mountains, even more so in winter. Check the&nbsp;<a href="https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis/#article-page-3" title="Ben Nevis Longform FAQs">FAQs section</a>&nbsp;below for safety advice.</p>
+
+                <p>Looking for something different? Try these&nbsp;<a href="https://www.visitscotland.com/blog/walking/ben-nevis-alternatives/" title="9 Alternative Must-Climb Hills To Ben Nevis In Scotland">9 alternative must-climb hills to Ben Nevis</a>&nbsp;in Scotland.</p>
             /visitscotland:Quote:
               jcr:primaryType: visitscotland:Quote
               visitscotland:author: ''
@@ -9524,21 +9532,21 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
-        /how-do-i-climb-ben-nevis-safely[2]:
+        /experiencing-ben-nevis[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
           jcr:uuid: b466be74-ddc9-49f4-ae3c-a0ca3360188a
           hippo:availability: [preview]
+          hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T15:08:19.165Z
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:02:22.086+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
           visitscotland:anchor: introduction
-          visitscotland:title: 'Introduction: The Mountain with its head in the clouds
-            means that its raining'
+          visitscotland:title: The mountain with its head in the clouds
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
@@ -9547,26 +9555,30 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: ''
+            hippostd:content: <p>In light of COVID-19, everyone's health and safety
+              is the most important thing. Please follow the advice of the&nbsp;<a
+              href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+              title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+              and always stay 2 metres away from those outwith your own household
+              both indoors and outdoors.*</p>
           /visitscotland:paragraph:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <h5>How do I climb Ben Nevis safely?</h5>
+                <h3>Experiencing Ben Nevis</h3>
 
-                <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
-                 <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
-                 <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
-                 <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
-                </ul>
+                <h6>Scotland's landscape is scattered with Munros and mist-shrouded hills...</h6>
 
-                <p>For more information on keeping safe on Ben Nevis, see these tips from <a href="https://www.mountaineering.scot/activities/hillwalking" title="" target="_blank">Mountaineering Scotland</a> and <a href="https://www.walkhighlands.co.uk/safety/" title="" target="_blank">Walk Highlands</a>.</p>
+                <p>But&nbsp;<a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201" title="">Ben Nevis</a>&nbsp;is the king of them all. In the north west&nbsp;<a href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>, near the town of&nbsp;<a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort William</a>&nbsp;and part of the Grampian Mountain range, the famous peak attracts 125k walkers a year. Whether you're an avid ambler or you just love beautiful landscapes, bagging 'the Ben' is likely to feature near the top of your Scottish bucket list.</p>
 
-                <h5>Is Ben Nevis suitable for children to climb?</h5>
+                <p>An ancient giant of the land, Ben Nevis was once a massive active volcano which exploded and collapsed inwards on itself millions of years ago. At the summit, there is evidence of an explosion in the form of light-coloured granite. The name itself has two translations from the ancient Gaelic language, meaning 'mountain with its head in the clouds', thanks to its iconic mist-shrouded peak, or it can also mean 'venomous mountain' – you can decide which translation you prefer after the climb!</p>
 
-                <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
+                <p>Read on for an overview of walking routes up the mountain, or visit&nbsp;<a href="https://www.walkhighlands.co.uk/munros/ben-nevis" title="" target="_blank">Walk Highlands</a>&nbsp;for detailed maps, difficulty levels and walking advice.</p>
+
+                <p>Remember it's never 'easy' to bag a Scottish Munro or Corbett. You'll need a good amount of hillwalking experience, fitness, hill craft and navigation skills using a map and compass,&nbsp;before attempting any Scottish mountains, even more so in winter. Check the&nbsp;<a href="https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis/#article-page-3" title="Ben Nevis Longform FAQs">FAQs section</a>&nbsp;below for safety advice.</p>
+
+                <p>Looking for something different? Try these&nbsp;<a href="https://www.visitscotland.com/blog/walking/ben-nevis-alternatives/" title="9 Alternative Must-Climb Hills To Ben Nevis In Scotland">9 alternative must-climb hills to Ben Nevis</a>&nbsp;in Scotland.</p>
             /visitscotland:Quote:
               jcr:primaryType: visitscotland:Quote
               visitscotland:author: ''
@@ -9588,22 +9600,22 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
-        /how-do-i-climb-ben-nevis-safely[3]:
+        /experiencing-ben-nevis[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 1c9b0df9-8f7a-48b3-93ab-2032d20ecda7
           hippo:availability: [live]
+          hippostd:retainable: false
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T15:08:19.165Z
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:02:22.086+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T16:36:23.438Z
+          hippostdpubwf:publicationDate: 2021-06-07T11:04:46.220+01:00
           hippotranslation:id: d5405c11-eb05-4a24-a3c2-5d97486808f2
           hippotranslation:locale: en
           visitscotland:anchor: introduction
-          visitscotland:title: 'Introduction: The Mountain with its head in the clouds
-            means that its raining'
+          visitscotland:title: The mountain with its head in the clouds
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
@@ -9612,26 +9624,30 @@
             hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
-            hippostd:content: ''
+            hippostd:content: <p>In light of COVID-19, everyone's health and safety
+              is the most important thing. Please follow the advice of the&nbsp;<a
+              href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+              title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+              and always stay 2 metres away from those outwith your own household
+              both indoors and outdoors.*</p>
           /visitscotland:paragraph:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <h5>How do I climb Ben Nevis safely?</h5>
+                <h3>Experiencing Ben Nevis</h3>
 
-                <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
-                 <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
-                 <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
-                 <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
-                </ul>
+                <h6>Scotland's landscape is scattered with Munros and mist-shrouded hills...</h6>
 
-                <p>For more information on keeping safe on Ben Nevis, see these tips from <a href="https://www.mountaineering.scot/activities/hillwalking" title="" target="_blank">Mountaineering Scotland</a> and <a href="https://www.walkhighlands.co.uk/safety/" title="" target="_blank">Walk Highlands</a>.</p>
+                <p>But&nbsp;<a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201" title="">Ben Nevis</a>&nbsp;is the king of them all. In the north west&nbsp;<a href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>, near the town of&nbsp;<a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort William</a>&nbsp;and part of the Grampian Mountain range, the famous peak attracts 125k walkers a year. Whether you're an avid ambler or you just love beautiful landscapes, bagging 'the Ben' is likely to feature near the top of your Scottish bucket list.</p>
 
-                <h5>Is Ben Nevis suitable for children to climb?</h5>
+                <p>An ancient giant of the land, Ben Nevis was once a massive active volcano which exploded and collapsed inwards on itself millions of years ago. At the summit, there is evidence of an explosion in the form of light-coloured granite. The name itself has two translations from the ancient Gaelic language, meaning 'mountain with its head in the clouds', thanks to its iconic mist-shrouded peak, or it can also mean 'venomous mountain' – you can decide which translation you prefer after the climb!</p>
 
-                <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
+                <p>Read on for an overview of walking routes up the mountain, or visit&nbsp;<a href="https://www.walkhighlands.co.uk/munros/ben-nevis" title="" target="_blank">Walk Highlands</a>&nbsp;for detailed maps, difficulty levels and walking advice.</p>
+
+                <p>Remember it's never 'easy' to bag a Scottish Munro or Corbett. You'll need a good amount of hillwalking experience, fitness, hill craft and navigation skills using a map and compass,&nbsp;before attempting any Scottish mountains, even more so in winter. Check the&nbsp;<a href="https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis/#article-page-3" title="Ben Nevis Longform FAQs">FAQs section</a>&nbsp;below for safety advice.</p>
+
+                <p>Looking for something different? Try these&nbsp;<a href="https://www.visitscotland.com/blog/walking/ben-nevis-alternatives/" title="9 Alternative Must-Climb Hills To Ben Nevis In Scotland">9 alternative must-climb hills to Ben Nevis</a>&nbsp;in Scotland.</p>
             /visitscotland:Quote:
               jcr:primaryType: visitscotland:Quote
               visitscotland:author: ''
@@ -9650,412 +9666,6 @@
             /visitscotland:media:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: dd3e5e22-111b-41f1-aac6-0c8fcf4bc954
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-      /the-mountain-track:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: a7e17ac0-ba13-426a-bcf2-d2d7b074c0bc
-        hippo:name: The Mountain Track
-        hippo:versionHistory: 6dda4686-7d55-4277-bc7b-c6c724aff53f
-        /the-mountain-track[1]:
-          jcr:primaryType: visitscotland:Article
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: e9cf8442-f044-4121-a802-45d423255a2d
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2021-01-11T14:31:16.008Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:45:37.344Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: af564db8-39b9-4144-b7a2-1e1753713a72
-          hippotranslation:locale: en
-          visitscotland:anchor: walking-routes
-          visitscotland:title: 'Walking Routes: The Mountain with its head in the
-            clouds means that its raining'
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:copy:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>There are two main walking routes up Ben Nevis. The
-              Mountain Track (sometimes called the Tourist Track or the Pony Track)
-              is used by most walkers, whilst the Carn Mor Dearg Arête route presents
-              a more challenging climb for more experienced hikers.</p>
-          /visitscotland:paragraph[1]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h3>Carn Mor<br />
-                Dearg Arête</h3>
-
-                <h4>Best route for:&nbsp;Experienced hillwalkers</h4>
-
-                <p>Carn Mor Dearg Arête is the mountain's other <a href="https://www.walkhighlands.co.uk/fortwilliam/carnmordeargarete.shtml" title="" target="_blank">walking route</a>, a challenging ridge climb which should only be attempted by experienced scramblers and physically-fit hill walkers. Though demanding, the route rewards walkers with the finest possible views of the mountain's North face. Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers. A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
-            /visitscotland:Quote:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Scotland's largest mountain was once a massive
-                  active volcano which exploded and collapsed inwards on itself millions
-                  of years ago.</p>
-          /visitscotland:paragraph[2]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h5>How do I climb Ben Nevis safely?</h5>
-
-                <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
-                 <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
-                 <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
-                 <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
-                </ul>
-
-                <p>For more information on keeping safe on Ben Nevis, see these tips from <a href="https://www.mountaineering.scot/activities/hillwalking" title="" target="_blank">Mountaineering Scotland</a> and <a href="https://www.walkhighlands.co.uk/safety/" title="" target="_blank">Walk Highlands</a>.</p>
-
-                <h5>Is Ben Nevis suitable for children to climb?</h5>
-
-                <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
-
-                <p>© iagodina - Adobe Stock</p>
-
-                <h5>Can I bring my dog?</h5>
-
-                <p>Yes, if your dog enjoys long walks. It's best to keep dogs on the lead especially when the paths are busy with walkers. Also, some parts of the route will comprise uneven terrain, scree and loose stones which can be tricky for some dogs.</p>
-
-                <h5>Can I do a guided walk of Ben Nevis?</h5>
-
-                <p>Yes! If you're not feeling too confident or you want to learn more about this gigantic Munro, there are several guided walking tours which will lead you up and down the mountain. Take advantage of the guides' local knowledge, walking experience, and learn more about the viewpoints and facts about the mountain.</p>
-
-                <p>Go to <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/guided-walk-up-ben-nevis-fort-william-scotland" title="" target="_blank">Visit Fort William</a> to see all the guided walks available.</p>
-
-                <h5>Where can I stock up on supplies?</h5>
-
-                <p>You can purchase snacks, find useful information and maps, and use the toilets at the Glen Nevis Visitor Centre before you set off. Fort William also has several outdoor shops in the town centre for any essentials you might need.</p>
-
-                <h5>How do I get there?</h5>
-
-                <p>The town of Fort William is situated at the foot of Ben Nevis. By car it takes approximately 2 -3 hours from Glasgow and 3 - 4 hours from Edinburgh depending on traffic. You can also catch a direct train to Fort William from Glasgow or the Caledonian Sleeper from London Euston. There is also a <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/guided-walk-up-ben-nevis-fort-william-scotland" title="" target="_blank">CityLink Bus</a> service from Glasgow.</p>
-            /visitscotland:Quote:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Scotland's largest mountain was once a massive
-                  active volcano which exploded and collapsed inwards on itself millions
-                  of years ago.</p>
-            /visitscotland:media:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 553f7d97-c5a9-46e0-a936-ee4e7a90d208
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-          /visitscotland:paragraph[3]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h3>The Mountain Track</h3>
-
-                <h4>Best route for: Beginners</h4>
-
-                <p>The <a href="https://www.walkhighlands.co.uk/fortwilliam/bennevis.shtml" title="" target="_blank">easiest route</a> up the mountain, the track begins at the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-glen-nevis-visitor-centre-in-fort-william" title="" target="_blank">Glen Nevis Visitor Centre</a> car park, at Achintee on the east side of Glen Nevis about 2 km from the town centre of Fort William, and approximately 20 m above sea level. The track starts with a steep climb to the halfway lochan', or Lochan Meall an t-Suidhe, and then the ascent features snaking zig-zag paths up to the summit.</p>
-
-                <p>At the summit, there's a cairn that marks the highest point and your reward on a clear day will be the incredible <a href="http://360outdoors.visitscotland.com/#ben-nevis" title="" target="_blank">360°</a> panoramic vistas which can stretch as far as Northern Ireland. From the top, see if you can point out other peaks including the Torridon hills, Ben Lomond and Morven at Caithness.</p>
-
-                <p>A unique feature of the summit is the Old Observatory, which was opened in 1883. It provided hourly meteorological data for almost 20 years, recording some of the UK's most useful information about mountain weather to date. It closed in 1904 and it now lies in ruin, but can be used for shelter in emergencies.</p>
-            /visitscotland:media:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-        /the-mountain-track[2]:
-          jcr:primaryType: visitscotland:Article
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 2c3d6cb1-0821-4c0c-8ced-766dedce02f6
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2021-01-11T14:31:16.008Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:45:37.289Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: af564db8-39b9-4144-b7a2-1e1753713a72
-          hippotranslation:locale: en
-          visitscotland:anchor: walking-routes
-          visitscotland:title: 'Walking Routes: The Mountain with its head in the
-            clouds means that its raining'
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:copy:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>There are two main walking routes up Ben Nevis. The
-              Mountain Track (sometimes called the Tourist Track or the Pony Track)
-              is used by most walkers, whilst the Carn Mor Dearg Arête route presents
-              a more challenging climb for more experienced hikers.</p>
-          /visitscotland:paragraph[1]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h3>Carn Mor<br />
-                Dearg Arête</h3>
-
-                <h4>Best route for:&nbsp;Experienced hillwalkers</h4>
-
-                <p>Carn Mor Dearg Arête is the mountain's other <a href="https://www.walkhighlands.co.uk/fortwilliam/carnmordeargarete.shtml" title="" target="_blank">walking route</a>, a challenging ridge climb which should only be attempted by experienced scramblers and physically-fit hill walkers. Though demanding, the route rewards walkers with the finest possible views of the mountain's North face. Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers. A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
-            /visitscotland:Quote:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Scotland's largest mountain was once a massive
-                  active volcano which exploded and collapsed inwards on itself millions
-                  of years ago.</p>
-          /visitscotland:paragraph[2]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h5>How do I climb Ben Nevis safely?</h5>
-
-                <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
-                 <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
-                 <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
-                 <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
-                </ul>
-
-                <p>For more information on keeping safe on Ben Nevis, see these tips from <a href="https://www.mountaineering.scot/activities/hillwalking" title="" target="_blank">Mountaineering Scotland</a> and <a href="https://www.walkhighlands.co.uk/safety/" title="" target="_blank">Walk Highlands</a>.</p>
-
-                <h5>Is Ben Nevis suitable for children to climb?</h5>
-
-                <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
-
-                <p>© iagodina - Adobe Stock</p>
-
-                <h5>Can I bring my dog?</h5>
-
-                <p>Yes, if your dog enjoys long walks. It's best to keep dogs on the lead especially when the paths are busy with walkers. Also, some parts of the route will comprise uneven terrain, scree and loose stones which can be tricky for some dogs.</p>
-
-                <h5>Can I do a guided walk of Ben Nevis?</h5>
-
-                <p>Yes! If you're not feeling too confident or you want to learn more about this gigantic Munro, there are several guided walking tours which will lead you up and down the mountain. Take advantage of the guides' local knowledge, walking experience, and learn more about the viewpoints and facts about the mountain.</p>
-
-                <p>Go to <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/guided-walk-up-ben-nevis-fort-william-scotland" title="" target="_blank">Visit Fort William</a> to see all the guided walks available.</p>
-
-                <h5>Where can I stock up on supplies?</h5>
-
-                <p>You can purchase snacks, find useful information and maps, and use the toilets at the Glen Nevis Visitor Centre before you set off. Fort William also has several outdoor shops in the town centre for any essentials you might need.</p>
-
-                <h5>How do I get there?</h5>
-
-                <p>The town of Fort William is situated at the foot of Ben Nevis. By car it takes approximately 2 -3 hours from Glasgow and 3 - 4 hours from Edinburgh depending on traffic. You can also catch a direct train to Fort William from Glasgow or the Caledonian Sleeper from London Euston. There is also a <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/guided-walk-up-ben-nevis-fort-william-scotland" title="" target="_blank">CityLink Bus</a> service from Glasgow.</p>
-            /visitscotland:Quote:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Scotland's largest mountain was once a massive
-                  active volcano which exploded and collapsed inwards on itself millions
-                  of years ago.</p>
-            /visitscotland:media:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 553f7d97-c5a9-46e0-a936-ee4e7a90d208
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-          /visitscotland:paragraph[3]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h3>The Mountain Track</h3>
-
-                <h4>Best route for: Beginners</h4>
-
-                <p>The <a href="https://www.walkhighlands.co.uk/fortwilliam/bennevis.shtml" title="" target="_blank">easiest route</a> up the mountain, the track begins at the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-glen-nevis-visitor-centre-in-fort-william" title="" target="_blank">Glen Nevis Visitor Centre</a> car park, at Achintee on the east side of Glen Nevis about 2 km from the town centre of Fort William, and approximately 20 m above sea level. The track starts with a steep climb to the halfway lochan', or Lochan Meall an t-Suidhe, and then the ascent features snaking zig-zag paths up to the summit.</p>
-
-                <p>At the summit, there's a cairn that marks the highest point and your reward on a clear day will be the incredible <a href="http://360outdoors.visitscotland.com/#ben-nevis" title="" target="_blank">360°</a> panoramic vistas which can stretch as far as Northern Ireland. From the top, see if you can point out other peaks including the Torridon hills, Ben Lomond and Morven at Caithness.</p>
-
-                <p>A unique feature of the summit is the Old Observatory, which was opened in 1883. It provided hourly meteorological data for almost 20 years, recording some of the UK's most useful information about mountain weather to date. It closed in 1904 and it now lies in ruin, but can be used for shelter in emergencies.</p>
-            /visitscotland:media:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-        /the-mountain-track[3]:
-          jcr:primaryType: visitscotland:Article
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 1e6c21c1-76df-4e03-b039-fc92713fb8da
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2021-01-11T14:31:16.008Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:45:37.289Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T15:00:57.180Z
-          hippotranslation:id: af564db8-39b9-4144-b7a2-1e1753713a72
-          hippotranslation:locale: en
-          visitscotland:anchor: walking-routes
-          visitscotland:title: 'Walking Routes: The Mountain with its head in the
-            clouds means that its raining'
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:copy:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>There are two main walking routes up Ben Nevis. The
-              Mountain Track (sometimes called the Tourist Track or the Pony Track)
-              is used by most walkers, whilst the Carn Mor Dearg Arête route presents
-              a more challenging climb for more experienced hikers.</p>
-          /visitscotland:paragraph[1]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h3>Carn Mor<br />
-                Dearg Arête</h3>
-
-                <h4>Best route for:&nbsp;Experienced hillwalkers</h4>
-
-                <p>Carn Mor Dearg Arête is the mountain's other <a href="https://www.walkhighlands.co.uk/fortwilliam/carnmordeargarete.shtml" title="" target="_blank">walking route</a>, a challenging ridge climb which should only be attempted by experienced scramblers and physically-fit hill walkers. Though demanding, the route rewards walkers with the finest possible views of the mountain's North face. Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers. A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
-            /visitscotland:Quote:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Scotland's largest mountain was once a massive
-                  active volcano which exploded and collapsed inwards on itself millions
-                  of years ago.</p>
-          /visitscotland:paragraph[2]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h5>How do I climb Ben Nevis safely?</h5>
-
-                <ul>
-                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local <a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a> available. Remember this is the UK's highest mountain!</li>
-                 <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
-                 <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure, <a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a> can advise and guide you to the summit and back.</li>
-                 <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
-                </ul>
-
-                <p>For more information on keeping safe on Ben Nevis, see these tips from <a href="https://www.mountaineering.scot/activities/hillwalking" title="" target="_blank">Mountaineering Scotland</a> and <a href="https://www.walkhighlands.co.uk/safety/" title="" target="_blank">Walk Highlands</a>.</p>
-
-                <h5>Is Ben Nevis suitable for children to climb?</h5>
-
-                <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
-
-                <p>© iagodina - Adobe Stock</p>
-
-                <h5>Can I bring my dog?</h5>
-
-                <p>Yes, if your dog enjoys long walks. It's best to keep dogs on the lead especially when the paths are busy with walkers. Also, some parts of the route will comprise uneven terrain, scree and loose stones which can be tricky for some dogs.</p>
-
-                <h5>Can I do a guided walk of Ben Nevis?</h5>
-
-                <p>Yes! If you're not feeling too confident or you want to learn more about this gigantic Munro, there are several guided walking tours which will lead you up and down the mountain. Take advantage of the guides' local knowledge, walking experience, and learn more about the viewpoints and facts about the mountain.</p>
-
-                <p>Go to <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/guided-walk-up-ben-nevis-fort-william-scotland" title="" target="_blank">Visit Fort William</a> to see all the guided walks available.</p>
-
-                <h5>Where can I stock up on supplies?</h5>
-
-                <p>You can purchase snacks, find useful information and maps, and use the toilets at the Glen Nevis Visitor Centre before you set off. Fort William also has several outdoor shops in the town centre for any essentials you might need.</p>
-
-                <h5>How do I get there?</h5>
-
-                <p>The town of Fort William is situated at the foot of Ben Nevis. By car it takes approximately 2 -3 hours from Glasgow and 3 - 4 hours from Edinburgh depending on traffic. You can also catch a direct train to Fort William from Glasgow or the Caledonian Sleeper from London Euston. There is also a <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/guided-walk-up-ben-nevis-fort-william-scotland" title="" target="_blank">CityLink Bus</a> service from Glasgow.</p>
-            /visitscotland:Quote:
-              jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:quote:
-                jcr:primaryType: hippostd:html
-                hippostd:content: <p>Scotland's largest mountain was once a massive
-                  active volcano which exploded and collapsed inwards on itself millions
-                  of years ago.</p>
-            /visitscotland:media:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 553f7d97-c5a9-46e0-a936-ee4e7a90d208
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-          /visitscotland:paragraph[3]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h3>The Mountain Track</h3>
-
-                <h4>Best route for: Beginners</h4>
-
-                <p>The <a href="https://www.walkhighlands.co.uk/fortwilliam/bennevis.shtml" title="" target="_blank">easiest route</a> up the mountain, the track begins at the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-glen-nevis-visitor-centre-in-fort-william" title="" target="_blank">Glen Nevis Visitor Centre</a> car park, at Achintee on the east side of Glen Nevis about 2 km from the town centre of Fort William, and approximately 20 m above sea level. The track starts with a steep climb to the halfway lochan', or Lochan Meall an t-Suidhe, and then the ascent features snaking zig-zag paths up to the summit.</p>
-
-                <p>At the summit, there's a cairn that marks the highest point and your reward on a clear day will be the incredible <a href="http://360outdoors.visitscotland.com/#ben-nevis" title="" target="_blank">360°</a> panoramic vistas which can stretch as far as Northern Ireland. From the top, see if you can point out other peaks including the Torridon hills, Ben Lomond and Morven at Caithness.</p>
-
-                <p>A unique feature of the summit is the Old Observatory, which was opened in 1883. It provided hourly meteorological data for almost 20 years, recording some of the UK's most useful information about mountain weather to date. It closed in 1904 and it now lies in ruin, but can be used for shelter in emergencies.</p>
-            /visitscotland:media:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -10063,26 +9673,26 @@
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: e3bcd461-ebc0-44bb-a53e-4844331bf2b1
-        hippo:name: Routes to the summit
-        hippo:versionHistory: 679f11c9-414b-4e61-9666-aec9c75bb645
+        hippo:name: Routes to the Summit
+        hippo:versionHistory: 9d797a68-65e1-46bc-ad4d-c0f15e23dd72
         /routes-to-the-summit[1]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 3b97b136-0d9f-4987-a339-5303e9f0e8bd
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:15:20.689Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:46:28.325Z
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:27:56.177+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5e0fc71f-5844-48ba-92e8-97f760987dbf
           hippotranslation:locale: en
-          visitscotland:anchor: faqs
-          visitscotland:title: 'FAQs: The Mountain with its head in the clouds means
-            that its raining'
+          visitscotland:anchor: routes
+          visitscotland:title: Routes to the summit
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -10092,24 +9702,42 @@
               Mountain Track (sometimes called the Tourist Track or the Pony Track)
               is used by most walkers, whilst the Carn Mor Dearg Arête route presents
               a more challenging climb for more experienced hikers.</p>
-          /visitscotland:paragraph:
+          /visitscotland:paragraph[1]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
                 <h3>The Mountain Track</h3>
 
-                <h4>Best route for: Beginners</h4>
+                <h6>Best route for: Beginners</h6>
 
                 <p>The <a href="https://www.walkhighlands.co.uk/fortwilliam/bennevis.shtml" title="" target="_blank">easiest route</a> up the mountain, the track begins at the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-glen-nevis-visitor-centre-in-fort-william" title="" target="_blank">Glen Nevis Visitor Centre</a> car park, at Achintee on the east side of Glen Nevis about 2 km from the town centre of Fort William, and approximately 20 m above sea level. The track starts with a steep climb to the halfway lochan', or Lochan Meall an t-Suidhe, and then the ascent features snaking zig-zag paths up to the summit.</p>
 
                 <p>At the summit, there's a cairn that marks the highest point and your reward on a clear day will be the incredible <a href="http://360outdoors.visitscotland.com/#ben-nevis" title="" target="_blank">360°</a> panoramic vistas which can stretch as far as Northern Ireland. From the top, see if you can point out other peaks including the Torridon hills, Ben Lomond and Morven at Caithness.</p>
 
                 <p>A unique feature of the summit is the Old Observatory, which was opened in 1883. It provided hourly meteorological data for almost 20 years, recording some of the UK's most useful information about mountain weather to date. It closed in 1904 and it now lies in ruin, but can be used for shelter in emergencies.</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 886d4960-97d9-45ae-9d1c-a691c1d0cd54
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /visitscotland:paragraph[2]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Carn Mor Dearg Arête</h3>
+
+                <h6>Best route for:&nbsp;Experienced hillwalkers</h6>
+
+                <p>Carn Mor Dearg Arête is the mountain's other&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/carnmordeargarete.shtml" title="" target="_blank">walking route</a>, a challenging ridge climb which should only be attempted by experienced scramblers and physically-fit hill walkers. Though demanding, the route rewards walkers with the finest possible views of the mountain's North face.</p>
+
+                <p>Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers. A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
             /visitscotland:Quote:
               jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
+              visitscotland:author: Gemma
+              visitscotland:role: UI Developer
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -10118,27 +9746,53 @@
                 hippo:values: []
               /visitscotland:quote:
                 jcr:primaryType: hippostd:html
-                hippostd:content: <p>Scotland's largest mountain was once a massive
-                  active volcano which exploded and collapsed inwards on itself millions
-                  of years ago.</p>
+                hippostd:content: <p>This spectacular route can take between 10 –
+                  11 hours with scrambles across boulders. It requires a good head
+                  for heights and careful navigation across the trickier exposed sections.</p>
+          /visitscotland:paragraph[3]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Beyond hiking</h3>
+
+                <h6>There are many other incredible ways to experience Ben Nevis</h6>
+
+                <h6>Rock Climbing</h6>
+
+                <p>A rock climber's paradise, the North Face of Ben Nevis has steep jagged cliff edges which are 600m high in places and perfect for rock climbing. There is a variety of routes to choose from, including the Ledge Route and Tower Ridge. Find a knowledgeable rock climbing or&nbsp;<a href="https://www.visitfortwilliam.co.uk/outdoor-activities-in-fort-william-lochaber/ben-nevis-mamores-glencoe-mountain-guides" title="" target="_blank">mountain guide</a>&nbsp;to show you the best spots on the mountain, and read more about&nbsp;<a href="https://www.ukclimbing.com/articles/page.php?id=2219" title="" target="_blank">rock climbing experiences</a>&nbsp;you can have on Ben Nevis.</p>
+
+                <h6>Mountain Gondola</h6>
+
+                <p>You can also take in the sights aboard a Nevis Range mountain gondola ride. Drift effortlessly along the north face of the Aonach Mor, and enjoy awe-inspiring&nbsp;<a href="http://nevisrange.co.uk/activities_mountain_viewpoints.asp" title="" target="_blank">views</a>&nbsp;of the Great Glen and Ben Nevis, and sometimes even the Inner Hebrides on clear days. The journey takes approximately 12 -15 minutes, and each gondola car can take up to six people.</p>
+
+                <p>The gondola cars are wheelchair accessible, and you can also bring your dog and take them for a walk along one of the mountain viewpoint trails.</p>
+
+                <p>For more information about prices and times, please visit the&nbsp;<a href="http://nevisrange.co.uk/gondola-info.asp" title="" target="_blank">Nevis Range website</a>.</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: c0d67ee5-7a22-4fa8-b0b8-335921c3f0e7
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
         /routes-to-the-summit[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
           jcr:uuid: 5733125a-679a-4779-b525-ef80a0154260
           hippo:availability: [preview]
+          hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:15:20.689Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:46:28.174Z
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:13:48.176+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5e0fc71f-5844-48ba-92e8-97f760987dbf
           hippotranslation:locale: en
-          visitscotland:anchor: faqs
-          visitscotland:title: 'FAQs: The Mountain with its head in the clouds means
-            that its raining'
+          visitscotland:anchor: routes
+          visitscotland:title: Routes to the summit
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -10148,24 +9802,42 @@
               Mountain Track (sometimes called the Tourist Track or the Pony Track)
               is used by most walkers, whilst the Carn Mor Dearg Arête route presents
               a more challenging climb for more experienced hikers.</p>
-          /visitscotland:paragraph:
+          /visitscotland:paragraph[1]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
                 <h3>The Mountain Track</h3>
 
-                <h4>Best route for: Beginners</h4>
+                <h6>Best route for: Beginners</h6>
 
                 <p>The <a href="https://www.walkhighlands.co.uk/fortwilliam/bennevis.shtml" title="" target="_blank">easiest route</a> up the mountain, the track begins at the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-glen-nevis-visitor-centre-in-fort-william" title="" target="_blank">Glen Nevis Visitor Centre</a> car park, at Achintee on the east side of Glen Nevis about 2 km from the town centre of Fort William, and approximately 20 m above sea level. The track starts with a steep climb to the halfway lochan', or Lochan Meall an t-Suidhe, and then the ascent features snaking zig-zag paths up to the summit.</p>
 
                 <p>At the summit, there's a cairn that marks the highest point and your reward on a clear day will be the incredible <a href="http://360outdoors.visitscotland.com/#ben-nevis" title="" target="_blank">360°</a> panoramic vistas which can stretch as far as Northern Ireland. From the top, see if you can point out other peaks including the Torridon hills, Ben Lomond and Morven at Caithness.</p>
 
                 <p>A unique feature of the summit is the Old Observatory, which was opened in 1883. It provided hourly meteorological data for almost 20 years, recording some of the UK's most useful information about mountain weather to date. It closed in 1904 and it now lies in ruin, but can be used for shelter in emergencies.</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 886d4960-97d9-45ae-9d1c-a691c1d0cd54
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /visitscotland:paragraph[2]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Carn Mor Dearg Arête</h3>
+
+                <h6>Best route for:&nbsp;Experienced hillwalkers</h6>
+
+                <p>Carn Mor Dearg Arête is the mountain's other&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/carnmordeargarete.shtml" title="" target="_blank">walking route</a>, a challenging ridge climb which should only be attempted by experienced scramblers and physically-fit hill walkers. Though demanding, the route rewards walkers with the finest possible views of the mountain's North face.</p>
+
+                <p>Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers. A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
             /visitscotland:Quote:
               jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
+              visitscotland:author: Gemma
+              visitscotland:role: UI Developer
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -10174,28 +9846,54 @@
                 hippo:values: []
               /visitscotland:quote:
                 jcr:primaryType: hippostd:html
-                hippostd:content: <p>Scotland's largest mountain was once a massive
-                  active volcano which exploded and collapsed inwards on itself millions
-                  of years ago.</p>
+                hippostd:content: <p>This spectacular route can take between 10 –
+                  11 hours with scrambles across boulders. It requires a good head
+                  for heights and careful navigation across the trickier exposed sections.</p>
+          /visitscotland:paragraph[3]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Beyond hiking</h3>
+
+                <h6>There are many other incredible ways to experience Ben Nevis</h6>
+
+                <h6>Rock Climbing</h6>
+
+                <p>A rock climber's paradise, the North Face of Ben Nevis has steep jagged cliff edges which are 600m high in places and perfect for rock climbing. There is a variety of routes to choose from, including the Ledge Route and Tower Ridge. Find a knowledgeable rock climbing or&nbsp;<a href="https://www.visitfortwilliam.co.uk/outdoor-activities-in-fort-william-lochaber/ben-nevis-mamores-glencoe-mountain-guides" title="" target="_blank">mountain guide</a>&nbsp;to show you the best spots on the mountain, and read more about&nbsp;<a href="https://www.ukclimbing.com/articles/page.php?id=2219" title="" target="_blank">rock climbing experiences</a>&nbsp;you can have on Ben Nevis.</p>
+
+                <h6>Mountain Gondola</h6>
+
+                <p>You can also take in the sights aboard a Nevis Range mountain gondola ride. Drift effortlessly along the north face of the Aonach Mor, and enjoy awe-inspiring&nbsp;<a href="http://nevisrange.co.uk/activities_mountain_viewpoints.asp" title="" target="_blank">views</a>&nbsp;of the Great Glen and Ben Nevis, and sometimes even the Inner Hebrides on clear days. The journey takes approximately 12 -15 minutes, and each gondola car can take up to six people.</p>
+
+                <p>The gondola cars are wheelchair accessible, and you can also bring your dog and take them for a walk along one of the mountain viewpoint trails.</p>
+
+                <p>For more information about prices and times, please visit the&nbsp;<a href="http://nevisrange.co.uk/gondola-info.asp" title="" target="_blank">Nevis Range website</a>.</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: c0d67ee5-7a22-4fa8-b0b8-335921c3f0e7
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
         /routes-to-the-summit[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 6d3e1dc0-da6c-4ea7-b0a5-3c7b515a647d
           hippo:availability: [live]
+          hippostd:retainable: false
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:15:20.689Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:46:28.174Z
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:13:48.176+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T15:00:58.280Z
+          hippostdpubwf:publicationDate: 2021-06-07T11:28:09.421+01:00
           hippotranslation:id: 5e0fc71f-5844-48ba-92e8-97f760987dbf
           hippotranslation:locale: en
-          visitscotland:anchor: faqs
-          visitscotland:title: 'FAQs: The Mountain with its head in the clouds means
-            that its raining'
+          visitscotland:anchor: routes
+          visitscotland:title: Routes to the summit
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -10205,24 +9903,42 @@
               Mountain Track (sometimes called the Tourist Track or the Pony Track)
               is used by most walkers, whilst the Carn Mor Dearg Arête route presents
               a more challenging climb for more experienced hikers.</p>
-          /visitscotland:paragraph:
+          /visitscotland:paragraph[1]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
                 <h3>The Mountain Track</h3>
 
-                <h4>Best route for: Beginners</h4>
+                <h6>Best route for: Beginners</h6>
 
                 <p>The <a href="https://www.walkhighlands.co.uk/fortwilliam/bennevis.shtml" title="" target="_blank">easiest route</a> up the mountain, the track begins at the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-glen-nevis-visitor-centre-in-fort-william" title="" target="_blank">Glen Nevis Visitor Centre</a> car park, at Achintee on the east side of Glen Nevis about 2 km from the town centre of Fort William, and approximately 20 m above sea level. The track starts with a steep climb to the halfway lochan', or Lochan Meall an t-Suidhe, and then the ascent features snaking zig-zag paths up to the summit.</p>
 
                 <p>At the summit, there's a cairn that marks the highest point and your reward on a clear day will be the incredible <a href="http://360outdoors.visitscotland.com/#ben-nevis" title="" target="_blank">360°</a> panoramic vistas which can stretch as far as Northern Ireland. From the top, see if you can point out other peaks including the Torridon hills, Ben Lomond and Morven at Caithness.</p>
 
                 <p>A unique feature of the summit is the Old Observatory, which was opened in 1883. It provided hourly meteorological data for almost 20 years, recording some of the UK's most useful information about mountain weather to date. It closed in 1904 and it now lies in ruin, but can be used for shelter in emergencies.</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 886d4960-97d9-45ae-9d1c-a691c1d0cd54
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+          /visitscotland:paragraph[2]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Carn Mor Dearg Arête</h3>
+
+                <h6>Best route for:&nbsp;Experienced hillwalkers</h6>
+
+                <p>Carn Mor Dearg Arête is the mountain's other&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/carnmordeargarete.shtml" title="" target="_blank">walking route</a>, a challenging ridge climb which should only be attempted by experienced scramblers and physically-fit hill walkers. Though demanding, the route rewards walkers with the finest possible views of the mountain's North face.</p>
+
+                <p>Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers. A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
             /visitscotland:Quote:
               jcr:primaryType: visitscotland:Quote
-              visitscotland:author: ''
-              visitscotland:role: ''
+              visitscotland:author: Gemma
+              visitscotland:role: UI Developer
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -10231,30 +9947,357 @@
                 hippo:values: []
               /visitscotland:quote:
                 jcr:primaryType: hippostd:html
-                hippostd:content: <p>Scotland's largest mountain was once a massive
-                  active volcano which exploded and collapsed inwards on itself millions
-                  of years ago.</p>
-      /plainest-version:
+                hippostd:content: <p>This spectacular route can take between 10 –
+                  11 hours with scrambles across boulders. It requires a good head
+                  for heights and careful navigation across the trickier exposed sections.</p>
+          /visitscotland:paragraph[3]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Beyond hiking</h3>
+
+                <h6>There are many other incredible ways to experience Ben Nevis</h6>
+
+                <h6>Rock Climbing</h6>
+
+                <p>A rock climber's paradise, the North Face of Ben Nevis has steep jagged cliff edges which are 600m high in places and perfect for rock climbing. There is a variety of routes to choose from, including the Ledge Route and Tower Ridge. Find a knowledgeable rock climbing or&nbsp;<a href="https://www.visitfortwilliam.co.uk/outdoor-activities-in-fort-william-lochaber/ben-nevis-mamores-glencoe-mountain-guides" title="" target="_blank">mountain guide</a>&nbsp;to show you the best spots on the mountain, and read more about&nbsp;<a href="https://www.ukclimbing.com/articles/page.php?id=2219" title="" target="_blank">rock climbing experiences</a>&nbsp;you can have on Ben Nevis.</p>
+
+                <h6>Mountain Gondola</h6>
+
+                <p>You can also take in the sights aboard a Nevis Range mountain gondola ride. Drift effortlessly along the north face of the Aonach Mor, and enjoy awe-inspiring&nbsp;<a href="http://nevisrange.co.uk/activities_mountain_viewpoints.asp" title="" target="_blank">views</a>&nbsp;of the Great Glen and Ben Nevis, and sometimes even the Inner Hebrides on clear days. The journey takes approximately 12 -15 minutes, and each gondola car can take up to six people.</p>
+
+                <p>The gondola cars are wheelchair accessible, and you can also bring your dog and take them for a walk along one of the mountain viewpoint trails.</p>
+
+                <p>For more information about prices and times, please visit the&nbsp;<a href="http://nevisrange.co.uk/gondola-info.asp" title="" target="_blank">Nevis Range website</a>.</p>
+            /visitscotland:media:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: c0d67ee5-7a22-4fa8-b0b8-335921c3f0e7
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+      /faq:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: a7e17ac0-ba13-426a-bcf2-d2d7b074c0bc
+        hippo:name: Frequently Asked Questions
+        hippo:versionHistory: 977b6923-d24c-47e3-bbde-021586268efa
+        /faq[1]:
+          jcr:primaryType: visitscotland:Article
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e9cf8442-f044-4121-a802-45d423255a2d
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-01-11T14:31:16.008Z
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:10:30.300+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: af564db8-39b9-4144-b7a2-1e1753713a72
+          hippotranslation:locale: en
+          visitscotland:anchor: faq
+          visitscotland:title: Frequently asked questions
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Turn your Munro-bagging dreams into reality and find
+              out everything you need to know before you lace up your walking boots.
+              Remember, discovering the sheer magic of Scotland's most famous mountain
+              is all the more fun when you're completely prepared for anything.</p>
+          /visitscotland:paragraph[1]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Plan your Ben Nevis adventure</h3>
+
+                <h6>Essential tips for your climb</h6>
+
+                <h6>How long does it take to climb Ben Nevis?</h6>
+
+                <p>It really depends on your level of fitness, the weather conditions and how many breaks you take to admire the views. It will usually take between 7 - 9 hours to complete following the Mountain Track, with an approximate ascent of 3.5&nbsp;- 4.5 hours to the summit.</p>
+
+                <h6>How tough is it to climb?</h6>
+
+                <p>It's a long and arduous climb and you might have stiff legs the following day, but the feeling of accomplishment when you scale the tallest mountain in the United Kingdom is pretty tough to beat.</p>
+
+                <h6>How high is it?</h6>
+
+                <p>A lofty 1,345 m. To put it into perspective, the London Eye stands at 135 m and Big Ben at 96 m high.</p>
+
+                <h6>Do I need a map and a compass?</h6>
+
+                <p>Although the Mountain Track is reasonably easy to follow on a clear day, it's essential to have both a&nbsp;<a href="https://www.walkhighlands.co.uk/maps/map4_2fw.shtml" title="" target="_blank">map</a>&nbsp;and a compass and know how to use them&nbsp;especially if there is poor visibility during the climb.</p>
+
+                <h6>Can I camp at Ben Nevis?</h6>
+
+                <p>Camping on the mountainside is not advisable. The peak is exposed and busy with walkers during the summer, and pitching a tent would be difficult due to the uneven terrain.</p>
+
+                <p>The&nbsp;<a href="https://www.visitscotland.com/info/accommodation/glen-nevis-caravan-camping-park-p200581" title="">Glen Nevis Campsite</a>&nbsp;is handily located near the foot of the mountain. It's just a short walk from the campsite to the start of the Mountain Track.</p>
+          /visitscotland:paragraph[2]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h6>When is the best time of year to climb?</h6>
+
+                <p>Summer is always the best time of year to tackle the Ben, with sunshine and clear views on the way to the top. You are likely to see snow at all times of the year, but climbing Ben Nevis in the winter is only for experienced mountaineers. If you are planning a winter ascent, check out Mountaineering Scotland's&nbsp;<a href="https://www.mountaineering.scot/safety-and-skills/thinkwinter" title="Think Winter - Mountaineering Scotland" target="_blank">#ThinkWINTER</a>&nbsp;guidance and make sure you have the appropriate skills and equipment before you go.</p>
+
+                <h6>What will the weather be like?</h6>
+
+                <p>The weather on Ben Nevis is extremely changeable, with glorious sunshine one moment then fog and gale force winds the next. Even if you set out on the sunniest of days, the temperatures at the summit can be at sub-zero, so it’s important to take appropriate all-weather gear. Always check the&nbsp;<a href="http://www.metoffice.gov.uk/public/weather/forecast/gfh7n5qpt" title="" target="_blank">mountain weather</a>&nbsp;page before you go, and if you’re in any doubt, always turn back.</p>
+
+                <p>Watch the live conditions and weather from Ben Nevis with the&nbsp;<a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">HD webcam</a>, which is situated at Tomacharich, Fort William.</p>
+
+                <h6>What should I bring?</h6>
+
+                <p>Warm and waterproof clothing is essential, and it’s wise to avoid cotton as it absorbs moisture. A pair of good walking boots are also an absolute must. Don’t forget to pack a few useful hiking tools, such as a map, compass, torch, whistle, and food and water.</p>
+
+                <p>Always remember to bring all of your litter back down the mountain with you. There are no bins on Ben Nevis so it’s important to take care of the landscape.</p>
+
+                <p>Find out more about the&nbsp;<a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">Nevis Landscape Partnership</a>, an organisation that works to preserve the Mountain Track for future generations.</p>
+          /visitscotland:paragraph[3]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h6>How do I climb Ben Nevis safely?</h6>
+
+                <ul>
+                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local&nbsp;<a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a>&nbsp;available. Remember this is the UK's highest mountain!</li>
+                 <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
+                 <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure,&nbsp;<a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a>&nbsp;can advise and guide you to the summit and back.</li>
+                 <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
+                </ul>
+
+                <p>For more information on keeping safe on Ben Nevis, see these tips from&nbsp;<a href="https://www.mountaineering.scot/activities/hillwalking" title="" target="_blank">Mountaineering Scotland</a>&nbsp;and&nbsp;<a href="https://www.walkhighlands.co.uk/safety/" title="" target="_blank">Walk Highlands</a>.</p>
+
+                <h6>Is Ben Nevis suitable for children to climb?</h6>
+
+                <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
+        /faq[2]:
+          jcr:primaryType: visitscotland:Article
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 2c3d6cb1-0821-4c0c-8ced-766dedce02f6
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-01-11T14:31:16.008Z
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:12:41.888+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: af564db8-39b9-4144-b7a2-1e1753713a72
+          hippotranslation:locale: en
+          visitscotland:anchor: faq
+          visitscotland:title: Frequently asked questions
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Turn your Munro-bagging dreams into reality and find
+              out everything you need to know before you lace up your walking boots.
+              Remember, discovering the sheer magic of Scotland's most famous mountain
+              is all the more fun when you're completely prepared for anything.</p>
+          /visitscotland:paragraph[1]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Plan your Ben Nevis adventure</h3>
+
+                <h6>Essential tips for your climb</h6>
+
+                <h6>How long does it take to climb Ben Nevis?</h6>
+
+                <p>It really depends on your level of fitness, the weather conditions and how many breaks you take to admire the views. It will usually take between 7 - 9 hours to complete following the Mountain Track, with an approximate ascent of 3.5&nbsp;- 4.5 hours to the summit.</p>
+
+                <h6>How tough is it to climb?</h6>
+
+                <p>It's a long and arduous climb and you might have stiff legs the following day, but the feeling of accomplishment when you scale the tallest mountain in the United Kingdom is pretty tough to beat.</p>
+
+                <h6>How high is it?</h6>
+
+                <p>A lofty 1,345 m. To put it into perspective, the London Eye stands at 135 m and Big Ben at 96 m high.</p>
+
+                <h6>Do I need a map and a compass?</h6>
+
+                <p>Although the Mountain Track is reasonably easy to follow on a clear day, it's essential to have both a&nbsp;<a href="https://www.walkhighlands.co.uk/maps/map4_2fw.shtml" title="" target="_blank">map</a>&nbsp;and a compass and know how to use them&nbsp;especially if there is poor visibility during the climb.</p>
+
+                <h6>Can I camp at Ben Nevis?</h6>
+
+                <p>Camping on the mountainside is not advisable. The peak is exposed and busy with walkers during the summer, and pitching a tent would be difficult due to the uneven terrain.</p>
+
+                <p>The&nbsp;<a href="https://www.visitscotland.com/info/accommodation/glen-nevis-caravan-camping-park-p200581" title="">Glen Nevis Campsite</a>&nbsp;is handily located near the foot of the mountain. It's just a short walk from the campsite to the start of the Mountain Track.</p>
+          /visitscotland:paragraph[2]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h6>When is the best time of year to climb?</h6>
+
+                <p>Summer is always the best time of year to tackle the Ben, with sunshine and clear views on the way to the top. You are likely to see snow at all times of the year, but climbing Ben Nevis in the winter is only for experienced mountaineers. If you are planning a winter ascent, check out Mountaineering Scotland's&nbsp;<a href="https://www.mountaineering.scot/safety-and-skills/thinkwinter" title="Think Winter - Mountaineering Scotland" target="_blank">#ThinkWINTER</a>&nbsp;guidance and make sure you have the appropriate skills and equipment before you go.</p>
+
+                <h6>What will the weather be like?</h6>
+
+                <p>The weather on Ben Nevis is extremely changeable, with glorious sunshine one moment then fog and gale force winds the next. Even if you set out on the sunniest of days, the temperatures at the summit can be at sub-zero, so it’s important to take appropriate all-weather gear. Always check the&nbsp;<a href="http://www.metoffice.gov.uk/public/weather/forecast/gfh7n5qpt" title="" target="_blank">mountain weather</a>&nbsp;page before you go, and if you’re in any doubt, always turn back.</p>
+
+                <p>Watch the live conditions and weather from Ben Nevis with the&nbsp;<a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">HD webcam</a>, which is situated at Tomacharich, Fort William.</p>
+
+                <h6>What should I bring?</h6>
+
+                <p>Warm and waterproof clothing is essential, and it’s wise to avoid cotton as it absorbs moisture. A pair of good walking boots are also an absolute must. Don’t forget to pack a few useful hiking tools, such as a map, compass, torch, whistle, and food and water.</p>
+
+                <p>Always remember to bring all of your litter back down the mountain with you. There are no bins on Ben Nevis so it’s important to take care of the landscape.</p>
+
+                <p>Find out more about the&nbsp;<a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">Nevis Landscape Partnership</a>, an organisation that works to preserve the Mountain Track for future generations.</p>
+          /visitscotland:paragraph[3]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h6>How do I climb Ben Nevis safely?</h6>
+
+                <ul>
+                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local&nbsp;<a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a>&nbsp;available. Remember this is the UK's highest mountain!</li>
+                 <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
+                 <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure,&nbsp;<a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a>&nbsp;can advise and guide you to the summit and back.</li>
+                 <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
+                </ul>
+
+                <p>For more information on keeping safe on Ben Nevis, see these tips from&nbsp;<a href="https://www.mountaineering.scot/activities/hillwalking" title="" target="_blank">Mountaineering Scotland</a>&nbsp;and&nbsp;<a href="https://www.walkhighlands.co.uk/safety/" title="" target="_blank">Walk Highlands</a>.</p>
+
+                <h6>Is Ben Nevis suitable for children to climb?</h6>
+
+                <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
+        /faq[3]:
+          jcr:primaryType: visitscotland:Article
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 1e6c21c1-76df-4e03-b039-fc92713fb8da
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-01-11T14:31:16.008Z
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:12:41.888+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-06-07T11:12:57.099+01:00
+          hippotranslation:id: af564db8-39b9-4144-b7a2-1e1753713a72
+          hippotranslation:locale: en
+          visitscotland:anchor: faq
+          visitscotland:title: Frequently asked questions
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Turn your Munro-bagging dreams into reality and find
+              out everything you need to know before you lace up your walking boots.
+              Remember, discovering the sheer magic of Scotland's most famous mountain
+              is all the more fun when you're completely prepared for anything.</p>
+          /visitscotland:paragraph[1]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>Plan your Ben Nevis adventure</h3>
+
+                <h6>Essential tips for your climb</h6>
+
+                <h6>How long does it take to climb Ben Nevis?</h6>
+
+                <p>It really depends on your level of fitness, the weather conditions and how many breaks you take to admire the views. It will usually take between 7 - 9 hours to complete following the Mountain Track, with an approximate ascent of 3.5&nbsp;- 4.5 hours to the summit.</p>
+
+                <h6>How tough is it to climb?</h6>
+
+                <p>It's a long and arduous climb and you might have stiff legs the following day, but the feeling of accomplishment when you scale the tallest mountain in the United Kingdom is pretty tough to beat.</p>
+
+                <h6>How high is it?</h6>
+
+                <p>A lofty 1,345 m. To put it into perspective, the London Eye stands at 135 m and Big Ben at 96 m high.</p>
+
+                <h6>Do I need a map and a compass?</h6>
+
+                <p>Although the Mountain Track is reasonably easy to follow on a clear day, it's essential to have both a&nbsp;<a href="https://www.walkhighlands.co.uk/maps/map4_2fw.shtml" title="" target="_blank">map</a>&nbsp;and a compass and know how to use them&nbsp;especially if there is poor visibility during the climb.</p>
+
+                <h6>Can I camp at Ben Nevis?</h6>
+
+                <p>Camping on the mountainside is not advisable. The peak is exposed and busy with walkers during the summer, and pitching a tent would be difficult due to the uneven terrain.</p>
+
+                <p>The&nbsp;<a href="https://www.visitscotland.com/info/accommodation/glen-nevis-caravan-camping-park-p200581" title="">Glen Nevis Campsite</a>&nbsp;is handily located near the foot of the mountain. It's just a short walk from the campsite to the start of the Mountain Track.</p>
+          /visitscotland:paragraph[2]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h6>When is the best time of year to climb?</h6>
+
+                <p>Summer is always the best time of year to tackle the Ben, with sunshine and clear views on the way to the top. You are likely to see snow at all times of the year, but climbing Ben Nevis in the winter is only for experienced mountaineers. If you are planning a winter ascent, check out Mountaineering Scotland's&nbsp;<a href="https://www.mountaineering.scot/safety-and-skills/thinkwinter" title="Think Winter - Mountaineering Scotland" target="_blank">#ThinkWINTER</a>&nbsp;guidance and make sure you have the appropriate skills and equipment before you go.</p>
+
+                <h6>What will the weather be like?</h6>
+
+                <p>The weather on Ben Nevis is extremely changeable, with glorious sunshine one moment then fog and gale force winds the next. Even if you set out on the sunniest of days, the temperatures at the summit can be at sub-zero, so it’s important to take appropriate all-weather gear. Always check the&nbsp;<a href="http://www.metoffice.gov.uk/public/weather/forecast/gfh7n5qpt" title="" target="_blank">mountain weather</a>&nbsp;page before you go, and if you’re in any doubt, always turn back.</p>
+
+                <p>Watch the live conditions and weather from Ben Nevis with the&nbsp;<a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">HD webcam</a>, which is situated at Tomacharich, Fort William.</p>
+
+                <h6>What should I bring?</h6>
+
+                <p>Warm and waterproof clothing is essential, and it’s wise to avoid cotton as it absorbs moisture. A pair of good walking boots are also an absolute must. Don’t forget to pack a few useful hiking tools, such as a map, compass, torch, whistle, and food and water.</p>
+
+                <p>Always remember to bring all of your litter back down the mountain with you. There are no bins on Ben Nevis so it’s important to take care of the landscape.</p>
+
+                <p>Find out more about the&nbsp;<a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">Nevis Landscape Partnership</a>, an organisation that works to preserve the Mountain Track for future generations.</p>
+          /visitscotland:paragraph[3]:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h6>How do I climb Ben Nevis safely?</h6>
+
+                <ul>
+                 <li>The difficulty of this hike is often under-estimated so always be prepared and take the walk at your own pace. If you are not confident in your own sense of direction, there are local&nbsp;<a href="https://www.outdoorcapital.co.uk/things-to-do/walking/" title="" target="_blank">guided walking tours</a>&nbsp;available. Remember this is the UK's highest mountain!</li>
+                 <li>Make sure someone knows where you're headed and ensure that you have plenty of time to get back well before nightfall.</li>
+                 <li>Any ascent in snow requires a high degree of fitness,&nbsp;winter equipment and the skills to use them and mountaineering and&nbsp;navigation&nbsp;experience.&nbsp;Bear in mind snow can cover&nbsp;parts of the 'tourist' path&nbsp;into the summer months. If you're at all unsure,&nbsp;<a href="https://www.outdoorcapital.co.uk/things-to-do-fortwilliam-lochaber-scotland/climbing-mountaineering/" title="Ben Nevis Longform OCUK Climbing page" target="_blank">local mountain guides</a>&nbsp;can advise and guide you to the summit and back.</li>
+                 <li>Make sure you fill in a mountain safety route card and leave it with someone you trust.</li>
+                </ul>
+
+                <p>For more information on keeping safe on Ben Nevis, see these tips from&nbsp;<a href="https://www.mountaineering.scot/activities/hillwalking" title="" target="_blank">Mountaineering Scotland</a>&nbsp;and&nbsp;<a href="https://www.walkhighlands.co.uk/safety/" title="" target="_blank">Walk Highlands</a>.</p>
+
+                <h6>Is Ben Nevis suitable for children to climb?</h6>
+
+                <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
+      /things-to-do:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 215170b3-37ea-4ce8-a162-8bbc6faee9db
-        hippo:name: Plainest version
-        hippo:versionHistory: 669120e4-3261-44ae-b0a7-0ab6c020155f
-        /plainest-version[1]:
+        hippo:name: Things To Do
+        hippo:versionHistory: 4c5a7b71-7f99-4424-9acd-4e560af7f620
+        /things-to-do[1]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 346f74c6-dc55-4cc7-997d-48a87dcc739a
           hippo:availability: []
+          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:38:16.790Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:47:12.839Z
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:27:17.043+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 8ab1d09e-7d89-4c9e-8d4a-d5a6e7daad67
           hippotranslation:locale: en
           visitscotland:anchor: acco-see-do
-          visitscotland:title: 'Places to stay & things to do: The Mountain with its
-            head in the clouds means that its raining'
+          visitscotland:title: Places to stay & things to do
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -10269,46 +10312,75 @@
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <h5>When is the best time of year to climb?</h5>
+                <h3>Nearby attractions</h3>
 
-                <p>Summer is always the best time of year to tackle the Ben, with sunshine and clear views on the way to the top. You are likely to see snow at all times of the year, but climbing Ben Nevis in the winter is only for experienced mountaineers. If you are planning a winter ascent, check out Mountaineering Scotland's <a href="https://www.mountaineering.scot/safety-and-skills/thinkwinter" title="Think Winter - Mountaineering Scotland" target="_blank">#ThinkWINTER</a> guidance and make sure you have the appropriate skills and equipment before you go.</p>
+                <p>Head to the&nbsp;<a href="https://www.visitscotland.com/info/see-do/ben-nevis-distillery-p421401" title="">Ben Nevis Distillery</a>, one of Scotland’s oldest distilleries established in 1825. A perfect souvenir for those who have completed the climb, take a tour of the distillery the following day and ease your weary muscles with a dram of single malt. The distillery is at Lochy Bridge, Fort William, around 7 minutes’ drive away from Ben Nevis.</p>
+
+                <p>Fort William and Lochaber is a region known as the ‘Outdoor Capital of the UK’ so there is a wide variety of adrenaline pumping activities on offer. Try gorge walking or canyoning with&nbsp;<a href="http://www.verticaldescents.com/" title="" target="_blank">Vertical Descents</a>, or get hooked on a new watersport such as white water funyakking and river rafting with&nbsp;<a href="https://www.activehighs.co.uk/" title="" target="_blank">Active Highs</a>.</p>
+
+                <p>In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding. &nbsp;&nbsp;</p>
+            /visitscotland:media:
+              jcr:primaryType: visitscotland:InstagramImage
+              visitscotland:caption: Camping
+              visitscotland:id: CPWHEwkjQDH
+              visitscotland:location: Fort William
           /visitscotland:paragraph[2]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <h5>What will the weather be like?</h5>
+                <p>There are plenty of beautiful scenic walks in the Fort William area. Take a short stroll through the Nevis Gorge to admire the cascading&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/steallfalls.shtml" title="" target="_blank">Steall Falls</a>, or wander along to the Iron Age&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/dun-deardail.shtml" title="" target="_blank">Dun Deardail</a>&nbsp;fort which boasts a stunning hilltop location and can be reached by following the waymarked path from Glen Nevis.</p>
 
-                <p>The weather on Ben Nevis is extremely changeable, with glorious sunshine one moment then fog and gale force winds the next. Even if you set out on the sunniest of days, the temperatures at the summit can be at sub-zero, so it’s important to take appropriate all-weather gear. Always check the <a href="http://www.metoffice.gov.uk/public/weather/forecast/gfh7n5qpt" title="" target="_blank">mountain weather</a> page before you go, and if you’re in any doubt, always turn back.</p>
+                <p>&nbsp;In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding.&nbsp;</p>
 
-                <p>Watch the live conditions and weather from Ben Nevis with the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">HD webcam</a>, which is situated at Tomacharich, Fort William.</p>
-          /visitscotland:paragraph[3]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h5>What should I bring?</h5>
+                <p>Visit the fascinating and free&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-west-highland-museum-p246721" title="" target="_blank">West Highland Museum</a>&nbsp;in Fort William, and learn all about the north west Highlands Jacobite history, with medals, weapons and one of Bonnie Prince Charlie's silk waistcoats on display.</p>
 
-                <p>Warm and waterproof clothing is essential, and it’s wise to avoid cotton as it absorbs moisture. A pair of good walking boots are also an absolute must. Don’t forget to pack a few useful hiking tools, such as a map, compass, torch, whistle, and food and water.</p>
+                <p>Take the rail journey of a lifetime aboard the iconic&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-jacobite-steam-train-p292641" title="">Jacobite Steam Train</a>, which departs from Fort William to Mallaig during the summer months along the West Highland Line. It travels over the magnificent Glenfinnan Viaduct which featured in the&nbsp;<a href="https://www.visitscotland.com/see-do/attractions/tv-film/harry-potter-itinerary/" title="">Harry Potter film</a>&nbsp;series.</p>
 
-                <p>Always remember to bring all of your litter back down the mountain with you. There are no bins on Ben Nevis so it’s important to take care of the landscape.</p>
+                <p>After your epic adventure, choose from a wide variety of&nbsp;<a href="https://www.visitscotland.com/destinations-maps/fort-william/accommodation/" title="">accommodation</a>&nbsp;options available in and around Fort William.</p>
 
-                <p>Find out more about the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">Nevis Landscape Partnership</a>, an organisation that works to preserve the Mountain Track for future generations.</p>
-        /plainest-version[2]:
+                <p>Take the chance to do some&nbsp;<a href="https://www.visitscotland.com/accommodation/caravan-camping/wild-camping/" title="">wild camping</a>&nbsp;in the area, and sleep in the shadow of Ben Nevis. Pitch up a tent on the grassy plains of the Steall Meadows, Upper Glen Nevis. A sheltered glen which separates Ben Nevis from the towering ridges of the Mamores range, this is an idyllic spot to set up camp. Visit the dramatic Steall Falls and cross the famous wire bridge nearby.</p>
+
+                <p>Admire the magnificent views out for the window, from the comfort of the&nbsp;<a href="http://www.ben-nevis-inn.co.uk/" title="" target="_blank">Ben Nevis Inn</a>&nbsp;while you enjoy a pint of real ale and some hearty Highland produce. You can also rest your weary legs after the climb and stay the night in the bunkhouse.</p>
+
+                <p>For incredible views of the mountain, spend the night at the friendly&nbsp;<a href="https://www.visitscotland.com/info/accommodation/glen-nevis-youth-hostel-syha-p213771/" title="">Glen Nevis Youth Hostel</a>. Ideally situated at the foot of Ben Nevis with drying facilities and spacious places to relax, the hostel is a great place to unwind after a long day of walking.</p>
+
+                <p>Look out for places to stay which are part of the&nbsp;<a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Fort+William&amp;locplace=7461&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off&amp;src_awards__0=qaw" title="">Walker's Welcome Scheme</a>, which will cater especially for walkers' needs and provide information and useful facilities throughout your stay.</p>
+            /visitscotland:media:
+              jcr:primaryType: visitscotland:InstagramImage
+              visitscotland:caption: Steall Falls
+              visitscotland:id: CPTZSbCJbXs
+              visitscotland:location: Fort William
+            /visitscotland:Quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Penny
+              visitscotland:role: Visitor Scotland Advisor at Edinburgh iCentre
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 44c9fd39-a37c-4ea9-ba77-3418e5736149
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Scotland's largest mountain was once a massive
+                  active volcano which exploded and collapsed inwards on itself millions
+                  of years ago.</p>
+        /things-to-do[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
           jcr:uuid: 2e17f22a-2892-4236-9347-8b40bfc71c18
           hippo:availability: [preview]
+          hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:38:16.790Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:47:12.794Z
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:27:23.452+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 8ab1d09e-7d89-4c9e-8d4a-d5a6e7daad67
           hippotranslation:locale: en
           visitscotland:anchor: acco-see-do
-          visitscotland:title: 'Places to stay & things to do: The Mountain with its
-            head in the clouds means that its raining'
+          visitscotland:title: Places to stay & things to do
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -10323,47 +10395,76 @@
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <h5>When is the best time of year to climb?</h5>
+                <h3>Nearby attractions</h3>
 
-                <p>Summer is always the best time of year to tackle the Ben, with sunshine and clear views on the way to the top. You are likely to see snow at all times of the year, but climbing Ben Nevis in the winter is only for experienced mountaineers. If you are planning a winter ascent, check out Mountaineering Scotland's <a href="https://www.mountaineering.scot/safety-and-skills/thinkwinter" title="Think Winter - Mountaineering Scotland" target="_blank">#ThinkWINTER</a> guidance and make sure you have the appropriate skills and equipment before you go.</p>
+                <p>Head to the&nbsp;<a href="https://www.visitscotland.com/info/see-do/ben-nevis-distillery-p421401" title="">Ben Nevis Distillery</a>, one of Scotland’s oldest distilleries established in 1825. A perfect souvenir for those who have completed the climb, take a tour of the distillery the following day and ease your weary muscles with a dram of single malt. The distillery is at Lochy Bridge, Fort William, around 7 minutes’ drive away from Ben Nevis.</p>
+
+                <p>Fort William and Lochaber is a region known as the ‘Outdoor Capital of the UK’ so there is a wide variety of adrenaline pumping activities on offer. Try gorge walking or canyoning with&nbsp;<a href="http://www.verticaldescents.com/" title="" target="_blank">Vertical Descents</a>, or get hooked on a new watersport such as white water funyakking and river rafting with&nbsp;<a href="https://www.activehighs.co.uk/" title="" target="_blank">Active Highs</a>.</p>
+
+                <p>In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding. &nbsp;&nbsp;</p>
+            /visitscotland:media:
+              jcr:primaryType: visitscotland:InstagramImage
+              visitscotland:caption: Camping
+              visitscotland:id: CPWHEwkjQDH
+              visitscotland:location: Fort William
           /visitscotland:paragraph[2]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <h5>What will the weather be like?</h5>
+                <p>There are plenty of beautiful scenic walks in the Fort William area. Take a short stroll through the Nevis Gorge to admire the cascading&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/steallfalls.shtml" title="" target="_blank">Steall Falls</a>, or wander along to the Iron Age&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/dun-deardail.shtml" title="" target="_blank">Dun Deardail</a>&nbsp;fort which boasts a stunning hilltop location and can be reached by following the waymarked path from Glen Nevis.</p>
 
-                <p>The weather on Ben Nevis is extremely changeable, with glorious sunshine one moment then fog and gale force winds the next. Even if you set out on the sunniest of days, the temperatures at the summit can be at sub-zero, so it’s important to take appropriate all-weather gear. Always check the <a href="http://www.metoffice.gov.uk/public/weather/forecast/gfh7n5qpt" title="" target="_blank">mountain weather</a> page before you go, and if you’re in any doubt, always turn back.</p>
+                <p>&nbsp;In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding.&nbsp;</p>
 
-                <p>Watch the live conditions and weather from Ben Nevis with the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">HD webcam</a>, which is situated at Tomacharich, Fort William.</p>
-          /visitscotland:paragraph[3]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h5>What should I bring?</h5>
+                <p>Visit the fascinating and free&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-west-highland-museum-p246721" title="" target="_blank">West Highland Museum</a>&nbsp;in Fort William, and learn all about the north west Highlands Jacobite history, with medals, weapons and one of Bonnie Prince Charlie's silk waistcoats on display.</p>
 
-                <p>Warm and waterproof clothing is essential, and it’s wise to avoid cotton as it absorbs moisture. A pair of good walking boots are also an absolute must. Don’t forget to pack a few useful hiking tools, such as a map, compass, torch, whistle, and food and water.</p>
+                <p>Take the rail journey of a lifetime aboard the iconic&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-jacobite-steam-train-p292641" title="">Jacobite Steam Train</a>, which departs from Fort William to Mallaig during the summer months along the West Highland Line. It travels over the magnificent Glenfinnan Viaduct which featured in the&nbsp;<a href="https://www.visitscotland.com/see-do/attractions/tv-film/harry-potter-itinerary/" title="">Harry Potter film</a>&nbsp;series.</p>
 
-                <p>Always remember to bring all of your litter back down the mountain with you. There are no bins on Ben Nevis so it’s important to take care of the landscape.</p>
+                <p>After your epic adventure, choose from a wide variety of&nbsp;<a href="https://www.visitscotland.com/destinations-maps/fort-william/accommodation/" title="">accommodation</a>&nbsp;options available in and around Fort William.</p>
 
-                <p>Find out more about the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">Nevis Landscape Partnership</a>, an organisation that works to preserve the Mountain Track for future generations.</p>
-        /plainest-version[3]:
+                <p>Take the chance to do some&nbsp;<a href="https://www.visitscotland.com/accommodation/caravan-camping/wild-camping/" title="">wild camping</a>&nbsp;in the area, and sleep in the shadow of Ben Nevis. Pitch up a tent on the grassy plains of the Steall Meadows, Upper Glen Nevis. A sheltered glen which separates Ben Nevis from the towering ridges of the Mamores range, this is an idyllic spot to set up camp. Visit the dramatic Steall Falls and cross the famous wire bridge nearby.</p>
+
+                <p>Admire the magnificent views out for the window, from the comfort of the&nbsp;<a href="http://www.ben-nevis-inn.co.uk/" title="" target="_blank">Ben Nevis Inn</a>&nbsp;while you enjoy a pint of real ale and some hearty Highland produce. You can also rest your weary legs after the climb and stay the night in the bunkhouse.</p>
+
+                <p>For incredible views of the mountain, spend the night at the friendly&nbsp;<a href="https://www.visitscotland.com/info/accommodation/glen-nevis-youth-hostel-syha-p213771/" title="">Glen Nevis Youth Hostel</a>. Ideally situated at the foot of Ben Nevis with drying facilities and spacious places to relax, the hostel is a great place to unwind after a long day of walking.</p>
+
+                <p>Look out for places to stay which are part of the&nbsp;<a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Fort+William&amp;locplace=7461&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off&amp;src_awards__0=qaw" title="">Walker's Welcome Scheme</a>, which will cater especially for walkers' needs and provide information and useful facilities throughout your stay.</p>
+            /visitscotland:media:
+              jcr:primaryType: visitscotland:InstagramImage
+              visitscotland:caption: Steall Falls
+              visitscotland:id: CPTZSbCJbXs
+              visitscotland:location: Fort William
+            /visitscotland:Quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Penny
+              visitscotland:role: Visitor Scotland Advisor at Edinburgh iCentre
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 44c9fd39-a37c-4ea9-ba77-3418e5736149
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Scotland's largest mountain was once a massive
+                  active volcano which exploded and collapsed inwards on itself millions
+                  of years ago.</p>
+        /things-to-do[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 64393a0c-16fc-434b-b445-fbabcda0f635
           hippo:availability: [live]
+          hippostd:retainable: false
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:38:16.790Z
-          hippostdpubwf:lastModificationDate: 2021-01-11T14:47:12.794Z
+          hippostdpubwf:lastModificationDate: 2021-06-07T11:27:23.452+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-01-11T15:00:57.725Z
+          hippostdpubwf:publicationDate: 2021-06-07T11:27:50.975+01:00
           hippotranslation:id: 8ab1d09e-7d89-4c9e-8d4a-d5a6e7daad67
           hippotranslation:locale: en
           visitscotland:anchor: acco-see-do
-          visitscotland:title: 'Places to stay & things to do: The Mountain with its
-            head in the clouds means that its raining'
+          visitscotland:title: Places to stay & things to do
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -10378,31 +10479,60 @@
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <h5>When is the best time of year to climb?</h5>
+                <h3>Nearby attractions</h3>
 
-                <p>Summer is always the best time of year to tackle the Ben, with sunshine and clear views on the way to the top. You are likely to see snow at all times of the year, but climbing Ben Nevis in the winter is only for experienced mountaineers. If you are planning a winter ascent, check out Mountaineering Scotland's <a href="https://www.mountaineering.scot/safety-and-skills/thinkwinter" title="Think Winter - Mountaineering Scotland" target="_blank">#ThinkWINTER</a> guidance and make sure you have the appropriate skills and equipment before you go.</p>
+                <p>Head to the&nbsp;<a href="https://www.visitscotland.com/info/see-do/ben-nevis-distillery-p421401" title="">Ben Nevis Distillery</a>, one of Scotland’s oldest distilleries established in 1825. A perfect souvenir for those who have completed the climb, take a tour of the distillery the following day and ease your weary muscles with a dram of single malt. The distillery is at Lochy Bridge, Fort William, around 7 minutes’ drive away from Ben Nevis.</p>
+
+                <p>Fort William and Lochaber is a region known as the ‘Outdoor Capital of the UK’ so there is a wide variety of adrenaline pumping activities on offer. Try gorge walking or canyoning with&nbsp;<a href="http://www.verticaldescents.com/" title="" target="_blank">Vertical Descents</a>, or get hooked on a new watersport such as white water funyakking and river rafting with&nbsp;<a href="https://www.activehighs.co.uk/" title="" target="_blank">Active Highs</a>.</p>
+
+                <p>In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding. &nbsp;&nbsp;</p>
+            /visitscotland:media:
+              jcr:primaryType: visitscotland:InstagramImage
+              visitscotland:caption: Camping
+              visitscotland:id: CPWHEwkjQDH
+              visitscotland:location: Fort William
           /visitscotland:paragraph[2]:
             jcr:primaryType: visitscotland:ArticleSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
               hippostd:content: |-
-                <h5>What will the weather be like?</h5>
+                <p>There are plenty of beautiful scenic walks in the Fort William area. Take a short stroll through the Nevis Gorge to admire the cascading&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/steallfalls.shtml" title="" target="_blank">Steall Falls</a>, or wander along to the Iron Age&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/dun-deardail.shtml" title="" target="_blank">Dun Deardail</a>&nbsp;fort which boasts a stunning hilltop location and can be reached by following the waymarked path from Glen Nevis.</p>
 
-                <p>The weather on Ben Nevis is extremely changeable, with glorious sunshine one moment then fog and gale force winds the next. Even if you set out on the sunniest of days, the temperatures at the summit can be at sub-zero, so it’s important to take appropriate all-weather gear. Always check the <a href="http://www.metoffice.gov.uk/public/weather/forecast/gfh7n5qpt" title="" target="_blank">mountain weather</a> page before you go, and if you’re in any doubt, always turn back.</p>
+                <p>&nbsp;In the winter, hone your ski or snowboard skills at the&nbsp;<a href="http://www.nevisrange.co.uk/" title="" target="_blank">Nevis Range</a>, or throughout the year try other exciting outdoor activities including mountain biking, tree-top adventures and paragliding.&nbsp;</p>
 
-                <p>Watch the live conditions and weather from Ben Nevis with the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">HD webcam</a>, which is situated at Tomacharich, Fort William.</p>
-          /visitscotland:paragraph[3]:
-            jcr:primaryType: visitscotland:ArticleSection
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <h5>What should I bring?</h5>
+                <p>Visit the fascinating and free&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-west-highland-museum-p246721" title="" target="_blank">West Highland Museum</a>&nbsp;in Fort William, and learn all about the north west Highlands Jacobite history, with medals, weapons and one of Bonnie Prince Charlie's silk waistcoats on display.</p>
 
-                <p>Warm and waterproof clothing is essential, and it’s wise to avoid cotton as it absorbs moisture. A pair of good walking boots are also an absolute must. Don’t forget to pack a few useful hiking tools, such as a map, compass, torch, whistle, and food and water.</p>
+                <p>Take the rail journey of a lifetime aboard the iconic&nbsp;<a href="https://www.visitscotland.com/info/see-do/the-jacobite-steam-train-p292641" title="">Jacobite Steam Train</a>, which departs from Fort William to Mallaig during the summer months along the West Highland Line. It travels over the magnificent Glenfinnan Viaduct which featured in the&nbsp;<a href="https://www.visitscotland.com/see-do/attractions/tv-film/harry-potter-itinerary/" title="">Harry Potter film</a>&nbsp;series.</p>
 
-                <p>Always remember to bring all of your litter back down the mountain with you. There are no bins on Ben Nevis so it’s important to take care of the landscape.</p>
+                <p>After your epic adventure, choose from a wide variety of&nbsp;<a href="https://www.visitscotland.com/destinations-maps/fort-william/accommodation/" title="">accommodation</a>&nbsp;options available in and around Fort William.</p>
 
-                <p>Find out more about the <a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-ben-nevis-webcam-fort-william-scotland" title="" target="_blank">Nevis Landscape Partnership</a>, an organisation that works to preserve the Mountain Track for future generations.</p>
+                <p>Take the chance to do some&nbsp;<a href="https://www.visitscotland.com/accommodation/caravan-camping/wild-camping/" title="">wild camping</a>&nbsp;in the area, and sleep in the shadow of Ben Nevis. Pitch up a tent on the grassy plains of the Steall Meadows, Upper Glen Nevis. A sheltered glen which separates Ben Nevis from the towering ridges of the Mamores range, this is an idyllic spot to set up camp. Visit the dramatic Steall Falls and cross the famous wire bridge nearby.</p>
+
+                <p>Admire the magnificent views out for the window, from the comfort of the&nbsp;<a href="http://www.ben-nevis-inn.co.uk/" title="" target="_blank">Ben Nevis Inn</a>&nbsp;while you enjoy a pint of real ale and some hearty Highland produce. You can also rest your weary legs after the climb and stay the night in the bunkhouse.</p>
+
+                <p>For incredible views of the mountain, spend the night at the friendly&nbsp;<a href="https://www.visitscotland.com/info/accommodation/glen-nevis-youth-hostel-syha-p213771/" title="">Glen Nevis Youth Hostel</a>. Ideally situated at the foot of Ben Nevis with drying facilities and spacious places to relax, the hostel is a great place to unwind after a long day of walking.</p>
+
+                <p>Look out for places to stay which are part of the&nbsp;<a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Fort+William&amp;locplace=7461&amp;locprox=1&amp;areaproxdist=10&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off&amp;src_awards__0=qaw" title="">Walker's Welcome Scheme</a>, which will cater especially for walkers' needs and provide information and useful facilities throughout your stay.</p>
+            /visitscotland:media:
+              jcr:primaryType: visitscotland:InstagramImage
+              visitscotland:caption: Steall Falls
+              visitscotland:id: CPTZSbCJbXs
+              visitscotland:location: Fort William
+            /visitscotland:Quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Penny
+              visitscotland:role: Visitor Scotland Advisor at Edinburgh iCentre
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 44c9fd39-a37c-4ea9-ba77-3418e5736149
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Scotland's largest mountain was once a massive
+                  active volcano which exploded and collapsed inwards on itself millions
+                  of years ago.</p>
     /winter-breaks:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
