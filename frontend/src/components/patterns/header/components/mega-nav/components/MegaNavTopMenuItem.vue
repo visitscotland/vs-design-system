@@ -104,7 +104,6 @@ export default {
         @include media-breakpoint-up(lg) {
             &__featured.vs-mega-nav-list {
                 margin: $spacer-2 $spacer-0 $spacer-5 $spacer-6;
-                // margin: 1rem 0 1.25rem 1.5rem;
                 position: absolute;
                 right: 0;
 
@@ -113,10 +112,6 @@ export default {
                     margin-bottom: $spacer-0;
                 }
             }
-
-            // &__columns-wrapper{
-            //     margin-left: (-$spacer-6);
-            // }
         }
 
         @include media-breakpoint-up(xl) {
