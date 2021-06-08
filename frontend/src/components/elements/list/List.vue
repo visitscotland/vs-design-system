@@ -66,8 +66,10 @@ export default {
             font-size: $h2-font-size;
             line-height: $line-height-xs;
         }
+    }
 
-        ul:not(.vs-mega-nav-list) {
+    li:not(.vs-mega-nav-top-menu-item) {
+        ul {
             list-style: none;
             margin: $spacer-4 0 $spacer-5 $spacer-6;
 
