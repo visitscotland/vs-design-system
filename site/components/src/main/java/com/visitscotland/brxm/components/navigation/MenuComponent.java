@@ -35,6 +35,7 @@ import java.util.MissingFormatArgumentException;
 public class MenuComponent extends EssentialsMenuComponent {
 
     private static final Logger logger = LoggerFactory.getLogger(MenuComponent.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     static final String STATIC = "navigation.static";
     static final String NAVIGATION_PREFIX = "navigation.";
@@ -208,10 +209,8 @@ public class MenuComponent extends EssentialsMenuComponent {
                 try {
                     menuItem.setCta(String.format(seeAll, menuItem.getTitle()));
                 } catch (MissingFormatArgumentException e) {
-                    String message = String.format("The label '%s' has more parameters than expected. File: %s, key: %s",
+                     contentLogger.warn("The label '{}' has more parameters than expected. File: {}, key: {}",
                             seeAll, STATIC, "see-all-cta");
-                    logger.warn(message);
-                    CommonUtilsService.contentIssue(message.replace("%", "%%"));
 
                     //After Catching the exception, we can eliminate the parameters.
                     menuItem.setCta(seeAll.replace("%s", ""));
