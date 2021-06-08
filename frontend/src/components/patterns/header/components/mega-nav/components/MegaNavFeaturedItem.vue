@@ -8,14 +8,17 @@
         data-test="vs-mega-nav-featured-item"
     >
         <template slot="stretchedCardHeader">
+            <!-- @slot Featured Item header text  -->
             <slot name="vsFeaturedItemHeader" />
         </template>
 
         <template slot="stretchedCardContent">
+            <!-- @slot Featured Item body content  -->
             <slot name="vsFeaturedItemContent" />
         </template>
 
         <template slot="stretchedCardLink">
+            <!-- @slot Featured Item link text  -->
             <slot name="vsFeaturedItemLink" />
         </template>
     </VsStretchedLinkCard>
