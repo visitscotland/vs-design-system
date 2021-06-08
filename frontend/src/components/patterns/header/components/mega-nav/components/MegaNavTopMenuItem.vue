@@ -32,6 +32,8 @@
 
                     <div
                         class="vs-mega-nav-top-menu-item__featured vs-mega-nav-list"
+                        :class="alignmentClass"
+                        data-test="vs-mega-nav-top-menu-item__featured"
                         v-if="hasFeaturedItem"
                     >
                         <slot name="navFeaturedItems" />
@@ -74,69 +76,95 @@ export default {
             type: String,
             default: '',
         },
+        /**
+        * Alignment of featured item block - top or bottom
+        */
+        align: {
+            type: String,
+            default: 'top',
+            validator: (value) => value.match(/(bottom|top)/),
+        },
     },
     computed: {
         hasFeaturedItem() {
             return !!this.$slots.navFeaturedItems;
+        },
+        alignmentClass() {
+            return this.align === 'bottom'
+                ? 'vs-mega-nav-top-menu-item__featured--bottom' : '';
         },
     },
 };
 </script>
 
 <style lang="scss">
+/* needed for specificity */
+.vs-list.vs-list--unstyled {
+    .vs-mega-nav-top-menu-item {
+        @include media-breakpoint-up(lg) {
+            &__featured.vs-mega-nav-list {
+                margin: $spacer-2 $spacer-0 $spacer-5 $spacer-6;
+                // margin: 1rem 0 1.25rem 1.5rem;
+                position: absolute;
+                right: 0;
 
-.vs-mega-nav-top-menu-item {
-    @include media-breakpoint-up(xl) {
-        margin-right: $spacer-6;
+                &.vs-mega-nav-top-menu-item__featured--bottom {
+                    bottom: 0;
+                    margin-bottom: $spacer-0;
+                }
+            }
 
-        &:last-of-type {
-            margin-right: 0;
+            // &__columns-wrapper{
+            //     margin-left: (-$spacer-6);
+            // }
         }
-    }
 
-    &__cta-link{
-        text-decoration: none;
-        padding: 0.12rem $spacer-5;
-        transition: $duration-base color;
+        @include media-breakpoint-up(xl) {
+            margin-right: $spacer-6;
 
-        &:hover{
-            color: $color-secondary-gray-shade-3;
+            &:last-of-type {
+                margin-right: 0;
+            }
         }
-    }
 
-    &__divider{
-        margin: $spacer-3 0 $spacer-4;
-        border-color: $color-gray-tint-6;
-    }
+        &__cta-link{
+            text-decoration: none;
+            padding: 0.12rem $spacer-5;
+            transition: $duration-base color;
 
-    &__columns-wrapper{
-        display: flex;
-        width: 100%;
-        flex-flow: column wrap;
-        height: 515px;
-        overflow: hidden;
-        align-content: flex-start;
-    }
-
-    &__featured.vs-mega-nav-list {
-        margin: 1rem 0 1.25rem 1.5rem;
-        position: absolute;
-        right: 0;
-    }
-}
-
-@include no-js {
-    .vs-mega-nav-top-menu-item{
-        &__divider {
-            margin-bottom: $spacer-4;
+            &:hover{
+                color: $color-secondary-gray-shade-3;
+            }
         }
+
+        &__divider{
+            margin: $spacer-3 0 $spacer-4;
+            border-color: $color-gray-tint-6;
+        }
+
         &__columns-wrapper{
-            display: block;
-            height: auto;
-            padding-left: $spacer-8;
+            display: flex;
+            width: 100%;
+            flex-flow: column wrap;
+            height: 515px;
+            overflow: hidden;
+            align-content: flex-start;
+        }
+    }
 
-            @include media-breakpoint-up(lg) {
-                padding-left: $spacer-10;
+    @include no-js {
+        .vs-mega-nav-top-menu-item{
+            &__divider {
+                margin-bottom: $spacer-4;
+            }
+            &__columns-wrapper{
+                display: block;
+                height: auto;
+                padding-left: $spacer-8;
+
+                @include media-breakpoint-up(lg) {
+                    padding-left: $spacer-10;
+                }
             }
         }
     }

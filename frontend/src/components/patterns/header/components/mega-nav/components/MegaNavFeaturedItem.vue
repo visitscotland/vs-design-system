@@ -2,20 +2,21 @@
     <VsStretchedLinkCard
         :link="link"
         type="internal"
-        img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-        img-alt="This is the alt text"
+        :img-src="imgUrl"
+        :img-alt="imgAlt"
         class="vs-mega-nav-featured-item"
+        data-test="vs-mega-nav-featured-item"
     >
         <template slot="stretchedCardHeader">
-            <slot name="vs-featured-item-header" />
+            <slot name="vsFeaturedItemHeader" />
         </template>
 
         <template slot="stretchedCardContent">
-            <slot name="vs-featured-item-content" />
+            <slot name="vsFeaturedItemContent" />
         </template>
 
         <template slot="stretchedCardLink">
-            <slot name="vs-featured-item-link" />
+            <slot name="vsFeaturedItemLink" />
         </template>
     </VsStretchedLinkCard>
 </template>
@@ -44,12 +45,27 @@ export default {
             type: String,
             required: true,
         },
+        /**
+        * Image URL for the featured item
+        */
+        imgUrl: {
+            type: String,
+            required: true,
+        },
+        /**
+        * Image alt text for the featured item
+        */
+        imgAlt: {
+            type: String,
+            default: '',
+        },
     },
 };
 </script>
 
 <style lang="scss">
     .card.vs-mega-nav-featured-item {
+        border-top: 1px solid #e0e0e0;
 
         &:hover {
             box-shadow: 0px 6px 6px 5px rgba(0,0,41,0.16)
@@ -59,6 +75,11 @@ export default {
             .vs-stretched-link-card__link {
                 outline: 2px;
             }
+        }
+
+        &--bottom {
+            bottom: 0;
+            top: auto;
         }
 
         .card-body {
@@ -80,13 +101,16 @@ export default {
 
         .vs-stretched-link-card__content {
             display: none;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .vs-stretched-link-card__link {
             font-size: $small-font-size;
         }
 
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(sm) {
             display: flex;
             flex-direction: row-reverse;
 
@@ -111,6 +135,7 @@ export default {
 
         @include media-breakpoint-up(lg) {
             flex-direction: column;
+            border-top: none;
 
             .card-body {
                 padding: $spacer-5 $spacer-3;
@@ -125,7 +150,7 @@ export default {
             }
 
             .vs-stretched-link-card__content {
-                display: block;
+                display: -webkit-box;
                 margin: $spacer-0;
                 color: $color-base-text;
                 font-size: $small-font-size;
@@ -144,17 +169,21 @@ export default {
         <VsContainer>
             <VsRow>
                 <VsCol cols="12" lg="4">
-                    <VsMegaNavFeaturedItem link="www.visitscotland.com">
-                        <template slot="vs-featured-item-header">
+                    <VsMegaNavFeaturedItem
+                        link="www.visitscotland.com"
+                        img-url="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                        img-alt="Alt text"
+                    >
+                        <template slot="vsFeaturedItemHeader">
                             From our home to yours – see Scotland virtually
                         </template>
 
-                        <template slot="vs-featured-item-content">
+                        <template slot="vsFeaturedItemContent">
                             <p>The content for the card goes here</p>
                             <p>A second line of content</p>
                         </template>
 
-                        <template slot="vs-featured-item-link">
+                        <template slot="vsFeaturedItemLink">
                             A link to a page
                         </template>
                     </VsMegaNavFeaturedItem>
