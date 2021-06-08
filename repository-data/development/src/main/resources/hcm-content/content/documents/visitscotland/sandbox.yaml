@@ -12650,7 +12650,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
-        hippostdpubwf:lastModificationDate: 2021-06-08T15:34:11.230+01:00
+        hippostdpubwf:lastModificationDate: 2021-06-08T16:01:18.165+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
         hippotranslation:locale: en
@@ -12672,9 +12672,12 @@
             <p>VisitScotland will work to reduce the volume of waste within its buildings and estate, by wherever possible,</p>
 
             <ul>
-             <li>reducing consumption of</li>
-             <li>repairing</li>
-             <li>re-using</li>
+             <li>reducing consumption of
+             <ul>
+              <li>repairing</li>
+              <li>re-using</li>
+             </ul>
+             </li>
              <li>recycling</li>
             </ul>
 
@@ -12712,11 +12715,14 @@
 
             <p>VisitScotland will incorporate the principles set out in this environmental policy into its day to day operations developing appropriate:</p>
 
-            <ul>
-             <li>procedures for day-to-day operations</li>
-             <li>annual targets</li>
-             <li>action plans</li>
-            </ul>
+            <ol>
+             <li>procedures for day-to-day operations
+             <ol>
+              <li>annual targets</li>
+              <li>action plans</li>
+             </ol>
+             </li>
+            </ol>
 
             <p>The annual targets and action plan will be reviewed quarterly, and the targets will be reported annually.</p>
       /copy[2]:
@@ -12728,7 +12734,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
-        hippostdpubwf:lastModificationDate: 2021-06-08T15:44:18.236+01:00
+        hippostdpubwf:lastModificationDate: 2021-06-08T16:00:25.363+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
         hippotranslation:locale: en
@@ -12750,9 +12756,12 @@
             <p>VisitScotland will work to reduce the volume of waste within its buildings and estate, by wherever possible,</p>
 
             <ul>
-             <li>reducing consumption of</li>
-             <li>repairing</li>
-             <li>re-using</li>
+             <li>reducing consumption of
+             <ul>
+              <li>repairing</li>
+              <li>re-using</li>
+             </ul>
+             </li>
              <li>recycling</li>
             </ul>
 
@@ -12790,11 +12799,14 @@
 
             <p>VisitScotland will incorporate the principles set out in this environmental policy into its day to day operations developing appropriate:</p>
 
-            <ul>
-             <li>procedures for day-to-day operations</li>
-             <li>annual targets</li>
-             <li>action plans</li>
-            </ul>
+            <ol>
+             <li>procedures for day-to-day operations
+             <ol>
+              <li>annual targets</li>
+              <li>action plans</li>
+             </ol>
+             </li>
+            </ol>
 
             <p>The annual targets and action plan will be reviewed quarterly, and the targets will be reported annually.</p>
       /copy[3]:
@@ -12806,9 +12818,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
-        hippostdpubwf:lastModificationDate: 2021-06-08T15:44:18.236+01:00
+        hippostdpubwf:lastModificationDate: 2021-06-08T16:00:25.363+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2021-06-08T15:44:20.979+01:00
+        hippostdpubwf:publicationDate: 2021-06-08T16:00:27.869+01:00
         hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
         hippotranslation:locale: en
         /visitscotland:copy:
@@ -12829,9 +12841,12 @@
             <p>VisitScotland will work to reduce the volume of waste within its buildings and estate, by wherever possible,</p>
 
             <ul>
-             <li>reducing consumption of</li>
-             <li>repairing</li>
-             <li>re-using</li>
+             <li>reducing consumption of
+             <ul>
+              <li>repairing</li>
+              <li>re-using</li>
+             </ul>
+             </li>
              <li>recycling</li>
             </ul>
 
@@ -12869,11 +12884,14 @@
 
             <p>VisitScotland will incorporate the principles set out in this environmental policy into its day to day operations developing appropriate:</p>
 
-            <ul>
-             <li>procedures for day-to-day operations</li>
-             <li>annual targets</li>
-             <li>action plans</li>
-            </ul>
+            <ol>
+             <li>procedures for day-to-day operations
+             <ol>
+              <li>annual targets</li>
+              <li>action plans</li>
+             </ol>
+             </li>
+            </ol>
 
             <p>The annual targets and action plan will be reviewed quarterly, and the targets will be reported annually.</p>
   /vuex:

@@ -9,7 +9,10 @@
 <#macro longCopy module>
     <vs-container class="mb-10">
         <vs-row>
-            <vs-col cols="7">
+            <vs-col
+                cols="12"
+                lg="7"
+            >
                 <vs-rich-text-wrapper>
                     <@hst.html hippohtml=module.copy/>
                 </vs-rich-text-wrapper>
