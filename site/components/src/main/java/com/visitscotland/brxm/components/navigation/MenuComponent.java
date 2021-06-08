@@ -26,6 +26,7 @@ import java.util.Locale;
 public class MenuComponent extends EssentialsMenuComponent {
 
     private static final Logger logger = LoggerFactory.getLogger(MenuComponent.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     static final String STATIC = "navigation.static";
     static final String NAVIGATION_PREFIX = "navigation.";

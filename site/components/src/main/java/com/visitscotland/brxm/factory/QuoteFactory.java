@@ -4,7 +4,6 @@ import com.visitscotland.brxm.hippobeans.Quote;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.FlatQuote;
 import com.visitscotland.brxm.model.Module;
-import com.visitscotland.brxm.services.CommonUtilsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -14,7 +13,7 @@ import java.util.Locale;
 @Component
 public class QuoteFactory {
 
-    private static final Logger logger = LoggerFactory.getLogger(QuoteFactory.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     private ImageFactory imageFactory;
 
@@ -38,8 +37,7 @@ public class QuoteFactory {
         if (doc.getProduct() instanceof Linkable) {
             quote.setLink(linkFactory.createEnhancedLink((Linkable) doc.getProduct(), locale, false));
         } else if (doc.getProduct() != null){
-            CommonUtilsService.contentIssue("The Product for this iCentre (%s) is not a valid link.", doc.getPath());
-            logger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
+            contentLogger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
         }
         return quote;
     }

@@ -30,6 +30,7 @@ import java.util.Locale;
 public class LinkService {
 
     private static final Logger logger = LoggerFactory.getLogger(LinkService.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     public static final String URL = "url";
 
@@ -89,9 +90,7 @@ public class LinkService {
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
 
             if (dmsLink.getProduct() == null) {
-                String message = CommonUtilsService.contentIssue("There is no product with the id '%s', (%s) ",
-                        dmsLink.getProduct(), item.getPath());
-                logger.warn(message);
+                contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), item.getPath());
             } else if (product != null) {
                 //TODO build the link for the DMS product properly
                 return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL);
@@ -111,8 +110,7 @@ public class LinkService {
             CMSLink cmsLink = (CMSLink) item;
             return new FlatLink(bundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl(cmsLink.getLink()), LinkType.INTERNAL);
         } else {
-            String message = CommonUtilsService.contentIssue("The document %s could not be turned into a link'  ", item.getPath());
-            logger.warn(message);
+            contentLogger.warn("The document {} could not be turned into a link", item.getPath());
         }
 
         return null;
@@ -129,8 +127,7 @@ public class LinkService {
 
         if (link.getLinkType() instanceof DMSLink) {
             if (product == null) {//((DMSLink) link).getDmsData(locale)
-                CommonUtilsService.contentIssue("The product id '%s' does not exist but is linked ",
-                        ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
+                contentLogger.warn("The product id '{}' does not exist but is linked - {}", ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
             } else {
                 return properties.getDmsHost() + product.get(URL).asText();
             }
