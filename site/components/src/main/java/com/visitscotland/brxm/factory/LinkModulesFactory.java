@@ -55,7 +55,7 @@ public class LinkModulesFactory {
         this.documentUtilsService = documentUtilsService;
     }
 
-    public LinksModule<?> getMegalinkModule(Megalinks doc, Locale locale) {
+    public LinksModule<EnhancedLink> getMegalinkModule(Megalinks doc, Locale locale) {
         if (doc.getLayout()!= null && doc.getLayout().equalsIgnoreCase("list") || doc.getMegalinkItems().size() > MAX_ITEMS) {
             return listLayout(doc, locale) ;
         } else if (doc.getLayout()!= null && doc.getLayout().contains(HORIZONTAL_LAYOUT)) {
@@ -118,7 +118,7 @@ public class LinkModulesFactory {
         sil.setInnerTitle(doc.getSingleImageModule().getTitle());
         sil.setInnerIntroduction(doc.getSingleImageModule().getIntroduction());
         sil.setImage(createFlatImage(doc.getSingleImageModule().getImage(), locale));
-        sil.setLinks(convertToFlatLinks(doc.getMegalinkItems(), locale));
+        sil.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale, false));
 
         return sil;
     }
