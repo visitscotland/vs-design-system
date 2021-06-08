@@ -42,8 +42,6 @@
                         >
                             {{ subHeading.cta }}
                         </VsMegaNavListItem>
-
-                        asdfasfsd
                     </VsMegaNavList>
                 </template>
 
