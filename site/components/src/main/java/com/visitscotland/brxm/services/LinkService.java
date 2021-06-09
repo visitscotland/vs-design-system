@@ -180,7 +180,7 @@ public class LinkService {
             } else if (path.contains("ebooks.visitscotland.com")) {
                 return "eBooks";
             } else if (path.contains("blog")) {
-                return bundle.getResourceBundle("navigation.main", "blog", locale, true);
+                return bundle.getResourceBundle("navigation.main", "Travel-Blog", locale, true);
             } else if (path.contains("see-do") || path.contains("events") || path.contains("tours")) {
                 return bundle.getResourceBundle("navigation.main", "see-do", locale, true);
             } else if (path.contains("accommodation")) {
