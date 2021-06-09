@@ -48,7 +48,7 @@ class PageTemplateBuilderTest {
     IKnowFactory iKnowFactory;
 
     @Mock
-    LinkModulesFactory linksFactory;
+    MegalinkFactory linksFactory;
 
     @Mock
     ArticleFactory articleFactory;

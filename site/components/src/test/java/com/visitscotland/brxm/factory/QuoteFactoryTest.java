@@ -1,12 +1,10 @@
 package com.visitscotland.brxm.factory;
 
-import com.visitscotland.brxm.factory.QuoteFactory;
 import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.hippobeans.Quote;
 import com.visitscotland.brxm.hippobeans.SharedLink;
 import com.visitscotland.brxm.model.FlatQuote;
-import com.visitscotland.brxm.factory.ImageFactory;
-import com.visitscotland.brxm.factory.LinkModulesFactory;
+import com.visitscotland.brxm.services.LinkService;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -28,7 +26,7 @@ class QuoteFactoryTest {
     ImageFactory imageFactory;
 
     @Mock
-    LinkModulesFactory linkFactory;
+    LinkService linkService;
 
     @InjectMocks
     @Resource
@@ -50,7 +48,7 @@ class QuoteFactoryTest {
 
         FlatQuote flat = embedder.getQuote(quote, null, Locale.UK);
 
-        verify(linkFactory).createEnhancedLink(link, Locale.UK, false);
+        verify(linkService).createEnhancedLink(link, null, Locale.UK, false);
         verify(imageFactory).createImage(image, null, Locale.UK);
         Assertions.assertEquals("Author", flat.getAuthorName());
         Assertions.assertEquals("Role", flat.getAuthorTitle());

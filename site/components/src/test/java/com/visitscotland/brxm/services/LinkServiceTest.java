@@ -1,12 +1,19 @@
 package com.visitscotland.brxm.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.visitscotland.brxm.factory.ImageFactory;
+import com.visitscotland.brxm.factory.MegalinkFactoryTest;
 import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.mock.MegalinksMockBuilder;
+import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
+import com.visitscotland.brxm.model.Module;
+import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -16,10 +23,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Answers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,6 +53,15 @@ class LinkServiceTest {
 
     @Mock
     private Properties properties;
+
+    @Mock
+    private CommonUtilsService commonUtils;
+
+    @Mock
+    private DocumentUtilsService documentUtilsService;
+
+    @Mock
+    private ImageFactory imageFactory;
 
     @Resource
     @InjectMocks
@@ -116,24 +135,8 @@ class LinkServiceTest {
     }
 
     @Test
-    @DisplayName("An exception in the DMS Data Service doesn't get propagated")
-    @Disabled("dmsProductCard does not throw an exception any longer")
-    void dmsLink_dmsDataThrowException() throws IOException {
-        //Verifies that handles the exception from DMSDataService and returns null
-        DMSLink dmsLink = mock(DMSLink.class);
-        when(dmsLink.getProduct()).thenReturn("123");
-        when(dmsLink.getPath()).thenReturn("path/to/node");
-
-        when(dmsData.productCard("123", Locale.UK)).thenThrow(new IOException());
-
-        FlatLink link = service.createLink(Locale.UK, dmsLink);
-
-        assertNull(link);
-    }
-
-    @Test
     @DisplayName("A non existing DMS link doesn't return a link")
-    void dmsLink_notExistingProduct() throws IOException {
+    void dmsLink_notExistingProduct() {
         //Verifies that when and DMS item doesn't exist, the link is not created.
         DMSLink dmsLink = mock(DMSLink.class);
         when(dmsLink.getProduct()).thenReturn("123");
@@ -147,7 +150,7 @@ class LinkServiceTest {
 
     @Test
     @DisplayName("Create a link form a DMSLink Compound")
-    void dmsLink() throws IOException {
+    void dmsLink() {
         //Verifies that is able to create a link from DMSLink and the url is taken from the JSON Response
         JsonNode node = mock(JsonNode.class);
         JsonNode url = mock(JsonNode.class);
@@ -341,6 +344,99 @@ class LinkServiceTest {
         String result = service.getLinkCategory(url,Locale.UK);
 
         return result;
+    }
+
+    @Test
+    @DisplayName("VS-2308 External document definition with category")
+    void createEnhancedLink_externalDocument_category() {
+        final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
+        final String category= "see-do";
+        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,category);
+
+        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
+        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument,null, Locale.UK, true);
+
+        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
+        assertEquals(category, enhancedLink.getCategory());
+    }
+
+    @Test
+    @DisplayName("VS-1696 - If size cannot be calculated the link still appears")
+    void createEnhancedLink_externalDocument_broken() {
+        final String url = "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
+        final Module module = new Module();
+
+        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        EnhancedLink enhancedLink = service.createEnhancedLink(
+                new MegalinksMockBuilder().getExternalDocument("title",url,"see-do"), module,
+                Locale.UK, true);
+
+        assertEquals("title (DOWNLOAD)", enhancedLink.getLabel());
+        assertEquals(1, module.getErrorMessages().size());
+    }
+
+    @Test
+    @DisplayName("Itineraries have days and main transport added")
+    void createEnhancedLink_itinerary() {
+        Itinerary itinerary = new MegalinksMockBuilder().getItinerary("bus");
+        when(documentUtilsService.getSiblingDocuments(itinerary,Day.class, "visitscotland:Day")).thenReturn(Arrays.asList(mock(Day.class), mock(Day.class)));
+
+        //TODO Review
+        EnhancedLink enhancedLink = service.createEnhancedLink(itinerary, null, Locale.UK, false);
+
+        assertEquals(2, enhancedLink.getItineraryDays());
+        assertEquals("bus",enhancedLink.getItineraryTransport());
+    }
+
+    @Test
+    @DisplayName("VS-2308 External document definition without category")
+    void createEnhancedLink_externalDocument() {
+        final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
+        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,  null);
+
+        when(resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
+        //TODO Review
+        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument, null, Locale.UK, false);
+
+        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
+        Mockito.verify((ExternalDocument)externalDocument.getLinkType(),Mockito.never()).getCategory();
+    }
+
+    @Test
+    @DisplayName("DMSLink - Test that the image is loaded from the DMS")
+    void DMS_enhanced_SharedLink_defaultsImage() throws IOException {
+        JsonNode node = new ObjectMapper().readTree(MegalinksMockBuilder.MOCK_JSON);
+        Module module = new Module();
+
+        SharedLink dmsLink = new MegalinksMockBuilder().dmsLink(dmsData, node).buildSharedLink();
+        when(imageFactory.createImage(node, module)).thenReturn(new FlatImage());
+
+        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+
+        assertNotNull(link.getImage());
+    }
+
+    @Test
+    @DisplayName("No image throw an warning on preview mode")
+    void noImageDefined_DMS_defaultsImageNotFound() throws IOException {
+        final String NO_IMAGE_JSON = "{" +
+                " \"url\":\"/info/fake-product-p0123456798\", " +
+                " \"name\":\"Fake Product\" " +
+                "}";
+        JsonNode node = new ObjectMapper().readTree(NO_IMAGE_JSON);
+        SharedLink dmsLink = new MegalinksMockBuilder().dmsLink(dmsData, node).buildSharedLink();
+        Module module = new Module();
+
+        when(properties.getDmsHost()).thenReturn("");
+
+        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+        assertEquals("/info/fake-product-p0123456798", link.getLink());
+        assertEquals(1, module.getErrorMessages().size());
+        assertNull(link.getImage());
     }
 
 }

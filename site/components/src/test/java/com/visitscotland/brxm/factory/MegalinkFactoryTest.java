@@ -6,6 +6,7 @@ import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
+import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.model.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.model.megalinks.LinksModule;
@@ -20,10 +21,7 @@ import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -34,6 +32,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,7 +40,7 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-public class LinkModuleFactoryTest {
+public class MegalinkFactoryTest {
 
     public static final String DMS_ID = "0123456798";
     public static final String EXTERNAL_URL = "http://www.fake.site";
@@ -86,7 +85,7 @@ public class LinkModuleFactoryTest {
 
     @Resource
     @InjectMocks
-    LinkModulesFactory factory;
+    MegalinkFactory factory;
 
     @BeforeEach
     public void beforeEach() {
@@ -151,12 +150,10 @@ public class LinkModuleFactoryTest {
         return mock(Page.class);
     }
 
-
-
-
     @Test
     void MegalinkItem_convertToFlatLinks_allowedLinkTypes() {
         //Test allowed types
+
         MegalinkItem page = mock(MegalinkItem.class);
         when(page.getLink()).thenReturn(mockPage());
         assertEquals(1, factory.convertToFlatLinks(Collections.singletonList(page), Locale.UK).size());
@@ -193,56 +190,10 @@ public class LinkModuleFactoryTest {
     }
 
     @Test
-    void DMS_enhanced_SharedLink_defaultsImage() throws IOException {
-        //Test that the image is loaded from the DMS
-        JsonNode node = new ObjectMapper().readTree(MOCK_JSON);
-        when(dmsData.productCard(DMS_ID, Locale.UK)).thenReturn(node);
-
-        MegalinkItem item = mockItem(false, LinkType.DMS);
-        SharedLink sl = (SharedLink) item.getLink();
-        when(sl.getImage()).thenReturn(null);
-        when(imageFactory.createImage(node, null)).thenReturn(new FlatImage());
-
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).get(0);
-
-        assertEquals(PLAIN_LINK, link.getLink());
-        assertNotNull(link.getImage());
-    }
-
-    @Test
-    void noImageDefined_DMS_defaultsImageNotFound() throws IOException {
-        //Test that the image is loaded from the DMS
-        //In order to achieve that we rename the "images" field with "skip"
-        final String NO_IMAGE_JSON = "{" +
-                " \"url\":\"https://mock.visitscotland.com/info/fake-product-p" + DMS_ID + "\", " +
-                " \"name\":\"Fake Product\" " +
-                "}";
-        JsonNode node = new ObjectMapper().readTree(NO_IMAGE_JSON);
-
-        when(dmsData.productCard(DMS_ID, Locale.UK)).thenReturn(node);
-
-        MegalinkItem item = mockItem(false, LinkType.DMS);
-        SharedLink sl = (SharedLink) item.getLink();
-        when(sl.getImage()).thenReturn(null);
-
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).get(0);
-
-        assertEquals(PLAIN_LINK, link.getLink());
-        assertNull(link.getImage());
-    }
-
-    @Test
     void ProductSearch_SharedLink() {
         FlatLink link = factory.convertToFlatLinks(Collections.singletonList(mockItem(false, LinkType.PRODUCT_SEARCH)), Locale.UK).get(0);
 
         assertNotNull(PSR_URL, link.getLink());
-    }
-
-    @Test
-    void ProductSearch_enhanced_SharedLink() {
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.PRODUCT_SEARCH)), Locale.UK,false).get(0);
-
-        assertEquals(PLAIN_LINK, link.getLink());
     }
 
     @Test
@@ -251,37 +202,6 @@ public class LinkModuleFactoryTest {
                 Collections.singletonList(mockItem(false, LinkType.EXTERNAL)), Locale.UK).get(0);
 
         assertEquals(PLAIN_LINK, link.getLink());
-    }
-
-    @Test
-    void External_enhanced_SharedLink() {
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.EXTERNAL)), Locale.UK,false).get(0);
-
-        assertEquals(PLAIN_LINK, link.getLink());
-    }
-
-    @Test
-    void sharedLink_noImageDefined() {
-        //Verifies that a content issue is logged when the image is not defined.
-        MegalinkItem item = mockItem(false, LinkType.DMS);
-        SharedLink sl = (SharedLink) item.getLink();
-        when(sl.getImage()).thenReturn(null);
-
-        //TODO verify that a contentIssue is triggered
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).get(0);
-
-        assertNull(link.getImage());
-    }
-
-    @Test
-    void unexpectedTypeGetsSkipped() {
-        //Tests that the addition of a new type will not introduce an exception
-        HippoBean link = mock(HippoBean.class, withSettings().extraInterfaces(Linkable.class));
-        MegalinkItem item = mock(MegalinkItem.class);
-        when(item.getLink()).thenReturn(link);
-
-
-        assertEquals(0, factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).size());
     }
 
     @Test
@@ -304,77 +224,6 @@ public class LinkModuleFactoryTest {
 
         LinksModule linkModule = factory.getMegalinkModule(mega,Locale.UK);
         assertEquals("HorizontalListLinksModule", linkModule.getType());
-    }
-
-    //TODO Correct before merging with develop
-    @Test
-    @DisplayName("Itineraries have days and main transport added")
-    void createEnhancedLink_itinerary() {
-        Itinerary itinerary = new MegalinksMockBuilder().getItinerary("bus");
-        when(documentUtilsService.getSiblingDocuments(itinerary,Day.class, "visitscotland:Day")).thenReturn(Arrays.asList(mock(Day.class), mock(Day.class)));
-
-        EnhancedLink enhancedLink = factory.createEnhancedLink(itinerary,Locale.UK, false);
-
-        assertEquals(2, enhancedLink.getItineraryDays());
-        assertEquals("bus",enhancedLink.getItineraryTransport());
-
-    }
-
-    @Test
-    @DisplayName("OTYML category included for any page")
-    void createEnhancedLink_withCategory() {
-        Page page = (Page) new MegalinksMockBuilder().getPage();
-
-        when(utils.createUrl(page)).thenReturn("www.vs.com");
-        when(linkService.getLinkCategory("www.vs.com",Locale.UK)).thenReturn("see-do");
-        EnhancedLink enhancedLink = factory.createEnhancedLink(page,Locale.UK, true);
-
-        assertEquals("see-do", enhancedLink.getCategory());
-
-    }
-
-    @Test
-    @DisplayName("VS-2308 External document definition without category")
-    void createEnhancedLink_externalDocument() {
-        final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
-        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,  null);
-
-        when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
-        when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
-        EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, false);
-
-        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
-        assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
-        Mockito.verify((ExternalDocument)externalDocument.getLinkType(),Mockito.never()).getCategory();
-    }
-
-    @Test
-    @DisplayName("VS-2308 External document definition with category")
-    void createEnhancedLink_externalDocument_category() {
-        final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
-        final String category= "see-do";
-        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,category);
-
-        when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
-        when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
-        EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, true);
-
-        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
-        assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
-        assertEquals(category, enhancedLink.getCategory());
-    }
-
-    @Test
-    @DisplayName("VS-1696 - If size cannot be calculated the link still appears")
-    void createEnhancedLink_externalDocument_broken() {
-        final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
-
-        when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
-        EnhancedLink enhancedLink = factory.createEnhancedLink(
-                new MegalinksMockBuilder().getExternalDocument("title",url,"see-do"),
-                Locale.UK, true);
-
-        assertEquals("title (DOWNLOAD)", enhancedLink.getLabel());
     }
 
     @Test
@@ -402,24 +251,16 @@ public class LinkModuleFactoryTest {
     }
 
     @Test
-    @DisplayName("Single link megalink with download link")
-    void singleLinkMegalink_downloadLink() {
-        when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("5MB");
-        when(resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK, true)).thenReturn("download");
+    void unexpectedTypeGetsSkipped() {
+        //Tests that the addition of a new type will not introduce an exception
+        HippoBean link = mock(HippoBean.class, withSettings().extraInterfaces(Linkable.class));
+        MegalinkItem item = mock(MegalinkItem.class);
+        when(item.getLink()).thenReturn(link);
+        Module module = new Module();
 
-        Megalinks doc = new MegalinksMockBuilder().emptySingleImage().megalinkItem(false, LinkType.EXTERNAL, "title").build();
-        LinksModule<EnhancedLink> megalink = factory.getMegalinkModule(doc, Locale.UK);
-
-        Assertions.assertEquals(1, megalink.getLinks().size());
-        EnhancedLink link = megalink.getLinks().get(0);
-        Assertions.assertFalse(link.isFeatured());
-        Assertions.assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, link.getType());
-        Assertions.assertEquals("title (download 5MB)", link.getLabel());
+        List lis = factory.convertToEnhancedLinks(module, Collections.singletonList(item), Locale.UK,false);
+        //TODO Review
+        assertEquals(0, lis.size());
+        assertEquals(1,  module.getErrorMessages().size());
     }
-
-//    @Test
-//    @DisplayName("CTA is populated when the ProductItem field is populated")
-//    void multiImageLayout_optionCTA() {
-//
-//    }
 }

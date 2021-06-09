@@ -2,7 +2,7 @@ package com.visitscotland.brxm.components.content;
 
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.factory.ImageFactory;
-import com.visitscotland.brxm.factory.LinkModulesFactory;
+import com.visitscotland.brxm.factory.MegalinkFactory;
 import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.FlatImage;
@@ -23,11 +23,11 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
     public static final String EDIT_PATH = "path";
     public static final String OTYML = "otyml";
 
-    private LinkModulesFactory linksFactory;
+    private MegalinkFactory linksFactory;
     private ImageFactory imageFactory;
 
     public PageContentComponent() {
-        linksFactory = VsComponentManager.get(LinkModulesFactory.class);
+        linksFactory = VsComponentManager.get(MegalinkFactory.class);
         imageFactory = VsComponentManager.get(ImageFactory.class);
     }
 

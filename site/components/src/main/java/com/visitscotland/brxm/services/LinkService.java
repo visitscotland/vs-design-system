@@ -3,7 +3,6 @@ package com.visitscotland.brxm.services;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
@@ -11,7 +10,6 @@ import com.visitscotland.brxm.model.*;
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
-import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
@@ -38,7 +36,6 @@ public class LinkService {
     private final ResourceBundleService bundle;
     private final HippoUtilsService utils;
     private final Properties properties;
-    private final LocationLoader locationLoader;
     private final ImageFactory imageFactory;
     private final CommonUtilsService commonUtils;
     private final DocumentUtilsService documentUtilsService;
@@ -54,24 +51,26 @@ public class LinkService {
         this.bundle = resourceBundle;
         this.utils = utils;
         this.properties = properties;
-        this.locationLoader = null;
         this.imageFactory = null;
         this.commonUtils = null;
         this.documentUtilsService = null;
     }
 
     @Autowired
-    public LinkService(DMSDataService dmsData, ResourceBundleService bundle, HippoUtilsService utils, Properties properties, LocationLoader locationLoader, ImageFactory imageFactory, CommonUtilsService commonUtils, DocumentUtilsService documentUtilsService) {
+    public LinkService(DMSDataService dmsData, ResourceBundleService bundle, HippoUtilsService utils, Properties properties, ImageFactory imageFactory, CommonUtilsService commonUtils, DocumentUtilsService documentUtilsService) {
         this.dmsData = dmsData;
         this.bundle = bundle;
         this.utils = utils;
         this.properties = properties;
-        this.locationLoader = locationLoader;
+
         this.imageFactory = imageFactory;
         this.commonUtils = commonUtils;
         this.documentUtilsService = documentUtilsService;
     }
 
+    /**
+     * Fetches a new Product Search Object
+     */
     private ProductSearchBuilder productSearch(){
         return VsComponentManager.get(ProductSearchBuilder.class);
     }
@@ -92,7 +91,7 @@ public class LinkService {
             if (dmsLink.getProduct() == null) {
                 contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), item.getPath());
             } else if (product != null) {
-                //TODO build the link for the DMS product properly
+                //TODO build the link for the DMS product properly. ImageFactory
                 return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL);
             }
         } else if (item instanceof ProductSearchLink) {
@@ -153,7 +152,7 @@ public class LinkService {
      * @return
      */
     public LinkType getType(String url) {
-        //TODO the following if block requires some refinement
+        //TODO the following if block requires some refinement. Remove the hardcode URLs
         if (Contract.isEmpty(url)) {
             return null;
         } else if (url.startsWith("/") || url.contains("localhost") || url.contains("visitscotland.com")
@@ -205,27 +204,15 @@ public class LinkService {
     }
 
     /**
-     * Create a localized FlatImage from an Image Object
+     * Creates an enhanced link form a {@code Linkable} object
      *
-     * @param img    Image Object
-     * @param locale User language to localize Image texts such as the caption
-     * @return flat image to be consumed by FED team
-     *
-     * @deprecated Is This method a duplication of imageFactory.populateLocation()
+     * @param linkable Page or Shared link that contains the information about the link
+     * @param module Module to
+     * @param locale
+     * @param addCategory
+     * @return
      */
-    @Deprecated
-    private FlatImage createFlatImage(Image img, Locale locale) {
-        FlatImage flatImage = imageFactory.createImage(img, null, locale);
-        LocationObject locationObject = locationLoader.getLocation(img.getLocation(), locale);
-        if (locationObject != null) {
-            flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
-        }
-
-        return flatImage;
-    }
-
-
-    public EnhancedLink createEnhancedLink(Linkable linkable, Locale locale, Module<?> module, boolean addCategory) {
+    public EnhancedLink createEnhancedLink(Linkable linkable, Module<?> module, Locale locale, boolean addCategory) {
         EnhancedLink link = new EnhancedLink();
         link.setTeaser(linkable.getTeaser());
         link.setLabel(linkable.getTitle());
@@ -235,9 +222,9 @@ public class LinkService {
         }
 
         if (linkable instanceof Page) {
-            enhancedPageLink(link, (Page) linkable);
+            enhancedLinkFromPage(link, (Page) linkable);
         } else if (linkable instanceof SharedLink) {
-            enhancedSharedLink(link, (SharedLink) linkable, locale, addCategory);
+            enhancedLinkFromSharedLink(link, (SharedLink) linkable, module, locale, addCategory);
         } else {
             logger.warn("The type {} was not expected and will be skipped", linkable.getClass().getSimpleName());
             return null;
@@ -247,7 +234,8 @@ public class LinkService {
             link.setCategory(getLinkCategory (link.getLink(),locale));
         }
         if (link.getImage() == null) {
-            CommonUtilsService.contentIssue("The link to {} does not have an image but it is expecting one", linkable);
+            module.addErrorMessage("The link to '"+link.getLink()+"' does not contain an image.");
+            contentLogger.warn("The link to {} does not have an image but it is expecting one", ((BaseDocument) linkable).getPath());
         }
 
         return link;
@@ -267,7 +255,7 @@ public class LinkService {
         return null;
     }
 
-    private void enhancedPageLink(EnhancedLink link, Page linkable){
+    private void enhancedLinkFromPage(EnhancedLink link, Page linkable){
         link.setLink(utils.createUrl(linkable));
         link.setType(LinkType.INTERNAL);
         if (linkable instanceof Itinerary) {
@@ -279,22 +267,21 @@ public class LinkService {
         }
     }
 
-    private void enhancedSharedLink(EnhancedLink link, SharedLink linkable, Locale locale, boolean addCategory){
+    private void enhancedLinkFromSharedLink(EnhancedLink link, SharedLink linkable, Module module, Locale locale, boolean addCategory){
         JsonNode product = getNodeFromSharedLink(linkable, locale);
         link.setLink(getPlainLink(linkable, product));
 
         if (link.getImage() == null && product != null && product.has(DMSConstants.DMSProduct.IMAGE)) {
-            //TODO Propagate the error messages
-            link.setImage(imageFactory.createImage(product, null));
+            link.setImage(imageFactory.createImage(product, module));
         }
         if (linkable.getLinkType() instanceof ExternalDocument){
             ExternalDocument externalDocument = (ExternalDocument) linkable.getLinkType();
+            //TODO The following operation is expensive. We should cache the value
             String size = commonUtils.getExternalDocumentSize(externalDocument.getLink(), locale);
             String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
             if (size == null) {
-                //TODO Create preview warning.
-                //TODO Content Issue
-                logger.warn("The external document {} might be broken.", link.getLink());
+                module.addErrorMessage("The Link to the External document might be broken");
+                contentLogger.warn("The external document {} might be broken.", link.getLink());
                 link.setLabel(linkable.getTitle() + " (" + downloadLabel + ")");
             } else {
                 link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");

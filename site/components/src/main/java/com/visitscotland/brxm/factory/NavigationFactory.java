@@ -8,7 +8,6 @@ import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.model.navigation.FeaturedItem;
 import com.visitscotland.brxm.model.navigation.NavigationWidget;
-import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
@@ -33,6 +32,7 @@ import java.util.MissingFormatArgumentException;
 public class NavigationFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(NavigationFactory.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     static final String STATIC = "navigation.static";
     static final String CTA_SUFFIX = ".cta";
@@ -114,7 +114,7 @@ public class NavigationFactory {
         ArrayList<EnhancedLink> items = new ArrayList<>();
 
         for (Linkable linkable : document.getItems()) {
-            items.add(linkService.createEnhancedLink(linkable, locale, widget, false));
+            items.add(linkService. createEnhancedLink(linkable, widget, locale, false));
         }
 
         widget.setLinks(items);
@@ -148,11 +148,9 @@ public class NavigationFactory {
                 try {
                     menuItem.setCta(String.format(seeAll, menuItem.getTitle()));
                 } catch (MissingFormatArgumentException e) {
-                    String message = String.format("The label '%s' has more parameters than expected. File: %s, key: %s",
-                            seeAll, STATIC, "see-all-cta");
-                    logger.warn(message);
-                    CommonUtilsService.contentIssue(message.replace("%", "%%"));
 
+                    contentLogger.warn("The label '{}' has more parameters than expected. File: {}, key: {}",
+                            seeAll, STATIC, "see-all-cta");
                     //After Catching the exception, we can eliminate the parameters.
                     menuItem.setCta(seeAll.replace("%s", ""));
                 }

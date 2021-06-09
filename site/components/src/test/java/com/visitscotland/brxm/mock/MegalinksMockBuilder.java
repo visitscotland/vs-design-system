@@ -1,13 +1,16 @@
 package com.visitscotland.brxm.mock;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
-import com.visitscotland.brxm.factory.LinkModuleFactoryTest;
-import com.visitscotland.brxm.factory.LinkModulesFactory;
+import com.visitscotland.brxm.factory.MegalinkFactoryTest;
+import com.visitscotland.brxm.factory.MegalinkFactory;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static org.mockito.Mockito.*;
 
@@ -23,6 +26,25 @@ public class MegalinksMockBuilder {
             " \"images\":[{" +
             "    \"mediaUrl\":\"https://img.visitscotland.com/fake-product.jpg\"" +
             "}]}";
+
+    public MegalinksMockBuilder dmsLink(DMSDataService dmsData, JsonNode node) {
+        linkable = Mockito.mock(SharedLink.class);
+        DMSLink link = mock(DMSLink.class);
+
+        when(link.getProduct()).thenReturn("id");
+        when(((SharedLink)linkable).getLinkType()).thenReturn(link);
+        when(dmsData.productCard("id", Locale.UK)).thenReturn(node);
+
+        return this;
+    }
+
+    public MegalinksMockBuilder productSearchLink() {
+        linkable = Mockito.mock(SharedLink.class);
+        ProductsSearch ps = mock(ProductsSearch.class);
+        when(((SharedLink)linkable).getLinkType()).thenReturn(mock(ProductsSearch.class));
+
+        return this;
+    }
 
     public enum LinkType {CMS, DMS, EXTERNAL, PRODUCT_SEARCH}
 
@@ -41,9 +63,13 @@ public class MegalinksMockBuilder {
         return megalinks;
     }
 
+    public SharedLink buildSharedLink(){
+        return (SharedLink) linkable;
+    }
+
     public MegalinksMockBuilder horizontalLayout() {
         megalinks = mock(Megalinks.class);
-        when (megalinks.getLayout()).thenReturn(LinkModulesFactory.HORIZONTAL_LAYOUT);
+        when (megalinks.getLayout()).thenReturn(MegalinkFactory.HORIZONTAL_LAYOUT);
 
         return this;
     }
@@ -60,7 +86,7 @@ public class MegalinksMockBuilder {
         return this.singleImage(singleImageModule);
     }
 
-    public MegalinksMockBuilder megalinkItem(boolean featured, LinkModuleFactoryTest.LinkType type, String title) {
+    public MegalinksMockBuilder megalinkItem(boolean featured, MegalinkFactoryTest.LinkType type, String title) {
         if (megalinkItems == null) {
             megalinkItems = new ArrayList<>();
         }
@@ -93,14 +119,14 @@ public class MegalinksMockBuilder {
     }
 
     public MegalinkItem mockItem() {
-        return createMockItem(false, LinkModuleFactoryTest.LinkType.CMS, null);
+        return createMockItem(false, MegalinkFactoryTest.LinkType.CMS, null);
     }
 
-    public MegalinkItem createMockItem(boolean featured, LinkModuleFactoryTest.LinkType type, String title) {
+    public MegalinkItem createMockItem(boolean featured, MegalinkFactoryTest.LinkType type, String title) {
         MegalinkItem item = mock(MegalinkItem.class, withSettings().lenient());
 
         when(item.getFeature()).thenReturn(featured);
-        if (type == LinkModuleFactoryTest.LinkType.CMS) {
+        if (type == MegalinkFactoryTest.LinkType.CMS) {
             when(item.getLink()).thenReturn(mockPage());
         } else {
             SharedLink link = mockSharedLink(type);
@@ -114,7 +140,7 @@ public class MegalinksMockBuilder {
         return item;
     }
 
-    private SharedLink mockSharedLink(LinkModuleFactoryTest.LinkType linkType) {
+    private SharedLink mockSharedLink(MegalinkFactoryTest.LinkType linkType) {
         SharedLink link = mock(SharedLink.class, withSettings().lenient());
         when(link.getImage()).thenReturn(mock(Image.class, withSettings().lenient()));
 

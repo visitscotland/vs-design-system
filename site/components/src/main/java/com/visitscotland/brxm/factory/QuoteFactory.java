@@ -4,6 +4,7 @@ import com.visitscotland.brxm.hippobeans.Quote;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.FlatQuote;
 import com.visitscotland.brxm.model.Module;
+import com.visitscotland.brxm.services.LinkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -17,11 +18,11 @@ public class QuoteFactory {
 
     private ImageFactory imageFactory;
 
-    private LinkModulesFactory linkFactory;
+    private LinkService linkService;
 
-    public QuoteFactory(ImageFactory imageFactory, LinkModulesFactory linkFactory){
+    public QuoteFactory(ImageFactory imageFactory, LinkService linkService){
         this.imageFactory = imageFactory;
-        this.linkFactory = linkFactory;
+        this.linkService = linkService;
     }
 
     public FlatQuote getQuote(Quote doc, Module module, Locale locale){
@@ -35,7 +36,7 @@ public class QuoteFactory {
         }
 
         if (doc.getProduct() instanceof Linkable) {
-            quote.setLink(linkFactory.createEnhancedLink((Linkable) doc.getProduct(), locale, false));
+            quote.setLink(linkService.createEnhancedLink((Linkable) doc.getProduct(), module, locale, false));
         } else if (doc.getProduct() != null){
             contentLogger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
         }
