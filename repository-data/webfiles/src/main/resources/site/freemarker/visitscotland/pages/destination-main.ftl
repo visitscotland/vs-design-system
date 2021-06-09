@@ -2,6 +2,7 @@
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
+<#include "../macros/modules/signpost/signpost.ftl">
 <#include "../macros/shared/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
@@ -24,5 +25,9 @@
 
     <#if otyml??>
         <@horizontalList otyml />
+    </#if>
+
+    <#if newsletterSignpost??>
+        <@signpost newsletterSignpost />
     </#if>
 </div>

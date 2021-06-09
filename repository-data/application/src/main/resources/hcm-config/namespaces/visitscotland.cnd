@@ -20,6 +20,9 @@
 [visitscotland:CannedSearch] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
 
+[visitscotland:CTALink] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
 [visitscotland:Coordinates] > hippo:compound, hippostd:relaxed
   orderable
 

@@ -3,10 +3,12 @@ package com.visitscotland.brxm.components.content;
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.factory.MegalinkFactory;
+import com.visitscotland.brxm.factory.SignpostFactory;
 import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
+import com.visitscotland.brxm.model.SignpostModule;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -22,13 +24,16 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
     public static final String DOCUMENT = "document";
     public static final String EDIT_PATH = "path";
     public static final String OTYML = "otyml";
+    public static final String NEWSLETTER_SIGNPOST = "newsletterSignpost";
 
     private MegalinkFactory linksFactory;
     private ImageFactory imageFactory;
+    private final SignpostFactory signpostFactory;
 
     public PageContentComponent() {
         linksFactory = VsComponentManager.get(MegalinkFactory.class);
         imageFactory = VsComponentManager.get(ImageFactory.class);
+        signpostFactory = VsComponentManager.get(SignpostFactory.class);
     }
 
     @Override
@@ -39,6 +44,7 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
         addHeroImage(request);
 
         addOTYML(request);
+        addNewsletterSignup(request);
     }
 
     /**
@@ -65,6 +71,14 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
         Page page = getDocument(request);
         if (page.getOtherThings() != null) {
             request.setAttribute(OTYML, linksFactory.horizontalListLayout(page.getOtherThings(), request.getLocale()));
+        }
+    }
+
+    protected void addNewsletterSignup(HstRequest request) {
+        Page page = getDocument(request);
+        if (page.getNewsletter() != null && page.getNewsletter()) {
+            SignpostModule signpost = signpostFactory.createNewsletterSignpostModule(request.getLocale());
+            request.setAttribute(NEWSLETTER_SIGNPOST, signpost);
         }
     }
 
