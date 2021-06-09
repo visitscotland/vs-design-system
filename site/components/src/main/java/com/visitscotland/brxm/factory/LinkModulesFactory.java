@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 public class LinkModulesFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(LinkModulesFactory.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     public final static int MAX_ITEMS = 6;
     public final static String HORIZONTAL_LAYOUT = "Horizontal";
@@ -197,7 +198,7 @@ public class LinkModulesFactory {
         List<FlatLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
             if (item.getLink() == null) {
-                CommonUtilsService.contentIssue("The module %s contains a link without any reference", item.getPath());
+                contentLogger.warn("The module {} contains a link without any reference", item.getPath());
             } else if (item.getLink() instanceof Page) {
                 links.add(new FlatLink(((Page) item.getLink()).getTitle(), utils.createUrl(item.getLink()), LinkType.INTERNAL));
             } else if (item.getLink() instanceof SharedLink) {
@@ -208,7 +209,7 @@ public class LinkModulesFactory {
                 link.setType(linkService.getType(link.getLink()));
                 links.add(link);
             } else {
-                CommonUtilsService.contentIssue("The module %s is pointing to a document of type %s which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
+                contentLogger.warn("The module {} is pointing to a document of type {} which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
             }
         }
         return links;
@@ -221,7 +222,7 @@ public class LinkModulesFactory {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
             if (item.getLink() == null) {
-                CommonUtilsService.contentIssue("The module %s contains a link without any reference", item.getPath());
+                contentLogger.warn("The module {} contains a link without any reference", item.getPath());
             }else if (item.getLink() instanceof Linkable) {
                 EnhancedLink link = createEnhancedLink((Linkable) item.getLink(), locale, addCategory);
                 if (link != null) {
@@ -229,7 +230,7 @@ public class LinkModulesFactory {
                     links.add(link);
                 }
             } else {
-                CommonUtilsService.contentIssue("The module %s is pointing to a document of type %s which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
+                contentLogger.warn("The module {} is pointing to a document of type {} which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
             }
         }
         return links;
@@ -274,7 +275,7 @@ public class LinkModulesFactory {
                 String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
                 if (size == null) {
                     //TODO Create preview warning.
-                    commonUtils.contentIssue("The external document %s might be broken.", link.getLink());
+                    contentLogger.warn("The external document {} might be broken.", link.getLink());
                     link.setLabel(linkable.getTitle() + " (" + downloadLabel + ")");
                 } else {
                     link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");
@@ -299,7 +300,7 @@ public class LinkModulesFactory {
             link.setCategory(linkService.getLinkCategory (link.getLink(),locale));
         }
         if (link.getImage() == null) {
-            CommonUtilsService.contentIssue("The link to %s does not have an image but it is expecting one", linkable);
+            contentLogger.warn("The link to {} does not have an image but it is expecting one", linkable);
         }
 
         return link;

@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 public class ResourceBundleService {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceBundleService.class.getName());
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     ResourceBundleRegistry registry;
 
@@ -117,13 +118,12 @@ public class ResourceBundleService {
                 if (Contract.isEmpty(value) && locale != null && !optional) {
                     value = getResourceBundle(bundleName,key, (Locale) null, false);
                     if (!Contract.isEmpty(value)) {
-                        logContentIssue("The label key %s does not exists for the %s channel. Resource Bundle key %s", key, bundle.getLocale(), bundleName);
+                        logContentIssue("The label key {} does not exists for the %s channel. Resource Bundle key {}", key, bundle.getLocale(), bundleName);
                     }
                 }
             }
             if (Contract.isEmpty(value) && !optional){
-                logContentIssue("The label key %s does not exists for the English channel. Resource Bundle key %s", key, bundleName);
-                logger.warn("The label key {} does not exists for the English channel. Resource Bundle key {}", key, bundleName);
+                logContentIssue("The label key {} does not exists for the English channel. Resource Bundle key {}", key, bundleName);
             }
         }
 
@@ -171,8 +171,7 @@ public class ResourceBundleService {
      * @param args arguments for the message
      */
     void logContentIssue(String message, Object... args) {
-        String issue = common.contentIssue(message, args);
-        logger.warn(issue);
+        contentLogger.warn(message, args);
     }
 
     /**
