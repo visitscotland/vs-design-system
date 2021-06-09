@@ -2319,6 +2319,152 @@
             hippostd:content: <p>This is just an example, please don't test. Usually
               there would be an example of the module to be tested below this text,
               but this is just an example to show the process needed.</p>
+      /icentre-module:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 2e5d4b9e-09c9-42d4-95f0-4ef8603158e5
+        hippo:name: iCentre Module
+        hippo:versionHistory: d117a1cf-08be-4829-8d7a-040b039d3fdd
+        /icentre-module[1]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 478ed054-2b03-45e9-acec-e5d1b7a2b2e8
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostd:transferable: false
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-26T11:07:45.887+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-26T11:09:10.113+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 0ed269cf-803f-44d1-8693-cfa665f1e376
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 17f9d549-ba5f-48a2-b234-3a3daf0f5766
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Test
+              visitscotland:role: User
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Suspendisse laoreet semper turpis, et sagittis
+                  nisl commodo eget. Donec elementum eros id pulvinar interdum. Aenean
+                  molestie lobortis ante id pretium.</p>
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+        /icentre-module[2]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 4523e7a9-9bd7-4c03-ade6-92b6d0692252
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-26T11:07:45.887+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-26T11:08:24.018+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 0ed269cf-803f-44d1-8693-cfa665f1e376
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 17f9d549-ba5f-48a2-b234-3a3daf0f5766
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Test
+              visitscotland:role: User
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Suspendisse laoreet semper turpis, et sagittis
+                  nisl commodo eget. Donec elementum eros id pulvinar interdum. Aenean
+                  molestie lobortis ante id pretium.</p>
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+        /icentre-module[3]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 7ea2dd47-474c-4afd-8eb9-c451d9f41f02
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-05-26T11:07:45.887+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-26T11:08:24.018+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-05-26T11:08:27.798+01:00
+          hippotranslation:id: 0ed269cf-803f-44d1-8693-cfa665f1e376
+          hippotranslation:locale: en
+          visitscotland:translation: ''
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 17f9d549-ba5f-48a2-b234-3a3daf0f5766
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Test
+              visitscotland:role: User
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Suspendisse laoreet semper turpis, et sagittis
+                  nisl commodo eget. Donec elementum eros id pulvinar interdum. Aenean
+                  molestie lobortis ante id pretium.</p>
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
     /other-things-you-might-like:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
