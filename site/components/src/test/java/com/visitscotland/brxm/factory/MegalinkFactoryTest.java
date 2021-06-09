@@ -203,14 +203,34 @@ public class MegalinkFactoryTest {
     @ParameterizedTest
     @DisplayName("From 7 items is not Featured any longer")
     @CsvSource({"1,MultiImageLinksModule", "2,MultiImageLinksModule", "6,MultiImageLinksModule", "7,ListLinksModule"})
-    void layoutDependsOnItem(String links, String expectedModule){
+    void featuredLayoutDependsOnNumberOfItem(Integer links, String expectedModule){
         MegalinksMockBuilder builder = new MegalinksMockBuilder();
 
-        for (int i = 0; i< Integer.valueOf(links); i++){
+        for (int i = 0; i < links; i++){
             builder.addPageLink();
         }
 
         LinksModule layout = factory.getMegalinkModule(builder.build(), Locale.UK);
+
+        Assertions.assertEquals(expectedModule, layout.getType());
+    }
+
+    @ParameterizedTest
+    @DisplayName("From 7 items is not Featured any longer")
+    @CsvSource({"1,SingleImageLinksModule", "6,SingleImageLinksModule", "7,ListLinksModule"})
+    void singleImageLayoutDependsOnNumberOfItem(Integer links, String expectedModule){
+        MegalinksMockBuilder builder = new MegalinksMockBuilder();
+
+        for (int i = 0; i < links; i++){
+            builder.addPageLink();
+        }
+
+        Megalinks mega = builder.build();
+        //The following condition won't be used whe the number of items is above 6, But it has to be mocked to
+        //verify that it does not affect the output
+        lenient().when(mega.getSingleImageModule()).thenReturn(mock(SingleImageModule.class));
+
+        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
 
         Assertions.assertEquals(expectedModule, layout.getType());
     }
