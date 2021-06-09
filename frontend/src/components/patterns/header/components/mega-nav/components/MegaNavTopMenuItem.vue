@@ -106,9 +106,11 @@ export default {
                 margin: $spacer-2 $spacer-0 $spacer-5 $spacer-6;
                 position: absolute;
                 right: 0;
+                top: 0;
 
                 &.vs-mega-nav-top-menu-item__featured--bottom {
                     bottom: 0;
+                    top: auto;
                     margin-bottom: $spacer-0;
                 }
             }
@@ -138,6 +140,7 @@ export default {
         }
 
         &__columns-wrapper{
+            position: relative;
             display: flex;
             width: 100%;
             flex-flow: column wrap;
