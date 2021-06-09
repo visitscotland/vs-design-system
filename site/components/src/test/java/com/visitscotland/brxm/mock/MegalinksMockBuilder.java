@@ -6,6 +6,9 @@ import com.visitscotland.brxm.factory.LinkModuleFactoryTest;
 import com.visitscotland.brxm.factory.LinkModulesFactory;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.*;
 
 public class MegalinksMockBuilder {
@@ -35,8 +38,17 @@ public class MegalinksMockBuilder {
     }
 
     public MegalinksMockBuilder horizontalLayout() {
-        megalinks = mock(Megalinks.class);
+        megalinks = mock(Megalinks.class, RETURNS_DEEP_STUBS);
         when (megalinks.getLayout()).thenReturn(LinkModulesFactory.HORIZONTAL_LAYOUT);
+        when (megalinks.getMegalinkItems().size()).thenReturn(LinkModulesFactory.MIN_ITEMS_CAROUSEL);
+
+        return this;
+    }
+
+    public MegalinksMockBuilder horizontalLayoutNoEnoughItems() {
+        megalinks = mock(Megalinks.class, RETURNS_DEEP_STUBS);
+        when (megalinks.getLayout()).thenReturn(LinkModulesFactory.HORIZONTAL_LAYOUT);
+        when (megalinks.getMegalinkItems().size()).thenReturn(3);
 
         return this;
     }

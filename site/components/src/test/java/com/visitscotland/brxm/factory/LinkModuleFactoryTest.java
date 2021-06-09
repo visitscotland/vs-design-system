@@ -306,6 +306,15 @@ public class LinkModuleFactoryTest {
         assertEquals("HorizontalListLinksModule", linkModule.getType());
     }
 
+    @Test
+    @DisplayName("Get a list layout when horizontal list is selected but there are less than 5 links")
+    void getMegalinkModule_horizontalListLayoutNoEnoughItems() {
+        Megalinks mega = new MegalinksMockBuilder().horizontalLayoutNoEnoughItems().build();
+
+        LinksModule linkModule = factory.getMegalinkModule(mega,Locale.UK);
+        assertEquals("ListLinksModule", linkModule.getType());
+    }
+
     //TODO Correct before merging with develop
     @Test
     @DisplayName("Itineraries have days and main transport added")
