@@ -124,10 +124,17 @@ export default {
             .card-body {
                 position: initial;
                 width: auto;
+                max-width: 100%;
                 padding: $spacer-8;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+
+                // IE11 fix as it doesn't like position: initial
+                @media screen and (-ms-high-contrast: active), screen and
+                    (-ms-high-contrast: none) {
+                    position: relative;
+                }
             }
 
             .vs-stretched-link-card__img {
