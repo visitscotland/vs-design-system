@@ -1,0 +1,4 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:workflows/threepane/folder-permissions:
+      hipposys:classname: com.visitscotland.brxm.CustomFolderWorkflowImpl
