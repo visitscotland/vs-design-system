@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
-import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
@@ -25,12 +24,10 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -198,10 +195,13 @@ public class MegalinkFactoryTest {
 
     @Test
     void External_SharedLink() {
-        FlatLink link = factory.convertToFlatLinks(
-                Collections.singletonList(mockItem(false, LinkType.EXTERNAL)), Locale.UK).get(0);
+        //        Megalinks mega = new MegalinksMockBuilder().createMockItem()
+        when(linkService.createEnhancedLink(any(), any(), any(), anyBoolean())).thenReturn(new EnhancedLink());
 
-        assertEquals(PLAIN_LINK, link.getLink());
+        List list = factory.convertToEnhancedLinks(null,
+                Collections.singletonList(mockItem(false, LinkType.EXTERNAL)), Locale.UK, false);
+
+        assertEquals(1, list.size());
     }
 
     @Test
@@ -261,6 +261,6 @@ public class MegalinkFactoryTest {
         List lis = factory.convertToEnhancedLinks(module, Collections.singletonList(item), Locale.UK,false);
         //TODO Review
         assertEquals(0, lis.size());
-        assertEquals(1,  module.getErrorMessages().size());
+        assertEquals(1, module.getErrorMessages().size());
     }
 }

@@ -27,25 +27,6 @@ public class MegalinksMockBuilder {
             "    \"mediaUrl\":\"https://img.visitscotland.com/fake-product.jpg\"" +
             "}]}";
 
-    public MegalinksMockBuilder dmsLink(DMSDataService dmsData, JsonNode node) {
-        linkable = Mockito.mock(SharedLink.class);
-        DMSLink link = mock(DMSLink.class);
-
-        when(link.getProduct()).thenReturn("id");
-        when(((SharedLink)linkable).getLinkType()).thenReturn(link);
-        when(dmsData.productCard("id", Locale.UK)).thenReturn(node);
-
-        return this;
-    }
-
-    public MegalinksMockBuilder productSearchLink() {
-        linkable = Mockito.mock(SharedLink.class);
-        ProductsSearch ps = mock(ProductsSearch.class);
-        when(((SharedLink)linkable).getLinkType()).thenReturn(mock(ProductsSearch.class));
-
-        return this;
-    }
-
     public enum LinkType {CMS, DMS, EXTERNAL, PRODUCT_SEARCH}
 
     private Megalinks megalinks;
@@ -56,6 +37,10 @@ public class MegalinksMockBuilder {
         megalinks = Mockito.mock(Megalinks.class);
     }
 
+    public void addMockItem(){
+//        createMockItem();
+    }
+
     public Megalinks build() {
         if (megalinkItems != null) {
             when(megalinks.getMegalinkItems()).thenReturn(megalinkItems);
@@ -63,9 +48,9 @@ public class MegalinksMockBuilder {
         return megalinks;
     }
 
-    public SharedLink buildSharedLink(){
-        return (SharedLink) linkable;
-    }
+//    public SharedLink buildSharedLink(){
+//        return (SharedLink) linkable;
+//    }
 
     public MegalinksMockBuilder horizontalLayout() {
         megalinks = mock(Megalinks.class);
@@ -103,19 +88,6 @@ public class MegalinksMockBuilder {
     }
     public Linkable getPage(){
        return mock(Page.class);
-    }
-
-    public Linkable getExternalDocument(String title, String url, String category){
-        SharedLink sharedLink = mock(SharedLink.class, RETURNS_DEEP_STUBS);
-        ExternalDocument externalDocument = mock(ExternalDocument.class, RETURNS_DEEP_STUBS);
-
-        when (sharedLink.getLinkType()).thenReturn(externalDocument);
-        when (sharedLink.getTitle()).thenReturn(title);
-        when (externalDocument.getLink()).thenReturn(url);
-        if (category!=null) {
-            when(externalDocument.getCategory()).thenReturn(category);
-        }
-        return sharedLink;
     }
 
     public MegalinkItem mockItem() {

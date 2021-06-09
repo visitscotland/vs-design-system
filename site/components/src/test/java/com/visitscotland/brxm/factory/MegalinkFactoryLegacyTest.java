@@ -230,24 +230,5 @@ class MegalinkFactoryLegacyTest extends EasyMockSupport {
         //This verifies that messages were generated and include the problematic node
         verify(mi);
     }
-
-    @Test
-    void skipInvalidLinkElements(){
-
-        MegalinkItem mi = createMock(MegalinkItem.class);
-
-        expect(mi.getFeature()).andReturn(false).anyTimes();
-        expect(mi.getLink()).andReturn(createNiceMock(Megalinks.class)).anyTimes();
-        expect(mi.getPath()).andReturn("path/to/node").times(2);
-
-        replay(mi);
-
-        Assertions.assertEquals(0, factory.convertToFlatLinks(Collections.singletonList(mi), null).size());
-        Assertions.assertEquals(0, factory.convertToEnhancedLinks(null, Collections.singletonList(mi), Locale.UK,false).size());
-
-        //This verifies that messages were generated and include the problematic node
-        verify(mi);
-    }
-
 }
 

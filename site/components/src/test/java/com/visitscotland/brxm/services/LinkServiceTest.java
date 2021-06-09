@@ -3,9 +3,9 @@ package com.visitscotland.brxm.services;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.factory.ImageFactory;
-import com.visitscotland.brxm.factory.MegalinkFactoryTest;
 import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
+import com.visitscotland.brxm.mock.SharedLinkMockBuilder;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
@@ -29,7 +29,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -351,7 +350,7 @@ class LinkServiceTest {
     void createEnhancedLink_externalDocument_category() {
         final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
         final String category= "see-do";
-        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,category);
+        SharedLink externalDocument = new SharedLinkMockBuilder().externalDocument("title",url,category).build();
 
         when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
@@ -370,11 +369,11 @@ class LinkServiceTest {
 
         when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = service.createEnhancedLink(
-                new MegalinksMockBuilder().getExternalDocument("title",url,"see-do"), module,
+                new SharedLinkMockBuilder().externalDocument("title",url,"see-do").build(), module,
                 Locale.UK, true);
 
         assertEquals("title (DOWNLOAD)", enhancedLink.getLabel());
-        assertEquals(1, module.getErrorMessages().size());
+        assertTrue(module.getErrorMessages().contains("The Link to the External document might be broken"));
     }
 
     @Test
@@ -394,7 +393,7 @@ class LinkServiceTest {
     @DisplayName("VS-2308 External document definition without category")
     void createEnhancedLink_externalDocument() {
         final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
-        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,  null);
+        SharedLink externalDocument = new SharedLinkMockBuilder().externalDocument("title",url,  null).build();
 
         when(resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
@@ -412,7 +411,7 @@ class LinkServiceTest {
         JsonNode node = new ObjectMapper().readTree(MegalinksMockBuilder.MOCK_JSON);
         Module module = new Module();
 
-        SharedLink dmsLink = new MegalinksMockBuilder().dmsLink(dmsData, node).buildSharedLink();
+        SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
         when(imageFactory.createImage(node, module)).thenReturn(new FlatImage());
 
         EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
@@ -428,7 +427,7 @@ class LinkServiceTest {
                 " \"name\":\"Fake Product\" " +
                 "}";
         JsonNode node = new ObjectMapper().readTree(NO_IMAGE_JSON);
-        SharedLink dmsLink = new MegalinksMockBuilder().dmsLink(dmsData, node).buildSharedLink();
+        SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
         Module module = new Module();
 
         when(properties.getDmsHost()).thenReturn("");

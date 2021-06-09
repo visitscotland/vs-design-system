@@ -234,7 +234,11 @@ public class LinkService {
             link.setCategory(getLinkCategory (link.getLink(),locale));
         }
         if (link.getImage() == null) {
-            module.addErrorMessage("The link to '"+link.getLink()+"' does not contain an image.");
+            if (module != null) {
+                module.addErrorMessage("The link to '" + link.getLink() + "' does not contain an image.");
+            } else {
+                logger.warn("The error message cannot be displayed in preview");
+            }
             contentLogger.warn("The link to {} does not have an image but it is expecting one", ((BaseDocument) linkable).getPath());
         }
 
