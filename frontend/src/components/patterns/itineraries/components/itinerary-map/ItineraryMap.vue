@@ -31,6 +31,7 @@ export default {
         accessToken: {
             type: String,
             required: false,
+            default: '',
         },
         labels: {
             type: Object,
