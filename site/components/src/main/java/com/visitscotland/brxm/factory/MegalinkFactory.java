@@ -190,36 +190,13 @@ public class MegalinkFactory {
     }
 
     /**
-     * Converts the list of {@code MegalinksItem} into  a list of plain {@code FlatLink }
-     */
-    List<FlatLink> convertToFlatLinks(List<MegalinkItem> items, Locale locale) {
-        List<FlatLink> links = new ArrayList<>();
-        for (MegalinkItem item : items) {
-            if (item.getLink() == null) {
-                contentLogger.warn("The module {} contains a link without any reference", item.getPath());
-            } else if (item.getLink() instanceof Page) {
-                links.add(new FlatLink(((Page) item.getLink()).getTitle(), utils.createUrl(item.getLink()), LinkType.INTERNAL));
-            } else if (item.getLink() instanceof SharedLink) {
-                JsonNode node = getNodeFromSharedLink((SharedLink) item.getLink(), locale);
-                FlatLink link = new FlatLink();
-                link.setLabel(((SharedLink) item.getLink()).getTitle());
-                link.setLink(linkService.getPlainLink((SharedLink) item.getLink(), node));
-                link.setType(linkService.getType(link.getLink()));
-                links.add(link);
-            } else {
-                contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
-            }
-        }
-        return links;
-    }
-
-    /**
      * Converts the list of {@code MegalinksItem} into  a list of {@code EnhancedLink }
      */
     List<EnhancedLink> convertToEnhancedLinks(Module module, List<MegalinkItem> items, Locale locale, boolean addCategory) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
             if (item.getLink() == null) {
+                addError(module, "One of the Megalinks items contains an invalid reference");
                 contentLogger.warn("The module {} contains a link without any reference", item.getPath());
             } else {
                 EnhancedLink link = null;
@@ -231,12 +208,20 @@ public class MegalinkFactory {
                     link.setFeatured(item.getFeature());
                     links.add(link);
                 } else {
-                    module.addErrorMessage("One of the Megalink items cannot be recognized and will not be included in the page.");
+                    addError(module, "One of the Megalink items cannot be recognized and will not be included in the page.");
                     contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
                 }
             }
         }
         return links;
+    }
+
+    private void addError(Module module, String message){
+        if (module != null) {
+            module.addErrorMessage(message);
+        } else {
+            logger.warn("The error message cannot be displayed in preview");
+        }
     }
 
     /**

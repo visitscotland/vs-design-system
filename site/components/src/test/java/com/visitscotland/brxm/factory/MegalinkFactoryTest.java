@@ -1,38 +1,32 @@
 package com.visitscotland.brxm.factory;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
+import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.model.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.model.megalinks.LinksModule;
-import com.visitscotland.brxm.dms.DMSDataService;
-import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.dms.ProductSearchBuilder;
-import com.visitscotland.brxm.mock.MegalinksMockBuilder;
-import com.visitscotland.brxm.services.CommonUtilsService;
-import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
-import com.visitscotland.brxm.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 
@@ -43,42 +37,15 @@ public class MegalinkFactoryTest {
     public static final String EXTERNAL_URL = "http://www.fake.site";
     public static final String PLAIN_LINK = "http://www.plain-link.site";
     public static final String PSR_URL = "http://psr.visitscotland.com/info/search?value1&value2";
-    public static final String MOCK_JSON = "{" +
-            " \"url\":\"https://mock.visitscotland.com/info/fake-product-p" + DMS_ID + "\", " +
-            " \"name\":\"Fake Product\", " +
-            " \"images\":[{" +
-            "    \"mediaUrl\":\"https://img.visitscotland.com/fake-product.jpg\"" +
-            "}]}";
 
     public enum LinkType {CMS, DMS, EXTERNAL, PRODUCT_SEARCH}
 
-
-    @Mock
-    CommonUtilsService commonUtils;
-
-    @Mock
-    ProductSearchBuilder builder;
-
-    @Mock
-    HippoUtilsService utils;
-
-    @Mock
-    DMSDataService dmsData;
-
-    @Mock
-    ImageFactory imageFactory;
 
     @Mock
     ResourceBundleService resourceBundleService;
 
     @Mock(lenient = true)
     LinkService linkService;
-
-    @Mock
-    LocationLoader locationLoader;
-
-    @Mock
-    DocumentUtilsService documentUtilsService;
 
     @Resource
     @InjectMocks
@@ -148,60 +115,25 @@ public class MegalinkFactoryTest {
     }
 
     @Test
-    void MegalinkItem_convertToFlatLinks_allowedLinkTypes() {
-        //Test allowed types
+    @DisplayName("Allowed items are processed and included to the list")
+    void megalinkItem_allowedLinkTypes() {
+        List<MegalinkItem> items = new MegalinksMockBuilder().addPageLink().addSharedLink().build().getMegalinkItems();
+        when(linkService.createEnhancedLink(any(),any(), any(), anyBoolean())).thenReturn(new EnhancedLink());
 
-        MegalinkItem page = mock(MegalinkItem.class);
-        when(page.getLink()).thenReturn(mockPage());
-        assertEquals(1, factory.convertToFlatLinks(Collections.singletonList(page), Locale.UK).size());
-
-        MegalinkItem sharedLink = mock(MegalinkItem.class);
-        SharedLink sl = mockSharedLink(LinkType.DMS);
-        when(sharedLink.getLink()).thenReturn(sl);
-        assertEquals(1, factory.convertToFlatLinks(Collections.singletonList(sharedLink), Locale.UK).size());
+        assertEquals(2, factory.convertToEnhancedLinks(null, items, Locale.UK, false).size());
     }
 
     @Test
-    void MegalinkItem_convertToFlatLinks_notAllowedLinkTypes() {
+    @DisplayName("Non Allowed items are removed from the list")
+    void megalinkItem_notAllowedLinkTypes() {
         //Test that not allowed types gets skipped without throwing exception
-        MegalinkItem page = mock(MegalinkItem.class);
-        when(page.getLink()).thenReturn(null);
-        assertEquals(0, factory.convertToFlatLinks(Collections.singletonList(page), Locale.UK).size());
+        List<MegalinkItem> items =  new MegalinksMockBuilder().addLink(null).addLink(mock(MegalinkItem.class)).build().getMegalinkItems();
+        Module<Megalinks> module = new Module<>();
 
-        MegalinkItem sharedLink = mock(MegalinkItem.class);
-        when(sharedLink.getLink()).thenReturn(mock(Stop.class));
-        assertEquals(0, factory.convertToFlatLinks(Collections.singletonList(sharedLink), Locale.UK).size());
-    }
+        assertEquals(0, factory.convertToEnhancedLinks(module, items, Locale.UK, false).size());
 
-    @Test
-    @DisplayName("DMSLink invoke a request to DMSData")
-    void DMS_SharedLink() throws IOException {
-        //Verifies that a DMSLink on calls dmsData to request the data
-        JsonNode node = new ObjectMapper().readTree(MOCK_JSON);
-        when(dmsData.productCard(DMS_ID, Locale.UK)).thenReturn(node);
-        when(linkService.getPlainLink(any(SharedLink.class), eq(node))).thenReturn("wwww.vs-dms.com");
-
-        FlatLink link = factory.convertToFlatLinks(Collections.singletonList(mockItem(false, LinkType.DMS)), Locale.UK).get(0);
-
-        assertEquals("wwww.vs-dms.com", link.getLink());
-    }
-
-    @Test
-    void ProductSearch_SharedLink() {
-        FlatLink link = factory.convertToFlatLinks(Collections.singletonList(mockItem(false, LinkType.PRODUCT_SEARCH)), Locale.UK).get(0);
-
-        assertNotNull(PSR_URL, link.getLink());
-    }
-
-    @Test
-    void External_SharedLink() {
-        //        Megalinks mega = new MegalinksMockBuilder().createMockItem()
-        when(linkService.createEnhancedLink(any(), any(), any(), anyBoolean())).thenReturn(new EnhancedLink());
-
-        List list = factory.convertToEnhancedLinks(null,
-                Collections.singletonList(mockItem(false, LinkType.EXTERNAL)), Locale.UK, false);
-
-        assertEquals(1, list.size());
+        verify(linkService, never()).createEnhancedLink(any(),any(), any(), anyBoolean());
+        assertEquals(2, module.getErrorMessages().size());
     }
 
     @Test
@@ -213,7 +145,7 @@ public class MegalinkFactoryTest {
         when(mega.getProductItem()).thenReturn(mockLink);
         when(linkService.createLink(any(Locale.class), eq(mockLink))).thenReturn(new FlatLink(null, "cta-link", null));
 
-        LinksModule layout = factory.multiImageLayout(mega, Locale.UK);
+        LinksModule<?> layout = factory.multiImageLayout(mega, Locale.UK);
 
         assertEquals("cta-link", layout.getCta().getLink());
     }
@@ -222,7 +154,7 @@ public class MegalinkFactoryTest {
     void getMegalinkModule_horizontalListLayout() {
         Megalinks mega = new MegalinksMockBuilder().horizontalLayout().build();
 
-        LinksModule linkModule = factory.getMegalinkModule(mega,Locale.UK);
+        LinksModule<?> linkModule = factory.getMegalinkModule(mega,Locale.UK);
         assertEquals("HorizontalListLinksModule", linkModule.getType());
     }
 
@@ -256,9 +188,9 @@ public class MegalinkFactoryTest {
         HippoBean link = mock(HippoBean.class, withSettings().extraInterfaces(Linkable.class));
         MegalinkItem item = mock(MegalinkItem.class);
         when(item.getLink()).thenReturn(link);
-        Module module = new Module();
+        Module<Megalinks> module = new Module<>();
 
-        List lis = factory.convertToEnhancedLinks(module, Collections.singletonList(item), Locale.UK,false);
+        List<?> lis = factory.convertToEnhancedLinks(module, Collections.singletonList(item), Locale.UK,false);
         //TODO Review
         assertEquals(0, lis.size());
         assertEquals(1, module.getErrorMessages().size());

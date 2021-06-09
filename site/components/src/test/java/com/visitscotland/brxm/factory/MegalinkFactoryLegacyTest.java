@@ -199,36 +199,5 @@ class MegalinkFactoryLegacyTest extends EasyMockSupport {
         Assertions.assertEquals(((MultiImageLinksModule) factory.getMegalinkModule(min, Locale.UK)).getFeaturedLinks().size(), minItems);
         Assertions.assertEquals(((MultiImageLinksModule) factory.getMegalinkModule(max, Locale.UK)).getFeaturedLinks().size(), maxItems);
     }
-
-    @Test
-    void addValidLinkElements(){
-        replayAll();
-
-        MegalinkItem mi = megalinkItemService.createMock(false);
-
-        verifyAll();
-        Assertions.assertEquals(1, factory.convertToFlatLinks(Collections.singletonList(mi), null).size());
-        //TODO Review
-//        Assertions.assertEquals(1, factory.convertToEnhancedLinks(null, Collections.singletonList(mi), Locale.UK,false).size());
-    }
-
-    @Test
-    void skipNullLinkElements(){
-        MegalinkItem mi = createMock(MegalinkItem.class);
-
-        expect(mi.getFeature()).andReturn(false).anyTimes();
-        expect(mi.getLink()).andReturn(null).anyTimes();
-        expect(mi.getPath()).andReturn("path/to/node").times(2);
-
-        replayAll();
-
-
-
-        Assertions.assertEquals(0, factory.convertToFlatLinks(Collections.singletonList(mi), null).size());
-        Assertions.assertEquals(0, factory.convertToEnhancedLinks(null, Collections.singletonList(mi), Locale.UK,false).size());
-
-        //This verifies that messages were generated and include the problematic node
-        verify(mi);
-    }
 }
 
