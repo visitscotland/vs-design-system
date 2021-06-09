@@ -10,6 +10,7 @@
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/shared/module-builder.ftl">
 <#include "../macros/modules/horizontal-list/horizontal-list.ftl">
+<#include "../macros/modules/signpost/signpost.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Itinerary" -->
@@ -86,5 +87,9 @@
     </vs-itinerary>
     <#if otyml??>
         <@horizontalList otyml />
+    </#if>
+
+    <#if newsletterSignpost??>
+        <@signpost newsletterSignpost />
     </#if>
 </div>
