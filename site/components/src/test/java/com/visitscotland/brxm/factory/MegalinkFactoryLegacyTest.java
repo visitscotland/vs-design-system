@@ -1,10 +1,8 @@
 package com.visitscotland.brxm.factory;
 
-import com.visitscotland.brxm.hippobeans.MegalinkItem;
-import com.visitscotland.brxm.hippobeans.MegalinkItemMockService;
-import com.visitscotland.brxm.hippobeans.Megalinks;
-import com.visitscotland.brxm.hippobeans.MegalinksMockService;
+import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.model.megalinks.LinksModule;
 import com.visitscotland.brxm.model.megalinks.MultiImageLinksModule;
 import com.visitscotland.brxm.model.megalinks.SingleImageLinksModule;
@@ -43,14 +41,16 @@ class MegalinkFactoryLegacyTest extends EasyMockSupport {
     private static MegalinkItemMockService megalinkItemService;
 
     private MegalinkFactory factory;
-    private HippoUtilsService utils;
+
     private LinkService linkService;
+    private ImageFactory imageFactory;
+
+    private HippoUtilsService utils;
+
     private DMSDataService dms;
     private Properties properties;
-    private LocationLoader locationloader;
-    private ImageFactory imageFactory;
-    private CommonUtilsService commonUtils;
-    private CommonUtilsService documUtilsServiceUtils;
+
+
 
 
     /**
@@ -73,17 +73,10 @@ class MegalinkFactoryLegacyTest extends EasyMockSupport {
         ResourceBundleService rs = createNiceMock(ResourceBundleService.class);
         utils = createNiceMock(HippoUtilsService.class);
         linkService = new LinkService(dms, rs,utils, properties);
-        commonUtils = new CommonUtilsService();
 
         expect(utils.createUrl(anyObject(HippoBean.class))).andStubReturn("/fake-url/mock");
 
-        factory = partialMockBuilder(MegalinkFactory.class)
-                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class, LocationLoader.class, ImageFactory.class, CommonUtilsService.class, DocumentUtilsService.class)
-                .withArgs(utils, dms, linkService, rs, locationloader, imageFactory, commonUtils, documUtilsServiceUtils)
-                .addMockedMethod("getLocation", String.class, Locale.class)
-                .createMock();
-
-        expect(factory.getLocation(anyString(), anyObject(Locale.class))).andStubReturn(null);
+        factory = new MegalinkFactory(linkService, rs, imageFactory);
     }
 
     @Test
@@ -116,33 +109,6 @@ class MegalinkFactoryLegacyTest extends EasyMockSupport {
     }
 
     @Test
-    void getSingleImage(){
-        replayAll();
-
-        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 0, "Single image title");
-        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
-
-        verifyAll();
-        Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
-    }
-
-    @Test
-    void getSingleImageWithCoordinates(){
-        LocationObject location = new LocationObject("edinburgh","key", "Edinburgh","DISTRICT", 10.,-10., Collections.emptyList(), Collections.emptySet());
-
-        reset(factory);
-        expect(factory.getLocation(anyString(), anyObject(Locale.class))).andReturn(location);
-        replayAll();
-
-        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 0, "Single image title");
-        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
-
-        verifyAll();
-        Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
-        Assertions.assertNotNull(((SingleImageLinksModule)layout).getImage().getCoordinates());
-    }
-
-    @Test
     void getListLayoutWhenSingleImageLinksIsHigherThan6(){
         replayAll();
 
@@ -151,53 +117,6 @@ class MegalinkFactoryLegacyTest extends EasyMockSupport {
 
         verifyAll();
         Assertions.assertEquals(LIST, layout.getType());
-    }
-
-    @Test
-    void getFeatured(){
-        replayAll();
-
-        for (int i = 0; i <= MegalinkFactory.MAX_ITEMS; i++) {
-            Megalinks mega = megalinkService.createMock(TITLE, false, false, true, i);
-            LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
-            Assertions.assertEquals(FEATURED, layout.getType());
-        }
-
-        verifyAll();
-    }
-
-    @Test
-    void countFeaturedItems(){
-        //Test the maximum and minimum number of featured items per the amount of module
-        replayAll();
-
-        createFeaturedLayoutAndCheckItems(1,1,1);
-        createFeaturedLayoutAndCheckItems(2,0,0);
-        createFeaturedLayoutAndCheckItems(3,0,1);
-        createFeaturedLayoutAndCheckItems(4,1,2);
-        createFeaturedLayoutAndCheckItems(5,1,2);
-        createFeaturedLayoutAndCheckItems(6,1,2);
-
-        //Check that from 7 items is not Featured any longer.
-        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 7);
-        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
-
-        verifyAll();
-        Assertions.assertNotEquals(layout.getType(), FEATURED);
-    }
-    
-    private void createFeaturedLayoutAndCheckItems(int total, int minItems, int maxItems){
-        Megalinks min = megalinkService.createMock(TITLE, false, false, true, 0);
-        Megalinks max = megalinkService.createMock(TITLE, false, false, true, 0);
-
-        for (int i = 0; i < total; i++){
-            min.getMegalinkItems().add(megalinkItemService.createMock(false));
-            max.getMegalinkItems().add(megalinkItemService.createMock(true));
-        }
-
-        verifyAll();
-        Assertions.assertEquals(((MultiImageLinksModule) factory.getMegalinkModule(min, Locale.UK)).getFeaturedLinks().size(), minItems);
-        Assertions.assertEquals(((MultiImageLinksModule) factory.getMegalinkModule(max, Locale.UK)).getFeaturedLinks().size(), maxItems);
     }
 }
 

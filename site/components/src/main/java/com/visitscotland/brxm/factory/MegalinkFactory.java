@@ -33,24 +33,14 @@ public class MegalinkFactory {
 
     private final static String IMAGE = "images";
 
-    private final HippoUtilsService utils;
-    private final DMSDataService dmsData;
     private final LinkService linkService;
     private final ResourceBundleService bundle;
-    private final LocationLoader locationLoader;
     private final ImageFactory imageFactory;
-    private final CommonUtilsService commonUtils;
-    private final DocumentUtilsService documentUtilsService;
 
-    public MegalinkFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle, LocationLoader locationLoader, ImageFactory imageFactory, CommonUtilsService commonUtils, DocumentUtilsService documentUtilsService) {
-        this.utils = utils;
-        this.dmsData = dmsData;
+    public MegalinkFactory(LinkService linkService, ResourceBundleService bundle, ImageFactory imageFactory) {
         this.linkService = linkService;
         this.bundle = bundle;
-        this.locationLoader = locationLoader;
         this.imageFactory = imageFactory;
-        this.commonUtils = commonUtils;
-        this.documentUtilsService = documentUtilsService;
     }
 
     public LinksModule<EnhancedLink> getMegalinkModule(Megalinks doc, Locale locale) {
@@ -115,7 +105,7 @@ public class MegalinkFactory {
 
         sil.setInnerTitle(doc.getSingleImageModule().getTitle());
         sil.setInnerIntroduction(doc.getSingleImageModule().getIntroduction());
-        sil.setImage(createFlatImage(doc.getSingleImageModule().getImage(), locale));
+        sil.setImage(imageFactory.createImage(doc.getSingleImageModule().getImage(), sil, locale));
         sil.setLinks(convertToEnhancedLinks(sil, doc.getMegalinkItems(), locale, false));
 
         return sil;
@@ -223,41 +213,4 @@ public class MegalinkFactory {
             logger.warn("The error message cannot be displayed in preview");
         }
     }
-
-    /**
-     * Query the DMSDataService and extract the information about the product as a {@code JsonNode}
-     *
-     * @param link SharedLink where the DMS product (ID) is defined
-     * @param locale User language to consume DMS texts such a category, location, facilities...
-     * @return JSON with DMS product information to create the card or null if the product does not exist
-     */
-    private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
-        if (link.getLinkType() instanceof DMSLink) {
-            return dmsData.productCard(((DMSLink) link.getLinkType()).getProduct(), locale);
-        }
-        return null;
-    }
-
-    /**
-     * Create a localized FlatImage from an Image Object
-     *
-     * @param img    Image Object
-     * @param locale User language to localize Image texts such as the caption
-     * @return flat image to be consumed by FED team
-     */
-    private FlatImage createFlatImage(Image img, Locale locale) {
-        FlatImage flatImage = new FlatImage(img, locale);
-        LocationObject locationObject = getLocation(img.getLocation(), locale);
-        if (locationObject != null) {
-            flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
-        }
-
-        return flatImage;
-    }
-
-    //TODO convert into a service
-    LocationObject getLocation(String location, Locale locale) {
-        return locationLoader.getLocation(location, locale);
-    }
-
 }

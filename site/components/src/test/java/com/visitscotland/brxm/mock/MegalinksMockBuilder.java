@@ -48,16 +48,22 @@ public class MegalinksMockBuilder {
         return this;
     }
 
-    public MegalinksMockBuilder singleImage(SingleImageModule singleImageModule) {
-        when(megalinks.getSingleImageModule()).thenReturn(singleImageModule);
+    public MegalinksMockBuilder singleImageLayout() {
+        when(megalinks.getSingleImageModule()).thenReturn(mock(SingleImageModule.class));
+
+        return this;
+    }
+
+    public MegalinksMockBuilder featured(boolean featured){
+        MegalinkItem item = megalinkItems.get(megalinkItems.size() - 1);
+        when(item.getFeature()).thenReturn(featured);
+
         return this;
     }
 
     public MegalinksMockBuilder addPageLink(){
         MegalinkItem item = mock(MegalinkItem.class);
-        when(item.getFeature()).thenReturn(false);
         when(item.getLink()).thenReturn(mock(Page.class));
-
         megalinkItems.add(item);
 
         return this;

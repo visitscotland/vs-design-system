@@ -1,21 +1,23 @@
 package com.visitscotland.brxm.factory;
 
+import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.Module;
-import com.visitscotland.brxm.model.megalinks.EnhancedLink;
-import com.visitscotland.brxm.model.megalinks.HorizontalListLinksModule;
-import com.visitscotland.brxm.model.megalinks.LinksModule;
+import com.visitscotland.brxm.model.megalinks.*;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -25,6 +27,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import static org.easymock.EasyMock.anyObject;
+import static org.easymock.EasyMock.anyString;
+import static org.easymock.EasyMock.expect;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
@@ -40,12 +45,14 @@ public class MegalinkFactoryTest {
 
     public enum LinkType {CMS, DMS, EXTERNAL, PRODUCT_SEARCH}
 
-
     @Mock
     ResourceBundleService resourceBundleService;
 
     @Mock(lenient = true)
     LinkService linkService;
+
+    @Mock
+    ImageFactory imageFactory;
 
     @Resource
     @InjectMocks
@@ -183,16 +190,46 @@ public class MegalinkFactoryTest {
     }
 
     @Test
-    void unexpectedTypeGetsSkipped() {
-        //Tests that the addition of a new type will not introduce an exception
-        HippoBean link = mock(HippoBean.class, withSettings().extraInterfaces(Linkable.class));
-        MegalinkItem item = mock(MegalinkItem.class);
-        when(item.getLink()).thenReturn(link);
-        Module<Megalinks> module = new Module<>();
+    @DisplayName("Returns a SingleImageLayout when the Single image fields are populated")
+    void getSingleImage(){
+        Megalinks mega = new MegalinksMockBuilder().singleImageLayout().build();
 
-        List<?> lis = factory.convertToEnhancedLinks(module, Collections.singletonList(item), Locale.UK,false);
-        //TODO Review
-        assertEquals(0, lis.size());
-        assertEquals(1, module.getErrorMessages().size());
+        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
+
+        Assertions.assertEquals(layout.getType(), "SingleImageLinksModule");
+
+    }
+
+    @ParameterizedTest
+    @DisplayName("From 7 items is not Featured any longer")
+    @CsvSource({"1,MultiImageLinksModule", "2,MultiImageLinksModule", "6,MultiImageLinksModule", "7,ListLinksModule"})
+    void layoutDependsOnItem(String links, String expectedModule){
+        MegalinksMockBuilder builder = new MegalinksMockBuilder();
+
+        for (int i = 0; i< Integer.valueOf(links); i++){
+            builder.addPageLink();
+        }
+
+        LinksModule layout = factory.getMegalinkModule(builder.build(), Locale.UK);
+
+        Assertions.assertEquals(expectedModule, layout.getType());
+    }
+
+    @ParameterizedTest
+    @DisplayName("Validate Maximun and minimum number of featured items")
+    @CsvSource({"1,1,1", "2,0,0", "3,0,1", "4,1,2","5,1,2", "6,1,2"})
+    void createFeaturedLayoutAndCheckItems(Integer total, Integer minItems, Integer maxItems){
+        MegalinksMockBuilder min = new MegalinksMockBuilder();
+        MegalinksMockBuilder max = new MegalinksMockBuilder();
+
+        for (int i = 0; i < total; i++){
+            min.addPageLink().featured(false);
+            max.addPageLink().featured(true);
+        }
+
+        when(linkService.createEnhancedLink(any(),any(), any(), anyBoolean())).thenReturn(new EnhancedLink());
+
+        Assertions.assertEquals(minItems, ((MultiImageLinksModule) factory.getMegalinkModule(min.build(), Locale.UK)).getFeaturedLinks().size());
+        Assertions.assertEquals(maxItems, ((MultiImageLinksModule) factory.getMegalinkModule(max.build(), Locale.UK)).getFeaturedLinks().size());
     }
 }
