@@ -39,27 +39,13 @@ public class ProductSearchBuilder {
 
         static Order fromValue(String value){
             try {
-                 Order order = valueOf(value);
-                 if (order != null){
-                     return order;
-                 }
-            } catch (Exception e){
+                return valueOf(value);
+            } catch (IllegalArgumentException e){
                 logger.warn ("Incorrect value for Order: {}", value);
             }
             return Order.NONE;
         }
     }
-
-
-
-    //TODO Convert into property --> getDmsMapDefaultDistance.
-    static final Double DEFAULT_PROXIMITY = 10.0;
-
-    //TODO This path should come from DMS?
-    static final String PATH_SEE_DO = "see-do";
-    static final String PATH_ACCOMMODATION = "accommodation";
-    static final String PATH_FOOD_DRINK = "food-drink";
-    static final String PATH_EVENTS = "events";
 
     private String productTypes;
     private String path;
@@ -72,10 +58,10 @@ public class ProductSearchBuilder {
     private Boolean free;
     private Order order;
 
-    private Set<String> categories = new TreeSet<>();
-    private Set<String> awards = new TreeSet<>();
-    private Set<String> facilities = new TreeSet<>();
-    private Set<String> ratings = new TreeSet<>();
+    private final Set<String> categories = new TreeSet<>();
+    private final Set<String> awards = new TreeSet<>();
+    private final Set<String> facilities = new TreeSet<>();
+    private final Set<String> ratings = new TreeSet<>();
 
     private final LocationLoader locationLoader;
 
@@ -85,15 +71,12 @@ public class ProductSearchBuilder {
         this.locationLoader = locationLoader;
         this.properties = properties;
         this.order = Order.NONE;
-        this.proximity = DEFAULT_PROXIMITY;
         this.offers = false;
         this.free = false;
     }
 
     /**
      * Allow new instances from FreeMarker
-     *
-     * @return
      */
     public static ProductSearchBuilder newInstance(){
         return VsComponentManager.get(ProductSearchBuilder.class);
@@ -137,15 +120,20 @@ public class ProductSearchBuilder {
     }
 
     private void path(String types){
-        if (types.equals("acco")) {
-            path = PATH_ACCOMMODATION;
-        } else if (types.equals("cate")) {
-            path = PATH_FOOD_DRINK;
-        } else if (types.equals("even")){
-            path = PATH_EVENTS;
-        } else {
-            //Note: if category is not acti,attr,reta (in that other) the category "Thing to see and do" is not selected on the Product Search
-            path = PATH_SEE_DO;
+        switch (types) {
+            case "acco":
+                path = DMSConstants.PATH_ACCOMMODATION;
+                break;
+            case "cate":
+                path = DMSConstants.PATH_FOOD_DRINK;
+                break;
+            case "even":
+                path = DMSConstants.PATH_EVENTS;
+                break;
+            default:
+                //Note: if category is not acti,attr,reta (in that other) the category "Thing to see and do" is not selected on the Product Search
+                path = DMSConstants.PATH_SEE_DO;
+                break;
         }
     }
 
@@ -253,9 +241,7 @@ public class ProductSearchBuilder {
     /**
      * Builds the URL based on the configuration defined.
      *
-     * It will return an exception if
-     *
-     * @return
+     * It will return an exception if the type hasn't been set
      */
     public String build(){
         return buildSearchUrl(String.format(DMSConstants.PRODUCT_SEARCH, path), false);
@@ -279,15 +265,16 @@ public class ProductSearchBuilder {
 
     /**
      * Compose the query parameters for the URL
-     *
-     * @param urlPath
-     * @return
      */
     private String composeUrl (String urlPath){
         String compose = addParams(urlPath, PRODUCT_TYPE_PARAM, productTypes);
         //Accommodations MUST deactivate availavility search
-        if (path.equals(PATH_ACCOMMODATION)) {
+        if (path.equals(DMSConstants.PATH_ACCOMMODATION)) {
             compose = addParams(compose, AVAILABILITY, "off");
+        }
+
+        if (proximity == null){
+            proximity = properties.getDmsMapDefaultDistance();
         }
 
         //The list of parameters is different if a location is provided from latitude and longitude
@@ -296,7 +283,7 @@ public class ProductSearchBuilder {
 
             compose = addParams(compose, "POLYGON".equals(loc.getType()) ? LOCATION_POLYGON_PARAM : LOCATION_PLACE_PARAM, loc.getKey());
             compose = addParams(compose, PROXIMITY_LOCATION_PARAM, proximity.toString());
-
+            
             try {
                 compose = addParams(compose, LOCATION_NAME_PARAM, URLEncoder.encode(loc.getName(), "UTF-8"));
             } catch (UnsupportedEncodingException e) {
@@ -307,11 +294,11 @@ public class ProductSearchBuilder {
             compose = addParams(compose, LONGITUDE_PARAM, longitude.toString());
             compose = addParams(compose, PROXIMITY_PIN_PARAM, proximity.toString());
         }
-        if (free){
-            compose = addParams(compose, FREE, String.valueOf(0));
+        if (Boolean.TRUE.equals(free)){
+            compose = addParams(compose, FREE, "0");
         }
-        if (offers){
-            compose = addParams(compose, OFFERS, String.valueOf(true));
+        if (Boolean.TRUE.equals(offers)){
+            compose = addParams(compose, OFFERS, "true");
         }
 
         //Add categories, awards, facilities and rating

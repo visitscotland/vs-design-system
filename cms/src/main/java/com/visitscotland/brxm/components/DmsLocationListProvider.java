@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.components;
 
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.dms.LocationLoader;
 import org.hippoecm.frontend.plugin.IPluginContext;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import com.visitscotland.brxm.model.ValueListLocation;
 
 import javax.jcr.Session;
+import javax.xml.stream.Location;
 import java.util.List;
 import java.util.Locale;
 
@@ -29,10 +31,12 @@ public class DmsLocationListProvider extends Plugin implements IValueListProvide
     private static final String LEVELS = "location.levels";
     private static final String SOURCE = "source";
 
+    private final LocationLoader locationLoader;
     private final String[] levels;
 
     public DmsLocationListProvider(IPluginContext context, IPluginConfig config) {
         super(context, config);
+        locationLoader = VsComponentManager.get(LocationLoader.class);
         levels = config.getStringArray(LEVELS);
         String name = config.getString(PROVIDER);
 
@@ -56,7 +60,7 @@ public class DmsLocationListProvider extends Plugin implements IValueListProvide
 
     public ValueList getValueList(String name, Locale locale) {
 
-        List<LocationObject> locations = LocationLoader.getInstance().getLocationsByLevel(levels);
+        List<LocationObject> locations = locationLoader.getLocationsByLevel(levels);
         ValueListLocation valueList = new ValueListLocation();
 
         for (LocationObject location: locations) {

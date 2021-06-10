@@ -64,19 +64,6 @@ public class LocationLoader {
         }
     }
 
-    /**
-     * TODO: This is used by DMSLocationListProvider. Fix that usage.
-     *
-     * @deprecated use SpringContext.getBean (LocationLoader.class) instead
-     */
-    @Deprecated
-    public static LocationLoader getInstance(){
-        if (instance == null){
-            instance = VsComponentManager.get(LocationLoader.class);
-        }
-        return instance;
-    }
-
     private Map<String, LocationObject> getLocations(Language language){
         validateMaps();
 
