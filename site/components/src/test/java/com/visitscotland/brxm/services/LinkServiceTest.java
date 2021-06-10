@@ -380,7 +380,6 @@ class LinkServiceTest {
         Itinerary itinerary = new MegalinksMockBuilder().getItinerary("bus");
         when(documentUtilsService.getSiblingDocuments(itinerary,Day.class, "visitscotland:Day")).thenReturn(Arrays.asList(mock(Day.class), mock(Day.class)));
 
-        //TODO Review
         EnhancedLink enhancedLink = service.createEnhancedLink(itinerary, null, Locale.UK, false);
 
         assertEquals(2, enhancedLink.getItineraryDays());
@@ -395,7 +394,6 @@ class LinkServiceTest {
 
         when(resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
-        //TODO Review
         EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument, null, Locale.UK, false);
 
         assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());

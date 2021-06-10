@@ -40,22 +40,6 @@ public class LinkService {
     private final CommonUtilsService commonUtils;
     private final DocumentUtilsService documentUtilsService;
 
-    /**
-     * TODO: Remove constructor
-     *
-     * @deprecated The only use for this constructor is to keep compatibility with some legacy tests
-     */
-    @Deprecated
-    public LinkService(DMSDataService dmsData, ResourceBundleService resourceBundle, HippoUtilsService utils, Properties properties) {
-        this.dmsData = dmsData;
-        this.bundle = resourceBundle;
-        this.utils = utils;
-        this.properties = properties;
-        this.imageFactory = null;
-        this.commonUtils = null;
-        this.documentUtilsService = null;
-    }
-
     @Autowired
     public LinkService(DMSDataService dmsData, ResourceBundleService bundle, HippoUtilsService utils, Properties properties, ImageFactory imageFactory, CommonUtilsService commonUtils, DocumentUtilsService documentUtilsService) {
         this.dmsData = dmsData;
@@ -91,7 +75,6 @@ public class LinkService {
             if (dmsLink.getProduct() == null) {
                 contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), item.getPath());
             } else if (product != null) {
-                //TODO build the link for the DMS product properly. ImageFactory
                 return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL);
             }
         } else if (item instanceof ProductSearchLink) {
