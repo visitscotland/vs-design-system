@@ -57,7 +57,7 @@ public class LinkModulesFactory {
     }
 
     public LinksModule<?> getMegalinkModule(Megalinks doc, Locale locale) {
-        if (!Contract.isEmpty(doc.getLayout()) && doc.getLayout().equalsIgnoreCase("list") || doc.getMegalinkItems().size() > MAX_ITEMS) {
+        if (!Contract.isEmpty(doc.getLayout()) && doc.getLayout().equalsIgnoreCase("list") ||(doc.getMegalinkItems().size() > MAX_ITEMS && !doc.getLayout().contains(HORIZONTAL_LAYOUT))) {
             return listLayout(doc, locale);
         } else if (!Contract.isEmpty(doc.getLayout()) && doc.getLayout().contains(HORIZONTAL_LAYOUT)) {
             if (doc.getMegalinkItems().size() < MIN_ITEMS_CAROUSEL){
