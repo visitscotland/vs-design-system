@@ -11,7 +11,10 @@
         <vs-row>
             <vs-col
                 cols="12"
+                md="10"
                 lg="7"
+                xl="7"
+                class="col-xxl-6"
             >
                 <vs-rich-text-wrapper>
                     <@hst.html hippohtml=module.copy/>
