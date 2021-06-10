@@ -37,18 +37,10 @@ public class MegalinksMockBuilder {
         return megalinks;
     }
 
-    public MegalinksMockBuilder horizontalLayout() {
+    public MegalinksMockBuilder horizontalLayout(int numberLinks) {
         megalinks = mock(Megalinks.class, RETURNS_DEEP_STUBS);
         when (megalinks.getLayout()).thenReturn(LinkModulesFactory.HORIZONTAL_LAYOUT);
-        when (megalinks.getMegalinkItems().size()).thenReturn(LinkModulesFactory.MIN_ITEMS_CAROUSEL);
-
-        return this;
-    }
-
-    public MegalinksMockBuilder horizontalLayoutNoEnoughItems() {
-        megalinks = mock(Megalinks.class, RETURNS_DEEP_STUBS);
-        when (megalinks.getLayout()).thenReturn(LinkModulesFactory.HORIZONTAL_LAYOUT);
-        when (megalinks.getMegalinkItems().size()).thenReturn(3);
+        when (megalinks.getMegalinkItems().size()).thenReturn(numberLinks);
 
         return this;
     }
