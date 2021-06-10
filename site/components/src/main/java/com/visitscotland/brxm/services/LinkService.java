@@ -259,6 +259,12 @@ public class LinkService {
         return null;
     }
 
+    /**
+     * Populated the information about an enhanced Link from a Page Document.
+     *
+     * @param link EnhacencedLink with minimum data
+     * @param linkable SharedLink document that contains extra information
+     */
     private void enhancedLinkFromPage(EnhancedLink link, Page linkable){
         link.setLink(utils.createUrl(linkable));
         link.setType(LinkType.INTERNAL);
@@ -271,6 +277,15 @@ public class LinkService {
         }
     }
 
+    /**
+     * Populated the information about an enhanced Link from a SharedLink Document.
+     *
+     * @param link EnhacencedLink with minimum data
+     * @param linkable SharedLink document that contains extra information
+     * @param module Module to feed with any possible issue found while creating the page.
+     * @param locale Language for the label
+     * @param addCategory wether or not the category field is populated.
+     */
     private void enhancedLinkFromSharedLink(EnhancedLink link, SharedLink linkable, Module module, Locale locale, boolean addCategory){
         JsonNode product = getNodeFromSharedLink(linkable, locale);
         link.setLink(getPlainLink(linkable, product));

@@ -48,6 +48,9 @@ public class NavigationFactory {
         this.linkService = linkService;
     }
 
+    /**
+     * Builds a VisitScotland enhanced menu from the out of the box menu
+     */
     public RootMenuItem buildMenu(HstRequest request, HstSiteMenu hstSiteMenu) {
         List<HstSiteMenuItem> enhancedMenu = new ArrayList<>();
         RootMenuItem root = new RootMenuItem(hstSiteMenu);
@@ -68,7 +71,11 @@ public class NavigationFactory {
         return root;
     }
 
-    public MenuItem getMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle) {
+    /**
+     * Creates a new MenuItem that Matches with Bloomreach's MenuItem specification. which enhanced information
+     * about the linked item
+     */
+    private MenuItem getMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle) {
         MenuItem menuItem = new MenuItem(hstItem);
 
         //By default, the name would be populated by the resourceBundle
@@ -98,6 +105,9 @@ public class NavigationFactory {
         }
     }
 
+    /**
+     * Identifies the type of document linked and populated the data on the menu item accordingly
+     */
     private void processItem(HstRequest request, HippoBean bean, MenuItem menuItem, String resourceBundle) {
         if (bean instanceof FeaturedWidget) {
             menuItem.setWidget(addFeatureItem((FeaturedWidget) bean, request.getLocale()));
@@ -109,6 +119,9 @@ public class NavigationFactory {
         }
     }
 
+    /**
+     * Adds a Featured Navigation Widget
+     */
     private NavigationWidget addFeatureItem(FeaturedWidget document, Locale locale) {
         FeaturedItem widget = new FeaturedItem();
         ArrayList<EnhancedLink> items = new ArrayList<>();
@@ -162,10 +175,7 @@ public class NavigationFactory {
     }
 
     /**
-     * Indicates if the document is based in
-     *
-     * @param link
-     * @return
+     * Indicates if the link is based on a document
      */
     private boolean isDocumentBased(HstLink link) {
         return link != null && link.getPath() != null && link.getPath().length() > 0;
