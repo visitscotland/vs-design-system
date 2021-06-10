@@ -1,25 +1,22 @@
 package com.visitscotland.brxm.factory;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.hippobeans.MegalinkItem;
+import com.visitscotland.brxm.hippobeans.Megalinks;
+import com.visitscotland.brxm.hippobeans.OTYML;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
-import com.visitscotland.brxm.dms.model.LocationObject;
-import com.visitscotland.brxm.model.*;
-import com.visitscotland.brxm.dms.DMSDataService;
-import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.model.Coordinates;
+import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.*;
-import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
-import com.visitscotland.brxm.services.CommonUtilsService;
-import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Component
@@ -28,10 +25,8 @@ public class MegalinkFactory {
     private static final Logger logger = LoggerFactory.getLogger(MegalinkFactory.class);
     private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
-    public final static int MAX_ITEMS = 6;
-    public final static String HORIZONTAL_LAYOUT = "Horizontal";
-
-    private final static String IMAGE = "images";
+    public static final int MAX_ITEMS = 6;
+    public static final String HORIZONTAL_LAYOUT = "Horizontal";
 
     private final LinkService linkService;
     private final ResourceBundleService bundle;
@@ -140,23 +135,23 @@ public class MegalinkFactory {
         if (fl.getLinks().size() == 1) {
             //If the megalinks only have one item, that one is featured
             fl.setFeaturedLinks(fl.getLinks());
-            fl.setLinks(Collections.EMPTY_LIST);
+            fl.setLinks(Collections.emptyList());
         } else if (fl.getLinks().size() > 2) {
             //For 3 links the maximum of 1 featured item.  From 4 on the maximum is 2 featured items.
             fl.setFeaturedLinks(fl.getLinks().stream()
-                    .filter(link -> link.isFeatured())
+                    .filter(EnhancedLink::isFeatured)
                     .limit(fl.getLinks().size() == 3 ? 1 : 2)
                     .collect(Collectors.toCollection(ArrayList::new)));
 
             //When there is more than 3 items and no featured item the first item is promoted as featured.
-            if (fl.getFeaturedLinks().size() == 0 && fl.getLinks().size() > 3) {
+            if (fl.getFeaturedLinks().isEmpty() && fl.getLinks().size() > 3) {
                 fl.getFeaturedLinks().add(fl.getLinks().get(0));
             }
 
             //Links added to the Featured list MUST be removed from the original list
             fl.getLinks().removeAll(fl.getFeaturedLinks());
         } else {
-            fl.setFeaturedLinks(Collections.EMPTY_LIST);
+            fl.setFeaturedLinks(Collections.emptyList());
         }
 
         return fl;
@@ -182,7 +177,7 @@ public class MegalinkFactory {
     /**
      * Converts the list of {@code MegalinksItem} into  a list of {@code EnhancedLink }
      */
-    List<EnhancedLink> convertToEnhancedLinks(Module module, List<MegalinkItem> items, Locale locale, boolean addCategory) {
+    List<EnhancedLink> convertToEnhancedLinks(Module<Megalinks> module, List<MegalinkItem> items, Locale locale, boolean addCategory) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
             if (item.getLink() == null) {
@@ -206,7 +201,7 @@ public class MegalinkFactory {
         return links;
     }
 
-    private void addError(Module module, String message){
+    private void addError(Module<Megalinks> module, String message){
         if (module != null) {
             module.addErrorMessage(message);
         } else {

@@ -114,8 +114,7 @@ public class NavigationFactory {
         } else if (bean instanceof Page) {
             createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, request.getLocale());
         } else {
-            //Content Logger
-            logger.warn("Skipping Unexpected document type: {}", bean.getClass().getSimpleName());
+            contentLogger.warn("Skipping Unexpected document type: {}", bean.getClass().getSimpleName());
         }
     }
 

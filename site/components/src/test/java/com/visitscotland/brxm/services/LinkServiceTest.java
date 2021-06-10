@@ -69,7 +69,7 @@ class LinkServiceTest {
     private void initProductSearchBuilder(){
         ComponentManager context = mock(ComponentManager.class, withSettings().lenient());
         when(context.getComponent(ProductSearchBuilder.class)).thenReturn(builder);
-        new VsComponentManager().setComponentManager(context);
+        VsComponentManager.setComponentManager(context);
     }
 
     @Test
@@ -196,7 +196,7 @@ class LinkServiceTest {
         when(productSearchLink.getSearch()).thenReturn(ps);
         when(sharedLink.getLinkType()).thenReturn(productSearchLink, productSearchLink);
 
-        String link = service.getPlainLink(sharedLink, null);
+        service.getPlainLink(sharedLink, null);
 
         verify(builder, times(1)).build();
     }
@@ -211,7 +211,7 @@ class LinkServiceTest {
 
         when(sharedLink.getLinkType()).thenReturn(productSearch, productSearch);
 
-        String link = service.getPlainLink(sharedLink, null);
+        service.getPlainLink(sharedLink, null);
 
         verify(builder, times(1)).build();
     }
@@ -251,7 +251,7 @@ class LinkServiceTest {
 
     @Test
     @DisplayName("Return a link from a DMSLink")
-    void getPlainLink_dmsLink() throws IOException {
+    void getPlainLink_dmsLink() {
         //Verifies that when and DMS item doesn't exist, the link is not created.
         SharedLink sharedLink = mock(SharedLink.class);
         DMSLink dmsLink = mock(DMSLink.class);
@@ -269,7 +269,7 @@ class LinkServiceTest {
 
     @Test
     @DisplayName("A non existing DMS link doesn't return a link for getPlainLnk")
-    void getPlainLink_dmsLink_notExistingProduct() throws IOException {
+    void getPlainLink_dmsLink_notExistingProduct() {
         //Verifies that when and DMS item doesn't exist, the link is not created.
         SharedLink sharedLink = mock(SharedLink.class);
         DMSLink dmsLink = mock(DMSLink.class);
@@ -340,9 +340,7 @@ class LinkServiceTest {
 
     private String getCategory(String url, String bundle, String key, String value){
         when(resourceBundle.getResourceBundle(bundle, key, Locale.UK ,true)).thenReturn(value);
-        String result = service.getLinkCategory(url,Locale.UK);
-
-        return result;
+        return service.getLinkCategory(url,Locale.UK);
     }
 
     @Test
@@ -365,7 +363,7 @@ class LinkServiceTest {
     @DisplayName("VS-1696 - If size cannot be calculated the link still appears")
     void createEnhancedLink_externalDocument_broken() {
         final String url = "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
-        final Module module = new Module();
+        final Module<?> module = new Module<>();
 
         when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = service.createEnhancedLink(
@@ -409,7 +407,7 @@ class LinkServiceTest {
     @DisplayName("DMSLink - Test that the image is loaded from the DMS")
     void DMS_enhanced_SharedLink_defaultsImage() throws IOException {
         JsonNode node = new ObjectMapper().readTree(MegalinksMockBuilder.MOCK_JSON);
-        Module module = new Module();
+        Module<?> module = new Module<>();
 
         SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
         when(imageFactory.createImage(node, module)).thenReturn(new FlatImage());
@@ -420,7 +418,7 @@ class LinkServiceTest {
     }
 
     @Test
-    @DisplayName("No image throw an warning on preview mode")
+    @DisplayName("No image throw a warning in preview mode")
     void noImageDefined_DMS_defaultsImageNotFound() throws IOException {
         final String NO_IMAGE_JSON = "{" +
                 " \"url\":\"/info/fake-product-p0123456798\", " +
@@ -428,7 +426,7 @@ class LinkServiceTest {
                 "}";
         JsonNode node = new ObjectMapper().readTree(NO_IMAGE_JSON);
         SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
-        Module module = new Module();
+        Module<?> module = new Module<>();
 
         when(properties.getDmsHost()).thenReturn("");
 
