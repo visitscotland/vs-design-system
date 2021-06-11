@@ -329,7 +329,7 @@ public class LinkModulesFactory {
      * @return flat image to be consumed by FED team
      */
     private FlatImage createFlatImage(Image img, Locale locale) {
-        FlatImage flatImage = new FlatImage(img, locale);
+        FlatImage flatImage = imageFactory.createImage(img, null, locale);
         LocationObject locationObject = getLocation(img.getLocation(), locale);
         if (locationObject != null) {
             flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
