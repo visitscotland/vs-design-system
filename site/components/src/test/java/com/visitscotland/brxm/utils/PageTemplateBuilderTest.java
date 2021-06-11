@@ -191,10 +191,12 @@ class PageTemplateBuilderTest {
                 new MegalinksMockBuilder().build());
 
         when(utils.getAllowedDocuments(page)).thenReturn(list);
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(0), Locale.UK)).thenReturn(new SingleImageLinksModule());
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(1), Locale.UK)).thenReturn(new SingleImageLinksModule());
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(2), Locale.UK)).thenReturn(new SingleImageLinksModule());
-        when(linksFactory.getMegalinkModule((Megalinks) list.get(3), Locale.UK)).thenReturn(new SingleImageLinksModule());
+
+        doReturn(new SingleImageLinksModule()).when(linksFactory).getMegalinkModule((Megalinks) list.get(0), Locale.UK);
+        doReturn(new SingleImageLinksModule()).when(linksFactory).getMegalinkModule((Megalinks) list.get(1), Locale.UK);
+        doReturn(new SingleImageLinksModule()).when(linksFactory).getMegalinkModule((Megalinks) list.get(2), Locale.UK);
+        doReturn(new SingleImageLinksModule()).when(linksFactory).getMegalinkModule((Megalinks) list.get(3), Locale.UK)
+        ;
 
         builder.addModules(request);
         List<LinksModule> items = (List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);

@@ -41,9 +41,10 @@ public class MegalinksMockBuilder {
         return megalinks;
     }
 
-    public MegalinksMockBuilder horizontalLayout() {
-        megalinks = mock(Megalinks.class);
+    public MegalinksMockBuilder horizontalLayout(int numberLinks) {
+        megalinks = mock(Megalinks.class, RETURNS_DEEP_STUBS);
         when (megalinks.getLayout()).thenReturn(MegalinkFactory.HORIZONTAL_LAYOUT);
+        when (megalinks.getMegalinkItems().size()).thenReturn(numberLinks);
 
         return this;
     }

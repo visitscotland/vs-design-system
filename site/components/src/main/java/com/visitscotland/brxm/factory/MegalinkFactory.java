@@ -25,8 +25,11 @@ public class MegalinkFactory {
     private static final Logger logger = LoggerFactory.getLogger(MegalinkFactory.class);
     private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
-    public static final int MAX_ITEMS = 6;
-    public static final String HORIZONTAL_LAYOUT = "Horizontal";
+    public final static int MAX_ITEMS = 6;
+    public final static int MIN_ITEMS_CAROUSEL = 5;
+    public final static String HORIZONTAL_LAYOUT = "Horizontal Links";
+    public final static String DEFAULT_LAYOUT = "Default";
+
 
     private final LinkService linkService;
     private final ResourceBundleService bundle;
@@ -38,12 +41,12 @@ public class MegalinkFactory {
         this.imageFactory = imageFactory;
     }
 
-    public LinksModule<EnhancedLink> getMegalinkModule(Megalinks doc, Locale locale) {
-        if (doc.getLayout()!= null && doc.getLayout().equalsIgnoreCase("list") || doc.getMegalinkItems().size() > MAX_ITEMS) {
-            return listLayout(doc, locale) ;
-        } else if (doc.getLayout()!= null && doc.getLayout().contains(HORIZONTAL_LAYOUT)) {
-            return horizontalListLayout (doc, locale);
-        }else if (doc.getSingleImageModule() != null) {
+    public LinksModule<?> getMegalinkModule(Megalinks doc, Locale locale) {
+        if (!Contract.isEmpty(doc.getLayout()) && doc.getLayout().equals(HORIZONTAL_LAYOUT) && doc.getMegalinkItems().size() >= MIN_ITEMS_CAROUSEL) {
+            return horizontalListLayout(doc, locale);
+        }else  if (!Contract.isEmpty(doc.getLayout()) && !doc.getLayout().equals(DEFAULT_LAYOUT) || doc.getMegalinkItems().size() > MAX_ITEMS ) {
+            return listLayout(doc, locale);
+        } else if (doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
         } else {
             return multiImageLayout(doc, locale);
