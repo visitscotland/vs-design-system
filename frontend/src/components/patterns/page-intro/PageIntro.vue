@@ -184,7 +184,7 @@ export default {
             max-width: 1340px;
         }
 
-        .container {
+        > .container {
             background: $color-white;
             padding-bottom: $spacer-9;
         }
