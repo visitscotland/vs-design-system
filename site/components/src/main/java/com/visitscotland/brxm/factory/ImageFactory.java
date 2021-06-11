@@ -90,14 +90,18 @@ public class ImageFactory {
         image.setCredit(cmsImage.getCredit());
         if (Contract.isEmpty(image.getAltText())) {
             String message = "The image does not have an Alternative Text for the language " + locale;
-            module.addErrorMessage(message);
+            if (module != null){
+                module.addErrorMessage(message);
+            }
             contentLogger.warn(message);
             image.setAltText(cmsImage.getAltText());
         }
 
         if (Contract.isEmpty(image.getDescription())) {
             String message = "The image does not have a description for the locale " + locale;
-            module.addErrorMessage(message);
+            if (module != null) {
+                module.addErrorMessage(message);
+            }
             contentLogger.warn(message);
             image.setDescription(cmsImage.getDescription());
         }
