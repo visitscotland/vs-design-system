@@ -1,0 +1,76 @@
+/content/documents/administration/labels/modules/newsletter-signpost:
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+  jcr:uuid: 8348d9aa-6bac-4736-81f4-ae1a3e98a58f
+  hippo:name: Newsletter Signpost
+  hippo:versionHistory: 6ffe6c36-8440-4ec8-92b2-f184ed17d52a
+  /newsletter-signpost[1]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: fbd4c972-bbac-4636-8f9e-6aa82143770e
+    hippo:availability: []
+    hippostd:retainable: false
+    hippostd:state: draft
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-05-17T15:10:33.190+01:00
+    hippostdpubwf:lastModificationDate: 2021-06-10T18:08:04.555+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '']
+    resourcebundle:id: newsletter-signpost
+    resourcebundle:keys: [newsletter.title, newsletter.cta.link, newsletter.cta.text,
+      newsletter.copy]
+    resourcebundle:messages: [Get our latest travel tips, 'https://www.visitscotland.com/newsletter/',
+      Sign me up for emails, 'Sign up to our newsletter and we''ll email you every
+        two weeks with unique attractions, exciting trip ideas and visitor offers.']
+    resourcebundle:messages_de: ['', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '']
+  /newsletter-signpost[2]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:uuid: f062aad4-64a6-4b67-ae31-8cbb91e68903
+    hippo:availability: [preview]
+    hippostd:retainable: false
+    hippostd:state: unpublished
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-05-17T15:10:33.190+01:00
+    hippostdpubwf:lastModificationDate: 2021-06-10T18:08:27.388+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '']
+    resourcebundle:id: newsletter-signpost
+    resourcebundle:keys: [newsletter.title, newsletter.cta.link, newsletter.cta.text,
+      newsletter.copy]
+    resourcebundle:messages: [Get our latest travel tips, 'https://www.visitscotland.com/newsletter/',
+      Sign me up for emails, 'Sign up to our newsletter and we''ll email you every
+        two weeks with unique attractions, exciting trip ideas and visitor offers.']
+    resourcebundle:messages_de: ['', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '']
+  /newsletter-signpost[3]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 611e535f-a322-478f-96ef-9db1c0542102
+    hippo:availability: [live]
+    hippostd:retainable: false
+    hippostd:state: published
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-05-17T15:10:33.190+01:00
+    hippostdpubwf:lastModificationDate: 2021-06-10T18:08:27.388+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2021-06-10T18:08:29.593+01:00
+    resourcebundle:descriptions: ['', '', '', '']
+    resourcebundle:id: newsletter-signpost
+    resourcebundle:keys: [newsletter.title, newsletter.cta.link, newsletter.cta.text,
+      newsletter.copy]
+    resourcebundle:messages: [Get our latest travel tips, 'https://www.visitscotland.com/newsletter/',
+      Sign me up for emails, 'Sign up to our newsletter and we''ll email you every
+        two weeks with unique attractions, exciting trip ideas and visitor offers.']
+    resourcebundle:messages_de: ['', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '']
