@@ -118,13 +118,13 @@ export default {
         margin-top: $spacer-10;
     }
 
-    &__coo-container {
+    &__highlight-image-container {
         @include media-breakpoint-up(lg) {
             padding-top: $spacer-10;
         }
     }
 
-    &__coo {
+    &__highlight-image {
         width: 100%;
     }
 }
