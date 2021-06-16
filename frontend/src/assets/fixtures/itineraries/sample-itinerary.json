@@ -19,8 +19,8 @@
     "totalMiles": "60",
     "totalKM": "96",
     "transport": {
-        "key": "car",
-        "value": "Car"
+        "key": "bus",
+        "value": "Public Transport"
     },
     "theme": {
         "key": "child",
