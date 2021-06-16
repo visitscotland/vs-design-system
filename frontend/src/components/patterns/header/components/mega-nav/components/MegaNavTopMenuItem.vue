@@ -31,12 +31,25 @@
                     <slot name="dropdownContent" />
 
                     <div
+                        class="
+                            vs-mega-nav-top-menu-item__featured
+                            vs-mega-nav-top-menu-item__featured--left
+                            vs-mega-nav-list
+                        "
+                        :class="alignmentClass"
+                        data-test="vs-mega-nav-top-menu-item__featured"
+                        v-if="hasFeaturedItemLeft"
+                    >
+                        <slot name="navFeaturedItemLeft" />
+                    </div>
+
+                    <div
                         class="vs-mega-nav-top-menu-item__featured vs-mega-nav-list"
                         :class="alignmentClass"
                         data-test="vs-mega-nav-top-menu-item__featured"
                         v-if="hasFeaturedItem"
                     >
-                        <slot name="navFeaturedItems" />
+                        <slot name="navFeaturedItem" />
                     </div>
                 </div>
             </template>
@@ -87,7 +100,10 @@ export default {
     },
     computed: {
         hasFeaturedItem() {
-            return !!this.$slots.navFeaturedItems;
+            return !!this.$slots.navFeaturedItem;
+        },
+        hasFeaturedItemLeft() {
+            return !!this.$slots.navFeaturedItemLeft;
         },
         alignmentClass() {
             return this.align === 'bottom'
@@ -102,16 +118,42 @@ export default {
 .vs-list.vs-list--unstyled {
     .vs-mega-nav-top-menu-item {
         @include media-breakpoint-up(lg) {
-            &__featured.vs-mega-nav-list {
+            &__featured {
                 margin: $spacer-2 $spacer-0 $spacer-5 $spacer-6;
                 position: absolute;
                 right: 0;
                 top: 0;
 
-                &.vs-mega-nav-top-menu-item__featured--bottom {
+                @include media-breakpoint-up(lg) {
+                    width: 23%;
+                }
+
+                @include media-breakpoint-up(xl) {
+                    width: 21.8%;
+                }
+
+                @include media-breakpoint-up(xxl) {
+                    width: 21.3%;
+                }
+
+                &--bottom {
                     bottom: 0;
                     top: auto;
                     margin-bottom: $spacer-0;
+                }
+
+                &--left {
+                    @include media-breakpoint-up(lg) {
+                        right: calc(23% + 1.5rem);
+                    }
+
+                    @include media-breakpoint-up(xl) {
+                        right: calc(21.8% + 3rem);
+                    }
+
+                    @include media-breakpoint-up(xxl) {
+                        right: calc(21.3% + 4rem);
+                    }
                 }
             }
         }
