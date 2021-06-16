@@ -71,7 +71,7 @@ export default {
         border-top: 1px solid #e0e0e0;
 
         &:hover {
-            box-shadow: 0px 6px 6px 5px rgba(0,0,41,0.16)
+            box-shadow: inset 0px 0px 3px 6px rgba(0,0,41,0.05)
         }
 
         &:focus {
@@ -144,6 +144,7 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
+            padding: 12px;
             flex-direction: column;
             border-top: none;
 
