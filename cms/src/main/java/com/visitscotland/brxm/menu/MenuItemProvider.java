@@ -2,7 +2,9 @@ package com.visitscotland.brxm.menu;
 
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
+import com.visitscotland.brxm.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +22,10 @@ public class MenuItemProvider {
     private static final String NEW_MODULE_MENU = "new-module";
 
     private static final Logger logger = LoggerFactory.getLogger(MenuItemProvider.class);
+    private final HippoUtilsService hippoUtilsService;
 
-    public MenuItemProvider() {
+    public MenuItemProvider(HippoUtilsService hippoUtilsService) {
+        this.hippoUtilsService = hippoUtilsService;
     }
 
     public void constructMenuItems(Node subjectNode, Map<String, Set<String>> prototypes) {
@@ -36,17 +40,17 @@ public class MenuItemProvider {
                 }
             }
 
-        } catch (RepositoryException | ObjectBeanManagerException ex) {
+        } catch (RepositoryException | ObjectBeanManagerException | QueryException ex) {
             logger.warn("Failed to obtain child JCR types for menu selection", ex);
         }
     }
 
-    private Optional<Page> getPageContentBean(Node subjectNode) throws RepositoryException, ObjectBeanManagerException {
+    private Optional<Page> getPageContentBean(Node subjectNode) throws RepositoryException, ObjectBeanManagerException, QueryException {
         if (!subjectNode.hasNode(PAGE_PATH) || !subjectNode.getNode(PAGE_PATH).isNodeType(JcrDocument.HIPPO_HANDLE)) {
             return Optional.empty();
         }
 
-        HippoBean subjectBean = new JcrDocument(subjectNode.getNode(PAGE_PATH)).asHippoBean();
+        HippoBean subjectBean = hippoUtilsService.getDocumentFromNode(subjectNode);
         if (!(subjectBean instanceof Page)) {
             return Optional.empty();
         }

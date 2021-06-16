@@ -24,6 +24,14 @@ public class CustomFolderWorkflowImpl extends org.hippoecm.repository.standardwo
         menuItemProvider = VsComponentManager.get(MenuItemProvider.class);
     }
 
+    /**
+     * This method defines the new document options in the menu, and for each new document what document types should
+     * be shown in the selector
+     *
+     * @return A map where the key corresponds to the name of a node under /hippo:configuration/hippo:queries/hippo:templates
+     * (e.g. new-module). The value is a set of document types that can be created from the given menu (e.g.
+     * visitscotland:Destination.
+     */
     @Override
     protected Map<String, Set<String>> prototypes() {
         Map<String, Set<String>> prototypes = super.prototypes();
