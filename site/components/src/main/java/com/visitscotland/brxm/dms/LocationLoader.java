@@ -3,10 +3,10 @@ package com.visitscotland.brxm.dms;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.dms.model.LocationObject;
-import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.utils.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -17,14 +17,13 @@ public class LocationLoader {
 
     private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class);
 
-    private static LocationLoader instance;
-
-    private final Map<Language, Map<String, LocationObject>> locations = new HashMap<>();
+    private final EnumMap<Language, Map<String, LocationObject>> locations = new EnumMap<>(Language.class);
 
     private final Map<String, String> locationToId = new HashMap<>();
 
     private final DMSProxy proxy;
 
+    @Autowired
     public LocationLoader(DMSProxy proxy){
         this.proxy = proxy;
     }
@@ -35,32 +34,37 @@ public class LocationLoader {
     private void validateMaps() {
         synchronized (LocationLoader.class) {
             if (locationToId.size() == 0) {
-                for (Language lang : Language.values()) {
-                    Map<String, LocationObject> locationsMap = new HashMap<>();
-                    try {
-                        List<LocationObject> locationList = deserialize(request(lang.getLocale()));
-
-                        //if the locationToId map is empty, and the locale is null. Both lists are populated simultaneously
-                        if (locationToId.size() == 0 && lang == Language.ENGLISH) {
-                            for (LocationObject location : locationList) {
-                                locationToId.put(location.getName(), location.getId());
-                                locationsMap.put(location.getId(), location);
-                            }
-                        } else {
-                            for (LocationObject location : locationList) {
-                                locationsMap.put(location.getId(), location);
-                            }
-                        }
-
-                    } catch (IOException e) {
-                        logger.warn("Location List couldn't been loaded for the locale {}", lang.getLocale());
-                    } catch (Exception e) {
-                        logger.error("Unexpected exception ", e);
-                    }
-
-                    locations.put(lang, locationsMap);
-                }
+                loadLocations();
             }
+        }
+    }
+
+    private void loadLocations(){
+        logger.info("LocationLoader is initializing the list of locations");
+        for (Language lang : Language.values()) {
+            Map<String, LocationObject> locationsMap = new HashMap<>();
+            try {
+                List<LocationObject> locationList = deserialize(request(lang.getLocale()));
+
+                //if the locationToId map is empty, and the locale is null. Both lists are populated simultaneously
+                if (locationToId.size() == 0 && lang == Language.ENGLISH) {
+                    for (LocationObject location : locationList) {
+                        locationToId.put(location.getName(), location.getId());
+                        locationsMap.put(location.getId(), location);
+                    }
+                } else {
+                    for (LocationObject location : locationList) {
+                        locationsMap.put(location.getId(), location);
+                    }
+                }
+
+            } catch (IOException e) {
+                logger.warn("Location List couldn't been loaded for the locale {}", lang.getLocale());
+            } catch (Exception e) {
+                logger.error("Unexpected exception ", e);
+            }
+
+            locations.put(lang, locationsMap);
         }
     }
 
@@ -73,8 +77,6 @@ public class LocationLoader {
     public LocationObject getLocation(String location, Locale locale){
         return getLocations(Language.getLanguageForLocale(locale)).get(locationToId.get(location));
     }
-
-
 
     /**
      *
@@ -104,7 +106,7 @@ public class LocationLoader {
         return  locationList;
     }
 
-    private void clear(){
+    public void clear(){
         locationToId.clear();
         locations.clear();
     }

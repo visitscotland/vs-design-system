@@ -299,4 +299,6 @@ public class LinkService {
             link.setType(getType(link.getLink()));
         }
     }
+
+
 }
