@@ -26,7 +26,9 @@
                     </#if>
 
                     <#list item.childMenuItems as childItem>
-                        <#if childItem.title??>
+                        <#if childItem.widget??>
+                            <@headerWidget childItem.widget true/>
+                        <#elseif childItem.title??>
                             <vs-mega-nav-accordion-item
                                 title="${childItem.title}"
                                 level="2"

@@ -2,6 +2,7 @@ package com.visitscotland.brxm.factory;
 
 import com.visitscotland.brxm.components.navigation.MenuItem;
 import com.visitscotland.brxm.components.navigation.RootMenuItem;
+import com.visitscotland.brxm.hippobeans.CMSLink;
 import com.visitscotland.brxm.hippobeans.FeaturedWidget;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
@@ -122,11 +123,15 @@ public class NavigationFactory {
      * Adds a Featured Navigation Widget
      */
     private NavigationWidget addFeatureItem(FeaturedWidget document, Locale locale) {
-        FeaturedItem widget = new FeaturedItem();
+       FeaturedItem widget = new FeaturedItem();
         ArrayList<EnhancedLink> items = new ArrayList<>();
 
-        for (Linkable linkable : document.getItems()) {
-            items.add(linkService. createEnhancedLink(linkable, widget, locale, false));
+        for (CMSLink cmsLink : document.getItems()) {
+            if (!(cmsLink.getLink() instanceof Linkable)){
+                contentLogger.warn("An incorrect Type of link has been set in a featured item: {}", document.getPath());
+                continue;
+            }
+            items.add(linkService.createEnhancedLink((Linkable) cmsLink.getLink(), widget, locale, false));
         }
 
         widget.setLinks(items);

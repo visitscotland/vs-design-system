@@ -2,6 +2,7 @@
 <#include "../../../../../frontend/components/vs-mega-nav-top-menu-item.ftl">
 <#include "../../../../../frontend/components/vs-mega-nav-list.ftl">
 <#include "../../../../../frontend/components/vs-mega-nav-list-item.ftl">
+<#include "header-widget.ftl">
 
 <#macro headerDesktopNav menu=menu>
     <#list menu.siteMenuItems as item>
@@ -16,7 +17,9 @@
 
                 <template slot="dropdownContent">
                     <#list item.childMenuItems as childItem>
-                        <#if childItem.title??>
+                        <#if childItem.widget??>
+                            <@headerWidget childItem.widget />
+                        <#elseif childItem.title??>
                             <vs-mega-nav-list>
                                 <vs-mega-nav-list-item slot="navListHeading">
                                     ${childItem.title}
