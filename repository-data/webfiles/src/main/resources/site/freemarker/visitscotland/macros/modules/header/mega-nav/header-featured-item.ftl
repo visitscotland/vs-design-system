@@ -7,7 +7,7 @@
     <!-- Card title=  ${item.label} -->
     <!-- Card href ${item.link} -->
     <!-- Card teaser ${item.teaser} -->
-    <!-- CTA Link: ${item.cta} This is not ready yet. I discovered an issue with this field -->
+    <!-- CTA Link: ${item.cta} -->
 
 
     <!-- The following fields are available but they are not required -->
