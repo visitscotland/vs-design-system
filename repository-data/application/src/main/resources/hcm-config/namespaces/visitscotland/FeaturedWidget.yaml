@@ -54,7 +54,7 @@ definitions:
           /items:
             jcr:primaryType: frontend:plugin
             caption: Items
-            compoundList: visitscotland:CMSLink,hippo:mirror
+            compoundList: visitscotland:CMSLink
             contentPickerType: links
             field: items
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin

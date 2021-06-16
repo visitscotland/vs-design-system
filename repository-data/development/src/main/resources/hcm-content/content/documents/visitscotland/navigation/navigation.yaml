@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 7f15c1f5-cb34-44aa-959e-e203299f455b
   hippo:name: Test - Widget
-  hippo:versionHistory: 05909d7a-24b0-4f60-870d-b4d23e77c1ac
+  hippo:versionHistory: 8e2ba844-e8a3-49f7-911b-c712d00bb584
   /test---widget[1]:
     jcr:primaryType: visitscotland:Widget
     jcr:mixinTypes: ['mix:referenceable']
@@ -34,7 +34,7 @@
     jcr:primaryType: visitscotland:Widget
     jcr:mixinTypes: ['mix:referenceable']
     jcr:uuid: 37e60890-24b6-4c55-9994-adc6132f8f0a
-    hippo:availability: [live]
+    hippo:availability: []
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-11-12T09:16:44.751Z

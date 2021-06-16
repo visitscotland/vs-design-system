@@ -131,7 +131,14 @@ public class NavigationFactory {
                 contentLogger.warn("An incorrect Type of link has been set in a featured item: {}", document.getPath());
                 continue;
             }
-            items.add(linkService.createEnhancedLink((Linkable) cmsLink.getLink(), widget, locale, false));
+            EnhancedLink link = linkService.createEnhancedLink((Linkable) cmsLink.getLink(), widget, locale, false);
+
+            if (!Contract.isEmpty(cmsLink.getLabel())){
+                link.setCta(cmsLink.getLabel());
+            } else {
+                contentLogger.warn("A CTA Text has not been provided for the featured Item {}", document.getPath());
+            }
+            items.add(link);
         }
 
         widget.setLinks(items);
