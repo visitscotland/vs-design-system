@@ -79,9 +79,8 @@ public class Properties {
         return readString(DMS_DATA_HOST);
     }
 
-    //TODO: This property doesn't seem to be in use. Should it be removed?
-    public String getDmsMapDefaultDistance() {
-        return readString(DMS_MAP_DEFAULT_DISTANCE);
+    public Double getDmsMapDefaultDistance() {
+        return readDouble(DMS_MAP_DEFAULT_DISTANCE);
     }
 
     public String getDmsToken() {
@@ -138,6 +137,19 @@ public class Properties {
             }
         } catch (NumberFormatException nfe){
             logger.error("The property value of the property {} cannot be casted to Integer. '{}' is not allowed.", key,value);
+        }
+        return 0;
+    }
+
+    public double readDouble(String key){
+        String value = getProperty(key);
+
+        try {
+            if (value != null){
+                return Double.parseDouble(value);
+            }
+        } catch (NumberFormatException nfe){
+            logger.error("The property value of the property {} cannot be casted to Double. '{}' is not allowed.", key,value);
         }
         return 0;
     }
