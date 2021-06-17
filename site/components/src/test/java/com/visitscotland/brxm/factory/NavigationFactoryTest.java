@@ -252,46 +252,24 @@ class NavigationFactoryTest {
         Assertions.assertEquals("Too young!", aux.getCta());
     }
 
-
-
     @Test
-    @DisplayName("Widget Items are bein processed")
+    @DisplayName("Widget Items are being processed")
     void nestedConfiguration_widget() {
-        //Complex Scenario that tests the nested menu items
+        //Widget cannot exist in level 0 (Root) or 1 (top Level Menu Item)
 
-        HstSiteMenuItem grandChild = newMockBuilder().name("grandchild").addMockLink().build();
-        HstSiteMenuItem child = newMockBuilder().name("child").addMockLink().addChildren(grandChild).build();
-        HstSiteMenuItem home = newMockBuilder().name("home").addMockLink().addChildren(child).build();
+        HstSiteMenuItem grandChild = newMockBuilder().name("grandchild").addLink("mock", mock(FeaturedWidget.class)).build();
+        HstSiteMenuItem child = newMockBuilder().name("topLevel").addMockLink().addChildren(grandChild).build();
+        HstSiteMenuItem home = newMockBuilder().name("root").addMockLink().addChildren(child).build();
 
-        mockLabels("home", "I'm the granny", "See my family");
-        mockLabels("child", "Still a Parent", "See my children");
-        mockLabels("grandchild", "Leaf menu item","Too young!");
+        mockLabels("root", "root Item", "cta");
+        mockLabels("topLevel", "Inspiration", "cta");
 
         addMenuToRequest(home);
 
         RootMenuItem menu = factory.buildMenu(request, request.getModel("menu"));
 
         MenuItem topLevelItem = (MenuItem) (menu.getSiteMenuItems().get(0)).getChildMenuItems().get(0);
-//        Assertions.assertEquals(1, topLevelItem.getWidget());
-//        aux = (MenuItem) aux.getChildMenuItems().get(0);
-//        Assertions.assertEquals("grandchild", aux.getName());
-//        Assertions.assertEquals("Leaf menu item", aux.getTitle());
-//        Assertions.assertEquals("Too young!", aux.getCta());
-    }
-
-    //TODO: Rework this test case
-    @Test
-    @Disabled("TO BE AMENDED")
-    void widget() {
-        //The path resolves a folder but not a document (main reason: content document was renamed or deleted)
-
-        HstSiteMenuItem hstSiteMenuItem = newMockBuilder().name("widget.title").addLink("mock", mock(FeaturedWidget.class)).build();
-        addMenuToRequest(hstSiteMenuItem);
-
-        RootMenuItem menu = factory.buildMenu(request, request.getModel("menu"));
-
-        Assertions.assertEquals(1, menu.getSiteMenuItems().size());
-//        Assertions.assertNotNull(((MenuItem)menu.getSiteMenuItems().get(0)).getWidget());
+        Assertions.assertNotNull(topLevelItem.getWidget());
     }
 
     @Test

@@ -14,10 +14,8 @@ import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.linking.HstLink;
-import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenu;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 import org.slf4j.Logger;
@@ -72,20 +70,11 @@ public class NavigationFactory {
         return root;
     }
 
-    private void i(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle, MenuItem menuItem){
-        for (HstSiteMenuItem hstChild : hstItem.getChildMenuItems()) {
-            Object childItem = getMenuItem(request, hstChild, resourceBundle);
-            if (childItem instanceof MenuItem) {
-                menuItem.addChild((MenuItem)childItem);
-            } else if (childItem instanceof  NavigationWidget) {
-                menuItem.setWidget((NavigationWidget) childItem);
-            }
-        }
-    }
-
     /**
      * Creates a new MenuItem that Matches with Bloomreach's MenuItem specification. which enhanced information
      * about the linked item
+     *
+     * If the item happens to be a widget the  MenuItem is descarded and a Navigation Widget is returned instead
      */
     private Object getMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle) {
         MenuItem menuItem = new MenuItem(hstItem);
@@ -94,18 +83,13 @@ public class NavigationFactory {
         menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), request.getLocale(), true));
 
         //if document base page or widget, we enhance the document
-        if (isDocumentBased(hstItem.getHstLink())) {
-            ResolvedSiteMapItem rsi = hstItem.resolveToSiteMapItem();
-            if (rsi != null) {
-                HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, rsi);
-                //if the document does not exist or is not published
-                if (bean != null && !(bean instanceof HippoFolder)) {
-                    if (bean instanceof Page){
-                        createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, request.getLocale());
-                    } else {
-                        return createWidget(request, bean);
-                    }
-                }
+        if (isDocumentBased(hstItem.getHstLink()) && hstItem.resolveToSiteMapItem() != null) {
+            HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, hstItem.resolveToSiteMapItem());
+            //if the document does not exist or is not published
+            if (bean instanceof Page){
+                createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, request.getLocale());
+            } else {
+                return createWidget(request, bean);
             }
         }
 
@@ -132,7 +116,7 @@ public class NavigationFactory {
     private NavigationWidget createWidget(HstRequest request, HippoBean bean) {
         if (bean instanceof FeaturedWidget) {
            return addFeatureItem((FeaturedWidget) bean, request.getLocale());
-        } else {
+        } else if (bean != null){
             contentLogger.warn("Skipping Unexpected document type: {}", bean.getClass().getSimpleName());
         }
 
