@@ -251,7 +251,7 @@ class ListicleFactoryTest {
     }
 
     @Test
-    @DisplayName("The items will be shown with ascendant order")
+    @DisplayName("Precedence order for images sources")
     @Disabled("To be confirmed")
     void imageOrder() {
         /**

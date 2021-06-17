@@ -6,9 +6,6 @@ import org.hippoecm.hst.content.beans.Node;
 
 import java.util.List;
 
-/** 
- * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
- */
 @HippoEssentialsGenerated(internalName = "visitscotland:Widget")
 @Node(jcrType = "visitscotland:Widget")
 public class Widget extends BaseDocument {
