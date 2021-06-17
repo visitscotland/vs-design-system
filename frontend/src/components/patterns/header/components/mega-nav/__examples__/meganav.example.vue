@@ -9,6 +9,8 @@
                 :key="index"
                 :href="item.href"
                 :cta-text="item.cta"
+                :align="item.title === 'Accommodation'
+                    ? 'bottom' : 'top'"
             >
                 <template #buttonContent>
                     {{ item.title }}
@@ -42,6 +44,60 @@
                         </VsMegaNavListItem>
                     </VsMegaNavList>
                 </template>
+
+                <template
+                    slot="navFeaturedItem"
+                    v-if="item.title === 'Accommodation' || item.title === 'Inspiration'"
+                >
+                    <VsMegaNavFeaturedItem
+                        link="www.visitscotland.com"
+                        img-url="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                        img-alt="Alt text"
+                    >
+                        <template slot="vsFeaturedItemHeader">
+                            From our home to yours – see Scotland virtually
+                        </template>
+
+                        <template slot="vsFeaturedItemContent">
+                            <p>
+                                Although it’s not possible to come to Scotland at the moment,
+                                thanks to modern technology, you can still see stunning
+                            </p>
+                        </template>
+
+                        <template slot="vsFeaturedItemLink">
+                            A link to a page
+                        </template>
+                    </VsMegaNavFeaturedItem>
+                </template>
+
+                <template
+                    slot="navFeaturedItemLeft"
+                    v-if="item.title === 'Inspiration'"
+                >
+
+                    <VsMegaNavFeaturedItem
+                        link="www.visitscotland.com"
+                        img-url="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                        img-alt="Alt text"
+                        v-if="item.title==='Inspiration'"
+                    >
+                        <template slot="vsFeaturedItemHeader">
+                            Featured item left
+                        </template>
+
+                        <template slot="vsFeaturedItemContent">
+                            <p>
+                                Although it’s not possible to come to Scotland at the moment,
+                                thanks to modern technology, you can still see stunning
+                            </p>
+                        </template>
+
+                        <template slot="vsFeaturedItemLink">
+                            A link to a page
+                        </template>
+                    </VsMegaNavFeaturedItem>
+                </template>
             </VsMegaNavTopMenuItem>
         </template>
 
@@ -50,7 +106,7 @@
                 <VsMegaNavAccordionItem
                     :title="item.title"
                     level="1"
-                    :control-id="mobileItemIndex"
+                    :control-id="mobileItemIndex.toString()"
                     v-for="(item, mobileItemIndex) in header.mainNav"
                     :key="mobileItemIndex"
                 >
@@ -67,7 +123,7 @@
                     <VsMegaNavAccordionItem
                         :title="subHeading.title"
                         level="2"
-                        :control-id="subHeadingIndex"
+                        :control-id="subHeadingIndex.toString()"
                         v-for="(subHeading, subHeadingIndex) in item.dropdownNav"
                         :key="subHeadingIndex"
                     >
@@ -92,6 +148,56 @@
                             </VsMegaNavListItem>
                         </VsMegaNavList>
                     </VsMegaNavAccordionItem>
+                    <template
+                        v-if="item.title === 'Accommodation' || item.title === 'Inspiration'"
+                    >
+                        <VsMegaNavFeaturedItem
+                            link="www.visitscotland.com"
+                            img-url="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                            img-alt="Alt text"
+                        >
+                            <template slot="vsFeaturedItemHeader">
+                                From our home to yours – see Scotland virtually
+                            </template>
+
+                            <template slot="vsFeaturedItemContent">
+                                <p>
+                                    Although it’s not possible to come to
+                                    Scotland at the moment.
+                                </p>
+                            </template>
+
+                            <template slot="vsFeaturedItemLink">
+                                A link to a page
+                            </template>
+                        </VsMegaNavFeaturedItem>
+                    </template>
+                    <template
+                        v-if="item.title === 'Inspiration'"
+                    >
+
+                        <VsMegaNavFeaturedItem
+                            link="www.visitscotland.com"
+                            img-url="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                            img-alt="Alt text"
+                            v-if="item.title==='Inspiration'"
+                        >
+                            <template slot="vsFeaturedItemHeader">
+                                Featured item left
+                            </template>
+
+                            <template slot="vsFeaturedItemContent">
+                                <p>
+                                    Although it’s not possible to come to Scotland at the moment,
+                                    thanks to modern technology, you can still see stunning
+                                </p>
+                            </template>
+
+                            <template slot="vsFeaturedItemLink">
+                                A link to a page
+                            </template>
+                        </VsMegaNavFeaturedItem>
+                    </template>
                 </VsMegaNavAccordionItem>
             </VsAccordion>
         </template>

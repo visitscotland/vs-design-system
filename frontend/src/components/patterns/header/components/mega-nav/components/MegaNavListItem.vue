@@ -103,7 +103,6 @@ export default {
 
     &__heading{
         border-bottom: 1px solid $color-gray-tint-5;
-        margin-bottom: $spacer-1;
         line-height: $line-height-standard;
 
         .vs-link--variant-primary{
@@ -234,6 +233,15 @@ export default {
             .vs-link--variant-primary{
                 font-size: $h2-font-size;
             }
+        }
+    }
+}
+
+/* needed for specificity */
+.vs-list.vs-list--unstyled {
+    .vs-mega-nav-list {
+        .vs-mega-nav-list-item__heading {
+            margin-bottom: $spacer-1;
         }
     }
 }
