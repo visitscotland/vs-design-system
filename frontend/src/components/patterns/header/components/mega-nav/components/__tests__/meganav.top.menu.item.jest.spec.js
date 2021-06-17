@@ -8,6 +8,7 @@ const factoryMount = (values) => mount(VsMegaNavTopMenuItem, {
     slots: {
         buttonContent: 'Dropdown Toggle',
         dropdownContent: '<li class="dropdown-list-item"></li>',
+        navFeaturedItems: '<div>Test featured item</div>',
     },
 });
 
@@ -60,6 +61,13 @@ describe('VsMegaNavTopMenuItem', () => {
             });
             expect(wrapper.find('[data-test="vs-mega-nav-top-menu-item__cta-link"]').attributes().href).toBe('https://www.visitscotland.com/destinations');
         });
+
+        it('should show the appropriate class if the `align` prop is set to `bottom`', () => {
+            const wrapper = factoryMount({
+                align: 'bottom',
+            });
+            expect(wrapper.find('.vs-mega-nav-top-menu-item__featured--bottom').exists()).toBe(true);
+        });
     });
 
     describe(':slots', () => {
@@ -71,6 +79,11 @@ describe('VsMegaNavTopMenuItem', () => {
         it('renders content inserted in a dropdownContent slot', () => {
             const wrapper = factoryMount();
             expect(wrapper.findAll('.dropdown-list-item').length).toBe(1);
+        });
+
+        it('renders content inserted in a navFeaturedItems slot', () => {
+            const wrapper = factoryMount();
+            expect(wrapper.find('[data-test="vs-mega-nav-top-menu-item__featured"]').text()).toBe('Test featured item');
         });
     });
 });

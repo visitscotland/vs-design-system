@@ -30,7 +30,7 @@ props:
     - name: h4-font-size-md
       value: "{!font_size_base} * 0.875"
     - name: h5-font-size
-      value: "{!font_size_base} * 1.25"
+      value: "{!font_size_base} * 0.75"
     - name: h5-font-size-md
       value: "{!font_size_base} * 1.375"
     - name: h6-font-size

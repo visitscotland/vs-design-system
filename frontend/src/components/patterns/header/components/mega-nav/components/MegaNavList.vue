@@ -29,26 +29,32 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-mega-nav-list {
+div.vs-mega-nav-list,
+ul.vs-mega-nav-list {
     position: relative;
     padding: 0;
     margin: 0;
     width: 100%;
 
-    @include media-breakpoint-up(lg) {
-        color: $color-white;
-        margin: 0 $spacer-6 $spacer-4 0;
-        width: 23%;
-    }
+}
 
-    @include media-breakpoint-up(xl) {
-        margin-right: $spacer-9;
-        width: 21.8%;
-    }
+.vs-list.vs-list--unstyled {
+    .vs-mega-nav-list {
+        @include media-breakpoint-up(lg) {
+            color: $color-white;
+            margin: 0 $spacer-6 $spacer-4 0;
+            width: 23%;
+        }
 
-    @include media-breakpoint-up(xxl) {
-        margin-right: $spacer-10;
-        width: 21.3%;
+        @include media-breakpoint-up(xl) {
+            margin-right: $spacer-9;
+            width: 21.8%;
+        }
+
+        @include media-breakpoint-up(xxl) {
+            margin-right: $spacer-10;
+            width: 21.3%;
+        }
     }
 }
 
