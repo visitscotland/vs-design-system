@@ -6,6 +6,11 @@
 
 <#macro headerDesktopNav menu=menu>
     <#list menu.siteMenuItems as item>
+        <#list item.childMenuItems as childItem>
+            <#if childItem.widget??>
+                <#assign featuredItem = headerWidget(childItem.widget) />
+            </#if>
+        </#list>
         <#if item.title?has_content>
             <vs-mega-nav-top-menu-item
                     href="${getUrl(item)}"
@@ -47,6 +52,11 @@
                             </vs-mega-nav-list>
                         </#if>
                     </#list>
+                </template>
+
+                <template slot="navFeaturedItem">
+                    <!-- featured item component -->
+                    <!-- event item component -->
                 </template>
             </vs-mega-nav-top-menu-item>
         </#if>
