@@ -6,11 +6,7 @@
 
 <#macro headerDesktopNav menu=menu>
     <#list menu.siteMenuItems as item>
-        <#list item.childMenuItems as childItem>
-            <#if childItem.widget??>
-                <#assign featuredItem = headerWidget(childItem.widget) />
-            </#if>
-        </#list>
+
         <#if item.title?has_content>
             <vs-mega-nav-top-menu-item
                     href="${getUrl(item)}"
@@ -22,9 +18,7 @@
 
                 <template slot="dropdownContent">
                     <#list item.childMenuItems as childItem>
-                        <#if childItem.widget??>
-                            <@headerWidget childItem.widget />
-                        <#elseif childItem.title??>
+                        <#if childItem.title??>
                             <vs-mega-nav-list>
                                 <vs-mega-nav-list-item slot="navListHeading">
                                     ${childItem.title}
@@ -55,8 +49,9 @@
                 </template>
 
                 <template slot="navFeaturedItem">
-                    <!-- featured item component -->
-                    <!-- event item component -->
+                    <#if item.widget?? >
+                        <@headerWidget item.widget />
+                    </#if>
                 </template>
             </vs-mega-nav-top-menu-item>
         </#if>

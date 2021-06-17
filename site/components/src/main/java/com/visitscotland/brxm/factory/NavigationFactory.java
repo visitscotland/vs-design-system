@@ -61,9 +61,9 @@ public class NavigationFactory {
             String resourceBundle = NAVIGATION_PREFIX + hstSiteMenu.getName();
 
             for (HstSiteMenuItem hstItem : hstSiteMenu.getSiteMenuItems()) {
-                MenuItem menuItem = getMenuItem(request, hstItem, resourceBundle);
-                if (menuItem != null) {
-                    enhancedMenu.add(menuItem);
+                Object menuItem = getMenuItem(request, hstItem, resourceBundle);
+                if (menuItem instanceof MenuItem) {
+                    enhancedMenu.add((MenuItem) menuItem);
                 }
             }
 
@@ -72,11 +72,22 @@ public class NavigationFactory {
         return root;
     }
 
+    private void i(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle, MenuItem menuItem){
+        for (HstSiteMenuItem hstChild : hstItem.getChildMenuItems()) {
+            Object childItem = getMenuItem(request, hstChild, resourceBundle);
+            if (childItem instanceof MenuItem) {
+                menuItem.addChild((MenuItem)childItem);
+            } else if (childItem instanceof  NavigationWidget) {
+                menuItem.setWidget((NavigationWidget) childItem);
+            }
+        }
+    }
+
     /**
      * Creates a new MenuItem that Matches with Bloomreach's MenuItem specification. which enhanced information
      * about the linked item
      */
-    private MenuItem getMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle) {
+    private Object getMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle) {
         MenuItem menuItem = new MenuItem(hstItem);
 
         //By default, the name would be populated by the resourceBundle
@@ -87,17 +98,26 @@ public class NavigationFactory {
             ResolvedSiteMapItem rsi = hstItem.resolveToSiteMapItem();
             if (rsi != null) {
                 HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, rsi);
-                //if the document does not exist or no publish
+                //if the document does not exist or is not published
                 if (bean != null && !(bean instanceof HippoFolder)) {
-                    processItem(request, bean, menuItem, resourceBundle);
+                    if (bean instanceof Page){
+                        createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, request.getLocale());
+                    } else {
+                        return createWidget(request, bean);
+                    }
                 }
             }
         }
 
-        if (menuItem.getTitle() != null || menuItem.getWidget() != null) {
+        if (menuItem.getTitle() != null) {
             //Process all children
             for (HstSiteMenuItem hstChild : hstItem.getChildMenuItems()) {
-                menuItem.addChild(getMenuItem(request, hstChild, resourceBundle));
+                Object childItem = getMenuItem(request, hstChild, resourceBundle);
+                if (childItem instanceof MenuItem) {
+                    menuItem.addChild((MenuItem)childItem);
+                } else if (childItem instanceof  NavigationWidget) {
+                    menuItem.setWidget((NavigationWidget) childItem);
+                }
             }
             return menuItem;
         } else {
@@ -109,14 +129,14 @@ public class NavigationFactory {
     /**
      * Identifies the type of document linked and populated the data on the menu item accordingly
      */
-    private void processItem(HstRequest request, HippoBean bean, MenuItem menuItem, String resourceBundle) {
+    private NavigationWidget createWidget(HstRequest request, HippoBean bean) {
         if (bean instanceof FeaturedWidget) {
-            menuItem.setWidget(addFeatureItem((FeaturedWidget) bean, request.getLocale()));
-        } else if (bean instanceof Page) {
-            createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, request.getLocale());
+           return addFeatureItem((FeaturedWidget) bean, request.getLocale());
         } else {
             contentLogger.warn("Skipping Unexpected document type: {}", bean.getClass().getSimpleName());
         }
+
+        return null;
     }
 
     /**
