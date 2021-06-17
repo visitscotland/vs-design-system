@@ -40,7 +40,7 @@ class MenuItemProviderTest {
         Map<String, Set<String>> prototypes = new HashMap<>();
         prototypes.put(prototypeKey, new TreeSet<>(Arrays.asList("a", "b")));
 
-        menuItemProvider.constructMenuItems(mock(Node.class), prototypes);
+        menuItemProvider.constructPageAndModuleMenus(mock(Node.class), prototypes);
 
         Assertions.assertEquals(1, prototypes.size());
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("a", "b")), prototypes.get(prototypeKey));
@@ -57,7 +57,7 @@ class MenuItemProviderTest {
         Node subjectNode = mock(Node.class);
         when(subjectNode.hasNode("content")).thenReturn(false);
 
-        menuItemProvider.constructMenuItems(subjectNode, prototypes);
+        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes);
 
         Assertions.assertEquals(1, prototypes.size());
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("a", "b")), prototypes.get("new-page"));
@@ -79,7 +79,7 @@ class MenuItemProviderTest {
         BaseDocument baseDoc = mock(BaseDocument.class);
         when(hippoUtilsService.getDocumentFromNode(contentNode, true)).thenReturn(baseDoc);
 
-        menuItemProvider.constructMenuItems(subjectNode, prototypes);
+        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes);
 
         Assertions.assertEquals(1, prototypes.size());
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("a", "b")), prototypes.get("new-page"));
@@ -102,7 +102,7 @@ class MenuItemProviderTest {
         when(generalPage.getChildJcrTypes()).thenReturn(new String[]{"TypeA", "TypeB"});
         when(hippoUtilsService.getDocumentFromNode(contentNode, true)).thenReturn(generalPage);
 
-        menuItemProvider.constructMenuItems(subjectNode, prototypes);
+        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes);
 
         Assertions.assertEquals(1, prototypes.size());
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("TypeA", "TypeB")), prototypes.get("new-module"));
@@ -120,7 +120,7 @@ class MenuItemProviderTest {
         when(subjectNode.hasNode("content")).thenReturn(true);
         when(subjectNode.getNode("content")).thenThrow(RepositoryException.class);
 
-        menuItemProvider.constructMenuItems(subjectNode, prototypes);
+        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes);
 
         Assertions.assertEquals(2, prototypes.size());
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("a", "b")), prototypes.get("new-page"));

@@ -28,7 +28,7 @@ public class MenuItemProvider {
         this.hippoUtilsService = hippoUtilsService;
     }
 
-    public void constructMenuItems(Node subjectNode, Map<String, Set<String>> prototypes) {
+    public void constructPageAndModuleMenus(Node subjectNode, Map<String, Set<String>> prototypes) {
         try {
             if (prototypes.containsKey(NEW_PAGE_MENU) && prototypes.containsKey(NEW_MODULE_MENU)) {
                 Optional<Page> optionalPage = getPageContentBean(subjectNode);
@@ -39,7 +39,6 @@ public class MenuItemProvider {
                     prototypes.remove(NEW_MODULE_MENU);
                 }
             }
-
         } catch (RepositoryException | ObjectBeanManagerException | QueryException ex) {
             logger.warn("Failed to obtain child JCR types for menu selection", ex);
         }

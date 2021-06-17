@@ -1,8 +1,8 @@
 package com.visitscotland.brxm.menu;
 
 import com.visitscotland.brxm.config.VsComponentManager;
-import com.visitscotland.brxm.menu.MenuItemProvider;
 import org.hippoecm.repository.api.WorkflowContext;
+import org.hippoecm.repository.standardworkflow.FolderWorkflowImpl;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
@@ -11,9 +11,9 @@ import java.util.*;
 
 /**
  * This custom workflow is enabled in /hippo:configuration/hippo:workflows/threepane/folder-permissions
- * Used to dynamically specify the new document/folder menus and the types of documents that can be created form them
+ * Used to dynamically specify the new document/folder menus and the types of documents that can be created from them
  */
-public class CustomFolderWorkflowImpl extends org.hippoecm.repository.standardworkflow.FolderWorkflowImpl {
+public class CustomFolderWorkflowImpl extends FolderWorkflowImpl {
 
     private final Node subjectNode;
     private final MenuItemProvider menuItemProvider;
@@ -30,12 +30,12 @@ public class CustomFolderWorkflowImpl extends org.hippoecm.repository.standardwo
      *
      * @return A map where the key corresponds to the name of a node under /hippo:configuration/hippo:queries/hippo:templates
      * (e.g. new-module). The value is a set of document types that can be created from the given menu (e.g.
-     * visitscotland:Destination.
+     * visitscotland:Destination).
      */
     @Override
     protected Map<String, Set<String>> prototypes() {
         Map<String, Set<String>> prototypes = super.prototypes();
-        menuItemProvider.constructMenuItems(this.subjectNode, prototypes);
+        menuItemProvider.constructPageAndModuleMenus(this.subjectNode, prototypes);
         return prototypes;
     }
 
