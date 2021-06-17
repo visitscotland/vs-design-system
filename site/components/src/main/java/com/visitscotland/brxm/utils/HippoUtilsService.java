@@ -71,6 +71,20 @@ public class HippoUtilsService {
         return (T) bean.getObjectConverter().getObject(bean.getNode());
     }
 
+    /**
+     * Return a (possibly unavailable) hippo bean from a node
+     * @param jcrNode
+     * @param includeUnavailable If true, then the bean will be found even if hippo:availability is not set to 'live'
+     */
+    @NonTestable(NonTestable.Cause.BRIDGE)
+    public <T extends HippoBean> T getDocumentFromNode(Node jcrNode, boolean includeUnavailable) throws QueryException, ObjectBeanManagerException {
+        if (!includeUnavailable) {
+            return getDocumentFromNode(jcrNode);
+        }
+        return (T) RequestContextProvider.get().getContentBeansTool()
+                .getObjectConverter().getObject(jcrNode);
+    }
+
     @NonTestable(NonTestable.Cause.BRIDGE)
     public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem) {
         return hstComponent.getBeanForResolvedSiteMapItem(request, sitemapItem);

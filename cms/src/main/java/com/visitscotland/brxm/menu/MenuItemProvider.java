@@ -50,7 +50,7 @@ public class MenuItemProvider {
             return Optional.empty();
         }
 
-        HippoBean subjectBean = hippoUtilsService.getDocumentFromNode(subjectNode);
+        HippoBean subjectBean = hippoUtilsService.getDocumentFromNode(subjectNode.getNode(PAGE_PATH), true);
         if (!(subjectBean instanceof Page)) {
             return Optional.empty();
         }

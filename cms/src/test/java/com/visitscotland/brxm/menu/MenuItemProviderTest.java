@@ -77,7 +77,7 @@ class MenuItemProviderTest {
         when(subjectNode.hasNode("content")).thenReturn(true);
         when(subjectNode.getNode("content")).thenReturn(contentNode);
         BaseDocument baseDoc = mock(BaseDocument.class);
-        when(hippoUtilsService.getDocumentFromNode(any(Node.class))).thenReturn(baseDoc);
+        when(hippoUtilsService.getDocumentFromNode(contentNode, true)).thenReturn(baseDoc);
 
         menuItemProvider.constructMenuItems(subjectNode, prototypes);
 
@@ -100,7 +100,7 @@ class MenuItemProviderTest {
         when(subjectNode.getNode("content")).thenReturn(contentNode);
         General generalPage = mock(General.class);
         when(generalPage.getChildJcrTypes()).thenReturn(new String[]{"TypeA", "TypeB"});
-        when(hippoUtilsService.getDocumentFromNode(any(Node.class))).thenReturn(generalPage);
+        when(hippoUtilsService.getDocumentFromNode(contentNode, true)).thenReturn(generalPage);
 
         menuItemProvider.constructMenuItems(subjectNode, prototypes);
 
