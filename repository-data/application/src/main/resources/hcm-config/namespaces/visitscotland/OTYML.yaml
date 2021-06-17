@@ -24,7 +24,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: ['visitscotland:short-string-validator']
+            hipposysedit:validators: ['visitscotland:medium-string-validator']
           /links:
             jcr:primaryType: hipposysedit:field
             hipposysedit:multiple: true
