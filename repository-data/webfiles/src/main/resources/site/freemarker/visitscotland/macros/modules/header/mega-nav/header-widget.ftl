@@ -7,9 +7,9 @@
             <#list menu.links as link>
                 <#-- TODO: This if condition might not be necessary -->
                 <#if mobile >
-                    <@headerFeaturedItem link />
+                    <@headerFeaturedItem link link?index />
                 <#else>
-                    <@headerFeaturedItem link />
+                    <@headerFeaturedItem link link?index />
                 </#if>
             </#list>
             <#break>

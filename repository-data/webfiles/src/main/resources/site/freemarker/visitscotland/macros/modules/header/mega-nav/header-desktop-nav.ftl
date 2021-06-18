@@ -48,11 +48,9 @@
                     </#list>
                 </template>
 
-                <template slot="navFeaturedItem">
-                    <#if item.widget?? >
-                        <@headerWidget item.widget />
-                    </#if>
-                </template>
+                <#if item.widget?? >
+                    <@headerWidget item.widget />
+                </#if>
             </vs-mega-nav-top-menu-item>
         </#if>
     </#list>

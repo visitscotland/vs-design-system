@@ -34,7 +34,6 @@
                         class="
                             vs-mega-nav-top-menu-item__featured
                             vs-mega-nav-top-menu-item__featured--left
-                            vs-mega-nav-list
                         "
                         :class="alignmentClass"
                         data-test="vs-mega-nav-top-menu-item__featured"
@@ -44,7 +43,7 @@
                     </div>
 
                     <div
-                        class="vs-mega-nav-top-menu-item__featured vs-mega-nav-list"
+                        class="vs-mega-nav-top-menu-item__featured"
                         :class="alignmentClass"
                         data-test="vs-mega-nav-top-menu-item__featured"
                         v-if="hasFeaturedItem"
@@ -95,7 +94,7 @@ export default {
         align: {
             type: String,
             default: 'top',
-            validator: (value) => value.match(/(bottom|top)/),
+            validator: (value) => value.match(/(left|bottom|top)/),
         },
     },
     computed: {
@@ -117,8 +116,8 @@ export default {
 /* needed for specificity */
 .vs-list.vs-list--unstyled {
     .vs-mega-nav-top-menu-item {
-        @include media-breakpoint-up(lg) {
-            &__featured {
+        &__featured {
+            @include media-breakpoint-up(lg) {
                 margin: $spacer-2 $spacer-0 $spacer-5 $spacer-6;
                 position: absolute;
                 right: 0;
@@ -158,14 +157,6 @@ export default {
             }
         }
 
-        @include media-breakpoint-up(xl) {
-            margin-right: $spacer-6;
-
-            &:last-of-type {
-                margin-right: 0;
-            }
-        }
-
         &__cta-link{
             text-decoration: none;
             padding: 0.12rem $spacer-5;
@@ -191,20 +182,20 @@ export default {
             align-content: flex-start;
         }
     }
+}
 
-    @include no-js {
-        .vs-mega-nav-top-menu-item{
-            &__divider {
-                margin-bottom: $spacer-4;
-            }
-            &__columns-wrapper{
-                display: block;
-                height: auto;
-                padding-left: $spacer-8;
+@include no-js {
+    .vs-mega-nav-top-menu-item{
+        &__divider {
+            margin-bottom: $spacer-4;
+        }
+        &__columns-wrapper{
+            display: block;
+            height: auto;
+            padding-left: $spacer-8;
 
-                @include media-breakpoint-up(lg) {
-                    padding-left: $spacer-10;
-                }
+            @include media-breakpoint-up(lg) {
+                padding-left: $spacer-10;
             }
         }
     }
