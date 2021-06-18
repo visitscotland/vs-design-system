@@ -86,9 +86,9 @@ public class NavigationFactory {
         if (isDocumentBased(hstItem.getHstLink()) && hstItem.resolveToSiteMapItem() != null) {
             HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, hstItem.resolveToSiteMapItem());
             //if the document does not exist or is not published
-            if (bean instanceof Page){
+            if (bean instanceof Page) {
                 createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, request.getLocale());
-            } else {
+            } else if (bean != null) {
                 return createWidget(request, bean);
             }
         }
@@ -116,7 +116,7 @@ public class NavigationFactory {
     private NavigationWidget createWidget(HstRequest request, HippoBean bean) {
         if (bean instanceof FeaturedWidget) {
            return addFeatureItem((FeaturedWidget) bean, request.getLocale());
-        } else if (bean != null){
+        } else {
             contentLogger.warn("Skipping Unexpected document type: {}", bean.getClass().getSimpleName());
         }
 
