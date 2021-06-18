@@ -95,6 +95,7 @@ export default {
         }
 
         .card-title {
+            margin-top: $spacer-0;
             font-size: $h5-font-size;
             display: -webkit-box;
             -webkit-line-clamp: 3;
