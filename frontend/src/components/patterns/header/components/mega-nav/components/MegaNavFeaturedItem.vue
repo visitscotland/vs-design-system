@@ -144,7 +144,7 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
-            padding: 12px;
+            padding: $spacer-3;
             flex-direction: column;
             border-top: none;
 
