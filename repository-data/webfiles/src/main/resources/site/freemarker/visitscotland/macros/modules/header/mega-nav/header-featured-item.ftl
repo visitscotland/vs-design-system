@@ -1,17 +1,33 @@
+<#include "../../../../../frontend/components/vs-mega-nav-featured-item.ftl">
 <#include "../../../../../include/imports.ftl">
 
-<#macro headerFeaturedItem item>
+<#macro headerFeaturedItem item index mobile>
     <@hst.link var="imageSrc" hippobean=item.image.cmsImage.original/>
-    <!-- A featured item would go here -->
-    <!-- Image src = ${imageSrc} -->
-    <!-- Card title=  ${item.label} -->
-    <!-- Card href ${item.link} -->
-    <!-- Card teaser ${item.teaser} -->
-    <!-- CTA Link: ${item.cta} -->
+    <#if mobile=true>
+        <template>
+    <#elseif index = 0>
+        <template slot="navFeaturedItem">
+    <#else>
+        <template slot="navFeaturedItemLeft">
+    </#if>
+        <vs-mega-nav-featured-item
+            link="${item.link}"
+            img-url="${imageSrc}"
+            alt="${item.image.altText}"
+            align=""
+        >
+            <template slot="vsFeaturedItemHeader">
+                ${item.label}
+            </template>
 
+            <template slot="vsFeaturedItemContent">
+                ${item.teaser}
+            </template>
 
-    <!-- The following fields are available but they are not required -->
-    <!-- Card link icon: ${item.type} -->
-    <!-- Card Itinerary : ${item.itineraryTransport}, ${item.itineraryDays} -->
+            <template slot="vsFeaturedItemLink">
+                ${item.cta}
+            </template>
 
+        </vs-mega-nav-featured-item>
+    </template>
 </#macro>

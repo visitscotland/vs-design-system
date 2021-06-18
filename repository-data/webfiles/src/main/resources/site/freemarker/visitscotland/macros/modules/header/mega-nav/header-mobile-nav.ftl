@@ -3,6 +3,7 @@
 <#include "../../../../../frontend/components/vs-mega-nav-accordion-item.ftl">
 <#include "../../../../../frontend/components/vs-mega-nav-list.ftl">
 <#include "../../../../../frontend/components/vs-mega-nav-list-item.ftl">
+<#include "header-widget.ftl">
 
 <#macro headerMobileNav menu=menu>
     <vs-accordion>
@@ -26,9 +27,7 @@
                     </#if>
 
                     <#list item.childMenuItems as childItem>
-                        <#if childItem.widget??>
-                            <@headerWidget childItem.widget true/>
-                        <#elseif childItem.title??>
+                        <#if childItem.title??>
                             <vs-mega-nav-accordion-item
                                 title="${childItem.title}"
                                 level="2"
@@ -59,6 +58,9 @@
                             </vs-mega-nav-accordion-item>
                         </#if>
                     </#list>  
+                    <#if item.widget?? >
+                        <@headerWidget item.widget true />
+                    </#if>
                 </vs-mega-nav-accordion-item>
             </#if>
         </#list>
