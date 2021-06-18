@@ -131,7 +131,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: ec367ec1-6629-400b-b139-8a1296ba38e3
     hippo:name: Accommodation - Featured Items
-    hippo:versionHistory: c1eef168-6c94-41a2-8e81-c21a9e312efd
+    hippo:versionHistory: f2ee1de3-4704-4b7a-9317-c6bcf2468891
     /accommodation[1]:
       jcr:primaryType: visitscotland:FeaturedWidget
       jcr:mixinTypes: ['mix:referenceable']
@@ -141,7 +141,7 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-12T10:36:26.808+01:00
-      hippostdpubwf:lastModificationDate: 2021-06-16T11:31:00.999+01:00
+      hippostdpubwf:lastModificationDate: 2021-06-18T14:07:05.061+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 08436592-a50e-4c5b-b387-8be9f6b9a8cf
       hippotranslation:locale: en
@@ -153,14 +153,17 @@
           jcr:primaryType: hippo:mirror
           hippo:docbase: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       /visitscotland:items[1]:
-        jcr:primaryType: hippo:mirror
-        hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
-      /visitscotland:items[2]:
         jcr:primaryType: visitscotland:CMSLink
-        visitscotland:label: with CTA
+        visitscotland:label: Fancy a Beach Day?
         /visitscotland:link:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+      /visitscotland:items[2]:
+        jcr:primaryType: visitscotland:CMSLink
+        visitscotland:label: Discover the Wonderful Scottish Islands
+        /visitscotland:link:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: ab8d2643-1517-4a6a-aa86-f5a9c8b5e2c3
     /accommodation[2]:
       jcr:primaryType: visitscotland:FeaturedWidget
       jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -170,7 +173,7 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-12T10:36:26.808+01:00
-      hippostdpubwf:lastModificationDate: 2021-06-16T11:31:00.901+01:00
+      hippostdpubwf:lastModificationDate: 2021-06-18T14:07:04.939+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 08436592-a50e-4c5b-b387-8be9f6b9a8cf
       hippotranslation:locale: en
@@ -182,26 +185,29 @@
           jcr:primaryType: hippo:mirror
           hippo:docbase: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       /visitscotland:items[1]:
-        jcr:primaryType: hippo:mirror
-        hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
-      /visitscotland:items[2]:
         jcr:primaryType: visitscotland:CMSLink
-        visitscotland:label: with CTA
+        visitscotland:label: Fancy a Beach Day?
         /visitscotland:link:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+      /visitscotland:items[2]:
+        jcr:primaryType: visitscotland:CMSLink
+        visitscotland:label: Discover the Wonderful Scottish Islands
+        /visitscotland:link:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: ab8d2643-1517-4a6a-aa86-f5a9c8b5e2c3
     /accommodation[3]:
       jcr:primaryType: visitscotland:FeaturedWidget
       jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: 80d1bf2b-666b-4881-927c-1e707053a437
-      hippo:availability: []
+      hippo:availability: [live]
       hippostd:retainable: false
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-12T10:36:26.808+01:00
-      hippostdpubwf:lastModificationDate: 2021-06-16T11:31:00.901+01:00
+      hippostdpubwf:lastModificationDate: 2021-06-18T14:07:04.939+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-06-16T11:31:15.862+01:00
+      hippostdpubwf:publicationDate: 2021-06-18T14:07:09.429+01:00
       hippotranslation:id: 08436592-a50e-4c5b-b387-8be9f6b9a8cf
       hippotranslation:locale: en
       visitscotland:translation: ''
@@ -212,77 +218,14 @@
           jcr:primaryType: hippo:mirror
           hippo:docbase: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       /visitscotland:items[1]:
-        jcr:primaryType: hippo:mirror
-        hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
-      /visitscotland:items[2]:
         jcr:primaryType: visitscotland:CMSLink
-        visitscotland:label: with CTA
+        visitscotland:label: Fancy a Beach Day?
         /visitscotland:link:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
-  /test---navigation:
-    jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-    jcr:uuid: 598e7526-bee0-4cba-8dd3-cee0046ac034
-    hippo:name: Test - Navigation
-    /test---navigation[1]:
-      jcr:primaryType: visitscotland:FeaturedWidget
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 7bb78687-d27a-49d8-bc9d-1724be3de056
-      hippo:availability: []
-      hippostd:retainable: false
-      hippostd:state: draft
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2021-06-16T09:24:46.186+01:00
-      hippostdpubwf:lastModificationDate: 2021-06-16T16:59:31.534+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippotranslation:id: a4c18ffd-1577-416e-b93a-3f825de157ad
-      hippotranslation:locale: en
-      visitscotland:translation: ''
-    /test---navigation[2]:
-      jcr:primaryType: visitscotland:FeaturedWidget
-      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-      jcr:uuid: 769343c7-cb39-44d7-b82e-d85e1a534cbe
-      hippo:availability: [preview]
-      hippostd:retainable: false
-      hippostd:state: unpublished
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2021-06-16T09:24:46.186+01:00
-      hippostdpubwf:lastModificationDate: 2021-06-16T16:59:31.471+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippotranslation:id: a4c18ffd-1577-416e-b93a-3f825de157ad
-      hippotranslation:locale: en
-      visitscotland:translation: ''
-  /navigation-james:
-    jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-    jcr:uuid: 6a0aaf4c-acc7-40a1-b2b6-67fd56a03f6a
-    hippo:name: Navigation James
-    /navigation-james[1]:
-      jcr:primaryType: visitscotland:FeaturedWidget
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: f9380508-8891-43cd-a80e-706a1b44d8b0
-      hippo:availability: []
-      hippostd:retainable: false
-      hippostd:state: draft
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2021-06-16T09:53:07.201+01:00
-      hippostdpubwf:lastModificationDate: 2021-06-16T16:59:42.814+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippotranslation:id: 01200ab4-b10f-4e1f-badb-b633d5885299
-      hippotranslation:locale: en
-      visitscotland:translation: ''
-    /navigation-james[2]:
-      jcr:primaryType: visitscotland:FeaturedWidget
-      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-      jcr:uuid: aa5e78ba-65dc-4399-8d56-718a6603c66e
-      hippo:availability: [preview]
-      hippostd:retainable: false
-      hippostd:state: unpublished
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2021-06-16T09:53:07.201+01:00
-      hippostdpubwf:lastModificationDate: 2021-06-16T16:59:42.776+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippotranslation:id: 01200ab4-b10f-4e1f-badb-b633d5885299
-      hippotranslation:locale: en
-      visitscotland:translation: ''
+      /visitscotland:items[2]:
+        jcr:primaryType: visitscotland:CMSLink
+        visitscotland:label: Discover the Wonderful Scottish Islands
+        /visitscotland:link:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: ab8d2643-1517-4a6a-aa86-f5a9c8b5e2c3
