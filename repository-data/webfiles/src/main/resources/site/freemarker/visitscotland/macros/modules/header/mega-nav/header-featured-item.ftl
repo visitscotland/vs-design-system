@@ -1,26 +1,21 @@
 <#include "../../../../../frontend/components/vs-mega-nav-featured-item.ftl">
 <#include "../../../../../include/imports.ftl">
 
-<#macro headerFeaturedItem item index>
+<#macro headerFeaturedItem item index mobile>
     <@hst.link var="imageSrc" hippobean=item.image.cmsImage.original/>
-
-    <#if index = 0>
+    <#if mobile=true>
+        <template>
+    <#elseif index = 0>
         <template slot="navFeaturedItem">
     <#else>
         <template slot="navFeaturedItemLeft">
     </#if>
-
         <vs-mega-nav-featured-item
             link="${item.link}"
             img-url="${imageSrc}"
+            alt="${item.image.altText}"
             align=""
         >
-
-            <!-- THINGS WE NEED
-                - alt text
-                - index
-            -->
-
             <template slot="vsFeaturedItemHeader">
                 ${item.label}
             </template>
@@ -34,11 +29,5 @@
             </template>
 
         </vs-mega-nav-featured-item>
-        <!-- A featured item would go here -->
-        <!-- Image src = ${imageSrc} -->
-        <!-- Card title=  ${item.label} -->
-        <!-- Card href ${item.link} -->
-        <!-- Card teaser ${item.teaser} -->
-        <!-- CTA Link: ${item.cta} -->
     </template>
 </#macro>
