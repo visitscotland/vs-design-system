@@ -62,20 +62,14 @@
         >
             <figcaption
                 ref="figcaption"
-                :class="[
-                    isLargeCaption
-                        ? 'vs-image-with-caption__large-caption'
-                        : 'vs-image-with-caption__fullwidth-caption',
-                    closedDefaultCaption ? 'default-closed' : '',
-                ]"
-                class="d-flex d-sm-block"
+                :class="captionClasses"
             >
                 <VsRow class="justify-content-center justify-content-sm-start">
                     <VsCol
                         class="order-2 order-sm-1"
                         :class="[!showMap ? 'align-self-center' : '']"
                     >
-                        <div :class="isLargeCaption ? 'p-4' : 'px-4 py-3 pr-8'">
+                        <div class="vs-image-with-caption__caption-info">
                             <p class="vs-image-with-caption__image-caption">
                                 <slot name="caption" />
                             </p>
@@ -234,6 +228,13 @@ export default {
         captionButtonText() {
             return this.showCaption ? 'Close image caption' : 'Open image caption';
         },
+        captionClasses() {
+            return {
+                'default-closed': this.closedDefaultCaption,
+                'vs-image-with-caption__large-caption-wrapper': this.isLargeCaption,
+                'vs-image-with-caption__fullwidth-caption-wrapper': !this.isLargeCaption,
+            };
+        },
     },
     methods: {
         toggleCaption() {
@@ -311,8 +312,8 @@ export default {
             margin-bottom: $spacer-0;
         }
 
-        &.vs-image-with-caption__large-caption,
-        &.vs-image-with-caption__fullwidth-caption {
+        &.vs-image-with-caption__large-caption-wrapper,
+        &.vs-image-with-caption__fullwidth-caption-wrapper {
             position: absolute;
             top: 0;
             right: 0;
@@ -320,6 +321,11 @@ export default {
             height: 100%;
             z-index: 2;
             text-align: center;
+            display: flex;
+
+            @include media-breakpoint-up(sm) {
+                display: block;
+            }
 
             > .row {
                 margin: 0 auto;
@@ -334,7 +340,13 @@ export default {
             }
         }
 
-        &.vs-image-with-caption__large-caption {
+        &.vs-image-with-caption__fullwidth-caption-wrapper{
+            .vs-image-with-caption__caption-info{
+                padding: $spacer-3 0;
+            }
+        }
+
+        &.vs-image-with-caption__large-caption-wrapper {
             @include media-breakpoint-up(sm) {
                 bottom: -48px;
                 top: auto;
@@ -355,27 +367,31 @@ export default {
                     max-width: 74px;
                 }
             }
+
+            .vs-image-with-caption__caption-info{
+                padding: $spacer-4;
+            }
         }
 
-        &.vs-image-with-caption__fullwidth-caption:not(.default-closed) {
+        &.vs-image-with-caption__fullwidth-caption-wrapper:not(.default-closed) {
             @include media-breakpoint-up(sm) {
                 position: relative;
                 width: 100%;
                 height: auto;
                 min-height: 64px;
                 text-align: left;
-
-                > .row {
-                    margin: 0 -16px;
-                }
             }
+        }
+
+        &.vs-image-with-caption__fullwidth-caption-wrapper.default-closed {
+            display: flex;
         }
     }
 
     @include media-breakpoint-up(md) {
         &--right {
-            figcaption.vs-image-with-caption__fullwidth-caption p,
-            figcaption.vs-image-with-caption__large-caption p {
+            figcaption.vs-image-with-caption__fullwidth-caption-wrapper p,
+            figcaption.vs-image-with-caption__large-caption-wrapper p {
                 text-align: right;
             }
         }
@@ -392,8 +408,8 @@ export default {
     .vs-image-with-caption__caption-wrapper {
         display: block;
 
-        .vs-image-with-caption__large-caption,
-        .vs-image-with-caption__fullwidth-caption {
+        .vs-image-with-caption__large-caption-wrapper,
+        .vs-image-with-caption__fullwidth-caption-wrapper {
             @include media-breakpoint-down(xs) {
                 position: relative;
             }
@@ -408,8 +424,8 @@ export default {
         }
 
         .vs-image-with-caption__caption-wrapper {
-            .vs-image-with-caption__large-caption,
-            .vs-image-with-caption__fullwidth-caption {
+            .vs-image-with-caption__large-caption-wrapper,
+            .vs-image-with-caption__fullwidth-caption-wrapper {
                 position: relative;
             }
         }

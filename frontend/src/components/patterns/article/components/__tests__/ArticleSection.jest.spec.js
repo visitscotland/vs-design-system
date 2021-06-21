@@ -24,22 +24,7 @@ describe('VsArticleSection', () => {
         expect(wrapper.attributes('data-test')).toBe('vs-article-section');
     });
 
-    it('should render sidebar with 3 columns on xxl screen by default', () => {
-        const sidebar = wrapper.find('[data-test="vs-article-section__sidebar"');
-
-        expect(sidebar.classes()).toContain('col-xxl-3');
-    });
-
     describe(':props', () => {
-        it(':isStandardPage - Should render sidebar with 4 columns on xxl screen when true', () => {
-            wrapper = factoryShallowMount({
-                isStandardPage: true,
-            });
-
-            const sidebar = wrapper.find('[data-test="vs-article-section__sidebar"');
-            expect(sidebar.classes()).toContain('col-xxl-4');
-        });
-
         it(':sidebarAlign - Should render the sidebar to the `left` of the section ', () => {
             wrapper = factoryShallowMount({
                 sidebarAlign: 'left',
@@ -50,6 +35,7 @@ describe('VsArticleSection', () => {
             const content = wrapper.find('[data-test="vs-article-section__content"');
 
             expect(section.classes()).toContain('vs-article-section--sidebar-left');
+            expect(sidebar.classes()).toContain('pl-md-0');
             expect(sidebar.attributes('order-md')).toBe('');
             expect(sidebar.attributes('offset-xl')).toBe('');
             expect(content.attributes('offset-xl')).toBe('1');
@@ -65,6 +51,7 @@ describe('VsArticleSection', () => {
             const content = wrapper.find('[data-test="vs-article-section__content"');
 
             expect(section.classes()).toContain('vs-article-section--sidebar-right');
+            expect(sidebar.classes()).toContain('pr-md-0');
             expect(sidebar.attributes('order-md')).toBe('2');
             expect(sidebar.attributes('offset-xl')).toBe('1');
             expect(content.attributes('offset-xl')).toBe('');
