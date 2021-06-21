@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -101,6 +102,16 @@ public class HippoUtilsService {
     @NonTestable(NonTestable.Cause.BRIDGE)
     public String getParameterFromUrl(HstRequest request, String parameter){
         return request.getRequestContext().getServletRequest().getParameter(parameter);
+    }
+
+    /**
+     * Extract a parameter from the URL (without namespace)
+     *
+     * @return value of the query parameter or null if such parameter hasn't been defined
+     */
+    @NonTestable(NonTestable.Cause.BRIDGE)
+    public Locale getRequestLocale(){
+        return RequestContextProvider.get().getServletRequest().getLocale();
     }
 
     /**

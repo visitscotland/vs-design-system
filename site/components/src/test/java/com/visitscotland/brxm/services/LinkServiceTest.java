@@ -20,6 +20,8 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.container.ComponentManager;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Answers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -249,6 +251,16 @@ class LinkServiceTest {
 //        assertEquals(LinkType.EXTERNAL, service.getType("http://www.prize-draw.com/scotland?referral=www.visitscotland.com"));
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"http://www.visitscotland.com/edinburgh/edinburgh.pdf",
+            "http://www.visitscotland.com/edinburgh/edinburgh.PDF",
+            "https://edinburgh.com/guide.pdf"
+    })
+    @DisplayName("Identifies download URLs ")
+    void downloadType(String url) {
+        assertEquals(LinkType.DOWNLOAD, service.getType(url));
+    }
+
     @Test
     @DisplayName("Return a link from a DMSLink")
     void getPlainLink_dmsLink() {
@@ -432,6 +444,17 @@ class LinkServiceTest {
         assertEquals("/info/fake-product-p0123456798", link.getLink());
         assertEquals(1, module.getErrorMessages().size());
         assertNull(link.getImage());
+    }
+
+    @Test
+    @DisplayName("getDownloadText returns the label with the size")
+    void getDownloadText() {
+
+        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.CANADA ,true)).thenReturn("DOWNLOAD");
+        when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
+        when(utils.getRequestLocale()).thenReturn(Locale.CANADA);
+
+        assertEquals(" (DOWNLOAD PDF 15.5MB)", service.getDownloadText("http://www.visitscotlan.com/pdf"));
     }
 
 }
