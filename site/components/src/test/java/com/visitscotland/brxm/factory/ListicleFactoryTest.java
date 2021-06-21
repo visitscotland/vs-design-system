@@ -141,7 +141,7 @@ class ListicleFactoryTest {
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(moduleImage);
         when(dmsData.productCard("1234", Locale.UK)).thenReturn(node);
-        when(linksService.createLink(any(), any())).thenReturn(link);
+        when(linksService.createDmsLink(any(), any(), any())).thenReturn(link);
         when(dmsUtils.getKeyFacilities(node)).thenReturn(facilities);
 
         List<ListicleModule> items = factory.generateItems(Locale.UK, page);
@@ -155,6 +155,7 @@ class ListicleFactoryTest {
         Assertions.assertSame(facilities, module.getFacilities());
 
         Assertions.assertEquals(link, module.getLinks().get(0));
+        verify(dmsData, times(1)).productCard("1234", Locale.UK);
     }
 
     @Test
