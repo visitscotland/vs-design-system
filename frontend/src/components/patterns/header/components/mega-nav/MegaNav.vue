@@ -1,6 +1,7 @@
 <template>
     <nav
         class="vs-mega-nav bg-white"
+        aria-label="main nav"
         data-test="vs-mega-nav"
     >
         <VsContainer fluid="lg">
