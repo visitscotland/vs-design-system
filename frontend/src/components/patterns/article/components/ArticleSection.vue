@@ -10,7 +10,8 @@
                 md="5"
                 xl="4"
                 data-test="vs-article-section__sidebar"
-                :class="isStandardPage ? 'col-xxl-4' : 'col-xxl-3'"
+                class="col-xxl-4"
+                :class="sidebarAlign === 'right' ? 'pr-md-0' : 'pl-md-0'"
                 :offset-xl="sidebarAlign === 'right' ? '1' : ''"
                 :order-md="sidebarAlign === 'right' ? '2' : ''"
             >
@@ -62,14 +63,6 @@ export default {
             default: 'left',
             validator: (value) => value.match(/(left|right)/),
         },
-        /**
-         * If isStandardPage is true, the layout will change on larger viewports
-         *  to be displayed as 10 cols instead of 12.
-         */
-        isStandardPage: {
-            type: Boolean,
-            default: false,
-        },
     },
     computed: {
         sidebarAlignClass() {
@@ -85,37 +78,37 @@ export default {
 .vs-article-section {
     &--sidebar-right{
         @include media-breakpoint-up(md) {
-            margin-right: -16.8%;
+            margin-right: -14.8%;
         }
 
         @include media-breakpoint-up(lg) {
-            margin-right: -14%;
+            margin-right: -12.5%;
         }
 
         @include media-breakpoint-up(xl) {
-            margin-right: -14.9%;
+            margin-right: -13.6%;
         }
 
         @include media-breakpoint-up(xxl) {
-            margin-right: -14.2%;
+            margin-right: -23.2%;
         }
     }
 
     &--sidebar-left{
         @include media-breakpoint-up(md) {
-            margin-left: -16.8%;
+            margin-left: -14.8%;
         }
 
         @include media-breakpoint-up(lg) {
-            margin-left: -14%;
+            margin-left: -12.5%;
         }
 
         @include media-breakpoint-up(xl) {
-            margin-left: -14.9%;
+            margin-left: -13.6%;
         }
 
         @include media-breakpoint-up(xxl) {
-            margin-left: -14.2%;
+            margin-left: -23.2%;
         }
     }
 }
@@ -307,9 +300,6 @@ export default {
     </VsArticleSection>
 
     <VsArticleSection sidebar-align="right">
-        <template slot="articleSidebar">
-            <VsArticleSidebar />
-        </template>
         <VsHeading level="6">
             How do I climb Ben Nevis safely?
         </VsHeading>
@@ -345,7 +335,7 @@ export default {
         </p>
     </VsArticleSection>
 
-    <VsArticleSection sidebar-align="left">
+    <VsArticleSection sidebar-align="right">
         <template slot="articleSidebar">
             <VsArticleSidebar>
                 <template slot="vsArticleSidebarQuote">
