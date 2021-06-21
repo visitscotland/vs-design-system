@@ -75,7 +75,6 @@ public class LinkService {
             if (dmsLink.getProduct() == null) {
                 contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), item.getPath());
             } else if (product != null) {
-                //TODO build the link for the DMS product properly
                 return createDmsLink(locale, dmsLink, product);
             }
         } else if (item instanceof ProductSearchLink) {
