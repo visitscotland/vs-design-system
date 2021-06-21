@@ -6,9 +6,6 @@ import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
-/** 
- * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
- */
 @HippoEssentialsGenerated(internalName = "visitscotland:Quote")
 @Node(jcrType = "visitscotland:Quote")
 public class Quote extends HippoCompound {
