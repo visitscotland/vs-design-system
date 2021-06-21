@@ -1,12 +1,19 @@
 package com.visitscotland.brxm.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.mock.MegalinksMockBuilder;
+import com.visitscotland.brxm.mock.SharedLinkMockBuilder;
+import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
+import com.visitscotland.brxm.model.Module;
+import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -16,10 +23,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Answers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,6 +53,15 @@ class LinkServiceTest {
     @Mock
     private Properties properties;
 
+    @Mock
+    private CommonUtilsService commonUtils;
+
+    @Mock
+    private DocumentUtilsService documentUtilsService;
+
+    @Mock
+    private ImageFactory imageFactory;
+
     @Resource
     @InjectMocks
     LinkService service;
@@ -51,7 +69,7 @@ class LinkServiceTest {
     private void initProductSearchBuilder(){
         ComponentManager context = mock(ComponentManager.class, withSettings().lenient());
         when(context.getComponent(ProductSearchBuilder.class)).thenReturn(builder);
-        new VsComponentManager().setComponentManager(context);
+        VsComponentManager.setComponentManager(context);
     }
 
     @Test
@@ -116,24 +134,8 @@ class LinkServiceTest {
     }
 
     @Test
-    @DisplayName("An exception in the DMS Data Service doesn't get propagated")
-    @Disabled("dmsProductCard does not throw an exception any longer")
-    void dmsLink_dmsDataThrowException() throws IOException {
-        //Verifies that handles the exception from DMSDataService and returns null
-        DMSLink dmsLink = mock(DMSLink.class);
-        when(dmsLink.getProduct()).thenReturn("123");
-        when(dmsLink.getPath()).thenReturn("path/to/node");
-
-        when(dmsData.productCard("123", Locale.UK)).thenThrow(new IOException());
-
-        FlatLink link = service.createLink(Locale.UK, dmsLink);
-
-        assertNull(link);
-    }
-
-    @Test
     @DisplayName("A non existing DMS link doesn't return a link")
-    void dmsLink_notExistingProduct() throws IOException {
+    void dmsLink_notExistingProduct() {
         //Verifies that when and DMS item doesn't exist, the link is not created.
         DMSLink dmsLink = mock(DMSLink.class);
         when(dmsLink.getProduct()).thenReturn("123");
@@ -147,7 +149,7 @@ class LinkServiceTest {
 
     @Test
     @DisplayName("Create a link form a DMSLink Compound")
-    void dmsLink() throws IOException {
+    void dmsLink() {
         //Verifies that is able to create a link from DMSLink and the url is taken from the JSON Response
         JsonNode node = mock(JsonNode.class);
         JsonNode url = mock(JsonNode.class);
@@ -194,7 +196,7 @@ class LinkServiceTest {
         when(productSearchLink.getSearch()).thenReturn(ps);
         when(sharedLink.getLinkType()).thenReturn(productSearchLink, productSearchLink);
 
-        String link = service.getPlainLink(sharedLink, null);
+        service.getPlainLink(sharedLink, null);
 
         verify(builder, times(1)).build();
     }
@@ -209,7 +211,7 @@ class LinkServiceTest {
 
         when(sharedLink.getLinkType()).thenReturn(productSearch, productSearch);
 
-        String link = service.getPlainLink(sharedLink, null);
+        service.getPlainLink(sharedLink, null);
 
         verify(builder, times(1)).build();
     }
@@ -249,7 +251,7 @@ class LinkServiceTest {
 
     @Test
     @DisplayName("Return a link from a DMSLink")
-    void getPlainLink_dmsLink() throws IOException {
+    void getPlainLink_dmsLink() {
         //Verifies that when and DMS item doesn't exist, the link is not created.
         SharedLink sharedLink = mock(SharedLink.class);
         DMSLink dmsLink = mock(DMSLink.class);
@@ -267,7 +269,7 @@ class LinkServiceTest {
 
     @Test
     @DisplayName("A non existing DMS link doesn't return a link for getPlainLnk")
-    void getPlainLink_dmsLink_notExistingProduct() throws IOException {
+    void getPlainLink_dmsLink_notExistingProduct() {
         //Verifies that when and DMS item doesn't exist, the link is not created.
         SharedLink sharedLink = mock(SharedLink.class);
         DMSLink dmsLink = mock(DMSLink.class);
@@ -286,9 +288,9 @@ class LinkServiceTest {
         assertEquals("eBooks", service.getLinkCategory("https://ebooks.visitscotland.com/whisky-distilleries-guides/",Locale.UK));
 
         String blog = "Travel Blog";
-        when(resourceBundle.getResourceBundle("navigation.main", "blog", Locale.UK ,true)).thenReturn(blog);
-        assertEquals(blog, getCategory("https://blog.visitscotland.com/discover-our-best-ebooks", "navigation.main", "blog", blog));
-        assertEquals(blog, getCategory("https://www.visitscotland.com/blog/culture/scottish-words-meanings/", "navigation.main", "blog", blog));
+        when(resourceBundle.getResourceBundle("navigation.main", "Travel-Blog", Locale.UK ,true)).thenReturn(blog);
+        assertEquals(blog, getCategory("https://blog.visitscotland.com/discover-our-best-ebooks", "navigation.main", "Travel-Blog", blog));
+        assertEquals(blog, getCategory("https://www.visitscotland.com/blog/culture/scottish-words-meanings/", "navigation.main", "Travel-Blog", blog));
 
         String seeDo= "See do";
         when(resourceBundle.getResourceBundle("navigation.main", "see-do", Locale.UK ,true)).thenReturn(seeDo);
@@ -338,9 +340,98 @@ class LinkServiceTest {
 
     private String getCategory(String url, String bundle, String key, String value){
         when(resourceBundle.getResourceBundle(bundle, key, Locale.UK ,true)).thenReturn(value);
-        String result = service.getLinkCategory(url,Locale.UK);
+        return service.getLinkCategory(url,Locale.UK);
+    }
 
-        return result;
+    @Test
+    @DisplayName("VS-2308 External document definition with category")
+    void createEnhancedLink_externalDocument_category() {
+        final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
+        final String category= "see-do";
+        SharedLink externalDocument = new SharedLinkMockBuilder().externalDocument("title",url,category).build();
+
+        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
+        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument,null, Locale.UK, true);
+
+        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
+        assertEquals(category, enhancedLink.getCategory());
+    }
+
+    @Test
+    @DisplayName("VS-1696 - If size cannot be calculated the link still appears")
+    void createEnhancedLink_externalDocument_broken() {
+        final String url = "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
+        final Module<?> module = new Module<>();
+
+        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        EnhancedLink enhancedLink = service.createEnhancedLink(
+                new SharedLinkMockBuilder().externalDocument("title",url,"see-do").build(), module,
+                Locale.UK, true);
+
+        assertEquals("title (DOWNLOAD)", enhancedLink.getLabel());
+        assertTrue(module.getErrorMessages().contains("The Link to the External document might be broken"));
+    }
+
+    @Test
+    @DisplayName("Itineraries have days and main transport added")
+    void createEnhancedLink_itinerary() {
+        Itinerary itinerary = new MegalinksMockBuilder().getItinerary("bus");
+        when(documentUtilsService.getSiblingDocuments(itinerary,Day.class, "visitscotland:Day")).thenReturn(Arrays.asList(mock(Day.class), mock(Day.class)));
+
+        EnhancedLink enhancedLink = service.createEnhancedLink(itinerary, null, Locale.UK, false);
+
+        assertEquals(2, enhancedLink.getItineraryDays());
+        assertEquals("bus",enhancedLink.getItineraryTransport());
+    }
+
+    @Test
+    @DisplayName("VS-2308 External document definition without category")
+    void createEnhancedLink_externalDocument() {
+        final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
+        SharedLink externalDocument = new SharedLinkMockBuilder().externalDocument("title",url,  null).build();
+
+        when(resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
+        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument, null, Locale.UK, false);
+
+        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
+        Mockito.verify((ExternalDocument)externalDocument.getLinkType(),Mockito.never()).getCategory();
+    }
+
+    @Test
+    @DisplayName("DMSLink - Test that the image is loaded from the DMS")
+    void DMS_enhanced_SharedLink_defaultsImage() throws IOException {
+        JsonNode node = new ObjectMapper().readTree(MegalinksMockBuilder.MOCK_JSON);
+        Module<?> module = new Module<>();
+
+        SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
+        when(imageFactory.createImage(node, module)).thenReturn(new FlatImage());
+
+        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+
+        assertNotNull(link.getImage());
+    }
+
+    @Test
+    @DisplayName("No image throw a warning in preview mode")
+    void noImageDefined_DMS_defaultsImageNotFound() throws IOException {
+        final String NO_IMAGE_JSON = "{" +
+                " \"url\":\"/info/fake-product-p0123456798\", " +
+                " \"name\":\"Fake Product\" " +
+                "}";
+        JsonNode node = new ObjectMapper().readTree(NO_IMAGE_JSON);
+        SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
+        Module<?> module = new Module<>();
+
+        when(properties.getDmsHost()).thenReturn("");
+
+        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+        assertEquals("/info/fake-product-p0123456798", link.getLink());
+        assertEquals(1, module.getErrorMessages().size());
+        assertNull(link.getImage());
     }
 
 }

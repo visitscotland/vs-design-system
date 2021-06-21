@@ -26,6 +26,7 @@ import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
 public class ListicleFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ListicleFactory.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     private final LinkService linksService;
     private final DMSDataService dmsData;
@@ -97,8 +98,7 @@ public class ListicleFactory {
      */
     private FlatLink processMainProduct(Locale locale, HippoCompound link, ListicleModule module){
         if (link == null) {
-            String issue = CommonUtilsService.contentIssue("The ListicleItem %s doesn't contain a main product", module.getHippoBean().getPath());
-            logger.warn(issue);
+            contentLogger.warn("The ListicleItem {} doesn't contain a main product", module.getHippoBean().getPath());
             return null;
         } else if (link instanceof DMSLink) {
             processDMSMainProduct(locale, module, (DMSLink) link);
@@ -109,8 +109,7 @@ public class ListicleFactory {
                     module.setImage(imageFactory.getImage(cmsLink.getHeroImage(), module, locale));
                 }
             } else {
-                String issue = CommonUtilsService.contentIssue("The ListicleItem %s is pointing to a document that is not a page ", module.getHippoBean().getPath());
-                logger.warn(issue);
+                contentLogger.warn("The ListicleItem {} is pointing to a document that is not a page ", module.getHippoBean().getPath());
                 return null;
             }
         }
@@ -130,9 +129,7 @@ public class ListicleFactory {
 
         if (product == null) {
             item.addErrorMessage("The product id does not match in the DMS");
-            String message = CommonUtilsService.contentIssue("The product id was not provided or the product was not found (id=%s), Listicle = %s - %s",
-                    dmsLink.getProduct(), item.getHippoBean(), item.getHippoBean().getTitle());
-            logger.warn(message);
+            contentLogger.warn("The product id was not provided or the product was not found (id={}), Listicle = {} - {}",  dmsLink.getProduct(), item.getHippoBean(), item.getHippoBean().getTitle());
         } else {
             if (item.getImage() == null) {
                 item.setImage(imageFactory.createImage(product, item));

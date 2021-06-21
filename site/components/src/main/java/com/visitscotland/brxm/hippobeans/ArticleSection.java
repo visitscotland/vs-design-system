@@ -10,9 +10,6 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/** 
- * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
- */
 @HippoEssentialsGenerated(internalName = "visitscotland:ArticleSection")
 @Node(jcrType = "visitscotland:ArticleSection")
 public class ArticleSection extends HippoCompound {
@@ -48,7 +45,6 @@ public class ArticleSection extends HippoCompound {
         } else if (children.size() == 1) {
             return children.get(0);
         } else {
-//            logger.warn("This list in supposed to have only one child");
             return children.get(0);
         }
     }

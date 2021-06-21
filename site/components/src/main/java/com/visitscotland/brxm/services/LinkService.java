@@ -1,18 +1,23 @@
 package com.visitscotland.brxm.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.visitscotland.brxm.dms.DMSConstants;
+import com.visitscotland.brxm.dms.LocationLoader;
+import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.hippobeans.*;
-import com.visitscotland.brxm.model.FlatLink;
-import com.visitscotland.brxm.model.LinkType;
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
+import com.visitscotland.brxm.model.*;
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
+import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.MalformedURLException;
@@ -23,21 +28,33 @@ import java.util.Locale;
 public class LinkService {
 
     private static final Logger logger = LoggerFactory.getLogger(LinkService.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     public static final String URL = "url";
 
     private final DMSDataService dmsData;
-    private final ResourceBundleService resourceBundle;
+    private final ResourceBundleService bundle;
     private final HippoUtilsService utils;
     private final Properties properties;
+    private final ImageFactory imageFactory;
+    private final CommonUtilsService commonUtils;
+    private final DocumentUtilsService documentUtilsService;
 
-    public LinkService(DMSDataService dmsData, ResourceBundleService resourceBundle, HippoUtilsService utils, Properties properties) {
+    @Autowired
+    public LinkService(DMSDataService dmsData, ResourceBundleService bundle, HippoUtilsService utils, Properties properties, ImageFactory imageFactory, CommonUtilsService commonUtils, DocumentUtilsService documentUtilsService) {
         this.dmsData = dmsData;
-        this.resourceBundle = resourceBundle;
+        this.bundle = bundle;
         this.utils = utils;
         this.properties = properties;
+
+        this.imageFactory = imageFactory;
+        this.commonUtils = commonUtils;
+        this.documentUtilsService = documentUtilsService;
     }
 
+    /**
+     * Fetches a new Product Search Object
+     */
     private ProductSearchBuilder productSearch(){
         return VsComponentManager.get(ProductSearchBuilder.class);
     }
@@ -56,30 +73,26 @@ public class LinkService {
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
 
             if (dmsLink.getProduct() == null) {
-                String message = CommonUtilsService.contentIssue("There is no product with the id '%s', (%s) ",
-                        dmsLink.getProduct(), item.getPath());
-                logger.warn(message);
+                contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), item.getPath());
             } else if (product != null) {
-                //TODO build the link for the DMS product properly
-                return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL);
+                return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL);
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
             ProductSearchBuilder psb = productSearch().fromHippoBean(productSearchLink.getSearch()).locale(locale);
 
-            return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build(), LinkType.INTERNAL);
+            return new FlatLink(bundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build(), LinkType.INTERNAL);
 
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;
             LinkType linkType = getType(externalLink.getLink());
-            return new FlatLink(resourceBundle.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLink(), linkType);
+            return new FlatLink(bundle.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLink(), linkType);
 
         } else if (item instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) item;
-            return new FlatLink(resourceBundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl(cmsLink.getLink()), LinkType.INTERNAL);
+            return new FlatLink(bundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl(cmsLink.getLink()), LinkType.INTERNAL);
         } else {
-            String message = CommonUtilsService.contentIssue("The document %s could not be turned into a link'  ", item.getPath());
-            logger.warn(message);
+            contentLogger.warn("The document {} could not be turned into a link", item.getPath());
         }
 
         return null;
@@ -96,8 +109,7 @@ public class LinkService {
 
         if (link.getLinkType() instanceof DMSLink) {
             if (product == null) {//((DMSLink) link).getDmsData(locale)
-                CommonUtilsService.contentIssue("The product id '%s' does not exist but is linked ",
-                        ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
+                contentLogger.warn("The product id '{}' does not exist but is linked - {}", ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
             } else {
                 return properties.getDmsHost() + product.get(URL).asText();
             }
@@ -123,7 +135,7 @@ public class LinkService {
      * @return
      */
     public LinkType getType(String url) {
-        //TODO the following if block requires some refinement
+        //TODO the following if block requires some refinement. Remove the hardcode URLs
         if (Contract.isEmpty(url)) {
             return null;
         } else if (url.startsWith("/") || url.contains("localhost") || url.contains("visitscotland.com")
@@ -151,27 +163,142 @@ public class LinkService {
             } else if (path.contains("ebooks.visitscotland.com")) {
                 return "eBooks";
             } else if (path.contains("blog")) {
-                return resourceBundle.getResourceBundle("navigation.main", "blog", locale, true);
+                return bundle.getResourceBundle("navigation.main", "Travel-Blog", locale, true);
             } else if (path.contains("see-do") || path.contains("events") || path.contains("tours")) {
-                return resourceBundle.getResourceBundle("navigation.main", "see-do", locale, true);
+                return bundle.getResourceBundle("navigation.main", "see-do", locale, true);
             } else if (path.contains("accommodation")) {
-                return resourceBundle.getResourceBundle("navigation.main", "accommodation", locale, true);
+                return bundle.getResourceBundle("navigation.main", "accommodation", locale, true);
             } else if (path.contains("destination") || path.contains("towns-villages")) {
-                return resourceBundle.getResourceBundle("navigation.main", "destinations-map", locale, true);
+                return bundle.getResourceBundle("navigation.main", "destinations-map", locale, true);
             } else if (path.contains("travel") || path.contains("holidays") || path.contains("transport")) {
-                return resourceBundle.getResourceBundle("navigation.main", "travel-planning", locale, true);
+                return bundle.getResourceBundle("navigation.main", "travel-planning", locale, true);
             } else if (path.contains("brochures")) {
-                return resourceBundle.getResourceBundle("navigation.main", "inspiration", locale, true);
+                return bundle.getResourceBundle("navigation.main", "inspiration", locale, true);
             } else if (path.contains("about") || path.contains("contact") || path.contains("policies") || path.contains("services")) {
-                return resourceBundle.getResourceBundle("navigation.footer", "footer.visitor-information", locale, true);
+                return bundle.getResourceBundle("navigation.footer", "footer.visitor-information", locale, true);
             }
 
-            return resourceBundle.getResourceBundle("navigation.main", "see-do", locale, true);
+            return bundle.getResourceBundle("navigation.main", "see-do", locale, true);
 
         } catch (MalformedURLException e) {
             logger.error("The URL " + path + " is not valid", e);
             return null;
         }
-
     }
+
+    /**
+     * Creates an enhanced link form a {@code Linkable} object
+     *
+     * @param linkable Page or Shared link that contains the information about the link
+     * @param module Module to
+     * @param locale
+     * @param addCategory
+     * @return
+     */
+    public EnhancedLink createEnhancedLink(Linkable linkable, Module<?> module, Locale locale, boolean addCategory) {
+        EnhancedLink link = new EnhancedLink();
+        link.setTeaser(linkable.getTeaser());
+        link.setLabel(linkable.getTitle());
+
+        if (linkable.getImage() != null) {
+            link.setImage(imageFactory.createImage(linkable.getImage(), module, locale));
+        }
+
+        if (linkable instanceof Page) {
+            enhancedLinkFromPage(link, (Page) linkable);
+        } else if (linkable instanceof SharedLink) {
+            enhancedLinkFromSharedLink(link, (SharedLink) linkable, module, locale, addCategory);
+        } else {
+            logger.warn("The type {} was not expected and will be skipped", linkable.getClass().getSimpleName());
+            return null;
+        }
+
+        if (addCategory && link.getLink()!= null && link.getCategory()==null){
+            link.setCategory(getLinkCategory (link.getLink(),locale));
+        }
+        if (link.getImage() == null) {
+            if (module != null) {
+                module.addErrorMessage("The link to '" + link.getLink() + "' does not contain an image.");
+            } else {
+                logger.warn("The error message cannot be displayed in preview");
+            }
+            contentLogger.warn("The link to {} does not have an image but it is expecting one", ((BaseDocument) linkable).getPath());
+        }
+
+        return link;
+    }
+
+    /**
+     * Query the DMSDataService and extract the information about the product as a {@code JsonNode}
+     *
+     * @param link SharedLink where the DMS product (ID) is defined
+     * @param locale User language to consume DMS texts such a category, location, facilities...
+     * @return JSON with DMS product information to create the card or null if the product does not exist
+     */
+    private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
+        if (link.getLinkType() instanceof DMSLink) {
+            return dmsData.productCard(((DMSLink) link.getLinkType()).getProduct(), locale);
+        }
+        return null;
+    }
+
+    /**
+     * Populated the information about an enhanced Link from a Page Document.
+     *
+     * @param link EnhacencedLink with minimum data
+     * @param linkable SharedLink document that contains extra information
+     */
+    private void enhancedLinkFromPage(EnhancedLink link, Page linkable){
+        link.setLink(utils.createUrl(linkable));
+        link.setType(LinkType.INTERNAL);
+        if (linkable instanceof Itinerary) {
+            Itinerary itinerary = (Itinerary) linkable;
+            link.setItineraryDays(documentUtilsService.getSiblingDocuments(linkable,Day.class, "visitscotland:Day").size());
+            if (itinerary.getTransports().length > 0){
+                link.setItineraryTransport(itinerary.getTransports()[0]);
+            }
+        }
+    }
+
+    /**
+     * Populated the information about an enhanced Link from a SharedLink Document.
+     *
+     * @param link EnhacencedLink with minimum data
+     * @param linkable SharedLink document that contains extra information
+     * @param module Module to feed with any possible issue found while creating the page.
+     * @param locale Language for the label
+     * @param addCategory wether or not the category field is populated.
+     */
+    private void enhancedLinkFromSharedLink(EnhancedLink link, SharedLink linkable, Module module, Locale locale, boolean addCategory){
+        JsonNode product = getNodeFromSharedLink(linkable, locale);
+        link.setLink(getPlainLink(linkable, product));
+
+        if (link.getImage() == null && product != null && product.has(DMSConstants.DMSProduct.IMAGE)) {
+            link.setImage(imageFactory.createImage(product, module));
+        }
+        if (linkable.getLinkType() instanceof ExternalDocument){
+            ExternalDocument externalDocument = (ExternalDocument) linkable.getLinkType();
+            //TODO The following operation is expensive. We should cache the value
+            String size = commonUtils.getExternalDocumentSize(externalDocument.getLink(), locale);
+            String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
+            if (size == null) {
+                module.addErrorMessage("The Link to the External document might be broken");
+                contentLogger.warn("The external document {} might be broken.", link.getLink());
+                link.setLabel(linkable.getTitle() + " (" + downloadLabel + ")");
+            } else {
+                link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");
+            }
+
+            link.setType(LinkType.DOWNLOAD);
+            if (addCategory) {
+                link.setCategory(externalDocument.getCategory());
+            }
+        }
+
+        if (link.getType() == null) {
+            link.setType(getType(link.getLink()));
+        }
+    }
+
+
 }

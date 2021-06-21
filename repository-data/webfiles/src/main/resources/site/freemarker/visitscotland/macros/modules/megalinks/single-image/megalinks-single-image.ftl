@@ -16,7 +16,7 @@
         <vs-megalink-single-image 
             title="${item.innerTitle}"
             img-src="${image}"
-            <#if item.cta.link??>button-link="${item.cta.link}"</#if>
+            <#if (item.cta.link)??>button-link="${item.cta.link}"</#if>
             <#if item.alignment == 'left'>alternate</#if>
             theme="${theme}"
         >
@@ -45,7 +45,7 @@
             </template>
             
             <template slot="vsSingleImageButtonText">
-                ${item.cta.label}
+                <#if (item.cta.link)??>${item.cta.label}</#if>
             </template>
             
         </vs-megalink-single-image>
