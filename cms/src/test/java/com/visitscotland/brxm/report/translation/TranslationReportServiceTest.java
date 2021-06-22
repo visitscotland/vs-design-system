@@ -15,11 +15,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Stream;
 import javax.jcr.Node;
@@ -127,14 +127,10 @@ class TranslationReportServiceTest {
     @DisplayName("Document last modified date formatted correctly")
     @Test
     void documentDateFormat() throws Exception  {
-        Calendar lastModified = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-        lastModified.setTime(dateFormat.parse("2021-10-12 18:14:15"));
         Node englishHandle = new MockNodeBuilder().withProperty("hippotranslation:locale", "en").build();
         Node englishUnpublishedVariant = new MockNodeBuilder().translatable("visitscotland:Page")
                 .withState("unpublished", "live")
-                .withProperty("hippostdpubwf:lastModificationDate", lastModified).build();
+                .lastModifiedAt(ZonedDateTime.of(2021, 10, 12, 18, 14, 15, 50, ZoneId.of("GMT"))).build();
         JcrDocument englishJcrDoc = new MockJcrDocumentBuilder().withHandle(englishHandle)
                 .withVariantNode("unpublished", englishUnpublishedVariant).build();
         doReturn(Collections.singletonList(englishJcrDoc))
