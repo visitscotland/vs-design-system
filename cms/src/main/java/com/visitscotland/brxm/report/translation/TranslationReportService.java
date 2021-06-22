@@ -153,7 +153,7 @@ public class TranslationReportService {
         Node node = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
         String priorityString = node.hasProperty(VS_TRANSLATION_PRIORITY) ?
                 node.getProperty(VS_TRANSLATION_PRIORITY).getString() : "";
-        if (priorityString.isEmpty()) return TranslationPriority.NORMAL;
+        if (priorityString == null || priorityString.isEmpty()) return TranslationPriority.NORMAL;
 
         try {
             return TranslationPriority.valueOf(priorityString);
