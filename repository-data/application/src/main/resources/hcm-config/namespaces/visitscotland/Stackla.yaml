@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 895749da-42de-45bb-84cd-a34a2b601979
+          jcr:uuid: ad4f9cd1-9bd3-4ee9-a067-957d65f1b700
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -24,7 +24,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:medium-string-validator']
           /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -73,7 +73,7 @@ definitions:
           visitscotland:title: ''
           visitscotland:stacklaId: ''
           visitscotland:stacklaHash: ''
-          jcr:uuid: 314b89ff-d480-41ed-b918-8b993b4ede8f
+          jcr:uuid: 48c46a9f-9485-4423-964b-afe3fe2ab120
           hippostdpubwf:lastModificationDate: 2021-05-06T14:34:32.434+01:00
           hippostdpubwf:creationDate: 2021-05-06T14:34:32.434+01:00
           visitscotland:translation: ''
@@ -105,11 +105,11 @@ definitions:
             field: copy
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: 'Recommended length: 150 characters'
+            hint: 'Recommended length: 250 characters'
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
-                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 225}}'
+                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 375}}'
               ckeditor.config.overlayed.json: '{toolbarGroups: [{name:''links''},{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}
                 ] , removeButtons: ''PickImage,Youtube,Table''}'
           /stacklaHash:

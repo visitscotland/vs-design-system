@@ -23,7 +23,7 @@ definitions:
             hipposysedit:path: visitscotland:caption
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:medium-string-validator']
           /id:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
