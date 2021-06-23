@@ -4520,6 +4520,189 @@
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: e027337d-fc49-4181-b568-fc35f464a176
+    /iknow-community:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: cc447088-d7a4-4b99-a6c1-719d8d846a22
+      hippo:name: iKnow Community
+      hippostd:foldertype: [new-translated-folder-test, new-document]
+      hippotranslation:id: 48f86929-f916-497b-be6c-ddc3e60cfd20
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 845bcf7c-38ab-400a-a589-8741ea1d6685
+        hippo:versionHistory: 0e285916-e49a-4f22-aa40-178c33d7f78c
+        /content[1]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: b8837415-d3d5-434d-a635-3c8f0ad328eb
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-06-11T15:49:17.276+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-11T15:49:17.277+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 03b9ff37-4e45-410b-9819-7453797c91b9
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: East Neuk of Fife
+          visitscotland:newsletter: true
+          visitscotland:seoDescription: iknow community
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iknow community
+          visitscotland:teaser: iknow community
+          visitscotland:title: iknow community
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. In blandit nec dui in iaculis. Pellentesque id scelerisque dolor.
+              Aenean euismod condimentum erat a interdum.</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 8add3e8c-c6a1-4236-b951-4a6823fe0de9
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-06-11T15:49:17.276+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-11T15:49:51.736+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 03b9ff37-4e45-410b-9819-7453797c91b9
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: East Neuk of Fife
+          visitscotland:newsletter: true
+          visitscotland:seoDescription: iknow community
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iknow community
+          visitscotland:teaser: iknow community
+          visitscotland:title: iknow community
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. In blandit nec dui in iaculis. Pellentesque id scelerisque dolor.
+              Aenean euismod condimentum erat a interdum.</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: a577661f-5fee-4fbf-8972-021c3aad7d29
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-06-11T15:49:17.276+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-11T15:49:51.736+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-06-11T15:49:59.489+01:00
+          hippotranslation:id: 03b9ff37-4e45-410b-9819-7453797c91b9
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: East Neuk of Fife
+          visitscotland:newsletter: true
+          visitscotland:seoDescription: iknow community
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: iknow community
+          visitscotland:teaser: iknow community
+          visitscotland:title: iknow community
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. In blandit nec dui in iaculis. Pellentesque id scelerisque dolor.
+              Aenean euismod condimentum erat a interdum.</p>
+      /iknow-community:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 637b72bb-ef9a-43ec-ad2f-1fd5d38d7034
+        hippo:name: iKnow Community
+        hippo:versionHistory: 2e2fe210-bab1-4fae-ada0-862d9587b8ce
+        /iknow-community[1]:
+          jcr:primaryType: visitscotland:IknowCommunity
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 08a6c819-e7d4-48c3-8faf-76f00f08da29
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-06-11T15:50:10.818+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-11T15:50:10.818+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: eb4f6758-96c6-4ddd-93e3-44ed6c0c4a6a
+          hippotranslation:locale: en
+          visitscotland:tags: [edinburgh, scotland, castles, highlands]
+          visitscotland:title: Iknow Community Title
+          visitscotland:translation: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. In blandit nec dui in iaculis. Pellentesque id scelerisque dolor.
+              Aenean euismod condimentum erat a interdum.</p>
+        /iknow-community[2]:
+          jcr:primaryType: visitscotland:IknowCommunity
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: f3595eaa-bfb1-46c5-9ec4-dc4a327b5280
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-06-11T15:50:10.818+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-11T15:50:26.293+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: eb4f6758-96c6-4ddd-93e3-44ed6c0c4a6a
+          hippotranslation:locale: en
+          visitscotland:tags: [edinburgh, scotland, castles, highlands]
+          visitscotland:title: Iknow Community Title
+          visitscotland:translation: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. In blandit nec dui in iaculis. Pellentesque id scelerisque dolor.
+              Aenean euismod condimentum erat a interdum.</p>
+        /iknow-community[3]:
+          jcr:primaryType: visitscotland:IknowCommunity
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: a2cec549-78d0-445e-917f-cb33c618f5cf
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-06-11T15:50:10.818+01:00
+          hippostdpubwf:lastModificationDate: 2021-06-11T15:50:26.293+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-06-11T15:50:28.847+01:00
+          hippotranslation:id: eb4f6758-96c6-4ddd-93e3-44ed6c0c4a6a
+          hippotranslation:locale: en
+          visitscotland:tags: [edinburgh, scotland, castles, highlands]
+          visitscotland:title: Iknow Community Title
+          visitscotland:translation: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. In blandit nec dui in iaculis. Pellentesque id scelerisque dolor.
+              Aenean euismod condimentum erat a interdum.</p>
   /pages:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
