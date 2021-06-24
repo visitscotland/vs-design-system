@@ -1,5 +1,4 @@
 import { shallowMount } from '@vue/test-utils';
-import VsCol from '@components/elements/layout/Col';
 import VsArticle from '../Article';
 
 const defaultSlotText = 'Article content';
@@ -27,16 +26,6 @@ beforeEach(() => {
 describe('VsArticle', () => {
     it('should render a component with the data-test attribute `vs-article`', () => {
         expect(wrapper.attributes('data-test')).toBe('vs-article');
-    });
-
-    describe(':props', () => {
-        it('Should render correct column class when isStandardPage is true', () => {
-            wrapper = factoryShallowMount({
-                isStandardPage: true,
-            });
-            const col = wrapper.findComponent(VsCol);
-            expect(col.classes()).toContain('col-xxl-10', 'offset-xxl-1');
-        });
     });
 
     describe(':slots', () => {
