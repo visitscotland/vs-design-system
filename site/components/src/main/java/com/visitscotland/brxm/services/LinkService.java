@@ -75,7 +75,7 @@ public class LinkService {
             if (dmsLink.getProduct() == null) {
                 contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), item.getPath());
             } else if (product != null) {
-                return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL);
+                return createDmsLink(locale, dmsLink, product);
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
@@ -96,6 +96,10 @@ public class LinkService {
         }
 
         return null;
+    }
+
+    public FlatLink createDmsLink(Locale locale, DMSLink dmsLink, JsonNode dmsProductJson) {
+        return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + dmsProductJson.get(URL).asText(), LinkType.INTERNAL);
     }
 
     /**
