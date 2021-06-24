@@ -90,6 +90,31 @@ class PropertiesTest {
         assertEquals(0, properties.getDmsTries());
     }
 
+    @Test
+    @DisplayName("Reads an integer number from a property")
+    void readDouble(){
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.DMS_MAP_DEFAULT_DISTANCE, Locale.UK)).thenReturn("3.14");
+        assertEquals(3.14, properties.getDmsMapDefaultDistance());
+    }
+
+    @Test
+    @DisplayName("Can parse Integers from environment variables")
+    void readDouble_env(){
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.DMS_MAP_DEFAULT_DISTANCE, Locale.UK)).thenReturn("$TEST_VS");
+        value = "3.14";
+        assertEquals(3.14, properties.getDmsMapDefaultDistance());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "a", "$"})
+    @NullSource
+    @DisplayName("Empty and wrong values return 0 for Numeric properties")
+    void readDouble_empty(String value){
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.DMS_MAP_DEFAULT_DISTANCE, Locale.UK)).thenReturn(value);
+        assertEquals(0.0, properties.getDmsMapDefaultDistance());
+    }
+
+
     @ParameterizedTest
     @ValueSource(strings = {"true", "TRUE"})
     @DisplayName("Reads true from a property")

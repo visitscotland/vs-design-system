@@ -173,4 +173,21 @@ class HTMLtoVueTransformerTest {
         String output = transformer.processLists("<ul><ol><ul></ul></ol><ol></ol></ul> <ol><ol></ol></ol><ul><ul></ul></ul>");
         assertEquals("<vs-list><ol><ul></ul></ol><ol></ol></vs-list> <vs-list ordered><ol></ol></vs-list><vs-list><ul></ul></vs-list>", output);
     }
+
+    @Test
+    @DisplayName("Download document links includes the icon and the size")
+    void links_external(){
+        final String HTML = "<p>Take a look at the " +
+                "<a href=\"https://www.visitscotland.com/pdf/\" title=\"iKnow Community\" target=\"_blank\">iKnow Scotland Community</a>" +
+                " to share your tips and pick up a couple more for your next break or day out in Scotland.</p>";
+
+        when(linkService.getType("https://www.visitscotland.com/pdf/")).thenReturn(LinkType.DOWNLOAD);
+        when(linkService.getDownloadText("https://www.visitscotland.com/pdf/")).thenReturn("(PDF 3GB)");
+
+        String result = transformer.processLinks(HTML);
+
+        Assertions.assertTrue(result.contains("<vs-link "));
+        Assertions.assertTrue(result.contains(" type=\"download\""));
+        Assertions.assertTrue(result.contains("(PDF 3GB)"));
+    }
 }

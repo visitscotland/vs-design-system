@@ -2,7 +2,7 @@ package com.visitscotland.brxm.components.content;
 
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.factory.ImageFactory;
-import com.visitscotland.brxm.factory.LinkModulesFactory;
+import com.visitscotland.brxm.factory.MegalinkFactory;
 import com.visitscotland.brxm.factory.SignpostFactory;
 import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
@@ -26,12 +26,12 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
     public static final String OTYML = "otyml";
     public static final String NEWSLETTER_SIGNPOST = "newsletterSignpost";
 
-    private LinkModulesFactory linksFactory;
+    private MegalinkFactory linksFactory;
     private ImageFactory imageFactory;
     private final SignpostFactory signpostFactory;
 
     public PageContentComponent() {
-        linksFactory = VsComponentManager.get(LinkModulesFactory.class);
+        linksFactory = VsComponentManager.get(MegalinkFactory.class);
         imageFactory = VsComponentManager.get(ImageFactory.class);
         signpostFactory = VsComponentManager.get(SignpostFactory.class);
     }

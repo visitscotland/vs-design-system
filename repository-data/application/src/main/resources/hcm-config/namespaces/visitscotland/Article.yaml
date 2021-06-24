@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: cb76cebb-c508-4425-9faa-33843f62dcd0
+          jcr:uuid: 1bf0263b-71fd-4039-824a-a3d46a5c609c
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -32,7 +32,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:medium-string-validator']
           /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -70,7 +70,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
           visitscotland:anchor: ''
-          jcr:uuid: 0d953197-0b32-4180-901d-b9c80b92d44d
+          jcr:uuid: bf437913-96e4-4e51-bffa-61ea218e6df4
           hippostdpubwf:lastModificationDate: 2020-12-11T10:07:47.311Z
           hippostdpubwf:creationDate: 2020-12-11T10:07:47.312Z
           /visitscotland:image:
@@ -128,13 +128,13 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Copy
             field: copy
-            hint: 'Recommended length: 200 characters'
+            hint: 'Recommended length: 250 characters'
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
-                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 300}}'
+                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 375}}'
               ckeditor.config.overlayed.json: '{toolbarGroups: [{name:''links''},{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}
                 ] , removeButtons: ''PickImage,Youtube,Table''}'
           /paragraph:

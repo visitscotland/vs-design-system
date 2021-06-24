@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 0dbe3519-0880-4975-8001-1800dd3f551f
+          jcr:uuid: 7ba05cd2-e9de-4e1a-9094-8bd7ac3ed339
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -23,6 +23,7 @@ definitions:
             hipposysedit:path: visitscotland:start
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: ['visitscotland:short-string-validator']
           /finish:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -31,6 +32,7 @@ definitions:
             hipposysedit:path: visitscotland:finish
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: ['visitscotland:short-string-validator']
           /distance:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -82,7 +84,7 @@ definitions:
             hipposysedit:path: visitscotland:highlights
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:short-string-validator']
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -102,7 +104,7 @@ definitions:
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          jcr:uuid: 23f1504c-f0cc-4e03-8cee-7f58a2c8134b
+          jcr:uuid: ab62b7e4-b481-47aa-8081-0b2d0d25de9c
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           visitscotland:areas: []
@@ -212,20 +214,22 @@ definitions:
             field: introduction
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
-            hint: ''
+            hint: Max length suggestion is 500.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
               ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
-                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
+                \ { \tcountSpacesAsChars: true,     showCharCount: true ,maxCharCount:750\
+                \   }  }"
           /highlights:
             jcr:primaryType: frontend:plugin
             caption: Highlights
             field: highlights
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /transports:

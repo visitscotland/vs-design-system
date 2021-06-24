@@ -25,20 +25,22 @@
                     <vs-icon name="chevron" orientation="right" variant="light" size="xs"></vs-icon>
                 </span>
 
-                <vs-list
-                    unstyled
-                    role="menu"
-                >
-                    <#list menuItem.childMenuItems as childItem>
-                        <#if childItem.title?has_content>
-                            <vs-footer-nav-list-item
-                                href="${getUrl(childItem)}"
-                                link-text="${childItem.title}"
-                                type="<#if childItem.externalLink??>external<#else>default</#if>"
-                            ></vs-footer-nav-list-item>
-                        </#if>
-                    </#list>
-                </vs-list>
+                <#if menuItem.childMenuItems?size gt 0>
+                    <vs-list
+                        unstyled
+                        role="menu"
+                    >
+                        <#list menuItem.childMenuItems as childItem>
+                            <#if childItem.title?has_content>
+                                <vs-footer-nav-list-item
+                                    href="${getUrl(childItem)}"
+                                    link-text="${childItem.title}"
+                                    type="<#if childItem.externalLink??>external<#else>default</#if>"
+                                ></vs-footer-nav-list-item>
+                            </#if>
+                        </#list>
+                    </vs-list>
+                </#if>
             </vs-footer-accordion-item>
          </vs-col>
     </#list>

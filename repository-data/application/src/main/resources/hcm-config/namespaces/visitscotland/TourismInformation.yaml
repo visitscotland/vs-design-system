@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 07b2d45d-4dd4-4a54-ad26-c89d7b5f1f11
+          jcr:uuid: a75c1f64-ae92-4e3a-b09c-79b9bddb6b78
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -51,7 +51,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 8a95c9a2-3fb5-42ac-bf03-4ce2918c1df2
+          jcr:uuid: 96c28422-3b67-4cc0-b6f6-b5fe86777aa2
           hippostdpubwf:lastModificationDate: 2020-07-31T16:41:13.276+01:00
           hippostdpubwf:creationDate: 2020-07-31T16:41:13.276+01:00
           visitscotland:translation: ''
@@ -89,6 +89,7 @@ definitions:
             field: ICentre
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /IKnow:

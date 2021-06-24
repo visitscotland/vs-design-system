@@ -37,7 +37,7 @@ public class PageTemplateBuilder {
     private final DocumentUtilsService documentUtils;
 
     //Factories
-    private final LinkModulesFactory linksFactory;
+    private final MegalinkFactory linksFactory;
     private final ICentreFactory iCentreFactory;
     private final IKnowFactory iKnowFactory;
     private final ArticleFactory articleFactory;
@@ -45,7 +45,7 @@ public class PageTemplateBuilder {
     private final IKnowCommunityFactory iKnowCommunityFactory;
     private final StacklaFactory stacklaFactory;
 
-    public PageTemplateBuilder(DocumentUtilsService documentUtils, LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory) {
+    public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
