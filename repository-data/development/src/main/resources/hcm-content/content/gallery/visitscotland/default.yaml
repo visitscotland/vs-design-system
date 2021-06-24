@@ -1578,34 +1578,6 @@
             jcr:primaryType: visitscotland:ImageData
             visitscotland:altText: ''
             visitscotland:caption: ''
-      /edinburgh-bus-tours.jpg:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-        jcr:uuid: a880d392-2b9e-4482-abe9-646d435ba82b
-        hippo:name: Edinburgh-bus-tours.jpg
-        /edinburgh-bus-tours.jpg:
-          jcr:primaryType: visitscotland:Image
-          hippo:availability: [live, preview]
-          hippogallery:filename: Edinburgh-bus-tours.jpg
-          /hippogallery:thumbnail:
-            jcr:primaryType: hippogallery:image
-            hippo:filename: Edinburgh-bus-tours.jpg
-            hippogallery:height: 45
-            hippogallery:width: 60
-            jcr:data:
-              type: binary
-              resource: /content/gallery/visitscotland/default/2021/01/edinburgh-bus-tours.jpg/edinburgh-bus-tours.jpg/thumbnail/thumbnail.jpg
-            jcr:lastModified: 2021-06-24T13:48:08.353+01:00
-            jcr:mimeType: image/jpeg
-          /hippogallery:original:
-            jcr:primaryType: hippogallery:image
-            hippogallery:height: 1080
-            hippogallery:width: 1422
-            jcr:data:
-              type: binary
-              resource: /content/gallery/visitscotland/default/2021/01/edinburgh-bus-tours.jpg/edinburgh-bus-tours.jpg/original/original.jpg
-            jcr:lastModified: 2021-06-24T13:48:08.353+01:00
-            jcr:mimeType: image/jpeg
       /edinburgh-castle-blue-sky.jpg:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
