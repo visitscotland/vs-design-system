@@ -30,7 +30,7 @@ describe('VsArticleSidebar', () => {
                 sidebarAlign: 'left',
             });
 
-            const sidebar = wrapper.find('[data-test="vs-article-sidebar"');
+            const sidebar = wrapper.find('[data-test="vs-article-sidebar"]');
             expect(sidebar.classes()).toContain('vs-article-sidebar--left');
         });
 
@@ -41,6 +41,32 @@ describe('VsArticleSidebar', () => {
 
             const sidebar = wrapper.find('[data-test="vs-article-sidebar"');
             expect(sidebar.classes()).toContain('vs-article-sidebar--right');
+        });
+    });
+
+    describe(':computed', () => {
+        it(':sidebarImgClasses - Image wrapper should have correct padding when no quote visible', () => {
+            const modifiedWrapper = shallowMount(VsArticleSidebar, {
+                slots: {
+                    vsArticleSidebarQuote: '',
+                    vsArticleSidebarImg: imgSlotText,
+                },
+            });
+
+            const imgWrapper = modifiedWrapper.find('[data-test="vs-article-sidebar"]').find('.vs-article-sidebar__img-wrapper');
+            expect(imgWrapper.classes()).toContain('pb-8');
+        });
+
+        it(':sidebarArticleClasses - Quote wrapper should have correct padding when no img visible', () => {
+            const modifiedWrapper = shallowMount(VsArticleSidebar, {
+                slots: {
+                    vsArticleSidebarImg: '',
+                    vsArticleSidebarQuote: quoteSlotText,
+                },
+            });
+
+            const quoteWrapper = modifiedWrapper.find('[data-test="vs-article-sidebar"]').find('.vs-article-sidebar__quote-wrapper');
+            expect(quoteWrapper.classes()).toContain('pt-0');
         });
     });
 
