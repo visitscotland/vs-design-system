@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: b4fea73e-e5a1-4bd6-a18f-6c6b1f8e86ba
+          jcr:uuid: e90f657b-4f64-460d-ae10-871d5e88ffb4
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -24,7 +24,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:medium-string-validator']
           /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -62,7 +62,7 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 9fe9448d-2acc-42d5-b506-a1226a22fa7e
+          jcr:uuid: 3c998ac1-4e55-4e78-9095-ee8063ef0f6d
           hippostdpubwf:lastModificationDate: 2021-06-11T10:13:33.356+01:00
           hippostdpubwf:creationDate: 2021-06-11T10:13:33.356+01:00
           /visitscotland:gettingToTab:
@@ -107,16 +107,16 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Copy
             field: copy
-            hint: Max length suggestion is 200.
+            hint: Max length suggestion is 250.
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              ckeditor.config.overlayed.json: "{   extraPlugins: 'wordcount',   wordcount:\
-                \ { \tcountSpacesAsChars: true,     showCharCount: true ,maxCharCount:300\
-                \   }  }"
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
+                , removeButtons: ''PickImage,Youtube,Table''}'
               ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
-                \ { \tcountSpacesAsChars: true,     showCharCount: true ,maxCharCount:300\
+                \ { \tcountSpacesAsChars: true,     showCharCount: true ,maxCharCount:375\
                 \   }  }"
           /gettingToTab:
             jcr:primaryType: frontend:plugin

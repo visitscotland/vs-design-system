@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 7d8d6c2f-ca86-4fc8-a509-65d3a5b709ef
+          jcr:uuid: a3825f81-bf87-48b7-9e20-2c49f9ab9127
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -75,6 +75,5 @@ definitions:
               ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
                 {countSpacesAsChars: true, showCharCount: true, maxCharCount: 750}}'
               ckeditor.config.overlayed.json: '{ stylesSet: ''article:./vs_styles.js'',  toolbarGroups:
-                [ {name: ''styles''},{name:''listindentalign'',groups:[''list'']},
-                {name:''links''},{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}
+                [{name:''listindentalign'',groups:[''list'']}, {name:''links''},{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}
                 ] , removeButtons: ''PickImage,Youtube,Table''}'
