@@ -39,36 +39,10 @@
                     </#list>
                     .
                 </template>
-
+                
                 <#if module.quote??>
-                    <#if module.quote.image??>
-                        <#assign imageQuote>
-                            <@hst.link hippobean=module.quote.image.cmsImage.original/>
-                        </#assign>
-                    <#else>
-                        <#assign imageQuote="" />
-                    </#if>
-
-                    <#if module.quote.link??>
-                        <#assign quoteLink=module.quote.link />
-                    <#else>
-                        <#assign quoteLink="" />
-                    </#if>
-
-                    <#if module.quote.authorName??>
-                        <#assign quoteAuthorName=module.quote.authorName />
-                    <#else>
-                        <#assign quoteAuthorName="" />
-                    </#if>
-
-                    <#if module.quote.authorTitle??>
-                        <#assign quoteAuthorTitle=module.quote.authorTitle />
-                    <#else>
-                        <#assign quoteAuthorTitle="" />
-                    </#if>
-
                     <template slot="icentreQuote">
-                        <@quote authorImage=imageQuote content=module.quote.quote authorName=quoteAuthorName authorTitle=quoteAuthorTitle link=quoteLink variant="wide"/>
+                        <@quote quoteItem=module.quote variant="wide"/>
                     </template>
                 </#if>
             </vs-icentre>

@@ -75,7 +75,7 @@ public class LinkService {
             if (dmsLink.getProduct() == null) {
                 contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), item.getPath());
             } else if (product != null) {
-                return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL);
+                return createDmsLink(locale, dmsLink, product);
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
@@ -96,6 +96,10 @@ public class LinkService {
         }
 
         return null;
+    }
+
+    public FlatLink createDmsLink(Locale locale, DMSLink dmsLink, JsonNode dmsProductJson) {
+        return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + dmsProductJson.get(URL).asText(), LinkType.INTERNAL);
     }
 
     /**
@@ -138,8 +142,10 @@ public class LinkService {
         //TODO the following if block requires some refinement. Remove the hardcode URLs
         if (Contract.isEmpty(url)) {
             return null;
+        } else if (url.toLowerCase().endsWith(".pdf")) {
+            return LinkType.DOWNLOAD;
         } else if (url.startsWith("/") || url.contains("localhost") || url.contains("visitscotland.com")
-                || url.startsWith(properties.getDmsHost())) {
+                    || url.startsWith(properties.getDmsHost())) {
             return LinkType.INTERNAL;
         }
 
@@ -278,18 +284,9 @@ public class LinkService {
         }
         if (linkable.getLinkType() instanceof ExternalDocument){
             ExternalDocument externalDocument = (ExternalDocument) linkable.getLinkType();
-            //TODO The following operation is expensive. We should cache the value
-            String size = commonUtils.getExternalDocumentSize(externalDocument.getLink(), locale);
-            String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
-            if (size == null) {
-                module.addErrorMessage("The Link to the External document might be broken");
-                contentLogger.warn("The external document {} might be broken.", link.getLink());
-                link.setLabel(linkable.getTitle() + " (" + downloadLabel + ")");
-            } else {
-                link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");
-            }
-
+            link.setLabel(linkable.getTitle() + getDownloadText(link.getLink(),locale, module));
             link.setType(LinkType.DOWNLOAD);
+
             if (addCategory) {
                 link.setCategory(externalDocument.getCategory());
             }
@@ -299,4 +296,26 @@ public class LinkService {
             link.setType(getType(link.getLink()));
         }
     }
+
+    public String getDownloadText(String link) {
+        return getDownloadText(link, utils.getRequestLocale(), null);
+    }
+
+
+    public String getDownloadText(String link, Locale locale, Module module){
+        String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
+        //TODO The following operation is expensive. We should cache the value
+        String size = commonUtils.getExternalDocumentSize(link, locale);
+        if (size == null) {
+            if (module != null) {
+                module.addErrorMessage("The Link to the External document might be broken");
+            }
+            contentLogger.warn("The external document {} might be broken.", link);
+            return " (" + downloadLabel + ")";
+        } else {
+            return " (" + downloadLabel + " " + size + ")";
+        }
+    }
+
+
 }

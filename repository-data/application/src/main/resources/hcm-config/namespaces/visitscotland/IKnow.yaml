@@ -23,6 +23,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: ['visitscotland:medium-string-validator']
           /description:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -63,7 +64,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Override Copy
             field: description
-            hint: 'Display guidance info - 250 characters'
+            hint: Display guidance info - 250 characters
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:

@@ -6,9 +6,6 @@ import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import java.util.List;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
-/** 
- * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
- */
 @HippoEssentialsGenerated(internalName = "visitscotland:OTYML")
 @Node(jcrType = "visitscotland:OTYML")
 public class OTYML extends HippoCompound {

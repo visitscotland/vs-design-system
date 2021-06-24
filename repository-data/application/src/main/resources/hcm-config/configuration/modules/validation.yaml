@@ -30,15 +30,15 @@ definitions:
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:short-string-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator
-      maxLength: '55'
+      maxLength: '60'
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:medium-string-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator
-      maxLength: '90'
+      maxLength: '80'
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:long-string-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator
-      maxLength: '135'
+      maxLength: '150'
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:extralong-string-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator
@@ -46,7 +46,7 @@ definitions:
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:seotitle-string-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator
-      maxLength: '70'
+      maxLength: '60'
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:seodescription-string-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brxm.validator.StringLengthValidator

@@ -186,7 +186,11 @@ export default {
 
         > .container {
             background: $color-white;
-            padding-bottom: $spacer-9;
+            padding-bottom: $spacer-8;
+
+            @include media-breakpoint-up(lg) {
+                padding-bottom: $spacer-9;
+            }
         }
     }
 

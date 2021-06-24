@@ -37,6 +37,7 @@ class ProductSearchTest {
     ProductSearchBuilder builder;
 
     private ProductSearchBuilder createBuilder(){
+
         return builder;
     }
 
@@ -62,8 +63,8 @@ class ProductSearchTest {
         String url = createBuilder().productTypes(DEFAULT_TYPE).build();
 
         assertTrue(
-                url.contains(String.format(DMSConstants.PRODUCT_SEARCH, PATH_FOOD_DRINK)),
-                String.format("The Generated URL is expected to contain " + DMSConstants.PRODUCT_SEARCH + " (%s) ", PATH_FOOD_DRINK, url));
+                url.contains(String.format(DMSConstants.PRODUCT_SEARCH, DMSConstants.PATH_FOOD_DRINK)),
+                String.format("The Generated URL is expected to contain " + DMSConstants.PRODUCT_SEARCH + " (%s) ", DMSConstants.PATH_FOOD_DRINK, url));
         assertTrue(url.startsWith("/info"),"The URL is expected to be relative");
         validateUrl(url);
     }
@@ -86,8 +87,8 @@ class ProductSearchTest {
         String url = createBuilder().productTypes(TYPE).build();
 
         assertTrue(
-                url.contains(PATH_SEE_DO),
-                String.format("The Generated URL is expected to contain the url path %s ", PATH_SEE_DO)
+                url.contains(DMSConstants.PATH_SEE_DO),
+                String.format("The Generated URL is expected to contain the url path %s ", DMSConstants.PATH_SEE_DO)
                 );
     }
 
@@ -410,6 +411,7 @@ class ProductSearchTest {
     @Test
     @DisplayName("Proximity - Empty value is replaced with default value")
     void proximity_empty() {
+        when(properties.getDmsMapDefaultDistance()).thenReturn(10.1);
         mockLocationLoader("Edinburgh");
         String url = createBuilder().productTypes(DEFAULT_TYPE)
                 .location("Edinburgh")
@@ -417,7 +419,7 @@ class ProductSearchTest {
                 .build();
 
         validateUrl(url);
-        assertTrue(url.contains("locprox=" + DEFAULT_PROXIMITY),
+        assertTrue(url.contains("locprox=10.1"),
                 String.format("The Generated URL is expected to have no order (%s) ", url)
                 );
     }
@@ -425,6 +427,7 @@ class ProductSearchTest {
     @Test
     @DisplayName("Proximity - Zero value is treated as empty value (CMS Limitation overcome)")
     void proximity_zero() {
+        when(properties.getDmsMapDefaultDistance()).thenReturn(10.1);
         mockLocationLoader("Edinburgh");
         String url = createBuilder().productTypes(DEFAULT_TYPE)
                 .location("Edinburgh")
@@ -433,7 +436,7 @@ class ProductSearchTest {
 
         validateUrl(url);
         assertTrue(
-                url.contains("locprox=" + DEFAULT_PROXIMITY),
+                url.contains("locprox=10.1"),
                 String.format("The Generated URL is expected to have no order (%s) ", url)
                 );
     }
@@ -513,9 +516,13 @@ class ProductSearchTest {
         when(locationLoader.getLocation(location, locale)).thenReturn(loc);
     }
 
-    //TODO Create test-utils?
+    /**
+     * Validates a Product Search URL
+     *
+     * The following validation might not be accurate for non Product Search URLs
+     * @param url
+     */
     private void validateUrl(String url) {
-        //The following is true just for Product Search
         //At least one question mark
         assertTrue(url.contains("?"), "There should be at least one parameter in the request: " + url );
         //No more than one question mark

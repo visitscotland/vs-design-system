@@ -5,6 +5,11 @@ import com.visitscotland.brxm.utils.NonTestable;
 @NonTestable()
 public class DMSConstants {
 
+    static final String PATH_SEE_DO = "see-do";
+    static final String PATH_ACCOMMODATION = "accommodation";
+    static final String PATH_FOOD_DRINK = "food-drink";
+    static final String PATH_EVENTS = "events";
+
     private DMSConstants(){}
 
     public static final String TYPE_SERVICES = "serv";
