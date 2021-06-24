@@ -55,10 +55,10 @@ export default {
     padding: 0;
     list-style: none;
 
-    li{
+    li {
         margin-bottom: $spacer-1;
 
-        &::before{
+        &::before {
             content: "• ";
             color: $color-pink;
             padding-right: 0.7rem;
@@ -67,15 +67,69 @@ export default {
             line-height: $line-height-xs;
         }
 
-        ul{
+        /* Nested list styles */
+        ol,
+        ul {
             list-style: none;
             margin: $spacer-4 0 $spacer-5 $spacer-6;
+        }
 
-            li{
-                &::before{
+        ul {
+            li {
+                &::before {
                     content: "– ";
                     padding-right: 0.6rem;
                     font-size: $h3-font-size;
+                }
+            }
+        }
+
+        ol {
+            counter-reset: list-counter;
+
+            li {
+                margin-bottom: 0;
+
+                &::before {
+                    padding-right: $spacer-2;
+                    font-size: inherit;
+                    counter-increment: list-counter;
+                    content: counter(list-counter, lower-alpha)  ". ";
+                }
+            }
+        }
+    }
+
+    &.vs-list--ordered {
+        margin: 0 0 $spacer-5 $spacer-6;
+        counter-reset: list-counter;
+
+        li {
+            margin-bottom: 0;
+
+            &::before{
+                padding-right: $spacer-2;
+                font-size: inherit;
+                counter-increment: list-counter;
+                content: counter(list-counter) ". ";
+            }
+
+            /* Nested list styles */
+            ol {
+                li {
+                    &::before {
+                        content: counter(list-counter, lower-alpha)  ". ";
+                    }
+                }
+            }
+
+            ul {
+                li {
+                    &::before {
+                        content: "– ";
+                        padding-right: 0.6rem;
+                        font-size: $h3-font-size;
+                    }
                 }
             }
         }
@@ -85,48 +139,14 @@ export default {
         display: flex;
     }
 
-    &.vs-list--ordered {
-        margin: 0 0 $spacer-5 $spacer-6;
-        list-style: none;
-        counter-reset: list-counter;
-
-        li{
-            margin-bottom: 0;
-
-            &::before{
-                color: $color-pink;
-                padding-right: 0.5rem;
-                margin-left: -$spacer-6;
-                font-size: inherit;
-                line-height: $line-height-xs;
-                counter-increment: list-counter;
-                content: counter(list-counter) ". ";
-            }
-
-            ol{
-                list-style: none;
-                counter-reset: list-counter;
-                margin: $spacer-4 0 $spacer-5 $spacer-6;
-
-                li{
-                    margin-bottom: 0;
-
-                    &::before{
-                        content: counter(list-counter, lower-alpha)  ". ";
-                    }
-                }
-            }
-        }
-    }
-
     &.vs-list--unstyled,
     &.vs-list--inline {
         margin: 0;
 
-        li{
+        li {
             margin-bottom: 0;
 
-            &::before{
+            &::before {
                 display: none;
             }
         }
