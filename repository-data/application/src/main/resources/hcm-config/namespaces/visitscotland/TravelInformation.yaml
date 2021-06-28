@@ -34,12 +34,12 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
             hipposysedit:validators: [optional]
-          /gettingToTab:
+          /gettingTo:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:gettingToTab
+            hipposysedit:path: visitscotland:gettingTo
             hipposysedit:primary: false
             hipposysedit:type: visitscotland:TravelInformationTab
           /gettingAround:
@@ -50,6 +50,14 @@ definitions:
             hipposysedit:path: visitscotland:gettingAround
             hipposysedit:primary: false
             hipposysedit:type: visitscotland:TravelInformationTab
+          /translation:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:translation
+            hipposysedit:primary: false
+            hipposysedit:type: OpenUiString
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -65,7 +73,7 @@ definitions:
           jcr:uuid: 3c998ac1-4e55-4e78-9095-ee8063ef0f6d
           hippostdpubwf:lastModificationDate: 2021-06-11T10:13:33.356+01:00
           hippostdpubwf:creationDate: 2021-06-11T10:13:33.356+01:00
-          /visitscotland:gettingToTab:
+          /visitscotland:gettingTo:
             jcr:primaryType: visitscotland:TravelInformationTab
             visitscotland:title: Getting to
             /visitscotland:accordion:
@@ -118,10 +126,10 @@ definitions:
               ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
                 \ { \tcountSpacesAsChars: true,     showCharCount: true ,maxCharCount:375\
                 \   }  }"
-          /gettingToTab:
+          /gettingTo:
             jcr:primaryType: frontend:plugin
             caption: Getting to
-            field: gettingToTab
+            field: gettingTo
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
@@ -136,3 +144,13 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /translation:
+            jcr:primaryType: frontend:plugin
+            caption: Translation
+            field: translation
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              ui.extension: translationDiff

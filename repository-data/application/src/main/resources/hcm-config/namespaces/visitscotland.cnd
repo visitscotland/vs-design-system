@@ -17,9 +17,6 @@
 [visitscotland:CMSLink] > hippo:compound, hippostd:relaxed
   orderable
 
-[visitscotland:CTALink] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
-  orderable
-
 [visitscotland:CannedSearch] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
 
@@ -130,7 +127,7 @@
 [visitscotland:TourismInformation] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
-[visitscotland:TravelInformation] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+[visitscotland:TravelInformation] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
 [visitscotland:TravelInformationTransportRow] > hippo:compound, hippostd:relaxed
