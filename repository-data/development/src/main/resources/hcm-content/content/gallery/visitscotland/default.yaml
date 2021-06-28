@@ -1578,3 +1578,54 @@
             jcr:primaryType: visitscotland:ImageData
             visitscotland:altText: ''
             visitscotland:caption: ''
+      /edinburgh-castle-blue-sky.jpg:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: ea857cd5-2d45-4f7c-9da9-503b2be8f382
+        /edinburgh-castle-blue-sky.jpg:
+          jcr:primaryType: visitscotland:Image
+          hippo:availability: [live, preview]
+          hippogallery:description: Edinburgh Castle
+          hippogallery:filename: edinburgh-castle-blue-sky.jpg
+          visitscotland:altText: Edinburgh Castle
+          visitscotland:credit: VisitScotland
+          visitscotland:location: Edinburgh
+          /hippogallery:thumbnail:
+            jcr:primaryType: hippogallery:image
+            hippo:filename: edinburgh-castle-blue-sky.jpg
+            hippogallery:height: 39
+            hippogallery:width: 60
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/edinburgh-castle-blue-sky.jpg/edinburgh-castle-blue-sky.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-06-24T13:48:09.265+01:00
+            jcr:mimeType: image/jpeg
+          /hippogallery:original:
+            jcr:primaryType: hippogallery:image
+            hippogallery:height: 1365
+            hippogallery:width: 2048
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/edinburgh-castle-blue-sky.jpg/edinburgh-castle-blue-sky.jpg/original/original.jpg
+            jcr:lastModified: 2021-06-24T13:48:09.265+01:00
+            jcr:mimeType: image/jpeg
+          /visitscotland:nl:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:fr:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:de:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:es:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:it:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
