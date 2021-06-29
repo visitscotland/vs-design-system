@@ -105,13 +105,21 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
      */
     private void addDocumentPath(HstRequest request) {
         final String ROOT_SITE = "/site/";
+        String path;
 
-        if (request.getAttribute(DOCUMENT) instanceof BaseDocument) {
+        if (Boolean.TRUE.equals(request.getAttribute("editMode"))
+                &&  request.getAttribute(DOCUMENT) instanceof BaseDocument) {
             BaseDocument document = getDocument(request);
-            //Extract the document path for the CMS Editor
-            String path = document.getPath().substring(
-                    document.getPath().indexOf(ROOT_SITE) + ROOT_SITE.length(),
-                    document.getPath().indexOf("/content/content"));
+
+            int begin = document.getPath().indexOf(ROOT_SITE) + ROOT_SITE.length();
+            int end = document.getPath().indexOf("/content/content");
+            if (begin > end){
+                //Home Page
+                path = "";
+            } else {
+                //Extract the document path for the CMS Editor
+                path = document.getPath().substring(begin, end);
+            }
 
             request.setAttribute(EDIT_PATH, path);
         }
