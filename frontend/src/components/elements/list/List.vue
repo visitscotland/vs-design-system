@@ -100,7 +100,7 @@ export default {
         }
     }
 
-    &.vs-list--ordered {
+    &--ordered {
         margin: 0 0 $spacer-5 $spacer-6;
         counter-reset: list-counter;
 
@@ -135,12 +135,12 @@ export default {
         }
     }
 
-    &.vs-list--inline {
+    &--inline {
         display: flex;
     }
 
-    &.vs-list--unstyled,
-    &.vs-list--inline {
+    &--unstyled,
+    &--inline {
         margin: 0;
 
         li {
