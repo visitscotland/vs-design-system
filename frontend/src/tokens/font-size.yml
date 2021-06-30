@@ -12,7 +12,7 @@ props:
     - name: font-size-md
       value: "{!font_size_base} * 1.125"
     - name: font-size-sm
-      value: "{!font_size_base} * .75"
+      value: "{!font_size_base} * 1.25"
     - name: h1-font-size
       value: "{!font_size_base} * 1.5"
     - name: h1-font-size-md
