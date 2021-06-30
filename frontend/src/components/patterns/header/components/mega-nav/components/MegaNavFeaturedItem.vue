@@ -158,7 +158,7 @@ export default {
             }
 
             .card-title {
-                font-size: $h5-font-size;
+                font-size: $font-size-sm;
             }
 
             .vs-stretched-link-card__content {
