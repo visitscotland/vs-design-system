@@ -5,7 +5,6 @@
     <#switch menu.type>
         <#case "FeaturedItem">
             <#list menu.links as link>
-                <#-- TODO: This if condition might not be necessary -->
                 <#if mobile >
                     <@headerFeaturedItem link link?index true />
                 <#else>
@@ -14,7 +13,5 @@
             </#list>
             <#break>
         <#default>
-            <!-- Unrecognized Navigation Widget -->
     </#switch>
-
 </#macro>
