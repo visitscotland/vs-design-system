@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 29273f78-7b0c-4f62-a489-f61816d3e3d6
+          jcr:uuid: 83c0fc52-3333-4310-a6ae-713176c6e6d2
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -23,6 +23,7 @@ definitions:
             hipposysedit:path: visitscotland:author
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: ['visitscotland:short-string-validator']
           /image:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -48,6 +49,7 @@ definitions:
             hipposysedit:path: visitscotland:role
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: ['visitscotland:short-string-validator']
           /product:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -87,7 +89,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Quote
             field: quote
-            hint: 'Max length suggestion is 250.'
+            hint: Max length suggestion is 150.
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
@@ -96,7 +98,7 @@ definitions:
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
               ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
-                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 375}}'
+                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 300}}'
           /product:
             jcr:primaryType: frontend:plugin
             caption: Product

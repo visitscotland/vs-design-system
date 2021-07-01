@@ -101,7 +101,10 @@ public class ListicleFactory {
             contentLogger.warn("The ListicleItem {} doesn't contain a main product", module.getHippoBean().getPath());
             return null;
         } else if (link instanceof DMSLink) {
-            processDMSMainProduct(locale, module, (DMSLink) link);
+            DMSLink dmsLink = (DMSLink) link;
+            JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
+            processDMSMainProduct(module, (DMSLink) link, product);
+            return linksService.createDmsLink(locale, dmsLink, product);
         } else if (link instanceof CMSLink) {
             if (((CMSLink) link).getLink() instanceof Page) {
                 if (module.getImage() == null) {
@@ -123,10 +126,7 @@ public class ListicleFactory {
      * Facilities are loaded from the dmsItem. Subtitle, Image and Coordinates are set only when the listicle item has
      * not defined the values
      */
-    private void processDMSMainProduct(Locale locale, ListicleModule item, DMSLink dmsLink) {
-
-        JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
-
+    private void processDMSMainProduct(ListicleModule item, DMSLink dmsLink, JsonNode product) {
         if (product == null) {
             item.addErrorMessage("The product id does not match in the DMS");
             contentLogger.warn("The product id was not provided or the product was not found (id={}), Listicle = {} - {}",  dmsLink.getProduct(), item.getHippoBean(), item.getHippoBean().getTitle());
