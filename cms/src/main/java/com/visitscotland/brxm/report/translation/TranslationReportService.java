@@ -5,6 +5,7 @@ import com.visitscotland.brxm.translation.SessionFactory;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
 import com.visitscotland.brxm.utils.Language;
+import com.visitscotland.utils.Contract;
 import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.api.WorkflowException;
 import org.slf4j.Logger;
@@ -153,7 +154,9 @@ public class TranslationReportService {
         Node node = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
         String priorityString = node.hasProperty(VS_TRANSLATION_PRIORITY) ?
                 node.getProperty(VS_TRANSLATION_PRIORITY).getString() : "";
-        if (priorityString == null || priorityString.isEmpty()) return TranslationPriority.NORMAL;
+        if (Contract.isEmpty(priorityString)) {
+            return TranslationPriority.NORMAL;
+        }
 
         try {
             return TranslationPriority.valueOf(priorityString);
