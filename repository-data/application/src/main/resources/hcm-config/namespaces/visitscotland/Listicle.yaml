@@ -54,7 +54,7 @@ definitions:
           hippostdpubwf:creationDate: 2020-02-11T09:30:21.383Z
           visitscotland:descOrder: false
           visitscotland:translation: ''
-          visitscotland:newsletter: true
+          visitscotland:hideNewsletter: false
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -209,7 +209,7 @@ definitions:
               ui.extension: translationDiff
           /newsletter:
             jcr:primaryType: frontend:plugin
-            caption: Show newsletter
+            caption: Hide newsletter
             field: newsletter
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin

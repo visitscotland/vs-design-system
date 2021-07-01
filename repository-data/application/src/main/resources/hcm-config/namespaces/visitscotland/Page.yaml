@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 1348a404-897d-4fe1-bedc-eac0d6d0f039
+          jcr:uuid: 32429751-09b6-4649-b573-9851b81466f9
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -109,7 +109,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:newsletter
+            hipposysedit:path: visitscotland:hideNewsletter
             hipposysedit:primary: false
             hipposysedit:type: Boolean
       /hipposysedit:prototypes:
@@ -128,12 +128,12 @@ definitions:
           visitscotland:seoNoIndex: false
           visitscotland:seoDescription: ''
           visitscotland:title: ''
-          jcr:uuid: b98f9c90-d7d8-43b6-a9b9-356f452297a9
+          jcr:uuid: c898b5d9-beea-4ede-9a62-4aad0d3596c7
           hippostdpubwf:lastModificationDate: 2019-12-05T16:05:38.470Z
           hippostdpubwf:creationDate: 2019-12-05T16:05:38.470Z
           visitscotland:teaser: ''
           visitscotland:translation: ''
-          visitscotland:newsletter: true
+          visitscotland:hideNewsletter: false
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -273,9 +273,9 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ui.extension: translationDiff
-          /newsletter:
+          /hideNewsletter:
             jcr:primaryType: frontend:plugin
-            caption: Show newsletter
+            caption: Hide newsletter
             field: newsletter
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
