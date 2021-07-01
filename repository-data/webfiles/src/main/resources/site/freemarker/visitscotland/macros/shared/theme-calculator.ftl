@@ -19,6 +19,6 @@
     <#elseif module?has_content && module.getType() == "ICentreModule">
         <#return "grey">
     <#else>
-        <#return "">
+        <#return "light">
     </#if>
 </#function>
