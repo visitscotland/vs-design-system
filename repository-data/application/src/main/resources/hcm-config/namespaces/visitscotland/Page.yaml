@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 32429751-09b6-4649-b573-9851b81466f9
+          jcr:uuid: a15eb736-e0aa-4826-94c6-3d17ddea4564
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -128,7 +128,7 @@ definitions:
           visitscotland:seoNoIndex: false
           visitscotland:seoDescription: ''
           visitscotland:title: ''
-          jcr:uuid: c898b5d9-beea-4ede-9a62-4aad0d3596c7
+          jcr:uuid: f23f4eee-595d-4932-a002-5581dabd46bb
           hippostdpubwf:lastModificationDate: 2019-12-05T16:05:38.470Z
           hippostdpubwf:creationDate: 2019-12-05T16:05:38.470Z
           visitscotland:teaser: ''
@@ -273,7 +273,7 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ui.extension: translationDiff
-          /hideNewsletter:
+          /newsletter:
             jcr:primaryType: frontend:plugin
             caption: Hide newsletter
             field: newsletter
