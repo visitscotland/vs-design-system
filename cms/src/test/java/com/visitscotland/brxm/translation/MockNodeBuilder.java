@@ -6,6 +6,7 @@ import org.mockito.stubbing.Answer;
 
 import javax.jcr.*;
 import javax.jcr.nodetype.NodeType;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -108,6 +109,10 @@ public final class MockNodeBuilder {
             properties.put("visitscotland:translationFlag", mockProperty);
             return this;
         }
+    }
+
+    public MockNodeBuilder lastModifiedAt(ZonedDateTime dateTime) throws Exception {
+        return withProperty("hippostdpubwf:lastModificationDate", GregorianCalendar.from(dateTime));
     }
 
     public MockNodeBuilder withProperty(String propertyPath, Property property) throws Exception {
