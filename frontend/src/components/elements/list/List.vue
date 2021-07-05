@@ -66,36 +66,36 @@ export default {
             font-size: $h2-font-size;
             line-height: $line-height-xs;
         }
-    }
 
-    /* Nested list styles */
-    ol,
-    ul {
-        list-style: none;
-        margin: $spacer-4 0 $spacer-5 $spacer-6;
-    }
+        /* Nested list styles */
+        ol,
+        ul {
+            list-style: none;
+            margin: $spacer-4 0 $spacer-5 $spacer-6;
+        }
 
-    ul {
-        li {
-            &::before {
-                content: "– ";
-                padding-right: 0.6rem;
-                font-size: $h3-font-size;
+        ul {
+            li {
+                &::before {
+                    content: "– ";
+                    padding-right: 0.6rem;
+                    font-size: $h3-font-size;
+                }
             }
         }
-    }
 
-    ol {
-        counter-reset: list-counter;
+        ol {
+            counter-reset: list-counter;
 
-        li {
-            margin-bottom: 0;
+            li {
+                margin-bottom: 0;
 
-            &::before {
-                padding-right: $spacer-2;
-                font-size: inherit;
-                counter-increment: list-counter;
-                content: counter(list-counter, lower-alpha)  ". ";
+                &::before {
+                    padding-right: $spacer-2;
+                    font-size: inherit;
+                    counter-increment: list-counter;
+                    content: counter(list-counter, lower-alpha)  ". ";
+                }
             }
         }
     }
