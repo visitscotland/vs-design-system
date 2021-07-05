@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: ceb4274c-8815-42fd-afa2-f603bc482a87
+          jcr:uuid: b277897a-2dcc-4dfe-bbde-22e719055f33
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -24,7 +24,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:medium-string-validator']
           /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -62,7 +62,7 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: cff5c879-226e-41d4-a5bb-6c3073c15e76
+          jcr:uuid: 64fbef57-56cd-47ba-9859-680ea0265117
           hippostdpubwf:lastModificationDate: 2021-05-11T15:47:43.297+01:00
           hippostdpubwf:creationDate: 2021-05-11T15:47:43.297+01:00
           visitscotland:viewAll: ''
@@ -105,11 +105,12 @@ definitions:
             field: copy
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: ''
+            hint: Max length suggestion is 250.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
-                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
+                \ { \tcountSpacesAsChars: true,     showCharCount: true ,maxCharCount:375\
+                \   }  }"
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'

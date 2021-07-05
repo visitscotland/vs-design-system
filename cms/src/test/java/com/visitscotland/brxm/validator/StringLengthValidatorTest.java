@@ -26,7 +26,7 @@ class StringLengthValidatorTest {
     @DisplayName("If the length of the field is bigger than the max allowed, an error should be displayed")
     void stringIncorrectLength() throws RepositoryException {
         Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Long maxLength = 55L;
+        Long maxLength = 60L;
         when(node.getProperty(StringLengthValidator.MAX_LENGTH).getLong()).thenReturn(maxLength);
         StringLengthValidator validator = new StringLengthValidator(node);
 
@@ -38,7 +38,7 @@ class StringLengthValidatorTest {
     @DisplayName("If the length of the field is smaller than the max allowed, the field is correct")
     void stringCorrectLength() throws RepositoryException {
         Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Long maxLength = 55L;
+        Long maxLength = 60L;
         when(node.getProperty(StringLengthValidator.MAX_LENGTH).getLong()).thenReturn(maxLength);
         StringLengthValidator validator = new StringLengthValidator(node);
 

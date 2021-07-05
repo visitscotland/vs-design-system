@@ -972,10 +972,10 @@
         /mountain-stream.jpg:
           jcr:primaryType: visitscotland:Image
           hippo:availability: [live, preview]
-          hippogallery:description: Mountain stream - Ben Nevis
+          hippogallery:description: Mountain stream on Ben Nevis
           hippogallery:filename: mountain-stream.jpg
-          visitscotland:altText: Mountain stream - Ben Nevis
-          visitscotland:credit: ''
+          visitscotland:altText: Mountain stream on Ben Nevis
+          visitscotland:credit: VisitScotland
           visitscotland:location: Fort William
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
@@ -1125,10 +1125,10 @@
         /ben-nevis-view.jpg:
           jcr:primaryType: visitscotland:Image
           hippo:availability: [live, preview]
-          hippogallery:description: Ben Nevis View
+          hippogallery:description: Ben Nevis view
           hippogallery:filename: ben-nevis-view.jpg
           visitscotland:altText: Ben Nevis View
-          visitscotland:credit: ''
+          visitscotland:credit: VisitScotland
           visitscotland:location: Fort William
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
@@ -1506,6 +1506,108 @@
               type: binary
               resource: /content/gallery/visitscotland/default/2021/01/profileimage.jpg/profileimage.jpg/original/original.jpg
             jcr:lastModified: 2021-06-04T08:09:42.678+01:00
+            jcr:mimeType: image/jpeg
+          /visitscotland:nl:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:fr:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:de:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:es:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:it:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+      /quote-jp.jpg:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 44c9fd39-a37c-4ea9-ba77-3418e5736149
+        /quote-jp.jpg:
+          jcr:primaryType: visitscotland:Image
+          hippo:availability: [live, preview]
+          hippogallery:description: Penny
+          hippogallery:filename: quote-jp.jpg
+          visitscotland:altText: Penny iCentre photo
+          visitscotland:credit: ''
+          visitscotland:location: Edinburgh
+          /hippogallery:thumbnail:
+            jcr:primaryType: hippogallery:image
+            hippo:filename: quote-jp.jpg
+            hippogallery:height: 40
+            hippogallery:width: 59
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/quote-jp.jpg/quote-jp.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-06-07T11:24:00.832+01:00
+            jcr:mimeType: image/jpeg
+          /hippogallery:original:
+            jcr:primaryType: hippogallery:image
+            hippogallery:height: 160
+            hippogallery:width: 235
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/quote-jp.jpg/quote-jp.jpg/original/original.jpg
+            jcr:lastModified: 2021-06-07T11:24:00.832+01:00
+            jcr:mimeType: image/jpeg
+          /visitscotland:nl:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:fr:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:de:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:es:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+          /visitscotland:it:
+            jcr:primaryType: visitscotland:ImageData
+            visitscotland:altText: ''
+            visitscotland:caption: ''
+      /edinburgh-castle-blue-sky.jpg:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: ea857cd5-2d45-4f7c-9da9-503b2be8f382
+        /edinburgh-castle-blue-sky.jpg:
+          jcr:primaryType: visitscotland:Image
+          hippo:availability: [live, preview]
+          hippogallery:description: Edinburgh Castle
+          hippogallery:filename: edinburgh-castle-blue-sky.jpg
+          visitscotland:altText: Edinburgh Castle
+          visitscotland:credit: VisitScotland
+          visitscotland:location: Edinburgh
+          /hippogallery:thumbnail:
+            jcr:primaryType: hippogallery:image
+            hippo:filename: edinburgh-castle-blue-sky.jpg
+            hippogallery:height: 39
+            hippogallery:width: 60
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/edinburgh-castle-blue-sky.jpg/edinburgh-castle-blue-sky.jpg/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2021-06-24T13:48:09.265+01:00
+            jcr:mimeType: image/jpeg
+          /hippogallery:original:
+            jcr:primaryType: hippogallery:image
+            hippogallery:height: 1365
+            hippogallery:width: 2048
+            jcr:data:
+              type: binary
+              resource: /content/gallery/visitscotland/default/2021/01/edinburgh-castle-blue-sky.jpg/edinburgh-castle-blue-sky.jpg/original/original.jpg
+            jcr:lastModified: 2021-06-24T13:48:09.265+01:00
             jcr:mimeType: image/jpeg
           /visitscotland:nl:
             jcr:primaryType: visitscotland:ImageData
