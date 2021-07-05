@@ -96,7 +96,7 @@ export default {
 
         .card-title {
             margin-top: $spacer-0;
-            font-size: $h5-font-size;
+            font-size: $font-size-sm;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
@@ -171,6 +171,30 @@ export default {
             .vs-stretched-link-card__link {
                 align-self: flex-end;
                 padding: $spacer-2;
+            }
+        }
+    }
+
+    @include no-js {
+        @include media-breakpoint-down(md) {
+            .card.vs-mega-nav-featured-item {
+                .vs-stretched-link-card__img {
+                    width: 100%;
+                }
+
+                .card-body {
+                    position: absolute;
+                    width: 80%;
+                    bottom: 0;
+                    left: 0;
+                    background: #fff;
+                    padding: $spacer-5 $spacer-3;
+                }
+
+                .card-title {
+                    font-size: $font-size-sm;
+                    margin-bottom: 0;
+                }
             }
         }
     }
