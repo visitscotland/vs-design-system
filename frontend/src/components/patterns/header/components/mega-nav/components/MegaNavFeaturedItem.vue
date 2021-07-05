@@ -71,7 +71,7 @@ export default {
         border-top: 1px solid #e0e0e0;
 
         &:hover {
-            box-shadow: inset 0px 0px 3px 6px rgba(0,0,41,0.05)
+            box-shadow: -7px 12px 27px -13px rgba(0, 0, 0, 0.4);
         }
 
         &:focus {
