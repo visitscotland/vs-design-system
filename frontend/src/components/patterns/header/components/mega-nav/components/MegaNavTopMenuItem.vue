@@ -185,17 +185,38 @@ export default {
 }
 
 @include no-js {
-    .vs-mega-nav-top-menu-item{
-        &__divider {
-            margin-bottom: $spacer-4;
-        }
-        &__columns-wrapper{
-            display: block;
-            height: auto;
-            padding-left: $spacer-8;
+    .vs-list.vs-list--unstyled {
+        .vs-mega-nav-top-menu-item{
+            &__divider {
+                margin-bottom: $spacer-4;
+            }
+            &__columns-wrapper{
+                display: block;
+                height: auto;
+                padding-left: $spacer-8;
 
-            @include media-breakpoint-up(lg) {
-                padding-left: $spacer-10;
+                @include media-breakpoint-up(lg) {
+                    padding-left: $spacer-10;
+                }
+            }
+
+            &__featured {
+                position: relative;
+                right: auto;
+                width: 100vw;
+                margin: 0 $spacer-6 $spacer-4 (-$spacer-8);
+
+                @include media-breakpoint-up(sm) {
+                    width: 50%;
+                }
+
+                @include media-breakpoint-up(md) {
+                    width: 32%;
+                }
+
+                .vs-mega-nav-featured-item {
+                    width: 100%;
+                }
             }
         }
     }
