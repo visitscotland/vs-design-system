@@ -75,7 +75,6 @@
                     slot="navFeaturedItemLeft"
                     v-if="item.title === 'Inspiration'"
                 >
-
                     <VsMegaNavFeaturedItem
                         link="www.visitscotland.com"
                         img-url="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -175,7 +174,6 @@
                     <template
                         v-if="item.title === 'Inspiration'"
                     >
-
                         <VsMegaNavFeaturedItem
                             link="www.visitscotland.com"
                             img-url="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"

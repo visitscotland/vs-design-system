@@ -122,7 +122,7 @@ export default {
     }
 
     &__image-offset {
-        @include media-breakpoint-down(sm) {
+        @include media-breakpoint-down(xs) {
             padding: 0;
 
             figure {
@@ -169,9 +169,11 @@ export default {
 <docs>
 ```jsx
     <VsModuleWrapper class="theme-grey">
-        <VsIcentre>
-            <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
+        <template slot="vsModuleWrapperHeading">
+            A tip from your local experts
+        </template>
 
+        <VsIcentre>
             <VsImageWithCaption
                 imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 altText="This is the alt text"
@@ -218,9 +220,11 @@ export default {
     </VsModuleWrapper>
     <br>
     <VsModuleWrapper class="theme-grey">
-        <VsIcentre>
-            <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
+        <template slot="vsModuleWrapperHeading">
+            A tip from your local experts
+        </template>
 
+        <VsIcentre>
             <VsImageWithCaption
                 imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 altText="This is the alt text"
