@@ -143,15 +143,25 @@ export default {
 
                 &--left {
                     @include media-breakpoint-up(lg) {
-                        right: calc(23% + 1.5rem);
+                        right: calc(23%);
                     }
 
                     @include media-breakpoint-up(xl) {
-                        right: calc(21.8% + 3rem);
+                        right: calc(21.8%);
                     }
 
                     @include media-breakpoint-up(xxl) {
-                        right: calc(21.3% + 4rem);
+                        right: calc(21.3%);
+                    }
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 12px;
+                        bottom: 12px;
+                        right: 0;
+                        width: 1px;
+                        background: $color-gray-tint-6;
                     }
                 }
             }
