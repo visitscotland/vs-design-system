@@ -9,6 +9,7 @@ public class EnhancedLink extends FlatLink {
     private String teaser;
     private boolean featured;
     private String category;
+    private String cta;
     private String itineraryTransport;
     private int itineraryDays;
 
@@ -58,5 +59,13 @@ public class EnhancedLink extends FlatLink {
 
     public void setItineraryDays(int itineraryDays) {
         this.itineraryDays = itineraryDays;
+    }
+
+    public String getCta() {
+        return cta;
+    }
+
+    public void setCta(String cta) {
+        this.cta = cta;
     }
 }

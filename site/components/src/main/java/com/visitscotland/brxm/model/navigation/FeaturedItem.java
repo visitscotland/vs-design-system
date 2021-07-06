@@ -6,7 +6,7 @@ import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 
 import java.util.List;
 
-public class FeaturedItem extends Module<FeaturedWidget> implements NavigationWidget{
+public class FeaturedItem extends Module<FeaturedWidget> implements NavigationWidget {
 
     private List<EnhancedLink> links;
 

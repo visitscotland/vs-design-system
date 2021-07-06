@@ -74,22 +74,6 @@ class MenuItemTest {
     }
 
     @Test
-    void simpleGetterSetter() {
-        // Simple getter and setter. No mock required
-        MenuItem item = new MenuItem(null);
-
-        item.setTitle("title");
-        assertEquals("title", item.getTitle());
-
-        NavigationWidget w = mock(NavigationWidget.class);
-        item.setWidget(w);
-        assertEquals(w, item.getWidget());
-
-        item.setCta("cta");
-        assertEquals("cta", item.getCta());
-    }
-
-    @Test
     void encapsulatedMethods() {
         // The following method are encapsulated from the original HstMenuItem to ensure the out-of-the-box menu
         // functionality keeps working
