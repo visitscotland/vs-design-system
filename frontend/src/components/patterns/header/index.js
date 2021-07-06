@@ -7,6 +7,7 @@ import VsMegaNavListItem from './components/mega-nav/components/MegaNavListItem'
 import VsMegaNavTopMenu from './components/mega-nav/components/MegaNavTopMenu';
 import VsMegaNavTopMenuItem from './components/mega-nav/components/MegaNavTopMenuItem';
 import VsMegaNavAccordionItem from './components/mega-nav/components/MegaNavAccordionItem';
+import VsMegaNavFeaturedItem from './components/mega-nav/components/MegaNavFeaturedItem';
 
 export default {
     VsHeader,
@@ -17,4 +18,5 @@ export default {
     VsMegaNavTopMenu,
     VsMegaNavTopMenuItem,
     VsMegaNavAccordionItem,
+    VsMegaNavFeaturedItem,
 };
