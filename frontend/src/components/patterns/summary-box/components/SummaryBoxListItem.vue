@@ -25,7 +25,7 @@
                     size="xl"
                 />
             </div>
-            <div class="text-wrapper d-block w-auto mx-1 pl-1">
+            <div class="text-wrapper d-block w-auto ml-1 pl-1">
                 <span>{{ iconLabel }}</span>
             </div>
         </div>
@@ -154,6 +154,7 @@ export default {
         line-height: $line_height_xs;
         max-width: 50%;
         word-wrap: break-word;
+        flex-basis: 0;
 
         @include media-breakpoint-up(lg) {
             font-size: $spacer-4;
