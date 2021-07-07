@@ -36,4 +36,4 @@ definitions:
       jcr:primaryType: hipposys:resourcebundles
       /en:
         jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Mean of transport
+        jcr:name: Transport Section
