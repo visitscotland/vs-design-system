@@ -1,4 +1,4 @@
-import     VsStacklaWrapper from './StacklaWrapper';
+import VsStacklaWrapper from './StacklaWrapper';
 
 export default {
     VsStacklaWrapper,
