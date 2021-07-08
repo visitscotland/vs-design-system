@@ -8,8 +8,8 @@
                     cols="12"
                     sm="10"
                     offset-sm="1"
-                    md="8"
-                    offset-md="2"
+                    md="6"
+                    offset-md="3"
                 >
                     <VsRichTextWrapper
                         class="vs-module-wrapper__intro vs-stackla-wrapper__intro"
@@ -40,7 +40,10 @@
                         <slot name="stacklaWidget" />
                     </div>
                     <div class="vs-stackla-wrapper__no-js">
-                        <p>There is no javascript, please return to your homes</p>
+                        <VsSvg
+                            class="vs-stackla-wrapper__no-js-image"
+                            path="no-js-coo"
+                        />
                     </div>
                 </VsCol>
             </VsRow>
@@ -52,6 +55,7 @@
 import VsContainer from '@components/elements/layout/Container';
 import VsCol from '@components/elements/layout/Col';
 import VsRow from '@components/elements/layout/Row';
+import VsSvg from '@components/elements/svg/Svg';
 
 /**
  * This component acts as a wrapper for a stackla widget embed and provides
@@ -67,6 +71,7 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
+        VsSvg,
     },
 };
 </script>
@@ -75,6 +80,10 @@ export default {
     .vs-stackla-wrapper {
         &__no-js {
             display: none;
+        }
+
+        &__no-js-image {
+            max-width: 100%;
         }
     }
 
