@@ -1,6 +1,7 @@
 <template>
     <div
         data-test="vs-stackla-wrapper"
+        class="vs-stackla-wrapper"
     >
         <VsContainer>
             <VsRow>
