@@ -9,10 +9,14 @@
         <template slot="vsModuleWrapperHeading">
             ${module.title}
         </template>
-        <template slot="vsModuleWrapperIntro">
-            <@hst.html hippohtml=module.copy/>
-        </template>
         <vs-stackla-wrapper>
+            <template slot="stacklaIntroCopy">
+                <@hst.html hippohtml=module.copy/>
+            </template>
+            <template slot="stacklaIntroCopyNoJs">
+                <p>JavaScript needs to be enabled to see social media images for this place. You can
+                turn this on in your browser settings.</p>
+            </template>
             <template slot="stacklaWidget">
                 <div class="stackla-widget" data-ct="" data-hash="${module.dataHash}"
                     data-id="${module.dataId}" data-title="social_vs.org_IGfeed" data-ttl="60"

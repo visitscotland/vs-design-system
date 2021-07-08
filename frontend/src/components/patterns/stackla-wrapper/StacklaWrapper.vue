@@ -1,16 +1,47 @@
 <template>
     <div
-        data-test="vs-stackla"
+        data-test="vs-stackla-wrapper"
     >
         <VsContainer>
             <VsRow>
-                <VsCol>
-                    <!--
-                        @slot Takes the dom element for the stackla widget, the script should be
-                        loaded separately further down the page as if it is passed into the vue
-                        template it will not be executed
-                    -->
-                    <slot name="stacklaWidget" />
+                <VsCol
+                    cols="12"
+                    sm="10"
+                    offset-sm="1"
+                    md="8"
+                    offset-md="2"
+                >
+                    <VsRichTextWrapper
+                        class="vs-module-wrapper__intro vs-stackla-wrapper__intro"
+                        v-if="!!this.$slots['stacklaIntroCopy']"
+                        data-test="vs-module-wrapper__intro"
+                    >
+                        <!-- @slot Slot to contain intro text -->
+                        <slot name="stacklaIntroCopy" />
+                    </VsRichTextWrapper>
+                    <VsRichTextWrapper
+                        class="vs-module-wrapper__intro vs-stackla-wrapper__no-js"
+                        v-if="!!this.$slots['stacklaIntroCopyNoJs']"
+                        data-test="vs-module-wrapper__intro"
+                    >
+                        <!-- @slot Slot to contain intro text if js is disabled -->
+                        <slot name="stacklaIntroCopyNoJs" />
+                    </VsRichTextWrapper>
+                </VsCol>
+                <VsCol
+                    cols="12"
+                >
+                    <div class="vs-stackla-wrapper__container">
+                        <!--
+                            @slot Takes the dom element for the stackla widget, the script should be
+                            loaded separately further down the page as if it is passed into the vue
+                            template it will not be executed
+                        -->
+                        <slot name="stacklaWidget" />
+                    </div>
+                    <div class="vs-stackla-wrapper__no-js">
+                        <p>There is no javascript, please return to your homes</p>
+                    </div>
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -40,6 +71,30 @@ export default {
 };
 </script>
 
+<style lang="scss">
+    .vs-stackla-wrapper {
+        &__no-js {
+            display: none;
+        }
+    }
+
+    @include no-js {
+        .vs-stackla-wrapper {
+            &__container {
+                display: none;
+            }
+
+            &__intro {
+                display: none;
+            }
+
+            &__no-js {
+                display: block;
+            }
+        }
+    }
+</style>
+
 <docs>
 ```jsx
     <VsModuleWrapper>
@@ -47,11 +102,16 @@ export default {
             Your Pictures Of Scottish Castles
         </template>
 
-        <template slot="vsModuleWrapperIntro">
-            Share your snaps with us by using #ScottishCastle or #VisitScotland
-        </template>
-
         <VsStacklaWrapper>
+            <template slot="stacklaIntroCopy">
+                Share your snaps with us by using #ScottishCastle or #VisitScotland
+            </template>
+
+            <template slot="stacklaIntroCopyNoJs">
+                <p>JavaScript needs to be enabled to see social media images for this place.
+You can turn this on in your browser settings.</p>
+            </template>
+
             <template slot="stacklaWidget">
                 Stackla Script Goes Here
             </template>
