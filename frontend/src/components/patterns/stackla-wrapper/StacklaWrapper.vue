@@ -28,6 +28,14 @@
                         <!-- @slot Slot to contain intro text if js is disabled -->
                         <slot name="stacklaIntroCopyNoJs" />
                     </VsRichTextWrapper>
+                    <VsRichTextWrapper
+                        class="vs-module-wrapper__intro vs-stackla-wrapper__no-cookies"
+                        v-if="!!this.$slots['stacklaIntroCopyNoCookies']"
+                        data-test="vs-module-wrapper__intro"
+                    >
+                        <!-- @slot Slot to contain intro text if cookies aren't enabled -->
+                        <slot name="stacklaIntroCopyNoCookies" />
+                    </VsRichTextWrapper>
                 </VsCol>
                 <VsCol
                     cols="12"
@@ -42,8 +50,14 @@
                     </div>
                     <div class="vs-stackla-wrapper__no-js">
                         <VsSvg
-                            class="vs-stackla-wrapper__no-js-image"
+                            class="vs-stackla-wrapper__error-image"
                             path="no-js-coo"
+                        />
+                    </div>
+                    <div class="vs-stackla-wrapper__no-cookies">
+                        <VsSvg
+                            class="vs-stackla-wrapper__error-image"
+                            path="cookie-coo"
                         />
                     </div>
                 </VsCol>
@@ -83,8 +97,28 @@ export default {
             display: none;
         }
 
-        &__no-js-image {
+        &__no-cookies {
+            display: none;
+        }
+
+        &__error-image {
             max-width: 100%;
+        }
+    }
+
+    .no-cookies {
+        .vs-stackla-wrapper {
+            &__container {
+                display: none;
+            }
+
+            &__intro {
+                display: none;
+            }
+
+            &__no-cookies {
+                display: block;
+            }
         }
     }
 
@@ -95,6 +129,10 @@ export default {
             }
 
             &__intro {
+                display: none;
+            }
+
+            &__no-cookies {
                 display: none;
             }
 
@@ -120,6 +158,11 @@ export default {
             <template slot="stacklaIntroCopyNoJs">
                 <p>JavaScript needs to be enabled to see social media images for this place.
 You can turn this on in your browser settings.</p>
+            </template>
+
+            <template slot="stacklaIntroCopyNoCookies">
+                <p>Cookies are needed to see social media images from this place.</p>
+                <p><a target="_blank" href="#">Update my cookie settings</a></p>
             </template>
 
             <template slot="stacklaWidget">
