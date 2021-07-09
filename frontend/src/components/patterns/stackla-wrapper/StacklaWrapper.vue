@@ -71,6 +71,7 @@ import VsContainer from '@components/elements/layout/Container';
 import VsCol from '@components/elements/layout/Col';
 import VsRow from '@components/elements/layout/Row';
 import VsSvg from '@components/elements/svg/Svg';
+import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 
 /**
  * This component acts as a wrapper for a stackla widget embed and provides
@@ -87,6 +88,7 @@ export default {
         VsRow,
         VsCol,
         VsSvg,
+        VsRichTextWrapper,
     },
 };
 </script>
