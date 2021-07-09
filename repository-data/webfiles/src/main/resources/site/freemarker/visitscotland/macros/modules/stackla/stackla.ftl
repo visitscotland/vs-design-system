@@ -17,6 +17,10 @@
                 <p>JavaScript needs to be enabled to see social media images for this place. You can
                 turn this on in your browser settings.</p>
             </template>
+            <template slot="stacklaIntroCopyNoCookies">
+                <p>Cookies are needed to see social media images from this place.</p>
+                <p><a target="_blank" href="#">Update my cookie settings</a></p>
+            </template>
             <template slot="stacklaWidget">
                 <div class="stackla-widget" data-ct="" data-hash="${module.dataHash}"
                     data-id="${module.dataId}" data-title="social_vs.org_IGfeed" data-ttl="60"
