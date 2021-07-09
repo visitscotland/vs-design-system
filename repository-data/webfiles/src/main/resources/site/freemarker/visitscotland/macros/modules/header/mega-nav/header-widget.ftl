@@ -5,11 +5,7 @@
     <#switch menu.type>
         <#case "FeaturedItem">
             <#list menu.links as link>
-                <#if mobile >
-                    <@headerFeaturedItem link link?index true />
-                <#else>
-                    <@headerFeaturedItem link link?index false />
-                </#if>
+                <@headerFeaturedItem link link?index mobile />
             </#list>
             <#break>
         <#default>
