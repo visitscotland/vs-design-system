@@ -205,6 +205,19 @@
   </build>
 
   <profiles>
+    <profile>
+
+      <id>local</id>
+      <properties>
+        <spring.profiles.active>dev-h2</spring.profiles.active>
+      </properties>
+    </profile>
+    <profile>
+      <id>production</id>
+      <properties>
+        <spring.profiles.active>prod-mysql</spring.profiles.active>
+      </properties>
+    </profile>
 
     <profile>
       <id>default</id>
@@ -214,6 +227,10 @@
           <name>jrebel</name>
         </property>
       </activation>
+      <properties>
+        <!-- TODO: After deciding which profile will be active by default (prod, test, local), the following line can be removed -->
+        <spring.profiles.active></spring.profiles.active>
+      </properties>
       <modules>
         <module>ui-integration</module>
         <module>cms-dependencies</module>

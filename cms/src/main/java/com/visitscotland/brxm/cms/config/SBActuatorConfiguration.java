@@ -3,17 +3,15 @@ package com.visitscotland.brxm.cms.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.boot.actuate.jdbc.DataSourceHealthIndicator;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.jndi.JndiObjectFactoryBean;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-@Configuration
-@PropertySource(value = "classpath:settings.properties")
+@Configuration()
+@Profile("dev-h2")
+@PropertySource(value = "classpath:actuator.properties")
 public class SBActuatorConfiguration {
 
     @Value("${app.datasource.name}")
