@@ -29,7 +29,10 @@
             >
                 Share on
             </VsHeading>
-            <slot />
+
+            <VsRow>
+                <slot />
+            </VsRow>
         </BPopover>
     </div>
 </template>
@@ -37,6 +40,7 @@
 <script>
 import VsIcon from '@components/elements/icon/Icon';
 import VsButton from '@components/elements/button/Button';
+import { VsRow } from '@components/elements/layout';
 import { BPopover } from 'bootstrap-vue';
 
 /**
@@ -53,6 +57,32 @@ export default {
         VsIcon,
         VsButton,
         BPopover,
+        VsRow,
+    },
+    props: {
+        /**
+         * Page URL to share
+         */
+        pageUrl: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Page URL to share
+         */
+        pageTitle: {
+            type: String,
+            default: '',
+        },
+    },
+    /**
+     * Provides URL properties injected to child component SocialShareItem
+     */
+    provide() {
+        return {
+            pageUrl: this.pageUrl,
+            pageTitle: this.pageTitle,
+        };
     },
 };
 </script>
@@ -70,17 +100,50 @@ export default {
     }
 
     &__popover{
-        max-width: 600px;
+        max-width: 800px;
+        width: 800px;
+        font-size: inherit;
         text-align: center;
+
+        .popover-body{
+            padding: $spacer-9 $spacer-12;
+
+            h3.vs-heading{
+                margin-bottom: $spacer-9;
+            }
+        }
     }
 }
 </style>
 
 <docs>
 ```jsx
-    <BsWrapper class="d-flex justify-content-center mb-4">
-        <VsSocialShare>
-            Test
+    <BsWrapper class="d-flex justify-content-end my-3 mx-3">
+        <VsSocialShare page-url="http://www.visitscotland.com" page-title="VisitScotland - Scotland's National Tourist Organisation">
+            <VsSocialShareItem
+                name="facebook"
+                link-text="Facebook"
+            />
+            <VsSocialShareItem
+                name="pinterest"
+                link-text="Pinterest"
+            />
+            <VsSocialShareItem
+                name="whatsapp"
+                link-text="WhatsApp"
+            />
+            <VsSocialShareItem
+                name="twitter"
+                link-text="Twitter"
+            />
+            <VsSocialShareItem
+                name="email"
+                link-text="Email"
+            />
+            <VsSocialShareItem
+                name="link"
+                link-text="Copy Link"
+            />
         </VsSocialShare>
     </BsWrapper>
 ```
