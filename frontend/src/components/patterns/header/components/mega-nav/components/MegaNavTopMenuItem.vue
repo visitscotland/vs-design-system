@@ -29,6 +29,27 @@
                 <!-- @slot Slot for dropdown menu list content -->
                 <div class="vs-mega-nav-top-menu-item__columns-wrapper">
                     <slot name="dropdownContent" />
+
+                    <div
+                        class="
+                            vs-mega-nav-top-menu-item__featured
+                            vs-mega-nav-top-menu-item__featured--left
+                        "
+                        :class="alignmentClass"
+                        data-test="vs-mega-nav-top-menu-item__featured"
+                        v-if="hasFeaturedItemLeft"
+                    >
+                        <slot name="navFeaturedItemLeft" />
+                    </div>
+
+                    <div
+                        class="vs-mega-nav-top-menu-item__featured"
+                        :class="alignmentClass"
+                        data-test="vs-mega-nav-top-menu-item__featured"
+                        v-if="hasFeaturedItem"
+                    >
+                        <slot name="navFeaturedItem" />
+                    </div>
                 </div>
             </template>
         </VsMegaNavDropdown>
@@ -67,58 +88,145 @@ export default {
             type: String,
             default: '',
         },
+        /**
+        * Alignment of featured item block - top or bottom
+        */
+        align: {
+            type: String,
+            default: 'top',
+            validator: (value) => value.match(/(left|bottom|top)/),
+        },
+    },
+    computed: {
+        hasFeaturedItem() {
+            return !!this.$slots.navFeaturedItem;
+        },
+        hasFeaturedItemLeft() {
+            return !!this.$slots.navFeaturedItemLeft;
+        },
+        alignmentClass() {
+            return this.align === 'bottom'
+                ? 'vs-mega-nav-top-menu-item__featured--bottom' : '';
+        },
     },
 };
 </script>
 
 <style lang="scss">
+/* needed for specificity */
+.vs-list.vs-list--unstyled {
+    .vs-mega-nav-top-menu-item {
+        &__featured {
+            @include media-breakpoint-up(lg) {
+                margin: $spacer-2 $spacer-0 $spacer-5 $spacer-6;
+                position: absolute;
+                right: 0;
+                top: 0;
 
-.vs-mega-nav-top-menu-item{
-    @include media-breakpoint-up(xl) {
-        margin-right: $spacer-6;
+                @include media-breakpoint-up(lg) {
+                    width: 23%;
+                }
 
-        &:last-of-type {
-            margin-right: 0;
+                @include media-breakpoint-up(xl) {
+                    width: 21.8%;
+                }
+
+                @include media-breakpoint-up(xxl) {
+                    width: 21.3%;
+                }
+
+                &--bottom {
+                    bottom: 0;
+                    top: auto;
+                    margin-bottom: $spacer-0;
+                }
+
+                &--left {
+                    @include media-breakpoint-up(lg) {
+                        right: calc(23%);
+                    }
+
+                    @include media-breakpoint-up(xl) {
+                        right: calc(21.8%);
+                    }
+
+                    @include media-breakpoint-up(xxl) {
+                        right: calc(21.3%);
+                    }
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 12px;
+                        bottom: 12px;
+                        right: 0;
+                        width: 1px;
+                        background: $color-gray-tint-6;
+                    }
+                }
+            }
         }
-    }
 
-    &__cta-link{
-        text-decoration: none;
-        padding: 0.12rem $spacer-5;
-        transition: $duration-base color;
+        &__cta-link{
+            text-decoration: none;
+            padding: 0.12rem $spacer-5;
+            transition: $duration-base color;
 
-        &:hover{
-            color: $color-secondary-gray-shade-3;
+            &:hover{
+                color: $color-secondary-gray-shade-3;
+            }
         }
-    }
 
-    &__divider{
-        margin: $spacer-3 0 $spacer-4;
-        border-color: $color-gray-tint-6;
-    }
+        &__divider{
+            margin: $spacer-3 0 $spacer-4;
+            border-color: $color-gray-tint-6;
+        }
 
-    &__columns-wrapper{
-        display: flex;
-        width: 100%;
-        flex-flow: column wrap;
-        height: 515px;
-        overflow: hidden;
-        align-content: flex-start;
+        &__columns-wrapper{
+            position: relative;
+            display: flex;
+            width: 100%;
+            flex-flow: column wrap;
+            height: 515px;
+            overflow: hidden;
+            align-content: flex-start;
+        }
     }
 }
 
 @include no-js {
-    .vs-mega-nav-top-menu-item{
-        &__divider {
-            margin-bottom: $spacer-4;
-        }
-        &__columns-wrapper{
-            display: block;
-            height: auto;
-            padding-left: $spacer-8;
+    .vs-list.vs-list--unstyled {
+        .vs-mega-nav-top-menu-item{
+            &__divider {
+                margin-bottom: $spacer-4;
+            }
+            &__columns-wrapper{
+                display: block;
+                height: auto;
+                padding-left: $spacer-8;
 
-            @include media-breakpoint-up(lg) {
-                padding-left: $spacer-10;
+                @include media-breakpoint-up(lg) {
+                    padding-left: $spacer-10;
+                }
+            }
+
+            &__featured {
+                position: relative;
+                right: auto;
+                width: 100vw;
+                margin: 0 $spacer-6 $spacer-4 (-$spacer-8);
+
+                @include media-breakpoint-up(sm) {
+                    width: 50%;
+                }
+
+                @include media-breakpoint-up(md) {
+                    width: 32%;
+                }
+
+                .vs-mega-nav-featured-item {
+                    width: 100%;
+                }
             }
         }
     }
