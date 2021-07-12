@@ -32,3 +32,8 @@ definitions:
         visitscotland:title: Titel
     /hippo:configuration/hippo:translations/hippo:types/visitscotland:Image:
       jcr:primaryType: hipposys:resourcebundles
+    /hippo:configuration/hippo:translations/hippo:types/visitscotland:TravelInformationTransportRow:
+      jcr:primaryType: hipposys:resourcebundles
+      /en:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Transport Section

@@ -253,16 +253,23 @@ class NavigationFactoryTest {
     }
 
     @Test
-    void widget() {
-        //The path resolves a folder but not a document (main reason: content document was renamed or deleted)
+    @DisplayName("Widget Items are being processed")
+    void nestedConfiguration_widget() {
+        //Widget cannot exist in level 0 (Root) or 1 (top Level Menu Item)
 
-        HstSiteMenuItem hstSiteMenuItem = newMockBuilder().name("widget.title").addLink("mock", mock(FeaturedWidget.class)).build();
-        addMenuToRequest(hstSiteMenuItem);
+        HstSiteMenuItem grandChild = newMockBuilder().name("grandchild").addLink("mock", mock(FeaturedWidget.class)).build();
+        HstSiteMenuItem child = newMockBuilder().name("topLevel").addMockLink().addChildren(grandChild).build();
+        HstSiteMenuItem home = newMockBuilder().name("root").addMockLink().addChildren(child).build();
+
+        mockLabels("root", "root Item", "cta");
+        mockLabels("topLevel", "Inspiration", "cta");
+
+        addMenuToRequest(home);
 
         RootMenuItem menu = factory.buildMenu(request, request.getModel("menu"));
 
-        Assertions.assertEquals(1, menu.getSiteMenuItems().size());
-        Assertions.assertNotNull(((MenuItem)menu.getSiteMenuItems().get(0)).getWidget());
+        MenuItem topLevelItem = (MenuItem) (menu.getSiteMenuItems().get(0)).getChildMenuItems().get(0);
+        Assertions.assertNotNull(topLevelItem.getWidget());
     }
 
     @Test

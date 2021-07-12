@@ -178,14 +178,14 @@ export default {
         <VsMegaNavAccordionItem
             :title="item.title"
             level="1"
-            :control-id="mobileItemIndex"
+            :control-id="mobileItemIndex.toString()"
             v-for="(item, mobileItemIndex) in header.mainNav"
             :key="mobileItemIndex"
         >
             <VsMegaNavAccordionItem
                 :title="subHeading.title"
                 level="2"
-                :control-id="subHeadingIndex"
+                :control-id="subHeadingIndex.toString()"
                 v-for="(subHeading, subHeadingIndex) in item.dropdownNav"
                 :key="subHeadingIndex"
             >
@@ -209,6 +209,20 @@ export default {
                         {{ subHeading.cta }}
                     </VsMegaNavListItem>
                 </VsMegaNavList>
+                <VsMegaNavFeaturedItem link="www.visitscotland.com">
+                    <template slot="vs-featured-item-header">
+                        From our home to yours – see Scotland virtually
+                    </template>
+
+                    <template slot="vs-featured-item-content">
+                        <p>The content for the card goes here</p>
+                        <p>A second line of content</p>
+                    </template>
+
+                    <template slot="vs-featured-item-link">
+                        A link to a page
+                    </template>
+                </VsMegaNavFeaturedItem>
             </VsMegaNavAccordionItem>
         </VsMegaNavAccordionItem>
     </VsAccordion>

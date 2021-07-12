@@ -2,9 +2,11 @@
 <#include "../../../../../frontend/components/vs-mega-nav-top-menu-item.ftl">
 <#include "../../../../../frontend/components/vs-mega-nav-list.ftl">
 <#include "../../../../../frontend/components/vs-mega-nav-list-item.ftl">
+<#include "header-widget.ftl">
 
 <#macro headerDesktopNav menu=menu>
     <#list menu.siteMenuItems as item>
+
         <#if item.title?has_content>
             <vs-mega-nav-top-menu-item
                     href="${getUrl(item)}"
@@ -45,6 +47,10 @@
                         </#if>
                     </#list>
                 </template>
+
+                <#if item.widget?? >
+                    <@headerWidget item.widget />
+                </#if>
             </vs-mega-nav-top-menu-item>
         </#if>
     </#list>
