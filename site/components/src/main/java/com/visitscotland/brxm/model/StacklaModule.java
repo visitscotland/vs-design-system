@@ -9,6 +9,17 @@ public class StacklaModule extends Module<Stackla> {
     private HippoHtml copy;
     private String dataId;
     private String dataHash;
+    private String noCookiesMessage;
+    private String noJsMessage;
+    private String noCookiesLinkLabel;
+
+    public void setNoCookiesMessage(String noCookiesMessage) {
+        this.noCookiesMessage = noCookiesMessage;
+    }
+
+    public void setNoJsMessage(String noJsMessage) {
+        this.noJsMessage = noJsMessage;
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -26,6 +37,10 @@ public class StacklaModule extends Module<Stackla> {
         this.dataHash = dataHash;
     }
 
+    public void setNoCookiesLinkLabel(String noCookiesLinkLabel) {
+        this.noCookiesLinkLabel = noCookiesLinkLabel;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -41,4 +56,17 @@ public class StacklaModule extends Module<Stackla> {
     public String getDataHash() {
         return dataHash;
     }
+
+    public String getNoCookiesMessage() {
+        return noCookiesMessage;
+    }
+
+    public String getNoJsMessage() {
+        return noJsMessage;
+    }
+
+    public String getNoCookiesLinkLabel() {
+        return noCookiesLinkLabel;
+    }
+
 }

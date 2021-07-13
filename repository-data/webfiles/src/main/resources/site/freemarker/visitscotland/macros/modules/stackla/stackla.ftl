@@ -6,7 +6,10 @@
     <h1>${module.title}</h1>
     <p><@hst.html hippohtml=module.copy/> <br /> </p>
     Hash = ${module.dataHash} <br />
-    Id = ${module.dataId}
+    Id = ${module.dataId} <br />
+    noCookieMessage = ${module.noCookiesMessage} <br />
+    noCookiesLinkLabel = ${module.noCookiesLinkLabel} <br />
+    noJsMessage = ${module.noJsMessage}
 
     <!-- Stackla Widget Embed Code (start) -->
     <div class="stackla-widget" data-ct="" data-hash="${module.dataHash}"

@@ -81,7 +81,7 @@ public class PageTemplateBuilder {
                 } else if (item instanceof IknowCommunity) {
                     page.modules.add(iKnowCommunityFactory.getIKnowCommunityModule((IknowCommunity) item, request.getLocale()));
                 } else if (item instanceof Stackla) {
-                    page.modules.add(stacklaFactory.getStacklaModule((Stackla) item));
+                    page.modules.add(stacklaFactory.getStacklaModule((Stackla) item, request.getLocale()));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
