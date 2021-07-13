@@ -10,7 +10,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 @Configuration()
-@Profile("dev-h2")
+@Profile("dbActuator")
 @PropertySource(value = "classpath:actuator.properties")
 public class SBActuatorConfiguration {
 

@@ -30,8 +30,8 @@
     
     <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
-    <!-- TODO end define -->
-  
+
+    <cliOptions></cliOptions>
   </properties>
   
   <inceptionYear>2019</inceptionYear>
@@ -206,20 +206,6 @@
 
   <profiles>
     <profile>
-
-      <id>local</id>
-      <properties>
-        <spring.profiles.active>dev-h2</spring.profiles.active>
-      </properties>
-    </profile>
-    <profile>
-      <id>production</id>
-      <properties>
-        <spring.profiles.active>prod-mysql</spring.profiles.active>
-      </properties>
-    </profile>
-
-    <profile>
       <id>default</id>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -228,8 +214,7 @@
         </property>
       </activation>
       <properties>
-        <!-- TODO: After deciding which profile will be active by default (prod, test, local), the following line can be removed -->
-        <spring.profiles.active></spring.profiles.active>
+        <spring.profiles.active>${cliOptions}</spring.profiles.active>
       </properties>
       <modules>
         <module>ui-integration</module>
