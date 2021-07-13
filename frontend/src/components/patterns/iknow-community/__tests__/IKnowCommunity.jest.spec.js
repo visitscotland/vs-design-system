@@ -18,7 +18,7 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('VsTag', () => {
+describe('VsIknowCommunity', () => {
     it('should render a component with the data-test attribute `.vs-iknow-community`', () => {
         expect(wrapper.attributes('data-test')).toBe('vs-iknow-community');
     });
