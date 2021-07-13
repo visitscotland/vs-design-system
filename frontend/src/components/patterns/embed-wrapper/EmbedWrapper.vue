@@ -1,7 +1,7 @@
 <template>
     <div
-        data-test="vs-stackla-wrapper"
-        class="vs-stackla-wrapper"
+        data-test="vs-embed-wrapper"
+        class="vs-embed-wrapper"
     >
         <VsContainer>
             <VsRow>
@@ -13,50 +13,51 @@
                     offset-md="3"
                 >
                     <VsRichTextWrapper
-                        class="vs-module-wrapper__intro vs-stackla-wrapper__intro"
-                        v-if="!!this.$slots['stacklaIntroCopy']"
+                        class="vs-module-wrapper__intro vs-embed-wrapper__intro"
+                        v-if="!!this.$slots['embedIntroCopy']"
                         data-test="vs-module-wrapper__intro"
                     >
                         <!-- @slot Slot to contain intro text -->
-                        <slot name="stacklaIntroCopy" />
+                        <slot name="embedIntroCopy" />
                     </VsRichTextWrapper>
                     <VsRichTextWrapper
-                        class="vs-module-wrapper__intro vs-stackla-wrapper__no-js"
-                        v-if="!!this.$slots['stacklaIntroCopyNoJs']"
+                        class="vs-module-wrapper__intro vs-embed-wrapper__no-js"
+                        v-if="!!this.$slots['embedIntroCopyNoJs']"
                         data-test="vs-module-wrapper__intro"
                     >
                         <!-- @slot Slot to contain intro text if js is disabled -->
-                        <slot name="stacklaIntroCopyNoJs" />
+                        <slot name="embedIntroCopyNoJs" />
                     </VsRichTextWrapper>
                     <VsRichTextWrapper
-                        class="vs-module-wrapper__intro vs-stackla-wrapper__no-cookies"
-                        v-if="!!this.$slots['stacklaIntroCopyNoCookies']"
+                        class="vs-module-wrapper__intro vs-embed-wrapper__no-cookies"
+                        v-if="!!this.$slots['embedIntroCopyNoCookies']"
                         data-test="vs-module-wrapper__intro"
                     >
                         <!-- @slot Slot to contain intro text if cookies aren't enabled -->
-                        <slot name="stacklaIntroCopyNoCookies" />
+                        <slot name="embedIntroCopyNoCookies" />
                     </VsRichTextWrapper>
                 </VsCol>
                 <VsCol
                     cols="12"
                 >
-                    <div class="vs-stackla-wrapper__container">
+                    <div class="vs-embed-wrapper__container">
                         <!--
-                            @slot Takes the dom element for the stackla widget, the script should be
-                            loaded separately further down the page as if it is passed into the vue
-                            template it will not be executed
+                            @slot Takes the dom element for the an embedded javascript widget, any
+                            associated script tags can't be passed into the vue element and should
+                            be loaded in an htmlBodyEnd headContribution - see stackla.ftl for
+                            example
                         -->
-                        <slot name="stacklaWidget" />
+                        <slot name="embedWidget" />
                     </div>
-                    <div class="vs-stackla-wrapper__no-js">
+                    <div class="vs-embed-wrapper__no-js">
                         <VsSvg
-                            class="vs-stackla-wrapper__error-image"
+                            class="vs-embed-wrapper__error-image"
                             path="no-js-coo"
                         />
                     </div>
-                    <div class="vs-stackla-wrapper__no-cookies">
+                    <div class="vs-embed-wrapper__no-cookies">
                         <VsSvg
-                            class="vs-stackla-wrapper__error-image"
+                            class="vs-embed-wrapper__error-image"
                             path="cookie-coo"
                         />
                     </div>
@@ -74,13 +75,13 @@ import VsSvg from '@components/elements/svg/Svg';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 
 /**
- * This component acts as a wrapper for a stackla widget embed and provides
+ * This component acts as a wrapper for an embedded javascript widget and provides
  * no-js and no-cookies functionality for that widget
  *
- * @displayName Stackla Wrapper
+ * @displayName Embed Wrapper
  */
 export default {
-    name: 'VsStacklaWrapper',
+    name: 'VsEmbedWrapper',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -94,22 +95,18 @@ export default {
 </script>
 
 <style lang="scss">
-    .vs-stackla-wrapper {
-        &__no-js {
-            display: none;
-        }
-
-        &__no-cookies {
-            display: none;
-        }
-
+    .vs-embed-wrapper {
         &__error-image {
             max-width: 100%;
+        }
+
+        .vs-embed-wrapper__no-js, .vs-embed-wrapper__no-cookies {
+            display: none;
         }
     }
 
     .no-cookies {
-        .vs-stackla-wrapper {
+        .vs-embed-wrapper {
             &__container {
                 display: none;
             }
@@ -125,7 +122,7 @@ export default {
     }
 
     @include no-js {
-        .vs-stackla-wrapper {
+        .vs-embed-wrapper {
             &__container {
                 display: none;
             }
@@ -152,25 +149,25 @@ export default {
             Your Pictures Of Scottish Castles
         </template>
 
-        <VsStacklaWrapper>
-            <template slot="stacklaIntroCopy">
+        <VsEmbedWrapper>
+            <template slot="embedIntroCopy">
                 Share your snaps with us by using #ScottishCastle or #VisitScotland
             </template>
 
-            <template slot="stacklaIntroCopyNoJs">
+            <template slot="embedIntroCopyNoJs">
                 <p>JavaScript needs to be enabled to see social media images for this place.
 You can turn this on in your browser settings.</p>
             </template>
 
-            <template slot="stacklaIntroCopyNoCookies">
+            <template slot="embedIntroCopyNoCookies">
                 <p>Cookies are needed to see social media images from this place.</p>
                 <p><a target="_blank" href="#">Update my cookie settings</a></p>
             </template>
 
-            <template slot="stacklaWidget">
-                Stackla Script Goes Here
+            <template slot="embedWidget">
+                Embed Tag Goes Here
             </template>
-        </VsStacklaWrapper>
+        </VsEmbedWrapper>
     </VsModuleWrapper>
 ```
 </docs>
