@@ -5,10 +5,21 @@
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.StacklaModule" -->
 
 <#macro stackla module>
+    <@hst.headContribution category="htmlBodyEnd">
 
-<#--    noCookieMessage = ${module.noCookiesMessage} <br />-->
-<#--    noCookiesLinkLabel = ${module.noCookiesLinkLabel} <br />-->
-<#--    noJsMessage = ${module.noJsMessage}-->
+        <script type="text/javascript">
+            (function (d, id) {
+                var t, el = d.scripts[d.scripts.length - 1].previousElementSibling;
+                if (el) el.dataset.initTimestamp = (new Date()).getTime();
+                if (d.getElementById(id)) return;
+                t = d.createElement('script');
+                t.src = '//assetscdn.stackla.com/media/js/widget/fluid-embed.js';
+                t.id = id;
+                (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(t);
+            }(document, 'stackla-widget-js'));
+        </script>
+
+    </@hst.headContribution>
 
     <vs-module-wrapper class="theme-${themeName}">
         <template slot="vsModuleWrapperHeading">
@@ -19,12 +30,10 @@
                 <@hst.html hippohtml=module.copy/>
             </template>
             <template slot="stacklaIntroCopyNoJs">
-                <p>JavaScript needs to be enabled to see social media images for this place. You can
-                turn this on in your browser settings.</p>
+                <@hst.html hippohtml=module.noJsMessage/>
             </template>
             <template slot="stacklaIntroCopyNoCookies">
-                <p>Cookies are needed to see social media images from this place.</p>
-                <p><a target="_blank" href="#">Update my cookie settings</a></p>
+                <@hst.html hippohtml=module.noCookiesMessage/>
             </template>
             <template slot="stacklaWidget">
                 <div class="stackla-widget" data-ct="" data-hash="${module.dataHash}"
@@ -33,15 +42,4 @@
             </template>
         </vs-stackla>
     </vs-module-wrapper>
-    <script type="text/javascript">
-        (function (d, id) {
-            var t, el = d.scripts[d.scripts.length - 1].previousElementSibling;
-            if (el) el.dataset.initTimestamp = (new Date()).getTime();
-            if (d.getElementById(id)) return;
-            t = d.createElement('script');
-            t.src = '//assetscdn.stackla.com/media/js/widget/fluid-embed.js';
-            t.id = id;
-            (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(t);
-        }(document, 'stackla-widget-js'));
-    </script>
 </#macro>
