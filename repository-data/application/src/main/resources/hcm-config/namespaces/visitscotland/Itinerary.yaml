@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 7ba05cd2-e9de-4e1a-9094-8bd7ac3ed339
+          jcr:uuid: 5a52c74f-c56f-4720-98e6-c66d0ad257fb
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -104,7 +104,7 @@ definitions:
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          jcr:uuid: ab62b7e4-b481-47aa-8081-0b2d0d25de9c
+          jcr:uuid: 6f3e4e08-584c-41de-89c3-79456c5d1a2d
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           visitscotland:areas: []
@@ -114,7 +114,7 @@ definitions:
           visitscotland:teaser: ''
           visitscotland:translation: ''
           visitscotland:highlights: ['']
-          visitscotland:newsletter: true
+          visitscotland:hideNewsletter: false
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -334,7 +334,7 @@ definitions:
               ui.extension: translationDiff
           /newsletter:
             jcr:primaryType: frontend:plugin
-            caption: Show newsletter
+            caption: Hide newsletter
             field: newsletter
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
