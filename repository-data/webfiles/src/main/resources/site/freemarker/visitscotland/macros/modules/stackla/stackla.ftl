@@ -30,10 +30,10 @@
                 <@hst.html hippohtml=module.copy/>
             </template>
             <template slot="embedIntroCopyNoJs">
-                <@hst.html hippohtml=module.noJsMessage/>
+                ${module.noJsMessage}
             </template>
             <template slot="embedIntroCopyNoCookies">
-                <@hst.html hippohtml=module.noCookiesMessage/>
+                ${module.noCookiesMessage}
             </template>
             <template slot="embedWidget">
                 <div class="stackla-widget" data-ct="" data-hash="${module.dataHash}"
