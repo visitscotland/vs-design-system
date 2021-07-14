@@ -40,6 +40,7 @@
 <script>
 import VsIcon from '@components/elements/icon/Icon';
 import VsButton from '@components/elements/button/Button';
+import VsHeading from '@components/elements/heading/Heading';
 import { VsRow } from '@components/elements/layout';
 import { BPopover } from 'bootstrap-vue';
 
@@ -56,6 +57,7 @@ export default {
     components: {
         VsIcon,
         VsButton,
+        VsHeading,
         BPopover,
         VsRow,
     },
@@ -90,8 +92,9 @@ export default {
 <style lang="scss">
 .vs-social-share{
     &__button.vs-button.btn{
-        max-width: 65px;
-        padding: $spacer-2 $spacer-2 $spacer-1;
+        width: 45px;
+        height: 50px;
+        padding: 0;
         letter-spacing: initial;
         text-decoration: underline;
         font-weight: $font-weight-normal;

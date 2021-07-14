@@ -42,6 +42,8 @@
 
 <script>
 import VsLink from '@components/elements/link/Link';
+import VsIcon from '@components/elements/icon/Icon';
+import VsSvg from '@components/elements/svg/Svg';
 import { VsCol } from '@components/elements/layout';
 import { BTooltip } from 'bootstrap-vue';
 
@@ -58,6 +60,8 @@ export default {
     components: {
         VsCol,
         VsLink,
+        VsSvg,
+        VsIcon,
         BTooltip,
     },
     props: {
