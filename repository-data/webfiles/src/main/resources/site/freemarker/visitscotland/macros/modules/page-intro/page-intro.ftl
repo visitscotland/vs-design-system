@@ -15,6 +15,7 @@
 <#include "../../../../frontend/components/vs-link.ftl">
 <#include "../../../../frontend/components/vs-heading.ftl">
 <#include "../../../../frontend/components/vs-social-share.ftl">
+<#include "../../../../frontend/components/vs-social-share-item.ftl">
 <#include "../../../../frontend/components/vs-description-list.ftl">
 <#include "../../../../frontend/components/vs-description-list-item.ftl">
 <#include "../../../../frontend/components/vs-image-with-caption.ftl">
@@ -66,6 +67,35 @@
 
         <template slot="vsIntroHeading">
             ${content.title}
+        </template>
+
+        <template slot="vsShareButton">
+            <vs-social-share page-url="http://www.visitscotland.com" page-title="VisitScotland - Scotland's National Tourist Organisation">
+                <vs-social-share-item
+                    name="facebook"
+                    link-text="Facebook"
+                />
+                <vs-social-share-item
+                    name="pinterest"
+                    link-text="Pinterest"
+                />
+                <vs-social-share-item
+                    name="whatsapp"
+                    link-text="WhatsApp"
+                />
+                <vs-social-share-item
+                    name="twitter"
+                    link-text="Twitter"
+                />
+                <vs-social-share-item
+                    name="email"
+                    link-text="Email"
+                />
+                <vs-social-share-item
+                    name="link"
+                    link-text="Copy Link"
+                />
+            </vs-social-share>
         </template>
 
         <template slot="vsIntroContent">
