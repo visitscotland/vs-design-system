@@ -22,6 +22,7 @@
             target="vs-social-share-popover"
             triggers="click"
             placement="leftbottom"
+            ref="popover"
         >
             <VsHeading
                 thin
@@ -33,6 +34,21 @@
             <VsRow>
                 <slot />
             </VsRow>
+
+            <VsButton
+                variant="transparent"
+                class="vs-social-share__close-button"
+                @click.native="onClose"
+            >
+                <span class="sr-only">
+                    {{ closeAltText }}
+                </span>
+                <VsIcon
+                    name="close"
+                    variant="dark"
+                    size="md"
+                />
+            </VsButton>
         </BPopover>
     </div>
 </template>
@@ -75,6 +91,18 @@ export default {
         pageTitle: {
             type: String,
             default: '',
+        },
+        /**
+         * Accessiblity alt text for the close button
+         */
+        closeAltText: {
+            type: String,
+            required: true,
+        },
+    },
+    methods: {
+        onClose() {
+            this.$refs.popover.$emit('close');
         },
     },
     /**
@@ -120,13 +148,31 @@ export default {
             }
         }
     }
+
+    &__close-button.vs-button.btn{
+        position: absolute;
+        right: $spacer-4;
+        top: $spacer-4;
+        border: 0;
+        padding: .25rem;
+
+        &:hover{
+            .vs-icon.vs-icon--variant-dark{
+                fill: $color-pink;
+            }
+        }
+    }
 }
 </style>
 
 <docs>
 ```jsx
     <BsWrapper class="d-flex justify-content-end my-3 mx-3">
-        <VsSocialShare page-url="http://www.visitscotland.com" page-title="VisitScotland - Scotland's National Tourist Organisation">
+        <VsSocialShare
+            page-url="http://www.visitscotland.com"
+            page-title="VisitScotland - Scotland's National Tourist Organisation"
+            close-alt-text="Close"
+        >
             <template slot="shareHeading">
                 Share On
             </template>
