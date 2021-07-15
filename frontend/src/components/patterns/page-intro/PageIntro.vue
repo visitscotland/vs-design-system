@@ -300,7 +300,11 @@ export default {
         </template>
 
         <template slot="vsShareButton">
-            <VsSocialShare page-url="http://www.visitscotland.com" page-title="VisitScotland - Scotland's National Tourist Organisation">
+            <VsSocialShare
+                page-url="http://www.visitscotland.com"
+                page-title="VisitScotland - Scotland's National Tourist Organisation"
+                close-alt-text="Close"
+            >
                 <template slot="shareHeading">
                     Share On
                 </template>
@@ -436,7 +440,11 @@ export default {
         </template>
 
         <template slot="vsShareButton">
-            <VsSocialShare page-url="http://www.visitscotland.com" page-title="VisitScotland - Scotland's National Tourist Organisation">
+            <VsSocialShare
+                page-url="http://www.visitscotland.com"
+                page-title="VisitScotland - Scotland's National Tourist Organisation"
+                close-alt-text="Close"
+            >
                 <template slot="shareHeading">
                     Share On
                 </template>
@@ -491,7 +499,11 @@ export default {
         </template>
 
         <template slot="vsShareButton">
-            <VsSocialShare page-url="http://www.visitscotland.com" page-title="VisitScotland - Scotland's National Tourist Organisation">
+            <VsSocialShare
+                page-url="http://www.visitscotland.com"
+                page-title="VisitScotland - Scotland's National Tourist Organisation"
+                close-alt-text="Close"
+            >
                 <template slot="shareHeading">
                     Share On
                 </template>
