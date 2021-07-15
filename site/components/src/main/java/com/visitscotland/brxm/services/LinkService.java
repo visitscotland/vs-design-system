@@ -144,7 +144,7 @@ public class LinkService {
             return null;
         } else if (url.toLowerCase().endsWith(".pdf")) {
             return LinkType.DOWNLOAD;
-        } else if (url.startsWith("/") || url.contains("localhost") || url.contains("visitscotland.com")
+        } else if (url.startsWith("/") || url.startsWith("#") ||  url.contains("localhost") || url.contains("visitscotland.com")
                     || url.startsWith(properties.getDmsHost())) {
             return LinkType.INTERNAL;
         }
