@@ -7,6 +7,7 @@
     <vs-social-share 
         page-url="<@hst.link hippobean=document canonical=true fullyQualified=true/>" 
         page-title="${document.title}"
+        close-alt-text="${label('social.share', 'close.share')}"
     >
         <template slot="shareHeading">
             ${label('social.share', 'share.on')}
