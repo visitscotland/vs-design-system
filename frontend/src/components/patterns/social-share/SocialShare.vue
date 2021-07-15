@@ -27,7 +27,7 @@
                 thin
                 level="3"
             >
-                Share on
+                <slot name="shareHeading" />
             </VsHeading>
 
             <VsRow>
@@ -100,6 +100,10 @@ export default {
         font-weight: $font-weight-normal;
         font-size: $small-font-size;
         line-height: $line_height_l;
+
+        &:hover{
+            color: $color-pink;
+        }
     }
 
     &__popover{
@@ -123,6 +127,10 @@ export default {
 ```jsx
     <BsWrapper class="d-flex justify-content-end my-3 mx-3">
         <VsSocialShare page-url="http://www.visitscotland.com" page-title="VisitScotland - Scotland's National Tourist Organisation">
+            <template slot="shareHeading">
+                Share On
+            </template>
+
             <VsSocialShareItem
                 name="facebook"
                 link-text="Facebook"

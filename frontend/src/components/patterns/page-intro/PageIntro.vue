@@ -201,6 +201,23 @@ export default {
             top: 8rem;
             right: $spacer-4;
         }
+
+        @include media-breakpoint-up(xl) {
+            top: 8rem;
+            right: $spacer-4;
+        }
+    }
+
+    &--hero {
+        .vs-page-intro__share {
+            @include media-breakpoint-up(lg) {
+                top: 8rem;
+                right: $spacer-4;
+            }
+            @include media-breakpoint-up(xl) {
+                top: $spacer-10;
+            }
+        }
     }
 
      &__breadcrumb {
@@ -237,12 +254,6 @@ export default {
         .vs-page-intro__wrapper {
             @include media-breakpoint-up(lg) {
                 margin-top: -240px;
-            }
-        }
-
-        .vs-page-intro__share {
-            @include media-breakpoint-up(lg) {
-                top: $spacer-10;
             }
         }
     }
@@ -290,6 +301,10 @@ export default {
 
         <template slot="vsShareButton">
             <VsSocialShare page-url="http://www.visitscotland.com" page-title="VisitScotland - Scotland's National Tourist Organisation">
+                <template slot="shareHeading">
+                    Share On
+                </template>
+
                 <VsSocialShareItem
                     name="facebook"
                     link-text="Facebook"
@@ -422,6 +437,10 @@ export default {
 
         <template slot="vsShareButton">
             <VsSocialShare page-url="http://www.visitscotland.com" page-title="VisitScotland - Scotland's National Tourist Organisation">
+                <template slot="shareHeading">
+                    Share On
+                </template>
+
                 <VsSocialShareItem
                     name="facebook"
                     link-text="Facebook"
@@ -473,6 +492,10 @@ export default {
 
         <template slot="vsShareButton">
             <VsSocialShare page-url="http://www.visitscotland.com" page-title="VisitScotland - Scotland's National Tourist Organisation">
+                <template slot="shareHeading">
+                    Share On
+                </template>
+
                 <VsSocialShareItem
                     name="facebook"
                     link-text="Facebook"
