@@ -439,43 +439,6 @@ export default {
             {{itineraries.sampleItinerary.h1Heading}}
         </template>
 
-        <template slot="vsShareButton">
-            <VsSocialShare
-                page-url="http://www.visitscotland.com"
-                page-title="VisitScotland - Scotland's National Tourist Organisation"
-                close-alt-text="Close"
-            >
-                <template slot="shareHeading">
-                    Share On
-                </template>
-
-                <VsSocialShareItem
-                    name="facebook"
-                    link-text="Facebook"
-                />
-                <VsSocialShareItem
-                    name="pinterest"
-                    link-text="Pinterest"
-                />
-                <VsSocialShareItem
-                    name="whatsapp"
-                    link-text="WhatsApp"
-                />
-                <VsSocialShareItem
-                    name="twitter"
-                    link-text="Twitter"
-                />
-                <VsSocialShareItem
-                    name="email"
-                    link-text="Email"
-                />
-                <VsSocialShareItem
-                    name="link"
-                    link-text="Copy Link"
-                />
-            </VsSocialShare>
-        </template>
-
         <template slot="vsIntroContent">
             <div v-html="itineraries.sampleItinerary.introduction" />
         </template>
@@ -496,43 +459,6 @@ export default {
         </template>
         <template slot="vsIntroHeading">
             {{itineraries.sampleItinerary.h1Heading}}
-        </template>
-
-        <template slot="vsShareButton">
-            <VsSocialShare
-                page-url="http://www.visitscotland.com"
-                page-title="VisitScotland - Scotland's National Tourist Organisation"
-                close-alt-text="Close"
-            >
-                <template slot="shareHeading">
-                    Share On
-                </template>
-
-                <VsSocialShareItem
-                    name="facebook"
-                    link-text="Facebook"
-                />
-                <VsSocialShareItem
-                    name="pinterest"
-                    link-text="Pinterest"
-                />
-                <VsSocialShareItem
-                    name="whatsapp"
-                    link-text="WhatsApp"
-                />
-                <VsSocialShareItem
-                    name="twitter"
-                    link-text="Twitter"
-                />
-                <VsSocialShareItem
-                    name="email"
-                    link-text="Email"
-                />
-                <VsSocialShareItem
-                    name="link"
-                    link-text="Copy Link"
-                />
-            </VsSocialShare>
         </template>
 
         <template slot="vsIntroContent">
