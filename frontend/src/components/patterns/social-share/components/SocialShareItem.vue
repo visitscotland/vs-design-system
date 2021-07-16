@@ -1,12 +1,12 @@
 <template>
     <VsCol
-        cols="4"
         class="vs-social-share-item"
         data-test="vs-social-share-item"
+        cols="4"
     >
         <VsLink
-            :href="shareUrl"
             class="vs-social-share-item__link"
+            :href="shareUrl"
             @click.native="copyToClipboard"
             :id="`vs-share-${name}`"
         >
@@ -46,8 +46,7 @@ import { VsCol } from '@components/elements/layout';
 import { BTooltip } from 'bootstrap-vue';
 
 /**
- * This component allows users to share content to social
- * media channels.
+ * This component displays an icon and link to a social sharing channel
  *
  * @displayName Social Share Item
  */
@@ -64,7 +63,7 @@ export default {
     },
     props: {
         /**
-        * Icon name to display
+        * Type of link and icon to display
         */
         name: {
             type: String,
@@ -174,7 +173,6 @@ export default {
 
 <style lang="scss">
 .vs-social-share-item{
-
     &__link.vs-link.vs-link--variant-primary{
         border: 1px solid $color-secondary-gray-tint-4;
         display: block;
@@ -207,7 +205,6 @@ export default {
             }
         }
     }
-
 }
 </style>
 
