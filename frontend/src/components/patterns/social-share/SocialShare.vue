@@ -135,13 +135,69 @@ export default {
     }
 
     &__popover{
-        max-width: 800px;
-        width: 800px;
+        max-width: 600px;
+        width: 96%;
         font-size: inherit;
         text-align: center;
+        border: 0;
+        top: -35px!important;
+        left: 0!important;
+
+        .arrow{
+            display: none;
+        }
+
+        &.bs-popover-right{
+            margin-left: 0;
+        }
+
+        @include media-breakpoint-up(sm) {
+            max-width: 450px;
+            width: 450px;
+            top: -25px!important;
+            left: 57px!important;
+            box-shadow: -25px 25px 20px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        @include media-breakpoint-up(md) {
+            max-width: 600px;
+            width: 600px;
+        }
+
+        @include media-breakpoint-up(lg) {
+            max-width: 700px;
+            width: 700px;
+        }
+
+        @include media-breakpoint-up(xl) {
+            max-width: 800px;
+            width: 800px;
+        }
 
         .popover-body{
-            padding: $spacer-9 $spacer-12;
+            padding: $spacer-8 $spacer-2;
+
+            @include media-breakpoint-only(sm) {
+                padding: $spacer-4 $spacer-7 $spacer-8;
+
+                .row{
+                    margin-right: -4px;
+                    margin-left: -4px;
+
+                    > [class*=col-]{
+                        padding-right: 4px;
+                        padding-left: 4px;
+                    }
+                }
+            }
+
+            @include media-breakpoint-up(md) {
+                padding: $spacer-9;
+            }
+
+            @include media-breakpoint-up(xl) {
+                padding: $spacer-9 $spacer-12;
+            }
 
             h3.vs-heading{
                 margin-bottom: $spacer-9;
