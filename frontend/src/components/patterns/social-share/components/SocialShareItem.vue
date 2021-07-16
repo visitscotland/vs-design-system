@@ -1,7 +1,6 @@
 <template>
     <VsCol
-        cols="12"
-        lg="4"
+        cols="4"
         class="vs-social-share-item"
         data-test="vs-social-share-item"
     >
@@ -17,14 +16,13 @@
                 :custom-colour="iconColour"
                 variant="dark"
                 size="xl"
+                small-size="lg"
             />
 
             <VsSvg
                 v-if="name === 'whatsapp'"
                 class="svg-logo"
                 :path="name"
-                height="40px"
-                width="40px"
             />
             {{ linkText }}
         </VsLink>
@@ -178,10 +176,15 @@ export default {
 .vs-social-share-item{
 
     &__link.vs-link.vs-link--variant-primary{
-        border: 1px solid $color-secondary-gray-tint-3;
+        border: 1px solid $color-secondary-gray-tint-4;
         display: block;
-        margin-bottom: $spacer-6;
-        padding: $spacer-6;
+        margin-bottom: $spacer-2;
+        padding: $spacer-4 $spacer-2;
+
+        @include media-breakpoint-up(md) {
+            padding: $spacer-6;
+            margin-bottom: $spacer-6;
+        }
 
         &:focus, &:focus-visible{
             outline-offset: 0px;
@@ -192,6 +195,16 @@ export default {
         .vs-icon, .svg-logo{
             display: block;
             margin: 0 auto $spacer-3;
+        }
+
+        .svg-logo{
+            height: 30px;
+            width: 30px;
+
+            @include media-breakpoint-up(md) {
+                height: 40px;
+                width: 40px;
+            }
         }
     }
 
