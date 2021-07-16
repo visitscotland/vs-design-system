@@ -5161,7 +5161,7 @@
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: be4580f8-d75e-4271-b7cc-8b51bf06ee15
           hippo:name: Edinburgh castle
-          hippo:versionHistory: b3007ee7-da42-4c02-a815-082e9756fd60
+          hippo:versionHistory: ef89b4f4-b64a-4a44-a46f-07103bb3cb24
           /edinburgh-castle[1]:
             jcr:primaryType: visitscotland:SharedLink
             jcr:mixinTypes: ['mix:referenceable']
@@ -5171,7 +5171,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2021-06-04T08:15:01.682+01:00
-            hippostdpubwf:lastModificationDate: 2021-06-24T14:58:23.235+01:00
+            hippostdpubwf:lastModificationDate: 2021-07-16T07:55:59.786+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 819ea7a1-51cd-4c32-a5b3-617cabefc320
             hippotranslation:locale: en
@@ -5198,7 +5198,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2021-06-04T08:15:01.682+01:00
-            hippostdpubwf:lastModificationDate: 2021-06-04T08:16:01.050+01:00
+            hippostdpubwf:lastModificationDate: 2021-07-16T07:55:59.530+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 819ea7a1-51cd-4c32-a5b3-617cabefc320
             hippotranslation:locale: en
@@ -5225,9 +5225,9 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2021-06-04T08:15:01.682+01:00
-            hippostdpubwf:lastModificationDate: 2021-06-04T08:16:01.050+01:00
+            hippostdpubwf:lastModificationDate: 2021-07-16T07:55:59.530+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2021-06-04T08:16:04.330+01:00
+            hippostdpubwf:publicationDate: 2021-07-16T07:56:06.133+01:00
             hippotranslation:id: 819ea7a1-51cd-4c32-a5b3-617cabefc320
             hippotranslation:locale: en
             visitscotland:teaser: Edinburgh Castle is a world famous icon of Scotland
@@ -14484,7 +14484,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-        hippostdpubwf:lastModificationDate: 2021-06-24T14:22:09.971+01:00
+        hippostdpubwf:lastModificationDate: 2021-07-16T07:56:44.670+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 5334df0e-22f9-4166-996d-5d461420769a
         hippotranslation:locale: en
@@ -14536,6 +14536,9 @@
               hippostd:content: <p>Scotland's largest mountain was once a massive
                 active volcano which exploded and collapsed inwards on itself millions
                 of years ago.</p>
+            /visitscotland:product:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: be4580f8-d75e-4271-b7cc-8b51bf06ee15
           /visitscotland:media:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: dd3e5e22-111b-41f1-aac6-0c8fcf4bc954
@@ -14551,7 +14554,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-01-11T14:27:02.137Z
-        hippostdpubwf:lastModificationDate: 2021-06-24T14:21:40.338+01:00
+        hippostdpubwf:lastModificationDate: 2021-07-16T07:56:44.814+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 5334df0e-22f9-4166-996d-5d461420769a
         hippotranslation:locale: en
@@ -14603,6 +14606,9 @@
               hippostd:content: <p>Scotland's largest mountain was once a massive
                 active volcano which exploded and collapsed inwards on itself millions
                 of years ago.</p>
+            /visitscotland:product:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: be4580f8-d75e-4271-b7cc-8b51bf06ee15
           /visitscotland:media:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: dd3e5e22-111b-41f1-aac6-0c8fcf4bc954
