@@ -4,9 +4,9 @@
         data-test="vs-social-share"
     >
         <VsButton
+            class="vs-social-share__share-btn"
             variant="transparent"
             :uppercase="false"
-            class="vs-social-share__button"
             id="vs-social-share-popover"
         >
             <VsIcon
@@ -15,8 +15,9 @@
                 size="md"
             />
 
-            Share
+            {{ shareBtnText }}
         </VsButton>
+
         <BPopover
             custom-class="vs-social-share__popover"
             target="vs-social-share-popover"
@@ -28,16 +29,17 @@
                 thin
                 level="3"
             >
-                <slot name="shareHeading" />
+                {{ sharePopoverTitle }}
             </VsHeading>
 
             <VsRow>
+                <!-- @slot Default slot for SocialShareItems -->
                 <slot />
             </VsRow>
 
             <VsButton
+                class="vs-social-share__close-btn"
                 variant="transparent"
-                class="vs-social-share__close-button"
                 @click.native="onClose"
             >
                 <span class="sr-only">
@@ -61,7 +63,7 @@ import { VsRow } from '@components/elements/layout';
 import { BPopover } from 'bootstrap-vue';
 
 /**
- * This component allows users to share content to social
+ * This component includes a popover to share content to social
  * media channels.
  *
  * @displayName Social Share Button
@@ -79,6 +81,20 @@ export default {
     },
     props: {
         /**
+         * Text to display on share button
+         */
+        shareBtnText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Title text for popover
+         */
+        sharePopoverTitle: {
+            type: String,
+            required: true,
+        },
+        /**
          * Page URL to share
          */
         pageUrl: {
@@ -86,7 +102,7 @@ export default {
             required: true,
         },
         /**
-         * Page URL to share
+         * Page Title to include in share link
          */
         pageTitle: {
             type: String,
@@ -101,12 +117,15 @@ export default {
         },
     },
     methods: {
+        /**
+         * Closes popover on close button click
+         */
         onClose() {
             this.$refs.popover.$emit('close');
         },
     },
     /**
-     * Provides URL properties injected to child component SocialShareItem
+     * Provides the URL properties to be injected into child component 'SocialShareItem'
      */
     provide() {
         return {
@@ -118,107 +137,107 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-social-share{
-    &__button.vs-button.btn{
-        width: 45px;
-        height: 50px;
-        padding: 0;
-        letter-spacing: initial;
-        text-decoration: underline;
-        font-weight: $font-weight-normal;
-        font-size: $small-font-size;
-        line-height: $line_height_l;
+    .vs-social-share{
+        &__share-btn.vs-button.btn{
+            width: 45px;
+            height: 50px;
+            padding: 0;
+            letter-spacing: initial;
+            text-decoration: underline;
+            font-weight: $font-weight-normal;
+            font-size: $small-font-size;
+            line-height: $line_height_l;
 
-        &:hover{
-            color: $color-pink;
-        }
-    }
-
-    &__popover{
-        max-width: 600px;
-        width: 96%;
-        font-size: inherit;
-        text-align: center;
-        border: 0;
-        top: -35px!important;
-        left: 0!important;
-
-        .arrow{
-            display: none;
+            &:hover{
+                color: $color-pink;
+            }
         }
 
-        &.bs-popover-right{
-            margin-left: 0;
-        }
-
-        @include media-breakpoint-up(sm) {
-            max-width: 450px;
-            width: 450px;
-            top: -25px!important;
-            left: 57px!important;
-            box-shadow: -25px 25px 20px 1px rgba(0, 0, 0, 0.1);
-        }
-
-        @include media-breakpoint-up(md) {
+        &__popover{
             max-width: 600px;
-            width: 600px;
-        }
+            width: 96%;
+            font-size: inherit;
+            text-align: center;
+            border: 0;
+            top: -35px!important;
+            left: 0!important;
 
-        @include media-breakpoint-up(lg) {
-            max-width: 700px;
-            width: 700px;
-        }
+            .arrow{
+                display: none;
+            }
 
-        @include media-breakpoint-up(xl) {
-            max-width: 800px;
-            width: 800px;
-        }
+            &.bs-popover-right{
+                margin-left: 0;
+            }
 
-        .popover-body{
-            padding: $spacer-8 $spacer-2;
-
-            @include media-breakpoint-only(sm) {
-                padding: $spacer-4 $spacer-7 $spacer-8;
-
-                .row{
-                    margin-right: -4px;
-                    margin-left: -4px;
-
-                    > [class*=col-]{
-                        padding-right: 4px;
-                        padding-left: 4px;
-                    }
-                }
+            @include media-breakpoint-up(sm) {
+                max-width: 450px;
+                width: 450px;
+                top: -25px!important;
+                left: 57px!important;
+                box-shadow: -25px 25px 20px 1px rgba(0, 0, 0, 0.1);
             }
 
             @include media-breakpoint-up(md) {
-                padding: $spacer-9;
+                max-width: 600px;
+                width: 600px;
+            }
+
+            @include media-breakpoint-up(lg) {
+                max-width: 700px;
+                width: 700px;
             }
 
             @include media-breakpoint-up(xl) {
-                padding: $spacer-9 $spacer-12;
+                max-width: 800px;
+                width: 800px;
             }
 
-            h3.vs-heading{
-                margin-bottom: $spacer-9;
+            .popover-body{
+                padding: $spacer-8 $spacer-2;
+
+                @include media-breakpoint-only(sm) {
+                    padding: $spacer-4 $spacer-7 $spacer-8;
+
+                    .row{
+                        margin-right: -4px;
+                        margin-left: -4px;
+
+                        > [class*=col-]{
+                            padding-right: 4px;
+                            padding-left: 4px;
+                        }
+                    }
+                }
+
+                @include media-breakpoint-up(md) {
+                    padding: $spacer-9;
+                }
+
+                @include media-breakpoint-up(xl) {
+                    padding: $spacer-9 $spacer-12;
+                }
+
+                h3.vs-heading{
+                    margin-bottom: $spacer-9;
+                }
+            }
+        }
+
+        &__close-btn.vs-button.btn{
+            position: absolute;
+            right: $spacer-4;
+            top: $spacer-4;
+            border: 0;
+            padding: $spacer-1;
+
+            &:hover{
+                .vs-icon.vs-icon--variant-dark{
+                    fill: $color-pink;
+                }
             }
         }
     }
-
-    &__close-button.vs-button.btn{
-        position: absolute;
-        right: $spacer-4;
-        top: $spacer-4;
-        border: 0;
-        padding: .25rem;
-
-        &:hover{
-            .vs-icon.vs-icon--variant-dark{
-                fill: $color-pink;
-            }
-        }
-    }
-}
 </style>
 
 <docs>
@@ -227,12 +246,10 @@ export default {
         <VsSocialShare
             page-url="http://www.visitscotland.com"
             page-title="VisitScotland - Scotland's National Tourist Organisation"
+            share-popover-title="Share On"
+            share-btn-text="Share"
             close-alt-text="Close"
         >
-            <template slot="shareHeading">
-                Share On
-            </template>
-
             <VsSocialShareItem
                 name="facebook"
                 link-text="Facebook"

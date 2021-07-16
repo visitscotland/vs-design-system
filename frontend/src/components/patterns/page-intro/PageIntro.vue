@@ -16,13 +16,14 @@
                         :offset-lg="heroIntro ? '1' : ''"
                     >
                         <div class="vs-page-intro__breadcrumb">
-                            <!-- @slot Breadcrumb code  -->
+                            <!-- @slot Slot to display breadcrumb items  -->
                             <slot name="vsIntroBreadcrumb" />
                         </div>
                     </VsCol>
                 </VsRow>
 
                 <div class="vs-page-intro__share">
+                    <!-- @slot Slot to display SocialShare button  -->
                     <slot name="vsShareButton" />
                 </div>
 
@@ -297,12 +298,10 @@ export default {
             <VsSocialShare
                 page-url="http://www.visitscotland.com"
                 page-title="VisitScotland - Scotland's National Tourist Organisation"
+                share-btn-text="Share"
                 close-alt-text="Close"
+                share-popover-title="Share On"
             >
-                <template slot="shareHeading">
-                    Share On
-                </template>
-
                 <VsSocialShareItem
                     name="facebook"
                     link-text="Facebook"
