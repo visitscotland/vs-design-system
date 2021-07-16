@@ -13,19 +13,19 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
-    hippostdpubwf:lastModificationDate: 2021-07-15T17:15:32.446+01:00
+    hippostdpubwf:lastModificationDate: 2021-07-16T16:48:23.867+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '']
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: social.share
     resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
-      twitter.link.text, email.link.text, copy.link.text, close.share]
+      twitter.link.text, email.link.text, copy.link.text, close.share, share.button.text]
     resourcebundle:messages: [Share On, Facebook, Pinterest, WhatsApp, Twitter, Email,
-      Copy Link, Close social share]
-    resourcebundle:messages_de: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '']
+      Copy Link, Close social share, Share]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '']
   /social-share[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -35,19 +35,19 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
-    hippostdpubwf:lastModificationDate: 2021-07-15T17:16:35.306+01:00
+    hippostdpubwf:lastModificationDate: 2021-07-16T16:49:07.786+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '']
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: social.share
     resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
-      twitter.link.text, email.link.text, copy.link.text, close.share]
+      twitter.link.text, email.link.text, copy.link.text, close.share, share.button.text]
     resourcebundle:messages: [Share On, Facebook, Pinterest, WhatsApp, Twitter, Email,
-      Copy Link, Close social share]
-    resourcebundle:messages_de: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '']
+      Copy Link, Close social share, Share]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '']
   /social-share[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -57,17 +57,17 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
-    hippostdpubwf:lastModificationDate: 2021-07-15T17:16:35.306+01:00
+    hippostdpubwf:lastModificationDate: 2021-07-16T16:49:07.786+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-07-15T17:16:36.991+01:00
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '']
+    hippostdpubwf:publicationDate: 2021-07-16T16:49:09.598+01:00
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: social.share
     resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
-      twitter.link.text, email.link.text, copy.link.text, close.share]
+      twitter.link.text, email.link.text, copy.link.text, close.share, share.button.text]
     resourcebundle:messages: [Share On, Facebook, Pinterest, WhatsApp, Twitter, Email,
-      Copy Link, Close social share]
-    resourcebundle:messages_de: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '']
+      Copy Link, Close social share, Share]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '']

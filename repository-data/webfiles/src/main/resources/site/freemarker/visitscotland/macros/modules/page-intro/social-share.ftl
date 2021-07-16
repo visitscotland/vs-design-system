@@ -7,12 +7,10 @@
     <vs-social-share 
         page-url="<@hst.link hippobean=document canonical=true fullyQualified=true/>" 
         page-title="${document.title}"
+        share-btn-text="${label('social.share', 'share.button.text')}"
         close-alt-text="${label('social.share', 'close.share')}"
-    >
-        <template slot="shareHeading">
-            ${label('social.share', 'share.on')}
-        </template>
-        
+        share-popover-title="${label('social.share', 'share.on')}"
+    >        
         <vs-social-share-item
             name="facebook"
             link-text="${label('social.share', 'facebook.link.text')}"
