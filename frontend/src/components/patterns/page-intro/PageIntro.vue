@@ -195,11 +195,14 @@ export default {
     &__share {
         position: absolute;
         top: $spacer-4;
-        right: $spacer-4;
+        right: $spacer-1;
+
+        @include media-breakpoint-up(sm) {
+            right: $spacer-4;
+        }
 
         @include media-breakpoint-up(lg) {
             top: 7.2rem;
-            right: $spacer-4;
         }
     }
 
