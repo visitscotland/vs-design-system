@@ -11,7 +11,7 @@
             <VsContainer>
                 <VsRow>
                     <VsCol
-                        cols="12"
+                        cols="10"
                         :lg="heroIntro ? '8' : ''"
                         :offset-lg="heroIntro ? '1' : ''"
                     >
@@ -198,12 +198,7 @@ export default {
         right: $spacer-4;
 
         @include media-breakpoint-up(lg) {
-            top: 8rem;
-            right: $spacer-4;
-        }
-
-        @include media-breakpoint-up(xl) {
-            top: 8rem;
+            top: 7.2rem;
             right: $spacer-4;
         }
     }
@@ -211,10 +206,6 @@ export default {
     &--hero {
         .vs-page-intro__share {
             @include media-breakpoint-up(lg) {
-                top: 8rem;
-                right: $spacer-4;
-            }
-            @include media-breakpoint-up(xl) {
                 top: $spacer-10;
             }
         }
