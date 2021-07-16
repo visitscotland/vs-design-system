@@ -1,8 +1,8 @@
-<#include "../../../../../include/imports.ftl">
-<#include "../../../../macros/global/cms-errors.ftl">
-<#include "../../../../../frontend/components/vs-summary-box-list.ftl">
-<#include "../../../../../frontend/components/vs-summary-box-list-item.ftl">
-<#include "../../../../../frontend/components/vs-summary-box-distance-list-item.ftl">
+<#include "../../../../include/imports.ftl">
+<#include "../../../macros/global/cms-errors.ftl">
+<#include "../../../../frontend/components/vs-summary-box-list.ftl">
+<#include "../../../../frontend/components/vs-summary-box-list-item.ftl">
+<#include "../../../../frontend/components/vs-summary-box-distance-list-item.ftl">
 
 <#macro summaryBox itinerary>
 <vs-col cols="12" md="6" lg="5" xl="4">
