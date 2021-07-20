@@ -95,7 +95,7 @@
                             </template>
                         </VsMegaNavTopMenuItem>
                     </template>
-                    <template #megaNavMobileItems>
+                    <template #megaNavAccordionItems>
                         <VsAccordion>
                             <VsMegaNavAccordionItem
                                 :title="item.title"
