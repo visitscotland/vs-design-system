@@ -1,9 +1,9 @@
 <#include "../../../../../frontend/components/vs-mega-nav-featured-item.ftl">
 <#include "../../../../../include/imports.ftl">
 
-<#macro headerFeaturedItem item index mobile>
+<#macro headerFeaturedItem item index accordion>
     <@hst.link var="imageSrc" hippobean=item.image.cmsImage.original/>
-    <#if mobile=true>
+    <#if accordion=true>
         <template>
     <#elseif index = 0>
         <template slot="navFeaturedItem">
