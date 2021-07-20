@@ -5,7 +5,7 @@
 <#include "../../../../../frontend/components/vs-mega-nav-list-item.ftl">
 <#include "header-widget.ftl">
 
-<#macro headerMobileNav menu=menu>
+<#macro headerAccordionNav menu=menu>
     <vs-accordion>
         <#list menu.siteMenuItems as item>
             <#if item.title?has_content>

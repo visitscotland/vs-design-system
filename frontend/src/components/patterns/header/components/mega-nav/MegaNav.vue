@@ -68,7 +68,7 @@
 
                         <template #dropdownContent>
                             <!-- @slot For mobile list items  -->
-                            <slot name="megaNavMobileItems" />
+                            <slot name="megaNavAccordionItems" />
                         </template>
                     </VsMegaNavDropdown>
                 </VsCol>

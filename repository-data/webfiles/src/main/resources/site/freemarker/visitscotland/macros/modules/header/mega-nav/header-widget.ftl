@@ -1,15 +1,11 @@
 <#include "../../../../../include/imports.ftl">
 <#include "header-featured-item.ftl">
 
-<#macro headerWidget menu mobile=false>
+<#macro headerWidget menu accordion=false>
     <#switch menu.type>
         <#case "FeaturedItem">
             <#list menu.links as link>
-                <#if mobile >
-                    <@headerFeaturedItem link link?index true />
-                <#else>
-                    <@headerFeaturedItem link link?index false />
-                </#if>
+                <@headerFeaturedItem link link?index accordion />
             </#list>
             <#break>
         <#default>
