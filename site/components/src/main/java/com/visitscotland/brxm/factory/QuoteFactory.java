@@ -39,7 +39,7 @@ public class QuoteFactory {
             quote.setImage(imageFactory.createImage(doc.getImage(), module, locale));
         }
 
-        if (doc.getProduct() != null && doc.getProduct() instanceof Linkable) {
+        if (doc.getProduct() instanceof Linkable) {
             EnhancedLink link = linkService.createEnhancedLink((Linkable) doc.getProduct(), module, locale, false);
             if (doc.getProduct() instanceof SharedLink){
                 FlatLink flatLink = linkService.createLink(locale, ((SharedLink) doc.getProduct()).getLinkType());
