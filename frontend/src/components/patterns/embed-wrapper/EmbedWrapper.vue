@@ -42,10 +42,9 @@
                 >
                     <div class="vs-embed-wrapper__container">
                         <!--
-                            @slot Takes the dom element for the an embedded javascript widget, any
+                            @slot Takes the dom element for the embedded javascript widget, any
                             associated script tags can't be passed into the vue element and should
-                            be loaded in an htmlBodyEnd headContribution - see stackla.ftl for
-                            example
+                            be loaded further down the page outside of the vue components
                         -->
                         <slot name="embedWidget" />
                     </div>
