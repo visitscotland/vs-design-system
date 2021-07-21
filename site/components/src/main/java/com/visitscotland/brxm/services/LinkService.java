@@ -1,15 +1,16 @@
 package com.visitscotland.brxm.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSConstants;
-import com.visitscotland.brxm.dms.LocationLoader;
+import com.visitscotland.brxm.dms.DMSDataService;
+import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
-import com.visitscotland.brxm.model.*;
-import com.visitscotland.brxm.config.VsComponentManager;
-import com.visitscotland.brxm.dms.DMSDataService;
-import com.visitscotland.brxm.dms.ProductSearchBuilder;
+import com.visitscotland.brxm.model.FlatLink;
+import com.visitscotland.brxm.model.LinkType;
+import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
@@ -139,17 +140,36 @@ public class LinkService {
      * @return
      */
     public LinkType getType(String url) {
-        //TODO the following if block requires some refinement. Remove the hardcode URLs
         if (Contract.isEmpty(url)) {
             return null;
         } else if (url.toLowerCase().endsWith(".pdf")) {
             return LinkType.DOWNLOAD;
-        } else if (url.startsWith("/") || url.startsWith("#") ||  url.contains("localhost") || url.contains("visitscotland.com")
-                    || url.startsWith(properties.getDmsHost())) {
+        } else if (url.startsWith("/") || url.startsWith("#")){
+            return LinkType.INTERNAL;
+        } else if (isInternalDomain(url)){
             return LinkType.INTERNAL;
         }
 
         return LinkType.EXTERNAL;
+    }
+
+    /**
+     * Check if the host of the URL is marked as an internal URL
+     *
+     * Note: Malformed URLs will be treated as external URLs
+     *
+     * @param url
+     * @return
+     */
+    private boolean isInternalDomain(String url){
+        try {
+            String host = new URL(url).getHost();
+            return ((!Contract.isEmpty(properties.getInternalSites()) && properties.getInternalSites().contains(host)) ||
+                    (!Contract.isEmpty(properties.getDmsHost()) && host.equals(properties.getDmsHost())));
+        } catch (MalformedURLException e) {
+            logger.info("Malformed URL detected {}",url);
+        }
+        return false;
     }
 
     /**
@@ -275,7 +295,7 @@ public class LinkService {
      * @param locale Language for the label
      * @param addCategory wether or not the category field is populated.
      */
-    private void enhancedLinkFromSharedLink(EnhancedLink link, SharedLink linkable, Module module, Locale locale, boolean addCategory){
+    private void enhancedLinkFromSharedLink(EnhancedLink link, SharedLink linkable, Module<?> module, Locale locale, boolean addCategory){
         JsonNode product = getNodeFromSharedLink(linkable, locale);
         link.setLink(getPlainLink(linkable, product));
 
@@ -302,7 +322,7 @@ public class LinkService {
     }
 
 
-    public String getDownloadText(String link, Locale locale, Module module){
+    public String getDownloadText(String link, Locale locale, Module<?> module){
         String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
         //TODO The following operation is expensive. We should cache the value
         String size = commonUtils.getExternalDocumentSize(link, locale);
