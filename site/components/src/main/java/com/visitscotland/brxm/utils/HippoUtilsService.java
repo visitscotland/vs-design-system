@@ -3,6 +3,7 @@ package com.visitscotland.brxm.utils;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
+import org.hippoecm.hst.content.beans.manager.ObjectConverter;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -11,6 +12,8 @@ import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.onehippo.forge.selection.hst.contentbean.ValueList;
 import org.onehippo.forge.selection.hst.util.SelectionUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.jcr.Node;
@@ -28,6 +31,7 @@ public class HippoUtilsService {
      * Dummy HstCompoment used to access stateless methods on the ComponentClass
      */
     final BaseHstComponent hstComponent;
+    private static final Logger logger = LoggerFactory.getLogger(HippoUtilsService.class);
 
     public HippoUtilsService(){
         hstComponent = new BaseHstComponent();
@@ -82,8 +86,13 @@ public class HippoUtilsService {
         if (!includeUnavailable) {
             return getDocumentFromNode(jcrNode);
         }
-        return (T) RequestContextProvider.get().getContentBeansTool()
-                .getObjectConverter().getObject(jcrNode);
+        ObjectConverter objectConverter = RequestContextProvider.get().getObjectConverter();
+        if (objectConverter == null) {
+            logger.warn("ObjectConverter retrieved from HstRequestContext is null");
+            return null;
+        }
+
+        return (T) objectConverter.getObject(jcrNode);
     }
 
     @NonTestable(NonTestable.Cause.BRIDGE)

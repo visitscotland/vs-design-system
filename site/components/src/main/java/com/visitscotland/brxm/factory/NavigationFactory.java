@@ -2,6 +2,7 @@ package com.visitscotland.brxm.factory;
 
 import com.visitscotland.brxm.components.navigation.MenuItem;
 import com.visitscotland.brxm.components.navigation.RootMenuItem;
+import com.visitscotland.brxm.hippobeans.CMSLink;
 import com.visitscotland.brxm.hippobeans.FeaturedWidget;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
@@ -13,10 +14,8 @@ import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.linking.HstLink;
-import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenu;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 import org.slf4j.Logger;
@@ -60,9 +59,9 @@ public class NavigationFactory {
             String resourceBundle = NAVIGATION_PREFIX + hstSiteMenu.getName();
 
             for (HstSiteMenuItem hstItem : hstSiteMenu.getSiteMenuItems()) {
-                MenuItem menuItem = getMenuItem(request, hstItem, resourceBundle);
-                if (menuItem != null) {
-                    enhancedMenu.add(menuItem);
+                Object menuItem = getMenuItem(request, hstItem, resourceBundle);
+                if (menuItem instanceof MenuItem) {
+                    enhancedMenu.add((MenuItem) menuItem);
                 }
             }
 
@@ -74,29 +73,35 @@ public class NavigationFactory {
     /**
      * Creates a new MenuItem that Matches with Bloomreach's MenuItem specification. which enhanced information
      * about the linked item
+     *
+     * If the item happens to be a widget the  MenuItem is descarded and a Navigation Widget is returned instead
      */
-    private MenuItem getMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle) {
+    private Object getMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle) {
         MenuItem menuItem = new MenuItem(hstItem);
 
         //By default, the name would be populated by the resourceBundle
         menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), request.getLocale(), true));
 
         //if document base page or widget, we enhance the document
-        if (isDocumentBased(hstItem.getHstLink())) {
-            ResolvedSiteMapItem rsi = hstItem.resolveToSiteMapItem();
-            if (rsi != null) {
-                HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, rsi);
-                //if the document does not exist or no publish
-                if (bean != null && !(bean instanceof HippoFolder)) {
-                    processItem(request, bean, menuItem, resourceBundle);
-                }
+        if (isDocumentBased(hstItem.getHstLink()) && hstItem.resolveToSiteMapItem() != null) {
+            HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, hstItem.resolveToSiteMapItem());
+            //if the document does not exist or is not published
+            if (bean instanceof Page) {
+                createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, request.getLocale());
+            } else if (bean != null) {
+                return createWidget(request, bean);
             }
         }
 
-        if (menuItem.getTitle() != null || menuItem.getWidget() != null) {
+        if (menuItem.getTitle() != null) {
             //Process all children
             for (HstSiteMenuItem hstChild : hstItem.getChildMenuItems()) {
-                menuItem.addChild(getMenuItem(request, hstChild, resourceBundle));
+                Object childItem = getMenuItem(request, hstChild, resourceBundle);
+                if (childItem instanceof MenuItem) {
+                    menuItem.addChild((MenuItem)childItem);
+                } else if (childItem instanceof  NavigationWidget) {
+                    menuItem.setWidget((NavigationWidget) childItem);
+                }
             }
             return menuItem;
         } else {
@@ -108,25 +113,36 @@ public class NavigationFactory {
     /**
      * Identifies the type of document linked and populated the data on the menu item accordingly
      */
-    private void processItem(HstRequest request, HippoBean bean, MenuItem menuItem, String resourceBundle) {
+    private NavigationWidget createWidget(HstRequest request, HippoBean bean) {
         if (bean instanceof FeaturedWidget) {
-            menuItem.setWidget(addFeatureItem((FeaturedWidget) bean, request.getLocale()));
-        } else if (bean instanceof Page) {
-            createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, request.getLocale());
+           return addFeatureItem((FeaturedWidget) bean, request.getLocale());
         } else {
             contentLogger.warn("Skipping Unexpected document type: {}", bean.getClass().getSimpleName());
         }
+
+        return null;
     }
 
     /**
      * Adds a Featured Navigation Widget
      */
     private NavigationWidget addFeatureItem(FeaturedWidget document, Locale locale) {
-        FeaturedItem widget = new FeaturedItem();
+       FeaturedItem widget = new FeaturedItem();
         ArrayList<EnhancedLink> items = new ArrayList<>();
 
-        for (Linkable linkable : document.getItems()) {
-            items.add(linkService. createEnhancedLink(linkable, widget, locale, false));
+        for (CMSLink cmsLink : document.getItems()) {
+            if (!(cmsLink.getLink() instanceof Linkable)){
+                contentLogger.warn("An incorrect Type of link has been set in a featured item: {}", document.getPath());
+                continue;
+            }
+            EnhancedLink link = linkService.createEnhancedLink((Linkable) cmsLink.getLink(), widget, locale, false);
+
+            if (!Contract.isEmpty(cmsLink.getLabel())){
+                link.setCta(cmsLink.getLabel());
+            } else {
+                contentLogger.warn("A CTA Text has not been provided for the featured Item {}", document.getPath());
+            }
+            items.add(link);
         }
 
         widget.setLinks(items);

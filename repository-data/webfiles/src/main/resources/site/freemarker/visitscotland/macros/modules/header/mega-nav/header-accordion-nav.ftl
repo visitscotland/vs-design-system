@@ -3,8 +3,9 @@
 <#include "../../../../../frontend/components/vs-mega-nav-accordion-item.ftl">
 <#include "../../../../../frontend/components/vs-mega-nav-list.ftl">
 <#include "../../../../../frontend/components/vs-mega-nav-list-item.ftl">
+<#include "header-widget.ftl">
 
-<#macro headerMobileNav menu=menu>
+<#macro headerAccordionNav menu=menu>
     <vs-accordion>
         <#list menu.siteMenuItems as item>
             <#if item.title?has_content>
@@ -57,6 +58,9 @@
                             </vs-mega-nav-accordion-item>
                         </#if>
                     </#list>  
+                    <#if item.widget?? >
+                        <@headerWidget item.widget true />
+                    </#if>
                 </vs-mega-nav-accordion-item>
             </#if>
         </#list>
