@@ -16,7 +16,7 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = "com.visitscotland.brxm.translation")
+@ComponentScan(basePackages = {"com.visitscotland.brxm.translation", "com.visitscotland.brxm.report.translation"})
 public class TranslationConfig {
 
     @Bean
