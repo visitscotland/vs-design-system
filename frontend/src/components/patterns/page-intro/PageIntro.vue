@@ -325,6 +325,7 @@ export default {
                 <VsSocialShareItem
                     name="link"
                     link-text="Copy Link"
+                    link-copied-text="Link copied!"
                 />
             </VsSocialShare>
         </template>
