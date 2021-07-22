@@ -34,6 +34,7 @@ public class Properties {
     static final String IKNOW_COMMUNITY_URL = "iknow-community.url";
     static final String IKNOW_COMMUNITY_TAGGED_DISCUSSION = "iknow-community.tagged-discussion";
     static final String USE_RELATIVE_URLS = "use-relative-urls";
+    static final String INTERNAL_SITES = "internal-sites";
 
 
     private final ResourceBundleService bundle;
@@ -105,6 +106,10 @@ public class Properties {
 
     public String getIknowCommunityTaggedDiscussion() {
         return readString(IKNOW_COMMUNITY_TAGGED_DISCUSSION);
+    }
+
+    public String getInternalSites() {
+        return readString(INTERNAL_SITES);
     }
 
     public Charset getDmsEncoding() {
