@@ -14,6 +14,7 @@ import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,7 +67,7 @@ public class LinkService {
      * @param locale locale Language for the labels
      * @param item   Compound Item
      */
-    public FlatLink createLink(Locale locale, HippoCompound item) {
+    public FlatLink createLink(Locale locale, HippoBean item) {
 
         if (item instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) item;
