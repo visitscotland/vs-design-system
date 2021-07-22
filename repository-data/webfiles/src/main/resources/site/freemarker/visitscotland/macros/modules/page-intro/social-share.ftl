@@ -34,6 +34,7 @@
         <vs-social-share-item
             name="link"
             link-text="${label('social.share', 'copy.link.text')}"
+            link-copied-text="${label('social.share', 'link.copied.text')}"
         ></vs-social-share-item>
     </vs-social-share>
 </#macro>
