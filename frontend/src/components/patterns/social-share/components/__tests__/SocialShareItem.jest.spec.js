@@ -122,6 +122,22 @@ describe('VsSocialShareItem', () => {
             /* eslint-disable no-underscore-dangle */
             expect(wrapper.vm._provided.pageTitle).toBe(title);
         });
+
+        it('should render `linkCopiedText` when link is copied', async() => {
+            await wrapper.setProps({
+                name: 'link',
+                linkCopiedText: 'Link copied!',
+            });
+
+            await wrapper.setData({
+                show: true,
+            });
+
+            const shareItem = wrapper.find('[data-test="vs-social-share-item"]');
+            const shareLink = shareItem.find('.vs-social-share-item__link');
+
+            expect(shareLink.text()).toBe('Link copied!');
+        });
     });
 
     describe(':methods', () => {
