@@ -24,17 +24,8 @@
                 class="svg-logo"
                 :path="name"
             />
-            {{ linkText }}
+            {{ show ? linkCopiedText : linkText }}
         </VsLink>
-
-        <BTooltip
-            :show.sync="show"
-            triggers="manual"
-            target="vs-share-link"
-            placement="bottom"
-        >
-            Link copied!
-        </BTooltip>
     </VsCol>
 </template>
 
@@ -43,7 +34,6 @@ import VsLink from '@components/elements/link/Link';
 import VsIcon from '@components/elements/icon/Icon';
 import VsSvg from '@components/elements/svg/Svg';
 import { VsCol } from '@components/elements/layout';
-import { BTooltip } from 'bootstrap-vue';
 
 /**
  * This component displays an icon and link to a social sharing channel
@@ -59,7 +49,6 @@ export default {
         VsLink,
         VsSvg,
         VsIcon,
-        BTooltip,
     },
     props: {
         /**
@@ -76,6 +65,13 @@ export default {
         linkText: {
             type: String,
             required: true,
+        },
+        /**
+        * Text to display when link is copied
+        */
+        linkCopiedText: {
+            type: String,
+            default: '',
         },
     },
     inject: {
@@ -162,7 +158,7 @@ export default {
                 document.execCommand('copy');
                 document.body.removeChild(hiddenInput);
 
-                // show success tooltip on button
+                // show success text on button
                 this.show = true;
                 setTimeout(() => { this.show = false; }, 2000);
             }

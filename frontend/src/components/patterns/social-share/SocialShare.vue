@@ -273,6 +273,7 @@ export default {
             <VsSocialShareItem
                 name="link"
                 link-text="Copy Link"
+                link-copied-text="Link Copied!"
             />
         </VsSocialShare>
     </BsWrapper>
