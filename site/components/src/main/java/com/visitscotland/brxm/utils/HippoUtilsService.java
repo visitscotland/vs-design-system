@@ -46,17 +46,21 @@ public class HippoUtilsService {
      * @param document Page document
      *
      * @return URL for the page that renders the document or null when it cannot be rendered as a page.
+     *
+     *
      */
     @NonTestable(NonTestable.Cause.BRIDGE)
     public String createUrl(Page document){
-        if (document instanceof Page) {
+        if (document == null) {
+            logger.info("The linked page does not exist.");
+            return null;
+        } else {
             final boolean FULLY_QUALIFIED = false;
             HstRequestContext requestContext = RequestContextProvider.get();
 
             HstLink link = requestContext.getHstLinkCreator().create(document, requestContext);
             return link.toUrlForm(requestContext, FULLY_QUALIFIED);
         }
-        return null;
     }
 
     /**
