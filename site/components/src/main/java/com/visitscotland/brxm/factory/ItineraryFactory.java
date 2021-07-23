@@ -62,15 +62,14 @@ public class ItineraryFactory {
 
         page.setDocument(itinerary);
         page.setDays(documentUtils.getAllowedDocuments(itinerary, Day.class));
-        List<String> seenStops = new ArrayList<>();
 
         for (Day day : page.getDays()) {
             for (Stop stop : day.getStops()) {
-                if (seenStops.contains(stop.getIdentifier())) {
+                if (page.getStops() != null && page.getStops().containsKey(stop.getIdentifier())) {
                     contentLogger.error("Duplicate stop {} found on itinerary {}", stop.getPath(), itinerary.getPath());
+                    page.addErrorMessage(String.format("Duplicate stop '%s' found on itinerary", stop.getTitle()));
                     continue;
                 }
-                seenStops.add(stop.getIdentifier());
 
                 ItineraryStopModule module = generateStop(locale, stop, itinerary, index++);
 
