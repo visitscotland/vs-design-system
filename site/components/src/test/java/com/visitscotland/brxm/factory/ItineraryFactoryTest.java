@@ -336,6 +336,7 @@ class ItineraryFactoryTest {
 
         assertEquals(1, iti.getStops().size());
         assertEquals("Apple", iti.getStops().get("a").getSubTitle());
+        assertEquals(1, iti.getErrorMessages().size());
     }
 
     @Test
@@ -352,6 +353,7 @@ class ItineraryFactoryTest {
         assertEquals(2, iti.getStops().size());
         assertEquals("Apple", iti.getStops().get("a").getSubTitle());
         assertEquals("Pear", iti.getStops().get("b").getSubTitle());
+        assertEquals(1, iti.getErrorMessages().size());
     }
 
 
