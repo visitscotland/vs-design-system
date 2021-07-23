@@ -6,6 +6,8 @@ import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.impl.NodeDecorator;
 import org.hippoecm.repository.standardworkflow.EditableWorkflow;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.jcr.Node;
@@ -26,10 +28,12 @@ interface CheckedExceptionConsumer<T, E extends Throwable> {
 @Component
 public class JcrUtilService {
 
-    private final SessionFactory sessionFactory;
+    private static final Logger logger = LoggerFactory.getLogger(JcrUtilService.class);
 
-    private final String EDIT_WORKFLOW_NAME = "editing";
-    private final String VS_TRANSLATION_PRIORITY = "visitscotland:translationPriority";
+    private static final String EDIT_WORKFLOW_NAME = "editing";
+    private static final String VS_TRANSLATION_PRIORITY = "visitscotland:translationPriority";
+
+    private final SessionFactory sessionFactory;
 
     public JcrUtilService(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -116,6 +120,7 @@ public class JcrUtilService {
         while (allPagesRows.hasNext()) {
             nodes.add((NodeDecorator) allPagesRows.nextRow().getNode());
         }
+        logger.debug("The query has returned {} results", nodes.size());
 
         return nodes;
     }
