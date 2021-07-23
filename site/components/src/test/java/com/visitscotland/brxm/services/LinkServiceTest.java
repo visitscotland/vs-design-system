@@ -125,9 +125,9 @@ class LinkServiceTest {
     @DisplayName("Create a link from an CMSLink Compound")
     void cmsLink() {
         CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
-        when(cmsLink.getLink()).thenReturn(mock(HippoBean.class));
+        when(cmsLink.getLink()).thenReturn(mock(Page.class));
 
-        when(utils.createUrl(any(HippoBean.class))).thenReturn("http://cms-url");
+        when(utils.createUrl(any(Page.class))).thenReturn("http://cms-url");
 
         FlatLink link = service.createLink(Locale.UK, cmsLink);
 

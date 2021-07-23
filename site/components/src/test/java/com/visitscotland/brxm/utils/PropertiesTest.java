@@ -160,6 +160,17 @@ class PropertiesTest {
     }
 
     @Test
+    @DisplayName("As requested by WebOps, made up links to the CMS, will be relative when use relative urls is active")
+    void getLocalHost(){
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.CMS_BASE_PATH, Locale.UK)).thenReturn("http:/localhost:8080/site");
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.USE_RELATIVE_URLS, Locale.UK)).thenReturn("true");
+        assertEquals("", properties.getDmsHost());
+
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.USE_RELATIVE_URLS, Locale.UK)).thenReturn("false");
+        assertEquals("http:/localhost:8080/site", properties.getCmsBasePath());
+    }
+
+    @Test
     @DisplayName("getInstagramURL() Composes the token from the app-id and the client-token (PR-383)")
     void getInstagramURL(){
 

@@ -21,9 +21,9 @@ public class Properties {
     static final String INSTAGRAM_ACCESS_TOKEN ="instagram.accesstoken";
     static final String INSTAGRAM_APP_ID ="instagram.app-id";
     static final String INSTAGRAM_URL ="instagram.post-url";
-    static final String LOCALHOST = "localhost";
+    static final String CMS_BASE_PATH = "links.cms-base-path-url";
     static final String HELPDESK_EMAIL = "helpdesk-email";
-    static final String DMS_HOST = "vs-dms-products.url";
+    static final String DMS_HOST = "links.vs-dms-products.url";
     static final String DMS_MAP_DEFAULT_DISTANCE = "dms.default-distance";
     static final String DMS_DATA_HOST = "dms-data.url";
     static final String DMS_DATA_ENCODING = "dms-data.encoding";
@@ -33,18 +33,14 @@ public class Properties {
     static final String DMS_DATA_SLEEP_TIME = "dms-data.sleep-time";
     static final String IKNOW_COMMUNITY_URL = "iknow-community.url";
     static final String IKNOW_COMMUNITY_TAGGED_DISCUSSION = "iknow-community.tagged-discussion";
-    static final String USE_RELATIVE_URLS = "use-relative-urls";
-    static final String INTERNAL_SITES = "internal-sites";
+    static final String USE_RELATIVE_URLS = "links.use-relative-urls";
+    static final String INTERNAL_SITES = "links.internal-sites";
 
 
     private final ResourceBundleService bundle;
 
     public Properties(ResourceBundleService bundle){
         this.bundle = bundle;
-    }
-
-    public String getLocalhost() {
-        return readString(LOCALHOST);
     }
 
     public String getInstagramApi() {
@@ -73,6 +69,14 @@ public class Properties {
             return "";
         } else {
             return readString(DMS_HOST);
+        }
+    }
+
+    public String getCmsBasePath() {
+        if (readBoolean(USE_RELATIVE_URLS)){
+            return "";
+        } else {
+            return readString(CMS_BASE_PATH);
         }
     }
 

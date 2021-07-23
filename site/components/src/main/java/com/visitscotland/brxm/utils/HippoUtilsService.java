@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.utils;
 
+import com.visitscotland.brxm.hippobeans.Page;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
@@ -42,19 +43,20 @@ public class HippoUtilsService {
     /**
      * Convert and HstLink or a HippoBean into a URL String
      *
-     * TODO: Verify that the item can be rendered as a page and return null when it doesn't
-     *
      * @param document Page document
      *
      * @return URL for the page that renders the document or null when it cannot be rendered as a page.
      */
     @NonTestable(NonTestable.Cause.BRIDGE)
-    public String createUrl(HippoBean document){
-        final boolean FULLY_QUALIFIED = true;
-        HstRequestContext requestContext = RequestContextProvider.get();
+    public String createUrl(Page document){
+        if (document instanceof Page) {
+            final boolean FULLY_QUALIFIED = false;
+            HstRequestContext requestContext = RequestContextProvider.get();
 
-        HstLink link = requestContext.getHstLinkCreator().create(document, requestContext);
-        return link.toUrlForm(requestContext, FULLY_QUALIFIED);
+            HstLink link = requestContext.getHstLinkCreator().create(document, requestContext);
+            return link.toUrlForm(requestContext, FULLY_QUALIFIED);
+        }
+        return null;
     }
 
     /**

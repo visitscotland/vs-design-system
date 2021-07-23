@@ -88,7 +88,7 @@ public class InternalResource extends AbstractResource {
         }
 
         // TODO: Use request.getRequestContext().getBaseURL().getContextPath() instead?
-        return  properties.getLocalhost() + languageSubsite + "/internal" +
+        return  properties.getCmsBasePath() + languageSubsite + "/internal" +
                 utils.buildQueryString(parameters, StandardCharsets.UTF_8.name());
     }
 
