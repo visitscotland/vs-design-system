@@ -8,9 +8,10 @@ definitions:
           jcr:primaryType: hst:sitemap
           /root:
             jcr:primaryType: hst:sitemapitem
-            hst:componentconfigurationid: hst:pages/homepage
+            hst:componentconfigurationid: hst:pages/general-page
             hst:pagetitle: Home Page
             hst:refId: root
+            hst:relativecontentpath: site/content
           /_any_:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
@@ -531,6 +532,10 @@ definitions:
                   hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
                     'hst:pages/listicle-page', 'hst:pages/general-page', 'hst:pages/destination-page']
                   hst:relativecontentpath: ${parent}/content
+          /root-backup:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/homepage
+            hst:pagetitle: Home Page
         /hst:abstractpages:
           jcr:primaryType: hst:pages
         /hst:pages:
@@ -585,8 +590,6 @@ definitions:
       /visitscotland:
         jcr:primaryType: hst:configuration
         hst:inheritsfrom: [../common]
-      /backup:
-        jcr:primaryType: hst:configuration
       /visitscotland-es:
         jcr:primaryType: hst:configuration
         hst:inheritsfrom: [../common, '../common/hst:workspace']

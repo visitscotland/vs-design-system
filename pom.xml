@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.visitscotland</groupId>
     <artifactId>hippo-defaults</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
   </parent>
   
   <name>www.visitscotland.com CMS Pages</name>
@@ -30,8 +30,8 @@
     
     <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
-    <!-- TODO end define -->
-  
+
+    <cliOptions></cliOptions>
   </properties>
   
   <inceptionYear>2019</inceptionYear>
@@ -95,6 +95,59 @@
         <artifactId>freemarker</artifactId>
         <version>${freemarker.version}</version>
       </dependency>
+
+      <!-- VisitScotland Dependencies -->
+
+      <dependency>
+        <groupId>com.visitscotland</groupId>
+        <artifactId>data-service-api</artifactId>
+        <version>${data-service-api.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <!-- Test Dependencies -->
+
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${junit.jupiter.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
+        <version>${junit.jupiter.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-inline</artifactId>
+        <version>${mockito.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>${mockito.version}</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -152,7 +205,6 @@
   </build>
 
   <profiles>
-
     <profile>
       <id>default</id>
       <activation>
@@ -161,6 +213,9 @@
           <name>jrebel</name>
         </property>
       </activation>
+      <properties>
+        <spring.profiles.active>${cliOptions}</spring.profiles.active>
+      </properties>
       <modules>
         <module>ui-integration</module>
         <module>cms-dependencies</module>
