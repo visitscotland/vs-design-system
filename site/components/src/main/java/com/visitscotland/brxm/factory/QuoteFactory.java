@@ -1,9 +1,13 @@
 package com.visitscotland.brxm.factory;
 
+import com.visitscotland.brxm.hippobeans.CMSLink;
 import com.visitscotland.brxm.hippobeans.Quote;
+import com.visitscotland.brxm.hippobeans.SharedLink;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
+import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.FlatQuote;
 import com.visitscotland.brxm.model.Module;
+import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.services.LinkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +40,12 @@ public class QuoteFactory {
         }
 
         if (doc.getProduct() instanceof Linkable) {
-            quote.setLink(linkService.createEnhancedLink((Linkable) doc.getProduct(), module, locale, false));
+            EnhancedLink link = linkService.createEnhancedLink((Linkable) doc.getProduct(), module, locale, false);
+            if (doc.getProduct() instanceof SharedLink){
+                FlatLink flatLink = linkService.createLink(locale, ((SharedLink) doc.getProduct()).getLinkType());
+                link.setLabel(flatLink.getLabel());
+            }
+            quote.setLink(link);
         } else if (doc.getProduct() != null){
             contentLogger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
         }

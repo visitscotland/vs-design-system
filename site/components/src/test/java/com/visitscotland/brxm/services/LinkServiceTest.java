@@ -233,22 +233,33 @@ class LinkServiceTest {
         assertNull(service.getType(""));
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"http://www.visitscotland.com/something",
+            "http://localhost:8080/site",
+            "http://localhost:1234/site",
+            "/info/edinburgh-castle-p00001",
+            "#htmlID"
+
+    })
     @DisplayName("Identifies internal URL patterns")
-    void getType() {
-        when(properties.getDmsHost()).thenReturn("//dms");
-        assertEquals(LinkType.INTERNAL, service.getType("http://www.visitscotland.com/something"));
-        assertEquals(LinkType.INTERNAL, service.getType("http://feature.visitscotland.com"));
-        assertEquals(LinkType.INTERNAL, service.getType("http://localhost:8080/site"));
-        assertEquals(LinkType.INTERNAL, service.getType("http://localhost:1234/site"));
-        assertEquals(LinkType.INTERNAL, service.getType(properties.getDmsHost() + "/info/edinburgh-castle-p00001"));
-        assertEquals(LinkType.INTERNAL, service.getType("http://future.visitscotland.com"));
+    void internalURLs(String url) {
+        if (url.startsWith("http")) {
+            when(properties.getInternalSites()).thenReturn("localhost, www.visitscotland.com");
+        }
+        assertEquals(LinkType.INTERNAL, service.getType(url));
+    }
 
-        assertEquals(LinkType.EXTERNAL, service.getType("http://www.edinburgh.com/"));
-        assertEquals(LinkType.EXTERNAL, service.getType("http://www.gov-uk.com/visitscotland"));
-
-        //TODO: Amend gettype to fulfil the following assertion
-//        assertEquals(LinkType.EXTERNAL, service.getType("http://www.prize-draw.com/scotland?referral=www.visitscotland.com"));
+    @ParameterizedTest
+    @ValueSource(strings = {"http://www.edinburgh.com/",
+            "http://www.gov-uk.com/visitscotland",
+            "https://businessevents.visitscotland.com/",
+            "https://www.visitscotland.org/",
+            "http://www.prize-draw.com/scotland?referral=www.visitscotland.com"
+    })
+    @DisplayName("Identifies external URL patterns")
+    void externalURLs(String url) {
+        when(properties.getInternalSites()).thenReturn("localhost, www.visitscoltand.com");
+        assertEquals(LinkType.EXTERNAL, service.getType(url));
     }
 
     @ParameterizedTest
@@ -296,6 +307,7 @@ class LinkServiceTest {
     @DisplayName("Return the category for the link/page")
     void getLinkCategory() {
         when(properties.getDmsHost()).thenReturn("http://localhost:8080");
+        when(properties.getInternalSites()).thenReturn("www.visitscotland.com,ebooks.visitscotland.com,blog.visitscotland.com");
 
         assertEquals("eBooks", service.getLinkCategory("https://ebooks.visitscotland.com/whisky-distilleries-guides/",Locale.UK));
 
@@ -345,8 +357,6 @@ class LinkServiceTest {
     @Test
     @DisplayName("An exception if the URL is mal formed")
     void getLinkCategory_MalformedURLException(){
-        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
-
         assertNull(service.getLinkCategory("http//example.com",Locale.UK));
     }
 

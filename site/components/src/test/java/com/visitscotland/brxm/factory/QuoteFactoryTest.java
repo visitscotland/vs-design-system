@@ -3,7 +3,12 @@ package com.visitscotland.brxm.factory;
 import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.hippobeans.Quote;
 import com.visitscotland.brxm.hippobeans.SharedLink;
+import com.visitscotland.brxm.hippobeans.TourismInformation;
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
+import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.FlatQuote;
+import com.visitscotland.brxm.model.Module;
+import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.services.LinkService;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.junit.jupiter.api.Assertions;
@@ -38,6 +43,8 @@ class QuoteFactoryTest {
         Quote quote = mock(Quote.class);
         Image image = mock(Image.class);
         SharedLink link = mock(SharedLink.class);
+        EnhancedLink enhancedLink = mock(EnhancedLink.class);
+        FlatLink flatLink = mock(FlatLink.class);
         HippoHtml copy = mock(HippoHtml.class);
         when(quote.getQuote()).thenReturn(mock(HippoHtml.class));
         when(quote.getAuthor()).thenReturn("Author");
@@ -45,6 +52,10 @@ class QuoteFactoryTest {
         when(quote.getQuote()).thenReturn(copy);
         when(quote.getImage()).thenReturn(image);
         when(quote.getProduct()).thenReturn(link);
+        when((linkService).createEnhancedLink((Linkable)quote.getProduct(),null,Locale.UK,false)).thenReturn(enhancedLink);
+        when(link.getLinkType()).thenReturn(link);
+        when((linkService).createLink(Locale.UK, link)).thenReturn(flatLink);
+
 
         FlatQuote flat = embedder.getQuote(quote, null, Locale.UK);
 
