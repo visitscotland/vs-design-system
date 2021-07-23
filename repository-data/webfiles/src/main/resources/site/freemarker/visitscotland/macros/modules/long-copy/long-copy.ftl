@@ -19,7 +19,7 @@
                 <vs-rich-text-wrapper>
                     <@hst.html hippohtml=module.copy/>
                 </vs-rich-text-wrapper>
-            <vs-col>
+            </vs-col>
         </vs-row>
     </vs-container>
 </#macro>

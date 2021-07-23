@@ -10,6 +10,7 @@ public class LongCopyFactory {
     public LongCopyModule getModule(LongCopy doc){
         LongCopyModule module = new LongCopyModule();
         module.setCopy(doc.getCopy());
+        module.setHippoBean(doc);
         return module;
     }
 }
