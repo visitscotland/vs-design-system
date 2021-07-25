@@ -90,9 +90,9 @@ public class LinkService {
             LinkType linkType = getType(externalLink.getLink());
             return new FlatLink(bundle.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLink(), linkType);
 
-        } else if (item instanceof CMSLink) {
+        } else if (item instanceof CMSLink && ((CMSLink) item).getLink() instanceof Page) {
             CMSLink cmsLink = (CMSLink) item;
-            return new FlatLink(bundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl(cmsLink.getLink()), LinkType.INTERNAL);
+            return new FlatLink(bundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl((Page) cmsLink.getLink()), LinkType.INTERNAL);
         } else {
             contentLogger.warn("The document {} could not be turned into a link", item.getPath());
         }

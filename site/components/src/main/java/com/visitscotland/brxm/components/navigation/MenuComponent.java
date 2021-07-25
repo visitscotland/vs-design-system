@@ -4,6 +4,7 @@ package com.visitscotland.brxm.components.navigation;
 import com.visitscotland.brxm.components.navigation.info.MenuComponentInfo;
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.factory.NavigationFactory;
+import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.LocalizedURL;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
@@ -79,8 +80,8 @@ public class MenuComponent extends EssentialsMenuComponent {
                     }
                 }
 
-                if (translation != null) {
-                    lan.setUrl(utils.createUrl(translation));
+                if (translation instanceof Page) {
+                    lan.setUrl(utils.createUrl((Page) translation));
                     lan.setExists(true);
                 } else {
                     //TODO: Define if the URL is made up, or we use the englishSite link instead
