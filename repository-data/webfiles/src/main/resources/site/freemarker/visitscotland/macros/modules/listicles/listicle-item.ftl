@@ -42,7 +42,10 @@
                 <#list item.links as cta>
 					<#if cta?has_content>
                         <div class="mb-2">
-						    <vs-link href="${cta.link}">${cta.label}</vs-link>
+                            <vs-link
+                                href="${cta.link}"
+                                <#if cta.type != "internal">type="${cta.type}"</#if>
+                            >${cta.label}</vs-link>
                         </div>
 					</#if>
 				</#list>
