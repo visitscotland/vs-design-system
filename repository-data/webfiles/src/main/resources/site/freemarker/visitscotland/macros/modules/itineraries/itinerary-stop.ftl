@@ -74,12 +74,6 @@
             </template>
         </#if>
 
-        <#if stop.ctaLink?? && stop.ctaLink.link?? && stop.ctaLink.link?has_content>
-            <vs-link href="${stop.ctaLink.link}">
-                ${stop.ctaLink.label}
-            </vs-link>
-        </#if>
-
         <#if stop??>
             <#if stop.address?? && stop.address.line1?? && stop.address.line1?has_content>
                 <vs-address slot="stop-address">
