@@ -489,14 +489,4 @@
     <developerConnection/>
     <url/>
   </scm>
-  <distributionManagement>
-        <snapshotRepository>
-            <id>nexus-snapshots</id>
-            <url>https://repo.visitscotland.com/nexus3/repository/maven-snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>nexus-releases</id>
-            <url>https://repo.visitscotland.com/nexus3/repository/maven-releases/</url>
-        </repository>
-    </distributionManagement>
 </project>
