@@ -44,8 +44,9 @@ public class PageTemplateBuilder {
     private final LongCopyFactory longCopyFactory;
     private final IKnowCommunityFactory iKnowCommunityFactory;
     private final StacklaFactory stacklaFactory;
+    private final TravelInformationFactory travelInformationFactory;
 
-    public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory) {
+    public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory, TravelInformationFactory travelInformationFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
@@ -54,6 +55,7 @@ public class PageTemplateBuilder {
         this.longCopyFactory = longcopy;
         this.iKnowCommunityFactory = iKnowCommunityFactory;
         this.stacklaFactory = stacklaFactory;
+        this.travelInformationFactory = travelInformationFactory;
     }
 
     private Page getDocument(HstRequest request) {
@@ -82,6 +84,8 @@ public class PageTemplateBuilder {
                     page.modules.add(iKnowCommunityFactory.getIKnowCommunityModule((IknowCommunity) item, request.getLocale()));
                 } else if (item instanceof Stackla) {
                     page.modules.add(stacklaFactory.getStacklaModule((Stackla) item));
+                } else if (item instanceof TravelInformation) {
+                    page.modules.add(travelInformationFactory.getTravelInformation((TravelInformation) item));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
