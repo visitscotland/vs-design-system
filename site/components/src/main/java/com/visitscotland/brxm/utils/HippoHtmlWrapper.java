@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class HippoHtmlWrapper extends HippoHtml {
 
-    private static final Pattern REMOVE_TAGS = Pattern.compile("<.+?>");
+    private static final Pattern REMOVE_TAGS = Pattern.compile("<[^>]++>");
 
     private final HippoHtml base;
     private final String defaultHtml;
@@ -21,7 +21,7 @@ public class HippoHtmlWrapper extends HippoHtml {
     }
 
     public HippoHtmlWrapper(String defaultHtml) {
-        this(new HippoHtml(), defaultHtml);
+        this(null, defaultHtml);
     }
 
     @Override
@@ -30,8 +30,7 @@ public class HippoHtmlWrapper extends HippoHtml {
     }
 
     private boolean hasContent(){
-        return !Contract.isEmpty(base.getContent()) &&
-                !REMOVE_TAGS.matcher(base.getContent()).replaceAll("").replaceAll("&nbsp;", "").trim().isEmpty();
+        return base != null && !Contract.isEmpty(base.getContent()) &&
+                !REMOVE_TAGS.matcher(base.getContent()).replaceAll("").replace("&nbsp;", "").trim().isEmpty();
     }
-
 }
