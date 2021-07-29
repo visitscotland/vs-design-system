@@ -1,7 +1,6 @@
 package com.visitscotland.brxm.model;
 
 import com.visitscotland.brxm.hippobeans.TravelInformationTab;
-import com.visitscotland.brxm.hippobeans.TravelInformationTransportRow;
 
 import java.util.List;
 
