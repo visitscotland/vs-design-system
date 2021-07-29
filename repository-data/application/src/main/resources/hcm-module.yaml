@@ -3,4 +3,4 @@ group:
   after: [hippo-cms, bloomreach-forge]
 project: visitscotland
 module:
-  name: visitscfiotland-repository-data-application
+  name: visitscotland-repository-data-application
