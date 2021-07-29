@@ -4,6 +4,7 @@ import com.visitscotland.brxm.hippobeans.Day;
 import com.visitscotland.brxm.hippobeans.Itinerary;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ public class ItineraryPage {
     private List<Day> days;
     private BigDecimal distance;
     private Map<String, ItineraryStopModule> stops;
+    private List<String> errorMessages = new ArrayList<>();
 
     public Itinerary getDocument() {
         return document;
@@ -71,5 +73,13 @@ public class ItineraryPage {
             stops = new HashMap<>();
         }
         stops.put(module.getIdentifier(), module);
+    }
+
+    public void addErrorMessage(String errorMessage) {
+        this.errorMessages.add(errorMessage);
+    }
+
+    public List<String> getErrorMessages() {
+        return errorMessages;
     }
 }

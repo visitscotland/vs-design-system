@@ -33,9 +33,19 @@ public class ItineraryDayMockBuilder {
 
         stops.add(currentStop);
 
-        //This mocked value is not representative of the real object.
-        when(currentStop.getIdentifier()).thenReturn(String.valueOf(stops.size()));
+        //This mocked value is not representative of the real object. Use hashcode to ensure identifier is unique
+        when(currentStop.getIdentifier()).thenReturn(String.valueOf(stops.size()) + currentStop.hashCode());
 
+        return this;
+    }
+
+    public ItineraryDayMockBuilder addStop(String identifier) {
+        currentStop = mock(Stop.class);
+        dmsLink = null;
+        link = null;
+        stops.add(currentStop);
+        //This mocked value is not representative of the real object.
+        when(currentStop.getIdentifier()).thenReturn(identifier);
         return this;
     }
 

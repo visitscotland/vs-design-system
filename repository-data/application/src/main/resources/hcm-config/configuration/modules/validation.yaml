@@ -65,3 +65,8 @@ definitions:
       hipposys:className: com.visitscotland.brxm.validator.MultiValueNumberSelectedValidator
       minLength: 5
       targetField: visitscotland:links
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:itinerary-stop-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: com.visitscotland.brxm.validator.UniqueLinksValidator
+      targetField: visitscotland:stops
+      linkIdField: hippo:docbase
