@@ -1,154 +1,156 @@
 <template>
-    <section
-        class="card vs-product-card"
-        v-bind="$attrs"
-    >
-        <div class="vs-product-card__image-container">
-            <VsImg
-                :src="imgSrc"
-                :alt="imgAlt"
-                class="vs-product-card__img"
-                data-test="vs-product-card__img"
-            />
-            <div
-                v-if="badgeOne"
-                class="vs-product-card__badge vs-product-card__badge--teal
-                vs-product-card__badge--tr"
-            >
-                {{ badgeOne }}
+    <div class="vs-product-card">
+        <section
+            class="card vs-product-card"
+            v-bind="$attrs"
+        >
+            <div class="vs-product-card__image-container">
+                <VsImg
+                    :src="imgSrc"
+                    :alt="imgAlt"
+                    class="vs-product-card__img"
+                    data-test="vs-product-card__img"
+                />
+                <div
+                    v-if="badgeOne"
+                    class="vs-product-card__badge vs-product-card__badge--teal
+                    vs-product-card__badge--tr"
+                >
+                    {{ badgeOne }}
+                </div>
+                <div
+                    v-if="badgeTwo"
+                    class="vs-product-card__badge vs-product-card__badge--pink
+                    vs-product-card__badge--tr2"
+                >
+                    {{ badgeTwo }}
+                </div>
+                <div
+                    v-if="badgeThree"
+                    class="vs-product-card__badge vs-product-card__badge--white
+                    vs-product-card__badge--br"
+                >
+                    {{ badgeThree }}
+                </div>
             </div>
-            <div
-                v-if="badgeTwo"
-                class="vs-product-card__badge vs-product-card__badge--pink
-                vs-product-card__badge--tr2"
-            >
-                {{ badgeTwo }}
-            </div>
-            <div
-                v-if="badgeThree"
-                class="vs-product-card__badge vs-product-card__badge--white
-                vs-product-card__badge--br"
-            >
-                {{ badgeThree }}
-            </div>
-        </div>
 
-        <div class="card-body">
-            <VsHeading
-                level="3"
-                class="card-title vs-product-card__title"
-                data-test="vs-product-card__title"
-            >
-                <VsLink
-                    :href="link"
-                    :type="linkType"
-                    class="stretched-link"
-                    data-test="vs-product-link"
+            <div class="card-body">
+                <VsHeading
+                    level="3"
+                    class="card-title vs-product-card__title"
+                    data-test="vs-product-card__title"
                 >
-                    {{ title }}
-                </VsLink>
-            </VsHeading>
-            <VsHeading
-                level="4"
-                class="vs-product-card__location"
-                v-if="location"
-                data-test="vs-product-card__location"
-            >
-                {{ location }}
-            </VsHeading>
-            <div
-                class="vs-product-card__stars"
-                v-if="stars.min && stars.max && stars.min !== stars.max"
-            >
-                <span
-                    class="vs-product-card__star"
-                    :class="{'vs-product-card__star--gold' : stars.gold}"
+                    <VsLink
+                        :href="link"
+                        :type="linkType"
+                        class="stretched-link"
+                        data-test="vs-product-link"
+                    >
+                        {{ title }}
+                    </VsLink>
+                </VsHeading>
+                <VsHeading
+                    level="4"
+                    class="vs-product-card__location"
+                    v-if="location"
+                    data-test="vs-product-card__location"
                 >
-                    &#9733;
-                </span>
-                {{ stars.min }}-{{ stars.max }}
-            </div>
-            <div
-                class="vs-product-card__stars"
-                v-else
-            >
-                <span
-                    v-for="index in stars.min"
-                    :key="index"
-                    class="vs-product-card__star"
-                    :class="{'vs-product-card__star--gold' : stars.gold}"
+                    {{ location }}
+                </VsHeading>
+                <div
+                    class="vs-product-card__stars"
+                    v-if="stars.min && stars.max && stars.min !== stars.max"
                 >
-                    &#9733;
-                </span>
-            </div>
-            <div class="vs-product-card__categories">
-                {{ transformedCategories }}
-            </div>
-            <div class="vs-product-card__description">
-                <p>{{ description }}</p>
-                <VsLink
-                    href="detailLink.url"
-                    class="vs-product-card__description-link"
+                    <span
+                        class="vs-product-card__star"
+                        :class="{'vs-product-card__star--gold' : stars.gold}"
+                    >
+                        &#9733;
+                    </span>
+                    {{ stars.min }}-{{ stars.max }}
+                </div>
+                <div
+                    class="vs-product-card__stars"
+                    v-else
                 >
-                    {{ detailLink.label }}
-                </VsLink>
+                    <span
+                        v-for="index in stars.min"
+                        :key="index"
+                        class="vs-product-card__star"
+                        :class="{'vs-product-card__star--gold' : stars.gold}"
+                    >
+                        &#9733;
+                    </span>
+                </div>
+                <div class="vs-product-card__categories">
+                    {{ transformedCategories }}
+                </div>
+                <div class="vs-product-card__description">
+                    <p>{{ description }}</p>
+                    <VsLink
+                        :href="detailLink.link"
+                        class="vs-product-card__description-link"
+                    >
+                        {{ detailLink.label }}
+                    </VsLink>
+                </div>
             </div>
-            <div class="vs-product-card__summary-box">
-                <VsContainer>
-                    <VsRow>
-                        <VsCol
-                            cols="6"
-                            class="vs-product-card__summary-item"
+        </section>
+        <div class="vs-product-card__summary-box">
+            <VsContainer>
+                <VsRow>
+                    <VsCol
+                        cols="6"
+                        class="vs-product-card__summary-item"
+                    >
+                        <div
+                            class="vs-product-card__summary-price"
+                            v-if="price"
                         >
                             <div
-                                class="vs-product-card__summary-price"
+                                v-if="priceIntro"
+                                class="vs-product-card__summary-price-intro"
+                            >
+                                {{ priceIntro }}
+                            </div>
+                            <div
                                 v-if="price"
+                                class="vs-product-card__summary-price-main"
                             >
-                                <div
-                                    v-if="priceIntro"
-                                    class="vs-product-card__summary-price-intro"
-                                >
-                                    {{ priceIntro }}
-                                </div>
-                                <div
-                                    v-if="price"
-                                    class="vs-product-card__summary-price-main"
-                                >
-                                    {{ price }}
-                                </div>
-                                <div
-                                    v-if="priceOutro"
-                                    class="vs-product-card__summary-price-outro"
-                                >
-                                    {{ priceOutro }}
-                                </div>
+                                {{ price }}
                             </div>
-                        </VsCol>
-                        <VsCol
-                            cols="6"
-                            class="vs-product-card__summary-item"
-                        >
                             <div
-                                class="vs-product-card__summary-website"
-                                v-if="websiteLink"
+                                v-if="priceOutro"
+                                class="vs-product-card__summary-price-outro"
                             >
-                                <div v-if="websiteLinkIntro">
-                                    {{ websiteLinkIntro }}
-                                </div>
-                                <VsLink
-                                    href="websiteLink.url"
-                                    :type="websiteLink.type || 'internal'"
-                                    class="vs-product-card__website-link"
-                                >
-                                    {{ websiteLink.label }}
-                                </VsLink>
+                                {{ priceOutro }}
                             </div>
-                        </VsCol>
-                    </VsRow>
-                </VsContainer>
-            </div>
+                        </div>
+                    </VsCol>
+                    <VsCol
+                        cols="6"
+                        class="vs-product-card__summary-item"
+                    >
+                        <div
+                            class="vs-product-card__summary-website"
+                            v-if="websiteLink"
+                        >
+                            <div v-if="websiteLinkIntro">
+                                {{ websiteLinkIntro }}
+                            </div>
+                            <VsLink
+                                :href="websiteLink.link"
+                                :type="websiteLink.type || 'internal'"
+                                class="vs-product-card__website-link"
+                            >
+                                {{ websiteLink.label }}
+                            </VsLink>
+                        </div>
+                    </VsCol>
+                </VsRow>
+            </VsContainer>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>
@@ -328,16 +330,19 @@ export default {
 </script>
 
 <style lang="scss">
-    .card.vs-product-card {
-        transition: box-shadow $duration-slowly;
-        border: none;
-        position: relative;
+    .vs-product-card {
+        .card {
+            transition: box-shadow $duration-slowly;
+            border: none;
+            position: relative;
+            padding-bottom: $spacer-2;
 
-        &:hover {
-            box-shadow: 10px 10px 20px $color-gray-tint-4;
+            &:hover {
+                box-shadow: 10px 10px 20px $color-gray-tint-4;
 
-            .megalink-link-list__title {
-                text-decoration: underline;
+                .megalink-link-list__title {
+                    text-decoration: underline;
+                }
             }
         }
 
@@ -458,7 +463,6 @@ export default {
 
         .vs-product-card__summary-box {
             padding: $spacer-2;
-            margin-top: $spacer-2;
             background-color: $color-gray-tint-7;
 
             .row {
