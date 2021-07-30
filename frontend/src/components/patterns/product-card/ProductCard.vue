@@ -70,6 +70,24 @@
                     {{ detailLink.label }}
                 </VsLink>
             </div>
+            <div class="vs-product-card__summary-box">
+                <VsContainer>
+                    <VsRow>
+                        <VsCol
+                            cols="6"
+                            class="vs-product-card__summary-item"
+                        >
+                            One
+                        </VsCol>
+                        <VsCol
+                            cols="6"
+                            class="vs-product-card__summary-item"
+                        >
+                            Two
+                        </VsCol>
+                    </VsRow>
+                </VsContainer>
+            </div>
         </div>
     </section>
 </template>
@@ -78,6 +96,9 @@
 import VsImg from '@components/elements/img/Img';
 import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
+import VsContainer from '@components/elements/layout/Container';
+import VsRow from '@components/elements/layout/Row';
+import VsCol from '@components/elements/layout/Col';
 
 /**
 * Generic product card for canned search
@@ -92,6 +113,9 @@ export default {
         VsImg,
         VsHeading,
         VsLink,
+        VsContainer,
+        VsRow,
+        VsCol,
     },
     props: {
         /**
@@ -195,7 +219,7 @@ export default {
         }
 
         .card-body {
-            padding: $spacer-1 $spacer-0;
+            padding: $spacer-1 $spacer-0 $spacer-0;
         }
 
         .stretched-link {
@@ -258,6 +282,21 @@ export default {
                 display: -webkit-box; //ToDo
                 -webkit-line-clamp: 2;
                 margin-bottom: $spacer-1;
+            }
+        }
+
+        .vs-product-card__summary-box {
+            padding: $spacer-2;
+            margin-top: $spacer-2;
+            background-color: $color-gray-tint-7;
+        }
+
+        .vs-product-card__summary-item {
+            font-size: $small-font-size;
+            text-align: center;
+
+            &:not(:last-child) {
+                border-right: 1px solid $color-gray-tint-1;
             }
         }
     }
