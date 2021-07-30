@@ -61,6 +61,15 @@
             <div class="vs-product-card__categories">
                 {{ transformedCategories }}
             </div>
+            <div class="vs-product-card__description">
+                <p>{{ description }}</p>
+                <VsLink
+                    href="detailLink.url"
+                    class="vs-product-card__description-link"
+                >
+                    {{ detailLink.label}}
+                </VsLink>
+            </div>
         </div>
     </section>
 </template>
@@ -145,6 +154,21 @@ export default {
             type: Array,
             default: null,
         },
+        /**
+        * The description of the product, will be truncated if >2 lines
+        */
+        description: {
+            type: String,
+            default: '',
+        },
+        /**
+        * An object containing a link to product details, should contain a `url`
+        * field and a `label` field
+        */
+        detailLink: {
+            type: Object,
+            required: true,
+        },
     },
     computed: {
         transformedCategories() {
@@ -222,8 +246,19 @@ export default {
         .vs-product-card__categories {
             font-size: $small-font-size;
             line-height: $line-height-s;
-            color: $color-base-text;
             font-weight: 600;
+            margin-bottom: $spacer-1;
+        }
+
+        .vs-product-card__description {
+            font-size: $small-font-size;
+            line-height: $line-height-s;
+
+            p {
+                display: -webkit-box; //ToDo
+                -webkit-line-clamp: 2;
+                margin-bottom: $spacer-1;
+            }
         }
     }
 </style>
@@ -242,6 +277,9 @@ export default {
                         location="Lamlash, Isle of Arran"
                         :stars="{min:3, max:3, gold:false}"
                         :categories="['Island Location', 'Rural', 'Remote', 'Lochside Location']"
+                        description="On the shores of Lamlash Bay overlooking Holy Isle, an
+                        ideal base from which to explore the enchanting Isle."
+                        :detailLink="{link: 'https://twitter.com', label: 'View Details'}"
                     >
                     </VsProductCard>
                 </VsCol>
