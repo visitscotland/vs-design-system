@@ -9,11 +9,63 @@
             class="vs-stretched-link-card__img"
             data-test="vs-stretched-link-card__img"
         />
+
+        <div class="card-body">
+            <VsHeading
+                level="3"
+                class="card-title vs-product-card__title"
+                data-test="vs-product-card__title"
+            >
+                <VsLink
+                    :href="link"
+                    :type="linkType"
+                    class="stretched-link"
+                    data-test="vs-product-link"
+                >
+                    {{ title }}
+                </VsLink>
+            </VsHeading>
+            <VsHeading
+                level="4"
+                class="vs-product-card__location"
+                v-if="location"
+                data-test="vs-product-card__location"
+            >
+                {{ location }}
+            </VsHeading>
+            <div
+                class="vs-product-card__stars"
+                v-if="stars.min && stars.max && stars.min !== stars.max"
+            >
+                <span
+                    class="vs-product-card__star"
+                    :class="{'vs-product-card__star--gold' : stars.gold}"
+                >
+                    &#9733;
+                </span>
+                {{ stars.min }}-{{ stars.max }}
+            </div>
+            <div
+                class="vs-product-card__stars"
+                v-else
+            >
+                <span
+                    v-for="index in stars.min"
+                    :key="index"
+                    class="vs-product-card__star"
+                    :class="{'vs-product-card__star--gold' : stars.gold}"
+                >
+                    &#9733;
+                </span>
+            </div>
+        </div>
     </section>
 </template>
 
 <script>
 import VsImg from '@components/elements/img/Img';
+import VsHeading from '@components/elements/heading/Heading';
+import VsLink from '@components/elements/link/Link';
 
 /**
 * Generic product card for canned search
@@ -26,6 +78,8 @@ export default {
     release: '0.0.1',
     components: {
         VsImg,
+        VsHeading,
+        VsLink,
     },
     props: {
         /**
@@ -41,6 +95,44 @@ export default {
         imgAlt: {
             type: String,
             default: '',
+        },
+        /**
+        * The title of the product in the card
+        */
+        title: {
+            required: true,
+            type: String,
+        },
+        /**
+        * The url the card should link to
+        */
+        link: {
+            required: true,
+            type: String,
+        },
+        /**
+        * The type of the url the card should link to, defines which
+        * icon appears next to the link
+        * `external, internal, download`
+        */
+        linkType: {
+            required: true,
+            type: String,
+        },
+        /**
+        * The location of the product in the card
+        */
+        location: {
+            type: String,
+            default: '',
+        },
+        /**
+        * The star rating of the product, can have a `min`, `max` int
+        * and a `gold` boolean
+        */
+        stars: {
+            type: Object,
+            default: null,
         },
     },
 };
@@ -59,6 +151,55 @@ export default {
                 text-decoration: underline;
             }
         }
+
+        .card-body {
+            padding: $spacer-1 $spacer-0;
+        }
+
+        .stretched-link {
+            color: $color-base-text;
+            text-decoration: none;
+            letter-spacing: 0;
+            display: block;
+
+            &--disabled {
+                cursor: default;
+            }
+
+            &:focus {
+                outline: 2px solid $color-pink;
+            }
+        }
+
+        .vs-product-card__title {
+            font-size: $small-font-size;
+            line-height: $line-height-s;
+            letter-spacing: 1px;
+            color: $color-base-text;
+            display: flex;
+            margin: $spacer-1 $spacer-0;
+
+            a {
+                letter-spacing: inherit;
+            }
+        }
+
+        .vs-product-card__location {
+            font-family: $font-family-base;
+            font-size: $small-font-size;
+            line-height: $line-height-xs;
+            color: $color-secondary-teal-shade-2;
+            letter-spacing: normal;
+            margin: $spacer-0;
+        }
+
+        .vs-product-card__star {
+            color: $color-purple;
+
+            &--gold {
+                color: $color-yellow;
+            }
+        }
     }
 </style>
 
@@ -70,6 +211,11 @@ export default {
                     <VsProductCard
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text"
+                        title="Glenegedale House"
+                        link="https://google.com"
+                        linkType="external"
+                        location="Lamlash, Isle of Arran"
+                        :stars="{min:3, max:3, gold:false}"
                     >
                     </VsProductCard>
                 </VsCol>
