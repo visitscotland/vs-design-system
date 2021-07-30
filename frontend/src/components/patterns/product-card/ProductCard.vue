@@ -11,11 +11,25 @@
                 data-test="vs-product-card__img"
             />
             <div
-                v-if="productType"
+                v-if="badgeOne"
                 class="vs-product-card__badge vs-product-card__badge--teal
                 vs-product-card__badge--tr"
             >
-                {{ productType }}
+                {{ badgeOne }}
+            </div>
+            <div
+                v-if="badgeTwo"
+                class="vs-product-card__badge vs-product-card__badge--pink
+                vs-product-card__badge--tr2"
+            >
+                {{ badgeTwo }}
+            </div>
+            <div
+                v-if="badgeThree"
+                class="vs-product-card__badge vs-product-card__badge--white
+                vs-product-card__badge--br"
+            >
+                {{ badgeThree }}
             </div>
         </div>
 
@@ -280,9 +294,25 @@ export default {
             default: '',
         },
         /**
-        * Appears in a teal badge over the image, not rendered if not set
+        * Appears in a teal badge over the image at the top right. Not rendered if not set
         */
-        productType: {
+        badgeOne: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Appears in a pink badge over the image, below the position of badgeOne. Not
+        * rendered if not set
+        */
+        badgeTwo: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Appears in a white badge over the image at the bottom right. Not rendered
+        * if not set
+        */
+        badgeThree: {
             type: String,
             default: '',
         },
@@ -330,6 +360,10 @@ export default {
             }
         }
 
+        .vs-product-card__image-container {
+            position: relative;
+        }
+
         .vs-product-card__img {
             width: 100%;
             max-width: 100%;
@@ -338,17 +372,38 @@ export default {
         }
 
         .vs-product-card__badge {
-            font-size: $small-font-size;
+            font-size: $font-size-sm;
             position: absolute;
             padding: 0 .5em;
+            text-transform: uppercase;
 
             &--teal {
-                color: white;
-                background-color: teal;
+                color: $color-white;
+                background-color: $color_secondary_teal;
+            }
+
+            &--pink {
+                color: $color-white;
+                background-color: $color_pink;
+            }
+
+            &--white {
+                background-color: $color-white;
+                color: $color_pink;
             }
 
             &--tr {
                 top: .5em;
+                right: .5em;
+            }
+
+            &--tr2 {
+                top: 2.5em;
+                right: .5em;
+            }
+
+            &--br {
+                bottom: .5em;
                 right: .5em;
             }
         }
@@ -455,7 +510,9 @@ export default {
                         priceIntro="Price from"
                         price="£50.00"
                         priceOutro="Per person, per night"
-                        productType="Guesthouse"
+                        badgeOne="Guesthouse"
+                        badgeTwo="On Offer"
+                        badgeThree="We're Open"
                     >
                     </VsProductCard>
                 </VsCol>
