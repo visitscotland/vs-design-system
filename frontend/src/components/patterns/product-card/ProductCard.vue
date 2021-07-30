@@ -67,7 +67,7 @@
                     href="detailLink.url"
                     class="vs-product-card__description-link"
                 >
-                    {{ detailLink.label}}
+                    {{ detailLink.label }}
                 </VsLink>
             </div>
         </div>
