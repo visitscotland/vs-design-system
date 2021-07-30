@@ -58,6 +58,9 @@
                     &#9733;
                 </span>
             </div>
+            <div class="vs-product-card__categories">
+                {{ transformedCategories }}
+            </div>
         </div>
     </section>
 </template>
@@ -134,6 +137,21 @@ export default {
             type: Object,
             default: null,
         },
+        /**
+        * A list of categories that describe the product, should contain
+        * strings
+        */
+        categories: {
+            type: Array,
+            default: null,
+        },
+    },
+    computed: {
+        transformedCategories() {
+            return this.categories
+                .slice(0, 3)
+                .join(' | ');
+        },
     },
 };
 </script>
@@ -200,6 +218,13 @@ export default {
                 color: $color-yellow;
             }
         }
+
+        .vs-product-card__categories {
+            font-size: $small-font-size;
+            line-height: $line-height-s;
+            color: $color-base-text;
+            font-weight: 600;
+        }
     }
 </style>
 
@@ -216,6 +241,7 @@ export default {
                         linkType="external"
                         location="Lamlash, Isle of Arran"
                         :stars="{min:3, max:3, gold:false}"
+                        :categories="['Island Location', 'Rural', 'Remote', 'Lochside Location']"
                     >
                     </VsProductCard>
                 </VsCol>
