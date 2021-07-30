@@ -77,13 +77,49 @@
                             cols="6"
                             class="vs-product-card__summary-item"
                         >
-                            One
+                            <div
+                                class="vs-product-card__summary-price"
+                                v-if="price"
+                            >
+                                <div
+                                    v-if="priceIntro"
+                                    class="vs-product-card__summary-price-intro"
+                                >
+                                    {{ priceIntro }}
+                                </div>
+                                <div
+                                    v-if="price"
+                                    class="vs-product-card__summary-price-main"
+                                >
+                                    {{ price }}
+                                </div>
+                                <div
+                                    v-if="priceOutro"
+                                    class="vs-product-card__summary-price-outro"
+                                >
+                                    {{ priceOutro }}
+                                </div>
+                            </div>
                         </VsCol>
                         <VsCol
                             cols="6"
                             class="vs-product-card__summary-item"
                         >
-                            Two
+                            <div
+                                class="vs-product-card__summary-website"
+                                v-if="websiteLink"
+                            >
+                                <div v-if="websiteLinkIntro">
+                                    {{ websiteLinkIntro }}
+                                </div>
+                                <VsLink
+                                    href="websiteLink.url"
+                                    :type="websiteLink.type || 'internal'"
+                                    class="vs-product-card__website-link"
+                                >
+                                    {{ websiteLink.label }}
+                                </VsLink>
+                            </div>
                         </VsCol>
                     </VsRow>
                 </VsContainer>
@@ -193,6 +229,47 @@ export default {
             type: Object,
             required: true,
         },
+        /**
+        * An object containing a link to product website, should contain a `url`
+        * field and a `label` field. Setting this will cause the link to appear in the
+        * right half of the summary box
+        */
+        websiteLink: {
+            type: Object,
+            default: null,
+        },
+        /**
+        * A line of text that precedes the link to the product website, not rendered
+        * if websiteLink not provided
+        */
+        websiteLinkIntro: {
+            type: String,
+            default: '',
+        },
+        /**
+        * The price of the product. Setting this will cause the price to appear in the
+        * left half of the summary box
+        */
+        price: {
+            type: String,
+            default: '',
+        },
+        /**
+        * A line of text that precedes the product price, not rendered if price
+        * not provided
+        */
+        priceIntro: {
+            type: String,
+            default: '',
+        },
+        /**
+        * A line of text that appears after the product price, not rendered if price
+        * not provided
+        */
+        priceOutro: {
+            type: String,
+            default: '',
+        },
     },
     computed: {
         transformedCategories() {
@@ -289,14 +366,29 @@ export default {
             padding: $spacer-2;
             margin-top: $spacer-2;
             background-color: $color-gray-tint-7;
+
+            .row {
+                align-items: center;
+            }
         }
 
         .vs-product-card__summary-item {
             font-size: $small-font-size;
+            line-height: $line-height-s;
             text-align: center;
 
             &:not(:last-child) {
                 border-right: 1px solid $color-gray-tint-1;
+            }
+        }
+
+        .vs-product-card__summary-price {
+            &-main {
+                font-weight: bold;
+            }
+
+            &-outro {
+                font-size: $xs-font-size;
             }
         }
     }
@@ -319,6 +411,11 @@ export default {
                         description="On the shores of Lamlash Bay overlooking Holy Isle, an
                         ideal base from which to explore the enchanting Isle."
                         :detailLink="{link: 'https://twitter.com', label: 'View Details'}"
+                        websiteLinkIntro="Visit"
+                        :websiteLink="{link: 'https://facebook.com', label: 'Website', type: 'external'}"
+                        priceIntro="Price from"
+                        price="£50.00"
+                        priceOutro="Per person, per night"
                     >
                     </VsProductCard>
                 </VsCol>
