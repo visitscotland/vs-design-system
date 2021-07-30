@@ -3,12 +3,21 @@
         class="card vs-product-card"
         v-bind="$attrs"
     >
-        <VsImg
-            :src="imgSrc"
-            :alt="imgAlt"
-            class="vs-stretched-link-card__img"
-            data-test="vs-stretched-link-card__img"
-        />
+        <div class="vs-product-card__image-container">
+            <VsImg
+                :src="imgSrc"
+                :alt="imgAlt"
+                class="vs-product-card__img"
+                data-test="vs-product-card__img"
+            />
+            <div
+                v-if="productType"
+                class="vs-product-card__badge vs-product-card__badge--teal
+                vs-product-card__badge--tr"
+            >
+                {{ productType }}
+            </div>
+        </div>
 
         <div class="card-body">
             <VsHeading
@@ -270,6 +279,13 @@ export default {
             type: String,
             default: '',
         },
+        /**
+        * Appears in a teal badge over the image, not rendered if not set
+        */
+        productType: {
+            type: String,
+            default: '',
+        },
     },
     computed: {
         transformedCategories() {
@@ -311,6 +327,29 @@ export default {
 
             &:focus {
                 outline: 2px solid $color-pink;
+            }
+        }
+
+        .vs-product-card__img {
+            width: 100%;
+            max-width: 100%;
+            align-self: flex-start;
+            flex-shrink: 0; // IE11 fix, prevents image vertical stretching
+        }
+
+        .vs-product-card__badge {
+            font-size: $small-font-size;
+            position: absolute;
+            padding: 0 .5em;
+
+            &--teal {
+                color: white;
+                background-color: teal;
+            }
+
+            &--tr {
+                top: .5em;
+                right: .5em;
             }
         }
 
@@ -416,6 +455,7 @@ export default {
                         priceIntro="Price from"
                         price="£50.00"
                         priceOutro="Per person, per night"
+                        productType="Guesthouse"
                     >
                     </VsProductCard>
                 </VsCol>
