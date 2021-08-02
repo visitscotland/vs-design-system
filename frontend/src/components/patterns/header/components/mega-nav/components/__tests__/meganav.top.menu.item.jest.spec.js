@@ -8,7 +8,7 @@ const factoryMount = (values) => mount(VsMegaNavTopMenuItem, {
     slots: {
         buttonContent: 'Dropdown Toggle',
         dropdownContent: '<li class="dropdown-list-item"></li>',
-        navFeaturedItems: '<div>Test featured item</div>',
+        navFeaturedItem: '<div>Test featured item</div>',
     },
 });
 
