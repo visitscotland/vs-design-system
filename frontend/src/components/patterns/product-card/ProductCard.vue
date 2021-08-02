@@ -495,56 +495,41 @@ export default {
 
 <docs>
 ```jsx
-    const sampleItinerary = require("../../../assets/fixtures/canned-search/sample-accom.json")
+    const sampleAccom = require("../../../assets/fixtures/canned-search/sample-accom.json")
 
-    console.log(sampleItinerary);
+    let locations = sampleAccom.locations.slice(0,3);
+    locations = locations.map((x) => { return x.name });
 
     <VsContainer>
         <VsRow>
             <VsCol cols="12" md="6" lg="4">
                 <VsProductCard
-                    imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                    imgAlt="This is the alt text"
-                    title="Glenegedale House"
-                    link="https://google.com"
-                    linkType="external"
-                    location="Lamlash, Isle of Arran"
-                    :stars="{min:3, max:3, gold:false}"
-                    :categories="['Island Location', 'Rural', 'Remote', 'Lochside Location']"
-                    description="On the shores of Lamlash Bay overlooking Holy Isle, an
-                    ideal base from which to explore the enchanting Isle."
-                    :detailLink="{link: 'https://twitter.com', label: 'View Details'}"
-                    :websiteLink="{link: 'https://facebook.com', label: 'Visit website', type: 'external'}"
-                    priceIntro="Price from"
-                    price="£50.00"
-                    priceOutro="Per person, per night"
-                    badgeOne="Guesthouse"
-                    badgeTwo="On Offer"
-                    badgeThree="We're Open"
-                >
-                </VsProductCard>
-            </VsCol>
-            <VsCol cols="12" md="6" lg="4">
-                <VsProductCard
-                    imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                    imgAlt="This is the alt text"
-                    title="This is a much longer title for example it has to be cut off early
-                    because it's just much, much too long to appear like this"
-                    link="https://google.com"
-                    linkType="external"
-                    location="Lamlash, Isle of Arran"
-                    :stars="{min:3, max:3, gold:false}"
-                    :categories="['Island Location', 'Rural', 'Remote', 'Lochside Location']"
-                    description="On the shores of Lamlash Bay overlooking Holy Isle, an
-                    ideal base from which to explore the enchanting Isle."
-                    :detailLink="{link: 'https://twitter.com', label: 'View Details'}"
-                    :websiteLink="{link: 'https://facebook.com', label: 'Visit website', type: 'external'}"
-                    priceIntro="Price from"
-                    price="£50.00"
-                    priceOutro="Per person, per night"
-                    badgeOne="Guesthouse"
-                    badgeTwo="On Offer"
-                    badgeThree="We're Open"
+                    :imgSrc="sampleAccom.images[0].mediaUrl"
+                    :imgAlt="sampleAccom.name"
+                    :title="sampleAccom.name"
+                    :link="sampleAccom.dmsLink.link"
+                    :linkType="sampleAccom.dmsLink.type.toLowerCase()"
+                    :location="sampleAccom.address.city + ', ' + sampleAccom.address.county"
+                    :stars="{
+                        min:sampleAccom.grading.minStars,
+                        max:sampleAccom.grading.maxStars,
+                        gold:sampleAccom.grading.gold
+                    }"
+                    :categories="locations"
+                    :description="sampleAccom.description"
+                    :detailLink="{link: sampleAccom.dmsLink.link, label: sampleAccom.dmsLink.label}"
+                    :websiteLink="{
+                        link: sampleAccom.website,
+                        label: 'Visit website',
+                        type: 'external'
+                    }"
+                    :priceIntro="sampleAccom.price.priceLabel"
+                    :price="'£' + sampleAccom.price.price"
+                    :priceOutro="sampleAccom.price.priceBasis"
+                    :badgeOne="sampleAccom.category.name"
+                    :badgeTwo="sampleAccom.offers"
+                    :badgeThree="sampleAccom.covidInformation ?
+                        sampleAccom.covidInformation.weAreOpen : ''"
                 >
                 </VsProductCard>
             </VsCol>
