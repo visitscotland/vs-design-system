@@ -22,7 +22,7 @@
 <#assign standardTemplate = (document.theme == "Standard") />
 
 <div class="has-edit-button">
-	<@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />
+	<@hst.manageContent hippobean=document/>
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
 

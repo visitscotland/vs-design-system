@@ -40,7 +40,6 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
-        addDocumentPath(request);
         addHeroImage(request);
 
         addOTYML(request);
@@ -97,23 +96,5 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
         }
     }
 
-    /**
-     * Add the document path that will be used as path by default when creating documents. So for Example, the prompted
-     * path for the days of an itinenrary would be where the itinerary (masted document) lives
-     *
-     * @param request Request where the master document is defined and where the path will be added
-     */
-    private void addDocumentPath(HstRequest request) {
-        final String ROOT_SITE = "/site/";
 
-        if (request.getAttribute(DOCUMENT) instanceof BaseDocument) {
-            BaseDocument document = getDocument(request);
-            //Extract the document path for the CMS Editor
-            String path = document.getPath().substring(
-                    document.getPath().indexOf(ROOT_SITE) + ROOT_SITE.length(),
-                    document.getPath().indexOf("/content/content"));
-
-            request.setAttribute(EDIT_PATH, path);
-        }
-    }
 }
