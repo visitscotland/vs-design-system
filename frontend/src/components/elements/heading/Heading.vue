@@ -9,7 +9,10 @@
         <!-- @slot The main heading content goes here -->
         <slot />
 
-        <span class="vs-heading__sub-heading">
+        <span
+            class="vs-heading__sub-heading"
+            v-if="!!this.$slots['sub-heading']"
+        >
             <slot name="sub-heading" />
         </span>
     </Component>
@@ -91,6 +94,7 @@ $sub-font-sizes: (
         @at-root h#{$level}#{&} {
             letter-spacing: $size * 0.1;
             margin-bottom: $size;
+            margin-top: $size;
             font-size: $size;
         }
     }
@@ -100,6 +104,7 @@ $sub-font-sizes: (
             @include media-breakpoint-up(md) {
                 letter-spacing: $size * 0.1;
                 margin-bottom: $size;
+                margin-top: $size;
                 font-size: $size;
             }
         }

@@ -21,9 +21,9 @@ public class Properties {
     static final String INSTAGRAM_ACCESS_TOKEN ="instagram.accesstoken";
     static final String INSTAGRAM_APP_ID ="instagram.app-id";
     static final String INSTAGRAM_URL ="instagram.post-url";
-    static final String LOCALHOST = "localhost";
+    static final String CMS_BASE_PATH = "links.cms-base-path-url";
     static final String HELPDESK_EMAIL = "helpdesk-email";
-    static final String DMS_HOST = "vs-dms-products.url";
+    static final String DMS_HOST = "links.vs-dms-products.url";
     static final String DMS_MAP_DEFAULT_DISTANCE = "dms.default-distance";
     static final String DMS_DATA_HOST = "dms-data.url";
     static final String DMS_DATA_ENCODING = "dms-data.encoding";
@@ -33,17 +33,14 @@ public class Properties {
     static final String DMS_DATA_SLEEP_TIME = "dms-data.sleep-time";
     static final String IKNOW_COMMUNITY_URL = "iknow-community.url";
     static final String IKNOW_COMMUNITY_TAGGED_DISCUSSION = "iknow-community.tagged-discussion";
-    static final String USE_RELATIVE_URLS = "use-relative-urls";
+    static final String USE_RELATIVE_URLS = "links.use-relative-urls";
+    static final String INTERNAL_SITES = "links.internal-sites";
 
 
     private final ResourceBundleService bundle;
 
     public Properties(ResourceBundleService bundle){
         this.bundle = bundle;
-    }
-
-    public String getLocalhost() {
-        return readString(LOCALHOST);
     }
 
     public String getInstagramApi() {
@@ -75,13 +72,20 @@ public class Properties {
         }
     }
 
+    public String getCmsBasePath() {
+        if (readBoolean(USE_RELATIVE_URLS)){
+            return "";
+        } else {
+            return readString(CMS_BASE_PATH);
+        }
+    }
+
     public String getDmsDataHost() {
         return readString(DMS_DATA_HOST);
     }
 
-    //TODO: This property doesn't seem to be in use. Should it be removed?
-    public String getDmsMapDefaultDistance() {
-        return readString(DMS_MAP_DEFAULT_DISTANCE);
+    public Double getDmsMapDefaultDistance() {
+        return readDouble(DMS_MAP_DEFAULT_DISTANCE);
     }
 
     public String getDmsToken() {
@@ -106,6 +110,10 @@ public class Properties {
 
     public String getIknowCommunityTaggedDiscussion() {
         return readString(IKNOW_COMMUNITY_TAGGED_DISCUSSION);
+    }
+
+    public String getInternalSites() {
+        return readString(INTERNAL_SITES);
     }
 
     public Charset getDmsEncoding() {
@@ -138,6 +146,19 @@ public class Properties {
             }
         } catch (NumberFormatException nfe){
             logger.error("The property value of the property {} cannot be casted to Integer. '{}' is not allowed.", key,value);
+        }
+        return 0;
+    }
+
+    public double readDouble(String key){
+        String value = getProperty(key);
+
+        try {
+            if (value != null){
+                return Double.parseDouble(value);
+            }
+        } catch (NumberFormatException nfe){
+            logger.error("The property value of the property {} cannot be casted to Double. '{}' is not allowed.", key,value);
         }
         return 0;
     }

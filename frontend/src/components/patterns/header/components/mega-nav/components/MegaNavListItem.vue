@@ -6,7 +6,7 @@
     >
         <VsLink
             :href="href"
-            :role="href === '#' ? 'heading' : 'menuitem'"
+            :role="href === '#' ? '' : 'menuitem'"
         >
             <!-- @slot Default slot for nav link content  -->
             <slot />
@@ -103,7 +103,6 @@ export default {
 
     &__heading{
         border-bottom: 1px solid $color-gray-tint-5;
-        margin-bottom: $spacer-1;
         line-height: $line-height-standard;
 
         .vs-link--variant-primary{
@@ -116,7 +115,7 @@ export default {
     &__link{
         .vs-link--variant-primary{
             color: $color-secondary-gray-shade-3;
-            transition: 0.2s color;
+            transition: $duration-base color;
 
             @include media-breakpoint-up(lg) {
                 color: $color-secondary-gray;
@@ -234,6 +233,15 @@ export default {
             .vs-link--variant-primary{
                 font-size: $h2-font-size;
             }
+        }
+    }
+}
+
+/* needed for specificity */
+.vs-list.vs-list--unstyled {
+    .vs-mega-nav-list {
+        .vs-mega-nav-list-item__heading {
+            margin-bottom: $spacer-1;
         }
     }
 }

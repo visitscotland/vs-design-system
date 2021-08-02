@@ -11,6 +11,7 @@
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/shared/module-builder.ftl">
+<#include "../macros/modules/signpost/signpost.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.General" -->
@@ -22,7 +23,7 @@
 <#assign standardTemplate = (document.theme == "Standard") />
 
 <div class="has-edit-button">
-	<@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />
+	<@hst.manageContent hippobean=document/>
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
 
@@ -46,5 +47,9 @@
 
 	<#if otyml??>
 		<@horizontalList otyml />
+	</#if>
+
+	<#if newsletterSignpost??>
+		<@signpost newsletterSignpost />
 	</#if>
 </div>

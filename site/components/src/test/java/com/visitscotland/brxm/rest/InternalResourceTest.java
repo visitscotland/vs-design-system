@@ -106,7 +106,7 @@ class InternalResourceTest {
     @Test
     @DisplayName("fragment - The fragment locale is being processed")
     void fragment_buildUrl_locale() throws IOException {
-        when(properties.getLocalhost()).thenReturn("http://localhost:8080");
+        when(properties.getCmsBasePath()).thenReturn("http://localhost:8080");
         ArgumentCaptor<String> urlCaptor = ArgumentCaptor.forClass(String.class);
         when(utils.requestUrl(urlCaptor.capture())).thenReturn(MOCK_RESPONSE);
         when(utils.buildQueryString(any(), any())).thenReturn("");

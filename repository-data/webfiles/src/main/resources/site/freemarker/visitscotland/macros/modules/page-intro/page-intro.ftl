@@ -29,7 +29,7 @@
 <#macro pageIntro content heroDetails="" itinerary="" simplePage="" >
 
     <#if simplePage?has_content >
-        <#assign themeName = themeCalculator("light", "", [])>
+        <#assign themeName = themeCalculator(1, "", [])>
     <#else>
         <#assign themeName = themeCalculator(introTheme, "", [])>
     </#if>

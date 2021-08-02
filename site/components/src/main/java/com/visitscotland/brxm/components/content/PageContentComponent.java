@@ -2,11 +2,13 @@ package com.visitscotland.brxm.components.content;
 
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.factory.ImageFactory;
-import com.visitscotland.brxm.factory.LinkModulesFactory;
+import com.visitscotland.brxm.factory.MegalinkFactory;
+import com.visitscotland.brxm.factory.SignpostFactory;
 import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
+import com.visitscotland.brxm.model.SignpostModule;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -22,27 +24,29 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
     public static final String DOCUMENT = "document";
     public static final String EDIT_PATH = "path";
     public static final String OTYML = "otyml";
+    public static final String NEWSLETTER_SIGNPOST = "newsletterSignpost";
 
-    private LinkModulesFactory linksFactory;
+    private MegalinkFactory linksFactory;
     private ImageFactory imageFactory;
+    private final SignpostFactory signpostFactory;
 
     public PageContentComponent() {
-        linksFactory = VsComponentManager.get(LinkModulesFactory.class);
+        linksFactory = VsComponentManager.get(MegalinkFactory.class);
         imageFactory = VsComponentManager.get(ImageFactory.class);
+        signpostFactory = VsComponentManager.get(SignpostFactory.class);
     }
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
-        addDocumentPath(request);
         addHeroImage(request);
 
         addOTYML(request);
+        addNewsletterSignup(request);
     }
 
     /**
-     *
      * - Alerts are only used for issues related with the hero image at the moment
      * - Hero Image is not necessary for all document types. Is it better to add the field in order to keep consistency?
      */
@@ -69,6 +73,14 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
         }
     }
 
+    protected void addNewsletterSignup(HstRequest request) {
+        Page page = getDocument(request);
+        if (!Contract.defaultIfNull(page.getHideNewsletter(), false)) {
+            SignpostModule signpost = signpostFactory.createNewsletterSignpostModule(request.getLocale());
+            request.setAttribute(NEWSLETTER_SIGNPOST, signpost);
+        }
+    }
+
     /**
      * Return the document from the request
      *
@@ -84,23 +96,5 @@ public class PageContentComponent<T extends Page> extends EssentialsContentCompo
         }
     }
 
-    /**
-     * Add the document path that will be used as path by default when creating documents. So for Example, the prompted
-     * path for the days of an itinenrary would be where the itinerary (masted document) lives
-     *
-     * @param request Request where the master document is defined and where the path will be added
-     */
-    private void addDocumentPath(HstRequest request) {
-        final String ROOT_SITE = "/site/";
 
-        if (request.getAttribute(DOCUMENT) instanceof BaseDocument) {
-            BaseDocument document = getDocument(request);
-            //Extract the document path for the CMS Editor
-            String path = document.getPath().substring(
-                    document.getPath().indexOf(ROOT_SITE) + ROOT_SITE.length(),
-                    document.getPath().indexOf("/content/content"));
-
-            request.setAttribute(EDIT_PATH, path);
-        }
-    }
 }

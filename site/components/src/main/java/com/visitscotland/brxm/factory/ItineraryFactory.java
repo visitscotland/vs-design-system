@@ -6,9 +6,9 @@ import com.visitscotland.brxm.dms.DMSUtils;
 import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.model.*;
 import com.visitscotland.brxm.model.Coordinates;
-import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.services.ResourceBundleService;
+import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import com.visitscotland.utils.CoordinateUtils;
 import org.slf4j.Logger;
@@ -24,6 +24,7 @@ import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
 public class ItineraryFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ItineraryFactory.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     static final String BUNDLE_FILE = "itinerary";
 
@@ -32,13 +33,16 @@ public class ItineraryFactory {
     private final ImageFactory imageFactory;
     private final DMSUtils utils;
     private final DocumentUtilsService documentUtils;
+    private final Properties properties;
 
-    public ItineraryFactory(ResourceBundleService bundle, DMSDataService dmsData, ImageFactory imageFactory, DMSUtils utils, DocumentUtilsService documentUtils) {
+
+    public ItineraryFactory(ResourceBundleService bundle, DMSDataService dmsData, ImageFactory imageFactory, DMSUtils utils, DocumentUtilsService documentUtils, Properties properties) {
         this.bundle = bundle;
         this.dmsData = dmsData;
         this.imageFactory = imageFactory;
         this.utils = utils;
         this.documentUtils = documentUtils;
+        this.properties = properties;
     }
 
     /**
@@ -132,15 +136,15 @@ public class ItineraryFactory {
         } else if (stop.getStopItem() instanceof ItineraryExternalLink) {
             processExternalStop(locale, module, (ItineraryExternalLink) stop.getStopItem());
         } else if (logger.isWarnEnabled()) {
-            logger.warn(CommonUtilsService.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), module.getIndex()));
+            contentLogger.warn("The product's id  was not provided for {}, Stop {}", itinerary.getName(), module.getIndex());
         }
 
         if (module.getImage() == null && logger.isWarnEnabled()) {
-            logger.warn(CommonUtilsService.contentIssue("An image could not be found for %s, Stop %s", itinerary.getName(), module.getIndex()));
+            contentLogger.warn("An image could not be found for {}, Stop {}", itinerary.getName(), module.getIndex());
         }
 
         if (module.getSubTitle() == null && logger.isWarnEnabled()) {
-            logger.warn(CommonUtilsService.contentIssue("The stop %s does not have a subtitle. Itinerary %s", module.getIndex(), itinerary.getName()));
+            contentLogger.warn("The stop {} does not have a subtitle. Itinerary {}", module.getIndex(), itinerary.getName());
         }
 
         return module;
@@ -199,12 +203,12 @@ public class ItineraryFactory {
         if (product == null) {
             module.addErrorMessage("The product id does not match in the DMS");
             if (logger.isWarnEnabled()) {
-                logger.warn(CommonUtilsService.contentIssue("The product id does not match in the DMS for %s, Stop %s", itinerary.getName(), module.getIndex()));
+                contentLogger.warn("The product id does not match in the DMS for {}, Stop {}", itinerary.getName(), module.getIndex());
             }
             return;
         }
 
-        module.setCtaLink(new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), product.get(URL).asText(), LinkType.INTERNAL));
+        module.setCtaLink(new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL));
         module.setFacilities(utils.getKeyFacilities(product));
 
         if (module.getImage() == null && product.has(IMAGE)) {
@@ -232,10 +236,13 @@ public class ItineraryFactory {
         }
 
         if (product.has(OPENING)){
-            module.setOpening(product.get(OPENING));
+            JsonNode opening = product.get(OPENING);
+            module.setOpening(opening);
             module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
-                    module.getCtaLink().getLink() + "#opening", null));
+                     module.getCtaLink().getLink() + "#opening", null));
         }
 
     }
+
+
 }

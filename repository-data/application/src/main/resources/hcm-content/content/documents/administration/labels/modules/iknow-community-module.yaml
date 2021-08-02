@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 13872ee0-c264-4acc-88d3-0c19918ea6f4
   hippo:name: iKnow Community Module
-  hippo:versionHistory: 157e9c14-5a0c-49de-b7cb-fff9a81a95a4
+  hippo:versionHistory: 32d3c41d-4a19-4a36-b72f-706af43815bc
   /iknow-community-module[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,7 +13,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-04-16T10:58:38.421+01:00
-    hippostdpubwf:lastModificationDate: 2021-05-04T09:06:56.703+01:00
+    hippostdpubwf:lastModificationDate: 2021-06-10T18:06:53.543+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '']
     resourcebundle:id: iknow-community
@@ -23,6 +23,11 @@
         BEST tips, secrets and hidden gems, then look no further.<br />Talk to people
         in the iKnow and share your own stories in our iKnow Community', Join the
         conversation]
+    resourcebundle:messages_de: ['', '', '']
+    resourcebundle:messages_es: ['', '', '']
+    resourcebundle:messages_fr: ['', '', '']
+    resourcebundle:messages_it: ['', '', '']
+    resourcebundle:messages_nl: ['', '', '']
   /iknow-community-module[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -32,7 +37,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-04-16T10:58:38.421+01:00
-    hippostdpubwf:lastModificationDate: 2021-05-04T09:07:09.620+01:00
+    hippostdpubwf:lastModificationDate: 2021-06-10T18:07:14.594+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '']
     resourcebundle:id: iknow-community
@@ -42,6 +47,11 @@
         BEST tips, secrets and hidden gems, then look no further.<br />Talk to people
         in the iKnow and share your own stories in our iKnow Community', Join the
         conversation]
+    resourcebundle:messages_de: ['', '', '']
+    resourcebundle:messages_es: ['', '', '']
+    resourcebundle:messages_fr: ['', '', '']
+    resourcebundle:messages_it: ['', '', '']
+    resourcebundle:messages_nl: ['', '', '']
   /iknow-community-module[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -51,9 +61,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-04-16T10:58:38.421+01:00
-    hippostdpubwf:lastModificationDate: 2021-05-04T09:07:09.620+01:00
+    hippostdpubwf:lastModificationDate: 2021-06-10T18:07:14.594+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-05-04T09:07:11.632+01:00
+    hippostdpubwf:publicationDate: 2021-06-10T18:07:16.209+01:00
     resourcebundle:descriptions: ['', '', '']
     resourcebundle:id: iknow-community
     resourcebundle:keys: [iknow-community.title.default, iknow-community.copy.default,
@@ -62,3 +72,8 @@
         BEST tips, secrets and hidden gems, then look no further.<br />Talk to people
         in the iKnow and share your own stories in our iKnow Community', Join the
         conversation]
+    resourcebundle:messages_de: ['', '', '']
+    resourcebundle:messages_es: ['', '', '']
+    resourcebundle:messages_fr: ['', '', '']
+    resourcebundle:messages_it: ['', '', '']
+    resourcebundle:messages_nl: ['', '', '']

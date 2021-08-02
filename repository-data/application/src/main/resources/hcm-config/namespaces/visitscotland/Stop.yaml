@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: f84a1c0f-a8b3-478b-a302-755904b626ee
+          jcr:uuid: 9235fec7-fee8-4389-8cd3-854d275f61f5
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -41,7 +41,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required, non-empty]
+            hipposysedit:validators: [required, non-empty, 'visitscotland:short-string-validator']
           /image:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -58,6 +58,7 @@ definitions:
             hipposysedit:path: visitscotland:subtitle
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: ['visitscotland:short-string-validator']
           /translation:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -86,7 +87,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 6f4a1ba2-8e59-4445-bc80-027a1ea2c425
+          jcr:uuid: d7d231f2-76f8-4dcf-ba0d-0a0bf4a67e15
           hippostdpubwf:lastModificationDate: 2019-12-05T15:13:21.853Z
           hippostdpubwf:creationDate: 2019-12-05T15:13:21.853Z
           visitscotland:title: ''
@@ -136,14 +137,14 @@ definitions:
             field: description
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: ''
+            hint: 'Recommended length: 750 characters'
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
-              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
-                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
+              ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
+                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 1125}}'
           /image:
             jcr:primaryType: frontend:plugin
             caption: Image

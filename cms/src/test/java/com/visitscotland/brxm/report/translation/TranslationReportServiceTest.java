@@ -5,6 +5,7 @@ import com.visitscotland.brxm.translation.MockNodeBuilder;
 import com.visitscotland.brxm.translation.SessionFactory;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
+import org.assertj.core.util.Sets;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,6 +18,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Stream;
 import javax.jcr.Node;
@@ -121,6 +124,86 @@ class TranslationReportServiceTest {
         );
     }
 
+    @DisplayName("Document last modified date formatted correctly")
+    @Test
+    void documentDateFormat() throws Exception  {
+        Node englishHandle = new MockNodeBuilder().withProperty("hippotranslation:locale", "en").build();
+        Node englishUnpublishedVariant = new MockNodeBuilder().translatable("visitscotland:Page")
+                .withState("unpublished", "live")
+                .lastModifiedAt(ZonedDateTime.of(2021, 10, 12, 18, 14, 15, 50, ZoneId.of("GMT"))).build();
+        JcrDocument englishJcrDoc = new MockJcrDocumentBuilder().withHandle(englishHandle)
+                .withVariantNode("unpublished", englishUnpublishedVariant).build();
+        doReturn(Collections.singletonList(englishJcrDoc))
+                .when(mockJcrUtilService).getAllUnpublishedDocuments();
 
+        List<DocumentTranslationReportModel> models = service.getUntranslatedDocuments("fr");
+
+        Assertions.assertEquals(1, models.size());
+        DocumentTranslationReportModel doc = models.get(0);
+        Assertions.assertEquals("2021-10-12T18:14Z", doc.getLastModified());
+    }
+
+    @DisplayName("Types deriving basedocument are included in module types, excluding Page")
+    @Test
+    void getModuleTypes() throws Exception {
+        when(mockJcrUtilService.getTypesDeriving("visitscotland:basedocument"))
+                .thenReturn(Sets.newTreeSet("Page", "A", "B"));
+
+        Set<String> moduleTypes = service.getModuleTypes();
+
+        Assertions.assertEquals(2, moduleTypes.size());
+        Assertions.assertTrue(moduleTypes.contains("A"));
+        Assertions.assertTrue(moduleTypes.contains("B"));
+
+        // Ensure that the result is cached and not queried twice
+        service.getModuleTypes();
+        verify(mockJcrUtilService, times(1)).getTypesDeriving(any());
+    }
+
+    @DisplayName("Page types are returned and cached")
+    @Test
+    void getPageTypesTest() throws Exception {
+        when(mockJcrUtilService.getTypesDeriving("visitscotland:Page"))
+                .thenReturn(Sets.newTreeSet("A"));
+
+        Set<String> pageTypes = service.getPageTypes();
+
+        Assertions.assertEquals(1, pageTypes.size());
+        Assertions.assertTrue(pageTypes.contains("A"));
+        // Ensure that the result is cached and not queried twice
+        service.getPageTypes();
+        verify(mockJcrUtilService, times(1)).getTypesDeriving(any());
+    }
+
+    @DisplayName("Translation priority")
+    @MethodSource("translationPrioritySource")
+    @ParameterizedTest
+    void translationPriority(String translationPriority, String expectedModelPriority) throws Exception {
+        Node englishHandle = new MockNodeBuilder().withProperty("hippotranslation:locale", "en").build();
+        Node englishUnpublishedVariant = new MockNodeBuilder().translatable("visitscotland:Page")
+                .withState("unpublished", "live")
+                .withProperty("visitscotland:translationPriority", translationPriority).build();
+        JcrDocument englishJcrDoc = new MockJcrDocumentBuilder().withHandle(englishHandle)
+                .withVariantNode("unpublished", englishUnpublishedVariant).build();
+        doReturn(Collections.singletonList(englishJcrDoc))
+                .when(mockJcrUtilService).getAllUnpublishedDocuments();
+
+        List<DocumentTranslationReportModel> models = service.getUntranslatedDocuments("fr");
+
+        Assertions.assertEquals(1, models.size());
+        DocumentTranslationReportModel document = models.get(0);
+        Assertions.assertEquals(expectedModelPriority, document.getTranslationPriority());
+    }
+
+    private static Stream<Arguments> translationPrioritySource() {
+        return Stream.of(
+                Arguments.of("HIGH", "HIGH"),
+                Arguments.of("NORMAL", "NORMAL"),
+                Arguments.of("LOW", "LOW"),
+                Arguments.of(null, "NORMAL"),
+                Arguments.of("NOT_VALID", "NORMAL"),
+                Arguments.of("", "NORMAL")
+        );
+    }
 
 }

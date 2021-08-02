@@ -3,7 +3,7 @@ package com.visitscotland.brxm.model.megalinks;
 import com.visitscotland.brxm.model.FlatImage;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
-public class SingleImageLinksModule extends LinksModule {
+public class SingleImageLinksModule extends LinksModule<EnhancedLink> {
 
     private String innerTitle;
     private HippoHtml innerIntroduction;

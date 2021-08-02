@@ -75,10 +75,17 @@ public class HTMLtoVueTransformer {
         String output = html;
 
         while (matcher.find()) {
+            String closingTag;
             String a = matcher.group();
             LinkType type = linkService.getType(matcher.group(2));
+
+            if (type.equals(LinkType.DOWNLOAD)){
+                closingTag = linkService.getDownloadText(matcher.group(2))+ "</vs-link>";
+            } else {
+                closingTag = "</vs-link>";
+            }
             String vsLink = a.replace(matcher.group(1), "<vs-link type=\""+type.getRichTextType()+"\" ")
-                    .replace(matcher.group(3),"</vs-link>");
+                    .replace(matcher.group(3),closingTag);
             output = output.replace(a, vsLink);
         }
 

@@ -34,8 +34,14 @@
             <VsHeading
                 level="3"
                 class="card-title vs-stretched-link-card__title"
+                data-test="vs-stretched-link-card__title"
             >
+                <template v-if="!!this.$slots['stretchedCardLink']">
+                    <slot name="stretchedCardHeader" />
+                </template>
+
                 <VsLink
+                    v-else
                     :href="link"
                     :type="type"
                     class="stretched-link"
@@ -55,6 +61,16 @@
                 <!-- @slot Contains body content for the card  -->
                 <slot name="stretchedCardContent" />
             </div>
+
+            <VsLink
+                :href="link"
+                class="vs-stretched-link-card__link stretched-link"
+                v-if="!!this.$slots['stretchedCardLink']"
+                data-test="vs-stretched-link-card__link"
+            >
+                <!-- @slot Text for option fake link at bottom of the card -->
+                <slot name="stretchedCardLink" />
+            </VsLink>
         </div>
     </div>
 </template>
@@ -132,7 +148,7 @@ export default {
 
 <style lang="scss">
     .card.vs-stretched-link-card {
-        transition: box-shadow 800ms;
+        transition: box-shadow $duration-slowly;
         border: none;
         position: relative;
 
@@ -162,6 +178,10 @@ export default {
 
             &--disabled {
                 cursor: default;
+            }
+
+            &:focus {
+                outline: 2px solid $color-pink;
             }
         }
 
@@ -201,6 +221,7 @@ export default {
         .vs-stretched-link-card__content {
             margin-top: $spacer-2;
             line-height: $line-height-s;
+            font-size: $teaser-font-size;
 
             p:last-of-type {
                 margin-bottom: 0;
@@ -213,6 +234,12 @@ export default {
             right: $spacer-1;
             display: flex;
             flex-direction: row;
+        }
+
+        .vs-stretched-link-card__link {
+            margin: $spacer-4 $spacer-0 $spacer-0;
+            color: $color-pink;
+            text-decoration: underline;
         }
 
         @include media-breakpoint-up(sm) {

@@ -23,6 +23,7 @@ definitions:
             hipposysedit:path: visitscotland:caption
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: ['visitscotland:medium-string-validator']
           /altText:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -31,6 +32,7 @@ definitions:
             hipposysedit:path: visitscotland:altText
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: ['visitscotland:long-string-validator']
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:

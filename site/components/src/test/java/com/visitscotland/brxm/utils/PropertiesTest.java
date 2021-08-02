@@ -90,6 +90,31 @@ class PropertiesTest {
         assertEquals(0, properties.getDmsTries());
     }
 
+    @Test
+    @DisplayName("Reads an integer number from a property")
+    void readDouble(){
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.DMS_MAP_DEFAULT_DISTANCE, Locale.UK)).thenReturn("3.14");
+        assertEquals(3.14, properties.getDmsMapDefaultDistance());
+    }
+
+    @Test
+    @DisplayName("Can parse Integers from environment variables")
+    void readDouble_env(){
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.DMS_MAP_DEFAULT_DISTANCE, Locale.UK)).thenReturn("$TEST_VS");
+        value = "3.14";
+        assertEquals(3.14, properties.getDmsMapDefaultDistance());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "a", "$"})
+    @NullSource
+    @DisplayName("Empty and wrong values return 0 for Numeric properties")
+    void readDouble_empty(String value){
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.DMS_MAP_DEFAULT_DISTANCE, Locale.UK)).thenReturn(value);
+        assertEquals(0.0, properties.getDmsMapDefaultDistance());
+    }
+
+
     @ParameterizedTest
     @ValueSource(strings = {"true", "TRUE"})
     @DisplayName("Reads true from a property")
@@ -132,6 +157,17 @@ class PropertiesTest {
 
         when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.USE_RELATIVE_URLS, Locale.UK)).thenReturn("true");
         assertEquals("", properties.getDmsHost());
+    }
+
+    @Test
+    @DisplayName("As requested by WebOps, made up links to the CMS, will be relative when use relative urls is active")
+    void getLocalHost(){
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.CMS_BASE_PATH, Locale.UK)).thenReturn("http:/localhost:8080/site");
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.USE_RELATIVE_URLS, Locale.UK)).thenReturn("true");
+        assertEquals("", properties.getDmsHost());
+
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.USE_RELATIVE_URLS, Locale.UK)).thenReturn("false");
+        assertEquals("http:/localhost:8080/site", properties.getCmsBasePath());
     }
 
     @Test
