@@ -37,7 +37,7 @@
             <div class="card-body">
                 <VsHeading
                     level="3"
-                    class="card-title vs-product-card__title"
+                    class="card-title vs-product-card__title text-truncate text-truncate--2"
                     data-test="vs-product-card__title"
                 >
                     <VsLink
@@ -86,7 +86,9 @@
                     {{ transformedCategories }}
                 </div>
                 <div class="vs-product-card__description">
-                    <p>{{ description }}</p>
+                    <p class="text-truncate text-truncate--2">
+                        {{ description }}
+                    </p>
                     <VsLink
                         :href="detailLink.link"
                         class="vs-product-card__description-link"
@@ -455,8 +457,6 @@ export default {
             line-height: $line-height-s;
 
             p {
-                display: -webkit-box; //ToDo
-                -webkit-line-clamp: 2;
                 margin-bottom: $spacer-1;
             }
         }
@@ -489,6 +489,18 @@ export default {
                 font-size: $xs-font-size;
             }
         }
+
+        .text-truncate {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box !important;
+            -webkit-box-orient: vertical;
+            white-space: normal;
+
+            &--2 {
+                -webkit-line-clamp: 2;
+            }
+        }
     }
 </style>
 
@@ -501,6 +513,31 @@ export default {
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text"
                         title="Glenegedale House"
+                        link="https://google.com"
+                        linkType="external"
+                        location="Lamlash, Isle of Arran"
+                        :stars="{min:3, max:3, gold:false}"
+                        :categories="['Island Location', 'Rural', 'Remote', 'Lochside Location']"
+                        description="On the shores of Lamlash Bay overlooking Holy Isle, an
+                        ideal base from which to explore the enchanting Isle."
+                        :detailLink="{link: 'https://twitter.com', label: 'View Details'}"
+                        websiteLinkIntro="Visit"
+                        :websiteLink="{link: 'https://facebook.com', label: 'Website', type: 'external'}"
+                        priceIntro="Price from"
+                        price="£50.00"
+                        priceOutro="Per person, per night"
+                        badgeOne="Guesthouse"
+                        badgeTwo="On Offer"
+                        badgeThree="We're Open"
+                    >
+                    </VsProductCard>
+                </VsCol>
+                <VsCol cols="12" md="6" lg="4">
+                    <VsProductCard
+                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                        imgAlt="This is the alt text"
+                        title="This is a much longer title for example it has to be cut off early
+                        because it's just much, much too long to appear like this"
                         link="https://google.com"
                         linkType="external"
                         location="Lamlash, Isle of Arran"
