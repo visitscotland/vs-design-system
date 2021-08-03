@@ -773,7 +773,7 @@ containerStartHippo() {
     if [ "$VS_BRXM_PERSISTENCE_METHOD" == "mysql" ]; then
       VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/vs-hippo >> $VS_CONTAINER_CONSOLE_FILE"'
     else
-      VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /usr/local/bin/vs-hippo nodb'
+      VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME -c "/usr/local/bin/vs-hippo nodb >> $VS_CONTAINER_CONSOLE_FILE"'
     fi
     echo "about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
     echo " - $VS_DOCKER_CMD"
@@ -792,7 +792,7 @@ containerStartHippo() {
 containerStartTailon() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
-    VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/tailon --relative-root /tailon -b :$VS_CONTAINER_INT_PORT_TLN /home/hippo/tomcat_8080/logs/* > /tmp/tailon.log"'
+    VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/tailon --relative-root /tailon -b :$VS_CONTAINER_INT_PORT_TLN /home/hippo/tomcat_8080/logs/ > /tmp/tailon.log"'
     echo "about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
