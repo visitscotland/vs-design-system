@@ -97,27 +97,40 @@
                     </VsLink>
                 </div>
             </div>
+            <div class="vs-product-card__logos">
+                <VsTooltip
+                    :title="goodToGoLogo"
+                    v-if="goodToGoLogo"
+                >
+                    <VsImg
+                        src="https://www.visitscotland.com/cms-images/logos/goodToGo.png"
+                        :alt="goodToGoLogo"
+                        class="vs-product-card__logo"
+                    />
+                </VsTooltip>
+                <VsTooltip
+                    :title="safeTravelsLogo"
+                    v-if="safeTravelsLogo"
+                >
+                    <VsImg
+                        src="https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
+                        :alt="safeTravelsLogo"
+                        class="vs-product-card__logo"
+                    />
+                </VsTooltip>
+                <VsTooltip
+                    v-for="award in awards"
+                    :title="award.name"
+                    :key="award.id"
+                >
+                    <VsImg
+                        :src="award.image"
+                        :alt="award.name"
+                        class="vs-product-card__logo"
+                    />
+                </VsTooltip>
+            </div>
         </section>
-        <div class="vs-product-card__logos">
-            <VsTooltip
-                :title="goodToGoLogo"
-                v-if="goodToGoLogo"
-            >
-                <VsImg
-                    src="https://www.visitscotland.com/cms-images/logos/goodToGo.png"
-                    class="vs-product-card__logo"
-                />
-            </VsTooltip>
-            <VsTooltip
-                :title="safeTravelsLogo"
-                v-if="safeTravelsLogo"
-            >
-                <VsImg
-                    src="https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
-                    class="vs-product-card__logo"
-                />
-            </VsTooltip>
-        </div>
         <div class="vs-product-card__summary-box">
             <VsContainer>
                 <VsRow>
@@ -347,6 +360,14 @@ export default {
             type: String,
             default: '',
         },
+        /**
+        * A set of award badges to display, each should contain a unique `id` (String), a `name`
+        * (String) that appears as a tooltip and a url to an `image` (String)
+        */
+        awards: {
+            type: Array,
+            default: null,
+        },
     },
     computed: {
         transformedCategories() {
@@ -443,12 +464,12 @@ export default {
         }
 
         .vs-product-card__title {
-            font-size: $small-font-size;
+            font-size: $font-size-base;
             line-height: $line-height-s;
             letter-spacing: 1px;
             color: $color-base-text;
             display: flex;
-            margin: $spacer-1 $spacer-0;
+            margin: $spacer-3 $spacer-0 $spacer-2;
 
             a {
                 letter-spacing: inherit;
@@ -457,11 +478,17 @@ export default {
 
         .vs-product-card__location {
             font-family: $font-family-base;
-            font-size: $small-font-size;
-            line-height: $line-height-xs;
+            font-size: $font-size-base;
+            line-height: 1;
             color: $color-secondary-teal-shade-2;
             letter-spacing: normal;
             margin: $spacer-0;
+            margin-bottom: $spacer-3;
+        }
+
+        .vs-product-card__stars {
+            line-height: 1;
+            margin-bottom: $spacer-3;
         }
 
         .vs-product-card__star {
@@ -473,14 +500,14 @@ export default {
         }
 
         .vs-product-card__categories {
-            font-size: $small-font-size;
+            font-size: font-size-base;
             line-height: $line-height-s;
             font-weight: 600;
             margin-bottom: $spacer-1;
         }
 
         .vs-product-card__description {
-            font-size: $small-font-size;
+            font-size: $font-size-base;
             line-height: $line-height-s;
 
             p {
@@ -498,7 +525,7 @@ export default {
         }
 
         .vs-product-card__summary-item {
-            font-size: $small-font-size;
+            font-size: $font-size-base;
             line-height: $line-height-s;
             text-align: center;
 
@@ -529,11 +556,25 @@ export default {
             }
         }
 
+        .vs-product-card__logos {
+            margin-top: $spacer-9;
+            margin-bottom: $spacer-4;
+
+            .vs-tooltip {
+                z-index: 1;
+                cursor: pointer;
+
+                &:active {
+                    pointer-events: none;
+                }
+            }
+        }
+
         .vs-product-card__logo {
             max-height: $spacer-9;
 
             &:not(:last-child) {
-                padding-right: $spacer-1;
+                padding-right: $spacer-2;
             }
         }
     }
@@ -581,6 +622,7 @@ export default {
                         sampleAccom.covidInformation.weAreOpen : ''"
                     :goodToGoLogo="sampleAccom.covidInformation.goodToGo"
                     :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
+                    :awards="sampleAccom.awards"
                 >
                 </VsProductCard>
             </VsCol>

@@ -69,12 +69,6 @@
          "name": "Green Tourism Silver",
          "image": "http://visitscotlandpreview.nmdemo.net/wsimgs/awards/GT_silver_200x200_275519812.png",
          "type": "GREEN_TOURISM"
-       },
-       {
-          "id":"qaiknowscotland",
-          "name":"iKnow Scotland",
-          "image":"http://visitscotlandpreview.nmdemo.net/wsimgs/awards/iKnow-200x200-white-background_1615836561.jpg",
-          "type":"OTHER_AWARDS"
        }
     ],
     "covidInformation":{
