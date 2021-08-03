@@ -773,7 +773,7 @@ containerStartHippo() {
     if [ "$VS_BRXM_PERSISTENCE_METHOD" == "mysql" ]; then
       VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/vs-hippo >> $VS_CONTAINER_CONSOLE_FILE"'
     else
-      VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME -c "/usr/local/bin/vs-hippo nodb >> $VS_CONTAINER_CONSOLE_FILE"'
+      VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/vs-hippo nodb >> $VS_CONTAINER_CONSOLE_FILE"'
     fi
     echo "about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
     echo " - $VS_DOCKER_CMD"
