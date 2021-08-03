@@ -4,7 +4,6 @@
             <span class="text-warning"><strong>ContextPath:</strong> [(gp) get from request]</span>
             <span class="text-warning"><strong>Host Header:</strong> [(gp) get from request]</span>
             <span class="text-warning"><strong>Something else:</strong> [(gp) get from request]</span>
-            </#if>
         </div>
     </div>
 </#macro>
