@@ -10,6 +10,7 @@
 # gp: investigate using env.STAGE_NAME in stage notifications
 # gp: add timing to each proc and output it to a log, cat that log to the Jenkins job log at the end of the script
 # gp: timestamp each "doing this" notification as "dd-mmm-yyyy hh:mm:ss.nnn INFO [scriptname] doing this", output it to the log
+# gp: remove individual references to tomcat_8080, replace with a variable
 # ====/TO-DO ====
 # ==== DONE ====
 # gp: split into functions - done
@@ -706,7 +707,7 @@ containerUpdates() {
   docker exec $VS_CONTAINER_NAME /bin/bash -c "find /usr/local/bin -type f | xargs chmod +x"
 }
 
-containerSSHStart() {
+containerStartSSH() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
     echo "about to enable SSH in container $VS_CONTAINER_NAME:"
@@ -723,7 +724,6 @@ containerSSHStart() {
     echo "container will not be started due to previous failures"
   fi
 }
-
 
 # copy build artefacts to container
 containerCopyHippoArtifact() {
@@ -775,6 +775,24 @@ containerStartHippo() {
     else
       VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /usr/local/bin/vs-hippo nodb'
     fi
+    echo "about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
+    echo " - $VS_DOCKER_CMD"
+    eval $VS_DOCKER_CMD
+    RETURN_CODE=$?; echo $RETURN_CODE
+    if [ ! "$RETURN_CODE" = "0" ]; then
+      SAFE_TO_PROCEED=FALSE
+      FAIL_REASON="Docker failed to run exec command in $VS_CONTAINER_NAME, command exited with $RETURN_CODE"
+    fi
+  else
+    echo ""
+    echo "docker exec will not be run due to previous failures"
+  fi
+}
+
+containerStartTailon() {
+  if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+    echo ""
+    VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/tailon --relative-root /tailon -b :$VS_CONTAINER_INT_PORT_TLN /home/hippo/tomcat_8080/logs/* > /tmp/tailon.log"'
     echo "about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
@@ -846,7 +864,7 @@ createBuildReport() {
     fi
     if [ ! -z "$VS_CONTAINER_EXT_PORT_SSH" ]; then
       echo "SSH access (if enabled on the container) - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-      echo "  - ssh -p $VS_CONTAINER_EXT_PORT_SSH root@$VS_HOST_IP_ADDRESS ($VS_CONTAINER_SSH_PASS_ROOT)" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+      echo "  - ssh -o UserKnownHostsFile=/dev/null -p $VS_CONTAINER_EXT_PORT_SSH hippo@$VS_HOST_IP_ADDRESS ($VS_CONTAINER_SSH_PASS_HIPPO)" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
       echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
     if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA" ]; then
@@ -944,10 +962,11 @@ case $METHOD in
       echo "re-using existing container $CONTAINER_ID"; echo "" 
     fi
     containerUpdates
-    containerSSHStart
+    containerStartSSH
     containerCopyHippoArtifact
     containerCopySSRArtifact
     containerStartHippo
+    containerStartTailon
     exportVSVariables
     testSite
     createBuildReport
