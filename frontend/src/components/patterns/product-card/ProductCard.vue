@@ -98,6 +98,26 @@
                 </div>
             </div>
         </section>
+        <div class="vs-product-card__logos">
+            <VsTooltip
+                :title="goodToGoLogo"
+                v-if="goodToGoLogo"
+            >
+                <VsImg
+                    src="https://www.visitscotland.com/cms-images/logos/goodToGo.png"
+                    class="vs-product-card__logo"
+                />
+            </VsTooltip>
+            <VsTooltip
+                :title="safeTravelsLogo"
+                v-if="safeTravelsLogo"
+            >
+                <VsImg
+                    src="https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
+                    class="vs-product-card__logo"
+                />
+            </VsTooltip>
+        </div>
         <div class="vs-product-card__summary-box">
             <VsContainer>
                 <VsRow>
@@ -159,6 +179,7 @@ import VsLink from '@components/elements/link/Link';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
+import VsTooltip from '@components/elements/tooltip/Tooltip';
 
 /**
 * Generic product card for canned search
@@ -176,6 +197,7 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
+        VsTooltip,
     },
     props: {
         /**
@@ -306,6 +328,22 @@ export default {
         * if not set
         */
         badgeThree: {
+            type: String,
+            default: '',
+        },
+        /**
+        * If set, the good to go logo appears. The text set in this property will appear as
+        * the tooltip of that logo
+        */
+        goodToGoLogo: {
+            type: String,
+            default: '',
+        },
+        /**
+        * If set, the safe travels logo appears. The text set in this property will appear as
+        * the tooltip of that logo
+        */
+        safeTravelsLogo: {
             type: String,
             default: '',
         },
@@ -490,6 +528,14 @@ export default {
                 -webkit-line-clamp: 2;
             }
         }
+
+        .vs-product-card__logo {
+            max-height: $spacer-9;
+
+            &:not(:last-child) {
+                padding-right: $spacer-1;
+            }
+        }
     }
 </style>
 
@@ -517,7 +563,10 @@ export default {
                     }"
                     :categories="locations"
                     :description="sampleAccom.description"
-                    :detailLink="{link: sampleAccom.dmsLink.link, label: sampleAccom.dmsLink.label}"
+                    :detailLink="{
+                        link: sampleAccom.dmsLink.link,
+                        label: sampleAccom.dmsLink.label
+                    }"
                     :websiteLink="{
                         link: sampleAccom.website,
                         label: 'Visit website',
@@ -530,6 +579,8 @@ export default {
                     :badgeTwo="sampleAccom.offers"
                     :badgeThree="sampleAccom.covidInformation ?
                         sampleAccom.covidInformation.weAreOpen : ''"
+                    :goodToGoLogo="sampleAccom.covidInformation.goodToGo"
+                    :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
                 >
                 </VsProductCard>
             </VsCol>
