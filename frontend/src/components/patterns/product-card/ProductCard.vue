@@ -390,6 +390,11 @@ export default {
             &:hover {
                 box-shadow: 10px 10px 20px $color-gray-tint-4;
 
+                padding: $spacer-2;
+                margin-left: -$spacer-2;
+                margin-right: -$spacer-2;
+                margin-top: -$spacer-2;
+
                 .megalink-link-list__title {
                     text-decoration: underline;
                 }
@@ -563,10 +568,6 @@ export default {
             .vs-tooltip {
                 z-index: 1;
                 cursor: pointer;
-
-                &:active {
-                    pointer-events: none;
-                }
             }
         }
 
