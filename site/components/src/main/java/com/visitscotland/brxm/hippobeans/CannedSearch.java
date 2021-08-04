@@ -4,6 +4,7 @@ import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerat
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import com.visitscotland.brxm.hippobeans.ProductsSearch;
+import com.visitscotland.brxm.hippobeans.ProductSearchLink;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:CannedSearch")
 @Node(jcrType = "visitscotland:CannedSearch")
@@ -19,12 +20,7 @@ public class CannedSearch extends BaseDocument {
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:criteria")
-    public ProductsSearch getCriteria() {
-        return getBean("visitscotland:criteria", ProductsSearch.class);
-    }
-
-    @HippoEssentialsGenerated(internalName = "visitscotland:viewAll")
-    public String getViewAll() {
-        return getSingleProperty("visitscotland:viewAll");
+    public ProductSearchLink getCriteria() {
+        return getBean("visitscotland:criteria", ProductSearchLink.class);
     }
 }

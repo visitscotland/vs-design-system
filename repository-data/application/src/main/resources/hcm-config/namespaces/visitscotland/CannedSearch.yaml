@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: b277897a-2dcc-4dfe-bbde-22e719055f33
+          jcr:uuid: aa37331a-12aa-4083-9d90-8b7c1aac8163
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -33,24 +33,48 @@ definitions:
             hipposysedit:path: visitscotland:copy
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
-          /criteria:
+          /ProductSearchLink:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
             hipposysedit:path: visitscotland:criteria
             hipposysedit:primary: false
-            hipposysedit:type: visitscotland:ProductsSearch
+            hipposysedit:type: visitscotland:ProductSearchLink
             hipposysedit:validators: [required]
-          /viewAll:
+        /hipposysedit:nodetype[2]:
+          jcr:primaryType: hipposysedit:nodetype
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: a40d018c-9c08-404c-abd7-e4d4663b989a
+          hipposysedit:node: true
+          hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
+            'hippotranslation:translated']
+          /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:viewAll
+            hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: ['visitscotland:short-string-validator']
+            hipposysedit:validators: [required, 'visitscotland:medium-string-validator']
+          /copy:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:copy
+            hipposysedit:primary: false
+            hipposysedit:type: hippostd:html
+          /ProductSearchLink:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:criteria
+            hipposysedit:primary: false
+            hipposysedit:type: visitscotland:ProductSearchLink
+            hipposysedit:validators: [required]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -63,24 +87,59 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 64fbef57-56cd-47ba-9859-680ea0265117
+          jcr:uuid: 991d15c0-61d9-4f12-b39a-a20e8856f61f
           hippostdpubwf:lastModificationDate: 2021-05-11T15:47:43.297+01:00
           hippostdpubwf:creationDate: 2021-05-11T15:47:43.297+01:00
-          visitscotland:viewAll: ''
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
           /visitscotland:criteria:
-            jcr:primaryType: visitscotland:ProductsSearch
-            visitscotland:distance: 10.0
-            visitscotland:dmsAwards: []
-            visitscotland:dmsCategories: []
-            visitscotland:dmsFacilities: []
-            visitscotland:location: ''
-            visitscotland:officialrating: []
-            visitscotland:productType: ''
-            visitscotland:free: false
-            visitscotland:offers: false
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:location: ''
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: ''
+              visitscotland:producttype: ''
+        /hipposysedit:prototype[2]:
+          jcr:primaryType: nt:unstructured
+          jcr:mixinTypes: ['hippostd:publishableSummary', 'hippostd:relaxed', 'hippostdpubwf:document',
+            'hippotranslation:translated', 'mix:referenceable']
+          jcr:uuid: 624bcdbd-5d49-43ca-b535-7e5aeacf94b9
+          hippostd:holder: holder
+          hippostd:state: draft
+          hippostdpubwf:createdBy: ''
+          hippostdpubwf:creationDate: 2021-05-11T15:47:43.297+01:00
+          hippostdpubwf:lastModificationDate: 2021-05-11T15:47:43.297+01:00
+          hippostdpubwf:lastModifiedBy: ''
+          hippotranslation:id: document-type-locale-id
+          hippotranslation:locale: document-type-locale
+          visitscotland:title: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:location: ''
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: ''
+              visitscotland:producttype: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -118,18 +177,9 @@ definitions:
           /criteria:
             jcr:primaryType: frontend:plugin
             caption: Criteria
-            field: criteria
+            field: ProductSearchLink
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /viewAll:
-            jcr:primaryType: frontend:plugin
-            caption: Override "View all"
-            field: viewAll
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.field
-            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
