@@ -577,7 +577,7 @@ export default {
 
 <docs>
 ```jsx
-    const sampleAccom = require("../../../assets/fixtures/canned-search/sample-accom.json")
+    const sampleAccom = require("../../../../../assets/fixtures/canned-search/sample-accom.json")
 
     let locations = sampleAccom.locations.slice(0,3);
     locations = locations.map((x) => { return x.name });
