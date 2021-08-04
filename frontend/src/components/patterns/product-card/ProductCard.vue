@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-product-card">
+    <div
+        class="vs-product-card"
+        data-test="vs-product-card"
+    >
         <section
             class="card vs-product-card"
             v-bind="$attrs"
@@ -41,10 +44,10 @@
                     data-test="vs-product-card__title"
                 >
                     <VsLink
-                        :href="link"
-                        :type="linkType"
+                        :href="detailLink.link"
+                        :type="detailLink.type"
                         class="stretched-link"
-                        data-test="vs-product-link"
+                        data-test="vs-product-card__link"
                     >
                         {{ title }}
                     </VsLink>
@@ -82,7 +85,10 @@
                         &#9733;
                     </span>
                 </div>
-                <div class="vs-product-card__categories">
+                <div
+                    class="vs-product-card__categories"
+                    data-test="vs-product-card__categories"
+                >
                     {{ transformedCategories }}
                 </div>
                 <div class="vs-product-card__description">
@@ -101,6 +107,7 @@
                 <VsTooltip
                     :title="goodToGoLogo"
                     v-if="goodToGoLogo"
+                    data-test="vs-product-card__good-to-go"
                 >
                     <VsImg
                         src="https://www.visitscotland.com/cms-images/logos/goodToGo.png"
@@ -111,6 +118,7 @@
                 <VsTooltip
                     :title="safeTravelsLogo"
                     v-if="safeTravelsLogo"
+                    data-test="vs-product-card__safe-travels"
                 >
                     <VsImg
                         src="https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
@@ -127,6 +135,7 @@
                         :src="award.image"
                         :alt="award.name"
                         class="vs-product-card__logo"
+                        data-test="vs-product-card__award-logo"
                     />
                 </VsTooltip>
             </div>
@@ -174,6 +183,7 @@
                                 :href="websiteLink.link"
                                 :type="websiteLink.type || 'internal'"
                                 class="vs-product-card__website-link"
+                                data-test="vs-product-card__website-link"
                             >
                                 {{ websiteLink.label }}
                             </VsLink>
@@ -235,22 +245,6 @@ export default {
             type: String,
         },
         /**
-        * The url the card should link to
-        */
-        link: {
-            required: true,
-            type: String,
-        },
-        /**
-        * The type of the url the card should link to, defines which
-        * icon appears next to the link
-        * `external, internal, download`
-        */
-        linkType: {
-            required: true,
-            type: String,
-        },
-        /**
         * The location of the product in the card
         */
         location: {
@@ -282,7 +276,7 @@ export default {
         },
         /**
         * An object containing a link to product details, should contain a `url`
-        * field and a `label` field
+        * field, a `label` field and a `type` field
         */
         detailLink: {
             type: Object,
@@ -505,7 +499,7 @@ export default {
         }
 
         .vs-product-card__categories {
-            font-size: font-size-base;
+            font-size: $font-size-base;
             line-height: $line-height-s;
             font-weight: 600;
             margin-bottom: $spacer-1;
@@ -595,8 +589,6 @@ export default {
                     :imgSrc="sampleAccom.images[0].mediaUrl"
                     :imgAlt="sampleAccom.name"
                     :title="sampleAccom.name"
-                    :link="sampleAccom.dmsLink.link"
-                    :linkType="sampleAccom.dmsLink.type.toLowerCase()"
                     :location="sampleAccom.address.city + ', ' + sampleAccom.address.county"
                     :stars="{
                         min:sampleAccom.grading.minStars,
@@ -607,7 +599,8 @@ export default {
                     :description="sampleAccom.description"
                     :detailLink="{
                         link: sampleAccom.dmsLink.link,
-                        label: sampleAccom.dmsLink.label
+                        label: sampleAccom.dmsLink.label,
+                        type: sampleAccom.dmsLink.type.toLowerCase()
                     }"
                     :websiteLink="{
                         link: sampleAccom.website,
