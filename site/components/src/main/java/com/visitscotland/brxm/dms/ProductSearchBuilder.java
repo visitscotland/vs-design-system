@@ -250,16 +250,27 @@ public class ProductSearchBuilder {
     public String buildDataMap(){
         return buildSearchUrl(DMSConstants.PRODUCT_SEARCH_DATA_MAP, true);
     }
+    public String buildCannedSearch(){
+        return buildSearchUrl(DMSConstants.VS_DMS_CANNED_SEARCH, true);
+    }
 
     private String buildSearchUrl(String path, boolean dataEndpoint){
         if (productTypes == null){
             throw new VsException("No types have been defined for this search");
         }
 
-        if (Contract.isEmpty(properties.getDmsHost()) || dataEndpoint){
-            return composeUrl(path);
+        if (dataEndpoint){
+            if (!Contract.isEmpty(properties.getDmsDataHost())) {
+                return composeUrl(properties.getDmsDataHost() + path);
+            } else {
+                throw new VsException("Property dms-data.url is not defined in the CMS");
+            }
         } else {
-            return composeUrl(properties.getDmsHost() + path);
+            if (Contract.isEmpty(properties.getDmsHost())) {
+                return composeUrl(path);
+            } else {
+                return composeUrl(properties.getDmsHost() + path);
+            }
         }
     }
 
@@ -268,7 +279,7 @@ public class ProductSearchBuilder {
      */
     private String composeUrl (String urlPath){
         String compose = addParams(urlPath, PRODUCT_TYPE_PARAM, productTypes);
-        //Accommodations MUST deactivate availavility search
+        //Accommodations MUST deactivate availability search
         if (path.equals(DMSConstants.PATH_ACCOMMODATION)) {
             compose = addParams(compose, AVAILABILITY, "off");
         }
