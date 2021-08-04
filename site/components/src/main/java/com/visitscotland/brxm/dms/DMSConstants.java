@@ -68,7 +68,8 @@ public class DMSConstants {
         public static final String LOCATION = "city";
         public static final String FACILITIES = "keyFacilities";
 
-        public static final String URL = "url";
+        public static final String URL = "dmsLink";
+        public static final String URL_LINK = "link";
         public static final String TIME_TO_EXPLORE = "timeToExplore";
         public static final String PRICE = "price";
         public static final String DISPLAY_PRICE = "displayPrice";
@@ -81,6 +82,7 @@ public class DMSConstants {
     public static final String PRODUCT_SEARCH = "/info/%s/search-results?";
     public static final String PRODUCT_SEARCH_DATA_MAP = "/product-search/map?";
     public static final String VS_DMS_PRODUCT_CARD = "/products/card?";
+    public static final String VS_DMS_CANNED_SEARCH = "/search/productsearch?";
     public static final String META_PRODUCT_LIST = "/meta/%s/list?%s";
     public static final String META_LOCATIONS = "/meta/location/list?full";
 
