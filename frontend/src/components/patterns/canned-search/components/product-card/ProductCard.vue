@@ -4,7 +4,7 @@
         data-test="vs-product-card"
     >
         <section
-            class="card vs-product-card"
+            class="card"
             v-bind="$attrs"
         >
             <div class="vs-product-card__image-container">
