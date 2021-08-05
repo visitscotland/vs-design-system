@@ -18,11 +18,6 @@
     <@devEnvMenu />
 </#if>
 
-<#-- (gp) condition below should be "if cookie vs_debug" -->
-<#if ciBranch??>
-    <@devEnvExtra />
-</#if>
-
 <#if menu??>
     <div class="has-edit-button">
         <vs-header>
