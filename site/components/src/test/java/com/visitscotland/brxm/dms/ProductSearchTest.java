@@ -92,6 +92,7 @@ class ProductSearchTest {
                 );
     }
 
+    //TODO review with Jose
     @Test()
     @DisplayName("Constructs a relative URL for the map endpoint")
     void productSearch_fullQualified() {
@@ -100,7 +101,7 @@ class ProductSearchTest {
 
         String url = createBuilder().productTypes(DEFAULT_TYPE).buildDataMap();
 
-        assertTrue(url.startsWith(DMSConstants.PRODUCT_SEARCH_DATA_MAP),
+        assertTrue(url.contains(DMSConstants.PRODUCT_SEARCH_DATA_MAP),
                 "The URL is expected to be a Dms data endpoint: " + url);
         validateUrl(url);
     }

@@ -8,6 +8,7 @@
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 <#include "../modules/horizontal-list/horizontal-list.ftl">
 <#include "../modules/stackla/stackla.ftl">
+<#include "../modules/canned-search/canned-search.ftl">
 <#include "theme-calculator.ftl">
 
 <#-- Implicit Request Objects -->
@@ -60,6 +61,9 @@
 
         <#elseif module.getType()== "StacklaModule">
             <@stackla module/>
+
+        <#elseif module.getType()== "CannedSearchModule">
+            <@cannedSearch module themeName/>
         </#if>
     </div>
 </#macro>

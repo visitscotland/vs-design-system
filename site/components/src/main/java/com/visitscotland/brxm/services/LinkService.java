@@ -32,7 +32,8 @@ public class LinkService {
     private static final Logger logger = LoggerFactory.getLogger(LinkService.class);
     private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
-    public static final String URL = "url";
+    public static final String URL = "dmsLink";
+    public static final String URL_LINK = "link";
 
     private final DMSDataService dmsData;
     private final ResourceBundleService bundle;
@@ -101,7 +102,7 @@ public class LinkService {
     }
 
     public FlatLink createDmsLink(Locale locale, DMSLink dmsLink, JsonNode dmsProductJson) {
-        return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + dmsProductJson.get(URL).asText(), LinkType.INTERNAL);
+        return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + dmsProductJson.get(URL).get(URL_LINK).asText(), LinkType.INTERNAL);
     }
 
     /**
@@ -117,7 +118,7 @@ public class LinkService {
             if (product == null) {//((DMSLink) link).getDmsData(locale)
                 contentLogger.warn("The product id '{}' does not exist but is linked - {}", ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
             } else {
-                return properties.getDmsHost() + product.get(URL).asText();
+                return properties.getDmsHost() + product.get(URL).get(URL_LINK).asText();
             }
         } else if (link.getLinkType() instanceof ExternalLink) {
             return ((ExternalLink) link.getLinkType()).getLink();
