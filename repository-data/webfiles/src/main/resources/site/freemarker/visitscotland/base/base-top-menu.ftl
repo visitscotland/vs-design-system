@@ -6,7 +6,6 @@
 <#include "../macros/modules/header/mega-nav/header-mega-nav.ftl">
 <#include "../macros/modules/header/header-global-menu.ftl">
 <#include "../macros/global/dev-env-menu.ftl">
-<#include "../macros/global/dev-env-extra.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
