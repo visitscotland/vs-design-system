@@ -33,7 +33,7 @@
                 v-for="(prod, index) in products"
                 :key="index"
                 :slide-index="'' + index"
-                :img-src="prod.images[0].mediaUrl"
+                :img-src="prod.images ? prod.images[0].mediaUrl : ''"
                 :img-alt="prod.name"
                 :title="prod.name"
                 :detail-link="{
@@ -41,6 +41,31 @@
                     label: prod.dmsLink.label,
                     type: prod.dmsLink.type.toLowerCase()
                 }"
+                :location="prod.address.city + ', ' + prod.address.county"
+                :stars="prod.grading ? {
+                    min:prod.grading.minStars,
+                    max:prod.grading.maxStars,
+                    gold:prod.grading.gold
+                } : null"
+                :description="prod.description"
+                :website-link="{
+                    link: prod.website,
+                    label: 'Visit website',
+                    type: 'external'
+                }"
+                :price-intro="prod.price ? prod.price.priceLabel : ''"
+                :price="prod.price ? '£' + prod.price.price : ''"
+                :price-outro="prod.price ? prod.price.priceBasis : ''"
+                :badge-one="prod.category ? prod.category.name : ''"
+                :badge-two="prod.offers"
+                :badge-three="prod.covidInformation ?
+                    prod.covidInformation.weAreOpen : ''"
+                :good-to-go-logo="prod.covidInformation ?
+                    prod.covidInformation.goodToGo : ''"
+                :safe-travels-logo="prod.covidInformation ?
+                    prod.covidInformation.safeTravels : ''"
+                :awards="prod.awards"
+                :categories="prod.locations"
             />
         </VsCarousel>
     </div>
