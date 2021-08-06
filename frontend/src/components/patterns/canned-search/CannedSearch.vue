@@ -54,7 +54,7 @@
                     type: 'external'
                 }"
                 :price-intro="prod.price ? prod.price.priceLabel : ''"
-                :price="prod.price ? '£' + prod.price.price : ''"
+                :price="prod.price ? prod.price.price : ''"
                 :price-outro="prod.price ? prod.price.priceBasis : ''"
                 :badge-one="prod.category ? prod.category.name : ''"
                 :badge-two="prod.offers"
