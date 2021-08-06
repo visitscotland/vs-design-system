@@ -21,10 +21,18 @@
                 </VsCol>
             </VsRow>
         </VsContainer>
-        <div>
+        <VsCarousel
+            next-text="next page"
+            prev-text="previous page"
+            slides-xs="1"
+            slides-md="2"
+            slides-lg="3"
+            v-if="products.length"
+        >
             <VsProductCard
-                v-for="prod in products"
-                :key="prod.id"
+                v-for="(prod, index) in products"
+                :key="index"
+                :slide-index="'' + index"
                 :img-src="prod.images[0].mediaUrl"
                 :img-alt="prod.name"
                 :title="prod.name"
@@ -34,14 +42,13 @@
                     type: prod.dmsLink.type.toLowerCase()
                 }"
             />
-
-            {{ products }}
-        </div>
+        </VsCarousel>
     </div>
 </template>
 
 <script>
 import VsProductCard from '@components/patterns/canned-search/components/product-card/ProductCard';
+import VsCarousel from '@components/patterns/carousel/Carousel';
 
 const axios = require('axios');
 
@@ -58,6 +65,7 @@ export default {
     release: '0.0.1',
     components: {
         VsProductCard,
+        VsCarousel,
     },
     props: {
         /**
@@ -94,7 +102,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+    .vs-canned-search__buttons {
+        margin-bottom: $spacer-9;
+    }
 </style>
 
 <docs>
@@ -113,13 +123,13 @@ export default {
         >
             <template slot="cannedSearchButtons">
                 <VsButton
-                    class="mr-2"
+                    class="mx-2 mb-2"
                     href="https://www.visitscotland.com"
                 >
                     View All B&Bs
                 </VsButton>
                 <VsButton
-                    class="ml-2"
+                    class="mx-2 mb-2"
                     href="https://www.visitscotland.com"
                     icon="map"
                 >

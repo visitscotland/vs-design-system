@@ -331,6 +331,7 @@ export default {
             slides-lg="4"
         >
             <VsCarouselSlide
+                slide-index="0"
                 link-url="www.visitscotland.com"
                 link-type="external"
                 img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
