@@ -1,200 +1,208 @@
 <template>
-    <div
-        class="vs-product-card"
-        data-test="vs-product-card"
+    <VsCol
+        :cols="slideCols.xs"
+        :sm="slideCols.sm"
+        :lg="slideCols.md"
+        :xl="slideCols.lg"
+        class="vs-carousel-slide__card"
     >
-        <section
-            class="card"
-            v-bind="$attrs"
+        <div
+            class="vs-product-card"
+            data-test="vs-product-card"
         >
-            <div class="vs-product-card__image-container">
-                <VsImg
-                    :src="imgSrc"
-                    :alt="imgAlt"
-                    class="vs-product-card__img"
-                    data-test="vs-product-card__img"
-                />
-                <div
-                    v-if="badgeOne"
-                    class="vs-product-card__badge vs-product-card__badge--teal
-                    vs-product-card__badge--tr"
-                >
-                    {{ badgeOne }}
+            <section
+                class="card"
+                v-bind="$attrs"
+            >
+                <div class="vs-product-card__image-container">
+                    <VsImg
+                        :src="imgSrc"
+                        :alt="imgAlt"
+                        class="vs-product-card__img"
+                        data-test="vs-product-card__img"
+                    />
+                    <div
+                        v-if="badgeOne"
+                        class="vs-product-card__badge vs-product-card__badge--teal
+                        vs-product-card__badge--tr"
+                    >
+                        {{ badgeOne }}
+                    </div>
+                    <div
+                        v-if="badgeTwo"
+                        class="vs-product-card__badge vs-product-card__badge--pink
+                        vs-product-card__badge--tr2"
+                    >
+                        {{ badgeTwo }}
+                    </div>
+                    <div
+                        v-if="badgeThree"
+                        class="vs-product-card__badge vs-product-card__badge--white
+                        vs-product-card__badge--br"
+                    >
+                        {{ badgeThree }}
+                    </div>
                 </div>
-                <div
-                    v-if="badgeTwo"
-                    class="vs-product-card__badge vs-product-card__badge--pink
-                    vs-product-card__badge--tr2"
-                >
-                    {{ badgeTwo }}
-                </div>
-                <div
-                    v-if="badgeThree"
-                    class="vs-product-card__badge vs-product-card__badge--white
-                    vs-product-card__badge--br"
-                >
-                    {{ badgeThree }}
-                </div>
-            </div>
 
-            <div class="card-body">
-                <VsHeading
-                    level="3"
-                    class="card-title vs-product-card__title text-truncate text-truncate--2"
-                    data-test="vs-product-card__title"
-                >
-                    <VsLink
-                        :href="detailLink.link"
-                        :type="detailLink.type"
-                        class="stretched-link"
-                        data-test="vs-product-card__link"
+                <div class="card-body">
+                    <VsHeading
+                        level="3"
+                        class="card-title vs-product-card__title text-truncate text-truncate--2"
+                        data-test="vs-product-card__title"
                     >
-                        {{ title }}
-                    </VsLink>
-                </VsHeading>
-                <VsHeading
-                    level="4"
-                    class="vs-product-card__location"
-                    v-if="location"
-                    data-test="vs-product-card__location"
-                >
-                    {{ location }}
-                </VsHeading>
-                <div v-if="stars">
-                    <div
-                        class="vs-product-card__stars"
-                        v-if="stars.min && stars.max && stars.min !== stars.max"
-                    >
-                        <span
-                            class="vs-product-card__star"
-                            :class="{'vs-product-card__star--gold' : stars.gold}"
+                        <VsLink
+                            :href="detailLink.link"
+                            :type="detailLink.type"
+                            class="stretched-link"
+                            data-test="vs-product-card__link"
                         >
-                            &#9733;
-                        </span>
-                        {{ stars.min }}-{{ stars.max }}
-                    </div>
-                    <div
-                        class="vs-product-card__stars"
-                        v-else
+                            {{ title }}
+                        </VsLink>
+                    </VsHeading>
+                    <VsHeading
+                        level="4"
+                        class="vs-product-card__location"
+                        v-if="location"
+                        data-test="vs-product-card__location"
                     >
-                        <span
-                            v-for="index in stars.min"
-                            :key="index"
-                            class="vs-product-card__star"
-                            :class="{'vs-product-card__star--gold' : stars.gold}"
-                        >
-                            &#9733;
-                        </span>
-                    </div>
-                </div>
-                <div
-                    class="vs-product-card__categories"
-                    data-test="vs-product-card__categories"
-                >
-                    {{ transformedCategories }}
-                </div>
-                <div class="vs-product-card__description">
-                    <p class="text-truncate text-truncate--2">
-                        {{ description }}
-                    </p>
-                    <VsLink
-                        :href="detailLink.link"
-                        class="vs-product-card__description-link"
-                    >
-                        {{ detailLink.label }}
-                    </VsLink>
-                </div>
-            </div>
-            <div class="vs-product-card__logos">
-                <VsTooltip
-                    :title="goodToGoLogo"
-                    v-if="goodToGoLogo"
-                    data-test="vs-product-card__good-to-go"
-                >
-                    <VsImg
-                        src="https://www.visitscotland.com/cms-images/logos/goodToGo.png"
-                        :alt="goodToGoLogo"
-                        class="vs-product-card__logo"
-                    />
-                </VsTooltip>
-                <VsTooltip
-                    :title="safeTravelsLogo"
-                    v-if="safeTravelsLogo"
-                    data-test="vs-product-card__safe-travels"
-                >
-                    <VsImg
-                        src="https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
-                        :alt="safeTravelsLogo"
-                        class="vs-product-card__logo"
-                    />
-                </VsTooltip>
-                <VsTooltip
-                    v-for="award in awards"
-                    :title="award.name"
-                    :key="award.id"
-                >
-                    <VsImg
-                        :src="award.image"
-                        :alt="award.name"
-                        class="vs-product-card__logo"
-                        data-test="vs-product-card__award-logo"
-                    />
-                </VsTooltip>
-            </div>
-        </section>
-        <div class="vs-product-card__summary-box">
-            <VsContainer>
-                <VsRow>
-                    <VsCol
-                        cols="6"
-                        class="vs-product-card__summary-item"
-                    >
+                        {{ location }}
+                    </VsHeading>
+                    <div v-if="stars">
                         <div
-                            class="vs-product-card__summary-price"
-                            v-if="price"
+                            class="vs-product-card__stars"
+                            v-if="stars.min && stars.max && stars.min !== stars.max"
+                        >
+                            <span
+                                class="vs-product-card__star"
+                                :class="{'vs-product-card__star--gold' : stars.gold}"
+                            >
+                                &#9733;
+                            </span>
+                            {{ stars.min }}-{{ stars.max }}
+                        </div>
+                        <div
+                            class="vs-product-card__stars"
+                            v-else
+                        >
+                            <span
+                                v-for="index in stars.min"
+                                :key="index"
+                                class="vs-product-card__star"
+                                :class="{'vs-product-card__star--gold' : stars.gold}"
+                            >
+                                &#9733;
+                            </span>
+                        </div>
+                    </div>
+                    <div
+                        class="vs-product-card__categories"
+                        data-test="vs-product-card__categories"
+                    >
+                        {{ transformedCategories }}
+                    </div>
+                    <div class="vs-product-card__description">
+                        <p class="text-truncate text-truncate--2">
+                            {{ description }}
+                        </p>
+                        <VsLink
+                            :href="detailLink.link"
+                            class="vs-product-card__description-link"
+                        >
+                            {{ detailLink.label }}
+                        </VsLink>
+                    </div>
+                </div>
+                <div class="vs-product-card__logos">
+                    <VsTooltip
+                        :title="goodToGoLogo"
+                        v-if="goodToGoLogo"
+                        data-test="vs-product-card__good-to-go"
+                    >
+                        <VsImg
+                            src="https://www.visitscotland.com/cms-images/logos/goodToGo.png"
+                            :alt="goodToGoLogo"
+                            class="vs-product-card__logo"
+                        />
+                    </VsTooltip>
+                    <VsTooltip
+                        :title="safeTravelsLogo"
+                        v-if="safeTravelsLogo"
+                        data-test="vs-product-card__safe-travels"
+                    >
+                        <VsImg
+                            src="https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
+                            :alt="safeTravelsLogo"
+                            class="vs-product-card__logo"
+                        />
+                    </VsTooltip>
+                    <VsTooltip
+                        v-for="award in awards"
+                        :title="award.name"
+                        :key="award.id"
+                    >
+                        <VsImg
+                            :src="award.image"
+                            :alt="award.name"
+                            class="vs-product-card__logo"
+                            data-test="vs-product-card__award-logo"
+                        />
+                    </VsTooltip>
+                </div>
+            </section>
+            <div class="vs-product-card__summary-box">
+                <VsContainer>
+                    <VsRow>
+                        <VsCol
+                            cols="6"
+                            class="vs-product-card__summary-item"
                         >
                             <div
-                                v-if="priceIntro"
-                                class="vs-product-card__summary-price-intro"
-                            >
-                                {{ priceIntro }}
-                            </div>
-                            <div
+                                class="vs-product-card__summary-price"
                                 v-if="price"
-                                class="vs-product-card__summary-price-main"
                             >
-                                {{ price }}
+                                <div
+                                    v-if="priceIntro"
+                                    class="vs-product-card__summary-price-intro"
+                                >
+                                    {{ priceIntro }}
+                                </div>
+                                <div
+                                    v-if="price"
+                                    class="vs-product-card__summary-price-main"
+                                >
+                                    {{ price }}
+                                </div>
+                                <div
+                                    v-if="priceOutro"
+                                    class="vs-product-card__summary-price-outro"
+                                >
+                                    {{ priceOutro }}
+                                </div>
                             </div>
-                            <div
-                                v-if="priceOutro"
-                                class="vs-product-card__summary-price-outro"
-                            >
-                                {{ priceOutro }}
-                            </div>
-                        </div>
-                    </VsCol>
-                    <VsCol
-                        cols="6"
-                        class="vs-product-card__summary-item"
-                    >
-                        <div
-                            class="vs-product-card__summary-website"
-                            v-if="websiteLink"
+                        </VsCol>
+                        <VsCol
+                            cols="6"
+                            class="vs-product-card__summary-item"
                         >
-                            <VsLink
-                                :href="websiteLink.link"
-                                :type="websiteLink.type || 'internal'"
-                                class="vs-product-card__website-link"
-                                data-test="vs-product-card__website-link"
+                            <div
+                                class="vs-product-card__summary-website"
+                                v-if="websiteLink"
                             >
-                                {{ websiteLink.label }}
-                            </VsLink>
-                        </div>
-                    </VsCol>
-                </VsRow>
-            </VsContainer>
+                                <VsLink
+                                    :href="websiteLink.link"
+                                    :type="websiteLink.type || 'internal'"
+                                    class="vs-product-card__website-link"
+                                    data-test="vs-product-card__website-link"
+                                >
+                                    {{ websiteLink.label }}
+                                </VsLink>
+                            </div>
+                        </VsCol>
+                    </VsRow>
+                </VsContainer>
+            </div>
         </div>
-    </div>
+    </VsCol>
 </template>
 
 <script>
@@ -364,6 +372,14 @@ export default {
             type: Array,
             default: null,
         },
+        /**
+        * Mandatory index of slide -
+        * needed to calculate active slides
+        */
+        slideIndex: {
+            type: String,
+            required: true,
+        },
     },
     computed: {
         transformedCategories() {
@@ -376,11 +392,24 @@ export default {
             return '';
         },
     },
+    methods: {
+        isVisible(slideNum) {
+            const slideInt = parseInt(slideNum, 10);
+            if (this.visibleSlides.indexOf(slideInt) >= 0) {
+                return true;
+            }
+
+            return false;
+        },
+    },
+    inject: ['slideCols', 'visibleSlides'],
 };
 </script>
 
 <style lang="scss">
     .vs-product-card {
+        text-align: left;
+
         .card {
             transition: box-shadow $duration-slowly;
             border: none;
@@ -588,45 +617,48 @@ export default {
     let locations = sampleAccom.locations.slice(0,3);
     locations = locations.map((x) => { return x.name });
 
-    <VsContainer>
-        <VsRow>
-            <VsCol cols="12" md="6" lg="4">
-                <VsProductCard
-                    :imgSrc="sampleAccom.images[0].mediaUrl"
-                    :imgAlt="sampleAccom.name"
-                    :title="sampleAccom.name"
-                    :location="sampleAccom.address.city + ', ' + sampleAccom.address.county"
-                    :stars="{
-                        min:sampleAccom.grading.minStars,
-                        max:sampleAccom.grading.maxStars,
-                        gold:sampleAccom.grading.gold
-                    }"
-                    :categories="locations"
-                    :description="sampleAccom.description"
-                    :detailLink="{
-                        link: sampleAccom.dmsLink.link,
-                        label: sampleAccom.dmsLink.label,
-                        type: sampleAccom.dmsLink.type.toLowerCase()
-                    }"
-                    :websiteLink="{
-                        link: sampleAccom.website,
-                        label: 'Visit website',
-                        type: 'external'
-                    }"
-                    :priceIntro="sampleAccom.price.priceLabel"
-                    :price="'£' + sampleAccom.price.price"
-                    :priceOutro="sampleAccom.price.priceBasis"
-                    :badgeOne="sampleAccom.category.name"
-                    :badgeTwo="sampleAccom.offers"
-                    :badgeThree="sampleAccom.covidInformation ?
-                        sampleAccom.covidInformation.weAreOpen : ''"
-                    :goodToGoLogo="sampleAccom.covidInformation.goodToGo"
-                    :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
-                    :awards="sampleAccom.awards"
-                >
-                </VsProductCard>
-            </VsCol>
-        </VsRow>
-    </VsContainer>
+    <VsCarousel
+        next-text="next page"
+        prev-text="previous page"
+        slides-xs="1"
+        slides-md="2"
+        slides-lg="3"
+    >
+        <VsProductCard
+            slideIndex="0"
+            :imgSrc="sampleAccom.images[0].mediaUrl"
+            :imgAlt="sampleAccom.name"
+            :title="sampleAccom.name"
+            :location="sampleAccom.address.city + ', ' + sampleAccom.address.county"
+            :stars="{
+                min:sampleAccom.grading.minStars,
+                max:sampleAccom.grading.maxStars,
+                gold:sampleAccom.grading.gold
+            }"
+            :categories="locations"
+            :description="sampleAccom.description"
+            :detailLink="{
+                link: sampleAccom.dmsLink.link,
+                label: sampleAccom.dmsLink.label,
+                type: sampleAccom.dmsLink.type.toLowerCase()
+            }"
+            :websiteLink="{
+                link: sampleAccom.website,
+                label: 'Visit website',
+                type: 'external'
+            }"
+            :priceIntro="sampleAccom.price.priceLabel"
+            :price="'£' + sampleAccom.price.price"
+            :priceOutro="sampleAccom.price.priceBasis"
+            :badgeOne="sampleAccom.category.name"
+            :badgeTwo="sampleAccom.offers"
+            :badgeThree="sampleAccom.covidInformation ?
+                sampleAccom.covidInformation.weAreOpen : ''"
+            :goodToGoLogo="sampleAccom.covidInformation.goodToGo"
+            :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
+            :awards="sampleAccom.awards"
+        >
+        </VsProductCard>
+    </VsCarousel>
 ```
 </docs>
