@@ -386,6 +386,7 @@ export default {
             if (this.categories) {
                 return this.categories
                     .slice(0, 3)
+                    .map((cat) => cat.name)
                     .join(' | ');
             }
 
@@ -614,9 +615,6 @@ export default {
 ```jsx
     const sampleAccom = require("../../../../../assets/fixtures/canned-search/sample-accom.json")
 
-    let locations = sampleAccom.locations.slice(0,3);
-    locations = locations.map((x) => { return x.name });
-
     <VsCarousel
         next-text="next page"
         prev-text="previous page"
@@ -635,7 +633,7 @@ export default {
                 max:sampleAccom.grading.maxStars,
                 gold:sampleAccom.grading.gold
             }"
-            :categories="locations"
+            :categories="sampleAccom.locations"
             :description="sampleAccom.description"
             :detailLink="{
                 link: sampleAccom.dmsLink.link,
