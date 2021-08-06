@@ -15,12 +15,14 @@
                 v-bind="$attrs"
             >
                 <div class="vs-product-card__image-container">
-                    <VsImg
-                        :src="imgSrc"
-                        :alt="imgAlt"
-                        class="vs-product-card__img"
-                        data-test="vs-product-card__img"
-                    />
+                    <div class="vs-product-card__image-inner-container">
+                        <VsImg
+                            :src="imgSrc"
+                            :alt="imgAlt"
+                            class="vs-product-card__img"
+                            data-test="vs-product-card__img"
+                        />
+                    </div>
                     <div
                         v-if="badgeOne"
                         class="vs-product-card__badge vs-product-card__badge--teal
@@ -452,11 +454,22 @@ export default {
 
         .vs-product-card__image-container {
             position: relative;
+            height: 0;
+            padding-bottom: 66.6%
+        }
+
+        .vs-product-card__image-inner-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         .vs-product-card__img {
             width: 100%;
-            max-width: 100%;
+            height: 100%;
+            object-fit: cover;
             align-self: flex-start;
             flex-shrink: 0; // IE11 fix, prevents image vertical stretching
         }
