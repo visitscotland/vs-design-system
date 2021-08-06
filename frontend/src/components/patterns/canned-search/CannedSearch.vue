@@ -25,6 +25,7 @@
 </template>
 
 <script>
+const axios = require('axios');
 
 /**
 * Wrapper for canned search, invokes api call to provided endpoint and
@@ -48,6 +49,15 @@ export default {
             default: '',
         },
     },
+    mounted() {
+        axios.get(this.apiUrl)
+            .then((response) => {
+                console.log(response.data.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    },
 };
 
 </script>
@@ -67,7 +77,9 @@ export default {
             locations...
         </template>
 
-        <VsCannedSearch>
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8089/data/search/productsearch?areaproxdist=10&loc=Scotland&locplace=&locprox=1&prodtypes=acco&locale="
+        >
             <template slot="cannedSearchButtons">
                 <VsButton
                     class="mr-2"
