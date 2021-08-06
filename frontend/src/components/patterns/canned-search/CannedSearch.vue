@@ -21,10 +21,28 @@
                 </VsCol>
             </VsRow>
         </VsContainer>
+        <div>
+            <VsProductCard
+                v-for="prod in products"
+                :key="prod.id"
+                :img-src="prod.images[0].mediaUrl"
+                :img-alt="prod.name"
+                :title="prod.name"
+                :detail-link="{
+                    link: prod.dmsLink.link,
+                    label: prod.dmsLink.label,
+                    type: prod.dmsLink.type.toLowerCase()
+                }"
+            />
+
+            {{ products }}
+        </div>
     </div>
 </template>
 
 <script>
+import VsProductCard from '@components/patterns/canned-search/components/product-card/ProductCard';
+
 const axios = require('axios');
 
 /**
@@ -39,6 +57,7 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
+        VsProductCard,
     },
     props: {
         /**
@@ -49,14 +68,26 @@ export default {
             default: '',
         },
     },
+    data() {
+        return {
+            products: [],
+        };
+    },
     mounted() {
-        axios.get(this.apiUrl)
-            .then((response) => {
-                console.log(response.data.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        if (this.apiUrl) {
+            this.retrieveProducts();
+        }
+    },
+    methods: {
+        retrieveProducts() {
+            axios.get(this.apiUrl)
+                .then((response) => {
+                    this.products = response.data.data.products;
+                })
+                .catch(() => {
+                    this.products = [];
+                });
+        },
     },
 };
 

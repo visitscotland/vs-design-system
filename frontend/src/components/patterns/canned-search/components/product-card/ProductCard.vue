@@ -60,30 +60,32 @@
                 >
                     {{ location }}
                 </VsHeading>
-                <div
-                    class="vs-product-card__stars"
-                    v-if="stars.min && stars.max && stars.min !== stars.max"
-                >
-                    <span
-                        class="vs-product-card__star"
-                        :class="{'vs-product-card__star--gold' : stars.gold}"
+                <div v-if="stars">
+                    <div
+                        class="vs-product-card__stars"
+                        v-if="stars.min && stars.max && stars.min !== stars.max"
                     >
-                        &#9733;
-                    </span>
-                    {{ stars.min }}-{{ stars.max }}
-                </div>
-                <div
-                    class="vs-product-card__stars"
-                    v-else
-                >
-                    <span
-                        v-for="index in stars.min"
-                        :key="index"
-                        class="vs-product-card__star"
-                        :class="{'vs-product-card__star--gold' : stars.gold}"
+                        <span
+                            class="vs-product-card__star"
+                            :class="{'vs-product-card__star--gold' : stars.gold}"
+                        >
+                            &#9733;
+                        </span>
+                        {{ stars.min }}-{{ stars.max }}
+                    </div>
+                    <div
+                        class="vs-product-card__stars"
+                        v-else
                     >
-                        &#9733;
-                    </span>
+                        <span
+                            v-for="index in stars.min"
+                            :key="index"
+                            class="vs-product-card__star"
+                            :class="{'vs-product-card__star--gold' : stars.gold}"
+                        >
+                            &#9733;
+                        </span>
+                    </div>
                 </div>
                 <div
                     class="vs-product-card__categories"
@@ -365,9 +367,13 @@ export default {
     },
     computed: {
         transformedCategories() {
-            return this.categories
-                .slice(0, 3)
-                .join(' | ');
+            if (this.categories) {
+                return this.categories
+                    .slice(0, 3)
+                    .join(' | ');
+            }
+
+            return '';
         },
     },
 };
