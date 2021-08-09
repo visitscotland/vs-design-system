@@ -7,7 +7,8 @@
             class="vs-social-share__share-btn"
             variant="transparent"
             :uppercase="false"
-            id="vs-social-share-popover"
+            :id="`vs-social-share-popover--${id}`"
+            v-if="!noJs"
         >
             <VsIcon
                 name="share"
@@ -20,10 +21,11 @@
 
         <BPopover
             custom-class="vs-social-share__popover"
-            target="vs-social-share-popover"
-            triggers="click"
+            :target="`vs-social-share-popover--${id}`"
+            triggers="click blur"
             placement="leftbottom"
             ref="popover"
+            v-if="!noJs"
         >
             <VsHeading
                 thin
@@ -52,6 +54,29 @@
                 />
             </VsButton>
         </BPopover>
+
+        <VsModuleWrapper
+            v-if="noJs"
+            class="vs-social-share--module-list"
+        >
+            <div class="container">
+                <div class="row">
+                    <div class="col col-12">
+                        <VsHeading
+                            thin
+                            level="3"
+                            class="mb-9"
+                        >
+                            {{ sharePopoverTitle }}
+                        </VsHeading>
+                    </div>
+                </div>
+                <VsRow class="justify-content-center">
+                    <!-- @slot Default slot for SocialShareItems -->
+                    <slot />
+                </VsRow>
+            </div>
+        </VsModuleWrapper>
     </div>
 </template>
 
@@ -59,6 +84,7 @@
 import VsIcon from '@components/elements/icon/Icon';
 import VsButton from '@components/elements/button/Button';
 import VsHeading from '@components/elements/heading/Heading';
+import VsModuleWrapper from '@components/patterns/module-wrapper/ModuleWrapper';
 import { VsRow } from '@components/elements/layout';
 import { BPopover } from 'bootstrap-vue';
 
@@ -76,6 +102,7 @@ export default {
         VsIcon,
         VsButton,
         VsHeading,
+        VsModuleWrapper,
         BPopover,
         VsRow,
     },
@@ -115,6 +142,20 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * Unique element ID
+         */
+        id: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Displays in a list instead of a popover
+         */
+        noJs: {
+            type: Boolean,
+            default: false,
+        },
     },
     methods: {
         /**
@@ -131,6 +172,7 @@ export default {
         return {
             pageUrl: this.pageUrl,
             pageTitle: this.pageTitle,
+            noJs: this.noJs,
         };
     },
 };
@@ -138,6 +180,10 @@ export default {
 
 <style lang="scss">
     .vs-social-share{
+        &--module-list{
+            display: none;
+        }
+
         &__share-btn.vs-button.btn{
             width: 45px;
             height: 50px;
@@ -238,12 +284,32 @@ export default {
             }
         }
     }
+
+    @include no-js {
+        .vs-social-share{
+            &--module-list{
+                display: block;
+            }
+
+            &__share-btn.vs-button.btn{
+               display: none;
+            }
+
+            &__popover{
+                position: relative!important;
+                display: block!important;
+                opacity: 1!important;
+                outline: 0!important;
+            }
+        }
+    }
 </style>
 
 <docs>
 ```jsx
     <BsWrapper class="d-flex justify-content-end my-3 mx-3">
         <VsSocialShare
+            id="default"
             page-url="http://www.visitscotland.com"
             page-title="VisitScotland - Scotland's National Tourist Organisation"
             share-popover-title="Share On"
