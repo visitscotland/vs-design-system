@@ -10,7 +10,17 @@ const stars = {
     max: 4,
     gold: false,
 };
-const categories = ['Rural', 'Village Location', 'Mountains area'];
+const categories = [
+    {
+        name: 'Rural',
+    },
+    {
+        name: 'Village Location',
+    },
+    {
+        name: 'Mountains area',
+    },
+];
 const description = 'Test product description';
 const detailLink = {
     link: '/info/accommodation/arden-house-p572561',
@@ -43,6 +53,7 @@ const awards = [
         type: 'GREEN_TOURISM',
     },
 ];
+const slideIndex = '0';
 
 const factoryMount = (propsData) => mount(VsProductCard, {
     propsData: {
@@ -64,8 +75,18 @@ const factoryMount = (propsData) => mount(VsProductCard, {
         goodToGoLogo,
         safeTravelsLogo,
         awards,
+        slideIndex,
         ...propsData,
     },
+    provide: () => ({
+        slideCols: {
+            xs: '12',
+            sm: '6',
+            md: '4',
+            lg: '3',
+        },
+        visibleSlides: [4, 5, 6],
+    }),
 });
 
 /* eslint-disable */
@@ -226,7 +247,7 @@ describe('VsProductCard', () => {
                 const cardCategories = wrapper.find('[data-test="vs-product-card__categories"]');
 
                 for (let x = 0; x < categories.length; x++) {
-                    expect(cardCategories.html()).toContain(categories[x]);
+                    expect(cardCategories.html()).toContain(categories[x].name);
                 }
             });
 
