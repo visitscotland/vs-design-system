@@ -6,6 +6,7 @@ import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.factory.ItineraryFactory;
 import com.visitscotland.brxm.hippobeans.Itinerary;
 import com.visitscotland.brxm.model.ItineraryPage;
+import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModelException;
@@ -35,7 +36,11 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
         addProductSearchBuilder(request);
 
-        request.setAttribute(ITINERARY, itineraryFactory.buildItinerary(getDocument(request), request.getLocale()));
+        ItineraryPage itineraryPage = itineraryFactory.buildItinerary(getDocument(request), request.getLocale());
+        request.setAttribute(ITINERARY, itineraryPage);
+        if (!Contract.isEmpty(itineraryPage.getErrorMessages())) {
+            setErrorMessages(request, itineraryPage.getErrorMessages());
+        }
     }
 
     public void addProductSearchBuilder(HstRequest request) {
