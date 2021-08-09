@@ -16,7 +16,7 @@
                 >
                     <!-- @slot Holds one or more navigation buttons  -->
                     <slot
-                        name="cannedSearchButtons"
+                        name="vsCannedSearchButtons"
                     />
                 </VsCol>
             </VsRow>
@@ -74,6 +74,9 @@
 <script>
 import VsProductCard from '@components/patterns/canned-search/components/product-card/ProductCard';
 import VsCarousel from '@components/patterns/carousel/Carousel';
+import VsContainer from '@components/elements/layout/Container';
+import VsRow from '@components/elements/layout/Row';
+import VsCol from '@components/elements/layout/Col';
 
 const axios = require('axios');
 
@@ -91,6 +94,9 @@ export default {
     components: {
         VsProductCard,
         VsCarousel,
+        VsContainer,
+        VsRow,
+        VsCol,
     },
     props: {
         /**
@@ -146,7 +152,7 @@ export default {
         <VsCannedSearch
             apiUrl="http://172.28.81.65:8089/data/search/productsearch?areaproxdist=10&loc=Scotland&locplace=&locprox=1&prodtypes=acco&locale="
         >
-            <template slot="cannedSearchButtons">
+            <template slot="vsCannedSearchButtons">
                 <VsButton
                     class="mx-2 mb-2"
                     href="https://www.visitscotland.com"
