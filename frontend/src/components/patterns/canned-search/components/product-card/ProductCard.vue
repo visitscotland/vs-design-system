@@ -279,7 +279,7 @@ export default {
         },
         /**
         * A list of categories that describe the product, should contain
-        * strings
+        * objects, each of which has a `name` prop
         */
         categories: {
             type: Array,
