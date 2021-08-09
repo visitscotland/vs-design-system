@@ -47,60 +47,62 @@
                 </div>
 
                 <div class="card-body">
-                    <VsHeading
-                        level="3"
-                        class="card-title vs-product-card__title text-truncate text-truncate--2"
-                        data-test="vs-product-card__title"
-                    >
-                        <VsLink
-                            :href="detailLink.link"
-                            :type="detailLink.type"
-                            class="stretched-link"
-                            data-test="vs-product-card__link"
+                    <div class="vs-product-card__pre-description">
+                        <VsHeading
+                            level="3"
+                            class="card-title vs-product-card__title text-truncate text-truncate--2"
+                            data-test="vs-product-card__title"
                         >
-                            {{ title }}
-                        </VsLink>
-                    </VsHeading>
-                    <VsHeading
-                        level="4"
-                        class="vs-product-card__location"
-                        v-if="location"
-                        data-test="vs-product-card__location"
-                    >
-                        {{ location }}
-                    </VsHeading>
-                    <div v-if="stars">
-                        <div
-                            class="vs-product-card__stars"
-                            v-if="stars.min && stars.max && stars.min !== stars.max"
-                        >
-                            <span
-                                class="vs-product-card__star"
-                                :class="{'vs-product-card__star--gold' : stars.gold}"
+                            <VsLink
+                                :href="detailLink.link"
+                                :type="detailLink.type"
+                                class="stretched-link"
+                                data-test="vs-product-card__link"
                             >
-                                &#9733;
-                            </span>
-                            {{ stars.min }}-{{ stars.max }}
+                                {{ title }}
+                            </VsLink>
+                        </VsHeading>
+                        <VsHeading
+                            level="4"
+                            class="vs-product-card__location"
+                            v-if="location"
+                            data-test="vs-product-card__location"
+                        >
+                            {{ location }}
+                        </VsHeading>
+                        <div v-if="stars">
+                            <div
+                                class="vs-product-card__stars"
+                                v-if="stars.min && stars.max && stars.min !== stars.max"
+                            >
+                                <span
+                                    class="vs-product-card__star"
+                                    :class="{'vs-product-card__star--gold' : stars.gold}"
+                                >
+                                    &#9733;
+                                </span>
+                                {{ stars.min }}-{{ stars.max }}
+                            </div>
+                            <div
+                                class="vs-product-card__stars"
+                                v-else
+                            >
+                                <span
+                                    v-for="index in stars.min"
+                                    :key="index"
+                                    class="vs-product-card__star"
+                                    :class="{'vs-product-card__star--gold' : stars.gold}"
+                                >
+                                    &#9733;
+                                </span>
+                            </div>
                         </div>
                         <div
-                            class="vs-product-card__stars"
-                            v-else
+                            class="vs-product-card__categories"
+                            data-test="vs-product-card__categories"
                         >
-                            <span
-                                v-for="index in stars.min"
-                                :key="index"
-                                class="vs-product-card__star"
-                                :class="{'vs-product-card__star--gold' : stars.gold}"
-                            >
-                                &#9733;
-                            </span>
+                            {{ transformedCategories }}
                         </div>
-                    </div>
-                    <div
-                        class="vs-product-card__categories"
-                        data-test="vs-product-card__categories"
-                    >
-                        {{ transformedCategories }}
                     </div>
                     <div class="vs-product-card__description">
                         <p class="text-truncate text-truncate--2">
@@ -509,6 +511,10 @@ export default {
                 bottom: .5em;
                 right: .5em;
             }
+        }
+
+        .vs-product-card__pre-description {
+            min-height: 7rem;
         }
 
         .vs-product-card__title {
