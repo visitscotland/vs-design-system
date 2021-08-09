@@ -13,6 +13,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsSocialShareItem, {
     provide: {
         pageUrl: url,
         pageTitle: title,
+        noJs: false,
     },
 });
 
@@ -137,6 +138,11 @@ describe('VsSocialShareItem', () => {
             const shareLink = shareItem.find('.vs-social-share-item__link');
 
             expect(shareLink.text()).toBe('Link copied!');
+        });
+
+        it('should accept a `noJs` property injected by the parent component', () => {
+            /* eslint-disable no-underscore-dangle */
+            expect(wrapper.vm._provided.noJs).toBe(false);
         });
     });
 
