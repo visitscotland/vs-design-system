@@ -48,11 +48,11 @@
                     gold:prod.grading.gold
                 } : null"
                 :description="prod.description"
-                :website-link="{
-                    link: prod.website,
-                    label: 'Visit website',
-                    type: 'external'
-                }"
+                :website-link="prod.website ? {
+                    link: prod.website.link,
+                    label: prod.website.label,
+                    type: prod.website.type.toLowerCase()
+                } : null"
                 :price-intro="prod.price ? prod.price.priceLabel : ''"
                 :price="prod.price ? prod.price.price : ''"
                 :price-outro="prod.price ? prod.price.priceBasis : ''"
@@ -60,10 +60,10 @@
                 :badge-two="prod.offers"
                 :badge-three="prod.covidInformation ?
                     prod.covidInformation.weAreOpen : ''"
-                :good-to-go-logo="prod.covidInformation ?
-                    prod.covidInformation.goodToGo : ''"
-                :safe-travels-logo="prod.covidInformation ?
-                    prod.covidInformation.safeTravels : ''"
+                :good-to-go-logo="prod.covidInformation && prod.covidInformation.goodToGo ?
+                    prod.covidInformation.goodToGo.name : ''"
+                :safe-travels-logo="prod.covidInformation && prod.covidInformation.safeTravels ?
+                    prod.covidInformation.safeTravels.name : ''"
                 :awards="prod.awards"
                 :categories="prod.locations"
             />
