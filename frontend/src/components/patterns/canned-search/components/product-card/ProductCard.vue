@@ -183,6 +183,10 @@
                                     {{ priceOutro }}
                                 </div>
                             </div>
+                            <div
+                                class="vs-product-card__summary-padding"
+                                v-else
+                            />
                         </VsCol>
                         <VsCol
                             cols="6"
@@ -586,6 +590,10 @@ export default {
             &:not(:last-child) {
                 border-right: 1px solid $color-gray-tint-1;
             }
+        }
+
+        .vs-product-card__summary-padding {
+            height: $spacer-9;
         }
 
         .vs-product-card__summary-price {
