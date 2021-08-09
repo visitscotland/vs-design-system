@@ -1,6 +1,7 @@
 <#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
+<#include "../macros/page-intro/social-share.ftl">
 <#include "../../frontend/components/vs-container.ftl">
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
@@ -25,7 +26,6 @@
 	<@hst.manageContent hippobean=document/>
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
-
     <#if standardTemplate>
         <@pageIntro content=document heroDetails=heroImage />
     <#else>
@@ -43,6 +43,8 @@
 		</#if>
 
 	</#list>
+
+    <@socialShare id="nojs" nojs="true"/>
 
 	<#if otyml??>
 		<@horizontalList otyml />

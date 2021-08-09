@@ -3,8 +3,10 @@
 <#include "../../../../frontend/components/vs-social-share.ftl">
 <#include "../../../../frontend/components/vs-social-share-item.ftl">
 
-<#macro socialShare>
+<#macro socialShare id nojs>
     <vs-social-share 
+        id="${id}"
+        :no-js="${nojs}"
         page-url="<@hst.link hippobean=document canonical=true fullyQualified=true/>" 
         page-title="${document.title}"
         share-btn-text="${label('social.share', 'share.button.text')}"
@@ -31,10 +33,12 @@
             name="email"
             link-text="${label('social.share', 'email.link.text')}"
         ></vs-social-share-item>
-        <vs-social-share-item
-            name="link"
-            link-text="${label('social.share', 'copy.link.text')}"
-            link-copied-text="${label('social.share', 'link.copied.text')}"
-        ></vs-social-share-item>
+        <#if nojs == 'false'>
+            <vs-social-share-item
+                name="link"
+                link-text="${label('social.share', 'copy.link.text')}"
+                link-copied-text="${label('social.share', 'link.copied.text')}"
+            ></vs-social-share-item>
+        </#if>
     </vs-social-share>
 </#macro>

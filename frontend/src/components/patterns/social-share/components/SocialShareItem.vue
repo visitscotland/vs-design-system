@@ -2,7 +2,8 @@
     <VsCol
         class="vs-social-share-item"
         data-test="vs-social-share-item"
-        cols="4"
+        :cols="4"
+        :md="noJs ? 2 : 4"
     >
         <VsLink
             class="vs-social-share-item__link"
@@ -85,6 +86,12 @@ export default {
         * Page Title to share - provided by parent SocialShare
         */
         pageTitle: {
+            default: '',
+        },
+        /**
+        * Page Title to share - provided by parent SocialShare
+        */
+        noJs: {
             default: '',
         },
     },
@@ -174,6 +181,7 @@ export default {
         display: block;
         margin-bottom: $spacer-2;
         padding: $spacer-4 $spacer-2;
+        text-align: center;
 
         @include media-breakpoint-up(md) {
             padding: $spacer-6;
@@ -202,11 +210,31 @@ export default {
         }
     }
 }
+
+@include no-js {
+    .vs-social-share-item{
+        &__link.vs-link.vs-link--variant-primary{
+            margin-bottom: $spacer-4;
+
+            @include media-breakpoint-up(sm) {
+                margin-bottom: $spacer-6;
+            }
+
+            @include media-breakpoint-up(md) {
+                margin-bottom: 0;
+            }
+
+            @include media-breakpoint-up(md) {
+                padding: $spacer-6 $spacer-2;
+            }
+        }
+    }
+}
 </style>
 
 <docs>
 ```jsx
-    <BsWrapper class="d-flex justify-content-end my-3 mx-3">
+    <BsWrapper class="d-flex my-3 mx-3">
         <VsSocialShareItem
             name="twitter"
             link-text="Twitter"

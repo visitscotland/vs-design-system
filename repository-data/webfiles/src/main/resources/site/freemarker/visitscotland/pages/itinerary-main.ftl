@@ -4,6 +4,8 @@
 <#include "../../frontend/components/vs-tooltip.ftl">
 <#include "../../frontend/components/vs-itinerary-day.ftl">
 <#include "../../frontend/components/vs-itinerary.ftl">
+
+<#include "../macros/page-intro/social-share.ftl">
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/modules/itineraries/itinerary-map.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
@@ -85,6 +87,9 @@
             </vs-itinerary-day>
         </#list>
     </vs-itinerary>
+
+    <@socialShare id="nojs" nojs="true"/>
+
     <#if otyml??>
         <@horizontalList otyml />
     </#if>

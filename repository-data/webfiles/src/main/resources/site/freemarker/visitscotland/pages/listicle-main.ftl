@@ -10,6 +10,7 @@
 <#include "../../frontend/components/vs-listicle-item.ftl">
 <#include "../../frontend/components/vs-panel.ftl">
 
+<#include "../macros/page-intro/social-share.ftl">
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/shared/module-builder.ftl">
@@ -60,6 +61,8 @@
                     </vs-col>
                 </vs-row>
         </#if>
+
+    <@socialShare id="nojs" nojs="true"/>
 
     <#if otyml??>
         <@horizontalList otyml />
