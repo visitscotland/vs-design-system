@@ -12,6 +12,7 @@ import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import vs.ase.dms.ProductTypes;
 
 import java.util.Locale;
 
@@ -40,14 +41,14 @@ public class CannedSearchFactory {
 
         FlatLink viewAllCta = linkService.createLink(locale, document.getCriteria());
 
-        if (Contract.isEmpty(document.getCriteria().getLabel())) {
+        if (Contract.isEmpty(viewAllCta.getLabel())) {
             viewAllCta.setLabel(bundle.getResourceBundle(BUNDLE_ID, "canned-search.listview", locale));
         }
         module.setViewAllLink(viewAllCta);
 
         module.setCannedSearchEndpoint(productSearch().fromHippoBean(document.getCriteria().getSearch()).buildCannedSearch());
 
-        if (document.getCriteria().getSearch().getProductType().equals("even")){
+        if (document.getCriteria().getSearch().getProductType().equals(ProductTypes.EVENT.getId())){
             module.setCredit(bundle.getResourceBundle(BUNDLE_ID,"canned-search.credit-events", locale));
         }
 
