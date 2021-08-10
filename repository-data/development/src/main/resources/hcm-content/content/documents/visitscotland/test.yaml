@@ -5157,14 +5157,6 @@
             jcr:primaryType: hippostd:html
             hippostd:content: '<p>Share your snaps with us by using #ScottishCastle
               or #VisitScotland</p>'
-    /canned-search:
-      jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
-      jcr:uuid: dbfdb9be-fa3d-4c4a-8442-37141be58c24
-      hippo:name: Canned Search
-      hippostd:foldertype: [new-translated-folder-test, new-document]
-      hippotranslation:id: 8d37a6ba-f776-4d07-99ed-9c20e0876169
-      hippotranslation:locale: en
   /pages:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']

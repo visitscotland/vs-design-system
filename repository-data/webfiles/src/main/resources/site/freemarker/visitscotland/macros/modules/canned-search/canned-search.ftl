@@ -3,6 +3,7 @@
 <#include "../../../../frontend/components/vs-tag.ftl">
 <#include "../../../../frontend/components/vs-link.ftl">
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
+<#include "../../../../frontend/components/vs-canned-search.ftl">
 
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.CannedSearchModule" -->
 
@@ -10,17 +11,25 @@
     <vs-module-wrapper class="theme-${themeName}">
         <template slot="vsModuleWrapperHeading">
             ${module.title}
-            <@hst.html hippohtml=module.description/>
-
-            <vs-button  href="${module.viewAllLink.link}">
-                ${module.viewAllLink.label}
-            </vs-button>
-
-
-            ${module.cannedSearchEndpoint}
-
-            ${module.credit}
         </template>
 
+        <template slot="vsModuleWrapperIntro">
+            <@hst.html hippohtml=module.description/>
+        </template>
+
+        <vs-canned-search
+            api-url="${module.cannedSearchEndpoint}"
+        >
+            <template slot="vsCannedSearchButtons">
+                <vs-button
+                    class="mx-2 mb-2"
+                    href="${module.viewAllLink.link}">
+                    ${module.viewAllLink.label}
+                </vs-button>
+            </template>
+
+        </vs-canned-search>
+
+        <#-- ${module.credit} - Credit variable for events -->
     </vs-module-wrapper>
 </#macro>
