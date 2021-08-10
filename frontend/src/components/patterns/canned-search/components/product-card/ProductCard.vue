@@ -58,6 +58,7 @@
                                 :type="detailLink.type"
                                 class="stretched-link"
                                 data-test="vs-product-card__link"
+                                :disabled="!isVisible(slideIndex)"
                             >
                                 {{ title }}
                             </VsLink>
