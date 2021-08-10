@@ -177,7 +177,6 @@ class DocumentUtilsServiceTest {
 
         List<LocalizedURL> list = documentUtils.getLocalizedURLs(request);
 
-
         assertEquals(AVAILABLE_LANGUAGES, list.size());
 
         for (LocalizedURL url : list){
@@ -203,8 +202,7 @@ class DocumentUtilsServiceTest {
 
         //It should not compose the URL for the English version
         verify(properties, times(AVAILABLE_LANGUAGES-1)).getCmsBasePath();
-
-        assertEquals(6, list.size());
+        assertEquals(AVAILABLE_LANGUAGES, list.size());
 
         for (LocalizedURL url : list){
             if (url.getLocale().equals(Locale.UK)){
