@@ -1,5 +1,5 @@
 import VsCannedSearch from './CannedSearch';
-import VsProductCard from './components/product-card/ProductCard';
+import VsProductCard from './components/ProductCard';
 
 export default {
     VsCannedSearch,

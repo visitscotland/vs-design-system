@@ -118,6 +118,10 @@ export default {
         }
     },
     methods: {
+        /**
+         * Invoked when mounted, retrieves products from the dms and sets them
+         * to the component
+         */
         retrieveProducts() {
             axios.get(this.apiUrl)
                 .then((response) => {
