@@ -641,7 +641,7 @@ export default {
 
 <docs>
 ```jsx
-    const sampleAccom = require("../../../../../assets/fixtures/canned-search/sample-accom.json")
+    const sampleAccom = require("../../../../assets/fixtures/canned-search/sample-accom.json")
 
     <VsCarousel
         next-text="next page"

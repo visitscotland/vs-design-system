@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import VsProductCard from '@components/patterns/canned-search/components/product-card/ProductCard';
+import VsProductCard from '@components/patterns/canned-search/components/ProductCard';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
