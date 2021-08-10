@@ -403,6 +403,13 @@ export default {
         },
     },
     methods: {
+        /**
+         * Detects if the card is one of the currently visible cards in the carousel
+         * so it can be disabled if not
+         * @param {String} slideNum - the index of the slide within the canned search
+         * carousel
+         * @returns {Boolean} true if card is visible
+         */
         isVisible(slideNum) {
             const slideInt = parseInt(slideNum, 10);
             if (this.visibleSlides.indexOf(slideInt) >= 0) {
