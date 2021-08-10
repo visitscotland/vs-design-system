@@ -22,7 +22,7 @@
         <BPopover
             custom-class="vs-social-share__popover"
             :target="`vs-social-share-popover--${id}`"
-            triggers="click blur"
+            triggers="click"
             placement="leftbottom"
             ref="popover"
             v-if="!noJs"
@@ -65,7 +65,7 @@
                         <VsHeading
                             thin
                             level="3"
-                            class="mb-9"
+                            class="mb-9 mt-0"
                         >
                             {{ sharePopoverTitle }}
                         </VsHeading>
