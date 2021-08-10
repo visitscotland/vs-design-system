@@ -135,6 +135,10 @@ export default {
 <style lang="scss">
     .vs-canned-search__buttons {
         margin-bottom: $spacer-9;
+
+        .vs-button {
+            margin: $spacer-0 $spacer-2 $spacer-2;
+        }
     }
 </style>
 
@@ -154,13 +158,11 @@ export default {
         >
             <template slot="vsCannedSearchButtons">
                 <VsButton
-                    class="mx-2 mb-2"
                     href="https://www.visitscotland.com"
                 >
                     View All B&Bs
                 </VsButton>
                 <VsButton
-                    class="mx-2 mb-2"
                     href="https://www.visitscotland.com"
                     icon="map"
                 >

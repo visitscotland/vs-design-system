@@ -22,7 +22,6 @@
         >
             <template slot="vsCannedSearchButtons">
                 <vs-button
-                    class="mx-2 mb-2"
                     href="${module.viewAllLink.link}">
                     ${module.viewAllLink.label}
                 </vs-button>
