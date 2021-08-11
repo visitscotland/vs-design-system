@@ -22,7 +22,7 @@
         <BPopover
             custom-class="vs-social-share__popover"
             :target="`vs-social-share-popover--${id}`"
-            triggers="click"
+            triggers="click blur"
             placement="leftbottom"
             ref="popover"
             v-if="!noJs"

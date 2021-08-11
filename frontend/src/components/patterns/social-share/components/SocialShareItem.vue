@@ -12,7 +12,6 @@
             :id="`vs-share-${name}`"
         >
             <VsIcon
-                v-if="name !== 'whatsapp'"
                 :name="name"
                 :custom-colour="iconColour"
                 variant="dark"
@@ -20,11 +19,6 @@
                 small-size="lg"
             />
 
-            <VsSvg
-                v-if="name === 'whatsapp'"
-                class="svg-logo"
-                :path="name"
-            />
             {{ show ? linkCopiedText : linkText }}
         </VsLink>
     </VsCol>
@@ -33,7 +27,6 @@
 <script>
 import VsLink from '@components/elements/link/Link';
 import VsIcon from '@components/elements/icon/Icon';
-import VsSvg from '@components/elements/svg/Svg';
 import { VsCol } from '@components/elements/layout';
 
 /**
@@ -48,7 +41,6 @@ export default {
     components: {
         VsCol,
         VsLink,
-        VsSvg,
         VsIcon,
     },
     props: {
@@ -113,6 +105,9 @@ export default {
                 break;
             case 'pinterest':
                 colour = '#E60023';
+                break;
+            case 'whatsapp':
+                colour = '#455a64';
                 break;
             default:
                 colour = '#000000';
@@ -194,19 +189,9 @@ export default {
             outline: 3px solid rgba($color-pink, .3);
         }
 
-        .vs-icon, .svg-logo{
+        .vs-icon{
             display: block;
             margin: 0 auto $spacer-3;
-        }
-
-        .svg-logo{
-            height: 30px;
-            width: 30px;
-
-            @include media-breakpoint-up(md) {
-                height: 40px;
-                width: 40px;
-            }
         }
     }
 }

@@ -1,7 +1,7 @@
 <#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
-<#include "../macros/page-intro/social-share.ftl">
+<#include "../macros/modules/page-intro/social-share.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/modules/signpost/signpost.ftl">
 <#include "../macros/shared/module-builder.ftl">
