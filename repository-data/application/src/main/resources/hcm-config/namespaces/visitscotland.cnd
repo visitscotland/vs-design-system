@@ -20,6 +20,9 @@
 [visitscotland:CannedSearch] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
 
+[visitscotland:CannedSearchTours] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
 [visitscotland:Coordinates] > hippo:compound, hippostd:relaxed
   orderable
 
@@ -133,10 +136,10 @@
 [visitscotland:TravelInformation] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
-[visitscotland:TravelInformationTransportRow] > hippo:compound, hippostd:relaxed
+[visitscotland:TravelInformationTab] > hippo:compound, hippostd:relaxed
   orderable
 
-[visitscotland:TravelInformationTab] > hippo:compound, hippostd:relaxed
+[visitscotland:TravelInformationTransportRow] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:contentdocument] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
