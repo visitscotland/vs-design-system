@@ -52,10 +52,11 @@ describe('VsSocialShareItem', () => {
 
             const shareItem = wrapper.find('[data-test="vs-social-share-item"]');
             const shareLink = shareItem.find('.vs-social-share-item__link');
-            const shareSvg = shareItem.find('vssvg-stub');
+            const shareIcon = shareItem.find('vsicon-stub');
 
             expect(shareLink.attributes('href')).toBe('https://wa.me/?text=VisitScotland%20-%20https://www.visitscotland.com');
-            expect(shareSvg.attributes('path')).toBe('whatsapp');
+            expect(shareIcon.attributes('name')).toBe('whatsapp');
+            expect(shareIcon.attributes('customcolour')).toBe('#455a64');
         });
 
         it('should render the correct icon and URL when `name` is `twitter`', async() => {
