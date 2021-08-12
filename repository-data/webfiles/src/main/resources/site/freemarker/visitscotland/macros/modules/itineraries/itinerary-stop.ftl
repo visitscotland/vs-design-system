@@ -47,7 +47,10 @@
             <template slot="stop-description">
                 <@hst.html hippohtml=stop.description/>
                 <#if stop.ctaLink?? && stop.ctaLink.link?? && stop.ctaLink.link?has_content>
-                    <vs-link href="${stop.ctaLink.link}">
+                    <vs-link
+                        href="${stop.ctaLink.link}"
+                        <#if stop.ctaLink.type != "internal">type="${stop.ctaLink.type}"</#if>
+                    >
                         ${stop.ctaLink.label}
                     </vs-link>
                 </#if>
@@ -69,12 +72,6 @@
                     </vs-itinerary-tips>
                 </#if>
             </template>
-        </#if>
-
-        <#if stop.ctaLink?? && stop.ctaLink.link?? && stop.ctaLink.link?has_content>
-            <vs-link href="${stop.ctaLink.link}">
-                ${stop.ctaLink.label}
-            </vs-link>
         </#if>
 
         <#if stop??>
