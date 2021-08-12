@@ -17,7 +17,12 @@
                     <@hst.html hippohtml=module.copy/>
                 </template>
                 <template slot="iknowCommunityLink">
-                    <vs-link href="${module.link.link}">${module.link.label}</vs-link> <br />
+                    <vs-link
+                        href="${module.link.link}"
+                        <#if module.link.type != "internal">type="${module.link.type}"</#if>
+                    >
+                        ${module.link.label}
+                    </vs-link> <br />
                 </template>
                 <template slot="iknowCommunityTags">
                     <#list module.tags as tag>
