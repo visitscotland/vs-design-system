@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 1342de4c-5f1b-4b73-b3ae-0d67eaa746ab
+          jcr:uuid: a127b54e-df96-409e-905b-71f5f68e9186
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -33,16 +33,31 @@ definitions:
             hipposysedit:path: visitscotland:copy
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
-            hipposysedit:validators: [optional]
-          /ProductSearchLink:
+          /criteria:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
             hipposysedit:path: visitscotland:criteria
             hipposysedit:primary: false
-            hipposysedit:type: visitscotland:ProductSearchLink
+            hipposysedit:type: visitscotland:ProductsSearch
             hipposysedit:validators: [required]
+          /viewAll:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:viewAll
+            hipposysedit:primary: false
+            hipposysedit:type: String
+          /translation:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:translation
+            hipposysedit:primary: false
+            hipposysedit:type: OpenUiString
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -55,26 +70,25 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: da67a11a-b701-4f0b-8bbd-a7428dc629c3
+          jcr:uuid: a58f2f37-2c76-424e-8c2e-2ac7c011e9a4
           hippostdpubwf:lastModificationDate: 2021-05-11T15:47:43.297+01:00
           hippostdpubwf:creationDate: 2021-05-11T15:47:43.297+01:00
+          visitscotland:viewAll: ''
+          visitscotland:translation: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
           /visitscotland:criteria:
-            jcr:primaryType: visitscotland:ProductSearchLink
-            visitscotland:label: ''
-            /visitscotland:search:
-              jcr:primaryType: visitscotland:ProductsSearch
-              visitscotland:distance: 10.0
-              visitscotland:dmsAwards: []
-              visitscotland:dmsCategories: []
-              visitscotland:dmsFacilities: []
-              visitscotland:free: false
-              visitscotland:location: Scotland
-              visitscotland:offers: false
-              visitscotland:officialrating: []
-              visitscotland:productType: ''
-              visitscotland:producttype: ''
-              visitscotland:goodToGo: false
-              visitscotland:safeTravels: false
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:free: false
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:distance: 10.0
+            visitscotland:location: ''
+            visitscotland:dmsAwards: []
+            visitscotland:officialrating: []
+            visitscotland:offers: false
+            visitscotland:productType: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
