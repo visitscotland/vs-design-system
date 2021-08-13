@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 75ad9347-cc20-45c7-86c2-96f0daa6bab4
+          jcr:uuid: d7e4a9e9-27c3-4db6-ad6d-b9642d78d03e
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -24,16 +24,16 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:medium-string-validator']
           /endpoint:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:endpoint
+            hipposysedit:path: visitscotland:toursSearch
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, url]
           /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -51,6 +51,15 @@ definitions:
             hipposysedit:path: visitscotland:viewAll
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: ['visitscotland:short-string-validator']
+          /translation:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:translation
+            hipposysedit:primary: false
+            hipposysedit:type: OpenUiString
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -63,11 +72,12 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          visitscotland:endpoint: ''
           visitscotland:viewAll: ''
-          jcr:uuid: 75e4c4c3-a548-4bc9-a10c-4d5a12a4a43c
+          jcr:uuid: 9478423b-e1b8-41dd-a690-122703faf13e
           hippostdpubwf:lastModificationDate: 2021-08-10T18:19:12.169+01:00
           hippostdpubwf:creationDate: 2021-08-10T18:19:12.169+01:00
+          visitscotland:toursSearch: ''
+          visitscotland:translation: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -102,20 +112,31 @@ definitions:
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
-          /endpoint:
+          /toursSearch:
             jcr:primaryType: frontend:plugin
-            caption: Tours url
+            caption: Tours search URL
             field: endpoint
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /viewAll:
+            jcr:primaryType: frontend:plugin
+            caption: Override View All
+            field: viewAll
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /viewAll:
+          /translation:
             jcr:primaryType: frontend:plugin
-            caption: Override "View all"
-            field: viewAll
+            caption: Translation
+            field: translation
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              ui.extension: translationDiff
