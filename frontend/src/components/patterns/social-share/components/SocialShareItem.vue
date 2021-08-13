@@ -122,7 +122,7 @@ export default {
                 url = `https://www.facebook.com/sharer/sharer.php?u=${this.pageUrl}&t=${this.pageTitle}`;
                 break;
             case 'twitter':
-                url = `https://twitter.com/intent/tweet?text=${this.pageTitle}&url=${this.pageUrl}`;
+                url = `https://twitter.com/intent/tweet?text=${this.pageTitle}%20@VisitScotland&url=${this.pageUrl}`;
                 break;
             case 'pinterest':
                 url = `https://www.pinterest.com/pin/create/button/?url=${this.pageUrl}`;
