@@ -14,7 +14,7 @@ definitions:
           jcr:uuid: 1342de4c-5f1b-4b73-b3ae-0d67eaa746ab
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
-            'hippotranslation:translated']
+                                   'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
           /title:
             jcr:primaryType: hipposysedit:field
