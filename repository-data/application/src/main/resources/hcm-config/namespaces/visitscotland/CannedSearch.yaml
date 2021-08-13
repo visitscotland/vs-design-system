@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: a40d018c-9c08-404c-abd7-e4d4663b989a
+          jcr:uuid: 1342de4c-5f1b-4b73-b3ae-0d67eaa746ab
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -55,7 +55,7 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: afb2987f-f8c5-4fa9-8bb2-81aa10532b05
+          jcr:uuid: da67a11a-b701-4f0b-8bbd-a7428dc629c3
           hippostdpubwf:lastModificationDate: 2021-05-11T15:47:43.297+01:00
           hippostdpubwf:creationDate: 2021-05-11T15:47:43.297+01:00
           /visitscotland:criteria:
@@ -68,7 +68,7 @@ definitions:
               visitscotland:dmsCategories: []
               visitscotland:dmsFacilities: []
               visitscotland:free: false
-              visitscotland:location: ''
+              visitscotland:location: Scotland
               visitscotland:offers: false
               visitscotland:officialrating: []
               visitscotland:productType: ''
