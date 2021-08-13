@@ -14,7 +14,7 @@ definitions:
           jcr:uuid: a127b54e-df96-409e-905b-71f5f68e9186
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
-            'hippotranslation:translated']
+                                   'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
           /title:
             jcr:primaryType: hipposysedit:field
@@ -132,3 +132,13 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /translation:
+            jcr:primaryType: frontend:plugin
+            caption: Translation
+            field: translation
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              ui.extension: translationDiff
