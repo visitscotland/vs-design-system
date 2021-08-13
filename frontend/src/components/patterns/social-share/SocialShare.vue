@@ -9,6 +9,7 @@
             :uppercase="false"
             :id="`vs-social-share-popover--${id}`"
             v-if="!noJs"
+            ref="shareButton"
         >
             <VsIcon
                 name="share"
@@ -24,6 +25,8 @@
             :target="`vs-social-share-popover--${id}`"
             triggers="click blur"
             placement="leftbottom"
+            @shown="onShown"
+            @hidden="onHidden"
             ref="popover"
             v-if="!noJs"
         >
@@ -35,6 +38,17 @@
             </VsHeading>
 
             <VsRow>
+                <label for="hiddenAnchor">
+                    <input
+                        type="text"
+                        class="hidden-anchor"
+                        id="hiddenAnchor"
+                        tabindex="0"
+                        readonly
+                        ref="hiddenAnchor"
+                    >
+                </label>
+
                 <!-- @slot Default slot for SocialShareItems -->
                 <slot />
             </VsRow>
@@ -43,6 +57,7 @@
                 class="vs-social-share__close-btn"
                 variant="transparent"
                 @click.native="onClose"
+                aria-label="Close"
             >
                 <span class="sr-only">
                     {{ closeAltText }}
@@ -51,6 +66,7 @@
                     name="close"
                     variant="dark"
                     size="md"
+                    aria-hidden="true"
                 />
             </VsButton>
         </BPopover>
@@ -164,6 +180,28 @@ export default {
         onClose() {
             this.$refs.popover.$emit('close');
         },
+        /**
+         * When popover is shown, focuses on hidden anchor
+         */
+        onShown() {
+            this.focusRef(this.$refs.hiddenAnchor);
+        },
+        /**
+         * When popover is hidden, focuses back on share button
+         */
+        onHidden() {
+            this.focusRef(this.$refs.shareButton);
+        },
+        /**
+         * Check before focusing after popover has been positioned
+         */
+        focusRef(ref) {
+            this.$nextTick(() => {
+                this.$nextTick(() => {
+                    ;(ref.$el || ref).focus();
+                });
+            });
+        },
     },
     /**
      * Provides the URL properties to be injected into child component 'SocialShareItem'
@@ -214,6 +252,21 @@ export default {
 
             &.bs-popover-right{
                 margin-left: 0;
+            }
+
+            .hidden-anchor {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 0px;
+                height: 0px;
+                border: none;
+                background: transparent!important;
+
+                &:focus{
+                    outline: none;
+                    border: 0;
+                }
             }
 
             @include media-breakpoint-up(sm) {
