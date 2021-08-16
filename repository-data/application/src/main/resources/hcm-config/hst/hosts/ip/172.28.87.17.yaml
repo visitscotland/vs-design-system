@@ -1,6 +1,6 @@
 definitions:
   config:
-    /hst:platform/hst:hosts/dev-localhost/172.28.87.17:
+    /hst:platform/hst:hosts/ip/172.28.87.17:
       jcr:primaryType: hst:virtualhost
       /hst:root:
         jcr:primaryType: hst:mount
