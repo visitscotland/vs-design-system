@@ -76,7 +76,7 @@ props:
       category: "Theme colours"
 
     - name: color_facebook
-      value: "#5890FF"
+      value: "#1877f2"
       category: "Social Media Colours"
     - name: color_twitter
       value: "#08A0E9"
