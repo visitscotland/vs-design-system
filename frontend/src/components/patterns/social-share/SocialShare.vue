@@ -75,9 +75,9 @@
             v-if="noJs"
             class="vs-social-share--module-list"
         >
-            <div class="container">
-                <div class="row">
-                    <div class="col col-12">
+            <VsContainer>
+                <VsRow>
+                    <VsCol cols="12">
                         <VsHeading
                             thin
                             level="3"
@@ -85,13 +85,13 @@
                         >
                             {{ sharePopoverTitle }}
                         </VsHeading>
-                    </div>
-                </div>
+                    </VsCol>
+                </VsRow>
                 <VsRow class="justify-content-center">
                     <!-- @slot Default slot for SocialShareItems -->
                     <slot />
                 </VsRow>
-            </div>
+            </VsContainer>
         </VsModuleWrapper>
     </div>
 </template>
@@ -101,7 +101,9 @@ import VsIcon from '@components/elements/icon/Icon';
 import VsButton from '@components/elements/button/Button';
 import VsHeading from '@components/elements/heading/Heading';
 import VsModuleWrapper from '@components/patterns/module-wrapper/ModuleWrapper';
-import { VsRow } from '@components/elements/layout';
+import {
+    VsRow, VsContainer, VsCol,
+} from '@components/elements/layout';
 import { BPopover } from 'bootstrap-vue';
 
 /**
@@ -121,6 +123,8 @@ export default {
         VsModuleWrapper,
         BPopover,
         VsRow,
+        VsContainer,
+        VsCol,
     },
     props: {
         /**
