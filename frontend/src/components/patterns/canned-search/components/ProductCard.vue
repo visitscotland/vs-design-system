@@ -40,7 +40,7 @@
                     </div>
                     <div
                         v-if="badgeThree"
-                        class="vs-product-card__badge vs-product-card__badge--white
+                        class="vs-product-card__badge vs-product-card__badge--light-pink
                         vs-product-card__badge--br"
                     >
                         {{ badgeThree }}
@@ -501,8 +501,8 @@ export default {
                 background-color: $color_pink;
             }
 
-            &--white {
-                background-color: $color-white;
+            &--light-pink {
+                background-color: $color_pink_tint_6;
                 color: $color_pink;
             }
 
