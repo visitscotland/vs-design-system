@@ -572,6 +572,7 @@ export default {
         .vs-product-card__description {
             font-size: $font-size-base;
             line-height: $line-height-s;
+            height: $spacer-8;
 
             p {
                 margin-bottom: $spacer-1;
@@ -626,6 +627,7 @@ export default {
         .vs-product-card__logos {
             margin-top: $spacer-9;
             margin-bottom: $spacer-4;
+            min-height: $spacer-9;
 
             .vs-tooltip {
                 z-index: 1;
