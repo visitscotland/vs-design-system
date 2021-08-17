@@ -8,6 +8,7 @@
     >
         <div
             class="vs-product-card"
+            :class="!isVisible(slideIndex) ? 'vs-product-card--disabled' : ''"
             data-test="vs-product-card"
         >
             <section
@@ -457,10 +458,6 @@ export default {
             letter-spacing: 0;
             display: block;
 
-            &--disabled {
-                cursor: default;
-            }
-
             &:focus {
                 outline: 2px solid $color-pink;
             }
@@ -641,6 +638,24 @@ export default {
 
             &:not(:last-child) {
                 padding-right: $spacer-2;
+            }
+        }
+
+        &--disabled {
+            .card {
+                opacity: 0.5;
+            }
+
+            .card:hover {
+                box-shadow: none;
+                padding: $spacer-0;
+                margin-left: $spacer-0;
+                margin-right: $spacer-0;
+                margin-top: $spacer-0;
+            }
+
+            .stretched-link {
+                cursor: default;
             }
         }
     }
