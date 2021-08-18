@@ -15780,3 +15780,106 @@
             visitscotland:officialrating: []
             visitscotland:productType: acco
             visitscotland:producttype: ''
+    /events-search:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: f0f2e8bf-1e2a-44ba-81fa-904f44ff6822
+      hippo:name: Events Search
+      hippo:versionHistory: 4af40021-df0b-47b7-bc65-4882c8cc8ac9
+      /events-search[1]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 1346a14c-5d79-4346-b2f9-257dde78f608
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-18T15:59:03.403+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-18T16:13:04.019+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 2f2ec270-abc7-494b-9277-0c7bcb8ad3f6
+        hippotranslation:locale: en
+        visitscotland:title: Events
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>This is an example of canned search for events</p>
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:location: Glasgow
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: even
+            visitscotland:producttype: ''
+      /events-search[2]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 2ec91169-9a6e-4aab-97e7-e202af586fab
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-18T15:59:03.403+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-18T16:13:09.174+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 2f2ec270-abc7-494b-9277-0c7bcb8ad3f6
+        hippotranslation:locale: en
+        visitscotland:title: Events
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>This is an example of canned search for events</p>
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:location: Glasgow
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: even
+            visitscotland:producttype: ''
+      /events-search[3]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: cffe01ba-ad6f-4533-ac0f-562ac8e663a2
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-18T15:59:03.403+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-18T16:13:09.174+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-08-18T16:13:11.471+01:00
+        hippotranslation:id: 2f2ec270-abc7-494b-9277-0c7bcb8ad3f6
+        hippotranslation:locale: en
+        visitscotland:title: Events
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>This is an example of canned search for events</p>
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:location: Glasgow
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: even
+            visitscotland:producttype: ''
