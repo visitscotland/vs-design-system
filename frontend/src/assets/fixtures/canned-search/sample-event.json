@@ -1,0 +1,52 @@
+{
+    "id":"1444591",
+    "name":"The Kooks",
+    "category":{
+       "id":"poprockcontemp",
+       "name":"Pop, Rock and Contemporary"
+    },
+    "images":[
+       {
+          "mediaType":"PICTURE",
+          "mediaUrl":"http://www.visitscotland.com/wsimgs/Events/9A0CAADC4C3122FF6FAF129721E8C5E077362D65.jpg",
+          "default":true
+       }
+    ],
+    "address":{
+       "line1":"O2 Academy Glasgow",
+       "line2":"121 Eglinton Street",
+       "city":"Glasgow",
+       "county":"Greater Glasgow & The Clyde Valley",
+       "postCode":"G5 9NT",
+       "shortAddress":"Glasgow, Greater Glasgow & The Clyde Valley",
+       "streetAddress":"O2 Academy Glasgow, 121 Eglinton Street",
+       "empty":false
+    },
+    "description":"Brighton indie tykes best known for their hits 'She Moves in Her Own Way' and 'Shine On'.",
+    "url":"/info/events/the-kooks-p1444591",
+    "dmsLink":{
+       "label":"View Details",
+       "link":"/info/events/the-kooks-p1444591",
+       "type":"INTERNAL"
+    },
+    "website":{
+       "label":"View Details",
+       "link":"/info/events/the-kooks-p1444591",
+       "type":"INTERNAL"
+    },
+    "price":{
+       "price":"£36.50",
+       "priceLabel":"Price",
+       "priceBasis":"Per ticket",
+       "displayPrice":"Admission charge"
+    },
+    "opening":{
+       "period":{
+          "startDay":"2022-02-07",
+          "endDay":"2022-02-08"
+       }
+    },
+    "onlineEvent":false,
+    "latitude":55.85057,
+    "longitude":-4.2591
+ }
