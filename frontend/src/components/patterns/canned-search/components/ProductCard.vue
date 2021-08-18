@@ -665,7 +665,8 @@ export default {
 
 <docs>
 ```jsx
-    const sampleAccom = require("../../../../assets/fixtures/canned-search/sample-accom.json")
+    const sampleAccom = require("../../../../assets/fixtures/canned-search/sample-accom.json");
+    const sampleEvent = require("../../../../assets/fixtures/canned-search/sample-event.json");
 
     <VsCarousel
         next-text="next page"
@@ -693,9 +694,9 @@ export default {
                 type: sampleAccom.dmsLink.type.toLowerCase()
             }"
             :websiteLink="{
-                link: sampleAccom.website,
-                label: 'Visit website',
-                type: 'external'
+                link: sampleAccom.website.link,
+                label: sampleAccom.website.label,
+                type: sampleAccom.website.type.toLowerCase()
             }"
             :priceIntro="sampleAccom.price.priceLabel"
             :price="'£' + sampleAccom.price.price"
@@ -707,6 +708,32 @@ export default {
             :goodToGoLogo="sampleAccom.covidInformation.goodToGo"
             :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
             :awards="sampleAccom.awards"
+        >
+        </VsProductCard>
+        <VsProductCard
+            slideIndex="1"
+            :imgSrc="sampleEvent.images[0].mediaUrl"
+            :imgAlt="sampleEvent.name"
+            :title="sampleEvent.name"
+            :location="sampleEvent.address.city + ', ' + sampleEvent.address.county"
+            :categories="sampleEvent.locations"
+            :description="sampleEvent.description"
+            :detailLink="{
+                link: sampleEvent.dmsLink.link,
+                label: sampleEvent.dmsLink.label,
+                type: sampleEvent.dmsLink.type.toLowerCase()
+            }"
+            :websiteLink="{
+                link: sampleEvent.website.link,
+                label: sampleEvent.website.label,
+                type: sampleEvent.website.type.toLowerCase()
+            }"
+            :priceIntro="sampleEvent.price.priceLabel"
+            :price="'£' + sampleEvent.price.price"
+            :priceOutro="sampleEvent.price.priceBasis"
+            :badgeOne="sampleEvent.category.name"
+            :badgeTwo="sampleEvent.offers"
+            :awards="sampleEvent.awards"
         >
         </VsProductCard>
     </VsCarousel>
