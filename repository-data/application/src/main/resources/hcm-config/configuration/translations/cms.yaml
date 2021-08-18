@@ -32,4 +32,6 @@ definitions:
       visitscotland:iknow-community-tag-validator: 'Between 2 and 10 tags must be provided.'
       visitscotland:otyml-link-validator: 'Minimum number of links is 5.'
       visitscotland:itinerary-stop-validator: 'Stops must be unique.'
+      visitscotland:otyml-unique-link-validator: 'OTYML links must be unique.'
+      visitscotland:megalinks-unique-link-validator: 'Megalinks links must be unique.'
       visitscotland:travel-tab-transport-validator: 'Travel type must be unique.'

@@ -95,5 +95,71 @@ class UniqueLinksValidatorTest {
         Assertions.assertTrue(validationResult.isPresent());
     }
 
+    @DisplayName("When linkIdField is node & non-unique links provided, validation fails")
+    @Test
+    void linkIdIsNode_nonUniqueFails() throws Exception {
+        when(context.createViolation()).thenReturn(mock(Violation.class));
+
+        Node config = new MockNodeBuilder().withProperty("targetField", "links").withProperty("linkIdField", "child").build();
+        Node aNode = new MockNodeBuilder().withProperty("hippo:docbase", "a").build();
+        Node bNode = new MockNodeBuilder().withProperty("hippo:docbase", "a").build();
+        Node linkAChild = mock(Node.class);
+        Node linkBChild = mock(Node.class);
+        when(linkAChild.getNode("child")).thenReturn(aNode);
+        when(linkBChild.getNode("child")).thenReturn(bNode);
+        Node toValidate = new MockNodeBuilder()
+                .withChildNode("links", linkAChild)
+                .withChildNode("links", linkBChild).build();
+        when(toValidate.hasNode("links")).thenReturn(true);
+        when(linkAChild.hasNode("child")).thenReturn(true);
+        when(linkBChild.hasNode("child")).thenReturn(true);
+
+        Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
+        Assertions.assertTrue(validationResult.isPresent());
+    }
+
+    @DisplayName("When linkIdField is node & unique links provided, validation passes")
+    @Test
+    void linkIdIsNode_uniquePasses() throws Exception {
+        Node config = new MockNodeBuilder().withProperty("targetField", "links").withProperty("linkIdField", "child").build();
+        Node aNode = new MockNodeBuilder().withProperty("hippo:docbase", "a").build();
+        Node bNode = new MockNodeBuilder().withProperty("hippo:docbase", "b").build();
+        Node linkAChild = mock(Node.class);
+        Node linkBChild = mock(Node.class);
+        when(linkAChild.getNode("child")).thenReturn(aNode);
+        when(linkBChild.getNode("child")).thenReturn(bNode);
+        Node toValidate = new MockNodeBuilder()
+                .withChildNode("links", linkAChild)
+                .withChildNode("links", linkBChild).build();
+        when(toValidate.hasNode("links")).thenReturn(true);
+        when(linkAChild.hasNode("child")).thenReturn(true);
+        when(linkBChild.hasNode("child")).thenReturn(true);
+
+        Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
+        Assertions.assertFalse(validationResult.isPresent());
+    }
+
+    @DisplayName("When linkIdField is node & no hippo:docbase, validation passes")
+    @Test
+    void linkIdNodeNoDocbase() throws Exception {
+        Node config = new MockNodeBuilder().withProperty("targetField", "links").withProperty("linkIdField", "child").build();
+        Node aNode = new MockNodeBuilder().withProperty("hippo:notdocbase", "a").build();
+        Node bNode = new MockNodeBuilder().withProperty("hippo:notdocbase", "a").build();
+        Node linkAChild = mock(Node.class);
+        Node linkBChild = mock(Node.class);
+        when(linkAChild.getNode("child")).thenReturn(aNode);
+        when(linkBChild.getNode("child")).thenReturn(bNode);
+        Node toValidate = new MockNodeBuilder()
+                .withChildNode("links", linkAChild)
+                .withChildNode("links", linkBChild).build();
+        when(toValidate.hasNode("links")).thenReturn(true);
+        when(linkAChild.hasNode("child")).thenReturn(true);
+        when(linkBChild.hasNode("child")).thenReturn(true);
+
+        Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
+        Assertions.assertFalse(validationResult.isPresent());
+    }
+
+
 
 }

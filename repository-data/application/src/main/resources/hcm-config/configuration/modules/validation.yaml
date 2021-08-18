@@ -70,6 +70,16 @@ definitions:
       hipposys:className: com.visitscotland.brxm.validator.UniqueLinksValidator
       targetField: visitscotland:stops
       linkIdField: hippo:docbase
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:otyml-unique-link-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: com.visitscotland.brxm.validator.UniqueLinksValidator
+      linkIdField: visitscotland:link
+      targetField: visitscotland:links
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:megalinks-unique-link-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: com.visitscotland.brxm.validator.UniqueLinksValidator
+      linkIdField: visitscotland:link
+      targetField: visitscotland:megalinkItems
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:travel-tab-transport-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brxm.validator.UniqueLinksValidator

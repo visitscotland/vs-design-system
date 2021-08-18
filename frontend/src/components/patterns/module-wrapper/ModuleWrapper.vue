@@ -84,6 +84,7 @@ export default {
         }
 
         &__intro {
+            display: block;
             margin-bottom: $spacer-9;
 
             p:last-of-type {
