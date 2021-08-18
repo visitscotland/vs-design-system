@@ -1,0 +1,73 @@
+/content/documents/administration/labels/modules/stackla:
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+  jcr:uuid: c2e7229d-9343-4a29-b779-3f21284a5ae1
+  hippo:name: Stackla
+  hippo:versionHistory: 47415454-eace-4139-b1e6-f918e611ba84
+  /stackla[1]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 0903ab43-dc74-437f-bc2e-e259091b280a
+    hippo:availability: []
+    hippostd:retainable: false
+    hippostd:state: draft
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-07-12T14:28:56.789+01:00
+    hippostdpubwf:lastModificationDate: 2021-07-13T09:16:25.806+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:id: stackla
+    resourcebundle:keys: [stackla.no-cookies-message, stackla.no-js-message, stackla.update-cookies-link.label]
+    resourcebundle:messages: [Cookies are needed to see social media images from this
+        place., JavaScript needs to be enabled to see social media images for this
+        place. You can turn this on in your browser settings., Update my cookie settings]
+    resourcebundle:messages_de: ['', '', '']
+    resourcebundle:messages_es: ['', '', '']
+    resourcebundle:messages_fr: ['', '', '']
+    resourcebundle:messages_it: ['', '', '']
+    resourcebundle:messages_nl: ['', '', '']
+  /stackla[2]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:uuid: f77247f7-b01d-4234-86c4-6c0f343e99be
+    hippo:availability: [preview]
+    hippostd:retainable: false
+    hippostd:state: unpublished
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-07-12T14:28:56.789+01:00
+    hippostdpubwf:lastModificationDate: 2021-07-12T14:35:24.905+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:id: stackla
+    resourcebundle:keys: [stackla.no-cookies-message, stackla.no-js-message, stackla.update-cookies-link.label]
+    resourcebundle:messages: [Cookies are needed to see social media images from this
+        place., JavaScript needs to be enabled to see social media images for this
+        place. You can turn this on in your browser settings., Update my cookie settings]
+    resourcebundle:messages_de: ['', '', '']
+    resourcebundle:messages_es: ['', '', '']
+    resourcebundle:messages_fr: ['', '', '']
+    resourcebundle:messages_it: ['', '', '']
+    resourcebundle:messages_nl: ['', '', '']
+  /stackla[3]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 30c11884-4623-4ebb-9318-22bbf07070ed
+    hippo:availability: [live]
+    hippostd:retainable: false
+    hippostd:state: published
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-07-12T14:28:56.789+01:00
+    hippostdpubwf:lastModificationDate: 2021-07-12T14:35:24.905+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2021-07-12T14:35:27.495+01:00
+    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:id: stackla
+    resourcebundle:keys: [stackla.no-cookies-message, stackla.no-js-message, stackla.update-cookies-link.label]
+    resourcebundle:messages: [Cookies are needed to see social media images from this
+        place., JavaScript needs to be enabled to see social media images for this
+        place. You can turn this on in your browser settings., Update my cookie settings]
+    resourcebundle:messages_de: ['', '', '']
+    resourcebundle:messages_es: ['', '', '']
+    resourcebundle:messages_fr: ['', '', '']
+    resourcebundle:messages_it: ['', '', '']
+    resourcebundle:messages_nl: ['', '', '']
