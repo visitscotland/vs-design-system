@@ -83,7 +83,7 @@ public class PageTemplateBuilder {
                 } else if (item instanceof IknowCommunity) {
                     page.modules.add(iKnowCommunityFactory.getIKnowCommunityModule((IknowCommunity) item, request.getLocale()));
                 } else if (item instanceof Stackla) {
-                    page.modules.add(stacklaFactory.getStacklaModule((Stackla) item));
+                    page.modules.add(stacklaFactory.getStacklaModule((Stackla) item, request.getLocale()));
                 }else if (item instanceof CannedSearch) {
                     page.modules.add(cannedSearchFactory.getCannedSearchModule((CannedSearch) item, request.getLocale()));
                 }

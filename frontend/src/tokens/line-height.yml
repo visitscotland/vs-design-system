@@ -6,6 +6,8 @@
 props:
   line_height_lead:
     value: "1.55"
+  line_height_l:
+    value: "1.8"
   line_height_m:
     value: "1.6"
   line_height_s:

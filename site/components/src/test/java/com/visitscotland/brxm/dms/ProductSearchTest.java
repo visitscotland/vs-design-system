@@ -16,7 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.annotation.Resource;
 import java.util.Locale;
 
-import static com.visitscotland.brxm.dms.ProductSearchBuilder.*;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static com.visitscotland.brxm.dms.DMSConstants.ProductSearch.*;
@@ -54,7 +53,7 @@ class ProductSearchTest {
         String url = createBuilder().productTypes(DEFAULT_TYPE).build();
 
         validateUrl(url);
-        assertTrue(!Contract.isEmpty(url), "A basic URL couldn't be build");
+        assertFalse(Contract.isEmpty(url), "A basic URL couldn't be build");
     }
 
     @Test()
@@ -92,16 +91,14 @@ class ProductSearchTest {
                 );
     }
 
-    //TODO review with Jose
-    @Test()
-    @DisplayName("Constructs a relative URL for the map endpoint")
-    void productSearch_fullQualified() {
-        lenient().when(properties.getDmsHost()).thenReturn("https://www.visitscotland.com");
-        lenient().when(properties.getDmsDataHost()).thenReturn("https://data.visitscotland.com");
+    @Test
+    @DisplayName("Constructs a DMS data URL for the canned search endpoint")
+    void productSearch_dmsDataEndpoint() {
+        when(properties.getDmsDataHost()).thenReturn("https://data.visitscotland.com");
 
-        String url = createBuilder().productTypes(DEFAULT_TYPE).buildDataMap();
+        String url = createBuilder().productTypes(DEFAULT_TYPE).buildCannedSearch();
 
-        assertTrue(url.contains(DMSConstants.PRODUCT_SEARCH_DATA_MAP),
+        assertTrue(url.startsWith("https://data.visitscotland.com"),
                 "The URL is expected to be a Dms data endpoint: " + url);
         validateUrl(url);
     }
@@ -296,8 +293,8 @@ class ProductSearchTest {
                 .build();
 
         validateUrl(url);
-        assertTrue(
-                !url.contains(FACILITY_PARAM + "="),
+        assertFalse(
+                url.contains(FACILITY_PARAM + "="),
                 String.format("The Generated URL is expected to contain no facilities (%s) ", url)
                 );
     }
@@ -458,6 +455,36 @@ class ProductSearchTest {
     }
 
     @Test
+    @DisplayName("Good to go - Show results with Covid Good to go")
+    void goodToGo() {
+        mockLocationLoader("Edinburgh");
+        String url = createBuilder().productTypes(DEFAULT_TYPE)
+                .location("Edinburgh").goodToGo(true)
+                .proximity(null)
+                .build();
+
+        validateUrl(url);
+        assertTrue(url.contains("fac_id=goodtogo"),
+                String.format("The Generated URL is expected to have no order (%s) ", url)
+        );
+    }
+
+    @Test
+    @DisplayName("Safe Travels - Show results with Covid Safe Travels ")
+    void safeTravels() {
+        mockLocationLoader("Edinburgh");
+        String url = createBuilder().productTypes(DEFAULT_TYPE)
+                .location("Edinburgh").safeTravels(true)
+                .proximity(null)
+                .build();
+
+        validateUrl(url);
+        assertTrue(url.contains("fac_id=safetrav"),
+                String.format("The Generated URL is expected to have no order (%s) ", url)
+        );
+    }
+
+    @Test
     @DisplayName("Free entry - Show products with free entry")
     void free_entry() {
         mockLocationLoader("Edinburgh");
@@ -521,7 +548,7 @@ class ProductSearchTest {
      * Validates a Product Search URL
      *
      * The following validation might not be accurate for non Product Search URLs
-     * @param url
+     * @param url psr url
      */
     private void validateUrl(String url) {
         //At least one question mark
