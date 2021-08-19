@@ -11,19 +11,20 @@
             <VsContainer>
                 <VsRow>
                     <VsCol
-                        cols="12"
+                        cols="10"
                         :lg="heroIntro ? '8' : ''"
                         :offset-lg="heroIntro ? '1' : ''"
                     >
                         <div class="vs-page-intro__breadcrumb">
-                            <!-- @slot Breadcrumb code  -->
+                            <!-- @slot Slot to display breadcrumb items  -->
                             <slot name="vsIntroBreadcrumb" />
                         </div>
                     </VsCol>
                 </VsRow>
 
                 <div class="vs-page-intro__share">
-                    <VsSocialShare />
+                    <!-- @slot Slot to display SocialShare button  -->
+                    <slot name="vsShareButton" />
                 </div>
 
                 <VsRow>
@@ -77,7 +78,6 @@
 
 <script>
 import VsHeading from '@components/elements/heading/Heading';
-import VsSocialShare from '@components/patterns/social-share/SocialShare';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 
 import {
@@ -100,7 +100,6 @@ export default {
     release: '0.0.1',
     components: {
         VsHeading,
-        VsSocialShare,
         VsRichTextWrapper,
         VsContainer,
         VsRow,
@@ -197,17 +196,28 @@ export default {
     &__share {
         position: absolute;
         top: $spacer-4;
-        right: $spacer-4;
+        right: $spacer-1;
+
+        @include media-breakpoint-up(sm) {
+            right: $spacer-4;
+        }
 
         @include media-breakpoint-up(lg) {
-            top: $spacer-9;
-            right: $spacer-9;
+            top: 7.2rem;
+        }
+    }
+
+    &--hero {
+        .vs-page-intro__share {
+            @include media-breakpoint-up(lg) {
+                top: $spacer-10;
+            }
         }
     }
 
      &__breadcrumb {
         @include media-breakpoint-up(lg) {
-            margin-top: $spacer-6;
+            margin-top: $spacer-8;
         }
     }
 
@@ -239,12 +249,6 @@ export default {
         .vs-page-intro__wrapper {
             @include media-breakpoint-up(lg) {
                 margin-top: -240px;
-            }
-        }
-
-        .vs-page-intro__share {
-            @include media-breakpoint-up(lg) {
-                top: $spacer-12;
             }
         }
     }
@@ -288,6 +292,42 @@ export default {
         </template>
         <template slot="vsIntroHeading">
             {{itineraries.sampleItinerary.h1Heading}}
+        </template>
+
+        <template slot="vsShareButton">
+            <VsSocialShare
+                page-url="http://www.visitscotland.com"
+                page-title="VisitScotland - Scotland's National Tourist Organisation"
+                share-btn-text="Share"
+                close-alt-text="Close"
+                share-popover-title="Share On"
+            >
+                <VsSocialShareItem
+                    name="facebook"
+                    link-text="Facebook"
+                />
+                <VsSocialShareItem
+                    name="pinterest"
+                    link-text="Pinterest"
+                />
+                <VsSocialShareItem
+                    name="whatsapp"
+                    link-text="WhatsApp"
+                />
+                <VsSocialShareItem
+                    name="twitter"
+                    link-text="Twitter"
+                />
+                <VsSocialShareItem
+                    name="email"
+                    link-text="Email"
+                />
+                <VsSocialShareItem
+                    name="link"
+                    link-text="Copy Link"
+                    link-copied-text="Link copied!"
+                />
+            </VsSocialShare>
         </template>
 
         <template slot="vsIntroContent">
