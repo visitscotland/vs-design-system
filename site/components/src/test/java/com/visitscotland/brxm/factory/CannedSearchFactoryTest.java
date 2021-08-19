@@ -64,7 +64,7 @@ class CannedSearchFactoryTest {
         new VsComponentManager().setComponentManager(context);
     }
 
-    @DisplayName("When no cta for list view is provided then default cta should be used")
+    @DisplayName("VS-2715 - When no cta for list view is provided then default cta should be used")
     @Test
     void whenNoCtaProvided_thenDefaultCtaUsed() {
         when(bundle.getResourceBundle(BUNDLE_ID, "canned-search.listview", Locale.UK))
@@ -82,7 +82,7 @@ class CannedSearchFactoryTest {
         Assertions.assertEquals(PSR_URL, module.getCannedSearchEndpoint());
     }
 
-    @DisplayName("When cta for list view is provided then default cta should be used")
+    @DisplayName("VS-2715 - When cta for list view is provided then default cta should be used")
     @Test
     void whenCtaProvided_thenDefaultCtaUsed() {
         FlatLink flatLink = new FlatLink();
@@ -97,7 +97,7 @@ class CannedSearchFactoryTest {
         Assertions.assertEquals(PSR_URL, module.getCannedSearchEndpoint());
     }
 
-    @DisplayName("When the product type is an even the credit must be displayed")
+    @DisplayName("VS-2715 - When the product type is an even the credit must be displayed")
     @Test
     void whenCreditProvided() {
         when(bundle.getResourceBundle(BUNDLE_ID, "canned-search.listview", Locale.UK))

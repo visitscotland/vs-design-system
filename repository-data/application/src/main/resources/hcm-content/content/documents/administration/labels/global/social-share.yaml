@@ -1,0 +1,76 @@
+/content/documents/administration/labels/global/social-share:
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+  jcr:uuid: cd116302-9230-471d-a39f-f8c18e331bca
+  hippo:name: Social Share
+  hippo:versionHistory: 2c1a161c-0466-4bc0-881b-1dbb80136581
+  /social-share[1]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 4df558fe-2d9b-4cb0-8f0e-f5693ad03e2a
+    hippo:availability: []
+    hippostd:retainable: false
+    hippostd:state: draft
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
+    hippostdpubwf:lastModificationDate: 2021-07-22T15:12:42.958+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:id: social.share
+    resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
+      twitter.link.text, email.link.text, copy.link.text, close.share, share.button.text,
+      link.copied.text]
+    resourcebundle:messages: [Share On, Facebook, Pinterest, WhatsApp, Twitter, Email,
+      Copy Link, Close social share, Share, Link copied!]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
+  /social-share[2]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:uuid: f4b0146c-b036-45d2-9618-e40240e69148
+    hippo:availability: [preview]
+    hippostd:retainable: false
+    hippostd:state: unpublished
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
+    hippostdpubwf:lastModificationDate: 2021-07-22T15:14:00.551+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:id: social.share
+    resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
+      twitter.link.text, email.link.text, copy.link.text, close.share, share.button.text,
+      link.copied.text]
+    resourcebundle:messages: [Share On, Facebook, Pinterest, WhatsApp, Twitter, Email,
+      Copy Link, Close social share, Share, Link copied!]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
+  /social-share[3]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: a8d3ceb2-4ad7-4a5c-ad71-464a54829aef
+    hippo:availability: [live]
+    hippostd:retainable: false
+    hippostd:state: published
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
+    hippostdpubwf:lastModificationDate: 2021-07-22T15:14:00.551+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2021-07-22T15:14:02.669+01:00
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:id: social.share
+    resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
+      twitter.link.text, email.link.text, copy.link.text, close.share, share.button.text,
+      link.copied.text]
+    resourcebundle:messages: [Share On, Facebook, Pinterest, WhatsApp, Twitter, Email,
+      Copy Link, Close social share, Share, Link copied!]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']

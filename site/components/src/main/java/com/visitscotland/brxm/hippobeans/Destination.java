@@ -19,6 +19,7 @@ public class Destination extends Page {
                 "visitscotland:Stackla",
                 "visitscotland:TourismInformation",
                 "visitscotland:TravelInformation",
+                "visitscotland:CannedSearchTours",
                 "visitscotland:CannedSearch"};
     }
 

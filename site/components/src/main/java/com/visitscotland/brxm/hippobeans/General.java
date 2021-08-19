@@ -20,6 +20,7 @@ public class General extends Page {
                 "visitscotland:IknowCommunity",
                 "visitscotland:Stackla",
                 "visitscotland:MarketoForm",
+                "visitscotland:CannedSearchTours",
                 "visitscotland:CannedSearch"};
     }
 

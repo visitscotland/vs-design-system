@@ -1,0 +1,31 @@
+definitions:
+  config:
+    /hst:platform/hst:hosts/fqdn/com:
+      jcr:primaryType: hst:virtualhost
+      hst:schemeagnostic: true
+      /visitscotland:
+        jcr:primaryType: hst:virtualhost
+        /develop:
+          jcr:primaryType: hst:virtualhost
+          /hst:root:
+            jcr:primaryType: hst:mount
+            hst:ismapped: false
+            hst:namedpipeline: WebApplicationInvokingPipeline
+        /develop-nightly:
+          jcr:primaryType: hst:virtualhost
+          /hst:root:
+            jcr:primaryType: hst:mount
+            hst:ismapped: false
+            hst:namedpipeline: WebApplicationInvokingPipeline
+        /develop-stable:
+          jcr:primaryType: hst:virtualhost
+          /hst:root:
+            jcr:primaryType: hst:mount
+            hst:ismapped: false
+            hst:namedpipeline: WebApplicationInvokingPipeline
+        /feature:
+          jcr:primaryType: hst:virtualhost
+          /hst:root:
+            jcr:primaryType: hst:mount
+            hst:ismapped: false
+            hst:namedpipeline: WebApplicationInvokingPipeline
