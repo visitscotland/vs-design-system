@@ -42,11 +42,6 @@
                     type: prod.dmsLink.type.toLowerCase()
                 }"
                 :location="prod.address.city + ', ' + prod.address.county"
-                :stars="prod.grading ? {
-                    min:prod.grading.minStars,
-                    max:prod.grading.maxStars,
-                    gold:prod.grading.gold
-                } : null"
                 :description="prod.description"
                 :website-link="prod.website ? {
                     link: prod.website.link,
@@ -66,7 +61,15 @@
                     prod.covidInformation.safeTravels.name : ''"
                 :awards="prod.awards"
                 :categories="prod.locations"
-            />
+            >
+                <VsCannedSearchStars
+                    v-if="prod.grading"
+                    slot="vsCannedSearchStarRating"
+                    :min="prod.grading.minStars"
+                    :max="prod.grading.maxStars"
+                    :gold="prod.grading.gold"
+                />
+            </VsCannedSearchProductCard>
         </VsCarousel>
     </div>
 </template>
