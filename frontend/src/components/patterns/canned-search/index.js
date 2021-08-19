@@ -1,7 +1,7 @@
 import VsCannedSearch from './CannedSearch';
-import VsProductCard from './components/ProductCard';
+import VsCannedSearchProductCard from './components/CannedSearchProductCard';
 
 export default {
     VsCannedSearch,
-    VsProductCard,
+    VsCannedSearchProductCard,
 };

@@ -29,7 +29,7 @@
             slides-lg="3"
             v-if="products.length"
         >
-            <VsProductCard
+            <VsCannedSearchProductCard
                 v-for="(prod, index) in products"
                 :key="index"
                 :slide-index="'' + index"
@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import VsProductCard from '@components/patterns/canned-search/components/ProductCard';
+import VsCannedSearchProductCard from '@components/patterns/canned-search/components/CannedSearchProductCard';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
@@ -92,7 +92,7 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsProductCard,
+        VsCannedSearchProductCard,
         VsCarousel,
         VsContainer,
         VsRow,
