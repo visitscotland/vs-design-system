@@ -76,12 +76,10 @@
                         <slot
                             name="vsCannedSearchStarRating"
                         />
-                        <div
-                            class="vs-product-card__categories"
-                            data-test="vs-product-card__categories"
-                        >
-                            {{ transformedCategories }}
-                        </div>
+                        <!-- @slot Holds an optional list of categories  -->
+                        <slot
+                            name="vsCannedSearchCategories"
+                        />
                     </div>
                     <div class="vs-product-card__description">
                         <p class="text-truncate text-truncate--2">
@@ -249,14 +247,6 @@ export default {
             default: '',
         },
         /**
-        * A list of categories that describe the product, should contain
-        * objects, each of which has a `name` prop
-        */
-        categories: {
-            type: Array,
-            default: null,
-        },
-        /**
         * The description of the product, will be truncated if >2 lines
         */
         description: {
@@ -358,18 +348,6 @@ export default {
         slideIndex: {
             type: String,
             required: true,
-        },
-    },
-    computed: {
-        transformedCategories() {
-            if (this.categories) {
-                return this.categories
-                    .slice(0, 3)
-                    .map((cat) => cat.name)
-                    .join(' | ');
-            }
-
-            return '';
         },
     },
     methods: {
@@ -518,13 +496,6 @@ export default {
             margin-bottom: $spacer-3;
         }
 
-        .vs-product-card__categories {
-            font-size: $font-size-base;
-            line-height: $line-height-s;
-            font-weight: 600;
-            margin-bottom: $spacer-1;
-        }
-
         .vs-product-card__description {
             font-size: $font-size-base;
             line-height: $line-height-s;
@@ -664,6 +635,11 @@ export default {
                 :min="sampleAccom.grading.minStars"
                 :max="sampleAccom.grading.maxStars"
                 :gold="sampleAccom.grading.gold"
+            />
+            <VsCannedSearchCategories
+                slot="vsCannedSearchCategories"
+                v-if="sampleAccom.locations"
+                :categories="sampleAccom.locations"
             />
         </VsCannedSearchProductCard>
     </VsCarousel>
