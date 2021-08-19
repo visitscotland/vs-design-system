@@ -227,10 +227,10 @@ import VsTooltip from '@components/elements/tooltip/Tooltip';
 /**
 * Generic product card for canned search
 *
-* @displayName Product Card
+* @displayName Canned Search Product Card
 */
 export default {
-    name: 'VsProductCard',
+    name: 'VsCannedSearchProductCard',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -674,7 +674,7 @@ export default {
         slides-md="2"
         slides-lg="3"
     >
-        <VsProductCard
+        <VsCannedSearchProductCard
             slideIndex="0"
             :imgSrc="sampleAccom.images[0].mediaUrl"
             :imgAlt="sampleAccom.name"
@@ -708,7 +708,7 @@ export default {
             :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
             :awards="sampleAccom.awards"
         >
-        </VsProductCard>
+        </VsCannedSearchProductCard>
     </VsCarousel>
 ```
 </docs>
