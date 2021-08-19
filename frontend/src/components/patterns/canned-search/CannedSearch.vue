@@ -60,7 +60,6 @@
                 :safe-travels-logo="prod.covidInformation && prod.covidInformation.safeTravels ?
                     prod.covidInformation.safeTravels.name : ''"
                 :awards="prod.awards"
-                :categories="prod.locations"
             >
                 <VsCannedSearchStars
                     v-if="prod.grading"
@@ -68,6 +67,11 @@
                     :min="prod.grading.minStars"
                     :max="prod.grading.maxStars"
                     :gold="prod.grading.gold"
+                />
+                <VsCannedSearchCategories
+                    slot="vsCannedSearchCategories"
+                    v-if="prod.locations"
+                    :categories="prod.locations"
                 />
             </VsCannedSearchProductCard>
         </VsCarousel>

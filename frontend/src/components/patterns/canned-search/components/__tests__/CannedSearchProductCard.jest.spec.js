@@ -5,18 +5,6 @@ const imgSrc = 'https://cimg.visitscotland.com/cms-images/attractions/outlander/
 const imgAlt = 'Arden House';
 const title = 'Arden House';
 const location = 'Callander, Loch Lomond, The Trossachs';
-
-const categories = [
-    {
-        name: 'Rural',
-    },
-    {
-        name: 'Village Location',
-    },
-    {
-        name: 'Mountains area',
-    },
-];
 const description = 'Test product description';
 const detailLink = {
     link: '/info/accommodation/arden-house-p572561',
@@ -52,6 +40,7 @@ const awards = [
 const slideIndex = '0';
 
 const starSlotContent = 'This is a star rating';
+const catSlotContent = 'This is a list of categories';
 
 const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
     propsData: {
@@ -59,7 +48,6 @@ const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
         imgAlt,
         title,
         location,
-        categories,
         description,
         detailLink,
         websiteLink,
@@ -77,6 +65,7 @@ const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
     },
     slots: {
         vsCannedSearchStarRating: starSlotContent,
+        vsCannedSearchCategories: catSlotContent,
     },
     provide: () => ({
         slideCols: {
@@ -154,32 +143,6 @@ describe('VsCannedSearchProductCard', () => {
             const prodTitle = wrapper.find('[data-test="vs-product-card__location"]');
 
             expect(prodTitle.html()).toContain(location);
-        });
-
-        describe(':categories', () => {
-            it('should render each item within the `categories` property', () => {
-                const cardCategories = wrapper.find('[data-test="vs-product-card__categories"]');
-
-                for (let x = 0; x < categories.length; x++) {
-                    expect(cardCategories.html()).toContain(categories[x].name);
-                }
-            });
-
-            it('should not render additional `categories` beyond three', async() => {
-                const testCats = ['a', 'b', 'c', 'd', 'e'];
-
-                wrapper.setProps({
-                    categories: testCats,
-                });
-
-                await wrapper.vm.$nextTick();
-
-                const cardCategories = wrapper.find('[data-test="vs-product-card__categories"]');
-
-                for (let x = 3; x < categories.length; x++) {
-                    expect(cardCategories.html()).not.toContain(categories[x]);
-                }
-            });
         });
 
         it('should render the content of the `description` property', () => {
@@ -278,6 +241,10 @@ describe('VsCannedSearchProductCard', () => {
     describe(':slots', () => {
         it('should render the content of the `vsCannedSearchStarRating` slot', () => {
             expect(wrapper.html()).toContain(starSlotContent);
+        });
+
+        it('should render the content of the `vsCannedSearchCategories` slot', () => {
+            expect(wrapper.html()).toContain(catSlotContent);
         });
     });
 });
