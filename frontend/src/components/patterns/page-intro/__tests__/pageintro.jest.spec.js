@@ -44,6 +44,15 @@ describe('VsPageIntro', () => {
             expect(wrapper.html()).toContain('<div>This is the breadcrumb slot content</div>');
         });
 
+        it('should render share button slot content', () => {
+            const wrapper = factoryShallowMount({
+                slots: {
+                    vsShareButton: '<div>This is the share button slot content</div>',
+                },
+            });
+            expect(wrapper.html()).toContain('<div>This is the share button slot content</div>');
+        });
+
         it('should render title slot content', () => {
             const wrapper = factoryShallowMount({
                 slots: {
