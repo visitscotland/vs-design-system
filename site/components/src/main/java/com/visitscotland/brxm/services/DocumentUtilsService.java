@@ -2,10 +2,14 @@ package com.visitscotland.brxm.services;
 
 import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
+import com.visitscotland.brxm.model.LocalizedURL;
 import com.visitscotland.brxm.utils.HippoUtilsService;
+import com.visitscotland.brxm.utils.Language;
+import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -15,6 +19,7 @@ import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Singleton
@@ -27,22 +32,13 @@ public class DocumentUtilsService {
     public static final String DOCUMENT_TYPE = "jcr:primaryType";
 
     private HippoUtilsService utils;
+    private ResourceBundleService bundle;
+    private Properties properties;
 
-    public DocumentUtilsService() {
-        this(new HippoUtilsService());
-    }
-
-    DocumentUtilsService(HippoUtilsService utils) {
+    public DocumentUtilsService(HippoUtilsService utils, ResourceBundleService bundle, Properties properties) {
         this.utils = utils;
-    }
-
-    private static DocumentUtilsService instance;
-
-    public static DocumentUtilsService getInstance() {
-        if (instance == null) {
-            instance = new DocumentUtilsService();
-        }
-        return instance;
+        this.bundle = bundle;
+        this.properties = properties;
     }
 
     /**
@@ -89,11 +85,7 @@ public class DocumentUtilsService {
 
                             //The document is added if the type matches
                             if (hippoBean != null) {
-                                if (expectedClass.isAssignableFrom(hippoBean.getClass())) {
-                                    documents.add((T) hippoBean);
-                                } else {
-                                    logError("The following node might be corrupted and cannot be resolved as a BaseDocument", jcrNode, null);
-                                }
+                                documents.add((T) hippoBean);
                             }
                             break;
                         }
@@ -114,5 +106,61 @@ public class DocumentUtilsService {
             logMessage = message + ". A nested exception happened while trying to access to the node ";
         }
         logger.error(logMessage, e);
+    }
+
+
+
+    public List<LocalizedURL> getLocalizedURLs(HstRequest request) {
+        List<LocalizedURL> translatedURL = new ArrayList<>(Language.values().length);
+
+        HippoBean document = request.getRequestContext().getContentBean();
+
+        HippoBean englishSite = null;
+        if (document != null) {
+            for (Language language : Language.values()) {
+                LocalizedURL lan = new LocalizedURL();
+                lan.setLocale(language.getLocale());
+                lan.setLanguage(language.getLocale().getLanguage());
+                lan.setDisplayName(bundle.getResourceBundle("universal", lan.getLanguage(), request.getLocale()));
+
+                HippoBean translation = document.getAvailableTranslations().getTranslation(lan.getLanguage());
+
+                if (Locale.UK.equals(language.getLocale())) {
+                    if (translation == null) {
+                        logger.error("The requested page does not exist in English: {}", document.getPath());
+                    } else {
+                        englishSite = translation;
+                    }
+                }
+
+                if (translation instanceof Page) {
+                    lan.setUrl(utils.createUrl((Page) translation));
+                    lan.setExists(true);
+                } else {
+                    //TODO: Define if the URL is made up, or we use the englishSite link instead
+                    //lan.setUrl(utils.createUrl(englishSite));
+                    lan.setUrl(composeNonExistingLanguageURL(language.getLocale(), request));
+                    lan.setExists(false);
+                }
+                translatedURL.add(lan);
+            }
+        } else {
+            logger.error("Menu functionality is not supported for Channel Manager Pages at the moment");
+        }
+        return translatedURL;
+    }
+
+    /**
+     * Composes the URL from the current request for a non-existing URL.
+     */
+    private String composeNonExistingLanguageURL(Locale locale, HstRequest request){
+        String languagePath = "";
+
+        if (locale != null) {
+            languagePath += "/" + locale.getLanguage();
+        }
+
+        return properties.getCmsBasePath() +
+                languagePath + request.getRequestContext().getBaseURL().getPathInfo();
     }
 }
