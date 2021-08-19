@@ -16,7 +16,7 @@ import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
+import com.visitscotland.brxm.dms.DMSConstants;
 import org.hippoecm.hst.core.container.ComponentManager;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -153,14 +153,14 @@ class LinkServiceTest {
     @DisplayName("Create a link form a DMSLink Compound")
     void dmsLink() {
         //Verifies that is able to create a link from DMSLink and the url is taken from the JSON Response
-        JsonNode node = mock(JsonNode.class);
+        JsonNode node = mock(JsonNode.class,RETURNS_DEEP_STUBS);
         JsonNode url = mock(JsonNode.class);
 
         DMSLink dmsLink = mock(DMSLink.class);
         when(dmsLink.getProduct()).thenReturn("123");
 
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
-        when(node.get(LinkService.URL)).thenReturn(url);
+        when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK)).thenReturn(url);
         when(url.asText()).thenReturn("/dms-page");
 
         FlatLink link = service.createLink(Locale.UK, dmsLink);
@@ -278,11 +278,11 @@ class LinkServiceTest {
         //Verifies that when and DMS item doesn't exist, the link is not created.
         SharedLink sharedLink = mock(SharedLink.class);
         DMSLink dmsLink = mock(DMSLink.class);
-        JsonNode node = mock(JsonNode.class);
+        JsonNode node = mock(JsonNode.class, RETURNS_DEEP_STUBS);
         JsonNode url = mock(JsonNode.class);
 
         when(sharedLink.getLinkType()).thenReturn(dmsLink);
-        when(node.get(LinkService.URL)).thenReturn(url);
+        when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK)).thenReturn(url);
         when(url.asText()).thenReturn("/dms-page");
 
         String link = service.getPlainLink(sharedLink, node);
@@ -441,7 +441,7 @@ class LinkServiceTest {
     @DisplayName("No image throw a warning in preview mode")
     void noImageDefined_DMS_defaultsImageNotFound() throws IOException {
         final String NO_IMAGE_JSON = "{" +
-                " \"url\":\"/info/fake-product-p0123456798\", " +
+                " \"dmsLink\": {\"link\": \"/info/fake-product-p0123456798\"}," +
                 " \"name\":\"Fake Product\" " +
                 "}";
         JsonNode node = new ObjectMapper().readTree(NO_IMAGE_JSON);

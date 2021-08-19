@@ -4,12 +4,32 @@ import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerat
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
-@HippoEssentialsGenerated(internalName = "visitscotland:LongCopy")
-@Node(jcrType = "visitscotland:LongCopy")
-public class LongCopy extends BaseDocument {
+@HippoEssentialsGenerated(internalName = "visitscotland:CannedSearchTours")
+@Node(jcrType = "visitscotland:CannedSearchTours")
+public class CannedSearchTours extends BaseDocument {
+    @HippoEssentialsGenerated(internalName = "visitscotland:title")
+    public String getTitle() {
+        return getSingleProperty("visitscotland:title");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:toursSearch")
+    public String getToursSearch() {
+        return getSingleProperty("visitscotland:toursSearch");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:viewAll")
+    public String getViewAll() {
+        return getSingleProperty("visitscotland:viewAll");
+    }
+
     @HippoEssentialsGenerated(internalName = "visitscotland:copy")
     public HippoHtml getCopy() {
         return getHippoHtml("visitscotland:copy");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:diff")
@@ -25,10 +45,5 @@ public class LongCopy extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
     public String getTranslationPriority() {
         return getSingleProperty("visitscotland:translationPriority");
-    }
-
-    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
-    public String getTranslation() {
-        return getSingleProperty("visitscotland:translation");
     }
 }
