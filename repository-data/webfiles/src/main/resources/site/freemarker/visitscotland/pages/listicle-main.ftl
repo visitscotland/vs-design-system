@@ -6,7 +6,7 @@
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
 <#include "../../frontend/components/vs-heading.ftl">
-<#include "../../frontnend/components/vs-rich-text-wrapper.ftl">
+<#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-listicle-item.ftl">
 <#include "../../frontend/components/vs-panel.ftl">
 
