@@ -72,33 +72,10 @@
                         >
                             {{ location }}
                         </VsHeading>
-                        <div v-if="stars">
-                            <div
-                                class="vs-product-card__stars"
-                                v-if="stars.min && stars.max && stars.min !== stars.max"
-                            >
-                                <span
-                                    class="vs-product-card__star"
-                                    :class="{'vs-product-card__star--gold' : stars.gold}"
-                                >
-                                    &#9733;
-                                </span>
-                                {{ stars.min }}-{{ stars.max }}
-                            </div>
-                            <div
-                                class="vs-product-card__stars"
-                                v-else
-                            >
-                                <span
-                                    v-for="index in stars.min"
-                                    :key="index"
-                                    class="vs-product-card__star"
-                                    :class="{'vs-product-card__star--gold' : stars.gold}"
-                                >
-                                    &#9733;
-                                </span>
-                            </div>
-                        </div>
+                        <!-- @slot Holds an optional star rating  -->
+                        <slot
+                            name="vsCannedSearchStarRating"
+                        />
                         <div
                             class="vs-product-card__categories"
                             data-test="vs-product-card__categories"
@@ -270,14 +247,6 @@ export default {
         location: {
             type: String,
             default: '',
-        },
-        /**
-        * The star rating of the product, can have a `min`, `max` int
-        * and a `gold` boolean
-        */
-        stars: {
-            type: Object,
-            default: null,
         },
         /**
         * A list of categories that describe the product, should contain
@@ -549,19 +518,6 @@ export default {
             margin-bottom: $spacer-3;
         }
 
-        .vs-product-card__stars {
-            line-height: 1;
-            margin-bottom: $spacer-3;
-        }
-
-        .vs-product-card__star {
-            color: $color-purple;
-
-            &--gold {
-                color: $color-yellow;
-            }
-        }
-
         .vs-product-card__categories {
             font-size: $font-size-base;
             line-height: $line-height-s;
@@ -680,11 +636,6 @@ export default {
             :imgAlt="sampleAccom.name"
             :title="sampleAccom.name"
             :location="sampleAccom.address.city + ', ' + sampleAccom.address.county"
-            :stars="{
-                min:sampleAccom.grading.minStars,
-                max:sampleAccom.grading.maxStars,
-                gold:sampleAccom.grading.gold
-            }"
             :categories="sampleAccom.locations"
             :description="sampleAccom.description"
             :detailLink="{
@@ -708,6 +659,12 @@ export default {
             :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
             :awards="sampleAccom.awards"
         >
+            <VsCannedSearchStars
+                slot="vsCannedSearchStarRating"
+                :min="sampleAccom.grading.minStars"
+                :max="sampleAccom.grading.maxStars"
+                :gold="sampleAccom.grading.gold"
+            />
         </VsCannedSearchProductCard>
     </VsCarousel>
 ```

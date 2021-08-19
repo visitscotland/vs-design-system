@@ -1,15 +1,11 @@
 import { mount } from '@vue/test-utils';
-import VsProductCard from '../ProductCard';
+import VsCannedSearchProductCard from '../CannedSearchProductCard';
 
 const imgSrc = 'https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm';
 const imgAlt = 'Arden House';
 const title = 'Arden House';
 const location = 'Callander, Loch Lomond, The Trossachs';
-const stars = {
-    min: 4,
-    max: 4,
-    gold: false,
-};
+
 const categories = [
     {
         name: 'Rural',
@@ -55,13 +51,14 @@ const awards = [
 ];
 const slideIndex = '0';
 
-const factoryMount = (propsData) => mount(VsProductCard, {
+const starSlotContent = 'This is a star rating';
+
+const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
     propsData: {
         imgSrc,
         imgAlt,
         title,
         location,
-        stars,
         categories,
         description,
         detailLink,
@@ -77,6 +74,9 @@ const factoryMount = (propsData) => mount(VsProductCard, {
         awards,
         slideIndex,
         ...propsData,
+    },
+    slots: {
+        vsCannedSearchStarRating: starSlotContent,
     },
     provide: () => ({
         slideCols: {
@@ -106,7 +106,7 @@ beforeEach(() => {
     wrapper = factoryMount();
 });
 
-describe('VsProductCard', () => {
+describe('VsCannedSearchProductCard', () => {
     describe(':props', () => {
         it('should render a component with the data-test attribute `vs-product-card`', () => {
             expect(wrapper.find('[data-test="vs-product-card"]').exists()).toBe(true);
@@ -154,92 +154,6 @@ describe('VsProductCard', () => {
             const prodTitle = wrapper.find('[data-test="vs-product-card__location"]');
 
             expect(prodTitle.html()).toContain(location);
-        });
-
-        describe(':stars', () => {
-            it('should render a number of stars equal to `stars.min` if `stars.min` and `stars.max` are the same', async() => {
-                const testStars = {
-                    min: 4,
-                    max: 4,
-                    gold: false,
-                };
-
-                wrapper.setProps({
-                    stars: testStars,
-                });
-
-                await wrapper.vm.$nextTick();
-
-                expect(wrapper.findAll('.vs-product-card__star').length).toBe(4);
-            });
-
-            it('should render a one star if `stars.min` and `stars.max` are different', async() => {
-                const testStars = {
-                    min: 2,
-                    max: 4,
-                    gold: false,
-                };
-
-                wrapper.setProps({
-                    stars: testStars,
-                });
-
-                await wrapper.vm.$nextTick();
-
-                expect(wrapper.findAll('.vs-product-card__star').length).toBe(1);
-            });
-
-            it('should say `min-max` if `stars.min` and `stars.max` are different', async() => {
-                const testStars = {
-                    min: 2,
-                    max: 4,
-                    gold: false,
-                };
-
-                wrapper.setProps({
-                    stars: testStars,
-                });
-
-                await wrapper.vm.$nextTick();
-
-                expect(wrapper.find('.vs-product-card__stars').html()).toContain('2-4');
-            });
-
-            it('should render purple stars if `stars.gold` is falsy', async() => {
-                const testStars = {
-                    min: 4,
-                    max: 4,
-                    gold: false,
-                };
-
-                wrapper.setProps({
-                    stars: testStars,
-                });
-
-                await wrapper.vm.$nextTick();
-
-                const star = wrapper.find('.vs-product-card__star');
-
-                expect(star.classes('vs-product-card__star--gold')).toBe(false);
-            });
-
-            it('should render gold stars if `stars.gold` is true', async() => {
-                const testStars = {
-                    min: 4,
-                    max: 4,
-                    gold: true,
-                };
-
-                wrapper.setProps({
-                    stars: testStars,
-                });
-
-                await wrapper.vm.$nextTick();
-
-                const star = wrapper.find('.vs-product-card__star');
-
-                expect(star.classes('vs-product-card__star--gold')).toBe(true);
-            });
         });
 
         describe(':categories', () => {
@@ -358,6 +272,12 @@ describe('VsProductCard', () => {
             it('should render a logo for each entry in the `awards` property', () => {
                 expect(wrapper.findAll('[data-test="vs-product-card__award-logo"]').length).toBe(awards.length);
             });
+        });
+    });
+
+    describe(':slots', () => {
+        it('should render the content of the `vsCannedSearchStarRating` slot', () => {
+            expect(wrapper.html()).toContain(starSlotContent);
         });
     });
 });
