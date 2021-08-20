@@ -145,7 +145,7 @@ export default {
     methods: {
         copyToClipboard() {
             if (this.name === 'link') {
-                this.$emit('onCopyLink');
+                this.$emit('on-copy-link');
 
                 // create hidden input to copy from
                 const hiddenInput = document.createElement('textarea');
