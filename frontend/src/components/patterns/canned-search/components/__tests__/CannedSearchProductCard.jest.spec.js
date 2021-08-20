@@ -22,25 +22,12 @@ const priceOutro = 'Per room per night (breakfast inc.)';
 const badgeOne = 'B and B';
 const badgeTwo = 'Offer';
 const badgeThree = 'We are open';
-const goodToGoLogo = 'Good to go';
-const safeTravelsLogo = 'Safe travels';
-const awards = [
-    {
-        id: 'qatasteourbest',
-        name: 'Taste Our Best',
-        image: 'http://visitscotlandpreview.nmdemo.net/wsimgs/awards/TOB-updated-white-back_286148508_714060445.jpg',
-    },
-    {
-        id: 'qag2s',
-        name: 'Green Tourism Silver',
-        image: 'http://visitscotlandpreview.nmdemo.net/wsimgs/awards/GT_silver_200x200_275519812.png',
-        type: 'GREEN_TOURISM',
-    },
-];
+
 const slideIndex = '0';
 
 const starSlotContent = 'This is a star rating';
 const catSlotContent = 'This is a list of categories';
+const logoSlotContent = 'This is a list of logos';
 
 const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
     propsData: {
@@ -57,15 +44,13 @@ const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
         badgeOne,
         badgeTwo,
         badgeThree,
-        goodToGoLogo,
-        safeTravelsLogo,
-        awards,
         slideIndex,
         ...propsData,
     },
     slots: {
         vsCannedSearchStarRating: starSlotContent,
         vsCannedSearchCategories: catSlotContent,
+        vsCannedSearchLogos: logoSlotContent,
     },
     provide: () => ({
         slideCols: {
@@ -77,18 +62,6 @@ const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
         visibleSlides: [4, 5, 6],
     }),
 });
-
-/* eslint-disable */
-const originalWarn = console.warn.bind(console.warn);
-
-beforeAll(() => {
-    console.warn = (msg) => !msg.toString().includes('tooltip - The provided target is no valid HTML element.') && originalWarn(msg);
-});
-
-afterAll(() => {
-    console.warn = originalWarn;
-});
-/* eslint-enable */
 
 let wrapper;
 beforeEach(() => {
@@ -190,52 +163,6 @@ describe('VsCannedSearchProductCard', () => {
         it('should render the content of the `badgeThree` property', () => {
             expect(wrapper.html()).toContain(badgeThree);
         });
-
-        describe(':logos', () => {
-            it('should render a vs-tooltip with the title provided in the `goodToGoLogo` property', () => {
-                const tooltip = wrapper.find('[data-test="vs-product-card__good-to-go"]');
-
-                expect(tooltip.props('title')).toBe(goodToGoLogo);
-            });
-
-            it('should not render the good to go vs-tooltip if no `goodToGoLogo` property is provided', async() => {
-                const testGtG = ''; ;
-
-                wrapper.setProps({
-                    goodToGoLogo: testGtG,
-                });
-
-                await wrapper.vm.$nextTick();
-
-                const tooltip = wrapper.find('[data-test="vs-product-card__good-to-go"]');
-
-                expect(tooltip.exists()).toBe(false);
-            });
-
-            it('should render a vs-tooltip with the title provided in the `safeTravelsLogo` property', () => {
-                const tooltip = wrapper.find('[data-test="vs-product-card__safe-travels"]');
-
-                expect(tooltip.props('title')).toBe(safeTravelsLogo);
-            });
-
-            it('should not render the safe travels vs-tooltip if no `safeTravelsLogo` property is provided', async() => {
-                const testSt = '';
-
-                wrapper.setProps({
-                    safeTravelsLogo: testSt,
-                });
-
-                await wrapper.vm.$nextTick();
-
-                const tooltip = wrapper.find('[data-test="vs-product-card__safe-travels"]');
-
-                expect(tooltip.exists()).toBe(false);
-            });
-
-            it('should render a logo for each entry in the `awards` property', () => {
-                expect(wrapper.findAll('[data-test="vs-product-card__award-logo"]').length).toBe(awards.length);
-            });
-        });
     });
 
     describe(':slots', () => {
@@ -245,6 +172,10 @@ describe('VsCannedSearchProductCard', () => {
 
         it('should render the content of the `vsCannedSearchCategories` slot', () => {
             expect(wrapper.html()).toContain(catSlotContent);
+        });
+
+        it('should render the content of the `vsCannedSearchLogos` slot', () => {
+            expect(wrapper.html()).toContain(logoSlotContent);
         });
     });
 });

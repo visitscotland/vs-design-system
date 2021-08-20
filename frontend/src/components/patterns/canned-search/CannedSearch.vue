@@ -55,11 +55,6 @@
                 :badge-two="prod.offers"
                 :badge-three="prod.covidInformation ?
                     prod.covidInformation.weAreOpen : ''"
-                :good-to-go-logo="prod.covidInformation && prod.covidInformation.goodToGo ?
-                    prod.covidInformation.goodToGo.name : ''"
-                :safe-travels-logo="prod.covidInformation && prod.covidInformation.safeTravels ?
-                    prod.covidInformation.safeTravels.name : ''"
-                :awards="prod.awards"
             >
                 <VsCannedSearchStars
                     v-if="prod.grading"
@@ -73,6 +68,14 @@
                     v-if="prod.locations"
                     :categories="prod.locations"
                 />
+                <VsCannedSearchLogos
+                    slot="vsCannedSearchLogos"
+                    :good-to-go-logo="prod.covidInformation && prod.covidInformation.goodToGo ?
+                        prod.covidInformation.goodToGo.name : ''"
+                    :safe-travels-logo="prod.covidInformation && prod.covidInformation.safeTravels ?
+                        prod.covidInformation.safeTravels.name : ''"
+                    :awards="prod.awards"
+                />
             </VsCannedSearchProductCard>
         </VsCarousel>
     </div>
@@ -80,6 +83,9 @@
 
 <script>
 import VsCannedSearchProductCard from '@components/patterns/canned-search/components/CannedSearchProductCard';
+import VsCannedSearchStars from '@components/patterns/canned-search/components/CannedSearchStars';
+import VsCannedSearchLogos from '@components/patterns/canned-search/components/CannedSearchLogos';
+import VsCannedSearchCategories from '@components/patterns/canned-search/components/CannedSearchCategories';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
@@ -100,6 +106,9 @@ export default {
     release: '0.0.1',
     components: {
         VsCannedSearchProductCard,
+        VsCannedSearchStars,
+        VsCannedSearchLogos,
+        VsCannedSearchCategories,
         VsCarousel,
         VsContainer,
         VsRow,
@@ -165,7 +174,7 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/search/productsearch?areaproxdist=10&loc=Scotland&locplace=&locprox=1&prodtypes=acco&locale="
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow"
         >
             <template slot="vsCannedSearchButtons">
                 <VsButton
