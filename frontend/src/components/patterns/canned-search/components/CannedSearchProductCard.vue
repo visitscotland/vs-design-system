@@ -485,7 +485,7 @@ export default {
             }
 
             &-outro {
-                font-size: $xs-font-size;
+                font-size: $font-size-sm;
             }
         }
 
