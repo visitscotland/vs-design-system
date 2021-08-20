@@ -18,6 +18,11 @@ const factoryShallowMount = () => shallowMount(VsSocialShare, {
     slots: {
         default: defaultSlotText,
     },
+    data() {
+        return {
+            copyLink: false,
+        };
+    },
 });
 
 let wrapper;
