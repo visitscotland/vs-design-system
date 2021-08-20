@@ -72,11 +72,17 @@
                         >
                             {{ location }}
                         </VsHeading>
-                        <!-- @slot Holds an optional star rating  -->
+                        <!--
+                            @slot Holds an optional star rating
+                            Expects a VsCannedSearchStars component
+                        -->
                         <slot
                             name="vsCannedSearchStarRating"
                         />
-                        <!-- @slot Holds an optional list of categories  -->
+                        <!--
+                            @slot Holds an optional list of categories
+                            Expects a VsCannedSearchCategories component
+                        -->
                         <slot
                             name="vsCannedSearchCategories"
                         />
@@ -93,42 +99,13 @@
                         </VsLink>
                     </div>
                 </div>
-                <div class="vs-product-card__logos">
-                    <VsTooltip
-                        :title="goodToGoLogo"
-                        v-if="goodToGoLogo"
-                        data-test="vs-product-card__good-to-go"
-                    >
-                        <VsImg
-                            src="https://www.visitscotland.com/cms-images/logos/goodToGo.png"
-                            :alt="goodToGoLogo"
-                            class="vs-product-card__logo"
-                        />
-                    </VsTooltip>
-                    <VsTooltip
-                        :title="safeTravelsLogo"
-                        v-if="safeTravelsLogo"
-                        data-test="vs-product-card__safe-travels"
-                    >
-                        <VsImg
-                            src="https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
-                            :alt="safeTravelsLogo"
-                            class="vs-product-card__logo"
-                        />
-                    </VsTooltip>
-                    <VsTooltip
-                        v-for="award in awards"
-                        :title="award.name"
-                        :key="award.id"
-                    >
-                        <VsImg
-                            :src="award.image"
-                            :alt="award.name"
-                            class="vs-product-card__logo"
-                            data-test="vs-product-card__award-logo"
-                        />
-                    </VsTooltip>
-                </div>
+                <!--
+                    @slot Holds an optional list of logos and awards that the product has won
+                    Expects a VsCannedSearchLogos component
+                -->
+                <slot
+                    name="vsCannedSearchLogos"
+                />
             </section>
             <div class="vs-product-card__summary-box">
                 <VsContainer>
@@ -136,10 +113,10 @@
                         <VsCol
                             cols="6"
                             class="vs-product-card__summary-item"
+                            v-if="price"
                         >
                             <div
                                 class="vs-product-card__summary-price"
-                                v-if="price"
                             >
                                 <div
                                     v-if="priceIntro"
@@ -160,10 +137,6 @@
                                     {{ priceOutro }}
                                 </div>
                             </div>
-                            <div
-                                class="vs-product-card__summary-padding"
-                                v-else
-                            />
                         </VsCol>
                         <VsCol
                             cols="6"
@@ -197,7 +170,6 @@ import VsLink from '@components/elements/link/Link';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
-import VsTooltip from '@components/elements/tooltip/Tooltip';
 
 /**
 * Generic product card for canned search
@@ -215,7 +187,6 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
-        VsTooltip,
     },
     props: {
         /**
@@ -316,30 +287,6 @@ export default {
         badgeThree: {
             type: String,
             default: '',
-        },
-        /**
-        * If set, the good to go logo appears. The text set in this property will appear as
-        * the tooltip of that logo
-        */
-        goodToGoLogo: {
-            type: String,
-            default: '',
-        },
-        /**
-        * If set, the safe travels logo appears. The text set in this property will appear as
-        * the tooltip of that logo
-        */
-        safeTravelsLogo: {
-            type: String,
-            default: '',
-        },
-        /**
-        * A set of award badges to display, each should contain a unique `id` (String), a `name`
-        * (String) that appears as a tooltip and a url to an `image` (String)
-        */
-        awards: {
-            type: Array,
-            default: null,
         },
         /**
         * Mandatory index of slide -
@@ -551,25 +498,6 @@ export default {
             }
         }
 
-        .vs-product-card__logos {
-            margin-top: $spacer-9;
-            margin-bottom: $spacer-4;
-            min-height: $spacer-9;
-
-            .vs-tooltip {
-                z-index: 1;
-                cursor: pointer;
-            }
-        }
-
-        .vs-product-card__logo {
-            max-height: $spacer-9;
-
-            &:not(:last-child) {
-                padding-right: $spacer-2;
-            }
-        }
-
         &--disabled {
             .card {
                 opacity: 0.5;
@@ -626,9 +554,6 @@ export default {
             :badgeTwo="sampleAccom.offers"
             :badgeThree="sampleAccom.covidInformation ?
                 sampleAccom.covidInformation.weAreOpen : ''"
-            :goodToGoLogo="sampleAccom.covidInformation.goodToGo"
-            :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
-            :awards="sampleAccom.awards"
         >
             <VsCannedSearchStars
                 slot="vsCannedSearchStarRating"
@@ -640,6 +565,12 @@ export default {
                 slot="vsCannedSearchCategories"
                 v-if="sampleAccom.locations"
                 :categories="sampleAccom.locations"
+            />
+            <VsCannedSearchLogos
+                slot="vsCannedSearchLogos"
+                :goodToGoLogo="sampleAccom.covidInformation.goodToGo"
+                :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
+                :awards="sampleAccom.awards"
             />
         </VsCannedSearchProductCard>
     </VsCarousel>
