@@ -16,9 +16,6 @@ const websiteLink = {
     label: 'Visit website',
     type: 'external',
 };
-const priceIntro = 'Price from';
-const price = '£110';
-const priceOutro = 'Per room per night (breakfast inc.)';
 const badgeOne = 'B and B';
 const badgeTwo = 'Offer';
 const badgeThree = 'We are open';
@@ -28,6 +25,7 @@ const slideIndex = '0';
 const starSlotContent = 'This is a star rating';
 const catSlotContent = 'This is a list of categories';
 const logoSlotContent = 'This is a list of logos';
+const summaryLeftSlotContent = 'This is a price';
 const summaryRightSlotContent = 'This is a link';
 
 const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
@@ -39,9 +37,6 @@ const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
         description,
         detailLink,
         websiteLink,
-        priceIntro,
-        price,
-        priceOutro,
         badgeOne,
         badgeTwo,
         badgeThree,
@@ -52,6 +47,7 @@ const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
         vsCannedSearchStarRating: starSlotContent,
         vsCannedSearchCategories: catSlotContent,
         vsCannedSearchLogos: logoSlotContent,
+        vsCannedSearchSummaryLeft: summaryLeftSlotContent,
         vsCannedSearchSummaryRight: summaryRightSlotContent,
     },
     provide: () => ({
@@ -124,18 +120,6 @@ describe('VsCannedSearchProductCard', () => {
             expect(wrapper.html()).toContain(description);
         });
 
-        it('should render the content of the `priceIntro` property', () => {
-            expect(wrapper.html()).toContain(priceIntro);
-        });
-
-        it('should render the content of the `price` property', () => {
-            expect(wrapper.html()).toContain(price);
-        });
-
-        it('should render the content of the `priceOutro` property', () => {
-            expect(wrapper.html()).toContain(priceOutro);
-        });
-
         it('should render the content of the `badgeOne` property', () => {
             expect(wrapper.html()).toContain(badgeOne);
         });
@@ -160,6 +144,10 @@ describe('VsCannedSearchProductCard', () => {
 
         it('should render the content of the `vsCannedSearchLogos` slot', () => {
             expect(wrapper.html()).toContain(logoSlotContent);
+        });
+
+        it('should render the content of the `vsCannedSearchSummaryLeft` slot', () => {
+            expect(wrapper.html()).toContain(summaryLeftSlotContent);
         });
 
         it('should render the content of the `vsCannedSearchSummaryRight` slot', () => {

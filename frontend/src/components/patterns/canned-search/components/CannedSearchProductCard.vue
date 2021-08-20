@@ -113,30 +113,18 @@
                         <VsCol
                             cols="6"
                             class="vs-product-card__summary-item"
-                            v-if="price"
+                            v-if="!!this.$slots['vsCannedSearchSummaryLeft']"
                         >
-                            <div
-                                class="vs-product-card__summary-price"
-                            >
-                                <div
-                                    v-if="priceIntro"
-                                    class="vs-product-card__summary-price-intro"
-                                >
-                                    {{ priceIntro }}
-                                </div>
-                                <div
-                                    v-if="price"
-                                    class="vs-product-card__summary-price-main"
-                                >
-                                    {{ price }}
-                                </div>
-                                <div
-                                    v-if="priceOutro"
-                                    class="vs-product-card__summary-price-outro"
-                                >
-                                    {{ priceOutro }}
-                                </div>
-                            </div>
+                            <!--
+                                @slot Holds the content for the second optional item in the grey
+                                summary box  at the bottom of the card, usually a
+                                vsCannedSearchPrice
+
+                                Expects html
+                            -->
+                            <slot
+                                name="vsCannedSearchSummaryLeft"
+                            />
                         </VsCol>
                         <VsCol
                             cols="6"
@@ -146,6 +134,7 @@
                             <!--
                                 @slot Holds the content for the second optional item in the grey
                                 summary box  at the bottom of the card, usually a link
+
                                 Expects html
                             -->
                             <slot
@@ -227,30 +216,6 @@ export default {
         detailLink: {
             type: Object,
             required: true,
-        },
-        /**
-        * The price of the product. Setting this will cause the price to appear in the
-        * left half of the summary box
-        */
-        price: {
-            type: String,
-            default: '',
-        },
-        /**
-        * A line of text that precedes the product price, not rendered if price
-        * not provided
-        */
-        priceIntro: {
-            type: String,
-            default: '',
-        },
-        /**
-        * A line of text that appears after the product price, not rendered if price
-        * not provided
-        */
-        priceOutro: {
-            type: String,
-            default: '',
         },
         /**
         * Appears in a teal badge over the image at the top right. Not rendered if not set
@@ -459,20 +424,6 @@ export default {
             }
         }
 
-        .vs-product-card__summary-padding {
-            height: $spacer-9;
-        }
-
-        .vs-product-card__summary-price {
-            &-main {
-                font-weight: bold;
-            }
-
-            &-outro {
-                font-size: $font-size-sm;
-            }
-        }
-
         .text-truncate {
             text-overflow: ellipsis;
             overflow: hidden;
@@ -529,9 +480,6 @@ export default {
                 label: sampleAccom.dmsLink.label,
                 type: sampleAccom.dmsLink.type.toLowerCase()
             }"
-            :priceIntro="sampleAccom.price.priceLabel"
-            :price="'£' + sampleAccom.price.price"
-            :priceOutro="sampleAccom.price.priceBasis"
             :badgeOne="sampleAccom.category.name"
             :badgeTwo="sampleAccom.offers"
             :badgeThree="sampleAccom.covidInformation ?
@@ -553,6 +501,13 @@ export default {
                 :goodToGoLogo="sampleAccom.covidInformation.goodToGo"
                 :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
                 :awards="sampleAccom.awards"
+            />
+            <VsCannedSearchPrice
+                v-if="sampleAccom.price"
+                slot="vsCannedSearchSummaryLeft"
+                :priceIntro="sampleAccom.price.priceLabel"
+                :price="'£' + sampleAccom.price.price"
+                :priceOutro="sampleAccom.price.priceBasis"
             />
             <VsLink
                 :href="sampleAccom.website"
