@@ -51,7 +51,7 @@
                 </label>
 
                 <!-- @slot Default slot for SocialShareItems -->
-                <slot :onCopyLink="onCopyLink" />
+                <slot :on-copy-link="onCopyLink" />
             </VsRow>
 
             <VsButton
@@ -411,7 +411,7 @@ export default {
                     link-text="Email"
                 />
                 <VsSocialShareItem
-                    @onCopyLink="onCopyLink"
+                    @on-copy-link="onCopyLink"
                     name="link"
                     link-text="Copy Link"
                     link-copied-text="Link Copied!"
