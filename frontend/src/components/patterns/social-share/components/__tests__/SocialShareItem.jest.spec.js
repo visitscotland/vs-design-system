@@ -68,7 +68,7 @@ describe('VsSocialShareItem', () => {
             const shareLink = shareItem.find('.vs-social-share-item__link');
             const shareIcon = shareItem.find('vsicon-stub');
 
-            expect(shareLink.attributes('href')).toBe('https://twitter.com/intent/tweet?text=VisitScotland&url=https://www.visitscotland.com');
+            expect(shareLink.attributes('href')).toBe('https://twitter.com/intent/tweet?text=VisitScotland%20@VisitScotland&url=https://www.visitscotland.com');
             expect(shareIcon.attributes('name')).toBe('twitter');
             expect(shareIcon.attributes('customcolour')).toBe('#08A0E9');
         });
@@ -148,7 +148,7 @@ describe('VsSocialShareItem', () => {
     });
 
     describe(':methods', () => {
-        it('should copy text when copy to clipboard link is clicked', async() => {
+        it('should copy page URL when copy link button is clicked', async() => {
             await wrapper.setProps({
                 name: 'link',
             });
@@ -159,6 +159,20 @@ describe('VsSocialShareItem', () => {
 
             shareLink.trigger('click');
             expect(document.execCommand).toHaveBeenCalledWith('copy');
+        });
+    });
+
+    describe(':events', () => {
+        it('it should emit an `onCopyLink` event when copy link button is clicked', async() => {
+            await wrapper.setProps({
+                name: 'link',
+            });
+
+            const shareItem = wrapper.find('[data-test="vs-social-share-item"]');
+            const shareLink = shareItem.find('.vs-social-share-item__link');
+            shareLink.trigger('click');
+
+            expect(wrapper.emitted().onCopyLink).toBeTruthy();
         });
     });
 });

@@ -27,6 +27,7 @@
             placement="leftbottom"
             @shown="onShown"
             @hidden="onHidden"
+            @hide="onHide"
             ref="popover"
             v-if="!noJs"
         >
@@ -50,7 +51,7 @@
                 </label>
 
                 <!-- @slot Default slot for SocialShareItems -->
-                <slot />
+                <slot :onCopyLink="onCopyLink" />
             </VsRow>
 
             <VsButton
@@ -177,6 +178,11 @@ export default {
             default: false,
         },
     },
+    data() {
+        return {
+            copyLink: false,
+        };
+    },
     methods: {
         /**
          * Closes popover on close button click
@@ -195,6 +201,16 @@ export default {
          */
         onHidden() {
             this.focusRef(this.$refs.shareButton);
+        },
+        onHide(bvEvent) {
+            if (this.copyLink) {
+                bvEvent.preventDefault();
+                this.focusRef(this.$refs.hiddenAnchor);
+                this.copyLink = false;
+            }
+        },
+        onCopyLink() {
+            this.copyLink = true;
         },
         /**
          * Check before focusing after popover has been positioned
@@ -373,31 +389,34 @@ export default {
             share-btn-text="Share"
             close-alt-text="Close"
         >
-            <VsSocialShareItem
-                name="facebook"
-                link-text="Facebook"
-            />
-            <VsSocialShareItem
-                name="pinterest"
-                link-text="Pinterest"
-            />
-            <VsSocialShareItem
-                name="whatsapp"
-                link-text="WhatsApp"
-            />
-            <VsSocialShareItem
-                name="twitter"
-                link-text="Twitter"
-            />
-            <VsSocialShareItem
-                name="email"
-                link-text="Email"
-            />
-            <VsSocialShareItem
-                name="link"
-                link-text="Copy Link"
-                link-copied-text="Link Copied!"
-            />
+            <template slot-scope="{onCopyLink}">
+                <VsSocialShareItem
+                    name="facebook"
+                    link-text="Facebook"
+                />
+                <VsSocialShareItem
+                    name="pinterest"
+                    link-text="Pinterest"
+                />
+                <VsSocialShareItem
+                    name="whatsapp"
+                    link-text="WhatsApp"
+                />
+                <VsSocialShareItem
+                    name="twitter"
+                    link-text="Twitter"
+                />
+                <VsSocialShareItem
+                    name="email"
+                    link-text="Email"
+                />
+                <VsSocialShareItem
+                    @onCopyLink="onCopyLink"
+                    name="link"
+                    link-text="Copy Link"
+                    link-copied-text="Link Copied!"
+                />
+            </template>
         </VsSocialShare>
     </BsWrapper>
 ```
