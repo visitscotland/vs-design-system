@@ -243,14 +243,17 @@ export default {
         }
 
         &__share-btn.vs-button.btn{
-            width: 45px;
-            height: 50px;
-            padding: 0;
+            padding: 1rem;
             letter-spacing: initial;
             text-decoration: underline;
             font-weight: $font-weight-normal;
             font-size: $small-font-size;
             line-height: $line_height_l;
+
+            svg {
+                display: block;
+                margin: 0 auto;
+            }
 
             &:hover{
                 color: $color-pink;
