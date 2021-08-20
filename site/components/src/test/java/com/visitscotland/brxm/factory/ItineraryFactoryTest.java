@@ -164,7 +164,7 @@ class ItineraryFactoryTest {
     @DisplayName("Creates a simple stop from a DMSLink")
     void dmsStop_basic() throws JsonProcessingException {
         final String JSON = "{" +
-                " \"url\":\"/info/fake-product-p123\", " +
+                " \"dmsLink\": {\"link\": \"/info/fake-product-p123\"}," +
                 " \"name\":\"Fake Product\", " +
                 " \"latitude\": 55.98129618868665, " +
                 " \"longitude\": -3.1749625514667117, " +
@@ -197,7 +197,7 @@ class ItineraryFactoryTest {
     @DisplayName("Itinerary Stop's Image overrides DMS Image")
     void dmsStop_imagePrecedence() throws JsonProcessingException {
         final String JSON = "{" +
-                " \"url\":\"https://mock.visitscotland.com/info/fake-product-p123\", " +
+                " \"dmsLink\": {\"link\": \"/info/fake-product-p123\"}," +
                 " \"images\":[{" +
                 "    \"mediaUrl\":\"https://img.visitscotland.com/fake-product.jpg\"" +
                 "}]}";
@@ -225,7 +225,7 @@ class ItineraryFactoryTest {
     })
     void dmsStop_timeToExplore(String value, String bundleKey) throws JsonProcessingException {
         final String JSON = "{" +
-                " \"url\":\"URL\", " +
+                " \"dmsLink\": {\"link\": \"/info/fake-product-p123\"}," +
                 " \"timeToExplore\":" + value + " " +
                 "}";
         JsonNode node = new ObjectMapper().readTree(JSON);
@@ -243,7 +243,7 @@ class ItineraryFactoryTest {
     @DisplayName("DMSStop - Prices")
     void dmsStop_price() throws JsonProcessingException {
         final String JSON = "{" +
-                " \"url\":\"https://mock.visitscotland.com/info/fake-product-p123\", " +
+                " \"dmsLink\": {\"link\": \"/info/fake-product-p123\"}," +
                 " \"price\": {\"displayPrice\": \"Free\"} " +
                 "}";
         JsonNode node = new ObjectMapper().readTree(JSON);
@@ -260,7 +260,7 @@ class ItineraryFactoryTest {
     @DisplayName("DMSStop - Opening Times")
     void dmsStop_openingTimes() throws JsonProcessingException {
         final String JSON = "{" +
-                " \"url\":\"/info/fake-product-p123\", " +
+                " \"dmsLink\": {\"link\": \"/info/fake-product-p123\"}," +
                 " \"opening\": {}" +
                 "}";
         JsonNode node = new ObjectMapper().readTree(JSON);

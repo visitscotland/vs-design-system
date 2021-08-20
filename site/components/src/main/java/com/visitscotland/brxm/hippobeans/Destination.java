@@ -18,7 +18,9 @@ public class Destination extends Page {
                 "visitscotland:Megalinks",
                 "visitscotland:Stackla",
                 "visitscotland:TourismInformation",
-                "visitscotland:TravelInformation"};
+                "visitscotland:TravelInformation",
+                "visitscotland:CannedSearchTours",
+                "visitscotland:CannedSearch"};
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
