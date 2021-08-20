@@ -16,7 +16,7 @@ import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
+import com.visitscotland.brxm.dms.DMSConstants;
 import org.hippoecm.hst.core.container.ComponentManager;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -160,7 +160,7 @@ class LinkServiceTest {
         when(dmsLink.getProduct()).thenReturn("123");
 
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
-        when(node.get(LinkService.URL).get(LinkService.URL_LINK)).thenReturn(url);
+        when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK)).thenReturn(url);
         when(url.asText()).thenReturn("/dms-page");
 
         FlatLink link = service.createLink(Locale.UK, dmsLink);
@@ -282,7 +282,7 @@ class LinkServiceTest {
         JsonNode url = mock(JsonNode.class);
 
         when(sharedLink.getLinkType()).thenReturn(dmsLink);
-        when(node.get(LinkService.URL).get(LinkService.URL_LINK)).thenReturn(url);
+        when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK)).thenReturn(url);
         when(url.asText()).thenReturn("/dms-page");
 
         String link = service.getPlainLink(sharedLink, node);
