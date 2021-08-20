@@ -3,10 +3,12 @@ package com.visitscotland.brxm.menu;
 
 import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.General;
+import com.visitscotland.brxm.translation.MockNodeBuilder;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
+import org.hippoecm.repository.api.RepositoryMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,7 +42,7 @@ class MenuItemProviderTest {
         Map<String, Set<String>> prototypes = new HashMap<>();
         prototypes.put(prototypeKey, new TreeSet<>(Arrays.asList("a", "b")));
 
-        menuItemProvider.constructPageAndModuleMenus(mock(Node.class), prototypes);
+        menuItemProvider.constructPageAndModuleMenus(mock(Node.class), prototypes, mock(RepositoryMap.class));
 
         Assertions.assertEquals(1, prototypes.size());
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("a", "b")), prototypes.get(prototypeKey));
@@ -57,7 +59,7 @@ class MenuItemProviderTest {
         Node subjectNode = mock(Node.class);
         when(subjectNode.hasNode("content")).thenReturn(false);
 
-        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes);
+        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes,  mock(RepositoryMap.class));
 
         Assertions.assertEquals(1, prototypes.size());
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("a", "b")), prototypes.get("new-page"));
@@ -79,7 +81,7 @@ class MenuItemProviderTest {
         BaseDocument baseDoc = mock(BaseDocument.class);
         when(hippoUtilsService.getDocumentFromNode(contentNode, true)).thenReturn(baseDoc);
 
-        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes);
+        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes,  mock(RepositoryMap.class));
 
         Assertions.assertEquals(1, prototypes.size());
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("a", "b")), prototypes.get("new-page"));
@@ -102,7 +104,7 @@ class MenuItemProviderTest {
         when(generalPage.getChildJcrTypes()).thenReturn(new String[]{"TypeA", "TypeB"});
         when(hippoUtilsService.getDocumentFromNode(contentNode, true)).thenReturn(generalPage);
 
-        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes);
+        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes,  mock(RepositoryMap.class));
 
         Assertions.assertEquals(1, prototypes.size());
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("TypeA", "TypeB")), prototypes.get("new-module"));
@@ -120,10 +122,44 @@ class MenuItemProviderTest {
         when(subjectNode.hasNode("content")).thenReturn(true);
         when(subjectNode.getNode("content")).thenThrow(RepositoryException.class);
 
-        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes);
+        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes, mock(RepositoryMap.class));
 
         Assertions.assertEquals(2, prototypes.size());
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("a", "b")), prototypes.get("new-page"));
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("c", "d")), prototypes.get("new-module"));
     }
+
+    @DisplayName("When new document disabled on translation, new-page and new-module removed on menu")
+    @Test
+    void newTranslationDocumentDisabled() throws Exception {
+        Map<String, Set<String>> prototypes = new HashMap<>();
+        prototypes.put("new-page", new TreeSet<>(Arrays.asList("a", "b")));
+        prototypes.put("new-module", new TreeSet<>(Arrays.asList("c", "d")));
+
+        Node subjectNode = new MockNodeBuilder().withProperty("hippotranslation:locale", "de").build();
+        RepositoryMap config = mock(RepositoryMap.class);
+        when(config.get("visitscotland:create-documents-on-translations")).thenReturn(false);
+
+        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes, config);
+
+        Assertions.assertEquals(0, prototypes.size());
+    }
+
+    @DisplayName("When new document endabled on translation, then new-module added to page")
+    @Test
+    void newTranslationDocumentEnabled() throws Exception {
+        Map<String, Set<String>> prototypes = new HashMap<>();
+        prototypes.put("new-page", new TreeSet<>(Arrays.asList("a", "b")));
+        prototypes.put("new-module", new TreeSet<>(Arrays.asList("c", "d")));
+
+        Node subjectNode = new MockNodeBuilder().withProperty("hippotranslation:locale", "de").build();
+        RepositoryMap config = mock(RepositoryMap.class);
+        when(config.get("visitscotland:create-documents-on-translations")).thenReturn(true);
+
+        menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes, config);
+
+        Assertions.assertEquals(1, prototypes.size());
+    }
+
+
 }
