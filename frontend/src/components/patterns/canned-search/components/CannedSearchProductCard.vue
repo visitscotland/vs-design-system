@@ -456,9 +456,12 @@ export default {
         .vs-product-card__summary-box {
             padding: $spacer-2;
             background-color: $color-gray-tint-7;
+            min-height: 4.5rem;
 
             .row {
                 align-items: center;
+                justify-content: center;
+                min-height: $spacer-10;
             }
         }
 
