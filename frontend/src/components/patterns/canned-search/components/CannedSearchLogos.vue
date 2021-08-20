@@ -34,6 +34,18 @@
                 data-test="vs-canned-search-logos__award-logo"
             />
         </VsTooltip>
+        <VsTooltip
+            :title="accessGuide.name"
+            v-if="accessGuide"
+            class="vs-canned-search-logos__access"
+            data-test="vs-canned-search-logos__access-guide"
+        >
+            <VsImg
+                :src="accessGuide.image"
+                :alt="accessGuide.name"
+                class="vs-canned-search-logos__logo"
+            />
+        </VsTooltip>
     </div>
 </template>
 
@@ -81,6 +93,14 @@ export default {
             type: Array,
             default: null,
         },
+        /**
+        * A specific award, should contain a `name` (String) and an `image` (String) - appears on
+        * the right hand side of the award list
+        */
+        accessGuide: {
+            type: Object,
+            default: null,
+        },
     },
 };
 
@@ -96,13 +116,17 @@ export default {
             z-index: 1;
             cursor: pointer;
         }
-    }
 
-    .vs-canned-search-logos__logo {
-        max-height: $spacer-9;
+        &__logo {
+            max-height: $spacer-9;
 
-        &:not(:last-child) {
-            padding-right: $spacer-2;
+            &:not(:last-child) {
+                padding-right: $spacer-2;
+            }
+        }
+
+        &__access {
+            float: right;
         }
     }
 </style>
