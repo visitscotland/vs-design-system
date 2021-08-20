@@ -28,6 +28,7 @@ const slideIndex = '0';
 const starSlotContent = 'This is a star rating';
 const catSlotContent = 'This is a list of categories';
 const logoSlotContent = 'This is a list of logos';
+const summaryRightSlotContent = 'This is a link';
 
 const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
     propsData: {
@@ -51,6 +52,7 @@ const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
         vsCannedSearchStarRating: starSlotContent,
         vsCannedSearchCategories: catSlotContent,
         vsCannedSearchLogos: logoSlotContent,
+        vsCannedSearchSummaryRight: summaryRightSlotContent,
     },
     provide: () => ({
         slideCols: {
@@ -122,24 +124,6 @@ describe('VsCannedSearchProductCard', () => {
             expect(wrapper.html()).toContain(description);
         });
 
-        describe(':websiteLink', () => {
-            it('should render a `vs-link` with the `href` provided in `websiteLink.link`', () => {
-                const prodLink = wrapper.find('[data-test="vs-product-card__website-link"]');
-
-                expect(prodLink.props().href).toBe(websiteLink.link);
-            });
-
-            it('should render a `vs-link` with the `type` provided in `websiteLink.type`', () => {
-                const prodLink = wrapper.find('[data-test="vs-product-card__website-link"]');
-
-                expect(prodLink.props().type).toBe(websiteLink.type);
-            });
-
-            it('should render the content of the `detailLink.label` property', () => {
-                expect(wrapper.html()).toContain(websiteLink.label);
-            });
-        });
-
         it('should render the content of the `priceIntro` property', () => {
             expect(wrapper.html()).toContain(priceIntro);
         });
@@ -176,6 +160,10 @@ describe('VsCannedSearchProductCard', () => {
 
         it('should render the content of the `vsCannedSearchLogos` slot', () => {
             expect(wrapper.html()).toContain(logoSlotContent);
+        });
+
+        it('should render the content of the `vsCannedSearchSummaryRight` slot', () => {
+            expect(wrapper.html()).toContain(summaryRightSlotContent);
         });
     });
 });

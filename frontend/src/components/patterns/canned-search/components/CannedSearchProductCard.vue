@@ -141,20 +141,16 @@
                         <VsCol
                             cols="6"
                             class="vs-product-card__summary-item"
+                            v-if="!!this.$slots['vsCannedSearchSummaryRight']"
                         >
-                            <div
-                                class="vs-product-card__summary-website"
-                                v-if="websiteLink"
-                            >
-                                <VsLink
-                                    :href="websiteLink.link"
-                                    :type="websiteLink.type || 'internal'"
-                                    class="vs-product-card__website-link"
-                                    data-test="vs-product-card__website-link"
-                                >
-                                    {{ websiteLink.label }}
-                                </VsLink>
-                            </div>
+                            <!--
+                                @slot Holds the content for the second optional item in the grey
+                                summary box  at the bottom of the card, usually a link
+                                Expects html
+                            -->
+                            <slot
+                                name="vsCannedSearchSummaryRight"
+                            />
                         </VsCol>
                     </VsRow>
                 </VsContainer>
@@ -231,15 +227,6 @@ export default {
         detailLink: {
             type: Object,
             required: true,
-        },
-        /**
-        * An object containing a link to product website, should contain a `url`
-        * field and a `label` field. Setting this will cause the link to appear in the
-        * right half of the summary box
-        */
-        websiteLink: {
-            type: Object,
-            default: null,
         },
         /**
         * The price of the product. Setting this will cause the price to appear in the
@@ -542,11 +529,6 @@ export default {
                 label: sampleAccom.dmsLink.label,
                 type: sampleAccom.dmsLink.type.toLowerCase()
             }"
-            :websiteLink="{
-                link: sampleAccom.website,
-                label: 'Visit website',
-                type: 'external'
-            }"
             :priceIntro="sampleAccom.price.priceLabel"
             :price="'£' + sampleAccom.price.price"
             :priceOutro="sampleAccom.price.priceBasis"
@@ -572,6 +554,13 @@ export default {
                 :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
                 :awards="sampleAccom.awards"
             />
+            <VsLink
+                :href="sampleAccom.website"
+                type="external"
+                slot="vsCannedSearchSummaryRight"
+            >
+                Visit Website
+            </VsLink>
         </VsCannedSearchProductCard>
     </VsCarousel>
 ```

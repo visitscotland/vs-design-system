@@ -43,11 +43,6 @@
                 }"
                 :location="prod.address.city + ', ' + prod.address.county"
                 :description="prod.description"
-                :website-link="prod.website ? {
-                    link: prod.website.link,
-                    label: prod.website.label,
-                    type: prod.website.type.toLowerCase()
-                } : null"
                 :price-intro="prod.price ? prod.price.priceLabel : ''"
                 :price="prod.price ? prod.price.price : ''"
                 :price-outro="prod.price ? prod.price.priceBasis : ''"
@@ -76,6 +71,14 @@
                         prod.covidInformation.safeTravels.name : ''"
                     :awards="prod.awards"
                 />
+                <VsLink
+                    v-if="prod.website"
+                    :href="prod.website.link"
+                    :type="prod.website.type.toLowerCase()"
+                    slot="vsCannedSearchSummaryRight"
+                >
+                    {{ prod.website.label }}
+                </VsLink>
             </VsCannedSearchProductCard>
         </VsCarousel>
     </div>
