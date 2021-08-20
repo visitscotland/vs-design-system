@@ -344,6 +344,7 @@ export default {
 
         .card-body {
             padding: $spacer-1 $spacer-0 $spacer-0;
+            min-height: 11rem;
         }
 
         .stretched-link {
@@ -414,10 +415,6 @@ export default {
                 bottom: .5em;
                 right: .5em;
             }
-        }
-
-        .vs-product-card__pre-description {
-            min-height: 7rem;
         }
 
         .vs-product-card__title {
@@ -508,7 +505,7 @@ export default {
 
             .card:hover {
                 box-shadow: none;
-                padding: $spacer-0;
+                padding: $spacer-0 $spacer-0 $spacer-2 $spacer-0;
                 margin-left: $spacer-0;
                 margin-right: $spacer-0;
                 margin-top: $spacer-0;
