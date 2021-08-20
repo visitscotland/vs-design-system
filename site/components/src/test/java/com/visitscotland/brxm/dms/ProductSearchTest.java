@@ -91,18 +91,6 @@ class ProductSearchTest {
                 );
     }
 
-  /*  @Test
-    @DisplayName("Constructs a DMS data URL for the canned search endpoint")
-    void productSearch_dmsDataEndpoint() {
-        when(properties.getDmsDataHost()).thenReturn("https://data.visitscotland.com");
-
-        String url = createBuilder().productTypes(DEFAULT_TYPE).buildCannedSearch();
-
-        assertTrue(url.startsWith("https://data.visitscotland.com"),
-                "The URL is expected to be a Dms data endpoint: " + url);
-        validateUrl(url);
-    }*/
-
     @Test
     @DisplayName("Location - Parameters when the location is a point")
     void location() {
