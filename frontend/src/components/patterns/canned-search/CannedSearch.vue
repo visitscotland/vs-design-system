@@ -43,9 +43,6 @@
                 }"
                 :location="prod.address.city + ', ' + prod.address.county"
                 :description="prod.description"
-                :price-intro="prod.price ? prod.price.priceLabel : ''"
-                :price="prod.price ? prod.price.price : ''"
-                :price-outro="prod.price ? prod.price.priceBasis : ''"
                 :badge-one="prod.category ? prod.category.name : ''"
                 :badge-two="prod.offers"
                 :badge-three="prod.covidInformation ?
@@ -69,7 +66,15 @@
                         prod.covidInformation.goodToGo.name : ''"
                     :safe-travels-logo="prod.covidInformation && prod.covidInformation.safeTravels ?
                         prod.covidInformation.safeTravels.name : ''"
+                    :access-guide="prod.accessGuide || null"
                     :awards="prod.awards"
+                />
+                <VsCannedSearchPrice
+                    v-if="prod.price"
+                    slot="vsCannedSearchSummaryLeft"
+                    :price-intro="prod.price.priceLabel"
+                    :price="prod.price.price"
+                    :price-outro="prod.price.priceBasis"
                 />
                 <VsLink
                     v-if="prod.website"
@@ -89,10 +94,12 @@ import VsCannedSearchProductCard from '@components/patterns/canned-search/compon
 import VsCannedSearchStars from '@components/patterns/canned-search/components/CannedSearchStars';
 import VsCannedSearchLogos from '@components/patterns/canned-search/components/CannedSearchLogos';
 import VsCannedSearchCategories from '@components/patterns/canned-search/components/CannedSearchCategories';
+import VsCannedSearchPrice from '@components/patterns/canned-search/components/CannedSearchPrice';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
+import VsLink from '@components/elements/link/Link';
 
 const axios = require('axios');
 
@@ -112,10 +119,12 @@ export default {
         VsCannedSearchStars,
         VsCannedSearchLogos,
         VsCannedSearchCategories,
+        VsCannedSearchPrice,
         VsCarousel,
         VsContainer,
         VsRow,
         VsCol,
+        VsLink,
     },
     props: {
         /**
@@ -177,7 +186,7 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow"
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
         >
             <template slot="vsCannedSearchButtons">
                 <VsButton
