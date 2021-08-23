@@ -4,7 +4,7 @@
         class="vs-breadcrumb py-4"
     >
         <BBreadcrumb
-            class="flex-nowrap p-0"
+            class="flex-nowrap p-0 mb-0"
             v-bind="$attrs"
         >
             <!-- @slot The breadcrumb content goes here -->
