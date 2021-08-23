@@ -4,6 +4,7 @@
 <#include "../../../../frontend/components/vs-link.ftl">
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
 <#include "../../../../frontend/components/vs-canned-search.ftl">
+<#include "../../../../frontend/components/vs-button.ftl">
 
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.CannedSearchModule" -->
 
