@@ -24,7 +24,7 @@
         <@moduleBuilder item />
 	</#list>
 
-    <@socialShare id="nojs" nojs="true"/>
+    <@socialShare nojs=true/>
 
     <#if otyml??>
         <@horizontalList otyml />

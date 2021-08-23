@@ -60,7 +60,7 @@
             </template>
 
             <template slot="vsShareButton">
-                <@socialShare id="default" nojs="false" />
+                <@socialShare nojs=false />
             </template>
 
             <template slot="vsIntroContent">
