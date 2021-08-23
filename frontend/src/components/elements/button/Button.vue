@@ -247,11 +247,11 @@ export default {
     &.btn-light,
     &.btn-transparent {
         &:focus {
-            box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+            box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.3);
         }
 
         &::after {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(187, 38, 132, 0.3);
         }
     }
 

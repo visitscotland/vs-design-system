@@ -51,4 +51,14 @@ public class ProductsSearch extends HippoCompound {
     public Boolean getFree() {
         return getSingleProperty("visitscotland:free");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:safeTravels")
+    public Boolean getSafeTravels() {
+        return getSingleProperty("visitscotland:safeTravels");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:goodToGo")
+    public Boolean getGoodToGo() {
+        return getSingleProperty("visitscotland:goodToGo");
+    }
 }

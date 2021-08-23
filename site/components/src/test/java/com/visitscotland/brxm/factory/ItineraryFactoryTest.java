@@ -324,4 +324,37 @@ class ItineraryFactoryTest {
         return page.getStops().values().iterator().next();
     }
 
+    @Test
+    @DisplayName("Duplicate stops on the same day are removed")
+    void duplicateStops_sameDay() {
+        List<Day> days = new ArrayList<>();
+        days.add(new ItineraryDayMockBuilder().addStop("a").subtitle("Apple").addStop("a").build());
+        Itinerary itin = mock(Itinerary.class);
+        when(documentUtils.getAllowedDocuments(itin, Day.class)).thenReturn(days);
+
+        ItineraryPage iti = factory.buildItinerary(itin, Locale.UK);
+
+        assertEquals(1, iti.getStops().size());
+        assertEquals("Apple", iti.getStops().get("a").getSubTitle());
+        assertEquals(1, iti.getErrorMessages().size());
+    }
+
+    @Test
+    @DisplayName("Duplicate stops across multiple are removed")
+    void duplicateStops_multipleDays() {
+        List<Day> days = new ArrayList<>();
+        days.add(new ItineraryDayMockBuilder().addStop("a").subtitle("Apple").addStop("b").subtitle("Pear").build());
+        days.add(new ItineraryDayMockBuilder().addStop("a").build());
+        Itinerary itin = mock(Itinerary.class);
+        when(documentUtils.getAllowedDocuments(itin, Day.class)).thenReturn(days);
+
+        ItineraryPage iti = factory.buildItinerary(itin, Locale.UK);
+
+        assertEquals(2, iti.getStops().size());
+        assertEquals("Apple", iti.getStops().get("a").getSubTitle());
+        assertEquals("Pear", iti.getStops().get("b").getSubTitle());
+        assertEquals(1, iti.getErrorMessages().size());
+    }
+
+
 }

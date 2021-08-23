@@ -56,6 +56,8 @@ public class ProductSearchBuilder {
     private Locale locale;
     private Boolean offers;
     private Boolean free;
+    private Boolean safeTravels;
+    private Boolean goodToGo;
     private Order order;
 
     private final Set<String> categories = new TreeSet<>();
@@ -225,6 +227,18 @@ public class ProductSearchBuilder {
         return this;
     }
 
+    public ProductSearchBuilder safeTravels(Boolean safeTravels){
+        this.safeTravels = safeTravels;
+
+        return this;
+    }
+
+    public ProductSearchBuilder goodToGo(Boolean goodToGo){
+        this.goodToGo = goodToGo;
+
+        return this;
+    }
+
     public ProductSearchBuilder sortBy(String order){
         this.order = Order.fromValue(order);
         return this;
@@ -251,7 +265,7 @@ public class ProductSearchBuilder {
         return buildSearchUrl(DMSConstants.PRODUCT_SEARCH_DATA_MAP, true);
     }
     public String buildCannedSearch(){
-        return buildSearchUrl(DMSConstants.VS_DMS_CANNED_SEARCH, true);
+        return buildSearchUrl(DMSConstants.VS_DMS_CANNED_SEARCH, false);
     }
 
     private String buildSearchUrl(String path, boolean dataEndpoint){
@@ -307,6 +321,12 @@ public class ProductSearchBuilder {
         }
         if (Boolean.TRUE.equals(free)){
             compose = addParams(compose, FREE, "0");
+        }
+        if (Boolean.TRUE.equals(safeTravels)){
+            compose = addParams(compose, FACILITY_PARAM, "safetrav");
+        }
+        if (Boolean.TRUE.equals(goodToGo)){
+            compose = addParams(compose, FACILITY_PARAM, "goodtogo");
         }
         if (Boolean.TRUE.equals(offers)){
             compose = addParams(compose, OFFERS, "true");

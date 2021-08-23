@@ -253,11 +253,11 @@ export default {
 
         @include media-breakpoint-up(lg) {
             bottom: 0;
-            max-width: 400px;
             position: absolute;
             right: 0;
-            width: 14rem;
+            width: 350px;
             z-index: 2;
+            padding: $spacer-1 0;
         }
     }
 

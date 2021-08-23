@@ -16,7 +16,12 @@
                     <@hst.html hippohtml=module.description/>
                 </span>
                 <span slot="iknowCta">
-                    <vs-link href="${module.link.link}">${module.link.label}</vs-link>
+                    <vs-link
+                        href="${module.link.link}"
+                        <#if module.link.type != "internal">type="${module.link.type}"</#if>
+                    >
+                        ${module.link.label}
+                    </vs-link>
                 </span>
             </vs-iknow-partner-item>
         </vs-container>

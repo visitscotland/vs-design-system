@@ -30,6 +30,27 @@ public class Article extends BaseDocument {
 
     @HippoEssentialsGenerated(internalName = "visitscotland:paragraph")
     public List<ArticleSection> getParagraph() {
-        return getChildBeansByName("visitscotland:paragraph", ArticleSection.class);
+        return getChildBeansByName("visitscotland:paragraph",
+                ArticleSection.class);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:diff")
+    public String getDiff() {
+        return getSingleProperty("visitscotland:diff");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
+    public Boolean getTranslationFlag() {
+        return getSingleProperty("visitscotland:translationFlag");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
+    public String getTranslationPriority() {
+        return getSingleProperty("visitscotland:translationPriority");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
     }
 }

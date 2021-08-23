@@ -46,8 +46,8 @@ public class DMSProxy {
      * @return Body of the end point or null if status code not 200 or 300
      */
     public String request(String path) {
-        if (!Contract.isEmpty(properties.getDmsDataHost()) && path.startsWith(properties.getDmsHost())){
-            return request(path.substring(properties.getDmsHost().length()), null);
+        if (!Contract.isEmpty(properties.getDmsDataHost()) && path.startsWith(properties.getDmsDataHost())){
+            return request(path.substring(properties.getDmsDataHost().length()), null);
         }
 
         return request(path, null);

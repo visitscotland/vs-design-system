@@ -138,6 +138,7 @@ public class ICentreFactory {
                 .productTypes(DMSConstants.TYPE_SERVICES).category(DMSConstants.CAT_ICENTRE)
                 .sortBy(DMSConstants.SORT_ALPHA);
 
+        //Retrieves the iCenters for a location
         JsonNode node = dmsData.legacyMapSearch(dmsQuery);
 
         for (JsonNode child : node) {
