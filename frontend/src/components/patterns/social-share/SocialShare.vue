@@ -243,7 +243,7 @@ export default {
         }
 
         &__share-btn.vs-button.btn{
-            padding: 1rem;
+            padding: 0 $spacer-1;
             letter-spacing: initial;
             text-decoration: underline;
             font-weight: $font-weight-normal;
