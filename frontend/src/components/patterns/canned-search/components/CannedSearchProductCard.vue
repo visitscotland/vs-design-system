@@ -72,39 +72,20 @@
                         >
                             {{ location }}
                         </VsHeading>
-                        <div v-if="stars">
-                            <div
-                                class="vs-product-card__stars"
-                                v-if="stars.min && stars.max && stars.min !== stars.max"
-                            >
-                                <span
-                                    class="vs-product-card__star"
-                                    :class="{'vs-product-card__star--gold' : stars.gold}"
-                                >
-                                    &#9733;
-                                </span>
-                                {{ stars.min }}-{{ stars.max }}
-                            </div>
-                            <div
-                                class="vs-product-card__stars"
-                                v-else
-                            >
-                                <span
-                                    v-for="index in stars.min"
-                                    :key="index"
-                                    class="vs-product-card__star"
-                                    :class="{'vs-product-card__star--gold' : stars.gold}"
-                                >
-                                    &#9733;
-                                </span>
-                            </div>
-                        </div>
-                        <div
-                            class="vs-product-card__categories"
-                            data-test="vs-product-card__categories"
-                        >
-                            {{ transformedCategories }}
-                        </div>
+                        <!--
+                            @slot Holds an optional star rating
+                            Expects a VsCannedSearchStars component
+                        -->
+                        <slot
+                            name="vsCannedSearchStarRating"
+                        />
+                        <!--
+                            @slot Holds an optional list of categories
+                            Expects a VsCannedSearchCategories component
+                        -->
+                        <slot
+                            name="vsCannedSearchCategories"
+                        />
                     </div>
                     <div class="vs-product-card__description">
                         <p class="text-truncate text-truncate--2">
@@ -118,42 +99,13 @@
                         </VsLink>
                     </div>
                 </div>
-                <div class="vs-product-card__logos">
-                    <VsTooltip
-                        :title="goodToGoLogo"
-                        v-if="goodToGoLogo"
-                        data-test="vs-product-card__good-to-go"
-                    >
-                        <VsImg
-                            src="https://www.visitscotland.com/cms-images/logos/goodToGo.png"
-                            :alt="goodToGoLogo"
-                            class="vs-product-card__logo"
-                        />
-                    </VsTooltip>
-                    <VsTooltip
-                        :title="safeTravelsLogo"
-                        v-if="safeTravelsLogo"
-                        data-test="vs-product-card__safe-travels"
-                    >
-                        <VsImg
-                            src="https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
-                            :alt="safeTravelsLogo"
-                            class="vs-product-card__logo"
-                        />
-                    </VsTooltip>
-                    <VsTooltip
-                        v-for="award in awards"
-                        :title="award.name"
-                        :key="award.id"
-                    >
-                        <VsImg
-                            :src="award.image"
-                            :alt="award.name"
-                            class="vs-product-card__logo"
-                            data-test="vs-product-card__award-logo"
-                        />
-                    </VsTooltip>
-                </div>
+                <!--
+                    @slot Holds an optional list of logos and awards that the product has won
+                    Expects a VsCannedSearchLogos component
+                -->
+                <slot
+                    name="vsCannedSearchLogos"
+                />
             </section>
             <div class="vs-product-card__summary-box">
                 <VsContainer>
@@ -161,52 +113,33 @@
                         <VsCol
                             cols="6"
                             class="vs-product-card__summary-item"
+                            v-if="!!this.$slots['vsCannedSearchSummaryLeft']"
                         >
-                            <div
-                                class="vs-product-card__summary-price"
-                                v-if="price"
-                            >
-                                <div
-                                    v-if="priceIntro"
-                                    class="vs-product-card__summary-price-intro"
-                                >
-                                    {{ priceIntro }}
-                                </div>
-                                <div
-                                    v-if="price"
-                                    class="vs-product-card__summary-price-main"
-                                >
-                                    {{ price }}
-                                </div>
-                                <div
-                                    v-if="priceOutro"
-                                    class="vs-product-card__summary-price-outro"
-                                >
-                                    {{ priceOutro }}
-                                </div>
-                            </div>
-                            <div
-                                class="vs-product-card__summary-padding"
-                                v-else
+                            <!--
+                                @slot Holds the content for the second optional item in the grey
+                                summary box  at the bottom of the card, usually a
+                                vsCannedSearchPrice
+
+                                Expects html
+                            -->
+                            <slot
+                                name="vsCannedSearchSummaryLeft"
                             />
                         </VsCol>
                         <VsCol
                             cols="6"
                             class="vs-product-card__summary-item"
+                            v-if="!!this.$slots['vsCannedSearchSummaryRight']"
                         >
-                            <div
-                                class="vs-product-card__summary-website"
-                                v-if="websiteLink"
-                            >
-                                <VsLink
-                                    :href="websiteLink.link"
-                                    :type="websiteLink.type || 'internal'"
-                                    class="vs-product-card__website-link"
-                                    data-test="vs-product-card__website-link"
-                                >
-                                    {{ websiteLink.label }}
-                                </VsLink>
-                            </div>
+                            <!--
+                                @slot Holds the content for the second optional item in the grey
+                                summary box  at the bottom of the card, usually a link
+
+                                Expects html
+                            -->
+                            <slot
+                                name="vsCannedSearchSummaryRight"
+                            />
                         </VsCol>
                     </VsRow>
                 </VsContainer>
@@ -222,15 +155,14 @@ import VsLink from '@components/elements/link/Link';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
-import VsTooltip from '@components/elements/tooltip/Tooltip';
 
 /**
 * Generic product card for canned search
 *
-* @displayName Product Card
+* @displayName Canned Search Product Card
 */
 export default {
-    name: 'VsProductCard',
+    name: 'VsCannedSearchProductCard',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -240,7 +172,6 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
-        VsTooltip,
     },
     props: {
         /**
@@ -272,22 +203,6 @@ export default {
             default: '',
         },
         /**
-        * The star rating of the product, can have a `min`, `max` int
-        * and a `gold` boolean
-        */
-        stars: {
-            type: Object,
-            default: null,
-        },
-        /**
-        * A list of categories that describe the product, should contain
-        * objects, each of which has a `name` prop
-        */
-        categories: {
-            type: Array,
-            default: null,
-        },
-        /**
         * The description of the product, will be truncated if >2 lines
         */
         description: {
@@ -301,39 +216,6 @@ export default {
         detailLink: {
             type: Object,
             required: true,
-        },
-        /**
-        * An object containing a link to product website, should contain a `url`
-        * field and a `label` field. Setting this will cause the link to appear in the
-        * right half of the summary box
-        */
-        websiteLink: {
-            type: Object,
-            default: null,
-        },
-        /**
-        * The price of the product. Setting this will cause the price to appear in the
-        * left half of the summary box
-        */
-        price: {
-            type: String,
-            default: '',
-        },
-        /**
-        * A line of text that precedes the product price, not rendered if price
-        * not provided
-        */
-        priceIntro: {
-            type: String,
-            default: '',
-        },
-        /**
-        * A line of text that appears after the product price, not rendered if price
-        * not provided
-        */
-        priceOutro: {
-            type: String,
-            default: '',
         },
         /**
         * Appears in a teal badge over the image at the top right. Not rendered if not set
@@ -359,48 +241,12 @@ export default {
             default: '',
         },
         /**
-        * If set, the good to go logo appears. The text set in this property will appear as
-        * the tooltip of that logo
-        */
-        goodToGoLogo: {
-            type: String,
-            default: '',
-        },
-        /**
-        * If set, the safe travels logo appears. The text set in this property will appear as
-        * the tooltip of that logo
-        */
-        safeTravelsLogo: {
-            type: String,
-            default: '',
-        },
-        /**
-        * A set of award badges to display, each should contain a unique `id` (String), a `name`
-        * (String) that appears as a tooltip and a url to an `image` (String)
-        */
-        awards: {
-            type: Array,
-            default: null,
-        },
-        /**
         * Mandatory index of slide -
         * needed to calculate active slides
         */
         slideIndex: {
             type: String,
             required: true,
-        },
-    },
-    computed: {
-        transformedCategories() {
-            if (this.categories) {
-                return this.categories
-                    .slice(0, 3)
-                    .map((cat) => cat.name)
-                    .join(' | ');
-            }
-
-            return '';
         },
     },
     methods: {
@@ -450,6 +296,7 @@ export default {
 
         .card-body {
             padding: $spacer-1 $spacer-0 $spacer-0;
+            min-height: 11rem;
         }
 
         .stretched-link {
@@ -522,10 +369,6 @@ export default {
             }
         }
 
-        .vs-product-card__pre-description {
-            min-height: 7rem;
-        }
-
         .vs-product-card__title {
             font-size: $font-size-base;
             line-height: $line-height-s;
@@ -549,26 +392,6 @@ export default {
             margin-bottom: $spacer-3;
         }
 
-        .vs-product-card__stars {
-            line-height: 1;
-            margin-bottom: $spacer-3;
-        }
-
-        .vs-product-card__star {
-            color: $color-purple;
-
-            &--gold {
-                color: $color-yellow;
-            }
-        }
-
-        .vs-product-card__categories {
-            font-size: $font-size-base;
-            line-height: $line-height-s;
-            font-weight: 600;
-            margin-bottom: $spacer-1;
-        }
-
         .vs-product-card__description {
             font-size: $font-size-base;
             line-height: $line-height-s;
@@ -582,9 +405,12 @@ export default {
         .vs-product-card__summary-box {
             padding: $spacer-2;
             background-color: $color-gray-tint-7;
+            min-height: 4.5rem;
 
             .row {
                 align-items: center;
+                justify-content: center;
+                min-height: $spacer-10;
             }
         }
 
@@ -595,20 +421,6 @@ export default {
 
             &:not(:last-child) {
                 border-right: 1px solid $color-gray-tint-1;
-            }
-        }
-
-        .vs-product-card__summary-padding {
-            height: $spacer-9;
-        }
-
-        .vs-product-card__summary-price {
-            &-main {
-                font-weight: bold;
-            }
-
-            &-outro {
-                font-size: $xs-font-size;
             }
         }
 
@@ -624,25 +436,6 @@ export default {
             }
         }
 
-        .vs-product-card__logos {
-            margin-top: $spacer-9;
-            margin-bottom: $spacer-4;
-            min-height: $spacer-9;
-
-            .vs-tooltip {
-                z-index: 1;
-                cursor: pointer;
-            }
-        }
-
-        .vs-product-card__logo {
-            max-height: $spacer-9;
-
-            &:not(:last-child) {
-                padding-right: $spacer-2;
-            }
-        }
-
         &--disabled {
             .card {
                 opacity: 0.5;
@@ -650,7 +443,7 @@ export default {
 
             .card:hover {
                 box-shadow: none;
-                padding: $spacer-0;
+                padding: $spacer-0 $spacer-0 $spacer-2 $spacer-0;
                 margin-left: $spacer-0;
                 margin-right: $spacer-0;
                 margin-top: $spacer-0;
@@ -675,17 +468,12 @@ export default {
         slides-md="2"
         slides-lg="3"
     >
-        <VsProductCard
+        <VsCannedSearchProductCard
             slideIndex="0"
             :imgSrc="sampleAccom.images[0].mediaUrl"
             :imgAlt="sampleAccom.name"
             :title="sampleAccom.name"
             :location="sampleAccom.address.city + ', ' + sampleAccom.address.county"
-            :stars="{
-                min:sampleAccom.grading.minStars,
-                max:sampleAccom.grading.maxStars,
-                gold:sampleAccom.grading.gold
-            }"
             :categories="sampleAccom.locations"
             :description="sampleAccom.description"
             :detailLink="{
@@ -693,49 +481,43 @@ export default {
                 label: sampleAccom.dmsLink.label,
                 type: sampleAccom.dmsLink.type.toLowerCase()
             }"
-            :websiteLink="{
-                link: sampleAccom.website.link,
-                label: sampleAccom.website.label,
-                type: sampleAccom.website.type.toLowerCase()
-            }"
-            :priceIntro="sampleAccom.price.priceLabel"
-            :price="'£' + sampleAccom.price.price"
-            :priceOutro="sampleAccom.price.priceBasis"
             :badgeOne="sampleAccom.category.name"
             :badgeTwo="sampleAccom.offers"
             :badgeThree="sampleAccom.covidInformation ?
                 sampleAccom.covidInformation.weAreOpen : ''"
-            :goodToGoLogo="sampleAccom.covidInformation.goodToGo"
-            :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
-            :awards="sampleAccom.awards"
         >
-        </VsProductCard>
-        <VsProductCard
-            slideIndex="1"
-            :imgSrc="sampleEvent.images[0].mediaUrl"
-            :imgAlt="sampleEvent.name"
-            :title="sampleEvent.name"
-            :location="sampleEvent.address.city + ', ' + sampleEvent.address.county"
-            :categories="sampleEvent.locations"
-            :description="sampleEvent.description"
-            :detailLink="{
-                link: sampleEvent.dmsLink.link,
-                label: sampleEvent.dmsLink.label,
-                type: sampleEvent.dmsLink.type.toLowerCase()
-            }"
-            :websiteLink="{
-                link: sampleEvent.website.link,
-                label: sampleEvent.website.label,
-                type: sampleEvent.website.type.toLowerCase()
-            }"
-            :priceIntro="sampleEvent.price.priceLabel"
-            :price="'£' + sampleEvent.price.price"
-            :priceOutro="sampleEvent.price.priceBasis"
-            :badgeOne="sampleEvent.category.name"
-            :badgeTwo="sampleEvent.offers"
-            :awards="sampleEvent.awards"
-        >
-        </VsProductCard>
+            <VsCannedSearchStars
+                slot="vsCannedSearchStarRating"
+                :min="sampleAccom.grading.minStars"
+                :max="sampleAccom.grading.maxStars"
+                :gold="sampleAccom.grading.gold"
+            />
+            <VsCannedSearchCategories
+                slot="vsCannedSearchCategories"
+                v-if="sampleAccom.locations"
+                :categories="sampleAccom.locations"
+            />
+            <VsCannedSearchLogos
+                slot="vsCannedSearchLogos"
+                :goodToGoLogo="sampleAccom.covidInformation.goodToGo"
+                :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
+                :awards="sampleAccom.awards"
+            />
+            <VsCannedSearchPrice
+                v-if="sampleAccom.price"
+                slot="vsCannedSearchSummaryLeft"
+                :priceIntro="sampleAccom.price.priceLabel"
+                :price="'£' + sampleAccom.price.price"
+                :priceOutro="sampleAccom.price.priceBasis"
+            />
+            <VsLink
+                :href="sampleAccom.website"
+                type="external"
+                slot="vsCannedSearchSummaryRight"
+            >
+                Visit Website
+            </VsLink>
+        </VsCannedSearchProductCard>
     </VsCarousel>
 ```
 </docs>

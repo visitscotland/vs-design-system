@@ -29,7 +29,7 @@
             slides-lg="3"
             v-if="products.length"
         >
-            <VsProductCard
+            <VsCannedSearchProductCard
                 v-for="(prod, index) in products"
                 :key="index"
                 :slide-index="'' + index"
@@ -42,41 +42,64 @@
                     type: prod.dmsLink.type.toLowerCase()
                 }"
                 :location="prod.address.city + ', ' + prod.address.county"
-                :stars="prod.grading ? {
-                    min:prod.grading.minStars,
-                    max:prod.grading.maxStars,
-                    gold:prod.grading.gold
-                } : null"
                 :description="prod.description"
-                :website-link="prod.website ? {
-                    link: prod.website.link,
-                    label: prod.website.label,
-                    type: prod.website.type.toLowerCase()
-                } : null"
-                :price-intro="prod.price ? prod.price.priceLabel : ''"
-                :price="prod.price ? prod.price.price : ''"
-                :price-outro="prod.price ? prod.price.priceBasis : ''"
                 :badge-one="prod.category ? prod.category.name : ''"
                 :badge-two="prod.offers"
                 :badge-three="prod.covidInformation ?
                     prod.covidInformation.weAreOpen : ''"
-                :good-to-go-logo="prod.covidInformation && prod.covidInformation.goodToGo ?
-                    prod.covidInformation.goodToGo.name : ''"
-                :safe-travels-logo="prod.covidInformation && prod.covidInformation.safeTravels ?
-                    prod.covidInformation.safeTravels.name : ''"
-                :awards="prod.awards"
-                :categories="prod.locations"
-            />
+            >
+                <VsCannedSearchStars
+                    v-if="prod.grading"
+                    slot="vsCannedSearchStarRating"
+                    :min="prod.grading.minStars"
+                    :max="prod.grading.maxStars"
+                    :gold="prod.grading.gold"
+                />
+                <VsCannedSearchCategories
+                    slot="vsCannedSearchCategories"
+                    v-if="prod.locations"
+                    :categories="prod.locations"
+                />
+                <VsCannedSearchLogos
+                    slot="vsCannedSearchLogos"
+                    :good-to-go-logo="prod.covidInformation && prod.covidInformation.goodToGo ?
+                        prod.covidInformation.goodToGo.name : ''"
+                    :safe-travels-logo="prod.covidInformation && prod.covidInformation.safeTravels ?
+                        prod.covidInformation.safeTravels.name : ''"
+                    :access-guide="prod.accessGuide || null"
+                    :awards="prod.awards"
+                />
+                <VsCannedSearchPrice
+                    v-if="prod.price"
+                    slot="vsCannedSearchSummaryLeft"
+                    :price-intro="prod.price.priceLabel"
+                    :price="prod.price.price"
+                    :price-outro="prod.price.priceBasis"
+                />
+                <VsLink
+                    v-if="prod.website"
+                    :href="prod.website.link"
+                    :type="prod.website.type.toLowerCase()"
+                    slot="vsCannedSearchSummaryRight"
+                >
+                    {{ prod.website.label }}
+                </VsLink>
+            </VsCannedSearchProductCard>
         </VsCarousel>
     </div>
 </template>
 
 <script>
-import VsProductCard from '@components/patterns/canned-search/components/ProductCard';
+import VsCannedSearchProductCard from '@components/patterns/canned-search/components/CannedSearchProductCard';
+import VsCannedSearchStars from '@components/patterns/canned-search/components/CannedSearchStars';
+import VsCannedSearchLogos from '@components/patterns/canned-search/components/CannedSearchLogos';
+import VsCannedSearchCategories from '@components/patterns/canned-search/components/CannedSearchCategories';
+import VsCannedSearchPrice from '@components/patterns/canned-search/components/CannedSearchPrice';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
+import VsLink from '@components/elements/link/Link';
 
 const axios = require('axios');
 
@@ -92,11 +115,16 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsProductCard,
+        VsCannedSearchProductCard,
+        VsCannedSearchStars,
+        VsCannedSearchLogos,
+        VsCannedSearchCategories,
+        VsCannedSearchPrice,
         VsCarousel,
         VsContainer,
         VsRow,
         VsCol,
+        VsLink,
     },
     props: {
         /**
@@ -158,7 +186,7 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/search/productsearch?areaproxdist=10&loc=Scotland&locplace=&locprox=1&prodtypes=acco&locale="
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
         >
             <template slot="vsCannedSearchButtons">
                 <VsButton
