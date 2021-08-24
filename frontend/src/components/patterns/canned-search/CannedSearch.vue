@@ -203,5 +203,28 @@ export default {
             </template>
         </VsCannedSearch>
     </VsModuleWrapper>
+    <VsModuleWrapper>
+        <template slot="vsModuleWrapperHeading">
+            An events search example
+        </template>
+
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland&fac_id=goodtogo"
+        >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All Events
+                </VsButton>
+                <VsButton
+                    href="https://www.visitscotland.com"
+                    icon="map"
+                >
+                    View on Map
+                </VsButton>
+            </template>
+        </VsCannedSearch>
+    </VsModuleWrapper>
 ```
 </docs>
