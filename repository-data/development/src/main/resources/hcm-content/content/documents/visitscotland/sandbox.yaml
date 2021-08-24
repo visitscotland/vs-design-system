@@ -15682,7 +15682,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 28555a17-fa4d-4438-ae61-8b90c6325cc7
       hippo:name: Accommodation Search
-      hippo:versionHistory: 836c5ba9-198a-429c-a1fe-9c2fa6ff1ee1
+      hippo:versionHistory: 38fc0bc5-9513-4410-ab8c-a92980c4c219
       /accommodation-search[1]:
         jcr:primaryType: visitscotland:CannedSearch
         jcr:mixinTypes: ['mix:referenceable']
@@ -15692,7 +15692,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-08-09T14:33:29.563+01:00
-        hippostdpubwf:lastModificationDate: 2021-08-24T12:44:31.393+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T15:54:50.843+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 84a742b2-fe88-4ead-80d2-721654153443
         hippotranslation:locale: en
@@ -15709,15 +15709,15 @@
             visitscotland:distance: 10.0
             visitscotland:dmsAwards: []
             visitscotland:dmsCategories: []
-            visitscotland:dmsFacilities: [accessguide]
+            visitscotland:dmsFacilities: []
             visitscotland:free: false
-            visitscotland:goodToGo: false
+            visitscotland:goodToGo: true
             visitscotland:location: Glasgow
             visitscotland:offers: false
-            visitscotland:officialrating: ['5']
+            visitscotland:officialrating: []
             visitscotland:productType: acco
             visitscotland:producttype: ''
-            visitscotland:safeTravels: false
+            visitscotland:safeTravels: true
       /accommodation-search[2]:
         jcr:primaryType: visitscotland:CannedSearch
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -15727,7 +15727,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-08-09T14:33:29.563+01:00
-        hippostdpubwf:lastModificationDate: 2021-08-24T12:44:37.731+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T15:54:56.015+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 84a742b2-fe88-4ead-80d2-721654153443
         hippotranslation:locale: en
@@ -15744,15 +15744,15 @@
             visitscotland:distance: 10.0
             visitscotland:dmsAwards: []
             visitscotland:dmsCategories: []
-            visitscotland:dmsFacilities: [accessguide]
+            visitscotland:dmsFacilities: []
             visitscotland:free: false
-            visitscotland:goodToGo: false
+            visitscotland:goodToGo: true
             visitscotland:location: Glasgow
             visitscotland:offers: false
-            visitscotland:officialrating: ['5']
+            visitscotland:officialrating: []
             visitscotland:productType: acco
             visitscotland:producttype: ''
-            visitscotland:safeTravels: false
+            visitscotland:safeTravels: true
       /accommodation-search[3]:
         jcr:primaryType: visitscotland:CannedSearch
         jcr:mixinTypes: ['mix:referenceable']
@@ -15762,9 +15762,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-08-09T14:33:29.563+01:00
-        hippostdpubwf:lastModificationDate: 2021-08-24T12:44:37.731+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T15:54:56.015+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2021-08-24T12:44:42.170+01:00
+        hippostdpubwf:publicationDate: 2021-08-24T15:54:58.955+01:00
         hippotranslation:id: 84a742b2-fe88-4ead-80d2-721654153443
         hippotranslation:locale: en
         visitscotland:title: Accomodation
@@ -15780,21 +15780,21 @@
             visitscotland:distance: 10.0
             visitscotland:dmsAwards: []
             visitscotland:dmsCategories: []
-            visitscotland:dmsFacilities: [accessguide]
+            visitscotland:dmsFacilities: []
             visitscotland:free: false
-            visitscotland:goodToGo: false
+            visitscotland:goodToGo: true
             visitscotland:location: Glasgow
             visitscotland:offers: false
-            visitscotland:officialrating: ['5']
+            visitscotland:officialrating: []
             visitscotland:productType: acco
             visitscotland:producttype: ''
-            visitscotland:safeTravels: false
+            visitscotland:safeTravels: true
     /events-search:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 146e6eee-8b46-4d2f-bc07-218ceaf2ece4
       hippo:name: Events Search
-      hippo:versionHistory: 49959ce4-179f-4c9a-8eaa-e589c5cbf56b
+      hippo:versionHistory: 2fbb5765-fba8-454b-972e-ac5e8618c70f
       /events-search[1]:
         jcr:primaryType: visitscotland:CannedSearch
         jcr:mixinTypes: ['mix:referenceable']
@@ -15804,7 +15804,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-08-23T15:18:51.737+01:00
-        hippostdpubwf:lastModificationDate: 2021-08-24T12:17:05.928+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T15:17:15.910+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 3649a4f9-12af-44a2-b837-2f0ce7c55fb5
         hippotranslation:locale: en
@@ -15839,7 +15839,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-08-23T15:18:51.737+01:00
-        hippostdpubwf:lastModificationDate: 2021-08-24T12:17:14.955+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T15:17:23.074+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 3649a4f9-12af-44a2-b837-2f0ce7c55fb5
         hippotranslation:locale: en
@@ -15874,9 +15874,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-08-23T15:18:51.737+01:00
-        hippostdpubwf:lastModificationDate: 2021-08-24T12:17:14.955+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T15:17:23.074+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2021-08-24T12:17:39.215+01:00
+        hippostdpubwf:publicationDate: 2021-08-24T15:17:26.110+01:00
         hippotranslation:id: 3649a4f9-12af-44a2-b837-2f0ce7c55fb5
         hippotranslation:locale: en
         visitscotland:title: Events

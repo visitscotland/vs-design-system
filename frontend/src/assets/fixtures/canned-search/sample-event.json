@@ -40,11 +40,16 @@
      "priceBasis": "Per ticket"
    },
    "covidInformation": {
-     "goodToGo": {
-       "id": "goodToGo",
-       "name": "Good to go",
-       "image": "https://www.visitscotland.com/cms-images/logos/goodToGo.png"
-     }
+      "goodToGo": {
+        "id": "goodToGo",
+        "name": "Good to go",
+        "image": "https://www.visitscotland.com/cms-images/logos/goodToGo.png"
+      },
+      "safeTravels": {
+        "id": "SafeTravels",
+        "name": "Safe Travels",
+        "image": "https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
+      }
    },
    "opening": {
       "period": {

@@ -11,7 +11,7 @@
 <#macro cannedSearch module themeName="">
     <vs-module-wrapper class="theme-${themeName}">
         <template slot="vsModuleWrapperHeading">
-            ${module.title}
+            ${module.title} - ${module.productType}
         </template>
 
         <template slot="vsModuleWrapperIntro">
