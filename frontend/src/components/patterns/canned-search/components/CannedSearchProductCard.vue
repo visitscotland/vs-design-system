@@ -137,7 +137,9 @@
                             </div>
                         </VsCol>
                     </VsRow>
-                    <VsRow>
+                    <VsRow
+                        class="row--tall"
+                    >
                         <VsCol
                             cols="6"
                             class="vs-product-card__summary-item"
@@ -488,7 +490,11 @@ export default {
             .row {
                 align-items: center;
                 justify-content: center;
-                min-height: $spacer-10;
+                min-height: $spacer-9;
+
+                &--tall {
+                    min-height: $spacer-10;
+                }
             }
         }
 
