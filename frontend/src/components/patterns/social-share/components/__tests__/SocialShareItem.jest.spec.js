@@ -13,6 +13,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsSocialShareItem, {
     provide: {
         pageUrl: url,
         pageTitle: title,
+        noJs: false,
     },
 });
 
@@ -51,10 +52,11 @@ describe('VsSocialShareItem', () => {
 
             const shareItem = wrapper.find('[data-test="vs-social-share-item"]');
             const shareLink = shareItem.find('.vs-social-share-item__link');
-            const shareSvg = shareItem.find('vssvg-stub');
+            const shareIcon = shareItem.find('vsicon-stub');
 
             expect(shareLink.attributes('href')).toBe('https://wa.me/?text=VisitScotland%20-%20https://www.visitscotland.com');
-            expect(shareSvg.attributes('path')).toBe('whatsapp');
+            expect(shareIcon.attributes('name')).toBe('whatsapp');
+            expect(shareIcon.attributes('customcolour')).toBe('#455a64');
         });
 
         it('should render the correct icon and URL when `name` is `twitter`', async() => {
@@ -66,7 +68,7 @@ describe('VsSocialShareItem', () => {
             const shareLink = shareItem.find('.vs-social-share-item__link');
             const shareIcon = shareItem.find('vsicon-stub');
 
-            expect(shareLink.attributes('href')).toBe('https://twitter.com/intent/tweet?text=VisitScotland&url=https://www.visitscotland.com');
+            expect(shareLink.attributes('href')).toBe('https://twitter.com/intent/tweet?text=VisitScotland%20@VisitScotland&url=https://www.visitscotland.com');
             expect(shareIcon.attributes('name')).toBe('twitter');
             expect(shareIcon.attributes('customcolour')).toBe('#08A0E9');
         });
@@ -138,10 +140,15 @@ describe('VsSocialShareItem', () => {
 
             expect(shareLink.text()).toBe('Link copied!');
         });
+
+        it('should accept a `noJs` property injected by the parent component', () => {
+            /* eslint-disable no-underscore-dangle */
+            expect(wrapper.vm._provided.noJs).toBe(false);
+        });
     });
 
     describe(':methods', () => {
-        it('should copy text when copy to clipboard link is clicked', async() => {
+        it('should copy page URL when copy link button is clicked', async() => {
             await wrapper.setProps({
                 name: 'link',
             });
@@ -152,6 +159,20 @@ describe('VsSocialShareItem', () => {
 
             shareLink.trigger('click');
             expect(document.execCommand).toHaveBeenCalledWith('copy');
+        });
+    });
+
+    describe(':events', () => {
+        it('it should emit an `onCopyLink` event when copy link button is clicked', async() => {
+            await wrapper.setProps({
+                name: 'link',
+            });
+
+            const shareItem = wrapper.find('[data-test="vs-social-share-item"]');
+            const shareLink = shareItem.find('.vs-social-share-item__link');
+            shareLink.trigger('click');
+
+            expect(wrapper.emitted().onCopyLink).toBeTruthy();
         });
     });
 });

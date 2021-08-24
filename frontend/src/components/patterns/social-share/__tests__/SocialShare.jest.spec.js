@@ -7,14 +7,21 @@ const title = 'VisitScotland';
 
 const factoryShallowMount = () => shallowMount(VsSocialShare, {
     propsData: {
+        id: 'default',
         shareBtnText: 'Share',
         sharePopoverTitle: 'Share on',
         pageUrl: url,
         pageTitle: title,
         closeAltText: 'Close',
+        noJs: false,
     },
     slots: {
         default: defaultSlotText,
+    },
+    data() {
+        return {
+            copyLink: false,
+        };
     },
 });
 
@@ -45,6 +52,11 @@ describe('VsSocialShare', () => {
             expect(closeButton.text()).toBe('Close');
         });
 
+        it('should display correct `id` ', () => {
+            const shareButton = wrapper.find('[data-test="vs-social-share"]').find('.vs-social-share__share-btn');
+            expect(shareButton.attributes().id).toBe('vs-social-share-popover--default');
+        });
+
         it('should display `Share on` as the title of the popover', () => {
             const heading = wrapper.find('[data-test="vs-social-share"]').find('vsheading-stub');
             expect(heading.text()).toBe('Share on');
@@ -58,6 +70,11 @@ describe('VsSocialShare', () => {
         it('should provide a `pageTitle` property down to children components', () => {
             /* eslint-disable no-underscore-dangle */
             expect(wrapper.vm._provided.pageTitle).toBe(title);
+        });
+
+        it('should provide a `noJs` property down to children components', () => {
+            /* eslint-disable no-underscore-dangle */
+            expect(wrapper.vm._provided.noJs).toBe(false);
         });
     });
 });

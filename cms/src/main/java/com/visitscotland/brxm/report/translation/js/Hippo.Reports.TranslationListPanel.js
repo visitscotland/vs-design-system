@@ -374,9 +374,14 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         });
     },
 
+    loadStoreAndFlushCache: function() {
+        this.store.proxy.invalidateCache();
+        this.loadStore.apply(this);
+    },
+
     initComponent: function() {
         Hippo.Reports.TranslationListPanel.superclass.initComponent.call(this);
-        Hippo.Reports.RefreshObservableInstance.addListener("refresh", this.loadStore, this);
+        Hippo.Reports.RefreshObservableInstance.addListener("refresh", this.loadStoreAndFlushCache, this);
         this.loadStore();
         var self = this;
         this.getModuleTypes()

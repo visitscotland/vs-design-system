@@ -45,8 +45,9 @@ public class PageTemplateBuilder {
     private final IKnowCommunityFactory iKnowCommunityFactory;
     private final StacklaFactory stacklaFactory;
     private final TravelInformationFactory travelInformationFactory;
+    private final CannedSearchFactory cannedSearchFactory;
 
-    public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory, TravelInformationFactory travelInformationFactory) {
+    public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory, TravelInformationFactory travelInformationFactory, CannedSearchFactory cannedSearchFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
@@ -56,6 +57,7 @@ public class PageTemplateBuilder {
         this.iKnowCommunityFactory = iKnowCommunityFactory;
         this.stacklaFactory = stacklaFactory;
         this.travelInformationFactory = travelInformationFactory;
+        this.cannedSearchFactory = cannedSearchFactory;
     }
 
     private Page getDocument(HstRequest request) {
@@ -86,6 +88,8 @@ public class PageTemplateBuilder {
                     page.modules.add(stacklaFactory.getStacklaModule((Stackla) item, request.getLocale()));
                 }  else if (item instanceof TravelInformation) {
                     page.modules.add(travelInformationFactory.getTravelInformation((TravelInformation) item));
+                }else if (item instanceof CannedSearch) {
+                    page.modules.add(cannedSearchFactory.getCannedSearchModule((CannedSearch) item, request.getLocale()));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);

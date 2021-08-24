@@ -4,18 +4,27 @@ import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Listicle;
 import com.visitscotland.brxm.hippobeans.ListicleItem;
 import com.visitscotland.brxm.hippobeans.Page;
+import com.visitscotland.brxm.model.LocalizedURL;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
+import com.visitscotland.brxm.utils.Language;
+import com.visitscotland.brxm.utils.Properties;
 import org.apache.jackrabbit.commons.iterator.NodeIteratorAdapter;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.core.component.HstRequest;
+import org.hippoecm.hst.core.request.HstRequestContext;
+import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.web.servlet.support.RequestContext;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -23,6 +32,7 @@ import javax.jcr.RepositoryException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -30,15 +40,17 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class DocumentUtilsServiceTest {
 
-    private DocumentUtilsService documentUtils;
+    private final static int AVAILABLE_LANGUAGES = 6;
 
     @Mock
     HippoUtilsService utils;
+    @Mock
+    ResourceBundleService bundle;
+    @Mock
+    Properties properties;
 
-    @BeforeEach
-    void init() {
-        documentUtils = new DocumentUtilsService(utils);
-    }
+    @InjectMocks
+    DocumentUtilsService documentUtils;
 
     private void mockPage(Page page, Node... documents) throws RepositoryException {
         List<Node> nodes = new ArrayList(Arrays.asList(documents));
@@ -135,6 +147,72 @@ class DocumentUtilsServiceTest {
 
         List<ListicleItem> documents = documentUtils.getSiblingDocuments(page, ListicleItem.class, "visitscotland:ListicleItem");
         assertEquals(2, documents.size());
+    }
+
+    private HstRequest prepareRequest(){
+        MockHstRequest request = new MockHstRequest();
+        HstRequestContext rc = mock(HstRequestContext.class, RETURNS_DEEP_STUBS);
+        HippoBean document = mock(HippoBean.class, RETURNS_DEEP_STUBS);
+
+        request.setRequestContext(rc);
+        request.setLocale(Locale.UK);
+
+        when(rc.getContentBean()).thenReturn(document);
+
+        return request;
+    }
+
+    @Test
+    @DisplayName("Get URLs from translated documents")
+    void getLocales(){
+        HstRequest request = prepareRequest();
+        HippoBean document = request.getRequestContext().getContentBean();
+
+        //Prepare the document's tranlations
+        final String TRANSLATED_URL = "/site/lan-ctr/rest/of/the/path";
+        HippoBean translation = mock(Page.class, RETURNS_DEEP_STUBS);
+        when(document.getAvailableTranslations().getTranslation(anyString())).thenReturn(translation);
+        when(bundle.getResourceBundle(any(), any(), any(Locale.class))).thenReturn("Label");
+        when(utils.createUrl(any())).thenReturn(TRANSLATED_URL);
+
+        List<LocalizedURL> list = documentUtils.getLocalizedURLs(request);
+
+        assertEquals(AVAILABLE_LANGUAGES, list.size());
+
+        for (LocalizedURL url : list){
+            assertEquals(TRANSLATED_URL, url.getUrl());
+            assertEquals("Label", url.getDisplayName());
+            assertTrue(url.isExists());
+        }
+    }
+
+    @Test
+    @DisplayName("Composes non-existing URLs")
+    void composeNonExistingLanguageURL(){
+        HstRequest request = prepareRequest();
+        HippoBean document = request.getRequestContext().getContentBean();
+
+        //Prepare the document's tranlations
+        final String ENGLISH_URL = "/site/english/url";
+        HippoBean translation = mock(Page.class, RETURNS_DEEP_STUBS);
+        when(document.getAvailableTranslations().getTranslation(Locale.UK.getLanguage())).thenReturn(translation);
+        when(utils.createUrl(any())).thenReturn(ENGLISH_URL);
+
+        List<LocalizedURL> list = documentUtils.getLocalizedURLs(request);
+
+        //It should not compose the URL for the English version
+        verify(properties, times(AVAILABLE_LANGUAGES-1)).getCmsBasePath();
+        assertEquals(AVAILABLE_LANGUAGES, list.size());
+
+        for (LocalizedURL url : list){
+            if (url.getLocale().equals(Locale.UK)){
+                assertEquals(ENGLISH_URL, url.getUrl());
+                assertTrue(url.isExists());
+            } else {
+                assertNotEquals(ENGLISH_URL, url.getUrl());
+                assertFalse(url.isExists());
+            }
+        }
     }
 
 }

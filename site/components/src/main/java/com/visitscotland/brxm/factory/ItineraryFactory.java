@@ -216,7 +216,7 @@ public class ItineraryFactory {
             return;
         }
 
-        module.setCtaLink(new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL));
+        module.setCtaLink(new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).get(URL_LINK).asText(), LinkType.INTERNAL));
         module.setFacilities(utils.getKeyFacilities(product));
 
         if (module.getImage() == null && product.has(IMAGE)) {
@@ -249,8 +249,5 @@ public class ItineraryFactory {
             module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
                      module.getCtaLink().getLink() + "#opening", null));
         }
-
     }
-
-
 }
