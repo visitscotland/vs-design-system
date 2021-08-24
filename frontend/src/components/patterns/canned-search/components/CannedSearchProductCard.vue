@@ -106,13 +106,15 @@
                         </VsLink>
                     </div>
                 </div>
-                <!--
-                    @slot Holds an optional list of logos and awards that the product has won
-                    Expects a VsCannedSearchLogos component
-                -->
-                <slot
-                    name="vsCannedSearchLogos"
-                />
+                <div class="vs-product-card__logos-container">
+                    <!--
+                        @slot Holds an optional list of logos and awards that the product has won
+                        Expects a VsCannedSearchLogos component
+                    -->
+                    <slot
+                        name="vsCannedSearchLogos"
+                    />
+                </div>
             </section>
             <div class="vs-product-card__summary-box">
                 <VsContainer>
@@ -462,6 +464,12 @@ export default {
             p {
                 margin-bottom: $spacer-1;
             }
+        }
+
+        .vs-product-card__logos-container {
+            margin-top: $spacer-9;
+            margin-bottom: $spacer-4;
+            min-height: $spacer-9;
         }
 
         .vs-product-card__dates-intro {
