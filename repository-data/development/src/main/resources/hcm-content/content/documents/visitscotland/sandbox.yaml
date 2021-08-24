@@ -15692,7 +15692,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-08-09T14:33:29.563+01:00
-        hippostdpubwf:lastModificationDate: 2021-08-20T15:02:12.680+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T12:44:31.393+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 84a742b2-fe88-4ead-80d2-721654153443
         hippotranslation:locale: en
@@ -15714,7 +15714,7 @@
             visitscotland:goodToGo: false
             visitscotland:location: Glasgow
             visitscotland:offers: false
-            visitscotland:officialrating: []
+            visitscotland:officialrating: ['5']
             visitscotland:productType: acco
             visitscotland:producttype: ''
             visitscotland:safeTravels: false
@@ -15727,7 +15727,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-08-09T14:33:29.563+01:00
-        hippostdpubwf:lastModificationDate: 2021-08-20T15:06:47.167+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T12:44:37.731+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 84a742b2-fe88-4ead-80d2-721654153443
         hippotranslation:locale: en
@@ -15749,7 +15749,7 @@
             visitscotland:goodToGo: false
             visitscotland:location: Glasgow
             visitscotland:offers: false
-            visitscotland:officialrating: []
+            visitscotland:officialrating: ['5']
             visitscotland:productType: acco
             visitscotland:producttype: ''
             visitscotland:safeTravels: false
@@ -15762,9 +15762,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-08-09T14:33:29.563+01:00
-        hippostdpubwf:lastModificationDate: 2021-08-20T15:06:47.167+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T12:44:37.731+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2021-08-20T15:06:50.056+01:00
+        hippostdpubwf:publicationDate: 2021-08-24T12:44:42.170+01:00
         hippotranslation:id: 84a742b2-fe88-4ead-80d2-721654153443
         hippotranslation:locale: en
         visitscotland:title: Accomodation
@@ -15785,7 +15785,119 @@
             visitscotland:goodToGo: false
             visitscotland:location: Glasgow
             visitscotland:offers: false
-            visitscotland:officialrating: []
+            visitscotland:officialrating: ['5']
             visitscotland:productType: acco
             visitscotland:producttype: ''
             visitscotland:safeTravels: false
+    /events-search:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 146e6eee-8b46-4d2f-bc07-218ceaf2ece4
+      hippo:name: Events Search
+      hippo:versionHistory: 49959ce4-179f-4c9a-8eaa-e589c5cbf56b
+      /events-search[1]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: a6626595-4ceb-4b45-bb2b-9b368b533cfb
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-23T15:18:51.737+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T12:17:05.928+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 3649a4f9-12af-44a2-b837-2f0ce7c55fb5
+        hippotranslation:locale: en
+        visitscotland:title: Events
+        visitscotland:translation: ''
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:goodToGo: true
+            visitscotland:location: Scotland
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: even
+            visitscotland:producttype: ''
+            visitscotland:safeTravels: false
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Canned search for some events</p>
+      /events-search[2]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: f9b9268d-9c95-4a1f-a4fe-735774233b8a
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-23T15:18:51.737+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T12:17:14.955+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 3649a4f9-12af-44a2-b837-2f0ce7c55fb5
+        hippotranslation:locale: en
+        visitscotland:title: Events
+        visitscotland:translation: ''
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:goodToGo: true
+            visitscotland:location: Scotland
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: even
+            visitscotland:producttype: ''
+            visitscotland:safeTravels: false
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Canned search for some events</p>
+      /events-search[3]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 999fe10e-6fb8-4161-8f29-36fb2fc6d2f3
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-23T15:18:51.737+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-24T12:17:14.955+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-08-24T12:17:39.215+01:00
+        hippotranslation:id: 3649a4f9-12af-44a2-b837-2f0ce7c55fb5
+        hippotranslation:locale: en
+        visitscotland:title: Events
+        visitscotland:translation: ''
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:goodToGo: true
+            visitscotland:location: Scotland
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: even
+            visitscotland:producttype: ''
+            visitscotland:safeTravels: false
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Canned search for some events</p>

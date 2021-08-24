@@ -45,6 +45,13 @@
                     >
                         {{ badgeThree }}
                     </div>
+                    <div
+                        v-if="!badgeThree && nowOn"
+                        class="vs-product-card__badge vs-product-card__badge--light-pink
+                        vs-product-card__badge--br"
+                    >
+                        {{ dates.nowOnLabel }}
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -109,6 +116,25 @@
             </section>
             <div class="vs-product-card__summary-box">
                 <VsContainer>
+                    <VsRow
+                        v-if="dates"
+                    >
+                        <VsCol
+                            cols="12"
+                            class="vs-product-card__summary-item"
+                        >
+                            <div
+                                class="vs-product-card__dates-intro"
+                            >
+                                {{ dates.dateLabel }}
+                            </div>
+                            <div
+                                class="vs-product-card__dates-main"
+                            >
+                                {{ datePeriod }}
+                            </div>
+                        </VsCol>
+                    </VsRow>
                     <VsRow>
                         <VsCol
                             cols="6"
@@ -241,12 +267,48 @@ export default {
             default: '',
         },
         /**
+        * Should contain a `startDay` and an `endDay` property, each of which has a
+        * `yyyy-mm-dd` formatted date in it, and `dateLabel` and `nowOnLabel` strings.
+        * If this is present the dates will be rendered in the summary box and
+        * those dates will be used to calculate whether the event is currently occurring.
+        */
+        dates: {
+            type: Object,
+            default: null,
+        },
+        /**
         * Mandatory index of slide -
         * needed to calculate active slides
         */
         slideIndex: {
             type: String,
             required: true,
+        },
+    },
+    computed: {
+        nowOn() {
+            if (this.dates && this.dates.period) {
+                const fromDate = new Date(this.dates.period.startDay);
+                const toDate = new Date(this.dates.period.endDay);
+                const currentDate = new Date();
+
+                return currentDate > fromDate && currentDate < toDate;
+            }
+
+            return false;
+        },
+        datePeriod() {
+            if (this.dates && this.dates.period) {
+                if (this.dates.period.startDay && this.dates.period.endDay) {
+                    return `${this.dates.period.startDay} - ${this.dates.period.endDay}`;
+                }
+
+                if (this.dates.period.day) {
+                    return this.dates.period.day;
+                }
+            }
+
+            return '';
         },
     },
     methods: {
@@ -402,6 +464,14 @@ export default {
             }
         }
 
+        .vs-product-card__dates-intro {
+            font-size: $font-size-sm;
+        }
+
+        .vs-product-card__dates-main {
+            font-weight: bold;
+        }
+
         .vs-product-card__summary-box {
             padding: $spacer-2;
             background-color: $color-gray-tint-7;
@@ -511,11 +581,44 @@ export default {
                 :priceOutro="sampleAccom.price.priceBasis"
             />
             <VsLink
-                :href="sampleAccom.website"
-                type="external"
+                v-if="sampleAccom.website"
+                :href="sampleAccom.website.link"
+                :type="sampleAccom.website.type.toLowerCase()"
                 slot="vsCannedSearchSummaryRight"
             >
-                Visit Website
+                {{ sampleAccom.website.label }}
+            </VsLink>
+        </VsCannedSearchProductCard>
+        <VsCannedSearchProductCard
+            slideIndex="1"
+            :imgSrc="sampleEvent.images[0].mediaUrl"
+            :imgAlt="sampleEvent.name"
+            :title="sampleEvent.name"
+            :location="sampleEvent.address.line1 + ', ' + sampleEvent.address.county"
+            :categories="sampleEvent.locations"
+            :description="sampleEvent.description"
+            :detailLink="{
+                link: sampleEvent.dmsLink.link,
+                label: sampleEvent.dmsLink.label,
+                type: sampleEvent.dmsLink.type.toLowerCase()
+            }"
+            :badgeOne="sampleEvent.category.name"
+            :dates="sampleEvent.opening ? sampleEvent.opening : null"
+        >
+            <VsCannedSearchPrice
+                v-if="sampleEvent.price"
+                slot="vsCannedSearchSummaryLeft"
+                :priceIntro="sampleEvent.price.priceLabel"
+                :price="'£' + sampleEvent.price.price"
+                :priceOutro="sampleEvent.price.priceBasis"
+            />
+            <VsLink
+                v-if="sampleEvent.website"
+                :href="sampleEvent.website.link"
+                :type="sampleEvent.website.type.toLowerCase()"
+                slot="vsCannedSearchSummaryRight"
+            >
+                {{ sampleEvent.website.label }}
             </VsLink>
         </VsCannedSearchProductCard>
     </VsCarousel>
