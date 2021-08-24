@@ -4,7 +4,7 @@ import com.visitscotland.brxm.hippobeans.TravelInformationTab;
 
 import java.util.List;
 
-public class TravelInformationTabModule extends Module<TravelInformationTab>  {
+public class TravelInformationModuleTab extends Module<TravelInformationTab>  {
 
     private String title;
     private List<TravelInformationTransportRowModule> travelInformationTransportRows;

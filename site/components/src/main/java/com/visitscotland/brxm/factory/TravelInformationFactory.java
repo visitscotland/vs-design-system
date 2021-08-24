@@ -5,7 +5,7 @@ import com.visitscotland.brxm.hippobeans.TravelInformationTab;
 import com.visitscotland.brxm.hippobeans.TravelInformationTransportRow;
 import com.visitscotland.brxm.model.TransportType;
 import com.visitscotland.brxm.model.TravelInformationModule;
-import com.visitscotland.brxm.model.TravelInformationTabModule;
+import com.visitscotland.brxm.model.TravelInformationModuleTab;
 import com.visitscotland.brxm.model.TravelInformationTransportRowModule;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import org.slf4j.Logger;
@@ -30,14 +30,14 @@ public class TravelInformationFactory {
         TravelInformationModule module = new TravelInformationModule();
         module.setTitle(document.getTitle());
         module.setCopy(document.getCopy());
-        module.setGettingTo(getTravelInformationTabModule(document.getGettingTo()));
-        module.setGettingAround(getTravelInformationTabModule(document.getGettingAround()));
+        module.setGettingTo(getTravelInformationModuleTab(document.getGettingTo()));
+        module.setGettingAround(getTravelInformationModuleTab(document.getGettingAround()));
         module.setHippoBean(document);
         return module;
     }
 
-    private TravelInformationTabModule getTravelInformationTabModule(TravelInformationTab document) {
-        TravelInformationTabModule module = new TravelInformationTabModule();
+    private TravelInformationModuleTab getTravelInformationModuleTab(TravelInformationTab document) {
+        TravelInformationModuleTab module = new TravelInformationModuleTab();
         module.setTitle(document.getTitle());
         module.setTravelInformationTransportRows(document.getAccordion()
                 .stream().map(this::getTravelInformationTransportRowModule).collect(Collectors.toList()));

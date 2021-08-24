@@ -7,8 +7,8 @@ public class TravelInformationModule extends Module<TravelInformation> {
 
     private String title;
     private HippoHtml copy;
-    private TravelInformationTabModule gettingTo;
-    private TravelInformationTabModule gettingAround;
+    private TravelInformationModuleTab gettingTo;
+    private TravelInformationModuleTab gettingAround;
 
     public String getTitle() {
         return title;
@@ -26,19 +26,19 @@ public class TravelInformationModule extends Module<TravelInformation> {
         this.copy = copy;
     }
 
-    public TravelInformationTabModule getGettingTo() {
+    public TravelInformationModuleTab getGettingTo() {
         return gettingTo;
     }
 
-    public void setGettingTo(TravelInformationTabModule gettingTo) {
+    public void setGettingTo(TravelInformationModuleTab gettingTo) {
         this.gettingTo = gettingTo;
     }
 
-    public TravelInformationTabModule getGettingAround() {
+    public TravelInformationModuleTab getGettingAround() {
         return gettingAround;
     }
 
-    public void setGettingAround(TravelInformationTabModule gettingAround) {
+    public void setGettingAround(TravelInformationModuleTab gettingAround) {
         this.gettingAround = gettingAround;
     }
 }

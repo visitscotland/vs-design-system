@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.TravelInformationTabModule" -->
+<#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.TravelInformationModuleTab" -->
 
 <#macro travelInformationTab module>
     <h2>${module.title}</h2>
