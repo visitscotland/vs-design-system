@@ -129,12 +129,14 @@ class MenuItemProviderTest {
         Assertions.assertEquals(new TreeSet<>(Arrays.asList("c", "d")), prototypes.get("new-module"));
     }
 
-    @DisplayName("When new document disabled on translation, new-page and new-module removed on menu")
+    @DisplayName("When new document disabled on translation, new-page, new-module & new-translated-folder removed on menu")
     @Test
     void newTranslationDocumentDisabled() throws Exception {
         Map<String, Set<String>> prototypes = new HashMap<>();
         prototypes.put("new-page", new TreeSet<>(Arrays.asList("a", "b")));
         prototypes.put("new-module", new TreeSet<>(Arrays.asList("c", "d")));
+        prototypes.put("new-translated-folder", new TreeSet<>(Arrays.asList("e", "f")));
+        prototypes.put("other", new TreeSet<>(Arrays.asList("g", "h")));
 
         Node subjectNode = new MockNodeBuilder().withProperty("hippotranslation:locale", "de").build();
         RepositoryMap config = mock(RepositoryMap.class);
@@ -142,10 +144,11 @@ class MenuItemProviderTest {
 
         menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes, config);
 
-        Assertions.assertEquals(0, prototypes.size());
+        Assertions.assertEquals(1, prototypes.size());
+        Assertions.assertTrue(prototypes.containsKey("other"));
     }
 
-    @DisplayName("When new document endabled on translation, then new-module added to page")
+    @DisplayName("When new document enabled on translation, then new-module added to page")
     @Test
     void newTranslationDocumentEnabled() throws Exception {
         Map<String, Set<String>> prototypes = new HashMap<>();
