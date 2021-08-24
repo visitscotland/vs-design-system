@@ -41,7 +41,7 @@
                     label: prod.dmsLink.label,
                     type: prod.dmsLink.type.toLowerCase()
                 }"
-                :location="prod.address.city + ', ' + prod.address.county"
+                :location="fetchAddress(prod.address)"
                 :description="prod.description"
                 :badge-one="prod.category ? prod.category.name : ''"
                 :badge-two="prod.offers"
@@ -135,6 +135,14 @@ export default {
             type: String,
             default: '',
         },
+        /**
+        * The type of product that is being search for, determines how product
+        * card addresses are displayed.
+        */
+        searchType: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
@@ -159,6 +167,13 @@ export default {
                 .catch(() => {
                     this.products = [];
                 });
+        },
+        fetchAddress(address) {
+            if (this.searchType === 'even') {
+                return `${address.line1}, ${address.city}`;
+            }
+
+            return `${address.city}, ${address.county}`;
         },
     },
 };
@@ -211,6 +226,7 @@ export default {
 
         <VsCannedSearch
             apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland&fac_id=goodtogo"
+            searchType="even"
         >
             <template slot="vsCannedSearchButtons">
                 <VsButton

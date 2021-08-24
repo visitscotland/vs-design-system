@@ -11,7 +11,7 @@
 <#macro cannedSearch module themeName="">
     <vs-module-wrapper class="theme-${themeName}">
         <template slot="vsModuleWrapperHeading">
-            ${module.title} - ${module.productType}
+            ${module.title}
         </template>
 
         <template slot="vsModuleWrapperIntro">
@@ -20,6 +20,7 @@
 
         <vs-canned-search
             api-url="${module.cannedSearchEndpoint}"
+            searchType="${module.productType}"
         >
             <template slot="vsCannedSearchButtons">
                 <vs-button
