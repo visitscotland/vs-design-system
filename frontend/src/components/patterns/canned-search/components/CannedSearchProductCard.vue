@@ -24,27 +24,13 @@
                             data-test="vs-product-card__img"
                         />
                     </div>
-                    <div
-                        v-if="badgeOne"
-                        class="vs-product-card__badge vs-product-card__badge--teal
-                        vs-product-card__badge--tr"
-                    >
-                        {{ badgeOne }}
-                    </div>
-                    <div
-                        v-if="badgeTwo"
-                        class="vs-product-card__badge vs-product-card__badge--pink
-                        vs-product-card__badge--tr2"
-                    >
-                        {{ badgeTwo }}
-                    </div>
-                    <div
-                        v-if="badgeThree"
-                        class="vs-product-card__badge vs-product-card__badge--light-pink
-                        vs-product-card__badge--br"
-                    >
-                        {{ badgeThree }}
-                    </div>
+                    <!--
+                        @slot Holds badges that appear over the image
+                        Expects a VsCannedSearchBadges component
+                    -->
+                    <slot
+                        name="vsCannedSearchBadges"
+                    />
                 </div>
 
                 <div class="card-body">
@@ -216,29 +202,6 @@ export default {
             required: true,
         },
         /**
-        * Appears in a teal badge over the image at the top right. Not rendered if not set
-        */
-        badgeOne: {
-            type: String,
-            default: '',
-        },
-        /**
-        * Appears in a pink badge over the image, below the position of badgeOne. Not
-        * rendered if not set
-        */
-        badgeTwo: {
-            type: String,
-            default: '',
-        },
-        /**
-        * Appears in a white badge over the image at the bottom right. Not rendered
-        * if not set
-        */
-        badgeThree: {
-            type: String,
-            default: '',
-        },
-        /**
         * Mandatory index of slide -
         * needed to calculate active slides
         */
@@ -328,43 +291,6 @@ export default {
             object-fit: cover;
             align-self: flex-start;
             flex-shrink: 0; // IE11 fix, prevents image vertical stretching
-        }
-
-        .vs-product-card__badge {
-            font-size: $font-size-sm;
-            position: absolute;
-            padding: 0 .5em;
-            text-transform: uppercase;
-
-            &--teal {
-                color: $color-white;
-                background-color: $color_secondary_teal;
-            }
-
-            &--pink {
-                color: $color-white;
-                background-color: $color_pink;
-            }
-
-            &--light-pink {
-                background-color: $color_pink_tint_6;
-                color: $color_pink;
-            }
-
-            &--tr {
-                top: .5em;
-                right: .5em;
-            }
-
-            &--tr2 {
-                top: 2.5em;
-                right: .5em;
-            }
-
-            &--br {
-                bottom: .5em;
-                right: .5em;
-            }
         }
 
         .vs-product-card__title {
@@ -478,10 +404,6 @@ export default {
                 label: sampleAccom.dmsLink.label,
                 type: sampleAccom.dmsLink.type.toLowerCase()
             }"
-            :badgeOne="sampleAccom.category.name"
-            :badgeTwo="sampleAccom.offers"
-            :badgeThree="sampleAccom.covidInformation ?
-                sampleAccom.covidInformation.weAreOpen : ''"
         >
             <VsCannedSearchStars
                 slot="vsCannedSearchStarRating"
@@ -514,6 +436,13 @@ export default {
             >
                 Visit Website
             </VsLink>
+            <VsCannedSearchBadges
+                slot="vsCannedSearchBadges"
+                :badgeOne="sampleAccom.category.name"
+                :badgeTwo="sampleAccom.offers"
+                :badgeThree="sampleAccom.covidInformation ?
+                    sampleAccom.covidInformation.weAreOpen : ''"
+            />
         </VsCannedSearchProductCard>
     </VsCarousel>
 ```
