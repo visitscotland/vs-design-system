@@ -1,24 +1,24 @@
 <template>
     <div class="vs-canned-search-logos">
         <VsTooltip
-            :title="goodToGoLogo"
+            :title="goodToGoLogo.name"
             v-if="goodToGoLogo"
             data-test="vs-canned-search-logos__good-to-go"
         >
             <VsImg
-                src="https://www.visitscotland.com/cms-images/logos/goodToGo.png"
-                :alt="goodToGoLogo"
+                :alt="goodToGoLogo.name"
+                :src="goodToGoLogo.image"
                 class="vs-canned-search-logos__logo"
             />
         </VsTooltip>
         <VsTooltip
-            :title="safeTravelsLogo"
+            :title="safeTravelsLogo.name"
             v-if="safeTravelsLogo"
             data-test="vs-canned-search-logos__safe-travels"
         >
             <VsImg
-                src="https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
-                :alt="safeTravelsLogo"
+                :alt="safeTravelsLogo.name"
+                :src="safeTravelsLogo.image"
                 class="vs-canned-search-logos__logo"
             />
         </VsTooltip>
@@ -70,20 +70,20 @@ export default {
     },
     props: {
         /**
-        * If set, the good to go logo appears. The text set in this property will appear as
-        * the tooltip of that logo
+        * If set, the good to go logo appears. Should contain a unique `id` (String), a `name`
+        * (String) that appears as a tooltip and a url to an `image` (String)
         */
         goodToGoLogo: {
-            type: String,
-            default: '',
+            type: Object,
+            default: null,
         },
         /**
-        * If set, the safe travels logo appears. The text set in this property will appear as
-        * the tooltip of that logo
+        * If set, the safe travels logo appears. Should contain a unique `id` (String), a `name`
+        * (String) that appears as a tooltip and a url to an `image` (String)
         */
         safeTravelsLogo: {
-            type: String,
-            default: '',
+            type: Object,
+            default: null,
         },
         /**
         * A set of award badges to display, each should contain a unique `id` (String), a `name`
