@@ -87,6 +87,19 @@
                 </VsLink>
             </VsCannedSearchProductCard>
         </VsCarousel>
+        <VsContainer
+            v-if="!!this.$slots['vsCannedSearchCredit']"
+            class="vs-canned-search__credit-container"
+        >
+            <!--
+                @slot Holds credit info for search data from third parties
+
+                Expects html
+            -->
+            <slot
+                name="vsCannedSearchCredit"
+            />
+        </VsContainer>
     </div>
 </template>
 
@@ -188,6 +201,11 @@ export default {
             margin: $spacer-0 $spacer-2 $spacer-2;
         }
     }
+
+    .vs-canned-search__credit-container {
+        text-align: right;
+        font-size: $font-size-sm;
+    }
 </style>
 
 <docs>
@@ -240,6 +258,10 @@ export default {
                 >
                     View on Map
                 </VsButton>
+            </template>
+
+            <template slot="vsCannedSearchCredit">
+                These are some credits for a third party search
             </template>
         </VsCannedSearch>
     </VsModuleWrapper>
