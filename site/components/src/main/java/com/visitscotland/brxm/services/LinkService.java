@@ -13,6 +13,7 @@ import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.utils.HippoUtilsService;
+import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -30,6 +31,8 @@ public class LinkService {
 
     private static final Logger logger = LoggerFactory.getLogger(LinkService.class);
     private static final Logger contentLogger = LoggerFactory.getLogger("content");
+
+    private static final String DMS_PAGE = "(/[a-z0-9\\-._~%!$&'()*+,;=@]*)?(/info/).*";
 
     private final DMSDataService dmsData;
     private final ResourceBundleService bundle;
@@ -84,8 +87,8 @@ public class LinkService {
 
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;
-            LinkType linkType = getType(externalLink.getLink());
-            return new FlatLink(bundle.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLink(), linkType);
+
+            return createExternalLink(locale, externalLink.getLink(), bundle.getCtaLabel(externalLink.getLabel(), locale));
 
         } else if (item instanceof CMSLink && ((CMSLink) item).getLink() instanceof Page) {
             CMSLink cmsLink = (CMSLink) item;
@@ -95,6 +98,57 @@ public class LinkService {
         }
 
         return null;
+    }
+
+    public FlatLink createExternalLink(final Locale locale, final String url, final String label){
+        LinkType linkType = getType(url);
+        String localizedUrl = url;
+
+        if (locale != Locale.UK && (linkType == LinkType.INTERNAL || linkType == LinkType.DOWNLOAD)) {
+            localizedUrl = localize(locale, url);
+            if (url.equals(localizedUrl) && linkType == LinkType.INTERNAL && !url.startsWith("#")) {
+                logger.error("The URL {} could not be localized", url);
+            }
+        }
+
+        return new FlatLink(label, localizedUrl, linkType);
+    }
+
+    private String localize(Locale locale, String url){
+        if (url.startsWith("/")){
+            return composeUrl(locale, "", url);
+        } else if (!Contract.isEmpty(properties.getInternalSites())){
+            for (String site : properties.getInternalSites().trim().split("\\s*,\\s*")) {
+                if (site.length() > 0 && url.startsWith(site)) {
+                    return composeUrl(locale, site, url.substring(site.length()));
+                }
+            }
+        }
+        return url;
+    }
+
+
+
+    /**
+     * Detects if the URLs is belong to the DMS
+     * @param locale
+     * @param site
+     * @param path
+     * @return
+     */
+    private String composeUrl(Locale locale, String site, String path){
+        String languagePath;
+        if (path.matches(DMS_PAGE)) {
+            languagePath = Language.getLanguageForLocale(locale).getDMSPathVariable();
+        } else {
+            languagePath = Language.getLanguageForLocale(locale).getCMSPathVariable();
+        }
+
+        if (site.startsWith(languagePath)){
+            return site + path;
+        } else {
+            return site + languagePath + path;
+        }
     }
 
     public FlatLink createDmsLink(Locale locale, DMSLink dmsLink, JsonNode dmsProductJson) {

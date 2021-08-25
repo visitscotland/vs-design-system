@@ -82,6 +82,7 @@ class LinkServiceTest {
         when(externalLink.getLabel()).thenReturn("");
 
         when(properties.getDmsHost()).thenReturn("http://localhost:8080");
+        when(properties.getDmsHost()).thenReturn("http://localhost:8080");
         when(resourceBundle.getCtaLabel(eq(""), any())).thenReturn("Find out more");
 
         FlatLink link = service.createLink(Locale.UK, externalLink);
@@ -467,4 +468,42 @@ class LinkServiceTest {
         assertEquals(" (DOWNLOAD PDF 15.5MB)", service.getDownloadText("http://www.visitscotlan.com/pdf"));
     }
 
+    @Test
+    @DisplayName("create an External Link for an English page")
+    void createExternalLink(){
+        when(properties.getInternalSites()).thenReturn("https://www.visitscotland.com");
+
+        assertEquals("/unit-test/", service.createExternalLink(Locale.UK, "/unit-test/",null).getLink());
+        assertEquals("/info/accommodation/unit-test/", service.createExternalLink(Locale.UK, "/info/accommodation/unit-test/",null).getLink());
+        assertEquals("https://www.visitscotland.com/unit-test/", service.createExternalLink(Locale.UK, "https://www.visitscotland.com/unit-test/",null).getLink());
+        assertEquals("https://www.visitedimburgh.com/unit-test/", service.createExternalLink(Locale.UK, "https://www.visitedimburgh.com/unit-test/",null).getLink());
+    }
+
+    @Test
+    @DisplayName("create a localized  External Link for a non-existing locale page")
+    void createExternalLink_unrecognized_language(){
+        when(properties.getInternalSites()).thenReturn("https://www.visitscotland.com");
+
+        assertEquals("/unit-test/", service.createExternalLink(Locale.JAPAN, "/unit-test/","Label").getLink());
+        assertEquals("/info/accommodation/unit-test/", service.createExternalLink(Locale.JAPAN, "/info/accommodation/unit-test/",null).getLink());
+        assertEquals("https://www.visitscotland.com/unit-test/", service.createExternalLink(Locale.JAPAN, "https://www.visitscotland.com/unit-test/",null).getLink());
+    }
+
+    @Test
+    @DisplayName("create a localized External Link for an French page")
+    void createExternalLink_languange(){
+        assertEquals("/fr/unit-test/", service.createExternalLink(Locale.FRANCE, "/unit-test/","Label").getLink());
+        assertEquals("/fr-fr/info/accommodation/unit-test/", service.createExternalLink(Locale.FRANCE, "/info/accommodation/unit-test/",null).getLink());
+    }
+
+    @Test
+    @DisplayName("create an External Link for an English page for fully qualified URLs")
+    void createExternalLink_languange_fullyqualified(){
+        when(properties.getInternalSites()).thenReturn("https://www.visitscotland.com, ftp://x.y.z");
+
+        assertEquals("https://www.visitscotland.com/fr/unit-test/", service.createExternalLink(Locale.FRANCE, "https://www.visitscotland.com/unit-test/",null).getLink());
+        assertEquals("https://www.visitscotland.com/fr-fr/info/accommodation/unit-test/", service.createExternalLink(Locale.FRANCE, "https://www.visitscotland.com/info/accommodation/unit-test/",null).getLink());
+        assertEquals("ftp://x.y.z/fr", service.createExternalLink(Locale.FRANCE, "ftp://x.y.z",null).getLink());
+        assertEquals("https://www.visitedimburg.com/unit-test/", service.createExternalLink(Locale.FRANCE, "https://www.visitedimburg.com/unit-test/",null).getLink());
+    }
 }
