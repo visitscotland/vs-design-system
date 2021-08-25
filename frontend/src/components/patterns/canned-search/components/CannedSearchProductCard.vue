@@ -45,13 +45,6 @@
                     >
                         {{ badgeThree }}
                     </div>
-                    <div
-                        v-if="!badgeThree && nowOn"
-                        class="vs-product-card__badge vs-product-card__badge--light-pink
-                        vs-product-card__badge--br"
-                    >
-                        {{ dates.nowOn }}
-                    </div>
                 </div>
 
                 <div class="card-body">
@@ -128,7 +121,7 @@
                             <div
                                 class="vs-product-card__dates-intro"
                             >
-                                {{ dates.period.label }}
+                                {{ dates.label }}
                             </div>
                             <div
                                 class="vs-product-card__dates-main"
@@ -271,13 +264,8 @@ export default {
             default: '',
         },
         /**
-        * Should contain a period object with a `startDay` and an `endDay` property, each of
+        * Should contain a `startDay` and an `endDay` property, each of
         * which has a `yyyy-mm-dd` formatted date in it, `label` string that intros the dates`.
-        *
-        * Should also contain a now `nowOn` string to print if current.
-        *
-        * If this is present the dates will be rendered in the summary box and
-        * those dates will be used to calculate whether the event is currently occurring.
         */
         dates: {
             type: Object,
@@ -293,24 +281,13 @@ export default {
         },
     },
     computed: {
-        nowOn() {
-            if (this.dates && this.dates.period) {
-                const fromDate = new Date(this.dates.period.startDay);
-                const toDate = new Date(this.dates.period.endDay);
-                const currentDate = new Date();
-
-                return currentDate > fromDate && currentDate < toDate;
-            }
-
-            return false;
-        },
         datePeriod() {
-            if (this.dates && this.dates.period && this.dates.period.startDay) {
-                if (this.dates.period.endDay) {
-                    return `${this.dates.period.startDay} - ${this.dates.period.endDay}`;
+            if (this.dates && this.dates.startDay) {
+                if (this.dates.endDay) {
+                    return `${this.dates.startDay} - ${this.dates.endDay}`;
                 }
 
-                return this.dates.period.startDay;
+                return this.dates.startDay;
             }
 
             return '';
