@@ -48,45 +48,43 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="vs-product-card__pre-description">
-                        <VsHeading
-                            level="3"
-                            class="card-title vs-product-card__title text-truncate text-truncate--2"
-                            data-test="vs-product-card__title"
+                    <VsHeading
+                        level="3"
+                        class="card-title vs-product-card__title text-truncate text-truncate--2"
+                        data-test="vs-product-card__title"
+                    >
+                        <VsLink
+                            :href="detailLink.link"
+                            :type="detailLink.type"
+                            class="stretched-link"
+                            data-test="vs-product-card__link"
+                            :disabled="!isVisible(slideIndex)"
                         >
-                            <VsLink
-                                :href="detailLink.link"
-                                :type="detailLink.type"
-                                class="stretched-link"
-                                data-test="vs-product-card__link"
-                                :disabled="!isVisible(slideIndex)"
-                            >
-                                {{ title }}
-                            </VsLink>
-                        </VsHeading>
-                        <VsHeading
-                            level="4"
-                            class="vs-product-card__location"
-                            v-if="location"
-                            data-test="vs-product-card__location"
-                        >
-                            {{ location }}
-                        </VsHeading>
-                        <!--
-                            @slot Holds an optional star rating
-                            Expects a VsCannedSearchStars component
-                        -->
-                        <slot
-                            name="vsCannedSearchStarRating"
-                        />
-                        <!--
-                            @slot Holds an optional list of categories
-                            Expects a VsCannedSearchCategories component
-                        -->
-                        <slot
-                            name="vsCannedSearchCategories"
-                        />
-                    </div>
+                            {{ title }}
+                        </VsLink>
+                    </VsHeading>
+                    <VsHeading
+                        level="4"
+                        class="vs-product-card__location"
+                        v-if="location"
+                        data-test="vs-product-card__location"
+                    >
+                        {{ location }}
+                    </VsHeading>
+                    <!--
+                        @slot Holds an optional star rating
+                        Expects a VsCannedSearchStars component
+                    -->
+                    <slot
+                        name="vsCannedSearchStarRating"
+                    />
+                    <!--
+                        @slot Holds an optional list of categories
+                        Expects a VsCannedSearchCategories component
+                    -->
+                    <slot
+                        name="vsCannedSearchCategories"
+                    />
                     <div class="vs-product-card__description">
                         <p class="text-truncate text-truncate--2">
                             {{ description }}
