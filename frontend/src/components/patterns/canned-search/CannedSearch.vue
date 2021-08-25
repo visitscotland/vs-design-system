@@ -63,9 +63,9 @@
                 <VsCannedSearchLogos
                     slot="vsCannedSearchLogos"
                     :good-to-go-logo="prod.covidInformation && prod.covidInformation.goodToGo ?
-                        prod.covidInformation.goodToGo.name : ''"
+                        prod.covidInformation.goodToGo : null"
                     :safe-travels-logo="prod.covidInformation && prod.covidInformation.safeTravels ?
-                        prod.covidInformation.safeTravels.name : ''"
+                        prod.covidInformation.safeTravels : null"
                     :access-guide="prod.accessGuide || null"
                     :awards="prod.awards"
                 />
