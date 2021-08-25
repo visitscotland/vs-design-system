@@ -47,7 +47,7 @@
                 :badge-two="prod.offers"
                 :badge-three="prod.covidInformation ?
                     prod.covidInformation.weAreOpen : ''"
-                :dates="prod.opening ? prod.opening : null"
+                :dates="prod.opening ? prod.opening.period : null"
             >
                 <VsCannedSearchStars
                     v-if="prod.grading"
