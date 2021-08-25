@@ -31,5 +31,5 @@ describe('VsCannedSearchBadges', () => {
         it('should render the content of the `badgeThree` property', () => {
             expect(wrapper.html()).toContain(badgeThree);
         });
-    })
+    });
 });

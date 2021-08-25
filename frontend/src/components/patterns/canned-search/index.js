@@ -5,6 +5,7 @@ import VsCannedSearchCategories from './components/CannedSearchCategories';
 import VsCannedSearchLogos from './components/CannedSearchLogos';
 import VsCannedSearchPrice from './components/CannedSearchPrice';
 import VsCannedSearchBadges from './components/CannedSearchBadges';
+import VsCannedSearchSummaryBox from './components/CannedSearchSummaryBox';
 
 export default {
     VsCannedSearch,
@@ -14,4 +15,5 @@ export default {
     VsCannedSearchLogos,
     VsCannedSearchPrice,
     VsCannedSearchBadges,
+    VsCannedSearchSummaryBox,
 };
