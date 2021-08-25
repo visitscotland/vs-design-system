@@ -174,6 +174,16 @@ export default {
 </script>
 
 <style lang="scss">
+    .vs-canned-search {
+        .vs-carousel .row > div {
+            @include media-breakpoint-down(sm) {
+                margin-left: 0;
+                max-width: 100%;
+                flex: 0 0 100%;
+            }
+        }
+    }
+
     .vs-canned-search__buttons {
         margin-bottom: $spacer-9;
 
