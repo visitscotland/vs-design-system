@@ -50,7 +50,7 @@
                         class="vs-product-card__badge vs-product-card__badge--light-pink
                         vs-product-card__badge--br"
                     >
-                        {{ dates.nowOnLabel }}
+                        {{ dates.nowOn }}
                     </div>
                 </div>
 
@@ -128,7 +128,7 @@
                             <div
                                 class="vs-product-card__dates-intro"
                             >
-                                {{ dates.dateLabel }}
+                                {{ dates.period.label }}
                             </div>
                             <div
                                 class="vs-product-card__dates-main"
@@ -271,8 +271,11 @@ export default {
             default: '',
         },
         /**
-        * Should contain a `startDay` and an `endDay` property, each of which has a
-        * `yyyy-mm-dd` formatted date in it, and `dateLabel` and `nowOnLabel` strings.
+        * Should contain a period object with a `startDay` and an `endDay` property, each of
+        * which has a `yyyy-mm-dd` formatted date in it, `label` string that intros the dates`.
+        *
+        * Should also contain a now `nowOn` string to print if current.
+        *
         * If this is present the dates will be rendered in the summary box and
         * those dates will be used to calculate whether the event is currently occurring.
         */
@@ -302,14 +305,12 @@ export default {
             return false;
         },
         datePeriod() {
-            if (this.dates && this.dates.period) {
-                if (this.dates.period.startDay && this.dates.period.endDay) {
+            if (this.dates && this.dates.period && this.dates.period.startDay) {
+                if (this.dates.period.endDay) {
                     return `${this.dates.period.startDay} - ${this.dates.period.endDay}`;
                 }
 
-                if (this.dates.period.day) {
-                    return this.dates.period.day;
-                }
+                return this.dates.period.startDay;
             }
 
             return '';
