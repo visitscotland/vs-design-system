@@ -29,8 +29,9 @@
                 </vs-button>
             </template>
 
+            <template slot="vsCannedSearchCredit">
+                ${module.credit}
+            </template>
         </vs-canned-search>
-
-        <#-- ${module.credit} - Credit variable for events -->
     </vs-module-wrapper>
 </#macro>
