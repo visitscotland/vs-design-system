@@ -43,10 +43,6 @@
                 }"
                 :location="prod.address.city + ', ' + prod.address.county"
                 :description="prod.description"
-                :badge-one="prod.category ? prod.category.name : ''"
-                :badge-two="prod.offers"
-                :badge-three="prod.covidInformation ?
-                    prod.covidInformation.weAreOpen : ''"
             >
                 <VsCannedSearchStars
                     v-if="prod.grading"
@@ -84,6 +80,13 @@
                 >
                     {{ prod.website.label }}
                 </VsLink>
+                <VsCannedSearchBadges
+                    slot="vsCannedSearchBadges"
+                    :badge-one="prod.category ? prod.category.name : ''"
+                    :badge-two="prod.offers"
+                    :badge-three="prod.covidInformation ?
+                        prod.covidInformation.weAreOpen : ''"
+                />
             </VsCannedSearchProductCard>
         </VsCarousel>
     </div>
