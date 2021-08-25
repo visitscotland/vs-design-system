@@ -91,43 +91,13 @@
                     name="vsCannedSearchLogos"
                 />
             </section>
-            <div class="vs-product-card__summary-box">
-                <VsContainer>
-                    <VsRow>
-                        <VsCol
-                            cols="6"
-                            class="vs-product-card__summary-item"
-                            v-if="!!this.$slots['vsCannedSearchSummaryLeft']"
-                        >
-                            <!--
-                                @slot Holds the content for the second optional item in the grey
-                                summary box  at the bottom of the card, usually a
-                                vsCannedSearchPrice
-
-                                Expects html
-                            -->
-                            <slot
-                                name="vsCannedSearchSummaryLeft"
-                            />
-                        </VsCol>
-                        <VsCol
-                            cols="6"
-                            class="vs-product-card__summary-item"
-                            v-if="!!this.$slots['vsCannedSearchSummaryRight']"
-                        >
-                            <!--
-                                @slot Holds the content for the second optional item in the grey
-                                summary box  at the bottom of the card, usually a link
-
-                                Expects html
-                            -->
-                            <slot
-                                name="vsCannedSearchSummaryRight"
-                            />
-                        </VsCol>
-                    </VsRow>
-                </VsContainer>
-            </div>
+            <!--
+                @slot Holds the summary box for the product card
+                Expects a VsCannedSearchSummaryBox component
+            -->
+            <slot
+                name="vsCannedSearchSummary"
+            />
         </div>
     </VsCol>
 </template>
@@ -136,8 +106,6 @@
 import VsImg from '@components/elements/img/Img';
 import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
-import VsContainer from '@components/elements/layout/Container';
-import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
 
 /**
@@ -153,8 +121,6 @@ export default {
         VsImg,
         VsHeading,
         VsLink,
-        VsContainer,
-        VsRow,
         VsCol,
     },
     props: {
@@ -326,28 +292,6 @@ export default {
             }
         }
 
-        .vs-product-card__summary-box {
-            padding: $spacer-2;
-            background-color: $color-gray-tint-7;
-            min-height: 4.5rem;
-
-            .row {
-                align-items: center;
-                justify-content: center;
-                min-height: $spacer-10;
-            }
-        }
-
-        .vs-product-card__summary-item {
-            font-size: $font-size-base;
-            line-height: $line-height-s;
-            text-align: center;
-
-            &:not(:last-child) {
-                border-right: 1px solid $color-gray-tint-1;
-            }
-        }
-
         .text-truncate {
             text-overflow: ellipsis;
             overflow: hidden;
@@ -422,20 +366,6 @@ export default {
                 :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
                 :awards="sampleAccom.awards"
             />
-            <VsCannedSearchPrice
-                v-if="sampleAccom.price"
-                slot="vsCannedSearchSummaryLeft"
-                :priceIntro="sampleAccom.price.priceLabel"
-                :price="'£' + sampleAccom.price.price"
-                :priceOutro="sampleAccom.price.priceBasis"
-            />
-            <VsLink
-                :href="sampleAccom.website"
-                type="external"
-                slot="vsCannedSearchSummaryRight"
-            >
-                Visit Website
-            </VsLink>
             <VsCannedSearchBadges
                 slot="vsCannedSearchBadges"
                 :badgeOne="sampleAccom.category.name"
@@ -443,6 +373,24 @@ export default {
                 :badgeThree="sampleAccom.covidInformation ?
                     sampleAccom.covidInformation.weAreOpen : ''"
             />
+            <VsCannedSearchSummaryBox
+                slot="vsCannedSearchSummary"
+            >
+                <VsCannedSearchPrice
+                    v-if="sampleAccom.price"
+                    slot="vsCannedSearchSummaryLeft"
+                    :priceIntro="sampleAccom.price.priceLabel"
+                    :price="'£' + sampleAccom.price.price"
+                    :priceOutro="sampleAccom.price.priceBasis"
+                />
+                <VsLink
+                    :href="sampleAccom.website"
+                    type="external"
+                    slot="vsCannedSearchSummaryRight"
+                >
+                    Visit Website
+                </VsLink>
+            </VsCannedSearchSummaryBox>
         </VsCannedSearchProductCard>
     </VsCarousel>
 ```
