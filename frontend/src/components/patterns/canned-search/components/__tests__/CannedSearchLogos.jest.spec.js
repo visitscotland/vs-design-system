@@ -1,8 +1,16 @@
 import { mount } from '@vue/test-utils';
 import VsCannedSearchLogos from '../CannedSearchLogos';
 
-const goodToGoLogo = 'Good to go';
-const safeTravelsLogo = 'Safe travels';
+const goodToGoLogo = {
+    id: 'goodToGo',
+    name: 'Good to go',
+    image: 'https://www.visitscotland.com/cms-images/logos/goodToGo.png',
+};
+const safeTravelsLogo = {
+    id: 'SafeTravels',
+    name: 'Safe Travels',
+    image: 'https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png',
+};
 const awards = [
     {
         id: 'qatasteourbest',
@@ -45,46 +53,6 @@ beforeEach(() => {
 
 describe('VsCannedSearchLogos', () => {
     describe(':props', () => {
-        it('should render a vs-tooltip with the title provided in the `goodToGoLogo` property', () => {
-            const tooltip = wrapper.find('[data-test="vs-canned-search-logos__good-to-go"]');
-
-            expect(tooltip.props('title')).toBe(goodToGoLogo);
-        });
-
-        it('should not render the good to go vs-tooltip if no `goodToGoLogo` property is provided', async() => {
-            const testGtG = '';
-
-            wrapper.setProps({
-                goodToGoLogo: testGtG,
-            });
-
-            await wrapper.vm.$nextTick();
-
-            const tooltip = wrapper.find('[data-test="vs-canned-search-logos__good-to-go"]');
-
-            expect(tooltip.exists()).toBe(false);
-        });
-
-        it('should render a vs-tooltip with the title provided in the `safeTravelsLogo` property', () => {
-            const tooltip = wrapper.find('[data-test="vs-canned-search-logos__safe-travels"]');
-
-            expect(tooltip.props('title')).toBe(safeTravelsLogo);
-        });
-
-        it('should not render the safe travels vs-tooltip if no `safeTravelsLogo` property is provided', async() => {
-            const testSt = '';
-
-            wrapper.setProps({
-                safeTravelsLogo: testSt,
-            });
-
-            await wrapper.vm.$nextTick();
-
-            const tooltip = wrapper.find('[data-test="vs-canned-search-logos__safe-travels"]');
-
-            expect(tooltip.exists()).toBe(false);
-        });
-
         it('should render a logo for each entry in the `awards` property', () => {
             expect(wrapper.findAll('[data-test="vs-canned-search-logos__award-logo"]').length).toBe(awards.length);
         });
