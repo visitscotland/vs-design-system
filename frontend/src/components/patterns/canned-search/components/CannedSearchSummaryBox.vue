@@ -96,7 +96,7 @@ export default {
             min-height: $spacer-9;
 
             &--tall {
-                min-height: $spacer-10;
+                min-height: 4.75rem;
             }
         }
     }
