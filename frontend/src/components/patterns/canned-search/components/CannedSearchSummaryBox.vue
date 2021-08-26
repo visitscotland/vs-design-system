@@ -72,7 +72,7 @@ export default {
         .row {
             align-items: center;
             justify-content: center;
-            min-height: $spacer-10;
+            min-height: 4.75rem;
         }
     }
 
