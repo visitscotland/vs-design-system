@@ -59,6 +59,7 @@
                 />
                 <VsCannedSearchLogos
                     slot="vsCannedSearchLogos"
+                    v-if="showLogos"
                     :good-to-go-logo="prod.covidInformation && prod.covidInformation.goodToGo ?
                         prod.covidInformation.goodToGo : null"
                     :safe-travels-logo="prod.covidInformation && prod.covidInformation.safeTravels ?
@@ -177,6 +178,24 @@ export default {
         return {
             products: [],
         };
+    },
+    computed: {
+        showLogos() {
+            for (let x = 0; x < this.products.length; x++) {
+                const product = this.products[x];
+
+                if (
+                    (product.awards && product.awards.length)
+                    || product.accessGuide
+                    || (product.covidInformation && product.covidInformation.goodToGo)
+                    || (product.covidInformation && product.covidInformation.safeTravels)
+                ) {
+                    return true;
+                }
+            }
+
+            return false;
+        },
     },
     mounted() {
         if (this.apiUrl) {
