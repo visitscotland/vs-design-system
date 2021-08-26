@@ -33,7 +33,7 @@
        "type":"INTERNAL"
     },
     "price":{
-       "price":"110",
+       "price":"£110",
        "priceLabel":"Price from",
        "priceBasis":"Per room per night (breakfast inc.)",
        "displayPrice":"Admission charge"
