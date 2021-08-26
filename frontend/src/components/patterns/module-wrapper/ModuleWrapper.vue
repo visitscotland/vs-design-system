@@ -104,6 +104,10 @@ export default {
         &.theme-dark {
             background-color: $theme-dark;
             color: $color-white;
+
+            .vs-heading {
+                color: $color-yellow;
+            }
         }
     }
 </style>
