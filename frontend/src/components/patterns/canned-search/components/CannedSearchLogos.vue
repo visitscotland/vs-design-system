@@ -6,8 +6,8 @@
             data-test="vs-canned-search-logos__good-to-go"
         >
             <VsImg
-                :src="goodToGoLogo.image"
                 :alt="goodToGoLogo.name"
+                :src="goodToGoLogo.image"
                 class="vs-canned-search-logos__logo"
             />
         </VsTooltip>
@@ -17,8 +17,8 @@
             data-test="vs-canned-search-logos__safe-travels"
         >
             <VsImg
-                :src="safeTravelsLogo.image"
                 :alt="safeTravelsLogo.name"
+                :src="safeTravelsLogo.image"
                 class="vs-canned-search-logos__logo"
             />
         </VsTooltip>
