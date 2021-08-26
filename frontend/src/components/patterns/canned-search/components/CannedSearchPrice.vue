@@ -72,7 +72,7 @@ export default {
         }
 
         &__outro {
-            font-size: $font-size-sm;
+            font-size: $small-font-size;
         }
     }
 </style>
