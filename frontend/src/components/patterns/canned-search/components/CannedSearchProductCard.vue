@@ -178,19 +178,6 @@ export default {
             required: true,
         },
     },
-    computed: {
-        datePeriod() {
-            if (this.dates && this.dates.startDay) {
-                if (this.dates.endDay) {
-                    return `${this.dates.startDay} - ${this.dates.endDay}`;
-                }
-
-                return this.dates.startDay;
-            }
-
-            return '';
-        },
-    },
     methods: {
         /**
          * Detects if the card is one of the currently visible cards in the carousel
@@ -396,15 +383,67 @@ export default {
                     v-if="sampleAccom.price"
                     slot="vsCannedSearchSummaryLeft"
                     :priceIntro="sampleAccom.price.priceLabel"
-                    :price="'£' + sampleAccom.price.price"
+                    :price="sampleAccom.price.price"
                     :priceOutro="sampleAccom.price.priceBasis"
                 />
                 <VsLink
-                    :href="sampleAccom.website"
-                    type="external"
+                    :href="sampleAccom.website.link"
+                    :type="sampleAccom.website.type.toLowerCase()"
                     slot="vsCannedSearchSummaryRight"
                 >
-                    Visit Website
+                    {{ sampleAccom.dmsLink.label }}
+                </VsLink>
+            </VsCannedSearchSummaryBox>
+        </VsCannedSearchProductCard>
+
+        <VsCannedSearchProductCard
+            slideIndex="1"
+            :imgSrc="sampleEvent.images[0].mediaUrl"
+            :imgAlt="sampleEvent.name"
+            :title="sampleEvent.name"
+            :location="sampleEvent.address.city + ', ' + sampleEvent.address.county"
+            :categories="sampleEvent.locations"
+            :description="sampleEvent.description"
+            :detailLink="{
+                link: sampleEvent.dmsLink.link,
+                label: sampleEvent.dmsLink.label,
+                type: sampleEvent.dmsLink.type.toLowerCase()
+            }"
+        >
+            <VsCannedSearchLogos
+                slot="vsCannedSearchLogos"
+                :goodToGoLogo="sampleEvent.covidInformation.goodToGo"
+                :safeTravelsLogo="sampleEvent.covidInformation.safeTravels"
+                :awards="sampleEvent.awards"
+            />
+            <VsCannedSearchBadges
+                slot="vsCannedSearchBadges"
+                :badgeOne="sampleEvent.category.name"
+                :badgeTwo="sampleAccom.offers"
+                badgeThree="Now On"
+            />
+            <VsCannedSearchSummaryBox
+                slot="vsCannedSearchSummary"
+            >
+                <VsCannedSearchDates
+                    v-if="sampleEvent.opening"
+                    slot="vsCannedSearchSummaryTop"
+                    :period="sampleEvent.opening.period"
+                    :label="sampleEvent.opening.label"
+                />
+                <VsCannedSearchPrice
+                    v-if="sampleEvent.price"
+                    slot="vsCannedSearchSummaryLeft"
+                    :priceIntro="sampleEvent.price.priceLabel"
+                    :price="sampleEvent.price.price"
+                    :priceOutro="sampleEvent.price.priceBasis"
+                />
+                <VsLink
+                    :href="sampleEvent.website.link"
+                    :type="sampleEvent.website.type.toLowerCase()"
+                    slot="vsCannedSearchSummaryRight"
+                >
+                    {{ sampleEvent.dmsLink.label }}
                 </VsLink>
             </VsCannedSearchSummaryBox>
         </VsCannedSearchProductCard>
