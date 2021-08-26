@@ -280,7 +280,7 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland&fac_id=goodtogo"
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
             searchType="even"
         >
             <template slot="vsCannedSearchButtons">
