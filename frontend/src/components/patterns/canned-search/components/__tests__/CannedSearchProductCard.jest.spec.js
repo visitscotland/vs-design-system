@@ -16,17 +16,14 @@ const websiteLink = {
     label: 'Visit website',
     type: 'external',
 };
-const badgeOne = 'B and B';
-const badgeTwo = 'Offer';
-const badgeThree = 'We are open';
 
 const slideIndex = '0';
 
 const starSlotContent = 'This is a star rating';
 const catSlotContent = 'This is a list of categories';
 const logoSlotContent = 'This is a list of logos';
-const summaryLeftSlotContent = 'This is a price';
-const summaryRightSlotContent = 'This is a link';
+const summarySlotContent = 'This is a summary';
+const badgeSlotContent = 'Tese are some badges';
 
 const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
     propsData: {
@@ -37,9 +34,6 @@ const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
         description,
         detailLink,
         websiteLink,
-        badgeOne,
-        badgeTwo,
-        badgeThree,
         slideIndex,
         ...propsData,
     },
@@ -47,8 +41,8 @@ const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
         vsCannedSearchStarRating: starSlotContent,
         vsCannedSearchCategories: catSlotContent,
         vsCannedSearchLogos: logoSlotContent,
-        vsCannedSearchSummaryLeft: summaryLeftSlotContent,
-        vsCannedSearchSummaryRight: summaryRightSlotContent,
+        vsCannedSearchBadges: badgeSlotContent,
+        vsCannedSearchSummary: summarySlotContent,
     },
     provide: () => ({
         slideCols: {
@@ -119,18 +113,6 @@ describe('VsCannedSearchProductCard', () => {
         it('should render the content of the `description` property', () => {
             expect(wrapper.html()).toContain(description);
         });
-
-        it('should render the content of the `badgeOne` property', () => {
-            expect(wrapper.html()).toContain(badgeOne);
-        });
-
-        it('should render the content of the `badgeTwo` property', () => {
-            expect(wrapper.html()).toContain(badgeTwo);
-        });
-
-        it('should render the content of the `badgeThree` property', () => {
-            expect(wrapper.html()).toContain(badgeThree);
-        });
     });
 
     describe(':slots', () => {
@@ -146,12 +128,12 @@ describe('VsCannedSearchProductCard', () => {
             expect(wrapper.html()).toContain(logoSlotContent);
         });
 
-        it('should render the content of the `vsCannedSearchSummaryLeft` slot', () => {
-            expect(wrapper.html()).toContain(summaryLeftSlotContent);
+        it('should render the content of the `vsCannedSearchBadges` slot', () => {
+            expect(wrapper.html()).toContain(badgeSlotContent);
         });
 
-        it('should render the content of the `vsCannedSearchSummaryRight` slot', () => {
-            expect(wrapper.html()).toContain(summaryRightSlotContent);
+        it('should render the content of the `vsCannedSearchSummary` slot', () => {
+            expect(wrapper.html()).toContain(summarySlotContent);
         });
     });
 });
