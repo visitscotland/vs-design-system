@@ -77,15 +77,16 @@
     ],
     "covidInformation":{
       "goodToGo": {
-        "id": "goodToGo",
-        "name": "Good to go",
-        "image": "https://www.visitscotland.com/cms-images/logos/goodToGo.png"
-      },
-      "safeTravels": {
-        "id": "SafeTravels",
-        "name": "Safe Travels",
-        "image": "https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
-      }
+         "id": "goodToGo",
+         "name": "Good to go",
+         "image": "https://www.visitscotland.com/cms-images/logos/goodToGo.png"
+       },
+       "safeTravels": {
+         "id": "SafeTravels",
+         "name": "Safe Travels",
+         "image": "https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
+       },
+       "weAreOpen":"We are open"
     },
     "latitude":56.24487,
     "longitude":-4.20783

@@ -43,11 +43,6 @@
                 }"
                 :location="fetchAddress(prod.address)"
                 :description="prod.description"
-                :badge-one="prod.category ? prod.category.name : ''"
-                :badge-two="prod.offers"
-                :badge-three="prod.covidInformation ?
-                    prod.covidInformation.weAreOpen : ''"
-                :dates="prod.opening ? prod.opening.period : null"
             >
                 <VsCannedSearchStars
                     v-if="prod.grading"
@@ -70,21 +65,32 @@
                     :access-guide="prod.accessGuide || null"
                     :awards="prod.awards"
                 />
-                <VsCannedSearchPrice
-                    v-if="prod.price"
-                    slot="vsCannedSearchSummaryLeft"
-                    :price-intro="prod.price.priceLabel"
-                    :price="prod.price.price"
-                    :price-outro="prod.price.priceBasis"
+                <VsCannedSearchBadges
+                    slot="vsCannedSearchBadges"
+                    :badge-one="prod.category ? prod.category.name : ''"
+                    :badge-two="prod.offers"
+                    :badge-three="prod.covidInformation ?
+                        prod.covidInformation.weAreOpen : ''"
                 />
-                <VsLink
-                    v-if="prod.website"
-                    :href="prod.website.link"
-                    :type="prod.website.type.toLowerCase()"
-                    slot="vsCannedSearchSummaryRight"
+                <VsCannedSearchSummaryBox
+                    slot="vsCannedSearchSummary"
                 >
-                    {{ prod.website.label }}
-                </VsLink>
+                    <VsCannedSearchPrice
+                        v-if="prod.price"
+                        slot="vsCannedSearchSummaryLeft"
+                        :price-intro="prod.price.priceLabel"
+                        :price="prod.price.price"
+                        :price-outro="prod.price.priceBasis"
+                    />
+                    <VsLink
+                        v-if="prod.website"
+                        :href="prod.website.link"
+                        :type="prod.website.type.toLowerCase()"
+                        slot="vsCannedSearchSummaryRight"
+                    >
+                        {{ prod.website.label }}
+                    </VsLink>
+                </VsCannedSearchSummaryBox>
             </VsCannedSearchProductCard>
         </VsCarousel>
         <VsContainer
@@ -109,6 +115,7 @@ import VsCannedSearchStars from '@components/patterns/canned-search/components/C
 import VsCannedSearchLogos from '@components/patterns/canned-search/components/CannedSearchLogos';
 import VsCannedSearchCategories from '@components/patterns/canned-search/components/CannedSearchCategories';
 import VsCannedSearchPrice from '@components/patterns/canned-search/components/CannedSearchPrice';
+import VsCannedSearchSummaryBox from '@components/patterns/canned-search/components/CannedSearchSummaryBox';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
@@ -134,6 +141,7 @@ export default {
         VsCannedSearchLogos,
         VsCannedSearchCategories,
         VsCannedSearchPrice,
+        VsCannedSearchSummaryBox,
         VsCarousel,
         VsContainer,
         VsRow,
@@ -194,6 +202,16 @@ export default {
 </script>
 
 <style lang="scss">
+    .vs-canned-search {
+        .vs-carousel .row > div {
+            @include media-breakpoint-down(sm) {
+                margin-left: 0;
+                max-width: 100%;
+                flex: 0 0 100%;
+            }
+        }
+    }
+
     .vs-canned-search__buttons {
         margin-bottom: $spacer-9;
 

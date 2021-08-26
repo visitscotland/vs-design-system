@@ -24,69 +24,53 @@
                             data-test="vs-product-card__img"
                         />
                     </div>
-                    <div
-                        v-if="badgeOne"
-                        class="vs-product-card__badge vs-product-card__badge--teal
-                        vs-product-card__badge--tr"
-                    >
-                        {{ badgeOne }}
-                    </div>
-                    <div
-                        v-if="badgeTwo"
-                        class="vs-product-card__badge vs-product-card__badge--pink
-                        vs-product-card__badge--tr2"
-                    >
-                        {{ badgeTwo }}
-                    </div>
-                    <div
-                        v-if="badgeThree"
-                        class="vs-product-card__badge vs-product-card__badge--light-pink
-                        vs-product-card__badge--br"
-                    >
-                        {{ badgeThree }}
-                    </div>
+                    <!--
+                        @slot Holds badges that appear over the image
+                        Expects a VsCannedSearchBadges component
+                    -->
+                    <slot
+                        name="vsCannedSearchBadges"
+                    />
                 </div>
 
                 <div class="card-body">
-                    <div class="vs-product-card__pre-description">
-                        <VsHeading
-                            level="3"
-                            class="card-title vs-product-card__title text-truncate text-truncate--2"
-                            data-test="vs-product-card__title"
+                    <VsHeading
+                        level="3"
+                        class="card-title vs-product-card__title text-truncate text-truncate--2"
+                        data-test="vs-product-card__title"
+                    >
+                        <VsLink
+                            :href="detailLink.link"
+                            :type="detailLink.type"
+                            class="stretched-link"
+                            data-test="vs-product-card__link"
+                            :disabled="!isVisible(slideIndex)"
                         >
-                            <VsLink
-                                :href="detailLink.link"
-                                :type="detailLink.type"
-                                class="stretched-link"
-                                data-test="vs-product-card__link"
-                                :disabled="!isVisible(slideIndex)"
-                            >
-                                {{ title }}
-                            </VsLink>
-                        </VsHeading>
-                        <VsHeading
-                            level="4"
-                            class="vs-product-card__location"
-                            v-if="location"
-                            data-test="vs-product-card__location"
-                        >
-                            {{ location }}
-                        </VsHeading>
-                        <!--
-                            @slot Holds an optional star rating
-                            Expects a VsCannedSearchStars component
-                        -->
-                        <slot
-                            name="vsCannedSearchStarRating"
-                        />
-                        <!--
-                            @slot Holds an optional list of categories
-                            Expects a VsCannedSearchCategories component
-                        -->
-                        <slot
-                            name="vsCannedSearchCategories"
-                        />
-                    </div>
+                            {{ title }}
+                        </VsLink>
+                    </VsHeading>
+                    <VsHeading
+                        level="4"
+                        class="vs-product-card__location"
+                        v-if="location"
+                        data-test="vs-product-card__location"
+                    >
+                        {{ location }}
+                    </VsHeading>
+                    <!--
+                        @slot Holds an optional star rating
+                        Expects a VsCannedSearchStars component
+                    -->
+                    <slot
+                        name="vsCannedSearchStarRating"
+                    />
+                    <!--
+                        @slot Holds an optional list of categories
+                        Expects a VsCannedSearchCategories component
+                    -->
+                    <slot
+                        name="vsCannedSearchCategories"
+                    />
                     <div class="vs-product-card__description">
                         <p class="text-truncate text-truncate--2">
                             {{ description }}
@@ -109,64 +93,13 @@
                     />
                 </div>
             </section>
-            <div class="vs-product-card__summary-box">
-                <VsContainer>
-                    <VsRow
-                        v-if="dates"
-                    >
-                        <VsCol
-                            cols="12"
-                            class="vs-product-card__summary-item"
-                        >
-                            <div
-                                class="vs-product-card__dates-intro"
-                            >
-                                {{ dates.label }}
-                            </div>
-                            <div
-                                class="vs-product-card__dates-main"
-                            >
-                                {{ datePeriod }}
-                            </div>
-                        </VsCol>
-                    </VsRow>
-                    <VsRow
-                        class="row--tall"
-                    >
-                        <VsCol
-                            cols="6"
-                            class="vs-product-card__summary-item"
-                            v-if="!!this.$slots['vsCannedSearchSummaryLeft']"
-                        >
-                            <!--
-                                @slot Holds the content for the second optional item in the grey
-                                summary box  at the bottom of the card, usually a
-                                vsCannedSearchPrice
-
-                                Expects html
-                            -->
-                            <slot
-                                name="vsCannedSearchSummaryLeft"
-                            />
-                        </VsCol>
-                        <VsCol
-                            cols="6"
-                            class="vs-product-card__summary-item"
-                            v-if="!!this.$slots['vsCannedSearchSummaryRight']"
-                        >
-                            <!--
-                                @slot Holds the content for the second optional item in the grey
-                                summary box  at the bottom of the card, usually a link
-
-                                Expects html
-                            -->
-                            <slot
-                                name="vsCannedSearchSummaryRight"
-                            />
-                        </VsCol>
-                    </VsRow>
-                </VsContainer>
-            </div>
+            <!--
+                @slot Holds the summary box for the product card
+                Expects a VsCannedSearchSummaryBox component
+            -->
+            <slot
+                name="vsCannedSearchSummary"
+            />
         </div>
     </VsCol>
 </template>
@@ -175,8 +108,6 @@
 import VsImg from '@components/elements/img/Img';
 import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
-import VsContainer from '@components/elements/layout/Container';
-import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
 
 /**
@@ -192,8 +123,6 @@ export default {
         VsImg,
         VsHeading,
         VsLink,
-        VsContainer,
-        VsRow,
         VsCol,
     },
     props: {
@@ -239,37 +168,6 @@ export default {
         detailLink: {
             type: Object,
             required: true,
-        },
-        /**
-        * Appears in a teal badge over the image at the top right. Not rendered if not set
-        */
-        badgeOne: {
-            type: String,
-            default: '',
-        },
-        /**
-        * Appears in a pink badge over the image, below the position of badgeOne. Not
-        * rendered if not set
-        */
-        badgeTwo: {
-            type: String,
-            default: '',
-        },
-        /**
-        * Appears in a white badge over the image at the bottom right. Not rendered
-        * if not set
-        */
-        badgeThree: {
-            type: String,
-            default: '',
-        },
-        /**
-        * Should contain a `startDay` and an `endDay` property, each of
-        * which has a `yyyy-mm-dd` formatted date in it, `label` string that intros the dates`.
-        */
-        dates: {
-            type: Object,
-            default: null,
         },
         /**
         * Mandatory index of slide -
@@ -376,43 +274,6 @@ export default {
             flex-shrink: 0; // IE11 fix, prevents image vertical stretching
         }
 
-        .vs-product-card__badge {
-            font-size: $font-size-sm;
-            position: absolute;
-            padding: 0 .5em;
-            text-transform: uppercase;
-
-            &--teal {
-                color: $color-white;
-                background-color: $color_secondary_teal;
-            }
-
-            &--pink {
-                color: $color-white;
-                background-color: $color_pink;
-            }
-
-            &--light-pink {
-                background-color: $color_pink_tint_6;
-                color: $color_pink;
-            }
-
-            &--tr {
-                top: .5em;
-                right: .5em;
-            }
-
-            &--tr2 {
-                top: 2.5em;
-                right: .5em;
-            }
-
-            &--br {
-                bottom: .5em;
-                right: .5em;
-            }
-        }
-
         .vs-product-card__title {
             font-size: $font-size-base;
             line-height: $line-height-s;
@@ -443,46 +304,6 @@ export default {
 
             p {
                 margin-bottom: $spacer-1;
-            }
-        }
-
-        .vs-product-card__logos-container {
-            margin-top: $spacer-9;
-            margin-bottom: $spacer-4;
-            min-height: $spacer-9;
-        }
-
-        .vs-product-card__dates-intro {
-            font-size: $font-size-sm;
-        }
-
-        .vs-product-card__dates-main {
-            font-weight: bold;
-        }
-
-        .vs-product-card__summary-box {
-            padding: $spacer-2;
-            background-color: $color-gray-tint-7;
-            min-height: 4.5rem;
-
-            .row {
-                align-items: center;
-                justify-content: center;
-                min-height: $spacer-9;
-
-                &--tall {
-                    min-height: $spacer-10;
-                }
-            }
-        }
-
-        .vs-product-card__summary-item {
-            font-size: $font-size-base;
-            line-height: $line-height-s;
-            text-align: center;
-
-            &:not(:last-child) {
-                border-right: 1px solid $color-gray-tint-1;
             }
         }
 
@@ -543,10 +364,6 @@ export default {
                 label: sampleAccom.dmsLink.label,
                 type: sampleAccom.dmsLink.type.toLowerCase()
             }"
-            :badgeOne="sampleAccom.category.name"
-            :badgeTwo="sampleAccom.offers"
-            :badgeThree="sampleAccom.covidInformation ?
-                sampleAccom.covidInformation.weAreOpen : ''"
         >
             <VsCannedSearchStars
                 slot="vsCannedSearchStarRating"
@@ -565,53 +382,31 @@ export default {
                 :safeTravelsLogo="sampleAccom.covidInformation.safeTravels"
                 :awards="sampleAccom.awards"
             />
-            <VsCannedSearchPrice
-                v-if="sampleAccom.price"
-                slot="vsCannedSearchSummaryLeft"
-                :priceIntro="sampleAccom.price.priceLabel"
-                :price="'£' + sampleAccom.price.price"
-                :priceOutro="sampleAccom.price.priceBasis"
+            <VsCannedSearchBadges
+                slot="vsCannedSearchBadges"
+                :badgeOne="sampleAccom.category.name"
+                :badgeTwo="sampleAccom.offers"
+                :badgeThree="sampleAccom.covidInformation ?
+                    sampleAccom.covidInformation.weAreOpen : ''"
             />
-            <VsLink
-                v-if="sampleAccom.website"
-                :href="sampleAccom.website.link"
-                :type="sampleAccom.website.type.toLowerCase()"
-                slot="vsCannedSearchSummaryRight"
+            <VsCannedSearchSummaryBox
+                slot="vsCannedSearchSummary"
             >
-                {{ sampleAccom.website.label }}
-            </VsLink>
-        </VsCannedSearchProductCard>
-        <VsCannedSearchProductCard
-            slideIndex="1"
-            :imgSrc="sampleEvent.images[0].mediaUrl"
-            :imgAlt="sampleEvent.name"
-            :title="sampleEvent.name"
-            :location="sampleEvent.address.line1 + ', ' + sampleEvent.address.county"
-            :categories="sampleEvent.locations"
-            :description="sampleEvent.description"
-            :detailLink="{
-                link: sampleEvent.dmsLink.link,
-                label: sampleEvent.dmsLink.label,
-                type: sampleEvent.dmsLink.type.toLowerCase()
-            }"
-            :badgeOne="sampleEvent.category.name"
-            :dates="sampleEvent.opening ? sampleEvent.opening : null"
-        >
-            <VsCannedSearchPrice
-                v-if="sampleEvent.price"
-                slot="vsCannedSearchSummaryLeft"
-                :priceIntro="sampleEvent.price.priceLabel"
-                :price="'£' + sampleEvent.price.price"
-                :priceOutro="sampleEvent.price.priceBasis"
-            />
-            <VsLink
-                v-if="sampleEvent.website"
-                :href="sampleEvent.website.link"
-                :type="sampleEvent.website.type.toLowerCase()"
-                slot="vsCannedSearchSummaryRight"
-            >
-                {{ sampleEvent.website.label }}
-            </VsLink>
+                <VsCannedSearchPrice
+                    v-if="sampleAccom.price"
+                    slot="vsCannedSearchSummaryLeft"
+                    :priceIntro="sampleAccom.price.priceLabel"
+                    :price="'£' + sampleAccom.price.price"
+                    :priceOutro="sampleAccom.price.priceBasis"
+                />
+                <VsLink
+                    :href="sampleAccom.website"
+                    type="external"
+                    slot="vsCannedSearchSummaryRight"
+                >
+                    Visit Website
+                </VsLink>
+            </VsCannedSearchSummaryBox>
         </VsCannedSearchProductCard>
     </VsCarousel>
 ```
