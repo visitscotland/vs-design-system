@@ -4,6 +4,7 @@
 <#include "../modules/article/article.ftl">
 <#include "../modules/long-copy/long-copy.ftl">
 <#include "../modules/iknow-community/iknow-community.ftl">
+<#include "../modules/travel-information/travel-information.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 <#include "../modules/horizontal-list/horizontal-list.ftl">
@@ -61,6 +62,9 @@
 
         <#elseif module.getType()== "StacklaModule">
             <@stackla module/>
+
+        <#elseif module.getType()== "TravelInformationModule">
+            <@travelInformation module/>
 
         <#elseif module.getType()== "CannedSearchModule">
             <@cannedSearch module themeName/>

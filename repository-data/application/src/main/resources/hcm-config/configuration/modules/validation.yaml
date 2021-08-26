@@ -80,3 +80,8 @@ definitions:
       hipposys:className: com.visitscotland.brxm.validator.UniqueLinksValidator
       linkIdField: visitscotland:link
       targetField: visitscotland:megalinkItems
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:travel-tab-transport-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: com.visitscotland.brxm.validator.UniqueLinksValidator
+      linkIdField: visitscotland:transport
+      targetField: visitscotland:accordion
