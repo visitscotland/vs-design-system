@@ -33,7 +33,10 @@
                     />
                 </div>
 
-                <div class="card-body">
+                <div
+                    class="card-body"
+                    :class="searchType === 'even' ? 'card-body--short' : ''"
+                >
                     <VsHeading
                         level="3"
                         class="card-title vs-product-card__title text-truncate text-truncate--2"
@@ -126,6 +129,14 @@ export default {
         VsCol,
     },
     props: {
+        /**
+        * The type of product being searched for by the canned search
+        * the card appears in, dictates certain layout elements
+        */
+        searchType: {
+            type: String,
+            default: '',
+        },
         /**
         * The image to use in the component
         */
@@ -226,6 +237,10 @@ export default {
         .card-body {
             padding: $spacer-1 $spacer-0 $spacer-0;
             min-height: 11rem;
+
+            &--short {
+                min-height: 8rem;
+            }
         }
 
         .stretched-link {
@@ -351,6 +366,7 @@ export default {
                 label: sampleAccom.dmsLink.label,
                 type: sampleAccom.dmsLink.type.toLowerCase()
             }"
+            searchType="acco"
         >
             <VsCannedSearchStars
                 slot="vsCannedSearchStarRating"
@@ -409,6 +425,7 @@ export default {
                 label: sampleEvent.dmsLink.label,
                 type: sampleEvent.dmsLink.type.toLowerCase()
             }"
+            searchType="even"
         >
             <VsCannedSearchLogos
                 slot="vsCannedSearchLogos"

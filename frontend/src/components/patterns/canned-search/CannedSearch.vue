@@ -43,6 +43,7 @@
                 }"
                 :location="fetchAddress(prod.address)"
                 :description="prod.description"
+                :search-type="searchType"
             >
                 <VsCannedSearchStars
                     v-if="prod.grading"
