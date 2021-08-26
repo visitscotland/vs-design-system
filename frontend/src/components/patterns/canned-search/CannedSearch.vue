@@ -41,7 +41,7 @@
                     label: prod.dmsLink.label,
                     type: prod.dmsLink.type.toLowerCase()
                 }"
-                :location="fetchAddress(prod.address)"
+                :location="fetchAddress(prod)"
                 :description="prod.description"
                 :search-type="searchType"
             >
@@ -197,12 +197,16 @@ export default {
                     this.products = [];
                 });
         },
-        fetchAddress(address) {
-            if (this.searchType === 'even') {
-                return `${address.line1}, ${address.city}`;
+        fetchAddress(product) {
+            if (product.onlineEvent) {
+                return product.onlineEvent;
             }
 
-            return `${address.city}, ${address.county}`;
+            if (this.searchType === 'even') {
+                return `${product.address.line1}, ${product.address.city}`;
+            }
+
+            return `${product.address.city}, ${product.address.county}`;
         },
         fetchBadgeThree(product) {
             if (product.covidInformation && product.covidInformation.weAreOpen) {
