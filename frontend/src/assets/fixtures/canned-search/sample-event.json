@@ -44,11 +44,6 @@
         "id": "goodToGo",
         "name": "Good to go",
         "image": "https://www.visitscotland.com/cms-images/logos/goodToGo.png"
-      },
-      "safeTravels": {
-        "id": "SafeTravels",
-        "name": "Safe Travels",
-        "image": "https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png"
       }
    },
    "opening": {
@@ -56,7 +51,7 @@
          "startDay": "2022-10-12",
          "endDay": "2022-10-14"
       },
-      "dateLabel": "Dates from",
+      "label": "Dates from",
       "nowOnLabel": "Now on"
    },
    "latitude": 57.3563,
