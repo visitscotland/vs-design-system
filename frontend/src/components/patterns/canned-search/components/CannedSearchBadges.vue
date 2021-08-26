@@ -74,7 +74,6 @@ export default {
         height: 100%;
 
         .vs-canned-search-badges__badge {
-            font-size: $font-size-sm;
             position: absolute;
             padding: 0 .5em;
             text-transform: uppercase;
