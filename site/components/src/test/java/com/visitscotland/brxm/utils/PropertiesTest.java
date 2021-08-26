@@ -181,4 +181,10 @@ class PropertiesTest {
         when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.INSTAGRAM_ACCESS_TOKEN, Locale.UK)).thenReturn("");
         assertEquals("{app-id}", properties.getInstagramToken());
     }
+
+    @Test
+    @DisplayName("VS-2756 - ")
+    void createTest(){
+        //Please don't approve the PR if you see this comment
+    }
 }

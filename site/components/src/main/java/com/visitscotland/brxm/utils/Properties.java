@@ -8,7 +8,11 @@ import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Component
 public class Properties {
@@ -35,6 +39,7 @@ public class Properties {
     static final String IKNOW_COMMUNITY_TAGGED_DISCUSSION = "iknow-community.tagged-discussion";
     static final String USE_RELATIVE_URLS = "links.use-relative-urls";
     static final String INTERNAL_SITES = "links.internal-sites";
+    static final String CONVERT_TO_RELATIVE = "links.convert-to-relative";
 
 
     private final ResourceBundleService bundle;
@@ -64,8 +69,12 @@ public class Properties {
         return readString(HELPDESK_EMAIL);
     }
 
+    public boolean isRelativeURLs(){
+        return readBoolean(USE_RELATIVE_URLS);
+    }
+
     public String getDmsHost() {
-        if (readBoolean(USE_RELATIVE_URLS)){
+        if (isRelativeURLs()){
             return "";
         } else {
             return readString(DMS_HOST);
@@ -73,10 +82,18 @@ public class Properties {
     }
 
     public String getCmsBasePath() {
-        if (readBoolean(USE_RELATIVE_URLS)){
+        if (isRelativeURLs()){
             return "";
         } else {
             return readString(CMS_BASE_PATH);
+        }
+    }
+
+    public String getConvertToRelative() {
+        if (isRelativeURLs()){
+            return readString(CONVERT_TO_RELATIVE);
+        } else {
+            return "";
         }
     }
 
@@ -112,9 +129,15 @@ public class Properties {
         return readString(IKNOW_COMMUNITY_TAGGED_DISCUSSION);
     }
 
-    public String getInternalSites() {
-        return readString(INTERNAL_SITES);
+    public List<String> getInternalSites() {
+        String sites = readString(INTERNAL_SITES);
+        if (!Contract.isEmpty(sites)){
+            //TODO: Java 10 -> toUnmodifiableList()
+            return Arrays.stream(sites.trim().split("\\s*,\\s*")).filter(String::isEmpty).collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
+
 
     public Charset getDmsEncoding() {
         String value = getProperty(DMS_DATA_ENCODING);

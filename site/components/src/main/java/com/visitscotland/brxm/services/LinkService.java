@@ -57,7 +57,7 @@ public class LinkService {
     /**
      * Fetches a new Product Search Object
      */
-    private ProductSearchBuilder productSearch(){
+    private ProductSearchBuilder productSearch() {
         return VsComponentManager.get(ProductSearchBuilder.class);
     }
 
@@ -100,51 +100,64 @@ public class LinkService {
         return null;
     }
 
-    public FlatLink createExternalLink(final Locale locale, final String url, final String label){
-        LinkType linkType = getType(url);
-        String localizedUrl = url;
+    /**
+     * Creates a localized FlatLink from a URL. It request
+     *
+     * @param url: URl
+     * @return
+     */
+    public FlatLink createExternalLink(final String url) {
+        return createExternalLink(utils.getRequestLocale(), url, null);
+    }
 
-        if (locale != Locale.UK && (linkType == LinkType.INTERNAL || linkType == LinkType.DOWNLOAD)) {
-            localizedUrl = localize(locale, url);
-            if (url.equals(localizedUrl) && linkType == LinkType.INTERNAL && !url.startsWith("#")) {
-                logger.error("The URL {} could not be localized", url);
-            }
+    FlatLink createExternalLink(final Locale locale, final String url, final String label) {
+        LinkType linkType = getType(url);
+        String localizedUrl = processURL(locale, url);
+
+        if (locale != Locale.UK && url.equals(localizedUrl) && linkType == LinkType.INTERNAL && !url.startsWith("#")) {
+            logger.error("The URL {} could not be localized", url);
         }
 
         return new FlatLink(label, localizedUrl, linkType);
     }
 
-    private String localize(Locale locale, String url){
-        if (url.startsWith("/")){
-            return composeUrl(locale, "", url);
-        } else if (!Contract.isEmpty(properties.getInternalSites())){
-            for (String site : properties.getInternalSites().trim().split("\\s*,\\s*")) {
-                if (site.length() > 0 && url.startsWith(site)) {
-                    return composeUrl(locale, site, url.substring(site.length()));
+    private String processURL(Locale locale, String url) {
+        if (url.startsWith("/")) {
+            return localize(locale, "", url);
+        }
+
+        if (!Contract.isEmpty(properties.getInternalSites())) {
+            try {
+                URL urlObject = new URL(url);
+
+                for (String host : properties.getInternalSites()) {
+                    if (urlObject.getHost().equals(host)) {
+                        String site = host.equals(properties.getConvertToRelative())?"":url.substring(0, url.lastIndexOf(urlObject.getFile()));
+                        return localize(locale, site, urlObject.getFile());
+                    }
                 }
+            } catch (IllegalArgumentException | MalformedURLException e) {
+                logger.error("The URL {} cannot be parsed for localization", url);
             }
         }
+
+
         return url;
     }
 
-
-
     /**
      * Detects if the URLs is belong to the DMS
+     *
      * @param locale
      * @param site
      * @param path
      * @return
      */
-    private String composeUrl(Locale locale, String site, String path){
-        String languagePath;
-        if (path.matches(DMS_PAGE)) {
-            languagePath = Language.getLanguageForLocale(locale).getDMSPathVariable();
-        } else {
-            languagePath = Language.getLanguageForLocale(locale).getCMSPathVariable();
-        }
+    private String localize(Locale locale, String site, String path) {
+        String languagePath = path.matches(DMS_PAGE) ?
+                Language.getLanguageForLocale(locale).getDMSPathVariable() : Language.getLanguageForLocale(locale).getCMSPathVariable();
 
-        if (site.startsWith(languagePath)){
+        if (path.startsWith(languagePath)) {
             return site + path;
         } else {
             return site + languagePath + path;
@@ -190,16 +203,15 @@ public class LinkService {
      *
      * @param url URL to analyze
      * @return linkType
-     *
      */
     public LinkType getType(String url) {
         if (Contract.isEmpty(url)) {
             return null;
         } else if (url.toLowerCase().endsWith(".pdf")) {
             return LinkType.DOWNLOAD;
-        } else if (url.startsWith("/") || url.startsWith("#")){
+        } else if (url.startsWith("/") || url.startsWith("#")) {
             return LinkType.INTERNAL;
-        } else if (isInternalDomain(url)){
+        } else if (isInternalDomain(url)) {
             return LinkType.INTERNAL;
         }
 
@@ -208,19 +220,19 @@ public class LinkService {
 
     /**
      * Check if the host of the URL is marked as an internal URL
-     *
+     * <p>
      * Note: Malformed URLs will be treated as external URLs
      *
      * @param url
      * @return
      */
-    private boolean isInternalDomain(String url){
+    private boolean isInternalDomain(String url) {
         try {
             String host = new URL(url).getHost();
             return ((!Contract.isEmpty(properties.getInternalSites()) && properties.getInternalSites().contains(host)) ||
                     (!Contract.isEmpty(properties.getDmsHost()) && host.equals(properties.getDmsHost())));
         } catch (MalformedURLException e) {
-            logger.info("Malformed URL detected {}",url);
+            logger.info("Malformed URL detected {}", url);
         }
         return false;
     }
@@ -268,8 +280,8 @@ public class LinkService {
     /**
      * Creates an enhanced link form a {@code Linkable} object
      *
-     * @param linkable Page or Shared link that contains the information about the link
-     * @param module Module to
+     * @param linkable    Page or Shared link that contains the information about the link
+     * @param module      Module to
      * @param locale
      * @param addCategory
      * @return
@@ -292,8 +304,8 @@ public class LinkService {
             return null;
         }
 
-        if (addCategory && link.getLink()!= null && link.getCategory()==null){
-            link.setCategory(getLinkCategory (link.getLink(),locale));
+        if (addCategory && link.getLink() != null && link.getCategory() == null) {
+            link.setCategory(getLinkCategory(link.getLink(), locale));
         }
         if (link.getImage() == null) {
             if (module != null) {
@@ -310,7 +322,7 @@ public class LinkService {
     /**
      * Query the DMSDataService and extract the information about the product as a {@code JsonNode}
      *
-     * @param link SharedLink where the DMS product (ID) is defined
+     * @param link   SharedLink where the DMS product (ID) is defined
      * @param locale User language to consume DMS texts such a category, location, facilities...
      * @return JSON with DMS product information to create the card or null if the product does not exist
      */
@@ -324,16 +336,16 @@ public class LinkService {
     /**
      * Populated the information about an enhanced Link from a Page Document.
      *
-     * @param link EnhacencedLink with minimum data
+     * @param link     EnhacencedLink with minimum data
      * @param linkable SharedLink document that contains extra information
      */
-    private void enhancedLinkFromPage(EnhancedLink link, Page linkable){
+    private void enhancedLinkFromPage(EnhancedLink link, Page linkable) {
         link.setLink(utils.createUrl(linkable));
         link.setType(LinkType.INTERNAL);
         if (linkable instanceof Itinerary) {
             Itinerary itinerary = (Itinerary) linkable;
-            link.setItineraryDays(documentUtilsService.getSiblingDocuments(linkable,Day.class, "visitscotland:Day").size());
-            if (itinerary.getTransports().length > 0){
+            link.setItineraryDays(documentUtilsService.getSiblingDocuments(linkable, Day.class, "visitscotland:Day").size());
+            if (itinerary.getTransports().length > 0) {
                 link.setItineraryTransport(itinerary.getTransports()[0]);
             }
         }
@@ -342,22 +354,22 @@ public class LinkService {
     /**
      * Populated the information about an enhanced Link from a SharedLink Document.
      *
-     * @param link EnhacencedLink with minimum data
-     * @param linkable SharedLink document that contains extra information
-     * @param module Module to feed with any possible issue found while creating the page.
-     * @param locale Language for the label
+     * @param link        EnhacencedLink with minimum data
+     * @param linkable    SharedLink document that contains extra information
+     * @param module      Module to feed with any possible issue found while creating the page.
+     * @param locale      Language for the label
      * @param addCategory wether or not the category field is populated.
      */
-    private void enhancedLinkFromSharedLink(EnhancedLink link, SharedLink linkable, Module<?> module, Locale locale, boolean addCategory){
+    private void enhancedLinkFromSharedLink(EnhancedLink link, SharedLink linkable, Module<?> module, Locale locale, boolean addCategory) {
         JsonNode product = getNodeFromSharedLink(linkable, locale);
         link.setLink(getPlainLink(linkable, product));
 
         if (link.getImage() == null && product != null && product.has(DMSConstants.DMSProduct.IMAGE)) {
             link.setImage(imageFactory.createImage(product, module));
         }
-        if (linkable.getLinkType() instanceof ExternalDocument){
+        if (linkable.getLinkType() instanceof ExternalDocument) {
             ExternalDocument externalDocument = (ExternalDocument) linkable.getLinkType();
-            link.setLabel(linkable.getTitle() + getDownloadText(link.getLink(),locale, module));
+            link.setLabel(linkable.getTitle() + getDownloadText(link.getLink(), locale, module));
             link.setType(LinkType.DOWNLOAD);
 
             if (addCategory) {
@@ -375,7 +387,7 @@ public class LinkService {
     }
 
 
-    public String getDownloadText(String link, Locale locale, Module<?> module){
+    public String getDownloadText(String link, Locale locale, Module<?> module) {
         String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
         //TODO The following operation is expensive. We should cache the value
         String size = commonUtils.getExternalDocumentSize(link, locale);
