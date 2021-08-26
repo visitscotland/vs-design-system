@@ -76,7 +76,7 @@ export default {
         .vs-canned-search-badges__badge {
             font-size: $font-size-sm;
             position: absolute;
-            padding: 0 .5em;
+            padding: $spacer-0 $spacer-2;
             text-transform: uppercase;
 
             &--teal {
@@ -92,21 +92,23 @@ export default {
             &--light-pink {
                 background-color: $color_pink_tint_6;
                 color: $color_pink;
+                font-weight: $font-weight-bold;
             }
 
             &--tr {
-                top: .5em;
-                right: .5em;
+                top: $spacer-2;
+                right: $spacer-2;
             }
 
             &--tr2 {
                 top: 2.5em;
-                right: .5em;
+                right: $spacer-2;
             }
 
             &--br {
-                bottom: .5em;
-                right: .5em;
+                bottom: $spacer-2;
+                right: $spacer-2;
+                padding: $spacer-0 $spacer-4;
             }
         }
     }
