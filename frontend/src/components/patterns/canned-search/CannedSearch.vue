@@ -70,8 +70,7 @@
                     slot="vsCannedSearchBadges"
                     :badge-one="prod.category ? prod.category.name : ''"
                     :badge-two="prod.offers"
-                    :badge-three="prod.covidInformation ?
-                        prod.covidInformation.weAreOpen : ''"
+                    :badge-three="fetchBadgeThree(prod)"
                 />
                 <VsCannedSearchSummaryBox
                     slot="vsCannedSearchSummary"
@@ -204,6 +203,17 @@ export default {
             }
 
             return `${address.city}, ${address.county}`;
+        },
+        fetchBadgeThree(product) {
+            if (product.covidInformation && product.covidInformation.weAreOpen) {
+                return product.covidInformation.weAreOpen;
+            }
+
+            if (product.opening && product.opening.nowOn) {
+                return product.opening.nowOn;
+            }
+
+            return '';
         },
     },
 };
