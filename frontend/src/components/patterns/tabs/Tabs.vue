@@ -37,9 +37,10 @@ export default {
                     <VsTabItem title="First" active>
                         <div class="px-5 py-4">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porta
-                                nec mauris id vulputate. Nullam hendrerit libero pharetra dolor
-                                iaculis, ac feugiat nisi pharetra. Aliquam erat volutpat.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Sed porta nec mauris id vulputate. Nullam hendrerit
+                                libero pharetra dolor iaculis, ac feugiat nisi pharetra.
+                                Aliquam erat volutpat.
                             </p>
                             <p>
                                 Suspendisse rhoncus turpis vel felis consectetur consectetur.
@@ -64,7 +65,8 @@ export default {
                                 Pellentesque auctor eu lorem ut aliquet. Nulla lobortis
                                 mauris ligula, sit amet volutpat purus tincidunt at. Fusce
                                 dui sapien, malesuada apellentesque at, placerat vel nisi.
-                                Aliquam sit amet velit maximus risus lacinia aliquam eget ut arcu.
+                                Aliquam sit amet velit maximus risus lacinia
+                                aliquam eget ut arcu.
                             </p>
                         </div>
                     </VsTabItem>
