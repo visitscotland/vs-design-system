@@ -2,7 +2,8 @@
     <VsCol
         class="vs-social-share-item"
         data-test="vs-social-share-item"
-        cols="4"
+        :cols="4"
+        :md="noJs ? 2 : 4"
     >
         <VsLink
             class="vs-social-share-item__link"
@@ -11,7 +12,6 @@
             :id="`vs-share-${name}`"
         >
             <VsIcon
-                v-if="name !== 'whatsapp'"
                 :name="name"
                 :custom-colour="iconColour"
                 variant="dark"
@@ -19,11 +19,6 @@
                 small-size="lg"
             />
 
-            <VsSvg
-                v-if="name === 'whatsapp'"
-                class="svg-logo"
-                :path="name"
-            />
             {{ show ? linkCopiedText : linkText }}
         </VsLink>
     </VsCol>
@@ -32,7 +27,6 @@
 <script>
 import VsLink from '@components/elements/link/Link';
 import VsIcon from '@components/elements/icon/Icon';
-import VsSvg from '@components/elements/svg/Svg';
 import { VsCol } from '@components/elements/layout';
 
 /**
@@ -47,7 +41,6 @@ export default {
     components: {
         VsCol,
         VsLink,
-        VsSvg,
         VsIcon,
     },
     props: {
@@ -87,6 +80,12 @@ export default {
         pageTitle: {
             default: '',
         },
+        /**
+        * Page Title to share - provided by parent SocialShare
+        */
+        noJs: {
+            default: '',
+        },
     },
     data() {
         return {
@@ -106,6 +105,9 @@ export default {
                 break;
             case 'pinterest':
                 colour = '#E60023';
+                break;
+            case 'whatsapp':
+                colour = '#455a64';
                 break;
             default:
                 colour = '#000000';
@@ -143,6 +145,8 @@ export default {
     methods: {
         copyToClipboard() {
             if (this.name === 'link') {
+                this.$emit('on-copy-link');
+
                 // create hidden input to copy from
                 const hiddenInput = document.createElement('textarea');
                 hiddenInput.setAttribute('readonly', '');
@@ -174,6 +178,7 @@ export default {
         display: block;
         margin-bottom: $spacer-2;
         padding: $spacer-4 $spacer-2;
+        text-align: center;
 
         @include media-breakpoint-up(md) {
             padding: $spacer-6;
@@ -186,18 +191,28 @@ export default {
             outline: 3px solid rgba($color-pink, .3);
         }
 
-        .vs-icon, .svg-logo{
+        .vs-icon{
             display: block;
             margin: 0 auto $spacer-3;
         }
+    }
+}
 
-        .svg-logo{
-            height: 30px;
-            width: 30px;
+@include no-js {
+    .vs-social-share-item{
+        &__link.vs-link.vs-link--variant-primary{
+            margin-bottom: $spacer-4;
+
+            @include media-breakpoint-up(sm) {
+                margin-bottom: $spacer-6;
+            }
 
             @include media-breakpoint-up(md) {
-                height: 40px;
-                width: 40px;
+                margin-bottom: 0;
+            }
+
+            @include media-breakpoint-up(md) {
+                padding: $spacer-6 $spacer-2;
             }
         }
     }
@@ -206,7 +221,7 @@ export default {
 
 <docs>
 ```jsx
-    <BsWrapper class="d-flex justify-content-end my-3 mx-3">
+    <BsWrapper class="d-flex my-3 mx-3">
         <VsSocialShareItem
             name="twitter"
             link-text="Twitter"
