@@ -20,7 +20,7 @@
 
         <vs-canned-search
             api-url="${module.cannedSearchEndpoint}"
-            searchType="${module.productType}"
+            search-type="${module.productType}"
         >
             <template slot="vsCannedSearchButtons">
                 <vs-button
