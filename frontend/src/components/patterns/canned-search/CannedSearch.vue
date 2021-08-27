@@ -124,6 +124,7 @@ import VsCannedSearchCategories from '@components/patterns/canned-search/compone
 import VsCannedSearchPrice from '@components/patterns/canned-search/components/CannedSearchPrice';
 import VsCannedSearchSummaryBox from '@components/patterns/canned-search/components/CannedSearchSummaryBox';
 import VsCannedSearchDates from '@components/patterns/canned-search/components/CannedSearchDates';
+import VsCannedSearchBadges from '@components/patterns/canned-search/components/CannedSearchBadges';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
@@ -151,6 +152,7 @@ export default {
         VsCannedSearchPrice,
         VsCannedSearchSummaryBox,
         VsCannedSearchDates,
+        VsCannedSearchBadges,
         VsCarousel,
         VsContainer,
         VsRow,
