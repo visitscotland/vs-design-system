@@ -198,7 +198,12 @@ class HTMLtoVueTransformerTest {
 
     @Test
     @DisplayName("VS-2756 - ")
-    void createTest(){
-        //Please don't approve the PR if you see this comment
+    void localizedUrl(){
+        final String HTML = "<a href=\"https://www.visitscotland.com/\">Link 1</a>";
+
+        when(linkService.createExternalLink("https://www.visitscotland.com/"))
+                .thenReturn(new FlatLink(null, "https://www.visitscotland.com/es/", LinkType.EXTERNAL));
+
+        Assertions.assertTrue(transformer.processLinks(HTML).contains("https://www.visitscotland.com/es/"));
     }
 }

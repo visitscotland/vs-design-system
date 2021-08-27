@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Component
@@ -133,7 +134,8 @@ public class Properties {
         String sites = readString(INTERNAL_SITES);
         if (!Contract.isEmpty(sites)){
             //TODO: Java 10 -> toUnmodifiableList()
-            return Arrays.stream(sites.trim().split("\\s*,\\s*")).filter(String::isEmpty).collect(Collectors.toList());
+            //TODO: Java 11 -> Predicate.not(String::isEmpty)
+            return Arrays.stream(sites.trim().split("\\s*,\\s*")).filter(((Predicate<String>) String::isEmpty).negate()).collect(Collectors.toList());
         }
         return Collections.emptyList();
     }
