@@ -1,6 +1,7 @@
 <template>
     <section
         class="vs-module-wrapper"
+        data-test="vs-module-wrapper"
         :class="`vs-module-wrapper--${theme}`"
         v-bind="$attrs"
     >
