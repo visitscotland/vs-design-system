@@ -17,6 +17,7 @@ import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +90,6 @@ public class LinkService {
             ExternalLink externalLink = (ExternalLink) item;
 
             return createExternalLink(locale, externalLink.getLink(), bundle.getCtaLabel(externalLink.getLabel(), locale));
-
         } else if (item instanceof CMSLink && ((CMSLink) item).getLink() instanceof Page) {
             CMSLink cmsLink = (CMSLink) item;
             return new FlatLink(bundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl((Page) cmsLink.getLink()), LinkType.INTERNAL);
@@ -114,7 +114,7 @@ public class LinkService {
         LinkType linkType = getType(url);
         String localizedUrl = processURL(locale, url);
 
-        if (locale != Locale.UK && url.equals(localizedUrl) && linkType == LinkType.INTERNAL && !url.startsWith("#")) {
+        if (locale != Locale.UK && url != null && url.equals(localizedUrl) && linkType == LinkType.INTERNAL && !url.startsWith("#")) {
             logger.error("The URL {} could not be localized", url);
         }
 
@@ -122,7 +122,9 @@ public class LinkService {
     }
 
     private String processURL(Locale locale, String url) {
-        if (url.startsWith("/")) {
+        if (url == null) {
+            return null;
+        } else if (url.startsWith("/")) {
             return localize(locale, "", url);
         }
 
@@ -132,7 +134,7 @@ public class LinkService {
 
                 for (String host : properties.getInternalSites()) {
                     if (urlObject.getHost().equals(host)) {
-                        String site = host.equals(properties.getConvertToRelative())?"":url.substring(0, url.lastIndexOf(urlObject.getFile()));
+                        String site = host.equals(properties.getConvertToRelative()) ? "" : url.substring(0, url.lastIndexOf(urlObject.getFile()));
                         return localize(locale, site, urlObject.getFile());
                     }
                 }
@@ -140,7 +142,6 @@ public class LinkService {
                 logger.error("The URL {} cannot be parsed for localization", url);
             }
         }
-
 
         return url;
     }
@@ -165,7 +166,7 @@ public class LinkService {
     }
 
     public FlatLink createDmsLink(Locale locale, DMSLink dmsLink, JsonNode dmsProductJson) {
-        return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + dmsProductJson.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK).asText(), LinkType.INTERNAL);
+        return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), getPlainLink(locale, dmsLink, dmsProductJson), LinkType.INTERNAL);
     }
 
     /**
@@ -175,27 +176,28 @@ public class LinkService {
      * @param product JsonNode with the data of the product. It is only used when the type of SharedLink is DMSLink.
      * @return String URL from the SharedLink
      */
-    public String getPlainLink(SharedLink link, JsonNode product) {
+    public String getPlainLink(Locale locale, HippoBean link, JsonNode product) {
+        String url = null;
 
-        if (link.getLinkType() instanceof DMSLink) {
+        if (link instanceof DMSLink) {
             if (product == null) {//((DMSLink) link).getDmsData(locale)
-                contentLogger.warn("The product id '{}' does not exist but is linked - {}", ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
+                contentLogger.warn("The product id '{}' does not exist but is linked - {}", ((DMSLink) link).getProduct(), link.getPath());
             } else {
-                return properties.getDmsHost() + product.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK).asText();
+                url = properties.getDmsHost() + product.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK).asText();
             }
-        } else if (link.getLinkType() instanceof ExternalLink) {
-            return ((ExternalLink) link.getLinkType()).getLink();
-        } else if (link.getLinkType() instanceof ProductsSearch) {
-            return productSearch().fromHippoBean(((ProductsSearch) link.getLinkType())).build();
-        } else if (link.getLinkType() instanceof ProductSearchLink) {
-            return productSearch().fromHippoBean(((ProductSearchLink) link.getLinkType()).getSearch()).build();
-        } else if (link.getLinkType() instanceof ExternalDocument) {
-            return ((ExternalDocument) link.getLinkType()).getLink();
+        } else if (link instanceof ExternalLink) {
+            url = ((ExternalLink) link).getLink();
+        } else if (link instanceof ProductsSearch) {
+            url = productSearch().fromHippoBean(((ProductsSearch) link)).build();
+        } else if (link instanceof ProductSearchLink) {
+            url = productSearch().fromHippoBean(((ProductSearchLink) link).getSearch()).build();
+        } else if (link instanceof ExternalDocument) {
+            url = ((ExternalDocument) link).getLink();
         } else {
-            String linkType = link.getLinkType() == null ? "null" : link.getLinkType().getClass().getSimpleName();
+            String linkType = link == null ? "null" : link.getClass().getSimpleName();
             logger.warn("This class {} is not recognized as a link type and cannot be converted", linkType);
         }
-        return null;
+        return processURL(locale, url);
     }
 
     /**
@@ -352,7 +354,7 @@ public class LinkService {
     }
 
     /**
-     * Populated the information about an enhanced Link from a SharedLink Document.
+     * Populates the information about an enhanced Link from a SharedLink Document.
      *
      * @param link        EnhacencedLink with minimum data
      * @param linkable    SharedLink document that contains extra information
@@ -362,7 +364,7 @@ public class LinkService {
      */
     private void enhancedLinkFromSharedLink(EnhancedLink link, SharedLink linkable, Module<?> module, Locale locale, boolean addCategory) {
         JsonNode product = getNodeFromSharedLink(linkable, locale);
-        link.setLink(getPlainLink(linkable, product));
+        link.setLink(getPlainLink(locale, linkable.getLinkType(), product));
 
         if (link.getImage() == null && product != null && product.has(DMSConstants.DMSProduct.IMAGE)) {
             link.setImage(imageFactory.createImage(product, module));

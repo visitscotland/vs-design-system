@@ -18,6 +18,7 @@ import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.brxm.dms.DMSConstants;
 import net.bytebuddy.asm.Advice;
+import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.container.ComponentManager;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -98,13 +99,10 @@ class LinkServiceTest {
     @DisplayName("Create a url from an SharedLink with an ExternalLink Compound ")
     void getPlainLink_externalLink() {
         ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
-        SharedLink sharedLink = mock(SharedLink.class);
-
-        when(sharedLink.getLinkType()).thenReturn(externalLink);
         when(externalLink.getLink()).thenReturn("http://fake.link");
         when(externalLink.getLabel()).thenReturn("");
 
-        String link = service.getPlainLink(sharedLink, null);
+        String link = service.getPlainLink(Locale.UK,externalLink, null);
 
         assertEquals("http://fake.link", link);
     }
@@ -113,12 +111,9 @@ class LinkServiceTest {
     @DisplayName("Create a url from an SharedLink with an External document ")
     void getPlainLink_externalDocument() {
         ExternalDocument externalDocument = mock(ExternalDocument.class, withSettings().lenient());
-        SharedLink sharedLink = mock(SharedLink.class);
-
-        when(sharedLink.getLinkType()).thenReturn(externalDocument);
         when(externalDocument.getLink()).thenReturn("https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf");
 
-        String link = service.getPlainLink(sharedLink, null);
+        String link = service.getPlainLink(Locale.UK,externalDocument, null);
 
         assertEquals("https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf", link);
     }
@@ -194,14 +189,11 @@ class LinkServiceTest {
     void getPlainLink_productSearchLink() {
         initProductSearchBuilder();
 
-        SharedLink sharedLink = mock(SharedLink.class);
         ProductSearchLink productSearchLink = mock(ProductSearchLink.class, withSettings().lenient());
         ProductsSearch ps = mock(ProductsSearch.class);
-
         when(productSearchLink.getSearch()).thenReturn(ps);
-        when(sharedLink.getLinkType()).thenReturn(productSearchLink, productSearchLink);
 
-        service.getPlainLink(sharedLink, null);
+        service.getPlainLink(Locale.UK,productSearchLink, null);
 
         verify(builder, times(1)).build();
     }
@@ -211,12 +203,9 @@ class LinkServiceTest {
     void getPlainLink_productSearch() {
         initProductSearchBuilder();
 
-        SharedLink sharedLink = mock(SharedLink.class);
         ProductsSearch productSearch = mock(ProductsSearch.class);
 
-        when(sharedLink.getLinkType()).thenReturn(productSearch, productSearch);
-
-        service.getPlainLink(sharedLink, null);
+        service.getPlainLink(Locale.UK,productSearch, null);
 
         verify(builder, times(1)).build();
     }
@@ -225,8 +214,8 @@ class LinkServiceTest {
     @DisplayName("Create a link from a ProductSearchLink  Compound")
     void unexpectedLinkReturnsNull() {
         //Tests that the addition of a new type will not introduce an exception
-        SharedLink sharedLink = mock(SharedLink.class);
-        assertNull(service.getPlainLink(sharedLink, null));
+        HippoCompound unrecognizedType = mock(HippoCompound.class);
+        assertNull(service.getPlainLink(Locale.UK,unrecognizedType, null));
     }
 
     @Test
@@ -279,16 +268,14 @@ class LinkServiceTest {
     @DisplayName("Return a link from a DMSLink")
     void getPlainLink_dmsLink() {
         //Verifies that when and DMS item doesn't exist, the link is not created.
-        SharedLink sharedLink = mock(SharedLink.class);
         DMSLink dmsLink = mock(DMSLink.class);
         JsonNode node = mock(JsonNode.class, RETURNS_DEEP_STUBS);
         JsonNode url = mock(JsonNode.class);
 
-        when(sharedLink.getLinkType()).thenReturn(dmsLink);
         when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK)).thenReturn(url);
         when(url.asText()).thenReturn("/dms-page");
 
-        String link = service.getPlainLink(sharedLink, node);
+        String link = service.getPlainLink(Locale.UK,dmsLink, node);
 
         assertTrue(link.contains("/dms-page"));
     }
@@ -297,11 +284,9 @@ class LinkServiceTest {
     @DisplayName("A non existing DMS link doesn't return a link for getPlainLnk")
     void getPlainLink_dmsLink_notExistingProduct() {
         //Verifies that when and DMS item doesn't exist, the link is not created.
-        SharedLink sharedLink = mock(SharedLink.class);
         DMSLink dmsLink = mock(DMSLink.class);
-        when(sharedLink.getLinkType()).thenReturn(dmsLink);
 
-        String link = service.getPlainLink(sharedLink, null);
+        String link = service.getPlainLink(Locale.UK,dmsLink, null);
 
         assertNull(link);
     }
