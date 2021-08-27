@@ -44,9 +44,10 @@ public class PageTemplateBuilder {
     private final LongCopyFactory longCopyFactory;
     private final IKnowCommunityFactory iKnowCommunityFactory;
     private final StacklaFactory stacklaFactory;
+    private final TravelInformationFactory travelInformationFactory;
     private final CannedSearchFactory cannedSearchFactory;
 
-    public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory, CannedSearchFactory cannedSearchFactory) {
+    public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory, TravelInformationFactory travelInformationFactory, CannedSearchFactory cannedSearchFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
@@ -55,6 +56,7 @@ public class PageTemplateBuilder {
         this.longCopyFactory = longcopy;
         this.iKnowCommunityFactory = iKnowCommunityFactory;
         this.stacklaFactory = stacklaFactory;
+        this.travelInformationFactory = travelInformationFactory;
         this.cannedSearchFactory = cannedSearchFactory;
     }
 
@@ -84,6 +86,8 @@ public class PageTemplateBuilder {
                     page.modules.add(iKnowCommunityFactory.getIKnowCommunityModule((IknowCommunity) item, request.getLocale()));
                 } else if (item instanceof Stackla) {
                     page.modules.add(stacklaFactory.getStacklaModule((Stackla) item, request.getLocale()));
+                }  else if (item instanceof TravelInformation) {
+                    page.modules.add(travelInformationFactory.getTravelInformation((TravelInformation) item));
                 }else if (item instanceof CannedSearch) {
                     page.modules.add(cannedSearchFactory.getCannedSearchModule((CannedSearch) item, request.getLocale()));
                 }
