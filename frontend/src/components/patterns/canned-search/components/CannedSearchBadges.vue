@@ -77,6 +77,7 @@ export default {
             position: absolute;
             padding: 0 .5em;
             text-transform: uppercase;
+            letter-spacing: $spacing_l;
 
             &--teal {
                 color: $color-white;
