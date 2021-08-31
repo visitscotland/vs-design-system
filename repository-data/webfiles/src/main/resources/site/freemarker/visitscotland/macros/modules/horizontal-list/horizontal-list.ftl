@@ -3,7 +3,7 @@
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
 
 <#macro horizontalList item themeName="">
-    <vs-module-wrapper class="theme-${themeName}">
+    <vs-module-wrapper theme="${themeName}">
         <template slot="vsModuleWrapperHeading">
             ${item.title}
         </template>

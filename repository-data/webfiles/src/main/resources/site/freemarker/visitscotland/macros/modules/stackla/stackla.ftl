@@ -21,7 +21,7 @@
 
     </@hst.headContribution>
 
-    <vs-module-wrapper class="theme-${themeName}">
+    <vs-module-wrapper theme="${themeName}">
         <template slot="vsModuleWrapperHeading">
             ${module.title}
         </template>

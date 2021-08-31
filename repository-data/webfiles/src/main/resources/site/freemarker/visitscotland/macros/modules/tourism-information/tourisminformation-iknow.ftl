@@ -6,7 +6,7 @@
 
 <#macro iknow module themeName="">
 
-    <vs-module-wrapper class="theme-${themeName}">
+    <vs-module-wrapper theme="${themeName}">
         <span slot="vsModuleWrapperHeading">
             ${module.title}
         </span>
