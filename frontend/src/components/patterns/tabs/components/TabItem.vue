@@ -63,7 +63,14 @@ export default {
                 font-size: $display3-size;
             }
 
+            &:focus{
+                outline: 2px solid $color-pink;
+                outline-offset: 0;
+            }
+
             &.active{
+                position: relative;
+                z-index: 2;
                 background-color: $color-white;
                 padding: $spacer-5 $spacer-3;
 
