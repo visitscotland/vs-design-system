@@ -89,6 +89,7 @@ export default {
         .tab-content > .tab-pane{
             position: relative;
             display: block!important;
+            margin-bottom: $spacer-9;
         }
 
         .nav-tabs{
