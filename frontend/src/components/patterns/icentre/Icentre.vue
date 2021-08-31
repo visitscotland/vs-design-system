@@ -168,7 +168,7 @@ export default {
 
 <docs>
 ```jsx
-    <VsModuleWrapper class="theme-grey">
+    <VsModuleWrapper theme="grey">
         <template slot="vsModuleWrapperHeading">
             A tip from your local experts
         </template>
@@ -219,7 +219,7 @@ export default {
         </VsIcentre>
     </VsModuleWrapper>
     <br>
-    <VsModuleWrapper class="theme-grey">
+    <VsModuleWrapper theme="grey">
         <template slot="vsModuleWrapperHeading">
             A tip from your local experts
         </template>
