@@ -188,22 +188,22 @@ public class LinkService {
             } else if (path.contains("ebooks.visitscotland.com")) {
                 return "eBooks";
             } else if (path.contains("blog")) {
-                return bundle.getResourceBundle("navigation.main", "Travel-Blog", locale, true);
+                return bundle.getResourceBundle("navigation.main", "Travel-Blog", locale);
             } else if (path.contains("see-do") || path.contains("events") || path.contains("tours")) {
-                return bundle.getResourceBundle("navigation.main", "see-do", locale, true);
+                return bundle.getResourceBundle("navigation.main", "see-do", locale);
             } else if (path.contains("accommodation")) {
-                return bundle.getResourceBundle("navigation.main", "accommodation", locale, true);
+                return bundle.getResourceBundle("navigation.main", "accommodation", locale);
             } else if (path.contains("destination") || path.contains("towns-villages")) {
-                return bundle.getResourceBundle("navigation.main", "destinations-map", locale, true);
+                return bundle.getResourceBundle("navigation.main", "destinations-map", locale);
             } else if (path.contains("travel") || path.contains("holidays") || path.contains("transport")) {
-                return bundle.getResourceBundle("navigation.main", "travel-planning", locale, true);
+                return bundle.getResourceBundle("navigation.main", "travel-planning", locale);
             } else if (path.contains("brochures")) {
-                return bundle.getResourceBundle("navigation.main", "inspiration", locale, true);
+                return bundle.getResourceBundle("navigation.main", "inspiration", locale);
             } else if (path.contains("about") || path.contains("contact") || path.contains("policies") || path.contains("services")) {
-                return bundle.getResourceBundle("navigation.footer", "footer.visitor-information", locale, true);
+                return bundle.getResourceBundle("navigation.footer", "footer.visitor-information", locale);
             }
 
-            return bundle.getResourceBundle("navigation.main", "see-do", locale, true);
+            return bundle.getResourceBundle("navigation.main", "see-do", locale);
 
         } catch (MalformedURLException e) {
             logger.error("The URL " + path + " is not valid", e);
@@ -322,7 +322,7 @@ public class LinkService {
 
 
     public String getDownloadText(String link, Locale locale, Module<?> module){
-        String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
+        String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale);
         //TODO The following operation is expensive. We should cache the value
         String size = commonUtils.getExternalDocumentSize(link, locale);
         if (size == null) {
