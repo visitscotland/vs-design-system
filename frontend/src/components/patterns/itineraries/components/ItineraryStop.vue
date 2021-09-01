@@ -164,6 +164,10 @@ export default {
             padding: $spacer-4 $spacer-0;
             margin-right: $spacer-6;
         }
+
+        .vs-address {
+            display: flex;
+        }
     }
 
     &__address,
