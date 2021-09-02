@@ -7,7 +7,7 @@
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.IKnowCommunityModule" -->
 
 <#macro iknowCommunity module>
-    <vs-module-wrapper class="theme-${themeName}">
+    <vs-module-wrapper theme="${themeName}">
         <template slot="vsModuleWrapperHeading">
             ${module.title}
         </template>

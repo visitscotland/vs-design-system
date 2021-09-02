@@ -312,39 +312,39 @@ class LinkServiceTest {
         assertEquals("eBooks", service.getLinkCategory("https://ebooks.visitscotland.com/whisky-distilleries-guides/",Locale.UK));
 
         String blog = "Travel Blog";
-        when(resourceBundle.getResourceBundle("navigation.main", "Travel-Blog", Locale.UK ,true)).thenReturn(blog);
+        when(resourceBundle.getResourceBundle("navigation.main", "Travel-Blog", Locale.UK )).thenReturn(blog);
         assertEquals(blog, getCategory("https://blog.visitscotland.com/discover-our-best-ebooks", "navigation.main", "Travel-Blog", blog));
         assertEquals(blog, getCategory("https://www.visitscotland.com/blog/culture/scottish-words-meanings/", "navigation.main", "Travel-Blog", blog));
 
         String seeDo= "See do";
-        when(resourceBundle.getResourceBundle("navigation.main", "see-do", Locale.UK ,true)).thenReturn(seeDo);
+        when(resourceBundle.getResourceBundle("navigation.main", "see-do", Locale.UK )).thenReturn(seeDo);
         assertEquals(seeDo, getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/see-do/", "navigation.main", "see-do", seeDo));
         assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/events/developing-a-garden-sketchbook-after-hours-p2216101", "navigation.main", "see-do", seeDo));
         assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/tours/shore-excursion-from-invergordon-battles-loch-ness-whisky-a56a372f", "navigation.main", "see-do", seeDo));
         assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/see-do/riverside-museum-p995001", "navigation.main", "see-do", seeDo));
         assertEquals(seeDo, getCategory("https://www.visitscotland.com/site-search-results", "navigation.main", "see-do", seeDo));
 
-        when(resourceBundle.getResourceBundle("navigation.main", "accommodation", Locale.UK ,true)).thenReturn("Accommodation");
+        when(resourceBundle.getResourceBundle("navigation.main", "accommodation", Locale.UK )).thenReturn("Accommodation");
         assertEquals("Accommodation", getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/accommodation/self-catering/", "navigation.main", "accommodation", "Accommodation"));
 
         String destination = "Places to go";
-        when(resourceBundle.getResourceBundle("navigation.main", "destinations-map", Locale.UK ,true)).thenReturn(destination);
+        when(resourceBundle.getResourceBundle("navigation.main", "destinations-map", Locale.UK )).thenReturn(destination);
         assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/", "navigation.main", "destinations-map", destination));
         assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/perthshire/short-break-itinerary", "navigation.main", "destinations-map", destination));
         assertEquals(destination, getCategory("https://www.visitscotland.com/info/towns-villages/ayr-p242821", "navigation.main", "destinations-map", destination));
         assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/island/orkney", "navigation.main", "destinations-map", destination));
 
         String travel = "Plan your trip";
-        when(resourceBundle.getResourceBundle("navigation.main", "travel-planning", Locale.UK ,true)).thenReturn(travel);
+        when(resourceBundle.getResourceBundle("navigation.main", "travel-planning", Locale.UK )).thenReturn(travel);
         assertEquals(travel, getCategory("https://www.visitscotland.com/holidays-breaks/scotland-life/sam-audrey-scottish-road-trip/", "navigation.main", "travel-planning", travel));
         assertEquals(travel, getCategory("https://www.visitscotland.com/travel/getting-around-scotland/coach/", "navigation.main", "travel-planning", travel));
         assertEquals(travel, getCategory("https://www.visitscotland.com/info/transport/turner-hire-drive-edinburgh-p1916901", "navigation.main", "travel-planning", travel));
 
-        when(resourceBundle.getResourceBundle("navigation.main", "inspiration", Locale.UK ,true)).thenReturn("Inspiration");
+        when(resourceBundle.getResourceBundle("navigation.main", "inspiration", Locale.UK )).thenReturn("Inspiration");
         assertEquals("Inspiration", getCategory("https://www.visitscotland.com/brochures/", "navigation.main", "inspiration", "Inspiration"));
 
         String information = "Visitor information";
-        when(resourceBundle.getResourceBundle("navigation.footer", "footer.visitor-information", Locale.UK ,true)).thenReturn(information);
+        when(resourceBundle.getResourceBundle("navigation.footer", "footer.visitor-information", Locale.UK )).thenReturn(information);
         assertEquals(information, getCategory("https://www.visitscotland.com/about-us/", "navigation.footer", "footer.visitor-information", information));
         assertEquals(information, getCategory("https://www.visitscotland.com/info/services/fort-william-icentre-p333001", "navigation.footer", "footer.visitor-information", information));
         assertEquals(information, getCategory("https://www.visitscotland.com/contact-us/", "navigation.footer", "footer.visitor-information", information));
@@ -361,7 +361,7 @@ class LinkServiceTest {
     }
 
     private String getCategory(String url, String bundle, String key, String value){
-        when(resourceBundle.getResourceBundle(bundle, key, Locale.UK ,true)).thenReturn(value);
+        when(resourceBundle.getResourceBundle(bundle, key, Locale.UK )).thenReturn(value);
         return service.getLinkCategory(url,Locale.UK);
     }
 
@@ -372,7 +372,7 @@ class LinkServiceTest {
         final String category= "see-do";
         SharedLink externalDocument = new SharedLinkMockBuilder().externalDocument("title",url,category).build();
 
-        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK )).thenReturn("DOWNLOAD");
         when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
         EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument,null, Locale.UK, true);
 
@@ -387,7 +387,7 @@ class LinkServiceTest {
         final String url = "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
         final Module<?> module = new Module<>();
 
-        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK )).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = service.createEnhancedLink(
                 new SharedLinkMockBuilder().externalDocument("title",url,"see-do").build(), module,
                 Locale.UK, true);
@@ -414,7 +414,7 @@ class LinkServiceTest {
         final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
         SharedLink externalDocument = new SharedLinkMockBuilder().externalDocument("title",url,  null).build();
 
-        when(resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
+        when(resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK)).thenReturn("DOWNLOAD");
         when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
         EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument, null, Locale.UK, false);
 
@@ -460,7 +460,7 @@ class LinkServiceTest {
     @DisplayName("getDownloadText returns the label with the size")
     void getDownloadText() {
 
-        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.CANADA ,true)).thenReturn("DOWNLOAD");
+        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.CANADA )).thenReturn("DOWNLOAD");
         when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
         when(utils.getRequestLocale()).thenReturn(Locale.CANADA);
 

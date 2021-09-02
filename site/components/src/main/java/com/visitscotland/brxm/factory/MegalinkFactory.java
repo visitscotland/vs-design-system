@@ -82,7 +82,7 @@ public class MegalinkFactory {
 
     public HorizontalListLinksModule horizontalListLayout(OTYML doc, Locale locale) {
         HorizontalListLinksModule hll = new HorizontalListLinksModule();
-        hll.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("otyml", "otyml.title.default", locale ,true)): doc.getTitle());
+        hll.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("otyml", "otyml.title.default", locale)): doc.getTitle());
         hll.setIntroduction(doc.getIntroduction());
         hll.setLinks(convertToEnhancedLinks(hll, doc.getMegalinkItems(), locale,true));
 

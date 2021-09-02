@@ -193,7 +193,7 @@ public class MegalinkFactoryTest {
     void horizontalListLayout_OTYML_defaultLabel() {
         OTYML otyml = mock (OTYML.class);
 
-        when (resourceBundleService.getResourceBundle("otyml", "otyml.title.default", Locale.UK ,true)).thenReturn("otyml");
+        when (resourceBundleService.getResourceBundle("otyml", "otyml.title.default", Locale.UK )).thenReturn("otyml");
 
         HorizontalListLinksModule module= factory.horizontalListLayout(otyml,Locale.UK);
         assertEquals("otyml", module.getTitle());
