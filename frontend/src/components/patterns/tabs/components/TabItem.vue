@@ -63,7 +63,7 @@ export default {
                 font-size: $display3-size;
             }
 
-            &:focus{
+            &:focus-visible{
                 outline: 2px solid $color-pink;
                 outline-offset: 0;
             }
