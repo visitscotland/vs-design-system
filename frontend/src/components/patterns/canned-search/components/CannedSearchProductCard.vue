@@ -218,12 +218,12 @@ export default {
             transition: box-shadow $duration-slowly;
             border: none;
             position: relative;
-            padding-bottom: $spacer-2;
+            padding-bottom: $spacer-5;
 
             &:hover {
                 box-shadow: 10px 10px 20px $color-gray-tint-4;
 
-                padding: $spacer-2;
+                padding: $spacer-2 $spacer-2 $spacer-5;
                 margin-left: -$spacer-2;
                 margin-right: -$spacer-2;
                 margin-top: -$spacer-2;
