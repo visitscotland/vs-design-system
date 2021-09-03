@@ -81,7 +81,7 @@ export default {
 
             &--teal {
                 color: $color-white;
-                background-color: $color_secondary_teal;
+                background-color: $color-secondary-teal-shade-2;
             }
 
             &--pink {
