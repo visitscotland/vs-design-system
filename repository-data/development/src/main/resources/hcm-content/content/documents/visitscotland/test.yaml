@@ -2957,11 +2957,12 @@
         hippostd:transferable: false
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-05-20T13:41:52.280+01:00
-        hippostdpubwf:lastModificationDate: 2021-05-25T09:22:40.401+01:00
+        hippostdpubwf:lastModificationDate: 2021-09-03T12:08:26.226+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a8f9ae25-ed93-44ea-801f-35ab1ffdc74d
         hippotranslation:locale: en
         visitscotland:breadcrumb: ''
+        visitscotland:hideNewsletter: false
         visitscotland:newsletter: true
         visitscotland:seoDescription: Meta description
         visitscotland:seoNoIndex: false
@@ -2982,18 +2983,6 @@
             <p>Modules are building blocks of pages, they are used in page templates either to completely create content on a page or to add to content coming from the template.<br />
             <br />
             The modules here are designed for being tested in isolation, please also check that they're displaying correctly in page layouts where they're used.</p>
-        /visitscotland:otherThings:
-          jcr:primaryType: visitscotland:OTYML
-          visitscotland:title: Megalinks - quick links
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: ''
-          /visitscotland:links:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
       /content[2]:
         jcr:primaryType: visitscotland:General
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -3068,7 +3057,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: ef77522d-ed88-4f1a-9567-1cfd85835710
       hippo:name: Modules list
-      hippo:versionHistory: e93d2b60-8c27-4e09-9382-3ec1223f4fa0
+      hippo:versionHistory: 541b0bc7-f26a-4ee8-9a95-fa4d4774bf55
       /modules-list[1]:
         jcr:primaryType: visitscotland:Megalinks
         jcr:mixinTypes: ['mix:referenceable']
@@ -3078,7 +3067,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-05-20T13:44:04.913+01:00
-        hippostdpubwf:lastModificationDate: 2021-05-24T15:45:34.801+01:00
+        hippostdpubwf:lastModificationDate: 2021-09-03T12:08:30.681+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: d6bf75cb-c7f4-4f9f-8471-7b897ade0923
         hippotranslation:locale: en
@@ -3107,6 +3096,12 @@
           /visitscotland:link:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
+        /visitscotland:megalinkItems[4]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 47135bf0-c6ea-4463-9e27-7b3e13ea3889
       /modules-list[2]:
         jcr:primaryType: visitscotland:Megalinks
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -3116,7 +3111,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-05-20T13:44:04.913+01:00
-        hippostdpubwf:lastModificationDate: 2021-05-24T15:45:53.945+01:00
+        hippostdpubwf:lastModificationDate: 2021-09-03T12:08:52.397+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: d6bf75cb-c7f4-4f9f-8471-7b897ade0923
         hippotranslation:locale: en
@@ -3145,6 +3140,12 @@
           /visitscotland:link:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
+        /visitscotland:megalinkItems[4]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 47135bf0-c6ea-4463-9e27-7b3e13ea3889
       /modules-list[3]:
         jcr:primaryType: visitscotland:Megalinks
         jcr:mixinTypes: ['mix:referenceable']
@@ -3154,9 +3155,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-05-20T13:44:04.913+01:00
-        hippostdpubwf:lastModificationDate: 2021-05-24T15:45:53.945+01:00
+        hippostdpubwf:lastModificationDate: 2021-09-03T12:08:52.397+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2021-05-24T15:46:01.514+01:00
+        hippostdpubwf:publicationDate: 2021-09-03T12:08:54.120+01:00
         hippotranslation:id: d6bf75cb-c7f4-4f9f-8471-7b897ade0923
         hippotranslation:locale: en
         visitscotland:layout: Default
@@ -3184,6 +3185,12 @@
           /visitscotland:link:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
+        /visitscotland:megalinkItems[4]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 47135bf0-c6ea-4463-9e27-7b3e13ea3889
     /megalinks:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -3203,15 +3210,17 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 91c43814-2c4c-45df-88b9-111e2baf4809
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-20T13:52:00.674+01:00
-          hippostdpubwf:lastModificationDate: 2021-06-25T14:49:15.736+01:00
+          hippostdpubwf:lastModificationDate: 2021-09-03T12:04:01.610+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2550bd40-38bd-4976-98b6-22593607eb9d
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
           visitscotland:newsletter: true
           visitscotland:seoDescription: Meta description
           visitscotland:seoNoIndex: false
@@ -5155,6 +5164,554 @@
             jcr:primaryType: hippostd:html
             hippostd:content: '<p>Share your snaps with us by using #ScottishCastle
               or #VisitScotland</p>'
+    /travel-information:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: f3497c75-78a9-46de-90ee-1b36fde32625
+      hippo:name: Travel Information
+      hippostd:foldertype: [new-translated-folder-test, new-document]
+      hippotranslation:id: e213152a-4cc8-456f-8a5c-62a33a340a51
+      hippotranslation:locale: en
+      /travel-information-module:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: a68f2689-5d62-4ba0-bd4d-e5901f58a96e
+        hippo:name: Travel Information Module
+        hippo:versionHistory: 2e16e1e6-1771-4d0a-b9bf-460646bb5b43
+        /travel-information-module[1]:
+          jcr:primaryType: visitscotland:TravelInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 3e22be00-0841-40b7-876f-d21cb40fc95f
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostd:transferable: false
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-08-30T14:51:13.322+01:00
+          hippostdpubwf:lastModificationDate: 2021-09-03T11:56:43.803+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ebf1ddd0-64a1-43c1-bf4e-efe3f855961d
+          hippotranslation:locale: en
+          visitscotland:title: Travel Information
+          visitscotland:translation: ''
+          /visitscotland:gettingTo:
+            jcr:primaryType: visitscotland:TravelInformationTab
+            visitscotland:title: Getting to
+            /visitscotland:accordion[1]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: dsblaccess
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: |-
+                  <p>Choose an area of the Highlands to visit for information on travelling by car, bus, train or air to Inverness.</p>
+
+                  <p><a href="http://visitscotland.com">Inverness, Nairn &amp; Loch Ness</a></p>
+
+                  <p><a href="http://visitscotland.com">Moray Speyside</a></p>
+
+                  <p><a href="http://visitscotland.com">Isle of Skye</a></p>
+
+                  <p><a href="http://visitscotland.com">North Highlands</a></p>
+
+                  <p><a href="http://visitscotland.com">Fort William &amp; Lochaber</a></p>
+            /visitscotland:accordion[2]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: bus
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[3]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: cycling
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[4]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: car
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[5]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: boat
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[6]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: plane
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[7]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: map-marker
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[8]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: subway
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[9]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: taxi
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[10]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: route
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+          /visitscotland:gettingAround:
+            jcr:primaryType: visitscotland:TravelInformationTab
+            visitscotland:title: Getting around
+            /visitscotland:accordion[1]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: train
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[2]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: tram
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[3]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: ticket
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[4]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: transport
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[5]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: walk
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>You can easily get around the Highlands using the
+              extensive network of public transport and roads.</p>
+        /travel-information-module[2]:
+          jcr:primaryType: visitscotland:TravelInformation
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 23665b1c-b40f-43df-bb4c-ae527c9fb352
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-08-30T14:51:13.322+01:00
+          hippostdpubwf:lastModificationDate: 2021-08-31T16:10:44.557+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ebf1ddd0-64a1-43c1-bf4e-efe3f855961d
+          hippotranslation:locale: en
+          visitscotland:title: Travel Information
+          visitscotland:translation: ''
+          /visitscotland:gettingTo:
+            jcr:primaryType: visitscotland:TravelInformationTab
+            visitscotland:title: Getting to
+            /visitscotland:accordion[1]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: dsblaccess
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: |-
+                  <p>Choose an area of the Highlands to visit for information on travelling by car, bus, train or air to Inverness.</p>
+
+                  <p><a href="http://visitscotland.com">Inverness, Nairn &amp; Loch Ness</a></p>
+
+                  <p><a href="http://visitscotland.com">Moray Speyside</a></p>
+
+                  <p><a href="http://visitscotland.com">Isle of Skye</a></p>
+
+                  <p><a href="http://visitscotland.com">North Highlands</a></p>
+
+                  <p><a href="http://visitscotland.com">Fort William &amp; Lochaber</a></p>
+            /visitscotland:accordion[2]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: bus
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[3]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: cycling
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[4]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: car
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[5]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: boat
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[6]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: plane
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[7]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: map-marker
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[8]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: subway
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[9]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: taxi
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[10]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: route
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+          /visitscotland:gettingAround:
+            jcr:primaryType: visitscotland:TravelInformationTab
+            visitscotland:title: Getting around
+            /visitscotland:accordion[1]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: train
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[2]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: tram
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[3]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: ticket
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[4]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: transport
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[5]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: walk
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>You can easily get around the Highlands using the
+              extensive network of public transport and roads.</p>
+        /travel-information-module[3]:
+          jcr:primaryType: visitscotland:TravelInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: ab22264d-d34b-4935-9ac0-ba658f8cbf07
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-08-30T14:51:13.322+01:00
+          hippostdpubwf:lastModificationDate: 2021-08-31T16:10:44.557+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-09-03T11:57:06.911+01:00
+          hippotranslation:id: ebf1ddd0-64a1-43c1-bf4e-efe3f855961d
+          hippotranslation:locale: en
+          visitscotland:title: Travel Information
+          visitscotland:translation: ''
+          /visitscotland:gettingTo:
+            jcr:primaryType: visitscotland:TravelInformationTab
+            visitscotland:title: Getting to
+            /visitscotland:accordion[1]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: dsblaccess
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: |-
+                  <p>Choose an area of the Highlands to visit for information on travelling by car, bus, train or air to Inverness.</p>
+
+                  <p><a href="http://visitscotland.com">Inverness, Nairn &amp; Loch Ness</a></p>
+
+                  <p><a href="http://visitscotland.com">Moray Speyside</a></p>
+
+                  <p><a href="http://visitscotland.com">Isle of Skye</a></p>
+
+                  <p><a href="http://visitscotland.com">North Highlands</a></p>
+
+                  <p><a href="http://visitscotland.com">Fort William &amp; Lochaber</a></p>
+            /visitscotland:accordion[2]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: bus
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[3]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: cycling
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[4]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: car
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[5]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: boat
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[6]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: plane
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[7]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: map-marker
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[8]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: subway
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[9]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: taxi
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[10]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: route
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+          /visitscotland:gettingAround:
+            jcr:primaryType: visitscotland:TravelInformationTab
+            visitscotland:title: Getting around
+            /visitscotland:accordion[1]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: train
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[2]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: tram
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[3]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: ticket
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[4]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: transport
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+            /visitscotland:accordion[5]:
+              jcr:primaryType: visitscotland:TravelInformationTransportRow
+              visitscotland:transport: walk
+              /visitscotland:copy:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Choose an area of the Highlands to visit for
+                  information on travelling by car, bus, train or air to Inverness.</p>
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>You can easily get around the Highlands using the
+              extensive network of public transport and roads.</p>
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 47135bf0-c6ea-4463-9e27-7b3e13ea3889
+        hippo:name: Travel Information
+        hippo:versionHistory: 84a2b87e-87dd-4412-99c8-e2e3c7b1842a
+        /content[1]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 3cc7ce39-5c5a-410c-88fd-d535a534e3b6
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-09-03T11:59:50.458+01:00
+          hippostdpubwf:lastModificationDate: 2021-09-03T12:09:40.283+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 8de221c8-0267-4f5c-a0fa-dd16722e46c5
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:location: Bute & Cowal Peninsula
+          visitscotland:seoDescription: Travel Information Module
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Travel Information Module
+          visitscotland:teaser: Travel Information Module
+          visitscotland:title: Travel Information Module
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Aenean tortor turpis, blandit vitae mauris a, molestie bibendum
+              risus. Nunc vel cursus lacus. Curabitur elit magna, dictum et augue
+              quis, dignissim ornare tortor. Suspendisse convallis orci ac dolor venenatis,
+              ornare gravida massa convallis.&nbsp;</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: a21ddac8-0ed4-445d-b97a-d3aeba22895e
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-09-03T11:59:50.458+01:00
+          hippostdpubwf:lastModificationDate: 2021-09-03T12:09:47.747+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 8de221c8-0267-4f5c-a0fa-dd16722e46c5
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:location: Bute & Cowal Peninsula
+          visitscotland:seoDescription: Travel Information Module
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Travel Information Module
+          visitscotland:teaser: Travel Information Module
+          visitscotland:title: Travel Information Module
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Aenean tortor turpis, blandit vitae mauris a, molestie bibendum
+              risus. Nunc vel cursus lacus. Curabitur elit magna, dictum et augue
+              quis, dignissim ornare tortor. Suspendisse convallis orci ac dolor venenatis,
+              ornare gravida massa convallis.&nbsp;</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 86e7bf16-d237-471a-b51f-b473a7d017f2
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-09-03T11:59:50.458+01:00
+          hippostdpubwf:lastModificationDate: 2021-09-03T12:09:47.747+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-09-03T12:09:49.651+01:00
+          hippotranslation:id: 8de221c8-0267-4f5c-a0fa-dd16722e46c5
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:location: Bute & Cowal Peninsula
+          visitscotland:seoDescription: Travel Information Module
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Travel Information Module
+          visitscotland:teaser: Travel Information Module
+          visitscotland:title: Travel Information Module
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Aenean tortor turpis, blandit vitae mauris a, molestie bibendum
+              risus. Nunc vel cursus lacus. Curabitur elit magna, dictum et augue
+              quis, dignissim ornare tortor. Suspendisse convallis orci ac dolor venenatis,
+              ornare gravida massa convallis.&nbsp;</p>
   /pages:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
