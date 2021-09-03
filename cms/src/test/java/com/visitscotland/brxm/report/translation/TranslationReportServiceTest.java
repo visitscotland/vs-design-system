@@ -7,6 +7,7 @@ import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
 import org.assertj.core.util.Sets;
 import org.hamcrest.MatcherAssert;
+import org.hippoecm.repository.HippoStdNodeType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,8 +49,9 @@ class TranslationReportServiceTest {
     @MethodSource("translationStatusTestArguments")
     void whenTranslationFlagTrue_thenItemStatusSentForTranslation(Boolean translationFlag, String expectedStatus, Collection<String> translatedLocales, Collection<String> sentForTranslationLocales) throws Exception {
         Node englishHandle = new MockNodeBuilder().withProperty("hippotranslation:locale", "en").build();
-        MockNodeBuilder frenchHandleBuilder = new MockNodeBuilder().withProperty("hippotranslation:locale", "fr");
-        Node frenchHandle = translationFlag == null ? frenchHandleBuilder.build() :  frenchHandleBuilder.withTranslationFlag(translationFlag).build();
+        MockNodeBuilder frenchHandleBuilder = new MockNodeBuilder().withProperty("hippotranslation:locale", "fr").withNodeType("hippo:handle");
+        Node frenchUnpublished = new MockNodeBuilder().withNodeType(HippoStdNodeType.NT_PUBLISHABLE).withState("unpublished", "live").withTranslationFlag(translationFlag).build();
+        Node frenchHandle = translationFlag == null ? frenchHandleBuilder.build() :  frenchHandleBuilder.withChildNode("test", frenchUnpublished).build();
         Node englishUnpublishedVariant = new MockNodeBuilder().translatable("visitscotland:Page").withState("unpublished", "live").build();
         JcrDocument frenchJcrDoc = new MockJcrDocumentBuilder().withHandle(frenchHandle).withLocaleName("fr").build();
         JcrDocument englishJcrDoc = new MockJcrDocumentBuilder().withHandle(englishHandle)

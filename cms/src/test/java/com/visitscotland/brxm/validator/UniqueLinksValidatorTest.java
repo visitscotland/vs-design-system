@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.ValidationContextException;
 import org.onehippo.cms.services.validation.api.Violation;
+import org.onehippo.repository.util.JcrConstants;
 
 import javax.jcr.Node;
 
@@ -57,6 +58,20 @@ class UniqueLinksValidatorTest {
         Node toValidate = new MockNodeBuilder()
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "a").build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "b").build())
+                .withChildNode("links", new MockNodeBuilder().withProperty("different", "b").build()).build();
+        when(toValidate.hasNode("links")).thenReturn(true);
+
+        Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
+        Assertions.assertFalse(validationResult.isPresent());
+    }
+
+    @DisplayName("When multiple links with no value are present, validation passes")
+    @Test
+    void linksNotSet() throws Exception {
+        Node config = new MockNodeBuilder().withProperty("targetField", "links").build();
+        Node toValidate = new MockNodeBuilder()
+                .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", JcrConstants.ROOT_NODE_ID).build())
+                .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", JcrConstants.ROOT_NODE_ID).build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("different", "b").build()).build();
         when(toValidate.hasNode("links")).thenReturn(true);
 

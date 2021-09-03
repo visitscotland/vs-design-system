@@ -115,7 +115,7 @@ export default {
     }
 
     &__text {
-        font-size: $display3-size;
+        font-size: $display4-size;
         margin-bottom: 0;
         text-align: center;
     }
