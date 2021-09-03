@@ -16,7 +16,6 @@ import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +30,6 @@ public class LinkService {
 
     private static final Logger logger = LoggerFactory.getLogger(LinkService.class);
     private static final Logger contentLogger = LoggerFactory.getLogger("content");
-
-    public static final String URL = "dmsLink";
-    public static final String URL_LINK = "link";
 
     private final DMSDataService dmsData;
     private final ResourceBundleService bundle;
@@ -102,7 +98,7 @@ public class LinkService {
     }
 
     public FlatLink createDmsLink(Locale locale, DMSLink dmsLink, JsonNode dmsProductJson) {
-        return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + dmsProductJson.get(URL).get(URL_LINK).asText(), LinkType.INTERNAL);
+        return new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + dmsProductJson.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK).asText(), LinkType.INTERNAL);
     }
 
     /**
@@ -118,7 +114,7 @@ public class LinkService {
             if (product == null) {//((DMSLink) link).getDmsData(locale)
                 contentLogger.warn("The product id '{}' does not exist but is linked - {}", ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
             } else {
-                return properties.getDmsHost() + product.get(URL).get(URL_LINK).asText();
+                return properties.getDmsHost() + product.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK).asText();
             }
         } else if (link.getLinkType() instanceof ExternalLink) {
             return ((ExternalLink) link.getLinkType()).getLink();
@@ -139,7 +135,8 @@ public class LinkService {
      * Analyzes the URL and identifies what type of link it is.
      *
      * @param url URL to analyze
-     * @return
+     * @return linkType
+     *
      */
     public LinkType getType(String url) {
         if (Contract.isEmpty(url)) {
