@@ -9,7 +9,7 @@
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.TravelInformationModule" -->
 
 <#macro travelInformation module>
-    <vs-module-wrapper class="theme-dark">
+    <vs-module-wrapper theme="dark">
         <template slot="vsModuleWrapperHeading">
             ${module.title}
         </template>
