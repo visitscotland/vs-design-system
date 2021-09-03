@@ -115,10 +115,14 @@ export default {
 
 <docs>
 ```jsx
-    <VsCannedSearchBadges
-        badgeOne=""
-        badgeTwo=""
-        badgeThree=""
-    />
+    <div
+        style="position: relative; height: 10em; width: 10em;"
+    >
+        <VsCannedSearchBadges
+            badgeOne="one"
+            badgeTwo="two"
+            badgeThree="three"
+        />
+    </div>
 ```
 </docs>
