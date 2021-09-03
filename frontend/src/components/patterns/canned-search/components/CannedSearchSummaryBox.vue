@@ -89,7 +89,6 @@ export default {
         padding: $spacer-2;
         background-color: $color-gray-tint-7;
         min-height: 4.5rem;
-        margin-top: $spacer-4;
 
         .row {
             align-items: center;
