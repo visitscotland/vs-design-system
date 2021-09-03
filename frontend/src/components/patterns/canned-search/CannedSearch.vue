@@ -177,7 +177,7 @@ export default {
 
 <style lang="scss">
     .vs-canned-search {
-        .vs-carousel .row > div {
+        .vs-carousel > .container > .row > div {
             @include media-breakpoint-down(sm) {
                 margin-left: 0;
                 max-width: 100%;
