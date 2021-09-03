@@ -81,7 +81,7 @@ export default {
 
             &--teal {
                 color: $color-white;
-                background-color: $color_secondary_teal;
+                background-color: $color-secondary-teal-shade-2;
             }
 
             &--pink {
@@ -117,10 +117,14 @@ export default {
 
 <docs>
 ```jsx
-    <VsCannedSearchBadges
-        badgeOne=""
-        badgeTwo=""
-        badgeThree=""
-    />
+    <div
+        style="position: relative; height: 10em; width: 10em;"
+    >
+        <VsCannedSearchBadges
+            badgeOne="one"
+            badgeTwo="two"
+            badgeThree="three"
+        />
+    </div>
 ```
 </docs>
