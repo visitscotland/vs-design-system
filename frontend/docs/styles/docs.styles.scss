@@ -265,89 +265,118 @@ div[class^="rsg--search"] input {
 
 // Sets sidebar background
 div[class^="rsg--sidebar"] {
-  background: $docs-color-purple;
-  border: 0;
-  @media (max-width: #{$docs-breakpoint}) {
-    padding-bottom: $space-l;
-  }
-
-  // Sidebar sub navigations
-  ul ul[class^="rsg--list"] {
-    display: none;
-    &.vueds-visible {
-      display: block;
+    background: $docs-color-purple;
+    border: 0;
+    
+    @media (max-width: #{$docs-breakpoint}) {
+        padding-bottom: $space-l;
     }
-  }
 
-  // Sidebar list item
-  li[class^="rsg--item"] {
-    margin: 0;
-    display: block;
-  }
-
-  // Sidebar first level links
-  a[class^="rsg--link"] {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding: $space-xx-small $space-m;
-    font-weight: $weight-semi-bold;
-    color: $docs-color-purple-lighter;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    &:hover {
-      color: tint($docs-color-purple-lighter, 30%);
-    }
-    &:active {
-      color: tint($docs-color-purple-dark, 30%);
-    }
-  }
-
-  // Sidebar active link and ancestors
-  li[class*="rsg--isSelected"],
-  .vueds-active {
-    & > ul[class^="rsg--list"] {
-      display: block;
-    }
-    & > a,
-    & > a:hover {
-      color: tint($docs-color-purple-lighter, 80%);
-    }
-  }
-
-  // Sidebar list
-  ul[class^="rsg--list"] {
-    padding-left: 0;
-
-    // Sidebar sub-list
-    ul {
-      padding-left: $space-s;
-      line-height: $line-height-s;
-      @media (max-width: #{$docs-breakpoint-small}) {
-        padding: 0 0 0 $space-l;
-        width: 90%;
-
-        // Sidebar sub-list item
-        li {
-          display: inline;
-          line-height: $line-height-m;
+    // Sidebar sub navigations
+    ul ul[class^="rsg--list"] {
+            display: none;
+        &.vueds-visible {
+            display: block;
         }
-      }
-
-      // Sidebar second level link
-      a[class*="rsg--link"] {
-        font-size: $size-s;
-        font-weight: $weight-normal;
-        -webkit-font-smoothing: subpixel-antialiased;
-        -moz-osx-font-smoothing: auto;
-        @media (max-width: #{$docs-breakpoint-small}) {
-          float: left;
-          padding: 0 $space-xs 0 0;
-        }
-      }
     }
-  }
+
+    // Sidebar list item
+    li[class^="rsg--item"] {
+        margin: 0;
+        display: block;
+    }
+
+    // Sidebar first level links
+    a[class^="rsg--link"] {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        padding: $space-xx-small $space-m;
+        font-weight: $weight-semi-bold;
+        color: $docs-color-purple-lighter;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+        &:hover {
+            color: tint($docs-color-purple-lighter, 30%);
+        }
+        
+        &:active {
+            color: tint($docs-color-purple-dark, 30%);
+        }
+    }
+
+    // Sidebar active link and ancestors
+    li[class*="rsg--isSelected"],
+    .vueds-active {
+        & > ul[class^="rsg--list"] {
+            display: block;
+        }
+
+        & > a,
+        & > a:hover {
+            color: tint($docs-color-purple-lighter, 80%);
+        }
+    }
+
+    // Sidebar list
+    ul[class^="rsg--list"] {
+        padding-left: 0;
+
+        // Sidebar sub-list
+        ul {
+            padding-left: $space-s;
+            line-height: $line-height-s;
+            
+            @media (max-width: #{$docs-breakpoint-small}) {
+                padding: 0 0 0 $space-l;
+                width: 90%;
+
+                // Sidebar sub-list item
+                li {
+                    display: inline;
+                    line-height: $line-height-m;
+                }
+            }
+
+            ul{
+                li[class^="rsg--item"] {        
+                    a[class^="rsg--link"]:after{
+                        content: "\2192";
+                        display: inline-block;
+                        padding-left: 0.25rem;
+                    }
+                }
+
+                li[class*=" rsg--isSelected"]{
+                    a[class^="rsg--link"]:after{
+                        content: "\2193"!important;
+                    } 
+                }
+            
+                li[class*=" rsg--isChild"]{
+                    a[class^="rsg--link"]:after{
+                        display: none!important;
+                    }
+                }
+            }
+           
+
+            // Sidebar second level link
+            a[class*="rsg--link"] {
+                font-size: $size-s;
+                font-weight: $weight-normal;
+                -webkit-font-smoothing: subpixel-antialiased;
+                -moz-osx-font-smoothing: auto;
+                
+                @media (max-width: #{$docs-breakpoint-small}) {
+                    float: left;
+                    padding: 0 $space-xs 0 0;
+                }
+            }
+        }
+    }
 }
 
 /* CODE & COMPONENT PREVIEWS
