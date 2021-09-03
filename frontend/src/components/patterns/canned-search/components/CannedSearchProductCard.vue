@@ -239,7 +239,7 @@ export default {
             min-height: 11.5rem;
 
             &--short {
-                min-height: 8rem;
+                min-height: 10rem;
             }
         }
 
@@ -327,7 +327,7 @@ export default {
 
             .card:hover {
                 box-shadow: none;
-                padding: $spacer-0 $spacer-0 $spacer-2 $spacer-0;
+                padding: $spacer-0 $spacer-0 $spacer-5;
                 margin-left: $spacer-0;
                 margin-right: $spacer-0;
                 margin-top: $spacer-0;
