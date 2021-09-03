@@ -31,6 +31,10 @@ export default {
         },
     },
     computed: {
+        /**
+        * Returns the first 3 provided categories as a pipe separated string for
+        * display
+        */
         transformedCategories() {
             if (this.categories) {
                 return this.categories
