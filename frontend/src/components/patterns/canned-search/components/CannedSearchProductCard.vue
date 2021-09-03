@@ -236,7 +236,7 @@ export default {
 
         .card-body {
             padding: $spacer-1 $spacer-0 $spacer-0;
-            min-height: 11rem;
+            min-height: 11.5rem;
 
             &--short {
                 min-height: 8rem;
@@ -301,7 +301,6 @@ export default {
 
         .vs-product-card__description {
             font-size: $font-size-base;
-            line-height: $line-height-s;
             height: $spacer-8;
 
             p {
