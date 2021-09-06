@@ -9,18 +9,19 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 766a22ea-0b28-44cf-9937-953443a6fb02
     hippo:name: Global
-    hippo:versionHistory: 557b4c96-9605-4efc-83d2-9390258c3721
+    hippo:versionHistory: 05f6ce7e-7720-4eac-9528-cc4f3531fcd3
     /global[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: a8cf5ddd-a19d-4641-91c4-6ec509c3a7a5
       hippo:availability: [live]
+      hippostd:retainable: false
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2021-01-22T17:58:03.661Z
+      hippostdpubwf:lastModificationDate: 2021-07-15T15:32:00.954+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-01-22T17:58:05.054Z
+      hippostdpubwf:publicationDate: 2021-07-15T15:32:04.360+01:00
       resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global
       resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
@@ -37,10 +38,11 @@
       jcr:mixinTypes: ['mix:versionable']
       jcr:uuid: 7664e8f1-7d3c-48e5-b9b9-d86b38be4c07
       hippo:availability: [preview]
+      hippostd:retainable: false
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2021-01-22T17:58:03.661Z
+      hippostdpubwf:lastModificationDate: 2021-07-15T15:32:00.954+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global
@@ -58,10 +60,11 @@
       jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: 98d561a7-16ef-410d-b382-f1b76e196920
       hippo:availability: []
+      hippostd:retainable: false
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2021-01-22T17:56:59.132Z
+      hippostdpubwf:lastModificationDate: 2021-07-15T15:31:56.807+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global

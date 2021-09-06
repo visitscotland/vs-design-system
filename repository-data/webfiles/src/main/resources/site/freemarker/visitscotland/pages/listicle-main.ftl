@@ -5,12 +5,12 @@
 <#include "../../frontend/components/vs-container.ftl">
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
-<#include "../../frontend/components/vs-social-share.ftl">
 <#include "../../frontend/components/vs-heading.ftl">
-<#include "../../frontend/components/vs-rich-text-wrapper.ftl">
+<#include "../../frontnend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-listicle-item.ftl">
 <#include "../../frontend/components/vs-panel.ftl">
 
+<#include "../macros/modules/page-intro/social-share.ftl">
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/shared/module-builder.ftl">
@@ -61,6 +61,8 @@
                     </vs-col>
                 </vs-row>
         </#if>
+
+    <@socialShare nojs=true/>
 
     <#if otyml??>
         <@horizontalList otyml />

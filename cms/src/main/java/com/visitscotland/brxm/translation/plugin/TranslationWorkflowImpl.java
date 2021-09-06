@@ -102,7 +102,13 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             throws WorkflowException, RepositoryException, RemoteException, ObjectBeanManagerException {
 
         Node copyRootSubject = rootSession.getNodeByIdentifier(sourceDocumentNode.getIdentifier());
-        getOriginsCopyWorkflow(copyRootSubject).copy(documentFactory.createFromNode(targetFolderNode), newDocumentName);
+
+        try {
+            getOriginsCopyWorkflow(copyRootSubject).copy(documentFactory.createFromNode(targetFolderNode), newDocumentName);
+        } catch (WorkflowException ex) {
+            // Typically due to the document already existing. If not, then a WorkflowException is re-thrown later on
+            log.warn("Failed to copy document {}/{}", targetFolderNode.getPath(), newDocumentName);
+        }
 
         Node newDocumentHandle = null;
 
@@ -118,8 +124,6 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
         }
 
         // Iterate over the child Nodes in the document looking for Translatable children
-        JcrDocument jcrDocument = new JcrDocument(newDocumentHandle);
-
         final NodeIterator copiedVariants = newDocumentHandle.getNodes(newDocumentHandle.getName());
         // Now that the Node has been copied to the language channel update all the properties that can be translated
         // Iterate over all the variants that exist for the document, looks like it should only have an unpublished
