@@ -4,10 +4,12 @@ import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 
+import com.visitscotland.utils.Contract;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.ValidationContextException;
 import org.onehippo.cms.services.validation.api.Validator;
 import org.onehippo.cms.services.validation.api.Violation;
+import org.onehippo.repository.util.JcrConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,7 +54,8 @@ public class UniqueLinksValidator implements Validator<Node> {
     public Optional<Violation> validate(ValidationContext validationContext, Node node) {
         try {
             if (node == null || !node.hasNode(targetField)) {
-                throw new ValidationContextException(String.format("Can not validate as targetField `%s` does not exist on node", targetField));
+                logger.error("Can not validate as targetField `{}` does not exist on node", targetField);
+                return Optional.empty();
             }
             NodeIterator linkNodes = node.getNodes(targetField);
             List<String> linkIds = new ArrayList<>();
@@ -70,7 +73,10 @@ public class UniqueLinksValidator implements Validator<Node> {
                 if (linkIds.contains(id)) {
                     return Optional.of(validationContext.createViolation());
                 }
-                linkIds.add(id);
+                // ID given to link that is not set. Mandatory validator takes care of ensuring links are set
+                if (!id.equals(JcrConstants.ROOT_NODE_ID)) {
+                    linkIds.add(id);
+                }
             }
         } catch (RepositoryException ex) {
             logger.error("Repository error during unique links validator", ex);
