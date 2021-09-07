@@ -379,6 +379,7 @@ export default {
                         <VsDescriptionListItem title>Highlights</VsDescriptionListItem>
                         <VsDescriptionListItem
                             v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
+                            :key="`itinerary-${index}`"
                         >
                             {{highlight}}
                         </VsDescriptionListItem>
