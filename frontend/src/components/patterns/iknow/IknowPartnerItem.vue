@@ -147,7 +147,7 @@ export default {
 
 <docs>
 ```jsx
-    <VsIKnowPartnerItem>
+    <VsIknowPartnerItem>
         <VsHeading level="2" slot="iknowHeading">Help and advice</VsHeading>
         <div slot="iknowText">
             You can also get advice from our accredited
@@ -158,9 +158,9 @@ export default {
         </div>
 
         <a href="#" slot="iknowCta">Find our iKnow partners</a>
-    </VsIKnowPartnerItem>
+    </VsIknowPartnerItem>
 
-    <VsIKnowPartnerItem>
+    <VsIknowPartnerItem>
         <VsHeading level="2" slot="iknowHeading">Help and advice</VsHeading>
         <div slot="iknowText">
             iKnow Scotland is a network of accredited
@@ -175,9 +175,9 @@ export default {
         </div>
 
         <a href="#" slot="iknowCta">Find our iKnow partners</a>
-    </VsIKnowPartnerItem>
+    </VsIknowPartnerItem>
 
-    <VsIKnowPartnerItem>
+    <VsIknowPartnerItem>
         <VsHeading level="2" slot="iknowHeading">Help and advice</VsHeading>
         <div slot="iknowText">
             iKnow Scotland is a network of accredited
@@ -192,6 +192,6 @@ export default {
         </div>
 
         <VsButton slot="iknowCta">Find our iKnow partners</VsButton>
-    </VsIKnowPartnerItem>
+    </VsIknowPartnerItem>
 ```
 </docs>
