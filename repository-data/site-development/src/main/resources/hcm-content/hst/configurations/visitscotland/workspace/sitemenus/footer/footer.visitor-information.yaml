@@ -6,3 +6,7 @@
     jcr:primaryType: hst:sitemenuitem
     hst:referencesitemapitem: sandbox
     hst:repobased: false
+  /Test pages:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: test
+    hst:repobased: false
