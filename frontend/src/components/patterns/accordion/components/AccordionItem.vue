@@ -5,7 +5,6 @@
         data-test="vs-accordion__item"
     >
         <BCardHeader
-            role="tab"
             class="vs-accordion-item__card-header"
             data-test="vs-accordion__item-header"
         >
