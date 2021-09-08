@@ -13,7 +13,7 @@
                     <vs-accordion-item 
                         :open-by-default="<#if row?is_first>true<#else>false</#if>" 
                         variant="transparent" 
-                        control-id="travel_accordion_item_${row?index}"
+                        control-id="accordion-item-${row.transport.key}-${row?index}"
                         class="<#if row?is_first>border-0</#if>"
                     >
                         <template slot="title">
