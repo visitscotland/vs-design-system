@@ -265,7 +265,7 @@ public class ProductSearchBuilder {
         return buildSearchUrl(DMSConstants.PRODUCT_SEARCH_DATA_MAP, true);
     }
     public String buildCannedSearch(){
-        return buildSearchUrl(DMSConstants.VS_DMS_CANNED_SEARCH, true);
+        return buildSearchUrl(DMSConstants.VS_DMS_CANNED_SEARCH, false);
     }
 
     private String buildSearchUrl(String path, boolean dataEndpoint){
