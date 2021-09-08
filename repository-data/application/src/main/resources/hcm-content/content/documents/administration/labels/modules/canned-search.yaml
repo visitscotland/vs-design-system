@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 2fc12e8a-5156-437e-9395-0b02b37f440c
   hippo:name: Canned Search
-  hippo:versionHistory: fec2a0e2-db0e-4538-82b5-f0771e58980b
+  hippo:versionHistory: 535c63f3-36e6-475e-9360-d41fa71093c1
   /canned-search[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -11,52 +11,51 @@
     hippo:availability: []
     hippostd:retainable: false
     hippostd:state: draft
-    hippostd:transferable: false
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-28T16:42:54.442+01:00
-    hippostdpubwf:lastModificationDate: 2021-07-30T12:45:52.122+01:00
-    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:lastModificationDate: 2021-09-03T09:05:19.214Z
+    hippostdpubwf:lastModifiedBy: spanish
     resourcebundle:descriptions: ['', '', '']
     resourcebundle:id: canned-search
     resourcebundle:keys: [canned-search.listview, canned-search.mapview, canned-search.credit-events]
     resourcebundle:messages: [View all, View on map, '© Event information from <a
         href="http://www.list.co.uk">The List</a>']
-    resourcebundle:messages_de: ['', '', '© Veranstaltungsinformationen von <a href="http://www.list.co.uk">The
-        List</a>']
-    resourcebundle:messages_es: ['', '', '© Información de Eventos de <a href="http://www.list.co.uk">The
-        List</a>']
+    resourcebundle:messages_de: [Alle sehen, Auf der Karte sehen, '© Veranstaltungsinformationen
+        von <a href="http://www.list.co.uk">The List</a>']
+    resourcebundle:messages_es: [Ver todos, Ver en el mapa, '© Información de eventos
+        de <a href="http://www.list.co.uk">The List</a>']
     resourcebundle:messages_fr: ['', '', '© Informations relatives aux événements
         de <a href="http://www.list.co.uk">The List</a>']
     resourcebundle:messages_it: ['', '', '© Informazioni sugli eventi a cura di <a
         href="http://www.list.co.uk">The List</a>']
-    resourcebundle:messages_nl: ['', '', '© Evenementinformatie van <a href="http://www.list.co.uk">The
-        List</a>']
+    resourcebundle:messages_nl: [Alles zien, Op de kaart, '© Evenementinformatie van
+        <a href="http://www.list.co.uk">The List</a>']
   /canned-search[2]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:mixinTypes: ['mix:versionable']
     jcr:uuid: db645568-df73-49e9-8d4c-afae0220381c
     hippo:availability: [preview]
     hippostd:retainable: false
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-28T16:42:54.442+01:00
-    hippostdpubwf:lastModificationDate: 2021-07-29T14:13:00.999+01:00
-    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:lastModificationDate: 2021-09-03T09:06:17.877Z
+    hippostdpubwf:lastModifiedBy: spanish
     resourcebundle:descriptions: ['', '', '']
     resourcebundle:id: canned-search
     resourcebundle:keys: [canned-search.listview, canned-search.mapview, canned-search.credit-events]
     resourcebundle:messages: [View all, View on map, '© Event information from <a
         href="http://www.list.co.uk">The List</a>']
-    resourcebundle:messages_de: ['', '', '© Veranstaltungsinformationen von <a href="http://www.list.co.uk">The
-        List</a>']
-    resourcebundle:messages_es: ['', '', '© Información de Eventos de <a href="http://www.list.co.uk">The
-        List</a>']
+    resourcebundle:messages_de: [Alle sehen, Auf der Karte sehen, '© Veranstaltungsinformationen
+        von <a href="http://www.list.co.uk">The List</a>']
+    resourcebundle:messages_es: [Ver todos, Ver en el mapa, '© Información de eventos
+        de <a href="http://www.list.co.uk">The List</a>']
     resourcebundle:messages_fr: ['', '', '© Informations relatives aux événements
         de <a href="http://www.list.co.uk">The List</a>']
     resourcebundle:messages_it: ['', '', '© Informazioni sugli eventi a cura di <a
         href="http://www.list.co.uk">The List</a>']
-    resourcebundle:messages_nl: ['', '', '© Evenementinformatie van <a href="http://www.list.co.uk">The
-        List</a>']
+    resourcebundle:messages_nl: [Alles zien, Op de kaart, '© Evenementinformatie van
+        <a href="http://www.list.co.uk">The List</a>']
   /canned-search[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -66,21 +65,21 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-28T16:42:54.442+01:00
-    hippostdpubwf:lastModificationDate: 2021-07-29T14:13:00.999+01:00
-    hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-07-29T14:13:05.811+01:00
+    hippostdpubwf:lastModificationDate: 2021-09-03T09:06:17.877Z
+    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:publicationDate: 2021-09-03T09:06:21.672Z
     resourcebundle:descriptions: ['', '', '']
     resourcebundle:id: canned-search
     resourcebundle:keys: [canned-search.listview, canned-search.mapview, canned-search.credit-events]
     resourcebundle:messages: [View all, View on map, '© Event information from <a
         href="http://www.list.co.uk">The List</a>']
-    resourcebundle:messages_de: ['', '', '© Veranstaltungsinformationen von <a href="http://www.list.co.uk">The
-        List</a>']
-    resourcebundle:messages_es: ['', '', '© Información de Eventos de <a href="http://www.list.co.uk">The
-        List</a>']
+    resourcebundle:messages_de: [Alle sehen, Auf der Karte sehen, '© Veranstaltungsinformationen
+        von <a href="http://www.list.co.uk">The List</a>']
+    resourcebundle:messages_es: [Ver todos, Ver en el mapa, '© Información de eventos
+        de <a href="http://www.list.co.uk">The List</a>']
     resourcebundle:messages_fr: ['', '', '© Informations relatives aux événements
         de <a href="http://www.list.co.uk">The List</a>']
     resourcebundle:messages_it: ['', '', '© Informazioni sugli eventi a cura di <a
         href="http://www.list.co.uk">The List</a>']
-    resourcebundle:messages_nl: ['', '', '© Evenementinformatie van <a href="http://www.list.co.uk">The
-        List</a>']
+    resourcebundle:messages_nl: [Alles zien, Op de kaart, '© Evenementinformatie van
+        <a href="http://www.list.co.uk">The List</a>']
