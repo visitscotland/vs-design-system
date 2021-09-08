@@ -121,9 +121,11 @@ public class HippoUtilsService {
     }
 
     /**
-     * Extract a parameter from the URL (without namespace)
+     * Extract the resolved mount for the request if provided or from RequestContextProvider when it is not
      *
-     * @return value of the query parameter or null if such parameter hasn't been defined
+     * @param request HstRequest
+     *
+     * @return Resolved mount for the current request.
      */
     @NonTestable(NonTestable.Cause.BRIDGE)
     public Mount getResolvedMount(HstRequest request){
