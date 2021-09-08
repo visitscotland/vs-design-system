@@ -2,6 +2,7 @@ package com.visitscotland.brxm.utils;
 
 import com.visitscotland.brxm.hippobeans.Page;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
+import org.hippoecm.hst.configuration.hosting.Mount;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.ObjectConverter;
@@ -117,6 +118,17 @@ public class HippoUtilsService {
     @NonTestable(NonTestable.Cause.BRIDGE)
     public String getParameterFromUrl(HstRequest request, String parameter){
         return request.getRequestContext().getServletRequest().getParameter(parameter);
+    }
+
+    /**
+     * Extract a parameter from the URL (without namespace)
+     *
+     * @return value of the query parameter or null if such parameter hasn't been defined
+     */
+    @NonTestable(NonTestable.Cause.BRIDGE)
+    public Mount getResolvedMount(HstRequest request){
+        HstRequestContext context = request == null? RequestContextProvider.get(): request.getRequestContext();
+        return context.getResolvedMount().getMount();
     }
 
     /**

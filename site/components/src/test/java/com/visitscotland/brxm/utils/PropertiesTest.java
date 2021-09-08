@@ -1,6 +1,7 @@
 package com.visitscotland.brxm.utils;
 
 import com.visitscotland.brxm.services.ResourceBundleService;
+import org.hippoecm.hst.configuration.hosting.Mount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,13 +11,14 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PropertiesTest {
@@ -24,14 +26,16 @@ class PropertiesTest {
     @Mock
     ResourceBundleService bundle;
 
-    @InjectMocks
+    @Mock
+    HippoUtilsService utils;
+
     Properties properties;
 
     String value;
 
     @BeforeEach
     void init(){
-        properties = new Properties(bundle){
+        properties = new Properties(bundle, utils){
 
             @Override
             String getEnvironmentVariable(String name) {
@@ -183,8 +187,16 @@ class PropertiesTest {
     }
 
     @Test
-    @DisplayName("Read properties from hosts configuration");
+    @DisplayName("Read properties from hosts configuration")
     void propertiesFromConfiguration(){
-        // TODO:
+        final String ENV_PROPERTIES = "environment-properties";
+
+        Mount mount = mock(Mount.class);
+        when(utils.getResolvedMount(null)).thenReturn(mount);
+        when(mount.getProperty("visitscotland:cmsProperties")).thenReturn(ENV_PROPERTIES);
+
+        properties.getInstagramToken();
+
+        Mockito.verify(bundle, atLeastOnce()).getResourceBundle(eq(ENV_PROPERTIES), any(), eq(Locale.UK));
     }
 }

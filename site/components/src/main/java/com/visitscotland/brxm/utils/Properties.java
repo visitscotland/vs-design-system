@@ -2,7 +2,6 @@ package com.visitscotland.brxm.utils;
 
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
-import org.hippoecm.hst.container.RequestContextProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -47,8 +46,11 @@ public class Properties {
 
     private final ResourceBundleService bundle;
 
-    public Properties(ResourceBundleService bundle){
+    private final HippoUtilsService utils;
+
+    public Properties(ResourceBundleService bundle, HippoUtilsService utils){
         this.bundle = bundle;
+        this.utils = utils;
     }
 
     public String getInstagramApi() {
@@ -90,6 +92,10 @@ public class Properties {
 
     public String getDmsDataHost() {
         return readString(DMS_DATA_HOST);
+    }
+
+    public String getDmsDataPublicHost() {
+        return readString(DMS_DATA_PUBLIC_HOST);
     }
 
     public Double getDmsMapDefaultDistance() {
@@ -182,8 +188,14 @@ public class Properties {
      * @return Resource Bundle id for the configuration
      */
     private String getEnvironmentProperties(){
-        String bundleId = RequestContextProvider.get().getResolvedMount().getMount().getProperty("visitscotland:cmsProperties");
-        return bundleId != null ? bundleId : DEFAULT_ID;
+        if (utils.getResolvedMount(null) != null) {
+            String bundleId = utils.getResolvedMount(null).getProperty("visitscotland:cmsProperties");
+            if (bundleId != null){
+                return bundleId;
+            }
+        }
+
+        return DEFAULT_ID;
     }
 
     private String getProperty(String key){
