@@ -41,20 +41,20 @@
           jcr:mimeType: image/jpeg
         /visitscotland:nl:
           jcr:primaryType: visitscotland:ImageData
-          visitscotland:altText: ''
-          visitscotland:caption: ''
+          visitscotland:altText: VisitScotland iCentre
+          visitscotland:caption: VisitScotland Information Centre
         /visitscotland:fr:
           jcr:primaryType: visitscotland:ImageData
-          visitscotland:altText: ''
-          visitscotland:caption: ''
+          visitscotland:altText: iCentre VisitScotland
+          visitscotland:caption: Centre d’information de Visitscotland
         /visitscotland:de:
           jcr:primaryType: visitscotland:ImageData
-          visitscotland:altText: ''
-          visitscotland:caption: ''
+          visitscotland:altText: Ein iCentre von VisitScotland
+          visitscotland:caption: Touristinformation von VisitScotland
         /visitscotland:es:
           jcr:primaryType: visitscotland:ImageData
-          visitscotland:altText: ''
-          visitscotland:caption: ''
+          visitscotland:altText: iCentre de VisitScotland
+          visitscotland:caption: Centro de información de VisitScotland
         /visitscotland:it:
           jcr:primaryType: visitscotland:ImageData
           visitscotland:altText: ''

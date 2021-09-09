@@ -1,9 +1,10 @@
 /content/documents/administration/labels/global/social-share:
+  .meta:order-before: facilities
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: cd116302-9230-471d-a39f-f8c18e331bca
   hippo:name: Social Share
-  hippo:versionHistory: 2c1a161c-0466-4bc0-881b-1dbb80136581
+  hippo:versionHistory: e38a3ac5-8de5-4f50-adee-9b40d98be211
   /social-share[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,43 +14,49 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
-    hippostdpubwf:lastModificationDate: 2021-07-22T15:12:42.958+01:00
-    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:lastModificationDate: 2021-09-06T07:56:41.719Z
+    hippostdpubwf:lastModifiedBy: spanish
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: social.share
     resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
       twitter.link.text, email.link.text, copy.link.text, close.share, share.button.text,
       link.copied.text]
-    resourcebundle:messages: [Share On, Facebook, Pinterest, WhatsApp, Twitter, Email,
-      Copy Link, Close social share, Share, Link copied!]
-    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages: [Share on, Facebook, Pinterest, WhatsApp, Twitter, Email,
+      Copy link, Close social share, Share, Link copied!]
+    resourcebundle:messages_de: [Teilen über, Facebook, Pinterest, WhatsApp, Twitter,
+      E-Mail, Link kopieren, Schließen, Teilen, Link kopiert!]
+    resourcebundle:messages_es: [Compartir en, Facebook, Pinterest, WhatsApp, Twitter,
+      Correo electrónico, Copiar enlace, Cerrar, Compartir, ¡Enlace copiado!]
     resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: [Deel op, Facebook, Pinterest, WhatsApp, Twitter,
+      E-mail, Koppeling kopiëren, Venster sluiten, Delen, Koppeling gekopieerd!]
   /social-share[2]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:mixinTypes: ['mix:versionable']
     jcr:uuid: f4b0146c-b036-45d2-9618-e40240e69148
     hippo:availability: [preview]
     hippostd:retainable: false
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
-    hippostdpubwf:lastModificationDate: 2021-07-22T15:14:00.551+01:00
-    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:lastModificationDate: 2021-09-03T09:04:27.070Z
+    hippostdpubwf:lastModifiedBy: spanish
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: social.share
     resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
       twitter.link.text, email.link.text, copy.link.text, close.share, share.button.text,
       link.copied.text]
-    resourcebundle:messages: [Share On, Facebook, Pinterest, WhatsApp, Twitter, Email,
-      Copy Link, Close social share, Share, Link copied!]
-    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages: [Share on, Facebook, Pinterest, WhatsApp, Twitter, Email,
+      Copy link, Close social share, Share, Link copied!]
+    resourcebundle:messages_de: [Teilen über, Facebook, Pinterest, WhatsApp, Twitter,
+      E-Mail, Link kopieren, Schließen, Teilen, Link kopiert!]
+    resourcebundle:messages_es: [Compartir en, Facebook, Pinterest, WhatsApp, Twitter,
+      Correo electrónico, Copiar enlace, Cerrar, Compartir, ¡Enlace copiado!]
     resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: [Deel op, Facebook, Pinterest, WhatsApp, Twitter,
+      E-mail, Koppeling kopiëren, Venster sluiten, Delen, Koppeling gekopieerd!]
   /social-share[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -59,18 +66,21 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
-    hippostdpubwf:lastModificationDate: 2021-07-22T15:14:00.551+01:00
-    hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-07-22T15:14:02.669+01:00
+    hippostdpubwf:lastModificationDate: 2021-09-03T09:04:27.070Z
+    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:publicationDate: 2021-09-03T09:04:31.243Z
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: social.share
     resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
       twitter.link.text, email.link.text, copy.link.text, close.share, share.button.text,
       link.copied.text]
-    resourcebundle:messages: [Share On, Facebook, Pinterest, WhatsApp, Twitter, Email,
-      Copy Link, Close social share, Share, Link copied!]
-    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages: [Share on, Facebook, Pinterest, WhatsApp, Twitter, Email,
+      Copy link, Close social share, Share, Link copied!]
+    resourcebundle:messages_de: [Teilen über, Facebook, Pinterest, WhatsApp, Twitter,
+      E-Mail, Link kopieren, Schließen, Teilen, Link kopiert!]
+    resourcebundle:messages_es: [Compartir en, Facebook, Pinterest, WhatsApp, Twitter,
+      Correo electrónico, Copiar enlace, Cerrar, Compartir, ¡Enlace copiado!]
     resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: [Deel op, Facebook, Pinterest, WhatsApp, Twitter,
+      E-mail, Koppeling kopiëren, Venster sluiten, Delen, Koppeling gekopieerd!]

@@ -9,7 +9,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 766a22ea-0b28-44cf-9937-953443a6fb02
     hippo:name: Global
-    hippo:versionHistory: 05f6ce7e-7720-4eac-9528-cc4f3531fcd3
+    hippo:versionHistory: 21ce648b-2ac2-4913-a4b6-02a44b776d8c
     /global[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -19,20 +19,23 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2021-07-15T15:32:00.954+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-07-15T15:32:04.360+01:00
+      hippostdpubwf:lastModificationDate: 2021-09-06T07:56:27.664Z
+      hippostdpubwf:lastModifiedBy: spanish
+      hippostdpubwf:publicationDate: 2021-09-06T07:56:30.425Z
       resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global
       resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
         keyfacilities.title, home]
-      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities,
+      resourcebundle:messages: [Find out more, No image title, Download, Key facilities,
         Home]
-      resourcebundle:messages_de: ['', '', '', '', '']
-      resourcebundle:messages_es: ['', '', '', '', '']
+      resourcebundle:messages_de: [Mehr erfahren, Kein Titel, Download, Ausstattung,
+        Startseite]
+      resourcebundle:messages_es: [Más información, Sin título, Descargar, Instalaciones
+          destacadas, Inicio]
       resourcebundle:messages_fr: ['', '', '', '', '']
       resourcebundle:messages_it: ['', '', '', '', '']
-      resourcebundle:messages_nl: ['', '', '', '', '']
+      resourcebundle:messages_nl: [Meer info, Geen beschrijving, Download, Faciliteiten,
+        Startpagina]
     /global[2]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:versionable']
@@ -42,19 +45,22 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2021-07-15T15:32:00.954+01:00
-      hippostdpubwf:lastModifiedBy: admin
+      hippostdpubwf:lastModificationDate: 2021-09-06T07:56:27.664Z
+      hippostdpubwf:lastModifiedBy: spanish
       resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global
       resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
         keyfacilities.title, home]
-      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities,
+      resourcebundle:messages: [Find out more, No image title, Download, Key facilities,
         Home]
-      resourcebundle:messages_de: ['', '', '', '', '']
-      resourcebundle:messages_es: ['', '', '', '', '']
+      resourcebundle:messages_de: [Mehr erfahren, Kein Titel, Download, Ausstattung,
+        Startseite]
+      resourcebundle:messages_es: [Más información, Sin título, Descargar, Instalaciones
+          destacadas, Inicio]
       resourcebundle:messages_fr: ['', '', '', '', '']
       resourcebundle:messages_it: ['', '', '', '', '']
-      resourcebundle:messages_nl: ['', '', '', '', '']
+      resourcebundle:messages_nl: [Meer info, Geen beschrijving, Download, Faciliteiten,
+        Startpagina]
     /global[3]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -64,16 +70,19 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2021-07-15T15:31:56.807+01:00
-      hippostdpubwf:lastModifiedBy: admin
+      hippostdpubwf:lastModificationDate: 2021-09-06T07:56:06.136Z
+      hippostdpubwf:lastModifiedBy: spanish
       resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global
       resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
         keyfacilities.title, home]
-      resourcebundle:messages: [Find out more, No image title, Download, Key Facilities,
+      resourcebundle:messages: [Find out more, No image title, Download, Key facilities,
         Home]
-      resourcebundle:messages_de: ['', '', '', '', '']
-      resourcebundle:messages_es: ['', '', '', '', '']
+      resourcebundle:messages_de: [Mehr erfahren, Kein Titel, Download, Ausstattung,
+        Startseite]
+      resourcebundle:messages_es: [Más información, Sin título, Descargar, Instalaciones
+          destacadas, Inicio]
       resourcebundle:messages_fr: ['', '', '', '', '']
       resourcebundle:messages_it: ['', '', '', '', '']
-      resourcebundle:messages_nl: ['', '', '', '', '']
+      resourcebundle:messages_nl: [Meer info, Geen beschrijving, Download, Faciliteiten,
+        Startpagina]

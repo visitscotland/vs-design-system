@@ -22,6 +22,7 @@
             kilometres="${(itinerary.distance*1.6)}"
             miles-label="${label("itinerary", "miles")}"
             kilometres-label="${label("itinerary", "kilometres")}"
+            distance-label="${label("itinerary", "distance")}"
             miles-abbr="${label("itinerary", "miles-abbreviation")}"
             kilometres-abbr="${label("itinerary", "kilometres-abbreviation")}"
         >
