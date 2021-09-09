@@ -93,8 +93,12 @@ export default {
 <style lang="scss">
 .vs-mega-nav-accordion-item {
 
-    &.vs-accordion-item.card .vs-accordion-item__panel.card-body{
-        padding: 0;
+    &.vs-accordion-item.card {
+        border-top: 0;
+
+        &.vs-accordion-item__panel.card-body{
+            padding: 0;
+        }
     }
 
     &--level-1, &--level-2{
