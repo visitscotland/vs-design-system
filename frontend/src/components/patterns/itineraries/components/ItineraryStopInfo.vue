@@ -187,10 +187,12 @@ export default {
             let provisionalMsg = '';
 
             if (typeof this.currentDayData[0] !== 'undefined') {
+                const openState = this.currentDayData[0].state === 'open' ? this.openText : this.closedText;
+
                 if (this.currentDayData[0].provisional) {
-                    provisionalMsg = `${this.provisionalText} ${this.currentDayData[0].state}  ${this.currentDayData[0].day}`;
+                    provisionalMsg = `${this.provisionalText} ${openState.toLowerCase()} ${this.currentDayData[0].day}`;
                 } else {
-                    provisionalMsg = `${this.usualText} ${this.currentDayData[0].state} ${this.currentDayData[0].day}`;
+                    provisionalMsg = `${this.usualText} ${openState.toLowerCase()} ${this.currentDayData[0].day}`;
                 }
 
                 // add open/closed times if they exist
