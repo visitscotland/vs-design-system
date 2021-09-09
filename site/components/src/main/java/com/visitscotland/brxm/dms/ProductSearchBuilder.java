@@ -258,26 +258,38 @@ public class ProductSearchBuilder {
      * It will return an exception if the type hasn't been set
      */
     public String build(){
-        return buildSearchUrl(String.format(DMSConstants.PRODUCT_SEARCH, path), false);
+        return buildSearchUrl(String.format(DMSConstants.PRODUCT_SEARCH, path), false, false);
     }
 
     public String buildDataMap(){
-        return buildSearchUrl(DMSConstants.PRODUCT_SEARCH_DATA_MAP, true);
-    }
-    public String buildCannedSearch(){
-        return buildSearchUrl(DMSConstants.VS_DMS_CANNED_SEARCH, false);
+        return buildSearchUrl(DMSConstants.PRODUCT_SEARCH_DATA_MAP, true, true);
     }
 
-    private String buildSearchUrl(String path, boolean dataEndpoint){
+    public String buildCannedSearch(){
+        return buildSearchUrl(DMSConstants.VS_DMS_CANNED_SEARCH, false, false);
+    }
+
+    /**
+     * Composes a search URL depending on if the endpoint are internal or external and if they are consumed by a front-end
+     * or a back-end application.
+     *
+     * @param path
+     * @param dataEndpoint
+     * @param internal
+     * @return
+     */
+    private String buildSearchUrl(String path, boolean dataEndpoint, boolean internal){
         if (productTypes == null){
             throw new VsException("No types have been defined for this search");
         }
 
         if (dataEndpoint){
-            if (!Contract.isEmpty(properties.getDmsDataHost())) {
+            if (internal && !Contract.isEmpty(properties.getDmsDataHost())) {
                 return composeUrl(properties.getDmsDataHost() + path);
+            } else if (!internal && !Contract.isEmpty(properties.getDmsDataPublicHost())) {
+                return composeUrl(properties.getDmsDataPublicHost() + path);
             } else {
-                throw new VsException("Property dms-data.url is not defined in the CMS");
+                throw new VsException("Property for the dms data URL hasn't been defined in the CMS");
             }
         } else {
             if (Contract.isEmpty(properties.getDmsHost())) {
