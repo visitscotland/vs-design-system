@@ -54,12 +54,12 @@
                         </template>
                     </#if>
 
-                            <vs-rich-text-wrapper variant="lead">
-                                <@hst.html hippohtml=document.listicleClosing.copy/>
-                            </vs-rich-text-wrapper>
-                        </vs-panel>
-                    </vs-col>
-                </vs-row>
+                    <vs-rich-text-wrapper variant="lead">
+                        <@hst.html hippohtml=document.listicleClosing.copy/>
+                    </vs-rich-text-wrapper>
+                </vs-panel>
+            </vs-col>
+        </vs-row>
         </#if>
 
     <@socialShare nojs=true/>
@@ -69,8 +69,6 @@
     </#if>
 
     <#if newsletterSignpost??>
-        <@signpost newsletterSignpost />
-    </#if>
-
-	</vs-container>
+		<@signpost module=newsletterSignpost imgSrc="assets/images/illustrations/newsletter.svg"/>
+	</#if>
 </div>

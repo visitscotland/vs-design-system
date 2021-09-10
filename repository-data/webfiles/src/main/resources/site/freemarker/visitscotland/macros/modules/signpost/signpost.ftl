@@ -8,7 +8,7 @@
 <#include "../../../../frontend/components/vs-rich-text-wrapper.ftl">
 
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.SignpostModule" -->
-<#macro signpost module>
+<#macro signpost module imgSrc>
     <vs-module-wrapper theme="light">
         <template slot="vsModuleWrapperHeading">
             ${module.title}
@@ -43,7 +43,10 @@
                     offset-xl="1"
                     class="text-center text-lg-left"
                 >
-                    <vs-img src="<@hst.webfile path='assets/images/illustrations/newsletter.svg'/>" class="mt-9 mt-lg-0"></vs-img>
+                    <vs-img 
+                        src="<@hst.webfile path='${imgSrc}'/>" 
+                        class="mt-9 mt-lg-0">
+                    </vs-img>
                 </vs-col>
             </vs-row>
         </vs-container>
