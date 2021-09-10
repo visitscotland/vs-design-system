@@ -19,7 +19,7 @@
 #   files and folders that start with 'css'                              #
 #                                                                        #
 
-css/
+assets/
 fonts/
 js/
 frontend/
