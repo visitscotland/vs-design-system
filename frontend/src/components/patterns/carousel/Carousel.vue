@@ -418,6 +418,7 @@ export default {
             &-label {
                 color: $color-white;
                 white-space: nowrap;
+                text-transform: uppercase;
                 font-weight: $font-weight-light;
 
                 &--next {
