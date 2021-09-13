@@ -301,6 +301,7 @@ export default {
                 share-btn-text="Share"
                 close-alt-text="Close"
                 share-popover-title="Share On"
+                id="1"
             >
                 <VsSocialShareItem
                     name="facebook"
