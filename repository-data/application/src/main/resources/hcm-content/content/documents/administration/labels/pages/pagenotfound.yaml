@@ -2,8 +2,8 @@
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 19fb2d2f-2d2c-4742-a088-01fb0ebfdcd4
-  hippo:name: Page not found
-  hippo:versionHistory: 940a2108-95d4-430f-b4dd-e4ec6c35158c
+  hippo:name: Page not found (Don't translate)
+  hippo:versionHistory: 17e75536-1b0a-4180-bfc1-fde060acb8b7
   /pagenotfound[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -14,7 +14,7 @@
     hippostdpubwf:creationDate: 2014-08-21T17:08:08.703+02:00
     hippostdpubwf:lastModificationDate: 2021-01-22T18:03:28.148Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-01-22T18:03:29.529Z
+    hippostdpubwf:publicationDate: 2021-08-27T10:11:11.520Z
     resourcebundle:descriptions: [Title displayed when page is not found., Text displayed
         when page is not found.]
     resourcebundle:id: essentials.pagenotfound
@@ -28,7 +28,7 @@
     resourcebundle:messages_nl: ['', '']
   /pagenotfound[2]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:mixinTypes: ['mix:versionable']
     jcr:uuid: 1f6f43bc-0d14-41cd-a493-aa77c6e5dcbc
     hippo:availability: [preview]
     hippostd:state: unpublished
