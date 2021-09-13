@@ -32,7 +32,14 @@
                                 orientation="down"
                                 variant="light"
                             />
-                            <span class="sr-only">{{ prevText }}</span>
+                            <div class="vs-carousel__control-label-container">
+                                <span
+                                    class="vs-carousel__control-label
+                                           vs-carousel__control-label--prev"
+                                >
+                                    {{ prevText }}
+                                </span>
+                            </div>
                         </button>
                         <button
                             v-if="!nextDisabled"
@@ -40,6 +47,14 @@
                             @keypress.prevent="sliderNavigate('next')"
                             @click.prevent="sliderNavigate('next')"
                         >
+                            <div class="vs-carousel__control-label-container">
+                                <span
+                                    class="vs-carousel__control-label
+                                           vs-carousel__control-label--next"
+                                >
+                                    {{ nextText }}
+                                </span>
+                            </div>
                             <VsIcon
                                 name="internal-link"
                                 size="xs"
@@ -385,7 +400,7 @@ export default {
             border: none;
             background: $color-theme-primary;
             z-index: 20;
-            width: 35px;
+            min-width: 35px;
             height: 35px;
             border-radius: 0;
             display: flex;
@@ -400,10 +415,38 @@ export default {
                 left: 0;
             }
 
-            &:focus,
+            &-label {
+                color: $color-white;
+                white-space: nowrap;
+                font-weight: $font-weight-light;
+
+                &--next {
+                    padding-right: $spacer-4;
+                }
+
+                &--prev {
+                    padding-left: $spacer-4;
+                }
+            }
+
+            .vs-carousel__control-label-container {
+                transition: max-width $duration-slowly ease;
+                max-width: 0;
+                overflow: hidden;
+            }
+
+            &:focus {
+                border: 2px solid $color-purple-tint-4;
+                outline: none;
+            }
+
             &:hover {
                 border: 2px solid $color-purple-tint-4;
                 outline: none;
+
+                .vs-carousel__control-label-container {
+                    max-width: 15rem;
+                }
             }
         }
 
