@@ -224,7 +224,7 @@ export default {
             }
 
             if (this.searchType === 'even') {
-                return `${product.address.line1}, ${product.address.city}`;
+                return `${product.eventVenue}, ${product.address.city}`;
             }
 
             return `${product.address.city}, ${product.address.county}`;
