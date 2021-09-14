@@ -22,7 +22,7 @@
             api-url="${module.cannedSearchEndpoint}"
             search-type="${module.productType}"
             carousel-next-text="${label('essentials.pagination', 'page.next')}"
-            carousel-prev-text="${label('essentials.pagination', 'page.previous')}"
+            carousel-previous-text="${label('essentials.pagination', 'page.previous')}"
         >
             <template slot="vsCannedSearchButtons">
                 <vs-button
