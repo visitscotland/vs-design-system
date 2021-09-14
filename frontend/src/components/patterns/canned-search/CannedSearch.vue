@@ -89,6 +89,11 @@
                         :price="prod.price.price"
                         :price-outro="prod.price.priceBasis"
                     />
+                    <VsCannedSearchCuisines
+                        v-if="prod.cuisines"
+                        slot="vsCannedSearchSummaryLeft"
+                        :cuisines="prod.cuisines"
+                    />
                     <VsLink
                         v-if="prod.website"
                         :href="prod.website.link"
@@ -135,6 +140,7 @@ import VsCannedSearchPrice from '@components/patterns/canned-search/components/C
 import VsCannedSearchSummaryBox from '@components/patterns/canned-search/components/CannedSearchSummaryBox';
 import VsCannedSearchDates from '@components/patterns/canned-search/components/CannedSearchDates';
 import VsCannedSearchBadges from '@components/patterns/canned-search/components/CannedSearchBadges';
+import VsCannedSearchCuisines from '@components/patterns/canned-search/components/CannedSearchCuisines';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
@@ -163,6 +169,7 @@ export default {
         VsCannedSearchSummaryBox,
         VsCannedSearchDates,
         VsCannedSearchBadges,
+        VsCannedSearchCuisines,
         VsCarousel,
         VsContainer,
         VsRow,
