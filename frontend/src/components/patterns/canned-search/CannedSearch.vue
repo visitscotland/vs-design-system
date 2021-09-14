@@ -99,6 +99,16 @@
                     </VsLink>
                 </VsCannedSearchSummaryBox>
             </VsCannedSearchProductCard>
+            <template slot="vsCarouselOf">
+                <!--
+                    @slot Holds the translation for `of` and passes it to the carousel
+
+                    Expects html
+                -->
+                <slot
+                    name="vsCannedSearchOf"
+                />
+            </template>
         </VsCarousel>
         <VsContainer
             v-if="!!this.$slots['vsCannedSearchCredit']"
@@ -311,6 +321,10 @@ export default {
                     View on Map
                 </VsButton>
             </template>
+
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
         </VsCannedSearch>
     </VsModuleWrapper>
     <VsModuleWrapper>
@@ -338,6 +352,10 @@ export default {
 
             <template slot="vsCannedSearchCredit">
                 These are some credits for a third party search
+            </template>
+
+            <template slot="vsCannedSearchOf">
+                Of
             </template>
         </VsCannedSearch>
     </VsModuleWrapper>
