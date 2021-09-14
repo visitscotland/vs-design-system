@@ -18,42 +18,40 @@
         <vs-container>
             <vs-row>
                 <vs-col
-                    cols="10"
-                    offset="1"
-                    md="8"
-                    offset-md="2"
-                    lg="6"
-                    offset-lg="3"
+                    cols="12"
                     class="text-center"
                 >
                     <vs-img 
                         src="<@hst.webfile path='assets/images/iknow-community-logo.svg'/>" 
-                        width="190px">
+                        width="190px"
+                        class="mb-9 mb-md-10">
                     </vs-img>
                 </vs-col>
             </vs-row>
             <vs-row>
                 <vs-col
                     cols="12"
-                    md="10"
-                    offset-md="1"
+                    sm="10"
+                    offset-sm="1"
                     lg="6"
                     offset-lg="0"
                     xl="5"
                     offset-xl="1"
-                    class="text-left py-10"
+                    class="text-left"
                 >
-                    <@hst.html hippohtml=module.copy/>
+                    <vs-rich-text-wrapper variant="lead" class="mb-4">
+                        <@hst.html hippohtml=module.copy/>
+                    </vs-rich-text-wrapper>
 
                     <vs-link
-                        class="mt-4"
+                        class="mb-9 mb-md-10 d-block"
                         href="${module.link.link}"
                         <#if module.link.type != "internal">type="${module.link.type}"</#if>
                     >
                         ${module.link.label}
                     </vs-link>
 
-                    <vs-list class="mt-10" unstyled inline>
+                    <vs-list unstyled inline>
                         <#list module.tags as tag>
                             <li>
                                 <vs-tag href="${tag.link}">
@@ -66,15 +64,17 @@
                 <vs-col
                     cols="10"
                     offset="1"
+                    sm="8"
+                    offset-sm="2"
                     md="6"
                     offset-md="3"
                     lg="6"
                     offset-lg="0"
                     xl="4"
                     offset-xl="1"
-                    class="pt-lg-10"
                 >
                     <vs-img 
+                        class="mt-8 mt-lg-9 mt-xl-4"
                         src="<@hst.webfile path='assets/images/illustrations/iknow-coo-puffin.svg'/>">
                     </vs-img>
                 </vs-col>
