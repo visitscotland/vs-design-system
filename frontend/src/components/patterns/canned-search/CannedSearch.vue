@@ -22,8 +22,8 @@
             </VsRow>
         </VsContainer>
         <VsCarousel
-            next-text="next page"
-            prev-text="previous page"
+            :next-text="carouselNextText"
+            :prev-text="carouselPreviousText"
             slides-xs="1"
             slides-md="2"
             slides-lg="3"
@@ -174,6 +174,20 @@ export default {
         searchType: {
             type: String,
             default: '',
+        },
+        /**
+        * Accessible text for next carousel control, passed to vs-carousel
+        */
+        carouselNextText: {
+            type: String,
+            default: 'Next slide',
+        },
+        /**
+        * Accessible text for next carousel control, passed to vs-carousel
+        */
+        carouselPreviousText: {
+            type: String,
+            default: 'Previous slide',
         },
     },
     data() {
