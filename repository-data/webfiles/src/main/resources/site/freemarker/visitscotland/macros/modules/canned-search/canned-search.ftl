@@ -1,5 +1,4 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../frontend/components/vs-iknow-community.ftl">
 <#include "../../../../frontend/components/vs-tag.ftl">
 <#include "../../../../frontend/components/vs-link.ftl">
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
