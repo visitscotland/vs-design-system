@@ -34,6 +34,10 @@
             <template slot="vsCannedSearchCredit">
                 ${module.credit}
             </template>
+
+            <template slot="vsCannedSearchOf">
+                ${label('essentials.pagination', 'page.of')}
+            </template>
         </vs-canned-search>
     </vs-module-wrapper>
 </#macro>
