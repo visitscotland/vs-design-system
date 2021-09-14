@@ -35,7 +35,7 @@
 
                 <div
                     class="card-body"
-                    :class="searchType === 'even' ? 'card-body--short' : ''"
+                    :class="modCardBody"
                 >
                     <VsHeading
                         level="3"
@@ -187,6 +187,22 @@ export default {
         slideIndex: {
             type: String,
             required: true,
+        },
+    },
+    computed: {
+        /**
+         * Calculates any required modified classes for the card-body, depending on the
+         * searchType provided
+         */
+        modCardBody() {
+            if (
+                this.searchType === 'even'
+                || this.searchType === 'cate'
+            ) {
+                return 'card-body--short';
+            }
+
+            return '';
         },
     },
     methods: {

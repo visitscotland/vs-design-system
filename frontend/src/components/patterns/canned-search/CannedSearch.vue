@@ -314,12 +314,6 @@ export default {
                 >
                     View All B&Bs
                 </VsButton>
-                <VsButton
-                    href="https://www.visitscotland.com"
-                    icon="map"
-                >
-                    View on Map
-                </VsButton>
             </template>
 
             <template slot="vsCannedSearchOf">
@@ -342,16 +336,32 @@ export default {
                 >
                     View All Events
                 </VsButton>
-                <VsButton
-                    href="https://www.visitscotland.com"
-                    icon="map"
-                >
-                    View on Map
-                </VsButton>
             </template>
 
             <template slot="vsCannedSearchCredit">
                 These are some credits for a third party search
+            </template>
+
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
+        </VsCannedSearch>
+    </VsModuleWrapper>
+    <VsModuleWrapper>
+        <template slot="vsModuleWrapperHeading">
+            A food & drink search example
+        </template>
+
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
+            searchType="cate"
+        >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All Food & Drink
+                </VsButton>
             </template>
 
             <template slot="vsCannedSearchOf">
