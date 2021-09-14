@@ -136,7 +136,9 @@ export default {
     }
 
     &--inline {
-        display: flex;
+        li {
+            display: inline-block;
+        }
     }
 
     &--unstyled,
