@@ -340,7 +340,6 @@ export default {
                 days="15"
                 transport="bus"
                 transport-name="Bus"
-                slide-index="0"
             >
                 <template slot="vsCarouselSlideHeading">
                     1 Count 7,000 shining stars in the iconi
