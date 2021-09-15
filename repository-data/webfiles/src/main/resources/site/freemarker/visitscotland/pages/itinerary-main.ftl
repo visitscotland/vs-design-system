@@ -91,7 +91,7 @@
     <@socialShare nojs=true/>
 
     <#if otyml??>
-        <@horizontalList otyml />
+        <@horizontalList otyml themeName />
     </#if>
 
     <#if newsletterSignpost??>
