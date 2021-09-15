@@ -221,7 +221,7 @@ export default {
             padding-bottom: $spacer-5;
 
             &:hover {
-                box-shadow: 10px 10px 20px $color-gray-tint-4;
+                box-shadow: $shadow_card;
 
                 padding: $spacer-2 $spacer-2 $spacer-5;
                 margin-left: -$spacer-2;
