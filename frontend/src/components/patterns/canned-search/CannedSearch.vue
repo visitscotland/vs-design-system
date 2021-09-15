@@ -180,6 +180,14 @@ export default {
         /**
         * The type of product that is being search for, determines how product
         * card addresses are displayed.
+        *
+        * Any arbitrary search type could be added in the future and should just
+        * work without any specific handling, but at time of development this
+        * could be:
+        *
+        * `even` - events
+        * `acco` - accomodation
+        * `cate` - food & drink
         */
         searchType: {
             type: String,
