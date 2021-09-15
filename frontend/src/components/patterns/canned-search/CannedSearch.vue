@@ -242,6 +242,12 @@ export default {
                     this.products = [];
                 });
         },
+        /**
+         * Returns the address string for each card, dependent on whether the event is
+         * online and what type of product the search is looking for
+         *
+         * Defaults to `city, country` if no exception present
+         */
         fetchAddress(product) {
             if (product.onlineEvent) {
                 return product.onlineEvent;
