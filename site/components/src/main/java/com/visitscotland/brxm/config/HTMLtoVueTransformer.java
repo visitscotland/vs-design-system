@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.config;
 
+import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.services.LinkService;
 import org.springframework.stereotype.Component;
@@ -77,15 +78,17 @@ public class HTMLtoVueTransformer {
         while (matcher.find()) {
             String closingTag;
             String a = matcher.group();
-            LinkType type = linkService.getType(matcher.group(2));
+            FlatLink link = linkService.createExternalLink(matcher.group(2));
 
-            if (type.equals(LinkType.DOWNLOAD)){
+            if (link.getType().equals(LinkType.DOWNLOAD)){
                 closingTag = linkService.getDownloadText(matcher.group(2))+ "</vs-link>";
             } else {
                 closingTag = "</vs-link>";
             }
-            String vsLink = a.replace(matcher.group(1), "<vs-link type=\""+type.getRichTextType()+"\" ")
-                    .replace(matcher.group(3),closingTag);
+
+            String vsLink = a.replace(matcher.group(1), "<vs-link type=\""+ link.getType().getRichTextType()+"\" ")
+                    .replace(matcher.group(2), link.getLink())
+                    .replace(matcher.group(3), closingTag);
             output = output.replace(a, vsLink);
         }
 

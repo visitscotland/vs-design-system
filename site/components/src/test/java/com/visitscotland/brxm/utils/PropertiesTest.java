@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -181,4 +182,16 @@ class PropertiesTest {
         when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.INSTAGRAM_ACCESS_TOKEN, Locale.UK)).thenReturn("");
         assertEquals("{app-id}", properties.getInstagramToken());
     }
+
+    @Test
+    @DisplayName("VS-2756 - Return InternalSites as a list")
+    void getInternalSites(){
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.INTERNAL_SITES, Locale.UK)).thenReturn("  aaa , bbb,,,ccc,");
+        List<String> hosts = properties.getInternalSites();
+
+        assertEquals(3,hosts.size());
+        assertEquals("aaa",hosts.get(0));
+        assertEquals("bbb",hosts.get(1));
+        assertEquals("ccc",hosts.get(2));
+     }
 }
