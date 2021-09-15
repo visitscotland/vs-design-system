@@ -187,6 +187,14 @@ export default {
         /**
         * The type of product that is being search for, determines how product
         * card addresses are displayed.
+        *
+        * Any arbitrary search type could be added in the future and should just
+        * work without any specific handling, but at time of development this
+        * could be:
+        *
+        * `even` - events
+        * `acco` - accomodation
+        * `cate` - food & drink
         */
         searchType: {
             type: String,
@@ -249,6 +257,12 @@ export default {
                     this.products = [];
                 });
         },
+        /**
+         * Returns the address string for each card, dependent on whether the event is
+         * online and what type of product the search is looking for
+         *
+         * Defaults to `city, country` if no exception present
+         */
         fetchAddress(product) {
             if (product.onlineEvent) {
                 return product.onlineEvent;
