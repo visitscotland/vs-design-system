@@ -390,5 +390,27 @@ export default {
             </template>
         </VsCannedSearch>
     </VsModuleWrapper>
+    <VsModuleWrapper>
+        <template slot="vsModuleWrapperHeading">
+            A things to do example
+        </template>
+
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
+            searchType="acti"
+        >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All
+                </VsButton>
+            </template>
+
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
+        </VsCannedSearch>
+    </VsModuleWrapper>
 ```
 </docs>
