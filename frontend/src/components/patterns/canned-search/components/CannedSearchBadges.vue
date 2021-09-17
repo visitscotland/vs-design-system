@@ -78,6 +78,12 @@ export default {
             padding: $spacer-0 $spacer-2;
             text-transform: uppercase;
             letter-spacing: $spacing_l;
+            max-height: 1.5em;
+            text-align: right;
+            text-overflow: ellipsis;
+            max-width: calc(100% - 1rem);
+            overflow: hidden;
+            white-space: nowrap;
 
             &--teal {
                 color: $color-white;
