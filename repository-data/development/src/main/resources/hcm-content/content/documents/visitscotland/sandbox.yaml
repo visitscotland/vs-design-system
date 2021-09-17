@@ -15912,11 +15912,12 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 6ca1a932-383b-40cc-b68b-e4cc36ee84eb
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:retainable: false
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-09-14T12:24:04.665+01:00
-        hippostdpubwf:lastModificationDate: 2021-09-14T12:24:04.665+01:00
+        hippostdpubwf:lastModificationDate: 2021-09-15T12:20:19.643+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 89242340-11e2-41ad-8be3-68d0bd832a6d
         hippotranslation:locale: en
@@ -16002,5 +16003,108 @@
             visitscotland:offers: false
             visitscotland:officialrating: []
             visitscotland:productType: cate
+            visitscotland:producttype: ''
+            visitscotland:safeTravels: false
+    /things-to-do-search:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: ca273755-cd35-41ef-b467-f945e1612608
+      hippo:name: Things to Do Search
+      hippo:versionHistory: e9aa3c36-50b2-4110-9c2d-b7d4ac0b2cc4
+      /things-to-do-search[1]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 75b0459b-89c3-4832-b7ca-221265e782ed
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-09-15T12:19:57.889+01:00
+        hippostdpubwf:lastModificationDate: 2021-09-15T13:43:41.840+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: fd97d10c-9b3b-4f7b-9d59-4c7d3b2a390a
+        hippotranslation:locale: en
+        visitscotland:title: Things to Do Search
+        visitscotland:translation: ''
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:goodToGo: false
+            visitscotland:location: Glasgow
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: acti,attr,reta
+            visitscotland:producttype: ''
+            visitscotland:safeTravels: false
+      /things-to-do-search[2]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 768c6e8c-5a31-4a82-8e5f-e483eb2dfd88
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-09-15T12:19:57.889+01:00
+        hippostdpubwf:lastModificationDate: 2021-09-15T13:43:40.764+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: fd97d10c-9b3b-4f7b-9d59-4c7d3b2a390a
+        hippotranslation:locale: en
+        visitscotland:title: Things to Do Search
+        visitscotland:translation: ''
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:goodToGo: false
+            visitscotland:location: Glasgow
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: acti,attr,reta
+            visitscotland:producttype: ''
+            visitscotland:safeTravels: false
+      /things-to-do-search[3]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: f50fc055-8f59-45bf-90d2-d2c6c5f2c9b8
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-09-15T12:19:57.889+01:00
+        hippostdpubwf:lastModificationDate: 2021-09-15T13:43:40.764+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-09-15T13:43:58.987+01:00
+        hippotranslation:id: fd97d10c-9b3b-4f7b-9d59-4c7d3b2a390a
+        hippotranslation:locale: en
+        visitscotland:title: Things to Do Search
+        visitscotland:translation: ''
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:goodToGo: false
+            visitscotland:location: Glasgow
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: acti,attr,reta
             visitscotland:producttype: ''
             visitscotland:safeTravels: false
