@@ -72,6 +72,6 @@ export default {
 
 <docs>
   ```jsx
-    <VsFavouritesViewButton />
+    <VsListFavouritesViewButton />
   ```
 </docs>

@@ -9,7 +9,7 @@
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.CannedSearchModule" -->
 
 <#macro cannedSearch module themeName="">
-    <vs-module-wrapper theme="${themeName}">
+    <vs-module-wrapper theme="<#if themeName?has_content>${themeName}<#else>light</#if>">
         <template slot="vsModuleWrapperHeading">
             ${module.title}
         </template>

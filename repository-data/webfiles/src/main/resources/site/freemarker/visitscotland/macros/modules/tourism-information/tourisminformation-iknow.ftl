@@ -5,8 +5,7 @@
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
 
 <#macro iknow module themeName="">
-
-    <vs-module-wrapper theme="${themeName}">
+    <vs-module-wrapper theme="<#if themeName?has_content>${themeName}<#else>light</#if>">
         <span slot="vsModuleWrapperHeading">
             ${module.title}
         </span>
