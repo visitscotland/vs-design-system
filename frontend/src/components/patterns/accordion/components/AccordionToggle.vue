@@ -78,6 +78,15 @@ export default {
         align-self: center;
     }
 }
+
+@include no-js {
+    .btn.vs-accordion-toggle {
+        .vs-accordion-toggle__icon {
+            display: none;
+        }
+    }
+}
+
 </style>
 
 <docs>

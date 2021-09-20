@@ -6,7 +6,7 @@
 <html data-version="${version}" lang="en">
     <head>
         <#if hstRequest.requestContext.channelManagerPreviewRequest>
-            <link rel="stylesheet" href="<@hst.webfile  path="/css/cms-request.css"/>" type="text/css"/>
+            <link rel="stylesheet" href="<@hst.webfile  path="/assets/css/cms-request.css"/>" type="text/css"/>
         </#if>
 
         <@headContributions />

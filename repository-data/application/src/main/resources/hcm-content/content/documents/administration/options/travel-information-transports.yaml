@@ -28,7 +28,7 @@
       selection:label: Driving
     /selection:listitem[5]:
       jcr:primaryType: selection:listitem
-      selection:key: ferry
+      selection:key: boat
       selection:label: Ferry
     /selection:listitem[6]:
       jcr:primaryType: selection:listitem
@@ -48,7 +48,7 @@
       selection:label: Taxi
     /selection:listitem[10]:
       jcr:primaryType: selection:listitem
-      selection:key: hiking
+      selection:key: route
       selection:label: Tours
     /selection:listitem[11]:
       jcr:primaryType: selection:listitem
@@ -60,7 +60,7 @@
       selection:label: Tram
     /selection:listitem[13]:
       jcr:primaryType: selection:listitem
-      selection:key: product-events
+      selection:key: ticket
       selection:label: Travel passes
     /selection:listitem[14]:
       jcr:primaryType: selection:listitem

@@ -93,8 +93,12 @@ export default {
 <style lang="scss">
 .vs-mega-nav-accordion-item {
 
-    &.vs-accordion-item.card .vs-accordion-item__panel.card-body{
-        padding: 0;
+    &.vs-accordion-item.card {
+        border-top: 0;
+
+        &.vs-accordion-item__panel.card-body{
+            padding: 0;
+        }
     }
 
     &--level-1, &--level-2{
@@ -209,21 +213,33 @@ export default {
                         {{ subHeading.cta }}
                     </VsMegaNavListItem>
                 </VsMegaNavList>
-                <VsMegaNavFeaturedItem link="www.visitscotland.com">
-                    <template slot="vs-featured-item-header">
-                        From our home to yours – see Scotland virtually
-                    </template>
-
-                    <template slot="vs-featured-item-content">
-                        <p>The content for the card goes here</p>
-                        <p>A second line of content</p>
-                    </template>
-
-                    <template slot="vs-featured-item-link">
-                        A link to a page
-                    </template>
-                </VsMegaNavFeaturedItem>
             </VsMegaNavAccordionItem>
+            <div class="featured-items">
+                <template
+                    v-if="item.title === 'Accommodation' || item.title === 'Inspiration'"
+                >
+                    <VsMegaNavFeaturedItem
+                        link="www.visitscotland.com"
+                        img-url="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                        img-alt="Alt text"
+                    >
+                        <template slot="vsFeaturedItemHeader">
+                            From our home to yours – see Scotland virtually
+                        </template>
+
+                        <template slot="vsFeaturedItemContent">
+                            <p>
+                                Although it’s not possible to come to
+                                Scotland at the moment.
+                            </p>
+                        </template>
+
+                        <template slot="vsFeaturedItemLink">
+                            A link to a page
+                        </template>
+                    </VsMegaNavFeaturedItem>
+                </template>
+            </div>
         </VsMegaNavAccordionItem>
     </VsAccordion>
   ```
