@@ -1,6 +1,6 @@
-const { vueHelper, getToken } = require('@cypress/helpers/index.js').default;
+const { vueHelper, getToken } = require('@cypress/helpers/index').default;
 const { each } = require('lodash');
-const VsIcon = require('../Icon.vue').default;
+const VsIcon = require('../Icon').default;
 
 describe('Icon component', () => {
     const props = {
