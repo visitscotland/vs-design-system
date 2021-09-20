@@ -37,6 +37,7 @@ public class CannedSearchFactory {
         CannedSearchModule module = new CannedSearchModule ();
         module.setHippoBean(document);
         module.setTitle(document.getTitle());
+        module.setProductType(document.getCriteria().getSearch().getProductType());
         module.setDescription(document.getCopy());
 
         FlatLink viewAllCta = linkService.createLink(locale, document.getCriteria());
