@@ -45,9 +45,9 @@ class TranslationReportServiceTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Items with translation flag true should have sent for translation status")
+    @DisplayName("Items with a clone have correct translation status")
     @MethodSource("translationStatusTestArguments")
-    void whenTranslationFlagTrue_thenItemStatusSentForTranslation(Boolean translationFlag, String expectedStatus, Collection<String> translatedLocales, Collection<String> sentForTranslationLocales) throws Exception {
+    void translationStatusItemsWithClone(Boolean translationFlag, TranslationStatus expectedStatus, Collection<String> translatedLocales, Collection<String> sentForTranslationLocales) throws Exception {
         Node englishHandle = new MockNodeBuilder().withProperty("hippotranslation:locale", "en").build();
         MockNodeBuilder frenchHandleBuilder = new MockNodeBuilder().withProperty("hippotranslation:locale", "fr").withNodeType("hippo:handle");
         Node frenchUnpublished = new MockNodeBuilder().withNodeType(HippoStdNodeType.NT_PUBLISHABLE).withState("unpublished", "live").withTranslationFlag(translationFlag).build();
@@ -67,16 +67,33 @@ class TranslationReportServiceTest {
         } else {
             Assertions.assertEquals(1, models.size());
             DocumentTranslationReportModel model = models.get(0);
-            Assertions.assertEquals(expectedStatus, model.getTranslationStatus());
+            Assertions.assertEquals(expectedStatus.toString(), model.getTranslationStatus());
             MatcherAssert.assertThat(model.getTranslatedLocales(), is(translatedLocales));
             MatcherAssert.assertThat(model.getSentForTranslationLocales(), is(sentForTranslationLocales));
         }
     }
 
+    @Test
+    @DisplayName("Item with no translation clone has untranslated status")
+    void untranslatedStatus() throws Exception{
+        Node englishHandle = new MockNodeBuilder().withProperty("hippotranslation:locale", "en").build();
+        Node englishUnpublishedVariant = new MockNodeBuilder().translatable("visitscotland:Page").withState("unpublished", "live").build();
+        JcrDocument englishJcrDoc = new MockJcrDocumentBuilder().withHandle(englishHandle)
+                .withVariantNode("unpublished", englishUnpublishedVariant).build();
+        doReturn(Collections.singletonList(englishJcrDoc))
+                .when(mockJcrUtilService).getAllUnpublishedDocuments();
+
+        List<DocumentTranslationReportModel> models = service.getUntranslatedDocuments("fr");
+
+        DocumentTranslationReportModel model = models.get(0);
+        Assertions.assertEquals(TranslationStatus.NOT_SENT_FOR_TRANSLATION.toString(), model.getTranslationStatus());
+    }
+
+
     private static Stream<Arguments> translationStatusTestArguments() {
         return Stream.of(
-                Arguments.of(true, "Sent for translation",Collections.singletonList("en"), Collections.singletonList("fr")),
-                Arguments.of(null, "Untranslated", Collections.singletonList("en"), Collections.emptyList()),
+                Arguments.of(true, TranslationStatus.SEND_FOR_TRANSLATION,Collections.singletonList("en"), Collections.singletonList("fr")),
+                Arguments.of(null, TranslationStatus.CLONED, Collections.singletonList("en"), Collections.emptyList()),
                 Arguments.of(false, null, Collections.emptyList(), Collections.emptyList())
         );
     }
