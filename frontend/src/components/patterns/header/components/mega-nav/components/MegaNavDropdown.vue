@@ -214,6 +214,10 @@ export default {
                 }
             }
         }
+
+        @include media-breakpoint-up(xl) {
+            margin: 0 $spacer-3;
+        }
     }
 
     .dropdown-menu {
