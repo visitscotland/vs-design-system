@@ -109,7 +109,6 @@ export default {
 <style lang="scss">
     .vs-canned-search-logos {
         margin-top: $spacer-9;
-        margin-bottom: $spacer-4;
         min-height: $spacer-9;
 
         .vs-tooltip {

@@ -27,9 +27,13 @@
        "link":"/info/accommodation/arden-house-p572561",
        "type":"INTERNAL"
     },
-    "website":"http://www.ardenhouse.org.uk",
+    "website":{
+       "label":"View Details",
+       "link":"/info/events/the-kooks-p1444591",
+       "type":"INTERNAL"
+    },
     "price":{
-       "price":"110",
+       "price":"£110",
        "priceLabel":"Price from",
        "priceBasis":"Per room per night (breakfast inc.)",
        "displayPrice":"Admission charge"
