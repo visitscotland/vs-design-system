@@ -12,8 +12,8 @@
                 <VsCol
                     cols="10"
                     offset="1"
-                    sm="8"
-                    offset-sm="2"
+                    md="8"
+                    offset-md="2"
                 >
                     <VsHeading
                         level="2"

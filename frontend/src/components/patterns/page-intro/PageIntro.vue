@@ -301,6 +301,7 @@ export default {
                 share-btn-text="Share"
                 close-alt-text="Close"
                 share-popover-title="Share On"
+                id="1"
             >
                 <VsSocialShareItem
                     name="facebook"
@@ -379,6 +380,7 @@ export default {
                         <VsDescriptionListItem title>Highlights</VsDescriptionListItem>
                         <VsDescriptionListItem
                             v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
+                            :key="`itinerary-${index}`"
                         >
                             {{highlight}}
                         </VsDescriptionListItem>
