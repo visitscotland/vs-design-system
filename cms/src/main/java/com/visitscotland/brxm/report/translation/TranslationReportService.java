@@ -186,7 +186,7 @@ public class TranslationReportService {
             if (unpublishedTranslatedClone == null || !unpublishedTranslatedClone.hasProperty(VS_TRANSLATION_FLAG)
                     || unpublishedTranslatedClone.getProperty(VS_TRANSLATION_FLAG).getString().isEmpty()) {
                 // If the translationFlag does not exist on the document, then it has not been sent
-                return TranslationStatus.NOT_SENT_FOR_TRANSLATION;
+                return TranslationStatus.CLONED;
             } else {
                 // The translationFlag is only set once the document has been sent for translation
                 // Initially to true to indicate that the document has been sent, and then to false once the Translation
