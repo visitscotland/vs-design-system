@@ -11,7 +11,7 @@ const ora = require('ora');
 const StyleguidistError = require('react-styleguidist/lib/scripts/utils/error');
 const styleguidist = require('vue-styleguidist');
 
-const { getRemoteConfig, cleanup: cleanupRemoteBuild } = require('./system.remote.utils.js');
+const { getRemoteConfig, cleanup: cleanupRemoteBuild } = require('./system.remote.utils');
 
 const argv = minimist(process.argv.slice(2));
 const command = argv._[0];
