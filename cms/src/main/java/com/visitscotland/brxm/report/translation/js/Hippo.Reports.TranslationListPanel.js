@@ -32,8 +32,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         this.paging = true;
         this.pageTypes =[]
         this.moduleTypes = []
-
-
+        this.statusTypes = []
 
         // Combo box used to edit each record's priority
         // Configured in the editor grid as a column editor component
@@ -190,6 +189,12 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                         Hippo.Reports.priorityFilterComboConfig,
                         {
                             xtype: "label",
+                            text: "Status",
+                            style: SIDEBAR_LABEL_STYLE
+                        },
+                        Hippo.Reports.typeFilterComboConfig,
+                        {
+                            xtype: "label",
                             text: "Document type",
                             style: SIDEBAR_LABEL_STYLE
                         },
@@ -268,6 +273,18 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                 .then((response) => {
                     response.json().then((priorityData) => {
                         resolve(priorityData)
+                    })
+                })
+                .catch((err) => reject(err))
+        })
+    },
+    getStatusTypes() {
+        // TODO clean this up
+        return new Promise((resolve, reject) => {
+            fetch("/cms/translation/status")
+                .then((response) => {
+                    response.json().then((data) => {
+                        resolve(data)
                     })
                 })
                 .catch((err) => reject(err))
@@ -392,6 +409,9 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             .then((types) => self.pageTypes = types)
             .catch((err) => console.error(err));
 
+        this.getStatusTypes()
+            .then((types) => self.statusTypes = types)
+            .catch((err) => console.error(err));
     },
 
     destroy: function() {
