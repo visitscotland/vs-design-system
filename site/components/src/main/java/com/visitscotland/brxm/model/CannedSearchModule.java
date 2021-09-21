@@ -5,6 +5,7 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 public class CannedSearchModule extends Module{
 
     private String title;
+    private String productType;
     private String credit;
     private HippoHtml description;
     private String cannedSearchEndpoint;
@@ -16,6 +17,14 @@ public class CannedSearchModule extends Module{
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 
     public HippoHtml getDescription() {

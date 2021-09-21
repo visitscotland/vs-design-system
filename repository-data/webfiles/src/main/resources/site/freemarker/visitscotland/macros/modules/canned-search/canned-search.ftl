@@ -20,6 +20,9 @@
 
         <vs-canned-search
             api-url="${module.cannedSearchEndpoint}"
+            search-type="${module.productType}"
+            carousel-next-text="${label('essentials.pagination', 'page.next')}"
+            carousel-previous-text="${label('essentials.pagination', 'page.previous')}"
         >
             <template slot="vsCannedSearchButtons">
                 <vs-button
@@ -28,6 +31,13 @@
                 </vs-button>
             </template>
 
+            <template slot="vsCannedSearchCredit">
+                ${module.credit}
+            </template>
+
+            <template slot="vsCannedSearchOf">
+                ${label('essentials.pagination', 'page.of')}
+            </template>
         </vs-canned-search>
     </vs-module-wrapper>
 </#macro>

@@ -95,6 +95,8 @@ public class ProductSearchBuilder {
             proximity(ps.getDistance());
             offers(ps.getOffers());
             free(ps.getFree());
+            goodToGo(ps.getGoodToGo());
+            safeTravels(ps.getSafeTravels());
         }
         return this;
     }
