@@ -349,8 +349,8 @@ div[class^="rsg--sidebar"] {
                     }
                 }
 
-                li[class*=" rsg--isSelected"]{
-                    a[class^="rsg--link"]:after{
+                li[class*=" vueds-active"]{
+                    > a[class^="rsg--link"]:after{
                         content: "\2193"!important;
                     } 
                 }
