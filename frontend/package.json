@@ -80,7 +80,7 @@
     "js-beautify": "^1.11.0",
     "lazysizes": "^5.2.0-beta1",
     "lighthouse": "^6.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mapbox-gl": "^1.11.1",
     "mini-css-extract-plugin": "^0.4.5",
     "nodemon": "^2.0.4",
