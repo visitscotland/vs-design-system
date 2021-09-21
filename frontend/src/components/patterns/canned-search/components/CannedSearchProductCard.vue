@@ -33,7 +33,10 @@
                     />
                 </div>
 
-                <div class="card-body">
+                <div
+                    class="card-body"
+                    :class="modCardBody"
+                >
                     <VsHeading
                         level="3"
                         class="card-title vs-product-card__title text-truncate text-truncate--2"
@@ -83,13 +86,15 @@
                         </VsLink>
                     </div>
                 </div>
-                <!--
-                    @slot Holds an optional list of logos and awards that the product has won
-                    Expects a VsCannedSearchLogos component
-                -->
-                <slot
-                    name="vsCannedSearchLogos"
-                />
+                <div class="vs-product-card__logos-container">
+                    <!--
+                        @slot Holds an optional list of logos and awards that the product has won
+                        Expects a VsCannedSearchLogos component
+                    -->
+                    <slot
+                        name="vsCannedSearchLogos"
+                    />
+                </div>
             </section>
             <!--
                 @slot Holds the summary box for the product card
@@ -124,6 +129,14 @@ export default {
         VsCol,
     },
     props: {
+        /**
+        * The type of product being searched for by the canned search
+        * the card appears in, dictates certain layout elements
+        */
+        searchType: {
+            type: String,
+            default: '',
+        },
         /**
         * The image to use in the component
         */
@@ -176,6 +189,22 @@ export default {
             required: true,
         },
     },
+    computed: {
+        /**
+         * Calculates any required modified classes for the card-body, depending on the
+         * searchType provided
+         */
+        modCardBody() {
+            if (
+                this.searchType === 'even'
+                || this.searchType === 'cate'
+            ) {
+                return 'card-body--short';
+            }
+
+            return '';
+        },
+    },
     methods: {
         /**
          * Detects if the card is one of the currently visible cards in the carousel
@@ -205,12 +234,12 @@ export default {
             transition: box-shadow $duration-slowly;
             border: none;
             position: relative;
-            padding-bottom: $spacer-2;
+            padding-bottom: $spacer-5;
 
             &:hover {
-                box-shadow: 10px 10px 20px $color-gray-tint-4;
+                box-shadow: $shadow_card;
 
-                padding: $spacer-2;
+                padding: $spacer-2 $spacer-2 $spacer-5;
                 margin-left: -$spacer-2;
                 margin-right: -$spacer-2;
                 margin-top: -$spacer-2;
@@ -224,6 +253,10 @@ export default {
         .card-body {
             padding: $spacer-1 $spacer-0 $spacer-0;
             min-height: 11.5rem;
+
+            &--short {
+                min-height: 10rem;
+            }
         }
 
         .stretched-link {
@@ -310,7 +343,7 @@ export default {
 
             .card:hover {
                 box-shadow: none;
-                padding: $spacer-0 $spacer-0 $spacer-2 $spacer-0;
+                padding: $spacer-0 $spacer-0 $spacer-5;
                 margin-left: $spacer-0;
                 margin-right: $spacer-0;
                 margin-top: $spacer-0;
@@ -325,7 +358,9 @@ export default {
 
 <docs>
 ```jsx
-    const sampleAccom = require("../../../../assets/fixtures/canned-search/sample-accom.json")
+    const sampleAccom = require("../../../../assets/fixtures/canned-search/sample-accom.json");
+    const sampleEvent = require("../../../../assets/fixtures/canned-search/sample-event.json");
+    const sampleFood = require("../../../../assets/fixtures/canned-search/sample-food.json");
 
     <VsCarousel
         next-text="next page"
@@ -347,6 +382,7 @@ export default {
                 label: sampleAccom.dmsLink.label,
                 type: sampleAccom.dmsLink.type.toLowerCase()
             }"
+            searchType="acco"
         >
             <VsCannedSearchStars
                 slot="vsCannedSearchStarRating"
@@ -379,15 +415,125 @@ export default {
                     v-if="sampleAccom.price"
                     slot="vsCannedSearchSummaryLeft"
                     :priceIntro="sampleAccom.price.priceLabel"
-                    :price="'£' + sampleAccom.price.price"
+                    :price="sampleAccom.price.price"
                     :priceOutro="sampleAccom.price.priceBasis"
                 />
                 <VsLink
-                    :href="sampleAccom.website"
-                    type="external"
+                    :href="sampleAccom.website.link"
+                    :type="sampleAccom.website.type.toLowerCase()"
                     slot="vsCannedSearchSummaryRight"
                 >
-                    Visit Website
+                    {{ sampleAccom.dmsLink.label }}
+                </VsLink>
+            </VsCannedSearchSummaryBox>
+        </VsCannedSearchProductCard>
+
+        <VsCannedSearchProductCard
+            slideIndex="1"
+            :imgSrc="sampleEvent.images[0].mediaUrl"
+            :imgAlt="sampleEvent.name"
+            :title="sampleEvent.name"
+            :location="sampleEvent.address.city + ', ' + sampleEvent.address.county"
+            :categories="sampleEvent.locations"
+            :description="sampleEvent.description"
+            :detailLink="{
+                link: sampleEvent.dmsLink.link,
+                label: sampleEvent.dmsLink.label,
+                type: sampleEvent.dmsLink.type.toLowerCase()
+            }"
+            searchType="even"
+        >
+            <VsCannedSearchLogos
+                slot="vsCannedSearchLogos"
+                :goodToGoLogo="sampleEvent.covidInformation.goodToGo"
+                :safeTravelsLogo="sampleEvent.covidInformation.safeTravels"
+                :awards="sampleEvent.awards"
+            />
+            <VsCannedSearchBadges
+                slot="vsCannedSearchBadges"
+                :badgeOne="sampleEvent.category.name"
+                :badgeTwo="sampleAccom.offers"
+                badgeThree="Now On"
+            />
+            <VsCannedSearchSummaryBox
+                slot="vsCannedSearchSummary"
+            >
+                <VsCannedSearchDates
+                    v-if="sampleEvent.opening"
+                    slot="vsCannedSearchSummaryTop"
+                    :period="sampleEvent.opening.period"
+                    :label="sampleEvent.opening.label"
+                />
+                <VsCannedSearchPrice
+                    v-if="sampleEvent.price"
+                    slot="vsCannedSearchSummaryLeft"
+                    :priceIntro="sampleEvent.price.priceLabel"
+                    :price="sampleEvent.price.price"
+                    :priceOutro="sampleEvent.price.priceBasis"
+                />
+                <VsLink
+                    :href="sampleEvent.website.link"
+                    :type="sampleEvent.website.type.toLowerCase()"
+                    slot="vsCannedSearchSummaryRight"
+                >
+                    {{ sampleEvent.dmsLink.label }}
+                </VsLink>
+            </VsCannedSearchSummaryBox>
+        </VsCannedSearchProductCard>
+
+        <VsCannedSearchProductCard
+            slideIndex="2"
+            :imgSrc="sampleFood.images[0].mediaUrl"
+            :imgAlt="sampleFood.name"
+            :title="sampleFood.name"
+            :location="sampleFood.address.city + ', ' + sampleFood.address.county"
+            :categories="sampleFood.locations"
+            :description="sampleFood.description"
+            :detailLink="{
+                link: sampleFood.dmsLink.link,
+                label: sampleFood.dmsLink.label,
+                type: sampleFood.dmsLink.type.toLowerCase()
+            }"
+            searchType="cate"
+        >
+            <VsCannedSearchStars
+                slot="vsCannedSearchStarRating"
+                :min="sampleFood.grading.minStars"
+                :max="sampleFood.grading.maxStars"
+                :gold="sampleFood.grading.gold"
+            />
+            <VsCannedSearchCategories
+                slot="vsCannedSearchCategories"
+                v-if="sampleFood.locations"
+                :categories="sampleFood.locations"
+            />
+            <VsCannedSearchLogos
+                slot="vsCannedSearchLogos"
+                :goodToGoLogo="sampleFood.covidInformation.goodToGo"
+                :safeTravelsLogo="sampleFood.covidInformation.safeTravels"
+                :awards="sampleFood.awards"
+            />
+            <VsCannedSearchBadges
+                slot="vsCannedSearchBadges"
+                :badgeOne="sampleFood.category.name"
+                :badgeTwo="sampleFood.offers"
+                :badgeThree="sampleFood.covidInformation ?
+                    sampleFood.covidInformation.weAreOpen : ''"
+            />
+            <VsCannedSearchSummaryBox
+                slot="vsCannedSearchSummary"
+            >
+                <VsCannedSearchCuisines
+                    v-if="sampleFood.cuisines"
+                    slot="vsCannedSearchSummaryLeft"
+                    :cuisines="sampleFood.cuisines"
+                />
+                <VsLink
+                    :href="sampleFood.website.link"
+                    :type="sampleFood.website.type.toLowerCase()"
+                    slot="vsCannedSearchSummaryRight"
+                >
+                    {{ sampleFood.dmsLink.label }}
                 </VsLink>
             </VsCannedSearchSummaryBox>
         </VsCannedSearchProductCard>
