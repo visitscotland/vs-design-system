@@ -89,6 +89,11 @@
                         :price="prod.price.price"
                         :price-outro="prod.price.priceBasis"
                     />
+                    <VsCannedSearchCuisines
+                        v-if="prod.cuisines"
+                        slot="vsCannedSearchSummaryLeft"
+                        :cuisines="prod.cuisines"
+                    />
                     <VsLink
                         v-if="prod.website"
                         :href="prod.website.link"
@@ -135,6 +140,7 @@ import VsCannedSearchPrice from '@components/patterns/canned-search/components/C
 import VsCannedSearchSummaryBox from '@components/patterns/canned-search/components/CannedSearchSummaryBox';
 import VsCannedSearchDates from '@components/patterns/canned-search/components/CannedSearchDates';
 import VsCannedSearchBadges from '@components/patterns/canned-search/components/CannedSearchBadges';
+import VsCannedSearchCuisines from '@components/patterns/canned-search/components/CannedSearchCuisines';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
@@ -163,6 +169,7 @@ export default {
         VsCannedSearchSummaryBox,
         VsCannedSearchDates,
         VsCannedSearchBadges,
+        VsCannedSearchCuisines,
         VsCarousel,
         VsContainer,
         VsRow,
@@ -328,12 +335,6 @@ export default {
                 >
                     View All B&Bs
                 </VsButton>
-                <VsButton
-                    href="https://www.visitscotland.com"
-                    icon="map"
-                >
-                    View on Map
-                </VsButton>
             </template>
 
             <template slot="vsCannedSearchOf">
@@ -356,16 +357,32 @@ export default {
                 >
                     View All Events
                 </VsButton>
-                <VsButton
-                    href="https://www.visitscotland.com"
-                    icon="map"
-                >
-                    View on Map
-                </VsButton>
             </template>
 
             <template slot="vsCannedSearchCredit">
                 These are some credits for a third party search
+            </template>
+
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
+        </VsCannedSearch>
+    </VsModuleWrapper>
+    <VsModuleWrapper>
+        <template slot="vsModuleWrapperHeading">
+            A food & drink search example
+        </template>
+
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
+            searchType="cate"
+        >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All Food & Drink
+                </VsButton>
             </template>
 
             <template slot="vsCannedSearchOf">

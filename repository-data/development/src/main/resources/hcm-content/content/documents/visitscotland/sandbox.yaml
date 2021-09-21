@@ -16177,3 +16177,106 @@
         /visitscotland:copy:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Canned search for some events</p>
+    /food--drink-search:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 67799375-4249-49c6-89d5-1fd272a6ce3a
+      hippo:name: Food & Drink Search
+      hippo:versionHistory: 3ab2fa8d-be8f-4235-9300-029d6a38abad
+      /food--drink-search[1]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 6ca1a932-383b-40cc-b68b-e4cc36ee84eb
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-09-14T12:24:04.665+01:00
+        hippostdpubwf:lastModificationDate: 2021-09-14T12:24:04.665+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 89242340-11e2-41ad-8be3-68d0bd832a6d
+        hippotranslation:locale: en
+        visitscotland:title: Food & Drink
+        visitscotland:translation: ''
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:goodToGo: false
+            visitscotland:location: Royal Mile
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: cate
+            visitscotland:producttype: ''
+            visitscotland:safeTravels: false
+      /food--drink-search[2]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 62f13f24-5d99-4c51-b23c-3dc594189810
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-09-14T12:24:04.665+01:00
+        hippostdpubwf:lastModificationDate: 2021-09-14T12:25:01.094+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 89242340-11e2-41ad-8be3-68d0bd832a6d
+        hippotranslation:locale: en
+        visitscotland:title: Food & Drink
+        visitscotland:translation: ''
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:goodToGo: false
+            visitscotland:location: Royal Mile
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: cate
+            visitscotland:producttype: ''
+            visitscotland:safeTravels: false
+      /food--drink-search[3]:
+        jcr:primaryType: visitscotland:CannedSearch
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: af544c0c-ab9d-4b5c-a102-8cc302ba0dd4
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-09-14T12:24:04.665+01:00
+        hippostdpubwf:lastModificationDate: 2021-09-14T12:25:01.094+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-09-14T12:25:12.204+01:00
+        hippotranslation:id: 89242340-11e2-41ad-8be3-68d0bd832a6d
+        hippotranslation:locale: en
+        visitscotland:title: Food & Drink
+        visitscotland:translation: ''
+        /visitscotland:criteria:
+          jcr:primaryType: visitscotland:ProductSearchLink
+          visitscotland:label: ''
+          /visitscotland:search:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 10.0
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
+            visitscotland:free: false
+            visitscotland:goodToGo: false
+            visitscotland:location: Royal Mile
+            visitscotland:offers: false
+            visitscotland:officialrating: []
+            visitscotland:productType: cate
+            visitscotland:producttype: ''
+            visitscotland:safeTravels: false
