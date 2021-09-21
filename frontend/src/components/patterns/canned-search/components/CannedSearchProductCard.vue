@@ -35,7 +35,7 @@
 
                 <div
                     class="card-body"
-                    :class="searchType === 'even' ? 'card-body--short' : ''"
+                    :class="modCardBody"
                 >
                     <VsHeading
                         level="3"
@@ -187,6 +187,22 @@ export default {
         slideIndex: {
             type: String,
             required: true,
+        },
+    },
+    computed: {
+        /**
+         * Calculates any required modified classes for the card-body, depending on the
+         * searchType provided
+         */
+        modCardBody() {
+            if (
+                this.searchType === 'even'
+                || this.searchType === 'cate'
+            ) {
+                return 'card-body--short';
+            }
+
+            return '';
         },
     },
     methods: {
@@ -344,6 +360,7 @@ export default {
 ```jsx
     const sampleAccom = require("../../../../assets/fixtures/canned-search/sample-accom.json");
     const sampleEvent = require("../../../../assets/fixtures/canned-search/sample-event.json");
+    const sampleFood = require("../../../../assets/fixtures/canned-search/sample-food.json");
 
     <VsCarousel
         next-text="next page"
@@ -460,6 +477,63 @@ export default {
                     slot="vsCannedSearchSummaryRight"
                 >
                     {{ sampleEvent.dmsLink.label }}
+                </VsLink>
+            </VsCannedSearchSummaryBox>
+        </VsCannedSearchProductCard>
+
+        <VsCannedSearchProductCard
+            slideIndex="2"
+            :imgSrc="sampleFood.images[0].mediaUrl"
+            :imgAlt="sampleFood.name"
+            :title="sampleFood.name"
+            :location="sampleFood.address.city + ', ' + sampleFood.address.county"
+            :categories="sampleFood.locations"
+            :description="sampleFood.description"
+            :detailLink="{
+                link: sampleFood.dmsLink.link,
+                label: sampleFood.dmsLink.label,
+                type: sampleFood.dmsLink.type.toLowerCase()
+            }"
+            searchType="cate"
+        >
+            <VsCannedSearchStars
+                slot="vsCannedSearchStarRating"
+                :min="sampleFood.grading.minStars"
+                :max="sampleFood.grading.maxStars"
+                :gold="sampleFood.grading.gold"
+            />
+            <VsCannedSearchCategories
+                slot="vsCannedSearchCategories"
+                v-if="sampleFood.locations"
+                :categories="sampleFood.locations"
+            />
+            <VsCannedSearchLogos
+                slot="vsCannedSearchLogos"
+                :goodToGoLogo="sampleFood.covidInformation.goodToGo"
+                :safeTravelsLogo="sampleFood.covidInformation.safeTravels"
+                :awards="sampleFood.awards"
+            />
+            <VsCannedSearchBadges
+                slot="vsCannedSearchBadges"
+                :badgeOne="sampleFood.category.name"
+                :badgeTwo="sampleFood.offers"
+                :badgeThree="sampleFood.covidInformation ?
+                    sampleFood.covidInformation.weAreOpen : ''"
+            />
+            <VsCannedSearchSummaryBox
+                slot="vsCannedSearchSummary"
+            >
+                <VsCannedSearchCuisines
+                    v-if="sampleFood.cuisines"
+                    slot="vsCannedSearchSummaryLeft"
+                    :cuisines="sampleFood.cuisines"
+                />
+                <VsLink
+                    :href="sampleFood.website.link"
+                    :type="sampleFood.website.type.toLowerCase()"
+                    slot="vsCannedSearchSummaryRight"
+                >
+                    {{ sampleFood.dmsLink.label }}
                 </VsLink>
             </VsCannedSearchSummaryBox>
         </VsCannedSearchProductCard>
