@@ -150,7 +150,7 @@ export default {
         }
 
         &:hover {
-            box-shadow: 10px 10px 20px $color-gray-tint-4;
+            box-shadow: $shadow_card;
         }
 
         .vs-megalink-multi-image__title {
