@@ -1,18 +1,11 @@
 /**
- * This is Vue Design System’s helper util that
- * highlights the currently active nav item.
+ * This is a helper util that sorts components
+ * alphabetically.
  *
  * This is quite a hacky solution that really needs
  * to be refactored into proper rsg-components as
  * explained here:
  * https://vue-styleguidist.github.io/docs/Development.html#react-components
- *
- * Alternatively, once CSS selectors level 4 is released
- * and makes parent selectors somehow available, the
- * vueds-active class will be redundant and all can be
- * replaced with a parent selector to get ancestors of
- * li[class*=\"rsg--isSelected\"]. See
- * https://stackoverflow.com/a/1014958/2018496
  *
  */
 
