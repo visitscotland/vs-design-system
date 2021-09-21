@@ -68,7 +68,7 @@
     "bootstrap-vue": "^2.16.0",
     "chart.js": "^2.9.4",
     "cheerio": "^1.0.0-rc.3",
-    "codemirror": "^5.56.0",
+    "codemirror": "^5.63.0",
     "core-js": "^3.6.5",
     "dotenv": "^7.0.0",
     "eslint-watch": "^7.0.0",
