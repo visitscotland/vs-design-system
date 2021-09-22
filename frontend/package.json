@@ -61,14 +61,14 @@
     "system"
   ],
   "dependencies": {
-    "@mapbox/geojson-extent": "^0.3.2",
+    "@mapbox/geojson-extent": "^1.0.1",
     "axios": "^0.21.1",
     "babel-plugin-macros": "^2.8.0",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.16.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "cheerio": "^1.0.0-rc.3",
-    "codemirror": "^5.56.0",
+    "codemirror": "^5.63.0",
     "core-js": "^3.6.5",
     "dotenv": "^7.0.0",
     "eslint-watch": "^7.0.0",
@@ -80,7 +80,7 @@
     "js-beautify": "^1.11.0",
     "lazysizes": "^5.2.0-beta1",
     "lighthouse": "^6.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mapbox-gl": "^1.11.1",
     "mini-css-extract-plugin": "^0.4.5",
     "nodemon": "^2.0.4",
@@ -103,7 +103,7 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
+    "@babel/cli": "^7.15.7",
     "@babel/core": "^7.11.1",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
