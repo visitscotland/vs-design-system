@@ -68,8 +68,8 @@ class TranslationReportServiceTest {
             Assertions.assertEquals(1, models.size());
             DocumentTranslationReportModel model = models.get(0);
             Assertions.assertEquals(expectedStatus.toString(), model.getTranslationStatus());
-            MatcherAssert.assertThat(model.getTranslatedLocales(), is(translatedLocales));
-            MatcherAssert.assertThat(model.getSentForTranslationLocales(), is(sentForTranslationLocales));
+            MatcherAssert.assertThat(model.getTranslatedLocales(), is(new HashSet<>(translatedLocales)));
+            MatcherAssert.assertThat(model.getSentForTranslationLocales(), is(new HashSet<>(sentForTranslationLocales)));
         }
     }
 
@@ -98,6 +98,27 @@ class TranslationReportServiceTest {
         );
     }
 
+    @DisplayName("Cloned items show up in status list")
+    @Test
+    void clonedItemsStatus() throws Exception {
+        Node englishHandle = new MockNodeBuilder().withProperty("hippotranslation:locale", "en").build();
+        MockNodeBuilder frenchHandleBuilder = new MockNodeBuilder().withProperty("hippotranslation:locale", "fr").withNodeType("hippo:handle");
+        Node frenchHandle =  frenchHandleBuilder.build();
+        Node englishUnpublishedVariant = new MockNodeBuilder().translatable("visitscotland:Page").withState("unpublished", "live").build();
+        JcrDocument frenchJcrDoc = new MockJcrDocumentBuilder().withHandle(frenchHandle).withLocaleName("fr").build();
+        JcrDocument englishJcrDoc = new MockJcrDocumentBuilder().withHandle(englishHandle)
+                .withVariantNode("unpublished", englishUnpublishedVariant)
+                .withTranslations(frenchJcrDoc).build();
+        doReturn(Collections.singletonList(englishJcrDoc))
+                .when(mockJcrUtilService).getAllUnpublishedDocuments();
+
+        List<DocumentTranslationReportModel> models = service.getUntranslatedDocuments("fr");
+        DocumentTranslationReportModel model = models.get(0);
+
+        MatcherAssert.assertThat(model.getClonedLocales(), is(new HashSet<>(Collections.singletonList("fr"))));
+
+    }
+
     @DisplayName("When translation name does not exist, return document as untranslated")
     @Test
     void whenTranslationDoesNotExist_documentReturnedAsUntranslated() throws Exception {
@@ -114,8 +135,8 @@ class TranslationReportServiceTest {
         DocumentTranslationReportModel model = models.get(0);
         // Document returned as it has not been translated into French. No clone exists so is Untranslated
         Assertions.assertEquals("Untranslated", model.getTranslationStatus());
-        MatcherAssert.assertThat(model.getTranslatedLocales(), is(Collections.singletonList("en")));
-        MatcherAssert.assertThat(model.getSentForTranslationLocales(), is(Collections.emptyList()));
+        MatcherAssert.assertThat(model.getTranslatedLocales(), is(new HashSet<>(Collections.singletonList("en"))));
+        MatcherAssert.assertThat(model.getSentForTranslationLocales(), is(new HashSet<>(Collections.emptyList())));
     }
 
     @DisplayName("Publish status is correctly identified")

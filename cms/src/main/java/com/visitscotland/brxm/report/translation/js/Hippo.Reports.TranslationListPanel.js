@@ -22,7 +22,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             method: "GET",
             proxy: new Hippo.Reports.PageableHttpProxy({url: GET_UNTRANSLATED_FILES_ENDPOINT, api: {}}, {locale: INITIAL_LOCALE}),
             fields: ["displayName", "translatedLocales", "sentForTranslationLocales", "path", "translationStatus",
-                "translationPriority", "handleId", "lastModified", "lastModifiedBy", "publishStatus", "type"]
+                "translationPriority", "handleId", "lastModified", "lastModifiedBy", "publishStatus", "type", "clonedLocales"]
         })
 
         var self = this;
@@ -81,7 +81,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                     {name: "lastModifiedBy", dataIndex: "lastModifiedBy", header: "Modified by", sortable: true, width: 5},
                     {name: "translatedLocales", dataIndex: "translatedLocales", header: "Translated", renderer: this.renderFlags, width: 10},
                     {name: "sentForTranslationLocales", dataIndex: "sentForTranslationLocales", header: "Sent for translation", renderer: this.renderFlags, width: 10},
-                    {name: "translationStatus", dataIndex: "translationStatus", header: "Translation status", sortable: true, width: 15},
+                    {name: "clonedLocales", dataIndex: "clonedLocales", header: "Cloned", renderer: this.renderFlags, width: 10},
                     {name: "translationPriority", dataIndex: "translationPriority", header: "Priority", sortable: true, editor: priorityComboConfig, renderer: {fn: this.renderTranslationPriority, scope: self}, width: 15},
                 ]
             }),

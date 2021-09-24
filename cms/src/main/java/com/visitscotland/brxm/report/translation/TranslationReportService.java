@@ -59,8 +59,9 @@ public class TranslationReportService {
         List<DocumentTranslationReportModel> docModels = new ArrayList<>();
         try {
             for (JcrDocument englishDoc : jcrUtilService.getAllUnpublishedDocuments()) {
-                List<String> translatedLocales = new ArrayList<>();
-                List<String> sendForTranslationLocales = new ArrayList<>();
+                Set<String> translatedLocales = new HashSet<>();
+                Set<String> sendForTranslationLocales = new HashSet<>();
+                Set<String> clonedLocales = new HashSet<>();
                 TranslationStatus infoStatus = TranslationStatus.NOT_SENT_FOR_TRANSLATION;
 
                 for (String locale : SUPPORTED_LOCALES) {
@@ -69,6 +70,8 @@ public class TranslationReportService {
                         translatedLocales.add(locale);
                     } else if (status == TranslationStatus.SEND_FOR_TRANSLATION) {
                         sendForTranslationLocales.add(locale);
+                    } else if (status == TranslationStatus.CLONED) {
+                        clonedLocales.add(locale);
                     }
 
                     if (locale.equals(targetLocale)) {
@@ -83,7 +86,7 @@ public class TranslationReportService {
                 String lastModifiedBy = unpublished.hasProperty(LAST_MODIFIED_BY_PROPERTY) ? unpublished.getProperty(LAST_MODIFIED_BY_PROPERTY).getString() : "";
                 String lastModified = getDateAsIsoString(unpublished, LAST_MODIFIED_DATE_PROPERTY);
                 docModels.add(new DocumentTranslationReportModel(englishDoc.getHandle().getIdentifier(), displayName,
-                        infoStatus.toString(), translationPriority, translatedLocales, sendForTranslationLocales,
+                        infoStatus.toString(), translationPriority, translatedLocales, sendForTranslationLocales, clonedLocales,
                         primaryNodeType, lastModified, lastModifiedBy, getDocumentPublishStatus(englishDoc)));
             }
         } catch (RepositoryException ex) {
