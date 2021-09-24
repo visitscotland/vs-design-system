@@ -1,15 +1,12 @@
 <template>
-    <div
+    <VsLink
         class="vs-tag mr-2 mb-4"
         data-test="vs-tag"
+        :href="href"
     >
-        <VsLink
-            :href="href"
-        >
-            <!-- @slot Holds the tag text (text expected) -->
-            <slot />
-        </VsLink>
-    </div>
+        <!-- @slot Holds the tag text (text expected) -->
+        <slot />
+    </VsLink>
 </template>
 
 <script>
@@ -40,26 +37,19 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-tag {
-    display: inline-block;;
-    border: 2px solid $color-pink;
-    border-radius: $border-radius-pill;
-    transition: $transition-base;
-
-    .vs-link {
-        display: block;
+    .vs-tag {
+        display: inline-block;
+        border: 2px solid $color-pink;
+        border-radius: $border-radius-pill;
+        transition: background $duration-base;
         text-decoration: none;
         padding: $spacer-1 $spacer-2;
-    }
 
-    &:hover {
-        background-color: $color-pink;
-
-        .vs-link {
+        &:hover {
+            background-color: $color-pink;
             color: $color-white;
         }
     }
-}
 </style>
 
 <docs>
