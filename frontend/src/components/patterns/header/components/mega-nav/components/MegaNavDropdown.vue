@@ -32,6 +32,7 @@
                                 d-none d-lg-block position-absolute"
                                 icon="close"
                                 icon-only
+                                iconVariantOverride="dark"
                                 size="sm"
                                 variant="transparent"
                                 @click.native="closeMenu"
