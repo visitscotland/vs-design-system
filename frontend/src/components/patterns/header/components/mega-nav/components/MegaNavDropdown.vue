@@ -32,6 +32,7 @@
                                 d-none d-lg-block position-absolute"
                                 icon="close"
                                 icon-only
+                                iconVariantOverride="dark"
                                 size="sm"
                                 variant="transparent"
                                 @click.native="closeMenu"
@@ -213,6 +214,10 @@ export default {
                     width: 100%;
                 }
             }
+        }
+
+        @include media-breakpoint-up(xl) {
+            margin: 0 $spacer-3;
         }
     }
 
