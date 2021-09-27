@@ -8,6 +8,7 @@ import statusLabels from './utils/statusLabels';
 import activeNav from './utils/activeNav';
 import filterSearch from './utils/filterSearch';
 import sortTocList from './utils/sortTocList';
+import componentSectionHeader from './utils/componentSectionHeader';
 import 'codemirror/mode/jsx/jsx';
 
 Vue.config.productionTip = false;
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filterSearch.methods.init();
         activeNav.methods.init();
         sortTocList.methods.init();
+        componentSectionHeader.methods.init();
     });
 });
 
@@ -31,5 +33,6 @@ window.addEventListener('hashchange', () => {
     setTimeout(() => {
         filterSearch.methods.init();
         activeNav.methods.init();
+        componentSectionHeader.methods.init();
     });
 });
