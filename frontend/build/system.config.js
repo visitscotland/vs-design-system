@@ -102,6 +102,7 @@ module.exports = {
         LogoRenderer: path.join(__dirname, '../docs/components/rsg-components/LogoRenderer'),
         Playground: path.join(__dirname, '../docs/components/rsg-components/Playground'),
         ReactComponent: path.join(__dirname, '../docs/components/rsg-components/ReactComponent'),
+        ComponentsRenderer: path.join(__dirname, '../docs/components/rsg-components/ComponentsRenderer'),
     },
     propsParser(filePath) {
         return vueDocgenApi.parse(filePath, {
