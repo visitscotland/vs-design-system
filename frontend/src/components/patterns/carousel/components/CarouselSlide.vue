@@ -27,7 +27,7 @@
                 />
 
                 <template slot="stretchedCardCategory">
-                    {{ category }}
+                    <span class="sr-only">Category: </span>{{ category }}
                 </template>
 
                 <span
