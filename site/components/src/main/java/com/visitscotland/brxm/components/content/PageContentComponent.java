@@ -4,22 +4,21 @@ import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.factory.MegalinkFactory;
 import com.visitscotland.brxm.factory.SignpostFactory;
-import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.SignpostModule;
+import com.visitscotland.brxm.utils.CustomCommonComponent;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 
 
-public class PageContentComponent<T extends Page> extends EssentialsContentComponent {
+public class PageContentComponent<T extends Page> extends CustomCommonComponent {
 
     private static final Logger logger = LoggerFactory.getLogger(PageContentComponent.class);
 
