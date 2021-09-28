@@ -32,7 +32,7 @@
                                 d-none d-lg-block position-absolute"
                                 icon="close"
                                 icon-only
-                                iconVariantOverride="dark"
+                                icon-variant-override="dark"
                                 size="sm"
                                 variant="transparent"
                                 @click.native="closeMenu"
