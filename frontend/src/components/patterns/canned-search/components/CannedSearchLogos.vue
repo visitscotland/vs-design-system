@@ -133,8 +133,16 @@ export default {
 <docs>
 ```jsx
     <VsCannedSearchLogos
-        goodToGoLogo="Good to Go"
-        safeTravelsLogo="Safe Travels"
+        :goodToGoLogo="{
+            'id':'goodToGo',
+            'name':'Safe Travels',
+            'image':'https://www.visitscotland.com/cms-images/logos/goodToGo.png'
+        }"
+        :safeTravelsLogo="{
+            'id':'SafeTravels',
+            'name':'Good to Go',
+            'image':'https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png'
+        }"
         :awards="[
             {
                 'id':'qatasteourbest',
