@@ -211,7 +211,7 @@ public class DocumentTranslator {
                 JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(session.getNodeByIdentifier(document.getId()));
                 Document translatedDocument = workflow.addTranslation(changeSet.getTargetLocale().getName(), document.getUrlfr(),
                         sourceDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
-                Node unpublishedVariant = new JcrDocument(translatedDocument.getNode(session)).getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+                Node unpublishedVariant = jcrDocumentFactory.createFromNode(translatedDocument.getNode(session)).getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
                 if (unpublishedVariant != null) {
                     unpublishedVariant.setProperty(JcrDocument.VS_TRANSLATION_FLAG, true);
                     unpublishedVariant.setProperty(JcrDocument.VS_TRANSLATION_DIFF, "");
