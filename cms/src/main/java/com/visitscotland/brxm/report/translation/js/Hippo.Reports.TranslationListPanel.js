@@ -81,7 +81,6 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                     {name: "lastModifiedBy", dataIndex: "lastModifiedBy", header: "Modified by", sortable: true, width: 5},
                     {name: "translatedLocales", dataIndex: "translatedLocales", header: "Translated", renderer: this.renderFlags, width: 10},
                     {name: "sentForTranslationLocales", dataIndex: "sentForTranslationLocales", header: "Sent for translation", renderer: this.renderFlags, width: 10},
-                    {name: "clonedLocales", dataIndex: "clonedLocales", header: "Cloned", renderer: this.renderFlags, width: 10},
                     {name: "translationPriority", dataIndex: "translationPriority", header: "Priority", sortable: true, editor: priorityComboConfig, renderer: {fn: this.renderTranslationPriority, scope: self}, width: 15},
                 ]
             }),
