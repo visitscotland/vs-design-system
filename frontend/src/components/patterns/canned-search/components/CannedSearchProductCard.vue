@@ -54,7 +54,7 @@
                     </VsHeading>
                     <!--
                         @slot Holds an optional sub-heading for the product card
-                        Expects a VsCannedSearchAddress or VsCannedSearchThemes component
+                        Expects a VsCannedSearchSubHeading component
                     -->
                     <slot
                         name="vsCannedSearchSubHeading"

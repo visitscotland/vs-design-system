@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils';
-import VsCannedSearchAddress from '../CannedSearchAddress';
+import VsCannedSearchSubHeading from '../CannedSearchSubHeading';
 
-const address = 'Callander, Loch Lomond';
+const subHeading = 'Callander, Loch Lomond';
 
-const factoryShallowMount = (propsData) => mount(VsCannedSearchAddress, {
+const factoryShallowMount = (propsData) => mount(VsCannedSearchSubHeading, {
     propsData: {
-        address,
+        subHeading,
         ...propsData,
     },
 });
@@ -15,10 +15,10 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('VsCannedSearchAddress', () => {
+describe('VsCannedSearchSubHeading', () => {
     describe(':props', () => {
-        it('should render the content of the `address` property', () => {
-            expect(wrapper.html()).toContain(address);
+        it('should render the content of the `subHeading` property', () => {
+            expect(wrapper.html()).toContain(subHeading);
         });
     });
 });
