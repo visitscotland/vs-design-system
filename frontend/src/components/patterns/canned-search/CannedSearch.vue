@@ -41,10 +41,13 @@
                     label: prod.dmsLink.label,
                     type: prod.dmsLink.type.toLowerCase()
                 }"
-                :location="fetchAddress(prod)"
                 :description="prod.description"
                 :search-type="searchType"
             >
+                <VsCannedSearchSubHeading
+                    slot="vsCannedSearchSubHeading"
+                    :sub-heading="fetchAddress(prod)"
+                />
                 <VsCannedSearchStars
                     v-if="prod.grading"
                     slot="vsCannedSearchStarRating"
@@ -141,6 +144,7 @@ import VsCannedSearchSummaryBox from '@components/patterns/canned-search/compone
 import VsCannedSearchDates from '@components/patterns/canned-search/components/CannedSearchDates';
 import VsCannedSearchBadges from '@components/patterns/canned-search/components/CannedSearchBadges';
 import VsCannedSearchCuisines from '@components/patterns/canned-search/components/CannedSearchCuisines';
+import VsCannedSearchSubHeading from '@components/patterns/canned-search/components/CannedSearchSubHeading';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
@@ -170,6 +174,7 @@ export default {
         VsCannedSearchDates,
         VsCannedSearchBadges,
         VsCannedSearchCuisines,
+        VsCannedSearchSubHeading,
         VsCarousel,
         VsContainer,
         VsRow,

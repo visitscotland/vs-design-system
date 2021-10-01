@@ -365,9 +365,9 @@ export default {
             }"
             searchType="acco"
         >
-            <VsCannedSearchAddress
+            <VsCannedSearchSubHeading
                 slot="vsCannedSearchSubHeading"
-                :address="sampleAccom.address.city + ', ' + sampleAccom.address.county"
+                :sub-heading="sampleAccom.address.city + ', ' + sampleAccom.address.county"
             />
             <VsCannedSearchStars
                 slot="vsCannedSearchStarRating"
@@ -427,9 +427,9 @@ export default {
             }"
             searchType="even"
         >
-            <VsCannedSearchAddress
+            <VsCannedSearchSubHeading
                 slot="vsCannedSearchSubHeading"
-                :address="sampleEvent.address.city + ', ' + sampleEvent.address.county"
+                :sub-heading="sampleEvent.address.city + ', ' + sampleEvent.address.county"
             />
             <VsCannedSearchLogos
                 slot="vsCannedSearchLogos"
@@ -483,9 +483,9 @@ export default {
             }"
             searchType="cate"
         >
-            <VsCannedSearchAddress
+            <VsCannedSearchSubHeading
                 slot="vsCannedSearchSubHeading"
-                :address="sampleFood.address.city + ', ' + sampleFood.address.county"
+                :sub-heading="sampleFood.address.city + ', ' + sampleFood.address.county"
             />
 
             <VsCannedSearchStars
