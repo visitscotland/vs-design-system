@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .vs-canned-search-address {
+    h4.vs-canned-search-address {
         font-family: $font-family-base;
         font-size: $font-size-base;
         line-height: 1;
