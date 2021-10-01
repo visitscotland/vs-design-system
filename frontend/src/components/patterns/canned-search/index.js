@@ -9,7 +9,7 @@ import VsCannedSearchSummaryBox from './components/CannedSearchSummaryBox';
 import VsCannedSearchCuisines from './components/CannedSearchCuisines';
 import VsCannedSearchDates from './components/CannedSearchDates';
 import VsCannedSearchDuration from './components/CannedSearchDuration';
-import VsCannedSearchSubheading from './components/CannedSearchSubheading';
+import VsCannedSearchSubHeading from './components/CannedSearchSubHeading';
 
 export default {
     VsCannedSearch,
@@ -23,5 +23,5 @@ export default {
     VsCannedSearchCuisines,
     VsCannedSearchDates,
     VsCannedSearchDuration,
-    VsCannedSearchSubheading,
+    VsCannedSearchSubHeading,
 };
