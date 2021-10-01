@@ -8,6 +8,7 @@ import VsCannedSearchBadges from './components/CannedSearchBadges';
 import VsCannedSearchSummaryBox from './components/CannedSearchSummaryBox';
 import VsCannedSearchCuisines from './components/CannedSearchCuisines';
 import VsCannedSearchDates from './components/CannedSearchDates';
+import VsCannedSearchDuration from './components/CannedSearchDuration';
 
 export default {
     VsCannedSearch,
@@ -20,4 +21,5 @@ export default {
     VsCannedSearchSummaryBox,
     VsCannedSearchCuisines,
     VsCannedSearchDates,
+    VsCannedSearchDuration,
 };
