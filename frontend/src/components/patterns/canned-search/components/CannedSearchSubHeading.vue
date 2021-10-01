@@ -1,10 +1,10 @@
 <template>
     <VsHeading
         level="4"
-        class="vs-canned-search-address"
-        data-test="vs-canned-search-address"
+        class="vs-canned-search-sub-heading"
+        data-test="vs-canned-search-sub-heading"
     >
-        {{ address }}
+        {{ subHeading }}
     </VsHeading>
 </template>
 
@@ -12,13 +12,14 @@
 import VsHeading from '@components/elements/heading/Heading';
 
 /**
-* Shows a formatted address for a canned search product card
+* Shows a formatted sub-heading for a canned search product card,
+* usually contains an address or list of themes
 *
-* @displayName Canned Search Address
+* @displayName Canned Search Sub Heading
 */
 
 export default {
-    name: 'VsCannedSearchAddress',
+    name: 'VsCannedSearchSubHeading',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -26,9 +27,9 @@ export default {
     },
     props: {
         /**
-        * The address string to display
+        * The string to display
         */
-        address: {
+        subHeading: {
             type: String,
             default: '',
         },
@@ -38,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss">
-    h4.vs-canned-search-address {
+    h4.vs-canned-search-sub-heading {
         font-family: $font-family-base;
         font-size: $font-size-base;
         line-height: 1;
@@ -51,8 +52,8 @@ export default {
 
 <docs>
 ```jsx
-    <VsCannedSearchAddress
-        address="Callander, Loch Lomond, The Trossachs, Stirling & Forth Valley"
+    <VsCannedSearchSubHeading
+        sub-heading="Callander, Loch Lomond, The Trossachs, Stirling & Forth Valley"
     />
 ```
 </docs>
