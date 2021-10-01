@@ -3,6 +3,7 @@ const PANEL_ID = "translationPanel"
 const MODULE_FILTER_ID = "moduleFilter"
 const MODULE_LABEL_ID = "moduleFilterLabel"
 const PAGE_FILTER_ID = "pageFilter"
+const STATUS_FILTER_ID = "statusFilter"
 const PAGE_LABEL_FILTER_ID = "pageFilterLabel"
 const FILTER_SIDEBAR_ID = "filterSidebar"
 const PAGE_SIZE = 13
