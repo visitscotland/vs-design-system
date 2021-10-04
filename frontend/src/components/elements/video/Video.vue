@@ -150,7 +150,6 @@ export default {
             <VsCol md="6">
                 <VsVideo
                     video-id="c05sg3G4oA4"
-                    :show-duration="true"
                 />
             </VsCol>
         </VsRow>
