@@ -291,18 +291,21 @@ export default {
                 <template slot="vsSingleImageLinks">
                     <VsLinkListItem
                         href="www.visitscotland.com"
+                        variant="primary"
                     >
                         This is a link here
                     </VsLinkListItem>
                     <VsLinkListItem
                         href="www.visitscotland.com"
                         type="external"
+                        variant="primary"
                     >
                         This is an external link here
                     </VsLinkListItem>
                     <VsLinkListItem
                         href="www.visitscotland.com"
                         type="download"
+                        variant="primary"
                     >
                         This is a download link here
                     </VsLinkListItem>
@@ -342,11 +345,13 @@ export default {
                     </VsLinkListItem>
                     <VsLinkListItem
                         href="www.visitscotland.com"
+                        variant="primary"
                     >
                         This is a link here
                     </VsLinkListItem>
                     <VsLinkListItem
                         href="www.visitscotland.com"
+                        variant="primary"
                     >
                         This is a link here
                     </VsLinkListItem>

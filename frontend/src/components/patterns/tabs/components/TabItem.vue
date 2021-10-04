@@ -53,14 +53,30 @@ export default {
         .vs-tab-link.nav-link{
             background-color: $color-secondary-gray-tint-6;
             color: $color-base-text;
-            font-size: $display3-size;
             font-weight: $font-weight-bold;
             border-color: $color-secondary-gray-tint-6 $color-secondary-gray-tint-6 $color-white;
-            padding: $spacer-5;
+            padding: $spacer-3;
+            font-size: $font-size-lg;
+
+            @include media-breakpoint-up(sm) {
+                padding: $spacer-5;
+                font-size: $display3-size;
+            }
+
+            &:focus-visible{
+                outline: 2px solid $color-pink;
+                outline-offset: 0;
+            }
 
             &.active{
+                position: relative;
+                z-index: 2;
                 background-color: $color-white;
-                padding: $spacer-7 $spacer-5;
+                padding: $spacer-5 $spacer-3;
+
+                @include media-breakpoint-up(sm) {
+                    padding: $spacer-7 $spacer-5;
+                }
             }
         }
 
@@ -80,6 +96,7 @@ export default {
         .tab-content > .tab-pane{
             position: relative;
             display: block!important;
+            margin-bottom: $spacer-9;
         }
 
         .nav-tabs{
