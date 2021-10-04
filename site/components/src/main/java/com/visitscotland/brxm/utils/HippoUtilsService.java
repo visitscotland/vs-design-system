@@ -126,7 +126,7 @@ public class HippoUtilsService {
      */
     @NonTestable(NonTestable.Cause.BRIDGE)
     public Locale getRequestLocale(){
-        return RequestContextProvider.get().getServletRequest().getLocale();
+        return RequestContextProvider.get().getPreferredLocale();
     }
 
     /**
