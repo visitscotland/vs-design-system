@@ -7,18 +7,24 @@
         <VsImageWithCaption
             mobile-overlap
             alt-text=""
-            :text-align="alternate ? 'left' : 'right'"
             :image-src="imgSrc"
             class="vs-megalink-single-image__image"
         >
-            <template slot="caption">
-                <!-- @slot Slot for image caption -->
-                <slot name="vsSingleImageCaption" />
-            </template>
-            <template slot="credit">
-                <!-- @slot Slot for image credit -->
-                <slot name="vsSingleImageCredit" />
-            </template>
+            <VsCaption
+                slot="img-caption"
+                :text-align="alternate ? 'left' : 'right'"
+                variant="fullwidth"
+            >
+                <template slot="caption">
+                    <!-- @slot Slot for image caption -->
+                    <slot name="vsSingleImageCaption" />
+                </template>
+
+                <template slot="credit">
+                    <!-- @slot Slot for image credit -->
+                    <slot name="vsSingleImageCredit" />
+                </template>
+            </VsCaption>
         </VsImageWithCaption>
         <VsRow>
             <VsCol

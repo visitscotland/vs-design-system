@@ -53,51 +53,11 @@
         </div>
 
         <div
-            :class="[
-                { 'd-block': showCaption },
-                `vs-image-with-caption__caption-wrapper--${textAlign}`
-            ]"
+            :class="{ 'd-block': showCaption }"
             class="vs-image-with-caption__caption-wrapper"
             :id="'image_' + imageSrc"
         >
-            <figcaption
-                ref="figcaption"
-                :class="captionClasses"
-            >
-                <VsRow class="justify-content-center justify-content-sm-start">
-                    <VsCol
-                        class="order-2 order-sm-1"
-                        :class="[!showMap ? 'align-self-center' : '']"
-                    >
-                        <div class="vs-image-with-caption__caption-info">
-                            <p class="vs-image-with-caption__image-caption">
-                                <slot name="caption" />
-                            </p>
-
-                            <p class="vs-image-with-caption__image-credit">
-                                <slot name="credit" />
-                            </p>
-
-                            <slot name="social-link" />
-                        </div>
-                    </VsCol>
-                    <VsCol
-                        class="col-12 col-sm-auto order-1
-                        order-sm-2 pl-sm-0 align-self-end
-                        align-self-sm-start"
-                        v-if="showMap && variant !== isLargeCaption"
-                    >
-                        <div class="map-wrapper pt-3 pt-sm-2 pb-sm-2 pr-sm-4 mx-auto">
-                            <VsImageLocationMap
-                                :latitude="latitude"
-                                :longitude="longitude"
-                                :map-outline-color="tokens.color_white"
-                                :map-marker-color="tokens.color_secondary_teal_tint_3"
-                            />
-                        </div>
-                    </VsCol>
-                </VsRow>
-            </figcaption>
+            <slot name="img-caption" />
         </div>
     </figure>
 </template>
@@ -110,9 +70,6 @@ import VsSvg from '@components/elements/svg/Svg';
 import VsImg from '@components/elements/img/Img';
 import VsIcon from '@components/elements/icon/Icon';
 import VsButton from '@components/elements/button/Button';
-import { VsRow, VsCol } from '@components/elements/layout';
-import VsImageLocationMap from '@components/patterns/image-location-map/ImageLocationMap';
-import designTokens from '@/assets/tokens/tokens.json';
 
 /**
  * Image with toggle to open a caption and image location map
@@ -124,9 +81,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsRow,
-        VsCol,
-        VsImageLocationMap,
         VsButton,
         VsSvg,
         VsImg,
@@ -158,47 +112,11 @@ export default {
         },
 
         /**
-         * The image latitude
-         */
-        latitude: {
-            type: String,
-            default: '',
-        },
-
-        /**
-         * The image longitude
-         */
-        longitude: {
-            type: String,
-            default: '',
-        },
-
-        /**
          * The screenreader text for the toggle button
          */
         toggleButtonText: {
             type: String,
             default: 'Toggle Caption',
-        },
-
-        /**
-         * Option to choose which variant to show
-         * `fullwidth, large`
-         */
-        variant: {
-            type: String,
-            default: 'fullwidth',
-            validator: (value) => value.match(/(fullwidth|large)/),
-        },
-
-        /**
-         * Option to choose text alignment
-         * `left, right`
-         */
-        textAlign: {
-            type: String,
-            default: 'left',
-            validator: (value) => value.match(/(left|right)/),
         },
 
         /**
@@ -215,25 +133,11 @@ export default {
     data() {
         return {
             showCaption: false,
-            tokens: designTokens,
         };
     },
     computed: {
-        showMap() {
-            return !!(this.longitude && this.latitude);
-        },
-        isLargeCaption() {
-            return this.variant === 'large';
-        },
         captionButtonText() {
             return this.showCaption ? 'Close image caption' : 'Open image caption';
-        },
-        captionClasses() {
-            return {
-                'default-closed': this.closedDefaultCaption,
-                'vs-image-with-caption__large-caption-wrapper': this.isLargeCaption,
-                'vs-image-with-caption__fullwidth-caption-wrapper': !this.isLargeCaption,
-            };
         },
     },
     methods: {
@@ -252,13 +156,17 @@ export default {
         height: auto;
     }
 
-    .vs-image-with-caption__toggle-caption-btn {
+    .vs-image-with-caption__toggle-caption-btn.vs-button.btn {
         bottom: $spacer-2;
         padding: 0;
         right: $spacer-2;
         line-height: $line_height_xs;
         z-index: 3;
         display: block;
+
+        .vs-icon{
+            margin-top: 0;
+        }
 
         @include media-breakpoint-up(sm) {
             display: none;
@@ -292,110 +200,6 @@ export default {
         max-width: 100%;
         padding: 0;
     }
-
-    figcaption {
-        background-color: $color-gray-shade-6;
-        color: $color-white;
-
-        .vs-image-with-caption__image-caption,
-        .vs-image-with-caption__image-credit {
-            font-size: $small-font-size;
-            line-height: $line-height-standard;
-        }
-
-        .vs-image-with-caption__image-caption {
-            font-weight: $font-weight-semi-bold;
-        }
-
-        .vs-image-with-caption__image-credit {
-            font-weight: $font-weight-light;
-            margin-bottom: $spacer-0;
-        }
-
-        &.vs-image-with-caption__large-caption-wrapper,
-        &.vs-image-with-caption__fullwidth-caption-wrapper {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            text-align: center;
-            display: flex;
-
-            @include media-breakpoint-up(sm) {
-                display: block;
-            }
-
-            > .row {
-                margin: 0 auto;
-            }
-
-            .vs-image-with-caption__image-caption {
-                margin-bottom: $spacer-2;
-            }
-
-            .map-wrapper {
-                max-width: 60px;
-            }
-        }
-
-        &.vs-image-with-caption__fullwidth-caption-wrapper{
-            .vs-image-with-caption__caption-info{
-                padding: $spacer-3 0;
-            }
-        }
-
-        &.vs-image-with-caption__large-caption-wrapper {
-            @include media-breakpoint-up(sm) {
-                bottom: -48px;
-                top: auto;
-                width: 310px;
-                height: auto;
-                min-height: 96px;
-                text-align: left;
-
-                > .row {
-                    margin: 0 -16px;
-                }
-
-                .vs-image-with-caption__image-caption {
-                    margin-bottom: $spacer-8;
-                }
-
-                .map-wrapper {
-                    max-width: 74px;
-                }
-            }
-
-            .vs-image-with-caption__caption-info{
-                padding: $spacer-4;
-            }
-        }
-
-        &.vs-image-with-caption__fullwidth-caption-wrapper:not(.default-closed) {
-            @include media-breakpoint-up(sm) {
-                position: relative;
-                width: 100%;
-                height: auto;
-                min-height: 64px;
-                text-align: left;
-            }
-        }
-
-        &.vs-image-with-caption__fullwidth-caption-wrapper.default-closed {
-            display: flex;
-        }
-    }
-
-    @include media-breakpoint-up(md) {
-        &--right {
-            figcaption.vs-image-with-caption__fullwidth-caption-wrapper p,
-            figcaption.vs-image-with-caption__large-caption-wrapper p {
-                text-align: right;
-            }
-        }
-    }
 }
 
 @include no-js {
@@ -407,28 +211,6 @@ export default {
 
     .vs-image-with-caption__caption-wrapper {
         display: block;
-
-        .vs-image-with-caption__large-caption-wrapper,
-        .vs-image-with-caption__fullwidth-caption-wrapper {
-            @include media-breakpoint-down(xs) {
-                position: relative;
-            }
-        }
-    }
-
-    .vs-image-with-caption--closed-default {
-        .vs-image-with-caption__image-wrapper {
-            .vs-image-with-caption__toggle-caption-btn {
-                display: none;
-            }
-        }
-
-        .vs-image-with-caption__caption-wrapper {
-            .vs-image-with-caption__large-caption-wrapper,
-            .vs-image-with-caption__fullwidth-caption-wrapper {
-                position: relative;
-            }
-        }
     }
 }
 </style>
@@ -443,9 +225,6 @@ export default {
         :altText="item.altText"
         :image-src="item.imageSrc"
         :key="`large-${index}`"
-        :latitude="item.latitude"
-        :longitude="item.longitude"
-        variant="large"
         style="max-width:700px"
         class="mb-11"
     >
@@ -457,13 +236,20 @@ export default {
             data-sizes="auto">
         </VsImg>
 
-        <span slot="caption" v-if="item.caption">
-            {{ item.caption }}
-        </span>
+        <VsCaption
+            slot="img-caption"
+            :latitude="item.latitude"
+            :longitude="item.longitude"
+            variant="large"
+        >
+            <span slot="caption" v-if="item.caption">
+                {{ item.caption }}
+            </span>
 
-        <span slot="credit" v-if="item.credit">
-            &copy; {{ item.credit }}
-        </span>
+            <span slot="credit" v-if="item.credit">
+                &copy; {{ item.credit }}
+            </span>
+        </VsCaption>
     </VsImageWithCaption>
 
     <h3 style="margin-top: 7rem;">Fullwidth Caption Style</h3>
@@ -473,7 +259,6 @@ export default {
         :closedDefaultCaption="item.isSmall"
         :image-src="item.imageSrc"
         :key="`fullwidth1-${index}`"
-        variant="fullwidth"
         style="max-width:700px"
     >
         <VsImg
@@ -484,13 +269,19 @@ export default {
             data-sizes="auto">
         </VsImg>
 
-        <span slot="caption" v-if="item.caption">
-            {{ item.caption }}
-        </span>
+        <VsCaption
+            slot="img-caption"
+            :closedDefaultCaption="item.isSmall"
+            variant="fullwidth"
+        >
+            <span slot="caption" v-if="item.caption">
+                {{ item.caption }}
+            </span>
 
-        <span slot="credit" v-if="item.credit">
-            &copy; {{ item.credit }}
-        </span>
+            <span slot="credit" v-if="item.credit">
+                &copy; {{ item.credit }}
+            </span>
+        </VsCaption>
     </VsImageWithCaption>
 
     <VsImageWithCaption
@@ -499,7 +290,6 @@ export default {
         :closedDefaultCaption="item.isSmall"
         :image-src="item.imageSrc"
         :key="`fullwidth2-${index}`"
-        variant="fullwidth"
         style="max-width:300px"
     >
         <VsImg
@@ -510,13 +300,18 @@ export default {
             data-sizes="auto">
         </VsImg>
 
-        <span slot="caption" v-if="item.caption">
-            {{ item.caption }}
-        </span>
+        <VsCaption
+            slot="img-caption"
+            variant="fullwidth"
+        >
+             <span slot="caption" v-if="item.caption">
+                {{ item.caption }}
+            </span>
 
-        <span slot="credit" v-if="item.credit">
-            &copy; {{ item.credit }}
-        </span>
+            <span slot="credit" v-if="item.credit">
+                &copy; {{ item.credit }}
+            </span>
+        </VsCaption>
     </VsImageWithCaption>
 
     <h3 style="margin-top: 5rem;">Social images</h3>
@@ -525,9 +320,6 @@ export default {
         :altText="item.altText"
         :image-src="item.imageSrc"
         :key="`social-${index}`"
-        :latitude="item.latitude"
-        :longitude="item.longitude"
-        :variant="item.variant"
         style="max-width:700px"
     >
         <VsImg
@@ -538,19 +330,26 @@ export default {
             data-sizes="auto">
         </VsImg>
 
-        <VsSvg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
-
-        <span slot="caption" v-if="item.caption">
-            {{ item.caption }}
-        </span>
-
-        <VsSocialCreditLink
-            slot="social-link"
-            :credit="item.credit"
-            :socialPostUrl="item.socialPostUrl"
-            :source="item.source"
+        <VsCaption
+            slot="img-caption"
+            :latitude="item.latitude"
+            :longitude="item.longitude"
+            :variant="item.variant"
         >
-        </VsSocialCreditLink>
+            <VsSvg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
+
+            <span slot="caption" v-if="item.caption">
+                {{ item.caption }}
+            </span>
+
+            <VsSocialCreditLink
+                slot="social-link"
+                :credit="item.credit"
+                :socialPostUrl="item.socialPostUrl"
+                :source="item.source"
+            >
+            </VsSocialCreditLink>
+        </VsCaption>
     </VsImageWithCaption>
 
   ```

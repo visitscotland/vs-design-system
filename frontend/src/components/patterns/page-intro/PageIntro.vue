@@ -258,9 +258,13 @@ export default {
 <docs>
 
   ```jsx
-    const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-itinerary.json")
-    <VsPageIntro background="dark" :heroIntro="true" :isItinerary="true" class="mb-8">
-      <VsHero
+const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-itinerary.json")
+
+<hr/>
+<h3>Page Intro for Itinerary</h3>
+<hr/>
+<VsPageIntro background="dark" :heroIntro="true" :isItinerary="true" class="mb-8">
+    <VsHero
         slot="vsIntroHero"
         :altText="itineraries.sampleItinerary.image.altText"
         :credit="itineraries.sampleItinerary.image.credit"
@@ -268,140 +272,144 @@ export default {
         :image-src="itineraries.sampleItinerary.image.imageSrc"
         :latitude="itineraries.sampleItinerary.image.latitude"
         :longitude="itineraries.sampleItinerary.image.longitude"
-      >
-      <img
-        class="lazyload"
-        :src="itineraries.sampleItinerary.image.imageSrc"
-        srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-        :data-srcset="itineraries.sampleItinerary.image.imageSrc"
-        :alt="itineraries.sampleItinerary.image.altText"
-        data-sizes="auto"
+    >
+        <img
+            class="lazyload"
+            :src="itineraries.sampleItinerary.image.imageSrc"
+            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            :data-srcset="itineraries.sampleItinerary.image.imageSrc"
+            :alt="itineraries.sampleItinerary.image.altText"
+            data-sizes="auto"
         />
-      </VsHero>
-        <template slot="vsIntroBreadcrumb">
-            <VsBreadcrumb>
-              <VsBreadcrumbItem
+    </VsHero>
+
+    <template slot="vsIntroBreadcrumb">
+        <VsBreadcrumb>
+            <VsBreadcrumbItem
                 v-for="(item, index) in breadcrumb.breadcrumb"
                 :key="index"
                 :href="item.href"
                 :active="item.active"
                 :text="item.name"
-                >
-              </VsBreadcrumbItem>
-            </VsBreadcrumb>
-        </template>
-        <template slot="vsIntroHeading">
-            {{itineraries.sampleItinerary.h1Heading}}
-        </template>
-
-        <template slot="vsShareButton">
-            <VsSocialShare
-                page-url="http://www.visitscotland.com"
-                page-title="VisitScotland - Scotland's National Tourist Organisation"
-                share-btn-text="Share"
-                close-alt-text="Close"
-                share-popover-title="Share On"
-                id="1"
             >
-                <VsSocialShareItem
-                    name="facebook"
-                    link-text="Facebook"
-                />
-                <VsSocialShareItem
-                    name="pinterest"
-                    link-text="Pinterest"
-                />
-                <VsSocialShareItem
-                    name="whatsapp"
-                    link-text="WhatsApp"
-                />
-                <VsSocialShareItem
-                    name="twitter"
-                    link-text="Twitter"
-                />
-                <VsSocialShareItem
-                    name="email"
-                    link-text="Email"
-                />
-                <VsSocialShareItem
-                    name="link"
-                    link-text="Copy Link"
-                    link-copied-text="Link copied!"
-                />
-            </VsSocialShare>
-        </template>
+            </VsBreadcrumbItem>
+        </VsBreadcrumb>
+    </template>
+    <template slot="vsIntroHeading">
+        {{itineraries.sampleItinerary.h1Heading}}
+    </template>
 
-        <template slot="vsIntroContent">
-            <div v-html="itineraries.sampleItinerary.introduction" />
-        </template>
+    <template slot="vsShareButton">
+        <VsSocialShare
+            page-url="http://www.visitscotland.com"
+            page-title="VisitScotland - Scotland's National Tourist Organisation"
+            share-btn-text="Share"
+            close-alt-text="Close"
+            share-popover-title="Share On"
+            id="1"
+        >
+            <VsSocialShareItem
+                name="facebook"
+                link-text="Facebook"
+            />
+            <VsSocialShareItem
+                name="pinterest"
+                link-text="Pinterest"
+            />
+            <VsSocialShareItem
+                name="whatsapp"
+                link-text="WhatsApp"
+            />
+            <VsSocialShareItem
+                name="twitter"
+                link-text="Twitter"
+            />
+            <VsSocialShareItem
+                name="email"
+                link-text="Email"
+            />
+            <VsSocialShareItem
+                name="link"
+                link-text="Copy Link"
+                link-copied-text="Link copied!"
+            />
+        </VsSocialShare>
+    </template>
 
-        <template slot="vsIntroStartFinish">
-            <dl class="list-inline">
-                <dt class="list-inline-item">Start / Finish</dt>
-                <dd class="list-inline-item">Edinburgh / Inverness</dd>
-            </dl>
-        </template>
+    <template slot="vsIntroContent">
+        <div v-html="itineraries.sampleItinerary.introduction" />
+    </template>
 
-        <template slot="VsIntroSummaryBox">
-            <VsCol cols="12" md="6" lg="5" xl="4">
-                <VsSummaryBoxList>
-                    <VsSummaryBoxListItem
-                        :text=itineraries.sampleItinerary.totalDays
-                        label="Days"
-                    />
-                    <VsSummaryBoxDistanceListItem
-                        :miles=itineraries.sampleItinerary.totalMiles
-                        :kilometres=itineraries.sampleItinerary.totalKM
-                        distance-label="Distance"
-                        miles-label="miles"
-                        miles-abbr="mi"
-                        kilometres-label="kilometres"
-                        kilometres-abbr="km"
+    <template slot="vsIntroStartFinish">
+        <dl class="list-inline">
+            <dt class="list-inline-item">Start / Finish</dt>
+            <dd class="list-inline-item">Edinburgh / Inverness</dd>
+        </dl>
+    </template>
+
+    <template slot="VsIntroSummaryBox">
+        <VsCol cols="12" md="6" lg="5" xl="4">
+            <VsSummaryBoxList>
+                <VsSummaryBoxListItem
+                    :text=itineraries.sampleItinerary.totalDays
+                    label="Days"
+                />
+                <VsSummaryBoxDistanceListItem
+                    :miles=itineraries.sampleItinerary.totalMiles
+                    :kilometres=itineraries.sampleItinerary.totalKM
+                    distance-label="Distance"
+                    miles-label="miles"
+                    miles-abbr="mi"
+                    kilometres-label="kilometres"
+                    kilometres-abbr="km"
+                >
+                </VsSummaryBoxDistanceListItem>
+                <VsSummaryBoxListItem
+                    :icon=itineraries.sampleItinerary.transport.key
+                    :iconLabel=itineraries.sampleItinerary.transport.value
+                    label="Transport"
+                />
+                <VsSummaryBoxListItem
+                    :icon=itineraries.sampleItinerary.theme.key
+                    :iconLabel=itineraries.sampleItinerary.theme.value
+                    label="Main theme"
+                />
+            </VsSummaryBoxList>
+        </VsCol>
+    </template>
+
+    <VsContainer slot="VsIntroLower">
+        <VsRow>
+            <VsCol cols="12" lg="11" offset-lg="1">
+                <VsDescriptionList class="mb-6">
+                    <VsDescriptionListItem title>Highlights</VsDescriptionListItem>
+                    <VsDescriptionListItem
+                        v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
+                        :key="`itinerary-${index}`"
                     >
-                    </VsSummaryBoxDistanceListItem>
-                    <VsSummaryBoxListItem
-                        :icon=itineraries.sampleItinerary.transport.key
-                        :iconLabel=itineraries.sampleItinerary.transport.value
-                        label="Transport"
-                    />
-                    <VsSummaryBoxListItem
-                        :icon=itineraries.sampleItinerary.theme.key
-                        :iconLabel=itineraries.sampleItinerary.theme.value
-                        label="Main theme"
-                    />
-                </VsSummaryBoxList>
-          </VsCol>
-        </template>
-
-        <VsContainer slot="VsIntroLower">
-            <VsRow>
-                <VsCol cols="12" lg="11" offset-lg="1">
-                    <VsDescriptionList class="mb-6">
-                        <VsDescriptionListItem title>Highlights</VsDescriptionListItem>
+                        {{highlight}}
+                    </VsDescriptionListItem>
+                </VsDescriptionList>
+                <VsDescriptionList class="mb-8">
+                    <VsDescriptionListItem title>Areas Covered</VsDescriptionListItem>
                         <VsDescriptionListItem
-                            v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
-                            :key="`itinerary-${index}`"
+                            v-for="(areaCovered, index) in
+                                itineraries.sampleItinerary.areasCovered"
+                            key="index"
                         >
-                            {{highlight}}
-                        </VsDescriptionListItem>
-                    </VsDescriptionList>
-                    <VsDescriptionList class="mb-8">
-                        <VsDescriptionListItem title>Areas Covered</VsDescriptionListItem>
-                            <VsDescriptionListItem
-                                v-for="(areaCovered, index) in
-                                    itineraries.sampleItinerary.areasCovered"
-                                key="index"
-                            >
-                            {{areaCovered}}
-                        </VsDescriptionListItem>
-                    </VsDescriptionList>
-                </VsCol>
-            </VsRow>
-      </VsContainer>
-    </VsPageIntro>
+                        {{areaCovered}}
+                    </VsDescriptionListItem>
+                </VsDescriptionList>
+            </VsCol>
+        </VsRow>
+    </VsContainer>
+</VsPageIntro>
 
-    <VsPageIntro background="dark" :heroIntro="true" :isItinerary="false" class="mb-8">
-      <VsHero
+<hr style="margin-top: 8rem;"/>
+<h3>Page Intro with Hero</h3>
+<hr/>
+<VsPageIntro background="dark" :heroIntro="true" :isItinerary="false" class="mb-8">
+    <VsHero
         slot="vsIntroHero"
         :altText="itineraries.sampleItinerary.image.altText"
         :credit="itineraries.sampleItinerary.image.credit"
@@ -409,57 +417,62 @@ export default {
         :image-src="itineraries.sampleItinerary.image.imageSrc"
         :latitude="itineraries.sampleItinerary.image.latitude"
         :longitude="itineraries.sampleItinerary.image.longitude"
-      >
-      <img
-        class="lazyload"
-        :src="itineraries.sampleItinerary.image.imageSrc"
-        srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-        :data-srcset="itineraries.sampleItinerary.image.imageSrc"
-        :alt="itineraries.sampleItinerary.image.altText"
-        data-sizes="auto"
+    >
+        <img
+            class="lazyload"
+            :src="itineraries.sampleItinerary.image.imageSrc"
+            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            :data-srcset="itineraries.sampleItinerary.image.imageSrc"
+            :alt="itineraries.sampleItinerary.image.altText"
+            data-sizes="auto"
         />
-      </VsHero>
-        <template slot="vsIntroBreadcrumb">
-            <VsBreadcrumb>
-              <VsBreadcrumbItem
-                v-for="(item, index) in breadcrumb.breadcrumb"
-                :key="index"
-                :href="item.href"
-                :active="item.active"
-                :text="item.name"
-                >
-              </VsBreadcrumbItem>
-            </VsBreadcrumb>
-        </template>
-        <template slot="vsIntroHeading">
-            {{itineraries.sampleItinerary.h1Heading}}
-        </template>
+    </VsHero>
 
-        <template slot="vsIntroContent">
-            <div v-html="itineraries.sampleItinerary.introduction" />
-        </template>
-    </VsPageIntro>
+    <template slot="vsIntroBreadcrumb">
+        <VsBreadcrumb>
+            <VsBreadcrumbItem
+            v-for="(item, index) in breadcrumb.breadcrumb"
+            :key="index"
+            :href="item.href"
+            :active="item.active"
+            :text="item.name"
+            >
+            </VsBreadcrumbItem>
+        </VsBreadcrumb>
+    </template>
 
-    <VsPageIntro background="light" :heroIntro="false" :isItinerary="false">
-        <template slot="vsIntroBreadcrumb">
-            <VsBreadcrumb>
-              <VsBreadcrumbItem
-                v-for="(item, index) in breadcrumb.breadcrumb"
-                :key="index"
-                :href="item.href"
-                :active="item.active"
-                :text="item.name"
-                >
-              </VsBreadcrumbItem>
-            </VsBreadcrumb>
-        </template>
-        <template slot="vsIntroHeading">
-            {{itineraries.sampleItinerary.h1Heading}}
-        </template>
+    <template slot="vsIntroHeading">
+        {{itineraries.sampleItinerary.h1Heading}}
+    </template>
 
-        <template slot="vsIntroContent">
-            <div v-html="itineraries.sampleItinerary.introduction" />
-        </template>
-    </VsPageIntro>
+    <template slot="vsIntroContent">
+        <div v-html="itineraries.sampleItinerary.introduction" />
+    </template>
+</VsPageIntro>
+
+<hr style="margin-top: 8rem;"/>
+<h3>Page Intro without Hero</h3>
+<hr/>
+<VsPageIntro background="light" :heroIntro="false" :isItinerary="false">
+    <template slot="vsIntroBreadcrumb">
+        <VsBreadcrumb>
+            <VsBreadcrumbItem
+            v-for="(item, index) in breadcrumb.breadcrumb"
+            :key="index"
+            :href="item.href"
+            :active="item.active"
+            :text="item.name"
+            >
+            </VsBreadcrumbItem>
+        </VsBreadcrumb>
+    </template>
+    <template slot="vsIntroHeading">
+        {{itineraries.sampleItinerary.h1Heading}}
+    </template>
+
+    <template slot="vsIntroContent">
+        <div v-html="itineraries.sampleItinerary.introduction" />
+    </template>
+</VsPageIntro>
   ```
 </docs>
