@@ -3,7 +3,7 @@
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
 
 <#macro horizontalList item themeName="">
-    <vs-module-wrapper theme="${themeName}">
+    <vs-module-wrapper theme="<#if themeName?has_content>${themeName}<#else>light</#if>">
         <template slot="vsModuleWrapperHeading">
             ${item.title}
         </template>
@@ -15,3 +15,5 @@
         <@carousel item />
     </vs-module-wrapper>
 </#macro>
+
+

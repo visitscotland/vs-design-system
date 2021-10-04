@@ -12,6 +12,12 @@
         <#assign image = item.image.externalImage!'' />
     </#if>
 
+    <#if theme == 'light'>
+        <#assign linkVariant>primary</#assign>
+    <#else>
+        <#assign linkVariant>dark</#assign>
+    </#if>
+
     <vs-col cols="12">
         <vs-megalink-single-image 
             title="${item.innerTitle}"
@@ -37,7 +43,7 @@
                     <vs-link-list-item
                         href="${listItem.link}"
                         <#if listItem.type != "internal">type="${listItem.type}"</#if>
-                        variant="${theme}"
+                        variant="${linkVariant}"
                     >
                         ${listItem.label}
                     </vs-link-list-item>

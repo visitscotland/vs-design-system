@@ -153,7 +153,7 @@ export default {
         position: relative;
 
         &:hover {
-            box-shadow: 10px 10px 20px $color-gray-tint-4;
+            box-shadow: $shadow_card;
 
             .megalink-link-list__title {
                 text-decoration: underline;
