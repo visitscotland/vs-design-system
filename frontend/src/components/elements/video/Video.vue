@@ -16,7 +16,7 @@
             data-test="vs-video-duration"
             v-if="showDuration"
         >
-            Video duration: {{ duration.minutes }}:{{ duration.seconds }}
+            {{ duration.minutes }}:{{ duration.seconds }}
         </p>
     </div>
 </template>
