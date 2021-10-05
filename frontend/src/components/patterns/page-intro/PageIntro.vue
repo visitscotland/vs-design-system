@@ -4,7 +4,7 @@
         :class="introClasses"
         data-test="vs-page-intro"
     >
-        <!-- @slot Slot for hero component  -->
+        <!-- @slot Slot for hero ImageWithCaption component  -->
         <slot name="vsIntroHero" />
 
         <section class="vs-page-intro__wrapper">
@@ -208,9 +208,33 @@ export default {
     }
 
     &--hero {
-        .vs-page-intro__share {
-            @include media-breakpoint-up(lg) {
-                top: $spacer-10;
+        .vs-page-intro{
+            &__share {
+                @include media-breakpoint-up(lg) {
+                    top: $spacer-10;
+                }
+            }
+
+            &__wrapper {
+                @include media-breakpoint-up(lg) {
+                    margin-top: -240px;
+                }
+            }
+        }
+
+        .vs-hero {
+            margin-bottom: $spacer-0;
+
+            figcaption {
+                @include media-breakpoint-up(lg) {
+                    bottom: 200px;
+                }
+
+                // IE11 - force min width of hero caption
+                @media screen and (-ms-high-contrast: active),
+                screen and (-ms-high-contrast: none) {
+                    min-width: 200px;
+                }
             }
         }
     }
@@ -226,31 +250,8 @@ export default {
         background-color: $color-theme-light;
     }
 
-    .vs-hero {
-        margin-bottom: $spacer-0;
-
-        figcaption {
-            @include media-breakpoint-up(lg) {
-                bottom: 200px;
-            }
-
-            // IE11 - force min width of hero caption
-            @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-                min-width: 200px;
-            }
-        }
-    }
-
     &--dark {
         background: $color-secondary-gray-shade-4;
-    }
-
-    &--hero {
-        .vs-page-intro__wrapper {
-            @include media-breakpoint-up(lg) {
-                margin-top: -240px;
-            }
-        }
     }
 }
 </style>
@@ -264,24 +265,27 @@ const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-iti
 <h3>Page Intro for Itinerary</h3>
 <hr/>
 <VsPageIntro background="dark" :heroIntro="true" :isItinerary="true" class="mb-8">
-    <VsHero
+    <VsImageWithCaption
         slot="vsIntroHero"
+        isHeroImage
         :altText="itineraries.sampleItinerary.image.altText"
-        :credit="itineraries.sampleItinerary.image.credit"
-        :caption="itineraries.sampleItinerary.image.caption"
         :image-src="itineraries.sampleItinerary.image.imageSrc"
-        :latitude="itineraries.sampleItinerary.image.latitude"
-        :longitude="itineraries.sampleItinerary.image.longitude"
     >
-        <img
-            class="lazyload"
-            :src="itineraries.sampleItinerary.image.imageSrc"
-            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            :data-srcset="itineraries.sampleItinerary.image.imageSrc"
-            :alt="itineraries.sampleItinerary.image.altText"
-            data-sizes="auto"
-        />
-    </VsHero>
+        <VsCaption
+            slot="img-caption"
+            :latitude="itineraries.sampleItinerary.image.latitude"
+            :longitude="itineraries.sampleItinerary.image.longitude"
+            variant="large"
+        >
+            <span slot="caption">
+                {{ itineraries.sampleItinerary.image.caption }}
+            </span>
+
+            <span slot="credit">
+                {{ itineraries.sampleItinerary.image.credit }}
+            </span>
+        </VsCaption>
+    </VsImageWithCaption>
 
     <template slot="vsIntroBreadcrumb">
         <VsBreadcrumb>
@@ -409,24 +413,27 @@ const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-iti
 <h3>Page Intro with Hero</h3>
 <hr/>
 <VsPageIntro background="dark" :heroIntro="true" :isItinerary="false" class="mb-8">
-    <VsHero
+    <VsImageWithCaption
         slot="vsIntroHero"
+        isHeroImage
         :altText="itineraries.sampleItinerary.image.altText"
-        :credit="itineraries.sampleItinerary.image.credit"
-        :caption="itineraries.sampleItinerary.image.caption"
         :image-src="itineraries.sampleItinerary.image.imageSrc"
-        :latitude="itineraries.sampleItinerary.image.latitude"
-        :longitude="itineraries.sampleItinerary.image.longitude"
     >
-        <img
-            class="lazyload"
-            :src="itineraries.sampleItinerary.image.imageSrc"
-            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            :data-srcset="itineraries.sampleItinerary.image.imageSrc"
-            :alt="itineraries.sampleItinerary.image.altText"
-            data-sizes="auto"
-        />
-    </VsHero>
+        <VsCaption
+            slot="img-caption"
+            :latitude="itineraries.sampleItinerary.image.latitude"
+            :longitude="itineraries.sampleItinerary.image.longitude"
+            variant="large"
+        >
+            <span slot="caption">
+                {{ itineraries.sampleItinerary.image.caption }}
+            </span>
+
+            <span slot="credit">
+                {{ itineraries.sampleItinerary.image.credit }}
+            </span>
+        </VsCaption>
+    </VsImageWithCaption>
 
     <template slot="vsIntroBreadcrumb">
         <VsBreadcrumb>
