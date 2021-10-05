@@ -103,7 +103,7 @@ public class ListicleFactory {
         } else if (link instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) link;
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
-            processDMSMainProduct(module, (DMSLink) link, product);
+            processDMSMainProduct(module, dmsLink, product);
             return linksService.createDmsLink(locale, dmsLink, product);
         } else if (link instanceof CMSLink) {
             if (((CMSLink) link).getLink() instanceof Page) {
