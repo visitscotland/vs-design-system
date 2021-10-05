@@ -256,7 +256,11 @@ export default {
         retrieveProducts() {
             axios.get(this.apiUrl)
                 .then((response) => {
-                    this.products = response.data.data.products;
+                    if (this.searchType === 'tour') {
+                        this.products = this.transformTourData(response.data.data);
+                    } else {
+                        this.products = response.data.data.products;
+                    }
                 })
                 .catch(() => {
                     this.products = [];
@@ -349,69 +353,12 @@ export default {
     </VsModuleWrapper>
     <VsModuleWrapper>
         <template slot="vsModuleWrapperHeading">
-            An events search example
+            TMS Integration
         </template>
-
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
-            searchType="even"
+            apiUrl="https://dev.visitscotland.com/tms-api/v1/tours"
+            searchType="tour"
         >
-            <template slot="vsCannedSearchButtons">
-                <VsButton
-                    href="https://www.visitscotland.com"
-                >
-                    View All Events
-                </VsButton>
-            </template>
-
-            <template slot="vsCannedSearchCredit">
-                These are some credits for a third party search
-            </template>
-
-            <template slot="vsCannedSearchOf">
-                Of
-            </template>
-        </VsCannedSearch>
-    </VsModuleWrapper>
-    <VsModuleWrapper>
-        <template slot="vsModuleWrapperHeading">
-            A food & drink search example
-        </template>
-
-        <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
-            searchType="cate"
-        >
-            <template slot="vsCannedSearchButtons">
-                <VsButton
-                    href="https://www.visitscotland.com"
-                >
-                    View All Food & Drink
-                </VsButton>
-            </template>
-
-            <template slot="vsCannedSearchOf">
-                Of
-            </template>
-        </VsCannedSearch>
-    </VsModuleWrapper>
-    <VsModuleWrapper>
-        <template slot="vsModuleWrapperHeading">
-            A things to do example
-        </template>
-
-        <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
-            searchType="acti"
-        >
-            <template slot="vsCannedSearchButtons">
-                <VsButton
-                    href="https://www.visitscotland.com"
-                >
-                    View All
-                </VsButton>
-            </template>
-
             <template slot="vsCannedSearchOf">
                 Of
             </template>

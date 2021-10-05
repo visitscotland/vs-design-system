@@ -87,7 +87,7 @@ export default {
         style="max-width: 25rem"
         sub-heading="A very very long list of themes, it's so long it should overflow onto a second
         row but it has a line limit"
-        line-limit="1"
+        :line-limit="1"
     />
 ```
 </docs>
