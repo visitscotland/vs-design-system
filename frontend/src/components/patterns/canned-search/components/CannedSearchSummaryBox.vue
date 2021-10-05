@@ -144,7 +144,7 @@ export default {
                     :priceOutro="sampleAccom.price.priceBasis"
                 />
                 <VsLink
-                    :href="sampleAccom.website"
+                    :href="sampleAccom.website.link"
                     type="external"
                     slot="vsCannedSearchSummaryRight"
                 >
@@ -191,7 +191,7 @@ export default {
                     duration="2 hours"
                 />
                 <VsLink
-                    :href="sampleAccom.website"
+                    :href="sampleAccom.website.link"
                     type="external"
                     slot="vsCannedSearchSummaryRight"
                 >
