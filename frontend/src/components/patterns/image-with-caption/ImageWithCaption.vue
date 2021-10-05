@@ -1,12 +1,13 @@
 <template>
     <figure
-        class="vs-image-with-caption position-relative"
-        :class="{ 'vs-image-with-caption--closed-default': closedDefaultCaption }"
+        class="vs-image-with-caption"
+        :class="imageWithCaptionClasses"
     >
         <div
             class="vs-image-with-caption__image-wrapper"
-            :class="mobileOverlap ? 'vs-image-with-caption__image-wrapper--overlapped' : ''"
+            :class="mobileOverlap ? 'vs-image-with-caption--overlapped' : ''"
         >
+            <!-- @slot Default slot for image -->
             <slot>
                 <VsImg
                     v-if="imageSrc"
@@ -20,16 +21,14 @@
 
             <VsButton
                 variant="outline-transparent"
-                class="vs-image-with-caption__toggle-caption-btn position-absolute"
+                class="vs-image-with-caption__toggle-caption-btn"
                 aria-label="Expand caption"
                 :animate="false"
                 :aria-controls="'image_' + imageSrc"
                 :aria-expanded="showCaption ? 'true' : 'false'"
                 @click.native="toggleCaption"
             >
-                <span
-                    class="sr-only"
-                >
+                <span class="sr-only">
                     {{ captionButtonText }}
                 </span>
 
@@ -53,10 +52,11 @@
         </div>
 
         <div
-            :class="{ 'd-block': showCaption }"
             class="vs-image-with-caption__caption-wrapper"
+            :class="captionWrapperClasses"
             :id="'image_' + imageSrc"
         >
+            <!-- @slot Slot for image caption component -->
             <slot name="img-caption" />
         </div>
     </figure>
@@ -126,9 +126,14 @@ export default {
             type: Boolean,
             default: false,
         },
+
         /**
-        * Text for mobile caption toggle button
-        */
+         * Option for a large Hero image at top of a page
+         */
+        isHeroImage: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
@@ -138,6 +143,18 @@ export default {
     computed: {
         captionButtonText() {
             return this.showCaption ? 'Close image caption' : 'Open image caption';
+        },
+        imageWithCaptionClasses() {
+            return {
+                'vs-image-with-caption--closed-default': this.closedDefaultCaption,
+                'vs-image-with-caption--hero': this.isHeroImage,
+            };
+        },
+        captionWrapperClasses() {
+            return {
+                'd-block': this.showCaption,
+                container: this.isHeroImage,
+            };
         },
     },
     methods: {
@@ -149,70 +166,82 @@ export default {
 </script>
 
 <style lang="scss">
+    .vs-image-with-caption{
+        position: relative;
 
-.vs-image-with-caption__image-wrapper {
-    img {
-        width: 100%;
-        height: auto;
-    }
+        &__image-wrapper {
+            img {
+                width: 100%;
+                height: auto;
+            }
 
-    .vs-image-with-caption__toggle-caption-btn.vs-button.btn {
-        bottom: $spacer-2;
-        padding: 0;
-        right: $spacer-2;
-        line-height: $line_height_xs;
-        z-index: 3;
-        display: block;
+            .vs-image-with-caption__toggle-caption-btn.vs-button.btn {
+                position: absolute;
+                bottom: $spacer-2;
+                padding: 0;
+                right: $spacer-2;
+                line-height: $line_height_xs;
+                z-index: 3;
+                display: block;
 
-        .vs-icon{
-            margin-top: 0;
+                .vs-icon{
+                    margin-top: 0;
+                }
+
+                @include media-breakpoint-up(sm) {
+                    display: none;
+
+                    .vs-image-with-caption--closed-default & {
+                        display: block;
+                    }
+                }
+            }
         }
 
-        @include media-breakpoint-up(sm) {
-            display: none;
+        &--overlapped {
+            .vs-image-with-caption__toggle-caption-btn {
+                bottom: $spacer-9;
+                right: $spacer-4;
+            }
+        }
 
-            .vs-image-with-caption--closed-default & {
+        &__caption-wrapper {
+            display: none;
+            padding: 0;
+
+            @include media-breakpoint-up(sm) {
                 display: block;
+
+                .vs-image-with-caption--closed-default & {
+                    display: none;
+                }
+            }
+        }
+
+        &--hero{
+            .vs-caption.large-caption-wrapper{
+                bottom: 180px;
+            }
+
+            .vs-image-with-caption__caption-wrapper {
+                position: relative;
             }
         }
     }
 
-    &--overlapped {
-        .vs-image-with-caption__toggle-caption-btn {
-            bottom: $spacer-9;
-            right: $spacer-4;
+    @include no-js {
+        .vs-image-with-caption{
+            &__image-wrapper {
+                .vs-image-with-caption__toggle-caption-btn {
+                    display: none;
+                }
+            }
+
+            &__caption-wrapper {
+                display: block;
+            }
         }
     }
-}
-
-.vs-image-with-caption__caption-wrapper {
-    display: none;
-
-    @include media-breakpoint-up(sm) {
-        display: block;
-
-        .vs-image-with-caption--closed-default & {
-            display: none;
-        }
-    }
-
-    @include media-breakpoint-down(lg) {
-        max-width: 100%;
-        padding: 0;
-    }
-}
-
-@include no-js {
-    .vs-image-with-caption__image-wrapper {
-        .vs-image-with-caption__toggle-caption-btn {
-            display: none;
-        }
-    }
-
-    .vs-image-with-caption__caption-wrapper {
-        display: block;
-    }
-}
 </style>
 
 <docs>
@@ -228,14 +257,6 @@ export default {
         style="max-width:700px"
         class="mb-11"
     >
-        <VsImg
-            class="lazyload"
-            :src="item.imageSrc"
-            :data-srcset="item.imageSrc"
-            :alt="item.altText"
-            data-sizes="auto">
-        </VsImg>
-
         <VsCaption
             slot="img-caption"
             :latitude="item.latitude"
@@ -247,7 +268,7 @@ export default {
             </span>
 
             <span slot="credit" v-if="item.credit">
-                &copy; {{ item.credit }}
+                {{ item.credit }}
             </span>
         </VsCaption>
     </VsImageWithCaption>
@@ -261,14 +282,6 @@ export default {
         :key="`fullwidth1-${index}`"
         style="max-width:700px"
     >
-        <VsImg
-            class="lazyload"
-            :src="item.imageSrc"
-            :data-srcset="item.imageSrc"
-            :alt="item.altText"
-            data-sizes="auto">
-        </VsImg>
-
         <VsCaption
             slot="img-caption"
             :closedDefaultCaption="item.isSmall"
@@ -279,7 +292,7 @@ export default {
             </span>
 
             <span slot="credit" v-if="item.credit">
-                &copy; {{ item.credit }}
+                {{ item.credit }}
             </span>
         </VsCaption>
     </VsImageWithCaption>
@@ -302,14 +315,15 @@ export default {
 
         <VsCaption
             slot="img-caption"
+            :closedDefaultCaption="item.isSmall"
             variant="fullwidth"
         >
-             <span slot="caption" v-if="item.caption">
+            <span slot="caption" v-if="item.caption">
                 {{ item.caption }}
             </span>
 
             <span slot="credit" v-if="item.credit">
-                &copy; {{ item.credit }}
+                {{ item.credit }}
             </span>
         </VsCaption>
     </VsImageWithCaption>
@@ -330,14 +344,14 @@ export default {
             data-sizes="auto">
         </VsImg>
 
+        <VsSvg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
+
         <VsCaption
             slot="img-caption"
             :latitude="item.latitude"
             :longitude="item.longitude"
             :variant="item.variant"
         >
-            <VsSvg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
-
             <span slot="caption" v-if="item.caption">
                 {{ item.caption }}
             </span>
