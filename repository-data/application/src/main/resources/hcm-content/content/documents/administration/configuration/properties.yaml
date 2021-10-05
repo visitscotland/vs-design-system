@@ -9,11 +9,12 @@
     jcr:mixinTypes: ['mix:referenceable']
     jcr:uuid: 6cacd2ed-5bd2-443a-8807-5b7696aa099c
     hippo:availability: []
+    hippostd:holder: admin
     hippostd:retainable: false
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-07-21T17:23:49.555+01:00
+    hippostdpubwf:lastModificationDate: 2021-08-25T15:41:36.015+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', "URL for the dms data service endpoint.\r\n\r\n\
@@ -33,18 +34,21 @@
       "This path is prepend to the URL any time a non existing URL needs to be composed.\r\
         \n\r\nCan be nullified by links.use-relative-urls\r\n\r\nlinks.use-relative-urls",
       "UI for vs-dms-products.\r\n\r\nThis value will be used to compose urls to vs-dms-products\
-        \ and Canned Search"]
+        \ and Canned Search", URLs from this environment will be treated as internal
+        and will be transformed into Relative URLs when the value of attribute 'links.use-relative-urls
+        is true.]
     resourcebundle:id: config.cms
     resourcebundle:keys: [instagram.api, helpdesk-email, instagram.accesstoken, instagram.post-url,
       dms-data.url, dms-data.encoding, dms-data.api-key, dms-data.timeout, dms-data.tries,
       dms-data.sleep-time, iknow-community.url, iknow-community.tagged-discussion,
       instagram.app-id, links.internal-sites, links.use-relative-urls, links.cms-base-path.url,
-      links.vs-dms-products.url]
+      links.vs-dms-products.url, links.convert-to-relative]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       'http://172.28.81.65:8089/data', UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
-      $VS_USE_RELATIVE_URLS, 'http://localhost:8080/site', 'http://172.28.81.65:8089']
+      $VS_USE_RELATIVE_URLS, 'http://localhost:8080/site', 'http://172.28.81.65:8089',
+      www.visitscotland.com]
   /properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -54,7 +58,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-07-23T13:14:18.915+01:00
+    hippostdpubwf:lastModificationDate: 2021-08-25T15:41:33.394+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', "URL for the dms data service endpoint.\r\n\r\n\
@@ -74,18 +78,21 @@
       "This path is prepend to the URL any time a non existing URL needs to be composed.\r\
         \n\r\nCan be nullified by links.use-relative-urls\r\n\r\nlinks.use-relative-urls",
       "UI for vs-dms-products.\r\n\r\nThis value will be used to compose urls to vs-dms-products\
-        \ and Canned Search"]
+        \ and Canned Search", URLs from this environment will be treated as internal
+        and will be transformed into Relative URLs when the value of attribute 'links.use-relative-urls
+        is true.]
     resourcebundle:id: config.cms
     resourcebundle:keys: [instagram.api, helpdesk-email, instagram.accesstoken, instagram.post-url,
       dms-data.url, dms-data.encoding, dms-data.api-key, dms-data.timeout, dms-data.tries,
       dms-data.sleep-time, iknow-community.url, iknow-community.tagged-discussion,
       instagram.app-id, links.internal-sites, links.use-relative-urls, links.cms-base-path.url,
-      links.vs-dms-products.url]
+      links.vs-dms-products.url, links.convert-to-relative]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       'http://172.28.81.65:8089/data', UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
-      $VS_USE_RELATIVE_URLS, 'http://localhost:8080/site', 'http://172.28.81.65:8089']
+      $VS_USE_RELATIVE_URLS, 'http://localhost:8080/site', 'http://172.28.81.65:8089',
+      www.visitscotland.com]
   /properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']

@@ -129,10 +129,7 @@ class InternalParameterProcessorTest {
 
         Assertions.assertEquals(Language.values().length, urls.getValue().size());
         Assertions.assertTrue(urls.getValue().get(0).getUrl().contains(InternalParameterProcessor.PATH_PLACEHOLDER));
-
     }
-
-
 
     @Test
     @DisplayName("VS-2357 - processParameters - root-path behaves as the legacy project does")
