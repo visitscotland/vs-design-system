@@ -71,3 +71,5 @@ definitions:
       plugin.class: com.visitscotland.brxm.report.translation.TranslationReportPlugin
       wicket.id: service.reports.translationreport
       width: '1'
+    /hippo:configuration/hippo:frontend/cms/cms-tree-views/documents/addfolderPlugin:
+      hipposys:userrole: xm.content.admin

@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -199,4 +200,16 @@ class PropertiesTest {
 
         Mockito.verify(bundle, atLeastOnce()).getResourceBundle(eq(ENV_PROPERTIES), any(), eq(Locale.UK));
     }
+
+    @Test
+    @DisplayName("VS-2756 - Return InternalSites as a list")
+    void getInternalSites(){
+        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.INTERNAL_SITES, Locale.UK)).thenReturn("  aaa , bbb,,,ccc,");
+        List<String> hosts = properties.getInternalSites();
+
+        assertEquals(3,hosts.size());
+        assertEquals("aaa",hosts.get(0));
+        assertEquals("bbb",hosts.get(1));
+        assertEquals("ccc",hosts.get(2));
+     }
 }

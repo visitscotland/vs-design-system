@@ -8,7 +8,12 @@ import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Component
 public class Properties {
@@ -29,6 +34,7 @@ public class Properties {
     static final String USE_RELATIVE_URLS = "links.use-relative-urls";
     static final String INTERNAL_SITES = "links.internal-sites";
     static final String CMS_BASE_PATH = "links.cms-base-path-url";
+    static final String INTERNAL_SITES = "links.internal-sites";
 
     // DMS Properties
     static final String DMS_DATA_HOST = "dms-data.private-url";
@@ -37,7 +43,6 @@ public class Properties {
     static final String DMS_DATA_API_KEY = "dms-data.api-key";
     static final String DMS_DATA_TIMEOUT = "dms-data.timeout";
     static final String DMS_DATA_TRIES = "dms-data.tries";
-    static final String DMS_DATA_SLEEP_TIME = "dms-data.sleep-time";
     static final String DMS_HOST = "links.vs-dms-products.url";
     static final String DMS_MAP_DEFAULT_DISTANCE = "dms.default-distance";
 
@@ -74,8 +79,12 @@ public class Properties {
         return readString(HELPDESK_EMAIL);
     }
 
+    public boolean isRelativeURLs(){
+        return readBoolean(USE_RELATIVE_URLS);
+    }
+
     public String getDmsHost() {
-        if (readBoolean(USE_RELATIVE_URLS)){
+        if (isRelativeURLs()){
             return "";
         } else {
             return readString(DMS_HOST);
@@ -83,10 +92,18 @@ public class Properties {
     }
 
     public String getCmsBasePath() {
-        if (readBoolean(USE_RELATIVE_URLS)){
+        if (isRelativeURLs()){
             return "";
         } else {
             return readString(CMS_BASE_PATH);
+        }
+    }
+
+    public String getConvertToRelative() {
+        if (isRelativeURLs()){
+            return readString(CONVERT_TO_RELATIVE);
+        } else {
+            return "";
         }
     }
 
@@ -126,9 +143,16 @@ public class Properties {
         return readString(IKNOW_COMMUNITY_TAGGED_DISCUSSION);
     }
 
-    public String getInternalSites() {
-        return readString(INTERNAL_SITES);
+    public List<String> getInternalSites() {
+        String sites = readString(INTERNAL_SITES);
+        if (!Contract.isEmpty(sites)){
+            //TODO: Java 10 -> toUnmodifiableList()
+            //TODO: Java 11 -> Predicate.not(String::isEmpty)
+            return Arrays.stream(sites.trim().split("\\s*,\\s*")).filter(((Predicate<String>) String::isEmpty).negate()).collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
+
 
     public Charset getDmsEncoding() {
         String value = getProperty(DMS_DATA_ENCODING);
