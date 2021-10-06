@@ -83,7 +83,6 @@ public class LinkService {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
             ProductSearchBuilder psb = productSearch().fromHippoBean(productSearchLink.getSearch()).locale(locale);
 
-            //TODO: Localize this URL (The localized URL is currently broken in feature environments
             return new FlatLink(bundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build(), LinkType.INTERNAL);
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;
@@ -187,9 +186,9 @@ public class LinkService {
         } else if (link instanceof ExternalLink) {
             url = ((ExternalLink) link).getLink();
         } else if (link instanceof ProductsSearch) {
-            url = productSearch().fromHippoBean(((ProductsSearch) link)).build();
+            url = productSearch().fromHippoBean(((ProductsSearch) link)).locale(locale).build();
         } else if (link instanceof ProductSearchLink) {
-            url = productSearch().fromHippoBean(((ProductSearchLink) link).getSearch()).build();
+            url = productSearch().fromHippoBean(((ProductSearchLink) link).getSearch()).locale(locale).build();
         } else if (link instanceof ExternalDocument) {
             url = ((ExternalDocument) link).getLink();
         } else {

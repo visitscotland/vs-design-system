@@ -2,6 +2,7 @@ package com.visitscotland.brxm.dms;
 
 import com.visitscotland.brxm.hippobeans.ProductsSearch;
 import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.brxm.utils.VsException;
 import com.visitscotland.utils.Contract;
@@ -21,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static com.visitscotland.brxm.dms.DMSConstants.ProductSearch.*;
 
 @ExtendWith(MockitoExtension.class)
-class ProductSearchTest {
+class ProductSearchBuilderTest {
 
     private final static String DEFAULT_TYPE = "cate";
 
@@ -519,6 +520,19 @@ class ProductSearchTest {
         assertTrue(url.contains("locprox=4"), "The parameter proximity hasn't been populated");
         assertFalse(url.contains("cat="), "The parameter for category should not contain any value");
         assertFalse(url.contains("fac_id="), "The parameter for facilities should not contain any value");
+    }
+
+    @Test
+    @DisplayName("URLs are localized")
+    void localization() {
+        String url = createBuilder().productTypes(DEFAULT_TYPE)
+                .locale(Language.SPANISH.getLocale())
+                .build();
+
+        validateUrl(url);
+        assertTrue(url.startsWith(Language.SPANISH.getDMSPathVariable()),
+                "The URL doesn't seem to be properly localized: " + url
+        );
     }
 
     private void mockLocationLoader(String location) {

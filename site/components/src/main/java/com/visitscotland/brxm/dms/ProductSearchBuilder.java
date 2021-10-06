@@ -283,9 +283,9 @@ public class ProductSearchBuilder {
             }
         } else {
             if (Contract.isEmpty(properties.getDmsHost())) {
-                return composeUrl(path);
+                return composeUrl(Language.getLanguageForLocale(locale).getDMSPathVariable() + path);
             } else {
-                return composeUrl(properties.getDmsHost() + path);
+                return composeUrl(properties.getDmsHost() + Language.getLanguageForLocale(locale).getDMSPathVariable() + path);
             }
         }
     }
