@@ -34,7 +34,7 @@ public class Properties {
     static final String USE_RELATIVE_URLS = "links.use-relative-urls";
     static final String INTERNAL_SITES = "links.internal-sites";
     static final String CMS_BASE_PATH = "links.cms-base-path-url";
-    static final String INTERNAL_SITES = "links.internal-sites";
+    static final String CONVERT_TO_RELATIVE = "links.convert-to-relative";
 
     // DMS Properties
     static final String DMS_DATA_HOST = "dms-data.private-url";
@@ -43,11 +43,9 @@ public class Properties {
     static final String DMS_DATA_API_KEY = "dms-data.api-key";
     static final String DMS_DATA_TIMEOUT = "dms-data.timeout";
     static final String DMS_DATA_TRIES = "dms-data.tries";
+    static final String DMS_DATA_SLEEP_TIME = "dms-data.sleep-time";
     static final String DMS_HOST = "links.vs-dms-products.url";
     static final String DMS_MAP_DEFAULT_DISTANCE = "dms.default-distance";
-
-
-
 
     private final ResourceBundleService bundle;
 

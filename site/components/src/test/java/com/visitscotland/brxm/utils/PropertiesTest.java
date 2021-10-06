@@ -204,7 +204,7 @@ class PropertiesTest {
     @Test
     @DisplayName("VS-2756 - Return InternalSites as a list")
     void getInternalSites(){
-        when(bundle.getResourceBundle(Properties.BUNDLE_ID, Properties.INTERNAL_SITES, Locale.UK)).thenReturn("  aaa , bbb,,,ccc,");
+        when(bundle.getResourceBundle(Properties.DEFAULT_ID, Properties.INTERNAL_SITES, Locale.UK)).thenReturn("  aaa , bbb,,,ccc,");
         List<String> hosts = properties.getInternalSites();
 
         assertEquals(3,hosts.size());
