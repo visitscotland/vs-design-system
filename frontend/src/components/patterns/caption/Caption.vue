@@ -60,14 +60,6 @@ export default {
     },
     props: {
         /**
-         * Chooses to show caption open by default or not:
-         * used when images are smaller than 300px
-         */
-        closedDefaultCaption: {
-            type: Boolean,
-            default: false,
-        },
-        /**
          * Option to choose which variant to show
          * `fullwidth, large`
          */
@@ -117,7 +109,6 @@ export default {
         captionClasses() {
             return [
                 {
-                    'default-closed': this.closedDefaultCaption,
                     'large-caption-wrapper': this.isLargeCaption,
                     'fullwidth-caption-wrapper': !this.isLargeCaption,
                 },
@@ -132,14 +123,6 @@ export default {
 .vs-caption {
     background-color: $color-gray-shade-6;
     color: $color-white;
-
-    @include media-breakpoint-up(md) {
-        &.caption-wrapper--right {
-            p{
-                text-align: right;
-            }
-        }
-    }
 
     .image-caption,
     .image-credit {
@@ -164,8 +147,8 @@ export default {
         width: 100%;
         height: 100%;
         z-index: 2;
-        text-align: center;
         display: flex;
+        text-align: center;
 
         @include media-breakpoint-up(sm) {
             display: block;
@@ -180,11 +163,18 @@ export default {
         }
 
         .map-wrapper {
-            max-width: 60px;
+            max-width: 54px;
         }
     }
 
     &.fullwidth-caption-wrapper{
+        @include media-breakpoint-up(sm) {
+            position: relative;
+            width: 100%;
+            height: auto;
+            min-height: 64px;
+            text-align: left;
+        }
         .caption-info{
             padding: $spacer-3 0;
         }
@@ -217,25 +207,62 @@ export default {
         }
     }
 
-    &.fullwidth-caption-wrapper:not(.default-closed) {
-        @include media-breakpoint-up(sm) {
-            position: relative;
-            width: 100%;
-            height: auto;
-            min-height: 64px;
-            text-align: left;
+    @include media-breakpoint-up(md) {
+        &.caption-wrapper--right {
+            p{
+                text-align: right;
+            }
         }
     }
 
-    &.fullwidth-caption-wrapper.default-closed {
-        display: flex;
-    }
 }
 @include no-js {
-    .large-caption-wrapper,
-    .fullwidth-caption-wrapper {
+    .vs-image-with-caption__caption-wrapper{
         @include media-breakpoint-down(xs) {
-            position: relative;
+            .vs-caption.large-caption-wrapper {
+                position: relative;
+                top: 0;
+                width: 100%;
+                height: auto;
+                text-align: left;
+                display: block;
+
+                .order-2 {
+                    order: 1;
+                }
+
+                .order-1 {
+                    order: 2;
+                    flex: 0 0 auto;
+                    width: auto;
+                    max-width: 100%;
+                    align-self: auto!important;
+                }
+
+                .map-wrapper {
+                    padding-top: 0!important;
+                }
+
+                .image-caption {
+                    margin-bottom: $spacer-5;
+                }
+
+                .caption-info{
+                    padding: $spacer-3 $spacer-2;
+                }
+            }
+        }
+
+        .large-caption-wrapper,
+        .fullwidth-caption-wrapper {
+            @include media-breakpoint-down(xs) {
+                position: relative;
+            }
+        }
+
+        .fullwidth-caption-wrapper {
+            display: block;
+            text-align: left;
         }
     }
 }

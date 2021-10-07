@@ -38,6 +38,8 @@
                     variant="light"
                     size="md"
                 />
+
+                <!-- @slot Slot for custom toggle icon - used for social images -->
                 <slot
                     v-else
                     name="toggle-icon"
@@ -112,11 +114,11 @@ export default {
         },
 
         /**
-         * The screenreader text for the toggle button
+         * Option for a large Hero image at top of a page
          */
-        toggleButtonText: {
-            type: String,
-            default: 'Toggle Caption',
+        isHeroImage: {
+            type: Boolean,
+            default: false,
         },
 
         /**
@@ -128,11 +130,11 @@ export default {
         },
 
         /**
-         * Option for a large Hero image at top of a page
+         * The screenreader text for the toggle button
          */
-        isHeroImage: {
-            type: Boolean,
-            default: false,
+        toggleButtonText: {
+            type: String,
+            default: 'Toggle Caption',
         },
     },
     data() {
@@ -170,12 +172,14 @@ export default {
         position: relative;
 
         &__image-wrapper {
+            position: relative;
+
             img {
                 width: 100%;
                 height: auto;
             }
 
-            .vs-image-with-caption__toggle-caption-btn.vs-button.btn {
+            .vs-image-with-caption__toggle-caption-btn {
                 position: absolute;
                 bottom: $spacer-2;
                 padding: 0;
@@ -198,13 +202,6 @@ export default {
             }
         }
 
-        &--overlapped {
-            .vs-image-with-caption__toggle-caption-btn {
-                bottom: $spacer-9;
-                right: $spacer-4;
-            }
-        }
-
         &__caption-wrapper {
             display: none;
             padding: 0;
@@ -214,17 +211,96 @@ export default {
 
                 .vs-image-with-caption--closed-default & {
                     display: none;
+
+                    .vs-caption.fullwidth-caption-wrapper {
+                        display: flex;
+                        position: absolute;
+                        height: 100%;
+                        text-align: center;
+                    }
                 }
             }
         }
 
-        &--hero{
-            .vs-caption.large-caption-wrapper{
-                bottom: 180px;
+        &--overlapped {
+            .vs-image-with-caption__toggle-caption-btn {
+                bottom: $spacer-9;
+                right: $spacer-4;
             }
+        }
 
-            .vs-image-with-caption__caption-wrapper {
-                position: relative;
+        &--hero{
+            margin-bottom: 0;
+
+            .vs-image-with-caption{
+                &__image-wrapper {
+                    .vs-image-with-caption__toggle-caption-btn {
+                        display: block;
+
+                        @include media-breakpoint-up(lg) {
+                            display: none;
+                        }
+                    }
+                }
+
+                &__caption-wrapper {
+                    display: none;
+
+                    @include media-breakpoint-up(sm) {
+                        position: relative;
+                    }
+
+                    @include media-breakpoint-up(lg) {
+                        display: block;
+                    }
+
+                    .vs-caption.large-caption-wrapper{
+                        @include media-breakpoint-down(xs) {
+                            position: relative;
+                            top: 0;
+                            width: 100%;
+                            height: auto;
+                            text-align: left;
+                            display: block;
+
+                            .order-2 {
+                                order: 1;
+                            }
+
+                            .order-1 {
+                                order: 2;
+                                flex: 0 0 auto;
+                                width: auto;
+                                max-width: 100%;
+                                align-self: auto!important;
+                            }
+
+                            .map-wrapper {
+                                padding-top: 0!important;
+                            }
+
+                            .image-caption {
+                                margin-bottom: $spacer-5;
+                            }
+
+                            .caption-info{
+                                padding: $spacer-3 $spacer-2;
+                            }
+                        }
+
+                        @include media-breakpoint-between(sm, md) {
+                            position: relative;
+                            top: 0;
+                            width: 100%;
+                            height: auto;
+                            text-align: left;
+                        }
+
+                        @include media-breakpoint-up(lg) {
+                            bottom: 200px;
+                        }
+                    }
+                }
             }
         }
     }
@@ -239,6 +315,24 @@ export default {
 
             &__caption-wrapper {
                 display: block;
+            }
+        }
+
+        .vs-image-with-caption--closed-default{
+            .vs-image-with-caption{
+                &__image-wrapper {
+                    .vs-image-with-caption__toggle-caption-btn {
+                        display: none;
+                    }
+                }
+
+                &__caption-wrapper{
+                    .vs-caption.fullwidth-caption-wrapper{
+                        position: relative;
+                        display: block;
+                        text-align: left;
+                    }
+                }
             }
         }
     }
@@ -284,7 +378,6 @@ export default {
     >
         <VsCaption
             slot="img-caption"
-            :closedDefaultCaption="item.isSmall"
             variant="fullwidth"
         >
             <span slot="caption" v-if="item.caption">
@@ -315,7 +408,6 @@ export default {
 
         <VsCaption
             slot="img-caption"
-            :closedDefaultCaption="item.isSmall"
             variant="fullwidth"
         >
             <span slot="caption" v-if="item.caption">
