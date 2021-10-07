@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static com.visitscotland.brxm.dms.DMSConstants.ProductSearch.*;
 
 @ExtendWith(MockitoExtension.class)
-class ProductSearchTest {
+class ProductSearchBuilderTest {
 
     private final static String DEFAULT_TYPE = "cate";
 
