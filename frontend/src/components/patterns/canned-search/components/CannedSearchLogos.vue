@@ -132,30 +132,12 @@ export default {
 
 <docs>
 ```jsx
+    const sampleFood = require("../../../../assets/fixtures/canned-search/sample-food.json");
+
     <VsCannedSearchLogos
-        :goodToGoLogo="{
-            'id':'goodToGo',
-            'name':'Good to Go',
-            'image':'https://www.visitscotland.com/cms-images/logos/goodToGo.png'
-        }"
-        :safeTravelsLogo="{
-            'id':'SafeTravels',
-            'name':'Safe Travels',
-            'image':'https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png'
-        }"
-        :awards="[
-            {
-                'id':'qatasteourbest',
-                'name':'Taste Our Best',
-                'image':'http://visitscotlandpreview.nmdemo.net/wsimgs/awards/TOB-updated-white-back_286148508_714060445.jpg'
-            },
-            {
-                'id': 'qag2s',
-                'name': 'Green Tourism Silver',
-                'image': 'http://visitscotlandpreview.nmdemo.net/wsimgs/awards/GT_silver_200x200_275519812.png',
-                'type': 'GREEN_TOURISM'
-            }
-        ]"
+        :goodToGoLogo="sampleFood.covidInformation.goodToGo"
+        :safeTravelsLogo="sampleFood.covidInformation.safeTravels"
+        :awards="sampleFood.awards"
     />
 ```
 </docs>
