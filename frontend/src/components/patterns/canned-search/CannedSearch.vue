@@ -353,12 +353,69 @@ export default {
     </VsModuleWrapper>
     <VsModuleWrapper>
         <template slot="vsModuleWrapperHeading">
-            TMS Integration
+            An events search example
         </template>
+
         <VsCannedSearch
-            apiUrl="https://dev.visitscotland.com/tms-api/v1/tours"
-            searchType="tour"
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
+            searchType="even"
         >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All Events
+                </VsButton>
+            </template>
+
+            <template slot="vsCannedSearchCredit">
+                These are some credits for a third party search
+            </template>
+
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
+        </VsCannedSearch>
+    </VsModuleWrapper>
+    <VsModuleWrapper>
+        <template slot="vsModuleWrapperHeading">
+            A food & drink search example
+        </template>
+
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
+            searchType="cate"
+        >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All Food & Drink
+                </VsButton>
+            </template>
+
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
+        </VsCannedSearch>
+    </VsModuleWrapper>
+    <VsModuleWrapper>
+        <template slot="vsModuleWrapperHeading">
+            A things to do example
+        </template>
+
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
+            searchType="acti"
+        >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All
+                </VsButton>
+            </template>
+
             <template slot="vsCannedSearchOf">
                 Of
             </template>
