@@ -25,6 +25,6 @@
             <@hst.include ref="footer"/>
         </div>
 
-        <@footerContributions />|
+        <@footerContributions />
     </body>
 </html>
