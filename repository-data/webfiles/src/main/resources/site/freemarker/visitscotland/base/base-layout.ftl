@@ -3,7 +3,6 @@
 <#include "headerContributions.ftl">
 <#include "footerContributions.ftl">
 
-
 <html data-version="${version}" lang="en">
     <head>
         <#if hstRequest.requestContext.channelManagerPreviewRequest>
