@@ -2,33 +2,43 @@ package com.visitscotland.brxm.factory;
 
 
 import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.hippobeans.CannedSearch;
+import com.visitscotland.brxm.hippobeans.CannedSearchTours;
 import com.visitscotland.brxm.model.CannedSearchModule;
+import com.visitscotland.brxm.model.CannedSearchToursModule;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
+import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 import vs.ase.dms.ProductTypes;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Locale;
 
 @Component
 public class CannedSearchFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(CannedSearchFactory.class);
+    private static final Logger contentLog = LoggerFactory.getLogger("content");
 
     static final String BUNDLE_ID = "canned-search";
 
     private final ResourceBundleService bundle;
     private final LinkService linkService;
+    private final Properties properties;
 
-    public CannedSearchFactory(ResourceBundleService bundle, LinkService linkService){
+    public CannedSearchFactory(ResourceBundleService bundle, LinkService linkService, Properties properties){
         this.bundle = bundle;
         this.linkService = linkService;
+        this.properties = properties;
     }
 
     public CannedSearchModule getCannedSearchModule(CannedSearch document, Locale locale){
@@ -54,6 +64,42 @@ public class CannedSearchFactory {
         }
 
 
+        return module;
+    }
+
+    public CannedSearchToursModule getCannedSearchToursModule(CannedSearchTours document, Locale locale) {
+        logger.info("Creating CannedSearchToursModule for {}", document.getPath());
+        CannedSearchToursModule module = new CannedSearchToursModule();
+        module.setHippoBean(document);
+        module.setTitle(document.getTitle());
+        module.setCopy(document.getCopy());
+
+        URL documentToursSearchUrl;
+        try {
+            documentToursSearchUrl = new URL(document.getToursSearch());
+        } catch (MalformedURLException e) {
+            // This should be prevented by the url validator
+            contentLog.error("Invalid tours search URL {} on CannedSearchToursModule {}", document.getToursSearch(), document.getPath());
+            throw new IllegalArgumentException("Invalid tours search URL", e);
+        }
+
+        String toursSearchQueryString = Contract.defaultIfNull(documentToursSearchUrl.getQuery(), "");
+        String dmsCannedSearchUrl = UriComponentsBuilder.fromHttpUrl(properties.getDmsHost())
+                .path(DMSConstants.VS_DMS_CANNED_SEARCH_TOURS)
+                .query(toursSearchQueryString)
+                .queryParam("locale", locale.toLanguageTag())
+                .build().toString();
+
+        module.setDmsApiUrl(dmsCannedSearchUrl);
+
+        FlatLink viewAllCta = linkService.createExternalLink(document.getToursSearch());
+        if (!Contract.isEmpty(document.getViewAll())) {
+            viewAllCta.setLabel(document.getViewAll());
+        }
+        if (Contract.isEmpty(viewAllCta.getLabel()) || viewAllCta.getLabel().equals(bundle.getResourceBundle("essentials.global","button.find-out-more",  locale))) {
+            viewAllCta.setLabel(bundle.getResourceBundle(BUNDLE_ID, "canned-search.listview", locale));
+        }
+        module.setViewAll(viewAllCta);
         return module;
     }
 

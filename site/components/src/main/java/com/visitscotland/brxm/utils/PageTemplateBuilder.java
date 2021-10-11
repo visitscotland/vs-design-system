@@ -90,6 +90,8 @@ public class PageTemplateBuilder {
                     page.modules.add(travelInformationFactory.getTravelInformation((TravelInformation) item));
                 }else if (item instanceof CannedSearch) {
                     page.modules.add(cannedSearchFactory.getCannedSearchModule((CannedSearch) item, request.getLocale()));
+                } else if (item instanceof CannedSearchTours) {
+                    page.modules.add(cannedSearchFactory.getCannedSearchToursModule((CannedSearchTours) item, request.getLocale()));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
