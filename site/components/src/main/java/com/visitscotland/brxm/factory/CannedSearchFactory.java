@@ -84,7 +84,7 @@ public class CannedSearchFactory {
         }
 
         String toursSearchQueryString = Contract.defaultIfNull(documentToursSearchUrl.getQuery(), "");
-        String dmsCannedSearchUrl = UriComponentsBuilder.fromHttpUrl(properties.getDmsHost())
+        String dmsCannedSearchUrl = UriComponentsBuilder.fromHttpUrl(properties.getDmsDataHost())
                 .path(DMSConstants.VS_DMS_CANNED_SEARCH_TOURS)
                 .query(toursSearchQueryString)
                 .queryParam("locale", locale.toLanguageTag())

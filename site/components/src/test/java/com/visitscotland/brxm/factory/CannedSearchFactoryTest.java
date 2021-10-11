@@ -121,7 +121,7 @@ class CannedSearchFactoryTest {
                 .title("title").copy("copy").viewAllCta("viewAllCta").build();
 
         when(linkService.createExternalLink("https://visitscotland.com?prodtypes=tour&origins%5B%5D=edinburgh&when=february&source=tms")).thenReturn(new FlatLink());
-        when(properties.getDmsHost()).thenReturn("http://dms-host");
+        when(properties.getDmsDataHost()).thenReturn("http://dms-host");
 
         CannedSearchToursModule module = factory.getCannedSearchToursModule(tours, Locale.UK);
 
@@ -143,7 +143,7 @@ class CannedSearchFactoryTest {
                 .title("title").viewAllCta("").build();
 
         when(linkService.createExternalLink(any())).thenReturn(new FlatLink());
-        when(properties.getDmsHost()).thenReturn("http://dms-host");
+        when(properties.getDmsDataHost()).thenReturn("http://dms-host");
 
         CannedSearchToursModule module = factory.getCannedSearchToursModule(tours, Locale.UK);
 
