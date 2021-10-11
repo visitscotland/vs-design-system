@@ -253,3 +253,49 @@ Hippo.Reports.pageFilterComboConfig = {
         }
     }
 }
+
+Hippo.Reports.typeFilterComboConfig = {
+    xtype: "combo",
+    id: STATUS_FILTER_ID,
+    autoSelect: true,
+    editable: false,
+    triggerAction: 'all',
+    lazyRender:true,
+    mode: 'local',
+    value: "All documents",
+    store: new Hippo.Reports.SimpleArrayStore({
+        id: 0,
+        autoLoad: true,
+        fields: [
+            'value',
+        ],
+        proxy: new Ext.data.HttpProxy({
+            url: "/cms/translation/status",
+            method: "GET"
+        }),
+
+        listeners: {
+            load: (store) => {
+                store.insert(0, new Ext.data.Record({
+                    value: "All documents",
+                }, "All documents"))
+            }
+        }
+    }),
+
+    valueField: 'value',
+    displayField: 'value',
+    listeners: {
+        select: (combo, record, index) => {
+            const panel = Ext.getCmp(PANEL_ID)
+            const proxy = Ext.getCmp(GRID_ID).getStore().proxy;
+            if (record["id"] === "All documents") {
+                proxy.addFilter("translationStatus", (rec, value) => panel.statusTypes.includes(value))
+            } else {
+                proxy.addFilter("translationStatus", (rec, value) => value === record["id"])
+            }
+
+            Ext.getCmp(GRID_ID).getStore().load();
+        }
+    }
+}

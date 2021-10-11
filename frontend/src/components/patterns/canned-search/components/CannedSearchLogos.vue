@@ -109,7 +109,6 @@ export default {
 <style lang="scss">
     .vs-canned-search-logos {
         margin-top: $spacer-9;
-        margin-bottom: $spacer-4;
         min-height: $spacer-9;
 
         .vs-tooltip {
@@ -134,8 +133,16 @@ export default {
 <docs>
 ```jsx
     <VsCannedSearchLogos
-        goodToGoLogo="Good to Go"
-        safeTravelsLogo="Safe Travels"
+        :goodToGoLogo="{
+            'id':'goodToGo',
+            'name':'Good to Go',
+            'image':'https://www.visitscotland.com/cms-images/logos/goodToGo.png'
+        }"
+        :safeTravelsLogo="{
+            'id':'SafeTravels',
+            'name':'Safe Travels',
+            'image':'https://www.visitscotland.com/cms-images/logos/WTTC-SafeTravels.png'
+        }"
         :awards="[
             {
                 'id':'qatasteourbest',

@@ -1,14 +1,35 @@
 <template>
     <div class="vs-canned-search-summary-box">
         <VsContainer>
-            <VsRow>
+            <VsRow
+                v-if="!!this.$slots['vsCannedSearchSummaryTop']"
+            >
+                <VsCol
+                    cols="12"
+                    class="vs-canned-search-summary-box__summary-item"
+                >
+                    <!--
+                        @slot Holds the content for the wider optional item in the grey
+                        summary box  at the bottom of the card, usually a
+                        vsCannedSearchDates
+
+                        Expects html
+                    -->
+                    <slot
+                        name="vsCannedSearchSummaryTop"
+                    />
+                </VsCol>
+            </VsRow>
+            <VsRow
+                class="row--tall"
+            >
                 <VsCol
                     cols="6"
                     class="vs-canned-search-summary-box__summary-item"
                     v-if="!!this.$slots['vsCannedSearchSummaryLeft']"
                 >
                     <!--
-                        @slot Holds the content for the second optional item in the grey
+                        @slot Holds the content for the first optional item in the grey
                         summary box  at the bottom of the card, usually a
                         vsCannedSearchPrice
 
@@ -72,7 +93,11 @@ export default {
         .row {
             align-items: center;
             justify-content: center;
-            min-height: 4.75rem;
+            min-height: $spacer-9;
+
+            &--tall {
+                min-height: 4.75rem;
+            }
         }
     }
 
@@ -100,7 +125,7 @@ export default {
             :priceOutro="sampleAccom.price.priceBasis"
         />
         <VsLink
-            :href="sampleAccom.website"
+            :href="sampleAccom.website.href"
             type="external"
             slot="vsCannedSearchSummaryRight"
         >

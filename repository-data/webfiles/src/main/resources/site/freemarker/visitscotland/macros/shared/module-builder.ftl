@@ -43,7 +43,7 @@
             <@megalinks item=module type=module.getType() theme=themeName />
 
         <#elseif moduleType == "HorizontalListLinksModule">
-            <@horizontalList module themeName/>
+            <@horizontalList module themeName />
 
         <#elseif moduleType == "ICentreModule">
             <@icentre module themeName/>

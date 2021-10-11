@@ -27,10 +27,10 @@
     <@socialShare nojs=true/>
 
     <#if otyml??>
-        <@horizontalList otyml />
+        <@horizontalList otyml themeName />
     </#if>
 
     <#if newsletterSignpost??>
-        <@signpost newsletterSignpost />
-    </#if>
+		<@signpost module=newsletterSignpost imgSrc="assets/images/illustrations/newsletter.svg"/>
+	</#if>
 </div>
