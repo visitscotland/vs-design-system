@@ -289,6 +289,12 @@ export default {
     .vs-icon {
         margin-top: -.05em;
     }
+
+    &:disabled {
+        background-color: $color-secondary-gray-tint-4;
+        opacity: 1;
+        border-width: 0;
+    }
 }
 </style>
 
