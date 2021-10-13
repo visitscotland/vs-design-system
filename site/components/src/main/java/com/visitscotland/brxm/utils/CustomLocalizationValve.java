@@ -15,8 +15,9 @@ import java.util.Locale;
 /**
  * This valve is configured in site/components/src/main/resources/META-INF/hst-assembly/overrides/custom-valves.xml
  * It overwrites the locale set by LocalizationValve (which is configured to execute just before this one).
- * LocalizationValve obtains the locale from the content locale, where as this valve only looks at the mount
- * This means that if the URL is /es/site/..., then the locale is always Spanish, even when viewing English content
+ * LocalizationValve obtains the locale from the content locale, whereas this valve only looks at the mount
+ * This means that if the URL is /es/site/..., then the locale is always Spanish, even when the sitemap points to English content
+ * This is important for the translation fallback
  */
 public class CustomLocalizationValve extends AbstractOrderableValve {
     private static final Logger logger = LoggerFactory.getLogger(CustomLocalizationValve.class);
