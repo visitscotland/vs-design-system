@@ -8,7 +8,7 @@ import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.SignpostModule;
-import com.visitscotland.brxm.utils.CustomCommonComponent;
+import com.visitscotland.brxm.utils.ContentComponent;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Collection;
 
 
-public class PageContentComponent<T extends Page> extends CustomCommonComponent {
+public class PageContentComponent<T extends Page> extends ContentComponent {
 
     private static final Logger logger = LoggerFactory.getLogger(PageContentComponent.class);
 
