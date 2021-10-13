@@ -4,14 +4,6 @@
 
     <title>VisitScotland</title>
 
-    <@hst.headContribution category="htmlHeadStyles">
-        <link rel="stylesheet" href="https://develop.visitscotland.com/api/dev/ui/product-search/css/main.css" type="text/css" />
-    </@hst.headContribution>
-
-    <@hst.headContribution category="htmlBodyEndScripts">
-        <script src="https://develop.visitscotland.com/api/dev/ui/product-search/static/js/bundle.js"></script>
-    </@hst.headContribution>
-
     <!-- BEGIN HEAD CONTRIBUTIONS: seo -->
     <@hst.headContributions categoryIncludes="seo" xhtml=true/>
     <!-- END HEAD CONTRIBUTIONS: seo -->
