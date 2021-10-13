@@ -250,12 +250,19 @@ export default {
         background-color: $color-white;
     }
 
+    &:focus {
+        box-shadow: 0 0 0 0.2rem $color-secondary-teal-tint-2;
+    }
+
+    // An ugly selector to match bootstrap specificity, otherwise it forces
+    // a pink shadow on primary buttons when active + focussing where we want
+    // no shadow
+    &:not(:disabled):not(.disabled):active:focus {
+        box-shadow: none;
+    }
+
     &.btn-light,
     &.btn-transparent {
-        &:focus {
-            box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.3);
-        }
-
         &::after {
             background: rgba(187, 38, 132, 0.3);
         }
