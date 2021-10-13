@@ -307,14 +307,70 @@ export default {
 
 <docs>
 ```jsx
-    <h4>Types</h4>
+    <h4 class="mb-2">Main Variations</h4>
+    <BsWrapper class="d-flex flex-wrap mb-4">
+        <VsButton variant="primary" class="mr-2 mb-2">Primary (default)</VsButton>
+        <VsButton
+            class="mr-2 mb-2"
+            icon="food"
+            size="md"
+        >
+            Primary with an icon
+        </VsButton>
+        <VsButton variant="outline-primary" class="mr-2 mb-2">Primary Outline</VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="primary" size="md">
+            Disabled primary
+        </VsButton>
+    </BsWrapper>
+    <BsWrapper class="d-flex flex-wrap mb-4">
+        <VsButton variant="secondary" class="mr-2 mb-2">Secondary</VsButton>
+        <VsButton
+            class="mr-2 mb-2"
+            icon="food"
+            size="md"
+            variant="secondary"
+        >
+            Secondary with an icon
+        </VsButton>
+        <VsButton variant="outline-secondary" class="mr-2 mb-2">Secondary Outline</VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="secondary" size="md">
+            Disabled Secondary
+        </VsButton>
+    </BsWrapper>
+    <BsWrapper class="d-flex flex-wrap mb-4">
+        <VsButton variant="warning" class="mr-2 mb-2">Warning</VsButton>
+        <VsButton
+            class="mr-2 mb-2"
+            icon="food"
+            size="md"
+            variant="warning"
+        >
+            Warning with an icon
+        </VsButton>
+        <VsButton variant="outline-warning" class="mr-2 mb-2">Warning Outline</VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="warning" size="md">
+            Disabled Warning
+        </VsButton>
+    </BsWrapper>
+
+    <h4 class="mb-2">Other Variations</h4>
+
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton variant="transparent" class="mr-2 mb-2">Transparent</VsButton>
+      <VsButton variant="dark" class="mr-2 mb-2">Dark</VsButton>
+      <VsButton variant="light" class="mr-2 mb-2">Light</VsButton>
+    </BsWrapper>
+
+    <h4 class="mb-2">Types</h4>
+
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton class="mr-2 mb-2">Button</VsButton>
       <VsButton :animate=false class="mr-2 mb-2">Button with no animation</VsButton>
       <VsButton class="mr-2 mb-2" href="https://www.visitscotland.com">Link</VsButton>
     </BsWrapper>
 
-    <h4>With Icons</h4>
+    <h4 class="mb-2">Icon Sizing</h4>
+
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton
         class="mr-2 mb-2"
@@ -343,7 +399,7 @@ export default {
       </VsButton>
     </BsWrapper>
 
-    <h4>Icon Only</h4>
+    <h4 class="mb-2">Icon Only</h4>
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton
         class="mr-2 mb-2"
@@ -353,56 +409,17 @@ export default {
       />
     </BsWrapper>
 
-    <h4>Variants</h4>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-      <VsButton variant="primary" class="mr-2 mb-2">Primary (default)</VsButton>
-      <VsButton variant="secondary" class="mr-2 mb-2">Secondary</VsButton>
-      <VsButton variant="transparent" class="mr-2 mb-2">Transparent</VsButton>
-      <VsButton variant="dark" class="mr-2 mb-2">Dark</VsButton>
-      <VsButton variant="light" class="mr-2 mb-2">Light</VsButton>
-    </BsWrapper>
-    <h4>Outline Color Variants</h4>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-      <VsButton variant="outline-primary" class="mr-2 mb-2">Primary</VsButton>
-      <VsButton variant="outline-secondary" class="mr-2 mb-2">Secondary</VsButton>
-      <VsButton variant="outline-transparent" class="mr-2 mb-2">Transparent</VsButton>
-      <VsButton variant="outline-dark" class="mr-2 mb-2">Dark</VsButton>
-      <VsButton variant="outline-light" class="mr-2 mb-2">Light</VsButton>
-    </BsWrapper>
-    <h4>Outline Variants with Icons</h4>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-      <VsButton
-        variant="outline-primary"
-        class="mr-2 mb-2"
-        icon="external-link"
-      >Primary</VsButton>
-      <VsButton
-        variant="outline-secondary"
-        class="mr-2 mb-2"
-        icon="external-link"
-      >Secondary</VsButton>
-    </BsWrapper>
-    <h4>Outline Color Variants - override transparent background</h4>
+    <h4 class="mb-2">Outline Color Variants - override transparent background</h4>
     <BsWrapper class="d-flex flex-wrap mb-4 bg-dark p-3">
       <VsButton background="white" variant="outline-primary" class="mr-2 mb-2">Primary</VsButton>
     </BsWrapper>
-    <h4>Sizes</h4>
+
+    <h4 class="mb-2">Sizes</h4>
     <BsWrapper>
       <VsButton class="mr-2 mb-2" size="sm">Small</VsButton>
       <VsButton class="mr-2 mb-2" size="md">Medium</VsButton>
       <VsButton class="mr-2 mb-2" size="lg">Large</VsButton>
       <VsButton block class="mr-2 mb-2" size="md">Block</VsButton>
     </BsWrapper>
-
-    <h4>Disabled States</h4>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-        <VsButton disabled class="mr-2 mb-2" variant="primary" size="md">
-            Disabled primary
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="secondary" size="md">
-            Disabled secondary
-        </VsButton>
-    </BsWrapper>
-
 ```
 </docs>
