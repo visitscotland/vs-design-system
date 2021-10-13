@@ -72,13 +72,19 @@ export default {
         },
         /**
          * Style variation to give additional meaning.
-         * `primary, secondary`
+         * `primary, secondary, warning, transparent, dark, light`
+         *
+         * Primary and secondary are the primary colour styles for buttons and should be
+         * used in most cases, along with outline versions of those variants
+         *
+         * Transparent, warning, dark and light are specialised cases that should only be used if
+         * specifically required by the design
          */
         variant: {
             type: String,
             default: 'primary',
             validator: (value) => value.match(
-                /(primary|secondary|transparent|dark|light)/,
+                /(primary|secondary|warning|transparent|dark|light)/,
             ),
         },
         /**
@@ -292,6 +298,7 @@ export default {
 
     &:disabled {
         background-color: $color-secondary-gray-tint-4;
+        color: $color-white;
         opacity: 1;
         border-width: 0;
     }
