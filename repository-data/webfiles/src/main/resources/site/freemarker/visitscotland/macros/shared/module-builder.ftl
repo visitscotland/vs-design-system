@@ -10,7 +10,6 @@
 <#include "../modules/horizontal-list/horizontal-list.ftl">
 <#include "../modules/stackla/stackla.ftl">
 <#include "../modules/canned-search/canned-search.ftl">
-<#include "../modules/canned-search-tours/canned-search-tours.ftl">
 <#include "theme-calculator.ftl">
 
 <#-- Implicit Request Objects -->
@@ -69,9 +68,6 @@
 
         <#elseif module.getType()== "CannedSearchModule">
             <@cannedSearch module themeName/>
-
-        <#elseif module.getType()== "CannedSearchToursModule">
-            <@cannedSearchTours module themeName/>
         </#if>
     </div>
 </#macro>

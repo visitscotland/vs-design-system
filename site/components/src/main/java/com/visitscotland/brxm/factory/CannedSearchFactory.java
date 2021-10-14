@@ -7,7 +7,6 @@ import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.hippobeans.CannedSearch;
 import com.visitscotland.brxm.hippobeans.CannedSearchTours;
 import com.visitscotland.brxm.model.CannedSearchModule;
-import com.visitscotland.brxm.model.CannedSearchToursModule;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
@@ -67,12 +66,12 @@ public class CannedSearchFactory {
         return module;
     }
 
-    public CannedSearchToursModule getCannedSearchToursModule(CannedSearchTours document, Locale locale) {
+    public CannedSearchModule getCannedSearchToursModule(CannedSearchTours document, Locale locale) {
         logger.info("Creating CannedSearchToursModule for {}", document.getPath());
-        CannedSearchToursModule module = new CannedSearchToursModule();
+        CannedSearchModule module = new CannedSearchModule();
         module.setHippoBean(document);
         module.setTitle(document.getTitle());
-        module.setCopy(document.getCopy());
+        module.setDescription(document.getCopy());
 
         URL documentToursSearchUrl;
         try {
@@ -90,7 +89,7 @@ public class CannedSearchFactory {
                 .queryParam("locale", locale.toLanguageTag())
                 .build().toString();
 
-        module.setDmsApiUrl(dmsCannedSearchUrl);
+        module.setCannedSearchEndpoint(dmsCannedSearchUrl);
 
         FlatLink viewAllCta = linkService.createExternalLink(document.getToursSearch());
         if (!Contract.isEmpty(document.getViewAll())) {
@@ -99,7 +98,7 @@ public class CannedSearchFactory {
         if (Contract.isEmpty(viewAllCta.getLabel()) || viewAllCta.getLabel().equals(bundle.getResourceBundle("essentials.global","button.find-out-more",  locale))) {
             viewAllCta.setLabel(bundle.getResourceBundle(BUNDLE_ID, "canned-search.listview", locale));
         }
-        module.setViewAll(viewAllCta);
+        module.setViewAllLink(viewAllCta);
         return module;
     }
 

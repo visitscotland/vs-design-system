@@ -123,12 +123,12 @@ class CannedSearchFactoryTest {
         when(linkService.createExternalLink("https://visitscotland.com?prodtypes=tour&origins%5B%5D=edinburgh&when=february&source=tms")).thenReturn(new FlatLink());
         when(properties.getDmsDataHost()).thenReturn("http://dms-host");
 
-        CannedSearchToursModule module = factory.getCannedSearchToursModule(tours, Locale.UK);
+        CannedSearchModule module = factory.getCannedSearchToursModule(tours, Locale.UK);
 
         String expectedDmsUrl = "http://dms-host" + DMSConstants.VS_DMS_CANNED_SEARCH_TOURS + "?prodtypes=tour&origins%5B%5D=edinburgh&when=february&source=tms&locale=en-GB";
         Assertions.assertEquals("title", module.getTitle());
-        Assertions.assertEquals("copy", module.getCopy().getContent());
-        Assertions.assertEquals(expectedDmsUrl, module.getDmsApiUrl());
+        Assertions.assertEquals("copy", module.getDescription().getContent());
+        Assertions.assertEquals(expectedDmsUrl, module.getCannedSearchEndpoint());
         Assertions.assertEquals("viewAllCta", module.getViewAllLink().getLabel());
     }
 
@@ -145,7 +145,7 @@ class CannedSearchFactoryTest {
         when(linkService.createExternalLink(any())).thenReturn(new FlatLink());
         when(properties.getDmsDataHost()).thenReturn("http://dms-host");
 
-        CannedSearchToursModule module = factory.getCannedSearchToursModule(tours, Locale.UK);
+        CannedSearchModule module = factory.getCannedSearchToursModule(tours, Locale.UK);
 
         Assertions.assertEquals("default cta", module.getViewAllLink().getLabel());
     }
