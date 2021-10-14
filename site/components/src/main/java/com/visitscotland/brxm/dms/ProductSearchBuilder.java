@@ -268,7 +268,7 @@ public class ProductSearchBuilder {
     }
 
     public String buildCannedSearch(){
-        return buildSearchUrl(DMSConstants.VS_DMS_CANNED_SEARCH, false, false);
+        return buildSearchUrl(DMSConstants.VS_DMS_CANNED_SEARCH, true, false);
     }
 
     /**
