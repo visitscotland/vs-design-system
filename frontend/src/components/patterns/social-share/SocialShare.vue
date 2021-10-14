@@ -414,7 +414,7 @@ export default {
                     link-text="Email"
                 />
                 <VsSocialShareItem
-                    @on-copy-link="onCopyLink"
+                    @copyLinkClicked="onCopyLink"
                     name="link"
                     link-text="Copy Link"
                     link-copied-text="Link Copied!"
