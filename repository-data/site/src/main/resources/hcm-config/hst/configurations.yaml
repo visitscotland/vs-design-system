@@ -33,6 +33,7 @@ definitions:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
             hst:relativecontentpath: sandbox
+            hst:sitemapitemhandlerids: [translation-fallback]
             /_index_:
               jcr:primaryType: hst:sitemapitem
               hst:componentconfigurationid: hst:pages/pagenotfound
@@ -68,15 +69,23 @@ definitions:
                 /_default_:
                   jcr:primaryType: hst:sitemapitem
                   hst:relativecontentpath: ${parent}/${3}
+                  hst:componentconfigurationid: hst:pages/pagenotfound
+                  hst:sitemapitemhandlerids: [translation-fallback]
                   /_default_:
                     jcr:primaryType: hst:sitemapitem
                     hst:relativecontentpath: ${parent}/${4}
+                    hst:componentconfigurationid: hst:pages/pagenotfound
+                    hst:sitemapitemhandlerids: [translation-fallback]
                     /_default_:
                       jcr:primaryType: hst:sitemapitem
                       hst:relativecontentpath: ${parent}/${5}
+                      hst:componentconfigurationid: hst:pages/pagenotfound
+                      hst:sitemapitemhandlerids: [translation-fallback]
                       /_default_:
                         jcr:primaryType: hst:sitemapitem
                         hst:relativecontentpath: ${parent}/${6}
+                        hst:componentconfigurationid: hst:pages/pagenotfound
+                        hst:sitemapitemhandlerids: [translation-fallback]
                         /_index_:
                           jcr:primaryType: hst:sitemapitem
                           hst:componentconfigurationid: hst:pages/pagenotfound
@@ -199,6 +208,7 @@ definitions:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
             hst:relativecontentpath: site/${1}
+            hst:sitemapitemhandlerids: [translation-fallback]
             /_index_:
               jcr:primaryType: hst:sitemapitem
               hst:componentconfigurationid: hst:pages/pagenotfound
@@ -211,22 +221,27 @@ definitions:
               jcr:primaryType: hst:sitemapitem
               hst:componentconfigurationid: hst:pages/pagenotfound
               hst:relativecontentpath: ${parent}/${2}
+              hst:sitemapitemhandlerids: [translation-fallback]
               /_default_:
                 jcr:primaryType: hst:sitemapitem
                 hst:componentconfigurationid: hst:pages/pagenotfound
                 hst:relativecontentpath: ${parent}/${3}
+                hst:sitemapitemhandlerids: [translation-fallback]
                 /_default_:
                   jcr:primaryType: hst:sitemapitem
                   hst:componentconfigurationid: hst:pages/pagenotfound
                   hst:relativecontentpath: ${parent}/${4}
+                  hst:sitemapitemhandlerids: [translation-fallback]
                   /_default_:
                     jcr:primaryType: hst:sitemapitem
                     hst:componentconfigurationid: hst:pages/pagenotfound
                     hst:relativecontentpath: ${parent}/${5}
+                    hst:sitemapitemhandlerids: [translation-fallback]
                     /_default_:
                       jcr:primaryType: hst:sitemapitem
                       hst:componentconfigurationid: hst:pages/pagenotfound
                       hst:relativecontentpath: ${parent}/${6}
+                      hst:sitemapitemhandlerids: [translation-fallback]
                       /_index_:
                         jcr:primaryType: hst:sitemapitem
                         hst:componentconfigurationid: hst:pages/pagenotfound

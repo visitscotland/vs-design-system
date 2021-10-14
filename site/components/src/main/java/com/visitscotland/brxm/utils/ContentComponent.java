@@ -13,6 +13,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
+/**
+ * Implements the translation fallback functionality. If the content can not be found on a non-english mount, then
+ * check the english mount for content instead
+ */
 public class ContentComponent extends EssentialsContentComponent {
     private static final Logger logger = LoggerFactory.getLogger(ContentComponent.class);
     private static final String ENGLISH_MOUNT_ALIAS = "en";
@@ -34,7 +38,7 @@ public class ContentComponent extends EssentialsContentComponent {
 
     private Optional<HippoBean> getEnglishContentBean(HstRequestContext context) {
         Mount englishMount = context.getMount(ENGLISH_MOUNT_ALIAS);
-        if (englishMount == null || context.getResolvedSiteMapItem() == null) {
+        if (englishMount == null || context.getResolvedSiteMapItem() == null || context.getObjectBeanManager() == null) {
             return Optional.empty();
         }
         String englishContentPath = englishMount.getContentPath();
