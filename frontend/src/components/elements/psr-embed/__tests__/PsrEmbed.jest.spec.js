@@ -1,8 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VSPsr from '../Psr';
+import VsPsrEmbed from '../PsrEmbed';
 
-const factoryShallowMount = () => shallowMount(VSPsr, {
+const factoryShallowMount = () => shallowMount(VsPsrEmbed, {
     propsData: {
         prefilled: [{
             loc: 'Edinburgh',
@@ -15,12 +15,12 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('VSPsr', () => {
-    it('should render a div with the class `vs-psr`', () => {
+describe('VsPsrEmbed', () => {
+    it('should render a div with the class `vs-psr-embed`', () => {
         wrapper = factoryShallowMount();
 
         expect(wrapper.element.tagName).toBe('DIV');
-        expect(wrapper.classes('vs-psr')).toBe(true);
+        expect(wrapper.classes('vs-psr-embed')).toBe(true);
     });
 
     describe(':props', () => {

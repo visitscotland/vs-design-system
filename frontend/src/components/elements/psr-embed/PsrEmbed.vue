@@ -1,6 +1,6 @@
 <template>
     <div
-        class="vs-psr"
+        class="vs-psr-embed"
         id="inline-search-container"
         v-bind="prefilAttrs"
     />
@@ -11,11 +11,11 @@
  * The PSR widget is embedded from an external source.
  * It can be customised with data attributes.
  *
- * @displayName PSR
+ * @displayName PSR Embed
  */
 
 export default {
-    name: 'VsPsr',
+    name: 'VsPsrEmbed',
     status: 'prototype',
     release: '0.0.1',
     props: {
@@ -51,7 +51,8 @@ export default {
     },
     mounted() {
         const psrScriptEl = document.createElement('script');
-        psrScriptEl.setAttribute('src', 'https://develop.visitscotland.com/api/dev/ui/product-search/static/js/bundle.js');
+        // psrScriptEl.setAttribute('src', 'https://develop.visitscotland.com/api/dev/ui/product-search/static/js/bundle.js');
+        psrScriptEl.setAttribute('src', 'http://localhost:9999//static/js/bundle.js');
         document.head.appendChild(psrScriptEl);
     },
 };
@@ -59,7 +60,8 @@ export default {
 
 <style lang="scss">
 
-@import "https://develop.visitscotland.com/api/dev/ui/product-search/css/main.css";
+// @import "https://develop.visitscotland.com/api/dev/ui/product-search/css/main.css";
+@import "http://localhost:9999/css/main.css";
 
 .no-js {
     .vs-psr {
@@ -71,8 +73,14 @@ export default {
 
 <docs>
 ```jsx
-    <vs-psr
-        :prefilled="[{'subSearchType': 'cate'},{'loc': 'Inverary'}]"
-    />
+    <VsContainer>
+        <VsRow>
+            <VsCol md="6">
+                <vs-psr-embed
+                    :prefilled="[{'subSearchType': 'cate'},{'loc': 'Inverary'}]"
+                />
+            </VsCol>
+        </VsRow>
+    </VsContainer>
 ```
 </docs>
