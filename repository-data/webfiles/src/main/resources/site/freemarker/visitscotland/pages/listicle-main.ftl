@@ -9,7 +9,7 @@
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-listicle-item.ftl">
 <#include "../../frontend/components/vs-panel.ftl">
-<#include "../../frontend/components/vs-psr.ftl">
+<#include "../../frontend/components/vs-psr-embed.ftl">
 
 <#include "../macros/modules/page-intro/social-share.ftl">
 <#include "../macros/modules/listicles/listicle-item.ftl">
@@ -32,7 +32,7 @@
 
     <@pageIntro content=document />
 
-    <vs-psr></vs-psr>
+    <vs-psr-embed></vs-psr-embed>
 
     <vs-container class="mt-6">
         <vs-row>
