@@ -223,7 +223,6 @@ export default {
 ```jsx
 
     <ul style="list-style-type: none; padding: 0;">
-
         <VsListicleItem
             v-for="(item, index) in listicles.sampleListicle"
             key="index"
@@ -237,12 +236,12 @@ export default {
                 <VsImageWithCaption
                     :altText="item.image.altText"
                     :image-src="item.image.imageSrc"
-                    :latitude="item.image.latitude"
-                    :longitude="item.image.longitude"
-                    variant="large"
                 >
                     <VsCaption
                         slot="img-caption"
+                        :latitude="item.image.latitude"
+                        :longitude="item.image.longitude"
+                        variant="large"
                     >
                         <span slot="caption">
                             {{ item.image.caption }}
