@@ -61,10 +61,11 @@
     hippo:availability: []
     hippostd:retainable: false
     hippostd:state: draft
+    hippostd:transferable: false
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2014-08-21T14:30:14.382+02:00
-    hippostdpubwf:lastModificationDate: 2021-09-03T08:51:52.912Z
-    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:lastModificationDate: 2021-10-14T10:19:38.483Z
+    hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['Used in the indication, how many results were found.
         The label is appended to the number of results.', Label used for the link
         to the previous page., Label used for the link to the next page., To be used
@@ -74,7 +75,9 @@
     resourcebundle:messages: [document(s), previous, next, of, Navigate to page]
     resourcebundle:messages_de: [Ergebnis(se), zurück, weiter, von, Zu Seite gehen]
     resourcebundle:messages_es: [documento(s), anterior, siguiente, de, Ir a la página]
-    resourcebundle:messages_fr: ['', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '']
+    resourcebundle:messages_fr: [document(s), précédent, suivant, sur, Accéder à la
+        page]
+    resourcebundle:messages_it: [documento, precedente, prossimo, di, Passare alla
+        pagina]
     resourcebundle:messages_nl: [pagina('s), vorige, volgende, van, Navigeer naar
         de pagina]
