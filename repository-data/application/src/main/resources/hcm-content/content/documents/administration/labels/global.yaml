@@ -19,9 +19,9 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2021-09-06T07:56:27.664Z
-      hippostdpubwf:lastModifiedBy: spanish
-      hippostdpubwf:publicationDate: 2021-09-06T07:56:30.425Z
+      hippostdpubwf:lastModificationDate: 2021-10-14T10:15:57.831Z
+      hippostdpubwf:lastModifiedBy: admin
+      hippostdpubwf:publicationDate: 2021-10-14T10:16:01.539Z
       resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global
       resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
@@ -32,8 +32,10 @@
         Startseite]
       resourcebundle:messages_es: [Más información, Sin título, Descargar, Instalaciones
           destacadas, Inicio]
-      resourcebundle:messages_fr: ['', '', '', '', '']
-      resourcebundle:messages_it: ['', '', '', '', '']
+      resourcebundle:messages_fr: [En savoir plus, Aucune légende, Télécharger, Infrastructures,
+        Accueil]
+      resourcebundle:messages_it: [Per saperne di più, Immagine priva di titolo, Scarica,
+        Servizi chiave, Inizio]
       resourcebundle:messages_nl: [Meer info, Geen beschrijving, Download, Faciliteiten,
         Startpagina]
     /global[2]:
@@ -45,8 +47,8 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2021-09-06T07:56:27.664Z
-      hippostdpubwf:lastModifiedBy: spanish
+      hippostdpubwf:lastModificationDate: 2021-10-14T10:15:57.831Z
+      hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global
       resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
@@ -57,8 +59,10 @@
         Startseite]
       resourcebundle:messages_es: [Más información, Sin título, Descargar, Instalaciones
           destacadas, Inicio]
-      resourcebundle:messages_fr: ['', '', '', '', '']
-      resourcebundle:messages_it: ['', '', '', '', '']
+      resourcebundle:messages_fr: [En savoir plus, Aucune légende, Télécharger, Infrastructures,
+        Accueil]
+      resourcebundle:messages_it: [Per saperne di più, Immagine priva di titolo, Scarica,
+        Servizi chiave, Inizio]
       resourcebundle:messages_nl: [Meer info, Geen beschrijving, Download, Faciliteiten,
         Startpagina]
     /global[3]:
@@ -70,8 +74,8 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2021-09-06T07:56:06.136Z
-      hippostdpubwf:lastModifiedBy: spanish
+      hippostdpubwf:lastModificationDate: 2021-10-14T10:15:58.391Z
+      hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '']
       resourcebundle:id: essentials.global
       resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
@@ -82,7 +86,9 @@
         Startseite]
       resourcebundle:messages_es: [Más información, Sin título, Descargar, Instalaciones
           destacadas, Inicio]
-      resourcebundle:messages_fr: ['', '', '', '', '']
-      resourcebundle:messages_it: ['', '', '', '', '']
+      resourcebundle:messages_fr: [En savoir plus, Aucune légende, Télécharger, Infrastructures,
+        Accueil]
+      resourcebundle:messages_it: [Per saperne di più, Immagine priva di titolo, Scarica,
+        Servizi chiave, Inizio]
       resourcebundle:messages_nl: [Meer info, Geen beschrijving, Download, Faciliteiten,
         Startpagina]

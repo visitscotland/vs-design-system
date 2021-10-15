@@ -14,8 +14,8 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
-    hippostdpubwf:lastModificationDate: 2021-09-06T08:12:58.518Z
-    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:lastModificationDate: 2021-10-14T11:02:07.807Z
+    hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
@@ -25,13 +25,17 @@
       VisitScotland. All rights reserved., Language, Toggle menu, Get in touch, Visitor
         information]
     resourcebundle:messages_de: ['', Finden Sie uns auf, Unsere Webseiten, VisitScotland
-        Startseite, VisitScotland. Alle Rechte vorbehalten., Sprache, '', Kontaktieren
-        Sie uns, Besucherinformationen]
+        Startseite, VisitScotland. Alle Rechte vorbehalten., Sprache, Menü umschalten,
+      Kontaktieren Sie uns, Besucherinformationen]
     resourcebundle:messages_es: ['', Encuéntranos en, Nuestras páginas web, Página
         web de VisitScotland, VisitScotland. Todos los derechos reservados., Idioma,
       Mostrar/Ocultar menú, Contacta con nosotros, Información para visitantes]
-    resourcebundle:messages_fr: ['', '', Nos sites web, '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', i nostri siti web, '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', Rejoignez-nous sur, Nos sites web, Accueil VisitScotland,
+      VisitScotland. Tous droits réservés., Langue, Basculer vers le menu, Nous contacter,
+      Infos visiteurs]
+    resourcebundle:messages_it: ['', Trovaci su, I nostri siti web, VisitScotland
+        Home, VisitScotland. Tutti I diritti riservati., Lingua, Attiva/disattiva
+        menu, Mettiti in contatto, Informazioni per i visitatori]
     resourcebundle:messages_nl: [Alle %s, Je vindt ons op, Onze websites, VisitScotland
         Startpagina, VisitScotland. Alle rechten voorbehouden, Taal, Menu uitvouwen,
       Neem contact met ons op, Bezoekersinfo]
@@ -44,8 +48,8 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
-    hippostdpubwf:lastModificationDate: 2021-09-06T08:12:58.303Z
-    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:lastModificationDate: 2021-10-14T11:02:07.085Z
+    hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
@@ -55,13 +59,17 @@
       VisitScotland. All rights reserved., Language, Toggle menu, Get in touch, Visitor
         information]
     resourcebundle:messages_de: ['', Finden Sie uns auf, Unsere Webseiten, VisitScotland
-        Startseite, VisitScotland. Alle Rechte vorbehalten., Sprache, '', Kontaktieren
-        Sie uns, Besucherinformationen]
+        Startseite, VisitScotland. Alle Rechte vorbehalten., Sprache, Menü umschalten,
+      Kontaktieren Sie uns, Besucherinformationen]
     resourcebundle:messages_es: ['', Encuéntranos en, Nuestras páginas web, Página
         web de VisitScotland, VisitScotland. Todos los derechos reservados., Idioma,
       Mostrar/Ocultar menú, Contacta con nosotros, Información para visitantes]
-    resourcebundle:messages_fr: ['', '', Nos sites web, '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', i nostri siti web, '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', Rejoignez-nous sur, Nos sites web, Accueil VisitScotland,
+      VisitScotland. Tous droits réservés., Langue, Basculer vers le menu, Nous contacter,
+      Infos visiteurs]
+    resourcebundle:messages_it: ['', Trovaci su, I nostri siti web, VisitScotland
+        Home, VisitScotland. Tutti I diritti riservati., Lingua, Attiva/disattiva
+        menu, Mettiti in contatto, Informazioni per i visitatori]
     resourcebundle:messages_nl: [Alle %s, Je vindt ons op, Onze websites, VisitScotland
         Startpagina, VisitScotland. Alle rechten voorbehouden, Taal, Menu uitvouwen,
       Neem contact met ons op, Bezoekersinfo]
@@ -74,9 +82,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
-    hippostdpubwf:lastModificationDate: 2021-09-06T08:12:58.303Z
-    hippostdpubwf:lastModifiedBy: spanish
-    hippostdpubwf:publicationDate: 2021-09-06T08:13:04.301Z
+    hippostdpubwf:lastModificationDate: 2021-10-14T11:02:07.085Z
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2021-10-14T11:02:10.599Z
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
@@ -86,13 +94,17 @@
       VisitScotland. All rights reserved., Language, Toggle menu, Get in touch, Visitor
         information]
     resourcebundle:messages_de: ['', Finden Sie uns auf, Unsere Webseiten, VisitScotland
-        Startseite, VisitScotland. Alle Rechte vorbehalten., Sprache, '', Kontaktieren
-        Sie uns, Besucherinformationen]
+        Startseite, VisitScotland. Alle Rechte vorbehalten., Sprache, Menü umschalten,
+      Kontaktieren Sie uns, Besucherinformationen]
     resourcebundle:messages_es: ['', Encuéntranos en, Nuestras páginas web, Página
         web de VisitScotland, VisitScotland. Todos los derechos reservados., Idioma,
       Mostrar/Ocultar menú, Contacta con nosotros, Información para visitantes]
-    resourcebundle:messages_fr: ['', '', Nos sites web, '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', i nostri siti web, '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', Rejoignez-nous sur, Nos sites web, Accueil VisitScotland,
+      VisitScotland. Tous droits réservés., Langue, Basculer vers le menu, Nous contacter,
+      Infos visiteurs]
+    resourcebundle:messages_it: ['', Trovaci su, I nostri siti web, VisitScotland
+        Home, VisitScotland. Tutti I diritti riservati., Lingua, Attiva/disattiva
+        menu, Mettiti in contatto, Informazioni per i visitatori]
     resourcebundle:messages_nl: [Alle %s, Je vindt ons op, Onze websites, VisitScotland
         Startpagina, VisitScotland. Alle rechten voorbehouden, Taal, Menu uitvouwen,
       Neem contact met ons op, Bezoekersinfo]

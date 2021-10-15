@@ -11,9 +11,10 @@
     hippo:availability: []
     hippostd:retainable: false
     hippostd:state: draft
+    hippostd:transferable: false
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-10-08T08:44:06.647Z
-    hippostdpubwf:lastModificationDate: 2021-10-08T08:44:06.647Z
+    hippostdpubwf:lastModificationDate: 2021-10-08T11:45:11.900Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '']

@@ -45,8 +45,8 @@
           visitscotland:caption: VisitScotland Information Centre
         /visitscotland:fr:
           jcr:primaryType: visitscotland:ImageData
-          visitscotland:altText: iCentre VisitScotland
-          visitscotland:caption: Centre d’information de Visitscotland
+          visitscotland:altText: iCentre de Visitscotland
+          visitscotland:caption: Centre d’information de VisitScotland
         /visitscotland:de:
           jcr:primaryType: visitscotland:ImageData
           visitscotland:altText: Ein iCentre von VisitScotland
@@ -57,8 +57,8 @@
           visitscotland:caption: Centro de información de VisitScotland
         /visitscotland:it:
           jcr:primaryType: visitscotland:ImageData
-          visitscotland:altText: ''
-          visitscotland:caption: ''
+          visitscotland:altText: iCentre di VisitScotland
+          visitscotland:caption: Centro informazione di VisitScotland
     /marketocode.jpg:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
