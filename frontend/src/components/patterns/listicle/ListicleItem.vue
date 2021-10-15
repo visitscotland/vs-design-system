@@ -241,23 +241,17 @@ export default {
                     :longitude="item.image.longitude"
                     variant="large"
                 >
-                    <VsImg
-                        class="lazyload"
-                        :src="item.image.imageSrc"
-                        srcset="data:image/gif;base64,
-                        R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        :data-srcset="item.image.imageSrc"
-                        :alt="item.image.altText"
-                        data-sizes="auto">
-                    </VsImg>
+                    <VsCaption
+                        slot="img-caption"
+                    >
+                        <span slot="caption">
+                            {{ item.image.caption }}
+                        </span>
 
-                    <span slot="caption">
-                        {{ item.image.caption }}
-                    </span>
-
-                    <span slot="credit">
-                        &copy; {{ item.image.credit }}
-                    </span>
+                        <span slot="credit">
+                            &copy; {{ item.image.credit }}
+                        </span>
+                    </VsCaption>
                 </VsImageWithCaption>
             </div>
 
