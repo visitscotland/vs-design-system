@@ -225,7 +225,7 @@ public class Properties {
         String value = bundle.getResourceBundle(bundleId, key, Locale.UK);
 
         if (Contract.isEmpty(value)){
-            logger.warn("The property {} hasn't been set in the resourceBundle {}", key, bundleId);
+            logger.info("The property {} hasn't been set in the resourceBundle {}", key, bundleId);
         } else if (value.startsWith("$")){
             return getEnvironmentVariable(value.substring(1));
         } else {

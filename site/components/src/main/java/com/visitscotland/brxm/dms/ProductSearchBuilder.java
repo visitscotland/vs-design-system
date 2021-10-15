@@ -286,7 +286,9 @@ public class ProductSearchBuilder {
         }
 
         if (dataEndpoint){
-            addParams(path, LOCALE, locale.toLanguageTag());
+            if (locale != null) {
+                addParams(path, LOCALE, locale.toLanguageTag());
+            }
 
             if (internal && !Contract.isEmpty(properties.getDmsDataHost())) {
                 return composeUrl(properties.getDmsDataHost() + path);
