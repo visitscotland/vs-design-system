@@ -238,6 +238,26 @@ pipeline {
           }
         }
 
+        stage('Nexus IQ Scan') {
+          when {
+            branch 'feature/VS-2898-add-nNexus-IQ-Security-Scan-Step-to-Jenkins-Build-Pipeline' 
+          }
+          steps {
+            script{
+              try {
+                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, iqApplication: selectedApplication('visitscotland-site'), iqScanPatterns: [[scanPattern: '/site/target/*.war']], iqStage: 'build', jobCredentialsId: 'nexusiq'
+                echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
+                IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
+              } 
+              catch (error) {
+                def policyEvaluation = error.policyEvaluation
+                echo "Nexus IQ scan vulnerabilities detected', ${policyEvaluation.applicationCompositionReportUrl}"
+                throw error
+              }
+            }
+          }
+        } //end stage
+
         stage ('Snapshot to Nexus'){
               when {
                 allOf {
