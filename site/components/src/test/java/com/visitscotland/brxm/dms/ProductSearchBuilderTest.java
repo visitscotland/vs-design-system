@@ -37,7 +37,6 @@ class ProductSearchBuilderTest {
     ProductSearchBuilder builder;
 
     private ProductSearchBuilder createBuilder(){
-
         return builder;
     }
 
@@ -533,6 +532,19 @@ class ProductSearchBuilderTest {
         assertTrue(url.startsWith(Language.SPANISH.getDMSPathVariable()),
                 "The URL doesn't seem to be properly localized: " + url
         );
+    }
+
+    @Test
+    @DisplayName("Data endpoints contain the locale parameter")
+    void localization_dataEndpoints() {
+        when(properties.getDmsDataPublicHost()).thenReturn("/data");
+
+        String url = createBuilder().productTypes(DEFAULT_TYPE)
+                .locale(Language.SPANISH.getLocale())
+                .buildCannedSearch();
+
+        validateUrl(url);
+        assertTrue(url.contains("locale="),"The URL does not contain the language query parameter (locale): " + url);
     }
 
     private void mockLocationLoader(String location) {
