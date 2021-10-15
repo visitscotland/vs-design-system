@@ -145,19 +145,18 @@ public class LinkService {
     }
 
     /**
-     * Detects if the URLs is belong to the DMS
-     *
-     * @param locale
-     * @param site
-     * @param path
-     * @return
+     * TODO Refactor this method when DMS language URLs are the same as CMS language URLs
      */
     private String localize(Locale locale, String site, String path) {
-        String languagePath = path.matches(DMS_PAGE) ?
+        boolean isDms = path.matches(DMS_PAGE);
+        String languagePath = isDms ?
                 Language.getLanguageForLocale(locale).getDMSPathVariable() : Language.getLanguageForLocale(locale).getCMSPathVariable();
+
 
         if (path.startsWith(languagePath)) {
             return site + path;
+        } else if (isDms && path.startsWith(Language.getLanguageForLocale(locale).getCMSPathVariable())) {
+            return site + languagePath + path.substring(path.indexOf("/",1));
         } else {
             return site + languagePath + path;
         }
