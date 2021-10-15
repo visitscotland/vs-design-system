@@ -6,6 +6,5 @@
   <p><@fmt.message key="pagenotfound.text" var="text"/>${text?html}</p>
 </div>
 <div>
-  404 page not found!
   <@hst.include ref="container"/>
 </div>
