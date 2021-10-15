@@ -14,8 +14,8 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
-    hippostdpubwf:lastModificationDate: 2021-09-06T07:56:41.719Z
-    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:lastModificationDate: 2021-10-14T10:24:21.860Z
+    hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: social.share
     resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
@@ -27,8 +27,10 @@
       E-Mail, Link kopieren, Schließen, Teilen, Link kopiert!]
     resourcebundle:messages_es: [Compartir en, Facebook, Pinterest, WhatsApp, Twitter,
       Correo electrónico, Copiar enlace, Cerrar, Compartir, ¡Enlace copiado!]
-    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: [Partager sur, Facebook, Pinterest, WhatsApp, Twitter,
+      E-mail, Copier le lien, Fermer le partage, Partager, Lien copié!]
+    resourcebundle:messages_it: [Condividi su, Facebook, Pinterest, WhatsApp, Twitter,
+      Email, Copia il link, Chiudi condivisione social, Condividi, Link copiato!]
     resourcebundle:messages_nl: [Deel op, Facebook, Pinterest, WhatsApp, Twitter,
       E-mail, Koppeling kopiëren, Venster sluiten, Delen, Koppeling gekopieerd!]
   /social-share[2]:
@@ -40,8 +42,8 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
-    hippostdpubwf:lastModificationDate: 2021-09-03T09:04:27.070Z
-    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:lastModificationDate: 2021-10-14T10:27:46.551Z
+    hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: social.share
     resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
@@ -53,8 +55,10 @@
       E-Mail, Link kopieren, Schließen, Teilen, Link kopiert!]
     resourcebundle:messages_es: [Compartir en, Facebook, Pinterest, WhatsApp, Twitter,
       Correo electrónico, Copiar enlace, Cerrar, Compartir, ¡Enlace copiado!]
-    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: [Partager sur, Facebook, Pinterest, WhatsApp, Twitter,
+      E-mail, Copier le lien, Fermer le partage, Partager, Lien copié!]
+    resourcebundle:messages_it: [Condividi su, Facebook, Pinterest, WhatsApp, Twitter,
+      Email, Copia il link, Chiudi condivisione social, Condividi, Link copiato!]
     resourcebundle:messages_nl: [Deel op, Facebook, Pinterest, WhatsApp, Twitter,
       E-mail, Koppeling kopiëren, Venster sluiten, Delen, Koppeling gekopieerd!]
   /social-share[3]:
@@ -66,9 +70,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-07-15T15:32:42.290+01:00
-    hippostdpubwf:lastModificationDate: 2021-09-03T09:04:27.070Z
-    hippostdpubwf:lastModifiedBy: spanish
-    hippostdpubwf:publicationDate: 2021-09-03T09:04:31.243Z
+    hippostdpubwf:lastModificationDate: 2021-10-14T10:27:46.551Z
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2021-10-14T10:27:50.202Z
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: social.share
     resourcebundle:keys: [share.on, facebook.link.text, pinterest.link.text, whatsapp.link.text,
@@ -80,7 +84,9 @@
       E-Mail, Link kopieren, Schließen, Teilen, Link kopiert!]
     resourcebundle:messages_es: [Compartir en, Facebook, Pinterest, WhatsApp, Twitter,
       Correo electrónico, Copiar enlace, Cerrar, Compartir, ¡Enlace copiado!]
-    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: [Partager sur, Facebook, Pinterest, WhatsApp, Twitter,
+      E-mail, Copier le lien, Fermer le partage, Partager, Lien copié!]
+    resourcebundle:messages_it: [Condividi su, Facebook, Pinterest, WhatsApp, Twitter,
+      Email, Copia il link, Chiudi condivisione social, Condividi, Link copiato!]
     resourcebundle:messages_nl: [Deel op, Facebook, Pinterest, WhatsApp, Twitter,
       E-mail, Koppeling kopiëren, Venster sluiten, Delen, Koppeling gekopieerd!]

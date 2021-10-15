@@ -14,8 +14,8 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-11-04T15:30:47.380Z
-    hippostdpubwf:lastModificationDate: 2021-09-03T09:13:46.082Z
-    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:lastModificationDate: 2021-10-14T10:33:09.785Z
+    hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', "IDEAL = content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nRELATIVE = /site/binaries/content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nLIVE = https://cimg.visitscotland.com/cms-images/about/458950/fort-william-visitscotland-icentre-sign",
@@ -46,10 +46,22 @@
         de iKnow en esta región, 'Obtén recomendaciones de nuestros socios acreditados
         de iKnow. Disponen de una gran experiencia local, consejos de viaje e información
         sobre las principales atracciones y alojamientos en la región.']
-    resourcebundle:messages_fr: ['', '', '', 'https://www.visitscotland.com/fr/about/practical-information/vic/',
-      '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', 'https://www.visitscotland.com/it/about/practical-information/vic/',
-      '', '', '', '', '']
+    resourcebundle:messages_fr: [L’astuce de votre expert local, 'Pour plus d’informations,
+        visitez le', 'Pour plus de renseignements, rendez-vous dans l’un de nos centres
+        d’information iCentre régionaux:', 'https://www.visitscotland.com/fr/about/practical-information/vic/',
+      Page des iCentres de VisitScotland, '', Aide et conseils, Découvrez nos partenaires
+        iKnow dans cette région, 'Vous pouvez également obtenir des conseils de nos
+        partenaires iKnow agréés, notamment des recommandations de voyage et des astuces
+        d’experts concernant les attractions et hébergements incontournables de chaque
+        région']
+    resourcebundle:messages_it: [Un consiglio dal tuo esperto locale, 'Per consigli
+        amichevoli, visita il', 'Per consigli amichevoli, visita uno dei nostri centri
+        di informazione nella zona:', 'https://www.visitscotland.com/it/about/practical-information/vic/',
+      Pagina dei centri informazioni di VisitScotland, '', Aiuta e consigli, Trova
+        I nostril partner iKnow in zona, 'Puoi anche ottenere consigli dai nostri
+        partner iKnow accreditati, con un''eccellente esperienza locale, consigli
+        di viaggio e consigli utili sulle attrazioni da non perdere e ottimi  alloggi
+        nella zona locale']
     resourcebundle:messages_nl: [Tips van de plaatselijke expert, Kom voor meer vriendelijk
         advies naar het, 'Kom naar een van onze iCentres in de regio voor meer vriendelijk
         advies en toeristische informatie:', 'https://www.visitscotland.com/nl/about/practical-information/vic/',
@@ -66,8 +78,8 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-11-04T15:30:47.380Z
-    hippostdpubwf:lastModificationDate: 2021-09-03T09:29:07.427Z
-    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:lastModificationDate: 2021-10-14T10:33:21.008Z
+    hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', "IDEAL = content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nRELATIVE = /site/binaries/content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nLIVE = https://cimg.visitscotland.com/cms-images/about/458950/fort-william-visitscotland-icentre-sign",
@@ -98,10 +110,22 @@
         de iKnow en esta región, 'Obtén recomendaciones de nuestros socios acreditados
         de iKnow. Disponen de una gran experiencia local, consejos de viaje e información
         sobre las principales atracciones y alojamientos en la región.']
-    resourcebundle:messages_fr: ['', '', '', 'https://www.visitscotland.com/fr/about/practical-information/vic/',
-      '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', 'https://www.visitscotland.com/it/about/practical-information/vic/',
-      '', '', '', '', '']
+    resourcebundle:messages_fr: [L’astuce de votre expert local, 'Pour plus d’informations,
+        visitez le', 'Pour plus de renseignements, rendez-vous dans l’un de nos centres
+        d’information iCentre régionaux:', 'https://www.visitscotland.com/fr/about/practical-information/vic/',
+      Page des iCentres de VisitScotland, '', Aide et conseils, Découvrez nos partenaires
+        iKnow dans cette région, 'Vous pouvez également obtenir des conseils de nos
+        partenaires iKnow agréés, notamment des recommandations de voyage et des astuces
+        d’experts concernant les attractions et hébergements incontournables de chaque
+        région']
+    resourcebundle:messages_it: [Un consiglio dal tuo esperto locale, 'Per consigli
+        amichevoli, visita il', 'Per consigli amichevoli, visita uno dei nostri centri
+        di informazione nella zona:', 'https://www.visitscotland.com/it/about/practical-information/vic/',
+      Pagina dei centri informazioni di VisitScotland, '', Aiuta e consigli, Trova
+        I nostril partner iKnow in zona, 'Puoi anche ottenere consigli dai nostri
+        partner iKnow accreditati, con un''eccellente esperienza locale, consigli
+        di viaggio e consigli utili sulle attrazioni da non perdere e ottimi  alloggi
+        nella zona locale']
     resourcebundle:messages_nl: [Tips van de plaatselijke expert, Kom voor meer vriendelijk
         advies naar het, 'Kom naar een van onze iCentres in de regio voor meer vriendelijk
         advies en toeristische informatie:', 'https://www.visitscotland.com/nl/about/practical-information/vic/',
@@ -118,9 +142,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-11-04T15:30:47.380Z
-    hippostdpubwf:lastModificationDate: 2021-09-03T09:29:07.427Z
-    hippostdpubwf:lastModifiedBy: spanish
-    hippostdpubwf:publicationDate: 2021-09-03T09:29:10.562Z
+    hippostdpubwf:lastModificationDate: 2021-10-14T10:33:21.008Z
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2021-10-14T10:33:23.277Z
     resourcebundle:descriptions: ['', '', '', '', '', "IDEAL = content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nRELATIVE = /site/binaries/content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nLIVE = https://cimg.visitscotland.com/cms-images/about/458950/fort-william-visitscotland-icentre-sign",
@@ -151,10 +175,22 @@
         de iKnow en esta región, 'Obtén recomendaciones de nuestros socios acreditados
         de iKnow. Disponen de una gran experiencia local, consejos de viaje e información
         sobre las principales atracciones y alojamientos en la región.']
-    resourcebundle:messages_fr: ['', '', '', 'https://www.visitscotland.com/fr/about/practical-information/vic/',
-      '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', 'https://www.visitscotland.com/it/about/practical-information/vic/',
-      '', '', '', '', '']
+    resourcebundle:messages_fr: [L’astuce de votre expert local, 'Pour plus d’informations,
+        visitez le', 'Pour plus de renseignements, rendez-vous dans l’un de nos centres
+        d’information iCentre régionaux:', 'https://www.visitscotland.com/fr/about/practical-information/vic/',
+      Page des iCentres de VisitScotland, '', Aide et conseils, Découvrez nos partenaires
+        iKnow dans cette région, 'Vous pouvez également obtenir des conseils de nos
+        partenaires iKnow agréés, notamment des recommandations de voyage et des astuces
+        d’experts concernant les attractions et hébergements incontournables de chaque
+        région']
+    resourcebundle:messages_it: [Un consiglio dal tuo esperto locale, 'Per consigli
+        amichevoli, visita il', 'Per consigli amichevoli, visita uno dei nostri centri
+        di informazione nella zona:', 'https://www.visitscotland.com/it/about/practical-information/vic/',
+      Pagina dei centri informazioni di VisitScotland, '', Aiuta e consigli, Trova
+        I nostril partner iKnow in zona, 'Puoi anche ottenere consigli dai nostri
+        partner iKnow accreditati, con un''eccellente esperienza locale, consigli
+        di viaggio e consigli utili sulle attrazioni da non perdere e ottimi  alloggi
+        nella zona locale']
     resourcebundle:messages_nl: [Tips van de plaatselijke expert, Kom voor meer vriendelijk
         advies naar het, 'Kom naar een van onze iCentres in de regio voor meer vriendelijk
         advies en toeristische informatie:', 'https://www.visitscotland.com/nl/about/practical-information/vic/',
