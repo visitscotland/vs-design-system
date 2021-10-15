@@ -214,6 +214,13 @@ public class Properties {
             String bundleId = utils.getResolvedMount(null).getProperty("visitscotland:cmsProperties");
             if (bundleId != null){
                 return bundleId;
+            } else {
+                //Other languages and data endpoints are mounted as subsites in the configuration
+                bundleId = utils.getResolvedMount(null).getParent().getProperty("visitscotland:cmsProperties");
+
+                if (bundleId != null){
+                    return bundleId;
+                }
             }
         }
 

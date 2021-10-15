@@ -275,10 +275,6 @@ public class ProductSearchBuilder {
      * Composes a search URL depending on if the endpoint are internal or external and if they are consumed by a front-end
      * or a back-end application.
      *
-     * @param path
-     * @param dataEndpoint
-     * @param internal
-     * @return
      */
     private String buildSearchUrl(String path, boolean dataEndpoint, boolean internal){
         if (productTypes == null){
@@ -287,7 +283,7 @@ public class ProductSearchBuilder {
 
         if (dataEndpoint){
             if (locale != null) {
-                addParams(path, LOCALE, locale.toLanguageTag());
+                path = addParams(path, LOCALE, locale.toLanguageTag());
             }
 
             if (internal && !Contract.isEmpty(properties.getDmsDataHost())) {
