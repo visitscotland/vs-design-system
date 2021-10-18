@@ -253,7 +253,7 @@ export default {
                 <template slot="vsSingleImage">
                     <VsImageWithCaption
                         mobile-overlap
-                        alt-text=""
+                        alt-text="Image alt text"
                         image-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     >
                         <VsCaption
@@ -320,7 +320,7 @@ export default {
                 <template slot="vsSingleImage">
                     <VsImageWithCaption
                         mobile-overlap
-                        alt-text=""
+                        alt-text="Image alt text"
                         image-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     >
                         <VsCaption
