@@ -255,6 +255,9 @@ export default {
 
             .vs-image-with-caption{
                 &__image-wrapper {
+                    max-height: 100vh;
+                    overflow: hidden;
+
                     .vs-image-with-caption__toggle-caption-btn {
                         display: block;
 

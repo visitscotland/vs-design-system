@@ -10,6 +10,7 @@
         latitude="<#if variant != 'fullwidth'>${(imageDetails.coordinates.latitude)!''}</#if>"
         longitude="<#if variant != 'fullwidth'>${(imageDetails.coordinates.longitude)!''}</#if>"
         variant="${variant}"
+        toggle-button-text="${label('essentials.global', 'image.toggle.text')}"
         :is-hero-image="${isHero}"
         :mobile-overlap="${mobileOverlap}"
     >
