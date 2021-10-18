@@ -1,5 +1,5 @@
-def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-products"
-def MAIL_TO = "webops@visitscotland.net"
+def DS_BRANCH = "feature/VS-2898-add-nNexus-IQ-Security-Scan-Step-to-Jenkins-Build-Pipeline"
+def MAIL_TO = "steve.taylor@visitscotland.com"
 
 def thisAgent
 def VS_CONTAINER_BASE_PORT_OVERRIDE
@@ -57,11 +57,12 @@ pipeline {
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
     // VS_SKIP_BUILD_FOR_BRANCH is useful for testing, only ever set to your working branch name - never to a variable!
-    VS_SKIP_BUILD_FOR_BRANCH = 'NOTfeature/VS-1865-feature-environments-enhancements'
+    //VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-2898-add-nNexus-IQ-Security-Scan-Step-to-Jenkins-Build-Pipeline'
+    VS_SKIP_BUILD_FOR_BRANCH = ''
     // VS_COMMIT_AUTHOR is required by later stages which will fail if it's not set, default value of jenkins@visitscotland.net
     // turns out if you set it here it will not be overwritten by the load later in the pipeline
     //VS_COMMIT_AUTHOR = 'jenkins@visitscotland.net'
-    VS_RUN_LIGHTHOUSE_TESTS = 'TRUE'
+    VS_RUN_LIGHTHOUSE_TESTS = 'FALSE'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
@@ -238,14 +239,54 @@ pipeline {
           }
         }
 
-        stage('Nexus IQ Scan') {
+        stage('Nexus IQ Scan: Site') {
           when {
-            branch 'develop' 
+            branch 'feature/VS-2898-add-nNexus-IQ-Security-Scan-Step-to-Jenkins-Build-Pipeline' 
           }
           steps {
             script{
               try {
-                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, iqApplication: selectedApplication('visitscotland-site'), iqScanPatterns: [[scanPattern: '**/site.war']], iqStage: 'Build', jobCredentialsId: 'nexusiq'
+                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, enableDebugLogging: true, iqApplication: selectedApplication('visitscotland-site'), iqScanPatterns: [[scanPattern: '**/site.war']], iqStage: 'build', jobCredentialsId: 'nexusiq'
+                echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
+                IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
+              } 
+              catch (error) {
+                def policyEvaluation = error.policyEvaluation
+                echo "Nexus IQ scan vulnerabilities detected', ${policyEvaluation.applicationCompositionReportUrl}"
+                throw error
+              }
+            }
+          }
+        } //end stage
+
+        stage('Nexus IQ Scan: CMS') {
+          when {
+            branch 'feature/VS-2898-add-nNexus-IQ-Security-Scan-Step-to-Jenkins-Build-Pipeline' 
+          }
+          steps {
+            script{
+              try {
+                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, enableDebugLogging: true, iqApplication: selectedApplication('visitscotland-cms'), iqScanPatterns: [[scanPattern: '**/cms.war']], iqStage: 'build', jobCredentialsId: 'nexusiq'
+                echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
+                IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
+              } 
+              catch (error) {
+                def policyEvaluation = error.policyEvaluation
+                echo "Nexus IQ scan vulnerabilities detected', ${policyEvaluation.applicationCompositionReportUrl}"
+                throw error
+              }
+            }
+          }
+        } //end stage
+
+        stage('Nexus IQ Scan: SSR') {
+          when {
+            branch 'feature/VS-2898-add-nNexus-IQ-Security-Scan-Step-to-Jenkins-Build-Pipeline' 
+          }
+          steps {
+            script{
+              try {
+                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, enableDebugLogging: true, iqApplication: selectedApplication('visitscotland-ssr'), iqScanPatterns: [[scanPattern: '**/*ssr*.tar.gz']], iqStage: 'build', jobCredentialsId: 'nexusiq'
                 echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
                 IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
               } 
