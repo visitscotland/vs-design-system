@@ -245,7 +245,7 @@ pipeline {
           steps {
             script{
               try {
-                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, iqApplication: selectedApplication('site.war'), iqScanPatterns: [[scanPattern: '**/site/webapp/target/*.war']], iqStage: 'Build', jobCredentialsId: 'nexusiq'
+                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, iqApplication: selectedApplication('visitscotland-site'), iqScanPatterns: [[scanPattern: '**/site.war']], iqStage: 'Build', jobCredentialsId: 'nexusiq'
                 echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
                 IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
               } 
