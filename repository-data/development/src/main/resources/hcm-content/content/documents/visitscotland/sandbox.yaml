@@ -11,7 +11,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 2cd6819b-dc3e-4884-9942-f3b64c744de1
     hippo:name: Page to link examples
-    hippo:versionHistory: aba56dfe-fea7-4fc1-9271-33bbf7908550
+    hippo:versionHistory: 7d1b1085-2a99-4919-96da-da98414d5f63
     /content[1]:
       jcr:primaryType: visitscotland:General
       jcr:mixinTypes: ['mix:referenceable']
@@ -21,18 +21,19 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-05T08:37:23.254+01:00
-      hippostdpubwf:lastModificationDate: 2021-06-25T10:13:41.798+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:41:00.426+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 1fb36368-cd11-4460-97ff-60ab59cf72da
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: examples
+      visitscotland:seoDescription: Development Sandbox - page to list examples
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: examples
+      visitscotland:seoTitle: Development Sandbox
       visitscotland:teaser: Page to list examples
       visitscotland:theme: Standard
-      visitscotland:title: Pages and modules examples
+      visitscotland:title: Development Sandbox
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -100,18 +101,19 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-05T08:37:23.254+01:00
-      hippostdpubwf:lastModificationDate: 2021-06-25T10:14:34.708+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:41:30.474+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 1fb36368-cd11-4460-97ff-60ab59cf72da
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: examples
+      visitscotland:seoDescription: Development Sandbox - page to list examples
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: examples
+      visitscotland:seoTitle: Development Sandbox
       visitscotland:teaser: Page to list examples
       visitscotland:theme: Standard
-      visitscotland:title: Pages and modules examples
+      visitscotland:title: Development Sandbox
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -179,19 +181,20 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-05T08:37:23.254+01:00
-      hippostdpubwf:lastModificationDate: 2021-06-25T10:14:34.708+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:41:30.474+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-06-25T10:14:36.781+01:00
+      hippostdpubwf:publicationDate: 2021-10-18T16:41:32.683+01:00
       hippotranslation:id: 1fb36368-cd11-4460-97ff-60ab59cf72da
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: examples
+      visitscotland:seoDescription: Development Sandbox - page to list examples
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: examples
+      visitscotland:seoTitle: Development Sandbox
       visitscotland:teaser: Page to list examples
       visitscotland:theme: Standard
-      visitscotland:title: Pages and modules examples
+      visitscotland:title: Development Sandbox
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink

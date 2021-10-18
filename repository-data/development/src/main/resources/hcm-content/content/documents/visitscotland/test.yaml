@@ -7659,7 +7659,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 5e0d09e3-fdf2-479e-880d-8052730ec4e5
     hippo:name: Test landing page
-    hippo:versionHistory: 555482bb-dc63-4a5c-9ebb-06d4c8603722
+    hippo:versionHistory: 1ff8c915-f81b-470e-a13c-2d2d43eb8a27
     /content[1]:
       jcr:primaryType: visitscotland:General
       jcr:mixinTypes: ['mix:referenceable']
@@ -7669,19 +7669,21 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-25T14:47:56.308+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:41:57.408+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: Meta description
+      visitscotland:seoDescription: This area is designed to hold stable content to
+        test layout and functionality of the site.
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Meta title
+      visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
       visitscotland:theme: Standard
-      visitscotland:title: VIsitscotland.com redevelopment test area
+      visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -7706,19 +7708,21 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-25T14:48:12.579+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:42:03.262+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: Meta description
+      visitscotland:seoDescription: This area is designed to hold stable content to
+        test layout and functionality of the site.
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Meta title
+      visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
       visitscotland:theme: Standard
-      visitscotland:title: VIsitscotland.com redevelopment test area
+      visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -7743,20 +7747,22 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-25T14:48:12.579+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:42:03.262+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-05-25T14:48:14.335+01:00
+      hippostdpubwf:publicationDate: 2021-10-18T16:42:05.236+01:00
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: Meta description
+      visitscotland:seoDescription: This area is designed to hold stable content to
+        test layout and functionality of the site.
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Meta title
+      visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
       visitscotland:theme: Standard
-      visitscotland:title: VIsitscotland.com redevelopment test area
+      visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink
