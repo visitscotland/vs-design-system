@@ -1,6 +1,5 @@
 package com.visitscotland.brxm.utils;
 
-import org.hippoecm.hst.configuration.hosting.VirtualHosts;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.core.container.ContainerConstants;
 import org.hippoecm.hst.core.internal.HstMutableRequestContext;
@@ -16,14 +15,11 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Optional;
 
 public class TranslationHstSiteMapItemHandler implements HstSiteMapItemHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(TranslationHstSiteMapItemHandler.class);
     private static final String PAGE_NOT_FOUND_COMPONENT = "hst:pages/pagenotfound";
-    // hst:alias on english mount (/hst:visitscotland/hst:hosts/<vhost>/hst:root)
-    private static final String ENGLISH_MOUNT_ALIAS = "en";
 
     @Override
     public void init(ServletContext servletContext, SiteMapItemHandlerConfiguration siteMapItemHandlerConfiguration) throws HstSiteMapItemHandlerException {
@@ -39,7 +35,7 @@ public class TranslationHstSiteMapItemHandler implements HstSiteMapItemHandler {
      */
     @Override
     public ResolvedSiteMapItem process(ResolvedSiteMapItem resolvedSiteMapItem, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws HstSiteMapItemHandlerException {
-        if (resolvedSiteMapItem == null || resolvedSiteMapItem.getResolvedMount() == null || ENGLISH_MOUNT_ALIAS.equals(resolvedSiteMapItem.getResolvedMount().getMount().getAlias()) || !isPageNotFound(resolvedSiteMapItem)) {
+        if (resolvedSiteMapItem == null || resolvedSiteMapItem.getResolvedMount() == null || !isPageNotFound(resolvedSiteMapItem)) {
             return resolvedSiteMapItem;
         }
         ResolvedVirtualHost resolvedVirtualHost = (ResolvedVirtualHost) httpServletRequest.getAttribute(ContainerConstants.VIRTUALHOSTS_REQUEST_ATTR);
@@ -47,7 +43,7 @@ public class TranslationHstSiteMapItemHandler implements HstSiteMapItemHandler {
             logger.error("Failed to get ResolvedVirtualHost from request servlet");
             return resolvedSiteMapItem;
         }
-        ResolvedMount englishMount = resolvedVirtualHost.matchMount(ENGLISH_MOUNT_ALIAS);
+        ResolvedMount englishMount = resolvedVirtualHost.matchMount("/");
         HstMutableRequestContext requestContext = (HstMutableRequestContext) RequestContextProvider.get();
         requestContext.setResolvedMount(englishMount);
         ResolvedSiteMapItem englishSiteMapItem = englishMount.matchSiteMapItem("/" + resolvedSiteMapItem.getPathInfo());

@@ -290,6 +290,7 @@ definitions:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
             hst:relativecontentpath: test
+            hst:sitemapitemhandlerids: [translation-fallback]
             /_index_:
               jcr:primaryType: hst:sitemapitem
               hst:componentconfigurationid: hst:pages/pagenotfound
@@ -307,6 +308,8 @@ definitions:
             /_default_:
               jcr:primaryType: hst:sitemapitem
               hst:relativecontentpath: ${parent}/${1}
+              hst:componentconfigurationid: hst:pages/pagenotfound
+              hst:sitemapitemhandlerids: [translation-fallback]
               /_index_:
                 jcr:primaryType: hst:sitemapitem
                 hst:componentconfigurationid: hst:pages/pagenotfound
@@ -318,18 +321,28 @@ definitions:
               /_default_:
                 jcr:primaryType: hst:sitemapitem
                 hst:relativecontentpath: ${parent}/${2}
+                hst:componentconfigurationid: hst:pages/pagenotfound
+                hst:sitemapitemhandlerids: [translation-fallback]
                 /_default_:
                   jcr:primaryType: hst:sitemapitem
                   hst:relativecontentpath: ${parent}/${3}
+                  hst:componentconfigurationid: hst:pages/pagenotfound
+                  hst:sitemapitemhandlerids: [translation-fallback]
                   /_default_:
                     jcr:primaryType: hst:sitemapitem
                     hst:relativecontentpath: ${parent}/${4}
+                    hst:componentconfigurationid: hst:pages/pagenotfound
+                    hst:sitemapitemhandlerids: [translation-fallback]
                     /_default_:
                       jcr:primaryType: hst:sitemapitem
                       hst:relativecontentpath: ${parent}/${5}
+                      hst:componentconfigurationid: hst:pages/pagenotfound
+                      hst:sitemapitemhandlerids: [translation-fallback]
                       /_default_:
                         jcr:primaryType: hst:sitemapitem
                         hst:relativecontentpath: ${parent}/${6}
+                        hst:componentconfigurationid: hst:pages/pagenotfound
+                        hst:sitemapitemhandlerids: [translation-fallback]
                         /_index_:
                           jcr:primaryType: hst:sitemapitem
                           hst:componentconfigurationid: hst:pages/pagenotfound

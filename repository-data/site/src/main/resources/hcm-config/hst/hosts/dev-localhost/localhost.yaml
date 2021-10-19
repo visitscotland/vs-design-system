@@ -9,7 +9,6 @@ definitions:
           hst:homepage: root
           hst:mountpoint: /hst:visitscotland/hst:sites/visitscotland
           hst:locale: en_GB
-          hst:alias: en
           jcr:mixinTypes: ['visitscotland:hosts']
           visitscotland:cmsProperties: environment.local
           /es:

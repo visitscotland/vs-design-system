@@ -1,11 +1,13 @@
 package com.visitscotland.brxm.components.content;
 
-import org.hippoecm.hst.configuration.hosting.Mount;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.container.ContainerConstants;
 import org.hippoecm.hst.core.request.HstRequestContext;
+import org.hippoecm.hst.core.request.ResolvedMount;
+import org.hippoecm.hst.core.request.ResolvedVirtualHost;
 import org.hippoecm.hst.util.PathUtils;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
@@ -19,7 +21,6 @@ import java.util.Optional;
  */
 public class ContentComponent extends EssentialsContentComponent {
     private static final Logger logger = LoggerFactory.getLogger(ContentComponent.class);
-    private static final String ENGLISH_MOUNT_ALIAS = "en";
 
     @Override
     public void setContentBeanWith404(HstRequest request, HstResponse response) {
@@ -27,8 +28,9 @@ public class ContentComponent extends EssentialsContentComponent {
         if (context.getContentBean() != null) {
             super.setContentBeanWith404(request, response);
         } else {
-            Optional<HippoBean> englishContentBean = getEnglishContentBean(context);
+            Optional<HippoBean> englishContentBean = getEnglishContentBean(request, context);
             if (englishContentBean.isPresent()) {
+                logger.debug("Found english fallback document {}", englishContentBean.get().getPath());
                 request.setModel("document", englishContentBean.get());
             } else {
                 this.pageNotFound(response);
@@ -36,12 +38,17 @@ public class ContentComponent extends EssentialsContentComponent {
         }
     }
 
-    private Optional<HippoBean> getEnglishContentBean(HstRequestContext context) {
-        Mount englishMount = context.getMount(ENGLISH_MOUNT_ALIAS);
-        if (englishMount == null || context.getResolvedSiteMapItem() == null || context.getObjectBeanManager() == null) {
+    private Optional<HippoBean> getEnglishContentBean(HstRequest httpServletRequest, HstRequestContext context) {
+        ResolvedVirtualHost resolvedVirtualHost = (ResolvedVirtualHost) httpServletRequest.getAttribute(ContainerConstants.VIRTUALHOSTS_REQUEST_ATTR);
+        if (resolvedVirtualHost == null) {
+            logger.error("Failed to get ResolvedVirtualHost from request servlet");
             return Optional.empty();
         }
-        String englishContentPath = englishMount.getContentPath();
+        ResolvedMount englishMount = resolvedVirtualHost.matchMount("/");
+        if (englishMount == null || context.getResolvedSiteMapItem() == null || context.getObjectBeanManager() == null || englishMount.getMount() == null) {
+            return Optional.empty();
+        }
+        String englishContentPath = englishMount.getMount().getContentPath();
         String englishContent = "/" + PathUtils.normalizePath(englishContentPath) + "/" + PathUtils.normalizePath(context.getResolvedSiteMapItem().getRelativeContentPath());
         try {
             Object bean = context.getObjectBeanManager().getObject(englishContent);
