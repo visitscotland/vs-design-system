@@ -72,19 +72,20 @@ export default {
         },
         /**
          * Style variation to give additional meaning.
-         * `primary, secondary, warning, transparent, dark, light`
+         * `primary, secondary, transparent, dark, light`
          *
-         * Primary and secondary are the primary colour styles for buttons and should be
-         * used in most cases, along with outline versions of those variants
+         * Primary is the main colour style for buttons and should be used in most cases,
+         * secondary is a brighter (yellow) style that should only be used on dark
+         * backgrounds
          *
-         * Transparent, warning, dark and light are specialised cases that should only be used if
+         * Transparent, dark and light are specialised cases that should only be used if
          * specifically required by the design
          */
         variant: {
             type: String,
             default: 'primary',
             validator: (value) => value.match(
-                /(primary|secondary|warning|transparent|dark|light)/,
+                /(primary|secondary|transparent|dark|light)/,
             ),
         },
         /**
@@ -246,6 +247,34 @@ export default {
         }
     }
 
+    &.btn-secondary {
+        color: $color-black;
+        background-color: $color-yellow;
+        border-color: $color-yellow;
+
+        &:not(:disabled) {
+            &:hover {
+                background-color: darken($color-yellow, 10%);
+                border-color: darken($color-yellow, 12%);
+            }
+
+            &:active {
+                color: $color-black;
+            }
+        }
+    }
+
+    &.btn-outline-secondary {
+        color: $color-yellow;
+        border-color: $color-yellow;
+
+        &:hover {
+            color: $color-black;
+            background-color: $color-yellow;
+            border-color: $color-yellow;
+        }
+    }
+
     &.btn-bg-white:not(:hover) {
         background-color: $color-white;
     }
@@ -329,7 +358,7 @@ export default {
             Disabled primary
         </VsButton>
     </BsWrapper>
-    <BsWrapper class="d-flex flex-wrap mb-4">
+    <BsWrapper class="d-flex flex-wrap mb-4 bg-dark p-3">
         <VsButton variant="secondary" class="mr-2 mb-2">Secondary</VsButton>
         <VsButton
             class="mr-2 mb-2"
@@ -342,21 +371,6 @@ export default {
         <VsButton variant="outline-secondary" class="mr-2 mb-2">Secondary Outline</VsButton>
         <VsButton disabled class="mr-2 mb-2" variant="secondary" size="md">
             Disabled Secondary
-        </VsButton>
-    </BsWrapper>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-        <VsButton variant="warning" class="mr-2 mb-2">Warning</VsButton>
-        <VsButton
-            class="mr-2 mb-2"
-            icon="food"
-            size="md"
-            variant="warning"
-        >
-            Warning with an icon
-        </VsButton>
-        <VsButton variant="outline-warning" class="mr-2 mb-2">Warning Outline</VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="warning" size="md">
-            Disabled Warning
         </VsButton>
     </BsWrapper>
 
