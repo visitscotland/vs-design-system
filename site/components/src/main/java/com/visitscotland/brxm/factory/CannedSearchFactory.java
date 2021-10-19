@@ -79,7 +79,7 @@ public class CannedSearchFactory {
         } catch (MalformedURLException e) {
             // This should be prevented by the url validator
             contentLog.error("Invalid tours search URL {} on CannedSearchToursModule {}", document.getToursSearch(), document.getPath());
-            throw new IllegalArgumentException("Invalid tours search URL", e);
+            return null;
         }
 
         String toursSearchQueryString = Contract.defaultIfNull(documentToursSearchUrl.getQuery(), "");
@@ -94,8 +94,7 @@ public class CannedSearchFactory {
         FlatLink viewAllCta = linkService.createExternalLink(document.getToursSearch());
         if (!Contract.isEmpty(document.getViewAll())) {
             viewAllCta.setLabel(document.getViewAll());
-        }
-        if (Contract.isEmpty(viewAllCta.getLabel()) || viewAllCta.getLabel().equals(bundle.getResourceBundle("essentials.global","button.find-out-more",  locale))) {
+        } else {
             viewAllCta.setLabel(bundle.getResourceBundle(BUNDLE_ID, "canned-search.listview", locale));
         }
         module.setViewAllLink(viewAllCta);

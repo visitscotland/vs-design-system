@@ -150,12 +150,12 @@ class CannedSearchFactoryTest {
         Assertions.assertEquals("default cta", module.getViewAllLink().getLabel());
     }
 
-    @DisplayName("If invalid tours search url provided, then exception thrown")
+    @DisplayName("If invalid tours search url provided, then null returned")
     @Test
     void cannedSearchTours_badToursSearchUrl() {
         CannedSearchTours tours = new CannedSearchToursMockBuilder()
                 .toursSearch("invalid url").build();
-        Assertions.assertThrows(IllegalArgumentException.class, () -> factory.getCannedSearchToursModule(tours, Locale.UK));
+        Assertions.assertNull(factory.getCannedSearchToursModule(tours, Locale.UK));
     }
 
 }
