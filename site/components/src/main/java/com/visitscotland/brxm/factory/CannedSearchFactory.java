@@ -47,7 +47,7 @@ public class CannedSearchFactory {
         }
         module.setViewAllLink(viewAllCta);
 
-        module.setCannedSearchEndpoint(productSearch().fromHippoBean(document.getCriteria().getSearch()).buildCannedSearch());
+        module.setCannedSearchEndpoint(productSearch().fromHippoBean(document.getCriteria().getSearch()).locale(locale).buildCannedSearch());
 
         if (document.getCriteria().getSearch().getProductType().equals(ProductTypes.EVENT.getId())){
             module.setCredit(bundle.getResourceBundle(BUNDLE_ID,"canned-search.credit-events", locale));

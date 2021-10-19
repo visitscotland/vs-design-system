@@ -275,10 +275,6 @@ public class ProductSearchBuilder {
      * Composes a search URL depending on if the endpoint are internal or external and if they are consumed by a front-end
      * or a back-end application.
      *
-     * @param path
-     * @param dataEndpoint
-     * @param internal
-     * @return
      */
     private String buildSearchUrl(String path, boolean dataEndpoint, boolean internal){
         if (productTypes == null){
@@ -286,6 +282,10 @@ public class ProductSearchBuilder {
         }
 
         if (dataEndpoint){
+            if (locale != null) {
+                path = addParams(path, LOCALE, locale.toLanguageTag());
+            }
+
             if (internal && !Contract.isEmpty(properties.getDmsDataHost())) {
                 return composeUrl(properties.getDmsDataHost() + path);
             } else if (!internal && !Contract.isEmpty(properties.getDmsDataPublicHost())) {
@@ -295,9 +295,9 @@ public class ProductSearchBuilder {
             }
         } else {
             if (Contract.isEmpty(properties.getDmsHost())) {
-                return composeUrl(path);
+                return composeUrl(Language.getLanguageForLocale(locale).getDMSPathVariable() + path);
             } else {
-                return composeUrl(properties.getDmsHost() + path);
+                return composeUrl(properties.getDmsHost() + Language.getLanguageForLocale(locale).getDMSPathVariable() + path);
             }
         }
     }

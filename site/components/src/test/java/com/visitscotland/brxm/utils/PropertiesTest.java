@@ -202,6 +202,23 @@ class PropertiesTest {
     }
 
     @Test
+    @DisplayName("Read properties from hosts configuration for language subsites")
+    void propertiesFromParentConfiguration(){
+        final String ENV_PROPERTIES = "environment-properties";
+
+        Mount mount = mock(Mount.class);
+        Mount parent = mock(Mount.class);
+
+        when(utils.getResolvedMount(null)).thenReturn(mount);
+        when(mount.getParent()).thenReturn(parent);
+        when(parent.getProperty("visitscotland:cmsProperties")).thenReturn(ENV_PROPERTIES);
+
+        properties.getInstagramToken();
+
+        Mockito.verify(bundle, atLeastOnce()).getResourceBundle(eq(ENV_PROPERTIES), any(), eq(Locale.UK));
+    }
+
+    @Test
     @DisplayName("VS-2756 - Return InternalSites as a list")
     void getInternalSites(){
         when(bundle.getResourceBundle(Properties.DEFAULT_ID, Properties.INTERNAL_SITES, Locale.UK)).thenReturn("  aaa , bbb,,,ccc,");
