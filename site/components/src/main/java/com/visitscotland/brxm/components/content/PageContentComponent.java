@@ -8,7 +8,6 @@ import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.SignpostModule;
-import com.visitscotland.brxm.utils.ContentComponent;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;

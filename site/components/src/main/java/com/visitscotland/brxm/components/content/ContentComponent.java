@@ -1,4 +1,4 @@
-package com.visitscotland.brxm.utils;
+package com.visitscotland.brxm.components.content;
 
 import org.hippoecm.hst.configuration.hosting.Mount;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
