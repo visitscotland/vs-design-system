@@ -2,6 +2,7 @@ package com.visitscotland.brxm.utils;
 
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.configuration.hosting.Mount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -210,13 +211,14 @@ public class Properties {
      * @return Resource Bundle id for the configuration
      */
     private String getEnvironmentProperties(){
-        if (utils.getResolvedMount(null) != null) {
-            String bundleId = utils.getResolvedMount(null).getProperty("visitscotland:cmsProperties");
+        final Mount mount = utils.getResolvedMount(null);
+        if (mount  != null) {
+            String bundleId = mount.getProperty("visitscotland:cmsProperties");
             if (bundleId != null){
                 return bundleId;
-            } else {
+            } else if (mount.getParent() != null){
                 //Other languages and data endpoints are mounted as subsites in the configuration
-                bundleId = utils.getResolvedMount(null).getParent().getProperty("visitscotland:cmsProperties");
+                bundleId = mount.getParent().getProperty("visitscotland:cmsProperties");
 
                 if (bundleId != null){
                     return bundleId;
