@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 81cf90d3-a427-4a6d-85f6-0de65794d5a9
   hippo:name: Travel Information Transports
-  hippo:versionHistory: 8d81b520-a8de-477c-bcec-3053a74508e7
+  hippo:versionHistory: 8b1a075d-bc56-4f4c-8ee0-f7b6ce1774ef
   /travel-information-transports[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,7 +13,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-10-20T14:03:42.816+01:00
-    hippostdpubwf:lastModificationDate: 2021-10-20T14:09:43.528+01:00
+    hippostdpubwf:lastModificationDate: 2021-10-20T16:54:33.932+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
       '', '', '']
@@ -27,8 +27,8 @@
       '', '']
     resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '', '', '', '',
       '', '']
-    resourcebundle:messages_fr: ['', '', '', '', Le Ferry, Le Plane, '', '', '', '',
-      '', Le Tram, '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '']
     resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '', '',
       '', '']
     resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '', '',
@@ -42,7 +42,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-10-20T14:03:42.816+01:00
-    hippostdpubwf:lastModificationDate: 2021-10-20T14:10:20.626+01:00
+    hippostdpubwf:lastModificationDate: 2021-10-20T16:55:10.923+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
       '', '', '']
@@ -56,8 +56,8 @@
       '', '']
     resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '', '', '', '',
       '', '']
-    resourcebundle:messages_fr: ['', '', '', '', Le Ferry, Le Plane, '', '', '', '',
-      '', Le Tram, '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '']
     resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '', '',
       '', '']
     resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '', '',
@@ -71,9 +71,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-10-20T14:03:42.816+01:00
-    hippostdpubwf:lastModificationDate: 2021-10-20T14:10:20.626+01:00
+    hippostdpubwf:lastModificationDate: 2021-10-20T16:55:10.923+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-10-20T14:10:22.031+01:00
+    hippostdpubwf:publicationDate: 2021-10-20T16:55:13.654+01:00
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
       '', '', '']
     resourcebundle:id: travel-information-transports
@@ -86,8 +86,8 @@
       '', '']
     resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '', '', '', '',
       '', '']
-    resourcebundle:messages_fr: ['', '', '', '', Le Ferry, Le Plane, '', '', '', '',
-      '', Le Tram, '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '']
     resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '', '',
       '', '']
     resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '', '',
