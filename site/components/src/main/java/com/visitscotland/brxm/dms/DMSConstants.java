@@ -84,6 +84,7 @@ public class DMSConstants {
     public static final String PRODUCT_SEARCH_DATA_MAP = "/product-search/map?";
     public static final String VS_DMS_PRODUCT_CARD = "/private/products/card?";
     public static final String VS_DMS_CANNED_SEARCH = "/component/cannedsearch?";
+    public static final String VS_DMS_CANNED_SEARCH_TOURS = "/component/cannedsearchtours";
     public static final String META_PRODUCT_LIST = "/meta/%s/list?%s";
     public static final String META_LOCATIONS = "/meta/location/list?full";
 
