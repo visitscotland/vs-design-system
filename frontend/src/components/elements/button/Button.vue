@@ -206,6 +206,10 @@ export default {
                 return this.outlineColour;
             }
 
+            if (this.variant === 'secondary') {
+                return 'dark';
+            }
+
             if (this.variant === 'transparent') {
                 return 'primary';
             }
