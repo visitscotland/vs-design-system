@@ -83,7 +83,6 @@ public class LinkService {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
             ProductSearchBuilder psb = productSearch().fromHippoBean(productSearchLink.getSearch()).locale(locale);
 
-            //TODO: Localize this URL (The localized URL is currently broken in feature environments
             return new FlatLink(bundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build(), LinkType.INTERNAL);
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;
@@ -146,19 +145,18 @@ public class LinkService {
     }
 
     /**
-     * Detects if the URLs is belong to the DMS
-     *
-     * @param locale
-     * @param site
-     * @param path
-     * @return
+     * TODO Refactor this method when DMS language URLs are the same as CMS language URLs
      */
     private String localize(Locale locale, String site, String path) {
-        String languagePath = path.matches(DMS_PAGE) ?
+        boolean isDms = path.matches(DMS_PAGE);
+        String languagePath = isDms ?
                 Language.getLanguageForLocale(locale).getDMSPathVariable() : Language.getLanguageForLocale(locale).getCMSPathVariable();
+
 
         if (path.startsWith(languagePath)) {
             return site + path;
+        } else if (isDms && path.startsWith(Language.getLanguageForLocale(locale).getCMSPathVariable())) {
+            return site + languagePath + path.substring(path.indexOf("/",1));
         } else {
             return site + languagePath + path;
         }
@@ -187,9 +185,9 @@ public class LinkService {
         } else if (link instanceof ExternalLink) {
             url = ((ExternalLink) link).getLink();
         } else if (link instanceof ProductsSearch) {
-            url = productSearch().fromHippoBean(((ProductsSearch) link)).build();
+            url = productSearch().fromHippoBean(((ProductsSearch) link)).locale(locale).build();
         } else if (link instanceof ProductSearchLink) {
-            url = productSearch().fromHippoBean(((ProductSearchLink) link).getSearch()).build();
+            url = productSearch().fromHippoBean(((ProductSearchLink) link).getSearch()).locale(locale).build();
         } else if (link instanceof ExternalDocument) {
             url = ((ExternalDocument) link).getLink();
         } else {

@@ -12,6 +12,7 @@ import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
+import org.jetbrains.annotations.NotNull;
 import org.onehippo.forge.selection.hst.contentbean.ValueList;
 import org.onehippo.forge.selection.hst.util.SelectionUtil;
 import org.slf4j.Logger;
@@ -59,9 +60,19 @@ public class HippoUtilsService {
             final boolean FULLY_QUALIFIED = false;
             HstRequestContext requestContext = RequestContextProvider.get();
 
-            HstLink link = requestContext.getHstLinkCreator().create(document, requestContext);
+            HstLink link = requestContext.getHstLinkCreator().create(getLocalizedDocument(document), requestContext);
             return link.toUrlForm(requestContext, FULLY_QUALIFIED);
         }
+    }
+
+    private HippoBean getLocalizedDocument(@NotNull Page document){
+        HippoBean localizedDocument= document;
+
+        if (!getRequestLocale().toLanguageTag().contains(document.getLocaleString())) {
+            localizedDocument = document.getAvailableTranslations().getTranslation(getRequestLocale().getLanguage());
+        }
+
+        return localizedDocument != null? localizedDocument : document;
     }
 
     /**
@@ -134,9 +145,7 @@ public class HippoUtilsService {
     }
 
     /**
-     * Extract a parameter from the URL (without namespace)
-     *
-     * @return value of the query parameter or null if such parameter hasn't been defined
+     * @return Returns the locale for the current request
      */
     @NonTestable(NonTestable.Cause.BRIDGE)
     public Locale getRequestLocale(){
