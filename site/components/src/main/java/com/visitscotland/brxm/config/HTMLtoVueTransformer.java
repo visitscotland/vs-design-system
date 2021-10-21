@@ -70,10 +70,10 @@ public class HTMLtoVueTransformer {
          * 2. The value of the attribute href
          * 3. Closing tag: "</a>"
          */
-        final Pattern aTag = Pattern.compile("(<a\\s).*?href\\s?=\\s?\"(.*?)\".*?(</a>)");
+        final Pattern aTag = Pattern.compile("(<a\\s)(\\S*+\\s)?href\\s?=\\s?\"(.*?)\".*?(</a>)");
         final int OPEN = 1;
-        final int HREF = 2;
-        final int CLOSE = 3;
+        final int HREF = 3;
+        final int CLOSE = 4;
 
         Matcher matcher = aTag.matcher(html);
         String output = html;
