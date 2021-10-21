@@ -30,7 +30,7 @@
 
                 <vs-social-credit-link
                     slot="social-link"
-                    credit="${(imageDetails.credit)!'${label('essentials.global', 'image.no.credit')}'}"
+                    credit="<#if imageDetails.credit??>${imageDetails.credit}<#else>${label('essentials.global', 'image.no.credit')}</#if>"
                     social-post-url="${imageDetails.postUrl}"
                     source="${imageDetails.source}"
                 ></vs-social-credit-link>
