@@ -4,10 +4,12 @@
 <#include "../modules/article/article.ftl">
 <#include "../modules/long-copy/long-copy.ftl">
 <#include "../modules/iknow-community/iknow-community.ftl">
+<#include "../modules/travel-information/travel-information.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 <#include "../modules/horizontal-list/horizontal-list.ftl">
 <#include "../modules/stackla/stackla.ftl">
+<#include "../modules/canned-search/canned-search.ftl">
 <#include "theme-calculator.ftl">
 
 <#-- Implicit Request Objects -->
@@ -41,7 +43,7 @@
             <@megalinks item=module type=module.getType() theme=themeName />
 
         <#elseif moduleType == "HorizontalListLinksModule">
-            <@horizontalList module themeName/>
+            <@horizontalList module themeName />
 
         <#elseif moduleType == "ICentreModule">
             <@icentre module themeName/>
@@ -60,6 +62,12 @@
 
         <#elseif module.getType()== "StacklaModule">
             <@stackla module/>
+
+        <#elseif module.getType()== "TravelInformationModule">
+            <@travelInformation module/>
+
+        <#elseif module.getType()== "CannedSearchModule">
+            <@cannedSearch module themeName/>
         </#if>
     </div>
 </#macro>

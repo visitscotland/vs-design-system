@@ -23,14 +23,17 @@
 @import "~bootstrap/scss/images";
 @import "~bootstrap/scss/input-group";
 @import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/nav";
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/tooltip";
-
+@import "~bootstrap/scss/popover";
 
 @import "~bootstrap-vue/src/variables";
 
 /* Bootstrap vue components */
 @import "~bootstrap-vue/src/components/dropdown/dropdown";
+@import "~bootstrap-vue/src/components/popover/popover";
 @import "~bootstrap-vue/src/components/tooltip/tooltip";
 
 @import "./global-styles.scss";

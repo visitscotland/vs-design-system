@@ -5,7 +5,6 @@
         data-test="vs-accordion__item"
     >
         <BCardHeader
-            role="tab"
             class="vs-accordion-item__card-header"
             data-test="vs-accordion__item-header"
         >
@@ -150,6 +149,7 @@ export default {
 <style lang="scss">
 .vs-accordion-item.card {
     border: 0;
+    border-top: 1px solid $color-gray-tint-5;
 
     .vs-accordion-item__card-header {
         padding: 0;
@@ -159,13 +159,19 @@ export default {
 
     .btn.vs-accordion-toggle {
         text-align: left;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-lg;
+        letter-spacing: normal;
+        padding: $spacer-3;
 
+        &.vs-button.btn.btn-transparent:focus{
+            box-shadow: 0 0 0 0.1rem $color-pink inset;
+        }
     }
 
     .vs-accordion-item__title {
         margin: $spacer-3;
         line-height: 1;
-        font-weight: $font-weight-semi-bold;
     }
 
     .vs-accordion-item__panel.card-body {
@@ -174,10 +180,6 @@ export default {
 }
 
 @include no-js {
-    .vs-accordion-toggle .vs-icon {
-        display: none;
-    }
-
     .vs-accordion-item .vs-accordion-item__panel {
         display: block!important;
     }
@@ -187,23 +189,27 @@ export default {
 <docs>
   ```js
     <VsAccordion>
-        <VsAccordionItem :open-by-default="true" variant="dark" control-id="accordion_item_1">
+        <VsAccordionItem
+            :open-by-default="true"
+            variant="transparent"
+            control-id="accordion_item_1"
+        >
             <span slot="title">
                 This is a title
             </span>
 
             <VsIcon
                 name="chevron"
-                orientation="down"
-                variant="light"
-                size="xs"
+                variant="dark"
+                size="sm"
                 slot="icon-open"
             />
 
             <VsIcon
                 name="chevron"
-                variant="light"
-                size="xs"
+                orientation="down"
+                variant="dark"
+                size="sm"
                 slot="icon-closed"
             />
 
@@ -215,23 +221,27 @@ export default {
             </div>
         </VsAccordionItem>
 
-        <VsAccordionItem :open-by-default="false" variant="dark" control-id="accordion_item_2">
+        <VsAccordionItem
+            :open-by-default="false"
+            variant="transparent"
+            control-id="accordion_item_2"
+        >
             <span slot="title">
                 This is a title
             </span>
 
             <VsIcon
                 name="chevron"
-                orientation="down"
-                variant="light"
-                size="xs"
+                variant="dark"
+                size="sm"
                 slot="icon-open"
             />
 
             <VsIcon
                 name="chevron"
-                variant="light"
-                size="xs"
+                orientation="down"
+                variant="dark"
+                size="sm"
                 slot="icon-closed"
             />
 
@@ -242,23 +252,27 @@ export default {
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
         </VsAccordionItem>
-        <VsAccordionItem :open-by-default="false" variant="dark" control-id="accordion_item_3">
+        <VsAccordionItem
+            :open-by-default="false"
+            variant="transparent"
+            control-id="accordion_item_3"
+        >
             <span slot="title">
                 This is a title
             </span>
 
             <VsIcon
                 name="chevron"
-                orientation="down"
-                variant="light"
-                size="xs"
+                variant="dark"
+                size="sm"
                 slot="icon-open"
             />
 
             <VsIcon
                 name="chevron"
-                variant="light"
-                size="xs"
+                orientation="down"
+                variant="dark"
+                size="sm"
                 slot="icon-closed"
             />
 

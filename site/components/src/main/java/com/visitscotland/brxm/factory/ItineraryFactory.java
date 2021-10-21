@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
@@ -63,6 +65,12 @@ public class ItineraryFactory {
 
         for (Day day : page.getDays()) {
             for (Stop stop : day.getStops()) {
+                if (page.getStops() != null && page.getStops().containsKey(stop.getIdentifier())) {
+                    contentLogger.error("Duplicate stop {} found on itinerary {}", stop.getPath(), itinerary.getPath());
+                    page.addErrorMessage(String.format("Duplicate stop '%s' found on itinerary", stop.getTitle()));
+                    continue;
+                }
+
                 ItineraryStopModule module = generateStop(locale, stop, itinerary, index++);
 
                 lastStop = module;
@@ -208,7 +216,7 @@ public class ItineraryFactory {
             return;
         }
 
-        module.setCtaLink(new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL));
+        module.setCtaLink(new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).get(URL_LINK).asText(), LinkType.INTERNAL));
         module.setFacilities(utils.getKeyFacilities(product));
 
         if (module.getImage() == null && product.has(IMAGE)) {
@@ -241,8 +249,5 @@ public class ItineraryFactory {
             module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
                      module.getCtaLink().getLink() + "#opening", null));
         }
-
     }
-
-
 }

@@ -84,10 +84,9 @@ public class InternalResource extends AbstractResource {
         }
 
         if (locale != null) {
-            languageSubsite = "/" + Language.getLanguageForLocale(Locale.forLanguageTag(locale)).getCMSPathVariable();
+            languageSubsite = Language.getLanguageForLocale(Locale.forLanguageTag(locale)).getCMSPathVariable();
         }
 
-        // TODO: Use request.getRequestContext().getBaseURL().getContextPath() instead?
         return  properties.getCmsBasePath() + languageSubsite + "/internal" +
                 utils.buildQueryString(parameters, StandardCharsets.UTF_8.name());
     }

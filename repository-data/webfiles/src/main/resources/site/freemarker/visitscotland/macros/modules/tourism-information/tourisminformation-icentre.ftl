@@ -15,7 +15,7 @@
         <#assign image = module.image.externalImage!'' />
     </#if>
 
-    <vs-module-wrapper class="theme-${themeName}">
+    <vs-module-wrapper theme="<#if themeName?has_content>${themeName}<#else>light</#if>">
         <template slot="vsModuleWrapperHeading">
             ${module.title}
         </template>

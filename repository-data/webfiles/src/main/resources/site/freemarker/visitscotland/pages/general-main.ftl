@@ -1,12 +1,12 @@
 <#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
+<#include "../macros/modules/page-intro/social-share.ftl">
 <#include "../../frontend/components/vs-container.ftl">
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-heading.ftl">
-<#include "../../frontend/components/vs-social-share.ftl">
 
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/cms-errors.ftl">
@@ -26,7 +26,6 @@
 	<@hst.manageContent hippobean=document/>
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
-
     <#if standardTemplate>
         <@pageIntro content=document heroDetails=heroImage />
     <#else>
@@ -45,11 +44,13 @@
 
 	</#list>
 
+    <@socialShare nojs=true/>
+
 	<#if otyml??>
-		<@horizontalList otyml />
+		<@horizontalList otyml themeName />
 	</#if>
 
 	<#if newsletterSignpost??>
-		<@signpost newsletterSignpost />
+		<@signpost module=newsletterSignpost imgSrc="assets/images/illustrations/newsletter.svg"/>
 	</#if>
 </div>

@@ -10,6 +10,7 @@ import com.visitscotland.brxm.model.megalinks.*;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,7 +61,7 @@ public class MegalinkFactoryTest {
 
     @BeforeEach
     public void beforeEach() {
-        when(linkService.getPlainLink(any(SharedLink.class), any())).thenReturn(PLAIN_LINK);
+        when(linkService.getPlainLink(any(), any(HippoCompound.class), any())).thenReturn(PLAIN_LINK);
     }
 
 
@@ -193,7 +194,7 @@ public class MegalinkFactoryTest {
     void horizontalListLayout_OTYML_defaultLabel() {
         OTYML otyml = mock (OTYML.class);
 
-        when (resourceBundleService.getResourceBundle("otyml", "otyml.title.default", Locale.UK ,true)).thenReturn("otyml");
+        when (resourceBundleService.getResourceBundle("otyml", "otyml.title.default", Locale.UK )).thenReturn("otyml");
 
         HorizontalListLinksModule module= factory.horizontalListLayout(otyml,Locale.UK);
         assertEquals("otyml", module.getTitle());
@@ -206,7 +207,7 @@ public class MegalinkFactoryTest {
 
         LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
 
-        Assertions.assertEquals(layout.getType(), "SingleImageLinksModule");
+        Assertions.assertEquals("SingleImageLinksModule", layout.getType());
 
     }
 

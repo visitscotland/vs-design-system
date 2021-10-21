@@ -9,9 +9,8 @@
 <script>
 import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
 import VsItineraryMapMarker from '@components/patterns/itineraries/components/itinerary-map/components/ItineraryMapMarker';
-import osBranding from '@/utils/os-branding';
-
 import Vue from 'vue';
+import osBranding from '@/utils/os-branding';
 
 let mapboxgl = null;
 let geojsonExtent = null;
@@ -28,11 +27,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     props: {
-        accessToken: {
-            type: String,
-            required: false,
-            default: '',
-        },
         labels: {
             type: Object,
             required: true,

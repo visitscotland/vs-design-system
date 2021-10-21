@@ -13,7 +13,7 @@ const {
     map,
 } = require('lodash');
 const { visit } = require('ast-types');
-const { packageName } = require('./utils.js');
+const { packageName } = require('./utils');
 
 function getLocalPackageName() {
     return packageName || 'local';

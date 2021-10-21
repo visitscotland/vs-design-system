@@ -105,6 +105,10 @@ export default {
         return {
             iconLookup: [
                 {
+                    key: 'accesstoliet',
+                    value: 'accessible-toilet',
+                },
+                {
                     key: 'accessparkdrop',
                     value: 'facility-accessparkdrop',
                 },
@@ -145,6 +149,10 @@ export default {
                     value: 'facility-dsblaccess',
                 },
                 {
+                    key: 'wheelchairaccess',
+                    value: 'facility-dsblaccess',
+                },
+                {
                     key: 'even',
                     value: 'product-events',
                 },
@@ -155,6 +163,10 @@ export default {
                 {
                     key: 'filmev',
                     value: 'film-tv',
+                },
+                {
+                    key: 'hottub',
+                    value: 'hot-tub',
                 },
                 {
                     key: 'parking',
@@ -173,6 +185,10 @@ export default {
                     value: 'public-transport',
                 },
                 {
+                    key: 'pubtranrte',
+                    value: 'public-transport',
+                },
+                {
                     key: 'reta',
                     value: 'product-shopping',
                 },
@@ -181,12 +197,20 @@ export default {
                     value: 'wellness',
                 },
                 {
+                    key: 'vege',
+                    value: 'vegan-vegetarian',
+                },
+                {
                     key: 'walking',
                     value: 'walk',
                 },
                 {
                     key: 'transport',
                     value: 'transport',
+                },
+                {
+                    key: 'brekavail',
+                    value: 'breakfast-available',
                 },
             ],
         };

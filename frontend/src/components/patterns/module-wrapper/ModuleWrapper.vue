@@ -1,6 +1,8 @@
 <template>
     <section
         class="vs-module-wrapper"
+        data-test="vs-module-wrapper"
+        :class="`vs-module-wrapper--${theme}`"
         v-bind="$attrs"
     >
         <VsContainer
@@ -10,8 +12,8 @@
                 <VsCol
                     cols="10"
                     offset="1"
-                    sm="8"
-                    offset-sm="2"
+                    md="8"
+                    offset-md="2"
                 >
                     <VsHeading
                         level="2"
@@ -70,6 +72,16 @@ export default {
         VsRow,
         VsCol,
     },
+    props: {
+        /**
+        * Theme of module wrapper to use
+        */
+        theme: {
+            type: String,
+            default: 'light',
+            validator: (value) => value.match(/(light|grey|dark)/),
+        },
+    },
 };
 </script>
 
@@ -84,6 +96,7 @@ export default {
         }
 
         &__intro {
+            display: block;
             margin-bottom: $spacer-9;
 
             p:last-of-type {
@@ -96,13 +109,17 @@ export default {
             padding-bottom: $spacer-12;
         }
 
-        &.theme-grey {
+        &--grey {
             background-color: $theme-grey;
         }
 
-        &.theme-dark {
+        &--dark {
             background-color: $theme-dark;
             color: $color-white;
+
+            .vs-module-wrapper__heading.vs-heading {
+                color: $color-yellow;
+            }
         }
     }
 </style>
@@ -110,6 +127,40 @@ export default {
 <docs>
     ```
         <VsModuleWrapper>
+            <template slot="vsModuleWrapperHeading">
+                Proin interdum quam non semper consequat
+            </template>
+
+            <template slot="vsModuleWrapperIntro">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Nullam condimentum eu ligula sed tristique.
+                Maecenas et sem non libero gravida vulputate vel sit amet diam.
+                Pellentesque cursus ex aliquam aliquam dignissim.
+                Nullam dui risus, pulvinar sit amet nibh a, ultrices tempor purus.</p>
+                <p>Facilisi. In porttitor congue massa, id porttitor sem mattis sit amet.</p>
+            </template>
+
+            <h1>Main content would start here</h1>
+        </VsModuleWrapper>
+
+        <VsModuleWrapper theme="dark">
+            <template slot="vsModuleWrapperHeading">
+                Proin interdum quam non semper consequat
+            </template>
+
+            <template slot="vsModuleWrapperIntro">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Nullam condimentum eu ligula sed tristique.
+                Maecenas et sem non libero gravida vulputate vel sit amet diam.
+                Pellentesque cursus ex aliquam aliquam dignissim.
+                Nullam dui risus, pulvinar sit amet nibh a, ultrices tempor purus.</p>
+                <p>Facilisi. In porttitor congue massa, id porttitor sem mattis sit amet.</p>
+            </template>
+
+            <h1>Main content would start here</h1>
+        </VsModuleWrapper>
+
+        <VsModuleWrapper theme="grey">
             <template slot="vsModuleWrapperHeading">
                 Proin interdum quam non semper consequat
             </template>

@@ -1,11 +1,12 @@
 package com.visitscotland.brxm.report.translation;
 
 import java.util.List;
+import java.util.Set;
 
 public class DocumentTranslationReportModel {
     public DocumentTranslationReportModel(String handleId, String displayName, String translationStatus,
-                                          TranslationPriority translationPriority, List<String> translatedLocales,
-                                          List<String> sentForTranslationLocales, String type, String lastModified, String lastModifiedBy,
+                                          TranslationPriority translationPriority, Set<String> translatedLocales,
+                                          Set<String> sentForTranslationLocales, Set<String> clonedLocales, String type, String lastModified, String lastModifiedBy,
                                           PublishStatus publishStatus) {
         this.handleId = handleId;
         this.displayName = displayName;
@@ -13,15 +14,18 @@ public class DocumentTranslationReportModel {
         this.translationPriority = translationPriority.toString();
         this.translationStatus = translationStatus;
         this.sentForTranslationLocales = sentForTranslationLocales;
+        this.clonedLocales = clonedLocales;
         this.type = type;
         this.lastModified = lastModified;
         this.lastModifiedBy = lastModifiedBy;
         this.publishStatus = publishStatus;
     }
 
+
     private final String displayName;
-    private final List<String> translatedLocales;
-    private final List<String> sentForTranslationLocales;
+    private final Set<String> translatedLocales;
+    private final Set<String> sentForTranslationLocales;
+    private final Set<String> clonedLocales;
     private final String translationStatus;
     private final String handleId;
     private final String translationPriority;
@@ -34,7 +38,7 @@ public class DocumentTranslationReportModel {
         return displayName;
     }
 
-    public List<String> getTranslatedLocales() {
+    public Set<String> getTranslatedLocales() {
         return translatedLocales;
     }
 
@@ -42,7 +46,7 @@ public class DocumentTranslationReportModel {
         return translationStatus;
     }
 
-    public List<String> getSentForTranslationLocales() {
+    public Set<String> getSentForTranslationLocales() {
         return sentForTranslationLocales;
     }
 
@@ -68,5 +72,9 @@ public class DocumentTranslationReportModel {
 
     public PublishStatus getPublishStatus() {
         return publishStatus;
+    }
+
+    public Set<String> getClonedLocales() {
+        return clonedLocales;
     }
 }

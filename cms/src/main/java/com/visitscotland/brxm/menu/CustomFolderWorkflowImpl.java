@@ -17,11 +17,13 @@ public class CustomFolderWorkflowImpl extends FolderWorkflowImpl {
 
     private final Node subjectNode;
     private final MenuItemProvider menuItemProvider;
+    private final WorkflowContext context;
 
     public CustomFolderWorkflowImpl(WorkflowContext context, Session userSession, Session rootSession, Node subject) throws RepositoryException {
         super(context, userSession, rootSession, subject);
         subjectNode = subject;
         menuItemProvider = VsComponentManager.get(MenuItemProvider.class);
+        this.context = context;
     }
 
     /**
@@ -35,7 +37,7 @@ public class CustomFolderWorkflowImpl extends FolderWorkflowImpl {
     @Override
     protected Map<String, Set<String>> prototypes() {
         Map<String, Set<String>> prototypes = super.prototypes();
-        menuItemProvider.constructPageAndModuleMenus(this.subjectNode, prototypes);
+        menuItemProvider.constructPageAndModuleMenus(this.subjectNode, prototypes, this.context.getWorkflowConfiguration());
         return prototypes;
     }
 

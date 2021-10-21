@@ -5,12 +5,12 @@
 <#include "../../frontend/components/vs-container.ftl">
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
-<#include "../../frontend/components/vs-social-share.ftl">
 <#include "../../frontend/components/vs-heading.ftl">
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-listicle-item.ftl">
 <#include "../../frontend/components/vs-panel.ftl">
 
+<#include "../macros/modules/page-intro/social-share.ftl">
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/shared/module-builder.ftl">
@@ -54,21 +54,21 @@
                         </template>
                     </#if>
 
-                            <vs-rich-text-wrapper variant="lead">
-                                <@hst.html hippohtml=document.listicleClosing.copy/>
-                            </vs-rich-text-wrapper>
-                        </vs-panel>
-                    </vs-col>
-                </vs-row>
+                    <vs-rich-text-wrapper variant="lead">
+                        <@hst.html hippohtml=document.listicleClosing.copy/>
+                    </vs-rich-text-wrapper>
+                </vs-panel>
+            </vs-col>
+        </vs-row>
         </#if>
 
+    <@socialShare nojs=true/>
+
     <#if otyml??>
-        <@horizontalList otyml />
+        <@horizontalList otyml themeName />
     </#if>
 
     <#if newsletterSignpost??>
-        <@signpost newsletterSignpost />
-    </#if>
-
-	</vs-container>
+		<@signpost module=newsletterSignpost imgSrc="assets/images/illustrations/newsletter.svg"/>
+	</#if>
 </div>

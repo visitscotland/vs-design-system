@@ -109,7 +109,7 @@ export default {
     }
 
     &__links {
-        font-size: $display3-size;
+        font-size: $display4-size;
         margin-bottom: $spacer-9;
 
         @include media-breakpoint-up(lg) {
@@ -153,7 +153,7 @@ export default {
     &__links-contained {
         margin-bottom: $spacer-0;
         margin-top: $spacer-9;
-        font-size: $display3-size;
+        font-size: $display4-size;
 
         @include media-breakpoint-up(lg) {
             line-height: $spacer-7;
@@ -168,7 +168,7 @@ export default {
 
 <docs>
 ```jsx
-    <VsModuleWrapper class="theme-grey">
+    <VsModuleWrapper theme="grey">
         <template slot="vsModuleWrapperHeading">
             A tip from your local experts
         </template>
@@ -219,7 +219,7 @@ export default {
         </VsIcentre>
     </VsModuleWrapper>
     <br>
-    <VsModuleWrapper class="theme-grey">
+    <VsModuleWrapper theme="grey">
         <template slot="vsModuleWrapperHeading">
             A tip from your local experts
         </template>
