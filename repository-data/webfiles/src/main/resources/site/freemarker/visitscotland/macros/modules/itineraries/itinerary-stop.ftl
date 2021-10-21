@@ -35,10 +35,10 @@
         stop-label="${stop.title}"
         stop-title="${stop.subTitle!''}"
     >
-        <@hst.manageContent hippobean=stop.hippoBean />
         <@cmsErrors errors=stop.errorMessages!"" editMode=editMode />
         <#if image?? && image?has_content> 
-            <template slot="stop-image">
+            <template slot="stop-image" class="has-edit-button">
+                <@hst.manageContent hippobean=stop.hippoBean />
                 <@imageWithCaption imageSrc=image imageDetails=stop.image variant="fullwidth"/>
             </template>
         </#if>
