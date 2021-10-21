@@ -34,7 +34,7 @@ public class Properties {
     //Environment
     static final String USE_RELATIVE_URLS = "links.use-relative-urls";
     static final String INTERNAL_SITES = "links.internal-sites";
-    static final String CMS_BASE_PATH = "links.cms-base-path-url";
+    static final String CMS_BASE_PATH = "links.cms-base-path.url";
     static final String CONVERT_TO_RELATIVE = "links.convert-to-relative";
 
     // DMS Properties
