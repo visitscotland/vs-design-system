@@ -190,4 +190,17 @@ class HTMLtoVueTransformerTest {
         Assertions.assertTrue(result.contains(" type=\"download\""));
         Assertions.assertTrue(result.contains("(PDF 3GB)"));
     }
+
+    @Test
+    @DisplayName("VS-2733 - Links with attributes are interpreted")
+    void links_withAttributes(){
+        final String HTML = "<p>Take a look at the " +
+                "<a rel=\"nofollow\" href=\"https://www.visitscotland.com/pdf/\" title=\"iKnow Community\" target=\"_blank\">iKnow Scotland Community</a></p>";
+
+        when(linkService.getType("https://www.visitscotland.com/pdf/")).thenReturn(LinkType.INTERNAL);
+
+        String result = transformer.processLinks(HTML);
+
+        Assertions.assertTrue(result.contains("<vs-link "));
+    }
 }

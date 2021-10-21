@@ -70,22 +70,26 @@ public class HTMLtoVueTransformer {
          * 2. The value of the attribute href
          * 3. Closing tag: "</a>"
          */
-        Pattern aTag = Pattern.compile("(<a\\s)[.*?\\s]?href\\s?=\\s?\"(.*?)\".*?(</a>)");
+        final Pattern aTag = Pattern.compile("(<a\\s).*?href\\s?=\\s?\"(.*?)\".*?(</a>)");
+        final int OPEN = 1;
+        final int HREF = 2;
+        final int CLOSE = 3;
+
         Matcher matcher = aTag.matcher(html);
         String output = html;
 
         while (matcher.find()) {
             String closingTag;
             String a = matcher.group();
-            LinkType type = linkService.getType(matcher.group(2));
+            LinkType type = linkService.getType(matcher.group(HREF));
 
             if (type.equals(LinkType.DOWNLOAD)){
-                closingTag = linkService.getDownloadText(matcher.group(2))+ "</vs-link>";
+                closingTag = linkService.getDownloadText(matcher.group(HREF))+ "</vs-link>";
             } else {
                 closingTag = "</vs-link>";
             }
-            String vsLink = a.replace(matcher.group(1), "<vs-link type=\""+type.getRichTextType()+"\" ")
-                    .replace(matcher.group(3),closingTag);
+            String vsLink = a.replace(matcher.group(OPEN), "<vs-link type=\""+type.getRichTextType()+"\" ")
+                    .replace(matcher.group(CLOSE),closingTag);
             output = output.replace(a, vsLink);
         }
 
