@@ -119,7 +119,7 @@ export default {
         max-width: 130px;
 
         @include media-breakpoint-up(lg) {
-            padding: 0.3rem $spacer-2;
+            padding: $spacer-2 $spacer-4 $spacer-2 $spacer-3;
         }
 
         &-secondary:not(:disabled):not(.disabled):active {
@@ -147,12 +147,6 @@ export default {
 
     @include media-breakpoint-up(lg) {
         position: relative;
-    }
-
-    .dropdown-toggle {
-        @include media-breakpoint-up(lg) {
-            padding: $spacer-2 $spacer-3;
-        }
     }
 
     &__icon, &__text {

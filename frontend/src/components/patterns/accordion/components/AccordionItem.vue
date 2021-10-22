@@ -165,7 +165,7 @@ export default {
         padding: $spacer-3;
 
         &.vs-button.btn.btn-transparent:focus{
-            box-shadow: 0 0 0 0.1rem $color-pink inset;
+            box-shadow: $shadow-button-focus inset;
         }
     }
 
