@@ -284,10 +284,10 @@ export default {
     }
 
     &:focus {
-        box-shadow: 0 0 0 0.2rem $color-secondary-teal-tint-2;
+        box-shadow: $shadow-button-focus;
     }
 
-    // An ugly selector to match bootstrap specificity, otherwise it forces
+    // This is to match bootstrap specificity, otherwise it forces
     // a pink shadow on primary buttons when active + focussing where we want
     // no shadow
     &:not(:disabled):not(.disabled):active:focus {
