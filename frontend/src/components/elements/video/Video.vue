@@ -18,6 +18,13 @@
         >
             {{ duration.minutes }}:{{ duration.seconds }}
         </p>
+        <p
+            class="vs-video__duration"
+            data-test="vs-video-rounded-duration"
+            v-if="showDuration"
+        >
+            {{ duration.roundedMinutes }} minutes
+        </p>
     </div>
 </template>
 
@@ -77,6 +84,7 @@ export default {
             duration: {
                 minutes: 0,
                 seconds: 0,
+                roundedMinutes: 0,
             },
             showDuration: false,
         };
@@ -138,6 +146,12 @@ export default {
 
             this.duration.minutes = minutes;
             this.duration.seconds = seconds;
+
+            if (seconds < 30 && minutes !== 0) {
+                this.duration.roundedMinutes = minutes;
+            } else {
+                this.duration.roundedMinutes = minutes + 1;
+            }
         },
     },
 };
