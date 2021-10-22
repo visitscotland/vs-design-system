@@ -23,7 +23,7 @@
             data-test="vs-video-rounded-duration"
             v-if="showDuration"
         >
-            {{ duration.roundedMinutes }} minutes
+            {{ duration.roundedMinutes }}
         </p>
     </div>
 </template>
@@ -78,13 +78,35 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * A string to be shown with the rounded time, when the rounded
+         * minute value is singular. Should contain '%s' to be replaced by the
+         * number of minutes
+         *
+         * Eg: '%s minute video', 'Video de %s minuto'
+         */
+        singleMinuteDescriptor: {
+            type: String,
+            default: '%s minute video',
+        },
+        /**
+         * A string to be shown with the rounded time, when the rounded
+         * minute value is plural. Should contain '%s' to be replaced
+         * by the number of minutes
+         *
+         * Eg: '%s minute video', 'Video de %s minutos'
+         */
+        pluralMinuteDescriptor: {
+            type: String,
+            default: '%s minute video',
+        },
     },
     data() {
         return {
             duration: {
                 minutes: 0,
                 seconds: 0,
-                roundedMinutes: 0,
+                roundedMinutes: '',
             },
             showDuration: false,
         };
@@ -147,10 +169,18 @@ export default {
             this.duration.minutes = minutes;
             this.duration.seconds = seconds;
 
+            let roundedMinutes = 1;
+
             if (seconds < 30 && minutes !== 0) {
-                this.duration.roundedMinutes = minutes;
+                roundedMinutes = minutes;
             } else {
-                this.duration.roundedMinutes = minutes + 1;
+                roundedMinutes = minutes + 1;
+            }
+
+            if (roundedMinutes === 1) {
+                this.duration.roundedMinutes = this.singleMinuteDescriptor.replace('%s', roundedMinutes);
+            } else {
+                this.duration.roundedMinutes = this.pluralMinuteDescriptor.replace('%s', roundedMinutes);
             }
         },
         /**
@@ -175,6 +205,13 @@ export default {
             <VsCol md="6">
                 <VsVideo
                     video-id="c05sg3G4oA4"
+                />
+            </VsCol>
+            <VsCol md="6">
+                <VsVideo
+                    video-id="dKI8IEnqvbU"
+                    single-minute-descriptor="Video de %s minuto"
+                    plural-minute-descriptor="Video de %s minutos"
                 />
             </VsCol>
         </VsRow>
