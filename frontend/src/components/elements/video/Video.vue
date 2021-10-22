@@ -16,7 +16,7 @@
             data-test="vs-video-duration"
             v-if="showDuration"
         >
-            {{ duration.minutes }}:{{ duration.seconds }}
+            {{ duration.minutes }}:{{ pad(duration.seconds) }}
         </p>
         <p
             class="vs-video__duration"
@@ -152,6 +152,17 @@ export default {
             } else {
                 this.duration.roundedMinutes = minutes + 1;
             }
+        },
+        /**
+         * Takes a number, returns a string padded with a
+         * leading 0 if the number is less than 10
+         */
+        pad(toPad) {
+            if (toPad >= 10) {
+                return toPad;
+            }
+
+            return `0${toPad}`;
         },
     },
 };
