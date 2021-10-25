@@ -35,7 +35,7 @@
 
                         <vs-link
                             href="${module.link.link}"
-                            type="<#if module.link.type?? & module.link.type != 'internal'>${module.link.type}</#if>"
+                            <#if module.link.type && module.link.type != "internal">type="${module.link.type}"</#if>
                         >
                             ${module.link.label}
                         </vs-link>
