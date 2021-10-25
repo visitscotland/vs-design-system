@@ -46,7 +46,7 @@
                     <vs-link
                         class="mb-9 mb-md-10 d-block"
                         href="${module.link.link}"
-                        <#if module.link.type != "internal">type="${module.link.type}"</#if>
+                        type="<#if module.link.type??>${module.link.type}<#else>default</#if>"
                     >
                         ${module.link.label}
                     </vs-link>
