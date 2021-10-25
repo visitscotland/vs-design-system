@@ -39,7 +39,7 @@
         <@cmsErrors errors=stop.errorMessages!"" editMode=editMode />
         <#if image?? && image?has_content> 
             <template slot="stop-image">
-                <@imageWithCaption imageSrc=image imageDetails=stop.image variant="fullwidth"/>
+                <@imageWithCaption imageSrc=image imageDetails=stop.image />
             </template>
         </#if>
 
