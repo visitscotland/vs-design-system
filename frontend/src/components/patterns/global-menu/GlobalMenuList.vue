@@ -81,6 +81,7 @@ export default {
         a {
             padding: 0.65rem $spacer_5;
             max-height: 35px;
+            background: $color-purple;
 
             &:focus {
                 outline: 3px solid $color-pink-tint-5;
@@ -96,8 +97,8 @@ export default {
 
         &--active {
             a {
-            background: $color-white;
-            color: $color-purple-shade-2;
+                background: $color-white;
+                color: $color-purple-shade-2;
 
                 &:hover {
                     color: white;
