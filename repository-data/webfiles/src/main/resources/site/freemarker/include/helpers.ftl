@@ -58,6 +58,11 @@
     </#if>
 </#function>
 
+<#function escapeJSON original>
+    <#assign escaped = original?replace("'", "\\'")>
+    <#assign escaped = escaped?replace("'", "\\'")>
+    <#return original>
+</#function>
 
 
 <#--TODO: polimorphism-->
