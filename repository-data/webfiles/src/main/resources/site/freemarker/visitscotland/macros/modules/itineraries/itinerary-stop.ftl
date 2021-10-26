@@ -117,7 +117,7 @@
             <#if stop.opening??>
                 <template slot="stop-info">
                     <vs-itinerary-stop-info
-                        opening-hours="<@escapeJSON stop.opening/>"
+                        opening-hours="${escapeJSON(stop.opening)}"
                         opening-times-link='${stop.openLink.link}'
                         closed-text='${label("itinerary", "stop.closed")}'
                         closing-soon-text='${label("itinerary", "stop.close.soon")}'

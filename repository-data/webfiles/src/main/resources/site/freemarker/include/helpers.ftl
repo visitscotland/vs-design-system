@@ -62,8 +62,8 @@
 <#--  Usage: ${escapeJSON(stop.opening)} -->
 <#function escapeJSON original>
     <#assign escaped = original?replace("'", "\\'")>
-    <#assign escaped = escaped?replace("'", "\\'")>
-    <#return original>
+    <#assign escaped = escaped?replace("\"", "'")>
+    <#return escaped>
 </#function>
 
 
