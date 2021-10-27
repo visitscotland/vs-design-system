@@ -17,7 +17,6 @@ import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.brxm.dms.DMSConstants;
-import net.bytebuddy.asm.Advice;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.container.ComponentManager;
 import org.junit.jupiter.api.*;
@@ -88,7 +87,7 @@ class LinkServiceTest {
         when(properties.getDmsHost()).thenReturn("http://localhost:8080");
         when(resourceBundle.getCtaLabel(eq(""), any())).thenReturn("Find out more");
 
-        FlatLink link = service.createLink(Locale.UK, externalLink);
+        FlatLink link = service.createCTALink(any(), eq(Locale.UK), externalLink);
 
         assertEquals("http://fake.link", link.getLink());
         assertEquals("Find out more", link.getLabel());
@@ -127,7 +126,7 @@ class LinkServiceTest {
 
         when(utils.createUrl(any(Page.class))).thenReturn("http://cms-url");
 
-        FlatLink link = service.createLink(Locale.UK, cmsLink);
+        FlatLink link = service.createCTALink(any(), eq(Locale.UK), eq(cmsLink));
 
         assertEquals("http://cms-url", link.getLink());
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -142,7 +141,7 @@ class LinkServiceTest {
 
         when(dmsData.productCard("123", Locale.UK)).thenReturn(null);
 
-        FlatLink link = service.createLink(Locale.UK, dmsLink);
+        FlatLink link = service.createCTALink(any(), eq(Locale.UK), eq(dmsLink));
 
         assertNull(link);
     }
@@ -161,7 +160,7 @@ class LinkServiceTest {
         when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK)).thenReturn(url);
         when(url.asText()).thenReturn("/dms-page");
 
-        FlatLink link = service.createLink(Locale.UK, dmsLink);
+        FlatLink link = service.createCTALink(any(), eq(Locale.UK), eq(dmsLink));
 
         assertTrue(link.getLink().endsWith("/dms-page"));
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -178,7 +177,7 @@ class LinkServiceTest {
         ProductsSearch ps = mock(ProductsSearch.class);
         when(productSearchLink.getSearch()).thenReturn(ps);
 
-        FlatLink link = service.createLink(Locale.UK, productSearchLink);
+        FlatLink link = service.createCTALink(any(), eq(Locale.UK), eq(productSearchLink));
 
         verify(builder, times(1)).build();
         assertEquals(LinkType.INTERNAL, link.getType());

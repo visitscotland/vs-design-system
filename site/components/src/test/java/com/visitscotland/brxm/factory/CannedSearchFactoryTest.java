@@ -68,7 +68,7 @@ class CannedSearchFactoryTest {
         FlatLink flatLink = new FlatLink();
         CannedSearch cannedSearch =  new CannedSearchMockBuilder().criteria(ProductTypes.ACCOMMODATION.getId()).build();
 
-        when((linkService).createLink(Locale.UK,cannedSearch.getCriteria())).thenReturn(flatLink);
+        when((linkService).createCTALink(any(),eq(Locale.UK),eq(cannedSearch.getCriteria()))).thenReturn(flatLink);
 
         CannedSearchModule module = factory.getCannedSearchModule(cannedSearch, Locale.UK);
 
@@ -84,7 +84,7 @@ class CannedSearchFactoryTest {
         flatLink.setLabel("View all castles");
         CannedSearch cannedSearch =  new CannedSearchMockBuilder().criteria(ProductTypes.ACCOMMODATION.getId()).build();
 
-        when((linkService).createLink(Locale.UK,cannedSearch.getCriteria())).thenReturn(flatLink);
+        when((linkService).createCTALink(any(), eq(Locale.UK), eq(cannedSearch.getCriteria()))).thenReturn(flatLink);
 
         CannedSearchModule module = factory.getCannedSearchModule(cannedSearch, Locale.UK);
 
@@ -104,7 +104,7 @@ class CannedSearchFactoryTest {
         FlatLink flatLink = new FlatLink();
         CannedSearch cannedSearch =  new CannedSearchMockBuilder().criteria(ProductTypes.EVENT.getId()).build();
 
-        when((linkService).createLink(Locale.UK,cannedSearch.getCriteria())).thenReturn(flatLink);
+        when((linkService).createCTALink(any(), eq(Locale.UK), eq(cannedSearch.getCriteria()))).thenReturn(flatLink);
 
         CannedSearchModule module = factory.getCannedSearchModule(cannedSearch, Locale.UK);
 
