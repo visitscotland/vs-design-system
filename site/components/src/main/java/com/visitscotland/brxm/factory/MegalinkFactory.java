@@ -41,7 +41,7 @@ public class MegalinkFactory {
         this.imageFactory = imageFactory;
     }
 
-    public LinksModule getMegalinkModule(Megalinks doc, Locale locale) {
+    public LinksModule<?> getMegalinkModule(Megalinks doc, Locale locale) {
         if (!Contract.isEmpty(doc.getLayout()) && doc.getLayout().equals(HORIZONTAL_LAYOUT) && doc.getMegalinkItems().size() >= MIN_ITEMS_CAROUSEL) {
             return horizontalListLayout(doc, locale);
         }else  if (!Contract.isEmpty(doc.getLayout()) && !doc.getLayout().equals(DEFAULT_LAYOUT) || doc.getMegalinkItems().size() > MAX_ITEMS ) {

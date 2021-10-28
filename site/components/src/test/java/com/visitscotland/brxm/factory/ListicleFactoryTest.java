@@ -1,15 +1,18 @@
 package com.visitscotland.brxm.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.visitscotland.brxm.hippobeans.CMSLink;
 import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.hippobeans.Listicle;
 import com.visitscotland.brxm.hippobeans.ListicleItem;
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.ListicleModule;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.DMSUtils;
 import com.visitscotland.brxm.mock.ListicleItemMockBuilder;
+import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.utils.VsException;
@@ -92,12 +95,12 @@ class ListicleFactoryTest {
     @DisplayName("ListicleItem from CMSLink")
     void listicle_cmsLink() {
         ListicleItem item = new ListicleItemMockBuilder().addImage().cmsLink().build();
-        FlatLink link = new FlatLink();
+        EnhancedLink link = new EnhancedLink();
         FlatImage moduleImage = new FlatImage();
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(imageFactory.getImage(eq(item.getListicleItemImage()), any(), any())).thenReturn(moduleImage);
-        when(linksService.createCTALink(any(), any(), any())).thenReturn(link);
+        when(linksService.createEnhancedLink(any(), any(), any(),anyBoolean())).thenReturn(link);
 
         List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
@@ -110,13 +113,12 @@ class ListicleFactoryTest {
     @Test
     @DisplayName("ListicleItem from CMSLink - When the image is not set on the CMS")
     void listicle_cmsLink_fallbackImage() {
-        ListicleItem item = new ListicleItemMockBuilder().cmsLink(true).build();
-        FlatLink link = new FlatLink();
-        FlatImage heroImage = new FlatImage();
+        ListicleItem item = new ListicleItemMockBuilder().cmsLink().build();
+        EnhancedLink link = new EnhancedLink();
+        link.setImage(new FlatImage());
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
-        when(linksService.createCTALink(any(), any(), any())).thenReturn(link);
-        when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(heroImage);
+        when(linksService.createEnhancedLink(any(), any(), any(),anyBoolean())).thenReturn(link);
 
         List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
@@ -124,7 +126,7 @@ class ListicleFactoryTest {
         Assertions.assertEquals(1, items.get(0).getLinks().size());
 
         Assertions.assertNull(item.getListicleItemImage());
-        Assertions.assertEquals(heroImage, items.get(0).getImage());
+        Assertions.assertEquals(link.getImage(), items.get(0).getImage());
     }
 
     @Test
@@ -256,7 +258,7 @@ class ListicleFactoryTest {
     @Disabled("To be confirmed")
     void imageOrder() {
         /**
-         * TODO
+         *  TODO
          1 (most important): Location(Subtitle) field
          2. DMS
          3. Location from the image

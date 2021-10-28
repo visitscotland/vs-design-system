@@ -87,7 +87,7 @@ class LinkServiceTest {
         when(properties.getDmsHost()).thenReturn("http://localhost:8080");
         when(resourceBundle.getCtaLabel(eq(""), any())).thenReturn("Find out more");
 
-        FlatLink link = service.createCTALink(any(), eq(Locale.UK), externalLink);
+        FlatLink link = service.createCTALink(null, Locale.UK, externalLink);
 
         assertEquals("http://fake.link", link.getLink());
         assertEquals("Find out more", link.getLabel());
@@ -126,7 +126,7 @@ class LinkServiceTest {
 
         when(utils.createUrl(any(Page.class))).thenReturn("http://cms-url");
 
-        FlatLink link = service.createCTALink(any(), eq(Locale.UK), eq(cmsLink));
+        FlatLink link = service.createCTALink(null, Locale.UK, cmsLink);
 
         assertEquals("http://cms-url", link.getLink());
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -137,12 +137,15 @@ class LinkServiceTest {
     void dmsLink_notExistingProduct() {
         //Verifies that when and DMS item doesn't exist, the link is not created.
         DMSLink dmsLink = mock(DMSLink.class);
+        Module m = new Module();
         when(dmsLink.getProduct()).thenReturn("123");
 
         when(dmsData.productCard("123", Locale.UK)).thenReturn(null);
 
-        FlatLink link = service.createCTALink(any(), eq(Locale.UK), eq(dmsLink));
 
+        FlatLink link = service.createCTALink(m, Locale.UK, dmsLink);
+
+        assertEquals(1, m.getErrorMessages().size());
         assertNull(link);
     }
 
@@ -160,7 +163,7 @@ class LinkServiceTest {
         when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK)).thenReturn(url);
         when(url.asText()).thenReturn("/dms-page");
 
-        FlatLink link = service.createCTALink(any(), eq(Locale.UK), eq(dmsLink));
+        FlatLink link = service.createCTALink(null, Locale.UK, dmsLink);
 
         assertTrue(link.getLink().endsWith("/dms-page"));
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -177,7 +180,7 @@ class LinkServiceTest {
         ProductsSearch ps = mock(ProductsSearch.class);
         when(productSearchLink.getSearch()).thenReturn(ps);
 
-        FlatLink link = service.createCTALink(any(), eq(Locale.UK), eq(productSearchLink));
+        FlatLink link = service.createCTALink(null, Locale.UK, productSearchLink);
 
         verify(builder, times(1)).build();
         assertEquals(LinkType.INTERNAL, link.getType());

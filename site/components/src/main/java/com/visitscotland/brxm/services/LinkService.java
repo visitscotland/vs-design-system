@@ -94,7 +94,7 @@ public class LinkService {
             CMSLink cmsLink = (CMSLink) item;
             if (cmsLink.getLink() instanceof Linkable){
                 FlatLink link = createSimpleLink((Linkable) cmsLink.getLink(), module, locale);
-                link.setLink(bundle.getCtaLabel(cmsLink.getLabel(), locale));
+                link.setLabel(bundle.getCtaLabel(cmsLink.getLabel(), locale));
                 return link;
             }
         }
