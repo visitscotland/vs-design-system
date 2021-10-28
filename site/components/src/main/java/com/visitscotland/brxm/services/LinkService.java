@@ -106,9 +106,7 @@ public class LinkService {
 
     /**
      * Creates a localized FlatLink from a URL. It request
-     *
      * @param url: URl
-     * @return
      */
     public FlatLink createExternalLink(final String url) {
         return createExternalLink(utils.getRequestLocale(), url, null);
@@ -358,7 +356,6 @@ public class LinkService {
             logger.warn("The type {} was not expected and will be skipped", linkable.getClass().getSimpleName());
             return null;
         }
-
         return link;
     }
 

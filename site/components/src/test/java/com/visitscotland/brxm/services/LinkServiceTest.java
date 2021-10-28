@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.mock.SharedLinkMockBuilder;
 import com.visitscotland.brxm.model.FlatImage;
@@ -414,6 +415,18 @@ class LinkServiceTest {
     }
 
     @Test
+    @DisplayName("DMSLink - DMS Id is not valid")
+    void DMS_enhanced_notValidId(){
+        Module<?> module = new Module<>();
+
+        SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, null).build();
+
+        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+
+        assertEquals(1, module.getErrorMessages().size());
+    }
+
+    @Test
     @DisplayName("DMSLink - Test that the image is loaded from the DMS")
     void DMS_enhanced_SharedLink_defaultsImage() throws IOException {
         JsonNode node = new ObjectMapper().readTree(MegalinksMockBuilder.MOCK_JSON);
@@ -537,7 +550,16 @@ class LinkServiceTest {
         assertEquals("https://www.visitscotland.com/fr-fr/info/accommodation/unit-test/", service.createExternalLink(Locale.FRANCE, "https://www.visitscotland.com/fr-fr/info/accommodation/unit-test/",null).getLink());
     }
 
+    @Test
+    @DisplayName("VS- Allow shared links to be recognized")
+    void createSimpleLink(){
+        SharedLink sl = new SharedLinkMockBuilder().externalDocument("title", "doc.pdf", null).build();
 
+        when(properties.getInternalSites()).thenReturn(Collections.singletonList("www.visitscotland.com"));
 
+        FlatLink link = service.createSimpleLink(sl, null, Locale.UK);
 
+        assertEquals("doc.pdf", link.getLink());
+        assertEquals("title", link.getLabel());
+    }
 }
