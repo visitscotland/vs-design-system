@@ -29,10 +29,7 @@ import org.springframework.web.servlet.support.RequestContext;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -173,7 +170,8 @@ class DocumentUtilsServiceTest {
         HippoBean translation = mock(Page.class, RETURNS_DEEP_STUBS);
         when(document.getAvailableTranslations().getTranslation(anyString())).thenReturn(translation);
         when(bundle.getResourceBundle(any(), any(), any(Locale.class))).thenReturn("Label");
-        when(utils.createUrl(any())).thenReturn(TRANSLATED_URL);
+        when(utils.createUrl(any(), anyBoolean())).thenReturn(TRANSLATED_URL);
+        when(utils.getContentBeanWithTranslationFallback(any())).thenReturn(Optional.of(document));
 
         List<LocalizedURL> list = documentUtils.getLocalizedURLs(request);
 
@@ -196,7 +194,8 @@ class DocumentUtilsServiceTest {
         final String ENGLISH_URL = "/site/english/url";
         HippoBean translation = mock(Page.class, RETURNS_DEEP_STUBS);
         when(document.getAvailableTranslations().getTranslation(Locale.UK.getLanguage())).thenReturn(translation);
-        when(utils.createUrl(any())).thenReturn(ENGLISH_URL);
+        when(utils.createUrl(any(), anyBoolean())).thenReturn(ENGLISH_URL);
+        when(utils.getContentBeanWithTranslationFallback(any())).thenReturn(Optional.of(document));
 
         List<LocalizedURL> list = documentUtils.getLocalizedURLs(request);
 
