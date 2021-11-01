@@ -116,7 +116,6 @@ public class DocumentUtilsService {
 
         Optional<HippoBean> contentBean = utils.getContentBeanWithTranslationFallback(request);
 
-        HippoBean englishSite = null;
         if (contentBean.isPresent()) {
             HippoBean document = contentBean.get();
             for (Language language : Language.values()) {
@@ -130,8 +129,6 @@ public class DocumentUtilsService {
                 if (Locale.UK.equals(language.getLocale())) {
                     if (translation == null) {
                         logger.error("The requested page does not exist in English: {}", document.getPath());
-                    } else {
-                        englishSite = translation;
                     }
                 }
 
