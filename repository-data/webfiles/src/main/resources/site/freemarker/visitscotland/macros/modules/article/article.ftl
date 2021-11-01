@@ -23,7 +23,7 @@
     <vs-article>
         <#if image?? && image?has_content>
             <template slot="vsArticleImg">
-                <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
+                <@imageWithCaption imageSrc=image imageDetails=module.image />
             </template>
         </#if>
 
