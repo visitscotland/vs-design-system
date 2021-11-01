@@ -177,11 +177,18 @@ export default {
                 roundedMinutes = minutes + 1;
             }
 
-            if (roundedMinutes === 1) {
-                this.duration.roundedMinutes = this.singleMinuteDescriptor.replace('%s', roundedMinutes);
-            } else {
-                this.duration.roundedMinutes = this.pluralMinuteDescriptor.replace('%s', roundedMinutes);
+            this.duration.roundedMinutes = this.formatSingularOrPlural(roundedMinutes);
+        },
+        /**
+         * Checks if the number of (rounded) minutes the video is long is singular or plural, then
+         * returns the appropriate descriptor string with the duration subbed in
+         */
+        formatSingularOrPlural(minutes) {
+            if (minutes === 1) {
+                return this.singleMinuteDescriptor.replace('%s', minutes);
             }
+
+            return this.pluralMinuteDescriptor.replace('%s', minutes);
         },
         /**
          * Takes a number, returns a string padded with a
