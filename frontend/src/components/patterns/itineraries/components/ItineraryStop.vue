@@ -205,22 +205,18 @@ export default {
                                 slot="stop-image"
                                 :altText="stop.image.altText"
                                 :image-src="stop.image.imageSrc"
-                                variant="fullwidth"
                             >
-                                <VsSvg
-                                    slot="toggle-icon"
-                                    path="info-toggle"
-                                    height="24"
-                                    width="24"
-                                />
+                                <VsCaption
+                                    slot="img-caption"
+                                >
+                                    <span slot="caption">
+                                        {{ stop.image.caption }}
+                                    </span>
 
-                                <span slot="caption">
-                                    {{ stop.image.caption }}
-                                </span>
-
-                                <span slot="credit">
-                                    &copy; {{ stop.image.credit }}
-                                </span>
+                                    <span slot="credit">
+                                        &copy; {{ stop.image.credit }}
+                                    </span>
+                                </VsCaption>
                             </VsImageWithCaption>
                         </template>
                         <div v-html="stop.description" slot="stop-description"></div>
