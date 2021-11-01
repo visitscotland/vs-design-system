@@ -181,9 +181,12 @@ export default {
 }
 
 .vs-itinerary-day__intro-content {
-    @include media-breakpoint-down(sm) {
-        padding: $spacer-0 $spacer-5;
-        margin-bottom: $spacer-9;
+    padding: $spacer-0 $spacer-5;
+    margin-bottom: $spacer-9;
+
+    @include media-breakpoint-up(md) {
+        padding: $spacer-0;
+        margin-bottom: $spacer-0;
     }
 }
 
