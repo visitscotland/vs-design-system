@@ -50,8 +50,10 @@
                             :id="'dayPanel_' + dayNumber"
                             class="vs-itinerary-day__panel"
                         >
-                            <slot name="day-transport" />
-                            <slot name="day-introduction" />
+                            <div class="vs-itinerary-day__intro-content">
+                                <slot name="day-transport" />
+                                <slot name="day-introduction" />
+                            </div>
                             <ul class="list-unstyled">
                                 <slot name="stops" />
                             </ul>
@@ -134,7 +136,7 @@ export default {
 .vs-itinerary-day__list-item.card {
     width: calc(100% + #{$spacer-4});
     margin-left: -#{$spacer-2};
-    padding: $spacer-4 $spacer-6 0;
+    padding: $spacer-4 $spacer-3 0;
 
     @include media-breakpoint-up(md) {
         width: calc(100% + #{$spacer-6});
@@ -175,6 +177,12 @@ export default {
         height: 32px;
         width: 32px;
         padding: 8px;
+    }
+}
+
+.vs-itinerary-day__intro-content {
+    @include media-breakpoint-down(sm) {
+        padding: $spacer-0 $spacer-3;
     }
 }
 
