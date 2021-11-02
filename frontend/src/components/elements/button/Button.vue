@@ -235,114 +235,113 @@ export default {
 </script>
 
 <style lang="scss">
+    .vs-button.btn {
+        font-family: $font-family-base;
+        font-weight: $font-weight-light;
+        transition: $transition-base;
+        text-decoration: none;
+        letter-spacing: 2px;
+        position: relative;
+        overflow: hidden;
 
-.vs-button.btn {
-    font-family: $font-family-base;
-    font-weight: $font-weight-light;
-    transition: $transition-base;
-    text-decoration: none;
-    letter-spacing: 2px;
-    position: relative;
-    overflow: hidden;
-
-    .btn-dark {
-        &:hover {
-            background-color: $color-gray-shade-5;
+        &:focus {
+            box-shadow: $shadow-button-focus;
         }
-    }
 
-    &.btn-secondary {
-        color: $color-black;
-        background-color: $color-yellow;
-        border-color: $color-yellow;
-
-        &:not(:disabled) {
-            &:hover {
-                background-color: darken($color-yellow, 10%);
-                border-color: darken($color-yellow, 12%);
-            }
-
-            &:active {
-                color: $color-black;
-            }
+        .vs-icon {
+            margin-top: -.05em;
         }
-    }
 
-    &.btn-outline-secondary {
-        color: $color-yellow;
-        border-color: $color-yellow;
-
-        &:hover {
+        &.btn-secondary {
             color: $color-black;
             background-color: $color-yellow;
             border-color: $color-yellow;
-        }
-    }
 
-    &.btn-bg-white:not(:hover) {
-        background-color: $color-white;
-    }
+            &:not(:disabled) {
+                &:hover {
+                    background-color: darken($color-yellow, 10%);
+                    border-color: darken($color-yellow, 12%);
+                }
 
-    &:focus {
-        box-shadow: $shadow-button-focus;
-    }
-
-    // This is to match bootstrap specificity, otherwise it forces
-    // a pink shadow on primary buttons when active + focussing where we want
-    // no shadow
-    &:not(:disabled):not(.disabled):active:focus {
-        box-shadow: none;
-    }
-
-    &.btn-light,
-    &.btn-transparent {
-        &::after {
-            background: rgba(187, 38, 132, 0.3);
-        }
-    }
-
-    &.vs-button--animated {
-        @keyframes bubble {
-            0% {
-                transform: scale(0, 0);
-                opacity: 1;
+                &:active {
+                    color: $color-black;
+                }
             }
-            100% {
+        }
+
+        &.btn-outline-secondary {
+            color: $color-yellow;
+            border-color: $color-yellow;
+
+            &:hover {
+                color: $color-black;
+                background-color: $color-yellow;
+                border-color: $color-yellow;
+            }
+        }
+
+        &.btn-dark {
+            &:hover {
+                background-color: $color-gray-shade-5;
+            }
+        }
+
+        &.btn-light,
+        &.btn-transparent {
+            &::after {
+                background: rgba(187, 38, 132, 0.3);
+            }
+        }
+
+        &.btn-bg-white:not(:hover) {
+            background-color: $color-white;
+        }
+
+        // This is to match bootstrap specificity, otherwise it forces
+        // a pink shadow on primary buttons when active + focussing where we want
+        // no shadow
+        &:not(:disabled):not(.disabled):active:focus {
+            box-shadow: none;
+        }
+
+        &:disabled {
+            background-color: $color-secondary-gray-tint-4;
+            color: $color-white;
+            opacity: 1;
+            border-width: 0;
+        }
+
+        &.vs-button--animated {
+            @keyframes bubble {
+                0% {
+                    transform: scale(0, 0);
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(100, 100);
+                }
+            }
+
+            &::after {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                bottom: 0;
+                content: "";
+                height: 5px;
                 opacity: 0;
-                transform: scale(100, 100);
+                position: absolute;
+                right: 0;
+                transform-origin: 50% 50%;
+                transform: scale(1, 1) translate(-50%);
+                width: 5px;
+            }
+
+            &.vs-button--is-animating::after {
+                animation: bubble 500ms ease-in-out;
             }
         }
-
-        &::after {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            bottom: 0;
-            content: "";
-            height: 5px;
-            opacity: 0;
-            position: absolute;
-            right: 0;
-            transform-origin: 50% 50%;
-            transform: scale(1, 1) translate(-50%);
-            width: 5px;
-        }
-
-        &.vs-button--is-animating::after {
-            animation: bubble 500ms ease-in-out;
-        }
     }
-
-    .vs-icon {
-        margin-top: -.05em;
-    }
-
-    &:disabled {
-        background-color: $color-secondary-gray-tint-4;
-        color: $color-white;
-        opacity: 1;
-        border-width: 0;
-    }
-}
 </style>
 
 <docs>
