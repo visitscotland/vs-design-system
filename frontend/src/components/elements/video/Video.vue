@@ -169,15 +169,20 @@ export default {
             this.duration.minutes = minutes;
             this.duration.seconds = seconds;
 
-            let roundedMinutes = 1;
-
-            if (seconds < 30 && minutes !== 0) {
-                roundedMinutes = minutes;
-            } else {
-                roundedMinutes = minutes + 1;
-            }
+            const roundedMinutes = this.getRoundedMinutes(minutes, seconds);
 
             this.duration.roundedMinutes = this.formatSingularOrPlural(roundedMinutes);
+        },
+        /**
+         * Takes a time expressed as minutes and seconds and returns the number of minutes rounded
+         * to the nearest one. Any time less than one minute is rounded up to one.
+         */
+        getRoundedMinutes(minutes, seconds) {
+            if (seconds < 30 && minutes !== 0) {
+                return minutes;
+            }
+
+            return minutes + 1;
         },
         /**
          * Checks if the number of (rounded) minutes the video is long is singular or plural, then
