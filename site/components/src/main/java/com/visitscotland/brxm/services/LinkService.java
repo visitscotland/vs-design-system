@@ -410,15 +410,13 @@ public class LinkService {
         }
         if (linkable.getLinkType() instanceof ExternalDocument) {
             ExternalDocument externalDocument = (ExternalDocument) linkable.getLinkType();
-            link.setLabel(linkable.getTitle() + getDownloadText(link.getLink(), locale, module));
+            link.setLabel(formatLabel(linkable, linkable.getTitle(), locale, module));
             link.setType(LinkType.DOWNLOAD);
 
             if (addCategory) {
                 link.setCategory(externalDocument.getCategory());
             }
-        }
-
-        if (link.getType() == null) {
+        } else if (link.getType() == null) {
             link.setType(getType(link.getLink()));
         }
     }
