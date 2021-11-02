@@ -49,7 +49,7 @@ public class CannedSearchFactory {
         module.setProductType(document.getCriteria().getSearch().getProductType());
         module.setDescription(document.getCopy());
 
-        FlatLink viewAllCta = linkService.createLink(locale, document.getCriteria());
+        FlatLink viewAllCta = linkService.createCTALink(module, locale, document.getCriteria());
 
         if (Contract.isEmpty(viewAllCta.getLabel()) || viewAllCta.getLabel().equals(bundle.getResourceBundle("essentials.global","button.find-out-more",  locale))) {
             viewAllCta.setLabel(bundle.getResourceBundle(BUNDLE_ID, "canned-search.listview", locale));

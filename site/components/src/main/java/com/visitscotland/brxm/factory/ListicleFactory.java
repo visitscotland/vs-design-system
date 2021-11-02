@@ -2,13 +2,14 @@ package com.visitscotland.brxm.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.ListicleModule;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.DMSUtils;
+import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.services.LinkService;
-import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
@@ -51,6 +52,7 @@ public class ListicleFactory {
      * @return
      */
     public ListicleModule getListicleItem(Locale locale, ListicleItem listicleItem, Integer index) {
+        logger.info("Creating ListicleItem module for {}", listicleItem.getPath());
 
         List<FlatLink> links = new ArrayList<>();
         FlatLink link;
@@ -77,7 +79,8 @@ public class ListicleFactory {
         //Set Extra Links
         //Original designs used to had more that one link, so the logic is prepared to be opened to several links
         for (HippoCompound compound : listicleItem.getExtraLinks()) {
-            link = linksService.createLink(locale, compound);
+            link = linksService.createCTALink(module, locale, compound);
+
             if (link != null) {
                 links.add(link);
             }
@@ -99,25 +102,24 @@ public class ListicleFactory {
     private FlatLink processMainProduct(Locale locale, HippoCompound link, ListicleModule module){
         if (link == null) {
             contentLogger.warn("The ListicleItem {} doesn't contain a main product", module.getHippoBean().getPath());
-            return null;
         } else if (link instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) link;
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
             processDMSMainProduct(module, dmsLink, product);
             return linksService.createDmsLink(locale, dmsLink, product);
         } else if (link instanceof CMSLink) {
-            if (((CMSLink) link).getLink() instanceof Page) {
-                if (module.getImage() == null) {
-                    Page cmsLink = (Page) ((CMSLink) link).getLink();
-                    module.setImage(imageFactory.getImage(cmsLink.getHeroImage(), module, locale));
-                }
-            } else {
-                contentLogger.warn("The ListicleItem {} is pointing to a document that is not a page ", module.getHippoBean().getPath());
-                return null;
+            EnhancedLink eLink = linksService.createEnhancedLink((Linkable) ((CMSLink) link).getLink(), module, locale,false);
+
+            if (module.getImage() == null) {
+                module.setImage(eLink.getImage());
             }
+
+            return  eLink;
+        } else {
+            contentLogger.warn("The ListicleItem {} is pointing to a document that is not a page ", module.getHippoBean().getPath());
         }
 
-        return  linksService.createLink(locale, link);
+        return null;
     }
 
     /**
