@@ -94,7 +94,7 @@ public class LinkService {
             CMSLink cmsLink = (CMSLink) item;
             if (cmsLink.getLink() instanceof Linkable){
                 FlatLink link = createSimpleLink((Linkable) cmsLink.getLink(), module, locale);
-                link.setLabel(bundle.getCtaLabel(cmsLink.getLabel(), locale));
+                link.setLabel(formatLabel(cmsLink.getLink(), bundle.getCtaLabel(cmsLink.getLabel(), locale), locale, module));
                 return link;
             }
         }
@@ -321,6 +321,7 @@ public class LinkService {
         if (addCategory && link.getLink() != null && link.getCategory() == null) {
             link.setCategory(getLinkCategory(link.getLink(), locale));
         }
+
         if (link.getImage() == null) {
             if (module != null) {
                 module.addErrorMessage("The link to '" + link.getLink() + "' does not contain an image.");
@@ -419,6 +420,23 @@ public class LinkService {
 
         if (link.getType() == null) {
             link.setType(getType(link.getLink()));
+        }
+    }
+
+    /**
+     * Formats label and includes additional information when needed
+     *
+     * @param linkable
+     * @param locale
+     * @param module
+     *
+     * @return Formatted label
+     */
+    public String formatLabel(HippoBean linkable, String label, Locale locale, Module<?> module){
+        if (linkable instanceof SharedLink && ((SharedLink)linkable).getLinkType() instanceof ExternalDocument){
+            return label + getDownloadText(((ExternalDocument) ((SharedLink)linkable).getLinkType()).getLink(), locale, module);
+        } else {
+            return label;
         }
     }
 

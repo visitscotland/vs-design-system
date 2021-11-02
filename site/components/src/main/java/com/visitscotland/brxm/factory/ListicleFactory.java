@@ -108,7 +108,13 @@ public class ListicleFactory {
             processDMSMainProduct(module, dmsLink, product);
             return linksService.createDmsLink(locale, dmsLink, product);
         } else if (link instanceof CMSLink) {
-            EnhancedLink eLink = linksService.createEnhancedLink((Linkable) ((CMSLink) link).getLink(), module, locale,false);
+            CMSLink cmsLink = (CMSLink) link;
+            EnhancedLink eLink = linksService.createEnhancedLink((Linkable) cmsLink.getLink(), module, locale,false);
+            //Override default link label when the module has an override text
+            if (!Contract.isEmpty(cmsLink.getLabel())){
+                eLink.setCta(linksService.formatLabel(cmsLink.getLink(), cmsLink.getLabel(), locale, module));
+                eLink.setLabel(eLink.getCta());
+            }
 
             if (module.getImage() == null) {
                 module.setImage(eLink.getImage());
