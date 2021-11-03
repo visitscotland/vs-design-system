@@ -21,6 +21,7 @@ definitions:
             hst:componentconfigurationid: hst:pages/pagenotfound
             hst:pagetitle: Not Found Page
             hst:refId: pagenotfound
+            hst:relativecontentpath: general/error/404notfound
           /widget:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/widget
@@ -64,8 +65,8 @@ definitions:
               /_default_:
                 jcr:primaryType: hst:sitemapitem
                 hst:relativecontentpath: ${parent}/${2}
-                hst:componentconfigurationid: hst:pages/pagenotfound
                 hst:sitemapitemhandlerids: [translation-fallback]
+                hst:componentconfigurationid: hst:pages/pagenotfound
                 /_default_:
                   jcr:primaryType: hst:sitemapitem
                   hst:relativecontentpath: ${parent}/${3}
@@ -120,12 +121,12 @@ definitions:
                     hst:relativecontentpath: ${parent}/content
                 /_index_:
                   jcr:primaryType: hst:sitemapitem
-                  hst:componentconfigurationid: hst:pages/pagenotfound
                   hst:componentconfigurationmappingnames: ['visitscotland:Itinerary',
                     'visitscotland:Listicle', 'visitscotland:General', 'visitscotland:Destination']
                   hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
                     'hst:pages/listicle-page', 'hst:pages/general-page', 'hst:pages/destination-page']
                   hst:relativecontentpath: ${parent}/content
+                  hst:componentconfigurationid: hst:pages/pagenotfound
           /backup:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
