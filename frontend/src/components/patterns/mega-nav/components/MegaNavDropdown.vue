@@ -142,10 +142,6 @@ export default {
         right: 20px;
         top: -40px;
 
-        &:focus {
-            box-shadow: 0 0 0 0.1rem $color-pink inset;
-        }
-
         &:hover {
             .vs-icon{
                 fill: $color-pink;
@@ -174,7 +170,7 @@ export default {
         padding: $spacer-1;
 
         &:focus, &:active, &:active:focus {
-            box-shadow: 0 0 0 0.1rem $color-pink inset;
+            box-shadow: $shadow-button-focus inset;
         }
 
         &:hover {
@@ -266,7 +262,7 @@ export default {
             }
 
             &:focus {
-                box-shadow: 0 0 0 0.1rem $color-pink inset;
+                box-shadow: $shadow-button-focus inset;
 
                 &::after{
                     display: none;
