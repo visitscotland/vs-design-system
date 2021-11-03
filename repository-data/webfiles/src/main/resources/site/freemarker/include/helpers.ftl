@@ -42,7 +42,7 @@
 
 <#function productSearch locale productType lat lon proximity>
 <#--TODO: proximity as optional-->
-    <#return ProductSearchBuilder.newInstance().productTypes(productType).proximity(proximity).coordinates(lat, lon).build()>
+    <#return ProductSearchBuilder.newInstance().locale(locale).productTypes(productType).proximity(proximity).coordinates(lat, lon).build()>
 </#function>
 
 <#--  Get correct URL for internal or external link -->
