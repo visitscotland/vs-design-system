@@ -37,9 +37,9 @@
     >
         <@cmsErrors errors=stop.errorMessages!"" editMode=editMode />
         <#if image?? && image?has_content> 
-            <template slot="stop-image" class="has-edit-button">
+            <template slot="stop-image">
                 <@hst.manageContent hippobean=stop.hippoBean />
-                <@imageWithCaption imageSrc=image imageDetails=stop.image variant="fullwidth"/>
+                <@imageWithCaption imageSrc=image imageDetails=stop.image />
             </template>
         </#if>
 

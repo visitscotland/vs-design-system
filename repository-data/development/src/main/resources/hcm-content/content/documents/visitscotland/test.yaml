@@ -6259,7 +6259,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-05-24T12:35:20.150+01:00
-        hippostdpubwf:lastModificationDate: 2021-06-25T14:53:58.565+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:09:39.984+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 59d23167-7b2b-4421-b4e3-0d4563b4c19f
         hippotranslation:locale: en
@@ -7659,7 +7659,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 5e0d09e3-fdf2-479e-880d-8052730ec4e5
     hippo:name: Test landing page
-    hippo:versionHistory: 555482bb-dc63-4a5c-9ebb-06d4c8603722
+    hippo:versionHistory: 1ff8c915-f81b-470e-a13c-2d2d43eb8a27
     /content[1]:
       jcr:primaryType: visitscotland:General
       jcr:mixinTypes: ['mix:referenceable']
@@ -7669,19 +7669,21 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-25T14:47:56.308+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:41:57.408+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: Meta description
+      visitscotland:seoDescription: This area is designed to hold stable content to
+        test layout and functionality of the site.
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Meta title
+      visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
       visitscotland:theme: Standard
-      visitscotland:title: VIsitscotland.com redevelopment test area
+      visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -7706,19 +7708,21 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-25T14:48:12.579+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:42:03.262+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: Meta description
+      visitscotland:seoDescription: This area is designed to hold stable content to
+        test layout and functionality of the site.
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Meta title
+      visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
       visitscotland:theme: Standard
-      visitscotland:title: VIsitscotland.com redevelopment test area
+      visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -7743,20 +7747,22 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-25T14:48:12.579+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:42:03.262+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-05-25T14:48:14.335+01:00
+      hippostdpubwf:publicationDate: 2021-10-18T16:42:05.236+01:00
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: Meta description
+      visitscotland:seoDescription: This area is designed to hold stable content to
+        test layout and functionality of the site.
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Meta title
+      visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
       visitscotland:theme: Standard
-      visitscotland:title: VIsitscotland.com redevelopment test area
+      visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -7912,15 +7918,17 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 8cc33415-4a59-46ec-a7f2-307a897785ba
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:retainable: false
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-05-25T14:14:14.492+01:00
-        hippostdpubwf:lastModificationDate: 2021-06-25T15:01:09.158+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:06:24.662+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: fc8650f4-a746-4b5f-9137-49894cbaeca9
         hippotranslation:locale: en
         visitscotland:breadcrumb: ''
+        visitscotland:hideNewsletter: false
         visitscotland:newsletter: true
         visitscotland:seoDescription: Meta description
         visitscotland:seoNoIndex: false
@@ -13353,6 +13361,207 @@
                 <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
 
                 <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+    /examples-links-listicles:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 626da7a8-5208-4dfa-b5fe-2e122f929202
+      hippo:name: Example Links Listicles
+      hippo:versionHistory: 01b7ef12-439e-41e1-8f99-0ad270add222
+      /examples-links-listicles[1]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 0926cc4a-f724-477c-9377-1200ee0e0db3
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostd:transferable: false
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:10:42.680+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:12:00.923+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a9174166-f581-4f1c-995a-cc261bd75ce4
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Listicles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+      /examples-links-listicles[2]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 2b63a52a-1628-4662-ba69-50f34455f320
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:10:42.680+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:11:51.586+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a9174166-f581-4f1c-995a-cc261bd75ce4
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Listicles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+      /examples-links-listicles[3]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 2ce39aee-b439-40e8-95f9-cc7e10e10eec
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:10:42.680+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:11:51.586+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-10-18T17:13:03.011+01:00
+        hippotranslation:id: a9174166-f581-4f1c-995a-cc261bd75ce4
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Listicles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+    /example-links-articles:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: e94400d6-0aa7-43bd-b321-1d699899d7e1
+      hippo:name: Example Links Articles
+      hippo:versionHistory: c3657fbb-cd67-424e-9150-93d60db0c5b1
+      /example-links-articles[1]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 2d0d0b84-20f6-49f0-b90c-5f518005b024
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:12:21.034+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:12:21.034+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: c644b20f-636c-4abb-966a-51006e8efe7a
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Articles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: ca93dea2-4771-4c6c-8cd2-d90246a97684
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: b4f5210a-8aec-4a67-861f-bc8d1c85e861
+      /example-links-articles[2]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 86c39634-1e55-4cd7-91d3-7cbf10cfbfd1
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:12:21.034+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:12:39.897+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: c644b20f-636c-4abb-966a-51006e8efe7a
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Articles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: ca93dea2-4771-4c6c-8cd2-d90246a97684
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: b4f5210a-8aec-4a67-861f-bc8d1c85e861
+      /example-links-articles[3]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 0efad1ca-7cbc-4cb8-940b-d6160468b18e
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:12:21.034+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:12:39.897+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-10-18T17:12:43.453+01:00
+        hippotranslation:id: c644b20f-636c-4abb-966a-51006e8efe7a
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Articles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: ca93dea2-4771-4c6c-8cd2-d90246a97684
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: b4f5210a-8aec-4a67-861f-bc8d1c85e861
   /automation:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']

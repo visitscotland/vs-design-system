@@ -197,6 +197,20 @@ class HTMLtoVueTransformerTest {
     }
 
     @Test
+    @DisplayName("VS-2733 - Links with attributes are interpreted")
+    void links_withAttributes(){
+        final String HTML = "<p>Take a look at the " +
+                "<a rel=\"nofollow\" href=\"https://www.visitscotland.com/\" title=\"iKnow Community\" target=\"_blank\">iKnow Scotland Community</a></p>";
+
+        when(linkService.createExternalLink("https://www.visitscotland.com/"))
+                .thenReturn(new FlatLink(null, "https://www.visitscotland.com/", LinkType.INTERNAL));
+
+        String result = transformer.processLinks(HTML);
+
+        Assertions.assertTrue(result.contains("<vs-link "));
+    }
+
+    @Test
     @DisplayName("VS-2756 - ")
     void localizedUrl(){
         final String HTML = "<a href=\"https://www.visitscotland.com/\">Link 1</a>";

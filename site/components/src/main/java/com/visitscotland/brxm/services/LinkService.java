@@ -17,6 +17,7 @@ import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +69,7 @@ public class LinkService {
      * @param locale locale Language for the labels
      * @param item   Compound Item
      */
-    public FlatLink createLink(Locale locale, HippoBean item) {
+    public FlatLink createCTALink(Module<?> module, Locale locale, HippoBean item) {
 
         if (item instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) item;
@@ -76,6 +77,8 @@ public class LinkService {
 
             if (dmsLink.getProduct() == null) {
                 contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), item.getPath());
+                module.addErrorMessage("There is no product with the id " + dmsLink.getProduct());
+
             } else if (product != null) {
                 return createDmsLink(locale, dmsLink, product);
             }
@@ -86,23 +89,24 @@ public class LinkService {
             return new FlatLink(bundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build(), LinkType.INTERNAL);
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;
-
             return createExternalLink(locale, externalLink.getLink(), bundle.getCtaLabel(externalLink.getLabel(), locale));
-        } else if (item instanceof CMSLink && ((CMSLink) item).getLink() instanceof Page) {
+        } else if (item instanceof CMSLink){
             CMSLink cmsLink = (CMSLink) item;
-            return new FlatLink(bundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl((Page) cmsLink.getLink()), LinkType.INTERNAL);
-        } else {
-            contentLogger.warn("The document {} could not be turned into a link", item.getPath());
+            if (cmsLink.getLink() instanceof Linkable){
+                FlatLink link = createSimpleLink((Linkable) cmsLink.getLink(), module, locale);
+                link.setLabel(bundle.getCtaLabel(cmsLink.getLabel(), locale));
+                return link;
+            }
         }
 
+        logger.warn("The document {} could not be turned into a link", item.getPath());
+        module.addErrorMessage("The link was not correctly processed");
         return null;
     }
 
     /**
      * Creates a localized FlatLink from a URL. It request
-     *
      * @param url: URl
-     * @return
      */
     public FlatLink createExternalLink(final String url) {
         return createExternalLink(utils.getRequestLocale(), url, null);
@@ -167,8 +171,19 @@ public class LinkService {
     }
 
     /**
-     * Extracts the information about the link form a SharedLink and returns it in a URL.
+     * Creates a standard link from a Shared Link
+     * @param locale  Locale
+     * @param link    SharedLink Object;
+     * @return
+     */
+    public String getPlainLink(Locale locale, SharedLink link) {
+        return getPlainLink(locale, link.getLinkType(), getNodeFromSharedLink(link, locale));
+    }
+
+    /**
+     * Creates a standard link from a Shared Link
      *
+     * @param locale  Locale
      * @param link    SharedLink Object;
      * @param product JsonNode with the data of the product. It is only used when the type of SharedLink is DMSLink.
      * @return String URL from the SharedLink
@@ -315,6 +330,32 @@ public class LinkService {
             contentLogger.warn("The link to {} does not have an image but it is expecting one", ((BaseDocument) linkable).getPath());
         }
 
+        return link;
+    }
+
+    /**
+     * Creates a FlatLink from a Page or a Shared Document
+     * @param linkable
+     * @param module
+     * @param locale
+     * @return
+     */
+    public FlatLink createSimpleLink(@NotNull Linkable linkable, Module<?> module, Locale locale) {
+        FlatLink link = new FlatLink();
+        link.setLabel(linkable.getTitle());
+
+        if (linkable instanceof Page) {
+            link.setLink(utils.createUrl((Page) linkable));
+            link.setType(LinkType.INTERNAL);
+        } else if (linkable instanceof SharedLink) {
+            SharedLink sharedLink = (SharedLink) linkable;
+            link.setLink(getPlainLink(locale, sharedLink));
+            link.setType(getType(link.getLink()));
+        } else if (module != null) {
+            module.addErrorMessage(String.format("The type %s cannot be converted into a link", linkable.getClass().getSimpleName()));
+            logger.warn("The type {} was not expected and will be skipped", linkable.getClass().getSimpleName());
+            return null;
+        }
         return link;
     }
 
