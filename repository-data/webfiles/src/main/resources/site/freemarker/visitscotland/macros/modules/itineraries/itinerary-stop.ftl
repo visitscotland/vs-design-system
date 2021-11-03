@@ -115,9 +115,8 @@
             
             <#if stop.opening??>
                 <template slot="stop-info">
-                    <#assign replaced = stop.opening?replace('"', "'") />
                     <vs-itinerary-stop-info
-                        opening-hours="${replaced}"
+                        opening-hours="${escapeJSON(stop.opening)}"
                         opening-times-link='${stop.openLink.link}'
                         closed-text='${label("itinerary", "stop.closed")}'
                         closing-soon-text='${label("itinerary", "stop.close.soon")}'
