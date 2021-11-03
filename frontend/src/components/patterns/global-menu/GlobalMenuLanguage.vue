@@ -1,5 +1,8 @@
 <template>
-    <VsDropdown class="vs-global-menu__languages">
+    <VsDropdown
+        variant="primary"
+        class="vs-global-menu__languages"
+    >
         <template #button-content>
             <VsIcon
                 class="vs-global-menu__languages__icon"
@@ -111,7 +114,7 @@ export default {
         }
     }
 
-    .dropdown-toggle {
+    .btn-primary.dropdown-toggle {
         padding: 0.3rem $spacer-4;
         font-size: $font-size-sm;
         background: $color-purple;
@@ -119,17 +122,15 @@ export default {
         max-width: 130px;
 
         @include media-breakpoint-up(lg) {
-            padding: 0.3rem $spacer-2;
+            padding: $spacer-2 $spacer-4 $spacer-2 $spacer-3;
         }
 
-        &-secondary:not(:disabled):not(.disabled):active {
+        &:not(:disabled):not(.disabled):active {
             background: $color-purple-shade-2;
         }
 
         &:focus {
-            outline: 3px solid $color-purple-tint-5;
-            outline-offset: -3px;
-            box-shadow: none !important;
+            box-shadow: $shadow-button-focus inset;
         }
 
         &:hover {
@@ -138,21 +139,15 @@ export default {
     }
 
     &.show {
-        .dropdown-toggle,
-        .dropdown-toggle:active,
-        .dropdown-toggle:focus {
+        .btn-primary.dropdown-toggle,
+        .btn-primary.dropdown-toggle:active,
+        .btn-primary.dropdown-toggle:focus {
             background: $color-purple-shade-2;
         }
     }
 
     @include media-breakpoint-up(lg) {
         position: relative;
-    }
-
-    .dropdown-toggle {
-        @include media-breakpoint-up(lg) {
-            padding: $spacer-2 $spacer-3;
-        }
     }
 
     &__icon, &__text {
