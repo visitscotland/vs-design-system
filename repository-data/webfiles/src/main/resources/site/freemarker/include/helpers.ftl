@@ -58,6 +58,13 @@
     </#if>
 </#function>
 
+<#--  Escape some characters from a JSON object so it can be consumed by a Vue component -->
+<#--  Usage: ${escapeJSON(stop.opening)} -->
+<#function escapeJSON original>
+    <#assign escaped = original?replace("'", "\\'")>
+    <#assign escaped = escaped?replace("\"", "'")>
+    <#return escaped>
+</#function>
 
 
 <#--TODO: polimorphism-->
