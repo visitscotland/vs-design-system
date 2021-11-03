@@ -11,7 +11,7 @@ const factoryShallowMount = () => shallowMount(VsItineraryStop, {
         dayName: 'Thursday',
     },
     slots: {
-        'stop-image': '<img src="test" alt="">',
+        default: '<img src="test" alt="">',
         'stop-description': 'Test stop description',
         'stop-address': '<p>address line one<br>address line two</p>',
         'stop-tips': 'Test stop tips',
@@ -47,7 +47,7 @@ describe('VsItineraryStop', () => {
     });
 
     describe(':slots', () => {
-        it('renders content inserted into the stop-image slot', () => {
+        it('renders content inserted into the default slot', () => {
             expect(wrapper.html()).toContain('<img src="test" alt="">');
         });
 
