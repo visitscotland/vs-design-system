@@ -9,10 +9,9 @@ import com.visitscotland.brxm.hippobeans.Day;
 import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.hippobeans.Itinerary;
 import com.visitscotland.brxm.mock.ItineraryDayMockBuilder;
-import com.visitscotland.brxm.model.FlatImage;
-import com.visitscotland.brxm.model.ItineraryPage;
-import com.visitscotland.brxm.model.ItineraryStopModule;
+import com.visitscotland.brxm.model.*;
 import com.visitscotland.brxm.services.DocumentUtilsService;
+import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
@@ -26,6 +25,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.verification.VerificationMode;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -60,6 +60,10 @@ class ItineraryFactoryTest {
     DocumentUtilsService documentUtils;
     @Mock
     Properties properties;
+
+    @Mock
+    LinkService linkService;
+
 
     @Test
     @DisplayName("Create an itinerary page")
@@ -173,12 +177,13 @@ class ItineraryFactoryTest {
                 "    \"mediaUrl\":\"https://img.visitscotland.com/fake-product.jpg\"" +
                 "}]}";
         JsonNode node = new ObjectMapper().readTree(JSON);
-        List<Day> days = new ItineraryDayMockBuilder().addDmsStop("123").ctaLabel("label").buildAsList();
+        List<Day> days = new ItineraryDayMockBuilder().addDmsStop("123").buildAsList();
 
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
-        when(bundle.getCtaLabel("label", Locale.UK)).thenReturn("Find out more");
-        when(properties.getDmsHost()).thenReturn("https://mock.visitscotland.com");
+//        when(properties.getDmsHost()).thenReturn("https://mock.visitscotland.com");
+        when(linkService.createCTALink(any(), eq(Locale.UK), any())).thenReturn(
+                new FlatLink("Find out more", "https://mock.visitscotland.com/info/fake-product-p123", LinkType.INTERNAL));
 
         ItineraryPage iti = factory.buildItinerary(itinerary, Locale.UK);
         assertNotNull(iti);
@@ -208,8 +213,8 @@ class ItineraryFactoryTest {
 
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
-        when(bundle.getCtaLabel(null, Locale.UK)).thenReturn("Find out more");
         when(imageFactory.createImage(any(Image.class), any(), any())).thenReturn(image);
+
 
         ItineraryStopModule module = getSingleStop(factory.buildItinerary(itinerary, Locale.UK));
         assertNull(module.getImage().getExternalImage());
@@ -223,6 +228,7 @@ class ItineraryFactoryTest {
             "2,stop.hours",
             "10,stop.hours",
     })
+    @DisplayName("Text for hours depends on the number of hours")
     void dmsStop_timeToExplore(String value, String bundleKey) throws JsonProcessingException {
         final String JSON = "{" +
                 " \"dmsLink\": {\"link\": \"/info/fake-product-p123\"}," +
@@ -269,7 +275,9 @@ class ItineraryFactoryTest {
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
         when(bundle.getResourceBundle(ItineraryFactory.BUNDLE_FILE, "stop.opening", Locale.UK)).thenReturn("show times");
-        when(properties.getDmsHost()).thenReturn("https://mock.visitscotland.com");
+//        when(properties.getDmsHost()).thenReturn("https://mock.visitscotland.com");
+        when(linkService.createCTALink(any(), eq(Locale.UK), any())).thenReturn(
+                new FlatLink(null, "https://mock.visitscotland.com/info/fake-product-p123", LinkType.INTERNAL));
 
         ItineraryStopModule module = getSingleStop(factory.buildItinerary(itinerary, Locale.UK));
         assertNotNull(module.getOpening());
@@ -293,20 +301,17 @@ class ItineraryFactoryTest {
 
     @Test
     void externalStop() {
-        List<Day> days = new ItineraryDayMockBuilder().addExternalStop("mysite.com").coordinates(1., -2.).ctaLabel("label").buildAsList();
+        List<Day> days = new ItineraryDayMockBuilder().addExternalStop("mysite.com").coordinates(1., -2.).buildAsList();
 
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
-        when(bundle.getCtaLabel("label", Locale.UK)).thenReturn("Find out more");
 
         ItineraryStopModule module = getSingleStop(factory.buildItinerary(itinerary, Locale.UK));
-        assertEquals("mysite.com", module.getCtaLink().getLink());
+
+        verify(linkService, atLeastOnce()).createCTALink(any(), any(), any());
 
         assertTrue(Contract.isEmpty(module.getErrorMessages()));
         assertEquals(1., module.getCoordinates().getLatitude());
         assertEquals(-2., module.getCoordinates().getLongitude());
-        assertEquals("Find out more", module.getCtaLink().getLabel());
-        assertEquals("mysite.com", module.getCtaLink().getLink());
-
     }
 
     @Test

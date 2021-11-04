@@ -250,7 +250,6 @@ public class ItineraryFactory {
             JsonNode opening = product.get(OPENING);
             module.setOpening(opening);
             module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
-                     module.getCtaLink().getLink() + "#opening", null));
-        }
+                     module.getCtaLink().getLink() + "#opening", null));        }
     }
 }
