@@ -1,6 +1,7 @@
 <template>
     <VsDropdown
         :text="dropdownLabel"
+        variant="primary"
         class="vs-global-menu__dropdown"
     >
         <VsDropdownItem
@@ -90,30 +91,30 @@ export default {
         }
     }
 
-    .dropdown-toggle {
+    .btn-primary.dropdown-toggle {
         padding: 0.3rem $spacer-3;
         font-size: $font-size-sm;
         align-items: center;
 
-        &-secondary:not(:disabled):not(.disabled):active {
+        &:not(:disabled):not(.disabled):active {
             background: $color-purple-shade-2;
         }
 
         &:focus {
-            outline: 3px solid $color-pink-tint-5;
-            outline-offset: -3px;
-            box-shadow: inset 0px 0px 0px 3px $color-pink-tint-5;
+            box-shadow: $shadow-button-focus inset;
         }
     }
 
-    &.show .btn,
-    &.show .btn:active,
-    &.show .btn:focus {
-        background: $color-purple-shade-2;
-    }
+    &.show{
+        .btn-primary.dropdown-toggle,
+        .btn-primary.dropdown-toggle:active,
+        .btn-primary.dropdown-toggle:focus {
+            background: $color-purple-shade-2;
+        }
 
-    &.show .btn:focus {
-        box-shadow: inset 0px 0px 0px 3px $color-pink-tint-5;
+        .btn-primary.dropdown-toggle:focus {
+            box-shadow: $shadow-button-focus inset;
+        }
     }
 
     ul:focus {
