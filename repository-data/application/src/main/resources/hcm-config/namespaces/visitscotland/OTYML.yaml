@@ -11,41 +11,10 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 63759827-a60d-4770-806a-d89b936217e2
-          hipposysedit:node: true
-          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
-          hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          hipposysedit:validators: ['visitscotland:otyml-link-validator', 'visitscotland:otyml-unique-link-validator']
-          /title:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:title
-            hipposysedit:primary: false
-            hipposysedit:type: String
-            hipposysedit:validators: ['visitscotland:medium-string-validator']
-          /links:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:multiple: true
-            hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:links
-            hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator, required]
-          /html:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:introduction
-            hipposysedit:primary: false
-            hipposysedit:type: hippostd:html
-        /hipposysedit:nodetype[2]:
-          jcr:primaryType: hipposysedit:nodetype
-          jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 2039d5be-bc94-40e7-b5a0-92768cadc276
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
+          hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
           hipposysedit:validators: ['visitscotland:otyml-link-validator', 'visitscotland:otyml-unique-link-validator']
           /title:
             jcr:primaryType: hipposysedit:field
@@ -75,43 +44,6 @@ definitions:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:OTYML
-          visitscotland:title: ''
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: ''
-          /visitscotland:links[1]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          /visitscotland:links[2]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          /visitscotland:links[3]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          /visitscotland:links[4]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          /visitscotland:links[5]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-        /hipposysedit:prototype[2]:
-          jcr:primaryType: nt:unstructured
-          jcr:mixinTypes: ['hippostd:relaxed']
           visitscotland:title: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
