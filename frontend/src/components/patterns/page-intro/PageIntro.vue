@@ -262,6 +262,79 @@ export default {
 const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-itinerary.json")
 
 <hr/>
+<h3>Page Intro with Hero</h3>
+<hr/>
+<VsPageIntro background="dark" :heroIntro="true" :isItinerary="false" class="mb-8">
+    <VsImageWithCaption
+        slot="vsIntroHero"
+        isHeroImage
+        :altText="itineraries.sampleItinerary.image.altText"
+        :image-src="itineraries.sampleItinerary.image.imageSrc"
+    >
+        <VsCaption
+            slot="img-caption"
+            :latitude="itineraries.sampleItinerary.image.latitude"
+            :longitude="itineraries.sampleItinerary.image.longitude"
+            variant="large"
+        >
+            <span slot="caption">
+                {{ itineraries.sampleItinerary.image.caption }}
+            </span>
+
+            <span slot="credit">
+                {{ itineraries.sampleItinerary.image.credit }}
+            </span>
+        </VsCaption>
+    </VsImageWithCaption>
+
+    <template slot="vsIntroBreadcrumb">
+        <VsBreadcrumb>
+            <VsBreadcrumbItem
+            v-for="(item, index) in breadcrumb.breadcrumb"
+            :key="index"
+            :href="item.href"
+            :active="item.active"
+            :text="item.name"
+            >
+            </VsBreadcrumbItem>
+        </VsBreadcrumb>
+    </template>
+
+    <template slot="vsIntroHeading">
+        {{itineraries.sampleItinerary.h1Heading}}
+    </template>
+
+    <template slot="vsIntroContent">
+        <div v-html="itineraries.sampleItinerary.introduction" />
+    </template>
+</VsPageIntro>
+
+<hr style="margin-top: 8rem;"/>
+<h3>Page Intro without Hero</h3>
+<hr/>
+<VsPageIntro background="light" :heroIntro="false" :isItinerary="false">
+    <template slot="vsIntroBreadcrumb">
+        <VsBreadcrumb>
+            <VsBreadcrumbItem
+            v-for="(item, index) in breadcrumb.breadcrumb"
+            :key="index"
+            :href="item.href"
+            :active="item.active"
+            :text="item.name"
+            >
+            </VsBreadcrumbItem>
+        </VsBreadcrumb>
+    </template>
+    <template slot="vsIntroHeading">
+        {{itineraries.sampleItinerary.h1Heading}}
+    </template>
+
+    <template slot="vsIntroContent">
+        <div v-html="itineraries.sampleItinerary.introduction" />
+    </template>
+</VsPageIntro>
+
+<hr style="margin-top: 8rem;"/>
 <h3>Page Intro for Itinerary</h3>
 <hr/>
 <VsPageIntro background="dark" :heroIntro="true" :isItinerary="true" class="mb-8">
@@ -407,79 +480,6 @@ const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-iti
             </VsCol>
         </VsRow>
     </VsContainer>
-</VsPageIntro>
-
-<hr style="margin-top: 8rem;"/>
-<h3>Page Intro with Hero</h3>
-<hr/>
-<VsPageIntro background="dark" :heroIntro="true" :isItinerary="false" class="mb-8">
-    <VsImageWithCaption
-        slot="vsIntroHero"
-        isHeroImage
-        :altText="itineraries.sampleItinerary.image.altText"
-        :image-src="itineraries.sampleItinerary.image.imageSrc"
-    >
-        <VsCaption
-            slot="img-caption"
-            :latitude="itineraries.sampleItinerary.image.latitude"
-            :longitude="itineraries.sampleItinerary.image.longitude"
-            variant="large"
-        >
-            <span slot="caption">
-                {{ itineraries.sampleItinerary.image.caption }}
-            </span>
-
-            <span slot="credit">
-                {{ itineraries.sampleItinerary.image.credit }}
-            </span>
-        </VsCaption>
-    </VsImageWithCaption>
-
-    <template slot="vsIntroBreadcrumb">
-        <VsBreadcrumb>
-            <VsBreadcrumbItem
-            v-for="(item, index) in breadcrumb.breadcrumb"
-            :key="index"
-            :href="item.href"
-            :active="item.active"
-            :text="item.name"
-            >
-            </VsBreadcrumbItem>
-        </VsBreadcrumb>
-    </template>
-
-    <template slot="vsIntroHeading">
-        {{itineraries.sampleItinerary.h1Heading}}
-    </template>
-
-    <template slot="vsIntroContent">
-        <div v-html="itineraries.sampleItinerary.introduction" />
-    </template>
-</VsPageIntro>
-
-<hr style="margin-top: 8rem;"/>
-<h3>Page Intro without Hero</h3>
-<hr/>
-<VsPageIntro background="light" :heroIntro="false" :isItinerary="false">
-    <template slot="vsIntroBreadcrumb">
-        <VsBreadcrumb>
-            <VsBreadcrumbItem
-            v-for="(item, index) in breadcrumb.breadcrumb"
-            :key="index"
-            :href="item.href"
-            :active="item.active"
-            :text="item.name"
-            >
-            </VsBreadcrumbItem>
-        </VsBreadcrumb>
-    </template>
-    <template slot="vsIntroHeading">
-        {{itineraries.sampleItinerary.h1Heading}}
-    </template>
-
-    <template slot="vsIntroContent">
-        <div v-html="itineraries.sampleItinerary.introduction" />
-    </template>
 </VsPageIntro>
   ```
 </docs>
