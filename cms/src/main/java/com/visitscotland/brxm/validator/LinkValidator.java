@@ -33,17 +33,8 @@ public class LinkValidator implements Validator<Node> {
         try {
             String nodeId = document.getProperty(HIPPO_DOCBASE).getValue().getString();
              if(!nodeId.equals(EMPTY_DOCUMENT)) {
-                 Node childNode = sessionFactory.getHippoNodeByIdentifier(nodeId);
-                 if (document.getParent().isNodeType("visitscotland:Day")) {
-                     if (!childNode.isNodeType("visitscotland:Stop")) {
-                         return Optional.of(context.createViolation("stop"));
-                     }
-                 }else{
-                     if (!childNode.isNodeType("visitscotland:Page") && !childNode.isNodeType("visitscotland:SharedLink")){
-                         return Optional.of(context.createViolation());
-                     }
-                 }
-               }else{
+                 return checkAllowedDocuments(context, document, sessionFactory.getHippoNodeByIdentifier(nodeId));
+             } else {
                  return Optional.of(context.createViolation("EmptyLink"));
              }
         } catch (PathNotFoundException e) {
@@ -51,8 +42,25 @@ public class LinkValidator implements Validator<Node> {
         } catch (RepositoryException e) {
             return Optional.of(context.createViolation());
         }
+    }
+
+    private Optional<Violation> checkAllowedDocuments(final ValidationContext context, final Node document, final Node childNode) throws RepositoryException {
+        if (document.getParent().isNodeType("visitscotland:Day")) {
+            if (!childNode.isNodeType("visitscotland:Stop")) {
+                return Optional.of(context.createViolation("stop"));
+            }
+        } else if (document.getParent().isNodeType("visitscotland:VideoLink")) {
+            if (!childNode.isNodeType("visitscotland:Video")){
+                return Optional.of(context.createViolation("video"));
+            }
+        } else {
+            if (!childNode.isNodeType("visitscotland:Page") && !childNode.isNodeType("visitscotland:SharedLink")){
+                return Optional.of(context.createViolation());
+            }
+        }
 
         return Optional.empty();
     }
+
 }
 
