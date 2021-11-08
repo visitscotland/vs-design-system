@@ -142,7 +142,7 @@
 [visitscotland:TravelInformationTransportRow] > hippo:compound, hippostd:relaxed
   orderable
 
-[visitscotland:Video] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+[visitscotland:Video] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
 [visitscotland:VideoLink] > hippo:compound, hippostd:relaxed
