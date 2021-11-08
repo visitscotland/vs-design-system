@@ -4,11 +4,11 @@
         :width="mapWidth"
         :height="mapHeight"
         viewBox="0 0 76 105.9"
-        class="vs-image-location-map"
-        data-test="vs-image-location-map"
+        class="vs-caption-image-map"
+        data-test="vs-caption-image-map"
     >
         <path
-            data-test="vs-image-location-map__first-path"
+            data-test="vs-caption-image-map__first-path"
             d="M65.9965,9.0973l-.167.736.668.184Z"
             transform="translate(-0.2662 -0.2662)"
             fill="none"
@@ -411,7 +411,7 @@
         />
         <circle
             r="4"
-            data-test="vs-image-location-map__marker"
+            data-test="vs-caption-image-map__marker"
             :fill="mapMarkerColor"
             :cx="positionX"
             :cy="positionY"
@@ -421,13 +421,14 @@
 
 <script>
 /**
- * Image map element
+ * Displays within an image caption to show the location of the photo if
+ * lat/long co-ordinates are available
  *
- * @displayName Image Location Map
+ * @displayName Caption Image Map
  */
 
 export default {
-    name: 'VsImageLocationMap',
+    name: 'VsCaptionImageMap',
     status: 'prototype',
     release: '0.0.1',
     props: {
@@ -502,7 +503,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-image-location-map {
+.vs-caption-image-map {
     width: 100%;
     height: 100%;
 }
@@ -511,16 +512,16 @@ export default {
 <docs>
   ```jsx
   <VsRow>
-    <VsCol cols="6" sm="4" lg="3" v-for="(image, index) in hero.imageLocationMapExamples">
+    <VsCol cols="6" sm="4" lg="3" v-for="(image, index) in hero.captionImageMapExamples">
       <div class="mb-3 p-3 text-center">
         <p>{{image.title}}</p>
-          <VsImageLocationMap
+          <VsCaptionImageMap
             :latitude="image.latitude"
             :longitude="image.longitude"
             map-outline-color="#191919"
             map-marker-color="#109DA3"
           >
-          </VsImageLocationMap>
+          </VsCaptionImageMap>
       </div>
     </VsCol>
   </VsRow>
