@@ -20,21 +20,39 @@ export default {
     release: '0.0.1',
     props: {
         /**
-         * Pre-filled fields
+         * Config for prefilled fields and language
          */
-        prefilled: {
+        config: {
             type: Array,
             default() {
                 return [];
             },
         },
     },
+    data() {
+        return {
+            langConfig: {
+                en: {
+                    localeUrl: '',
+                },
+                fr: {
+                    localeUrl: 'fr-fr',
+                },
+                de: {
+                    localeUrl: 'de-de',
+                },
+                es: {
+                    localeUrl: 'es-es',
+                },
+            },
+        };
+    },
     computed: {
         /* Return an array of objects defining data attributes */
         prefilAttrs() {
             const dataAttrs = [];
 
-            this.prefilled.forEach((element) => {
+            this.config.forEach((element) => {
                 const attrObj = {
                 };
                 const keyName = Object.keys(element);
@@ -48,11 +66,38 @@ export default {
 
             return dataAttrs;
         },
+        getLangUrl() {
+            // let objIndex;
+            const langObj = this.config.filter((o) => Object.prototype.hasOwnProperty.call(o, 'lang'));
+
+            if (langObj.length > 0) {
+                return this.langConfig[langObj[0].lang].localeUrl;
+            }
+
+            return this.langConfig.en.localeUrl;
+        },
+        getEnvironment() {
+            if (window.location.hostname.includes('develop') || window.location.hostname.includes('localhost')) {
+                return 'develop';
+            }
+            return 'www';
+        },
     },
-    mounted() {
+    beforeMount() {
+        window.VS = {
+        };
+
+        const langScriptEl = document.createElement('script');
+        langScriptEl.async = false;
+        // TODO: the develop version isn't working at the moment so hard-coding
+        // the environment for now
+        // langScriptEl.setAttribute ('src', `https://${this.getEnvironment}.visitscotland.com/${this.getLangUrl}/data/template/search.js`);
+        langScriptEl.setAttribute('src', `https://www.visitscotland.com/${this.getLangUrl}/data/template/search.js`);
+        document.head.appendChild(langScriptEl);
+
         const psrScriptEl = document.createElement('script');
-        // psrScriptEl.setAttribute('src', 'https://develop.visitscotland.com/api/dev/ui/product-search/static/js/bundle.js');
-        psrScriptEl.setAttribute('src', 'http://localhost:9999//static/js/bundle.js');
+        // psrScriptEl.setAttribute('src', `https://${this.getEnvironment}.visitscotland.com/api/dev/ui/product-search/static/js/bundle.js`);
+        psrScriptEl.setAttribute('src', 'http://localhost:9999/static/js/bundle.js');
         document.head.appendChild(psrScriptEl);
     },
 };
@@ -64,7 +109,7 @@ export default {
 @import "http://localhost:9999/css/main.css";
 
 .no-js {
-    .vs-psr {
+    .vs-psr-embed {
         display: none;
     }
 }
@@ -77,7 +122,7 @@ export default {
         <VsRow>
             <VsCol md="6">
                 <vs-psr-embed
-                    :prefilled="[{'subSearchType': 'cate'},{'loc': 'Inverary'}]"
+                    :config="[{'lang': 'fr'},{'subSearchType': 'acco'},{'locplace': '4161'}]"
                 />
             </VsCol>
         </VsRow>
