@@ -437,12 +437,12 @@ export default {
             }
 
             &:focus {
-                border: 2px solid $color-purple-tint-4;
+                border: 2px solid $color-secondary-teal-tint-3;
                 outline: none;
             }
 
             &:hover {
-                border: 2px solid $color-purple-tint-4;
+                border: 2px solid $color-secondary-teal-tint-3;
                 outline: none;
 
                 .vs-carousel__control-label-container {
