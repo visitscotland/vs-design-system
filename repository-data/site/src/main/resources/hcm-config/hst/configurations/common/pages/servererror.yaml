@@ -1,0 +1,12 @@
+definitions:
+  config:
+    /hst:hst/hst:configurations/common/hst:pages/servererror:
+      jcr:primaryType: hst:component
+      hst:referencecomponent: hst:abstractpages/base
+      /main:
+        jcr:primaryType: hst:component
+        hst:componentclassname: com.visitscotland.brxm.components.content.GeneralContentComponent
+        hst:template: general-main
+        /container:
+          jcr:primaryType: hst:containercomponentreference
+          hst:referencecomponent: pagenotfound/main

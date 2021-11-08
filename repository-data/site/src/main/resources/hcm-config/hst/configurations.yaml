@@ -384,6 +384,10 @@ definitions:
                   hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
                     'hst:pages/listicle-page', 'hst:pages/general-page', 'hst:pages/destination-page']
                   hst:relativecontentpath: ${parent}/content
+          /servererror:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/servererror
+            hst:relativecontentpath: general/error/500error
         /hst:abstractpages:
           jcr:primaryType: hst:pages
         /hst:pages:
