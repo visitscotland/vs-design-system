@@ -4,7 +4,7 @@ import VsPsrEmbed from '../PsrEmbed';
 
 const factoryShallowMount = () => shallowMount(VsPsrEmbed, {
     propsData: {
-        prefilled: [{
+        config: [{
             loc: 'Edinburgh',
         }],
     },
