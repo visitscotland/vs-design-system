@@ -1,6 +1,11 @@
 import { shallowMount } from '@vue/test-utils';
 import VsMegalinkSingleImage from '../MegalinkSingleImage';
 
+const vsSingleImageSlot = '<p>Image goes here</p>';
+const vsSingleImageContentSlot = '<p>This is the content for the single image component</p>';
+const vsSingleImageLinksSlot = '<li>This is just one link</li>';
+const vsSingleImageButtonTextSlot = 'This is the button text';
+
 const factoryShallowMount = () => shallowMount(VsMegalinkSingleImage, {
     propsData: {
         alternate: false,
@@ -9,9 +14,10 @@ const factoryShallowMount = () => shallowMount(VsMegalinkSingleImage, {
         theme: 'dark',
     },
     slots: {
-        vsSingleImageContent: '<p>This is the content for the single image component</p>',
-        vsSingleImageLinks: '<li>This is just one link</li>',
-        vsSingleImageButtonText: 'This is the button text',
+        vsSingleImage: vsSingleImageSlot,
+        vsSingleImageContent: vsSingleImageContentSlot,
+        vsSingleImageLinks: vsSingleImageLinksSlot,
+        vsSingleImageButtonText: vsSingleImageButtonTextSlot,
     },
 });
 
@@ -50,16 +56,20 @@ describe('VsMegalinkSingleImage', () => {
     });
 
     describe(':slots', () => {
+        it('renders content inserted in a vsSingleImage slot', () => {
+            expect(wrapper.find('[data-test="megalink-single-image"').html()).toContain(vsSingleImageSlot);
+        });
+
         it('renders content inserted in a vsSingleImageContent slot', () => {
-            expect(wrapper.find('[data-test="megalink-single-image__content"').html()).toContain('<p>This is the content for the single image component</p>');
+            expect(wrapper.find('[data-test="megalink-single-image__content"').html()).toContain(vsSingleImageContentSlot);
         });
 
         it('renders content inserted in a vsSingleImageLinks slot', () => {
-            expect(wrapper.find('[data-test="megalink-single-image__content"]').html()).toContain('<li>This is just one link</li>');
+            expect(wrapper.find('[data-test="megalink-single-image__content"]').html()).toContain(vsSingleImageLinksSlot);
         });
 
         it('renders content inserted in a vsSingleImageButtonText slot', () => {
-            expect(wrapper.find('[data-test="megalink-single-image__content"]').html()).toContain('This is the button text');
+            expect(wrapper.find('[data-test="megalink-single-image__content"]').html()).toContain(vsSingleImageButtonTextSlot);
         });
     });
 });

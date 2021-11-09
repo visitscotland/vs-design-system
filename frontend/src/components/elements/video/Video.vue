@@ -16,7 +16,14 @@
             data-test="vs-video-duration"
             v-if="showDuration"
         >
-            {{ duration.minutes }}:{{ duration.seconds }}
+            {{ duration.minutes }}:{{ pad(duration.seconds) }}
+        </p>
+        <p
+            class="vs-video__duration"
+            data-test="vs-video-rounded-duration"
+            v-if="showDuration"
+        >
+            {{ duration.roundedMinutes }}
         </p>
     </div>
 </template>
@@ -71,12 +78,35 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * A string to be shown with the rounded time, when the rounded
+         * minute value is singular. Should contain '%s' to be replaced by the
+         * number of minutes
+         *
+         * Eg: '%s minute video', 'Video de %s minuto'
+         */
+        singleMinuteDescriptor: {
+            type: String,
+            default: '%s minute video',
+        },
+        /**
+         * A string to be shown with the rounded time, when the rounded
+         * minute value is plural. Should contain '%s' to be replaced
+         * by the number of minutes
+         *
+         * Eg: '%s minute video', 'Video de %s minutos'
+         */
+        pluralMinuteDescriptor: {
+            type: String,
+            default: '%s minute video',
+        },
     },
     data() {
         return {
             duration: {
                 minutes: 0,
                 seconds: 0,
+                roundedMinutes: '',
             },
             showDuration: false,
         };
@@ -138,6 +168,43 @@ export default {
 
             this.duration.minutes = minutes;
             this.duration.seconds = seconds;
+
+            const roundedMinutes = this.getRoundedMinutes(minutes, seconds);
+
+            this.duration.roundedMinutes = this.formatSingularOrPlural(roundedMinutes);
+        },
+        /**
+         * Takes a time expressed as minutes and seconds and returns the number of minutes rounded
+         * to the nearest one. Any time less than one minute is rounded up to one.
+         */
+        getRoundedMinutes(minutes, seconds) {
+            if (seconds < 30 && minutes !== 0) {
+                return minutes;
+            }
+
+            return minutes + 1;
+        },
+        /**
+         * Checks if the number of (rounded) minutes the video is long is singular or plural, then
+         * returns the appropriate descriptor string with the duration subbed in
+         */
+        formatSingularOrPlural(minutes) {
+            if (minutes === 1) {
+                return this.singleMinuteDescriptor.replace('%s', minutes);
+            }
+
+            return this.pluralMinuteDescriptor.replace('%s', minutes);
+        },
+        /**
+         * Takes a number, returns a string padded with a
+         * leading 0 if the number is less than 10
+         */
+        pad(toPad) {
+            if (toPad >= 10) {
+                return toPad;
+            }
+
+            return `0${toPad}`;
         },
     },
 };
@@ -150,6 +217,13 @@ export default {
             <VsCol md="6">
                 <VsVideo
                     video-id="c05sg3G4oA4"
+                />
+            </VsCol>
+            <VsCol md="6">
+                <VsVideo
+                    video-id="dKI8IEnqvbU"
+                    single-minute-descriptor="Video de %s minuto"
+                    plural-minute-descriptor="Video de %s minutos"
                 />
             </VsCol>
         </VsRow>
