@@ -11,9 +11,10 @@
     hippo:availability: []
     hippostd:retainable: false
     hippostd:state: draft
+    hippostd:transferable: false
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-10-06T12:09:44.139+01:00
+    hippostdpubwf:lastModificationDate: 2021-10-15T12:23:04.342+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -42,8 +43,8 @@
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       UTF-8, '', '2000', '3', '60000', 'https://community.visitscotland.com/', discussions/tagged/,
       '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
-      $VS_USE_RELATIVE_URLS, 'http://localhost:8080/site', 'http://172.28.81.65:8089',
-      'http://172.28.81.65:8089/data', 'http://172.28.81.65:8089/data', www.visitscotland.com]
+      'false', 'http://localhost:8080/site', 'http://172.28.81.65:8089', 'http://172.28.81.65:8089/data',
+      'http://172.28.81.65:8089/data', www.visitscotland.com]
   /local-environment[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']

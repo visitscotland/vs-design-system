@@ -2,6 +2,7 @@ package com.visitscotland.brxm.utils;
 
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.configuration.hosting.Mount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -33,7 +34,7 @@ public class Properties {
     //Environment
     static final String USE_RELATIVE_URLS = "links.use-relative-urls";
     static final String INTERNAL_SITES = "links.internal-sites";
-    static final String CMS_BASE_PATH = "links.cms-base-path-url";
+    static final String CMS_BASE_PATH = "links.cms-base-path.url";
     static final String CONVERT_TO_RELATIVE = "links.convert-to-relative";
 
     // DMS Properties
@@ -210,10 +211,18 @@ public class Properties {
      * @return Resource Bundle id for the configuration
      */
     private String getEnvironmentProperties(){
-        if (utils.getResolvedMount(null) != null) {
-            String bundleId = utils.getResolvedMount(null).getProperty("visitscotland:cmsProperties");
+        final Mount mount = utils.getResolvedMount(null);
+        if (mount  != null) {
+            String bundleId = mount.getProperty("visitscotland:cmsProperties");
             if (bundleId != null){
                 return bundleId;
+            } else if (mount.getParent() != null){
+                //Other languages and data endpoints are mounted as subsites in the configuration
+                bundleId = mount.getParent().getProperty("visitscotland:cmsProperties");
+
+                if (bundleId != null){
+                    return bundleId;
+                }
             }
         }
 
@@ -225,7 +234,7 @@ public class Properties {
         String value = bundle.getResourceBundle(bundleId, key, Locale.UK);
 
         if (Contract.isEmpty(value)){
-            logger.warn("The property {} hasn't been set in the resourceBundle {}", key, bundleId);
+            logger.info("The property {} hasn't been set in the resourceBundle {}", key, bundleId);
         } else if (value.startsWith("$")){
             return getEnvironmentVariable(value.substring(1));
         } else {

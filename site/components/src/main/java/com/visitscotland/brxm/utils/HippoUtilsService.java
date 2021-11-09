@@ -9,9 +9,15 @@ import org.hippoecm.hst.content.beans.manager.ObjectConverter;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
+import org.hippoecm.hst.core.container.ContainerConstants;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
+import org.hippoecm.hst.core.request.ResolvedMount;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
+import org.hippoecm.hst.core.request.ResolvedVirtualHost;
+import org.hippoecm.hst.util.PathUtils;
+import org.hippoecm.repository.api.HippoNode;
+import org.jetbrains.annotations.NotNull;
 import org.onehippo.forge.selection.hst.contentbean.ValueList;
 import org.onehippo.forge.selection.hst.util.SelectionUtil;
 import org.slf4j.Logger;
@@ -22,6 +28,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Set of utilities related with Hippo that from the whole environment to be running in order to work
@@ -51,7 +58,11 @@ public class HippoUtilsService {
      *
      */
     @NonTestable(NonTestable.Cause.BRIDGE)
-    public String createUrl(Page document){
+    public String createUrl(Page document) {
+        return createUrl(document, true);
+    }
+
+    public String createUrl(Page document, boolean localize) {
         if (document == null) {
             logger.info("The linked page does not exist.");
             return null;
@@ -59,9 +70,19 @@ public class HippoUtilsService {
             final boolean FULLY_QUALIFIED = false;
             HstRequestContext requestContext = RequestContextProvider.get();
 
-            HstLink link = requestContext.getHstLinkCreator().create(document, requestContext);
+            HstLink link = requestContext.getHstLinkCreator().create(localize ? getLocalizedDocument(document) : document, requestContext);
             return link.toUrlForm(requestContext, FULLY_QUALIFIED);
         }
+    }
+
+    private HippoBean getLocalizedDocument(@NotNull Page document) {
+        HippoBean localizedDocument = document;
+
+        if (!getRequestLocale().toLanguageTag().contains(document.getLocaleString())) {
+            localizedDocument = document.getAvailableTranslations().getTranslation(getRequestLocale().getLanguage());
+        }
+
+        return localizedDocument != null ? localizedDocument : document;
     }
 
     /**
@@ -108,15 +129,47 @@ public class HippoUtilsService {
     }
 
     /**
+     * Obtain the content bean for a request. If the content bean is not found in request mount, then check english
+     * mount (as part of the traslation fallback)
+     *
+     * @param request
+     * @return
+     */
+    public Optional<HippoBean> getContentBeanWithTranslationFallback(HstRequest request) {
+        HstRequestContext context = request.getRequestContext();
+        HippoBean contentBean = request.getRequestContext().getContentBean();
+        if (contentBean != null) {
+            return Optional.of(contentBean);
+        }
+        ResolvedVirtualHost resolvedVirtualHost = (ResolvedVirtualHost) request.getAttribute(ContainerConstants.VIRTUALHOSTS_REQUEST_ATTR);
+        if (resolvedVirtualHost == null) {
+            logger.error("Failed to get ResolvedVirtualHost from request servlet");
+            return Optional.empty();
+        }
+        ResolvedMount englishMount = resolvedVirtualHost.matchMount("/");
+        if (englishMount == null || context.getResolvedSiteMapItem() == null || context.getObjectBeanManager() == null || englishMount.getMount() == null) {
+            return Optional.empty();
+        }
+        String englishContentPath = englishMount.getMount().getContentPath();
+        String englishContent = "/" + PathUtils.normalizePath(englishContentPath) + "/" + PathUtils.normalizePath(context.getResolvedSiteMapItem().getRelativeContentPath());
+        try {
+            Object bean = context.getObjectBeanManager().getObject(englishContent);
+            return (bean instanceof HippoBean) ? Optional.of((HippoBean) bean) : Optional.empty();
+        } catch (ObjectBeanManagerException e) {
+            logger.info("Failed to get hippo bean at {}", englishContent, e);
+            return Optional.empty();
+        }
+    }
+
+    /**
      * Extract a parameter from the URL (without namespace)
      *
-     * @param request HstRequest
+     * @param request   HstRequest
      * @param parameter Name of the parameter
-     *
      * @return value of the query parameter or null if such parameter hasn't been defined
      */
     @NonTestable(NonTestable.Cause.BRIDGE)
-    public String getParameterFromUrl(HstRequest request, String parameter){
+    public String getParameterFromUrl(HstRequest request, String parameter) {
         return request.getRequestContext().getServletRequest().getParameter(parameter);
     }
 
@@ -134,9 +187,7 @@ public class HippoUtilsService {
     }
 
     /**
-     * Extract a parameter from the URL (without namespace)
-     *
-     * @return value of the query parameter or null if such parameter hasn't been defined
+     * @return Returns the locale for the current request
      */
     @NonTestable(NonTestable.Cause.BRIDGE)
     public Locale getRequestLocale(){

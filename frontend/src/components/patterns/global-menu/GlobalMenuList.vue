@@ -79,9 +79,10 @@ export default {
 
     &_item {
         a {
-            padding: 0.65rem $spacer_5;
-            max-height: 35px;
-            background: $color-purple;
+            padding: 0 $spacer_5;
+            line-height: 35px;
+            height: 35px;
+            display: inline-block;
 
             &:focus {
                 outline: 3px solid $color-pink-tint-5;
