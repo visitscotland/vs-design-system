@@ -38,7 +38,7 @@
                 v-if="showMap && isLargeCaption"
             >
                 <div class="vs-caption__map-wrapper pt-3 pt-sm-2 pb-sm-2 pr-sm-4 mx-auto">
-                    <VsImageLocationMap
+                    <VsCaptionImageMap
                         :latitude="latitude"
                         :longitude="longitude"
                         :map-outline-color="tokens.color_white"
@@ -51,9 +51,9 @@
 </template>
 
 <script>
-import { VsRow, VsCol } from '@components/elements/layout';
-import VsImageLocationMap from '@components/patterns/image-location-map/ImageLocationMap';
 import designTokens from '@/assets/tokens/tokens.json';
+import { VsRow, VsCol } from '@components/elements/layout';
+import VsCaptionImageMap from './components/CaptionImageMap';
 
 /**
  * TODO: Document usage
@@ -65,7 +65,7 @@ export default {
     components: {
         VsRow,
         VsCol,
-        VsImageLocationMap,
+        VsCaptionImageMap,
     },
     props: {
         /**
