@@ -32,7 +32,14 @@
                                 orientation="down"
                                 variant="light"
                             />
-                            <span class="sr-only">{{ prevText }}</span>
+                            <div class="vs-carousel__control-label-container">
+                                <span
+                                    class="vs-carousel__control-label
+                                           vs-carousel__control-label--prev"
+                                >
+                                    {{ prevText }}
+                                </span>
+                            </div>
                         </button>
                         <button
                             v-if="!nextDisabled"
@@ -40,6 +47,14 @@
                             @keypress.prevent="sliderNavigate('next')"
                             @click.prevent="sliderNavigate('next')"
                         >
+                            <div class="vs-carousel__control-label-container">
+                                <span
+                                    class="vs-carousel__control-label
+                                           vs-carousel__control-label--next"
+                                >
+                                    {{ nextText }}
+                                </span>
+                            </div>
                             <VsIcon
                                 name="internal-link"
                                 size="xs"
@@ -48,7 +63,10 @@
                             <span class="sr-only">{{ nextText }}</span>
                         </button>
 
-                        <ul class="vs-carousel__navigation">
+                        <ul
+                            v-if="totalSlides > slidesPerPage[currentWidth]"
+                            class="vs-carousel__navigation"
+                        >
                             <li
                                 v-for="index in maxPages"
                                 :key="index"
@@ -71,7 +89,10 @@
                         </ul>
                     </div>
 
-                    <div class="vs-carousel__mobile-pagination-wrapper">
+                    <div
+                        v-if="totalSlides > slidesPerPage[currentWidth]"
+                        class="vs-carousel__mobile-pagination-wrapper"
+                    >
                         <p
                             class="vs-carousel__mobile-pagination"
                             data-test="vs-carousel__mobile-pagination"
@@ -220,6 +241,7 @@ export default {
             this.sliderNavigate(this.currentPage);
         });
         this.defineActiveSlides();
+        this.initNavigation();
     },
     methods: {
         defineActiveSlides(remainder) {
@@ -364,7 +386,8 @@ export default {
 
         &__track {
             flex-wrap: nowrap;
-            transition: transform 0.6s ease-out;
+            transition: transform $duration-slowly ease-out;
+            margin-bottom: $spacer-9;
 
             & > [class^="col-"] {
                 display: flex;
@@ -377,7 +400,7 @@ export default {
             border: none;
             background: $color-theme-primary;
             z-index: 20;
-            width: 35px;
+            min-width: 35px;
             height: 35px;
             border-radius: 0;
             display: flex;
@@ -392,10 +415,39 @@ export default {
                 left: 0;
             }
 
-            &:focus,
-            &:hover {
-                border: 2px solid $color-purple-tint-4;
+            &-label {
+                color: $color-white;
+                white-space: nowrap;
+                text-transform: uppercase;
+                font-weight: $font-weight-light;
+
+                &--next {
+                    padding-right: $spacer-4;
+                }
+
+                &--prev {
+                    padding-left: $spacer-4;
+                }
+            }
+
+            .vs-carousel__control-label-container {
+                transition: max-width $duration-slowly ease;
+                max-width: 0;
+                overflow: hidden;
+            }
+
+            &:focus {
+                border: 2px solid $color-secondary-teal-tint-3;
                 outline: none;
+            }
+
+            &:hover {
+                border: 2px solid $color-secondary-teal-tint-3;
+                outline: none;
+
+                .vs-carousel__control-label-container {
+                    max-width: 15rem;
+                }
             }
         }
 
@@ -407,6 +459,10 @@ export default {
             @include media-breakpoint-up(sm) {
                 display: flex;
             }
+
+            li {
+                display: flex;
+            }
         }
 
         &__navigation-item {
@@ -416,7 +472,7 @@ export default {
             border-radius: 5px;
             background: $color-gray-tint-4;
             transform: translateY(2px);
-            margin: $spacer-9 2px 0;
+            margin: 0 2px;
             border: none;
             box-shadow: none;
             cursor: pointer;
@@ -597,7 +653,7 @@ export default {
             slide-index="3"
         >
             <template slot="vsCarouselSlideHeading">
-                4 Count 7,000 shining stars in the iconic
+                3 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
@@ -620,7 +676,7 @@ export default {
             slide-index="4"
         >
             <template slot="vsCarouselSlideHeading">
-                5 Count 7,000 shining stars in the iconic
+                3 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
@@ -643,7 +699,7 @@ export default {
             slide-index="5"
         >
             <template slot="vsCarouselSlideHeading">
-                6 Count 7,000 shining stars in the iconic
+                3 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
@@ -666,7 +722,7 @@ export default {
             slide-index="6"
         >
             <template slot="vsCarouselSlideHeading">
-                7 Count 7,000 shining stars in the iconic
+                3 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
@@ -689,7 +745,7 @@ export default {
             slide-index="7"
         >
             <template slot="vsCarouselSlideHeading">
-                8 Count 7,000 shining stars in the iconic
+                3 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
@@ -712,7 +768,7 @@ export default {
             slide-index="8"
         >
             <template slot="vsCarouselSlideHeading">
-                9 Count 7,000 shining stars in the iconic
+                3 Count 7,000 shining stars in the iconic
                 galloway forest
             </template>
             <template slot="vsCarouselSlideContent">
@@ -723,11 +779,98 @@ export default {
                 </p>
             </template>
         </VsCarouselSlide>
-
-        <template slot="vsCarouselNavigate">
-            Navigate to page
-        </template>
-
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
+            category="Category"
+            days="15"
+            transport="bus"
+            transport-name="Bus"
+            slide-index="9"
+        >
+            <template slot="vsCarouselSlideHeading">
+                3 Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
+            category="Category"
+            days="15"
+            transport="bus"
+            transport-name="Bus"
+            slide-index="10"
+        >
+            <template slot="vsCarouselSlideHeading">
+                3 Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
+            category="Category"
+            days="15"
+            transport="bus"
+            transport-name="Bus"
+            slide-index="11"
+        >
+            <template slot="vsCarouselSlideHeading">
+                3 Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            img-alt=""
+            category="Category"
+            days="15"
+            transport="bus"
+            transport-name="Bus"
+            slide-index="12"
+        >
+            <template slot="vsCarouselSlideHeading">
+                3 Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
         <template slot="vsCarouselOf">
             of
         </template>

@@ -85,7 +85,7 @@ export default {
         linkType: {
             type: String,
             required: true,
-            validator: (value) => value.match(/(external|internal|download)/),
+            validator: (value) => value.match(/(default|external|internal|download)/),
         },
         /**
         * The link destination
@@ -162,8 +162,7 @@ export default {
         .vs-carousel-slide__card {
             flex-shrink: 0;
             opacity: 0.5;
-            transition: opacity 0.3s ease;
-            transition-delay: 0.6s;
+            transition: $duration-slowly;
             padding: $spacer-2;
             max-width: 100%;
 
@@ -212,10 +211,10 @@ export default {
                 padding: $spacer-2;
                 border: none;
                 height: 100%;
-                transition: box-shadow 800ms;
+                transition: box-shadow $duration-slowly;
 
                 &:hover {
-                    box-shadow: 10px 10px 20px $color-gray-tint-4;
+                    box-shadow: $shadow_card;
 
                     .vs-stretched-link-card__title {
                         text-decoration: underline;
@@ -332,6 +331,7 @@ export default {
             slides-lg="4"
         >
             <VsCarouselSlide
+                slide-index="0"
                 link-url="www.visitscotland.com"
                 link-type="external"
                 img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"

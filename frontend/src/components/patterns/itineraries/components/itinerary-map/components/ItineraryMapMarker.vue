@@ -102,7 +102,7 @@ export default {
     }
 
     svg {
-        transition: all 250ms ease;
+        transition: $transition-base;
     }
 
     svg.active {
@@ -119,7 +119,7 @@ export default {
     position: absolute;
     top: 4px;
     left: 0;
-    transition: all 250ms ease;
+    transition: $transition-base;
     text-align: center;
     width: 100%;
 

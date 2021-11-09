@@ -1,9 +1,8 @@
 /* eslint-disable no-use-before-define */
-
-import designTokens from '@/assets/tokens/tokens.raw.json';
 import {
     get, map, zipObject,
 } from 'lodash';
+import designTokens from '@/assets/tokens/tokens.raw.json';
 
 const themeColours = [
     'primary',
