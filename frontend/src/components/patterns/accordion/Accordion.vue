@@ -1,7 +1,6 @@
 <template>
     <div
         class="vs-accordion"
-        role="tablist"
         data-test="vs-accordion"
     >
         <!-- @slot Default slot to contain Accordion Items -->
@@ -46,20 +45,32 @@ export default {
 <docs>
   ```js
 
-    <h3>Basic Accordion</h3>
+    <h3 class="mb-6">Basic Accordion</h3>
+
     <VsAccordion>
-        <VsAccordionItem :open-by-default="true" variant="dark" control-id="accordion_item_1">
+        <VsAccordionItem
+            :open-by-default="true"
+            variant="transparent"
+            control-id="accordion_item_1"
+        >
             <span slot="title">
-                This is a title
+                <VsIcon name="walk" variant="dark" size="sm" class="mr-2"/> Walking
             </span>
 
-            <span slot="icon-open">
-                <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
-            </span>
+            <VsIcon
+                name="chevron"
+                variant="dark"
+                size="sm"
+                slot="icon-open"
+            />
 
-            <span slot="icon-closed">
-                <VsIcon name="chevron" variant="light" size="xs" />
-            </span>
+            <VsIcon
+                name="chevron"
+                orientation="down"
+                variant="dark"
+                size="sm"
+                slot="icon-closed"
+            />
 
             <div class="p-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
@@ -69,18 +80,29 @@ export default {
             </div>
         </VsAccordionItem>
 
-        <VsAccordionItem :open-by-default="false" variant="dark" control-id="accordion_item_2">
+        <VsAccordionItem
+            :open-by-default="false"
+            variant="transparent"
+            control-id="accordion_item_2"
+        >
             <span slot="title">
-                This is a title
+                <VsIcon name="car" variant="dark" size="sm" class="mr-2"/> Driving
             </span>
 
-            <span slot="icon-open">
-                <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
-            </span>
+            <VsIcon
+                name="chevron"
+                variant="dark"
+                size="sm"
+                slot="icon-open"
+            />
 
-            <span slot="icon-closed">
-                <VsIcon name="chevron" variant="light" size="xs" />
-            </span>
+            <VsIcon
+                name="chevron"
+                orientation="down"
+                variant="dark"
+                size="sm"
+                slot="icon-closed"
+            />
 
             <div class="p-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
@@ -89,18 +111,29 @@ export default {
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
         </VsAccordionItem>
-        <VsAccordionItem :open-by-default="false" variant="dark" control-id="accordion_item_3">
+        <VsAccordionItem
+            :open-by-default="false"
+            variant="transparent"
+            control-id="accordion_item_3"
+        >
             <span slot="title">
-                This is a title
+                <VsIcon name="cycle" variant="dark" size="sm" class="mr-2"/> Cycling
             </span>
 
-            <span slot="icon-open">
-                <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
-            </span>
+            <VsIcon
+                name="chevron"
+                variant="dark"
+                size="sm"
+                slot="icon-open"
+            />
 
-            <span slot="icon-closed">
-                <VsIcon name="chevron" variant="light" size="xs" />
-            </span>
+            <VsIcon
+                name="chevron"
+                orientation="down"
+                variant="dark"
+                size="sm"
+                slot="icon-closed"
+            />
 
             <div class="p-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
@@ -111,7 +144,10 @@ export default {
         </VsAccordionItem>
     </VsAccordion>
 
-    <h3  class="mt-6">Responsive Accordion</h3>
+    <h3 class="mt-12">Responsive Accordion</h3>
+    <p class="mb-4">Specifying a breakpoint on the Accordion will change this from just a heading
+    with content into an accordion list at the specified breakpoint. </p>
+
     <VsAccordion break-point="md">
         <VsAccordionItem :open-by-default="true" variant="dark" control-id="accordion_item_4">
             <span slot="title">

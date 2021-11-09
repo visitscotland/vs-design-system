@@ -6,6 +6,10 @@
 props:
   shadow_s:
     value: "0 0 0 1px rgba(92,106,196,.1)"
+  shadow_card:
+    value: "10px 10px 20px $color-gray-tint-4"
+  shadow_button_focus:
+    value: "0 0 0 0.2rem $color-secondary-teal-tint-3"
 global:
   type: ...
   category: box-shadow
