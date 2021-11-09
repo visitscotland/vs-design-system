@@ -11,4 +11,24 @@ public class LongCopy extends BaseDocument {
     public HippoHtml getCopy() {
         return getHippoHtml("visitscotland:copy");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:diff")
+    public String getDiff() {
+        return getSingleProperty("visitscotland:diff");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
+    public Boolean getTranslationFlag() {
+        return getSingleProperty("visitscotland:translationFlag");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
+    public String getTranslationPriority() {
+        return getSingleProperty("visitscotland:translationPriority");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
+    }
 }

@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.config;
 
+import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.services.LinkService;
 import org.junit.jupiter.api.Assertions;
@@ -10,6 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
@@ -29,19 +31,21 @@ class HTMLtoVueTransformerTest {
     @InjectMocks
     HTMLtoVueTransformer transformer;
 
-    @Test
-    @DisplayName("Identifies a single a tag and adds the type")
-    void links_external(){
+    @ParameterizedTest
+    @DisplayName("VS-2383 - Internal links return type default ")
+    @CsvSource({"INTERNAL,default", "EXTERNAL,external", "DOWNLOAD, download"})
+    void links_external(LinkType type, String output){
         final String HTML = "<p>Take a look at the " +
                 "<a href=\"https://community.visitscotland.com/\" title=\"iKnow Community\" target=\"_blank\">iKnow Scotland Community</a>" +
                 " to share your tips and pick up a couple more for your next break or day out in Scotland.</p>";
 
-        when(linkService.getType("https://community.visitscotland.com/")).thenReturn(LinkType.EXTERNAL);
+        when(linkService.createExternalLink("https://community.visitscotland.com/"))
+                .thenReturn(new FlatLink(null, "https://community.visitscotland.com/", type));
 
         String result = transformer.processLinks(HTML);
 
         Assertions.assertTrue(result.contains("<vs-link "));
-        Assertions.assertTrue(result.contains(" type=\"external\""));
+        Assertions.assertTrue(result.contains(" type=\""+output+"\""));
     }
 
     @Test
@@ -51,6 +55,9 @@ class HTMLtoVueTransformerTest {
                 "<a href=\"https://www.gov.scot/\">Link 1</a>, " +
                 "<a href=\"https://www.gov.scot/coronavirus-covid-19/\">Link 2</a> & " +
                 "<a href=\"https://protect.scot/\">Link 3</a> </p>";
+
+        when(linkService.createExternalLink(Mockito.any()))
+                .thenReturn(new FlatLink(null, "", LinkType.EXTERNAL));
 
         String result = transformer.processLinks(HTML);
         Matcher matcher = Pattern.compile("<vs-link ").matcher(result);
@@ -169,5 +176,48 @@ class HTMLtoVueTransformerTest {
     void lists_complex(){
         String output = transformer.processLists("<ul><ol><ul></ul></ol><ol></ol></ul> <ol><ol></ol></ol><ul><ul></ul></ul>");
         assertEquals("<vs-list><ol><ul></ul></ol><ol></ol></vs-list> <vs-list ordered><ol></ol></vs-list><vs-list><ul></ul></vs-list>", output);
+    }
+
+    @Test
+    @DisplayName("Download document links includes the icon and the size")
+    void links_external(){
+        final String HTML = "<p>Take a look at the " +
+                "<a href=\"https://www.visitscotland.com/pdf/\" title=\"iKnow Community\" target=\"_blank\">iKnow Scotland Community</a>" +
+                " to share your tips and pick up a couple more for your next break or day out in Scotland.</p>";
+
+        when(linkService.createExternalLink("https://www.visitscotland.com/pdf/"))
+                .thenReturn(new FlatLink(null, "https://www.visitscotland.com/pdf/", LinkType.DOWNLOAD));
+        when(linkService.getDownloadText("https://www.visitscotland.com/pdf/")).thenReturn("(PDF 3GB)");
+
+        String result = transformer.processLinks(HTML);
+
+        Assertions.assertTrue(result.contains("<vs-link "));
+        Assertions.assertTrue(result.contains(" type=\"download\""));
+        Assertions.assertTrue(result.contains("(PDF 3GB)"));
+    }
+
+    @Test
+    @DisplayName("VS-2733 - Links with attributes are interpreted")
+    void links_withAttributes(){
+        final String HTML = "<p>Take a look at the " +
+                "<a rel=\"nofollow\" href=\"https://www.visitscotland.com/\" title=\"iKnow Community\" target=\"_blank\">iKnow Scotland Community</a></p>";
+
+        when(linkService.createExternalLink("https://www.visitscotland.com/"))
+                .thenReturn(new FlatLink(null, "https://www.visitscotland.com/", LinkType.INTERNAL));
+
+        String result = transformer.processLinks(HTML);
+
+        Assertions.assertTrue(result.contains("<vs-link "));
+    }
+
+    @Test
+    @DisplayName("VS-2756 - ")
+    void localizedUrl(){
+        final String HTML = "<a href=\"https://www.visitscotland.com/\">Link 1</a>";
+
+        when(linkService.createExternalLink("https://www.visitscotland.com/"))
+                .thenReturn(new FlatLink(null, "https://www.visitscotland.com/es/", LinkType.EXTERNAL));
+
+        Assertions.assertTrue(transformer.processLinks(HTML).contains("https://www.visitscotland.com/es/"));
     }
 }

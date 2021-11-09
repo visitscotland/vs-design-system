@@ -1,6 +1,7 @@
 package com.visitscotland.brxm.components.navigation;
 
 import com.visitscotland.brxm.hippobeans.Widget;
+import com.visitscotland.brxm.model.navigation.NavigationWidget;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -70,22 +71,6 @@ class MenuItemTest {
 
         adoptiveParent.addChild(orphan);
         assertEquals(adoptiveParent, orphan.getParentItem());
-    }
-
-    @Test
-    void simpleGetterSetter() {
-        // Simple getter and setter. No mock required
-        MenuItem item = new MenuItem(null);
-
-        item.setTitle("title");
-        assertEquals("title", item.getTitle());
-
-        Widget w = mock(Widget.class);
-        item.setWidget(w);
-        assertEquals(w, item.getWidget());
-
-        item.setCta("cta");
-        assertEquals("cta", item.getCta());
     }
 
     @Test

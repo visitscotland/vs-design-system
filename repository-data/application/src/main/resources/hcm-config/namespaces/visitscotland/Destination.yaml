@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 6a2e0eb7-0c2f-4fc1-b6c2-333b8dfc679b
+          jcr:uuid: 7055e694-4334-4dd8-966c-10584b1866b3
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -42,10 +42,11 @@ definitions:
           visitscotland:seoDescription: ''
           visitscotland:teaser: ''
           visitscotland:seoTitle: ''
-          jcr:uuid: 6cab9718-afb2-4c3f-8227-7fb4b1188ffa
+          jcr:uuid: 09f45ba7-4f6e-43d0-91ff-c1ac26c162c3
           hippostdpubwf:lastModificationDate: 2020-05-15T09:26:41.741+01:00
           hippostdpubwf:creationDate: 2020-05-15T09:26:41.742+01:00
           visitscotland:translation: ''
+          visitscotland:hideNewsletter: false
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -167,14 +168,15 @@ definitions:
             field: introduction
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
-            hint: ''
+            hint: Max length suggestion is 500.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
               ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
-                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
+                \ { \tcountSpacesAsChars: true,     showCharCount: true ,maxCharCount:750\
+                \   }  }"
           /otherThings:
             jcr:primaryType: frontend:plugin
             caption: Other things you might like
@@ -194,3 +196,12 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ui.extension: translationDiff
+          /newsletter:
+            jcr:primaryType: frontend:plugin
+            caption: Hide newsletter
+            field: newsletter
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig

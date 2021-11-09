@@ -30,6 +30,7 @@ module.exports = {
             '@': resolve('src'),
             '@components': resolve('src/components'),
             '@docs': resolve('docs'),
+            '@images': resolve('docs/images'),
             '@cypress': resolve('cypress'),
         },
     },
@@ -86,6 +87,11 @@ module.exports = {
                                 plugins: [
                                     {
                                         removeViewBox: false,
+                                    },
+                                    {
+                                        inlineStyles: {
+                                            onlyMatchedOnce: false,
+                                        },
                                     },
                                 ],
                             },

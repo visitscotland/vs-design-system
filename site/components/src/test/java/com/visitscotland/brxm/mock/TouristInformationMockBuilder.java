@@ -126,8 +126,9 @@ public class TouristInformationMockBuilder {
         if (iKnow == null){
             addIKnow();
         }
-        when(iKnow.getDescription()).thenReturn(description);
+        HippoHtml hippoHtml = mock(HippoHtml.class);
+        when(hippoHtml.getContent()).thenReturn(description);
+        when(iKnow.getDescription()).thenReturn(hippoHtml);
         return this;
     }
-
 }

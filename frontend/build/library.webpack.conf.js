@@ -13,7 +13,7 @@ const utils = require('./utils');
 const generateManifest = require('./library.generate-manifest');
 const mergeIE11Fix = require('./webpack.ie11-fix');
 
-baseWebpackConfig.entry = require('./library.entry.js');
+baseWebpackConfig.entry = require('./library.entry');
 
 // Remove the CSS extract from the base config to prevent duplicate CSS file
 baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(

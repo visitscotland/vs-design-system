@@ -64,6 +64,9 @@ public class InternalResource extends AbstractResource {
         }
     }
 
+    /**
+     * Build the URL for the internal page rendered in freemarker.
+     */
     private String buildUrl(boolean external,
                             String rootPath,
                             String sso,
@@ -81,11 +84,10 @@ public class InternalResource extends AbstractResource {
         }
 
         if (locale != null) {
-            languageSubsite = "/" + Language.getLanguageForLocale(Locale.forLanguageTag(locale)).getCMSPathVariable();
+            languageSubsite = Language.getLanguageForLocale(Locale.forLanguageTag(locale)).getCMSPathVariable();
         }
 
-        //TODO: WebOps concern about hardcoding urls
-        return properties.getLocalhost() + languageSubsite + "/internal" +
+        return  properties.getCmsBasePath() + languageSubsite + "/internal" +
                 utils.buildQueryString(parameters, StandardCharsets.UTF_8.name());
     }
 

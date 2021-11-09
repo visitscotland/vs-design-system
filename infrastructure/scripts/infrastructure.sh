@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# MAINTAINER: gavin.park@visitscotland.com, Web Operations 
+
 # ==== TO-DO ====
 # gp: ~line remove echo "$VS_CONTAINER_BASE_PORT" > env_port.txt AND echo "$VS_HOST_IP_ADDRESS" > env_host.txt from report section - once the env vars are used in the LH script
 # gp: create test routine for container/tomcat startup - curl till 200
@@ -8,6 +10,7 @@
 # gp: investigate using env.STAGE_NAME in stage notifications
 # gp: add timing to each proc and output it to a log, cat that log to the Jenkins job log at the end of the script
 # gp: timestamp each "doing this" notification as "dd-mmm-yyyy hh:mm:ss.nnn INFO [scriptname] doing this", output it to the log
+# gp: remove individual references to tomcat_8080, replace with a variable
 # ====/TO-DO ====
 # ==== DONE ====
 # gp: split into functions - done
@@ -40,7 +43,14 @@ if [ -z "$VS_DOCKERFILE_NAME" ]; then VS_DOCKERFILE_NAME=vs-brxm; fi
 if [ -z "$VS_DOCKERFILE_LOCN" ]; then VS_DOCKERFILE_LOCN=$VS_DOCKERFILE_PATH/$VS_DOCKERFILE_NAME; fi
 #  ==== Hosting Environment Variables ====
 if [ -z "$VS_PROXY_SERVER_SCHEME" ]; then VS_PROXY_SERVER_SCHEME=https; fi
-if [ -z "$VS_PROXY_SERVER_FQDN" ]; then VS_PROXY_SERVER_FQDN=feature.visitscotland.com; fi
+#if [ -z "$VS_PROXY_SERVER_FQDN" ]; then VS_PROXY_SERVER_FQDN=feature.visitscotland.com; fi
+if [ -z "$VS_PROXY_SERVER_FQDN" ]; then
+  if [ ! -z $JOB_NAME ]; then
+    VS_PROXY_SERVER_FQDN=`dirname $JOB_NAME | sed -e "s/-mb//g"`
+  else
+    VS_PROXY_SERVER_FQDN=feature.visitscotland.com
+  fi
+fi
 #  ==== Mail Variables ====
 if [ -z "$VS_MAIL_DOMAIN" ]; then VS_MAIL_DOMAIN=visitscotland.net; fi
 if [ -z "$VS_MAIL_HOST" ]; then VS_MAIL_HOST=10.1.1.152; fi
@@ -48,7 +58,13 @@ if [ -z "$VS_MAIL_NOTIFY_BUILD" ]; then VS_MAIL_NOTIFY_BUILD="TRUE"; fi
 if [ -z "$VS_MAIL_NOTIFY_SITE" ]; then VS_MAIL_NOTIFY_SITE="TRUE"; fi
 #  == brXM Instance Variables ==
 if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then unset VS_CONTAINER_BASE_PORT_OVERRIDE; else echo "VS_CONTAINER_BASE_PORT_OVERRIDE was set to $VS_CONTAINER_BASE_PORT_OVERRIDE before $0 was called"; fi
-if [ -z "$VS_BRXM_INSTANCE_HTTP_HOST" ]; then VS_BRXM_INSTANCE_HTTP_HOST=localhost; fi
+if [ -z "$VS_BRXM_INSTANCE_HTTP_HOST" ]; then
+  if [ ! -z "$VS_PROXY_SERVER_FQDN" ]; then
+    VS_BRXM_INSTANCE_HTTP_HOST="$VS_PROXY_SERVER_FQDN"
+  else
+    VS_BRXM_INSTANCE_HTTP_HOST=localhost
+  fi
+fi
 if [ -z "$VS_BRXM_PERSISTENCE_METHOD" ]; then VS_BRXM_PERSISTENCE_METHOD=h2; fi
 if [ -z "$VS_BRXM_TOMCAT_PORT" ]; then VS_BRXM_TOMCAT_PORT=8080; fi
 if [ -z "$VS_CONTAINER_PORT_INCREMENT" ]; then VS_CONTAINER_PORT_INCREMENT=100; fi
@@ -70,9 +86,10 @@ if [ -z "$VS_SSR_PROXY_ON" ]; then VS_SSR_PROXY_ON="TRUE"; fi
 if [ -z "$VS_SSR_APP_PORT" ]; then VS_SSR_APP_PORT=8082; fi
 #  ==== Other Variables ====
 VS_JENKINS_LAST_ENV=jenkins-last-env
-VS_VS_LAST_ENV=vs-last-env
+VS_LAST_ENV=vs-last-env
 VS_LAST_ENV_QUOTED_SUFFIX=.quoted
 VS_LAST_ENV_GROOVY_SUFFIX=.groovy
+VS_CONTAINER_NAME_FILE=vs-container-name
 
 # ====/ADJUSTABLE VARIABLES ====
 
@@ -120,7 +137,7 @@ checkVariables() {
   elif [ "$LOGNAME" = "jenkins" ] && [ -z "$JOB_NAME" ] && [ -e $VS_JENKINS_LAST_ENV ]; then
     echo "$VS_SCRIPTNAME was called from a Jenkins workspace but not by a Jenkins job"
     echo " - setting Jenkins environment variables from last run"
-    source ./jenkins-last-env
+    source $VS_JENKINS_LAST_ENV
   elif [ "$LOGNAME" = "jenkins" ] && [ -z "$JOB_NAME" ] && [ ! -d ./target ] && [ ! -z "$VS_WORKING_DIR" ]; then
     echo "$VS_SCRIPTNAME was not called from within Jenkins workspace"
     echo " - switching to $VS_WORKING_DIR"
@@ -174,10 +191,11 @@ defaultSettings() {
   else
     VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
   fi
+  # to-do: gp  - write out VS_CONTAINER_NAME to job's workspace/ci/vs-container-name
   if [ -z "$NODE_NAME" ]; then VS_THIS_SERVER=$HOSTNAME; else VS_THIS_SERVER=$NODE_NAME; fi
   if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then
-    VS_BRXM_REPOSITORY="repository"
-    VS_HIPPO_REPOSITORY_PERSIST="TRUE"
+    if [ -z "$VS_BRXM_REPOSITORY" ]; then VS_BRXM_REPOSITORY="repository"; fi
+    if [ -z "$VS_HIPPO_REPOSITORY_PERSIST" ]; then VS_HIPPO_REPOSITORY_PERSIST="TRUE"; fi
   fi
   VS_COMMIT_AUTHOR=`git show -s --pretty="%ae" ${GIT_COMMIT}`
   VS_DATESTAMP=`date +%Y%m%d`
@@ -196,13 +214,13 @@ defaultSettings() {
   VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_BUILD_MESSAGE=/tmp/$VS_CONTAINER_NAME.msg.notify.build
   VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA=$VS_MAIL_NOTIFY_BUILD_MESSAGE.extra
-  VS_MAIL_NOTIFY_BUILD_SUBJECT="environment was built for $GIT_BRANCH in $VS_PARENT_JOB_NAME"
+  VS_MAIL_NOTIFY_BUILD_SUBJECT="environment was built for $JOB_BASE_NAME in $VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME@$VS_MAIL_DOMAIN"
   # mail settings - site
   if [ -z "$VS_MAIL_MESSAGE_NOTIFY_SITE_TO" ]; then VS_MAIL_MESSAGE_NOTIFY_SITE_TO=$VS_COMMIT_AUTHOR; fi
   VS_MAIL_NOTIFY_SITE_SENDER="$VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_SITE_MESSAGE=/tmp/$VS_CONTAINER_NAME.msg.notify.site
-  VS_MAIL_NOTIFY_SITE_SUBJECT="$VS_PARENT_JOB_NAME environment was built for $GIT_BRANCH"
+  VS_MAIL_NOTIFY_SITE_SUBJECT="$VS_PARENT_JOB_NAME environment was built for $VS_BRANCH_NAME"
   # mail settings - executable
   VS_WD_PARENT="$(basename `echo ${PWD%/*}`)"
   if [ ! -z $VS_MAILER_BIN ]; then
@@ -319,7 +337,7 @@ manageContainers() {
     echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be stopped and removed"
     stopContainers
     deleteContainers
-  elif [ ! "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ ! "$CONTAINER_STATUS" == "running" ]; then
+  elif [ ! "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ ! "$CONTAINER_STATUS" == "running" ] && [ ! -z "$CONTAINER_ID" ]; then
     echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be removed"
     deleteContainers
   else
@@ -367,10 +385,41 @@ getPullRequestListViaCurl() {
 
 getBranchListFromWorkspace() {
   echo "checking for branches and PRs for $VS_PARENT_JOB_NAME listed in workspaces.txt"
+  # to-do: gp - update echo above to reflect changes to branch and PR scan method
   for BRANCH in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME" | sed -e "s/%2F/\//g" | sed "s/.*\//$VS_PARENT_JOB_NAME\_/g"`; do
     if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH"; fi
     BRANCH_LIST="$BRANCH_LIST $BRANCH"
   done
+  # to-do: gp add for loop to check for vs-container-name map files in _PR only (avoid doubles)
+  #           for PR in [logic above | grep _PR] check PR's workspace/ci for vs-container-name file
+  #           cat the file for a branch name and add those branches to BRANCH_LIST (some)
+  
+  for PR in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME/PR-"`; do
+    PR_DIR=`cat $JENKINS_HOME/workspace/workspaces.txt | grep -a1 "$PR" | tail -1`
+    unset BRANCH VS_LAST_ENV_FOUND VS_CONTAINER_NAME_FILE_FOUND
+    if [ ! -z "$JENKINS_HOME/workspace/$PR_DIR" ] && [ -d $JENKINS_HOME/workspace/$PR_DIR ]; then
+#      echo " - found PR $PR_DIR, looking for $VS_LAST_ENV or $VS_CONTAINER_NAME_FILE in $JENKINS_HOME/workspace/$PR_DIR"
+      VS_LAST_ENV_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_LAST_ENV"`
+      VS_CONTAINER_NAME_FILE_FOUND=`find $JENKINS_HOME/workspace/$PR_DIR -name "$VS_CONTAINER_NAME_FILE"`
+#      echo "found VS_LAST_ENV_FOUND=$VS_LAST_ENV_FOUND, VS_CONTAINER_NAME_FILE_FOUND=$VS_CONTAINER_NAME_FILE_FOUND"
+      if [ ! -z "$VS_CONTAINER_NAME_FILE_FOUND" ] && [ -a $VS_CONTAINER_NAME_FILE_FOUND ]; then
+#        echo "found $VS_CONTAINER_NAME_FILE_FOUND"
+        BRANCH=`cat $VS_CONTAINER_NAME_FILE_FOUND | head -1`
+#        echo "BRANCH=$BRANCH in 2"
+        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for `basename $PR` in $VS_CONTAINER_NAME_FILE"; fi
+        if [ ! -z "$BRANCH" ]; then BRANCH_LIST="$BRANCH_LIST $BRANCH"; fi
+      elif [ ! -z "$VS_LAST_ENV_FOUND" ] && [ -a $VS_LAST_ENV_FOUND ]; then
+#        echo "found $VS_LAST_ENV_FOUND"
+        BRANCH=`cat $VS_LAST_ENV_FOUND | egrep "(VS_)(CHANGE_BRANCH|CONTAINER_NAME)=" | sed -e "s/.*=//g" | head -1`
+#        echo "BRANCH=$BRANCH in 1"
+        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for `basename $PR` in $VS_LAST_ENV"; fi
+        if [ ! -z "$BRANCH" ]; then BRANCH_LIST="$BRANCH_LIST $BRANCH"; fi
+      else
+        if [ "$VS_DEBUG" = "TRUE" ]; then echo " - no branch found for $PR"; fi
+      fi
+    fi
+  done
+#  echo $BRANCH_LIST
   echo ""
 }
 
@@ -493,7 +542,7 @@ findBasePort() {
     HAS_PORT_ID=`docker ps -a | grep $VS_CONTAINER_BASE_PORT_OVERRIDE | tail -1 | awk '{print $1}'`
     HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
     if [ "$HAS_PORT_NAME" == "$VS_CONTAINER_NAME" ]; then
-      echo " -- success"
+      echo " -- success - port is owned by $HAS_PORT_NAME"
       VS_CONTAINER_BASE_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
       echo " -- VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
     else
@@ -539,7 +588,7 @@ findDynamicPorts() {
         HAS_PORT_ID=`docker ps -a | grep $THIS_PORT | tail -1 | awk '{print $1}'`
         HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
         if [ "$HAS_PORT_NAME" == "$VS_CONTAINER_NAME" ]; then
-          echo " -- success"
+          echo " -- success - port is owned by $HAS_PORT_NAME"
 	  eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
 	  break
 	fi
@@ -617,9 +666,9 @@ containerCreateAndStart() {
     echo "about to create a new Docker container with:"
     #VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     if [ "$VS_BRXM_PERSISTENCE_METHOD" == "mysql" ]; then
-      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST='$VS_HIPPO_REPOSITORY_PERSIST' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     else
-      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+      VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST='$VS_HIPPO_REPOSITORY_PERSIST' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     fi
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
@@ -648,8 +697,8 @@ containerUpdates() {
     if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "$THIS_LOCAL_FILE" ]; then
       echo " - sums match, an updated version of $THIS_FILE is available, copying to container"
       docker exec $VS_CONTAINER_NAME cp $THIS_FILE $THIS_FILE.old 2>>$VS_CONTAINER_CONSOLE_FILE
-      docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE 2>>VS_CONTAINER_CONSOLE_FILE
-      THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>>VS_CONTAINER_CONSOLE_FILE | awk '{print $1}'`
+      docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE 2>>$VS_CONTAINER_CONSOLE_FILE
+      THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>>$VS_CONTAINER_CONSOLE_FILE | awk '{print $1}'`
       echo " - sum now: $THIS_TEST"
     else
       echo " - no match"
@@ -658,7 +707,7 @@ containerUpdates() {
   docker exec $VS_CONTAINER_NAME /bin/bash -c "find /usr/local/bin -type f | xargs chmod +x"
 }
 
-containerSSHStart() {
+containerStartSSH() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
     echo "about to enable SSH in container $VS_CONTAINER_NAME:"
@@ -675,7 +724,6 @@ containerSSHStart() {
     echo "container will not be started due to previous failures"
   fi
 }
-
 
 # copy build artefacts to container
 containerCopyHippoArtifact() {
@@ -725,7 +773,7 @@ containerStartHippo() {
     if [ "$VS_BRXM_PERSISTENCE_METHOD" == "mysql" ]; then
       VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/vs-hippo >> $VS_CONTAINER_CONSOLE_FILE"'
     else
-      VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /usr/local/bin/vs-hippo nodb'
+      VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/vs-hippo nodb >> $VS_CONTAINER_CONSOLE_FILE"'
     fi
     echo "about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
     echo " - $VS_DOCKER_CMD"
@@ -741,21 +789,39 @@ containerStartHippo() {
   fi
 }
 
+containerStartTailon() {
+  if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+    echo ""
+    VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/tailon --relative-root /tailon -b :$VS_CONTAINER_INT_PORT_TLN /home/hippo/tomcat_8080/logs/ > /tmp/tailon.log"'
+    echo "about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
+    echo " - $VS_DOCKER_CMD"
+    eval $VS_DOCKER_CMD
+    RETURN_CODE=$?; echo $RETURN_CODE
+    if [ ! "$RETURN_CODE" = "0" ]; then
+      SAFE_TO_PROCEED=FALSE
+      FAIL_REASON="Docker failed to run exec command in $VS_CONTAINER_NAME, command exited with $RETURN_CODE"
+    fi
+  else
+    echo ""
+    echo "docker exec will not be run due to previous failures"
+  fi
+}
+
 exportVSVariables() {
-  echo "`eval $VS_LOG_DATESTAMP` INFO [`basename $0`] exporting VS variables to $VS_VS_LAST_ENV and $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD" | tee -a $VS_SCRIPT_LOG
-  set | egrep "^(VS_)" | tee $VS_VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
+  echo "`eval $VS_LOG_DATESTAMP` INFO [`basename $0`] exporting VS variables to $VS_LAST_ENV and $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD" | tee -a $VS_SCRIPT_LOG
+  set | egrep "^(VS_)" | tee $VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
 }
 
 copyVSVariables() {
-  echo " - writing VS variables from $VS_VS_LAST_ENV and $VS_JENKINS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
-  # to-do gp: set VS_TARGET in defaultSettings
+  echo " - writing VS variables from $VS_LAST_ENV and $VS_JENKINS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
+  # to-do: gp - set VS_TARGET in defaultSettings
   if [ ! -d $VS_BUILD_PROPERTIES_TARGET_DIR ]; then
     echo " - $VS_BUILD_PROPERTIES_TARGET_DIR does not exist, creating"
     mkdir -p $VS_BUILD_PROPERTIES_TARGET_DIR
   fi
   echo "# properties from $BUILD_TAG" > $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME
   if [ -a $VS_JENKINS_LAST_ENV ]; then cat $VS_JENKINS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME; fi
-  if [ -a $VS_VS_LAST_ENV ]; then cat $VS_VS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME; fi
+  if [ -a $VS_LAST_ENV ]; then cat $VS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME; fi
 }
 
 createBuildReport() {
@@ -768,7 +834,7 @@ createBuildReport() {
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "The site instance for branch $VS_BRANCH_NAME should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "To configure your browser session for this branch please follow this link:"
     echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST&vs_ssr_http_port=$VS_CONTAINER_EXT_PORT_SSR&vs_tln_http_port=$VS_CONTAINER_EXT_PORT_TLN&vs_feature_branch=$BRANCH_NAME$VS_PROXY_QS_SSR" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -798,7 +864,7 @@ createBuildReport() {
     fi
     if [ ! -z "$VS_CONTAINER_EXT_PORT_SSH" ]; then
       echo "SSH access (if enabled on the container) - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-      echo "  - ssh -p $VS_CONTAINER_EXT_PORT_SSH root@$VS_HOST_IP_ADDRESS ($VS_CONTAINER_SSH_PASS_ROOT)" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+      echo "  - ssh -o UserKnownHostsFile=/dev/null -p $VS_CONTAINER_EXT_PORT_SSH hippo@$VS_HOST_IP_ADDRESS ($VS_CONTAINER_SSH_PASS_HIPPO)" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
       echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
     if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA" ]; then
@@ -811,7 +877,7 @@ createBuildReport() {
     echo "$VS_HOST_IP_ADDRESS" > env_host.txt
   else
     EXIT_CODE=127
-    VS_MAIL_NOTIFY_BUILD_SUBJECT="environment build FAILED for $GIT_BRANCH in $VS_PARENT_JOB_NAME"
+    VS_MAIL_NOTIFY_BUILD_SUBJECT="environment build FAILED for $JOB_BASE_NAME in $VS_PARENT_JOB_NAME"
     echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -861,6 +927,11 @@ case $METHOD in
     exportVSVariables
     copyVSVariables
   ;;
+  displayreport)
+    #checkVariables
+    defaultSettings
+    createBuildReport
+  ;;
   *)
     echo "no function specified - running defaults"
     checkVariables
@@ -891,10 +962,11 @@ case $METHOD in
       echo "re-using existing container $CONTAINER_ID"; echo "" 
     fi
     containerUpdates
-    containerSSHStart
+    containerStartSSH
     containerCopyHippoArtifact
     containerCopySSRArtifact
     containerStartHippo
+    containerStartTailon
     exportVSVariables
     testSite
     createBuildReport

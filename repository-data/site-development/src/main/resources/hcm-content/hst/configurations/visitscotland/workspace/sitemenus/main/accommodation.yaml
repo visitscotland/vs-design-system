@@ -112,3 +112,7 @@
       jcr:primaryType: hst:sitemenuitem
       hst:referencesitemapitem: destinations/megalinks-multi-image-example
       hst:repobased: false
+  /Accommodation Featured Items Widget:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: widget/accommodation
+    hst:repobased: false

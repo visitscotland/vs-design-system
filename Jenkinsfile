@@ -57,7 +57,7 @@ pipeline {
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
     // VS_SKIP_BUILD_FOR_BRANCH is useful for testing, only ever set to your working branch name - never to a variable!
-    VS_SKIP_BUILD_FOR_BRANCH = 'e.g.:feature/VS-1865-feature-environments-enhancements'
+    VS_SKIP_BUILD_FOR_BRANCH = 'NOTfeature/VS-1865-feature-environments-enhancements'
     // VS_COMMIT_AUTHOR is required by later stages which will fail if it's not set, default value of jenkins@visitscotland.net
     // turns out if you set it here it will not be overwritten by the load later in the pipeline
     //VS_COMMIT_AUTHOR = 'jenkins@visitscotland.net'
@@ -287,7 +287,7 @@ pipeline {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') { 
           echo "Lighthouse test failure notification will be emailed to ${env.VS_COMMIT_AUTHOR}"
           script{
-            // replace this sleep with a "wait for 200" in the script
+            // to-do: replace this sleep with a "wait for 200" in the script
             sleep time: 120, unit: 'SECONDS'
             sh 'sh ./testing/lighthouse.sh'
           }
@@ -325,6 +325,11 @@ pipeline {
   } //end stages
 
   post{
+    success{
+      script{
+        sh 'sh ./infrastructure/scripts/infrastructure.sh displayreport'
+      }
+    }
     aborted{
       script{
         try{

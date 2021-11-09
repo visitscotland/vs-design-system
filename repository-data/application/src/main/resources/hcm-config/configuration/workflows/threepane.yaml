@@ -1,0 +1,6 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:workflows/threepane/folder-permissions:
+      hipposys:classname: com.visitscotland.brxm.menu.CustomFolderWorkflowImpl
+    /hippo:configuration/hippo:workflows/threepane/folder-permissions/hipposys:config:
+      visitscotland:create-documents-on-translations: false

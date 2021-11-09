@@ -2,6 +2,7 @@ package com.visitscotland.brxm.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.hippobeans.ICentre;
+import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.ICentreModule;
@@ -92,17 +93,12 @@ public class ICentreFactory {
 
         //Default the Image if hasn't be set
         if (module.getImage() == null) {
-            FlatImage image = new FlatImage();
-
-            //TODO: Create labels
-            //TODO: Get CMS Image
-
             try {
-                image.setCmsImage(utils.getDocumentFromNode(bundle.getResourceBundle(BUNDLE_ID, "icentre.image.default", locale)));
+                Image defaultImage = utils.getDocumentFromNode(bundle.getResourceBundle(BUNDLE_ID, "icentre.image.default", locale));
+                module.setImage(imageFactory.createImage(defaultImage,module,locale));
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            module.setImage(image);
         }
 
         return module;
@@ -142,6 +138,7 @@ public class ICentreFactory {
                 .productTypes(DMSConstants.TYPE_SERVICES).category(DMSConstants.CAT_ICENTRE)
                 .sortBy(DMSConstants.SORT_ALPHA);
 
+        //Retrieves the iCenters for a location
         JsonNode node = dmsData.legacyMapSearch(dmsQuery);
 
         for (JsonNode child : node) {

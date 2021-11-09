@@ -28,6 +28,7 @@ import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
 public class ImageFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageFactory.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     private final LocationLoader locationLoader;
     private final CommonUtilsService utils;
@@ -45,9 +46,7 @@ public class ImageFactory {
         } else if (image instanceof Image) {
             return createImage((Image) image, module, locale);
         } else if (image != null) {
-            String message = image.getClass().getSimpleName() + " cannot be used as an Image";
-            CommonUtilsService.contentIssue(message);
-            logger.warn(message);
+            contentLogger.warn("{} cannot be used as an Image", image.getClass().getSimpleName());
         }
         return null;
     }
@@ -88,19 +87,22 @@ public class ImageFactory {
             image.setDescription(data.getCaption());
         }
 
+        image.setCredit(cmsImage.getCredit());
         if (Contract.isEmpty(image.getAltText())) {
             String message = "The image does not have an Alternative Text for the language " + locale;
-            module.addErrorMessage(message);
-            CommonUtilsService.contentIssue(message);
-            logger.warn(message);
+            if (module != null){
+                module.addErrorMessage(message);
+            }
+            contentLogger.warn(message);
             image.setAltText(cmsImage.getAltText());
         }
 
         if (Contract.isEmpty(image.getDescription())) {
             String message = "The image does not have a description for the locale " + locale;
-            module.addErrorMessage(message);
-            CommonUtilsService.contentIssue(message);
-            logger.warn(message);
+            if (module != null) {
+                module.addErrorMessage(message);
+            }
+            contentLogger.warn(message);
             image.setDescription(cmsImage.getDescription());
         }
 
@@ -138,9 +140,7 @@ public class ImageFactory {
                 if (module != null) {
                     module.addErrorMessage("The Instagram id is no longer valid");
                 }
-                String issue = CommonUtilsService.contentIssue("The Instagram id %s is no longer, Listicle = %s ",
-                        document.getId(), document.getPath());
-                logger.warn(issue);
+                contentLogger.warn("The Instagram id {} is no longer, Listicle = {}", document.getId(), document.getPath());
             }
         } catch (Exception e) {
             if (module != null) {

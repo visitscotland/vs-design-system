@@ -1,7 +1,6 @@
 package com.visitscotland.brxm.components.breadcrumb;
 
 import com.visitscotland.brxm.hippobeans.Page;
-import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -20,8 +19,7 @@ import java.util.List;
 
 public class VsBreadCrumbProvider extends BreadcrumbProvider {
 
-    private static final Logger logger = LoggerFactory.getLogger(VsBreadCrumbProvider.class.getName());
-
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
     /**
      * Constructor with an extra flag that determines behaviour for the trailing items
      *
@@ -51,9 +49,9 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
         } else {
             //If this warning message is logged and it is required that a menu item appears in the breadcrumb even though it
             //is not backed from a document, I'd be useful to use the logic of enhancedmenu.
-            logger.warn (CommonUtilsService.contentIssue("The menu Item %s does point to a document.", menuItem.getName()));
+            contentLogger.warn("The menu Item {} does point to a document.", menuItem.getName());
             //The following error message flags a possible issue and a solution. If the implementation is required please remove the log message.
-            logger.warn(CommonUtilsService.contentIssue("If previous message is not an unexpected issue, some extra logic might be required", menuItem.getName()));
+            contentLogger.warn("If previous message is not an unexpected issue, some extra logic might be required - {}", menuItem.getName());
             return new BreadcrumbItem(menuItem.getHstLink(), menuItem.getName());
         }
     }
@@ -109,11 +107,10 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
      * @param bean
      * @return HippoBean index document (content) or the folder if the index does not exist
      */
-
     private HippoBean getValidHippoBean (HippoBean bean){
         HippoBean content =  bean.getParentBean().getBean("content");
         if (content == null){
-            logger.warn(CommonUtilsService.contentIssue("The document created at %s has not defined the path as content ",  bean.getParentBean().getPath()));
+            contentLogger.warn("The document created at {} has not defined the path as content ",  bean.getParentBean().getPath());
             return bean.getParentBean();
         } else{
             return content;
@@ -133,7 +130,7 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
             } else if (!Contract.isEmpty(page.getTitle())){
                 return page.getTitle();
             }
-            logger.warn (CommonUtilsService.contentIssue("The document %s does not have a title so breadcrumb is showing its title (%s)", bean.getDisplayName(), bean.getPath()));
+            contentLogger.warn("The document {} does not have a title so breadcrumb is showing its title ({})", bean.getDisplayName(), bean.getPath());
         }
 
         return bean.getDisplayName();

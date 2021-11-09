@@ -15,9 +15,13 @@ public class General extends Page {
     public String[] getChildJcrTypes() {
         return new String[] { "visitscotland:Megalinks",
                 "visitscotland:TourismInformation",
-                "visitscotland:LongContent",
                 "visitscotland:LongCopy",
-                "visitscotland:Article"};
+                "visitscotland:Article",
+                "visitscotland:IknowCommunity",
+                "visitscotland:Stackla",
+                "visitscotland:MarketoForm",
+                "visitscotland:CannedSearchTours",
+                "visitscotland:CannedSearch"};
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
@@ -30,4 +34,8 @@ public class General extends Page {
         return getSingleProperty("visitscotland:translation");
     }
 
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
+    public String getTranslationPriority() {
+        return getSingleProperty("visitscotland:translationPriority");
+    }
 }
