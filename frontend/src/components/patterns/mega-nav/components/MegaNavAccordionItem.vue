@@ -124,10 +124,6 @@ export default {
                     transition: none;
                     border: 0;
                     border-top: 1px solid $color-gray-tint-6;
-
-                    &:focus, &:active, &:active:focus {
-                        box-shadow: 0 0 0 0.1rem $color-pink inset!important;
-                    }
                 }
             }
         }
