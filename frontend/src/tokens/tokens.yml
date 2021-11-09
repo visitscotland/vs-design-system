@@ -19,6 +19,7 @@ imports:
   - ./line-height.yml
   - ./grid-layout.yml
   - ./utility.yml
+  - ./themes.yml
 global:
   type: global
   category: all

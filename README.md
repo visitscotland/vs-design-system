@@ -15,31 +15,28 @@ Use `git config core.hooksPath .custom-hooks` to configure Git to use the custom
 This project uses the Maven Cargo plugin to run Essentials, the CMS and site locally in Tomcat.
 From the project root folder, execute:
 
-    mvn clean verify
+    mvn clean verify 
     mvn -P cargo.run
 
 Alternatively, developers might prefer to run a quicker version were UI packages are not built.
 Please, note that the full run is advised every time the branch is changed or when front end changes 
 are expected.
 
-Windows Based Console
-
-    mvn clean verify -P !fed-build -DskipTests
-    mvn -P cargo.run
-   
-or 
-
-    mvn clean verify -P !fed-build -DskipTests &&mvn -P cargo.run
-    
 Unix Based Console
 
     mvn clean verify -P \!fed-build -DskipTests 
     mvn -P cargo.run
-    
-Front end developers can also benefit of a quick run by running the following command which only
-build the front end packages and the UI integration.
 
-    mvn verify -P fed-build -D skipTests && mvn -P cargo.run    
+or
+
+    mvn clean verify -P\!fed-build -DskipTests &&mvn -P cargo.run
+
+    
+### SpringBoot Actuators
+
+The database actuator can be activated by adding the variable `cliOptions=dbActuator`
+
+    mvn clean verify -P!fed-build -DskipTests -DcliOptions=dbActuator && mvn -Pcargo.run
     
 ## Navigating through the CMS
 
@@ -52,13 +49,20 @@ will not be available.
 - http://localhost:8080/cms/console: JCR Console that contains the configuration and the data of the CMS
 - http://localhost:8080/cms/repository: Query tool for the JCR Console. It can be queried through xPath or JCR
 - http://localhost:8080/essentials: Out-of-the-box set of tools that add some extra capabilities to the CMS
- 
-
+- http://localhost:8080/actuator: Actuators functionality that exposes information about the architecture of the application
 
 ### Development credentials
-Username: admin
-Password: admin (Do not share it. It is a secret)
+- Username: admin
+- Password: admin (Do not share it. It is a secret)
 
+Windows Based Console
+
+    mvn clean verify -P !fed-build -DskipTests
+    mvn -P cargo.run
+
+or
+
+    mvn clean verify -P !fed-build -DskipTests &&mvn -P cargo.run
     
 ## Troubleshooting
 **I get the following error when I try to clone the message: _fatal: cannot create directory at '{some big path}': Filename too long_**
