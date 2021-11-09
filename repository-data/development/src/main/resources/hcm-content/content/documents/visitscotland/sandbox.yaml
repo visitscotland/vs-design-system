@@ -903,7 +903,7 @@
       jcr:mixinTypes: ['frontend:orderChildFolders', 'hippo:named', 'hippotranslation:translated',
         'mix:versionable']
       jcr:uuid: 002105be-e6f8-4ce1-ba89-993cf9eae90a
-      hippo:name: Itinerary stops (Back end Devs)
+      hippo:name: Itinerary stops (Back-end Devs)
       hippostd:foldertype: [new-translated-folder-stops, new-stop]
       hippotranslation:id: 9220ace8-2ee8-4cd0-8010-b2764284f7f7
       hippotranslation:locale: en
@@ -4165,12 +4165,944 @@
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
             visitscotland:product: '246591'
+      /clava-cairns:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: d93a1829-d987-4138-9b7d-d4302ce127c8
+        hippo:name: Clava Cairns
+        hippo:versionHistory: 7a054471-f54a-4b79-98b9-de6ad972a395
+        /clava-cairns[1]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 5aaaf3d8-31e2-4f93-a1ad-630e35a18d61
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:41:15.482Z
+          hippostdpubwf:lastModificationDate: 2020-12-11T15:19:37.711Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 2a5c27e0-f848-4535-ac62-4344ca736630
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Clava Cairns
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Stop en-route to&nbsp;<a href="https://www.visitscotland.com/info/see-do/clava-cairns-p245611" title="Clava Cairns">Clava Cairns</a>. Take a wander around this Bronze Age cemetery where you will come across graves dating back as far as 2000 BC where you will have a fantastic insight to the Highlands remarkable history.</p>
+
+              <p>Duration of stay: 25 Minutes</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '245611'
+          /visitscotland:StopTip:
+            jcr:primaryType: visitscotland:StopTip
+            visitscotland:title: prueba
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>prueba</p>
+        /clava-cairns[2]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 1c209b09-673d-41c2-8076-f3861681b325
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:41:15.482Z
+          hippostdpubwf:lastModificationDate: 2020-12-11T15:19:37.363Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 2a5c27e0-f848-4535-ac62-4344ca736630
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Clava Cairns
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Stop en-route to&nbsp;<a href="https://www.visitscotland.com/info/see-do/clava-cairns-p245611" title="Clava Cairns">Clava Cairns</a>. Take a wander around this Bronze Age cemetery where you will come across graves dating back as far as 2000 BC where you will have a fantastic insight to the Highlands remarkable history.</p>
+
+              <p>Duration of stay: 25 Minutes</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '245611'
+          /visitscotland:StopTip:
+            jcr:primaryType: visitscotland:StopTip
+            visitscotland:title: prueba
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>prueba</p>
+        /clava-cairns[3]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: b6d558ee-4846-4de5-8178-425b3194d216
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:41:15.482Z
+          hippostdpubwf:lastModificationDate: 2020-12-11T15:19:37.363Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-09T13:14:07.404Z
+          hippotranslation:id: 2a5c27e0-f848-4535-ac62-4344ca736630
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Clava Cairns
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Stop en-route to&nbsp;<a href="https://www.visitscotland.com/info/see-do/clava-cairns-p245611" title="Clava Cairns">Clava Cairns</a>. Take a wander around this Bronze Age cemetery where you will come across graves dating back as far as 2000 BC where you will have a fantastic insight to the Highlands remarkable history.</p>
+
+              <p>Duration of stay: 25 Minutes</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '245611'
+          /visitscotland:StopTip:
+            jcr:primaryType: visitscotland:StopTip
+            visitscotland:title: prueba
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>prueba</p>
+      /culloden-battlefield:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 8ef343ea-4650-4fb7-98d1-b34822be9817
+        hippo:name: Culloden Battlefield
+        hippo:versionHistory: 93304889-99c5-4ca2-a4f4-555e942c4402
+        /culloden-battlefield[1]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 2d5c59d9-f017-4081-a436-57cb87c75fe9
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:38:28.294Z
+          hippostdpubwf:lastModificationDate: 2020-10-21T12:08:42.938Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 466c9a3c-0498-4d13-9b4c-d2593d675fcb
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Culloden Battlefield
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>A prominent location during the Jacobite Rising in 1745. Head to the&nbsp;<a href="https://www.nts.org.uk/visit/places/culloden" title="" target="_blank">Battle of Culloden Visitor Centre</a>&nbsp;and feel like you are right at the very heart of the action as you immerse yourself in the 360-degree immersion theatre experience. Discover the unfolding story of the Jacobite Rising as you learn more about the Jacobite and Government perspectives with unique artefacts on display around the museum on the series of events that occurred. Make sure to pop into the gift shop and take a small piece of history home with you ranging from the flowers of the Battlefield to Culloden whisky.</p>
+
+              <p>Duration of stay: 3 Hours</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '247471'
+        /culloden-battlefield[2]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: feda86a3-7723-4e84-b600-a06d2d69f2b2
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:38:28.294Z
+          hippostdpubwf:lastModificationDate: 2020-10-20T16:36:57.082Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 466c9a3c-0498-4d13-9b4c-d2593d675fcb
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Culloden Battlefield
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>A prominent location during the Jacobite Rising in 1745. Head to the&nbsp;<a href="https://www.nts.org.uk/visit/places/culloden" title="" target="_blank">Battle of Culloden Visitor Centre</a>&nbsp;and feel like you are right at the very heart of the action as you immerse yourself in the 360-degree immersion theatre experience. Discover the unfolding story of the Jacobite Rising as you learn more about the Jacobite and Government perspectives with unique artefacts on display around the museum on the series of events that occurred. Make sure to pop into the gift shop and take a small piece of history home with you ranging from the flowers of the Battlefield to Culloden whisky.</p>
+
+              <p>Duration of stay: 3 Hours</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '247471'
+        /culloden-battlefield[3]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 7bea6324-7765-4307-80c6-956bde7ac4b1
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:38:28.294Z
+          hippostdpubwf:lastModificationDate: 2020-10-20T16:36:57.082Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-09T13:14:07.006Z
+          hippotranslation:id: 466c9a3c-0498-4d13-9b4c-d2593d675fcb
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Culloden Battlefield
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>A prominent location during the Jacobite Rising in 1745. Head to the&nbsp;<a href="https://www.nts.org.uk/visit/places/culloden" title="" target="_blank">Battle of Culloden Visitor Centre</a>&nbsp;and feel like you are right at the very heart of the action as you immerse yourself in the 360-degree immersion theatre experience. Discover the unfolding story of the Jacobite Rising as you learn more about the Jacobite and Government perspectives with unique artefacts on display around the museum on the series of events that occurred. Make sure to pop into the gift shop and take a small piece of history home with you ranging from the flowers of the Battlefield to Culloden whisky.</p>
+
+              <p>Duration of stay: 3 Hours</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '247471'
+      /dining-out:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 0aba5bc3-cfab-48cf-807f-f24dd702ab2b
+        hippo:name: Dining Out Inverness
+        hippo:versionHistory: 852ff48d-1cac-4228-86c3-81db7318fb9d
+        /dining-out[1]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: d56c0fc1-8761-4845-b2f4-591f7aaecdc0
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:44:40.192Z
+          hippostdpubwf:lastModificationDate: 2020-11-24T13:35:12.933Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 2d7d4c8e-7326-4fcc-99aa-1d6c62ad3bd5
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Dining Out & Nightlife
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>After a long day of exploring the city, there is
+              nothing better than sitting down while tucking into a delicious meal.
+              Just 10 miles outside of Inverness is&nbsp;<a href="http://www.thedoresinn.co.uk/"
+              title="" target="_blank">Dores Inn</a>, situated along the banks of
+              Loch Ness. Choose from a wide range of mouth-watering dishes and, with
+              its traditional furnishings and wood-burning stove, it is sure to set
+              the right ambience for the evening. Another scenic location that might
+              take your fancy is the&nbsp;<a href="http://riverhouseinverness.co.uk/"
+              title="" target="_blank">River House Restaurant</a>. You certainly won’t
+              go hungry here with the restaurant’s extensive food &amp; drink menu.
+              Working with local suppliers, you can always expect high quality dishes
+              that will certainly go down a treat. For starters, why not opt for the
+              pan-seared Isle of Harris scallops or Orkney crab on toast and for mains,
+              sink your teeth into a tasty 28-day matured Scottish ribeye – simply
+              delicious! Enjoy a night on the town! Inverness is certainly the place
+              to be to let your hair down!&nbsp;<a href="https://baroneinverness.com/"
+              title="" target="_blank">Bar One</a>&nbsp;is a great find if you are
+              looking to try a delicious cocktail or two while you lap up its lively
+              atmosphere. Watch the world go by at the&nbsp;<a href="https://www.castletavern.pub/"
+              title="" target="_blank">Castle Tavern</a>. Sample some of the best
+              ales and meals on offer and when the weather is nice, make sure to soak
+              up those rays in the beer garden. If you’re partial to sipping away
+              on a craft beer, then look no further than the&nbsp;<a href="https://www.blackislebrewery.com/black-isle-bar/"
+              title="" target="_blank">Black Isle Brewery Bar</a>. Why not sink your
+              teeth into one of their delicious wood-fired pizzas to go along with
+              your meal?</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:ItineraryExternalLink
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 57.478772
+              visitscotland:longitude: -4.2329976
+            /visitscotland:ExternalLink:
+              jcr:primaryType: visitscotland:ExternalLink
+              visitscotland:label: ''
+              visitscotland:link: http://riverhouseinverness.co.uk/
+        /dining-out[2]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 553a38b2-52c3-4218-8dfc-cc712553e9a0
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:44:40.192Z
+          hippostdpubwf:lastModificationDate: 2020-11-24T13:35:12.898Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 2d7d4c8e-7326-4fcc-99aa-1d6c62ad3bd5
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Dining Out & Nightlife
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>After a long day of exploring the city, there is
+              nothing better than sitting down while tucking into a delicious meal.
+              Just 10 miles outside of Inverness is&nbsp;<a href="http://www.thedoresinn.co.uk/"
+              title="" target="_blank">Dores Inn</a>, situated along the banks of
+              Loch Ness. Choose from a wide range of mouth-watering dishes and, with
+              its traditional furnishings and wood-burning stove, it is sure to set
+              the right ambience for the evening. Another scenic location that might
+              take your fancy is the&nbsp;<a href="http://riverhouseinverness.co.uk/"
+              title="" target="_blank">River House Restaurant</a>. You certainly won’t
+              go hungry here with the restaurant’s extensive food &amp; drink menu.
+              Working with local suppliers, you can always expect high quality dishes
+              that will certainly go down a treat. For starters, why not opt for the
+              pan-seared Isle of Harris scallops or Orkney crab on toast and for mains,
+              sink your teeth into a tasty 28-day matured Scottish ribeye – simply
+              delicious! Enjoy a night on the town! Inverness is certainly the place
+              to be to let your hair down!&nbsp;<a href="https://baroneinverness.com/"
+              title="" target="_blank">Bar One</a>&nbsp;is a great find if you are
+              looking to try a delicious cocktail or two while you lap up its lively
+              atmosphere. Watch the world go by at the&nbsp;<a href="https://www.castletavern.pub/"
+              title="" target="_blank">Castle Tavern</a>. Sample some of the best
+              ales and meals on offer and when the weather is nice, make sure to soak
+              up those rays in the beer garden. If you’re partial to sipping away
+              on a craft beer, then look no further than the&nbsp;<a href="https://www.blackislebrewery.com/black-isle-bar/"
+              title="" target="_blank">Black Isle Brewery Bar</a>. Why not sink your
+              teeth into one of their delicious wood-fired pizzas to go along with
+              your meal?</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:ItineraryExternalLink
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 57.478772
+              visitscotland:longitude: -4.2329976
+            /visitscotland:ExternalLink:
+              jcr:primaryType: visitscotland:ExternalLink
+              visitscotland:label: ''
+              visitscotland:link: http://riverhouseinverness.co.uk/
+        /dining-out[3]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 2ea04e51-6eb1-43a1-9955-b1baeaf275a5
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:44:40.192Z
+          hippostdpubwf:lastModificationDate: 2020-11-24T13:35:12.898Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-09T13:14:07.207Z
+          hippotranslation:id: 2d7d4c8e-7326-4fcc-99aa-1d6c62ad3bd5
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Dining Out & Nightlife
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>After a long day of exploring the city, there is
+              nothing better than sitting down while tucking into a delicious meal.
+              Just 10 miles outside of Inverness is&nbsp;<a href="http://www.thedoresinn.co.uk/"
+              title="" target="_blank">Dores Inn</a>, situated along the banks of
+              Loch Ness. Choose from a wide range of mouth-watering dishes and, with
+              its traditional furnishings and wood-burning stove, it is sure to set
+              the right ambience for the evening. Another scenic location that might
+              take your fancy is the&nbsp;<a href="http://riverhouseinverness.co.uk/"
+              title="" target="_blank">River House Restaurant</a>. You certainly won’t
+              go hungry here with the restaurant’s extensive food &amp; drink menu.
+              Working with local suppliers, you can always expect high quality dishes
+              that will certainly go down a treat. For starters, why not opt for the
+              pan-seared Isle of Harris scallops or Orkney crab on toast and for mains,
+              sink your teeth into a tasty 28-day matured Scottish ribeye – simply
+              delicious! Enjoy a night on the town! Inverness is certainly the place
+              to be to let your hair down!&nbsp;<a href="https://baroneinverness.com/"
+              title="" target="_blank">Bar One</a>&nbsp;is a great find if you are
+              looking to try a delicious cocktail or two while you lap up its lively
+              atmosphere. Watch the world go by at the&nbsp;<a href="https://www.castletavern.pub/"
+              title="" target="_blank">Castle Tavern</a>. Sample some of the best
+              ales and meals on offer and when the weather is nice, make sure to soak
+              up those rays in the beer garden. If you’re partial to sipping away
+              on a craft beer, then look no further than the&nbsp;<a href="https://www.blackislebrewery.com/black-isle-bar/"
+              title="" target="_blank">Black Isle Brewery Bar</a>. Why not sink your
+              teeth into one of their delicious wood-fired pizzas to go along with
+              your meal?</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:ItineraryExternalLink
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 57.478772
+              visitscotland:longitude: -4.2329976
+            /visitscotland:ExternalLink:
+              jcr:primaryType: visitscotland:ExternalLink
+              visitscotland:label: ''
+              visitscotland:link: http://riverhouseinverness.co.uk/
+      /inverness-botanic-gardens:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 56d04a55-ae5b-4357-a8fd-b20bebbe91c5
+        hippo:name: Inverness Botanic Gardens
+        hippo:versionHistory: d4733be5-e50b-44d2-acad-4ddce101c7ee
+        /inverness-botanic-gardens[1]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: d03bac81-1005-4d1e-b52b-fe45ff6580c6
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:43:16.322Z
+          hippostdpubwf:lastModificationDate: 2020-10-22T15:27:03.592Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ff9e6db9-2526-4683-8006-d7df8d831d94
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Inverness Botanic Gardens
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>You might want to escape the busy bustle of the city centre but peace and tranquillity can never be found too far away at the&nbsp;<a href="https://www.visitscotland.com/info/see-do/inverness-botanic-gardens-p255531" title="">Inverness Botanic Gardens</a>. From exotic plants and trees to cactus houses, the gardens create the perfect little oasis for you to chill out!</p>
+
+              <p>Duration of stay: 1.5 Hours</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '255531'
+        /inverness-botanic-gardens[2]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 36eff3e3-93aa-43f9-9c07-64f7847c464c
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:43:16.322Z
+          hippostdpubwf:lastModificationDate: 2020-10-20T13:43:42.222Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ff9e6db9-2526-4683-8006-d7df8d831d94
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Inverness Botanic Gardens
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>You might want to escape the busy bustle of the city centre but peace and tranquillity can never be found too far away at the&nbsp;<a href="https://www.visitscotland.com/info/see-do/inverness-botanic-gardens-p255531" title="">Inverness Botanic Gardens</a>. From exotic plants and trees to cactus houses, the gardens create the perfect little oasis for you to chill out!</p>
+
+              <p>Duration of stay: 1.5 Hours</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '255531'
+        /inverness-botanic-gardens[3]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 5196aa52-e7ac-4b86-8b14-0f6ebb427f36
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:43:16.322Z
+          hippostdpubwf:lastModificationDate: 2020-10-20T13:43:42.222Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-09T13:14:07.832Z
+          hippotranslation:id: ff9e6db9-2526-4683-8006-d7df8d831d94
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Inverness Botanic Gardens
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>You might want to escape the busy bustle of the city centre but peace and tranquillity can never be found too far away at the&nbsp;<a href="https://www.visitscotland.com/info/see-do/inverness-botanic-gardens-p255531" title="">Inverness Botanic Gardens</a>. From exotic plants and trees to cactus houses, the gardens create the perfect little oasis for you to chill out!</p>
+
+              <p>Duration of stay: 1.5 Hours</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '255531'
+      /inverness-museum-art-gallery:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 961348bd-660b-423f-bca8-e694f5e892ce
+        hippo:name: Inverness Museum & Art Gallery
+        hippo:versionHistory: 37a9c8c5-377f-4376-b2e2-bd79a84b083e
+        /inverness-museum-art-gallery[1]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 37c0defb-df1c-4d3b-87a1-77309796ee3e
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:40:06.315Z
+          hippostdpubwf:lastModificationDate: 2020-10-20T13:40:35.883Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: a09928c1-1fd8-4caa-a167-ece260f0529e
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Inverness Museum & Art Gallery
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>History buffs are in for a treat when they step inside the&nbsp;<a href="https://www.highlifehighland.com/inverness-museum-and-art-gallery/" title="" target="_blank">Inverness Museum &amp; Art Gallery</a>. Spend a few hours taking a look round its fascinating range of artefacts and collections that celebrate the very best of Highland life and its heritage.</p>
+
+              <p>Duration of stay: 2 Hours</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '255521'
+        /inverness-museum-art-gallery[2]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: e881380c-767e-4f12-a68f-9c2d4df41144
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:40:06.315Z
+          hippostdpubwf:lastModificationDate: 2020-10-20T13:40:35.725Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: a09928c1-1fd8-4caa-a167-ece260f0529e
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Inverness Museum & Art Gallery
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>History buffs are in for a treat when they step inside the&nbsp;<a href="https://www.highlifehighland.com/inverness-museum-and-art-gallery/" title="" target="_blank">Inverness Museum &amp; Art Gallery</a>. Spend a few hours taking a look round its fascinating range of artefacts and collections that celebrate the very best of Highland life and its heritage.</p>
+
+              <p>Duration of stay: 2 Hours</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '255521'
+        /inverness-museum-art-gallery[3]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 71064ada-7daa-4c16-9ab6-84cf2b294590
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:40:06.315Z
+          hippostdpubwf:lastModificationDate: 2020-10-20T13:40:35.725Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-09T13:14:07.545Z
+          hippotranslation:id: a09928c1-1fd8-4caa-a167-ece260f0529e
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Inverness Museum & Art Gallery
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>History buffs are in for a treat when they step inside the&nbsp;<a href="https://www.highlifehighland.com/inverness-museum-and-art-gallery/" title="" target="_blank">Inverness Museum &amp; Art Gallery</a>. Spend a few hours taking a look round its fascinating range of artefacts and collections that celebrate the very best of Highland life and its heritage.</p>
+
+              <p>Duration of stay: 2 Hours</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '255521'
+      /river-ness-ness-islands:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 9d93f20d-6c33-4b6d-9c3b-b7e8cd7f8669
+        hippo:name: River Ness & Ness Islands
+        hippo:versionHistory: 290e92a1-e882-48d3-afa4-1b66de9a9e7b
+        /river-ness-ness-islands[1]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e74768d9-66bf-4cbd-8801-0b97a096ba4f
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:42:19.001Z
+          hippostdpubwf:lastModificationDate: 2020-10-20T13:42:42.659Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 371bfaa7-73a8-49d5-ad8b-1b31c4811695
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: River Ness & Ness Islands
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Make the most of your&nbsp;one day&nbsp;in Inverness by heading to the&nbsp;<a href="https://www.visitinvernesslochness.com/property/ness-islands/" title="" target="_blank">River Ness and Islands</a>. Make sure to pack your hiking boots as the area offers a range of challenging walking routes, perfect for the keen adventurer! If you don’t want to walk for miles and want to take things at an easier pace, there are many short walks to be enjoyed including the Inverness City Centre to the Ness Islands, a group of islands located in the middle of the River Ness each connected with suspension bridges to get from A to B. Fancy making the most out of your time here? The Ness Islands is a key spot for runners with its endless pathways and natural surroundings.</p>
+
+              <p>Duration of stay: 30 Minutes</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '1420681'
+        /river-ness-ness-islands[2]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 4a342ee8-7493-4e7e-a889-4bd1dd655167
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:42:19.001Z
+          hippostdpubwf:lastModificationDate: 2020-10-20T13:42:42.513Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 371bfaa7-73a8-49d5-ad8b-1b31c4811695
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: River Ness & Ness Islands
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Make the most of your&nbsp;one day&nbsp;in Inverness by heading to the&nbsp;<a href="https://www.visitinvernesslochness.com/property/ness-islands/" title="" target="_blank">River Ness and Islands</a>. Make sure to pack your hiking boots as the area offers a range of challenging walking routes, perfect for the keen adventurer! If you don’t want to walk for miles and want to take things at an easier pace, there are many short walks to be enjoyed including the Inverness City Centre to the Ness Islands, a group of islands located in the middle of the River Ness each connected with suspension bridges to get from A to B. Fancy making the most out of your time here? The Ness Islands is a key spot for runners with its endless pathways and natural surroundings.</p>
+
+              <p>Duration of stay: 30 Minutes</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '1420681'
+        /river-ness-ness-islands[3]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 4c020c06-7221-45ee-b4d3-d4d04b82e247
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-20T13:42:19.001Z
+          hippostdpubwf:lastModificationDate: 2020-10-20T13:42:42.513Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-09T13:14:06.841Z
+          hippotranslation:id: 371bfaa7-73a8-49d5-ad8b-1b31c4811695
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: River Ness & Ness Islands
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Make the most of your&nbsp;one day&nbsp;in Inverness by heading to the&nbsp;<a href="https://www.visitinvernesslochness.com/property/ness-islands/" title="" target="_blank">River Ness and Islands</a>. Make sure to pack your hiking boots as the area offers a range of challenging walking routes, perfect for the keen adventurer! If you don’t want to walk for miles and want to take things at an easier pace, there are many short walks to be enjoyed including the Inverness City Centre to the Ness Islands, a group of islands located in the middle of the River Ness each connected with suspension bridges to get from A to B. Fancy making the most out of your time here? The Ness Islands is a key spot for runners with its endless pathways and natural surroundings.</p>
+
+              <p>Duration of stay: 30 Minutes</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '1420681'
+      /tread-lightly:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: b93bb605-9ec1-4e22-9f77-a22319ec3318
+        hippo:name: Video - Edinburgh - Tread Lightly
+        hippo:versionHistory: dcafa54b-f054-4a4c-96e1-695b1f0d9a2e
+        /tread-lightly[1]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 284ef386-8881-4a34-acdf-9ef01538a96f
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostd:transferable: false
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T15:15:50.034Z
+          hippostdpubwf:lastModificationDate: 2021-11-09T13:15:04.189Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 5ba21bb5-7db4-49b5-9a7d-6f6b95ba5f91
+          hippotranslation:locale: en
+          visitscotland:subtitle: Edinburgh
+          visitscotland:title: Edinburgh
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Begin your carbon neutral road trip in Scotland’s capital of <a href="https://www.visitscotland.com/destinations-maps/edinburgh/" title="Edinburgh">Edinburgh</a>. If you’re renting an EV you will probably collect it either here or in Glasgow. With 30 public charging points located throughout the city, it’s an ideal place to familiarise yourself with the charging process, especially if you’re new to driving electric.&nbsp;</p>
+
+              <p>Simply retrieve your charging cable from the boot before plugging it in. Activate it using a downloadable app from <a href="https://www.zap-map.com/app/" title="" target="_blank">Zap-Map</a>, <a href="https://www.tesla.com/en_GB/support/tesla-app" title="" target="_blank">Tesla</a> or another provider.&nbsp;&nbsp;</p>
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:StopTip:
+            jcr:primaryType: visitscotland:StopTip
+            visitscotland:title: Did you know?
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>You can stay in a hotel which has an EV charging
+                station on its premises. Try the <a href="https://www.radissonhotels.com/en-us/hotels/radisson-blu-edinburgh?facilitatorId=RHGSEM&amp;cid=a:ps+b:ggl+c:emea+i:brand+e:rdb+d:ukirwe+r:brt+f:en-US+g:ho+h:EDIZA+v:cf&amp;gclid=CjwKCAjwxuuCBhATEiwAIIIz0Z6E4Dk-SCpHkGi6uk4Cpk2L9HHOoEacnPx8vKyNHaxqwXsgN59XSRoCdlQQAvD_BwE&amp;gclsrc=aw.ds"
+                title="" target="_blank">Radisson Blue</a> on the Royal Mile or the
+                elegant Georgian townhouse of the <a href="https://www.niracaledonia.com/"
+                title="" target="_blank">Nira Caledonia</a> in the New Town.&nbsp;</p>
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:ItineraryExternalLink
+            visitscotland:timeToExplore: ' 24'
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 55.953
+              visitscotland:longitude: -3.188
+            /visitscotland:ExternalLink:
+              jcr:primaryType: visitscotland:ExternalLink
+              visitscotland:label: Find green accommodation in Edinburgh.
+              visitscotland:link: https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&loc=Edinburgh&locplace=4161&locprox=0&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&src_awards__0=qag1b&src_awards__0=qag2s&src_awards__0=qag3g
+          /visitscotland:media:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+        /tread-lightly[2]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: be7dbf84-ccbf-496a-ba2d-71c15f502b12
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T15:15:50.034Z
+          hippostdpubwf:lastModificationDate: 2021-11-08T15:20:33.732Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 5ba21bb5-7db4-49b5-9a7d-6f6b95ba5f91
+          hippotranslation:locale: en
+          visitscotland:subtitle: Edinburgh
+          visitscotland:title: Edinburgh
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Begin your carbon neutral road trip in Scotland’s capital of <a href="https://www.visitscotland.com/destinations-maps/edinburgh/" title="Edinburgh">Edinburgh</a>. If you’re renting an EV you will probably collect it either here or in Glasgow. With 30 public charging points located throughout the city, it’s an ideal place to familiarise yourself with the charging process, especially if you’re new to driving electric.&nbsp;</p>
+
+              <p>Simply retrieve your charging cable from the boot before plugging it in. Activate it using a downloadable app from <a href="https://www.zap-map.com/app/" title="" target="_blank">Zap-Map</a>, <a href="https://www.tesla.com/en_GB/support/tesla-app" title="" target="_blank">Tesla</a> or another provider.&nbsp;&nbsp;</p>
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:StopTip:
+            jcr:primaryType: visitscotland:StopTip
+            visitscotland:title: Did you know?
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>You can stay in a hotel which has an EV charging
+                station on its premises. Try the <a href="https://www.radissonhotels.com/en-us/hotels/radisson-blu-edinburgh?facilitatorId=RHGSEM&amp;cid=a:ps+b:ggl+c:emea+i:brand+e:rdb+d:ukirwe+r:brt+f:en-US+g:ho+h:EDIZA+v:cf&amp;gclid=CjwKCAjwxuuCBhATEiwAIIIz0Z6E4Dk-SCpHkGi6uk4Cpk2L9HHOoEacnPx8vKyNHaxqwXsgN59XSRoCdlQQAvD_BwE&amp;gclsrc=aw.ds"
+                title="" target="_blank">Radisson Blue</a> on the Royal Mile or the
+                elegant Georgian townhouse of the <a href="https://www.niracaledonia.com/"
+                title="" target="_blank">Nira Caledonia</a> in the New Town.&nbsp;</p>
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:ItineraryExternalLink
+            visitscotland:timeToExplore: ' 24'
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 55.953
+              visitscotland:longitude: -3.188
+            /visitscotland:ExternalLink:
+              jcr:primaryType: visitscotland:ExternalLink
+              visitscotland:label: Find green accommodation in Edinburgh.
+              visitscotland:link: https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&loc=Edinburgh&locplace=4161&locprox=0&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&src_awards__0=qag1b&src_awards__0=qag2s&src_awards__0=qag3g
+          /visitscotland:media:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+        /tread-lightly[3]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: fa74cd79-1913-4932-88ff-1bef97ca9a43
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T15:15:50.034Z
+          hippostdpubwf:lastModificationDate: 2021-11-08T15:20:33.732Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-09T13:15:50.691Z
+          hippotranslation:id: 5ba21bb5-7db4-49b5-9a7d-6f6b95ba5f91
+          hippotranslation:locale: en
+          visitscotland:subtitle: Edinburgh
+          visitscotland:title: Edinburgh
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Begin your carbon neutral road trip in Scotland’s capital of <a href="https://www.visitscotland.com/destinations-maps/edinburgh/" title="Edinburgh">Edinburgh</a>. If you’re renting an EV you will probably collect it either here or in Glasgow. With 30 public charging points located throughout the city, it’s an ideal place to familiarise yourself with the charging process, especially if you’re new to driving electric.&nbsp;</p>
+
+              <p>Simply retrieve your charging cable from the boot before plugging it in. Activate it using a downloadable app from <a href="https://www.zap-map.com/app/" title="" target="_blank">Zap-Map</a>, <a href="https://www.tesla.com/en_GB/support/tesla-app" title="" target="_blank">Tesla</a> or another provider.&nbsp;&nbsp;</p>
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:StopTip:
+            jcr:primaryType: visitscotland:StopTip
+            visitscotland:title: Did you know?
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>You can stay in a hotel which has an EV charging
+                station on its premises. Try the <a href="https://www.radissonhotels.com/en-us/hotels/radisson-blu-edinburgh?facilitatorId=RHGSEM&amp;cid=a:ps+b:ggl+c:emea+i:brand+e:rdb+d:ukirwe+r:brt+f:en-US+g:ho+h:EDIZA+v:cf&amp;gclid=CjwKCAjwxuuCBhATEiwAIIIz0Z6E4Dk-SCpHkGi6uk4Cpk2L9HHOoEacnPx8vKyNHaxqwXsgN59XSRoCdlQQAvD_BwE&amp;gclsrc=aw.ds"
+                title="" target="_blank">Radisson Blue</a> on the Royal Mile or the
+                elegant Georgian townhouse of the <a href="https://www.niracaledonia.com/"
+                title="" target="_blank">Nira Caledonia</a> in the New Town.&nbsp;</p>
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:ItineraryExternalLink
+            visitscotland:timeToExplore: ' 24'
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 55.953
+              visitscotland:longitude: -3.188
+            /visitscotland:ExternalLink:
+              jcr:primaryType: visitscotland:ExternalLink
+              visitscotland:label: Find green accommodation in Edinburgh.
+              visitscotland:link: https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&loc=Edinburgh&locplace=4161&locprox=0&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&src_awards__0=qag1b&src_awards__0=qag2s&src_awards__0=qag3g
+          /visitscotland:media:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
     /links:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['frontend:orderChildFolders', 'hippo:named', 'hippotranslation:translated',
         'mix:versionable']
       jcr:uuid: 7256088f-6969-4ee4-84fa-de25c5a3c6dd
-      hippo:name: Custom Links (Back end Devs)
+      hippo:name: Custom Links (Back-end Devs)
       hippostd:foldertype: [new-translated-folder-shared]
       hippotranslation:id: e3f18b1f-13a5-4f89-8f96-350075a2ddf7
       hippotranslation:locale: en
@@ -5709,6 +6641,71 @@
               jcr:primaryType: visitscotland:ExternalDocument
               visitscotland:category: Things to do
               visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
+    /video:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: ba57170b-95dc-4c64-b096-1f17c270b508
+      hippo:name: Videos (Back-end Devs)
+      hippostd:foldertype: [new-translated-folder-videos, new-video]
+      hippotranslation:id: 00152cfc-85cc-4a13-84c0-89934970f529
+      hippotranslation:locale: en
+      /video---cop26---why-scotland-needs-you:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+        hippo:name: Video - Tread Lightly - Why Scotland needs you
+        /video---cop26---why-scotland-needs-you[1]:
+          jcr:primaryType: visitscotland:Video
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 9f5d38c5-286f-4292-ad05-72f530a8608f
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T14:29:08.535Z
+          hippostdpubwf:lastModificationDate: 2021-11-08T14:34:43.737Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 99b1b893-3fe4-4e13-9377-6432dfa741f7
+          hippotranslation:locale: en
+          visitscotland:label: Discover why Scotland needs you
+          visitscotland:teaser: The country you love needs you.  Our awe-inspiring
+            landmarks and coastal seascapes have missed you and have been waiting
+            patiently for your return.
+          visitscotland:title: 'Only in Scotland: Why Scotland Needs You'
+          visitscotland:translation: ''
+          visitscotland:url: https://www.youtube.com/watch?v=h9bQwcndGfo
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /video---cop26---why-scotland-needs-you[2]:
+          jcr:primaryType: visitscotland:Video
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 64a18ba3-f2ed-4cba-b0b1-62d15f85be7f
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T14:29:08.535Z
+          hippostdpubwf:lastModificationDate: 2021-11-08T14:31:07.974Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 99b1b893-3fe4-4e13-9377-6432dfa741f7
+          hippotranslation:locale: en
+          visitscotland:label: Discover why Scotland needs you
+          visitscotland:teaser: The country you love needs you.  Our awe-inspiring
+            landmarks and coastal seascapes have missed you and have been waiting
+            patiently for your return.
+          visitscotland:title: 'Only in Scotland: Why Scotland Needs You'
+          visitscotland:translation: ''
+          visitscotland:url: https://www.youtube.com/watch?v=h9bQwcndGfo
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
   /itinerary:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
@@ -17063,335 +18060,17 @@
             visitscotland:safeTravels: false
   /video:
     jcr:primaryType: hippostd:folder
-    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
     jcr:uuid: f69ad742-0e90-41c1-8734-617b16d43ce7
+    hippo:name: Video Examples
     hippostd:foldertype: [new-translated-folder-test, new-document]
     hippotranslation:id: 25c3cd72-01df-4f58-b75d-583175d7c589
     hippotranslation:locale: en
-    /content:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-      jcr:uuid: f2de1898-cac8-4150-b9ee-766bcff2c949
-      hippo:name: General Page
-      /content[1]:
-        jcr:primaryType: visitscotland:General
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: a4ce7ef5-683a-4b8d-bf4f-c25b3cd17e0f
-        hippo:availability: []
-        hippostd:retainable: false
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2021-11-08T14:27:03.320Z
-        hippostdpubwf:lastModificationDate: 2021-11-08T15:29:09.867Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 5d5621c8-18a9-426f-84c6-21821799c659
-        hippotranslation:locale: en
-        visitscotland:breadcrumb: ''
-        visitscotland:hideNewsletter: false
-        visitscotland:seoDescription: Setting foot in Scotland and exploring the landscapes,
-          culture and communities is a magical experience.
-        visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: Scotland is Calling
-        visitscotland:teaser: Setting foot in Scotland and exploring the landscapes,
-          culture and communities is a magical experience.
-        visitscotland:theme: Standard
-        visitscotland:title: It's time to tread lightly
-        visitscotland:translation: ''
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <p>From that very first moment you see Scotland - stop, and take it all in.</p>
-
-            <p>Discover the untouched landscapes and bustling communities, exploring in a way that puts our best foot forward. Appreciate the wonder and beauty within, helping to protect it all for generations to come.</p>
-
-            <p>Whether you're visiting from afar or living nearby, lets conserve this magic and help it grow.</p>
-
-            <p>Let's step forward together, and tread lightly upon our earth.</p>
-
-            <p>Scotland is Calling. #RespectProtectEnjoy</p>
-        /visitscotland:heroVideo:
-          jcr:primaryType: visitscotland:VideoLink
-          /visitscotland:videoLink:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
-      /content[2]:
-        jcr:primaryType: visitscotland:General
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: e5a82678-ed13-4a85-b8e6-c12727283256
-        hippo:availability: [preview]
-        hippostd:retainable: false
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2021-11-08T14:27:03.320Z
-        hippostdpubwf:lastModificationDate: 2021-11-08T15:33:10.900Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 5d5621c8-18a9-426f-84c6-21821799c659
-        hippotranslation:locale: en
-        visitscotland:breadcrumb: ''
-        visitscotland:hideNewsletter: false
-        visitscotland:seoDescription: Setting foot in Scotland and exploring the landscapes,
-          culture and communities is a magical experience.
-        visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: Scotland is Calling
-        visitscotland:teaser: Setting foot in Scotland and exploring the landscapes,
-          culture and communities is a magical experience.
-        visitscotland:theme: Standard
-        visitscotland:title: It's time to tread lightly
-        visitscotland:translation: ''
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <p>From that very first moment you see Scotland - stop, and take it all in.</p>
-
-            <p>Discover the untouched landscapes and bustling communities, exploring in a way that puts our best foot forward. Appreciate the wonder and beauty within, helping to protect it all for generations to come.</p>
-
-            <p>Whether you're visiting from afar or living nearby, lets conserve this magic and help it grow.</p>
-
-            <p>Let's step forward together, and tread lightly upon our earth.</p>
-
-            <p>Scotland is Calling. #RespectProtectEnjoy</p>
-        /visitscotland:heroVideo:
-          jcr:primaryType: visitscotland:VideoLink
-          /visitscotland:videoLink:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
-    /video---cop26---why-scotland-needs-you:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-      jcr:uuid: b193d2fa-424d-44b0-a720-1d2cb5cf0184
-      hippo:name: Video - Tread Lightly - Why Scotland needs you
-      /video---cop26---why-scotland-needs-you[1]:
-        jcr:primaryType: visitscotland:Video
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 9f5d38c5-286f-4292-ad05-72f530a8608f
-        hippo:availability: []
-        hippostd:retainable: false
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2021-11-08T14:29:08.535Z
-        hippostdpubwf:lastModificationDate: 2021-11-08T14:34:43.737Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 99b1b893-3fe4-4e13-9377-6432dfa741f7
-        hippotranslation:locale: en
-        visitscotland:label: Discover why Scotland needs you
-        visitscotland:teaser: The country you love needs you.  Our awe-inspiring landmarks
-          and coastal seascapes have missed you and have been waiting patiently for
-          your return.
-        visitscotland:title: 'Only in Scotland: Why Scotland Needs You'
-        visitscotland:translation: ''
-        visitscotland:url: https://www.youtube.com/watch?v=h9bQwcndGfo
-        /visitscotland:image:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-      /video---cop26---why-scotland-needs-you[2]:
-        jcr:primaryType: visitscotland:Video
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: 64a18ba3-f2ed-4cba-b0b1-62d15f85be7f
-        hippo:availability: [preview]
-        hippostd:retainable: false
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2021-11-08T14:29:08.535Z
-        hippostdpubwf:lastModificationDate: 2021-11-08T14:31:07.974Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 99b1b893-3fe4-4e13-9377-6432dfa741f7
-        hippotranslation:locale: en
-        visitscotland:label: Discover why Scotland needs you
-        visitscotland:teaser: The country you love needs you.  Our awe-inspiring landmarks
-          and coastal seascapes have missed you and have been waiting patiently for
-          your return.
-        visitscotland:title: 'Only in Scotland: Why Scotland Needs You'
-        visitscotland:translation: ''
-        visitscotland:url: https://www.youtube.com/watch?v=h9bQwcndGfo
-        /visitscotland:image:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-    /article:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-      jcr:uuid: 3be83dd2-4e86-4e73-9a93-c711fce2b469
-      hippo:name: Article
-      /article:
-        jcr:primaryType: visitscotland:Article
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 375b3abc-acd8-4c4c-9f5a-1ab65442fdaf
-        hippo:availability: []
-        hippostd:holder: admin
-        hippostd:retainable: true
-        hippostd:state: draft
-        hippostd:transferable: true
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2021-11-08T14:40:38.534Z
-        hippostdpubwf:lastModificationDate: 2021-11-08T14:40:38.534Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 813fe58d-24a9-4499-b0af-b3b016b951c6
-        hippotranslation:locale: en
-        visitscotland:anchor: Responsible Tourism
-        visitscotland:title: How Do I Take a Responsible Tourism Holiday?
-        visitscotland:translation: ''
-        /visitscotland:image:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:copy:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>When you're planning your holiday...</p>
-        /visitscotland:paragraph:
-          jcr:primaryType: visitscotland:ArticleSection
-          /visitscotland:copy:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <h3>1.&nbsp;Choosing a destination</h3>
-
-              <p>Consider where you want to go and when.</p>
-
-              <p>Scotland is home to many iconic and famous landmarks and locations, which feature at the top of many wishlists. If you want to visit these places, consider travelling outwith any peak summer months.<br />
-              If you are travelling during summer, why not consider visiting some lesser-known places this time? We've got plenty of ideas and suggestions for places off the beaten track which will give you an amazing experience just the same.</p>
-
-              <p>Here are some new things to try:</p>
-
-              <ul>
-               <li><a href="https://www.visitscotland.com/blog/travel/north-coast-500-alternatives/" title="">6 Epic Alternatives to the North Coast 500</a></li>
-               <li><a href="https://www.visitscotland.com/blog/holiday-ideas/must-see-alternatives/" title="">9 Iconic Scottish Spots with Hidden Gems Nearby</a></li>
-               <li><a href="https://www.visitscotland.com/blog/holiday-ideas/off-the-beaten-track/" title="11 off-the-beaten track holiday destinations">11 Off the Beaten Track Destinations in Scotland</a></li>
-               <li><a href="https://www.visitscotland.com/blog/attractions/why-you-should-visit/" title="">9 Reasons Why You Should Visit Scotland in 2022</a></li>
-               <li><a href="https://www.visitscotland.com/blog/walking/ben-nevis-alternatives/" title="">9 Alternative Must-Climb Hills to Ben Nevis in Scotland</a></li>
-              </ul>
-          /visitscotland:media:
-            jcr:primaryType: visitscotland:VideoLink
-            /visitscotland:videoLink:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
-        /visitscotland:media:
-          jcr:primaryType: visitscotland:VideoLink
-          /visitscotland:videoLink:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
-    /megalinks:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-      jcr:uuid: a7610fbe-954a-4cfa-b853-bae8e7420a30
-      hippo:name: Megalinks
-      /megalinks[1]:
-        jcr:primaryType: visitscotland:Megalinks
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 4f673c88-6eeb-4a67-8924-934daf547c2f
-        hippo:availability: []
-        hippostd:retainable: false
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2021-11-08T14:49:31.361Z
-        hippostdpubwf:lastModificationDate: 2021-11-08T14:56:04.184Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 7d715dbc-8617-4167-a083-c2e2baf47623
-        hippotranslation:locale: en
-        visitscotland:teaserVisible: true
-        visitscotland:title: We tread lightly by
-        visitscotland:translation: ''
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:megalinkItems[1]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 18ef27f4-0be2-4e80-871d-f9b459a0b9d8
-          /visitscotland:links:
-            jcr:primaryType: visitscotland:VideoLink
-            /visitscotland:videoLink:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
-        /visitscotland:megalinkItems[2]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
-          /visitscotland:links:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
-        /visitscotland:megalinkItems[3]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: f4b0530a-ea61-4a30-9af5-d70eb77ea158
-          /visitscotland:links:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: f4b0530a-ea61-4a30-9af5-d70eb77ea158
-      /megalinks[2]:
-        jcr:primaryType: visitscotland:Megalinks
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: 14d75636-b377-4b22-9d13-436afda8f8fa
-        hippo:availability: [preview]
-        hippostd:retainable: false
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2021-11-08T14:49:31.361Z
-        hippostdpubwf:lastModificationDate: 2021-11-08T14:52:44.276Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 7d715dbc-8617-4167-a083-c2e2baf47623
-        hippotranslation:locale: en
-        visitscotland:teaserVisible: true
-        visitscotland:title: We tread lightly by
-        visitscotland:translation: ''
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:megalinkItems[1]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 18ef27f4-0be2-4e80-871d-f9b459a0b9d8
-          /visitscotland:links:
-            jcr:primaryType: visitscotland:VideoLink
-            /visitscotland:videoLink:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
-        /visitscotland:megalinkItems[2]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
-          /visitscotland:links:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
-        /visitscotland:megalinkItems[3]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: f4b0530a-ea61-4a30-9af5-d70eb77ea158
-          /visitscotland:links:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: f4b0530a-ea61-4a30-9af5-d70eb77ea158
     /listicle:
       jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 23029033-1e82-441e-8465-ff50d8dd7aaa
+      hippo:name: Listicle
       hippostd:foldertype: [new-translated-folder-test, new-document]
       hippotranslation:id: 65cc345b-f035-47fd-bdc1-38a74cabe7f3
       hippotranslation:locale: en
@@ -17557,8 +18236,9 @@
               hippo:docbase: 50d376e2-049d-4afa-b62c-c4161f40e149
     /itinerary:
       jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 7c6bf60b-92f0-412d-a971-f8918be9d5c1
+      hippo:name: Itinerary
       hippostd:foldertype: [new-translated-folder-test, new-document]
       hippotranslation:id: 19325bd9-80e6-4854-8cf9-349f09dbe69a
       hippotranslation:locale: en
@@ -17665,21 +18345,21 @@
               <p>Let's step forward together, and tread lightly upon our earth.</p>
 
               <p>Scotland is Calling. #RespectProtectEnjoy</p>
-      /day-no-changes:
+      /day:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
         jcr:uuid: b3082666-27a4-4bc0-bf6f-54bbe6ddf2af
-        hippo:name: Day (No changes)
-        /day-no-changes:
+        hippo:name: Day
+        /day[1]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: bf651810-2c59-42a4-b2a2-2672157758c1
           hippo:availability: []
-          hippostd:holder: admin
+          hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-11-08T15:14:33.596Z
-          hippostdpubwf:lastModificationDate: 2021-11-08T15:14:33.596Z
+          hippostdpubwf:lastModificationDate: 2021-11-09T13:33:41.358Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5849b18b-2956-4050-91bf-83a7ef6b3e03
           hippotranslation:locale: en
@@ -17692,124 +18372,51 @@
               if you can find a way to leave the car at home and use public transport.
               It emits less pollution than if we all travelled around in our own cars
               or vehicles.</p>
-      /itinerary-stop:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-        jcr:uuid: b93bb605-9ec1-4e22-9f77-a22319ec3318
-        hippo:name: Itinerary Stop
-        /itinerary-stop[1]:
-          jcr:primaryType: visitscotland:Stop
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 284ef386-8881-4a34-acdf-9ef01538a96f
-          hippo:availability: []
-          hippostd:holder: admin
-          hippostd:retainable: false
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2021-11-08T15:15:50.034Z
-          hippostdpubwf:lastModificationDate: 2021-11-08T15:26:24.156Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 5ba21bb5-7db4-49b5-9a7d-6f6b95ba5f91
-          hippotranslation:locale: en
-          visitscotland:subtitle: Edinburgh
-          visitscotland:title: Edinburgh
-          visitscotland:translation: ''
-          /visitscotland:description:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Begin your carbon neutral road trip in Scotland’s capital of <a href="https://www.visitscotland.com/destinations-maps/edinburgh/" title="Edinburgh">Edinburgh</a>. If you’re renting an EV you will probably collect it either here or in Glasgow. With 30 public charging points located throughout the city, it’s an ideal place to familiarise yourself with the charging process, especially if you’re new to driving electric.&nbsp;</p>
-
-              <p>Simply retrieve your charging cable from the boot before plugging it in. Activate it using a downloadable app from <a href="https://www.zap-map.com/app/" title="" target="_blank">Zap-Map</a>, <a href="https://www.tesla.com/en_GB/support/tesla-app" title="" target="_blank">Tesla</a> or another provider.&nbsp;&nbsp;</p>
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:StopTip:
-            jcr:primaryType: visitscotland:StopTip
-            visitscotland:title: Did you know?
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: <p>You can stay in a hotel which has an EV charging
-                station on its premises. Try the <a href="https://www.radissonhotels.com/en-us/hotels/radisson-blu-edinburgh?facilitatorId=RHGSEM&amp;cid=a:ps+b:ggl+c:emea+i:brand+e:rdb+d:ukirwe+r:brt+f:en-US+g:ho+h:EDIZA+v:cf&amp;gclid=CjwKCAjwxuuCBhATEiwAIIIz0Z6E4Dk-SCpHkGi6uk4Cpk2L9HHOoEacnPx8vKyNHaxqwXsgN59XSRoCdlQQAvD_BwE&amp;gclsrc=aw.ds"
-                title="" target="_blank">Radisson Blue</a> on the Royal Mile or the
-                elegant Georgian townhouse of the <a href="https://www.niracaledonia.com/"
-                title="" target="_blank">Nira Caledonia</a> in the New Town.&nbsp;</p>
-          /visitscotland:product:
-            jcr:primaryType: visitscotland:ItineraryExternalLink
-            visitscotland:timeToExplore: ' 24'
-            /visitscotland:Coordinates:
-              jcr:primaryType: visitscotland:Coordinates
-              visitscotland:latitude: 55.953
-              visitscotland:longitude: -3.188
-            /visitscotland:ExternalLink:
-              jcr:primaryType: visitscotland:ExternalLink
-              visitscotland:label: Find green accommodation in Edinburgh.
-              visitscotland:link: https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&loc=Edinburgh&locplace=4161&locprox=0&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&src_awards__0=qag1b&src_awards__0=qag2s&src_awards__0=qag3g
-          /visitscotland:media:
-            jcr:primaryType: visitscotland:VideoLink
-            /visitscotland:videoLink:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
-        /itinerary-stop[2]:
-          jcr:primaryType: visitscotland:Stop
+          /visitscotland:stops[1]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: b93bb605-9ec1-4e22-9f77-a22319ec3318
+          /visitscotland:stops[2]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
+          /visitscotland:stops[3]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: e67cca0b-469d-4281-8815-0612f856f316
+        /day[2]:
+          jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: be7dbf84-ccbf-496a-ba2d-71c15f502b12
+          jcr:uuid: c126df08-7851-49bf-9ae8-a07554eac6d5
           hippo:availability: [preview]
           hippostd:retainable: false
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2021-11-08T15:15:50.034Z
-          hippostdpubwf:lastModificationDate: 2021-11-08T15:20:33.732Z
+          hippostdpubwf:creationDate: 2021-11-08T15:14:33.596Z
+          hippostdpubwf:lastModificationDate: 2021-11-09T13:34:24.319Z
           hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 5ba21bb5-7db4-49b5-9a7d-6f6b95ba5f91
+          hippotranslation:id: 5849b18b-2956-4050-91bf-83a7ef6b3e03
           hippotranslation:locale: en
-          visitscotland:subtitle: Edinburgh
-          visitscotland:title: Edinburgh
+          visitscotland:title: How you'll travel around
           visitscotland:translation: ''
-          /visitscotland:description:
+          visitscotland:transports: [bus, ferry, public]
+          /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Begin your carbon neutral road trip in Scotland’s capital of <a href="https://www.visitscotland.com/destinations-maps/edinburgh/" title="Edinburgh">Edinburgh</a>. If you’re renting an EV you will probably collect it either here or in Glasgow. With 30 public charging points located throughout the city, it’s an ideal place to familiarise yourself with the charging process, especially if you’re new to driving electric.&nbsp;</p>
-
-              <p>Simply retrieve your charging cable from the boot before plugging it in. Activate it using a downloadable app from <a href="https://www.zap-map.com/app/" title="" target="_blank">Zap-Map</a>, <a href="https://www.tesla.com/en_GB/support/tesla-app" title="" target="_blank">Tesla</a> or another provider.&nbsp;&nbsp;</p>
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:StopTip:
-            jcr:primaryType: visitscotland:StopTip
-            visitscotland:title: Did you know?
-            /visitscotland:copy:
-              jcr:primaryType: hippostd:html
-              hippostd:content: <p>You can stay in a hotel which has an EV charging
-                station on its premises. Try the <a href="https://www.radissonhotels.com/en-us/hotels/radisson-blu-edinburgh?facilitatorId=RHGSEM&amp;cid=a:ps+b:ggl+c:emea+i:brand+e:rdb+d:ukirwe+r:brt+f:en-US+g:ho+h:EDIZA+v:cf&amp;gclid=CjwKCAjwxuuCBhATEiwAIIIz0Z6E4Dk-SCpHkGi6uk4Cpk2L9HHOoEacnPx8vKyNHaxqwXsgN59XSRoCdlQQAvD_BwE&amp;gclsrc=aw.ds"
-                title="" target="_blank">Radisson Blue</a> on the Royal Mile or the
-                elegant Georgian townhouse of the <a href="https://www.niracaledonia.com/"
-                title="" target="_blank">Nira Caledonia</a> in the New Town.&nbsp;</p>
-          /visitscotland:product:
-            jcr:primaryType: visitscotland:ItineraryExternalLink
-            visitscotland:timeToExplore: ' 24'
-            /visitscotland:Coordinates:
-              jcr:primaryType: visitscotland:Coordinates
-              visitscotland:latitude: 55.953
-              visitscotland:longitude: -3.188
-            /visitscotland:ExternalLink:
-              jcr:primaryType: visitscotland:ExternalLink
-              visitscotland:label: Find green accommodation in Edinburgh.
-              visitscotland:link: https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&loc=Edinburgh&locplace=4161&locprox=0&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&src_awards__0=qag1b&src_awards__0=qag2s&src_awards__0=qag3g
-          /visitscotland:media:
-            jcr:primaryType: visitscotland:VideoLink
-            /visitscotland:videoLink:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+            hippostd:content: <p>Transport is a big way to be a more sustainable traveller,
+              if you can find a way to leave the car at home and use public transport.
+              It emits less pollution than if we all travelled around in our own cars
+              or vehicles.</p>
+          /visitscotland:stops[1]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: b93bb605-9ec1-4e22-9f77-a22319ec3318
+          /visitscotland:stops[2]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
+          /visitscotland:stops[3]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: e67cca0b-469d-4281-8815-0612f856f316
     /destination:
       jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 2c441f9a-cbf0-4826-89d3-dc66b795d934
+      hippo:name: Destination
       hippostd:foldertype: [new-translated-folder-test, new-document]
       hippotranslation:id: af4cd1c7-29f3-45a8-8c94-cad3b461fdd3
       hippotranslation:locale: en
@@ -17902,3 +18509,445 @@
               <p>Let's step forward together, and tread lightly upon our earth.</p>
 
               <p>Scotland is Calling. #RespectProtectEnjoy</p>
+      /megalinks:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: 427f31b3-5684-4bcb-9ba0-0215cdfe6880
+        hippo:name: Megalinks
+        /megalinks:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:versionable']
+          jcr:uuid: 35d0009f-3f86-4be3-886e-ceb940c1081f
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T14:49:31.361Z
+          hippostdpubwf:lastModificationDate: 2021-11-08T14:52:44.276Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 3bc80893-0f47-4b41-8af3-dcff2702af82
+          hippotranslation:locale: en
+          visitscotland:teaserVisible: true
+          visitscotland:title: We tread lightly by
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 18ef27f4-0be2-4e80-871d-f9b459a0b9d8
+            /visitscotland:links:
+              jcr:primaryType: visitscotland:VideoLink
+              /visitscotland:videoLink:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
+            /visitscotland:links:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
+          /visitscotland:megalinkItems[3]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: f4b0530a-ea61-4a30-9af5-d70eb77ea158
+            /visitscotland:links:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: f4b0530a-ea61-4a30-9af5-d70eb77ea158
+      /article:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: 95d469b5-48ab-40d9-9396-bfefb3382e40
+        hippo:name: Article
+        /article:
+          jcr:primaryType: visitscotland:Article
+          jcr:mixinTypes: ['mix:versionable']
+          jcr:uuid: 09851b6c-4e0c-472a-8f41-3b9a8a7092c8
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostd:transferable: false
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T14:40:38.534Z
+          hippostdpubwf:lastModificationDate: 2021-11-09T13:31:49.703Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: a37c6cc3-c0c4-4116-a4e8-02912aae826b
+          hippotranslation:locale: en
+          visitscotland:anchor: Responsible Tourism
+          visitscotland:title: How Do I Take a Responsible Tourism Holiday?
+          visitscotland:translation: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>When you're planning your holiday...</p>
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>1.&nbsp;Choosing a destination</h3>
+
+                <p>Consider where you want to go and when.</p>
+
+                <p>Scotland is home to many iconic and famous landmarks and locations, which feature at the top of many wishlists. If you want to visit these places, consider travelling outwith any peak summer months.<br />
+                If you are travelling during summer, why not consider visiting some lesser-known places this time? We've got plenty of ideas and suggestions for places off the beaten track which will give you an amazing experience just the same.</p>
+
+                <p>Here are some new things to try:</p>
+
+                <ul>
+                 <li><a href="https://www.visitscotland.com/blog/travel/north-coast-500-alternatives/" title="">6 Epic Alternatives to the North Coast 500</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/holiday-ideas/must-see-alternatives/" title="">9 Iconic Scottish Spots with Hidden Gems Nearby</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/holiday-ideas/off-the-beaten-track/" title="11 off-the-beaten track holiday destinations">11 Off the Beaten Track Destinations in Scotland</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/attractions/why-you-should-visit/" title="">9 Reasons Why You Should Visit Scotland in 2022</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/walking/ben-nevis-alternatives/" title="">9 Alternative Must-Climb Hills to Ben Nevis in Scotland</a></li>
+                </ul>
+            /visitscotland:media:
+              jcr:primaryType: visitscotland:VideoLink
+              /visitscotland:videoLink:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+          /visitscotland:media:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+    /general:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: d6db18f1-4f31-4a60-841c-96dd9a51f909
+      hippo:name: General
+      hippostd:foldertype: [new-translated-folder-test, new-document]
+      hippotranslation:id: 84dc30fc-e348-46b3-afef-25b4a4a15593
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: f2de1898-cac8-4150-b9ee-766bcff2c949
+        hippo:name: General Page
+        /content[1]:
+          jcr:primaryType: visitscotland:General
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: a4ce7ef5-683a-4b8d-bf4f-c25b3cd17e0f
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T14:27:03.320Z
+          hippostdpubwf:lastModificationDate: 2021-11-08T15:29:09.867Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 5d5621c8-18a9-426f-84c6-21821799c659
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:seoDescription: Setting foot in Scotland and exploring the
+            landscapes, culture and communities is a magical experience.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Scotland is Calling
+          visitscotland:teaser: Setting foot in Scotland and exploring the landscapes,
+            culture and communities is a magical experience.
+          visitscotland:theme: Standard
+          visitscotland:title: It's time to tread lightly
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>From that very first moment you see Scotland - stop, and take it all in.</p>
+
+              <p>Discover the untouched landscapes and bustling communities, exploring in a way that puts our best foot forward. Appreciate the wonder and beauty within, helping to protect it all for generations to come.</p>
+
+              <p>Whether you're visiting from afar or living nearby, lets conserve this magic and help it grow.</p>
+
+              <p>Let's step forward together, and tread lightly upon our earth.</p>
+
+              <p>Scotland is Calling. #RespectProtectEnjoy</p>
+          /visitscotland:heroVideo:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+        /content[2]:
+          jcr:primaryType: visitscotland:General
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: e5a82678-ed13-4a85-b8e6-c12727283256
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T14:27:03.320Z
+          hippostdpubwf:lastModificationDate: 2021-11-08T15:33:10.900Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 5d5621c8-18a9-426f-84c6-21821799c659
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:seoDescription: Setting foot in Scotland and exploring the
+            landscapes, culture and communities is a magical experience.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Scotland is Calling
+          visitscotland:teaser: Setting foot in Scotland and exploring the landscapes,
+            culture and communities is a magical experience.
+          visitscotland:theme: Standard
+          visitscotland:title: It's time to tread lightly
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>From that very first moment you see Scotland - stop, and take it all in.</p>
+
+              <p>Discover the untouched landscapes and bustling communities, exploring in a way that puts our best foot forward. Appreciate the wonder and beauty within, helping to protect it all for generations to come.</p>
+
+              <p>Whether you're visiting from afar or living nearby, lets conserve this magic and help it grow.</p>
+
+              <p>Let's step forward together, and tread lightly upon our earth.</p>
+
+              <p>Scotland is Calling. #RespectProtectEnjoy</p>
+          /visitscotland:heroVideo:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+      /article:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: 3be83dd2-4e86-4e73-9a93-c711fce2b469
+        hippo:name: Article
+        /article[1]:
+          jcr:primaryType: visitscotland:Article
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 375b3abc-acd8-4c4c-9f5a-1ab65442fdaf
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostd:transferable: false
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T14:40:38.534Z
+          hippostdpubwf:lastModificationDate: 2021-11-08T14:40:38.534Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 813fe58d-24a9-4499-b0af-b3b016b951c6
+          hippotranslation:locale: en
+          visitscotland:anchor: Responsible Tourism
+          visitscotland:title: How Do I Take a Responsible Tourism Holiday?
+          visitscotland:translation: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>When you're planning your holiday...</p>
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>1.&nbsp;Choosing a destination</h3>
+
+                <p>Consider where you want to go and when.</p>
+
+                <p>Scotland is home to many iconic and famous landmarks and locations, which feature at the top of many wishlists. If you want to visit these places, consider travelling outwith any peak summer months.<br />
+                If you are travelling during summer, why not consider visiting some lesser-known places this time? We've got plenty of ideas and suggestions for places off the beaten track which will give you an amazing experience just the same.</p>
+
+                <p>Here are some new things to try:</p>
+
+                <ul>
+                 <li><a href="https://www.visitscotland.com/blog/travel/north-coast-500-alternatives/" title="">6 Epic Alternatives to the North Coast 500</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/holiday-ideas/must-see-alternatives/" title="">9 Iconic Scottish Spots with Hidden Gems Nearby</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/holiday-ideas/off-the-beaten-track/" title="11 off-the-beaten track holiday destinations">11 Off the Beaten Track Destinations in Scotland</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/attractions/why-you-should-visit/" title="">9 Reasons Why You Should Visit Scotland in 2022</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/walking/ben-nevis-alternatives/" title="">9 Alternative Must-Climb Hills to Ben Nevis in Scotland</a></li>
+                </ul>
+            /visitscotland:media:
+              jcr:primaryType: visitscotland:VideoLink
+              /visitscotland:videoLink:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+          /visitscotland:media:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+        /article[2]:
+          jcr:primaryType: visitscotland:Article
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: ce46bc4a-2351-42ef-a79e-44731b7a0f28
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostd:transferable: false
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T14:40:38.534Z
+          hippostdpubwf:lastModificationDate: 2021-11-09T13:31:49.703Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 813fe58d-24a9-4499-b0af-b3b016b951c6
+          hippotranslation:locale: en
+          visitscotland:anchor: Responsible Tourism
+          visitscotland:title: How Do I Take a Responsible Tourism Holiday?
+          visitscotland:translation: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>When you're planning your holiday...</p>
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <h3>1.&nbsp;Choosing a destination</h3>
+
+                <p>Consider where you want to go and when.</p>
+
+                <p>Scotland is home to many iconic and famous landmarks and locations, which feature at the top of many wishlists. If you want to visit these places, consider travelling outwith any peak summer months.<br />
+                If you are travelling during summer, why not consider visiting some lesser-known places this time? We've got plenty of ideas and suggestions for places off the beaten track which will give you an amazing experience just the same.</p>
+
+                <p>Here are some new things to try:</p>
+
+                <ul>
+                 <li><a href="https://www.visitscotland.com/blog/travel/north-coast-500-alternatives/" title="">6 Epic Alternatives to the North Coast 500</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/holiday-ideas/must-see-alternatives/" title="">9 Iconic Scottish Spots with Hidden Gems Nearby</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/holiday-ideas/off-the-beaten-track/" title="11 off-the-beaten track holiday destinations">11 Off the Beaten Track Destinations in Scotland</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/attractions/why-you-should-visit/" title="">9 Reasons Why You Should Visit Scotland in 2022</a></li>
+                 <li><a href="https://www.visitscotland.com/blog/walking/ben-nevis-alternatives/" title="">9 Alternative Must-Climb Hills to Ben Nevis in Scotland</a></li>
+                </ul>
+            /visitscotland:media:
+              jcr:primaryType: visitscotland:VideoLink
+              /visitscotland:videoLink:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+          /visitscotland:media:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+      /megalinks:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: a7610fbe-954a-4cfa-b853-bae8e7420a30
+        hippo:name: Megalinks
+        /megalinks[1]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 4f673c88-6eeb-4a67-8924-934daf547c2f
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T14:49:31.361Z
+          hippostdpubwf:lastModificationDate: 2021-11-08T14:56:04.184Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7d715dbc-8617-4167-a083-c2e2baf47623
+          hippotranslation:locale: en
+          visitscotland:teaserVisible: true
+          visitscotland:title: We tread lightly by
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 18ef27f4-0be2-4e80-871d-f9b459a0b9d8
+            /visitscotland:links:
+              jcr:primaryType: visitscotland:VideoLink
+              /visitscotland:videoLink:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
+            /visitscotland:links:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
+          /visitscotland:megalinkItems[3]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: f4b0530a-ea61-4a30-9af5-d70eb77ea158
+            /visitscotland:links:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: f4b0530a-ea61-4a30-9af5-d70eb77ea158
+        /megalinks[2]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 14d75636-b377-4b22-9d13-436afda8f8fa
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T14:49:31.361Z
+          hippostdpubwf:lastModificationDate: 2021-11-08T14:52:44.276Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7d715dbc-8617-4167-a083-c2e2baf47623
+          hippotranslation:locale: en
+          visitscotland:teaserVisible: true
+          visitscotland:title: We tread lightly by
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 18ef27f4-0be2-4e80-871d-f9b459a0b9d8
+            /visitscotland:links:
+              jcr:primaryType: visitscotland:VideoLink
+              /visitscotland:videoLink:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
+            /visitscotland:links:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
+          /visitscotland:megalinkItems[3]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: f4b0530a-ea61-4a30-9af5-d70eb77ea158
+            /visitscotland:links:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: f4b0530a-ea61-4a30-9af5-d70eb77ea158
