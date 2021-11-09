@@ -26,7 +26,7 @@ import VsLink from '@components/elements/link/Link';
 /**
  * A component for an SVG wrapped in a link with accessible sr-only text
  *
- * @displayName Svg Link
+ * @displayName SVG Link
  */
 export default {
     name: 'VsSvgLink',
@@ -71,11 +71,13 @@ export default {
 
 <docs>
 ```jsx
-    <VsSvgLink
-        link-alt-text="VisitScotland Home"
-        href="/"
-        svg-fill="#700e57"
-        svg-path="visitscotland"
-    />
+    <BsWrapper style="width: 200px;">
+        <VsSvgLink
+            link-alt-text="VisitScotland Home"
+            href="/"
+            svg-fill="#700e57"
+            svg-path="visitscotland"
+        />
+    </BsWrapper>
 ```
 </docs>
