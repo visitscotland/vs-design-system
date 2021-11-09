@@ -66,8 +66,8 @@ export default {
 
             return dataAttrs;
         },
+        /* returns the URL for the language config file */
         getLangUrl() {
-            // let objIndex;
             const langObj = this.config.filter((o) => Object.prototype.hasOwnProperty.call(o, 'lang'));
 
             if (langObj.length > 0) {
@@ -76,6 +76,7 @@ export default {
 
             return this.langConfig.en.localeUrl;
         },
+        /* returns the environment variable to include various files from */
         getEnvironment() {
             if (window.location.hostname.includes('develop') || window.location.hostname.includes('localhost')) {
                 return 'develop';
@@ -96,6 +97,7 @@ export default {
         document.head.appendChild(langScriptEl);
 
         const psrScriptEl = document.createElement('script');
+        psrScriptEl.async = false;
         // psrScriptEl.setAttribute('src', `https://${this.getEnvironment}.visitscotland.com/api/dev/ui/product-search/static/js/bundle.js`);
         psrScriptEl.setAttribute('src', 'http://localhost:9999/static/js/bundle.js');
         document.head.appendChild(psrScriptEl);
