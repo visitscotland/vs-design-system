@@ -185,6 +185,10 @@ export default {
                 color: $color-gray-shade-5;
             }
 
+            .c-search__date-summary .DateRangePickerInput div:nth-child(3) {
+                flex-grow: 0;
+            }
+
             .DateRangePicker_picker {
                 .CalendarMonth_caption {
                     color: $color-gray-shade-5;
@@ -211,7 +215,9 @@ export default {
                     }
 
                     &:hover {
-                        background-color: $color-secondary-teal-tint-5;
+                        @media (hover: hover) {
+                            background-color: $color-secondary-teal-tint-5;
+                        }
                     }
 
                     &__blocked_out_of_range {
@@ -221,6 +227,7 @@ export default {
                     &__selected {
                         background-color: $color-secondary-teal-shade-2;
                         color: $color-white;
+
                     }
 
                     &__selected_span {
@@ -273,9 +280,8 @@ export default {
             <VsPsrModule
                 :configArr="[
                     {'subSearchType': 'acco'},
-                    {'loc':'Glasgow'},
-                    {'locplace':'4161'},
-                    {'lang':'de'},
+                    {'locplace': '4161'},
+                    {'lang':'en'},
                 ]"
             >
                 <template slot="vsModuleHeading">
