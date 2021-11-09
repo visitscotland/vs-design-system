@@ -69,8 +69,12 @@ public class HippoUtilsService {
         } else {
             final boolean FULLY_QUALIFIED = false;
             HstRequestContext requestContext = RequestContextProvider.get();
+            Mount requestMount = requestContext.getResolvedMount().getMount();
 
             HstLink link = requestContext.getHstLinkCreator().create(localize ? getLocalizedDocument(document) : document, requestContext);
+            if (link.getMount().getLocale().equals(Locale.UK.toString()) && !requestMount.getLocale().equals(Locale.UK.toString())) {
+                link.setPath(String.format("%s/%s", requestMount.getMountPath(), link.getPath()));
+            }
             return link.toUrlForm(requestContext, FULLY_QUALIFIED);
         }
     }
