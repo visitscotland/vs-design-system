@@ -22,19 +22,15 @@ Alternatively, developers might prefer to run a quicker version were UI packages
 Please, note that the full run is advised every time the branch is changed or when front end changes 
 are expected.
 
-Windows Based Console
-
-    mvn clean verify -P !fed-build -DskipTests
-    mvn -P cargo.run
-   
-or 
-
-    mvn clean verify -P !fed-build -DskipTests &&mvn -P cargo.run
-    
 Unix Based Console
 
     mvn clean verify -P \!fed-build -DskipTests 
     mvn -P cargo.run
+
+or
+
+    mvn clean verify -P\!fed-build -DskipTests &&mvn -P cargo.run
+
     
 ### SpringBoot Actuators
 
@@ -53,12 +49,20 @@ will not be available.
 - http://localhost:8080/cms/console: JCR Console that contains the configuration and the data of the CMS
 - http://localhost:8080/cms/repository: Query tool for the JCR Console. It can be queried through xPath or JCR
 - http://localhost:8080/essentials: Out-of-the-box set of tools that add some extra capabilities to the CMS
-- http://localhost:8080/actuator: Actuators functionallity that exposes information about the architecture of the application
+- http://localhost:8080/actuator: Actuators functionality that exposes information about the architecture of the application
 
 ### Development credentials
 - Username: admin
 - Password: admin (Do not share it. It is a secret)
 
+Windows Based Console
+
+    mvn clean verify -P !fed-build -DskipTests
+    mvn -P cargo.run
+
+or
+
+    mvn clean verify -P !fed-build -DskipTests &&mvn -P cargo.run
     
 ## Troubleshooting
 **I get the following error when I try to clone the message: _fatal: cannot create directory at '{some big path}': Filename too long_**
