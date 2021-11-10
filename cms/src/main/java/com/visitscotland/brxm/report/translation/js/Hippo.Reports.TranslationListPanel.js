@@ -22,7 +22,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             method: "GET",
             proxy: new Hippo.Reports.PageableHttpProxy({url: GET_UNTRANSLATED_FILES_ENDPOINT, api: {}}, {locale: INITIAL_LOCALE}),
             fields: ["displayName", "translatedLocales", "sentForTranslationLocales", "path", "translationStatus",
-                "translationPriority", "handleId", "lastModified", "lastModifiedBy", "publishStatus", "type"]
+                "translationPriority", "handleId", "lastModified", "lastModifiedBy", "publishStatus", "type", "clonedLocales"]
         })
 
         var self = this;
@@ -32,8 +32,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         this.paging = true;
         this.pageTypes =[]
         this.moduleTypes = []
-
-
+        this.statusTypes = []
 
         // Combo box used to edit each record's priority
         // Configured in the editor grid as a column editor component
@@ -82,7 +81,6 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                     {name: "lastModifiedBy", dataIndex: "lastModifiedBy", header: "Modified by", sortable: true, width: 5},
                     {name: "translatedLocales", dataIndex: "translatedLocales", header: "Translated", renderer: this.renderFlags, width: 10},
                     {name: "sentForTranslationLocales", dataIndex: "sentForTranslationLocales", header: "Sent for translation", renderer: this.renderFlags, width: 10},
-                    {name: "translationStatus", dataIndex: "translationStatus", header: "Translation status", sortable: true, width: 15},
                     {name: "translationPriority", dataIndex: "translationPriority", header: "Priority", sortable: true, editor: priorityComboConfig, renderer: {fn: this.renderTranslationPriority, scope: self}, width: 15},
                 ]
             }),
@@ -190,6 +188,12 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                         Hippo.Reports.priorityFilterComboConfig,
                         {
                             xtype: "label",
+                            text: "Status",
+                            style: SIDEBAR_LABEL_STYLE
+                        },
+                        Hippo.Reports.typeFilterComboConfig,
+                        {
+                            xtype: "label",
                             text: "Document type",
                             style: SIDEBAR_LABEL_STYLE
                         },
@@ -268,6 +272,18 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                 .then((response) => {
                     response.json().then((priorityData) => {
                         resolve(priorityData)
+                    })
+                })
+                .catch((err) => reject(err))
+        })
+    },
+    getStatusTypes() {
+        // TODO clean this up
+        return new Promise((resolve, reject) => {
+            fetch("/cms/translation/status")
+                .then((response) => {
+                    response.json().then((data) => {
+                        resolve(data)
                     })
                 })
                 .catch((err) => reject(err))
@@ -392,6 +408,9 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             .then((types) => self.pageTypes = types)
             .catch((err) => console.error(err));
 
+        this.getStatusTypes()
+            .then((types) => self.statusTypes = types)
+            .catch((err) => console.error(err));
     },
 
     destroy: function() {

@@ -2,6 +2,7 @@ package com.visitscotland.brxm.utils;
 
 import com.visitscotland.brxm.hippobeans.Page;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
+import org.hippoecm.hst.configuration.hosting.Mount;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.ObjectConverter;
@@ -11,6 +12,7 @@ import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
+import org.jetbrains.annotations.NotNull;
 import org.onehippo.forge.selection.hst.contentbean.ValueList;
 import org.onehippo.forge.selection.hst.util.SelectionUtil;
 import org.slf4j.Logger;
@@ -58,9 +60,19 @@ public class HippoUtilsService {
             final boolean FULLY_QUALIFIED = false;
             HstRequestContext requestContext = RequestContextProvider.get();
 
-            HstLink link = requestContext.getHstLinkCreator().create(document, requestContext);
+            HstLink link = requestContext.getHstLinkCreator().create(getLocalizedDocument(document), requestContext);
             return link.toUrlForm(requestContext, FULLY_QUALIFIED);
         }
+    }
+
+    private HippoBean getLocalizedDocument(@NotNull Page document){
+        HippoBean localizedDocument= document;
+
+        if (!getRequestLocale().toLanguageTag().contains(document.getLocaleString())) {
+            localizedDocument = document.getAvailableTranslations().getTranslation(getRequestLocale().getLanguage());
+        }
+
+        return localizedDocument != null? localizedDocument : document;
     }
 
     /**
@@ -120,13 +132,24 @@ public class HippoUtilsService {
     }
 
     /**
-     * Extract a parameter from the URL (without namespace)
+     * Extract the resolved mount for the request if provided or from RequestContextProvider when it is not
      *
-     * @return value of the query parameter or null if such parameter hasn't been defined
+     * @param request HstRequest
+     *
+     * @return Resolved mount for the current request.
+     */
+    @NonTestable(NonTestable.Cause.BRIDGE)
+    public Mount getResolvedMount(HstRequest request){
+        HstRequestContext context = request == null? RequestContextProvider.get(): request.getRequestContext();
+        return context.getResolvedMount().getMount();
+    }
+
+    /**
+     * @return Returns the locale for the current request
      */
     @NonTestable(NonTestable.Cause.BRIDGE)
     public Locale getRequestLocale(){
-        return RequestContextProvider.get().getServletRequest().getLocale();
+        return RequestContextProvider.get().getPreferredLocale();
     }
 
     /**

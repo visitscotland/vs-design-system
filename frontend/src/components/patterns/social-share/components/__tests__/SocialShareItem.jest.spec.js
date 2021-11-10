@@ -4,6 +4,13 @@ import VsSocialShareItem from '../SocialShareItem';
 const url = 'https://www.visitscotland.com';
 const title = 'VisitScotland';
 
+// create a fake navigator object for testing
+Object.assign(navigator, {
+    clipboard: {
+        writeText: () => {},
+    },
+});
+
 const factoryShallowMount = (propsData) => shallowMount(VsSocialShareItem, {
     propsData: {
         ...propsData,
@@ -153,12 +160,13 @@ describe('VsSocialShareItem', () => {
                 name: 'link',
             });
 
-            document.execCommand = jest.fn();
+            const mockCopyMethod = jest.fn();
+            navigator.clipboard.writeText = mockCopyMethod;
             const shareItem = wrapper.find('[data-test="vs-social-share-item"]');
             const shareLink = shareItem.find('.vs-social-share-item__link');
 
             shareLink.trigger('click');
-            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(mockCopyMethod).toHaveBeenCalled();
         });
     });
 
@@ -172,7 +180,7 @@ describe('VsSocialShareItem', () => {
             const shareLink = shareItem.find('.vs-social-share-item__link');
             shareLink.trigger('click');
 
-            expect(wrapper.emitted().onCopyLink).toBeTruthy();
+            expect(wrapper.emitted('copyLinkClicked')).toBeTruthy();
         });
     });
 });

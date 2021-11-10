@@ -2931,17 +2931,18 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 2448d23a-f68d-495e-926b-106c36111a76
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-09T15:40:45.161Z
-          hippostdpubwf:lastModificationDate: 2021-09-09T16:40:17.587+01:00
+          hippostdpubwf:lastModificationDate: 2021-11-10T14:29:34.106Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: ce016ad4-7038-4e88-a11c-6f20c8b66c33
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
           visitscotland:hideNewsletter: false
-          visitscotland:location: Aberdeen
+          visitscotland:location: ''
           visitscotland:newsletter: false
           visitscotland:seoDescription: The OTYML module displays links to recommended
             pages in a carousel
@@ -2982,43 +2983,43 @@
               visitscotland:feature: false
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
+                hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
             /visitscotland:links[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
             /visitscotland:links[4]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+                hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
             /visitscotland:links[5]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
             /visitscotland:links[6]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
             /visitscotland:links[7]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+                hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
             /visitscotland:links[8]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
+                hippo:docbase: 379b86e5-872c-441c-bd30-aaf3f49054d6
         /content[2]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
