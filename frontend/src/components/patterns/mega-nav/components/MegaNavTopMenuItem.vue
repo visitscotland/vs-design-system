@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/components/MegaNavDropdown';
+import VsMegaNavDropdown from '@components/patterns/mega-nav/components/MegaNavDropdown';
 import VsLink from '@components/elements/link/Link';
 
 /**
