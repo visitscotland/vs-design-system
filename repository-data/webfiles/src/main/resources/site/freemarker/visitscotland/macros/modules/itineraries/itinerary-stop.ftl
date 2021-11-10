@@ -28,19 +28,18 @@
             <#assign image = stop.image.externalImage />
         </#if>
     </#if>
-    
+
     <vs-itinerary-stop
         slot="stops"
         stop-number="${stop.index}"
         stop-label="${stop.title}"
         stop-title="${stop.subTitle!''}"
     >
-        <@hst.manageContent hippobean=stop.hippoBean />
         <@cmsErrors errors=stop.errorMessages!"" editMode=editMode />
+        <@hst.manageContent hippobean=stop.hippoBean />
+
         <#if image?? && image?has_content> 
-            <template slot="stop-image">
-                <@imageWithCaption imageSrc=image imageDetails=stop.image />
-            </template>
+            <@imageWithCaption imageSrc=image imageDetails=stop.image />
         </#if>
 
         <#if stop?? && stop.description?? && stop.description?has_content>

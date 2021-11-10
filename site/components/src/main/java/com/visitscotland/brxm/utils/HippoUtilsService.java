@@ -16,7 +16,6 @@ import org.hippoecm.hst.core.request.ResolvedMount;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.hst.core.request.ResolvedVirtualHost;
 import org.hippoecm.hst.util.PathUtils;
-import org.hippoecm.repository.api.HippoNode;
 import org.jetbrains.annotations.NotNull;
 import org.onehippo.forge.selection.hst.contentbean.ValueList;
 import org.onehippo.forge.selection.hst.util.SelectionUtil;
@@ -45,8 +44,6 @@ public class HippoUtilsService {
     public HippoUtilsService(){
         hstComponent = new BaseHstComponent();
     }
-
-    static HippoUtilsService instance;
 
     /**
      * Convert and HstLink or a HippoBean into a URL String

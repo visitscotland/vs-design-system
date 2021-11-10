@@ -166,7 +166,7 @@ export default {
         }
     }
 
-    .vs-image-location-map {
+    .vs-caption-image-map {
         height: $spacer-11;
     }
 

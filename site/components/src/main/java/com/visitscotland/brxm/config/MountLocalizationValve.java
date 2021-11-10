@@ -1,4 +1,4 @@
-package com.visitscotland.brxm.utils;
+package com.visitscotland.brxm.config;
 
 import org.apache.commons.lang3.LocaleUtils;
 import org.hippoecm.hst.container.valves.AbstractOrderableValve;
