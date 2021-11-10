@@ -19,9 +19,8 @@ definitions:
           /pagenotfound:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
-            hst:pagetitle: Not Found Page
-            hst:refId: pagenotfound
             hst:relativecontentpath: general/error/404-not-found/content
+            hst:refId: pagenotfound
           /widget:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/widget
