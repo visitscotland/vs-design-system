@@ -23,7 +23,7 @@
 
                 <VsHeading
                     level="3"
-                    class="vs-itinerary-stop__title ml-4"
+                    class="vs-itinerary-stop__title ml-4 mt-0"
                 >
                     {{ stopLabel }}
 
@@ -33,8 +33,8 @@
                 </VsHeading>
             </div>
 
-            <!-- @slot The image component for the stop -->
-            <slot name="stop-image" />
+            <!-- @ Default slot for the image component for the stop -->
+            <slot />
 
             <!-- @slot The description content for the stop -->
             <slot name="stop-description" />
@@ -200,20 +200,13 @@ export default {
                         stopLabel="Stop"
                         :stopTitle="stop.title"
                     >
-                        <template slot="stop-image">
-                            <VsImageWithCaption
-                                slot="stop-image"
-                                :altText="stop.image.altText"
-                                :image-src="stop.image.imageSrc"
-                                variant="fullwidth"
+                        <VsImageWithCaption
+                            :altText="stop.image.altText"
+                            :image-src="stop.image.imageSrc"
+                        >
+                            <VsCaption
+                                slot="img-caption"
                             >
-                                <VsSvg
-                                    slot="toggle-icon"
-                                    path="info-toggle"
-                                    height="24"
-                                    width="24"
-                                />
-
                                 <span slot="caption">
                                     {{ stop.image.caption }}
                                 </span>
@@ -221,8 +214,8 @@ export default {
                                 <span slot="credit">
                                     &copy; {{ stop.image.credit }}
                                 </span>
-                            </VsImageWithCaption>
-                        </template>
+                            </VsCaption>
+                        </VsImageWithCaption>
                         <div v-html="stop.description" slot="stop-description"></div>
                         <VsLink href="stop.href">
                             Find out more

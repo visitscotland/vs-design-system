@@ -259,8 +259,7 @@ export default {
             // if not the times shouldn't be shown
             if (typeof this.parsedHours.period !== 'undefined') {
                 // reformat current date so it can be transformed into a JS date more reliably
-                // NB: this format isn't recognised by IE11 so the dynamic info won't show
-                const formattedCurrentDate = `${this.ukDate.substring(4, 5)}/${this.ukDate.substring(0, 2)}/${this.ukDate.substring(6, 10)}`;
+                const formattedCurrentDate = `${this.ukDate.substring(3, 5)}/${this.ukDate.substring(0, 2)}/${this.ukDate.substring(6, 10)}`;
                 const startDate = new Date(this.parsedHours.period.startDay);
                 const endDate = new Date(this.parsedHours.period.endDay);
                 const nowDate = new Date(formattedCurrentDate);
