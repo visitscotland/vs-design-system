@@ -21,6 +21,9 @@ public class LinkValidator implements Validator<Node> {
     public static final String EMPTY_DOCUMENT = "cafebabe-cafe-babe-cafe-babecafebabe";
     private SessionFactory sessionFactory;
 
+    static final String DAY = "visitscotland:Day";
+    static final String VIDEO = "visitscotland:VideoLink";
+
     public LinkValidator() {
         this.sessionFactory = new SessionFactory();
     }
@@ -45,11 +48,11 @@ public class LinkValidator implements Validator<Node> {
     }
 
     private Optional<Violation> checkAllowedDocuments(final ValidationContext context, final Node document, final Node childNode) throws RepositoryException {
-        if (document.getParent().isNodeType("visitscotland:Day")) {
+        if (document.getParent().isNodeType(DAY)) {
             if (!childNode.isNodeType("visitscotland:Stop")) {
                 return Optional.of(context.createViolation("stop"));
             }
-        } else if (document.getParent().isNodeType("visitscotland:VideoLink")) {
+        } else if (document.getParent().isNodeType(VIDEO)) {
             if (!childNode.isNodeType("visitscotland:Video")){
                 return Optional.of(context.createViolation("video"));
             }
