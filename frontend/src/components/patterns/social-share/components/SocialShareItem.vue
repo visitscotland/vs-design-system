@@ -145,22 +145,15 @@ export default {
     methods: {
         copyToClipboard() {
             if (this.name === 'link') {
-                this.$emit('on-copy-link');
+                this.$emit('copyLinkClicked');
 
-                // create hidden input to copy from
-                const hiddenInput = document.createElement('textarea');
-                hiddenInput.setAttribute('readonly', '');
-                hiddenInput.style.position = 'absolute';
-                hiddenInput.style.left = '-9999px';
+                // Clipboard API supported?
+                if (!navigator.clipboard) return;
 
-                // set value and append to body
-                hiddenInput.value = this.pageUrl;
-                document.body.appendChild(hiddenInput);
-
-                // copy contents and remove from DOM
-                hiddenInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(hiddenInput);
+                // copy text to clipboard
+                if (navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(this.pageUrl);
+                }
 
                 // show success text on button
                 this.show = true;
