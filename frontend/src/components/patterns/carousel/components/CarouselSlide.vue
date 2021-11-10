@@ -27,7 +27,7 @@
                 />
 
                 <template slot="stretchedCardCategory">
-                    <span class="sr-only">Category: </span>{{ category }}
+                    <span class="sr-only">{{ categoryLabel }}: </span>{{ category }}
                 </template>
 
                 <span
@@ -93,6 +93,13 @@ export default {
         linkUrl: {
             type: String,
             required: true,
+        },
+        /**
+        * Translatable text for the 'category' label
+        */
+        categoryLabel: {
+            type: String,
+            default: null,
         },
         /**
         * The category of the content

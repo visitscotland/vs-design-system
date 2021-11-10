@@ -4,7 +4,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 6f489e77-5e97-44bb-9378-673b892bc784
   hippo:name: OTYML
-  hippo:versionHistory: 005f57d8-1ddd-4f6c-a5a1-8232e4e7e55f
+  hippo:versionHistory: 7b684a31-0640-48b5-9585-0364cf8575ba
   /otyml[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -14,17 +14,17 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-12-10T15:57:49.892Z
-    hippostdpubwf:lastModificationDate: 2021-09-03T09:29:15.149Z
-    hippostdpubwf:lastModifiedBy: spanish
-    resourcebundle:descriptions: ['']
+    hippostdpubwf:lastModificationDate: 2021-11-10T10:03:59.675Z
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '']
     resourcebundle:id: otyml
-    resourcebundle:keys: [otyml.title.default]
-    resourcebundle:messages: [Other things you might like]
-    resourcebundle:messages_de: [Was Ihnen auch gefallen könnte]
-    resourcebundle:messages_es: [Otras cosas que podrían gustarte]
-    resourcebundle:messages_fr: ['']
-    resourcebundle:messages_it: ['']
-    resourcebundle:messages_nl: [Andere dingen die je misschien leuk vindt]
+    resourcebundle:keys: [otyml.title.default, otyml.category]
+    resourcebundle:messages: [Other things you might like, Category]
+    resourcebundle:messages_de: [Was Ihnen auch gefallen könnte, '']
+    resourcebundle:messages_es: [Otras cosas que podrían gustarte, '']
+    resourcebundle:messages_fr: ['', '']
+    resourcebundle:messages_it: ['', '']
+    resourcebundle:messages_nl: [Andere dingen die je misschien leuk vindt, '']
   /otyml[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -34,17 +34,17 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-12-10T15:57:49.892Z
-    hippostdpubwf:lastModificationDate: 2021-09-03T09:29:30.385Z
-    hippostdpubwf:lastModifiedBy: spanish
-    resourcebundle:descriptions: ['']
+    hippostdpubwf:lastModificationDate: 2021-11-10T10:04:30.921Z
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '']
     resourcebundle:id: otyml
-    resourcebundle:keys: [otyml.title.default]
-    resourcebundle:messages: [Other things you might like]
-    resourcebundle:messages_de: [Was Ihnen auch gefallen könnte]
-    resourcebundle:messages_es: [Otras cosas que podrían gustarte]
-    resourcebundle:messages_fr: ['']
-    resourcebundle:messages_it: ['']
-    resourcebundle:messages_nl: [Andere dingen die je misschien leuk vindt]
+    resourcebundle:keys: [otyml.title.default, otyml.category]
+    resourcebundle:messages: [Other things you might like, Category]
+    resourcebundle:messages_de: [Was Ihnen auch gefallen könnte, '']
+    resourcebundle:messages_es: [Otras cosas que podrían gustarte, '']
+    resourcebundle:messages_fr: ['', '']
+    resourcebundle:messages_it: ['', '']
+    resourcebundle:messages_nl: [Andere dingen die je misschien leuk vindt, '']
   /otyml[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -54,15 +54,15 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-12-10T15:57:49.892Z
-    hippostdpubwf:lastModificationDate: 2021-09-03T09:29:30.385Z
-    hippostdpubwf:lastModifiedBy: spanish
-    hippostdpubwf:publicationDate: 2021-09-03T09:29:32.806Z
-    resourcebundle:descriptions: ['']
+    hippostdpubwf:lastModificationDate: 2021-11-10T10:04:30.921Z
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2021-11-10T10:06:24.551Z
+    resourcebundle:descriptions: ['', '']
     resourcebundle:id: otyml
-    resourcebundle:keys: [otyml.title.default]
-    resourcebundle:messages: [Other things you might like]
-    resourcebundle:messages_de: [Was Ihnen auch gefallen könnte]
-    resourcebundle:messages_es: [Otras cosas que podrían gustarte]
-    resourcebundle:messages_fr: ['']
-    resourcebundle:messages_it: ['']
-    resourcebundle:messages_nl: [Andere dingen die je misschien leuk vindt]
+    resourcebundle:keys: [otyml.title.default, otyml.category]
+    resourcebundle:messages: [Other things you might like, Category]
+    resourcebundle:messages_de: [Was Ihnen auch gefallen könnte, '']
+    resourcebundle:messages_es: [Otras cosas que podrían gustarte, '']
+    resourcebundle:messages_fr: ['', '']
+    resourcebundle:messages_it: ['', '']
+    resourcebundle:messages_nl: [Andere dingen die je misschien leuk vindt, '']

@@ -27,6 +27,7 @@
                 img-alt="${(carouselItem.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
                 <#if carouselItem.category??>
                     category="${carouselItem.category}"
+                    
                 </#if>
                 <#if carouselItem.itineraryTransport??>
                     transport="${carouselItem.itineraryTransport}"
