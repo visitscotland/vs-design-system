@@ -27,11 +27,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     props: {
-        accessToken: {
-            type: String,
-            required: false,
-            default: '',
-        },
         labels: {
             type: Object,
             required: true,
