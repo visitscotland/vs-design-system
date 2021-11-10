@@ -125,7 +125,7 @@ export default {
             :priceOutro="sampleAccom.price.priceBasis"
         />
         <VsLink
-            :href="sampleAccom.website"
+            :href="sampleAccom.website.href"
             type="external"
             slot="vsCannedSearchSummaryRight"
         >

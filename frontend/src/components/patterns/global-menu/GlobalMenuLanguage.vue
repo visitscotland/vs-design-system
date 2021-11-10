@@ -32,7 +32,7 @@
 
 <script>
 import VsIcon from '@components/elements/icon/Icon';
-import VsDropdown from '../../../dropdown/Dropdown';
+import VsDropdown from '../dropdown/Dropdown';
 
 /**
  * TODO: Document usage
