@@ -319,10 +319,8 @@ export default {
       </VsContainer>
     </VsPageIntro>
 <VsItinerary>
-  <!-- TODO: move mapbox prod and dev keys to an environment variable -->
     <VsItineraryMap
         slot="map"
-        :access-token=keysList.keysList[0].mapToken
         overview-map-longitude="57.81"
         overview-map-latitude="-4.13"
         overview-map-zoom="5"

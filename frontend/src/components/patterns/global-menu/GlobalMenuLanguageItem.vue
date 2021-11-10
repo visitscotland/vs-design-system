@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import VsDropdownItem from '../../../dropdown/components/DropdownItem';
+import VsDropdownItem from '../dropdown/components/DropdownItem';
 
 /**
  * TODO: Document usage
