@@ -16,7 +16,7 @@ module.exports = {
      */
     theme: {
         maxWidth: '100%',
-        sidebarWidth: 240,
+        sidebarWidth: 260,
         fontFamily: {
             base: ['\'Fira Sans\'', 'Helvetica', 'Arial', 'sans-serif'],
             monospace: ['Consolas', '\'Liberation Mono\'', 'Menlo', 'monospace'],
@@ -102,6 +102,7 @@ module.exports = {
         LogoRenderer: path.join(__dirname, '../docs/components/rsg-components/LogoRenderer'),
         Playground: path.join(__dirname, '../docs/components/rsg-components/Playground'),
         ReactComponent: path.join(__dirname, '../docs/components/rsg-components/ReactComponent'),
+        ComponentsRenderer: path.join(__dirname, '../docs/components/rsg-components/ComponentsRenderer'),
     },
     propsParser(filePath) {
         return vueDocgenApi.parse(filePath, {

@@ -52,6 +52,11 @@ public class TranslationReportRestController {
         }).collect(Collectors.toList());
     }
 
+    @GetMapping("/translation/status")
+    public Set<String> getTranslationStatusOptions() {
+        return Arrays.stream(TranslationStatus.values()).map(TranslationStatus::toString).collect(Collectors.toSet());
+    }
+
     @GetMapping("/translation/pages")
     public Set<String> getPageTypes() {
         return translationReportService.getPageTypes();
