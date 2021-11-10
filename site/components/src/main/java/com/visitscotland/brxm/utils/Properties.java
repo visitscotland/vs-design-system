@@ -38,7 +38,7 @@ public class Properties {
     static final String CONVERT_TO_RELATIVE = "links.convert-to-relative";
 
     // DMS Properties
-    static final String DMS_DATA_HOST = "dms-data.private-url";
+    public static final String DMS_DATA_HOST = "dms-data.private-url";
     static final String DMS_DATA_PUBLIC_HOST = "dms-data.public-url";
     static final String DMS_DATA_ENCODING = "dms-data.encoding";
     static final String DMS_DATA_API_KEY = "dms-data.api-key";

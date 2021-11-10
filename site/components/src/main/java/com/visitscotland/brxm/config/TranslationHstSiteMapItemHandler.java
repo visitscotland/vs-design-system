@@ -1,4 +1,4 @@
-package com.visitscotland.brxm.utils;
+package com.visitscotland.brxm.config;
 
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.core.container.ContainerConstants;
