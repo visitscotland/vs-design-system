@@ -208,6 +208,10 @@ export default {
                     key: 'transport',
                     value: 'transport',
                 },
+                {
+                    key: 'brekavail',
+                    value: 'breakfast-available',
+                },
             ],
         };
     },
