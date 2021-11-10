@@ -50,6 +50,7 @@ public class DMSConstants {
         public static final String AVAILABILITY = "avail";
         public static final String OFFERS = "offers";
         public static final String FREE = "maxprice";
+        public static final String LOCALE = "locale";
     }
 
     public static final class DMSProduct {
@@ -82,7 +83,8 @@ public class DMSConstants {
     public static final String PRODUCT_SEARCH = "/info/%s/search-results?";
     public static final String PRODUCT_SEARCH_DATA_MAP = "/product-search/map?";
     public static final String VS_DMS_PRODUCT_CARD = "/private/products/card?";
-    public static final String VS_DMS_CANNED_SEARCH = "/data/component/cannedsearch?";
+    public static final String VS_DMS_CANNED_SEARCH = "/component/cannedsearch?";
+    public static final String VS_DMS_CANNED_SEARCH_TOURS = "/component/cannedsearchtours";
     public static final String META_PRODUCT_LIST = "/meta/%s/list?%s";
     public static final String META_LOCATIONS = "/meta/location/list?full";
 

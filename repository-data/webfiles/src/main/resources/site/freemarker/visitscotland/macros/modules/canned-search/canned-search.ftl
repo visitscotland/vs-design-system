@@ -30,9 +30,11 @@
                 </vs-button>
             </template>
 
-            <template slot="vsCannedSearchCredit">
-                ${module.credit}
-            </template>
+            <#if module.credit??>
+                <template slot="vsCannedSearchCredit">
+                    ${module.credit}
+                </template>
+            </#if>
 
             <template slot="vsCannedSearchOf">
                 ${label('essentials.pagination', 'page.of')}

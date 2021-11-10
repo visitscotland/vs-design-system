@@ -162,13 +162,17 @@ export default {
                         altText="An image"
                         image-src="fixtures\image-with-caption\images\city-country-breaks.jpg"
                     >
-                        <span slot="caption">
-                            A nice image
-                        </span>
+                        <VsCaption
+                            slot="img-caption"
+                        >
+                            <span slot="caption">
+                                A nice image
+                            </span>
 
-                        <span slot="credit">
-                            &copy; Gemma Stephen
-                        </span>
+                            <span slot="credit">
+                                &copy; VisitScotland
+                            </span>
+                        </VsCaption>
                     </VsImageWithCaption>
                 </template>
                 <template slot="vsArticleSidebarQuote">

@@ -1,20 +1,20 @@
 {
     "large": [
         {
-            "imageSrc": "fixtures/image-with-caption/images/city-country-breaks.jpg",
-            "altText": "City country breaks",
-            "caption": "City country breaks",
-            "credit": "VisitScotland / Kenny Lam",
-            "longitude": "",
-            "latitude": ""
-        },
-        {
             "imageSrc": "fixtures/image-with-caption/images/jm-barrie.jpg",
             "altText": "Visit the birthplace of JM Barrie in Kirriemuir",
             "caption": "Visit the birthplace of JM Barrie in Kirriemuir",
             "credit": "VisitScotland / Kenny Lam",
             "longitude": "-3.0246368",
             "latitude": "56.6718876"
+        },
+        {
+            "imageSrc": "fixtures/image-with-caption/images/city-country-breaks.jpg",
+            "altText": "City country breaks",
+            "caption": "City country breaks",
+            "credit": "VisitScotland / Kenny Lam",
+            "longitude": "",
+            "latitude": ""
         }
     ],
     "fullwidth": [

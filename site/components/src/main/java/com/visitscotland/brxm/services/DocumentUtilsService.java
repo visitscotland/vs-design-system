@@ -20,6 +20,7 @@ import javax.jcr.RepositoryException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * Singleton
@@ -113,10 +114,10 @@ public class DocumentUtilsService {
     public List<LocalizedURL> getLocalizedURLs(HstRequest request) {
         List<LocalizedURL> translatedURL = new ArrayList<>(Language.values().length);
 
-        HippoBean document = request.getRequestContext().getContentBean();
+        Optional<HippoBean> contentBean = utils.getContentBeanWithTranslationFallback(request);
 
-        HippoBean englishSite = null;
-        if (document != null) {
+        if (contentBean.isPresent()) {
+            HippoBean document = contentBean.get();
             for (Language language : Language.values()) {
                 LocalizedURL lan = new LocalizedURL();
                 lan.setLocale(language.getLocale());
@@ -128,13 +129,11 @@ public class DocumentUtilsService {
                 if (Locale.UK.equals(language.getLocale())) {
                     if (translation == null) {
                         logger.error("The requested page does not exist in English: {}", document.getPath());
-                    } else {
-                        englishSite = translation;
                     }
                 }
 
                 if (translation instanceof Page) {
-                    lan.setUrl(utils.createUrl((Page) translation));
+                    lan.setUrl(utils.createUrl((Page) translation, false));
                     lan.setExists(true);
                 } else {
                     //TODO: Define if the URL is made up, or we use the englishSite link instead

@@ -1,5 +1,5 @@
 /content/documents/administration/labels/modules/newsletter-signpost:
-  .meta:order-before: canned-search
+  .meta:order-before: iknow-community-tags
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 8348d9aa-6bac-4736-81f4-ae1a3e98a58f
@@ -14,8 +14,8 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-05-17T15:10:33.190+01:00
-    hippostdpubwf:lastModificationDate: 2021-09-03T09:35:56.087Z
-    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:lastModificationDate: 2021-10-14T10:36:37.065Z
+    hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '']
     resourcebundle:id: newsletter-signpost
     resourcebundle:keys: [newsletter.title, newsletter.cta.link, newsletter.cta.text,
@@ -30,10 +30,14 @@
     resourcebundle:messages_es: [Escocia en tu bandeja de entrada, 'https://www.visitscotland.com/es/newsletter/',
       Suscríbete al boletín, 'Suscríbete a nuestro boletín para recibir emocionantes
         sugerencias de viaje, atracciones únicas y ofertas de viaje cada dos semanas.']
-    resourcebundle:messages_fr: ['', 'https://www.visitscotland.com/fr/newsletter/',
-      '', '']
-    resourcebundle:messages_it: ['', 'https://www.visitscotland.com/it/newsletter/',
-      '', '']
+    resourcebundle:messages_fr: [L’Écosse dans votre boîte mail, 'https://www.visitscotland.com/fr/newsletter/',
+      Abonnez-vous à la newsletter écossaise, 'Inscrivez-vous à notre newsletter et
+        recevez toutes les deux semaines des e-mails contenant des attractions uniques,
+        des idées de séjours et des offres de voyage.']
+    resourcebundle:messages_it: [La Scozia nella tua casella postale, 'https://www.visitscotland.com/it/newsletter/',
+      Ricevi la newsletter sulla Scozia, 'Iscriviti alla nostra newsletter e ti invieremo
+        un''e-mail ogni due settimane con attrazioni uniche, idee di viaggio emozionanti
+        e offerte per i visitatori.']
     resourcebundle:messages_nl: [Bekijk onze laatste reistips, 'https://www.visitscotland.com/nl/newsletter/',
       Op de nieuwsbrief abonneren, 'Als je je voor onze nieuwsbrief opgeeft, zullen
         we je elke twee weken een e-mail met unieke bezienswaardigheden, enerverende
@@ -47,8 +51,8 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-05-17T15:10:33.190+01:00
-    hippostdpubwf:lastModificationDate: 2021-09-03T09:41:39.427Z
-    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:lastModificationDate: 2021-10-14T10:37:46.652Z
+    hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '']
     resourcebundle:id: newsletter-signpost
     resourcebundle:keys: [newsletter.title, newsletter.cta.link, newsletter.cta.text,
@@ -63,10 +67,14 @@
     resourcebundle:messages_es: [Escocia en tu bandeja de entrada, 'https://www.visitscotland.com/es/newsletter/',
       Suscríbete al boletín, 'Suscríbete a nuestro boletín para recibir emocionantes
         sugerencias de viaje, atracciones únicas y ofertas de viaje cada dos semanas.']
-    resourcebundle:messages_fr: ['', 'https://www.visitscotland.com/fr/newsletter/',
-      '', '']
-    resourcebundle:messages_it: ['', 'https://www.visitscotland.com/it/newsletter/',
-      '', '']
+    resourcebundle:messages_fr: [L’Écosse dans votre boîte mail, 'https://www.visitscotland.com/fr/newsletter/',
+      Abonnez-vous à la newsletter écossaise, 'Inscrivez-vous à notre newsletter et
+        recevez toutes les deux semaines des e-mails contenant des attractions uniques,
+        des idées de séjours et des offres de voyage.']
+    resourcebundle:messages_it: [La Scozia nella tua casella postale, 'https://www.visitscotland.com/it/newsletter/',
+      Ricevi la newsletter sulla Scozia, 'Iscriviti alla nostra newsletter e ti invieremo
+        un''e-mail ogni due settimane con attrazioni uniche, idee di viaggio emozionanti
+        e offerte per i visitatori.']
     resourcebundle:messages_nl: [Bekijk onze laatste reistips, 'https://www.visitscotland.com/nl/newsletter/',
       Op de nieuwsbrief abonneren, 'Als je je voor onze nieuwsbrief opgeeft, zullen
         we je elke twee weken een e-mail met unieke bezienswaardigheden, enerverende
@@ -80,9 +88,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-05-17T15:10:33.190+01:00
-    hippostdpubwf:lastModificationDate: 2021-09-03T09:41:39.427Z
-    hippostdpubwf:lastModifiedBy: spanish
-    hippostdpubwf:publicationDate: 2021-09-03T09:41:43.204Z
+    hippostdpubwf:lastModificationDate: 2021-10-14T10:37:46.652Z
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2021-10-14T10:38:15.452Z
     resourcebundle:descriptions: ['', '', '', '']
     resourcebundle:id: newsletter-signpost
     resourcebundle:keys: [newsletter.title, newsletter.cta.link, newsletter.cta.text,
@@ -97,10 +105,14 @@
     resourcebundle:messages_es: [Escocia en tu bandeja de entrada, 'https://www.visitscotland.com/es/newsletter/',
       Suscríbete al boletín, 'Suscríbete a nuestro boletín para recibir emocionantes
         sugerencias de viaje, atracciones únicas y ofertas de viaje cada dos semanas.']
-    resourcebundle:messages_fr: ['', 'https://www.visitscotland.com/fr/newsletter/',
-      '', '']
-    resourcebundle:messages_it: ['', 'https://www.visitscotland.com/it/newsletter/',
-      '', '']
+    resourcebundle:messages_fr: [L’Écosse dans votre boîte mail, 'https://www.visitscotland.com/fr/newsletter/',
+      Abonnez-vous à la newsletter écossaise, 'Inscrivez-vous à notre newsletter et
+        recevez toutes les deux semaines des e-mails contenant des attractions uniques,
+        des idées de séjours et des offres de voyage.']
+    resourcebundle:messages_it: [La Scozia nella tua casella postale, 'https://www.visitscotland.com/it/newsletter/',
+      Ricevi la newsletter sulla Scozia, 'Iscriviti alla nostra newsletter e ti invieremo
+        un''e-mail ogni due settimane con attrazioni uniche, idee di viaggio emozionanti
+        e offerte per i visitatori.']
     resourcebundle:messages_nl: [Bekijk onze laatste reistips, 'https://www.visitscotland.com/nl/newsletter/',
       Op de nieuwsbrief abonneren, 'Als je je voor onze nieuwsbrief opgeeft, zullen
         we je elke twee weken een e-mail met unieke bezienswaardigheden, enerverende

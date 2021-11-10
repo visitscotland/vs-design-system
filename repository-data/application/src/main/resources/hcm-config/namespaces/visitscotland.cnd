@@ -11,6 +11,10 @@
   - visitscotland:diff (string)
   - visitscotland:translationPriority (string)
 
+[visitscotland:hosts]
+  mixin
+  - visitscotland:cmsProperties (string)
+
 [visitscotland:basedocument] > hippo:document, hippostd:publishableSummary, hippostdpubwf:document
   orderable
 
