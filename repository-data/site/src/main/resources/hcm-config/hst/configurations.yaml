@@ -25,7 +25,7 @@ definitions:
           /widget:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/widget
-            hst:relativecontentpath: general/navigation
+            hst:relativecontentpath: navigation
             /_any_:
               jcr:primaryType: hst:sitemapitem
               hst:componentconfigurationid: hst:pages/widget
