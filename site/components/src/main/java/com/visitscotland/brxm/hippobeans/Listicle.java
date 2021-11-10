@@ -21,4 +21,8 @@ public class Listicle extends Page {
         return getBean("visitscotland:ListicleClosing", ListicleClosing.class);
     }
 
+    @HippoEssentialsGenerated(internalName = "visitscotland:heroVideo")
+    public VideoLink getHeroVideo() {
+        return getBean("visitscotland:heroVideo", VideoLink.class);
+    }
 }
