@@ -71,7 +71,7 @@ export default {
          */
         language: {
             type: String,
-            default: 'en_GB',
+            default: 'en',
         },
     },
     mounted() {
@@ -89,12 +89,6 @@ export default {
 <style lang="scss">
 .vs-global-menu__languages {
     position: static;
-
-    // .btn {
-    //     @include media-breakpoint-up(lg) {
-    //         height: 35px;
-    //     }
-    // }
 
     .dropdown-menu {
         width: 100%;
