@@ -80,7 +80,7 @@ export default {
         width: 100%;
         background: $color-gray-shade-5;
         padding: 0 6px $spacer-9;
-        font-family: "Source Sans Pro", sans-serif;
+        font-family: $font-family-sans-serif;
 
         &__heading,
         &__intro {
@@ -99,7 +99,7 @@ export default {
 
         &__col--left {
             background: $color-gray-shade-5;
-            font-family: "Source Sans Pro", sans-serif;
+            font-family: $font-family-sans-serif;
             margin-bottom: $spacer-10;
         }
 
