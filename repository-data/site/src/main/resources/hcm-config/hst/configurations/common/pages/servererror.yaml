@@ -7,6 +7,3 @@ definitions:
         jcr:primaryType: hst:component
         hst:componentclassname: com.visitscotland.brxm.components.content.GeneralContentComponent
         hst:template: general-main
-        /container:
-          jcr:primaryType: hst:containercomponentreference
-          hst:referencecomponent: pagenotfound/main
