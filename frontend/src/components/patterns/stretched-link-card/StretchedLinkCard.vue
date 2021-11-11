@@ -22,15 +22,14 @@
         </template>
 
         <div class="card-body">
-            <VsHeading
-                level="4"
+            <span
                 class="vs-stretched-link-card__category"
                 v-if="!!this.$slots['stretchedCardCategory']"
                 data-test="vs-stretched-link-card__category"
             >
                 <!-- @slot Contains a category header for the card  -->
                 <slot name="stretchedCardCategory" />
-            </VsHeading>
+            </span>
             <VsHeading
                 level="3"
                 class="card-title vs-stretched-link-card__title"
@@ -151,6 +150,7 @@ export default {
         transition: box-shadow $duration-slowly;
         border: none;
         position: relative;
+        line-height: $line-height-xs;
 
         &:hover {
             box-shadow: $shadow_card;
