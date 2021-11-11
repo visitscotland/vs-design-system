@@ -1,8 +1,10 @@
 package com.visitscotland.brxm.hippobeans;
 
-import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+
 import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Article")
@@ -18,9 +20,22 @@ public class Article extends BaseDocument {
         return getSingleProperty("visitscotland:anchor");
     }
 
+    /**
+     * @deprecated Remove after all Video Adjustments are done
+     */
+    @Deprecated
     @HippoEssentialsGenerated(internalName = "visitscotland:image")
     public Image getImage() {
         return getLinkedBean("visitscotland:image", Image.class);
+    }
+
+    public HippoBean getMediaItem(){
+        return getOnlyChild(getMedia());
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:media", allowModifications = false)
+    public List<HippoBean> getMedia() {
+        return getMedia("visitscotland:media");
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:copy")
