@@ -30,6 +30,7 @@
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
     <@pageIntro content=document />
+
     <vs-container class="mt-6">
         <vs-row>
             <vs-col cols="12">
