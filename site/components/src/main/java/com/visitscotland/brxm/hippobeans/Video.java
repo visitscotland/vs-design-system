@@ -1,8 +1,7 @@
 package com.visitscotland.brxm.hippobeans;
 
-import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
-import org.hippoecm.hst.content.beans.standard.HippoGalleryImageSet;
+import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Video")
 @Node(jcrType = "visitscotland:Video")
@@ -28,7 +27,7 @@ public class Video extends BaseDocument {
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:image")
-    public HippoGalleryImageSet getImage() {
-        return getLinkedBean("visitscotland:image", HippoGalleryImageSet.class);
+    public Image getImage() {
+        return getLinkedBean("visitscotland:image", Image.class);
     }
 }

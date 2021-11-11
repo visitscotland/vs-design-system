@@ -39,6 +39,15 @@
             <#if heroDetails?has_content>
                 <@hst.link var="heroSrc" hippobean=heroImage.cmsImage.original/>
                 <template slot="vsIntroHero">
+                    <#if (heroVideo)??>
+                        <#-- TODO: Remove the following block before Pushing -->
+                        -- Data
+                            youtubeUrl="${heroVideo.link}"
+                            title="${heroVideo.label}"
+                            teaser="${heroVideo.teaser}"
+                            cta="${heroVideo.cta}"
+                        --
+                    </#if>
                     <@imageWithCaption imageSrc=heroSrc imageDetails=heroDetails variant="large" isHero="true"/>
                 </template>
             </#if>

@@ -2,14 +2,13 @@ package com.visitscotland.brxm.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brxm.hippobeans.Image;
-import com.visitscotland.brxm.hippobeans.ImageData;
-import com.visitscotland.brxm.hippobeans.InstagramImage;
+import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.dms.LocationLoader;
+import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
@@ -220,5 +219,25 @@ public class ImageFactory {
 
             image.setLocation(locationObject.getName());
         }
+    }
+
+    /**
+     * Creates a PlainVideoLink Object from a videoLink
+     *
+     * @param video Video Document
+     * @param module Module that will log all issues for the modules.
+     * @param locale Locale for the localization
+     *
+     * @return
+     */
+    public EnhancedLink createVideo(Video video, Module<?> module, Locale locale){
+        EnhancedLink videoLink = new EnhancedLink();
+        videoLink.setImage(createImage(video.getImage(), module, locale));
+        videoLink.setLabel(video.getTitle());
+        videoLink.setTeaser(video.getTeaser());
+        videoLink.setLink(video.getUrl());
+        videoLink.setCta(video.getLabel());
+
+        return videoLink;
     }
 }

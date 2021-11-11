@@ -8,6 +8,7 @@ import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.SignpostModule;
+import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -26,6 +27,8 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
     public static final String OTYML = "otyml";
     public static final String NEWSLETTER_SIGNPOST = "newsletterSignpost";
     public static final String PREVIEW_ALERTS = "alerts";
+    public static final String HERO_IMAGE = "heroImage";
+    public static final String HERO_VIDEO = "heroVideo";
 
     private MegalinkFactory linksFactory;
     private ImageFactory imageFactory;
@@ -52,15 +55,19 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
      * - Hero Image is not necessary for all document types. Is it better to add the field in order to keep consistency?
      */
     private void addHeroImage(HstRequest request){
-        final String HERO_IMAGE = "heroImage";
-        final String ALERTS = "alerts";
         Module<T> introModule = new Module<>();
 
-        FlatImage heroImage = imageFactory.createImage(getDocument(request).getHeroImage(), introModule, request.getLocale());
-        request.setAttribute(HERO_IMAGE, heroImage);
+        if (getDocument(request).getHeroVideo() == null) {
+            FlatImage heroImage = imageFactory.createImage(getDocument(request).getHeroImage(), introModule, request.getLocale());
+            request.setAttribute(HERO_IMAGE, heroImage);
+        } else {
+            EnhancedLink video = imageFactory.createVideo(getDocument(request).getHeroVideo().getVideoLink(), introModule, request.getLocale());
+            request.setAttribute(HERO_VIDEO, video);
+            request.setAttribute(HERO_IMAGE, video.getImage());
+        }
 
         if (!Contract.isEmpty(introModule.getErrorMessages())) {
-            request.setAttribute(ALERTS, introModule.getErrorMessages());
+            setErrorMessages(request, introModule.getErrorMessages());
         }
     }
 
@@ -98,6 +105,11 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
     }
 
     protected void setErrorMessages(HstRequest request, Collection<String> errorMessages) {
-        request.setAttribute(PREVIEW_ALERTS, errorMessages);
+        if (request.getAttribute(PREVIEW_ALERTS) != null){
+            Collection<String> requestMesages = (Collection<String>) request.getAttribute(PREVIEW_ALERTS);
+            requestMesages.addAll(errorMessages);
+        } else {
+            request.setAttribute(PREVIEW_ALERTS, errorMessages);
+        }
     }
 }
