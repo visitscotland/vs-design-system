@@ -87,9 +87,16 @@
                         :period="prod.opening.period"
                         :label="prod.opening.period.label"
                     />
+                    <VsCannedSearchDuration
+                        v-if="searchType === 'tour' && prod.tourLength"
+                        :slot="'vsCannedSearchSummaryLeft'"
+                        :duration-intro="prod.tourLength.label"
+                        :duration="prod.tourLength.value"
+                    />
                     <VsCannedSearchPrice
                         v-if="prod.price"
-                        slot="vsCannedSearchSummaryLeft"
+                        :slot="searchType === 'tour' ? 'vsCannedSearchSummaryCentre'
+                            : 'vsCannedSearchSummaryLeft'"
                         :price-intro="prod.price.priceLabel"
                         :price="prod.price.price"
                         :price-outro="prod.price.priceBasis"
@@ -142,6 +149,7 @@ import VsCannedSearchStars from '@components/patterns/canned-search/components/C
 import VsCannedSearchLogos from '@components/patterns/canned-search/components/CannedSearchLogos';
 import VsCannedSearchCategories from '@components/patterns/canned-search/components/CannedSearchCategories';
 import VsCannedSearchPrice from '@components/patterns/canned-search/components/CannedSearchPrice';
+import VsCannedSearchDuration from '@components/patterns/canned-search/components/CannedSearchDuration';
 import VsCannedSearchSummaryBox from '@components/patterns/canned-search/components/CannedSearchSummaryBox';
 import VsCannedSearchDates from '@components/patterns/canned-search/components/CannedSearchDates';
 import VsCannedSearchBadges from '@components/patterns/canned-search/components/CannedSearchBadges';
@@ -172,6 +180,7 @@ export default {
         VsCannedSearchLogos,
         VsCannedSearchCategories,
         VsCannedSearchPrice,
+        VsCannedSearchDuration,
         VsCannedSearchSummaryBox,
         VsCannedSearchDates,
         VsCannedSearchBadges,
