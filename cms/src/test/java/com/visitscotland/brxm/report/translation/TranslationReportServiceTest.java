@@ -93,30 +93,9 @@ class TranslationReportServiceTest {
     private static Stream<Arguments> translationStatusTestArguments() {
         return Stream.of(
                 Arguments.of(true, TranslationStatus.SEND_FOR_TRANSLATION,Collections.singletonList("en"), Collections.singletonList("fr")),
-                Arguments.of(null, TranslationStatus.CLONED, Collections.singletonList("en"), Collections.emptyList()),
+                Arguments.of(null, TranslationStatus.NOT_SENT_FOR_TRANSLATION, Collections.singletonList("en"), Collections.emptyList()),
                 Arguments.of(false, null, Collections.emptyList(), Collections.emptyList())
         );
-    }
-
-    @DisplayName("Cloned items show up in status list")
-    @Test
-    void clonedItemsStatus() throws Exception {
-        Node englishHandle = new MockNodeBuilder().withProperty("hippotranslation:locale", "en").build();
-        MockNodeBuilder frenchHandleBuilder = new MockNodeBuilder().withProperty("hippotranslation:locale", "fr").withNodeType("hippo:handle");
-        Node frenchHandle =  frenchHandleBuilder.build();
-        Node englishUnpublishedVariant = new MockNodeBuilder().translatable("visitscotland:Page").withState("unpublished", "live").build();
-        JcrDocument frenchJcrDoc = new MockJcrDocumentBuilder().withHandle(frenchHandle).withLocaleName("fr").build();
-        JcrDocument englishJcrDoc = new MockJcrDocumentBuilder().withHandle(englishHandle)
-                .withVariantNode("unpublished", englishUnpublishedVariant)
-                .withTranslations(frenchJcrDoc).build();
-        doReturn(Collections.singletonList(englishJcrDoc))
-                .when(mockJcrUtilService).getAllUnpublishedDocuments();
-
-        List<DocumentTranslationReportModel> models = service.getUntranslatedDocuments("fr");
-        DocumentTranslationReportModel model = models.get(0);
-
-        MatcherAssert.assertThat(model.getClonedLocales(), is(new HashSet<>(Collections.singletonList("fr"))));
-
     }
 
     @DisplayName("When translation name does not exist, return document as untranslated")
