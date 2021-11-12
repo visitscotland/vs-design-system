@@ -37,16 +37,16 @@
                 :img-alt="prod.name"
                 :title="prod.name"
                 :detail-link="{
-                    link: prod.dmsLink.link,
-                    label: prod.dmsLink.label,
-                    type: prod.dmsLink.type.toLowerCase()
+                    link: prod.productLink.link,
+                    label: prod.productLink.label,
+                    type: prod.productLink.type.toLowerCase()
                 }"
                 :description="prod.description"
                 :search-type="searchType"
             >
                 <VsCannedSearchSubHeading
                     slot="vsCannedSearchSubHeading"
-                    :sub-heading="fetchAddress(prod)"
+                    :sub-heading="fetchSubHeading(prod)"
                 />
                 <VsCannedSearchStars
                     v-if="prod.grading"
@@ -256,15 +256,21 @@ export default {
         retrieveProducts() {
             axios.get(this.apiUrl)
                 .then((response) => {
-                    if (this.searchType === 'tour') {
-                        this.products = this.transformTourData(response.data.data);
-                    } else {
-                        this.products = response.data.data.products;
-                    }
+                    this.products = response.data.data.products;
                 })
                 .catch(() => {
                     this.products = [];
                 });
+        },
+        fetchSubHeading(product) {
+            if (this.searchType === 'tour') {
+                return this.fetchCategoryStrings(product);
+            }
+
+            return this.fetchAddress(product);
+        },
+        fetchCategoryStrings() {
+            return '';
         },
         /**
          * Returns the address string for each card, dependent on whether the event is
@@ -336,7 +342,7 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
+            apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
         >
             <template slot="vsCannedSearchButtons">
                 <VsButton
@@ -357,7 +363,7 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
+            apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
             searchType="even"
         >
             <template slot="vsCannedSearchButtons">
@@ -383,7 +389,7 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
+            apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
             searchType="cate"
         >
             <template slot="vsCannedSearchButtons">
@@ -405,8 +411,30 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
+            apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
             searchType="acti"
+        >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All
+                </VsButton>
+            </template>
+
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
+        </VsCannedSearch>
+    </VsModuleWrapper>
+    <VsModuleWrapper>
+        <template slot="vsModuleWrapperHeading">
+            A tours example
+        </template>
+
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8090/data/component/cannedsearchtours?find%5B%5D=attractions%7Caberdeen%7CAberdeen&locale=en-GB"
+            searchType="tour"
         >
             <template slot="vsCannedSearchButtons">
                 <VsButton
