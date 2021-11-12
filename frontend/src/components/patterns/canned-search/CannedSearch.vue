@@ -47,7 +47,7 @@
                 <VsCannedSearchSubHeading
                     slot="vsCannedSearchSubHeading"
                     :sub-heading="fetchSubHeading(prod)"
-                    :lineLimit="searchType === 'tour' ? 1 : 2"
+                    :line-limit="searchType === 'tour' ? 1 : 2"
                 />
                 <VsCannedSearchStars
                     v-if="prod.grading"
