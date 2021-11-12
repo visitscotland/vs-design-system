@@ -85,3 +85,7 @@ definitions:
       hipposys:className: com.visitscotland.brxm.validator.UniqueLinksValidator
       linkIdField: visitscotland:transport
       targetField: visitscotland:accordion
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:youtube-url-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: org.onehippo.cms.services.validation.validator.RegExpValidator
+      regexp.pattern: \b(https?|/):/(/[-a-zA-Z0-9:.]*)*\?(([-a-zA-Z0-9+@#/%=~_|])*&)*v=([-a-zA-Z0-9+@#/%=~_|])*
