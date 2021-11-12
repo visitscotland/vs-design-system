@@ -10,7 +10,7 @@
             {{ badgeOne }}
         </div>
         <div
-            v-else-if="multiBadgeOne.length"
+            v-else-if="multiBadgeOne && multiBadgeOne.length"
             class="vs-canned-search-badges__multi-badge-holder"
         >
             <div
