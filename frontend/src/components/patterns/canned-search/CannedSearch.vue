@@ -73,7 +73,8 @@
                 />
                 <VsCannedSearchBadges
                     slot="vsCannedSearchBadges"
-                    :badge-one="prod.category ? prod.category.name : ''"
+                    :badge-one="fetchBadgeOne(prod)"
+                    :multi-badge-one="fetchMultiBadgeOne(prod)"
                     :badge-two="prod.offers"
                     :badge-three="fetchBadgeThree(prod)"
                 />
@@ -302,6 +303,35 @@ export default {
 
             return `${product.address.city}, ${product.address.county}`;
         },
+        /**
+         * Returns the elements to display in the first badge, usually a category
+         */
+        fetchBadgeOne(product) {
+            if (this.searchType !== 'tour') {
+                if (product.category && product.category.length) {
+                    return product.category[0].name;
+                }
+            }
+
+            return null;
+        },
+        /**
+         * Returns the elements to display in the first badge section if there are multiple
+         * of them, usually occurs for tours and lists modes of transport
+         */
+        fetchMultiBadgeOne(product) {
+            if (this.searchType === 'tour') {
+                if (product.tourVehicles && product.tourVehicles.length) {
+                    return product.tourVehicles.map((item) => item.name);
+                }
+            }
+
+            return null;
+        },
+        /**
+         * Returns the elements to display in the first badge if covid opening information is
+         * provided return that, otherwise if a nowOn status for an event is provided return that
+         */
         fetchBadgeThree(product) {
             if (product.covidInformation && product.covidInformation.weAreOpen) {
                 return product.covidInformation.weAreOpen;
