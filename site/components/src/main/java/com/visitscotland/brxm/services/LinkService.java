@@ -22,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -446,7 +447,7 @@ public class LinkService {
      * @param addCategory Indicates whether the category field is populated
      */
     private EnhancedLink enhancedLinkFromVideo(Video video, Module<?> module, Locale locale, boolean addCategory) {
-        EnhancedLink link = imageFactory.createVideo(video, module, locale);
+        EnhancedLink link = createVideo(video, module, locale);
 
         //TODO: Confirm requirements for Videos in HorizontalLinks
         if (addCategory){
@@ -492,6 +493,32 @@ public class LinkService {
         } else {
             return " (" + downloadLabel + " " + size + ")";
         }
+    }
+
+    /**
+     * Creates a PlainVideoLink Object from a videoLink
+     *
+     * @param video Video Document
+     * @param module Module that will log all issues for the modules.
+     * @param locale Locale for the localization
+     *
+     * @return
+     */
+    public EnhancedLink createVideo(Video video, Module<?> module, Locale locale){
+        EnhancedLink videoLink = new EnhancedLink();
+        videoLink.setImage(imageFactory.createImage(video.getImage(), module, locale));
+        videoLink.setLabel(video.getTitle());
+        videoLink.setTeaser(video.getTeaser());
+        videoLink.setLink(video.getUrl());
+        videoLink.setCta(video.getLabel());
+        videoLink.setYoutubeId(getYoutubeId(video.getUrl()));
+        videoLink.setType(LinkType.VIDEO);
+
+        return videoLink;
+    }
+
+    private String getYoutubeId(String url){
+        return UriComponentsBuilder.fromUriString(url).build().getQueryParams().getFirst("v");
     }
 
 

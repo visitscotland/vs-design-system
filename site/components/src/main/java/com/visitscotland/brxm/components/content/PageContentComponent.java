@@ -9,6 +9,7 @@ import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.SignpostModule;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
+import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -30,14 +31,16 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
     public static final String HERO_IMAGE = "heroImage";
     public static final String HERO_VIDEO = "heroVideo";
 
-    private MegalinkFactory linksFactory;
+    private MegalinkFactory megalinkFactory;
     private ImageFactory imageFactory;
+    private LinkService linksService;
     private final SignpostFactory signpostFactory;
 
     public PageContentComponent() {
-        linksFactory = VsComponentManager.get(MegalinkFactory.class);
+        megalinkFactory = VsComponentManager.get(MegalinkFactory.class);
         imageFactory = VsComponentManager.get(ImageFactory.class);
         signpostFactory = VsComponentManager.get(SignpostFactory.class);
+        linksService = VsComponentManager.get(LinkService.class);
     }
 
     @Override
@@ -62,7 +65,7 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
 
         //TODO: Confirm what image will go in the hero image
         if (getDocument(request).getHeroVideo() != null) {
-            EnhancedLink video = imageFactory.createVideo(getDocument(request).getHeroVideo().getVideoLink(), introModule, request.getLocale());
+            EnhancedLink video = linksService.createVideo(getDocument(request).getHeroVideo().getVideoLink(), introModule, request.getLocale());
             request.setAttribute(HERO_VIDEO, video);
         }
 
@@ -77,7 +80,7 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
     protected void addOTYML(HstRequest request) {
         Page page = getDocument(request);
         if (page.getOtherThings() != null) {
-            request.setAttribute(OTYML, linksFactory.horizontalListLayout(page.getOtherThings(), request.getLocale()));
+            request.setAttribute(OTYML, megalinkFactory.horizontalListLayout(page.getOtherThings(), request.getLocale()));
         }
     }
 

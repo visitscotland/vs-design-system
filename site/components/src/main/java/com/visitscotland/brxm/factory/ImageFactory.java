@@ -222,30 +222,4 @@ public class ImageFactory {
             image.setLocation(locationObject.getName());
         }
     }
-
-    /**
-     * Creates a PlainVideoLink Object from a videoLink
-     *
-     * @param video Video Document
-     * @param module Module that will log all issues for the modules.
-     * @param locale Locale for the localization
-     *
-     * @return
-     */
-    public EnhancedLink createVideo(Video video, Module<?> module, Locale locale){
-        EnhancedLink videoLink = new EnhancedLink();
-        videoLink.setImage(createImage(video.getImage(), module, locale));
-        videoLink.setLabel(video.getTitle());
-        videoLink.setTeaser(video.getTeaser());
-        videoLink.setLink(video.getUrl());
-        videoLink.setCta(video.getLabel());
-        videoLink.setYoutubeId(getYoutubeId(video.getUrl()));
-        videoLink.setType(LinkType.VIDEO);
-
-        return videoLink;
-    }
-
-    private String getYoutubeId(String url){
-        return UriComponentsBuilder.fromUriString(url).build().getQueryParams().getFirst("v");
-    }
 }
