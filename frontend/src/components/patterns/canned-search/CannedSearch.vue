@@ -47,6 +47,7 @@
                 <VsCannedSearchSubHeading
                     slot="vsCannedSearchSubHeading"
                     :sub-heading="fetchSubHeading(prod)"
+                    :lineLimit="searchType === 'tour' ? 1 : 2"
                 />
                 <VsCannedSearchStars
                     v-if="prod.grading"
@@ -277,7 +278,11 @@ export default {
         /**
          * Returns a comma separated list of all the categories on the product
          */
-        fetchCategoryStrings() {
+        fetchCategoryStrings(product) {
+            if (product.category && product.category.length) {
+                return product.category.map((item) => item.name).join(', ');
+            }
+
             return '';
         },
         /**
