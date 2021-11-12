@@ -262,6 +262,11 @@ export default {
                     this.products = [];
                 });
         },
+        /**
+         * Returns an appropriate subheading for the product card based on the search type,
+         * tours display a comma separated list of categories, non-tours display a formatted
+         * address
+         */
         fetchSubHeading(product) {
             if (this.searchType === 'tour') {
                 return this.fetchCategoryStrings(product);
@@ -269,6 +274,9 @@ export default {
 
             return this.fetchAddress(product);
         },
+        /**
+         * Returns a comma separated list of all the categories on the product
+         */
         fetchCategoryStrings() {
             return '';
         },
