@@ -74,6 +74,12 @@
                         name="vsCannedSearchCategories"
                     />
                     <div class="vs-product-card__description">
+                        <p
+                            v-if="inBodyDuration"
+                            class="text-truncate text-truncate--2 vs-product-card__body-duration"
+                        >
+                            {{ formattedBodyDuration }}
+                        </p>
                         <p class="text-truncate text-truncate--2">
                             {{ description }}
                         </p>
@@ -158,6 +164,16 @@ export default {
             type: String,
         },
         /**
+         * The duration of the product, if it should be shown as part of the main card body
+         * rather than in the summary box, will be truncated if >2 lines
+         *
+         * Expects an object with a label, a startDay and an optional endDay
+         */
+        inBodyDuration: {
+            type: Object,
+            default: null,
+        },
+        /**
         * The description of the product, will be truncated if >2 lines
         */
         description: {
@@ -195,6 +211,23 @@ export default {
             }
 
             return '';
+        },
+        /**
+         * Returns a formatted duration for products that show that within the card body
+         * rather than in the summary box
+         */
+        formattedBodyDuration() {
+            if (!this.inBodyDuration) {
+                return '';
+            }
+
+            let output = `${this.inBodyDuration.label}: ${this.inBodyDuration.startDay}`;
+
+            if (this.inBodyDuration.endDay) {
+                output = `${output} - ${this.inBodyDuration.endDay}`;
+            }
+
+            return output;
         },
     },
     methods: {
@@ -304,6 +337,10 @@ export default {
             p {
                 margin-bottom: $spacer-1;
             }
+        }
+
+        .vs-product-card__body-duration {
+            font-weight: $font-weight-bold;
         }
 
         .text-truncate {
