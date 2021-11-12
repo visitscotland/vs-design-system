@@ -41,6 +41,8 @@
                     label: prod.productLink.label,
                     type: prod.productLink.type.toLowerCase()
                 }"
+                :in-body-duration="searchType === 'tour' && prod.opening ?
+                    prod.opening.period : null"
                 :description="prod.description"
                 :search-type="searchType"
             >
@@ -82,7 +84,7 @@
                     slot="vsCannedSearchSummary"
                 >
                     <VsCannedSearchDates
-                        v-if="prod.opening"
+                        v-if="prod.opening && searchType !== 'tour'"
                         slot="vsCannedSearchSummaryTop"
                         :period="prod.opening.period"
                         :label="prod.opening.period.label"
