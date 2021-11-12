@@ -57,13 +57,13 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
     private void addHeroImage(HstRequest request){
         Module<T> introModule = new Module<>();
 
-        if (getDocument(request).getHeroVideo() == null) {
-            FlatImage heroImage = imageFactory.createImage(getDocument(request).getHeroImage(), introModule, request.getLocale());
-            request.setAttribute(HERO_IMAGE, heroImage);
-        } else {
+        FlatImage heroImage = imageFactory.createImage(getDocument(request).getHeroImage(), introModule, request.getLocale());
+        request.setAttribute(HERO_IMAGE, heroImage);
+
+        //TODO: Confirm what image will go in the hero image
+        if (getDocument(request).getHeroVideo() != null) {
             EnhancedLink video = imageFactory.createVideo(getDocument(request).getHeroVideo().getVideoLink(), introModule, request.getLocale());
             request.setAttribute(HERO_VIDEO, video);
-            request.setAttribute(HERO_IMAGE, video.getImage());
         }
 
         if (!Contract.isEmpty(introModule.getErrorMessages())) {

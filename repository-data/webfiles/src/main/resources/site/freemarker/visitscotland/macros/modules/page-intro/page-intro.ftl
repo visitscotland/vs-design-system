@@ -42,10 +42,10 @@
                     <#if (heroVideo)??>
                         <#-- TODO: Remove the following block before Pushing -->
                         -- Data
-                            youtubeUrl="${heroVideo.link}"
+                            youtubeID="${heroVideo.youtubeId}" <
                             title="${heroVideo.label}"
                             teaser="${heroVideo.teaser}"
-                            cta="${heroVideo.cta}"
+                            cta="${heroVideo.cta}" <!-- e.g. (Play the video) -->
                         --
                     </#if>
                     <@imageWithCaption imageSrc=heroSrc imageDetails=heroDetails variant="large" isHero="true"/>

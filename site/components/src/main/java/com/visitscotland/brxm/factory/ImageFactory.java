@@ -6,6 +6,7 @@ import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.model.FlatImage;
+import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
@@ -17,6 +18,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -237,7 +239,13 @@ public class ImageFactory {
         videoLink.setTeaser(video.getTeaser());
         videoLink.setLink(video.getUrl());
         videoLink.setCta(video.getLabel());
+        videoLink.setYoutubeId(getYoutubeId(video.getUrl()));
+        videoLink.setType(LinkType.VIDEO);
 
         return videoLink;
+    }
+
+    private String getYoutubeId(String url){
+        return UriComponentsBuilder.fromUriString(url).build().getQueryParams().getFirst("v");
     }
 }

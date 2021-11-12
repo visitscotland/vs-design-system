@@ -1,8 +1,6 @@
 package com.visitscotland.brxm.factory;
 
-import com.visitscotland.brxm.hippobeans.MegalinkItem;
-import com.visitscotland.brxm.hippobeans.Megalinks;
-import com.visitscotland.brxm.hippobeans.OTYML;
+import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.*;
@@ -41,10 +39,10 @@ public class MegalinkFactory {
         this.imageFactory = imageFactory;
     }
 
-    public LinksModule<?> getMegalinkModule(Megalinks doc, Locale locale) {
+    public LinksModule<EnhancedLink> getMegalinkModule(Megalinks doc, Locale locale) {
         if (!Contract.isEmpty(doc.getLayout()) && doc.getLayout().equals(HORIZONTAL_LAYOUT) && doc.getMegalinkItems().size() >= MIN_ITEMS_CAROUSEL) {
             return horizontalListLayout(doc, locale);
-        }else  if (!Contract.isEmpty(doc.getLayout()) && !doc.getLayout().equals(DEFAULT_LAYOUT) || doc.getMegalinkItems().size() > MAX_ITEMS ) {
+        } else  if (!Contract.isEmpty(doc.getLayout()) && !doc.getLayout().equals(DEFAULT_LAYOUT) || doc.getMegalinkItems().size() > MAX_ITEMS ) {
             return listLayout(doc, locale);
         } else if (doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
@@ -183,13 +181,15 @@ public class MegalinkFactory {
     List<EnhancedLink> convertToEnhancedLinks(Module<Megalinks> module, List<MegalinkItem> items, Locale locale, boolean addCategory) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
-            if (item.getLink() == null) {
+            if (item.getLinkItem() == null) {
                 addError(module, "One of the Megalinks items contains an invalid reference");
                 contentLogger.warn("The module {} contains a link without any reference", item.getPath());
             } else {
                 EnhancedLink link = null;
-                if (item.getLink() instanceof Linkable) {
-                    link = linkService.createEnhancedLink((Linkable) item.getLink(), module, locale, addCategory);
+                if (item.getLinkItem() instanceof Linkable) {
+                    link = linkService.createEnhancedLink((Linkable) item.getLinkItem(), module, locale, addCategory);
+                } else if (item.getLinkItem() instanceof VideoLink){
+                    link = linkService.createEnhancedLink(((VideoLink) item.getLinkItem()).getVideoLink(), module, locale, addCategory);
                 }
 
                 if (link != null) {
@@ -197,7 +197,7 @@ public class MegalinkFactory {
                     links.add(link);
                 } else {
                     addError(module, "One of the Megalink items cannot be recognized and will not be included in the page.");
-                    contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
+                    contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getLinkItem().getClass().getSimpleName());
                 }
             }
         }

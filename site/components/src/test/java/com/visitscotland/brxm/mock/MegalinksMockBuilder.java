@@ -64,7 +64,7 @@ public class MegalinksMockBuilder {
 
     public MegalinksMockBuilder addPageLink(){
         MegalinkItem item = mock(MegalinkItem.class);
-        when(item.getLink()).thenReturn(mock(Page.class));
+        when(item.getLinkItem()).thenReturn(mock(Page.class));
         megalinkItems.add(item);
 
         return this;
@@ -73,7 +73,7 @@ public class MegalinksMockBuilder {
     public MegalinksMockBuilder addSharedLink() {
         MegalinkItem item = mock(MegalinkItem.class);
         when(item.getFeature()).thenReturn(false);
-        when(item.getLink()).thenReturn(mock(SharedLink.class));
+        when(item.getLinkItem()).thenReturn(mock(SharedLink.class));
 
         megalinkItems.add(item);
 
@@ -82,7 +82,7 @@ public class MegalinksMockBuilder {
 
     public MegalinksMockBuilder addLink(HippoBean link) {
         MegalinkItem item = mock(MegalinkItem.class);
-        when(item.getLink()).thenReturn(link);
+        when(item.getLinkItem()).thenReturn(link);
 
         megalinkItems.add(item);
 
@@ -114,11 +114,11 @@ public class MegalinksMockBuilder {
 
         when(item.getFeature()).thenReturn(featured);
         if (type == MegalinkFactoryTest.LinkType.CMS) {
-            when(item.getLink()).thenReturn(mock(Page.class));
+            when(item.getLinkItem()).thenReturn(mock(Page.class));
         } else {
             SharedLink link = mockSharedLink(type);
             when(link.getLinkType()).thenReturn(mock(ExternalDocument.class));
-            when(item.getLink()).thenReturn(link);
+            when(item.getLinkItem()).thenReturn(link);
             if (title != null) {
                 when(link.getTitle()).thenReturn(title);
             }

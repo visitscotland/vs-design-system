@@ -1,11 +1,12 @@
 package com.visitscotland.brxm.hippobeans;
 
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import org.hippoecm.hst.content.beans.Node;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Video")
 @Node(jcrType = "visitscotland:Video")
-public class Video extends BaseDocument {
+public class Video extends BaseDocument implements Linkable {
     @HippoEssentialsGenerated(internalName = "visitscotland:url")
     public String getUrl() {
         return getSingleProperty("visitscotland:url");
