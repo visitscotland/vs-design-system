@@ -68,15 +68,12 @@ export default {
 
 <docs>
 ```jsx
-    <VsCannedSearchTourRuns
-        label="Runs"
-        startDay="March"
-        endDay="June"
-    />
+    const sampleTour = require("../../../../assets/fixtures/canned-search/sample-tour.json");
 
     <VsCannedSearchTourRuns
-        label="Runs"
-        startDay="All year round"
+        :label="sampleTour.opening.period.label"
+        :startDay="sampleTour.opening.period.startDay"
+        :endDay="sampleTour.opening.period.endDay"
     />
 ```
 </docs>
