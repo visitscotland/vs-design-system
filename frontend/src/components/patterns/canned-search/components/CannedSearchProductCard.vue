@@ -74,13 +74,20 @@
                         name="vsCannedSearchCategories"
                     />
                     <div class="vs-product-card__description">
+                        <!--
+                            @slot Holds the formatted info about a tour including months it runs
+                            and the locations it departs from. Separated from description to allow
+                            html formatting
+
+                            Expects html
+                        -->
+                        <slot
+                            name="vsCannedSearchTourInfo"
+                        />
                         <p
-                            v-if="inBodyDuration"
-                            class="text-truncate text-truncate--2 vs-product-card__body-duration"
+                            class="text-truncate text-truncate--2"
+                            v-if="description"
                         >
-                            {{ formattedBodyDuration }}
-                        </p>
-                        <p class="text-truncate text-truncate--2">
                             {{ description }}
                         </p>
                         <VsLink
@@ -212,23 +219,6 @@ export default {
 
             return '';
         },
-        /**
-         * Returns a formatted duration for products that show that within the card body
-         * rather than in the summary box
-         */
-        formattedBodyDuration() {
-            if (!this.inBodyDuration) {
-                return '';
-            }
-
-            let output = `${this.inBodyDuration.label}: ${this.inBodyDuration.startDay}`;
-
-            if (this.inBodyDuration.endDay) {
-                output = `${output} - ${this.inBodyDuration.endDay}`;
-            }
-
-            return output;
-        },
     },
     methods: {
         /**
@@ -337,10 +327,6 @@ export default {
             p {
                 margin-bottom: $spacer-1;
             }
-        }
-
-        .vs-product-card__body-duration {
-            font-weight: $font-weight-bold;
         }
 
         .text-truncate {
