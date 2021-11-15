@@ -41,11 +41,27 @@
                     label: prod.productLink.label,
                     type: prod.productLink.type.toLowerCase()
                 }"
-                :in-body-duration="searchType === 'tour' && prod.opening ?
-                    prod.opening.period : null"
                 :description="prod.description"
                 :search-type="searchType"
             >
+                <div
+                    v-if="searchType === 'tour'"
+                    slot="vsCannedSearchTourInfo"
+                >
+                    <div>
+                        <VsCannedSearchTourRuns
+                            v-if="prod.opening && prod.opening.period"
+                            :label="prod.opening.period.label"
+                            :start-day="prod.opening.period.startDay"
+                            :end-day="prod.opening.period.endDay"
+                        />
+                        <VsCannedSearchTourDeparts
+                            v-if="prod.tourOrigin"
+                            :label="prod.tourOrigin.label"
+                            :origins="prod.tourOrigin.tourOrigin"
+                        />
+                    </div>
+                </div>
                 <VsCannedSearchSubHeading
                     slot="vsCannedSearchSubHeading"
                     :sub-heading="fetchSubHeading(prod)"
@@ -157,6 +173,8 @@ import VsCannedSearchDates from '@components/patterns/canned-search/components/C
 import VsCannedSearchBadges from '@components/patterns/canned-search/components/CannedSearchBadges';
 import VsCannedSearchCuisines from '@components/patterns/canned-search/components/CannedSearchCuisines';
 import VsCannedSearchSubHeading from '@components/patterns/canned-search/components/CannedSearchSubHeading';
+import VsCannedSearchTourRuns from '@components/patterns/canned-search/components/CannedSearchTourRuns';
+import VsCannedSearchTourDeparts from '@components/patterns/canned-search/components/CannedSearchTourDeparts';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
@@ -188,6 +206,8 @@ export default {
         VsCannedSearchBadges,
         VsCannedSearchCuisines,
         VsCannedSearchSubHeading,
+        VsCannedSearchTourRuns,
+        VsCannedSearchTourDeparts,
         VsCarousel,
         VsContainer,
         VsRow,
