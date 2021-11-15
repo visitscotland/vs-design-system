@@ -131,10 +131,7 @@ export default {
             } else {
                 this.showDuration = true;
                 this.formatTime(response);
-                videoStore.dispatch('video/newVideoRef', {
-                    id: this.videoId,
-                    length: this.duration.roundedMinutes,
-                });
+                this.storeVideoDetails();
             }
         });
 
@@ -210,6 +207,15 @@ export default {
             }
 
             return `0${toPad}`;
+        },
+        /**
+         * Send video details to Vuex store
+         */
+        storeVideoDetails() {
+            videoStore.dispatch('newVideoRef', {
+                id: this.videoId,
+                length: this.duration.roundedMinutes,
+            });
         },
     },
 };
