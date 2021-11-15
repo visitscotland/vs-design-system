@@ -65,5 +65,10 @@ export default {
 
 <docs>
 ```jsx
-    <VsCannedSearchTourDeparts/>
+    const sampleTour = require("../../../../assets/fixtures/canned-search/sample-tour.json");
+
+    <VsCannedSearchTourDeparts
+        :label="sampleTour.tourOrigin.label"
+        :origins="sampleTour.tourOrigin.tourOrigin"
+    />
 </docs>
