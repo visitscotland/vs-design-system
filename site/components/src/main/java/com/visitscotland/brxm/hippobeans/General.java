@@ -21,7 +21,7 @@ public class General extends Page {
                 "visitscotland:Stackla",
                 "visitscotland:MarketoForm",
                 "visitscotland:CannedSearchTours",
-                "visitscotland:CannedSearch"};
+                "visitscotland:CannedSearch" };
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
@@ -37,5 +37,10 @@ public class General extends Page {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
     public String getTranslationPriority() {
         return getSingleProperty("visitscotland:translationPriority");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:heroVideo")
+    public VideoLink getHeroVideo() {
+        return getBean("visitscotland:heroVideo", VideoLink.class);
     }
 }
