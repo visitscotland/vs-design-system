@@ -6500,7 +6500,7 @@
               jcr:primaryType: visitscotland:ExternalDocument
               visitscotland:bytes: KB
               visitscotland:category: Things to do
-              visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/aberdeen/
+              visitscotland:link: https://staging.visitscotland.com/ebrochures/en/what-to-see-and-do/aberdeen.pdf
               visitscotland:size: 66.6
           /aberdeen-what-to-see-and-do[2]:
             jcr:primaryType: visitscotland:SharedLink
@@ -6528,7 +6528,7 @@
               jcr:primaryType: visitscotland:ExternalDocument
               visitscotland:bytes: KB
               visitscotland:category: Things to do
-              visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/aberdeen/
+              visitscotland:link: https://staging.visitscotland.com/ebrochures/en/what-to-see-and-do/aberdeen.pdf
               visitscotland:size: 66.6
           /aberdeen-what-to-see-and-do[3]:
             jcr:primaryType: visitscotland:SharedLink
@@ -6557,7 +6557,7 @@
               jcr:primaryType: visitscotland:ExternalDocument
               visitscotland:bytes: KB
               visitscotland:category: Things to do
-              visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/aberdeen/
+              visitscotland:link: https://staging.visitscotland.com/ebrochures/en/what-to-see-and-do/aberdeen.pdf
               visitscotland:size: 66.6
         /pertshire-dundee-and-angus:
           jcr:primaryType: hippo:handle
@@ -6589,7 +6589,7 @@
             /visitscotland:linkTypes:
               jcr:primaryType: visitscotland:ExternalDocument
               visitscotland:category: Things to do
-              visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
+              visitscotland:link: https://staging.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
           /pertshire-dundee-and-angus[2]:
             jcr:primaryType: visitscotland:SharedLink
             jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -6614,7 +6614,7 @@
             /visitscotland:linkTypes:
               jcr:primaryType: visitscotland:ExternalDocument
               visitscotland:category: Things to do
-              visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
+              visitscotland:link: https://staging.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
           /pertshire-dundee-and-angus[3]:
             jcr:primaryType: visitscotland:SharedLink
             jcr:mixinTypes: ['mix:referenceable']
@@ -6640,7 +6640,7 @@
             /visitscotland:linkTypes:
               jcr:primaryType: visitscotland:ExternalDocument
               visitscotland:category: Things to do
-              visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
+              visitscotland:link: https://staging.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
     /video:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
