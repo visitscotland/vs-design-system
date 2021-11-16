@@ -9,6 +9,7 @@
                 name="globe"
                 variant="light"
                 size="xxs"
+                focusable="false"
             />
             <!-- Tablet/Desktop -->
             <span class="vs-global-menu__languages__text">{{ languageLabel }}</span>
@@ -24,6 +25,7 @@
                 name="globe"
                 variant="light"
                 size="xxs"
+                focusable="false"
             />
             {{ languageLabel }}
         </span>
@@ -35,7 +37,8 @@
 
 <script>
 import VsIcon from '@components/elements/icon/Icon';
-import VsDropdown from '../dropdown/Dropdown';
+import VsDropdown from '@components/patterns/dropdown/Dropdown';
+import cookieMixin from '../../../mixins/cookieMixin';
 
 /**
  * TODO: Document usage
@@ -50,32 +53,35 @@ export default {
         VsDropdown,
         VsIcon,
     },
+    mixins: [
+        cookieMixin,
+    ],
     props: {
+        /**
+         * 'Language' label to be shown or translated before language name.
+         * Example: "Language": English.
+         */
         languageLabel: {
             type: String,
             default: 'Language',
         },
-        currentLocale: {
+        /**
+         * Language locale string.
+         * Example: "en_GB"
+         */
+        language: {
             type: String,
-            default: 'en_GB',
-        },
-    },
-    computed: {
-        selectedLanguage() {
-            return this.currentLocale.substr(0, 2).toUpperCase();
-        },
-        localeCookie() {
-            return this.currentLocale.replace('_', '-').toLowerCase();
-        },
-        translationCookie() {
-            return `/en/${this.currentLocale.substr(0, 2).toLowerCase()}`;
+            default: 'en',
         },
     },
     mounted() {
-        const expiryDate = new Date();
-        expiryDate.setFullYear(expiryDate.getFullYear() + 1);
-        document.cookie = `vs_locale=${this.localeCookie}; expires=${expiryDate}`;
-        document.cookie = `googtrans=${this.translationCookie}; expires=${expiryDate}`;
+        if (!this.cookieExists('vs_locale')) {
+            this.setCookie('vs_locale', this.localeCookie, true);
+        };
+
+        if (!this.cookieExists('googtrans')) {
+            this.setCookie('googtrans', this.translationCookie, true);
+        };
     },
 };
 </script>
@@ -90,7 +96,6 @@ export default {
         font-size: $font-size-sm;
         margin: 0;
         max-height: 0;
-        display: block;
         overflow: hidden;
         opacity: 0;
         transform: translate3d(0px, 0px, 0px) !important;
@@ -108,7 +113,7 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
-            width: auto;
+            width: 100%;
             min-width: 130px;
             transform: translate3d(0px, 0px, 0px) !important;
         }
@@ -119,7 +124,6 @@ export default {
         font-size: $font-size-sm;
         background: $color-purple;
         border: none;
-        max-width: 130px;
 
         @include media-breakpoint-up(lg) {
             padding: $spacer-2 $spacer-4 $spacer-2 $spacer-3;
@@ -222,12 +226,12 @@ export default {
 <docs>
   ```jsx
     <VsGlobalMenuLanguage>
-        <VsGlobalMenuLanguageItem language-name="English" />
-        <VsGlobalMenuLanguageItem language-name="Deutsch" />
-        <VsGlobalMenuLanguageItem language-name="Español" />
-        <VsGlobalMenuLanguageItem language-name="Français" />
-        <VsGlobalMenuLanguageItem language-name="Italiano" />
-        <VsGlobalMenuLanguageItem language-name="Nederlands" />
+        <VsGlobalMenuLanguageItem language-name="English" language="en_EN" />
+        <VsGlobalMenuLanguageItem language-name="Deutsch" language="de_DE" />
+        <VsGlobalMenuLanguageItem language-name="Español" language="es_ES" />
+        <VsGlobalMenuLanguageItem language-name="Français" language="fr_FR" />
+        <VsGlobalMenuLanguageItem language-name="Italiano" language="it_IT" />
+        <VsGlobalMenuLanguageItem language-name="Nederlands" language="nl_NL" />
     </VsGlobalMenuLanguage>
   ```
 </docs>
