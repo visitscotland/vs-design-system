@@ -20,6 +20,7 @@
                         class="vs-modal__close-btn mb-5 mb-lg-0"
                         variant="transparent"
                         :uppercase="false"
+                        @click.native="hideModal"
                     >
                         <VsIcon
                             name="close-circle"
@@ -80,6 +81,12 @@ export default {
         },
     },
     methods: {
+        /**
+         * Closes modal window
+         */
+        hideModal() {
+            this.$refs[this.modalId].hide();
+        },
     },
 };
 </script>
