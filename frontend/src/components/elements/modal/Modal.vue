@@ -18,6 +18,7 @@
                 >
                     <VsButton
                         class="vs-modal__close-btn mb-5 mb-lg-0"
+                        data-test="vs-modal__close-btn"
                         variant="transparent"
                         :uppercase="false"
                         @click.native="hideModal"
@@ -47,6 +48,8 @@ import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/layout';
 import { BModal } from 'bootstrap-vue';
+import VsButton from '@components/elements/button';
+import VsIcon from '@components/elements/icon';
 
 /**
  * The modal is used as a dialog prompt for users
@@ -61,6 +64,8 @@ export default {
         VsCol,
         VsRow,
         VsContainer,
+        VsButton,
+        VsIcon,
         BModal,
     },
     props: {
