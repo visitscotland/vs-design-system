@@ -13,7 +13,8 @@ export default new Vuex.Store({
         CREATE_VIDEO_ENTRY: (state, payload) => {
             state.videos.push({
                 videoId: payload.id,
-                videoLength: payload.length,
+                videoDurationMsg: payload.durationMsg,
+                videoDuration: payload.duration,
             });
         },
     },
