@@ -10,21 +10,6 @@
                 ref="youtube"
             />
         </div>
-
-        <p
-            class="vs-video__duration"
-            data-test="vs-video-duration"
-            v-if="showDuration"
-        >
-            {{ duration.minutes }}:{{ pad(duration.seconds) }}
-        </p>
-        <p
-            class="vs-video__duration"
-            data-test="vs-video-rounded-duration"
-            v-if="showDuration"
-        >
-            {{ duration.roundedMinutes }}
-        </p>
     </div>
 </template>
 
@@ -214,7 +199,8 @@ export default {
         storeVideoDetails() {
             videoStore.dispatch('newVideoRef', {
                 id: this.videoId,
-                length: this.duration.roundedMinutes,
+                durationMsg: this.duration.roundedMinutes,
+                duration: (this.duration.minutes * 60) + this.duration.seconds,
             });
         },
     },
