@@ -2,6 +2,7 @@ package com.visitscotland.brxm.validator;
 
 import com.visitscotland.brxm.translation.MockNodeBuilder;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,6 +26,12 @@ class UniqueLinksValidatorTest {
     @Mock
     ValidationContext context;
 
+    @BeforeEach
+    void init (){
+        //The following method needs to be initialized leniently otherwise issues in the validation might be hidden
+        lenient().when(context.createViolation()).thenReturn(mock(Violation.class));
+    }
+
     @DisplayName("When target field not provided, then constructor throws exception")
     @Test
     void targetFieldNotProvided() throws Exception  {
@@ -39,7 +46,7 @@ class UniqueLinksValidatorTest {
     @DisplayName("When list of non-unique links provided, validation fails")
     @Test
     void nonUniqueLinksFailsTest() throws Exception {
-        when(context.createViolation()).thenReturn(mock(Violation.class));
+        
         Node config = new MockNodeBuilder().withProperty("targetField", "links").build();
         Node toValidate = new MockNodeBuilder()
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "a").build())
@@ -97,7 +104,7 @@ class UniqueLinksValidatorTest {
     @DisplayName("When different link id is used and non-unique values, test fails")
     @Test
     void differentLinkIdAndNonUnique() throws Exception {
-        when(context.createViolation()).thenReturn(mock(Violation.class));
+        
         Node config = new MockNodeBuilder().withProperty("targetField", "links").withProperty("linkIdField", "id").build();
         Node toValidate = new MockNodeBuilder()
                 .withChildNode("links", new MockNodeBuilder().withProperty("id", "a").build())
@@ -113,7 +120,7 @@ class UniqueLinksValidatorTest {
     @DisplayName("When linkIdField is node & non-unique links provided, validation fails")
     @Test
     void linkIdIsNode_nonUniqueFails() throws Exception {
-        when(context.createViolation()).thenReturn(mock(Violation.class));
+        
 
         Node config = new MockNodeBuilder().withProperty("targetField", "links").withProperty("linkIdField", "child").build();
         Node aNode = new MockNodeBuilder().withProperty("hippo:docbase", "a").build();
@@ -175,6 +182,50 @@ class UniqueLinksValidatorTest {
         Assertions.assertFalse(validationResult.isPresent());
     }
 
+    @DisplayName("VS-2934 - Amend LinkValidator to accept Video Documents nested structure")
+    @Test
+    void nestedLinks() throws Exception {
+        //Create hippo Configuration Node
+        Node config = new MockNodeBuilder().withProperty("targetField", "links").withProperty("linkIdField", "child").build();
+        //Create Node to be validated
+        Node link1 = new MockNodeBuilder().withProperty("hippo:docbase", "a").build();
+        Node link2 = new MockNodeBuilder().withProperty("hippo:docbase", "b").build();
+        Node container1 = new MockNodeBuilder().withChildNode("child", link1).build();
+        Node container2 = new MockNodeBuilder().withChildNode("child", link2).build();
 
+        Node toValidate = new MockNodeBuilder()
+                .withChildNode("links", container1)
+                .withChildNode("links", container2).build();
+
+        when(container1.getNode("child")).thenReturn(link1);
+        when(container2.getNode("child")).thenReturn(link2);
+
+        Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
+        Assertions.assertFalse(validationResult.isPresent());
+    }
+
+    @DisplayName("VS-2934 - Validator would fail with nested structure when the values are repeated")
+    @Test
+    void nestedLinks_nonUniqueFails() throws Exception {
+        //Create hippo Configuration Node
+        Node config = new MockNodeBuilder().withProperty("targetField", "links").withProperty("linkIdField", "child").build();
+        //Create Node to be validated
+        Node link1 = new MockNodeBuilder().withProperty("hippo:docbase", "a").build();
+        Node link2 = new MockNodeBuilder().withProperty("hippo:docbase", "a").build();
+        Node container1 = new MockNodeBuilder().withChildNode("child", link1).build();
+        Node container2 = new MockNodeBuilder().withChildNode("child", link2).build();
+
+        Node toValidate = new MockNodeBuilder()
+                .withChildNode("links", container1)
+                .withChildNode("links", container2).build();
+
+//
+//        when(container1.getNode("child")).thenReturn(link1);
+//        when(container2.getNode("child")).thenReturn(link2);
+
+
+        Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
+        Assertions.assertTrue(validationResult.isPresent());
+    }
 
 }

@@ -226,7 +226,7 @@ public class MegalinkFactory {
         return link;
     }
 
-    private void addError(Module<Megalinks> module, String message){
+    private void addError(Module<?> module, String message){
         if (module != null) {
             module.addErrorMessage(message);
         } else {
