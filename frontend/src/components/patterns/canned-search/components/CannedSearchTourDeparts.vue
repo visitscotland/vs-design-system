@@ -2,7 +2,7 @@
     <p
         class="text-truncate text-truncate--2 vs-canned-search-tour-departs"
     >
-        <b>{{ label }}</b> {{ transformedOrigins }}
+        <b>{{ label }}:</b> {{ transformedOrigins }}
     </p>
 </template>
 
