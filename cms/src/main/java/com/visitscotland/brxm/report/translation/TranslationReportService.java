@@ -59,8 +59,8 @@ public class TranslationReportService {
         List<DocumentTranslationReportModel> docModels = new ArrayList<>();
         try {
             for (JcrDocument englishDoc : jcrUtilService.getAllUnpublishedDocuments()) {
-                List<String> translatedLocales = new ArrayList<>();
-                List<String> sendForTranslationLocales = new ArrayList<>();
+                Set<String> translatedLocales = new HashSet<>();
+                Set<String> sendForTranslationLocales = new HashSet<>();
                 TranslationStatus infoStatus = TranslationStatus.NOT_SENT_FOR_TRANSLATION;
 
                 for (String locale : SUPPORTED_LOCALES) {
@@ -182,16 +182,19 @@ public class TranslationReportService {
             return TranslationStatus.NOT_SENT_FOR_TRANSLATION;
         } else {
             Node translatedClone = englishDoc.getTranslation(locale);
-            if (!translatedClone.hasProperty(VS_TRANSLATION_FLAG) || translatedClone.getProperty(VS_TRANSLATION_FLAG).getString().isEmpty()) {
+            Node unpublishedTranslatedClone = new JcrDocument(translatedClone).getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+            if (unpublishedTranslatedClone == null || !unpublishedTranslatedClone.hasProperty(VS_TRANSLATION_FLAG)
+                    || unpublishedTranslatedClone.getProperty(VS_TRANSLATION_FLAG).getString().isEmpty()) {
                 // If the translationFlag does not exist on the document, then it has not been sent
                 return TranslationStatus.NOT_SENT_FOR_TRANSLATION;
             } else {
                 // The translationFlag is only set once the document has been sent for translation
                 // Initially to true to indicate that the document has been sent, and then to false once the Translation
                 // Completed button has been pressed
-                return translatedClone.getProperty(VS_TRANSLATION_FLAG).getBoolean() ? TranslationStatus.SEND_FOR_TRANSLATION : TranslationStatus.TRANSLATED;
+                return unpublishedTranslatedClone.getProperty(VS_TRANSLATION_FLAG).getBoolean() ? TranslationStatus.SEND_FOR_TRANSLATION : TranslationStatus.TRANSLATED;
             }
         }
     }
+
 
 }

@@ -4,6 +4,7 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+
 import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Stop")
@@ -34,9 +35,22 @@ public class Stop extends BaseDocument {
         return getOnlyChild(getStop());
     }
 
+    /**
+     * @deprecated Remove after all Video Adjustments are done
+     */
+    @Deprecated
     @HippoEssentialsGenerated(internalName = "visitscotland:image")
     public Image getImage() {
         return getLinkedBean("visitscotland:image", Image.class);
+    }
+
+    public HippoBean getMediaItem(){
+        return getOnlyChild(getMedia());
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:media", allowModifications = false)
+    public List<HippoBean> getMedia() {
+        return getMedia("visitscotland:media");
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:subtitle")

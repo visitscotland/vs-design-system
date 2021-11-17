@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ItineraryDayMockBuilder {
 
@@ -33,9 +32,19 @@ public class ItineraryDayMockBuilder {
 
         stops.add(currentStop);
 
-        //This mocked value is not representative of the real object.
-        when(currentStop.getIdentifier()).thenReturn(String.valueOf(stops.size()));
+        //This mocked value is not representative of the real object. Use hashcode to ensure identifier is unique
+        when(currentStop.getIdentifier()).thenReturn(String.valueOf(stops.size()) + currentStop.hashCode());
 
+        return this;
+    }
+
+    public ItineraryDayMockBuilder addStop(String identifier) {
+        currentStop = mock(Stop.class);
+        dmsLink = null;
+        link = null;
+        stops.add(currentStop);
+        //This mocked value is not representative of the real object.
+        when(currentStop.getIdentifier()).thenReturn(identifier);
         return this;
     }
 
@@ -105,7 +114,8 @@ public class ItineraryDayMockBuilder {
         link = mock(ItineraryExternalLink.class, Answers.RETURNS_DEEP_STUBS);
 
         when(currentStop.getStopItem()).thenReturn(link);
-        when(link.getExternalLink().getLink()).thenReturn(url);
+        //This is only used for opening times
+        lenient().when(link.getExternalLink().getLink()).thenReturn(url);
 
         //This mocked value is not representative of the real object.
         when(currentStop.getIdentifier()).thenReturn(url);

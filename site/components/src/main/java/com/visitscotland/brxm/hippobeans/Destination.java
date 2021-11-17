@@ -18,11 +18,18 @@ public class Destination extends Page {
                 "visitscotland:Megalinks",
                 "visitscotland:Stackla",
                 "visitscotland:TourismInformation",
-                "visitscotland:TravelInformation"};
+                "visitscotland:TravelInformation",
+                "visitscotland:CannedSearchTours",
+                "visitscotland:CannedSearch" };
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
     public OTYML getOtherThings() {
         return getBean("visitscotland:otherThings", OTYML.class);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:heroVideo")
+    public VideoLink getHeroVideo() {
+        return getBean("visitscotland:heroVideo", VideoLink.class);
     }
 }

@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 9235fec7-fee8-4389-8cd3-854d275f61f5
+          jcr:uuid: be7ae8c0-5a9b-40db-b9ae-a32b7c4afa07
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -76,6 +76,13 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: visitscotland:StopTip
             hipposysedit:validators: [optional]
+          /media:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:multiple: true
+            hipposysedit:ordered: true
+            hipposysedit:path: visitscotland:media
+            hipposysedit:type: hippo:compound
+            hipposysedit:validators: [contentblocks-validator]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -87,7 +94,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: d7d231f2-76f8-4dcf-ba0d-0a0bf4a67e15
+          jcr:uuid: a3d8942c-6945-4933-bace-0a70173767df
           hippostdpubwf:lastModificationDate: 2019-12-05T15:13:21.853Z
           hippostdpubwf:creationDate: 2019-12-05T15:13:21.853Z
           visitscotland:title: ''
@@ -145,9 +152,21 @@ definitions:
                 , removeButtons: ''PickImage,Youtube,Table''}'
               ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
                 {countSpacesAsChars: true, showCharCount: true, maxCharCount: 1125}}'
+          /media:
+            jcr:primaryType: frontend:plugin
+            caption: Media
+            compoundList: hippogallerypicker:imagelink,visitscotland:VideoLink
+            contentPickerType: links
+            field: media
+            plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
+            wicket.id: ${cluster.id}.field
+            hint: ''
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              maxitems: 1
           /image:
             jcr:primaryType: frontend:plugin
-            caption: Image
+            caption: Image (Deprecated)
             field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field

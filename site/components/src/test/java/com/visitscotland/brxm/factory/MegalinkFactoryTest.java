@@ -1,15 +1,13 @@
 package com.visitscotland.brxm.factory;
 
-import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.hippobeans.*;
-import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.*;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,8 +26,6 @@ import java.util.List;
 import java.util.Locale;
 
 import static org.easymock.EasyMock.anyObject;
-import static org.easymock.EasyMock.anyString;
-import static org.easymock.EasyMock.expect;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
@@ -60,7 +56,7 @@ public class MegalinkFactoryTest {
 
     @BeforeEach
     public void beforeEach() {
-        when(linkService.getPlainLink(any(SharedLink.class), any())).thenReturn(PLAIN_LINK);
+        when(linkService.getPlainLink(any(), any(HippoCompound.class), any())).thenReturn(PLAIN_LINK);
     }
 
 
@@ -150,7 +146,7 @@ public class MegalinkFactoryTest {
         ExternalLink mockLink = mock(ExternalLink.class);
         Megalinks mega = mockMultiImage();
         when(mega.getProductItem()).thenReturn(mockLink);
-        when(linkService.createLink(any(Locale.class), eq(mockLink))).thenReturn(new FlatLink(null, "cta-link", null));
+        when(linkService.createCTALink(any(), any(Locale.class), eq(mockLink))).thenReturn(new FlatLink(null, "cta-link", null));
 
         LinksModule<?> layout = factory.multiImageLayout(mega, Locale.UK);
 
@@ -193,7 +189,7 @@ public class MegalinkFactoryTest {
     void horizontalListLayout_OTYML_defaultLabel() {
         OTYML otyml = mock (OTYML.class);
 
-        when (resourceBundleService.getResourceBundle("otyml", "otyml.title.default", Locale.UK ,true)).thenReturn("otyml");
+        when (resourceBundleService.getResourceBundle("otyml", "otyml.title.default", Locale.UK )).thenReturn("otyml");
 
         HorizontalListLinksModule module= factory.horizontalListLayout(otyml,Locale.UK);
         assertEquals("otyml", module.getTitle());
@@ -206,7 +202,7 @@ public class MegalinkFactoryTest {
 
         LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
 
-        Assertions.assertEquals(layout.getType(), "SingleImageLinksModule");
+        Assertions.assertEquals("SingleImageLinksModule", layout.getType());
 
     }
 

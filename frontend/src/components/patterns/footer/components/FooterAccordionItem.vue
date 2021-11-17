@@ -97,6 +97,7 @@ export default {
 <style lang="scss">
 .vs-footer-accordion-item.card {
     border-bottom: 1px solid $color-gray-shade-2;
+    border-top: 0;
 
       .vs-accordion-item__card-header{
         background-color: $color-gray-shade-7;
@@ -120,6 +121,7 @@ export default {
         text-transform: none !important;
         letter-spacing: initial;
         padding: $spacer-3;
+        font-size: $font-size-base;
         line-height: $line-height-xs;
         font-weight: $font-weight-semi-bold;
         text-align: left;

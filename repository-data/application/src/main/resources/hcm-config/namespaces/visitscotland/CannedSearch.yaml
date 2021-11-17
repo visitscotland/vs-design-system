@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: b277897a-2dcc-4dfe-bbde-22e719055f33
+          jcr:uuid: aac49da0-f0c4-4bda-9b0f-bd38255619e0
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -33,23 +33,24 @@ definitions:
             hipposysedit:path: visitscotland:copy
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
-          /criteria:
+            hipposysedit:validators: [optional]
+          /ProductSearchLink:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
             hipposysedit:path: visitscotland:criteria
             hipposysedit:primary: false
-            hipposysedit:type: visitscotland:ProductsSearch
+            hipposysedit:type: visitscotland:ProductSearchLink
             hipposysedit:validators: [required]
-          /viewAll:
+          /translation:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:viewAll
+            hipposysedit:path: visitscotland:translation
             hipposysedit:primary: false
-            hipposysedit:type: String
+            hipposysedit:type: OpenUiString
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -62,24 +63,27 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 64fbef57-56cd-47ba-9859-680ea0265117
+          jcr:uuid: e903e306-7296-4968-9fa4-4e3b39e08c52
           hippostdpubwf:lastModificationDate: 2021-05-11T15:47:43.297+01:00
           hippostdpubwf:creationDate: 2021-05-11T15:47:43.297+01:00
-          visitscotland:viewAll: ''
-          /visitscotland:copy:
-            jcr:primaryType: hippostd:html
-            hippostd:content: ''
+          visitscotland:translation: ''
           /visitscotland:criteria:
-            jcr:primaryType: visitscotland:ProductsSearch
-            visitscotland:distance: 10.0
-            visitscotland:dmsAwards: []
-            visitscotland:dmsCategories: []
-            visitscotland:dmsFacilities: []
-            visitscotland:location: ''
-            visitscotland:officialrating: []
-            visitscotland:productType: ''
-            visitscotland:free: false
-            visitscotland:offers: false
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:location: Scotland
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: ''
+              visitscotland:producttype: ''
+              visitscotland:goodToGo: false
+              visitscotland:safeTravels: false
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -117,18 +121,19 @@ definitions:
           /criteria:
             jcr:primaryType: frontend:plugin
             caption: Criteria
-            field: criteria
+            field: ProductSearchLink
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /viewAll:
+          /translation:
             jcr:primaryType: frontend:plugin
-            caption: Override "View all"
-            field: viewAll
+            caption: Translation
+            field: translation
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              ui.extension: translationDiff

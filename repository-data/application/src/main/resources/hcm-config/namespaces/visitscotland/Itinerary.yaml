@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 5a52c74f-c56f-4720-98e6-c66d0ad257fb
+          jcr:uuid: b49a2f26-f0b4-47a2-bc33-f9d5786aeff5
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -104,7 +104,7 @@ definitions:
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          jcr:uuid: 6f3e4e08-584c-41de-89c3-79456c5d1a2d
+          jcr:uuid: cefdd2d5-05ec-4f8a-9b83-62e2bbcfa7a6
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           visitscotland:areas: []
@@ -156,16 +156,15 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /seoTitle:
+          /heroVideo:
             jcr:primaryType: frontend:plugin
-            caption: Meta Title
-            field: seoTitle
+            caption: Overlay Youtube Video
+            field: heroVideo
             hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxlength: ''
           /theme:
             jcr:primaryType: frontend:plugin
             caption: Theme
@@ -178,6 +177,16 @@ definitions:
               source: /content/documents/administration/options/themes
               sortBy: ''
               sortOrder: ''
+          /seoTitle:
+            jcr:primaryType: frontend:plugin
+            caption: Meta Title
+            field: seoTitle
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              maxlength: ''
           /seoDescription:
             jcr:primaryType: frontend:plugin
             caption: Meta Description
@@ -223,15 +232,6 @@ definitions:
               ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
                 \ { \tcountSpacesAsChars: true,     showCharCount: true ,maxCharCount:750\
                 \   }  }"
-          /highlights:
-            jcr:primaryType: frontend:plugin
-            caption: Highlights
-            field: highlights
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            hint: ''
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /transports:
             jcr:primaryType: frontend:plugin
             caption: Main Transport
@@ -260,18 +260,19 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               source: /content/documents/administration/options/areas
+          /highlights:
+            jcr:primaryType: frontend:plugin
+            caption: Highlights
+            field: highlights
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            hint: ''
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
           /start:
             jcr:primaryType: frontend:plugin
             caption: Override Start Point
             field: start
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /finish:
-            jcr:primaryType: frontend:plugin
-            caption: Override Finish Point
-            field: finish
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
@@ -304,6 +305,14 @@ definitions:
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /finish:
+            jcr:primaryType: frontend:plugin
+            caption: Override Finish Point
+            field: finish
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
           /distance:
             jcr:primaryType: frontend:plugin
             caption: Override Miles
@@ -322,6 +331,15 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /newsletter:
+            jcr:primaryType: frontend:plugin
+            caption: Hide newsletter
+            field: newsletter
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
           /translation:
             jcr:primaryType: frontend:plugin
             caption: Translation
@@ -332,12 +350,3 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ui.extension: translationDiff
-          /newsletter:
-            jcr:primaryType: frontend:plugin
-            caption: Hide newsletter
-            field: newsletter
-            hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.right.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig

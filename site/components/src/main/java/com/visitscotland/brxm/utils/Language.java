@@ -1,6 +1,5 @@
 package com.visitscotland.brxm.utils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -47,15 +46,15 @@ public enum Language {
         if (this == ENGLISH) {
             return "";
         } else {
-            return locale.getLanguage();
+            return "/" + locale.getLanguage();
         }
     }
 
     public String getDMSPathVariable() {
         if (this == ENGLISH) {
-            return null;
+            return "";
         } else {
-            return "/" + locale.toLanguageTag();
+            return "/" + locale.toLanguageTag().toLowerCase();
         }
     }
 }

@@ -1,6 +1,7 @@
 <#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
+<#include "../macros/modules/page-intro/social-share.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/modules/signpost/signpost.ftl">
 <#include "../macros/shared/module-builder.ftl">
@@ -23,11 +24,13 @@
         <@moduleBuilder item />
 	</#list>
 
+    <@socialShare nojs=true/>
+
     <#if otyml??>
-        <@horizontalList otyml />
+        <@horizontalList otyml themeName />
     </#if>
 
     <#if newsletterSignpost??>
-        <@signpost newsletterSignpost />
-    </#if>
+		<@signpost module=newsletterSignpost imgSrc="assets/images/illustrations/newsletter.svg"/>
+	</#if>
 </div>

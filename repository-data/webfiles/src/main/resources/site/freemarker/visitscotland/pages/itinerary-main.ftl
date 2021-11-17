@@ -4,6 +4,8 @@
 <#include "../../frontend/components/vs-tooltip.ftl">
 <#include "../../frontend/components/vs-itinerary-day.ftl">
 <#include "../../frontend/components/vs-itinerary.ftl">
+
+<#include "../macros/modules/page-intro/social-share.ftl">
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/modules/itineraries/itinerary-map.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
@@ -61,7 +63,7 @@
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
                                 <vs-tooltip title="${label("transports", "${transport}")}">
-                                    <vs-icon name="${transport}" variant="dark" size="md" smallSize="xs"></vs-icon>
+                                    <vs-icon name="${transport}" variant="dark" size="md" small-size="xs"></vs-icon>
                                 </vs-tooltip>
                                 <span class="sr-only">${label("transports", "${transport}")}</span>
                             </dd>
@@ -85,11 +87,14 @@
             </vs-itinerary-day>
         </#list>
     </vs-itinerary>
+
+    <@socialShare nojs=true/>
+
     <#if otyml??>
-        <@horizontalList otyml />
+        <@horizontalList otyml themeName />
     </#if>
 
     <#if newsletterSignpost??>
-        <@signpost newsletterSignpost />
-    </#if>
+		<@signpost module=newsletterSignpost imgSrc="assets/images/illustrations/newsletter.svg"/>
+	</#if>
 </div>

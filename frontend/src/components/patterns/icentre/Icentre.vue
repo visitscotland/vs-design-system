@@ -109,7 +109,7 @@ export default {
     }
 
     &__links {
-        font-size: $display3-size;
+        font-size: $display4-size;
         margin-bottom: $spacer-9;
 
         @include media-breakpoint-up(lg) {
@@ -153,7 +153,7 @@ export default {
     &__links-contained {
         margin-bottom: $spacer-0;
         margin-top: $spacer-9;
-        font-size: $display3-size;
+        font-size: $display4-size;
 
         @include media-breakpoint-up(lg) {
             line-height: $spacer-7;
@@ -168,7 +168,7 @@ export default {
 
 <docs>
 ```jsx
-    <VsModuleWrapper class="theme-grey">
+    <VsModuleWrapper theme="grey">
         <template slot="vsModuleWrapperHeading">
             A tip from your local experts
         </template>
@@ -177,15 +177,19 @@ export default {
             <VsImageWithCaption
                 imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 altText="This is the alt text"
-                slot="icentreImageWithCaption">
+                slot="icentreImageWithCaption"
+            >
+                <VsCaption
+                    slot="img-caption"
+                >
+                    <span slot="caption">
+                        A test caption
+                    </span>
 
-                <span slot="caption">
-                    A test caption
-                </span>
-
-                <span slot="credit">
-                    &copy; Some test credits
-                </span>
+                    <span slot="credit">
+                        &copy; VisitScotland
+                    </span>
+                </VsCaption>
             </VsImageWithCaption>
 
             <span slot="icentreQuote">
@@ -219,7 +223,7 @@ export default {
         </VsIcentre>
     </VsModuleWrapper>
     <br>
-    <VsModuleWrapper class="theme-grey">
+    <VsModuleWrapper theme="grey">
         <template slot="vsModuleWrapperHeading">
             A tip from your local experts
         </template>
@@ -228,15 +232,19 @@ export default {
             <VsImageWithCaption
                 imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 altText="This is the alt text"
-                slot="icentreImageWithCaption">
+                slot="icentreImageWithCaption"
+            >
+                <VsCaption
+                    slot="img-caption"
+                >
+                    <span slot="caption">
+                        A test caption
+                    </span>
 
-                <span slot="caption">
-                    A test caption
-                </span>
-
-                <span slot="credit">
-                    &copy; Some test credits
-                </span>
+                    <span slot="credit">
+                        &copy; VisitScotland
+                    </span>
+                </VsCaption>
             </VsImageWithCaption>
 
             <p slot="icentreLinks">Test content <a href="#">link</a></p>

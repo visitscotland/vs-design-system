@@ -4,22 +4,9 @@
         :class="singleImageClasses"
         data-test="megalink-single-image"
     >
-        <VsImageWithCaption
-            mobile-overlap
-            alt-text=""
-            :text-align="alternate ? 'left' : 'right'"
-            :image-src="imgSrc"
-            class="vs-megalink-single-image__image"
-        >
-            <template slot="caption">
-                <!-- @slot Slot for image caption -->
-                <slot name="vsSingleImageCaption" />
-            </template>
-            <template slot="credit">
-                <!-- @slot Slot for image credit -->
-                <slot name="vsSingleImageCredit" />
-            </template>
-        </VsImageWithCaption>
+        <!-- @slot Slot for main image -->
+        <slot name="vsSingleImage" />
+
         <VsRow>
             <VsCol
                 cols="12"
@@ -66,7 +53,6 @@
 </template>
 
 <script>
-import VsImageWithCaption from '@components/patterns/image-with-caption/ImageWithCaption';
 import VsHeading from '@components/elements/heading/Heading';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 import VsButton from '@components/elements/button/Button';
@@ -85,7 +71,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsImageWithCaption,
         VsHeading,
         VsRichTextWrapper,
         VsButton,
@@ -112,13 +97,6 @@ export default {
         * Button url
         */
         buttonLink: {
-            type: String,
-            default: '',
-        },
-        /**
-        * Image src attribute
-        */
-        imgSrc: {
             type: String,
             default: '',
         },
@@ -179,7 +157,7 @@ export default {
             }
         }
 
-        .vs-megalink-single-image__image {
+        .vs-image-with-caption {
             overflow: hidden;
             margin: 0 -12px (-$spacer-8);
         }
@@ -202,7 +180,7 @@ export default {
         @include media-breakpoint-up(sm) {
             margin: 0;
 
-            .vs-megalink-single-image__image {
+            .vs-image-with-caption {
                 margin-bottom: 0;
             }
 
@@ -229,14 +207,14 @@ export default {
                 background: $color-white;
             }
 
-            .vs-megalink-single-image__image {
+            .vs-image-with-caption {
                 width: 66%;
                 align-self: flex-end;
                 margin: 0 0 -200px;
             }
 
             &--alternate {
-                .vs-megalink-single-image__image {
+                .vs-image-with-caption {
                     align-self: flex-start;
                 }
 
@@ -271,10 +249,28 @@ export default {
             <VsMegalinkSingleImage
                 title="The Component heading"
                 buttonLink="www.visitscotland.com"
-                imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             >
-                <template slot="vsSingleImageCaption">An image of Scotland</template>
-                <template slot="vsSingleImageCredit">@2020 Credit here</template>
+                <template slot="vsSingleImage">
+                    <VsImageWithCaption
+                        mobile-overlap
+                        alt-text="Image alt text"
+                        image-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                    >
+                        <VsCaption
+                            slot="img-caption"
+                            text-align="right"
+                        >
+                            <template slot="caption">
+                                An image of Scotland
+                            </template>
+
+                            <template slot="credit">
+                                @2020 Credit here
+                            </template>
+                        </VsCaption>
+                    </VsImageWithCaption>
+                </template>
+
                 <template slot="vsSingleImageContent">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -291,18 +287,21 @@ export default {
                 <template slot="vsSingleImageLinks">
                     <VsLinkListItem
                         href="www.visitscotland.com"
+                        variant="primary"
                     >
                         This is a link here
                     </VsLinkListItem>
                     <VsLinkListItem
                         href="www.visitscotland.com"
                         type="external"
+                        variant="primary"
                     >
                         This is an external link here
                     </VsLinkListItem>
                     <VsLinkListItem
                         href="www.visitscotland.com"
                         type="download"
+                        variant="primary"
                     >
                         This is a download link here
                     </VsLinkListItem>
@@ -316,11 +315,29 @@ export default {
             <VsMegalinkSingleImage
                 title="This is the second component heading"
                 buttonLink="www.visitscotland.com"
-                imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 alternate
             >
-                <template slot="vsSingleImageCaption">An image of Scotland</template>
-                <template slot="vsSingleImageCredit">@2020 Credit here</template>
+                <template slot="vsSingleImage">
+                    <VsImageWithCaption
+                        mobile-overlap
+                        alt-text="Image alt text"
+                        image-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                    >
+                        <VsCaption
+                            slot="img-caption"
+                            text-align="left"
+                        >
+                            <template slot="caption">
+                                An image of Scotland
+                            </template>
+
+                            <template slot="credit">
+                                @2020 Credit here
+                            </template>
+                        </VsCaption>
+                    </VsImageWithCaption>
+                </template>
+
                 <template slot="vsSingleImageContent">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -342,11 +359,13 @@ export default {
                     </VsLinkListItem>
                     <VsLinkListItem
                         href="www.visitscotland.com"
+                        variant="primary"
                     >
                         This is a link here
                     </VsLinkListItem>
                     <VsLinkListItem
                         href="www.visitscotland.com"
+                        variant="primary"
                     >
                         This is a link here
                     </VsLinkListItem>

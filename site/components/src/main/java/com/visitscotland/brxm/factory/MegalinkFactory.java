@@ -25,10 +25,10 @@ public class MegalinkFactory {
     private static final Logger logger = LoggerFactory.getLogger(MegalinkFactory.class);
     private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
-    public final static int MAX_ITEMS = 6;
-    public final static int MIN_ITEMS_CAROUSEL = 5;
-    public final static String HORIZONTAL_LAYOUT = "Horizontal Links";
-    public final static String DEFAULT_LAYOUT = "Default";
+    public static final int MAX_ITEMS = 6;
+    public static final int MIN_ITEMS_CAROUSEL = 5;
+    public static final String HORIZONTAL_LAYOUT = "Horizontal Links";
+    public static final String DEFAULT_LAYOUT = "Default";
 
 
     private final LinkService linkService;
@@ -82,7 +82,7 @@ public class MegalinkFactory {
 
     public HorizontalListLinksModule horizontalListLayout(OTYML doc, Locale locale) {
         HorizontalListLinksModule hll = new HorizontalListLinksModule();
-        hll.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("otyml", "otyml.title.default", locale ,true)): doc.getTitle());
+        hll.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("otyml", "otyml.title.default", locale)): doc.getTitle());
         hll.setIntroduction(doc.getIntroduction());
         hll.setLinks(convertToEnhancedLinks(hll, doc.getMegalinkItems(), locale,true));
 
@@ -173,7 +173,7 @@ public class MegalinkFactory {
         target.setIntroduction(doc.getIntroduction());
 
         if (doc.getProductItem() != null) {
-            target.setCta(linkService.createLink(locale, doc.getProductItem()));
+            target.setCta(linkService.createCTALink(target, locale, doc.getProductItem()));
         }
     }
 

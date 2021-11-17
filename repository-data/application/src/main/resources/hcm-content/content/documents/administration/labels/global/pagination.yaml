@@ -4,7 +4,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: e1aa6f52-3b01-441c-8e13-64e522cb21af
   hippo:name: Pagination
-  hippo:versionHistory: 828cfd69-55c3-4b44-abf5-a42277156cb9
+  hippo:versionHistory: 379c04ab-b25c-42f0-a00f-73e69a1b3961
   /pagination[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -14,9 +14,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2014-08-21T14:30:14.382+02:00
-    hippostdpubwf:lastModificationDate: 2021-06-10T18:05:08.736+01:00
-    hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-06-10T18:05:13.670+01:00
+    hippostdpubwf:lastModificationDate: 2021-09-03T08:58:58.727Z
+    hippostdpubwf:lastModifiedBy: spanish
+    hippostdpubwf:publicationDate: 2021-09-03T08:59:01.951Z
     resourcebundle:descriptions: ['Used in the indication, how many results were found.
         The label is appended to the number of results.', Label used for the link
         to the previous page., Label used for the link to the next page., To be used
@@ -24,22 +24,23 @@
     resourcebundle:id: essentials.pagination
     resourcebundle:keys: [results.indication, page.previous, page.next, page.of, page.navigate-to-page]
     resourcebundle:messages: [document(s), previous, next, of, Navigate to page]
-    resourcebundle:messages_de: ['', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '']
+    resourcebundle:messages_de: [Ergebnis(se), zurück, weiter, von, Zu Seite gehen]
+    resourcebundle:messages_es: [documento(s), anterior, siguiente, de, Ir a la página]
     resourcebundle:messages_fr: ['', '', '', '', '']
     resourcebundle:messages_it: ['', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '']
+    resourcebundle:messages_nl: [pagina('s), vorige, volgende, van, Navigeer naar
+        de pagina]
   /pagination[2]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:mixinTypes: ['mix:versionable']
     jcr:uuid: a57967d9-4322-4d29-b605-f068aa4d80e9
     hippo:availability: [preview]
     hippostd:retainable: false
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2014-08-21T14:30:14.382+02:00
-    hippostdpubwf:lastModificationDate: 2021-06-10T18:05:08.736+01:00
-    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:lastModificationDate: 2021-09-03T08:58:58.727Z
+    hippostdpubwf:lastModifiedBy: spanish
     resourcebundle:descriptions: ['Used in the indication, how many results were found.
         The label is appended to the number of results.', Label used for the link
         to the previous page., Label used for the link to the next page., To be used
@@ -47,11 +48,12 @@
     resourcebundle:id: essentials.pagination
     resourcebundle:keys: [results.indication, page.previous, page.next, page.of, page.navigate-to-page]
     resourcebundle:messages: [document(s), previous, next, of, Navigate to page]
-    resourcebundle:messages_de: ['', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '']
+    resourcebundle:messages_de: [Ergebnis(se), zurück, weiter, von, Zu Seite gehen]
+    resourcebundle:messages_es: [documento(s), anterior, siguiente, de, Ir a la página]
     resourcebundle:messages_fr: ['', '', '', '', '']
     resourcebundle:messages_it: ['', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '']
+    resourcebundle:messages_nl: [pagina('s), vorige, volgende, van, Navigeer naar
+        de pagina]
   /pagination[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -59,9 +61,10 @@
     hippo:availability: []
     hippostd:retainable: false
     hippostd:state: draft
+    hippostd:transferable: false
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2014-08-21T14:30:14.382+02:00
-    hippostdpubwf:lastModificationDate: 2021-06-10T18:04:33.911+01:00
+    hippostdpubwf:lastModificationDate: 2021-10-14T10:19:38.483Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['Used in the indication, how many results were found.
         The label is appended to the number of results.', Label used for the link
@@ -70,8 +73,11 @@
     resourcebundle:id: essentials.pagination
     resourcebundle:keys: [results.indication, page.previous, page.next, page.of, page.navigate-to-page]
     resourcebundle:messages: [document(s), previous, next, of, Navigate to page]
-    resourcebundle:messages_de: ['', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '']
-    resourcebundle:messages_fr: ['', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '']
+    resourcebundle:messages_de: [Ergebnis(se), zurück, weiter, von, Zu Seite gehen]
+    resourcebundle:messages_es: [documento(s), anterior, siguiente, de, Ir a la página]
+    resourcebundle:messages_fr: [document(s), précédent, suivant, sur, Accéder à la
+        page]
+    resourcebundle:messages_it: [documento, precedente, prossimo, di, Passare alla
+        pagina]
+    resourcebundle:messages_nl: [pagina('s), vorige, volgende, van, Navigeer naar
+        de pagina]

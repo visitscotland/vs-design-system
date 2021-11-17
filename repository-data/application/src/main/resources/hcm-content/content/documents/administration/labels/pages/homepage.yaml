@@ -2,13 +2,13 @@
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 9a47c03c-5cf2-4687-bcac-47ec38fe9e15
-  hippo:name: Homepage
-  hippo:versionHistory: 38f78147-48a7-4292-b7d5-a652cd295e85
+  hippo:name: Homepage (Don't translate)
+  hippo:versionHistory: 562b94b9-4335-4750-9fc5-c7cedd01d720
   /homepage[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
     jcr:uuid: d82e9424-5cd1-4593-a7b0-29098e9d02b1
-    hippo:availability: [live]
+    hippo:availability: []
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2014-08-21T17:08:08.703+02:00
@@ -31,7 +31,7 @@
     resourcebundle:messages_nl: ['', '']
   /homepage[2]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:mixinTypes: ['mix:versionable']
     jcr:uuid: 15afeb81-d3db-4da6-8aeb-ecf6b45e990c
     hippo:availability: [preview]
     hippostd:state: unpublished

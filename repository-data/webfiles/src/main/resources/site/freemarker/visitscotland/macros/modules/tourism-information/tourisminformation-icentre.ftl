@@ -15,14 +15,14 @@
         <#assign image = module.image.externalImage!'' />
     </#if>
 
-    <vs-module-wrapper class="theme-${themeName}">
+    <vs-module-wrapper theme="<#if themeName?has_content>${themeName}<#else>light</#if>">
         <template slot="vsModuleWrapperHeading">
             ${module.title}
         </template>
         <vs-container>
             <vs-icentre>
                 <template slot="icentreImageWithCaption">
-                    <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
+                    <@imageWithCaption imageSrc=image imageDetails=module.image />
                 </template>
 
                 <template slot="icentreLinks">

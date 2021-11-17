@@ -28,26 +28,28 @@
             <#assign image = stop.image.externalImage />
         </#if>
     </#if>
-    
+
     <vs-itinerary-stop
         slot="stops"
         stop-number="${stop.index}"
         stop-label="${stop.title}"
         stop-title="${stop.subTitle!''}"
     >
-        <@hst.manageContent hippobean=stop.hippoBean />
         <@cmsErrors errors=stop.errorMessages!"" editMode=editMode />
+        <@hst.manageContent hippobean=stop.hippoBean />
+
         <#if image?? && image?has_content> 
-            <template slot="stop-image">
-                <@imageWithCaption imageSrc=image imageDetails=stop.image variant="fullwidth"/>
-            </template>
+            <@imageWithCaption imageSrc=image imageDetails=stop.image />
         </#if>
 
         <#if stop?? && stop.description?? && stop.description?has_content>
             <template slot="stop-description">
                 <@hst.html hippohtml=stop.description/>
                 <#if stop.ctaLink?? && stop.ctaLink.link?? && stop.ctaLink.link?has_content>
-                    <vs-link href="${stop.ctaLink.link}">
+                    <vs-link
+                        href="${stop.ctaLink.link}"
+                        <#if stop.ctaLink.type != "internal">type="${stop.ctaLink.type}"</#if>
+                    >
                         ${stop.ctaLink.label}
                     </vs-link>
                 </#if>
@@ -69,12 +71,6 @@
                     </vs-itinerary-tips>
                 </#if>
             </template>
-        </#if>
-
-        <#if stop.ctaLink?? && stop.ctaLink.link?? && stop.ctaLink.link?has_content>
-            <vs-link href="${stop.ctaLink.link}">
-                ${stop.ctaLink.label}
-            </vs-link>
         </#if>
 
         <#if stop??>
@@ -119,9 +115,8 @@
             
             <#if stop.opening??>
                 <template slot="stop-info">
-                    <#assign replaced = stop.opening?replace('"', "'") />
                     <vs-itinerary-stop-info
-                        opening-hours="${replaced}"
+                        opening-hours="${escapeJSON(stop.opening)}"
                         opening-times-link='${stop.openLink.link}'
                         closed-text='${label("itinerary", "stop.closed")}'
                         closing-soon-text='${label("itinerary", "stop.close.soon")}'

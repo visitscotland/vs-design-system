@@ -7,6 +7,7 @@ import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.model.*;
 import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.services.DocumentUtilsService;
+import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
@@ -16,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
@@ -34,15 +37,18 @@ public class ItineraryFactory {
     private final DMSUtils utils;
     private final DocumentUtilsService documentUtils;
     private final Properties properties;
+    private final LinkService linkService;
 
 
-    public ItineraryFactory(ResourceBundleService bundle, DMSDataService dmsData, ImageFactory imageFactory, DMSUtils utils, DocumentUtilsService documentUtils, Properties properties) {
+    public ItineraryFactory(ResourceBundleService bundle, DMSDataService dmsData, ImageFactory imageFactory,
+                            DMSUtils utils, DocumentUtilsService documentUtils, Properties properties, LinkService linkService) {
         this.bundle = bundle;
         this.dmsData = dmsData;
         this.imageFactory = imageFactory;
         this.utils = utils;
         this.documentUtils = documentUtils;
         this.properties = properties;
+        this.linkService = linkService;
     }
 
     /**
@@ -63,6 +69,12 @@ public class ItineraryFactory {
 
         for (Day day : page.getDays()) {
             for (Stop stop : day.getStops()) {
+                if (page.getStops() != null && page.getStops().containsKey(stop.getIdentifier())) {
+                    contentLogger.error("Duplicate stop {} found on itinerary {}", stop.getPath(), itinerary.getPath());
+                    page.addErrorMessage(String.format("Duplicate stop '%s' found on itinerary", stop.getTitle()));
+                    continue;
+                }
+
                 ItineraryStopModule module = generateStop(locale, stop, itinerary, index++);
 
                 lastStop = module;
@@ -184,8 +196,7 @@ public class ItineraryFactory {
         }
 
         if (externalLink.getExternalLink() != null) {
-            FlatLink ctaLink = new FlatLink(bundle.getCtaLabel(externalLink.getExternalLink().getLabel(), locale),
-                    externalLink.getExternalLink().getLink(), LinkType.EXTERNAL);
+            FlatLink ctaLink = linkService.createCTALink(module, locale, externalLink.getExternalLink());
             module.setCtaLink(ctaLink);
         }
 
@@ -208,7 +219,7 @@ public class ItineraryFactory {
             return;
         }
 
-        module.setCtaLink(new FlatLink(bundle.getCtaLabel(dmsLink.getLabel(), locale), properties.getDmsHost() + product.get(URL).asText(), LinkType.INTERNAL));
+        module.setCtaLink(linkService.createCTALink(module, locale, dmsLink));
         module.setFacilities(utils.getKeyFacilities(product));
 
         if (module.getImage() == null && product.has(IMAGE)) {
@@ -239,10 +250,6 @@ public class ItineraryFactory {
             JsonNode opening = product.get(OPENING);
             module.setOpening(opening);
             module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
-                     module.getCtaLink().getLink() + "#opening", null));
-        }
-
+                     module.getCtaLink().getLink() + "#opening", null));        }
     }
-
-
 }
