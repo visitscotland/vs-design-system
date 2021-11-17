@@ -159,6 +159,7 @@ export default {
             position: absolute;
             text-align: right;
             max-width: calc(100% - 1rem);
+            width: 100%;
             max-height: 1.5em;
             overflow: hidden;
             top: $spacer-2;
