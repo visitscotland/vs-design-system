@@ -328,6 +328,10 @@ export default {
                 return product.onlineEvent;
             }
 
+            if (!product.address) {
+                return '';
+            }
+
             if (this.searchType === 'even') {
                 return `${product.eventVenue}, ${product.address.city}`;
             }
@@ -340,7 +344,11 @@ export default {
         fetchBadgeOne(product) {
             if (this.searchType !== 'tour') {
                 if (product.category && product.category.length) {
-                    return product.category[0].name;
+                    if (product.category[0]) {
+                        return product.category[0].name;
+                    }
+
+                    return null;
                 }
             }
 
