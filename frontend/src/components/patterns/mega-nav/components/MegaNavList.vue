@@ -3,6 +3,7 @@
         unstyled
         class="vs-mega-nav-list"
         data-test="vs-mega-nav-list"
+        role="menu"
     >
         <!-- @slot Slot for nav list heading  -->
         <slot name="navListHeading" />
