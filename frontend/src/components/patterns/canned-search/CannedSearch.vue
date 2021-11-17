@@ -50,13 +50,14 @@
                 >
                     <div>
                         <VsCannedSearchTourRuns
-                            v-if="prod.opening && prod.opening.period"
+                            v-if="prod.opening && prod.opening.period
+                                && prod.opening.period.startDay"
                             :label="prod.opening.period.label"
                             :start-day="prod.opening.period.startDay"
                             :end-day="prod.opening.period.endDay"
                         />
                         <VsCannedSearchTourDeparts
-                            v-if="prod.tourOrigin"
+                            v-if="prod.tourOrigin && prod.tourOrigin.tourOrigin"
                             :label="prod.tourOrigin.label"
                             :origins="prod.tourOrigin.tourOrigin"
                         />
