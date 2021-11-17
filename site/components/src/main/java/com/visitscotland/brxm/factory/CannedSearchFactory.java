@@ -72,6 +72,7 @@ public class CannedSearchFactory {
         module.setHippoBean(document);
         module.setTitle(document.getTitle());
         module.setDescription(document.getCopy());
+        module.setProductType("tour");
 
         URL documentToursSearchUrl;
         try {
