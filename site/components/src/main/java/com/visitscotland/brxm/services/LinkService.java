@@ -521,5 +521,4 @@ public class LinkService {
         return UriComponentsBuilder.fromUriString(url).build().getQueryParams().getFirst("v");
     }
 
-
 }

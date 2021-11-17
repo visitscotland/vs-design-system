@@ -15,6 +15,8 @@ import javax.jcr.query.QueryResult
  *
  * This Scripts acted also as a practice exercise for future Groovy Scripts
  *
+ * Use the following XPATH /jcr:root
+ *
  * @author jcalcines
  * @since November 2021
  * @version 0.0.1

@@ -7,6 +7,7 @@ import com.visitscotland.brxm.model.megalinks.*;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -82,7 +83,7 @@ public class MegalinkFactory {
         HorizontalListLinksModule hll = new HorizontalListLinksModule();
         hll.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("otyml", "otyml.title.default", locale)): doc.getTitle());
         hll.setIntroduction(doc.getIntroduction());
-        hll.setLinks(convertToEnhancedLinks(hll, doc.getMegalinkItems(), locale,true));
+        hll.setLinks(convertOTYMLToEnhancedLinks(hll, doc.getMegalinkItems(), locale,true));
 
         return hll;
     }
@@ -181,27 +182,48 @@ public class MegalinkFactory {
     List<EnhancedLink> convertToEnhancedLinks(Module<Megalinks> module, List<MegalinkItem> items, Locale locale, boolean addCategory) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
-            if (item.getLinkItem() == null) {
-                addError(module, "One of the Megalinks items contains an invalid reference");
-                contentLogger.warn("The module {} contains a link without any reference", item.getPath());
-            } else {
-                EnhancedLink link = null;
-                if (item.getLinkItem() instanceof Linkable) {
-                    link = linkService.createEnhancedLink((Linkable) item.getLinkItem(), module, locale, addCategory);
-                } else if (item.getLinkItem() instanceof VideoLink){
-                    link = linkService.createEnhancedLink(((VideoLink) item.getLinkItem()).getVideoLink(), module, locale, addCategory);
-                }
+            EnhancedLink link = convertToEnhancedLink(module, item.getLinkItem(), locale, addCategory);
 
-                if (link != null) {
-                    link.setFeatured(item.getFeature());
-                    links.add(link);
-                } else {
-                    addError(module, "One of the Megalink items cannot be recognized and will not be included in the page.");
-                    contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getLinkItem().getClass().getSimpleName());
-                }
+            if (link != null) {
+                link.setFeatured(item.getFeature());
+                links.add(link);
             }
         }
+
         return links;
+    }
+
+    private List<EnhancedLink> convertOTYMLToEnhancedLinks(Module<?> module, List<HippoBean> items, Locale locale, boolean addCategory) {
+        List<EnhancedLink> links = new ArrayList<>();
+        for (HippoBean item : items) {
+            links.add(convertToEnhancedLink(module, item, locale, addCategory));
+        }
+
+        // Remove nulls (if needed)
+        while (links.remove(null));
+
+        return links;
+    }
+
+    private EnhancedLink convertToEnhancedLink(Module<?> module, HippoBean item, Locale locale, boolean addCategory) {
+        EnhancedLink link = null;
+
+        if (item instanceof Linkable) {
+            link = linkService.createEnhancedLink((Linkable) item, module, locale, addCategory);
+        } else if (item instanceof VideoLink){
+            link = linkService.createEnhancedLink(((VideoLink) item).getVideoLink(), module, locale, addCategory);
+        } else if (item == null){
+            contentLogger.warn("One of the links seems contain no link");
+            return null;
+        }
+
+
+        if (link == null) {
+            addError(module, "One of the Megalink items cannot be recognized and will not be included in the page.");
+            contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getClass().getSimpleName());
+        }
+
+        return link;
     }
 
     private void addError(Module<Megalinks> module, String message){

@@ -136,7 +136,7 @@ public class MegalinkFactoryTest {
         assertEquals(0, factory.convertToEnhancedLinks(module, items, Locale.UK, false).size());
 
         verify(linkService, never()).createEnhancedLink(any(),any(), any(), anyBoolean());
-        assertEquals(2, module.getErrorMessages().size());
+        assertEquals(1, module.getErrorMessages().size());
     }
 
     @Test
