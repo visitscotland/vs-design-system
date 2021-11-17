@@ -26,16 +26,12 @@
         <meta http-equiv="content-language" content="${document.locale.language}" />
     </@hst.headContribution>
 
-
-
     <#-- HREFLANG TAG -->
-    <#if document.availableTranslations.translations?size gt 1>
-        <#list document.availableTranslations.translations as translation>
-            <@hst.headContribution category="seo">
-                <link rel="alternate" href="<@hst.link hippobean=translation fullyQualified=true/>"  hreflang="${translation.locale.language}"/>
-            </@hst.headContribution>
-        </#list>
-    </#if>
+    <#list translations as translation>
+        <@hst.headContribution category="seo">
+            <link rel="alternate" href="${translation.url}"  hreflang="${translation.locale.language}"/>
+        </@hst.headContribution>
+    </#list>
 
     <#-- TITLE TAG -->
     <@hst.headContribution category="seo">

@@ -38,6 +38,6 @@ public class MenuComponent extends EssentialsMenuComponent {
         super.doBeforeRender(request, response);
 
         request.setModel(MENU, factory.buildMenu(request, request.getModel(MENU)));
-        request.setModel(LOCALIZED_URLS, utils.getLocalizedURLs(request));
+        request.setModel(LOCALIZED_URLS, utils.getLocalizedURLs(request, false));
     }
 }
