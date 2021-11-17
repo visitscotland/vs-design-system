@@ -26,7 +26,7 @@
                         <VsIcon
                             name="close-circle"
                             variant="light"
-                            size="sm"
+                            size="md"
                         />
 
                         {{ closeBtnText }}
@@ -146,7 +146,7 @@ export default {
         }
 
         &:hover{
-            color: $color-pink;
+            color: $color-yellow;
         }
     }
 }
