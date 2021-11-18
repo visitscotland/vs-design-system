@@ -2,7 +2,8 @@
     <p
         class="text-truncate text-truncate--2 vs-canned-search-tour-departs"
     >
-        <b>{{ label }}:</b> {{ transformedOrigins }}
+        <span class="vs-canned-search-tour-departs__label">{{ label }}:</span>
+        {{ transformedOrigins }}
     </p>
 </template>
 
@@ -60,6 +61,10 @@ export default {
         font-size: $font-size-base;
         line-height: $line-height-s;
         margin-bottom: $spacer-1;
+
+        &__label {
+            font-weight: $font-weight-bold;
+        }
     }
 </style>
 
