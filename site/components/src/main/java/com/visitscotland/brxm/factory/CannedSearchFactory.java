@@ -88,6 +88,7 @@ public class CannedSearchFactory {
                 .path(DMSConstants.VS_DMS_CANNED_SEARCH_TOURS)
                 .query(toursSearchQueryString)
                 .queryParam("locale", locale.toLanguageTag())
+                .queryParam("limit", 24)
                 .build().toString();
 
         module.setCannedSearchEndpoint(dmsCannedSearchUrl);
