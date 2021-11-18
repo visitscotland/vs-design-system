@@ -1,0 +1,26 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:modules/ipfilter/hippo:moduleconfig/on-prem:
+      jcr:primaryType: hipposys:moduleconfig
+      allow-cms-users: true
+      allowed-ip-ranges: [127.0.0.1, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16]
+      cache-enabled: true
+      enabled: true
+      forwarded-for-header: X-Forwarded-For
+      hostnames: [localhost, 127.0.0.1, '0:0:0:0:0:0:0:1']
+      ignored-paths: [/autoreload, /ping/.*, ^/_rp/.*, ^/_cmsinternal/.*, ^/_targeting/.*,
+        ^/webfiles/.*, ^/binaries/.*, ^/images/.*, .*\.css, .*\.js, .*\.ico, .*\.css,
+        .*\.js, .*\.ico]
+      match-all: false
+    /hippo:configuration/hippo:modules/ipfilter/hippo:moduleconfig/br-cloud:
+      jcr:primaryType: hipposys:moduleconfig
+      allow-cms-users: true
+      allowed-ip-ranges: [127.0.0.1, 62.154.223.177]
+      cache-enabled: true
+      enabled: true
+      forwarded-for-header: X-Forwarded-For
+      hostnames: [localhost, 127.0.0.1, 62.254.223.177]
+      ignored-paths: [/autoreload, /ping/.*, ^/_rp/.*, ^/_cmsinternal/.*, ^/_targeting/.*,
+        ^/webfiles/.*, ^/binaries/.*, ^/images/.*, .*\.css, .*\.js, .*\.ico, .*\.css,
+        .*\.js, .*\.ico]
+      match-all: false
