@@ -10,21 +10,6 @@
                 ref="youtube"
             />
         </div>
-
-        <p
-            class="vs-video__duration"
-            data-test="vs-video-duration"
-            v-if="showDuration"
-        >
-            {{ duration.minutes }}:{{ pad(duration.seconds) }}
-        </p>
-        <p
-            class="vs-video__duration"
-            data-test="vs-video-rounded-duration"
-            v-if="showDuration"
-        >
-            {{ duration.roundedMinutes }}
-        </p>
     </div>
 </template>
 
@@ -49,6 +34,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import VueYoutube from 'vue-youtube';
 import Vue from 'vue';
+import videoStore from '../../../stores/video.store';
 
 Vue.use(VueYoutube, {
     global: false,
@@ -130,6 +116,7 @@ export default {
             } else {
                 this.showDuration = true;
                 this.formatTime(response);
+                this.storeVideoDetails();
             }
         });
 
@@ -205,6 +192,16 @@ export default {
             }
 
             return `0${toPad}`;
+        },
+        /**
+         * Send video details to Vuex store
+         */
+        storeVideoDetails() {
+            videoStore.dispatch('newVideoRef', {
+                id: this.videoId,
+                durationMsg: this.duration.roundedMinutes,
+                duration: (this.duration.minutes * 60) + this.duration.seconds,
+            });
         },
     },
 };
