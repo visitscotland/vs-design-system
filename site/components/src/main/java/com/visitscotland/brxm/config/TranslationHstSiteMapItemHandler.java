@@ -48,9 +48,10 @@ public class TranslationHstSiteMapItemHandler implements HstSiteMapItemHandler {
         requestContext.setResolvedMount(englishMount);
         ResolvedSiteMapItem englishSiteMapItem = englishMount.matchSiteMapItem("/" + resolvedSiteMapItem.getPathInfo());
         requestContext.setResolvedSiteMapItem(englishSiteMapItem);
-        if (!isPageNotFound(englishSiteMapItem)) {
+        boolean isNotFound = isPageNotFound(englishSiteMapItem);
+        requestContext.setResolvedMount(resolvedSiteMapItem.getResolvedMount());
+        if (!isNotFound) {
             // English content does exist - use translated mount with an english sitemap
-            requestContext.setResolvedMount(resolvedSiteMapItem.getResolvedMount());
             return englishSiteMapItem;
         }
         return resolvedSiteMapItem;
