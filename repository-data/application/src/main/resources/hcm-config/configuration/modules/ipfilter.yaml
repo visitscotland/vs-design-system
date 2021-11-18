@@ -3,11 +3,11 @@ definitions:
     /hippo:configuration/hippo:modules/ipfilter/hippo:moduleconfig/on-prem:
       jcr:primaryType: hipposys:moduleconfig
       allow-cms-users: true
-      allowed-ip-ranges: [127.0.0.1, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 172.29.11.17]
+      allowed-ip-ranges: [10\.0\.0\.0\/8, 172\.16\.0\.0\/12, 192\.168\.0\.0\/16, 172\.29\.11\.17]
       cache-enabled: true
       enabled: true
       forwarded-for-header: X-Forwarded-For
-      hostnames: [localhost, 127.0.0.1, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16,
+      hostnames: [10\.0\.0\.0\/8, 172\.16\.0\.0\/12, 192\.168\.0\.0\/16,
         172.29.11.17]
       ignored-paths: [/autoreload, /ping/.*, ^/_rp/.*, ^/_cmsinternal/.*, ^/_targeting/.*,
         ^/webfiles/.*, ^/binaries/.*, ^/images/.*, .*\.css, .*\.js, .*\.ico, .*\.css,
@@ -16,11 +16,11 @@ definitions:
     /hippo:configuration/hippo:modules/ipfilter/hippo:moduleconfig/br-cloud:
       jcr:primaryType: hipposys:moduleconfig
       allow-cms-users: true
-      allowed-ip-ranges: [127.0.0.1, 62.154.223.177]
+      allowed-ip-ranges: [62\.254\.223\.177, 72\.249\.144\.44]
       cache-enabled: true
       enabled: true
       forwarded-for-header: X-Forwarded-For
-      hostnames: [localhost, 127.0.0.1, 62.254.223.177]
+      hostnames: [62\.254\.223\.177, 72\.249\.144\.44]
       ignored-paths: [/autoreload, /ping/.*, ^/_rp/.*, ^/_cmsinternal/.*, ^/_targeting/.*,
         ^/webfiles/.*, ^/binaries/.*, ^/images/.*, .*\.css, .*\.js, .*\.ico, .*\.css,
         .*\.js, .*\.ico]
