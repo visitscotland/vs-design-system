@@ -13,8 +13,7 @@
                 <VsCol
                     cols="12"
                     lg="1"
-                    class="d-flex justify-content-end justify-content-lg-center
-                    order-lg-1 align-items-start"
+                    class="d-flex justify-content-end align-items-start order-lg-1"
                 >
                     <VsButton
                         class="vs-modal__close-btn mb-5 mb-lg-0"
@@ -102,13 +101,17 @@ export default {
         margin: $spacer-8 auto;
 
         @include media-breakpoint-up(sm) {
-            max-width: 528px;
-            margin: $spacer-7 auto;
+            max-width: none;
+            width: 100%;
         }
     }
 
     .modal-body{
-        padding: $spacer-4 $spacer-1;
+        padding: $spacer-5 $spacer-0;
+
+        @include media-breakpoint-up(sm) {
+            padding: $spacer-5 $spacer-2;
+        }
     }
 
     @include media-breakpoint-up(lg) {
@@ -176,9 +179,8 @@ export default {
             </VsCol>
 
             <VsCol
-                cols="12"
-                sm="10"
-                offset-sm="1"
+                cols="10"
+                offset="1"
             >
                 <VsRichTextWrapper>
                     <p>
