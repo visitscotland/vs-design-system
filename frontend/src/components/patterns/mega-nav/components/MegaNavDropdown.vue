@@ -12,7 +12,7 @@
                 <slot name="buttonContent" />
             </template>
 
-            <li role="presentation">
+            <li role="menuitem">
                 <VsContainer
                     fluid="lg"
                     class="px-0 px-lg-3"
