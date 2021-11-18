@@ -165,7 +165,7 @@ fi
 echo ""
 echo using sed to modify the copied server.xml
 echo " - before " `cat $CATALINA_BASE/conf/server.xml | egrep -b4 "Host name="`
-sed -i "s/\(.*\)\(<Host name=\"localhost\"\)/\1<Valve className=\"org.apache.catalina.valves.AccessLogValve\" directory=\"logs\"\n              prefix=\"engine_access_log\" suffix=\".txt\"\n              pattern=\"%h %l %u %t \&quot;%r\&quot; %s %b \&quot;Host i:%{Host}i\&quot;\" \/>\n\n\1\2/" $CATALINA_BASE/conf/server.xml
+sed -i "s/\(.*\)\(<Host name=\"localhost\"\)/\1<Valve className=\"org.apache.catalina.valves.AccessLogValve\" directory=\"logs\"\n              prefix=\"engine_access_log\" suffix=\".txt\"\n              pattern=\"%h %l %u %t \&quot;%r\&quot; %s %b \&quot;Host i:%{Host}i\&quot;\  \&quot;X-Forwarded-For i:%{X-Forwarded-For}i\&quot;\" \/>\n\n\1\2/" $CATALINA_BASE/conf/server.xml
 echo " - after  " `cat $CATALINA_BASE/conf/server.xml | egrep -b4 "Host name="`
 
 # use sed to modify the copied catalina.properties - store this in SCM too?
