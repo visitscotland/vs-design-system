@@ -2,14 +2,14 @@ package com.visitscotland.brxm.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.hippobeans.Image;
+import com.visitscotland.brxm.hippobeans.ImageData;
+import com.visitscotland.brxm.hippobeans.InstagramImage;
 import com.visitscotland.brxm.model.Coordinates;
 import com.visitscotland.brxm.model.FlatImage;
-import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.model.Module;
-import com.visitscotland.brxm.dms.LocationLoader;
-import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
@@ -18,7 +18,6 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.util.Locale;

@@ -7,6 +7,7 @@ import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.mock.SharedLinkMockBuilder;
+import com.visitscotland.brxm.mock.VideoMockBuilder;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
@@ -514,12 +515,6 @@ class LinkServiceTest {
         assertEquals("tel:+441311234567", service.createExternalLink(Locale.forLanguageTag(locale), "tel:+441311234567",null).getLink());
     }
 
-
-    @Test
-    void lala(){
-        assertEquals(Locale.FRANCE, Locale.forLanguageTag("fr-fr"));
-    }
-
     @Test
     @DisplayName("VS-2756 - Create a localized  External Link for a non-existing locale page")
     void createExternalLink_unrecognized_language(){
@@ -551,7 +546,7 @@ class LinkServiceTest {
     }
 
     @Test
-    @DisplayName("VS- Allow shared links to be recognized")
+    @DisplayName("Allow shared links to be recognized")
     void createSimpleLink(){
         SharedLink sl = new SharedLinkMockBuilder().externalDocument("title", "doc.pdf", null).build();
 
@@ -561,5 +556,44 @@ class LinkServiceTest {
 
         assertEquals("doc.pdf", link.getLink());
         assertEquals("title", link.getLabel());
+    }
+
+    //TODO
+    @Test
+    @DisplayName(("VS-2949 - Create video link to be used by Freemarker"))
+    void createVideo(){
+        Video video = new VideoMockBuilder().withImage().url("http://youtube.com?v=123")
+                .title("Title").teaser("Teaser").label("Enjoy the video").build();
+
+        EnhancedLink link = service.createVideo(video, null, null);
+
+        assertEquals("Title", link.getLabel());
+        assertEquals("Teaser", link.getTeaser());
+        assertEquals("Enjoy the video", link.getCta());
+        assertEquals("http://youtube.com?v=123", link.getLink());
+        assertEquals("123", link.getYoutubeId());
+        assertEquals(LinkType.VIDEO, link.getType());
+    }
+
+    @Test
+    @DisplayName(("VS-2935 - Allow videos for Megalinks Items"))
+    void enhancedLink_fromVideo(){
+        Video video = new VideoMockBuilder().url("youtu.be?v=1").build();
+
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false);
+
+        assertNotNull(link);
+        assertEquals("youtu.be?v=1", link.getLink());
+        assertEquals("1", link.getYoutubeId());
+        assertEquals(LinkType.VIDEO, link.getType());
+    }
+
+    @Test
+    @DisplayName(("VS-2935 - Allow videos for Megalinks Items"))
+    void getPlainLink_fromVideo(){
+        Video video = new VideoMockBuilder().url("https://www.youtube.com/watch?v=h9bQwcndGfo").build();
+
+        assertEquals("https://www.youtube.com/watch?v=h9bQwcndGfo", service.getPlainLink(Locale.UK, video,null));
+        assertEquals("https://www.youtube.com/watch?v=h9bQwcndGfo", service.getPlainLink(Locale.FRANCE, video,null));
     }
 }

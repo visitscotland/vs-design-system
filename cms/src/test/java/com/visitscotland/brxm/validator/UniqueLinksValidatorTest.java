@@ -52,7 +52,6 @@ class UniqueLinksValidatorTest {
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "a").build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "a").build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "b").build()).build();
-        when(toValidate.hasNode("links")).thenReturn(true);
 
         Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
         Assertions.assertTrue(validationResult.isPresent());
@@ -66,7 +65,6 @@ class UniqueLinksValidatorTest {
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "a").build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "b").build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("different", "b").build()).build();
-        when(toValidate.hasNode("links")).thenReturn(true);
 
         Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
         Assertions.assertFalse(validationResult.isPresent());
@@ -80,7 +78,6 @@ class UniqueLinksValidatorTest {
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", JcrConstants.ROOT_NODE_ID).build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", JcrConstants.ROOT_NODE_ID).build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("different", "b").build()).build();
-        when(toValidate.hasNode("links")).thenReturn(true);
 
         Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
         Assertions.assertFalse(validationResult.isPresent());
@@ -95,7 +92,6 @@ class UniqueLinksValidatorTest {
                 .withChildNode("links", new MockNodeBuilder().withProperty("id", "b").build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "c").build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "c").build()).build();
-        when(toValidate.hasNode("links")).thenReturn(true);
 
         Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
         Assertions.assertFalse(validationResult.isPresent());
@@ -111,7 +107,6 @@ class UniqueLinksValidatorTest {
                 .withChildNode("links", new MockNodeBuilder().withProperty("id", "a").build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "a").build())
                 .withChildNode("links", new MockNodeBuilder().withProperty("hippo:docbase", "b").build()).build();
-        when(toValidate.hasNode("links")).thenReturn(true);
 
         Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
         Assertions.assertTrue(validationResult.isPresent());
@@ -120,21 +115,15 @@ class UniqueLinksValidatorTest {
     @DisplayName("When linkIdField is node & non-unique links provided, validation fails")
     @Test
     void linkIdIsNode_nonUniqueFails() throws Exception {
-        
-
         Node config = new MockNodeBuilder().withProperty("targetField", "links").withProperty("linkIdField", "child").build();
+
         Node aNode = new MockNodeBuilder().withProperty("hippo:docbase", "a").build();
         Node bNode = new MockNodeBuilder().withProperty("hippo:docbase", "a").build();
-        Node linkAChild = mock(Node.class);
-        Node linkBChild = mock(Node.class);
-        when(linkAChild.getNode("child")).thenReturn(aNode);
-        when(linkBChild.getNode("child")).thenReturn(bNode);
+        Node linkAChild = new MockNodeBuilder().withChildNode("child", aNode).build();
+        Node linkBChild = new MockNodeBuilder().withChildNode("child", bNode).build();
         Node toValidate = new MockNodeBuilder()
                 .withChildNode("links", linkAChild)
                 .withChildNode("links", linkBChild).build();
-        when(toValidate.hasNode("links")).thenReturn(true);
-        when(linkAChild.hasNode("child")).thenReturn(true);
-        when(linkBChild.hasNode("child")).thenReturn(true);
 
         Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
         Assertions.assertTrue(validationResult.isPresent());
@@ -144,18 +133,14 @@ class UniqueLinksValidatorTest {
     @Test
     void linkIdIsNode_uniquePasses() throws Exception {
         Node config = new MockNodeBuilder().withProperty("targetField", "links").withProperty("linkIdField", "child").build();
+
         Node aNode = new MockNodeBuilder().withProperty("hippo:docbase", "a").build();
         Node bNode = new MockNodeBuilder().withProperty("hippo:docbase", "b").build();
-        Node linkAChild = mock(Node.class);
-        Node linkBChild = mock(Node.class);
-        when(linkAChild.getNode("child")).thenReturn(aNode);
-        when(linkBChild.getNode("child")).thenReturn(bNode);
+        Node linkAChild = new MockNodeBuilder().withChildNode("child", aNode).build();
+        Node linkBChild = new MockNodeBuilder().withChildNode("child", bNode).build();
         Node toValidate = new MockNodeBuilder()
                 .withChildNode("links", linkAChild)
                 .withChildNode("links", linkBChild).build();
-        when(toValidate.hasNode("links")).thenReturn(true);
-        when(linkAChild.hasNode("child")).thenReturn(true);
-        when(linkBChild.hasNode("child")).thenReturn(true);
 
         Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
         Assertions.assertFalse(validationResult.isPresent());
@@ -197,9 +182,6 @@ class UniqueLinksValidatorTest {
                 .withChildNode("links", container1)
                 .withChildNode("links", container2).build();
 
-        when(container1.getNode("child")).thenReturn(link1);
-        when(container2.getNode("child")).thenReturn(link2);
-
         Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
         Assertions.assertFalse(validationResult.isPresent());
     }
@@ -218,11 +200,6 @@ class UniqueLinksValidatorTest {
         Node toValidate = new MockNodeBuilder()
                 .withChildNode("links", container1)
                 .withChildNode("links", container2).build();
-
-//
-//        when(container1.getNode("child")).thenReturn(link1);
-//        when(container2.getNode("child")).thenReturn(link2);
-
 
         Optional<Violation> validationResult = new UniqueLinksValidator(config).validate(context, toValidate);
         Assertions.assertTrue(validationResult.isPresent());
