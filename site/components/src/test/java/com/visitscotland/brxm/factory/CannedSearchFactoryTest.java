@@ -125,7 +125,7 @@ class CannedSearchFactoryTest {
 
         CannedSearchModule module = factory.getCannedSearchToursModule(tours, Locale.UK);
 
-        String expectedDmsUrl = "http://dms-host" + DMSConstants.VS_DMS_CANNED_SEARCH_TOURS + "?prodtypes=tour&origins%5B%5D=edinburgh&when=february&source=tms&locale=en-GB";
+        String expectedDmsUrl = "http://dms-host" + DMSConstants.VS_DMS_CANNED_SEARCH_TOURS + "?prodtypes=tour&origins%5B%5D=edinburgh&when=february&source=tms&locale=en-GB&limit=24";
         Assertions.assertEquals("title", module.getTitle());
         Assertions.assertEquals("copy", module.getDescription().getContent());
         Assertions.assertEquals(expectedDmsUrl, module.getCannedSearchEndpoint());
