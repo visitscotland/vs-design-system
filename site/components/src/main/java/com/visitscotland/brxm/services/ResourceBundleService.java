@@ -175,18 +175,26 @@ public class ResourceBundleService {
     }
 
     /**
-     * Returns the default CTA label when the manual CTA  is not defined.     *
+     * Returns the default global label or the override Text when that is defined
      *
-     * @param manualCta Manual CTA defined in the CMS
+     * @param overrideText Manual CTA defined in the CMS
+     * @param bundleKey key of the label in the essentials.global Resource Bundle File
      * @param locale    Locale
      * @return the manual CTA if provided otherwise the default CTA
      */
-    public String getCtaLabel(String manualCta, Locale locale) {
-        if (!Contract.isEmpty(manualCta)) {
-            return manualCta;
+    public String getCtaLabel(String overrideText, String bundleKey, Locale locale) {
+        if (!Contract.isEmpty(overrideText)) {
+            return overrideText;
         } else {
-            return getResourceBundle("essentials.global","button.find-out-more",  locale);
+            return getResourceBundle("essentials.global", bundleKey,  locale);
         }
     }
 
+    public String getCtaLabel(String overrideText, Locale locale) {
+        return getCtaLabel(overrideText, "button.find-out-more", locale);
+    }
+
+    public String getVideoCtaLabel(String overrideText, Locale locale){
+        return getCtaLabel(overrideText, "video.default-caption", locale);
+    }
 }

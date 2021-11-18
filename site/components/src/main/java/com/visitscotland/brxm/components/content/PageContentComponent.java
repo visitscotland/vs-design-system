@@ -63,7 +63,6 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
         FlatImage heroImage = imageFactory.createImage(getDocument(request).getHeroImage(), introModule, request.getLocale());
         request.setAttribute(HERO_IMAGE, heroImage);
 
-        //TODO: Confirm what image will go in the hero image
         if (getDocument(request).getHeroVideo() != null) {
             EnhancedLink video = linksService.createVideo(getDocument(request).getHeroVideo().getVideoLink(), introModule, request.getLocale());
             request.setAttribute(HERO_VIDEO, video);

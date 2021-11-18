@@ -510,7 +510,7 @@ public class LinkService {
         videoLink.setLabel(video.getTitle());
         videoLink.setTeaser(video.getTeaser());
         videoLink.setLink(video.getUrl());
-        videoLink.setCta(video.getLabel());
+        videoLink.setCta(bundle.getVideoCtaLabel(video.getLabel(), locale));
         videoLink.setYoutubeId(getYoutubeId(video.getUrl()));
         videoLink.setType(LinkType.VIDEO);
 
