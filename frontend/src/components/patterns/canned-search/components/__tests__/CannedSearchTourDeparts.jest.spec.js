@@ -37,5 +37,12 @@ describe('VsCannedSearchTourDeparts', () => {
                 expect(wrapper.html()).toContain(origins[x].name);
             }
         });
+
+        it('should properly render the origins as the `transformedOrigins` computed prop', () => {
+            const wrapper = factoryShallowMount();
+            const expectedOutput = 'Edinburgh, Glasgow, Kilmartin';
+
+            expect(wrapper.html()).toContain(expectedOutput);
+        });
     });
 });
