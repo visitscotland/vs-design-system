@@ -565,6 +565,7 @@ class LinkServiceTest {
         Video video = new VideoMockBuilder().withImage().url("http://youtube.com?v=123")
                 .title("Title").teaser("Teaser").label("Enjoy the video").build();
 
+        when(resourceBundle.getVideoCtaLabel(any(), any())).thenReturn("Enjoy the video");
         EnhancedLink link = service.createVideo(video, null, null);
 
         assertEquals("Title", link.getLabel());
