@@ -170,7 +170,7 @@ class DocumentUtilsServiceTest {
         when(utils.createUrl(any(), anyBoolean())).thenReturn(TRANSLATED_URL);
         when(utils.getContentBeanWithTranslationFallback(any())).thenReturn(Optional.of(document));
 
-        List<LocalizedURL> list = documentUtils.getLocalizedURLs(request, false);
+        List<LocalizedURL> list = documentUtils.getLocalizedURLs(request);
 
         assertEquals(AVAILABLE_LANGUAGES, list.size());
 
@@ -194,7 +194,7 @@ class DocumentUtilsServiceTest {
         when(utils.createUrl(any(), anyBoolean())).thenReturn(ENGLISH_URL);
         when(utils.getContentBeanWithTranslationFallback(any())).thenReturn(Optional.of(document));
 
-        List<LocalizedURL> list = documentUtils.getLocalizedURLs(request, false);
+        List<LocalizedURL> list = documentUtils.getLocalizedURLs(request);
 
         //It should not compose the URL for the English version
         verify(properties, times(AVAILABLE_LANGUAGES-1)).getCmsBasePath();

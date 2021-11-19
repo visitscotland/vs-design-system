@@ -27,7 +27,7 @@
     </@hst.headContribution>
 
     <#-- HREFLANG TAG -->
-    <#if document.availableTranslations?size gt 1>
+    <#if document.orderedTranslations?size gt 1>
         <#list document.orderedTranslations as translation>
             <@hst.headContribution category="seo">
                 <link rel="alternate" href="<@hst.link hippobean=translation fullyQualified=true/>"  hreflang="${translation.locale.language}"/>

@@ -111,7 +111,7 @@ public class DocumentUtilsService {
 
 
 
-    public List<LocalizedURL> getLocalizedURLs(HstRequest request, boolean fullyQualifyUrls) {
+    public List<LocalizedURL> getLocalizedURLs(HstRequest request) {
         List<LocalizedURL> translatedURL = new ArrayList<>(Language.values().length);
 
         Optional<HippoBean> contentBean = utils.getContentBeanWithTranslationFallback(request);
@@ -132,7 +132,7 @@ public class DocumentUtilsService {
                     }
                 }
 
-                if (translation instanceof Page && !fullyQualifyUrls) {
+                if (translation instanceof Page) {
                     lan.setUrl(utils.createUrl((Page) translation, false));
                     lan.setExists(true);
                 } else {
@@ -182,7 +182,7 @@ public class DocumentUtilsService {
     private String composeNonExistingLanguageURL(Locale locale, HstRequest request){
         String languagePath = "";
 
-        if (locale != null && locale != Locale.UK) {
+        if (locale != null) {
             languagePath += "/" + locale.getLanguage();
         }
 

@@ -24,12 +24,10 @@ public class VsBreadcrumbComponent extends CommonComponent {
     final String REQUESTED_URI = "requestedURI";
     final String IS_HOME = "isHome";
     final String BREADCRUMB = "breadcrumb";
-    final String TRANSLATIONS = "translations";
     final String DOCUMENT = "document";
 
     private VsBreadCrumbProvider breadcrumbProvider;
     private HippoUtilsService hippoUtilsService;
-    private DocumentUtilsService documentUtilsService;
 
     public void doBeforeRender(HstRequest request, HstResponse response) throws HstComponentException {
         super.doBeforeRender(request, response);
@@ -40,8 +38,6 @@ public class VsBreadcrumbComponent extends CommonComponent {
         request.setAttribute(IS_HOME, "root".equals(request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getId()));
         //Breadcrumb Items list
         request.setAttribute(BREADCRUMB, this.breadcrumbProvider.getBreadcrumb(request));
-        // URLS for all translations for SEO link type=alternative
-        request.setAttribute(TRANSLATIONS, documentUtilsService.getLocalizedURLs(request, true));
         //Main document for the page
         setDocument(request);
     }
@@ -59,7 +55,6 @@ public class VsBreadcrumbComponent extends CommonComponent {
         super.init(servletContext, componentConfig);
         this.breadcrumbProvider = new VsBreadCrumbProvider(this);
         this.hippoUtilsService = VsComponentManager.get(HippoUtilsService.class);
-        this.documentUtilsService = VsComponentManager.get(DocumentUtilsService.class);
     }
 
 }
