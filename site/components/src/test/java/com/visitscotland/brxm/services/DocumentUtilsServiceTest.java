@@ -1,11 +1,7 @@
 package com.visitscotland.brxm.services;
 
-import com.visitscotland.brxm.hippobeans.BaseDocument;
-import com.visitscotland.brxm.hippobeans.Listicle;
-import com.visitscotland.brxm.hippobeans.ListicleItem;
-import com.visitscotland.brxm.hippobeans.Page;
+import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.model.LocalizedURL;
-import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
@@ -16,15 +12,16 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.web.servlet.support.RequestContext;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -213,5 +210,45 @@ class DocumentUtilsServiceTest {
             }
         }
     }
+
+    @Test
+    @DisplayName("Translations sorted by SEO order")
+    void sortTranslationsBySeoOrdering() {
+        when(bundle.getResourceBundle("channel", "seo.alternate-link-locale-order", Locale.UK)).thenReturn("en,fr,es");
+        General englishDoc = mock(General.class);
+        when(englishDoc.getLocale()).thenReturn(Locale.UK);
+        General frenchDoc = mock(General.class);
+        when(frenchDoc.getLocale()).thenReturn(Locale.FRANCE);
+        General spanishDoc = mock(General.class);
+        when(spanishDoc.getLocale()).thenReturn(Language.SPANISH.getLocale());
+
+        List<General> sorted = documentUtils.sortTranslationsForSeo(Arrays.asList(frenchDoc, spanishDoc, englishDoc));
+
+        assertEquals(Locale.UK, sorted.get(0).getLocale());
+        assertEquals(Locale.FRANCE, sorted.get(1).getLocale());
+        assertEquals(Language.SPANISH.getLocale(), sorted.get(2).getLocale());
+    }
+
+    @ParameterizedTest
+    @DisplayName("When alternate link locale order property is invalid, no sorting occurs")
+    @NullSource
+    @ValueSource(strings = {"", "en,fr", "notalocale"})
+    void sortTranslations_invalidSeoProperty(String seoProperty) {
+        when(bundle.getResourceBundle("channel", "seo.alternate-link-locale-order", Locale.UK)).thenReturn(seoProperty);
+        General englishDoc = mock(General.class);
+        when(englishDoc.getLocale()).thenReturn(Locale.UK);
+        General frenchDoc = mock(General.class);
+        when(frenchDoc.getLocale()).thenReturn(Locale.FRANCE);
+        General spanishDoc = mock(General.class);
+        when(spanishDoc.getLocale()).thenReturn(Language.SPANISH.getLocale());
+
+        List<General> sorted = documentUtils.sortTranslationsForSeo(Arrays.asList(frenchDoc, spanishDoc, englishDoc));
+
+        // Ordering not changed
+        assertEquals(Locale.UK, sorted.get(2).getLocale());
+        assertEquals(Locale.FRANCE, sorted.get(0).getLocale());
+        assertEquals(Language.SPANISH.getLocale(), sorted.get(1).getLocale());
+    }
+
 
 }

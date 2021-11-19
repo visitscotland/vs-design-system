@@ -1,5 +1,7 @@
 package com.visitscotland.brxm.hippobeans;
 
+import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.services.DocumentUtilsService;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocument;
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 public class BaseDocument extends HippoDocument {
 
     private static final Logger logger = LoggerFactory.getLogger(BaseDocument.class.getName());
+    private final DocumentUtilsService documentUtils = VsComponentManager.get(DocumentUtilsService.class);
 
     public String getPrimaryType() {
         try {
@@ -53,4 +56,12 @@ public class BaseDocument extends HippoDocument {
                 }
         ).collect(Collectors.toList());
     }
+
+    /**
+     * Order the translations by the SEO defined ordering
+     */
+    public <B extends BaseDocument> List<B> getOrderedTranslations(){
+        return documentUtils.sortTranslationsForSeo(getAvailableTranslations(BaseDocument.class).getTranslations());
+    }
+
 }
