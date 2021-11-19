@@ -41,7 +41,7 @@
                 <template slot="vsIntroHero">
                     <#if (heroVideo)??>
 
-                        <#-- Youtube video Data
+                        <!-- Youtube video Data
                             youtubeID="${heroVideo.youtubeId}" <
                             title="${heroVideo.label}"
                             teaser="${heroVideo.teaser}"
