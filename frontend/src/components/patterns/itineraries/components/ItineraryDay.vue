@@ -228,15 +228,23 @@ export default {
                     class="list-inline-item"
                     v-for="(transportType, transportTypeIndex) in day.transport"
                 >
-                    <VsTooltip :title="transportType.value">
-                        <vs-icon
-                            :name="transportType.key"
-                            variant="dark"
-                            size="md"
-                            smallSize="xs"
-                        />
-                    </VsTooltip>
-                    <span class="sr-only">{{transportType.value}}</span>
+                    <VsButton
+                        :id="`transport-icon-${transportType.key}`"
+                        tabindex="0"
+                        href="#"
+                        :icon="transportType.key"
+                        size="lg"
+                        icon-only
+                        icon-variant-override="dark"
+                        class="p-0"
+                        variant="transparent"
+                    >
+                        <span class="sr-only">{{transportType.value}}</span>
+                    </VsButton>
+                    <VsTooltip
+                        :target="`transport-icon-${transportType.key}`"
+                        :title="transportType.value"
+                    />
                 </dd>
             </VsDescriptionList>
 
