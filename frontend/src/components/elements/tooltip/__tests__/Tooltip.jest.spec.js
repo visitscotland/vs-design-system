@@ -9,34 +9,24 @@ const factoryShallowMount = (propsData) => shallowMount(VsTooltip, {
         default: slotText,
     },
     propsData: {
+        title: 'Bus',
         ...propsData,
     },
 });
 
-describe('VsPrototype', () => {
-    it('should render a span with the class `vs-tooltip`', () => {
+describe('VsTooltip', () => {
+    it('should render a btooltip-stub element', () => {
         const wrapper = factoryShallowMount();
+        const tooltip = wrapper.find('btooltip-stub');
 
-        expect(wrapper.element.tagName).toBe('SPAN');
-        expect(wrapper.classes('vs-tooltip')).toBe(true);
+        expect(tooltip.exists()).toBe(true);
     });
 
     describe(':props', () => {
         it(':title - should accept and render an `title` property', () => {
-            const testTitle = 'A Test Title';
-            const wrapper = factoryShallowMount({
-                title: testTitle,
-            });
-
-            expect(wrapper.attributes('title')).toBe(testTitle);
-        });
-    });
-
-    describe(':slots', () => {
-        it('renders content inserted into default `slot`', () => {
             const wrapper = factoryShallowMount();
 
-            expect(wrapper.text()).toContain(slotText);
+            expect(wrapper.attributes('title')).toBe('Bus');
         });
     });
 });
