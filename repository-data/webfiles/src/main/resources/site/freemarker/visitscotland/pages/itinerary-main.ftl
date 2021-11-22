@@ -58,14 +58,30 @@
                         <#-- 
                             Note - can't use vs-description-list-item
                             here yet as font style and layout are different 
+                            #VS-2985
                         -->
                         <dt class="list-inline-item">${label("itinerary", "transport")}:</dt>
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
-                                <vs-tooltip title="${label("transports", "${transport}")}">
-                                    <vs-icon name="${transport}" variant="dark" size="md" small-size="xs"></vs-icon>
-                                </vs-tooltip>
-                                <span class="sr-only">${label("transports", "${transport}")}</span>
+                                <vs-button
+                                    id="transport-${dayNumber}-${transport}"
+                                    tabindex="0"
+                                    href="#"
+                                    icon="${transport}"
+                                    size="lg"
+                                    icon-only
+                                    icon-variant-override="dark"
+                                    class="p-0"
+                                    variant="transparent"
+                                >
+                                    <span class="sr-only">
+                                        ${label("transports", "${transport}")}
+                                    </span>
+                                </vs-button>
+                                <vs-tooltip
+                                    target="transport-${dayNumber}-${transport}"
+                                    title="${label('transports', '${transport}')}"
+                                ></vs-tooltip>
                             </dd>
                         </#list>
                     </vs-description-list>
