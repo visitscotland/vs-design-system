@@ -65,7 +65,6 @@
                             <dd class="list-inline-item">
                                 <vs-button
                                     id="transport-${dayNumber}-${transport}"
-                                    tabindex="0"
                                     href="#"
                                     icon="${transport}"
                                     size="lg"
