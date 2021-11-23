@@ -51,22 +51,6 @@ class VideoMegalinks extends BaseNodeUpdateVisitor {
         }
     }
 
-//    void fixMegalinksv1(Session session) {
-//        NodeIterator it = query(session,"//content/documents//element(*, visitscotland:MegalinkItem)")
-//
-//        while (it.hasNext()){
-//            Node n = it.next()
-//            log.debug n.getPath()
-//            if (n.hasNode("visitscotland:link")) {
-//                if (n.hasNode("visitscotland:links")) {
-//                    session.removeItem(n.getNode("visitscotland:link").getPath())
-//                } else {
-//                    session.move(n.getNode("visitscotland:link").getPath(), n.getPath() + "/visitscotland:links")
-//                }
-//            }
-//        }
-//    }
-
     void fixOTYML(Session session) {
         NodeIterator it = query(session,"//content/documents//element(*, visitscotland:OTYML)")
 
@@ -105,11 +89,11 @@ class VideoMegalinks extends BaseNodeUpdateVisitor {
 
     @Override
     boolean doUpdate(Node node) {
+        fixOTYML(node.session);
+
         fixArticle(node.session);
         fixStop(node.session)
         fixMegalinks(node.session);
-        fixOTYML(node.session);
-//        fixMegalinksv1(node.session);
         return true;
     }
 
