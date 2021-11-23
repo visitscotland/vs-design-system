@@ -36,8 +36,6 @@ public class BaseDocument extends HippoDocument {
         }
     }
 
-
-
     /**
      * There is an existing issue in BloomReach affecting only images where they are not correctly mapped. This method
      * works as a workaround to that issue

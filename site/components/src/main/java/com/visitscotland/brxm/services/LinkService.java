@@ -117,8 +117,8 @@ public class LinkService {
         LinkType linkType = getType(url);
         String localizedUrl = processURL(locale, url);
 
-        if (locale != Locale.UK && url != null && url.equals(localizedUrl) && linkType == LinkType.INTERNAL && !url.startsWith("#")) {
-            logger.error("The URL {} could not be localized", url);
+        if (!locale.equals(Locale.UK) && url != null && url.equals(localizedUrl) && linkType == LinkType.INTERNAL && !url.startsWith("#")) {
+            logger.warn("The URL {} could not be localized", url);
         }
 
         return new FlatLink(label, localizedUrl, linkType);
@@ -449,7 +449,7 @@ public class LinkService {
     private EnhancedLink enhancedLinkFromVideo(Video video, Module<?> module, Locale locale, boolean addCategory) {
         EnhancedLink link = createVideo(video, module, locale);
 
-        //TODO: Confirm requirements for Videos in HorizontalLinks
+        //TODO: Confirm requirements for Videos in HorizontalLinks VS-2086 indicates that no category is needed but we need to wait for the final designs before taking action.
         if (addCategory){
             link.setCategory("Video");
             module.addErrorMessage("This module should not contain a Video Link");

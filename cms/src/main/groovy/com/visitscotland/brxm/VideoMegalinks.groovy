@@ -23,21 +23,49 @@ import javax.jcr.query.QueryResult
  */
 class VideoMegalinks extends BaseNodeUpdateVisitor {
 
-    void fixMegalinks(Session session) {
-        NodeIterator it = query(session,"//content/documents//element(*, visitscotland:MegalinkItem)")
+    void fixArticle(Session session){
+        renameField(session, "Article", "image", "media");
+    }
+
+    void fixStop(Session session){
+        renameField(session, "Stop", "image", "media");
+    }
+
+    void fixMegalinks(Session session){
+        renameField(session, "MegalinkItem", "link", "links");
+    }
+
+    void renameField(Session session, String targetDocument, String fromField, String toField) {
+        NodeIterator it = query(session,"//content/documents//element(*, visitscotland:${targetDocument})")
 
         while (it.hasNext()){
             Node n = it.next()
             log.debug n.getPath()
-            if (n.hasNode("visitscotland:link")) {
-                if (n.hasNode("visitscotland:links")) {
-                    session.removeItem(n.getNode("visitscotland:link").getPath())
+            if (n.hasNode("visitscotland:${fromField}")) {
+                if (n.hasNode("visitscotland:${toField}")) {
+                    session.removeItem(n.getNode("visitscotland:${fromField}").getPath())
                 } else {
-                    session.move(n.getNode("visitscotland:link").getPath(), n.getPath() + "/visitscotland:links")
+                    session.move(n.getNode("visitscotland:${fromField}").getPath(), n.getPath() + "/visitscotland:${toField}")
                 }
             }
         }
     }
+
+//    void fixMegalinksv1(Session session) {
+//        NodeIterator it = query(session,"//content/documents//element(*, visitscotland:MegalinkItem)")
+//
+//        while (it.hasNext()){
+//            Node n = it.next()
+//            log.debug n.getPath()
+//            if (n.hasNode("visitscotland:link")) {
+//                if (n.hasNode("visitscotland:links")) {
+//                    session.removeItem(n.getNode("visitscotland:link").getPath())
+//                } else {
+//                    session.move(n.getNode("visitscotland:link").getPath(), n.getPath() + "/visitscotland:links")
+//                }
+//            }
+//        }
+//    }
 
     void fixOTYML(Session session) {
         NodeIterator it = query(session,"//content/documents//element(*, visitscotland:OTYML)")
@@ -50,7 +78,7 @@ class VideoMegalinks extends BaseNodeUpdateVisitor {
                 Node link = links.next()
                 if (link.hasNode("visitscotland:link")) {
                     log.info "Converting ${link.getPath()}"
-                    session.move(link.getPath() + "/visitscotland:link", n.getPath() + "/visitscotland:links")
+                    session.move(link.getNode("visitscotland:link").getPath(), n.getPath() + "/visitscotland:links")
                     session.removeItem(link.getPath())
                 }
             }
@@ -77,8 +105,11 @@ class VideoMegalinks extends BaseNodeUpdateVisitor {
 
     @Override
     boolean doUpdate(Node node) {
+        fixArticle(node.session);
+        fixStop(node.session)
         fixMegalinks(node.session);
         fixOTYML(node.session);
+//        fixMegalinksv1(node.session);
         return true;
     }
 

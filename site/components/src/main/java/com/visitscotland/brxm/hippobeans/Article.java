@@ -20,22 +20,14 @@ public class Article extends BaseDocument {
         return getSingleProperty("visitscotland:anchor");
     }
 
-    /**
-     * @deprecated Remove after all Video Adjustments are done
-     */
-    @Deprecated
-    @HippoEssentialsGenerated(internalName = "visitscotland:image")
-    public Image getImage() {
-        return getLinkedBean("visitscotland:image", Image.class);
-    }
-
-    public HippoBean getMediaItem(){
-        return getOnlyChild(getMedia());
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:media", allowModifications = false)
     public List<HippoBean> getMedia() {
         return getMedia("visitscotland:media");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:media", allowModifications = false)
+    public Image getImage() {
+        return getLinkedBean("visitscotland:media", Image.class);
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:copy")
