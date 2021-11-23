@@ -279,6 +279,11 @@ Hippo.Reports.typeFilterComboConfig = {
                 store.insert(0, new Ext.data.Record({
                     value: "All documents",
                 }, "All documents"))
+                // Remove Translated filter as it will always return no results
+                const translated = store.find("value", "Translated")
+                if (translated > -1) {
+                    store.removeAt(translated)
+                }
             }
         }
     }),

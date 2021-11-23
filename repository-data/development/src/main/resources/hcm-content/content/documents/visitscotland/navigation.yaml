@@ -1,16 +1,16 @@
 /content/documents/visitscotland/navigation:
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-  jcr:uuid: b4c8daf1-c094-4bca-9107-313ded4f6604
-  hippostd:foldertype: [new-untranslated-folder-navigation, new-widget]
-  hippotranslation:id: 63c04b3c-8daa-4f3c-9dd0-337a2c5205bb
+  jcr:uuid: 1b6d542b-f2f4-46bb-8317-1e81a4acfdd4
+  hippostd:foldertype: [new-translated-folder, new-page, new-module]
+  hippotranslation:id: 8de6d25e-555f-43a2-b31d-b56bf71d01ba
   hippotranslation:locale: en
   /inspiration---feature-widget:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 6f97356d-ecd8-493c-a97a-bcee0856ac19
     hippo:name: Inspiration - Feature Widget
-    hippo:versionHistory: 43b0a846-5fcd-45d7-afab-e32efbe308d2
+    hippo:versionHistory: 13b3ba88-3de2-497b-9f00-f1eafc8f9008
     /inspiration---feature-widget[1]:
       jcr:primaryType: visitscotland:FeaturedWidget
       jcr:mixinTypes: ['mix:referenceable']
@@ -98,7 +98,7 @@
       hippostdpubwf:creationDate: 2021-05-12T10:08:23.582+01:00
       hippostdpubwf:lastModificationDate: 2021-06-16T16:59:03.362+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-06-16T16:59:18.003+01:00
+      hippostdpubwf:publicationDate: 2021-11-10T13:13:42.316Z
       hippotranslation:id: 096dd137-b94b-44f6-822c-661ae7e40261
       hippotranslation:locale: en
       visitscotland:translation: ''
@@ -131,7 +131,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: ec367ec1-6629-400b-b139-8a1296ba38e3
     hippo:name: Accommodation - Featured Items
-    hippo:versionHistory: f2ee1de3-4704-4b7a-9317-c6bcf2468891
+    hippo:versionHistory: 702bcba6-330e-47a7-ab54-5ca38d328460
     /accommodation[1]:
       jcr:primaryType: visitscotland:FeaturedWidget
       jcr:mixinTypes: ['mix:referenceable']
@@ -207,7 +207,7 @@
       hippostdpubwf:creationDate: 2021-05-12T10:36:26.808+01:00
       hippostdpubwf:lastModificationDate: 2021-06-18T14:07:04.939+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-06-18T14:07:09.429+01:00
+      hippostdpubwf:publicationDate: 2021-11-10T13:13:44.658Z
       hippotranslation:id: 08436592-a50e-4c5b-b387-8be9f6b9a8cf
       hippotranslation:locale: en
       visitscotland:translation: ''
