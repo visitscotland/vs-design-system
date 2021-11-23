@@ -1,17 +1,20 @@
 <template>
-    <BTooltip
-        :target="target"
+    <VsButton
+        v-bind="$attrs"
+        v-b-tooltip.hover
+        class="vs-tooltip d-inline-block position-relative"
         :title="title"
-        data-test="vs-tooltip"
-        custom-class="vs-tooltip"
-    />
+    >
+        <slot />
+    </VsButton>
 </template>
 
 <script>
-import { BTooltip } from 'bootstrap-vue';
+import { VBTooltip } from 'bootstrap-vue';
+import VsButton from '@components/elements/button/Button';
 /**
- * A tootlip to be used with a focusable element
- * e.g a button, link or input
+ * A button that renders a tooltip on hover or focus
+ * of the element
  *
  * @displayName Tooltip
  */
@@ -21,14 +24,13 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        BTooltip,
+        VsButton,
+    },
+    directives: {
+        'b-tooltip': VBTooltip,
     },
     props: {
         title: {
-            type: String,
-            default: '',
-        },
-        target: {
             type: String,
             default: '',
         },
@@ -40,9 +42,8 @@ export default {
 
 <docs>
   ```jsx
-    <VsButton
-        id="link-button"
-        tabindex="0"
+    <VsTooltip
+        title="This is a bus icon"
         href="#"
         icon="bus"
         size="lg"
@@ -50,7 +51,6 @@ export default {
         icon-variant-override="dark"
         class="p-0"
         variant="transparent"
-      />
-    <VsTooltip target="link-button" title="Bus"></VsTooltip>
+    />
   ```
 </docs>

@@ -228,9 +228,8 @@ export default {
                     class="list-inline-item"
                     v-for="(transportType, transportTypeIndex) in day.transport"
                 >
-                    <VsButton
-                        :id="`transport-icon-${transportType.key}`"
-                        tabindex="0"
+                    <VsTooltip
+                        :title="transportType.value"
                         href="#"
                         :icon="transportType.key"
                         size="lg"
@@ -239,12 +238,10 @@ export default {
                         class="p-0"
                         variant="transparent"
                     >
-                        <span class="sr-only">{{transportType.value}}</span>
-                    </VsButton>
-                    <VsTooltip
-                        :target="`transport-icon-${transportType.key}`"
-                        :title="transportType.value"
-                    />
+                        <span class="sr-only">
+                            {{transportType.value}}
+                        </span>
+                    </VsTooltip>
                 </dd>
             </VsDescriptionList>
 
