@@ -1,6 +1,6 @@
 definitions:
   config:
-    /hst:hst/hst:configurations/common/hst:pages/pagenotfound:
+    /hst:hst/hst:configurations/common/hst:pages/servererror:
       jcr:primaryType: hst:component
       hst:referencecomponent: hst:abstractpages/base
       /main:

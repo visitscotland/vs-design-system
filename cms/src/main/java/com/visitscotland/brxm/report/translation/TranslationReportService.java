@@ -61,7 +61,6 @@ public class TranslationReportService {
             for (JcrDocument englishDoc : jcrUtilService.getAllUnpublishedDocuments()) {
                 Set<String> translatedLocales = new HashSet<>();
                 Set<String> sendForTranslationLocales = new HashSet<>();
-                Set<String> clonedLocales = new HashSet<>();
                 TranslationStatus infoStatus = TranslationStatus.NOT_SENT_FOR_TRANSLATION;
 
                 for (String locale : SUPPORTED_LOCALES) {
@@ -70,8 +69,6 @@ public class TranslationReportService {
                         translatedLocales.add(locale);
                     } else if (status == TranslationStatus.SEND_FOR_TRANSLATION) {
                         sendForTranslationLocales.add(locale);
-                    } else if (status == TranslationStatus.CLONED) {
-                        clonedLocales.add(locale);
                     }
 
                     if (locale.equals(targetLocale)) {
@@ -86,7 +83,7 @@ public class TranslationReportService {
                 String lastModifiedBy = unpublished.hasProperty(LAST_MODIFIED_BY_PROPERTY) ? unpublished.getProperty(LAST_MODIFIED_BY_PROPERTY).getString() : "";
                 String lastModified = getDateAsIsoString(unpublished, LAST_MODIFIED_DATE_PROPERTY);
                 docModels.add(new DocumentTranslationReportModel(englishDoc.getHandle().getIdentifier(), displayName,
-                        infoStatus.toString(), translationPriority, translatedLocales, sendForTranslationLocales, clonedLocales,
+                        infoStatus.toString(), translationPriority, translatedLocales, sendForTranslationLocales,
                         primaryNodeType, lastModified, lastModifiedBy, getDocumentPublishStatus(englishDoc)));
             }
         } catch (RepositoryException ex) {
@@ -189,7 +186,7 @@ public class TranslationReportService {
             if (unpublishedTranslatedClone == null || !unpublishedTranslatedClone.hasProperty(VS_TRANSLATION_FLAG)
                     || unpublishedTranslatedClone.getProperty(VS_TRANSLATION_FLAG).getString().isEmpty()) {
                 // If the translationFlag does not exist on the document, then it has not been sent
-                return TranslationStatus.CLONED;
+                return TranslationStatus.NOT_SENT_FOR_TRANSLATION;
             } else {
                 // The translationFlag is only set once the document has been sent for translation
                 // Initially to true to indicate that the document has been sent, and then to false once the Translation
