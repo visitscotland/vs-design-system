@@ -19,7 +19,7 @@ definitions:
           /pagenotfound:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
-            hst:pagetitle: Not Found Page
+            hst:relativecontentpath: general/error/404-not-found/content
             hst:refId: pagenotfound
           /widget:
             jcr:primaryType: hst:sitemapitem
@@ -64,8 +64,8 @@ definitions:
               /_default_:
                 jcr:primaryType: hst:sitemapitem
                 hst:relativecontentpath: ${parent}/${2}
-                hst:componentconfigurationid: hst:pages/pagenotfound
                 hst:sitemapitemhandlerids: [translation-fallback]
+                hst:componentconfigurationid: hst:pages/pagenotfound
                 /_default_:
                   jcr:primaryType: hst:sitemapitem
                   hst:relativecontentpath: ${parent}/${3}
@@ -120,12 +120,12 @@ definitions:
                     hst:relativecontentpath: ${parent}/content
                 /_index_:
                   jcr:primaryType: hst:sitemapitem
-                  hst:componentconfigurationid: hst:pages/pagenotfound
                   hst:componentconfigurationmappingnames: ['visitscotland:Itinerary',
                     'visitscotland:Listicle', 'visitscotland:General', 'visitscotland:Destination']
                   hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
                     'hst:pages/listicle-page', 'hst:pages/general-page', 'hst:pages/destination-page']
                   hst:relativecontentpath: ${parent}/content
+                  hst:componentconfigurationid: hst:pages/pagenotfound
           /backup:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
@@ -383,6 +383,10 @@ definitions:
                   hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
                     'hst:pages/listicle-page', 'hst:pages/general-page', 'hst:pages/destination-page']
                   hst:relativecontentpath: ${parent}/content
+          /servererror:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/servererror
+            hst:relativecontentpath: general/error/500-server-error/content
         /hst:abstractpages:
           jcr:primaryType: hst:pages
         /hst:pages:
