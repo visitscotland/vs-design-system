@@ -11,19 +11,10 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 3fb33de4-ddbb-4c2e-b574-4f0cbd3dbcf3
+          jcr:uuid: a26dd926-7392-4452-98d3-6e732fb15f7d
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /link:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:link
-            hipposysedit:primary: false
-            hipposysedit:type: hippo:mirror
-            hipposysedit:validators: [required, 'visitscotland:link-validator']
           /feature:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -44,9 +35,6 @@ definitions:
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -89,14 +77,5 @@ definitions:
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /link:
-            jcr:primaryType: frontend:plugin
-            caption: Link (Deprecated)
-            field: link
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
