@@ -3,6 +3,9 @@
         <VsTooltip
             :title="goodToGoLogo.name"
             v-if="goodToGoLogo"
+            href="#"
+            class="p-0"
+            variant="transparent"
             data-test="vs-canned-search-logos__good-to-go"
         >
             <VsImg
@@ -14,6 +17,9 @@
         <VsTooltip
             :title="safeTravelsLogo.name"
             v-if="safeTravelsLogo"
+            href="#"
+            class="p-0"
+            variant="transparent"
             data-test="vs-canned-search-logos__safe-travels"
         >
             <VsImg
@@ -26,6 +32,9 @@
             v-for="award in awards"
             :title="award.name"
             :key="award.id"
+            href="#"
+            class="p-0"
+            variant="transparent"
         >
             <VsImg
                 :src="award.image"
@@ -37,7 +46,9 @@
         <VsTooltip
             :title="accessGuide.name"
             v-if="accessGuide"
-            class="vs-canned-search-logos__access"
+            href="#"
+            variant="transparent"
+            class="vs-canned-search-logos__access p-0"
             data-test="vs-canned-search-logos__access-guide"
         >
             <VsImg
