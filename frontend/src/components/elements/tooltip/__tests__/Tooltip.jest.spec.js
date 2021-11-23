@@ -14,18 +14,20 @@ const factoryShallowMount = (propsData) => shallowMount(VsTooltip, {
     },
 });
 
+let wrapper;
+beforeEach(() => {
+    wrapper = factoryShallowMount();
+});
+
 describe('VsTooltip', () => {
-    it('should render a btooltip-stub element', () => {
-        const wrapper = factoryShallowMount();
-        const tooltip = wrapper.find('btooltip-stub');
+    it('should render a vsbutton-stub element', () => {
+        const tooltip = wrapper.find('vsbutton-stub');
 
         expect(tooltip.exists()).toBe(true);
     });
 
     describe(':props', () => {
-        it(':title - should accept and render an `title` property', () => {
-            const wrapper = factoryShallowMount();
-
+        it(':title - should accept and render a `title` property', () => {
             expect(wrapper.attributes('title')).toBe('Bus');
         });
     });
