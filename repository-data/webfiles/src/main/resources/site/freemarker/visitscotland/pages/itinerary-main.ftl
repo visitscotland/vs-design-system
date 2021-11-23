@@ -63,24 +63,17 @@
                         <dt class="list-inline-item">${label("itinerary", "transport")}:</dt>
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
-                                <vs-button
-                                    id="transport-${dayNumber}-${transport}"
+                                <vs-tooltip
+                                    title="${label('transports', '${transport}')}"
                                     href="#"
-                                    icon="${transport}"
-                                    size="lg"
-                                    icon-only
-                                    icon-variant-override="dark"
                                     class="p-0"
                                     variant="transparent"
                                 >
                                     <span class="sr-only">
                                         ${label("transports", "${transport}")}
                                     </span>
-                                </vs-button>
-                                <vs-tooltip
-                                    target="transport-${dayNumber}-${transport}"
-                                    title="${label('transports', '${transport}')}"
-                                ></vs-tooltip>
+                                    <vs-icon name="${transport}" variant="dark" size="md" small-size="xs"></vs-icon>
+                                </vs-tooltip>
                             </dd>
                         </#list>
                     </vs-description-list>
