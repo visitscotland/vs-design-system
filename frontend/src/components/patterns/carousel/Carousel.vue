@@ -442,7 +442,6 @@ export default {
             }
 
             &:hover {
-                border: 2px solid $color-secondary-teal-tint-3;
                 outline: none;
 
                 .vs-carousel__control-label-container {
