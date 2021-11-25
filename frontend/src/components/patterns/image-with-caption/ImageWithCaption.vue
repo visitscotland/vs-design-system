@@ -482,6 +482,7 @@ export default {
             <VsVideoCaption
                 slot="video-caption"
                 videoBtnText="Play now"
+                :withToggleBtn="true"
             >
                 <template slot="video-alert">
                     Please enable javascript to see this video

@@ -12,6 +12,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsVideoCaption, {
     },
     propsData: {
         videoBtnText: buttonText,
+        withToggleBtn: true,
         ...propsData,
     },
 });
@@ -46,13 +47,28 @@ describe('VsVideoCaption', () => {
         });
 
         it('should include a toggle button if `withToggleBtn` prop is true', () => {
-            const wrapper = factoryShallowMount({
-                propsData: {
-                    withToggleBtn: true,
-                },
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.find('vstogglebutton-stub').exists()).toBe(true);
+        });
+
+        it('should not include a toggle button if `withToggleBtn` prop is false', () => {
+            const wrapper = factoryShallowMount();
+            wrapper.setProps({
+                withToggleBtn: false,
             });
 
             expect(wrapper.find('vstogglebutton-stub').exists()).toBe(true);
+        });
+    });
+
+    describe(':methods', () => {
+        it('emits `toggleAction` when clicked', async() => {
+            const wrapper = factoryShallowMount();
+            wrapper.vm.emitToggle();
+            await wrapper.vm.$nextTick();
+
+            expect(wrapper.emitted().toggleAction).toBeTruthy();
         });
     });
 });
