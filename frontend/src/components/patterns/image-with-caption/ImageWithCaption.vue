@@ -20,47 +20,40 @@
                 />
             </slot>
 
-            <VsButton
-                variant="outline-transparent"
-                class="vs-image-with-caption__toggle-caption-btn"
-                aria-label="Expand caption"
-                :animate="false"
-                :aria-controls="'image_' + imageSrc"
-                :aria-expanded="showCaption ? 'true' : 'false'"
-                @click.native="toggleCaption"
+            <VsToggleButton
+                :show-caption="showCaption"
+                :img-src="imageSrc"
+                :toggle-id="`image_${imageSrc}`"
+                @toggleAction="toggleCaption"
             >
-                <span class="sr-only">
-                    {{ toggleButtonText }}
-                </span>
+                {{ toggleButtonText }}
 
-                <VsIcon
-                    v-if="showCaption"
-                    name="close-circle"
-                    variant="light"
-                    size="md"
-                />
-
-                <!-- @slot Slot for custom toggle icon - used for social images -->
-                <slot
-                    v-else
-                    name="toggle-icon"
-                >
-                    <VsSvg
-                        path="info-toggle"
-                        height="24"
-                        width="24"
-                    />
-                </slot>
-            </VsButton>
+                <template slot="toggle-icon">
+                    <!-- @slot Slot for custom image to be used for toggle icon
+                        eg. social media images -->
+                    <slot name="toggle-icon" />
+                </template>
+            </VsToggleButton>
         </div>
 
-        <div
-            class="vs-image-with-caption__caption-wrapper"
-            :class="captionWrapperClasses"
-            :id="'image_' + imageSrc"
-        >
-            <!-- @slot Slot for image caption component -->
-            <slot name="img-caption" />
+        <div class="vs-image-with-caption__captions">
+            <div
+                class="vs-image-with-caption__video-caption-wrapper"
+                :class="isHeroImage ? 'container' : ''"
+                v-if="isVideo"
+            >
+                <!-- @slot Slot for the video caption component -->
+                <slot name="video-caption" />
+            </div>
+
+            <div
+                class="vs-image-with-caption__caption-wrapper"
+                :class="captionWrapperClasses"
+                :id="'image_' + imageSrc"
+            >
+                <!-- @slot Slot for image caption component -->
+                <slot name="img-caption" />
+            </div>
         </div>
     </figure>
 </template>
@@ -69,10 +62,8 @@
 
 // eslint-disable-next-line no-unused-vars
 import { lazysizes } from 'lazysizes';
-import VsSvg from '@components/elements/svg/Svg';
 import VsImg from '@components/elements/img/Img';
-import VsIcon from '@components/elements/icon/Icon';
-import VsButton from '@components/elements/button/Button';
+import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
 
 /**
  * Image with toggle to open a caption and image location map
@@ -84,10 +75,8 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsButton,
-        VsSvg,
         VsImg,
-        VsIcon,
+        VsToggleButton,
     },
     props: {
         /**
@@ -123,6 +112,14 @@ export default {
         },
 
         /**
+         * Option for a large Hero image at top of a page
+         */
+        isVideo: {
+            type: Boolean,
+            default: false,
+        },
+
+        /**
          * Option if the mobile view is overlapped at the bottom
         */
         mobileOverlap: {
@@ -148,11 +145,13 @@ export default {
             return {
                 'vs-image-with-caption--closed-default': this.closedDefaultCaption,
                 'vs-image-with-caption--hero': this.isHeroImage,
+                'vs-image-with-caption--video': this.isVideo,
             };
         },
         captionWrapperClasses() {
             return {
-                'd-block': this.showCaption,
+                'd-block': this.showCaption && !this.isVideo,
+                'd-flex': this.showCaption && this.isVideo && this.isHeroImage,
                 container: this.isHeroImage,
             };
         },
@@ -177,18 +176,10 @@ export default {
                 height: auto;
             }
 
-            .vs-image-with-caption__toggle-caption-btn {
+            .vs-toggle-btn {
                 position: absolute;
                 bottom: $spacer-2;
-                padding: 0;
                 right: $spacer-2;
-                line-height: $line_height_xs;
-                z-index: 3;
-                display: block;
-
-                .vs-icon{
-                    margin-top: 0;
-                }
 
                 @include media-breakpoint-up(sm) {
                     display: none;
@@ -242,8 +233,91 @@ export default {
             }
         }
 
+        &--video {
+            .vs-toggle-btn {
+                display: block;
+            }
+
+            .vs-image-with-caption__caption-wrapper {
+                display: none;
+            }
+
+            .vs-image-with-caption__video-caption-wrapper {
+                .vs-video-caption {
+                    &__button {
+                        margin-left: $spacer-3;
+                    }
+                }
+            }
+
+            .vs-caption {
+                position: relative;
+            }
+
+            &.vs-image-with-caption--hero {
+                .vs-image-with-caption__video-caption-wrapper {
+                    margin-top: -50px;
+                    padding: 0;
+                }
+
+                .vs-image-with-caption__caption-wrapper {
+                    display: none;
+
+                    .vs-caption {
+                        position: relative;
+                        bottom: auto;
+                        right: auto;
+                    }
+                }
+            }
+
+            @include media-breakpoint-up(lg) {
+                .vs-image-with-caption__captions {
+                    position: absolute;
+                    padding: 0;
+                    z-index: 3;
+                    bottom: 200px;
+                    width: 100%;
+                }
+
+                .vs-image-with-caption__video-caption-wrapper {
+                    display: flex;
+                    justify-content: flex-end;
+                    padding: 0;
+
+                    .vs-video-caption {
+                        &__button {
+                            margin-left: 0;
+                        }
+                    }
+                }
+
+                .vs-image-with-caption__caption-wrapper {
+                    display: flex;
+                    justify-content: flex-end;
+                    padding: 0;
+                }
+
+                .vs-caption {
+                    position: absolute;
+                    bottom: auto;
+                }
+            }
+
+            @include media-breakpoint-up(lg) {
+                &.vs-image-with-caption--hero:not(.vs-image-with-caption--video) {
+                     .vs-image-with-caption__captions {
+                        position: absolute;
+                        bottom: 200px;
+                        right: 0;
+                        z-index: 3;
+                    }
+                }
+            }
+        }
+
         &--overlapped {
-            .vs-image-with-caption__toggle-caption-btn {
+            .vs-toggle-btn {
                 bottom: $spacer-9;
                 right: $spacer-4;
             }
@@ -258,7 +332,7 @@ export default {
                     max-height: 100vh;
                     overflow: hidden;
 
-                    .vs-image-with-caption__toggle-caption-btn {
+                    .vs-toggle-btnn {
                         display: block;
 
                         @include media-breakpoint-up(lg) {
@@ -333,7 +407,7 @@ export default {
     @include no-js {
         .vs-image-with-caption{
             &__image-wrapper {
-                .vs-image-with-caption__toggle-caption-btn {
+                .vs-toggle-btn {
                     display: none;
                 }
             }
@@ -346,7 +420,7 @@ export default {
         .vs-image-with-caption--closed-default{
             .vs-image-with-caption{
                 &__image-wrapper {
-                    .vs-image-with-caption__toggle-caption-btn {
+                    .vs-toggle-btn {
                         display: none;
                     }
                 }
@@ -375,6 +449,47 @@ export default {
             :key="`large-${index}`"
             class="mb-11"
         >
+            <VsCaption
+                slot="img-caption"
+                :latitude="item.latitude"
+                :longitude="item.longitude"
+                variant="large"
+            >
+                <span slot="caption" v-if="item.caption">
+                    {{ item.caption }}
+                </span>
+
+                <span slot="credit" v-if="item.credit">
+                    {{ item.credit }}
+                </span>
+            </VsCaption>
+        </VsImageWithCaption>
+
+        <h3>Video Caption Style</h3>
+        <VsImageWithCaption
+            v-for="(item, index) in imageWithCaption.imageExamples.video"
+            :altText="item.altText"
+            :image-src="item.imageSrc"
+            :key="`large-${index}`"
+            class="mb-11"
+            :isVideo="true"
+            :isHeroImage="true"
+        >
+            <VsVideoCaption
+                slot="video-caption"
+                videoBtnText="Play now"
+            >
+                <template slot="video-alert">
+                    Please enable javascript to see this video
+                </template>
+                <template slot="video-title">
+                    This is the video title
+                </template>
+                <template slot="video-duration">
+                    This is the video length
+                </template>
+            </VsVideoCaption>
+
             <VsCaption
                 slot="img-caption"
                 :latitude="item.latitude"

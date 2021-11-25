@@ -9,6 +9,7 @@ const imageSrcValue = 'visitscotland';
 const factoryShallowMount = (propsData) => shallowMount(VsImageWithCaption, {
     propsData: {
         imageSrc: imageSrcValue,
+        isVideo: true,
         ...propsData,
     },
     slots: {
@@ -62,24 +63,17 @@ describe('VsImageWithCaption', () => {
             expect(imageWrapper.classes('vs-image-with-caption--overlapped')).toBe(true);
         });
 
-        it('should render correct `toggleButtonText` on the toggle button', () => {
-            const wrapper = factoryShallowMount({
-                toggleButtonText: 'Toggle caption',
-            });
-            const toggleCaptionBtn = wrapper.find('[data-test="vs-image-with-caption"]')
-                .find('.vs-image-with-caption__toggle-caption-btn')
-                .find('.sr-only');
-
-            expect(toggleCaptionBtn.text()).toBe('Toggle caption');
-        });
-
         it('should set correct ID for aria controls with `imageSrc`', () => {
             const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__toggle-caption-btn');
             const captionWrapper = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__caption-wrapper');
 
-            expect(toggleCaptionBtn.attributes('aria-controls')).toBe(`image_${imageSrcValue}`);
             expect(captionWrapper.attributes('id')).toBe(`image_${imageSrcValue}`);
+        });
+
+        it('should add a Video Caption component if `isVideo` is true', async() => {
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.find('vsvideocaption-stub').exists()).toBe(true);
         });
     });
 
@@ -91,13 +85,6 @@ describe('VsImageWithCaption', () => {
             expect(imageWrapper.text()).toContain(defaultSlotText);
         });
 
-        it('renders content in the `toggleIcon` slot', () => {
-            const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__toggle-caption-btn');
-
-            expect(toggleCaptionBtn.text()).toContain(toggleIconSlot);
-        });
-
         it('renders content in the `imgCaption` slot', () => {
             const wrapper = factoryShallowMount();
             const captionWrapper = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__caption-wrapper');
@@ -107,44 +94,24 @@ describe('VsImageWithCaption', () => {
     });
 
     describe(':methods', () => {
-        it(':toggleCaption - caption is shown when toggle button is click', async() => {
+        it(':toggleCaption - caption is shown when toggle method is called', async() => {
             const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__toggle-caption-btn');
             const captionWrapper = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__caption-wrapper');
-            await toggleCaptionBtn.trigger('click');
+            wrapper.vm.toggleCaption();
+            await wrapper.vm.$nextTick();
 
-            expect(toggleCaptionBtn.attributes('aria-expanded')).toBe('true');
             expect(captionWrapper.classes('d-block')).toBe(true);
         });
 
-        it(':toggleCaption - caption is hidden when toggle button is click again', async() => {
+        it(':toggleCaption - caption is hidden when toggle method is called twice', async() => {
             const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__toggle-caption-btn');
             const captionWrapper = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__caption-wrapper');
-            await toggleCaptionBtn.trigger('click');
-            await toggleCaptionBtn.trigger('click');
+            wrapper.vm.toggleCaption();
+            wrapper.vm.toggleCaption();
 
-            expect(toggleCaptionBtn.attributes('aria-expanded')).toBe('false');
+            await wrapper.vm.$nextTick();
+
             expect(captionWrapper.classes('d-block')).toBe(false);
-        });
-
-        it(':toggleCaption - icon is updated when the caption is toggled on', async() => {
-            const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__toggle-caption-btn');
-            await toggleCaptionBtn.trigger('click');
-
-            expect(toggleCaptionBtn.text()).toContain('');
-            expect(wrapper.find('vsicon-stub').attributes('name')).toBe('close-circle');
-        });
-
-        it(':toggleCaption - icon is updated when the caption is toggled off', async() => {
-            const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__toggle-caption-btn');
-            await toggleCaptionBtn.trigger('click');
-            await toggleCaptionBtn.trigger('click');
-
-            expect(toggleCaptionBtn.text()).toContain(toggleIconSlot);
-            expect(wrapper.find('vsicon-stub').exists()).toBe(false);
         });
     });
 });
