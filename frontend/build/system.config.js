@@ -15,11 +15,11 @@ module.exports = {
      * Most of the styles are defined in /docs/styles/docs.styles.scss
      */
     theme: {
-        maxWidth: "1320px",
+        maxWidth: '1320px',
         sidebarWidth: 260,
         fontFamily: {
-            base: ["'Source Sans Pro'", "Helvetica", "Arial", "sans-serif"],
-            monospace: ["Consolas", "'Liberation Mono'", "Menlo", "monospace"],
+            base: ['Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif'],
+            monospace: ['Consolas', 'Liberation Mono', 'Menlo', 'monospace'],
         },
     },
     renderRootJsx: path.join(__dirname, '../docs/components/Preview.js'),
@@ -122,7 +122,7 @@ module.exports = {
    */
     // configureServer(app) {
     //   // `app` is the instance of the express server running the docs
-    //   app.get("/assets/:file", (req, res) => {
+    //   app.get('/assets/:file', (req, res) => {
     //     res.redirect(req.params.file)
     //   })
     // },
