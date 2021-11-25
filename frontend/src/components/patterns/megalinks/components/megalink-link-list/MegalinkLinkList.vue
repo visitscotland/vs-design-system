@@ -9,7 +9,6 @@
             class="vs-megalink-link-list__wrapper"
             :img-src="imgSrc"
             :img-alt="imgAlt"
-            icon-size="xxs"
             :theme="theme"
         >
             <span
@@ -34,7 +33,7 @@
 </template>
 
 <script>
-import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
+import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 
 /**
@@ -75,16 +74,7 @@ export default {
         linkType: {
             type: String,
             required: true,
-            validator: (value) => value.match(/(external|internal|download)/),
-        },
-        /**
-        * Size of the link icon - defaults to 'xs'
-        * `xxs, xs, sm, md, lg, xl`)
-        */
-        iconSize: {
-            type: String,
-            default: 'xs',
-            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+            validator: (value) => value.match(/(default|external|internal|download)/),
         },
         /**
         * The component color theme
@@ -128,14 +118,10 @@ export default {
             border: none;
             height: 100%;
             background: transparent;
-            transition: box-shadow 800ms;
+            transition: box-shadow $duration-slowly;
 
             &:hover {
-                box-shadow: 10px 10px 20px $color-gray-tint-4;
-
-                .vs-megalink-link-list__title {
-                    text-decoration: underline;
-                }
+                box-shadow: $shadow_card;
             }
 
             .stretched-link {
@@ -149,7 +135,7 @@ export default {
                 width: 66%;
             }
 
-            .stretched-link-card__img {
+            .vs-stretched-link-card__img {
                 width: 33%;
                 max-width: 33%;
                 align-self: flex-start;
@@ -215,7 +201,7 @@ export default {
                         -webkit-line-clamp: 3;
                         -webkit-box-orient: vertical;
                         overflow: hidden;
-                        font-size: $lead-font-size;
+                        font-size: $font-size-md;
                         margin-bottom: 0;
                     }
                 }

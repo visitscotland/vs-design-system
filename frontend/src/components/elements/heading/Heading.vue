@@ -4,12 +4,16 @@
         class="vs-heading"
         :class="{
             'vs-heading--thin': thin,
+            'vs-heading--alternative': alternative,
         }"
     >
-        <!-- @slot The main header content goes here -->
+        <!-- @slot The main heading content goes here -->
         <slot />
 
-        <span class="vs-heading__sub-heading">
+        <span
+            class="vs-heading__sub-heading"
+            v-if="!!this.$slots['sub-heading']"
+        >
             <slot name="sub-heading" />
         </span>
     </Component>
@@ -45,6 +49,13 @@ export default {
         thin: {
             type: Boolean,
         },
+        /**
+         * Alternative font
+         */
+        alternative: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         type() {
@@ -69,6 +80,15 @@ $font-sizes: (
     6: $h6-font-size,
 );
 
+$md-font-sizes: (
+    1: $h1-font-size-md,
+    2: $h2-font-size-md,
+    3: $h3-font-size-md,
+    4: $h4-font-size-md,
+    5: $h5-font-size-md,
+    6: $h6-font-size-md,
+);
+
 /* Update font sizes */
 $sub-font-sizes: (
     2: $h2-sub-font-size,
@@ -82,6 +102,19 @@ $sub-font-sizes: (
         @at-root h#{$level}#{&} {
             letter-spacing: $size * 0.1;
             margin-bottom: $size;
+            margin-top: $size;
+            font-size: $size;
+        }
+    }
+
+    @each $level, $size in $md-font-sizes {
+        @at-root h#{$level}#{&} {
+            @include media-breakpoint-up(md) {
+                letter-spacing: $size * 0.1;
+                margin-bottom: $size;
+                margin-top: $size;
+                font-size: $size;
+            }
         }
     }
 
@@ -101,7 +134,19 @@ $sub-font-sizes: (
             }
         }
     }
+
+    &--alternative {
+        font-family: $font_family_sans_serif;
+        font-weight: $font-weight-normal;
+    }
 }
+
+h6.vs-heading, h5.vs-heading{
+    font-family: $font-family-sans-serif;
+    letter-spacing: normal;
+    font-weight: $font-weight-bold;
+}
+
 </style>
 
 <docs>
@@ -109,23 +154,37 @@ $sub-font-sizes: (
   <div>
     <VsHeading>H1 Heading</VsHeading>
     <VsHeading thin>H1 Heading Thin</VsHeading>
-    <br />
+
+    <hr/>
+
     <VsHeading level="2">H2 Heading</VsHeading>
     <VsHeading thin level="2">H2 Heading  Thin</VsHeading>
-    <br />
+
+    <hr/>
+
+    <VsHeading level="2" alternative>H2 Heading</VsHeading>
+
+    <hr/>
+
     <VsHeading level="3">H3 Heading</VsHeading>
     <VsHeading thin level="3">H3 Heading Thin</VsHeading>
-    <br />
+
+    <hr/>
+
     <VsHeading level="4">H4 Heading</VsHeading>
     <VsHeading thin level="4">H4 Heading Thin</VsHeading>
-    <br />
-    <VsHeading level="5">H5 Heading</VsHeading>
-    <VsHeading thin level="5">H5 Heading Thin</VsHeading>
-    <br />
-    <VsHeading level="6">H6 Heading</VsHeading>
-    <VsHeading thin level="6">H6 Heading Thin</VsHeading>
 
-    <VsHeading level="3" class="mt-9">
+    <hr/>
+
+    <VsHeading level="5">H5 Heading</VsHeading>
+
+    <hr/>
+
+    <VsHeading level="6">H6 Heading</VsHeading>
+
+    <hr/>
+
+    <VsHeading level="3">
         H3 Heading With Subtitle
         <span slot="sub-heading">This Is a Subtitle</span>
     </VsHeading>
