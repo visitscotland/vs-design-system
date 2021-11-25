@@ -46,22 +46,24 @@
     </vs-container>
 
     <#if document.listicleClosing??>
-        <vs-row class="mb-6">
-            <vs-col cols="12">
-                <vs-panel>
-                    <#if document.listicleClosing.title?has_content>
-                        <template slot="vs-panel-title">
-                            <vs-heading thin level="4">${document.listicleClosing.title}</vs-heading>
-                        </template>
-                    </#if>
+        <vs-container>
+            <vs-row class="mb-6">
+                <vs-col cols="12">
+                    <vs-panel>
+                        <#if document.listicleClosing.title?has_content>
+                            <template slot="vs-panel-title">
+                                <vs-heading thin level="4">${document.listicleClosing.title}</vs-heading>
+                            </template>
+                        </#if>
 
-                    <vs-rich-text-wrapper variant="lead">
-                        <@hst.html hippohtml=document.listicleClosing.copy/>
-                    </vs-rich-text-wrapper>
-                </vs-panel>
-            </vs-col>
-        </vs-row>
-        </#if>
+                        <vs-rich-text-wrapper variant="lead">
+                            <@hst.html hippohtml=document.listicleClosing.copy/>
+                        </vs-rich-text-wrapper>
+                    </vs-panel>
+                </vs-col>
+            </vs-row>
+        </vs-container>
+    </#if>
 
     <@socialShare nojs=true/>
 
