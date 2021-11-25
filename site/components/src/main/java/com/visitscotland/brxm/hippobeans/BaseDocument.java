@@ -57,11 +57,4 @@ public class BaseDocument extends HippoDocument {
         ).collect(Collectors.toList());
     }
 
-    /**
-     * Order the translations by the SEO defined ordering
-     */
-    public <B extends BaseDocument> List<B> getOrderedTranslations(){
-        return documentUtils.sortTranslationsForSeo(getAvailableTranslations(BaseDocument.class).getTranslations());
-    }
-
 }

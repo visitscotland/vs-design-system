@@ -8,6 +8,7 @@
 <#include "../../../include/imports.ftl">
 
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Page" -->
+<#-- @ftlvariable name="orderedTranslations" type="java.util.List<com.visitscotland.brxm.hippobeans.BaseDocument>" -->
 
 <#if document??>
     <#-- NO INDEX -->
@@ -27,8 +28,8 @@
     </@hst.headContribution>
 
     <#-- HREFLANG TAG -->
-    <#if document.orderedTranslations?size gt 1>
-        <#list document.orderedTranslations as translation>
+    <#if orderedTranslations?size gt 1>
+        <#list orderedTranslations as translation>
             <@hst.headContribution category="seo">
                 <link rel="alternate" href="<@hst.link hippobean=translation fullyQualified=true/>"  hreflang="${translation.locale.language}"/>
             </@hst.headContribution>
