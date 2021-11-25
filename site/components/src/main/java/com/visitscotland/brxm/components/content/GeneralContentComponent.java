@@ -1,7 +1,8 @@
 package com.visitscotland.brxm.components.content;
 
-import com.visitscotland.brxm.beans.Destination;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.hippobeans.Destination;
+import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.utils.PageTemplateBuilder;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
@@ -23,13 +24,9 @@ public class GeneralContentComponent extends PageContentComponent<Destination> {
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
-
         super.doBeforeRender(request, response);
 
-        addHeroCoordinates(request);
-
         builder.addModules(request);
-
     }
 
 }

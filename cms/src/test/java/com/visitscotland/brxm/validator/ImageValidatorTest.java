@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.validator;
 
-import com.visitscotland.brxm.beans.Image;
+import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.translation.SessionFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,6 +13,7 @@ import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.Violation;
 
 import javax.jcr.Node;
+import javax.jcr.Property;
 import javax.jcr.RepositoryException;
 
 import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
@@ -36,12 +37,62 @@ class ImageValidatorTest {
 
         Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
         Node childNode = mockImage("credit", "alt-text");
-
+        Property altText = Mockito.mock(Property.class,  withSettings().lenient());
+        Property caption = Mockito.mock(Property.class,  withSettings().lenient());
 
         when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("imageName");
         when(mockSessionFactory.getHippoNodeByIdentifier("imageName")).thenReturn(childNode);
+        when(childNode.hasProperty("hippogallery:description")).thenReturn(true);
+        when(childNode.hasProperty(Image.ALT_TEXT)).thenReturn(true);
+        when(childNode.getProperty(Image.ALT_TEXT)).thenReturn(altText);
+        when(childNode.getProperty(Image.ALT_TEXT).getString()).thenReturn("alt text");
+        when(childNode.getProperty("hippogallery:description")).thenReturn(caption);
+        when(childNode.getProperty("hippogallery:description").getString()).thenReturn("credit");
 
         assertFalse(validator.validate(context, node).isPresent());
+    }
+
+    @Test
+    @DisplayName("Validates that alt-text field is not empty")
+    void noEmptyAltext() throws RepositoryException {
+        ImageValidator validator = new ImageValidator(mockSessionFactory);
+
+        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
+        Node childNode = Mockito.mock(Node.class,  withSettings().lenient());
+        Property altText = Mockito.mock(Property.class,  withSettings().lenient());
+
+        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("imageName");
+        when(mockSessionFactory.getHippoNodeByIdentifier("imageName")).thenReturn(childNode);
+        when(childNode.hasProperty("hippogallery:description")).thenReturn(true);
+        when(childNode.hasProperty(Image.ALT_TEXT)).thenReturn(true);
+        when(childNode.getProperty(Image.ALT_TEXT)).thenReturn(altText);
+        when(childNode.getProperty(Image.ALT_TEXT).getString()).thenReturn("");
+
+        when(context.createViolation()).thenReturn(mock(Violation.class));
+        assertTrue(validator.validate(context, node).isPresent());
+    }
+
+    @Test
+    @DisplayName("Validates that credit field is not empty")
+    void noEmptyCredit() throws RepositoryException {
+        ImageValidator validator = new ImageValidator(mockSessionFactory);
+
+        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
+        Node childNode = Mockito.mock(Node.class,  withSettings().lenient());
+        Property credit = Mockito.mock(Property.class,  withSettings().lenient());
+        Property altText = Mockito.mock(Property.class,  withSettings().lenient());
+
+        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("imageName");
+        when(mockSessionFactory.getHippoNodeByIdentifier("imageName")).thenReturn(childNode);
+        when(childNode.hasProperty("hippogallery:description")).thenReturn(true);
+        when(childNode.hasProperty(Image.ALT_TEXT)).thenReturn(true);
+        when(childNode.getProperty(Image.ALT_TEXT)).thenReturn(altText);
+        when(childNode.getProperty(Image.ALT_TEXT).getString()).thenReturn("alt text");
+        when(childNode.getProperty("hippogallery:description")).thenReturn(credit);
+        when(childNode.getProperty("hippogallery:description").getString()).thenReturn("");
+
+        when(context.createViolation()).thenReturn(mock(Violation.class));
+        assertTrue(validator.validate(context, node).isPresent());
     }
 
     @Test
@@ -80,7 +131,7 @@ class ImageValidatorTest {
     private Node mockImage(String credit, String altText) {
         Node node = Mockito.mock(Node.class, withSettings().lenient());
         try {
-            when(node.hasProperty(Image.CREDIT)).thenReturn(credit != null);
+            when(node.hasProperty("hippogallery:description")).thenReturn(credit != null);
             when(node.hasProperty(Image.ALT_TEXT)).thenReturn(altText != null);
         } catch (RepositoryException e) {
             //This cannot happen

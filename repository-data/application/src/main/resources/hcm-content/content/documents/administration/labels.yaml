@@ -1,5 +1,4 @@
 /content/documents/administration/labels:
-  .meta:order-before: configuration
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['mix:referenceable']
   jcr:uuid: 55cb84b0-9ae3-42ca-9800-44c89253e539

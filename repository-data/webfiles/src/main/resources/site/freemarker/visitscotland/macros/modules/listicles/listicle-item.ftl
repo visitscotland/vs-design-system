@@ -7,9 +7,9 @@
 <#include "../../global/cms-errors.ftl">
 
 <#macro listicleItem item>
-<#-- @ftlvariable name="listItem" type="com.visitscotland.brxm.beans.ListicleItem" -->
-<#-- @ftlvariable name="item" type="com.visitscotland.brxm.beans.mapping.FlatListicle" -->
-<#-- @ftlvariable name="cta" type="com.visitscotland.brxm.beans.mapping.FlatLink" -->
+<#-- @ftlvariable name="listItem" type="com.visitscotland.brxm.hippobeans.ListicleItem" -->
+<#-- @ftlvariable name="item" type="com.visitscotland.brxm.model.ListicleModule" -->
+<#-- @ftlvariable name="cta" type="com.visitscotland.brxm.model.FlatLink" -->
 	<#assign image = "" />
     <#if item.image?? && item.image.cmsImage??>
         <#assign image>
@@ -21,11 +21,11 @@
 
     <vs-listicle-item
             index="${item.index}"
-            title="${item.title}"
-            sub-title="${item.subTitle}"
+            title="${item.title?html}"
+            sub-title="${item.subtitle!''}"
     >
         <div slot="hippo-details" class="has-edit-button">
-            <@hst.manageContent hippobean=item.listicleItem/>
+            <@hst.manageContent hippobean=item.hippoBean/>
             <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
         </div>
 
@@ -42,7 +42,10 @@
                 <#list item.links as cta>
 					<#if cta?has_content>
                         <div class="mb-2">
-						    <vs-link href="${cta.link}">${cta.label}</vs-link>
+                            <vs-link
+                                href="${cta.link}"
+                                <#if cta.type != "internal">type="${cta.type}"</#if>
+                            >${cta.label}</vs-link>
                         </div>
 					</#if>
 				</#list>

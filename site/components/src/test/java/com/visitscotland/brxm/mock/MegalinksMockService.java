@@ -1,7 +1,7 @@
 package com.visitscotland.brxm.mock;
 
-import com.visitscotland.brxm.beans.*;
-import com.visitscotland.brxm.components.content.factory.LinkModuleFactoryTest;
+import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.factory.MegalinkFactoryTest;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 
 import java.util.Collections;
@@ -42,14 +42,14 @@ public class MegalinksMockService {
     }
 
     public MegalinkItem mockItem() {
-        return mockItem(false, LinkModuleFactoryTest.LinkType.CMS);
+        return mockItem(false, MegalinkFactoryTest.LinkType.CMS);
     }
 
-    public MegalinkItem mockItem(boolean featured, LinkModuleFactoryTest.LinkType type) {
+    public MegalinkItem mockItem(boolean featured, MegalinkFactoryTest.LinkType type) {
         MegalinkItem item = mock(MegalinkItem.class, withSettings().lenient());
 
         when(item.getFeature()).thenReturn(featured);
-        if (type == LinkModuleFactoryTest.LinkType.CMS) {
+        if (type == MegalinkFactoryTest.LinkType.CMS) {
             when(item.getLink()).thenReturn(mockPage());
         } else {
             SharedLink link = mockSharedLink(type);
@@ -59,25 +59,25 @@ public class MegalinksMockService {
         return item;
     }
 
-    private SharedLink mockSharedLink(LinkModuleFactoryTest.LinkType linkType) {
+    private SharedLink mockSharedLink(MegalinkFactoryTest.LinkType linkType) {
         SharedLink link = mock(SharedLink.class, withSettings().lenient());
         when(link.getImage()).thenReturn(mock(Image.class, withSettings().lenient()));
 
         switch (linkType) {
             case DMS:
                 DMSLink type = mock(DMSLink.class, withSettings().lenient());
-                when(type.getProduct()).thenReturn(LinkModuleFactoryTest.DMS_ID);
+                when(type.getProduct()).thenReturn(MegalinkFactoryTest.DMS_ID);
                 when(link.getLinkType()).thenReturn(type);
                 break;
             case PRODUCT_SEARCH:
                 ProductsSearch ps = mock(ProductsSearch.class, withSettings().lenient());
                 when(builder.fromHippoBean(ps)).thenReturn(builder);
-                when(builder.build()).thenReturn(LinkModuleFactoryTest.PSR_URL);
+                when(builder.build()).thenReturn(MegalinkFactoryTest.PSR_URL);
                 when(link.getLinkType()).thenReturn(ps);
                 break;
             case EXTERNAL:
                 ExternalLink external = mock(ExternalLink.class, withSettings().lenient());
-                when(external.getLink()).thenReturn(LinkModuleFactoryTest.EXTERNAL_URL);
+                when(external.getLink()).thenReturn(MegalinkFactoryTest.EXTERNAL_URL);
                 when(link.getLinkType()).thenReturn(external);
                 break;
             default:

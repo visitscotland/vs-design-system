@@ -19,8 +19,8 @@
     "totalMiles": "60",
     "totalKM": "96",
     "transport": {
-        "key": "car",
-        "value": "Car"
+        "key": "bus",
+        "value": "Public Transport"
     },
     "theme": {
         "key": "child",
@@ -43,6 +43,30 @@
                 {
                     "key": "walk",
                     "value": "Walking"
+                },
+                {
+                    "key": "transport",
+                    "value": "Transport"
+                },
+                {
+                    "key": "transport",
+                    "value": "Transport"
+                },
+                {
+                    "key": "transport",
+                    "value": "Transport"
+                },
+                {
+                    "key": "transport",
+                    "value": "Transport"
+                },
+                {
+                    "key": "transport",
+                    "value": "Transport"
+                },
+                {
+                    "key": "transport",
+                    "value": "Transport"
                 }
             ],
             "stops": [
@@ -52,8 +76,8 @@
                     "description": "<p>Pack a bucket and spade for sandcastle building, and a towel to dry wet feet after a paddle, and then you are ready to head to the beautiful <a href=\"https://www.visitscotland.com/info/towns-villages/elie-earlsferry-beach-p725111\">Elie Earlsferry Beach</a>. Arches of fine golden sands line the town and are great spots for an hour or two of playing by the shoreline. The award-winning Ship Inn organises beach cricket on Sundays during the summer, and its restaurant is family-friendly with a children's menu option, should you be keen to catch a bite - the sea air is known to induce quite the appetite!</p>",
                     "timeToExplore": "Half a day",
                     "tips": {
-                        "tipsTitle": "",
-                        "tipsBody": ""
+                        "tipsTitle": "This is a tip title",
+                        "tipsBody": "This is a tip body"
                     },
                     "href": "https://www.visitscotland.com/info/towns-villages/elie-p239071",
                     "image": {
@@ -64,9 +88,19 @@
                         "latitude": "56.18974",
                         "longitude": "-2.81868"
                     },
+                    "address": {
+                        "line1": "Edinburgh Castle",
+                        "line2": "Castle Hill",
+                        "line3": "Edinburgh",
+                        "city": "City of Edinburgh",
+                        "postcode": "EH1 2NG"
+                    },
                     "latitude": "56.18974",
                     "longitude": "-2.81868",
-                    "facilities": []
+                    "facilities": [],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "2",
@@ -86,6 +120,13 @@
                         "latitude": "56.24068",
                         "longitude": "-2.76587"
                     },
+                    "address": {
+                        "line1": "Kellie Castle",
+                        "line2": "Pittenweem",
+                        "line3": "",
+                        "city": "Anstruther",
+                        "postcode": "KY10 2RE"
+                    },
                     "latitude": "56.24068",
                     "longitude": "-2.76587",
                     "facilities": [
@@ -96,8 +137,35 @@
                         {
                             "key": "accessparkdrop",
                             "value": "Accessible Parking and Dropoff"
+                        },
+                        {
+                            "key": "parking",
+                            "value": "Parking"
+                        },
+                        {
+                            "key": "accessparkdrop",
+                            "value": "Accessible Parking and Dropoff"
+                        },
+                        {
+                            "key": "parking",
+                            "value": "Parking"
+                        },
+                        {
+                            "key": "accessparkdrop",
+                            "value": "Accessible Parking and Dropoff"
+                        },
+                        {
+                            "key": "parking",
+                            "value": "Parking"
+                        },
+                        {
+                            "key": "accessparkdrop",
+                            "value": "Accessible Parking and Dropoff"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "11:00AM",
+                    "closing": "14:10PM"
                 },
                 {
                     "stopCount": "3",
@@ -128,7 +196,10 @@
                             "key": "accessparkdrop",
                             "value": "Accessible Parking and Dropoff"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "17:00PM"
                 },
                 {
                     "stopCount": "4",
@@ -150,7 +221,10 @@
                     },
                     "latitude": "56.22448",
                     "longitude": "-2.70087",
-                    "facilities": []
+                    "facilities": [],
+                    "info": "This is the info",
+                    "opening": "12:00AM",
+                    "closing": "15:00PM"
                 }
             ]
         },
@@ -204,7 +278,10 @@
                             "key": "dsblaccess",
                             "value": "Disabled Access"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "6",
@@ -231,7 +308,10 @@
                             "key": "parking",
                             "value": "Parking"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "7",
@@ -266,7 +346,10 @@
                             "key": "dsblaccess",
                             "value": "Disabled Access"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "8",
@@ -288,7 +371,10 @@
                     },
                     "latitude": "56.33659",
                     "longitude": "-2.78282",
-                    "facilities": []
+                    "facilities": [],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 }
             ]
         },
@@ -346,7 +432,10 @@
                             "key": "dsblaccess",
                             "value": "Disabled Access"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "10",
@@ -378,7 +467,10 @@
                             "key": "accessparkdrop",
                             "value": "Accessible Parking and Dropoff"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "16:00PM"
                 },
                 {
                     "stopCount": "11",
@@ -405,7 +497,10 @@
                             "key": "accessparkdrop",
                             "value": "Accessible Parking and Dropoff"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "12:00PM"
                 },
                 {
                     "stopCount": "12",
@@ -440,7 +535,10 @@
                             "key": "dsblaccess",
                             "value": "Disabled Access"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 }
             ]
         },
@@ -481,7 +579,10 @@
                     },
                     "latitude": "56.740190",
                     "longitude": "-2.463880",
-                    "facilities": []
+                    "facilities": [],
+                    "info": "This is the info",
+                    "opening": "04:00PM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "14",
@@ -520,7 +621,10 @@
                             "key": "dsblaccess",
                             "value": "Disabled Access"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 },
                 {
                     "stopCount": "15",
@@ -551,9 +655,99 @@
                             "key": "accessparkdrop",
                             "value": "Accessible Parking and Dropoff"
                         }
-                    ]
+                    ],
+                    "info": "This is the info",
+                    "opening": "09:00AM",
+                    "closing": "05:00PM"
                 }
             ]
         }
-    ]
+    ],
+    "openingHours": {
+        "displayOpeningLink": true,
+        "closedLongTerm": false,
+        "period": { "startDay": "2021-04-30", "endDay": "2025-09-30" },
+        "days": [
+            {
+                "key": "monday",
+                "day": "Mondays",
+                "startTime": "09:30",
+                "endTime": "18:00",
+                "state": "open",
+                "provisional": true
+            },
+            {
+                "key": "tuesday",
+                "day": "Tuesdays",
+                "startTime": "09:30",
+                "endTime": "15:00",
+                "state": "open",
+                "provisional": false
+            },
+            {
+                "key": "tuesday",
+                "day": "Tuesdays",
+                "startTime": "19:30",
+                "endTime": "22:00",
+                "state": "open",
+                "provisional": false
+            },
+            {
+                "key": "wednesday",
+                "day": "Wednesdays",
+                "startTime": "10:30",
+                "endTime": "12:00",
+                "state": "open",
+                "provisional": false
+            },
+            {
+                "key": "wednesday",
+                "day": "Wednesdays",
+                "startTime": "19:30",
+                "endTime": "22:00",
+                "state": "open",
+                "provisional": false
+            },
+            {
+                "key": "thursday",
+                "day": "Thursdays",
+                "startTime": "09:30",
+                "endTime": "18:00",
+                "state": "open",
+                "provisional": true
+            },
+            {
+                "key":"friday",
+                "day":"Fridays",
+                "startTime":"10:00",
+                "endTime":"11:00",
+                "state":"open",
+                "provisional":false
+            },     
+            {  "key":"friday",
+                "day":"Fridays",
+                "startTime":"11:30",
+                "endTime":"12:00",
+                "state":"open",
+                "provisional":false
+            },
+            {
+                "key": "saturday",
+                "day": "Saturdays",
+                "startTime": "09:30",
+                "endTime": "18:00",
+                "state": "open",
+                "provisional": true
+            },
+            {
+                "key": "sunday",
+                "day": "Sundays",
+                "startTime": "09:30",
+                "endTime": "18:00",
+                "state": "open",
+                "provisional": true
+            },
+            { "key": "bank_holiday", "day": "Bank holidays", "state": "open", "provisional": false }
+        ]
+    }
 }

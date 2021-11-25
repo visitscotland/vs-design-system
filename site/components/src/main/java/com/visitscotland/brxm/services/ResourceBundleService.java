@@ -1,11 +1,8 @@
 package com.visitscotland.brxm.services;
 
-import com.visitscotland.brxm.cfg.VsComponentManager;
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.utils.Contract;
-import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
-import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -17,14 +14,13 @@ import java.util.ResourceBundle;
 public class ResourceBundleService {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceBundleService.class.getName());
-
-    private static final String SERVICE_NAME = "ResourceBundle";
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     ResourceBundleRegistry registry;
 
-    private CommonUtils common;
+    private CommonUtilsService common;
 
-    public ResourceBundleService (CommonUtils common){
+    public ResourceBundleService (CommonUtilsService common){
         this.common = common;
     }
 
@@ -88,7 +84,7 @@ public class ResourceBundleService {
      *
      * @param locale String with the locale information
      *
-     * @return a {@code Locale} object version of the {@dode String} or {@code null} when empty String or null
+     * @return a {@code Locale} object version of the {@code String} or {@code null} when empty String or null
      */
     Locale toLocale(String locale){
         if (locale == null || locale.length() == 0){
@@ -122,13 +118,12 @@ public class ResourceBundleService {
                 if (Contract.isEmpty(value) && locale != null && !optional) {
                     value = getResourceBundle(bundleName,key, (Locale) null, false);
                     if (!Contract.isEmpty(value)) {
-                        logContentIssue("The label key %s does not exists for the %s channel. Resource Bundle key %s", key, bundle.getLocale(), bundleName);
+                        logContentIssue("The label key {} does not exists for the %s channel. Resource Bundle key {}", key, bundle.getLocale(), bundleName);
                     }
                 }
             }
             if (Contract.isEmpty(value) && !optional){
-                logContentIssue("The label key %s does not exists for the English channel. Resource Bundle key %s", key, bundleName);
-                logger.warn("The label key {} does not exists for the English channel. Resource Bundle key {}", key, bundleName);
+                logContentIssue("The label key {} does not exists for the English channel. Resource Bundle key {}", key, bundleName);
             }
         }
 
@@ -170,23 +165,13 @@ public class ResourceBundleService {
     }
 
     /**
-     * Logs a issue that can be solved from the CMS
+     * Logs an issue that can be solved from the CMS
      *
      * @param message message
      * @param args arguments for the message
      */
     void logContentIssue(String message, Object... args) {
-        String issue = common.contentIssue(message, args);
-        logger.warn(issue);
-    }
-
-    public void registerIn(HstRequest request) {
-        if (request.getAttribute(SERVICE_NAME) == null) {
-            request.setAttribute(SERVICE_NAME, this);
-            logger.debug(SERVICE_NAME + " has been registered on the request");
-        } else {
-            logger.info(SERVICE_NAME + " has been been already registered on the request");
-        }
+        contentLogger.warn(message, args);
     }
 
     /**

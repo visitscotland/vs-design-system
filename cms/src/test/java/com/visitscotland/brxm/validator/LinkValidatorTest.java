@@ -1,9 +1,13 @@
 package com.visitscotland.brxm.validator;
 
 import com.visitscotland.brxm.translation.SessionFactory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.AdditionalMatchers;
 import org.mockito.Answers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -28,96 +32,17 @@ class LinkValidatorTest {
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
     SessionFactory mockSessionFactory;
 
-    @Test
-    @DisplayName("Validates that days module allows stops")
-    void daysCorrectModule() throws RepositoryException {
-        LinkValidator validator = new LinkValidator(mockSessionFactory);
+    LinkValidator validator;
 
-        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Node childNode = mockLink(true, false, false);
-
-
-        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("linkName");
-        when(node.getParent().isNodeType("visitscotland:Day")).thenReturn(true);
-        when(mockSessionFactory.getHippoNodeByIdentifier("linkName")).thenReturn(childNode);
-
-        assertFalse(validator.validate(context, node).isPresent());
-    }
-
-    @Test
-    @DisplayName("Validates that days module can't link any other type of page")
-    void daysIncorrectModule() throws RepositoryException {
-        LinkValidator validator = new LinkValidator(mockSessionFactory);
-
-        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Node childNode = mockLink(false, false, false);
-
-
-        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("linkName");
-        when(node.getParent().isNodeType("visitscotland:Day")).thenReturn(true);
-        when(mockSessionFactory.getHippoNodeByIdentifier("linkName")).thenReturn(childNode);
-        when(context.createViolation("stop")).thenReturn(mock(Violation.class));
-
-        assertTrue(validator.validate(context, node).isPresent());
-    }
-
-    @Test
-    @DisplayName("Validates that megalinks or OTYML allow Page types")
-    void LinksCorrectPages() throws RepositoryException {
-        LinkValidator validator = new LinkValidator(mockSessionFactory);
-
-        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Node childNode = mockLink(false, true, false);
-
-
-        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("linkName");
-        when(node.getParent().isNodeType("visitscotland:Day")).thenReturn(false);
-        when(mockSessionFactory.getHippoNodeByIdentifier("linkName")).thenReturn(childNode);
-
-        assertFalse(validator.validate(context, node).isPresent());
-    }
-
-    @Test
-    @DisplayName("Validates that megalinks or OTYML allow Shared link types")
-    void LinksCorrectSharedLinks() throws RepositoryException {
-        LinkValidator validator = new LinkValidator(mockSessionFactory);
-
-        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Node childNode = mockLink(false, false, true);
-
-
-        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("linkName");
-        when(node.getParent().isNodeType("visitscotland:Day")).thenReturn(false);
-        when(mockSessionFactory.getHippoNodeByIdentifier("linkName")).thenReturn(childNode);
-
-        assertFalse(validator.validate(context, node).isPresent());
-    }
-
-    @Test
-    @DisplayName("Validates that megalinks or OTYML does not allow any other type that is not a Page or SharedLink")
-    void LinksIncorrectValues() throws RepositoryException {
-        LinkValidator validator = new LinkValidator(mockSessionFactory);
-
-        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Node childNode = mockLink(false, false, false);
-
-
-        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("linkName");
-        when(node.getParent().isNodeType("visitscotland:Day")).thenReturn(false);
-        when(mockSessionFactory.getHippoNodeByIdentifier("linkName")).thenReturn(childNode);
-        when(context.createViolation()).thenReturn(mock(Violation.class));
-
-        assertTrue(validator.validate(context, node).isPresent());
+    @BeforeEach
+    void init(){
+        validator = new LinkValidator(mockSessionFactory);
     }
 
     @Test
     @DisplayName("Validates that links have been selected")
     void LinksEmptyValues() throws RepositoryException {
-        LinkValidator validator = new LinkValidator(mockSessionFactory);
-
         Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Node childNode = mockLink(false, false, false);
-
 
         when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn(LinkValidator.EMPTY_DOCUMENT);
         when(context.createViolation("EmptyLink")).thenReturn(mock(Violation.class));
@@ -125,17 +50,65 @@ class LinkValidatorTest {
         assertTrue(validator.validate(context, node).isPresent());
     }
 
-    private Node mockLink(boolean stop, boolean page, boolean shared) {
-        Node node = Mockito.mock(Node.class, withSettings().lenient());
-        try {
-            when(node.isNodeType("visitscotland:Stop")).thenReturn(stop);
-            when(node.isNodeType("visitscotland:Page")).thenReturn(page);
-            when(node.isNodeType("visitscotland:SharedLink")).thenReturn(shared);
-        } catch (RepositoryException e) {
-            //This cannot happen
-            e.printStackTrace();
+    @ParameterizedTest
+    @CsvSource({
+            "visitscotland:MegalinkItem,visitscotland:Page",
+            "visitscotland:OTYML,visitscotland:SharedLink",
+            "visitscotland:MadeUpDocument,visitscotland:SharedLink",
+            "visitscotland:Day,visitscotland:Stop",
+            "visitscotland:VideoLink,visitscotland:Video"
+    })
+    @DisplayName("VS-2905 - Validates that links are correctly validated depending on the parent")
+    void correctValues(String parentType, String childType) throws RepositoryException {
+        assertFalse(validator.validate(context, mockLink(parentType, childType, true)).isPresent());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "visitscotland:MegalinkItem,visitscotland:MegalinkItem",
+            "visitscotland:MegalinkItem,visitscotland:Video",
+            "visitscotland:MegalinkItem,visitscotland:Stop",
+            "visitscotland:Day,visitscotland:SharedLink",
+            "visitscotland:Day,visitscotland:Video",
+            "visitscotland:VideoLink,visitscotland:Stop",
+            "visitscotland:VideoLink,visitscotland:Page"
+    })
+    @DisplayName("VS-2905 - Invalid documents cause a validation exception")
+    void incorrectValues(String parentType, String childType) throws RepositoryException {
+        assertTrue(validator.validate(context, mockLink(parentType, childType, false)).isPresent());
+    }
+
+    /**
+     * Mocks a Document that cotains a link, the linked document and stubs any expected behaviour during the validation
+     *
+     * @param parentType JCR Type that act as a container (i.e. visitscotland:VideoLink)
+     * @param childType JCR Type that represent the linked document (i.e. visitscotland:Video)
+     * @param expected true when a validation exception is not expected
+     *
+     * @return Node to be validated against the validator
+     */
+    private Node mockLink(String parentType, String childType, boolean expected) throws  RepositoryException{
+        Node parentNode = Mockito.mock(Node.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
+        Node childNode = Mockito.mock(Node.class, withSettings().lenient());
+        boolean isDefault = !LinkValidator.DAY.equals(parentType) && !LinkValidator.VIDEO.equals(parentType);
+
+        when(parentNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("NODE-ID");
+        lenient().when(parentNode.getParent().isNodeType(AdditionalMatchers.not(eq(parentType)))).thenReturn(false);
+        if (!isDefault){
+            when(parentNode.getParent().isNodeType(parentType)).thenReturn(true);
         }
 
-        return node;
+        when(childNode.isNodeType(childType)).thenReturn(true);
+        when(childNode.isNodeType(AdditionalMatchers.not(eq(childType)))).thenReturn(false);
+
+        if (expected) {
+            when(mockSessionFactory.getHippoNodeByIdentifier("NODE-ID")).thenReturn(childNode);
+        } else if (isDefault) {
+            when(context.createViolation()).thenReturn(mock(Violation.class));
+        } else {
+            when(context.createViolation(any(String.class))).thenReturn(mock(Violation.class));
+        }
+
+        return parentNode;
     }
 }

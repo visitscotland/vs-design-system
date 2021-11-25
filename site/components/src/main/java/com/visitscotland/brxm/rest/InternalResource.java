@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.rest;
 
-import com.visitscotland.brxm.utils.CommonUtils;
+import com.visitscotland.brxm.services.CommonUtilsService;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.jaxrs.services.AbstractResource;
@@ -24,11 +24,11 @@ public class InternalResource extends AbstractResource {
 
     static final String NO_MATCH = "<!-- No match -->";
 
-    private final CommonUtils utils;
+    private final CommonUtilsService utils;
 
     private final Properties properties;
 
-    public InternalResource(CommonUtils utils, Properties properties) {
+    public InternalResource(CommonUtilsService utils, Properties properties) {
         this.utils = utils;
         this.properties = properties;
     }
@@ -64,6 +64,9 @@ public class InternalResource extends AbstractResource {
         }
     }
 
+    /**
+     * Build the URL for the internal page rendered in freemarker.
+     */
     private String buildUrl(boolean external,
                             String rootPath,
                             String sso,
@@ -81,11 +84,10 @@ public class InternalResource extends AbstractResource {
         }
 
         if (locale != null) {
-            languageSubsite = "/" + Language.getLanguageForLocale(Locale.forLanguageTag(locale)).getCMSPathVariable();
+            languageSubsite = Language.getLanguageForLocale(Locale.forLanguageTag(locale)).getCMSPathVariable();
         }
 
-        //TODO: WebOps concern about hardcoding urls
-        return properties.getLocalhost() + languageSubsite + "/internal" +
+        return  properties.getCmsBasePath() + languageSubsite + "/internal" +
                 utils.buildQueryString(parameters, StandardCharsets.UTF_8.name());
     }
 

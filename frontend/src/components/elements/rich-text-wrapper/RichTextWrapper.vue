@@ -40,13 +40,22 @@ export default {
 <style lang="scss">
 .vs-rich-text-wrapper {
 
-    &.vs-rich-text-wrapper--variant-normal * {
+    &--variant-normal{
         font-family: $font-family-base;
-        font-size: $font-size-base;
+        font-size: $body-font-size;
+
+        @include media-breakpoint-up(md) {
+            font-size: $body-font-size-md;
+        }
     }
 
-    &.vs-rich-text-wrapper--variant-lead.lead * {
+    &--variant-lead {
         line-height: $line-height-lead;
+        font-size: $lead-font-size;
+
+        @include media-breakpoint-up(md) {
+            font-size: $lead-font-size-md;
+        }
     }
 }
 
@@ -57,21 +66,31 @@ export default {
     <BsWrapper class="mb-9">
         <h3>Normal Variant</h3>
         <VsRichTextWrapper>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
              <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
              enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
-            Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
+            Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.</p>
         </VsRichTextWrapper>
     </BsWrapper>
 
     <BsWrapper class="mb-4">
         <h3>Lead Variant</h3>
         <VsRichTextWrapper variant="lead">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
              <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
               enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
-            Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
+            Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.</p>
         </VsRichTextWrapper>
     </BsWrapper>
+
+    <VsRichTextWrapper>
+        <VsHeading level="3">
+            How do I climb Ben Nevis safely?
+        </VsHeading>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+            <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
+            enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
+        Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
+    </VsRichTextWrapper>
 ```
 </docs>

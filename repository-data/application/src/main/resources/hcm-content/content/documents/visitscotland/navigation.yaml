@@ -1,7 +1,0 @@
-/content/documents/visitscotland/navigation:
-  jcr:primaryType: hippostd:folder
-  jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-  jcr:uuid: b4c8daf1-c094-4bca-9107-313ded4f6604
-  hippostd:foldertype: [new-untranslated-folder-navigation, new-widget]
-  hippotranslation:id: 63c04b3c-8daa-4f3c-9dd0-337a2c5205bb
-  hippotranslation:locale: en

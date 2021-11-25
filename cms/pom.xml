@@ -18,7 +18,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>2.3.1.RELEASE</version>
+        <version>${spring-boot.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -26,6 +26,14 @@
   </dependencyManagement>
 
   <dependencies>
+    <dependency>
+      <artifactId>hippo-addon-reporting-dashboard-frontend</artifactId>
+      <groupId>com.onehippo.cms7</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>hippo-addon-reporting-dashboard-repository</artifactId>
+      <groupId>com.onehippo.cms7</groupId>
+    </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>visitscotland-cms-dependencies</artifactId>
@@ -35,9 +43,9 @@
     
     <!-- TODO review this dependency cms-site -->
     <dependency>
-      <groupId>com.visitscotland</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>visitscotland-components</artifactId>
-      <version>0.1.0-SNAPSHOT</version>
+      <version>${project.version}</version>
       <scope>compile</scope>
     </dependency>
   
@@ -51,46 +59,23 @@
     <dependency>
       <groupId>com.visitscotland</groupId>
       <artifactId>data-service-api</artifactId>
-      <version>${data-service-api.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.jboss.resteasy</groupId>
-          <artifactId>resteasy-jaxrs</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>javax.ws.rs</groupId>
-          <artifactId>javax.ws.rs-api</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>jakarta.ws.rs</groupId>
-          <artifactId>jakarta.ws.rs-api</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-log4j12</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>${junit.jupiter.version}</version>
-      <scope>test</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-inline</artifactId>
-      <version>${mockito.version}</version>
-      <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-junit-jupiter</artifactId>
-      <version>${mockito.version}</version>
-      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -100,10 +85,10 @@
       <scope>test</scope>
     </dependency>
 
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+      <version>${spring-boot.version}</version>
       <exclusions>
         <exclusion>
           <groupId>org.springframework.boot</groupId>
@@ -114,22 +99,29 @@
           <groupId>org.apache.logging.log4j</groupId>
           <artifactId>log4j-to-slf4j</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-log4j2</artifactId>
+      <version>${spring-boot.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
+      <version>${spring-boot.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-tomcat</artifactId>
+      <version>${spring-boot.version}</version>
       <scope>provided</scope>
     </dependency>
 
@@ -159,6 +151,14 @@
         <filtering>false</filtering>
         <includes>
           <include>**/*</include>
+        </includes>
+        <excludes><exclude>**/*.properties</exclude></excludes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.properties</include>
         </includes>
       </resource>
     </resources>
@@ -194,7 +194,29 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
       </plugin>
+      <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-resources-plugin</artifactId>
+      <executions>
+        <execution>
+          <id>create-optimized-ckeditor-resources</id>
+          <phase>generate-resources</phase>
+          <goals>
+            <goal>copy-resources</goal>
+          </goals>
+          <configuration>
+            <outputDirectory>${project.build.directory}/classes/ckeditor/optimized</outputDirectory>
+            <resources>
+              <resource>
+                <directory>${basedir}/src/main/resources/ckeditor</directory>
+              </resource>
+            </resources>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
     </plugins>
   </build>
 </project>

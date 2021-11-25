@@ -3,18 +3,13 @@ package com.visitscotland.brxm.dms;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brxm.utils.CommonUtils;
-import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.Locale;
 
-//TODO: Test changing the name
-//@Component("dmsDataService")
 @Component
 public class DMSDataService {
 
@@ -40,14 +35,13 @@ public class DMSDataService {
         String responseString = null;
 
         if (!Contract.isEmpty(productId)) {
-            //TODO Remove %s from the constant
-            String dmsUrl = String.format(DMSConstants.VS_DMS_PRODUCT_CARD, "");
+            String dmsUrl = DMSConstants.VS_DMS_PRODUCT_CARD;
             dmsUrl += "id=" + productId;
             if (locale != null) {
                 dmsUrl += "&locale=" + locale.getLanguage();
             }
 
-            logger.info("Requesting data to the dms: %s", dmsUrl);
+            logger.info("Requesting data to the dms: {}", dmsUrl);
             try {
                 responseString = proxy.request(dmsUrl);
                 if (responseString!=null) {
@@ -60,9 +54,7 @@ public class DMSDataService {
                     }
                 }
             } catch (JsonProcessingException e){
-                logger.error("The response could not be parsed:\n %s", responseString, e);
-            } catch (IOException e){
-                logger.error("An unexpected error happened while connecting to the DMS", e);
+                logger.error("The response could not be parsed:\n {}", responseString, e);
             }
         } else {
             logger.info("productCard data requested but the product id was not provided");
@@ -82,7 +74,7 @@ public class DMSDataService {
         String responseString = null;
         String dmsUrl = psb.buildDataMap();
 
-        logger.info("Requesting data to the dms: %s", dmsUrl);
+        logger.info("Requesting data to the dms: {}", dmsUrl);
         try {
             responseString = proxy.request(dmsUrl);
 
@@ -96,10 +88,9 @@ public class DMSDataService {
                 }
             }
         } catch (JsonProcessingException e){
-            logger.error("The response could not be parsed:\n %s", responseString, e);
-        } catch (IOException e){
-            logger.error("An unexpected error happened while connecting to the DMS", e);
+            logger.error("The response could not be parsed:\n {}", responseString, e);
         }
+
         return  null;
     }
 }

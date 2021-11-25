@@ -13,14 +13,19 @@
         :size="size"
         v-bind="$attrs"
         @click="animateHandler"
+        @mouseover="hovered = true"
+        @focusin="hovered = true"
+        @mouseleave="hovered = false"
+        @focusout="hovered = false"
     >
         <VsIcon
             :class="{ 'mr-2': !iconOnly }"
             v-if="icon"
             :name="icon"
-            :size="iconSize"
+            :size="iconSizeOverride || calcIconSize"
             :padding="0"
             :orientation="iconOrientation"
+            :variant="iconVariantOverride || calcIconVariant"
         />
         <!-- @slot The button content goes here -->
         <slot />
@@ -67,13 +72,20 @@ export default {
         },
         /**
          * Style variation to give additional meaning.
-         * `primary, secondary, success, danger, warning, info, light, dark, transparent`
+         * `primary, secondary, transparent, dark, light`
+         *
+         * Primary is the main colour style for buttons and should be used in most cases,
+         * secondary is a brighter (yellow) style that should only be used on dark
+         * backgrounds
+         *
+         * Transparent, dark and light are specialised cases that should only be used if
+         * specifically required by the design
          */
         variant: {
             type: String,
             default: 'primary',
             validator: (value) => value.match(
-                /(primary|secondary|success|danger|warning|info|light|dark|transparent)/,
+                /(primary|secondary|transparent|dark|light)/,
             ),
         },
         /**
@@ -137,17 +149,40 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+         * The variant to be used for a contained icon, generally this is
+         * automatically calculated based on the button variant but in a few
+         * unusual cases it is desirable to manually set it
+         */
+        iconVariantOverride: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(
+                /(primary|secondary|light|dark|reverse-white|secondary-teal)/,
+            ),
+        },
+        /**
+         * The size to be used for a contained icon, generally this is
+         * automatically calculated based on the button size but in a few
+         * unusual cases it is desirable to manually set it
+         */
+        iconSizeOverride: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+        },
     },
     data() {
         return {
             isAnimating: false,
+            hovered: false,
         };
     },
     computed: {
         backgroundClass() {
             return this.background ? [`btn-bg-${this.background}`] : null;
         },
-        iconSize() {
+        calcIconSize() {
             switch (this.size) {
             case 'sm':
                 return 'xs';
@@ -162,6 +197,31 @@ export default {
         textTransformClass() {
             return this.uppercase ? 'text-uppercase' : null;
         },
+        calcIconVariant() {
+            if (this.isOutline) {
+                if (this.hovered) {
+                    return 'light';
+                }
+
+                return this.outlineColour;
+            }
+
+            if (this.variant === 'secondary') {
+                return 'dark';
+            }
+
+            if (this.variant === 'transparent') {
+                return 'primary';
+            }
+
+            return 'light';
+        },
+        isOutline() {
+            return this.variant.match(/outline/) !== null;
+        },
+        outlineColour() {
+            return this.variant.replace('outline-', '');
+        },
     },
     methods: {
         animateHandler() {
@@ -175,80 +235,174 @@ export default {
 </script>
 
 <style lang="scss">
+    .vs-button.btn {
+        font-family: $font-family-base;
+        font-weight: $font-weight-light;
+        transition: $transition-base;
+        text-decoration: none;
+        letter-spacing: 2px;
+        position: relative;
+        overflow: hidden;
 
-.vs-button.btn {
-    font-family: $font-family-base;
-    font-weight: $font-weight-light;
-    transition: $transition-base;
-    text-decoration: none;
-    letter-spacing: 2px;
-    position: relative;
-    overflow: hidden;
-
-    .btn-dark {
-        &:hover {
-            background-color: $color-gray-shade-5;
-        }
-    }
-
-    &.btn-bg-white:not(:hover) {
-        background-color: $color-white;
-    }
-
-    &.btn-light,
-    &.btn-transparent {
         &:focus {
-            box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+            box-shadow: $shadow-button-focus;
         }
 
-        &::after {
-            background: rgba(0, 0, 0, 0.2);
+        .vs-icon {
+            margin-top: -.05em;
         }
-    }
 
-    &.vs-button--animated {
-        @keyframes bubble {
-            0% {
-                transform: scale(0, 0);
-                opacity: 1;
+        &.btn-secondary {
+            color: $color-black;
+            background-color: $color-yellow;
+            border-color: $color-yellow;
+
+            &:not(:disabled) {
+                &:hover {
+                    background-color: darken($color-yellow, 10%);
+                    border-color: darken($color-yellow, 12%);
+                }
+
+                &:active {
+                    color: $color-black;
+                }
             }
-            100% {
+        }
+
+        &.btn-outline-secondary {
+            color: $color-yellow;
+            border-color: $color-yellow;
+
+            &:hover {
+                color: $color-black;
+                background-color: $color-yellow;
+                border-color: $color-yellow;
+            }
+        }
+
+        &.btn-dark {
+            &:hover {
+                background-color: $color-gray-shade-5;
+            }
+        }
+
+        &.btn-light,
+        &.btn-transparent {
+            &::after {
+                background: rgba(187, 38, 132, 0.3);
+            }
+        }
+
+        &.btn-bg-white:not(:hover) {
+            background-color: $color-white;
+        }
+
+        // This is to match bootstrap specificity, otherwise it forces
+        // a pink shadow on primary buttons when active + focussing where we want
+        // no shadow
+        &:not(:disabled):not(.disabled):active:focus {
+            box-shadow: none;
+        }
+
+        &:disabled {
+            background-color: $color-secondary-gray-tint-4;
+            color: $color-white;
+            opacity: 1;
+            border-width: 0;
+        }
+
+        &.vs-button--animated {
+            @keyframes bubble {
+                0% {
+                    transform: scale(0, 0);
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(100, 100);
+                }
+            }
+
+            &::after {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                bottom: 0;
+                content: "";
+                height: 5px;
                 opacity: 0;
-                transform: scale(100, 100);
+                position: absolute;
+                right: 0;
+                transform-origin: 50% 50%;
+                transform: scale(1, 1) translate(-50%);
+                width: 5px;
+            }
+
+            &.vs-button--is-animating::after {
+                animation: bubble 500ms ease-in-out;
             }
         }
-
-        &::after {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            bottom: 0;
-            content: "";
-            height: 5px;
-            opacity: 0;
-            position: absolute;
-            right: 0;
-            transform-origin: 50% 50%;
-            transform: scale(1, 1) translate(-50%);
-            width: 5px;
-        }
-
-        &.vs-button--is-animating::after {
-            animation: bubble 500ms ease-in-out;
-        }
     }
-}
 </style>
 
 <docs>
 ```jsx
-    <h4>Types</h4>
+    <h4 class="mb-2">Main Variations</h4>
+    <BsWrapper class="d-flex flex-wrap mb-4">
+        <VsButton variant="primary" class="mr-2 mb-2">Primary (default)</VsButton>
+        <VsButton
+            class="mr-2 mb-2"
+            icon="food"
+            size="md"
+        >
+            Primary with an icon
+        </VsButton>
+        <VsButton variant="outline-primary" class="mr-2 mb-2">Primary Outline</VsButton>
+        <VsButton
+            class="mr-2 mb-2"
+            variant="outline-primary"
+            icon="food"
+            size="md"
+        >
+            Outline with an icon
+        </VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="primary" size="md">
+            Disabled primary
+        </VsButton>
+    </BsWrapper>
+    <BsWrapper class="d-flex flex-wrap mb-4 bg-dark p-3">
+        <VsButton variant="secondary" class="mr-2 mb-2">Secondary</VsButton>
+        <VsButton
+            class="mr-2 mb-2"
+            icon="food"
+            size="md"
+            variant="secondary"
+        >
+            Secondary with an icon
+        </VsButton>
+        <VsButton variant="outline-secondary" class="mr-2 mb-2">Secondary Outline</VsButton>
+        <VsButton disabled class="mr-2 mb-2" variant="secondary" size="md">
+            Disabled Secondary
+        </VsButton>
+    </BsWrapper>
+
+    <h4 class="mb-2">Other Variations</h4>
+
+    <BsWrapper class="d-flex flex-wrap mb-4">
+      <VsButton variant="transparent" class="mr-2 mb-2">Transparent</VsButton>
+      <VsButton variant="dark" class="mr-2 mb-2">Dark</VsButton>
+      <VsButton variant="light" class="mr-2 mb-2">Light</VsButton>
+    </BsWrapper>
+
+    <h4 class="mb-2">Types</h4>
+
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton class="mr-2 mb-2">Button</VsButton>
       <VsButton :animate=false class="mr-2 mb-2">Button with no animation</VsButton>
       <VsButton class="mr-2 mb-2" href="https://www.visitscotland.com">Link</VsButton>
     </BsWrapper>
 
-    <h4>With Icons</h4>
+    <h4 class="mb-2">Icon Sizing</h4>
+
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton
         class="mr-2 mb-2"
@@ -258,7 +412,6 @@ export default {
         Nearby Places to Eat
       </VsButton>
     </BsWrapper>
-
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton
         class="mr-2 mb-2"
@@ -268,7 +421,6 @@ export default {
         Map View
       </VsButton>
     </BsWrapper>
-
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton
         class="mr-2 mb-2"
@@ -279,7 +431,7 @@ export default {
       </VsButton>
     </BsWrapper>
 
-    <h4>Icon Only</h4>
+    <h4 class="mb-2">Icon Only</h4>
     <BsWrapper class="d-flex flex-wrap mb-4">
       <VsButton
         class="mr-2 mb-2"
@@ -289,70 +441,17 @@ export default {
       />
     </BsWrapper>
 
-    <h4>Variants</h4>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-      <VsButton variant="primary" class="mr-2 mb-2">Primary (default)</VsButton>
-      <VsButton variant="secondary" class="mr-2 mb-2">Secondary</VsButton>
-      <VsButton variant="success" class="mr-2 mb-2">Success</VsButton>
-      <VsButton variant="danger" class="mr-2 mb-2">Danger</VsButton>
-      <VsButton variant="warning" class="mr-2 mb-2">Warning</VsButton>
-      <VsButton variant="info" class="mr-2 mb-2">Info</VsButton>
-      <VsButton variant="light" class="mr-2 mb-2">Light</VsButton>
-      <VsButton variant="dark" class="mr-2 mb-2">Dark</VsButton>
-      <VsButton variant="transparent" class="mr-2 mb-2">Transparent</VsButton>
-    </BsWrapper>
-    <h4>Outline Color Variants</h4>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-      <VsButton variant="outline-primary" class="mr-2 mb-2">Primary</VsButton>
-      <VsButton variant="outline-secondary" class="mr-2 mb-2">Secondary</VsButton>
-      <VsButton variant="outline-success" class="mr-2 mb-2">Success</VsButton>
-      <VsButton variant="outline-danger" class="mr-2 mb-2">Danger</VsButton>
-      <VsButton variant="outline-warning" class="mr-2 mb-2">Warning</VsButton>
-      <VsButton variant="outline-info" class="mr-2 mb-2">Info</VsButton>
-      <VsButton variant="outline-dark" class="mr-2 mb-2">Dark</VsButton>
-    </BsWrapper>
-    <h4>Outline Color Variants - override transparent background</h4>
+    <h4 class="mb-2">Outline Color Variants - override transparent background</h4>
     <BsWrapper class="d-flex flex-wrap mb-4 bg-dark p-3">
       <VsButton background="white" variant="outline-primary" class="mr-2 mb-2">Primary</VsButton>
     </BsWrapper>
-    <h4>Sizes</h4>
+
+    <h4 class="mb-2">Sizes</h4>
     <BsWrapper>
       <VsButton class="mr-2 mb-2" size="sm">Small</VsButton>
       <VsButton class="mr-2 mb-2" size="md">Medium</VsButton>
       <VsButton class="mr-2 mb-2" size="lg">Large</VsButton>
       <VsButton block class="mr-2 mb-2" size="md">Block</VsButton>
     </BsWrapper>
-
-    <h4>Disabled States</h4>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-        <VsButton disabled class="mr-2 mb-2" variant="primary" size="md">
-            Disabled primary
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="secondary" size="md">
-            Disabled primary pink
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="success" size="md">
-            Disabled success
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="danger" size="md">
-            Disabled danger
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="warning" size="md">
-            Disabled warning
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="info" size="md">
-            Disabled info
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="light" size="md">
-            Disabled light
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="dark" size="md">
-            Disabled dark
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="transparent" size="md">
-            Disabled transparent
-        </VsButton>
-    </BsWrapper>
-
 ```
 </docs>

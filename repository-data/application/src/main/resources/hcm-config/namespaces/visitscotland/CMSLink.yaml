@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: a0979a6e-85c6-4c2a-ba41-2a68ca0916f3
+          jcr:uuid: be67034a-55e7-4f34-845e-3c408fdddd01
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -32,7 +32,7 @@ definitions:
             hipposysedit:path: visitscotland:label
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: ['visitscotland:extrashort-string-validator']
+            hipposysedit:validators: ['visitscotland:short-string-validator']
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:

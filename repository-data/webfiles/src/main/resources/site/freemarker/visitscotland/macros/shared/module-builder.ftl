@@ -1,28 +1,32 @@
 <#include "../../../include/imports.ftl">
 <#include "../global/cms-errors.ftl">
 <#include "../modules/megalinks/megalinks.ftl">
-<#include "../modules/megalinks/megalinks-horizontal-list.ftl">
 <#include "../modules/article/article.ftl">
 <#include "../modules/long-copy/long-copy.ftl">
+<#include "../modules/iknow-community/iknow-community.ftl">
+<#include "../modules/travel-information/travel-information.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
+<#include "../modules/horizontal-list/horizontal-list.ftl">
+<#include "../modules/stackla/stackla.ftl">
+<#include "../modules/canned-search/canned-search.ftl">
+<#include "theme-calculator.ftl">
 
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brxm.beans.Destination" -->
-<#-- @ftlvariable name="pageItems" type="com.visitscotland.brxm.beans.Megalinks" -->
-<#-- @ftlvariable name="image" type="com.visitscotland.brxm.beans.mapping.FlatImage" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
+<#-- @ftlvariable name="pageItems" type="com.visitscotland.brxm.hippobeans.Megalinks" -->
+<#-- @ftlvariable name="image" type="com.visitscotland.brxm.model.FlatImage" -->
 
-<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.beans.mapping.FlatImage" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.beans.mapping.Coordinates" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.model.FlatImage" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.model.Coordinates" -->
 
-<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.beans.Image" -->
+<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.hippobeans.Image" -->
 
-<#macro moduleBuilder module theme>
-    <#if theme="theme1">
-        <#assign themeName = "dark">
-    <#elseif theme="theme2">
-        <#assign themeName = "light">
-    </#if>
+<#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.megalinks.LinksModule" -->
+
+<#macro moduleBuilder module colourScheme=[]>
+
+    <#assign themeName = themeCalculator(module.themeIndex, module, colourScheme)>
 
     <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
         <#assign moduleType = "megalinks">
@@ -30,25 +34,40 @@
         <#assign moduleType = module.getType()>
     </#if>
 
-    <div class="has-edit-button theme-${themeName}">       
+    <div class="has-edit-button">
+        <#if module.hippoBean?? >
+            <@hst.manageContent hippobean=module.hippoBean />
+        </#if>
         <#if moduleType == "megalinks">
-            <#-- all Megalinks modules -->
+            <#-- all Megalinks modules except HorizontalListLinksModule -->
             <@megalinks item=module type=module.getType() theme=themeName />
 
         <#elseif moduleType == "HorizontalListLinksModule">
-            <@horizontalList module/>
+            <@horizontalList module themeName />
 
         <#elseif moduleType == "ICentreModule">
-            <@icentre module/>
+            <@icentre module themeName/>
 
         <#elseif moduleType == "IKnowModule">
-            <@iknow module/>
+            <@iknow module themeName/>
 
         <#elseif module.getType()== "ArticleModule">
             <@article module/>
 
         <#elseif module.getType()== "LongCopyModule">
             <@longCopy module/>
+
+        <#elseif module.getType()== "IKnowCommunityModule">
+            <@iknowCommunity module/>
+
+        <#elseif module.getType()== "StacklaModule">
+            <@stackla module/>
+
+        <#elseif module.getType()== "TravelInformationModule">
+            <@travelInformation module/>
+
+        <#elseif module.getType()== "CannedSearchModule">
+            <@cannedSearch module themeName/>
         </#if>
     </div>
 </#macro>

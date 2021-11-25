@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.components.navigation;
 
-import com.visitscotland.brxm.beans.Widget;
+import com.visitscotland.brxm.model.navigation.NavigationWidget;
 import org.hippoecm.hst.content.annotations.PageModelIgnore;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
@@ -20,7 +20,7 @@ public class MenuItem implements HstSiteMenuItem {
     private MenuItem parent;
 
     private String title;
-    private Widget widget;
+    private NavigationWidget widget;
     private String cta;
 
 
@@ -33,11 +33,11 @@ public class MenuItem implements HstSiteMenuItem {
         return hstMenuItem;
     }
 
-    public Widget getWidget() {
+    public NavigationWidget getWidget() {
         return widget;
     }
 
-    public void setWidget(Widget widget) {
+    public void setWidget(NavigationWidget widget) {
         this.widget = widget;
     }
 

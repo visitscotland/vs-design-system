@@ -21,15 +21,14 @@ public class DMSProxy {
 
     private static final Logger logger = LoggerFactory.getLogger(DMSProxy.class);
 
-    static final String HEADER_TOKEN = "token";
+    static final String HEADER = "VS-API-Key";
 
     /**
      * Registers the time of the last failure and blocks subsequent requests
      */
     static Long lastRegisteredFailure = null;
 
-    // TODO private final
-    Properties properties;
+    private final Properties properties;
 
     public DMSProxy(Properties properties){
         this.properties = properties;
@@ -42,16 +41,13 @@ public class DMSProxy {
      * In case of timeout, it tries it several times and finally blocks subsequent requests for a period of time when
      * all retries fail.
      *
-     * @param path
+     * @param path Relative url to the data EndPoint
      *
      * @return Body of the end point or null if status code not 200 or 300
-     *
-     * @throws IOException
      */
     public String request(String path) {
-        if (!Contract.isEmpty(properties.getDmsHost()) && path.startsWith(properties.getDmsHost())){
-            //TODO Fix ProductSearchBuilder to make it build relative URLs
-            return request(path.substring(properties.getDmsHost().length()), null);
+        if (!Contract.isEmpty(properties.getDmsDataHost()) && path.startsWith(properties.getDmsDataHost())){
+            return request(path.substring(properties.getDmsDataHost().length()), null);
         }
 
         return request(path, null);
@@ -88,9 +84,9 @@ public class DMSProxy {
      */
     private String request(String path, int retries) {
         try {
-            HttpURLConnection dmsConnection = openConnection(properties.getDmsHost() + path);
+            HttpURLConnection dmsConnection = openConnection(properties.getDmsDataHost() + path);
             dmsConnection.setConnectTimeout(properties.getDmsTimeout());
-            dmsConnection.setRequestProperty(HEADER_TOKEN, properties.getDmsToken());
+            dmsConnection.setRequestProperty(HEADER, properties.getDmsToken());
             dmsConnection.setRequestMethod("GET");
 
             int code = dmsConnection.getResponseCode();
@@ -106,7 +102,6 @@ public class DMSProxy {
             if (retries > 1) {
                 return request(path, retries - 1);
             } else {
-                //TODO SHOULD we print the URL?
                 logger.error("The DMS Service couldn't be reached. Holding all subsequent connections for {} ms ", properties.getDmsWaitTime());
                 DMSProxy.registerFailure();
             }

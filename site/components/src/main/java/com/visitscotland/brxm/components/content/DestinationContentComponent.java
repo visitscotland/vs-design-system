@@ -1,7 +1,8 @@
 package com.visitscotland.brxm.components.content;
 
-import com.visitscotland.brxm.beans.Destination;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.hippobeans.Destination;
+import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.utils.PageTemplateBuilder;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
@@ -28,7 +29,6 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
     void addAttributesToRequest(HstRequest request) {
         Destination document = (Destination) request.getAttribute("document");
 
-        addHeroCoordinates(request);
         builder.addModules(request, document.getLocation());
     }
 

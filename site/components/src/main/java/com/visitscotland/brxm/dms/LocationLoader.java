@@ -2,31 +2,28 @@ package com.visitscotland.brxm.dms;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brxm.beans.dms.LocationObject;
-import com.visitscotland.brxm.cfg.VsComponentManager;
+import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.utils.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.*;
 
-//TODO Test?
-//TOTO convert to Service
 @Component
 public class LocationLoader {
 
     private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class);
 
-    private static LocationLoader instance;
-
-    private final Map<Language, Map<String, LocationObject>> locations = new HashMap<>();
+    private final EnumMap<Language, Map<String, LocationObject>> locations = new EnumMap<>(Language.class);
 
     private final Map<String, String> locationToId = new HashMap<>();
 
-    private DMSProxy proxy;
+    private final DMSProxy proxy;
 
+    @Autowired
     public LocationLoader(DMSProxy proxy){
         this.proxy = proxy;
     }
@@ -37,49 +34,38 @@ public class LocationLoader {
     private void validateMaps() {
         synchronized (LocationLoader.class) {
             if (locationToId.size() == 0) {
-                for (Language lang : Language.values()) {
-                    Map<String, LocationObject> locationsMap = new HashMap<>();
-                    try {
-                        List<LocationObject> locationList = deserialize(request(lang.getLocale()));
-
-                        //if the locationToId map is empty and the locale is null. Both lists are populated simultaneously
-                        if (locationToId.size() == 0 && lang == Language.ENGLISH) {
-                            for (LocationObject location : locationList) {
-                                locationToId.put(location.getName(), location.getId());
-                                locationsMap.put(location.getId(), location);
-                            }
-                        } else {
-                            for (LocationObject location : locationList) {
-                                locationsMap.put(location.getId(), location);
-                            }
-                        }
-
-                    } catch (IOException e) {
-                        logger.warn("Location List couldn't been loaded for the locale {}", lang.getLocale());
-                    } catch (Exception e) {
-                        if (e instanceof NullPointerException){
-
-                        }
-                        logger.error("Unexpected exception ", e);
-                    }
-
-                    locations.put(lang, locationsMap);
-                }
+                loadLocations();
             }
         }
     }
 
-    /**
-     * TODO: Check: Is this used by FreeMarker?
-     *
-     * @deprecated use SpringContext.getBean (LocationLoader.class) instead
-     */
-    @Deprecated
-    public static LocationLoader getInstance(){
-        if (instance == null){
-            instance = VsComponentManager.get(LocationLoader.class);
+    private void loadLocations(){
+        logger.info("LocationLoader is initializing the list of locations");
+        for (Language lang : Language.values()) {
+            Map<String, LocationObject> locationsMap = new HashMap<>();
+            try {
+                List<LocationObject> locationList = deserialize(request(lang.getLocale()));
+
+                //if the locationToId map is empty, and the locale is null. Both lists are populated simultaneously
+                if (locationToId.size() == 0 && lang == Language.ENGLISH) {
+                    for (LocationObject location : locationList) {
+                        locationToId.put(location.getName(), location.getId());
+                        locationsMap.put(location.getId(), location);
+                    }
+                } else {
+                    for (LocationObject location : locationList) {
+                        locationsMap.put(location.getId(), location);
+                    }
+                }
+
+            } catch (IOException e) {
+                logger.warn("Location List couldn't been loaded for the locale {}", lang.getLocale());
+            } catch (Exception e) {
+                logger.error("Unexpected exception ", e);
+            }
+
+            locations.put(lang, locationsMap);
         }
-        return instance;
     }
 
     private Map<String, LocationObject> getLocations(Language language){
@@ -91,8 +77,6 @@ public class LocationLoader {
     public LocationObject getLocation(String location, Locale locale){
         return getLocations(Language.getLanguageForLocale(locale)).get(locationToId.get(location));
     }
-
-
 
     /**
      *
@@ -122,20 +106,20 @@ public class LocationLoader {
         return  locationList;
     }
 
-    private void clear(){
+    public void clear(){
         locationToId.clear();
         locations.clear();
     }
 
     /**
-     * Request the the resource taking into account the language.
+     * Request the resource taking into account the language.
      *
-     * @param locale: Specific locale for the fragment or null if the locale is English (default locale)
+     * @param locale: A specific locale for the fragment or null if the locale is English (default locale)
      *
      * @return HTML fragment according to the type and the locale
      */
     private String request(Locale locale){
-        //TODO Change the level to add polygon (for destinations pages)
+        //TODO Change the level to add a polygon (for destinations pages)
         if (locale == null){
             return proxy.request(DMSConstants.META_LOCATIONS);
         } else {

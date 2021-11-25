@@ -1,6 +1,5 @@
 package com.visitscotland.brxm.dms;
 
-import com.visitscotland.brxm.utils.CommonUtils;
 import com.visitscotland.brxm.utils.Properties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,9 +28,6 @@ class DMSProxyTest {
     DMSProxy proxy;
 
     @Mock
-    CommonUtils utils;
-
-    @Mock
     HttpURLConnection huc;
 
     @Mock
@@ -44,12 +40,13 @@ class DMSProxyTest {
 
         //Overrides the method that defines that instances the connection
         proxy = new DMSProxy(properties) {
+
             @Override
             protected HttpURLConnection openConnection(String url) {
                 return huc;
             }
         };
-        proxy.properties = this.properties;
+
     }
 
     @Test
@@ -62,7 +59,7 @@ class DMSProxyTest {
 
         Assertions.assertEquals(CONTENT, proxy.request("/happy-path"));
 
-        verify(huc).setRequestProperty(eq(DMSProxy.HEADER_TOKEN), any());
+        verify(huc).setRequestProperty(eq(DMSProxy.HEADER), any());
     }
 
     @Test
@@ -76,9 +73,9 @@ class DMSProxyTest {
         HttpURLConnection.setFollowRedirects(false);
 
         Assertions.assertEquals(CONTENT, proxy.request("/300-the-film"));
-        Assertions.assertEquals(true, HttpURLConnection.getFollowRedirects());
+        Assertions.assertTrue(HttpURLConnection.getFollowRedirects());
 
-        verify(huc).setRequestProperty(eq(DMSProxy.HEADER_TOKEN), any());
+        verify(huc).setRequestProperty(eq(DMSProxy.HEADER), any());
     }
 
     @Test
@@ -116,8 +113,8 @@ class DMSProxyTest {
         }
         //Send the request and wait 10 seconds maximum
         service.shutdown();
-        service.awaitTermination(10, TimeUnit.SECONDS);
-        if (!service.isTerminated()) {
+
+        if (!service.awaitTermination(10, TimeUnit.SECONDS)) {
             Assertions.fail("Concurrency hasn't been managed properly");
         }
 

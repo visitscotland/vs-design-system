@@ -1,7 +1,7 @@
 package com.visitscotland.brxm.mock;
 
-import com.visitscotland.brxm.beans.*;
-import com.visitscotland.brxm.beans.capabilities.Linkable;
+import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.mockito.Mockito;
@@ -126,8 +126,9 @@ public class TouristInformationMockBuilder {
         if (iKnow == null){
             addIKnow();
         }
-        when(iKnow.getDescription()).thenReturn(description);
+        HippoHtml hippoHtml = mock(HippoHtml.class);
+        when(hippoHtml.getContent()).thenReturn(description);
+        when(iKnow.getDescription()).thenReturn(hippoHtml);
         return this;
     }
-
 }

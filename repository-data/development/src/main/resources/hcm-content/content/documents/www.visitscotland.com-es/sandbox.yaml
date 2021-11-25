@@ -5,397 +5,545 @@
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: 0ff458fa-cab8-47ba-9862-d8a0b7a1bacf
   hippotranslation:locale: es
-  /content:
-    jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-    jcr:uuid: f9afb960-e913-4651-be1c-6f9f175940b4
-    hippo:name: Página Indice
-    hippo:versionHistory: d3f4740d-a72a-4c80-ac99-dc464180b4c2
-    /content[1]:
-      jcr:primaryType: visitscotland:Destination
-      jcr:mixinTypes: ['mix:versionable']
-      jcr:uuid: 8911bb47-62ce-4354-90f7-8edf9f9ed41e
-      hippo:availability: [preview]
-      hippostd:state: unpublished
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2020-06-12T09:19:11.781+01:00
-      hippostdpubwf:lastModificationDate: 2020-06-12T15:43:17.924+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippotranslation:id: d4a2124b-1158-4b28-ab11-ff84f2c9801f
-      hippotranslation:locale: es
-      visitscotland:breadcrumb: Desarrollo Informágico
-      visitscotland:location: Edinburgh
-      visitscotland:seoDescription: El único propósito de esta campo es validar que
-        hice bien la implementación de SEO.
-      visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Un montón de enlaces útiles para desarrolladores
-      visitscotland:teaser: NUNCA HAS DE CREAR UN ENLACE A ESTA PÁGINA
-      visitscotland:title: Un montón de enlaces útiles para desarrolladores
-      /visitscotland:heroImage:
-        jcr:primaryType: hippogallerypicker:imagelink
-        hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-        hippo:facets: []
-        hippo:modes: []
-        hippo:values: []
-      /visitscotland:introduction:
-        jcr:primaryType: hippostd:html
-        hippostd:content: <p>These pages are used by back ends developers for content
-          modelling&nbsp;</p>
-    /content[2]:
-      jcr:primaryType: visitscotland:Destination
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 482f1251-5c20-40e2-afe7-779727d0f672
-      hippo:availability: []
-      hippostd:state: draft
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2020-06-12T09:19:11.781+01:00
-      hippostdpubwf:lastModificationDate: 2020-06-12T13:12:58.023+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippotranslation:id: d4a2124b-1158-4b28-ab11-ff84f2c9801f
-      hippotranslation:locale: es
-      visitscotland:breadcrumb: Desarrollo Informágico
-      visitscotland:location: Edinburgh
-      visitscotland:seoDescription: El único propósito de esta campo es validar que
-        hice bien la implementación de SEO.
-      visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Un montón de enlaces útiles para desarrolladores
-      visitscotland:teaser: NUNCA HAS DE CREAR UN ENLACE A ESTA PÁGINA
-      visitscotland:title: Un montón de enlaces útiles para desarrolladores
-      /visitscotland:heroImage:
-        jcr:primaryType: hippogallerypicker:imagelink
-        hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-        hippo:facets: []
-        hippo:modes: []
-        hippo:values: []
-      /visitscotland:introduction:
-        jcr:primaryType: hippostd:html
-        hippostd:content: <p>These pages are used by back ends developers for content
-          modelling&nbsp;</p>
-    /content[3]:
-      jcr:primaryType: visitscotland:Destination
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 3ba636b4-628b-4040-a17d-1ff7f60e7f46
-      hippo:availability: [live]
-      hippostd:state: published
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2020-06-12T09:19:11.781+01:00
-      hippostdpubwf:lastModificationDate: 2020-06-12T15:43:17.924+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2020-06-12T15:43:29.170+01:00
-      hippotranslation:id: d4a2124b-1158-4b28-ab11-ff84f2c9801f
-      hippotranslation:locale: es
-      visitscotland:breadcrumb: Desarrollo Informágico
-      visitscotland:location: Edinburgh
-      visitscotland:seoDescription: El único propósito de esta campo es validar que
-        hice bien la implementación de SEO.
-      visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Un montón de enlaces útiles para desarrolladores
-      visitscotland:teaser: NUNCA HAS DE CREAR UN ENLACE A ESTA PÁGINA
-      visitscotland:title: Un montón de enlaces útiles para desarrolladores
-      /visitscotland:heroImage:
-        jcr:primaryType: hippogallerypicker:imagelink
-        hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-        hippo:facets: []
-        hippo:modes: []
-        hippo:values: []
-      /visitscotland:introduction:
-        jcr:primaryType: hippostd:html
-        hippostd:content: <p>These pages are used by back ends developers for content
-          modelling&nbsp;</p>
-  /itinerary:
+  /localized-urls:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-    jcr:uuid: 4c18f9cc-fa5a-472b-afec-a40e9bdd8f2d
-    hippostd:foldertype: [new-translated-folder, new-document]
-    hippotranslation:id: 50c3b9d8-4fd6-460c-a3a6-cea7c7c00f01
+    jcr:uuid: cb2a9e31-203b-4f03-8c47-f032f1452f43
+    hippostd:foldertype: [new-translated-folder, new-page, new-module]
+    hippotranslation:id: 51e95349-2bb5-4822-a387-b47b4eb61136
     hippotranslation:locale: es
     /content:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-      jcr:uuid: 919c2b87-20a2-42ba-9b56-2080ca7e5681
-      hippo:name: Itinerario
-      hippo:versionHistory: 1d69e203-79da-41b0-a477-1cfaad6a07da
+      jcr:uuid: 5e78d35a-8fcd-4b10-b4b9-958ca6943e79
+      hippo:name: Localized URLs Demo
+      hippo:versionHistory: 98e86fb8-4ecf-430d-ad2a-b4d65349663e
       /content[1]:
-        jcr:primaryType: visitscotland:Itinerary
-        jcr:mixinTypes: ['mix:versionable']
-        jcr:uuid: 035bb931-49aa-4618-ad3c-4e679d61ef19
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-06-12T15:51:22.012+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
-        hippotranslation:locale: es
-        visitscotland:areas: [south]
-        visitscotland:breadcrumb: Itinerario de Quique
-        visitscotland:distance: 10.4
-        visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
-        visitscotland:popular: true
-        visitscotland:seoDescription: It was in Scotland's capital city that JK Rowling
-          started to plot the adventures of Harry and his friends. With cobbled streets,
-          winding alleys and medieval architecture, the city certainly have a few
-          things in common with the settings from the books and films.
-        visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Tenerife
-        visitscotland:summary: ''
-        visitscotland:teaser: It was in Scotland's capital city that JK Rowling started
-          to plot the adventures of Harry and his friends. With cobbled streets, winding
-          alleys and medieval architecture, the city certainly have a few things in
-          common with the settings from the books and films.
-        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
-          Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: familyev
-        visitscotland:title: Itinerario de la pelicula y los libros de Enrique el
-          alfarero.
-        visitscotland:transport: [boat]
-        visitscotland:transports: [walking]
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>Descubre los lugares en los que se baso la autora para
-            escribir la famosa saga de Enrique el Alfarero.</p>
-        /visitscotland:ProductsSearch:
-          jcr:primaryType: visitscotland:ProductsSearch
-          visitscotland:distance: 0
-          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
-          visitscotland:dmscategories: ''
-          visitscotland:location: ''
-          visitscotland:producttype: ''
-      /content[2]:
-        jcr:primaryType: visitscotland:Itinerary
+        jcr:primaryType: visitscotland:General
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 44af45f3-dea2-4d9c-988e-03e86a8fa21a
+        jcr:uuid: c6a03c84-ddd8-45d7-936c-f9378a4323a2
         hippo:availability: []
+        hippostd:retainable: false
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-06-16T14:11:08.152+01:00
+        hippostdpubwf:creationDate: 2021-08-25T15:57:37.526+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-25T16:16:44.105+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
+        hippotranslation:id: 69288741-1c97-47a7-bf0b-f30e8b3858ee
         hippotranslation:locale: es
-        visitscotland:areas: [south]
-        visitscotland:breadcrumb: Itinerario de Quique
-        visitscotland:distance: 10.4
-        visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
-        visitscotland:popular: true
-        visitscotland:seoDescription: It was in Scotland's capital city that JK Rowling
-          started to plot the adventures of Harry and his friends. With cobbled streets,
-          winding alleys and medieval architecture, the city certainly have a few
-          things in common with the settings from the books and films.
+        visitscotland:breadcrumb: ''
+        visitscotland:hideNewsletter: false
+        visitscotland:seoDescription: Hi! Welcome to the VisitScotland website, how
+          can we help you?
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Tenerife
-        visitscotland:summary: ''
-        visitscotland:teaser: It was in Scotland's capital city that JK Rowling started
-          to plot the adventures of Harry and his friends. With cobbled streets, winding
-          alleys and medieval architecture, the city certainly have a few things in
-          common with the settings from the books and films.
-        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
-          Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: familyev
-        visitscotland:title: Itinerario de la pelicula y los libros de Enrique el
-          alfarero.
-        visitscotland:transport: [boat]
-        visitscotland:transports: [walking]
+        visitscotland:seoTitle: Localized URL
+        visitscotland:teaser: This is an example of a Spanish page with the URLs localized
+        visitscotland:theme: Simple
+        visitscotland:title: Family holidays in Scotland
+        visitscotland:translation: ''
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Descubre los lugares en los que se baso la autora para
-            escribir la famosa saga de Enrique el Alfarero.</p>
-        /visitscotland:ProductsSearch:
-          jcr:primaryType: visitscotland:ProductsSearch
-          visitscotland:distance: 0
-          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
-          visitscotland:dmscategories: ''
-          visitscotland:location: ''
-          visitscotland:producttype: ''
+          hippostd:content: <p>Your family holiday in Scotland will be one to remember
+            - after all, it's a country that packs oodles of adventure, history, wildlife
+            and scenery into every square mile! When it comes to planning a family
+            break, we know there are lots of important decisions to be made, but you'll
+            find that Scotland ticks all the boxes - there's plenty of quality accommodation
+            to suit all budgets, exciting destinations to explore, and, of course,
+            countless attractions and thrilling activities for all ages.</p>
+      /content[2]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: d69df894-17d0-48e7-a917-789a3003c65b
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-25T15:57:37.526+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-25T16:16:44.026+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 69288741-1c97-47a7-bf0b-f30e8b3858ee
+        hippotranslation:locale: es
+        visitscotland:breadcrumb: ''
+        visitscotland:hideNewsletter: false
+        visitscotland:seoDescription: Hi! Welcome to the VisitScotland website, how
+          can we help you?
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: Localized URL
+        visitscotland:teaser: This is an example of a Spanish page with the URLs localized
+        visitscotland:theme: Simple
+        visitscotland:title: Family holidays in Scotland
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Your family holiday in Scotland will be one to remember
+            - after all, it's a country that packs oodles of adventure, history, wildlife
+            and scenery into every square mile! When it comes to planning a family
+            break, we know there are lots of important decisions to be made, but you'll
+            find that Scotland ticks all the boxes - there's plenty of quality accommodation
+            to suit all budgets, exciting destinations to explore, and, of course,
+            countless attractions and thrilling activities for all ages.</p>
       /content[3]:
-        jcr:primaryType: visitscotland:Itinerary
+        jcr:primaryType: visitscotland:General
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: ba61dcbf-f548-4b1d-8079-1e1bc478151f
+        jcr:uuid: 8906d98b-9a18-4d9c-803b-e469184d9fc0
         hippo:availability: [live]
+        hippostd:retainable: false
         hippostd:state: published
         hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-06-12T15:51:22.012+01:00
+        hippostdpubwf:creationDate: 2021-08-25T15:57:37.526+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-25T16:16:44.026+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-06-12T15:51:32.824+01:00
-        hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
+        hippostdpubwf:publicationDate: 2021-08-25T16:16:48.535+01:00
+        hippotranslation:id: 69288741-1c97-47a7-bf0b-f30e8b3858ee
         hippotranslation:locale: es
-        visitscotland:areas: [south]
-        visitscotland:breadcrumb: Itinerario de Quique
-        visitscotland:distance: 10.4
-        visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
-        visitscotland:popular: true
-        visitscotland:seoDescription: It was in Scotland's capital city that JK Rowling
-          started to plot the adventures of Harry and his friends. With cobbled streets,
-          winding alleys and medieval architecture, the city certainly have a few
-          things in common with the settings from the books and films.
+        visitscotland:breadcrumb: ''
+        visitscotland:hideNewsletter: false
+        visitscotland:seoDescription: Hi! Welcome to the VisitScotland website, how
+          can we help you?
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Tenerife
-        visitscotland:summary: ''
-        visitscotland:teaser: It was in Scotland's capital city that JK Rowling started
-          to plot the adventures of Harry and his friends. With cobbled streets, winding
-          alleys and medieval architecture, the city certainly have a few things in
-          common with the settings from the books and films.
-        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
-          Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: familyev
-        visitscotland:title: Itinerario de la pelicula y los libros de Enrique el
-          alfarero.
-        visitscotland:transport: [boat]
-        visitscotland:transports: [walking]
+        visitscotland:seoTitle: Localized URL
+        visitscotland:teaser: This is an example of a Spanish page with the URLs localized
+        visitscotland:theme: Simple
+        visitscotland:title: Family holidays in Scotland
+        visitscotland:translation: ''
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Descubre los lugares en los que se baso la autora para
-            escribir la famosa saga de Enrique el Alfarero.</p>
-        /visitscotland:ProductsSearch:
-          jcr:primaryType: visitscotland:ProductsSearch
-          visitscotland:distance: 0
-          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
-          visitscotland:dmscategories: ''
-          visitscotland:location: ''
-          visitscotland:producttype: ''
-    /edinburgh:
+          hippostd:content: <p>Your family holiday in Scotland will be one to remember
+            - after all, it's a country that packs oodles of adventure, history, wildlife
+            and scenery into every square mile! When it comes to planning a family
+            break, we know there are lots of important decisions to be made, but you'll
+            find that Scotland ticks all the boxes - there's plenty of quality accommodation
+            to suit all budgets, exciting destinations to explore, and, of course,
+            countless attractions and thrilling activities for all ages.</p>
+    /article-module:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-      jcr:uuid: 4fd8c914-935e-4d93-9210-c5dcfe6a2786
-      hippo:name: Edinburgh
-      hippo:versionHistory: ca05a53e-01e8-4223-950c-eca960de374a
-      /edinburgh[1]:
-        jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:versionable']
-        jcr:uuid: 59797393-6a44-47d4-add0-3d42fccedd12
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-06-16T14:06:51.489+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
-        hippotranslation:locale: es
-        visitscotland:title: DMS Stops Day
-        visitscotland:transports: [car, train, walking]
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
-            to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
-            things in common with the settings from the books and films. She wrote
-            the early chapters in various cafés around the city's Old Town, before
-            coming back to finish off the series from a peaceful suite in The Balmoral
-            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
-            Fettes College, a private school on the outskirts of Edinburgh’s west
-            end new town. You could also try the Wizarding World of Edinburgh tour.</p>
-        /visitscotland:stops[1]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
-        /visitscotland:stops[2]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: fb585bd7-188e-4430-a332-bf0fbc337d23
-        /visitscotland:stops[3]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
-        /visitscotland:stops[4]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
-      /edinburgh[2]:
-        jcr:primaryType: visitscotland:Day
+      jcr:uuid: 49e7803f-0f69-4b0c-8f31-76d562f93b31
+      hippo:name: Article Module
+      hippo:versionHistory: 0c25aee0-d41d-44f0-ae02-639592cad262
+      /article-module[1]:
+        jcr:primaryType: visitscotland:Article
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: d4d64194-656e-4eec-b6fe-028dd0125a87
+        jcr:uuid: 4ace6a8d-a7ae-42b3-a7fa-89f5fab33596
         hippo:availability: []
+        hippostd:retainable: false
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-06-16T14:07:07.951+01:00
+        hippostdpubwf:creationDate: 2021-08-25T16:00:30.203+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-25T16:00:30.203+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
+        hippotranslation:id: 45899a9d-7412-4e1b-a0bc-e35c49eca292
         hippotranslation:locale: es
-        visitscotland:title: DMS Stops Day
-        visitscotland:transports: [car, train, walking]
-        /visitscotland:introduction:
+        visitscotland:anchor: ''
+        visitscotland:title: Family holidays in Scotland
+        visitscotland:translation: ''
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:copy:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
-            to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
-            things in common with the settings from the books and films. She wrote
-            the early chapters in various cafés around the city's Old Town, before
-            coming back to finish off the series from a peaceful suite in The Balmoral
-            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
-            Fettes College, a private school on the outskirts of Edinburgh’s west
-            end new town. You could also try the Wizarding World of Edinburgh tour.</p>
-        /visitscotland:stops[1]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
-        /visitscotland:stops[2]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: fb585bd7-188e-4430-a332-bf0fbc337d23
-        /visitscotland:stops[3]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
-        /visitscotland:stops[4]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
-      /edinburgh[3]:
-        jcr:primaryType: visitscotland:Day
+          hippostd:content: <p>Your family holiday in Scotland will be one to remember
+            - after all, it's a country that packs oodles of adventure, history, wildlife
+            and scenery into every square mile! When it comes to planning a family
+            break, we know there are lots of important decisions to be made, but you'll
+            find that Scotland ticks all the boxes</p>
+        /visitscotland:paragraph[1]:
+          jcr:primaryType: visitscotland:ArticleSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Family Breaks in Scotland</h3>
+
+              <p>Browse our top picks for family breaks in Scotland and entertain the kids with beaches, castles, places to visit and more!</p>
+
+              <p>From sunny days out at the beach, and back to nature camping experiences, to cosy cottages in the woods, and sparkling city breaks full of culture, there are so many choices for a family break in Scotland.</p>
+        /visitscotland:paragraph[2]:
+          jcr:primaryType: visitscotland:ArticleSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Weekend Away with Kids in Scotland</h3>
+
+              <p>You don't need to <a href="https://www.visitscotland.com/holidays-breaks/" title="Holidays &amp; Breaks">holiday</a> for a whole week or more in Scotland, a <a href="https://www.visitscotland.com/holidays-breaks/weekend-short/" title="Short &amp; weekend">weekend break</a> away is plenty of time to explore some amazing sights and attractions. Enjoy a long weekend uncovering the dramatic mountain landscapes that you can find across the country, or treat the family to spot of <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/" title="Glamping">glamping</a> in an <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/pods/" title="Eco &amp; camping pods">eco pod</a> where you can immerse yourself in nature but with a few home comforts too. Why not plan a weekend away at the seaside filled with exhilarating <a href="https://www.visitscotland.com/see-do/active/watersports/" title="Watersports">watersports</a> that will keep the kids entertained? There's lots to do on a weekend break in Scotland.</p>
+      /article-module[2]:
+        jcr:primaryType: visitscotland:Article
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: a3006a5a-0256-45ca-8edb-2f82e412cda4
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-25T16:00:30.203+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-25T16:04:10.392+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 45899a9d-7412-4e1b-a0bc-e35c49eca292
+        hippotranslation:locale: es
+        visitscotland:anchor: ''
+        visitscotland:title: Family holidays in Scotland
+        visitscotland:translation: ''
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Your family holiday in Scotland will be one to remember
+            - after all, it's a country that packs oodles of adventure, history, wildlife
+            and scenery into every square mile! When it comes to planning a family
+            break, we know there are lots of important decisions to be made, but you'll
+            find that Scotland ticks all the boxes</p>
+        /visitscotland:paragraph[1]:
+          jcr:primaryType: visitscotland:ArticleSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Family Breaks in Scotland</h3>
+
+              <p>Browse our top picks for family breaks in Scotland and entertain the kids with beaches, castles, places to visit and more!</p>
+
+              <p>From sunny days out at the beach, and back to nature camping experiences, to cosy cottages in the woods, and sparkling city breaks full of culture, there are so many choices for a family break in Scotland.</p>
+        /visitscotland:paragraph[2]:
+          jcr:primaryType: visitscotland:ArticleSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Weekend Away with Kids in Scotland</h3>
+
+              <p>You don't need to <a href="https://www.visitscotland.com/holidays-breaks/" title="Holidays &amp; Breaks">holiday</a> for a whole week or more in Scotland, a <a href="https://www.visitscotland.com/holidays-breaks/weekend-short/" title="Short &amp; weekend">weekend break</a> away is plenty of time to explore some amazing sights and attractions. Enjoy a long weekend uncovering the dramatic mountain landscapes that you can find across the country, or treat the family to spot of <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/" title="Glamping">glamping</a> in an <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/pods/" title="Eco &amp; camping pods">eco pod</a> where you can immerse yourself in nature but with a few home comforts too. Why not plan a weekend away at the seaside filled with exhilarating <a href="https://www.visitscotland.com/see-do/active/watersports/" title="Watersports">watersports</a> that will keep the kids entertained? There's lots to do on a weekend break in Scotland.</p>
+      /article-module[3]:
+        jcr:primaryType: visitscotland:Article
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 03a15430-a0c1-4608-a8ef-e7d5942d6e50
+        jcr:uuid: 2411bcd7-fc89-40d5-ab33-8dcf4ada34c7
         hippo:availability: [live]
+        hippostd:retainable: false
         hippostd:state: published
         hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-06-16T14:06:51.489+01:00
+        hippostdpubwf:creationDate: 2021-08-25T16:00:30.203+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-25T16:04:10.392+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-06-16T14:07:26.063+01:00
-        hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
+        hippostdpubwf:publicationDate: 2021-08-25T16:16:57.306+01:00
+        hippotranslation:id: 45899a9d-7412-4e1b-a0bc-e35c49eca292
         hippotranslation:locale: es
-        visitscotland:title: DMS Stops Day
-        visitscotland:transports: [car, train, walking]
+        visitscotland:anchor: ''
+        visitscotland:title: Family holidays in Scotland
+        visitscotland:translation: ''
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Your family holiday in Scotland will be one to remember
+            - after all, it's a country that packs oodles of adventure, history, wildlife
+            and scenery into every square mile! When it comes to planning a family
+            break, we know there are lots of important decisions to be made, but you'll
+            find that Scotland ticks all the boxes</p>
+        /visitscotland:paragraph[1]:
+          jcr:primaryType: visitscotland:ArticleSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Family Breaks in Scotland</h3>
+
+              <p>Browse our top picks for family breaks in Scotland and entertain the kids with beaches, castles, places to visit and more!</p>
+
+              <p>From sunny days out at the beach, and back to nature camping experiences, to cosy cottages in the woods, and sparkling city breaks full of culture, there are so many choices for a family break in Scotland.</p>
+        /visitscotland:paragraph[2]:
+          jcr:primaryType: visitscotland:ArticleSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Weekend Away with Kids in Scotland</h3>
+
+              <p>You don't need to <a href="https://www.visitscotland.com/holidays-breaks/" title="Holidays &amp; Breaks">holiday</a> for a whole week or more in Scotland, a <a href="https://www.visitscotland.com/holidays-breaks/weekend-short/" title="Short &amp; weekend">weekend break</a> away is plenty of time to explore some amazing sights and attractions. Enjoy a long weekend uncovering the dramatic mountain landscapes that you can find across the country, or treat the family to spot of <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/" title="Glamping">glamping</a> in an <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/pods/" title="Eco &amp; camping pods">eco pod</a> where you can immerse yourself in nature but with a few home comforts too. Why not plan a weekend away at the seaside filled with exhilarating <a href="https://www.visitscotland.com/see-do/active/watersports/" title="Watersports">watersports</a> that will keep the kids entertained? There's lots to do on a weekend break in Scotland.</p>
+    /list-of-examples:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 7bfdda03-b2a3-487b-87d8-92cfaa2b06c1
+      hippo:name: List of Examples
+      hippo:versionHistory: 3c37923d-b56e-454f-814e-a760530d2e22
+      /list-of-examples[1]:
+        jcr:primaryType: visitscotland:LongCopy
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 02041ad8-5497-4a5b-a7c9-3afcd0a048af
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostd:transferable: false
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-25T16:04:36.143+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-25T16:16:34.610+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: ee5a2d2a-4640-41e1-8c5d-7d283e295f71
+        hippotranslation:locale: es
+        visitscotland:translation: ''
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p>This is a list of examples of urls</p>
+
+            <ul>
+             <li><a href="/destinations-map/edinburgh">Relative URL</a></li>
+             <li><a href="/info/accommodation/kilmeny-country-house-p213041">Relative DMS URL</a></li>
+             <li><a href="https://www.visitscotland.com/blog/scotland/scenic-weekend-road-trips/">Fully-qualified URL</a></li>
+             <li><a href="https://www.visitscotland.com/info/accommodation/kilmeny-country-house-p213041">Fully-qualified DMS URL</a></li>
+             <li><a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Argyll+%26+The+Isles&amp;locpoly=171&amp;locprox=0&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off">Fully-qualified DMS URL with parameter</a></li>
+             <li><a href="https://www.visitscotland.com/es/holidays-breaks/family/">Already localized URL</a></li>
+             <li><a href="https://www.visitscotland.com/es-es/info/accommodation/kilmeny-country-house-p213041">Already localized DMS URL</a></li>
+             <li><a href="https://www.scotrail.co.uk/kids-for-a-quid">External URL</a></li>
+            </ul>
+      /list-of-examples[2]:
+        jcr:primaryType: visitscotland:LongCopy
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 53cff60a-e35d-4d84-891a-b6cc26eaed9e
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-25T16:04:36.143+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-25T16:11:59.834+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: ee5a2d2a-4640-41e1-8c5d-7d283e295f71
+        hippotranslation:locale: es
+        visitscotland:translation: ''
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p>This is a list of examples of urls</p>
+
+            <ul>
+             <li><a href="/destinations-map/edinburgh">Relative URL</a></li>
+             <li><a href="/info/accommodation/kilmeny-country-house-p213041">Relative DMS URL</a></li>
+             <li><a href="https://www.visitscotland.com/blog/scotland/scenic-weekend-road-trips/">Fully-qualified URL</a></li>
+             <li><a href="https://www.visitscotland.com/info/accommodation/kilmeny-country-house-p213041">Fully-qualified DMS URL</a></li>
+             <li><a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Argyll+%26+The+Isles&amp;locpoly=171&amp;locprox=0&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off">Fully-qualified DMS URL with parameter</a></li>
+             <li><a href="https://www.visitscotland.com/es/holidays-breaks/family/">Already localized URL</a></li>
+             <li><a href="https://www.visitscotland.com/es-es/info/accommodation/kilmeny-country-house-p213041">Already localized DMS URL</a></li>
+             <li><a href="https://www.scotrail.co.uk/kids-for-a-quid">External URL</a></li>
+            </ul>
+      /list-of-examples[3]:
+        jcr:primaryType: visitscotland:LongCopy
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 21313633-a561-4ea9-8bad-ef9ad70a883a
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-25T16:04:36.143+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-25T16:11:59.834+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-08-25T16:12:19.144+01:00
+        hippotranslation:id: ee5a2d2a-4640-41e1-8c5d-7d283e295f71
+        hippotranslation:locale: es
+        visitscotland:translation: ''
+        /visitscotland:copy:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p>This is a list of examples of urls</p>
+
+            <ul>
+             <li><a href="/destinations-map/edinburgh">Relative URL</a></li>
+             <li><a href="/info/accommodation/kilmeny-country-house-p213041">Relative DMS URL</a></li>
+             <li><a href="https://www.visitscotland.com/blog/scotland/scenic-weekend-road-trips/">Fully-qualified URL</a></li>
+             <li><a href="https://www.visitscotland.com/info/accommodation/kilmeny-country-house-p213041">Fully-qualified DMS URL</a></li>
+             <li><a href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&amp;loc=Argyll+%26+The+Isles&amp;locpoly=171&amp;locprox=0&amp;stay=&amp;endDate=&amp;r1a=2&amp;r1children=0&amp;r1infants=0&amp;r1c=0&amp;avail=off">Fully-qualified DMS URL with parameter</a></li>
+             <li><a href="https://www.visitscotland.com/es/holidays-breaks/family/">Already localized URL</a></li>
+             <li><a href="https://www.visitscotland.com/es-es/info/accommodation/kilmeny-country-house-p213041">Already localized DMS URL</a></li>
+             <li><a href="https://www.scotrail.co.uk/kids-for-a-quid">External URL</a></li>
+            </ul>
+    /megalinks:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 57b625fa-86b0-4c03-8c06-45ad9322ef0d
+      hippo:versionHistory: 728e6eae-6a99-4f8b-adb8-485b7e515fc2
+      /megalinks[1]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: fb40a2b9-3501-4c28-9c2f-d708070835cb
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-27T11:39:11.172+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-27T11:39:11.173+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 777434c2-c350-4c52-91fa-9daee9998edc
+        hippotranslation:locale: es
+        visitscotland:teaserVisible: true
+        visitscotland:title: ''
+        visitscotland:translation: ''
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
-            to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
-            things in common with the settings from the books and films. She wrote
-            the early chapters in various cafés around the city's Old Town, before
-            coming back to finish off the series from a peaceful suite in The Balmoral
-            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
-            Fettes College, a private school on the outskirts of Edinburgh’s west
-            end new town. You could also try the Wizarding World of Edinburgh tour.</p>
-        /visitscotland:stops[1]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
-        /visitscotland:stops[2]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: fb585bd7-188e-4430-a332-bf0fbc337d23
-        /visitscotland:stops[3]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
-        /visitscotland:stops[4]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
+          hippostd:content: <p>Megalinks module with link to Localized pages</p>
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
+        /visitscotland:megalinkItems[3]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+        /visitscotland:megalinkItems[4]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+        /visitscotland:megalinkItems[5]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
+        /visitscotland:megalinkItems[6]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: eb419930-2ac1-463c-aee1-a8e3a2caaa3d
+      /megalinks[2]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: c195dad3-a7f3-470b-ad29-fccd05520ac0
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-27T11:39:11.172+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-27T11:41:22.221+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 777434c2-c350-4c52-91fa-9daee9998edc
+        hippotranslation:locale: es
+        visitscotland:teaserVisible: true
+        visitscotland:title: ''
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Megalinks module with link to Localized pages</p>
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
+        /visitscotland:megalinkItems[3]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+        /visitscotland:megalinkItems[4]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+        /visitscotland:megalinkItems[5]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
+        /visitscotland:megalinkItems[6]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: eb419930-2ac1-463c-aee1-a8e3a2caaa3d
+      /megalinks[3]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 38249cd8-f9f4-4945-acc9-f53c56065aec
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-08-27T11:39:11.172+01:00
+        hippostdpubwf:lastModificationDate: 2021-08-27T11:41:22.221+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-08-27T11:41:28.596+01:00
+        hippotranslation:id: 777434c2-c350-4c52-91fa-9daee9998edc
+        hippotranslation:locale: es
+        visitscotland:teaserVisible: true
+        visitscotland:title: ''
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Megalinks module with link to Localized pages</p>
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
+        /visitscotland:megalinkItems[3]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+        /visitscotland:megalinkItems[4]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+        /visitscotland:megalinkItems[5]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
+        /visitscotland:megalinkItems[6]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: eb419930-2ac1-463c-aee1-a8e3a2caaa3d
