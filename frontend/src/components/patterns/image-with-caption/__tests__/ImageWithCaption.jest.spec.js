@@ -71,9 +71,13 @@ describe('VsImageWithCaption', () => {
         });
 
         it('should add a Video Caption component if `isVideo` is true', async() => {
-            const wrapper = factoryShallowMount();
+            const wrapper = factoryShallowMount({
+                propsData: {
+                    isVideo: true,
+                },
+            });
 
-            expect(wrapper.find('vsvideocaption-stub').exists()).toBe(true);
+            expect(wrapper.find('.vs-image-with-caption__video-caption-wrapper').exists()).toBe(true);
         });
     });
 
@@ -96,11 +100,13 @@ describe('VsImageWithCaption', () => {
     describe(':methods', () => {
         it(':toggleCaption - caption is shown when toggle method is called', async() => {
             const wrapper = factoryShallowMount();
-            const captionWrapper = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__caption-wrapper');
+            wrapper.setData({
+                showCaption: false,
+            });
             wrapper.vm.toggleCaption();
             await wrapper.vm.$nextTick();
 
-            expect(captionWrapper.classes('d-block')).toBe(true);
+            expect(wrapper.vm.showCaption).toBe(true);
         });
 
         it(':toggleCaption - caption is hidden when toggle method is called twice', async() => {
