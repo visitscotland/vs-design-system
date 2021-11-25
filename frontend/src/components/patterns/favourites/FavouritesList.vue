@@ -79,7 +79,7 @@ export default {
 .vs-favourites-list__header {
     color: $color-gray-shade-2;
     font-size: 2rem;
-    font-weight: 300;
+    font-weight: $font-weight-light;
     letter-spacing: 1px;
 }
 </style>
@@ -89,26 +89,26 @@ export default {
 
   <div style="position: relative; height: 600px;">
     Test Add Favourite Item 1
-    <VsFavouritesToggleButton
+    <VsFavouritesListToggleButton
       :href="favourite.href"
       :title="favourite.title"
     >
-    </VsFavouritesToggleButton>
+    </VsFavouritesListToggleButton>
     Test Add Favourite Item 2
-     <VsFavouritesToggleButton
+     <VsFavouritesListToggleButton
       href="http:www.visitscotland.org"
       title="VisitScotland Corporate Website"
     >
-    </VsFavouritesToggleButton>
+    </VsFavouritesListToggleButton>
     Test Add Favourite Item 3
-     <VsFavouritesToggleButton
+     <VsFavouritesListToggleButton
       href="https://www.visitscotland.com/destinations-maps/st-andrews/"
       title="St Andrews"
     >
-    </VsFavouritesToggleButton>
+    </VsFavouritesListToggleButton>
     Favourites Count
-    <VsFavouritesViewButton>
-    </VsFavouritesViewButton>
+    <VsListFavouritesViewButton>
+    </VsListFavouritesViewButton>
     <VsFavouritesList/>
   </div>
   ```

@@ -286,7 +286,7 @@ div[class^='rsg--sidebar'] {
     }
 
     // Sidebar list item
-    li[class^='rsg--item'] {
+    li[class^="rsg--item"] {
         margin: 0;
         display: block;
     }
@@ -347,12 +347,36 @@ div[class^='rsg--sidebar'] {
                 }
             }
 
+            ul{
+                li[class^="rsg--item"] {        
+                    a[class^="rsg--link"]:after{
+                        content: "\2192";
+                        display: inline-block;
+                        padding-left: 0.25rem;
+                    }
+                }
+
+                li[class*=" vueds-active"]{
+                    > a[class^="rsg--link"]:after{
+                        content: "\2193"!important;
+                    } 
+                }
+            
+                li[class*=" rsg--isChild"]{
+                    a[class^="rsg--link"]:after{
+                        display: none!important;
+                    }
+                }
+            }
+           
+
             // Sidebar second level link
-            a[class*='rsg--link'] {
+            a[class*="rsg--link"] {
                 font-size: $size-s;
                 font-weight: $weight-normal;
                 -webkit-font-smoothing: subpixel-antialiased;
                 -moz-osx-font-smoothing: auto;
+                
                 @media (max-width: #{$docs-breakpoint-small}) {
                     float: left;
                     padding: 0 $space-xs 0 0;

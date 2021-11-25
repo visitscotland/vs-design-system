@@ -3,17 +3,26 @@
         class="vs-footer-social-item"
         data-test="vs-footer-social-item"
     >
-        <VsButtonSquareSocial
-            data-test="vs-footer-social-item__button"
+        <VsLink
+            data-test="vs-footer-social-item__link"
             :href="href"
-            :icon="icon"
-        />
+            type="external"
+            :class="icon"
+            :aria-label="icon"
+        >
+            <VsIcon
+                :name="icon"
+                variant="light"
+                size="md"
+            />
+        </VsLink>
     </li>
 </template>
 
 <script>
 
-import VsButtonSquareSocial from '@components/patterns/button-square-social/ButtonSquareSocial';
+import VsLink from '@components/elements/link/Link';
+import VsIcon from '@components/elements/icon/Icon';
 
 /**
  * The FooterSocialItem is used inside the FooterSocialMenu to
@@ -27,7 +36,8 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsButtonSquareSocial,
+        VsLink,
+        VsIcon,
     },
     props: {
         /**
@@ -51,58 +61,105 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-footer-social-item {
-    list-style: none;
-    display: inline-block;
-    text-decoration: none;
-    padding: 0;
-    margin-right: $spacer-3;
-    margin-bottom: $spacer-3;
+.vs-list.vs-list--unstyled  {
+    .vs-footer-social-item{
+        display: inline-block;
+        margin-right: $spacer-3;
+        margin-bottom: $spacer-3;
+
+        .vs-link.vs-link--variant-primary {
+            background: $color-gray-shade-1;
+            box-shadow: 0 0 0 2px $color-gray-shade-1;
+            border: 1px solid $color-gray-shade-1;
+            border-radius: 0.5rem;
+            display: block;
+            height: 42px;
+            width: 42px;
+            transition: $transition-base;
+
+            &.facebook {
+                &:hover {
+                    background: $color-facebook;
+                    box-shadow: 0 0 0 2px $color-facebook;
+                    border-color: $color-facebook;
+                }
+            }
+            &.instagram {
+                &:hover {
+                    background: $color-instagram;
+                    box-shadow: 0 0 0 2px $color-instagram;
+                    border-color: $color-instagram;
+                }
+            }
+            &.twitter {
+                &:hover {
+                    background: $color-twitter;
+                    box-shadow: 0 0 0 2px $color-twitter;
+                    border-color: $color-twitter;
+                }
+            }
+            &.youtube {
+                &:hover {
+                    background: $color-youtube;
+                    box-shadow: 0 0 0 2px $color-youtube;
+                    border-color: $color-youtube;
+                }
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            &:focus {
+                outline: none;
+                border: 1px solid $color-pink;
+                box-shadow: 0 0 0 2px $color-pink-tint-5;
+            }
+
+            .vs-icon {
+                &.vs-icon--size-md {
+                    height: 100%;
+                    margin: 0 auto;
+                    fill: $color-white;
+                    display: block;
+                }
+
+                &.vs-icon--external-link {
+                    display: none;
+                }
+            }
+        }
+    }
 }
 </style>
 
 <docs>
   ```js
     <VsFooter>
-        <VsFooterNavList break-point="md">
+        <VsFooterNavList>
             <VsCol cols="12" md="6">
-                <VsAccordionItem
-                    :open-by-default="true"
-                    variant="dark"
-                    control-id="accordion_item_1"
-                    class="border-left-0"
-                >
+                <VsFooterSocialMenu>
                     <span slot="title">
                         Find us on
                     </span>
 
-                    <span slot="icon-open">
-                        <VsIcon name="chevron" variant="light" size="xs" />
-                    </span>
-
-                    <span slot="icon-closed">
-                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
-                    </span>
-
-                    <VsList unstyled>
-                        <VsFooterSocialItem
-                            href="#"
-                            icon="facebook"
-                        ></VsFooterSocialItem>
-                        <VsFooterSocialItem
-                            href="#"
-                            icon="twitter"
-                        ></VsFooterSocialItem>
-                        <VsFooterSocialItem
-                            href="#"
-                            icon="youtube"
-                        ></VsFooterSocialItem>
-                        <VsFooterSocialItem
-                            href="#"
-                            icon="instagram"
-                        ></VsFooterSocialItem>
-                    </VsList>
-                </VsAccordionItem>
+                    <VsFooterSocialItem
+                        href="#"
+                        icon="facebook"
+                    ></VsFooterSocialItem>
+                    <VsFooterSocialItem
+                        href="#"
+                        icon="twitter"
+                    ></VsFooterSocialItem>
+                    <VsFooterSocialItem
+                        href="#"
+                        icon="youtube"
+                    ></VsFooterSocialItem>
+                    <VsFooterSocialItem
+                        href="#"
+                        icon="instagram"
+                    ></VsFooterSocialItem>
+                </VsFooterSocialMenu>
             </VsCol>
         </VsFooterNavList>
     </VsFooter>

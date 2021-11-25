@@ -1,10 +1,13 @@
-const path = require("path")
-const chalk = require("chalk")
+/* eslint-disable import/no-extraneous-dependencies */
 
-const webpackConfig = require("./system.webpack.config")
-const packageConfig = require("../package.json")
-const parseChildComponents = require("./system.parse-child-components")
-const remoteProfiles = require("./system.remote-profiles.config")
+const path = require('path');
+const chalk = require('chalk');
+const vueDocgenApi = require('vue-docgen-api');
+
+const webpackConfig = require('./system.webpack.config');
+const packageConfig = require('../package.json');
+const parseChildComponents = require('./system.parse-child-components');
+const remoteProfiles = require('./system.remote-profiles.config');
 
 module.exports = {
     version: packageConfig.version,
@@ -19,11 +22,11 @@ module.exports = {
             monospace: ["Consolas", "'Liberation Mono'", "Menlo", "monospace"],
         },
     },
-    renderRootJsx: path.join(__dirname, "../docs/components/Preview.js"),
+    renderRootJsx: path.join(__dirname, '../docs/components/Preview.js'),
     editorConfig: {
-        theme: "night",
+        theme: 'night',
     },
-    assetsDir: path.join(__dirname, "../src/assets"),
+    assetsDir: path.join(__dirname, '../src/assets'),
     /**
      * Enabling the below option will break things!
      */
@@ -32,10 +35,10 @@ module.exports = {
      * We’re defining below JS and SCSS required globally.
      */
     require: [
-        path.join(__dirname, "../docs/docs.helper.js"),
-        path.join(__dirname, "../docs/styles/docs.styles.scss"),
-        path.join(__dirname, "../src/assets/fixtures/index.js"),
-        path.join(__dirname, "../src/styles/core.styles.scss"),
+        path.join(__dirname, '../docs/docs.helper.js'),
+        path.join(__dirname, '../docs/styles/docs.styles.scss'),
+        path.join(__dirname, '../src/assets/fixtures/index.js'),
+        path.join(__dirname, '../src/styles/core.styles.scss'),
     ],
     /**
      * Enabling the following option splits sections into separate views.
@@ -45,68 +48,69 @@ module.exports = {
      * Custom wrapper template for the design system site.
      */
     template: {
-        title: "Example — Design System",
-        lang: "en",
+        title: 'Example — Design System',
+        lang: 'en',
         trimWhitespace: true,
         head: {
             meta: [
                 {
-                    name: "viewport",
-                    content: "width=device-width,initial-scale=1.0",
+                    name: 'viewport',
+                    content: 'width=device-width,initial-scale=1.0',
                 },
                 {
-                    name: "format-detection",
-                    content: "telephone=no",
+                    name: 'format-detection',
+                    content: 'telephone=no',
                 },
             ],
         },
-        favicon: "https://www.visitscotland.com/favicon.ico",
+        favicon: 'https://www.visitscotland.com/favicon.ico',
     },
     ignore: [
-        "**/App.vue",
-        "**/__tests__/**",
-        "**/*.test.js",
-        "**/*.test.jsx",
-        "**/*.spec.js",
-        "**/*.spec.jsx",
-        "**/ExampleComponent.vue",
+        '**/App.vue',
+        '**/__tests__/**',
+        '**/*.test.js',
+        '**/*.test.jsx',
+        '**/*.spec.js',
+        '**/*.spec.jsx',
+        '**/ExampleComponent.vue',
     ],
     webpackConfig,
     compilerConfig: {
         target: {
-            ie: "11",
-            chrome: "71",
-            firefox: "64",
-            safari: "11",
-            edge: "17",
+            ie: '11',
+            chrome: '71',
+            firefox: '64',
+            safari: '11',
+            edge: '17',
         },
     },
-    styleguideDir: "dist/system",
+    styleguideDir: 'dist/system',
     printServerInstructions() {
 
     },
     printBuildInstructions(config) {
-        console.log(chalk.cyan("\n  Design System Docs build finished succesfully!\n"))
+        console.log(chalk.cyan('\n  Design System Docs build finished succesfully!\n'));
         console.log(
             chalk.yellow(
-                "  Tip: You can now deploy the docs as a static website.\n" +
-                "  Copy the build files from " +
-                `${config.styleguideDir}\n`
+                '  Tip: You can now deploy the docs as a static website.\n'
+                + '  Copy the build files from '
+                + `${config.styleguideDir}\n`
             ),
-        )
+        );
     },
     styleguideComponents: {
-        LogoRenderer: path.join(__dirname, "../docs/components/rsg-components/LogoRenderer"),
-        Playground: path.join(__dirname, "../docs/components/rsg-components/Playground"),
-        ReactComponent: path.join(__dirname, "../docs/components/rsg-components/ReactComponent"),
-        StyleGuideRenderer: path.join(__dirname,'../docs/components/rsg-components/StyleGuideRenderer'),
+        LogoRenderer: path.join(__dirname, '../docs/components/rsg-components/LogoRenderer'),
+        Playground: path.join(__dirname, '../docs/components/rsg-components/Playground'),
+        ReactComponent: path.join(__dirname, '../docs/components/rsg-components/ReactComponent'),
+        StyleGuideRenderer: path.join(__dirname, '../docs/components/rsg-components/StyleGuideRenderer'),
+        ComponentsRenderer: path.join(__dirname, '../docs/components/rsg-components/ComponentsRenderer'),
     },
-    propsParser(filePath, source) {
-        return require("vue-docgen-api").parse(filePath, {
+    propsParser(filePath) {
+        return vueDocgenApi.parse(filePath, {
             resolve: webpackConfig.resolve,
             alias: webpackConfig.resolve.alias,
             addScriptHandlers: [parseChildComponents.default],
-        })
+        });
     },
     /**
      * Details of any remote config profiles
@@ -122,4 +126,4 @@ module.exports = {
     //     res.redirect(req.params.file)
     //   })
     // },
-}
+};
