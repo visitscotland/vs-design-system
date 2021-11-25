@@ -7,6 +7,8 @@
             {{ videoBtnText }}
         </VsButton>
 
+        <VsToggleButton />
+
         <div class="vs-video-caption__details">
             <div class="vs-video-caption__alert">
                 <VsIcon
@@ -34,6 +36,7 @@
 <script>
 import VsButton from '@components/elements/button/Button';
 import VsIcon from '@components/elements/icon/Icon';
+import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
 /**
  * Caption to be used for opening a video
  *
@@ -46,12 +49,17 @@ export default {
     components: {
         VsButton,
         VsIcon,
+        VsToggleButton,
     },
     props: {
         videoBtnText: {
             type: String,
             required: true,
             default: 'Play video',
+        },
+        withToggleBtn: {
+            type: Boolean,
+            default: false,
         },
     },
 };

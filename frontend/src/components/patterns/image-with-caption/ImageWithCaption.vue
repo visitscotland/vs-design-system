@@ -272,6 +272,10 @@ export default {
             }
 
             @include media-breakpoint-up(lg) {
+                .vs-toggle-btn {
+                    display: none;
+                }
+
                 .vs-image-with-caption__captions {
                     position: absolute;
                     padding: 0;
