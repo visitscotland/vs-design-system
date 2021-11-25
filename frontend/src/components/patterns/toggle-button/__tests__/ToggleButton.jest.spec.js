@@ -18,18 +18,18 @@ const factoryShallowMount = (propsData) => shallowMount(VsImageWithCaption, {
 });
 
 describe('VsImageWithCaption', () => {
-    it('should render a component with the data-test attribute `vs-image-with-caption-toggle`', () => {
+    it('should render a component with the data-test attribute `vs-toggle-btn`', () => {
         const wrapper = factoryShallowMount();
 
-        expect(wrapper.attributes('data-test')).toBe('vs-image-with-caption-toggle');
+        expect(wrapper.attributes('data-test')).toBe('vs-toggle-btn');
     });
 
     describe(':props', () => {
         it('should set correct ID for aria controls with `toggleId` prop', () => {
             const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('.vs-image-with-caption-toggle-caption-btn');
+            const toggleCaptionBtn = wrapper.find('.vs-toggle-btn');
 
-            expect(toggleCaptionBtn.attributes('aria-controls')).toBe(`image_${toggleIdValue}`);
+            expect(toggleCaptionBtn.attributes('aria-controls')).toBe(toggleIdValue);
         });
     });
 
@@ -49,18 +49,17 @@ describe('VsImageWithCaption', () => {
     describe(':methods', () => {
         it('emits `toggleImage` when clicked', async() => {
             const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('.vs-image-with-caption-toggle-caption-btn');
+            const toggleCaptionBtn = wrapper.find('.vs-toggle-btn');
 
             toggleCaptionBtn.trigger('click');
             await wrapper.vm.$nextTick();
 
-            expect(wrapper.emitted().toggleImage).toBeTruthy();
-            expect(wrapper.vm.showCaption).toBe(true);
+            expect(wrapper.emitted().toggleAction).toBeTruthy();
         });
 
         it(':toggleCaption - icon is updated when the caption is toggled on', async() => {
             const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('.vs-image-with-caption-toggle-caption-btn');
+            const toggleCaptionBtn = wrapper.find('.vs-toggle-btn');
             await toggleCaptionBtn.trigger('click');
 
             expect(wrapper.find('vsicon-stub').attributes('name')).toBe('close-circle');
@@ -68,8 +67,8 @@ describe('VsImageWithCaption', () => {
 
         it(':toggleCaption - caption hide icon when toggled twice', async() => {
             const wrapper = factoryShallowMount();
-            wrapper.vm.toggleCaption();
-            wrapper.vm.toggleCaption();
+            wrapper.vm.toggleAction();
+            wrapper.vm.toggleAction();
             await wrapper.vm.$nextTick();
 
             expect(wrapper.html()).toContain(toggleIconSlot);

@@ -7,7 +7,7 @@
         :aria-controls="toggleId"
         :aria-expanded="show ? 'true' : 'false'"
         @click.native="toggleAction"
-        data-test="vs-image-with-caption-toggle"
+        data-test="vs-toggle-btn"
     >
         <!-- @slot Default slot for screenreader text -->
         <span class="sr-only">

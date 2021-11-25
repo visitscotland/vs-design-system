@@ -5,13 +5,14 @@ const videoTitleSlot = 'Video title';
 const videoDurationSlot = '3 minute video';
 const buttonText = 'Button text';
 
-const factoryShallowMount = () => shallowMount(VsVideoCaption, {
+const factoryShallowMount = (propsData) => shallowMount(VsVideoCaption, {
     slots: {
         'video-title': videoTitleSlot,
         'video-duration': videoDurationSlot,
     },
     propsData: {
         videoBtnText: buttonText,
+        ...propsData,
     },
 });
 
@@ -42,6 +43,16 @@ describe('VsVideoCaption', () => {
             const playButton = wrapper.find('.vs-video-caption__button');
 
             expect(playButton.text()).toBe(buttonText);
+        });
+
+        it('should include a toggle button if `withToggleBtn` prop is true', () => {
+            const wrapper = factoryShallowMount({
+                propsData: {
+                    withToggleBtn: true,
+                },
+            });
+
+            expect(wrapper.find('vstogglebutton-stub').exists()).toBe(true);
         });
     });
 });
