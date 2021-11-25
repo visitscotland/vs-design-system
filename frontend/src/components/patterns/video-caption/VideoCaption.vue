@@ -7,7 +7,10 @@
             {{ videoBtnText }}
         </VsButton>
 
-        <VsToggleButton />
+        <VsToggleButton
+            v-if="withToggleBtn"
+            @toggleAction="emitToggle"
+        />
 
         <div class="vs-video-caption__details">
             <div class="vs-video-caption__alert">
@@ -52,14 +55,26 @@ export default {
         VsToggleButton,
     },
     props: {
+        /**
+         * Text for the play video button
+         */
         videoBtnText: {
             type: String,
             required: true,
             default: 'Play video',
         },
+        /**
+         * If the video button should include a toggle button
+         * for another caption
+         */
         withToggleBtn: {
             type: Boolean,
             default: false,
+        },
+    },
+    methods: {
+        emitToggle() {
+            this.$emit('toggleAction', this.show);
         },
     },
 };
@@ -68,6 +83,7 @@ export default {
 <style lang="scss">
     .vs-video-caption {
         width: 100%;
+        position: relative;
 
         &__details {
             background-color: $color-gray-shade-6;
@@ -81,6 +97,12 @@ export default {
 
         &__alert {
             display: none;
+        }
+
+        .vs-toggle-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
         }
 
         @include media-breakpoint-up(sm) {
@@ -103,7 +125,23 @@ export default {
 
 <docs>
     ``` jsx
-    <VsVideoCaption>
+    <div class="mb-5">
+        <VsVideoCaption>
+            <template slot="video-title">
+                This is the video title
+            </template>
+            <template slot="video-duration">
+                This is the video length
+            </template>
+            <template slot="video-alert">
+                This is no-js alert message
+            </template>
+        </VsVideoCaption>
+    </div>
+
+    <VsVideoCaption
+        withToggleBtn
+    >
         <template slot="video-title">
             This is the video title
         </template>
