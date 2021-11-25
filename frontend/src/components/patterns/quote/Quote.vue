@@ -1,6 +1,7 @@
 <template>
     <div
         class="vs-quote"
+        :class="variantClass"
         data-test="vs-quote"
     >
         <div class="vs-quote__speech-container">
@@ -23,7 +24,7 @@
                 v-if="hasAuthorName"
             >
                 <!-- @slot Holds the name of the author (text expected) -->
-                <slot name="quoteAuthorName" />,
+                <slot name="quoteAuthorName" />
             </p>
             <p
                 class="vs-quote__author-title"
@@ -48,6 +49,13 @@ export default {
     name: 'VsQuote',
     status: 'prototype',
     release: '0.0.1',
+    props: {
+        variant: {
+            type: String,
+            default: 'narrow',
+            validator: (value) => value.match(/(narrow|wide)/),
+        },
+    },
     computed: {
         hasAuthorName() {
             return !!this.$slots.quoteAuthorName;
@@ -58,6 +66,9 @@ export default {
         hasAuthorImage() {
             return !!this.$slots.quoteImage;
         },
+        variantClass() {
+            return this.variant ? `vs-quote--${this.variant}` : '';
+        },
     },
 };
 </script>
@@ -65,36 +76,37 @@ export default {
 <style lang="scss">
 .vs-quote {
     &__content {
-        font-size: $font-size-lg;
-        font-weight: 300;
-        line-height: 1.4;
+        font-size: $display2-size;
+        font-weight: $font-weight-light;
+        line-height: $line-height-s;
     }
 
     &__author-name {
-        font-weight: bold;
+        font-weight: $font-weight-bold;
         margin-bottom: $spacer-0;
 
-        @include media-breakpoint-up(lg) {
-            margin-bottom: $spacer-2;
+        @include media-breakpoint-up(md) {
+            margin-bottom: $spacer-1;
+            font-size: $display4-size;
         }
     }
 
     &__author-title {
         line-height: $spacer-5;
 
-        @include media-breakpoint-up(lg) {
-            line-height: $spacer-7;
-            font-size: $display3-size;
+        @include media-breakpoint-up(md) {
+            line-height: $line-height-s;
+            font-size: $display4-size;
             margin-bottom: $spacer-7;
         }
     }
 
     &__speech-mark {
-        font-weight: bold;
+        font-weight: $font-weight-bold;
         color: $color-gray;
         font-size: 7rem;
         height: 5rem;
-        line-height: 1;
+        line-height: $line-height-xs;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -103,7 +115,7 @@ export default {
 
     &__speech-container {
         display: block;
-        margin-bottom: $spacer-5;
+        margin-bottom: $spacer-4;
         margin-right: $spacer-5;
         width: 3.5rem;
         height: 2.5rem;
@@ -119,15 +131,10 @@ export default {
         display: block;
         width: 50%;
         max-width: 8rem;
-        margin-bottom: $spacer-5;
+        margin-bottom: $spacer-4;
 
         img {
             width: 100%;
-        }
-
-        @include media-breakpoint-up(sm) {
-            display: inline-block;
-            vertical-align: top;
         }
 
         @include media-breakpoint-up(lg) {
@@ -137,14 +144,27 @@ export default {
 
     &__content-container {
         display: block;
+    }
 
-        @include media-breakpoint-up(sm) {
-            display: inline-block;
-            vertical-align: top;
+    &--wide{
+        .vs-quote__author-container {
+            @include media-breakpoint-up(sm) {
+                display: inline-block;
+                vertical-align: top;
+                margin-bottom: $spacer-5;
+            }
         }
 
-        @include media-breakpoint-up(lg) {
-            width: calc(100% - 15rem);
+        .vs-quote__content-container{
+            @include media-breakpoint-up(sm) {
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            @include media-breakpoint-up(xl) {
+                width: calc(100% - 15rem);
+                margin-top: -7px;
+            }
         }
     }
 }

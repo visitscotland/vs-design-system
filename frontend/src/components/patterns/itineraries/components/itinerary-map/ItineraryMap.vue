@@ -2,6 +2,7 @@
     <div
         class="vs-itinerary-map"
         ref="mapbox"
+        id="itinerary-map"
     />
 </template>
 
@@ -9,6 +10,7 @@
 import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
 import VsItineraryMapMarker from '@components/patterns/itineraries/components/itinerary-map/components/ItineraryMapMarker';
 import Vue from 'vue';
+import osBranding from '@/utils/os-branding';
 
 let mapboxgl = null;
 let geojsonExtent = null;
@@ -25,10 +27,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     props: {
-        accessToken: {
-            type: String,
-            required: true,
-        },
         labels: {
             type: Object,
             required: true,
@@ -66,7 +64,7 @@ export default {
                 rotation: 0,
                 config: {
                     container: this.$refs.mapbox,
-                    style: `https://api.maptiler.com/maps/37d4e215-6535-46b5-a5f7-fd09bd5897bb/style.json?key=${this.accessToken}`,
+                    style: 'https://api.visitscotland.com/maps/vector/v1/vts/resources/styles',
                     center: [
                         parseFloat(this.overviewMapLatitude),
                         parseFloat(this.overviewMapLongitude),
@@ -118,6 +116,12 @@ export default {
         this.lazyloadMapComponent();
         this.isTablet = window.innerWidth >= 768;
         window.addEventListener('resize', this.onResize);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            osBranding.init({
+                div: 'itinerary-map',
+            });
+        });
     },
     destroyed() {
         window.removeEventListener('resize', this.onResize);
@@ -266,6 +270,12 @@ export default {
 <style lang="scss">
 @import "mapbox-gl/dist/mapbox-gl.css";
 
+@import "https://labs.os.uk/public/os-api-branding/v0.2.0/os-api-branding.css";
+
+.os-api-branding.logo {
+    margin: 0.5rem;
+}
+
 .vs-itinerary-map {
     height: 100vh;
     position: relative;
@@ -320,7 +330,6 @@ export default {
     })
 
     <vs-itinerary-map
-        :access-token=keysList.keysList[0].mapToken
         overview-map-longitude="57.81"
         overview-map-latitude="-4.13"
         overview-map-zoom="5"

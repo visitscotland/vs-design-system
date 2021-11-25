@@ -1,15 +1,20 @@
 import { shallowMount } from '@vue/test-utils';
-
 import VsArticle from '../Article';
 
-const slotContent = 'Article Content';
+const defaultSlotText = 'Article content';
+const titleSlotText = 'Article title';
+const introSlotText = 'Article intro';
+const imgSlotText = 'Article img';
 
 const factoryShallowMount = (propsData) => shallowMount(VsArticle, {
     propsData: {
         ...propsData,
     },
     slots: {
-        default: slotContent,
+        default: defaultSlotText,
+        vsArticleImg: imgSlotText,
+        vsArticleTitle: titleSlotText,
+        vsArticleIntro: introSlotText,
     },
 });
 
@@ -23,19 +28,21 @@ describe('VsArticle', () => {
         expect(wrapper.attributes('data-test')).toBe('vs-article');
     });
 
-    describe(':props', () => {
-        it('should accept and render a `tag` property', async() => {
-            await wrapper.setProps({
-                tag: 'test-tag',
-            });
-
-            expect(wrapper.attributes('tag')).toBe('test-tag');
-        });
-    });
-
     describe(':slots', () => {
-        it('renders content inserted into the default `slot`', () => {
-            expect(wrapper.text()).toContain(slotContent);
+        it('renders content inserted in a vsArticleImg slot', () => {
+            expect(wrapper.text()).toContain(imgSlotText);
+        });
+
+        it('renders content inserted in a vsArticleTitle slot', () => {
+            expect(wrapper.text()).toContain(titleSlotText);
+        });
+
+        it('renders content inserted in a vsArticleIntro slot', () => {
+            expect(wrapper.text()).toContain(introSlotText);
+        });
+
+        it('renders content inserted in the default slot', () => {
+            expect(wrapper.text()).toContain(defaultSlotText);
         });
     });
 });

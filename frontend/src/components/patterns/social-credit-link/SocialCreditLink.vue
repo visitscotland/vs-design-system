@@ -85,7 +85,7 @@ export default {
         }
 
         &:focus {
-            font-weight: $semibold-font-weight !important;
+            font-weight: $font-weight-semi-bold !important;
             outline: 0 !important;
         }
 
@@ -95,3 +95,15 @@ export default {
     }
 }
 </style>
+<docs>
+  ```js
+
+    <BsWrapper style="background: black;" class="p-4">
+        <VsSocialCreditLink
+            credit="VisitScotland"
+            socialPostUrl="http://www.visitscotland.com"
+            source="instagram"
+        ></VsSocialCreditLink>
+    </BsWrapper>
+  ```
+</docs>
