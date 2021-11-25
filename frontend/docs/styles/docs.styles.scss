@@ -217,7 +217,11 @@ div[class^='rsg--contentWrapper'] {
 
 /* HEADER BAR/NAV
  --------------------------------------------- */
-div[class^='rsg--navBar'] {
+ div[class^=rsg--mainContent] > header[class^='rsg--header']{
+    border-top: 10px solid $color-purple;
+}
+
+ div[class^='rsg--navBar'] {
     align-items: center;
 
     @media (max-width: #{$docs-breakpoint}) {
