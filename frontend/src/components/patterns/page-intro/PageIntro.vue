@@ -268,9 +268,24 @@ const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-iti
     <VsImageWithCaption
         slot="vsIntroHero"
         isHeroImage
+        isVideo
         :altText="itineraries.sampleItinerary.image.altText"
         :image-src="itineraries.sampleItinerary.image.imageSrc"
     >
+        <VsVideoCaption
+            slot="video-caption"
+            videoBtnText="Play video"
+        >
+            <template slot="video-alert">
+                Please enable javascript to see this video
+            </template>
+            <template slot="video-title">
+                This is the video title
+            </template>
+            <template slot="video-duration">
+                This is the video length
+            </template>
+        </VsVideoCaption>
         <VsCaption
             slot="img-caption"
             :latitude="itineraries.sampleItinerary.image.latitude"
