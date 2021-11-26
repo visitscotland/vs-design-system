@@ -52,4 +52,16 @@ describe('VsPanel', () => {
             expect(wrapper.text()).toContain(titleSlotText);
         });
     });
+
+    describe(':props', () => {
+        it('should render an element with the `vs-panel--no-header-styling` if the `noHeaderStyling` prop is true', async() => {
+            const wrapper = factoryMount();
+
+            await wrapper.setProps({
+                noHeaderStyling: true,
+            });
+
+            expect(wrapper.classes('vs-panel--no-header-styling')).toBe(true);
+        });
+    });
 });
