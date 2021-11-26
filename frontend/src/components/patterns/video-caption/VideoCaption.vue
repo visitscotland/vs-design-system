@@ -162,6 +162,22 @@ export default {
 
     @include no-js {
         .vs-video-caption {
+            @include media-breakpoint-up(sm) {
+                &__details {
+                    max-width: 84%;
+                    margin: 0 auto;
+                    border-bottom: $theme-grey 1px solid;
+                }
+            }
+
+            @include media-breakpoint-up(lg) {
+                &__details {
+                    max-width: 100%;
+                    margin: 0;
+                    border-bottom: none;
+                }
+            }
+
             &__alert {
                 display: flex;
                 justify-content: flex-start;
