@@ -62,7 +62,7 @@ describe('VsImageWithCaption', () => {
             const toggleCaptionBtn = wrapper.find('.vs-toggle-btn');
             await toggleCaptionBtn.trigger('click');
 
-            expect(wrapper.find('vsicon-stub').attributes('name')).toBe('close-circle');
+            expect(wrapper.find('vsicon-stub').attributes('name')).toBe('close-circle-filled');
         });
 
         it(':toggleCaption - caption hide icon when toggled twice', async() => {
