@@ -357,6 +357,14 @@ export default {
             Primary with an icon
         </VsButton>
         <VsButton variant="outline-primary" class="mr-2 mb-2">Primary Outline</VsButton>
+        <VsButton
+            class="mr-2 mb-2"
+            variant="outline-primary"
+            icon="food"
+            size="md"
+        >
+            Outline with an icon
+        </VsButton>
         <VsButton disabled class="mr-2 mb-2" variant="primary" size="md">
             Disabled primary
         </VsButton>
