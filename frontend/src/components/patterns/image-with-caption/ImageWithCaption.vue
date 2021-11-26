@@ -42,19 +42,20 @@
                 :class="isHeroImage ? 'container' : ''"
                 v-if="isVideo"
             >
-                <!-- @slot Slot for the video caption component -->
                 <VsVideoCaption
-                    slot="video-caption"
                     :video-btn-text="playButtonText"
                     :with-toggle-btn="true"
                     @toggleAction="toggleCaption"
                 >
+                    <!-- @slot Slot for the video alert message -->
                     <template slot="video-alert">
                         <slot name="video-alert" />
                     </template>
+                    <!-- @slot Slot for the video title text -->
                     <template slot="video-title">
                         <slot name="video-title" />
                     </template>
+                    <!-- @slot Slot for the video duration text -->
                     <template slot="video-duration">
                         <slot name="video-duration" />
                     </template>
@@ -79,6 +80,7 @@
 import { lazysizes } from 'lazysizes';
 import VsImg from '@components/elements/img/Img';
 import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
+import VsVideoCaption from '@components/patterns/video-caption/VideoCaption';
 
 /**
  * Image with toggle to open a caption and image location map
@@ -92,6 +94,7 @@ export default {
     components: {
         VsImg,
         VsToggleButton,
+        VsVideoCaption,
     },
     props: {
         /**
