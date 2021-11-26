@@ -268,24 +268,71 @@ const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-iti
     <VsImageWithCaption
         slot="vsIntroHero"
         isHeroImage
-        isVideo
         :altText="itineraries.sampleItinerary.image.altText"
         :image-src="itineraries.sampleItinerary.image.imageSrc"
     >
-        <VsVideoCaption
-            slot="video-caption"
-            videoBtnText="Play video"
+        <VsCaption
+            slot="img-caption"
+            :latitude="itineraries.sampleItinerary.image.latitude"
+            :longitude="itineraries.sampleItinerary.image.longitude"
+            variant="large"
         >
-            <template slot="video-alert">
-                Please enable javascript to see this video
-            </template>
-            <template slot="video-title">
-                This is the video title
-            </template>
-            <template slot="video-duration">
-                This is the video length
-            </template>
-        </VsVideoCaption>
+            <span slot="caption">
+                {{ itineraries.sampleItinerary.image.caption }}
+            </span>
+
+            <span slot="credit">
+                {{ itineraries.sampleItinerary.image.credit }}
+            </span>
+        </VsCaption>
+    </VsImageWithCaption>
+
+    <template slot="vsIntroBreadcrumb">
+        <VsBreadcrumb>
+            <VsBreadcrumbItem
+            v-for="(item, index) in breadcrumb.breadcrumb"
+            :key="index"
+            :href="item.href"
+            :active="item.active"
+            :text="item.name"
+            >
+            </VsBreadcrumbItem>
+        </VsBreadcrumb>
+    </template>
+
+    <template slot="vsIntroHeading">
+        {{itineraries.sampleItinerary.h1Heading}}
+    </template>
+
+    <template slot="vsIntroContent">
+        <div v-html="itineraries.sampleItinerary.introduction" />
+    </template>
+</VsPageIntro>
+
+<h3>Page Intro with Hero and Video</h3>
+<hr/>
+<VsPageIntro background="dark" :heroIntro="true" :isItinerary="false" class="mb-8">
+    <VsImageWithCaption
+        slot="vsIntroHero"
+        isHeroImage
+        isVideo
+        playButtonText="Play the video"
+        toggleButtonText="Toggle image caption"
+        :altText="itineraries.sampleItinerary.image.altText"
+        :image-src="itineraries.sampleItinerary.image.imageSrc"
+    >
+
+        <template slot="video-alert">
+            JavaScript needs to be enabled to watch this video.
+            You can turn this on in your browser settings.
+        </template>
+        <template slot="video-title">
+            This is the video title
+        </template>
+        <template slot="video-duration">
+            This is the video length
+        </template>
+
         <VsCaption
             slot="img-caption"
             :latitude="itineraries.sampleItinerary.image.latitude"
