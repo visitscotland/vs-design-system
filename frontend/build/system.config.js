@@ -19,7 +19,7 @@ module.exports = {
         sidebarWidth: 260,
         fontFamily: {
             base: ['Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif'],
-            monospace: ['Consolas', 'Liberation Mono', 'Menlo', 'monospace'],
+            heading: ['evelethclean-regular', 'Helvetica', 'Arial', 'sans-serif'],
         },
     },
     renderRootJsx: path.join(__dirname, '../docs/components/Preview.js'),
