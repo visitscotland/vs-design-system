@@ -12,8 +12,6 @@ definitions:
       ignored-paths: [/autoreload, /ping/.*, ^/_rp/.*, ^/_cmsinternal/.*, ^/_targeting/.*,
         ^/webfiles/.*, ^/binaries/.*, ^/images/.*, .*\.css, .*\.js, .*\.ico, .*\.css,
         .*\.js, .*\.ico]
-      match-all: true
-    /hippo:configuration/hippo:modules/ipfilter/hippo:moduleconfig/localhost:
       match-all: false
     /hippo:configuration/hippo:modules/ipfilter/hippo:moduleconfig/br-cloud:
       jcr:primaryType: hipposys:moduleconfig
