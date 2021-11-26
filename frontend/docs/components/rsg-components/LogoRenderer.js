@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled';
-import logo from '@images/design_system_logo.svg';
+import logo from '@images/ds-logo-png.png';
 
 const styles = () => ({
 	image: {
-		width: '12em',
+		width: '230px',
 	},
 });
 

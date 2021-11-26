@@ -65,8 +65,9 @@ div[class^='rsg--wrapper'] > h2[class^='rsg--heading'] {
     line-height: $line-height-s;
     padding: $space-xl $space-xl;
     width: 100%;
-    background: $docs-color-very-light-grey;
-    font-size: $size-xxl;
+    background: $docs-color-white;
+    font-size: $size-xxxl;
+    font-family: $font-heading;
 
     a:hover {
         text-decoration: none;
@@ -219,6 +220,8 @@ div[class^='rsg--contentWrapper'] {
  --------------------------------------------- */
  div[class^=rsg--mainContent] > header[class^='rsg--header']{
     border-top: 10px solid $color-purple;
+    padding: 22px 0;
+
 }
 
  div[class^='rsg--navBar'] {
@@ -242,6 +245,7 @@ a[class^='rsg--headerLink'] {
     margin: 0 1.5em;
     color: $docs-color-grey-dark;
     cursor: pointer;
+    font-size: $font-size-lg;
 
     &:last-of-type{
         margin-right: 0;
@@ -278,7 +282,7 @@ div[class^='rsg--sidebar'] {
     }
 
     @media (min-width: #{$docs-breakpoint-lg}) {
-        width: 20%;
+        width: 25%;
     }
 
     // Sidebar sub navigations
@@ -304,7 +308,7 @@ div[class^='rsg--sidebar'] {
         font-weight: normal;
         color: $docs-color-grey-med;
         display: block;
-        font-size: $size-m;
+        font-size: $display2-size;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -433,7 +437,7 @@ p[class^='rsg--version'] {
     @include inset-squish-space($space-xs);
     margin: $space-xs 0 0;
     color: $docs-color-purple-lighter;
-    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+    font-family: $font-text;
     font-weight: $weight-normal;
     display: inline-block;
     line-height: $line-height-xs;
@@ -460,7 +464,7 @@ div[class^='rsg--sections'] {
     }
 
     @media (min-width: #{$docs-breakpoint-lg}) {
-        width: 80%;
+        width: 75%;
     }
 }
 
@@ -678,7 +682,7 @@ div[class^='rsg--root'] div[class^='rsg--tabs'] {
 
 // Status label is shown in top right corner for each component
 .status {
-    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+    font-family: $font-text;
     font-weight: $weight-normal;
     order: 1;
     align-self: flex-end;
