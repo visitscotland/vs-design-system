@@ -3,6 +3,9 @@ import VsImageWithCaption from '../ImageWithCaption';
 
 const defaultSlotText = 'Image';
 const toggleIconSlot = 'Toggle icon';
+const alertSlot = 'Video alert message';
+const videoTitleSlot = 'Video title';
+const videoDurationSlot = 'Video duration';
 const captionSlot = 'Image caption';
 const imageSrcValue = 'visitscotland';
 
@@ -16,6 +19,9 @@ const factoryShallowMount = (propsData) => shallowMount(VsImageWithCaption, {
     slots: {
         'toggle-icon': toggleIconSlot,
         'img-caption': captionSlot,
+        'video-alert': alertSlot,
+        'video-title': videoTitleSlot,
+        'video-duration': videoDurationSlot,
         default: defaultSlotText,
     },
 });
@@ -95,6 +101,30 @@ describe('VsImageWithCaption', () => {
             const captionWrapper = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__caption-wrapper');
 
             expect(captionWrapper.text()).toContain(captionSlot);
+        });
+
+        it('renders content in the `video-alert` slot', () => {
+            const wrapper = factoryShallowMount();
+            console.log(wrapper.html());
+            const videoCaptionStub = wrapper.find('vsvideocaption-stub');
+
+            expect(videoCaptionStub.text()).toContain(alertSlot);
+        });
+
+        it('renders content in the `video-title` slot', () => {
+            const wrapper = factoryShallowMount();
+            console.log(wrapper.html());
+            const videoCaptionStub = wrapper.find('vsvideocaption-stub');
+
+            expect(videoCaptionStub.text()).toContain(videoTitleSlot);
+        });
+
+        it('renders content in the `video-duration` slot', () => {
+            const wrapper = factoryShallowMount();
+            console.log(wrapper.html());
+            const videoCaptionStub = wrapper.find('vsvideocaption-stub');
+
+            expect(videoCaptionStub.text()).toContain(videoDurationSlot);
         });
     });
 
