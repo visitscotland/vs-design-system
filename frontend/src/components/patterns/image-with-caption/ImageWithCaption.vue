@@ -21,7 +21,6 @@
             </slot>
 
             <VsToggleButton
-                :show-caption="showCaption"
                 :img-src="imageSrc"
                 :toggle-id="`image_${imageSrc}`"
                 @toggleAction="toggleCaption"
