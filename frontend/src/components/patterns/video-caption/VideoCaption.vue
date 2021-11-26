@@ -3,7 +3,11 @@
         class="vs-video-caption"
         data-test="video-caption"
     >
-        <VsButton class="vs-video-caption__button">
+        <VsButton
+            class="vs-video-caption__button"
+            icon="play"
+            size="md"
+        >
             {{ videoBtnText }}
         </VsButton>
 
@@ -15,20 +19,23 @@
         <div class="vs-video-caption__details">
             <div class="vs-video-caption__alert">
                 <VsIcon
-                    name="information"
+                    name="review"
+                    custom-colour="gold"
+                    size="lg"
                 />
 
                 <p>
+                    <!-- @slot Slot for no-js alert message -->
                     <slot name="video-alert" />
                 </p>
             </div>
 
-            <p>
+            <p class="vs-video-caption__title">
                 <!-- @slot Slot for video title -->
                 <slot name="video-title" />
             </p>
 
-            <p>
+            <p class="vs-video-caption__duration">
                 <!-- @slot Slot for video duration text -->
                 <slot name="video-duration" />
             </p>
@@ -60,7 +67,6 @@ export default {
          */
         videoBtnText: {
             type: String,
-            required: true,
             default: 'Play video',
         },
         /**
@@ -74,7 +80,7 @@ export default {
     },
     methods: {
         emitToggle() {
-            this.$emit('toggleAction', this.show);
+            this.$emit('toggleAction');
         },
     },
 };
@@ -88,15 +94,7 @@ export default {
         &__details {
             background-color: $color-gray-shade-6;
             color: $color-white;
-            padding: $spacer-3;
-
-            p {
-                margin: 0;
-            }
-        }
-
-        &__alert {
-            display: none;
+            padding: $spacer-5 $spacer-3;
         }
 
         .vs-toggle-btn {
@@ -105,18 +103,74 @@ export default {
             top: 0;
         }
 
+        .vs-toggle-btn.vs-button.btn {
+            .vs-icon {
+                margin: 0;
+            }
+        }
+
+        &__title {
+            font-size: $h4-font-size;
+            font-weight: $font-weight-bold;
+            margin-bottom: $spacer-2;
+        }
+
+        &__duration {
+            font-size: $font-size-base;
+            font-weight: $font-weight-light;
+            margin: 0;
+        }
+
+        &__alert {
+             display: none;
+
+            .vs-icon {
+                margin-right: $spacer-7;
+            }
+
+            p {
+                font-size: $font-size-base;
+                line-height: 2;
+                margin: -10px 0 0;
+            }
+        }
+
         @include media-breakpoint-up(sm) {
-            width: 310px;
+            &__details {
+                display: flex;
+                align-items: baseline;
+                padding: $spacer-4 $spacer-3 $spacer-5;
+            }
+
+            &__title {
+                font-size: $lead-font-size;
+                margin-right: $spacer-4;
+                margin-bottom: 0;
+            }
+        }
+
+        @include media-breakpoint-up(lg) {
+            &__details {
+                display: block;
+            }
+
+            &__title {
+                margin-bottom: $spacer-1;
+            }
         }
     }
 
     @include no-js {
         .vs-video-caption {
             &__alert {
-                display: block;
+                display: flex;
+                justify-content: flex-start;
             }
 
-            &__wrapper {
+            &__title,
+            &__duration,
+            &__button,
+            .vs-toggle-btn {
                 display: none;
             }
         }
@@ -125,8 +179,44 @@ export default {
 
 <docs>
     ``` jsx
-    <div class="mb-5">
-        <VsVideoCaption>
+    <VsVideoCaption
+        class="mb-5"
+        videoBtnText="Play video"
+    >
+        <template slot="video-title">
+            This is the video title
+        </template>
+        <template slot="video-duration">
+            Video duration 3 minutes
+        </template>
+        <template slot="video-alert">
+            JavaScript needs to be enabled to watch this video.
+            You can turn this on in your browser settings.
+        </template>
+    </VsVideoCaption>
+
+    <VsVideoCaption
+        withToggleBtn
+        class="mb-5"
+        videoBtnText="Play video"
+    >
+        <template slot="video-title">
+            This video caption has a toggle button
+        </template>
+        <template slot="video-duration">
+            Video duration 5 minutes
+        </template>
+        <template slot="video-alert">
+            JavaScript needs to be enabled to watch this video.
+            You can turn this on in your browser settings.
+        </template>
+    </VsVideoCaption>
+
+    <div class="no-js">
+        <VsVideoCaption
+            withToggleBtn
+            videoBtnText="Play video"
+        >
             <template slot="video-title">
                 This is the video title
             </template>
@@ -134,23 +224,11 @@ export default {
                 This is the video length
             </template>
             <template slot="video-alert">
-                This is no-js alert message
+                This is display when JS is turned off.<br />
+                JavaScript needs to be enabled to watch this video.
+                You can turn this on in your browser settings.
             </template>
         </VsVideoCaption>
     </div>
-
-    <VsVideoCaption
-        withToggleBtn
-    >
-        <template slot="video-title">
-            This is the video title
-        </template>
-        <template slot="video-duration">
-            This is the video length
-        </template>
-        <template slot="video-alert">
-            This is no-js alert message
-        </template>
-    </VsVideoCaption>
     ```
 </docs>

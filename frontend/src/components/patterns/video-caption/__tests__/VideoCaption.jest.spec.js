@@ -3,12 +3,14 @@ import VsVideoCaption from '../VideoCaption';
 
 const videoTitleSlot = 'Video title';
 const videoDurationSlot = '3 minute video';
+const alertMsgSlot = 'This is a no-js alert';
 const buttonText = 'Button text';
 
 const factoryShallowMount = (propsData) => shallowMount(VsVideoCaption, {
     slots: {
         'video-title': videoTitleSlot,
         'video-duration': videoDurationSlot,
+        'video-alert': alertMsgSlot,
     },
     propsData: {
         videoBtnText: buttonText,
@@ -35,6 +37,12 @@ describe('VsVideoCaption', () => {
             const wrapper = factoryShallowMount();
 
             expect(wrapper.html()).toContain(videoDurationSlot);
+        });
+
+        it('should render the video alert message slot content', () => {
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.html()).toContain(alertMsgSlot);
         });
     });
 
