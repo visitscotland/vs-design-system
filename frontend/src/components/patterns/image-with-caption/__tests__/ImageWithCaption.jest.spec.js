@@ -10,6 +10,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsImageWithCaption, {
     propsData: {
         imageSrc: imageSrcValue,
         isVideo: true,
+        playButtonText: 'Play video',
         ...propsData,
     },
     slots: {
