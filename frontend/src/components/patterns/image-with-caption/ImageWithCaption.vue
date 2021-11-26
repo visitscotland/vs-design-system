@@ -480,7 +480,6 @@ export default {
             &--video {
                 .vs-image-with-caption__video-caption-wrapper {
                     margin-top: 0;
-                    border-bottom: $spacer-2 solid $color-white;
 
                     .vs-video-caption {
                         .vs-toggle-btn {
@@ -496,14 +495,6 @@ export default {
 
             &__caption-wrapper {
                 display: block;
-            }
-
-            @include media-breakpoint-up(sm) {
-                &--video {
-                    .vs-image-with-caption__video-caption-wrapper {
-                        border-bottom: none;
-                    }
-                }
             }
 
             @include media-breakpoint-up(lg) {
