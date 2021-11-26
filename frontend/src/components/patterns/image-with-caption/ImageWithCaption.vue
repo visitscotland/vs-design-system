@@ -130,7 +130,7 @@ export default {
         },
 
         /**
-         * Option for a large Hero image at top of a page
+         * Option for a video to open in a modal
          */
         isVideo: {
             type: Boolean,
@@ -536,6 +536,7 @@ export default {
             :altText="item.altText"
             :image-src="item.imageSrc"
             :key="`large-${index}`"
+            class="mb-11"
         >
             <VsCaption
                 slot="img-caption"
