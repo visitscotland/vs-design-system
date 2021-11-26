@@ -43,7 +43,22 @@
                 v-if="isVideo"
             >
                 <!-- @slot Slot for the video caption component -->
-                <slot name="video-caption" />
+                <VsVideoCaption
+                    slot="video-caption"
+                    :video-btn-text="playButtonText"
+                    :with-toggle-btn="true"
+                    @toggleAction="toggleCaption"
+                >
+                    <template slot="video-alert">
+                        <slot name="video-alert" />
+                    </template>
+                    <template slot="video-title">
+                        <slot name="video-title" />
+                    </template>
+                    <template slot="video-duration">
+                        <slot name="video-duration" />
+                    </template>
+                </VsVideoCaption>
             </div>
 
             <div
@@ -134,6 +149,14 @@ export default {
             type: String,
             default: '',
         },
+
+        /**
+         * The text for the video play button
+         */
+        playButtonText: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
@@ -150,8 +173,9 @@ export default {
         },
         captionWrapperClasses() {
             return {
-                'd-block': this.showCaption && !this.isVideo,
-                'd-flex': this.showCaption && this.isVideo && this.isHeroImage,
+                'd-block': this.showCaption && !this.isHeroImage,
+                'd-flex': (this.showCaption && this.isHeroImage)
+                    || (this.showCaption && this.isVideo),
                 container: this.isHeroImage,
             };
         },
@@ -182,11 +206,13 @@ export default {
                 right: $spacer-2;
 
                 @include media-breakpoint-up(sm) {
-                    display: none;
-
                     .vs-image-with-caption--closed-default & {
                         display: block;
                     }
+                }
+
+                @include media-breakpoint-up(sm) {
+                    display: none;
                 }
             }
         }
@@ -233,30 +259,52 @@ export default {
             }
         }
 
-        &--video {
-            .vs-toggle-btn {
-                display: block;
+        &--fullwidth {
+            @include media-breakpoint-up(sm) {
+                .vs-image-with-caption__captions {
+                    position: relative;
+                }
             }
+        }
 
+        &--video {
             .vs-image-with-caption__caption-wrapper {
                 display: none;
+                justify-content: flex-end;
             }
 
             .vs-image-with-caption__video-caption-wrapper {
+                margin-top: -50px;
+
                 .vs-video-caption {
                     &__button {
                         margin-left: $spacer-3;
                     }
+
+                    .vs-toggle-btn {
+                        display: none;
+                        top: 10px;
+                        right: $spacer-2;
+                    }
                 }
+            }
+
+            .vs-image-with-caption__captions {
+                position: relative;
+                top: auto;
+                left: auto;
             }
 
             .vs-caption {
                 position: relative;
+
+                &--large {
+                    bottom: auto;
+                }
             }
 
             &.vs-image-with-caption--hero {
                 .vs-image-with-caption__video-caption-wrapper {
-                    margin-top: -50px;
                     padding: 0;
                 }
 
@@ -271,17 +319,21 @@ export default {
                 }
             }
 
+            @include media-breakpoint-up(sm) {
+                .vs-image-with-caption__video-caption-wrapper {
+                    .vs-video-caption {
+                        width: 100%;
+
+                        &__button {
+                            margin-left: $spacer-2;
+                        }
+                    }
+                }
+            }
+
             @include media-breakpoint-up(lg) {
                 .vs-toggle-btn {
                     display: none;
-                }
-
-                .vs-image-with-caption__captions {
-                    position: absolute;
-                    padding: 0;
-                    z-index: 3;
-                    bottom: 200px;
-                    width: 100%;
                 }
 
                 .vs-image-with-caption__video-caption-wrapper {
@@ -290,14 +342,19 @@ export default {
                     padding: 0;
 
                     .vs-video-caption {
+                        width: 310px;
+
                         &__button {
                             margin-left: 0;
+                        }
+
+                        .vs-toggle-btn {
+                            display: block;
                         }
                     }
                 }
 
                 .vs-image-with-caption__caption-wrapper {
-                    display: flex;
                     justify-content: flex-end;
                     padding: 0;
                 }
@@ -306,13 +363,16 @@ export default {
                     position: absolute;
                     bottom: auto;
                 }
-            }
 
-            @include media-breakpoint-up(lg) {
-                &.vs-image-with-caption--hero:not(.vs-image-with-caption--video) {
+                .vs-toggle-btn {
+                    right: 0;
+                }
+
+                &.vs-image-with-caption--hero {
                      .vs-image-with-caption__captions {
                         position: absolute;
                         bottom: 200px;
+                        width: 100%;
                         right: 0;
                         z-index: 3;
                     }
@@ -336,11 +396,9 @@ export default {
                     max-height: 100vh;
                     overflow: hidden;
 
-                    .vs-toggle-btnn {
-                        display: block;
-
-                        @include media-breakpoint-up(lg) {
-                            display: none;
+                    .vs-toggle-btn {
+                        @include media-breakpoint-between(sm, md) {
+                            display: block;
                         }
                     }
                 }
@@ -416,8 +474,41 @@ export default {
                 }
             }
 
+            &--video {
+                .vs-image-with-caption__video-caption-wrapper {
+                    margin-top: 0;
+                    border-bottom: $spacer-2 solid $color-white;
+
+                    .vs-video-caption {
+                        .vs-toggle-btn {
+                            display: none;
+                        }
+                    }
+                }
+
+                .vs-image-with-caption__caption-wrapper {
+                    display: flex;
+                }
+            }
+
             &__caption-wrapper {
                 display: block;
+            }
+
+            @include media-breakpoint-up(sm) {
+                &--video {
+                    .vs-image-with-caption__video-caption-wrapper {
+                        border-bottom: none;
+                    }
+                }
+            }
+
+            @include media-breakpoint-up(lg) {
+                &--video {
+                    .vs-image-with-caption__video-caption-wrapper {
+                        margin-bottom: $spacer-2;
+                    }
+                }
             }
         }
 
@@ -451,50 +542,7 @@ export default {
             :altText="item.altText"
             :image-src="item.imageSrc"
             :key="`large-${index}`"
-            class="mb-11"
         >
-            <VsCaption
-                slot="img-caption"
-                :latitude="item.latitude"
-                :longitude="item.longitude"
-                variant="large"
-            >
-                <span slot="caption" v-if="item.caption">
-                    {{ item.caption }}
-                </span>
-
-                <span slot="credit" v-if="item.credit">
-                    {{ item.credit }}
-                </span>
-            </VsCaption>
-        </VsImageWithCaption>
-
-        <h3>Video Caption Style</h3>
-        <VsImageWithCaption
-            v-for="(item, index) in imageWithCaption.imageExamples.video"
-            :altText="item.altText"
-            :image-src="item.imageSrc"
-            :key="`large-${index}`"
-            class="mb-11"
-            :isVideo="true"
-            :isHeroImage="true"
-        >
-            <VsVideoCaption
-                slot="video-caption"
-                videoBtnText="Play now"
-                :withToggleBtn="true"
-            >
-                <template slot="video-alert">
-                    Please enable javascript to see this video
-                </template>
-                <template slot="video-title">
-                    This is the video title
-                </template>
-                <template slot="video-duration">
-                    This is the video length
-                </template>
-            </VsVideoCaption>
-
             <VsCaption
                 slot="img-caption"
                 :latitude="item.latitude"
