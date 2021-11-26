@@ -16,7 +16,7 @@
 
         <VsIcon
             v-if="show"
-            name="close-circle"
+            name="close-circle-filled"
             variant="light"
             size="md"
         />
