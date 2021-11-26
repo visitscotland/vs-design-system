@@ -1,12 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
-import VsImageWithCaption from '../ToggleButton';
+import VsToggleButton from '../ToggleButton';
 
 const toggleIdValue = 'toggle-id';
 
 const defaultSlotText = 'Click here to toggle caption';
 const toggleIconSlot = 'Toggle icon';
 
-const factoryShallowMount = (propsData) => shallowMount(VsImageWithCaption, {
+const factoryShallowMount = (propsData) => shallowMount(VsToggleButton, {
     propsData: {
         toggleId: toggleIdValue,
         ...propsData,
@@ -17,7 +17,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsImageWithCaption, {
     },
 });
 
-describe('VsImageWithCaption', () => {
+describe('VsToggleButton', () => {
     it('should render a component with the data-test attribute `vs-toggle-btn`', () => {
         const wrapper = factoryShallowMount();
 

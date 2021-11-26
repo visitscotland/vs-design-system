@@ -166,7 +166,7 @@ export default {
                 &__details {
                     max-width: 84%;
                     margin: 0 auto;
-                    border-bottom: $theme-grey 1px solid;
+                    border-bottom: $color-grey 1px solid;
                 }
             }
 

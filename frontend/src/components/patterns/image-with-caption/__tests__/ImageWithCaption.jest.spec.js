@@ -70,6 +70,15 @@ describe('VsImageWithCaption', () => {
             expect(imageWrapper.classes('vs-image-with-caption--overlapped')).toBe(true);
         });
 
+        it('should render correct `toggleButtonText` on the toggle button', () => {
+            const wrapper = factoryShallowMount({
+                toggleButtonText: 'Toggle caption',
+            });
+            const toggleCaptionBtn = wrapper.find('vstogglebutton-stub');
+
+            expect(toggleCaptionBtn.text()).toContain('Toggle caption');
+        });
+
         it('should set correct ID for aria controls with `imageSrc`', () => {
             const wrapper = factoryShallowMount();
             const captionWrapper = wrapper.find('[data-test="vs-image-with-caption"]').find('.vs-image-with-caption__caption-wrapper');
@@ -105,7 +114,6 @@ describe('VsImageWithCaption', () => {
 
         it('renders content in the `video-alert` slot', () => {
             const wrapper = factoryShallowMount();
-            console.log(wrapper.html());
             const videoCaptionStub = wrapper.find('vsvideocaption-stub');
 
             expect(videoCaptionStub.text()).toContain(alertSlot);
@@ -113,7 +121,6 @@ describe('VsImageWithCaption', () => {
 
         it('renders content in the `video-title` slot', () => {
             const wrapper = factoryShallowMount();
-            console.log(wrapper.html());
             const videoCaptionStub = wrapper.find('vsvideocaption-stub');
 
             expect(videoCaptionStub.text()).toContain(videoTitleSlot);
@@ -121,7 +128,6 @@ describe('VsImageWithCaption', () => {
 
         it('renders content in the `video-duration` slot', () => {
             const wrapper = factoryShallowMount();
-            console.log(wrapper.html());
             const videoCaptionStub = wrapper.find('vsvideocaption-stub');
 
             expect(videoCaptionStub.text()).toContain(videoDurationSlot);
