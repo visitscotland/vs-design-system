@@ -1,7 +1,10 @@
 <template>
     <BCard
         class="vs-panel"
-        :class="[this.$slots['vs-panel__title'] ? '' : 'pt-10']"
+        :class="[
+            this.$slots['vs-panel__title'] ? '' : 'pt-10',
+            noHeaderStyling ? 'vs-panel--no-header-styling' : ''
+        ]"
     >
         <template v-slot:header>
             <!-- @slot Contains an optional title for the panel  -->
@@ -30,6 +33,14 @@ export default {
     components: {
         BCard,
         BCardText,
+    },
+    props: {
+        /**
+         * Strip the default card-header styling from the bootstrap card
+         */
+        noHeaderStyling: {
+            type: Boolean,
+        },
     },
 };
 </script>
@@ -68,6 +79,13 @@ export default {
     .card-header {
         text-align: center;
     }
+
+    &.vs-panel--no-header-styling {
+        .card-header {
+            background: none;
+            border-bottom-width: 0;
+        }
+    }
 }
 </style>
 
@@ -75,6 +93,19 @@ export default {
 ```jsx
     <VsPanel>
         <VsHeading thin level="4" slot="vs-panel-title">A Title Would Go Here</VsHeading>
+
+        <VsRichTextWrapper variant="lead">
+             <!-- eslint-disable-next-line max-len -->
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras maximus est congue nunc fermentum, eu hendrerit odio fringilla. Donec porta eleifend ipsum Praesent in magna fringilla.</p>
+
+             <!-- eslint-disable-next-line max-len -->
+            <p>Morbi faucibus risus in varius sollicitudin. Aenean eget leo ullamcorper, scelerisque urna eu, imperdiet nibh. Duis sit amet nibh tortor. Donec ac ante eros. Praesent in magna fringilla, consectetur eros id, fermentum nibh. Duis luctus ante sapien, scelerisque fermentum massa tincidunt eu. Nullam sed arcu a justo auctor consectetur.</p>
+        </VsRichTextWrapper>
+    </VsPanel>
+    <VsPanel
+        :no-header-styling="true"
+    >
+        <VsHeading thin level="4" slot="vs-panel-title">A Title With No Background</VsHeading>
 
         <VsRichTextWrapper variant="lead">
              <!-- eslint-disable-next-line max-len -->
