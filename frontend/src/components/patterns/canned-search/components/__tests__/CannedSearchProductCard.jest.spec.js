@@ -4,7 +4,6 @@ import VsCannedSearchProductCard from '../CannedSearchProductCard';
 const imgSrc = 'https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm';
 const imgAlt = 'Arden House';
 const title = 'Arden House';
-const location = 'Callander, Loch Lomond, The Trossachs';
 const description = 'Test product description';
 const detailLink = {
     link: '/info/accommodation/arden-house-p572561',
@@ -19,6 +18,7 @@ const websiteLink = {
 
 const slideIndex = '0';
 
+const subHeadingContent = 'This is a sub heading';
 const starSlotContent = 'This is a star rating';
 const catSlotContent = 'This is a list of categories';
 const logoSlotContent = 'This is a list of logos';
@@ -30,7 +30,6 @@ const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
         imgSrc,
         imgAlt,
         title,
-        location,
         description,
         detailLink,
         websiteLink,
@@ -38,6 +37,7 @@ const factoryMount = (propsData) => mount(VsCannedSearchProductCard, {
         ...propsData,
     },
     slots: {
+        vsCannedSearchSubHeading: subHeadingContent,
         vsCannedSearchStarRating: starSlotContent,
         vsCannedSearchCategories: catSlotContent,
         vsCannedSearchLogos: logoSlotContent,
@@ -104,18 +104,16 @@ describe('VsCannedSearchProductCard', () => {
             });
         });
 
-        it('should render the content of the `location` property as a vs-heading', () => {
-            const prodTitle = wrapper.find('[data-test="vs-product-card__location"]');
-
-            expect(prodTitle.html()).toContain(location);
-        });
-
         it('should render the content of the `description` property', () => {
             expect(wrapper.html()).toContain(description);
         });
     });
 
     describe(':slots', () => {
+        it('should render the content of the `vsCannedSearchSubHeading` slot', () => {
+            expect(wrapper.html()).toContain(subHeadingContent);
+        });
+
         it('should render the content of the `vsCannedSearchStarRating` slot', () => {
             expect(wrapper.html()).toContain(starSlotContent);
         });
