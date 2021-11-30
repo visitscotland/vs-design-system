@@ -37,24 +37,21 @@ export default {
     release: '0.0.1',
     props: {
         /**
-        * The price of the product. Setting this will cause the price to appear in the
-        * left half of the summary box
+        * The price of the product
         */
         price: {
             type: String,
             default: '',
         },
         /**
-        * A line of text that precedes the product price, not rendered if price
-        * not provided
+        * A line of text that precedes the product price
         */
         priceIntro: {
             type: String,
             default: '',
         },
         /**
-        * A line of text that appears after the product price, not rendered if price
-        * not provided
+        * A line of text that appears after the product price
         */
         priceOutro: {
             type: String,
