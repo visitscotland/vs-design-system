@@ -94,7 +94,7 @@ export default {
         &__details {
             background-color: $color-gray-shade-6;
             color: $color-white;
-            padding: $spacer-5 $spacer-3;
+            padding: $spacer-4 $spacer-3 $spacer-3;
         }
 
         .vs-toggle-btn {

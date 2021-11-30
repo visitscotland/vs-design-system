@@ -17,7 +17,6 @@
         <VsIcon
             v-if="show"
             name="close-circle-filled"
-            variant="light"
             size="md"
         />
 
@@ -54,7 +53,9 @@ import VsSvg from '@components/elements/svg/Svg';
 import VsIcon from '@components/elements/icon/Icon';
 
 /**
- * Toggle button to open/close caption
+ * Toggle button to toggle elements in other components.
+ * The component emits an event on click that can be listened
+ * for in a parent component.
  *
  * @displayName Toggle Button
  */
