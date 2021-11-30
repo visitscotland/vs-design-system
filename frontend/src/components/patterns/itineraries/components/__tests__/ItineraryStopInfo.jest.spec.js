@@ -81,6 +81,7 @@ beforeEach(async() => {
 
     await wrapper.setData({
         currentDayData,
+        ukDate: '25/11/2021',
         dayDataIndex: 0,
         openingMessage: 'open',
         isCurrentTimeframe: false,
