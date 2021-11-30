@@ -78,10 +78,10 @@ public class MegalinkFactoryTest {
 
         when(item.getFeature()).thenReturn(featured);
         if (type == LinkType.CMS) {
-            when(item.getLink()).thenReturn(mockPage());
+            when(item.getLinkItem()).thenReturn(mockPage());
         } else {
             SharedLink link = mockSharedLink(type);
-            when(item.getLink()).thenReturn(link);
+            when(item.getLinkItem()).thenReturn(link);
         }
 
         return item;
@@ -136,7 +136,7 @@ public class MegalinkFactoryTest {
         assertEquals(0, factory.convertToEnhancedLinks(module, items, Locale.UK, false).size());
 
         verify(linkService, never()).createEnhancedLink(any(),any(), any(), anyBoolean());
-        assertEquals(2, module.getErrorMessages().size());
+        assertEquals(1, module.getErrorMessages().size());
     }
 
     @Test

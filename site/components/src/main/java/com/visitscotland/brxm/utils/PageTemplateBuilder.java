@@ -11,6 +11,7 @@ import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.MissingResourceException;
 public class PageTemplateBuilder {
 
     private static final Logger logger = LoggerFactory.getLogger(PageTemplateBuilder.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     //Static Constant
     static final String INTRO_THEME = "introTheme";
@@ -47,6 +49,7 @@ public class PageTemplateBuilder {
     private final TravelInformationFactory travelInformationFactory;
     private final CannedSearchFactory cannedSearchFactory;
 
+    @Autowired
     public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory, TravelInformationFactory travelInformationFactory, CannedSearchFactory cannedSearchFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
@@ -73,7 +76,7 @@ public class PageTemplateBuilder {
 
         for (BaseDocument item : documentUtils.getAllowedDocuments(getDocument(request))) {
             try {
-                logger.info("A {} module was found. Type {}", item.getClass(), item.getPath());
+                logger.debug("A {} module was found. Type {}", item.getClass(), item.getPath());
                 if (item instanceof Megalinks) {
                     processMegalinks(request, page, (Megalinks) item);
                 } else if (item instanceof TourismInformation) {
@@ -113,14 +116,14 @@ public class PageTemplateBuilder {
     private void processLongCopy(HstRequest request, PageConfiguration config, LongCopy document){
         Page page = getDocument(request);
         if (page instanceof General && ((General) page).getTheme().equals(GeneralContentComponent.SIMPLE)){
-            if (config.modules.stream().anyMatch(module -> module instanceof LongCopyModule)){
+            if (config.modules.stream().anyMatch(LongCopyModule.class::isInstance)){
                 logger.error("Only one instance of this module is allowed");
             } else {
                 config.modules.add(longCopyFactory.getModule(document));
             }
         } else {
-            //TODO Content Issue;
             logger.error("The document type LongCopy is only allowed in Simple Pages");
+            contentLogger.error("The document type LongCopy is not allowed in this page. Path {}", page.getPath());
         }
     }
     /**
@@ -164,9 +167,9 @@ public class PageTemplateBuilder {
      * @param request
      * @param modules
      */
-    private void setIntroTheme(HstRequest request, List<Module> modules){
+    private void setIntroTheme(HstRequest request, List<Module<?>> modules){
         if(!modules.isEmpty() && modules.get(0) instanceof LinksModule){
-            request.setAttribute(INTRO_THEME, ((LinksModule) modules.get(0)).getThemeIndex());
+            request.setAttribute(INTRO_THEME, ((LinksModule<?>) modules.get(0)).getThemeIndex());
         }
     }
 
@@ -176,7 +179,7 @@ public class PageTemplateBuilder {
      * It handles the list of modules as well as the memory for style and the alignment
      */
     class PageConfiguration {
-        List<Module> modules = new ArrayList<>();
+        List<Module<?>> modules = new ArrayList<>();
 
         int style = 0;
         int alignment = 0;

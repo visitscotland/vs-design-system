@@ -42,16 +42,6 @@ describe('VsVideo', () => {
     });
 
     describe(':data', () => {
-        it('should not show the video duration if showDuration is set to false', async() => {
-            const wrapper = factoryShallowMount();
-
-            await wrapper.setData({
-                showDuration: false,
-            });
-
-            expect(wrapper.find('[data-test="vs-video-duration"]').exists()).toBe(true);
-        });
-
         it('should show a roundedDuration that rounds up, if the duration is 0 minutes and < 30 seconds', async() => {
             // a 25 second video, which should round down to 1 minute
             const wrapper = factoryShallowMount(null, {
@@ -68,7 +58,7 @@ describe('VsVideo', () => {
                 showDuration: true,
             });
 
-            expect(wrapper.find('[data-test="vs-video-rounded-duration"]').text()).toContain('1');
+            expect(wrapper.vm.duration.roundedMinutes).toContain('1');
         });
 
         it('should show a roundedDuration that rounds down, if the duration is x minutes and < 30 seconds', async() => {
@@ -87,7 +77,7 @@ describe('VsVideo', () => {
                 showDuration: true,
             });
 
-            expect(wrapper.find('[data-test="vs-video-rounded-duration"]').text()).toContain('1');
+            expect(wrapper.vm.duration.roundedMinutes).toContain('1');
         });
 
         it('should show a roundedDuration that rounds up, if the duration is x minutes and >= 30 seconds', async() => {
@@ -106,7 +96,7 @@ describe('VsVideo', () => {
                 showDuration: true,
             });
 
-            expect(wrapper.find('[data-test="vs-video-rounded-duration"]').text()).toContain('2');
+            expect(wrapper.vm.duration.roundedMinutes).toContain('2');
         });
 
         it('should show render the singleMinuteDescriptor for a 1 minute video', async() => {
@@ -125,8 +115,7 @@ describe('VsVideo', () => {
                 showDuration: true,
             });
 
-            expect(wrapper.find('[data-test="vs-video-rounded-duration"]').text())
-                .toContain(singleMinuteDescriptor.replace('%s', '1'));
+            expect(wrapper.vm.duration.roundedMinutes).toBe(singleMinuteDescriptor.replace('%s', '1'));
         });
 
         it('should show render the pluralMinuteDiscriptor for a multi minute video', async() => {
@@ -145,8 +134,7 @@ describe('VsVideo', () => {
                 showDuration: true,
             });
 
-            expect(wrapper.find('[data-test="vs-video-rounded-duration"]').text())
-                .toContain(pluralMinuteDescriptor.replace('%s', '4'));
+            expect(wrapper.vm.duration.roundedMinutes).toBe(pluralMinuteDescriptor.replace('%s', '4'));
         });
     });
 

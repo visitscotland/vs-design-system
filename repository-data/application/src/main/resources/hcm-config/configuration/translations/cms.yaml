@@ -42,3 +42,4 @@ definitions:
       visitscotland:travel-tab-transport-validator: Travel type must be unique.
       visitscotland:link-validator#video: You can’t link to that type of document.
         Choose a Video document.
+      visitscotland:youtube-url-validator: Enter a valid Youtube link URL

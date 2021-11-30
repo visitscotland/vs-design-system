@@ -39,6 +39,15 @@
             <#if heroDetails?has_content>
                 <@hst.link var="heroSrc" hippobean=heroImage.cmsImage.original/>
                 <template slot="vsIntroHero">
+                    <#if (heroVideo)??>
+
+                        <!-- Youtube video Data
+                            youtubeID="${heroVideo.youtubeId}" <
+                            title="${heroVideo.label}"
+                            teaser="${heroVideo.teaser}"
+                            cta="${heroVideo.cta}"
+                        -->
+                    </#if>
                     <@imageWithCaption imageSrc=heroSrc imageDetails=heroDetails variant="large" isHero="true"/>
                 </template>
             </#if>

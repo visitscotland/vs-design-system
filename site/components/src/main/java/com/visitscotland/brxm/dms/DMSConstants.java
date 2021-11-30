@@ -69,7 +69,7 @@ public class DMSConstants {
         public static final String LOCATION = "city";
         public static final String FACILITIES = "keyFacilities";
 
-        public static final String URL = "dmsLink";
+        public static final String URL = "productLink";
         public static final String URL_LINK = "link";
         public static final String TIME_TO_EXPLORE = "timeToExplore";
         public static final String PRICE = "price";
