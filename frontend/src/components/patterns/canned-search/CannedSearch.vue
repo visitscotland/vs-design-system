@@ -37,16 +37,36 @@
                 :img-alt="prod.name"
                 :title="prod.name"
                 :detail-link="{
-                    link: prod.dmsLink.link,
-                    label: prod.dmsLink.label,
-                    type: prod.dmsLink.type.toLowerCase()
+                    link: prod.productLink.link,
+                    label: prod.productLink.label,
+                    type: prod.productLink.type.toLowerCase()
                 }"
                 :description="prod.description"
                 :search-type="searchType"
             >
+                <div
+                    v-if="searchType === 'tour'"
+                    slot="vsCannedSearchTourInfo"
+                >
+                    <div>
+                        <VsCannedSearchTourRuns
+                            v-if="prod.opening && prod.opening.period
+                                && prod.opening.period.startDay"
+                            :label="prod.opening.period.label"
+                            :start-day="prod.opening.period.startDay"
+                            :end-day="prod.opening.period.endDay"
+                        />
+                        <VsCannedSearchTourDeparts
+                            v-if="prod.tourOrigin && prod.tourOrigin.tourOrigin"
+                            :label="prod.tourOrigin.label"
+                            :origins="prod.tourOrigin.tourOrigin"
+                        />
+                    </div>
+                </div>
                 <VsCannedSearchSubHeading
                     slot="vsCannedSearchSubHeading"
-                    :sub-heading="fetchAddress(prod)"
+                    :sub-heading="fetchSubHeading(prod)"
+                    :line-limit="searchType === 'tour' ? 1 : 2"
                 />
                 <VsCannedSearchStars
                     v-if="prod.grading"
@@ -72,7 +92,8 @@
                 />
                 <VsCannedSearchBadges
                     slot="vsCannedSearchBadges"
-                    :badge-one="prod.category ? prod.category.name : ''"
+                    :badge-one="fetchBadgeOne(prod)"
+                    :multi-badge-one="fetchMultiBadgeOne(prod)"
                     :badge-two="prod.offers"
                     :badge-three="fetchBadgeThree(prod)"
                 />
@@ -80,14 +101,21 @@
                     slot="vsCannedSearchSummary"
                 >
                     <VsCannedSearchDates
-                        v-if="prod.opening"
+                        v-if="prod.opening && searchType !== 'tour'"
                         slot="vsCannedSearchSummaryTop"
                         :period="prod.opening.period"
                         :label="prod.opening.period.label"
                     />
+                    <VsCannedSearchDuration
+                        v-if="searchType === 'tour' && prod.tourLength"
+                        :slot="'vsCannedSearchSummaryLeft'"
+                        :duration-intro="prod.tourLength.label"
+                        :duration="prod.tourLength.value"
+                    />
                     <VsCannedSearchPrice
                         v-if="prod.price"
-                        slot="vsCannedSearchSummaryLeft"
+                        :slot="searchType === 'tour' ? 'vsCannedSearchSummaryCentre'
+                            : 'vsCannedSearchSummaryLeft'"
                         :price-intro="prod.price.priceLabel"
                         :price="prod.price.price"
                         :price-outro="prod.price.priceBasis"
@@ -140,11 +168,14 @@ import VsCannedSearchStars from '@components/patterns/canned-search/components/C
 import VsCannedSearchLogos from '@components/patterns/canned-search/components/CannedSearchLogos';
 import VsCannedSearchCategories from '@components/patterns/canned-search/components/CannedSearchCategories';
 import VsCannedSearchPrice from '@components/patterns/canned-search/components/CannedSearchPrice';
+import VsCannedSearchDuration from '@components/patterns/canned-search/components/CannedSearchDuration';
 import VsCannedSearchSummaryBox from '@components/patterns/canned-search/components/CannedSearchSummaryBox';
 import VsCannedSearchDates from '@components/patterns/canned-search/components/CannedSearchDates';
 import VsCannedSearchBadges from '@components/patterns/canned-search/components/CannedSearchBadges';
 import VsCannedSearchCuisines from '@components/patterns/canned-search/components/CannedSearchCuisines';
 import VsCannedSearchSubHeading from '@components/patterns/canned-search/components/CannedSearchSubHeading';
+import VsCannedSearchTourRuns from '@components/patterns/canned-search/components/CannedSearchTourRuns';
+import VsCannedSearchTourDeparts from '@components/patterns/canned-search/components/CannedSearchTourDeparts';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
@@ -170,11 +201,14 @@ export default {
         VsCannedSearchLogos,
         VsCannedSearchCategories,
         VsCannedSearchPrice,
+        VsCannedSearchDuration,
         VsCannedSearchSummaryBox,
         VsCannedSearchDates,
         VsCannedSearchBadges,
         VsCannedSearchCuisines,
         VsCannedSearchSubHeading,
+        VsCannedSearchTourRuns,
+        VsCannedSearchTourDeparts,
         VsCarousel,
         VsContainer,
         VsRow,
@@ -256,15 +290,33 @@ export default {
         retrieveProducts() {
             axios.get(this.apiUrl)
                 .then((response) => {
-                    if (this.searchType === 'tour') {
-                        this.products = this.transformTourData(response.data.data);
-                    } else {
-                        this.products = response.data.data.products;
-                    }
+                    this.products = response.data.data.products;
                 })
                 .catch(() => {
                     this.products = [];
                 });
+        },
+        /**
+         * Returns an appropriate subheading for the product card based on the search type,
+         * tours display a comma separated list of categories, non-tours display a formatted
+         * address
+         */
+        fetchSubHeading(product) {
+            if (this.searchType === 'tour') {
+                return this.fetchCategoryStrings(product);
+            }
+
+            return this.fetchAddress(product);
+        },
+        /**
+         * Returns a comma separated list of all the categories on the product
+         */
+        fetchCategoryStrings(product) {
+            if (product.category && product.category.length) {
+                return product.category.map((item) => item.name).join(', ');
+            }
+
+            return '';
         },
         /**
          * Returns the address string for each card, dependent on whether the event is
@@ -277,12 +329,49 @@ export default {
                 return product.onlineEvent;
             }
 
+            if (!product.address) {
+                return '';
+            }
+
             if (this.searchType === 'even') {
                 return `${product.eventVenue}, ${product.address.city}`;
             }
 
             return `${product.address.city}, ${product.address.county}`;
         },
+        /**
+         * Returns the elements to display in the first badge, usually a category
+         */
+        fetchBadgeOne(product) {
+            if (this.searchType !== 'tour') {
+                if (product.category && product.category.length) {
+                    if (product.category[0]) {
+                        return product.category[0].name;
+                    }
+
+                    return null;
+                }
+            }
+
+            return null;
+        },
+        /**
+         * Returns the elements to display in the first badge section if there are multiple
+         * of them, usually occurs for tours and lists modes of transport
+         */
+        fetchMultiBadgeOne(product) {
+            if (this.searchType === 'tour') {
+                if (product.tourVehicles && product.tourVehicles.length) {
+                    return product.tourVehicles.map((item) => item.name);
+                }
+            }
+
+            return null;
+        },
+        /**
+         * Returns the elements to display in the first badge if covid opening information is
+         * provided return that, otherwise if a nowOn status for an event is provided return that
+         */
         fetchBadgeThree(product) {
             if (product.covidInformation && product.covidInformation.weAreOpen) {
                 return product.covidInformation.weAreOpen;
@@ -336,7 +425,7 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
+            apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
         >
             <template slot="vsCannedSearchButtons">
                 <VsButton
@@ -357,7 +446,7 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
+            apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
             searchType="even"
         >
             <template slot="vsCannedSearchButtons">
@@ -383,7 +472,7 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
+            apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
             searchType="cate"
         >
             <template slot="vsCannedSearchButtons">
@@ -405,8 +494,30 @@ export default {
         </template>
 
         <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
+            apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
             searchType="acti"
+        >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All
+                </VsButton>
+            </template>
+
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
+        </VsCannedSearch>
+    </VsModuleWrapper>
+    <VsModuleWrapper>
+        <template slot="vsModuleWrapperHeading">
+            A tours example
+        </template>
+
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8090/data/component/cannedsearchtours?find%5B%5D=attractions%7Caberdeen%7CAberdeen&locale=en-GB"
+            searchType="tour"
         >
             <template slot="vsCannedSearchButtons">
                 <VsButton
