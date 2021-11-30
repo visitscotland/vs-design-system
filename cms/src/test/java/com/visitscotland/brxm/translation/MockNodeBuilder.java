@@ -73,6 +73,7 @@ public final class MockNodeBuilder {
     public MockNodeBuilder withProperty(String propertyPath, String propertyValue) throws Exception {
         Property mockProperty = mock(Property.class);
         lenient().when(mockProperty.getString()).thenReturn(propertyValue);
+
         properties.put(propertyPath, mockProperty);
         return this;
     }
@@ -174,7 +175,12 @@ public final class MockNodeBuilder {
 
         for (Map.Entry<String, List<Node>> childNodeEntry : childNodes.entrySet()) {
             final NodeIterator mockNodeIterator = createNodeIterator(childNodeEntry.getValue());
+            lenient().when(mockNode.hasNode(eq(childNodeEntry.getKey()))).thenReturn(true);
+
             lenient().when(mockNode.getNodes(eq(childNodeEntry.getKey()))).thenReturn(mockNodeIterator);
+            if (childNodeEntry.getValue().size() == 1) {
+                lenient().when(mockNode.getNode(eq(childNodeEntry.getKey()))).thenReturn(childNodeEntry.getValue().get(0));
+            }
         }
 
         List<Node> allChildNodes = new ArrayList<>();

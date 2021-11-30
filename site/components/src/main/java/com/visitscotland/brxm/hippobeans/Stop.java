@@ -22,7 +22,7 @@ public class Stop extends BaseDocument {
         return getHippoHtml("visitscotland:description");
     }
 
-    public List<?> getProducts() {
+    public List<Object> getProducts() {
         return getChildBeansByName("visitscotland:product");
     }
 
@@ -35,17 +35,9 @@ public class Stop extends BaseDocument {
         return getOnlyChild(getStop());
     }
 
-    /**
-     * @deprecated Remove after all Video Adjustments are done
-     */
-    @Deprecated
-    @HippoEssentialsGenerated(internalName = "visitscotland:image")
+    @HippoEssentialsGenerated(internalName = "visitscotland:media", allowModifications = false)
     public Image getImage() {
-        return getLinkedBean("visitscotland:image", Image.class);
-    }
-
-    public HippoBean getMediaItem(){
-        return getOnlyChild(getMedia());
+        return getLinkedBean("visitscotland:media", Image.class);
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:media", allowModifications = false)

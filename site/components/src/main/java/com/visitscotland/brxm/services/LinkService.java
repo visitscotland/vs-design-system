@@ -22,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -94,7 +95,7 @@ public class LinkService {
             CMSLink cmsLink = (CMSLink) item;
             if (cmsLink.getLink() instanceof Linkable){
                 FlatLink link = createSimpleLink((Linkable) cmsLink.getLink(), module, locale);
-                link.setLabel(formatLabel(cmsLink.getLink(), bundle.getCtaLabel(cmsLink.getLabel(), locale), locale, module));
+                link.setLabel(formatLabel(cmsLink.getLink(), bundle.getCtaLabel(cmsLink.getLabel(), locale), module, locale));
                 return link;
             }
         }
@@ -116,8 +117,8 @@ public class LinkService {
         LinkType linkType = getType(url);
         String localizedUrl = processURL(locale, url);
 
-        if (locale != Locale.UK && url != null && url.equals(localizedUrl) && linkType == LinkType.INTERNAL && !url.startsWith("#")) {
-            logger.error("The URL {} could not be localized", url);
+        if (!locale.equals(Locale.UK) && url != null && url.equals(localizedUrl) && linkType == LinkType.INTERNAL && !url.startsWith("#")) {
+            logger.warn("The URL {} could not be localized", url);
         }
 
         return new FlatLink(label, localizedUrl, linkType);
@@ -205,7 +206,9 @@ public class LinkService {
             url = productSearch().fromHippoBean(((ProductSearchLink) link).getSearch()).locale(locale).build();
         } else if (link instanceof ExternalDocument) {
             url = ((ExternalDocument) link).getLink();
-        } else {
+        } else if (link instanceof Video) {
+            url = ((Video) link).getUrl();
+        } else{
             String linkType = link == null ? "null" : link.getClass().getSimpleName();
             logger.warn("This class {} is not recognized as a link type and cannot be converted", linkType);
         }
@@ -252,6 +255,7 @@ public class LinkService {
     }
 
     /**
+     * TODO : Reduce Cognitive Complexity
      * Method to assign the right category based on the url/cms structure
      *
      * @param path   String path of the document
@@ -301,18 +305,14 @@ public class LinkService {
      * @return
      */
     public EnhancedLink createEnhancedLink(Linkable linkable, Module<?> module, Locale locale, boolean addCategory) {
-        EnhancedLink link = new EnhancedLink();
-        link.setTeaser(linkable.getTeaser());
-        link.setLabel(linkable.getTitle());
-
-        if (linkable.getImage() != null) {
-            link.setImage(imageFactory.createImage(linkable.getImage(), module, locale));
-        }
+        EnhancedLink link;
 
         if (linkable instanceof Page) {
-            enhancedLinkFromPage(link, (Page) linkable);
+            link = enhancedLinkFromPage((Page) linkable, module, locale);
         } else if (linkable instanceof SharedLink) {
-            enhancedLinkFromSharedLink(link, (SharedLink) linkable, module, locale, addCategory);
+            link = enhancedLinkFromSharedLink((SharedLink) linkable, module, locale, addCategory);
+        } else if (linkable instanceof Video) {
+            link = enhancedLinkFromVideo((Video) linkable, module, locale, addCategory);
         } else {
             logger.warn("The type {} was not expected and will be skipped", linkable.getClass().getSimpleName());
             return null;
@@ -326,7 +326,7 @@ public class LinkService {
             if (module != null) {
                 module.addErrorMessage("The link to '" + link.getLink() + "' does not contain an image.");
             } else {
-                logger.warn("The error message cannot be displayed in preview");
+                logger.error("The error message cannot be displayed in preview");
             }
             contentLogger.warn("The link to {} does not have an image but it is expecting one", ((BaseDocument) linkable).getPath());
         }
@@ -377,60 +377,97 @@ public class LinkService {
     /**
      * Populated the information about an enhanced Link from a Page Document.
      *
-     * @param link     EnhacencedLink with minimum data
-     * @param linkable SharedLink document that contains extra information
+     * @param page SharedLink document that contains extra information
+     * @param module      Module to feed with any possible issue found while creating the page.
+     * @param locale      Language for the label
+     *
      */
-    private void enhancedLinkFromPage(EnhancedLink link, Page linkable) {
-        link.setLink(utils.createUrl(linkable));
+    private EnhancedLink enhancedLinkFromPage(Page page, Module<?> module, Locale locale) {
+        EnhancedLink link = new EnhancedLink();
+        link.setTeaser(page.getTeaser());
+        link.setLabel(page.getTitle());
+        link.setLink(utils.createUrl(page));
         link.setType(LinkType.INTERNAL);
-        if (linkable instanceof Itinerary) {
-            Itinerary itinerary = (Itinerary) linkable;
-            link.setItineraryDays(documentUtilsService.getSiblingDocuments(linkable, Day.class, "visitscotland:Day").size());
+
+        link.setImage(imageFactory.createImage(page.getImage(), module, locale));
+
+        if (page instanceof Itinerary) {
+            Itinerary itinerary = (Itinerary) page;
+            link.setItineraryDays(documentUtilsService.getSiblingDocuments(page, Day.class, "visitscotland:Day").size());
             if (itinerary.getTransports().length > 0) {
                 link.setItineraryTransport(itinerary.getTransports()[0]);
             }
         }
+
+        return link;
     }
 
     /**
      * Populates the information about an enhanced Link from a SharedLink Document.
      *
-     * @param link        EnhacencedLink with minimum data
-     * @param linkable    SharedLink document that contains extra information
+     * @param sharedLink  SharedLink document that contains extra information
      * @param module      Module to feed with any possible issue found while creating the page.
      * @param locale      Language for the label
      * @param addCategory wether or not the category field is populated.
      */
-    private void enhancedLinkFromSharedLink(EnhancedLink link, SharedLink linkable, Module<?> module, Locale locale, boolean addCategory) {
-        JsonNode product = getNodeFromSharedLink(linkable, locale);
-        link.setLink(getPlainLink(locale, linkable.getLinkType(), product));
+    private EnhancedLink enhancedLinkFromSharedLink(SharedLink sharedLink, Module<?> module, Locale locale, boolean addCategory) {
+        EnhancedLink link = new EnhancedLink();
+        JsonNode product = getNodeFromSharedLink(sharedLink, locale);
 
-        if (link.getImage() == null && product != null && product.has(DMSConstants.DMSProduct.IMAGE)) {
+        link.setTeaser(sharedLink.getTeaser());
+        link.setLink(getPlainLink(locale, sharedLink.getLinkType(), product));
+
+        if (sharedLink.getImage() != null) {
+            link.setImage(imageFactory.createImage(sharedLink.getImage(), module, locale));
+        } else if (product != null && product.has(DMSConstants.DMSProduct.IMAGE)) {
             link.setImage(imageFactory.createImage(product, module));
         }
-        if (linkable.getLinkType() instanceof ExternalDocument) {
-            ExternalDocument externalDocument = (ExternalDocument) linkable.getLinkType();
-            link.setLabel(formatLabel(linkable, linkable.getTitle(), locale, module));
+
+        if (sharedLink.getLinkType() instanceof ExternalDocument) {
+            link.setLabel(formatLabel(sharedLink, sharedLink.getTitle(), module, locale));
             link.setType(LinkType.DOWNLOAD);
 
             if (addCategory) {
-                link.setCategory(externalDocument.getCategory());
+                link.setCategory(((ExternalDocument) sharedLink.getLinkType()).getCategory());
             }
-        } else if (link.getType() == null) {
+        } else {
+            link.setLabel(sharedLink.getTitle());
             link.setType(getType(link.getLink()));
         }
+
+        return link;
+    }
+
+    /**
+     * Creates a Video Link from a Video document.
+     *
+     * @param video       Video document
+     * @param module      Module to feed with any possible issue found while creating the page.
+     * @param locale      Language for the label
+     * @param addCategory Indicates whether the category field is populated
+     */
+    private EnhancedLink enhancedLinkFromVideo(Video video, Module<?> module, Locale locale, boolean addCategory) {
+        EnhancedLink link = createVideo(video, module, locale);
+
+        //TODO: Confirm requirements for Videos in HorizontalLinks VS-2086 indicates that no category is needed but we need to wait for the final designs before taking action.
+        if (addCategory){
+            link.setCategory("Video");
+            module.addErrorMessage("This module should not contain a Video Link");
+        }
+
+        return link;
     }
 
     /**
      * Formats label and includes additional information when needed
      *
      * @param linkable
-     * @param locale
-     * @param module
+     * @param locale      Language for the label
+     * @param module      Module to feed with any possible issue found while creating the page.
      *
      * @return Formatted label
      */
-    public String formatLabel(HippoBean linkable, String label, Locale locale, Module<?> module){
+    public String formatLabel(HippoBean linkable, String label,  Module<?> module, Locale locale){
         if (linkable instanceof SharedLink && ((SharedLink)linkable).getLinkType() instanceof ExternalDocument){
             return label + getDownloadText(((ExternalDocument) ((SharedLink)linkable).getLinkType()).getLink(), locale, module);
         } else {
@@ -445,7 +482,7 @@ public class LinkService {
 
     public String getDownloadText(String link, Locale locale, Module<?> module) {
         String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale);
-        //TODO The following operation is expensive. We should cache the value
+        //TODO: The following operation is expensive. We should cache the value
         String size = commonUtils.getExternalDocumentSize(link, locale);
         if (size == null) {
             if (module != null) {
@@ -458,5 +495,30 @@ public class LinkService {
         }
     }
 
+    /**
+     * Creates a PlainVideoLink Object from a videoLink
+     *
+     * @param video Video Document
+     * @param module Module that will log all issues for the modules.
+     * @param locale Locale for the localization
+     *
+     * @return
+     */
+    public EnhancedLink createVideo(Video video, Module<?> module, Locale locale){
+        EnhancedLink videoLink = new EnhancedLink();
+        videoLink.setImage(imageFactory.createImage(video.getImage(), module, locale));
+        videoLink.setLabel(video.getTitle());
+        videoLink.setTeaser(video.getTeaser());
+        videoLink.setLink(video.getUrl());
+        videoLink.setCta(bundle.getVideoCtaLabel(video.getLabel(), locale));
+        videoLink.setYoutubeId(getYoutubeId(video.getUrl()));
+        videoLink.setType(LinkType.VIDEO);
+
+        return videoLink;
+    }
+
+    private String getYoutubeId(String url){
+        return UriComponentsBuilder.fromUriString(url).build().getQueryParams().getFirst("v");
+    }
 
 }

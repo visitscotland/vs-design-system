@@ -3,6 +3,7 @@ package com.visitscotland.brxm.hippobeans;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
+import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 
 import java.util.List;
@@ -25,11 +26,11 @@ public class MegalinkItem extends HippoCompound {
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:links", allowModifications = false)
-    public List<HippoCompound> getLinks() {
-        return getChildBeansByName("visitscotland:links", HippoCompound.class);
-    }
-
     public HippoBean getLinkItem(){
-        return BaseDocument.getOnlyChild(getLinks());
+        if (getBean("visitscotland:links") instanceof HippoMirror){
+            return getLinkedBean("visitscotland:links", HippoBean.class);
+        } else {
+            return getBean("visitscotland:links");
+        }
     }
 }

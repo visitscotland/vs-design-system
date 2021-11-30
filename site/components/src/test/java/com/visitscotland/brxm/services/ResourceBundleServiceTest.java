@@ -3,6 +3,7 @@ package com.visitscotland.brxm.services;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -175,11 +176,7 @@ class ResourceBundleServiceTest {
     }
 
     @Test
-    void getCtaLabel_manual() {
-        assertEquals("Discover more", service.getCtaLabel("Discover more", null));
-    }
-
-    @Test
+    @DisplayName(("Default CTA label implementation"))
     void getCtaLabel_auto() {
         lenient().when(registry.getBundle("essentials.global", Locale.UK)).thenReturn(bundle);
 
@@ -188,6 +185,18 @@ class ResourceBundleServiceTest {
 
         assertEquals("Find out more", service.getCtaLabel("",Locale.UK));
         assertEquals("Find out more", service.getCtaLabel(null,Locale.UK));
+    }
+
+    @Test
+    @DisplayName(("VS-2935 - Default video label implementation"))
+    void getPlainLink_fromVideo(){
+        lenient().when(registry.getBundle("essentials.global", Locale.GERMAN)).thenReturn(bundle);
+
+        when(bundle.containsKey("video.default-caption")).thenReturn(true);
+        when(bundle.getString("video.default-caption")).thenReturn("Play Video");
+
+        assertEquals("Watch it!",service.getVideoCtaLabel("Watch it!", Locale.GERMAN));
+        assertEquals("Play Video",service.getVideoCtaLabel("", Locale.GERMAN));
     }
 
 }

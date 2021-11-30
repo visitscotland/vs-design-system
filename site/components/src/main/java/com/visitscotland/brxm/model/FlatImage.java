@@ -1,10 +1,6 @@
 package com.visitscotland.brxm.model;
 
-
-import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.hippobeans.Image;
-
-import java.util.Locale;
 
 public class FlatImage extends IssueList {
 
@@ -16,6 +12,7 @@ public class FlatImage extends IssueList {
             return name().toLowerCase();
         }
     }
+
     private Image cmsImage;
     private String externalImage;
     private String altText;
@@ -25,11 +22,6 @@ public class FlatImage extends IssueList {
     private Source source;
     private String postUrl;
     private String location;
-
-
-
-    public FlatImage(){
-    }
 
     public String getExternalImage() {
         return externalImage;
