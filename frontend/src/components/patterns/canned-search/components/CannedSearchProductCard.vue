@@ -52,14 +52,13 @@
                             {{ title }}
                         </VsLink>
                     </VsHeading>
-                    <VsHeading
-                        level="4"
-                        class="vs-product-card__location"
-                        v-if="location"
-                        data-test="vs-product-card__location"
-                    >
-                        {{ location }}
-                    </VsHeading>
+                    <!--
+                        @slot Holds an optional sub-heading for the product card
+                        Expects a VsCannedSearchSubHeading component
+                    -->
+                    <slot
+                        name="vsCannedSearchSubHeading"
+                    />
                     <!--
                         @slot Holds an optional star rating
                         Expects a VsCannedSearchStars component
@@ -75,7 +74,20 @@
                         name="vsCannedSearchCategories"
                     />
                     <div class="vs-product-card__description">
-                        <p class="text-truncate text-truncate--2">
+                        <!--
+                            @slot Holds the formatted info about a tour including months it runs
+                            and the locations it departs from. Separated from description to allow
+                            html formatting
+
+                            Expects html
+                        -->
+                        <slot
+                            name="vsCannedSearchTourInfo"
+                        />
+                        <p
+                            class="text-truncate text-truncate--2"
+                            v-if="description"
+                        >
                             {{ description }}
                         </p>
                         <VsLink
@@ -159,11 +171,14 @@ export default {
             type: String,
         },
         /**
-        * The location of the product in the card
-        */
-        location: {
-            type: String,
-            default: '',
+         * The duration of the product, if it should be shown as part of the main card body
+         * rather than in the summary box, will be truncated if >2 lines
+         *
+         * Expects an object with a label, a startDay and an optional endDay
+         */
+        inBodyDuration: {
+            type: Object,
+            default: null,
         },
         /**
         * The description of the product, will be truncated if >2 lines
@@ -305,16 +320,6 @@ export default {
             }
         }
 
-        .vs-product-card__location {
-            font-family: $font-family-base;
-            font-size: $font-size-base;
-            line-height: 1;
-            color: $color-secondary-teal-shade-2;
-            letter-spacing: normal;
-            margin: $spacer-0;
-            margin-bottom: $spacer-3;
-        }
-
         .vs-product-card__description {
             font-size: $font-size-base;
             height: $spacer-8;
@@ -374,7 +379,6 @@ export default {
             :imgSrc="sampleAccom.images[0].mediaUrl"
             :imgAlt="sampleAccom.name"
             :title="sampleAccom.name"
-            :location="sampleAccom.address.city + ', ' + sampleAccom.address.county"
             :categories="sampleAccom.locations"
             :description="sampleAccom.description"
             :detailLink="{
@@ -384,6 +388,10 @@ export default {
             }"
             searchType="acco"
         >
+            <VsCannedSearchSubHeading
+                slot="vsCannedSearchSubHeading"
+                :sub-heading="sampleAccom.address.city + ', ' + sampleAccom.address.county"
+            />
             <VsCannedSearchStars
                 slot="vsCannedSearchStarRating"
                 :min="sampleAccom.grading.minStars"
@@ -433,7 +441,6 @@ export default {
             :imgSrc="sampleEvent.images[0].mediaUrl"
             :imgAlt="sampleEvent.name"
             :title="sampleEvent.name"
-            :location="sampleEvent.address.city + ', ' + sampleEvent.address.county"
             :categories="sampleEvent.locations"
             :description="sampleEvent.description"
             :detailLink="{
@@ -443,6 +450,10 @@ export default {
             }"
             searchType="even"
         >
+            <VsCannedSearchSubHeading
+                slot="vsCannedSearchSubHeading"
+                :sub-heading="sampleEvent.address.city + ', ' + sampleEvent.address.county"
+            />
             <VsCannedSearchLogos
                 slot="vsCannedSearchLogos"
                 :goodToGoLogo="sampleEvent.covidInformation.goodToGo"
@@ -486,7 +497,6 @@ export default {
             :imgSrc="sampleFood.images[0].mediaUrl"
             :imgAlt="sampleFood.name"
             :title="sampleFood.name"
-            :location="sampleFood.address.city + ', ' + sampleFood.address.county"
             :categories="sampleFood.locations"
             :description="sampleFood.description"
             :detailLink="{
@@ -496,6 +506,11 @@ export default {
             }"
             searchType="cate"
         >
+            <VsCannedSearchSubHeading
+                slot="vsCannedSearchSubHeading"
+                :sub-heading="sampleFood.address.city + ', ' + sampleFood.address.county"
+            />
+
             <VsCannedSearchStars
                 slot="vsCannedSearchStarRating"
                 :min="sampleFood.grading.minStars"

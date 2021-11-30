@@ -61,10 +61,9 @@ export default {
 
 <docs>
 ```jsx
+    const sampleAccom = require("../../../../assets/fixtures/canned-search/sample-accom.json");
+
     <VsCannedSearchCategories
-        :categories="[
-            {'id':'rurallocat','name':'Rural'},
-            {'id':'village','name':'Village Location'},
-            {'id':'mountains','name':'Mountains area'}]"
+        :categories="sampleAccom.locations"
     />
 </docs>

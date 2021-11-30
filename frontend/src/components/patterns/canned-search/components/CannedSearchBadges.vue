@@ -10,6 +10,19 @@
             {{ badgeOne }}
         </div>
         <div
+            v-else-if="multiBadgeOne && multiBadgeOne.length"
+            class="vs-canned-search-badges__multi-badge-holder"
+        >
+            <div
+                v-for="(badge, index) in limitedMulti"
+                :key="index"
+                class="vs-canned-search-badges__badge vs-canned-search-badges__badge--teal
+                vs-canned-search-badges__multi-badge"
+            >
+                {{ badge }}
+            </div>
+        </div>
+        <div
             v-if="badgeTwo"
             class="vs-canned-search-badges__badge vs-canned-search-badges__badge--pink
             vs-canned-search-badges__badge--tr2"
@@ -47,6 +60,16 @@ export default {
             default: '',
         },
         /**
+        * Content for multiple top right, teal badges
+        * Only appears if badgeOne not set
+        *
+        * Expects an array of strings
+        */
+        multiBadgeOne: {
+            type: Array,
+            default: null,
+        },
+        /**
         * Content for the middle right, pink badge
         */
         badgeTwo: {
@@ -61,6 +84,19 @@ export default {
             default: '',
         },
     },
+    computed: {
+        /**
+        * Limits multiBadgeOne to 3 entries
+        */
+        limitedMulti() {
+            if (this.multiBadgeOne) {
+                return this.multiBadgeOne
+                    .slice(0, 3);
+            }
+
+            return [];
+        },
+    },
 };
 
 </script>
@@ -73,7 +109,7 @@ export default {
         width: 100%;
         height: 100%;
 
-        .vs-canned-search-badges__badge {
+        &__badge {
             position: absolute;
             padding: $spacer-0 $spacer-2;
             text-transform: uppercase;
@@ -84,6 +120,7 @@ export default {
             max-width: calc(100% - 1rem);
             overflow: hidden;
             white-space: nowrap;
+            font-size: $small-font-size;
 
             &--teal {
                 color: $color-white;
@@ -117,6 +154,23 @@ export default {
                 padding: $spacer-0 $spacer-4;
             }
         }
+
+        &__multi-badge-holder {
+            position: absolute;
+            text-align: right;
+            max-width: calc(100% - 1rem);
+            width: 100%;
+            max-height: 1.5em;
+            overflow: hidden;
+            top: $spacer-2;
+            right: $spacer-2;
+        }
+
+        &__multi-badge {
+            position: relative;
+            display: inline-block;
+            margin-left: $spacer-2;
+        }
     }
 
 </style>
@@ -124,10 +178,19 @@ export default {
 <docs>
 ```jsx
     <div
-        style="position: relative; height: 10em; width: 10em;"
+        style="position: relative; height: 15em; width: 23em; display: inline-block;"
     >
         <VsCannedSearchBadges
             badgeOne="one"
+            badgeTwo="two"
+            badgeThree="three"
+        />
+    </div>
+    <div
+        style="position: relative; height: 15em; width: 23em; display: inline-block;"
+    >
+        <VsCannedSearchBadges
+            :multiBadgeOne="['Boat Tour','Walking Tour','Small Coach Tour']"
             badgeTwo="two"
             badgeThree="three"
         />
