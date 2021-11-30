@@ -1,4 +1,14 @@
 {
+    "video": [
+        {
+            "imageSrc": "fixtures/image-with-caption/images/jm-barrie.jpg",
+            "altText": "Visit the birthplace of JM Barrie in Kirriemuir",
+            "caption": "Visit the birthplace of JM Barrie in Kirriemuir",
+            "credit": "VisitScotland / Kenny Lam",
+            "longitude": "-3.0246368",
+            "latitude": "56.6718876"
+        }
+    ],
     "large": [
         {
             "imageSrc": "fixtures/image-with-caption/images/jm-barrie.jpg",
