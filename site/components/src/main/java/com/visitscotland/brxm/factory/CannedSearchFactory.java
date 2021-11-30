@@ -72,6 +72,7 @@ public class CannedSearchFactory {
         module.setHippoBean(document);
         module.setTitle(document.getTitle());
         module.setDescription(document.getCopy());
+        module.setProductType("tour");
 
         URL documentToursSearchUrl;
         try {
@@ -83,14 +84,14 @@ public class CannedSearchFactory {
         }
 
         String toursSearchQueryString = Contract.defaultIfNull(documentToursSearchUrl.getQuery(), "");
-        String dmsCannedSearchUrl = UriComponentsBuilder.fromHttpUrl(properties.getDmsDataHost())
+        String tmsCannedSearchUrl = UriComponentsBuilder.fromUriString(properties.getDmsDataPublicHost())
                 .path(DMSConstants.VS_DMS_CANNED_SEARCH_TOURS)
                 .query(toursSearchQueryString)
                 .queryParam("locale", locale.toLanguageTag())
                 .queryParam("limit", 24)
                 .build().toString();
 
-        module.setCannedSearchEndpoint(dmsCannedSearchUrl);
+        module.setCannedSearchEndpoint(tmsCannedSearchUrl);
 
         FlatLink viewAllCta = linkService.createExternalLink(document.getToursSearch());
         if (!Contract.isEmpty(document.getViewAll())) {

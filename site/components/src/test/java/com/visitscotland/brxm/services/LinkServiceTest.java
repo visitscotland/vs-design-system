@@ -445,7 +445,7 @@ class LinkServiceTest {
     @DisplayName("No image throw a warning in preview mode")
     void noImageDefined_DMS_defaultsImageNotFound() throws IOException {
         final String NO_IMAGE_JSON = "{" +
-                " \"dmsLink\": {\"link\": \"/info/fake-product-p0123456798\"}," +
+                " \"productLink\": {\"link\": \"/info/fake-product-p0123456798\"}," +
                 " \"name\":\"Fake Product\" " +
                 "}";
         JsonNode node = new ObjectMapper().readTree(NO_IMAGE_JSON);

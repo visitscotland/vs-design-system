@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 45278688-f372-4427-8e15-6b177cf51cc1
   hippo:name: Properties (Local Environment)
-  hippo:versionHistory: 6dcab138-7f68-4b3c-bcb3-8638c7ab3122
+  hippo:versionHistory: a013a9c8-7cea-4ad6-8861-1222842b3cbb
   /local-environment[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -11,10 +11,9 @@
     hippo:availability: []
     hippostd:retainable: false
     hippostd:state: draft
-    hippostd:transferable: false
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-10-15T12:23:04.342+01:00
+    hippostdpubwf:lastModificationDate: 2021-11-16T14:17:42.084Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -43,8 +42,8 @@
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       UTF-8, '', '2000', '3', '60000', 'https://community.visitscotland.com/', discussions/tagged/,
       '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
-      'false', 'http://localhost:8080/site', 'http://172.28.81.65:8089', 'http://172.28.81.65:8089/data',
-      'http://172.28.81.65:8089/data', www.visitscotland.com]
+      $VS_USE_RELATIVE_URLS, 'http://localhost:8080/site', 'http://172.28.81.65:8089',
+      'http://172.28.81.65:8089/data', 'http://172.28.81.65:8089/data', www.visitscotland.com]
   /local-environment[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -54,7 +53,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-10-06T12:09:43.676+01:00
+    hippostdpubwf:lastModificationDate: 2021-11-16T14:18:03.746Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -94,9 +93,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-10-06T12:09:43.676+01:00
+    hippostdpubwf:lastModificationDate: 2021-11-16T14:18:03.746Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-10-06T12:09:51.934+01:00
+    hippostdpubwf:publicationDate: 2021-11-16T14:18:07.195Z
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
       "Token that identifies calls made to vs-dms-products as internal calls giving\

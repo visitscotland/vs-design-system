@@ -17,7 +17,7 @@ public class MegalinksMockBuilder {
     public static final String DMS_ID = "0123456798";
     public static final String EXTERNAL_URL = "http://www.fake.site";
     public static final String MOCK_JSON = "{" +
-            " \"dmsLink\": {\"link\": \"/info/fake-product-p0123456798\"}," +
+            " \"productLink\": {\"link\": \"/info/fake-product-p0123456798\"}," +
             " \"name\":\"Fake Product\", " +
             " \"images\":[{" +
             "    \"mediaUrl\":\"https://img.visitscotland.com/fake-product.jpg\"" +
