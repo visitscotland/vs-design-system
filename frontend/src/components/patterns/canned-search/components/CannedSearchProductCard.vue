@@ -74,7 +74,20 @@
                         name="vsCannedSearchCategories"
                     />
                     <div class="vs-product-card__description">
-                        <p class="text-truncate text-truncate--2">
+                        <!--
+                            @slot Holds the formatted info about a tour including months it runs
+                            and the locations it departs from. Separated from description to allow
+                            html formatting
+
+                            Expects html
+                        -->
+                        <slot
+                            name="vsCannedSearchTourInfo"
+                        />
+                        <p
+                            class="text-truncate text-truncate--2"
+                            v-if="description"
+                        >
                             {{ description }}
                         </p>
                         <VsLink
@@ -156,6 +169,16 @@ export default {
         title: {
             required: true,
             type: String,
+        },
+        /**
+         * The duration of the product, if it should be shown as part of the main card body
+         * rather than in the summary box, will be truncated if >2 lines
+         *
+         * Expects an object with a label, a startDay and an optional endDay
+         */
+        inBodyDuration: {
+            type: Object,
+            default: null,
         },
         /**
         * The description of the product, will be truncated if >2 lines
