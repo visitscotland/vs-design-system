@@ -94,7 +94,6 @@ export default {
                 seconds: 0,
                 roundedMinutes: '',
             },
-            showDuration: false,
         };
     },
     computed: {
@@ -111,13 +110,8 @@ export default {
          * a YouTube video, process the time into the desired format.
          */
         this.player.getDuration().then((response) => {
-            if (response === 0) {
-                this.showDuration = false;
-            } else {
-                this.showDuration = true;
-                this.formatTime(response);
-                this.storeVideoDetails();
-            }
+            this.formatTime(response);
+            this.storeVideoDetails();
         });
 
         /**
