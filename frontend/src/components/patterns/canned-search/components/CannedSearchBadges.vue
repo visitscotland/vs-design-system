@@ -10,7 +10,7 @@
             {{ badgeOne }}
         </div>
         <div
-            v-else-if="multiBadgeOne.length"
+            v-else-if="multiBadgeOne && multiBadgeOne.length"
             class="vs-canned-search-badges__multi-badge-holder"
         >
             <div
@@ -159,6 +159,7 @@ export default {
             position: absolute;
             text-align: right;
             max-width: calc(100% - 1rem);
+            width: 100%;
             max-height: 1.5em;
             overflow: hidden;
             top: $spacer-2;
