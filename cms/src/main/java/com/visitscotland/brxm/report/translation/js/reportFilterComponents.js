@@ -3,6 +3,7 @@ Ext.ns('Hippo.Reports');
 
 Hippo.Reports.languageComboConfig = {
     xtype: "combo",
+    width: 195,
     autoSelect: true,
     editable: false,
     triggerAction: 'all',
@@ -32,6 +33,7 @@ Hippo.Reports.languageComboConfig = {
 
 Hippo.Reports.publishStatusComboConfig = {
     xtype: 'combo',
+    width: 195,
     autoSelect: true,
     editable: false,
     triggerAction: 'all',
@@ -72,6 +74,7 @@ Hippo.Reports.publishStatusComboConfig = {
 // Combo box used for filtering records, shown in the left hand side
 Hippo.Reports.priorityFilterComboConfig = {
     xtype: "combo",
+    width: 195,
     autoSelect: true,
     editable: false,
     triggerAction: 'all',
@@ -124,6 +127,7 @@ Hippo.Reports.priorityFilterComboConfig = {
 // Gets possible page and module types from api
 Hippo.Reports.pageOrModuleFilterComboConfig = {
     xtype: 'combo',
+    width: 195,
     autoSelect: true,
     editable: false,
     triggerAction: 'all',
@@ -164,6 +168,7 @@ Hippo.Reports.pageOrModuleFilterComboConfig = {
 
 Hippo.Reports.moduleFilterComboConfig = {
     xtype: "combo",
+    width: 195,
     id: MODULE_FILTER_ID,
     autoSelect: true,
     editable: false,
@@ -210,6 +215,7 @@ Hippo.Reports.moduleFilterComboConfig = {
 
 Hippo.Reports.pageFilterComboConfig = {
     xtype: "combo",
+    width: 195,
     id: PAGE_FILTER_ID,
     autoSelect: true,
     editable: false,
@@ -256,6 +262,7 @@ Hippo.Reports.pageFilterComboConfig = {
 
 Hippo.Reports.typeFilterComboConfig = {
     xtype: "combo",
+    width: 195,
     id: STATUS_FILTER_ID,
     autoSelect: true,
     editable: false,
