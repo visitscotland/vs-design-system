@@ -203,7 +203,7 @@ defaultSettings() {
   VS_PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
   VS_SCRIPTNAME=`basename $0`
   VS_SCRIPT_LOG=$VS_CI_DIR/logs/$VS_SCRIPTNAME.log
-  VS_LOG_DATESTAMP='echo `date +%d-%b-%Y" "%H:%M:%S.%N | sed -e "s/\(\.[0-9][0-9][0-9]\).*$/\1/"\`'
+  VS_LOG_DATESTAMP='echo `date +%d-%b-%Y" "%H:%M:%S.%N | sed -e "s/\(\.[0-9][0-9][0-9]\).*$/\1/"`'
   if [ "$VS_SSR_PROXY_ON" == "TRUE" ]; then
     VS_PROXY_QS_SSR="&vs_ssr_proxy=on"
   else
