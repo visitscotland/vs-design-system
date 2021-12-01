@@ -648,7 +648,7 @@ packageSSRArtifact() {
       RETURN_CODE=$?; echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - return code: " $RETURN_CODE
       if [ -a $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME ]; then
         VS_SSR_PACKAGE_SIZE=`ls -alh $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME | awk '{print $5}'`
-        echo $VS_SSR_PACKAGE_NAME " is " `eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] $VS_SSR_PACKAGE_SIZE " in size"
+        echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] " $VS_SSR_PACKAGE_NAME " is " $VS_SSR_PACKAGE_SIZE " in size"
       fi
       if [ ! "$RETURN_CODE" = "0" ]; then
         SAFE_TO_PROCEED=FALSE

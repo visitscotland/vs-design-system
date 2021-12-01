@@ -25,4 +25,4 @@ definitions:
       ignored-paths: [/autoreload, /ping/.*, ^/_rp/.*, ^/_cmsinternal/.*, ^/_targeting/.*,
         ^/webfiles/.*, ^/binaries/.*, ^/images/.*, .*\.css, .*\.js, .*\.ico, .*\.css,
         .*\.js, .*\.ico]
-      match-all: true
+      match-all: false
