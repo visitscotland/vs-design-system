@@ -258,7 +258,7 @@ reportSettings() {
 checkContainers() {
   # check to see if a container called $VS_CONTAINER_NAME exists, if so set $CONTAINER_ID to Docker's CONTAINER ID
   echo "checking for containers with name $VS_CONTAINER_NAME"
-  CONTAINER_ID=`docker ps -aq --filter "name=$VS_CONTAINER_NAME"`
+  CONTAINER_ID=`docker ps -aq --filter "name=^$VS_CONTAINER_NAME$"`
   if [ ! -z "$CONTAINER_ID" ]; then
     echo " - container found, ID:$CONTAINER_ID, with name $VS_CONTAINER_NAME"
     echo " - checking status of container $CONTAINER_ID"
