@@ -57,7 +57,7 @@ if [ -z "$VS_MAIL_HOST" ]; then VS_MAIL_HOST=10.1.1.152; fi
 if [ -z "$VS_MAIL_NOTIFY_BUILD" ]; then VS_MAIL_NOTIFY_BUILD="TRUE"; fi
 if [ -z "$VS_MAIL_NOTIFY_SITE" ]; then VS_MAIL_NOTIFY_SITE="TRUE"; fi
 #  == brXM Instance Variables ==
-if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then unset VS_CONTAINER_BASE_PORT_OVERRIDE; else echo "VS_CONTAINER_BASE_PORT_OVERRIDE was set to $VS_CONTAINER_BASE_PORT_OVERRIDE before $0 was called"; fi
+if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then unset VS_CONTAINER_BASE_PORT_OVERRIDE; else echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] VS_CONTAINER_BASE_PORT_OVERRIDE was set to $VS_CONTAINER_BASE_PORT_OVERRIDE before $0 was called"; fi
 if [ -z "$VS_BRXM_INSTANCE_HTTP_HOST" ]; then
   if [ ! -z "$VS_PROXY_SERVER_FQDN" ]; then
     VS_BRXM_INSTANCE_HTTP_HOST="$VS_PROXY_SERVER_FQDN"
@@ -126,33 +126,33 @@ echo -en "\n"
 # ==== FUNCTIONS ====
 checkVariables() {
   if [ ! "$DEBUG" == "TRUE" ]; then clear; fi
-  echo "==== Checking variables to ensure environment is set up ===="
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] ==== Checking variables to ensure environment is set up ===="
   if [ ! "$LOGNAME" = "jenkins" ]; then
-    echo "$VS_SCRIPTNAME was not called by the user Jenkins, please switch user"
+    echo"`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME] $VS_SCRIPTNAME was not called by the user Jenkins, please switch user"
     exit 3
   elif [ "$LOGNAME" = "jenkins" ] && [ ! -z "JENKINS_SERVER_COOKIE" ]; then
-    echo "$VS_SCRIPTNAME appears to be running from a Jenkins job"
-    echo " - exporting selected variables to ./$VS_JENKINS_LAST_ENV"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] $VS_SCRIPTNAME appears to be running from a Jenkins job"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - exporting selected variables to ./$VS_JENKINS_LAST_ENV"
     printenv | egrep "JENKINS_(HOME|URL)|JOB_((BASE_)?NAME|(DISPLAY_)?URL)|VS_(DOCKER|BRC|COMMIT)" | tee $VS_JENKINS_LAST_ENV
   elif [ "$LOGNAME" = "jenkins" ] && [ -z "$JOB_NAME" ] && [ -e $VS_JENKINS_LAST_ENV ]; then
-    echo "$VS_SCRIPTNAME was called from a Jenkins workspace but not by a Jenkins job"
-    echo " - setting Jenkins environment variables from last run"
+    echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME] $VS_SCRIPTNAME was called from a Jenkins workspace but not by a Jenkins job"
+    echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME]  - setting Jenkins environment variables from last run"
     source $VS_JENKINS_LAST_ENV
   elif [ "$LOGNAME" = "jenkins" ] && [ -z "$JOB_NAME" ] && [ ! -d ./target ] && [ ! -z "$VS_WORKING_DIR" ]; then
-    echo "$VS_SCRIPTNAME was not called from within Jenkins workspace"
-    echo " - switching to $VS_WORKING_DIR"
+    echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME] $VS_SCRIPTNAME was not called from within Jenkins workspace"
+    echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME]  - switching to $VS_WORKING_DIR"
     checkVariables
     cd $VS_WORKING_DIR
   elif [ -z "$JOB_NAME" ] && [ "$VS_WD_PARENT" = "workspace" ] && [ ! -z "$VS_WORKING_DIR" ] && [ ! -e $VS_JENKINS_LAST_ENV ] && [ ! -d ./target ]; then
-    echo "$VS_SCRIPTNAME was called from "`pwd`" but this may not be a Jenkins workspace, please either:"
-    echo " - switch to the workspace of a Jenkins job that has previously run this script"
-    echo " - run a Jenkins job for this branch to populate $VS_JENKINS_LAST_ENV and create ./target"
-    echo " - call this script with --working-dir=[workspace of a Jenkins job that has previously run this script]"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME] $VS_SCRIPTNAME was called from "`pwd`" but this may not be a Jenkins workspace, please either:"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME]  - switch to the workspace of a Jenkins job that has previously run this script"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME]  - run a Jenkins job for this branch to populate $VS_JENKINS_LAST_ENV and create ./target"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME]  - call this script with --working-dir=[workspace of a Jenkins job that has previously run this script]"
     exit 2
   else
-    echo "$VS_SCRIPTNAME needs to run relative to a Jenkins workspace, please either:"
-    echo " - switch to the workspace of a Jenkins job that has previously run this script"
-    echo " - call this script with --working-dir=[workspace of a Jenkins job that has previously run this script]"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME] $VS_SCRIPTNAME needs to run relative to a Jenkins workspace, please either:"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME]  - switch to the workspace of a Jenkins job that has previously run this script"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME]  - call this script with --working-dir=[workspace of a Jenkins job that has previously run this script]"
     exit 1
   fi
 }
@@ -237,62 +237,62 @@ defaultSettings() {
 reportSettings() {
   clear
   echo ""
-  echo "========================================================================"
-  echo "== RUNNING JENKINS SHELL COMMANDS on $VS_THIS_SERVER"
-  echo "== as user " $USER
-  echo "== from " $VS_SCRIPTNAME
-  echo "========================================================================"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] ========================================================================"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] == RUNNING JENKINS SHELL COMMANDS on $VS_THIS_SERVER"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] == as user " $USER
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] == from " $VS_SCRIPTNAME
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] ========================================================================"
   echo ""
-  if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== printenv ===="; printenv; echo "====/printenv ===="; echo ""; fi
+  if [ "$VS_DEBUG" = "TRUE" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] ==== printenv ===="; printenv; echo "====/printenv ===="; echo ""; fi
   #if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== set ===="; set; echo "====/set ====";  echo ""; fi
-  echo "==== selected Jenkins environment variables ===="
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] ==== selected Jenkins environment variables ===="
   set | egrep "^(BRANCH|BUILD|CHANGE|GIT|JENKINS|JOB|RUN|WORKSPACE)"
-  echo "====/selected Jenkins environment variables ===="
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] ====/selected Jenkins environment variables ===="
   echo ""
-  echo "==== selected VS environment variables ===="
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] ==== selected VS environment variables ===="
   set | egrep "^(VS_)"
-  echo "====/selected VS environment variables ===="
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] ====/selected VS environment variables ===="
   echo ""
 }
 
 checkContainers() {
   # check to see if a container called $VS_CONTAINER_NAME exists, if so set $CONTAINER_ID to Docker's CONTAINER ID
-  echo "checking for containers with name $VS_CONTAINER_NAME"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] checking for containers with name $VS_CONTAINER_NAME"
   CONTAINER_ID=`docker ps -aq --filter "name=^$VS_CONTAINER_NAME$"`
   if [ ! -z "$CONTAINER_ID" ]; then
-    echo " - container found, ID:$CONTAINER_ID, with name $VS_CONTAINER_NAME"
-    echo " - checking status of container $CONTAINER_ID"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - container found, ID:$CONTAINER_ID, with name $VS_CONTAINER_NAME"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - checking status of container $CONTAINER_ID"
     CONTAINER_STATUS=`docker inspect --format "{{.State.Status}}" $CONTAINER_ID`
-    echo " - $CONTAINER_STATUS container found with ID:$CONTAINER_ID and name $VS_CONTAINER_NAME"
-    echo " - checking for base port of container $CONTAINER_ID"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - $CONTAINER_STATUS container found with ID:$CONTAINER_ID and name $VS_CONTAINER_NAME"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - checking for base port of container $CONTAINER_ID"
     CONTAINER_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $CONTAINER_ID`
     if [ ! -z "$CONTAINER_PORT" ]; then
       VS_CONTAINER_BASE_PORT_OVERRIDE=$CONTAINER_PORT
-      echo " - base port of $CONTAINER_PORT found for container $CONTAINER_ID - setting VS_CONTAINER_BASE_PORT_OVERRIDE"
-      echo "  - checking other ports (for info)"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - base port of $CONTAINER_PORT found for container $CONTAINER_ID - setting VS_CONTAINER_BASE_PORT_OVERRIDE"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]   - checking other ports (for info)"
       docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' $CONTAINER_ID
     else
-      echo " - no base port was found for container $CONTAINER_ID"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - no base port was found for container $CONTAINER_ID"
     fi
   else
-    echo " - no container found with name $VS_CONTAINER_NAME"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - no container found with name $VS_CONTAINER_NAME"
   fi
   echo ""
 }
 
 stopContainers() {
-  echo "stopping containers with ID $CONTAINER_ID"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] stopping containers with ID $CONTAINER_ID"
   for CONTAINER in $CONTAINER_ID; do
-    echo " - stopping $CONTAINER"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - stopping $CONTAINER"
     docker stop $CONTAINER
   done
   echo ""
 }
 
 startContainers() {
-  echo "starting containers with ID $CONTAINER_ID"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] starting containers with ID $CONTAINER_ID"
   for CONTAINER in $CONTAINER_ID; do
-    echo " - starting $CONTAINER"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - starting $CONTAINER"
     docker start $CONTAINER
     RETURN_CODE=$?; echo " - return code: " $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
@@ -304,9 +304,9 @@ startContainers() {
 }
 
 deleteContainers() {
-  echo "deleting containers with name $CONTAINER_ID"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] deleting containers with name $CONTAINER_ID"
   for CONTAINER in $CONTAINER_ID; do
-    echo " - deleting $CONTAINER"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - deleting $CONTAINER"
     docker container rm -f $CONTAINER
   done
   echo ""
@@ -314,10 +314,10 @@ deleteContainers() {
 
 deleteImages() {
   #delete existing images - does this have a purpose? will there ever be an image with the name $VS_CONTAINER_NAME?
-  echo "deleting any docker images with name $VS_CONTAINER_NAME"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] deleting any docker images with name $VS_CONTAINER_NAME"
   docker images | egrep "$VS_CONTAINER_NAME"
   for IMAGE in `docker images | egrep "$VS_CONTAINER_NAME" | awk '{print $3}'`; do
-    echo "deleting $IMAGE"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] deleting $IMAGE"
     docker image rm -f $IMAGE
   done
   echo ""
@@ -329,26 +329,26 @@ manageContainers() {
   # if container is STOPPED and preserve running is TRUE then - ?
   # if container is running and preserve running is FALSE then - deleteContainers
   if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ "$CONTAINER_STATUS" == "running" ]; then
-    echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be re-used"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be re-used"
   elif [ "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ ! -z "$CONTAINER_ID" ] && [ ! "$CONTAINER_STATUS" == "running" ]; then
-    echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be started and re-used"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be started and re-used"
     startContainers
   elif [ ! "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ "$CONTAINER_STATUS" == "running" ]; then
-    echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be stopped and removed"
+    echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME] VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be stopped and removed"
     stopContainers
     deleteContainers
   elif [ ! "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ ! "$CONTAINER_STATUS" == "running" ] && [ ! -z "$CONTAINER_ID" ]; then
-    echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be removed"
+    echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME] VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be removed"
     deleteContainers
   else
-    echo "Container status for $CONTAINER_ID could not be determined"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME] Container status for $CONTAINER_ID could not be determined"
   fi
   echo ""
 }
 
 # check all branches to see what ports are "reserved" by existing containers
 getChildBranchesViaCurl() {
-  echo "checking for ports reserved by other branches in $VS_PARENT_JOB_NAME"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] checking for ports reserved by other branches in $VS_PARENT_JOB_NAME"
   #for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//\1/g" | egrep -v "http"`; do
   #  VS_CONTAINER_LIST="$VS_CONTAINER_LIST $CONTAINER"
   #  RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $VS_PARENT_JOB_NAME\_$CONTAINER 2>/dev/null`
@@ -372,19 +372,19 @@ getBranchListViaCurl() {
 }
 
 getPullRequestListViaCurl() {
-  echo "checking for ports reserved by pull requests in $VS_PARENT_JOB_NAME"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] checking for ports reserved by pull requests in $VS_PARENT_JOB_NAME"
   for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/view/change-requests/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$VS_PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
     BRANCH_LIST="$BRANCH_LIST $CONTAINER"
     RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
     if [ ! -z "$RESERVED_PORT" ]; then
       RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-      echo " - $RESERVED_PORT is reserved by $CONTAINER"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - $RESERVED_PORT is reserved by $CONTAINER"
     fi
   done;
 }
 
 getBranchListFromWorkspace() {
-  echo "checking for branches and PRs for $VS_PARENT_JOB_NAME listed in workspaces.txt"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] checking for branches and PRs for $VS_PARENT_JOB_NAME listed in workspaces.txt"
   # to-do: gp - update echo above to reflect changes to branch and PR scan method
   for BRANCH in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME" | sed -e "s/%2F/\//g" | sed "s/.*\//$VS_PARENT_JOB_NAME\_/g"`; do
     if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH"; fi
@@ -406,16 +406,16 @@ getBranchListFromWorkspace() {
 #        echo "found $VS_CONTAINER_NAME_FILE_FOUND"
         BRANCH=`cat $VS_CONTAINER_NAME_FILE_FOUND | head -1`
 #        echo "BRANCH=$BRANCH in 2"
-        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for `basename $PR` in $VS_CONTAINER_NAME_FILE"; fi
+        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - found branch $BRANCH for `basename $PR` in $VS_CONTAINER_NAME_FILE"; fi
         if [ ! -z "$BRANCH" ]; then BRANCH_LIST="$BRANCH_LIST $BRANCH"; fi
       elif [ ! -z "$VS_LAST_ENV_FOUND" ] && [ -a $VS_LAST_ENV_FOUND ]; then
 #        echo "found $VS_LAST_ENV_FOUND"
         BRANCH=`cat $VS_LAST_ENV_FOUND | egrep "(VS_)(CHANGE_BRANCH|CONTAINER_NAME)=" | sed -e "s/.*=//g" | head -1`
 #        echo "BRANCH=$BRANCH in 1"
-        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo " - found branch $BRANCH for `basename $PR` in $VS_LAST_ENV"; fi
+        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - found branch $BRANCH for `basename $PR` in $VS_LAST_ENV"; fi
         if [ ! -z "$BRANCH" ]; then BRANCH_LIST="$BRANCH_LIST $BRANCH"; fi
       else
-        if [ "$VS_DEBUG" = "TRUE" ]; then echo " - no branch found for $PR"; fi
+        if [ "$VS_DEBUG" = "TRUE" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - no branch found for $PR"; fi
       fi
     fi
   done
@@ -424,7 +424,7 @@ getBranchListFromWorkspace() {
 }
 
 getReservedPortList() {
-  echo "checking for base ports reserved by containers in BRANCH_LIST"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] checking for base ports reserved by containers in BRANCH_LIST"
   #if [ "$VS_DEBUG" == "TRUE" ]; then echo "$BRANCH_LIST"; fi
   for BRANCH in $BRANCH_LIST; do
     #if [ "$VS_DEBUG" == "TRUE" ]; then echo " - checking $BRANCH"; fi
@@ -436,17 +436,17 @@ getReservedPortList() {
       else
         RESERVED_PORT_LIST="$RESERVED_PORT"
       fi
-      if [ "$VS_DEBUG" == "TRUE" ]; then echo " -- $RESERVED_PORT is reserved by $BRANCH"; fi
+      if [ "$VS_DEBUG" == "TRUE" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  -- $RESERVED_PORT is reserved by $BRANCH"; fi
     fi
   done
-  if [ ! -z "$RESERVED_PORT_LIST" ]; then echo " - ports $RESERVED_PORT_LIST are reserved"; fi
+  if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - ports $RESERVED_PORT_LIST are reserved"; fi
   echo ""
 }
 
 tidyContainers() {
   # tidy containers when building the "develop" branch
   if [ "$GIT_BRANCH" == "develop" ]||[ "$VS_TIDY_CONTAINERS" == "TRUE" ]; then
-    echo "checking all containers on $NODE_NAME matching $VS_PARENT_JOB_NAME*"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] checking all containers on $NODE_NAME matching $VS_PARENT_JOB_NAME*"
     for CONTAINER in `docker ps -a --filter "name=$VS_PARENT_JOB_NAME*" --format "table {{.Names}}" | tail -n +2`; do
       CONTAINER_MATCHED=
       ALL_CONTAINER_LIST="$ALL_CONTAINER_LIST $CONTAINER"
@@ -454,17 +454,17 @@ tidyContainers() {
       if [ ! -z "$BRANCH_LIST" ]; then 
         for BRANCH_CONTAINER in $BRANCH_LIST; do
           if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
-            echo " - there is a branch associated with container $CONTAINER"
+            echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - there is a branch associated with container $CONTAINER"
             CONTAINER_MATCHED="TRUE"
             break
           fi
         done
         if [ ! "$CONTAINER_MATCHED" = "TRUE" ]; then
-          echo " - no branch was found matching container $CONTAINER - deleting"
+          echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME]  - no branch was found matching container $CONTAINER - deleting"
           docker container rm -f $CONTAINER
         fi
       else
-        echo "no branches were found in BRANCH_LIST - not safe to delete containers - please confirm manually"
+        echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME] no branches were found in BRANCH_LIST - not safe to delete containers - please confirm manually"
       fi
     done
     echo ""
@@ -477,18 +477,18 @@ setPortRange() {
     if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
     if [ "$VS_PARENT_JOB_NAME" == "develop-stable.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
       VS_CONTAINER_BASE_PORT_OVERRIDE=8100
-      echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to  $VS_CONTAINER_BASE_PORT_OVERRIDE"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to  $VS_CONTAINER_BASE_PORT_OVERRIDE"
     elif [ "$VS_PARENT_JOB_NAME" == "develop.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
       VS_CONTAINER_BASE_PORT_OVERRIDE=8099
-      echo "GIT_BRANCH is $GIT_BRANCH for JOB $VS_PARENT_JOB_NAME, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] GIT_BRANCH is $GIT_BRANCH for JOB $VS_PARENT_JOB_NAME, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
     elif [ "$VS_PARENT_JOB_NAME" == "develop-nightly.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
       VS_CONTAINER_BASE_PORT_OVERRIDE=8098
-      echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
     elif [ "$VS_PARENT_JOB_NAME" == "feature.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
       VS_CONTAINER_BASE_PORT_OVERRIDE=8097
-      echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
     else
-      echo "GIT_BRANCH is $GIT_BRANCH for JOB $VS_PARENT_JOB_NAME, NO OVERRIDE PORT will be set"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] GIT_BRANCH is $GIT_BRANCH for JOB $VS_PARENT_JOB_NAME, NO OVERRIDE PORT will be set"
     fi
   fi
   # even if override is set we must still check to ensure the port is free
@@ -500,22 +500,22 @@ setPortRange() {
   else
     MIN_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
     MAX_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
-    echo " - MIN_PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE due to VS_CONTAINER_BASE_PORT_OVERRIDE"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - MIN_PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE due to VS_CONTAINER_BASE_PORT_OVERRIDE"
     echo ""
   fi
 }
 
 findBasePort() {
-  echo "finding a free port to map to the new container's Tomcat port - range $MIN_PORT-$MAX_PORT"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] finding a free port to map to the new container's Tomcat port - range $MIN_PORT-$MAX_PORT"
   THIS_PORT=$MIN_PORT
   while [ $THIS_PORT -le $MAX_PORT ]; do
     FREE=`netstat -an | egrep "LISTEN *$" | grep $THIS_PORT`
     if [ "$FREE" = "" ]; then
       PORT_IN_USE="FALSE"
-      echo " - netstat says $THIS_PORT is free, checking it's not reserved"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - netstat says $THIS_PORT is free, checking it's not reserved"
       for RESERVED_PORT in $RESERVED_PORT_LIST; do
         if [ "$RESERVED_PORT" = "$THIS_PORT" ]; then
-          echo " - docker says $THIS_PORT is reserved"
+          echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - docker says $THIS_PORT is reserved"
           PORT_RESERVED="TRUE"
         else
           PORT_RESERVED="FALSE"
@@ -536,36 +536,36 @@ findBasePort() {
   
   if [ $THIS_PORT -le $MAX_PORT ]; then
     VS_CONTAINER_BASE_PORT=$THIS_PORT
-    echo " - VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT"
   elif [ $THIS_PORT -gt $MAX_PORT ] && [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ "$PORT_IN_USE" = "TRUE" ]; then
-    echo " - override port $VS_CONTAINER_BASE_PORT_OVERRIDE is in-use - checking if it's reserved by this branch"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - override port $VS_CONTAINER_BASE_PORT_OVERRIDE is in-use - checking if it's reserved by this branch"
     HAS_PORT_ID=`docker ps -a | grep $VS_CONTAINER_BASE_PORT_OVERRIDE | tail -1 | awk '{print $1}'`
     HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
     if [ "$HAS_PORT_NAME" == "$VS_CONTAINER_NAME" ]; then
-      echo " -- success - port is owned by $HAS_PORT_NAME"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  -- success - port is owned by $HAS_PORT_NAME"
       VS_CONTAINER_BASE_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
-      echo " -- VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  -- VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
     else
       FAIL_REASON="$VS_CONTAINER_BASE_PORT_OVERRIDE is in use by $HAS_PORT_NAME, setting PORT to NULL"
       THIS_PORT=NULL
       SAFE_TO_PROCEED=FALSE
-      echo " - $FAIL_REASON"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - $FAIL_REASON"
     fi
   elif [ $THIS_PORT -gt $MAX_PORT ] && [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ ! "$PORT_RESERVED" = "TRUE" ]; then
-    echo " - override port $VS_CONTAINER_BASE_PORT_OVERRIDE was not reserved - don't know how we got here"
+    echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME]  - override port $VS_CONTAINER_BASE_PORT_OVERRIDE was not reserved - don't know how we got here"
     VS_CONTAINER_BASE_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
-    echo " -- VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  -- VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
   else
     FAIL_REASON="port scan reached $MAXPORT, no ports are free, setting PORT to NULL"
     THIS_PORT=NULL
     SAFE_TO_PROCEED=FALSE
-    echo " - $FAIL_REASON"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - $FAIL_REASON"
   fi
   echo ""
 }
 
 findDynamicPorts() {
-  echo "finding free ports from $VS_CONTAINER_BASE_PORT in increments of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other services on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] finding free ports from $VS_CONTAINER_BASE_PORT in increments of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other services on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
   THIS_PORT=$VS_CONTAINER_BASE_PORT
   echo "" > $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA
   for VS_CONTAINER_INT_PORT in `set | grep "VS_CONTAINER_INT_PORT_"`; do
@@ -579,21 +579,21 @@ findDynamicPorts() {
       if [ "$FREE" = "" ]; then
         #echo " - netstat says $THIS_PORT is free - using it"
 	eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
-        echo " - service $VS_CONTAINER_SERVICE on port $VS_CONTAINER_SERVICE_PORT has been mapped to external port $THIS_PORT" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA
+        echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - service $VS_CONTAINER_SERVICE on port $VS_CONTAINER_SERVICE_PORT has been mapped to external port $THIS_PORT" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA
 	THIS_DOCKER_MAP="-p $THIS_PORT:$VS_CONTAINER_SERVICE_PORT"
 	VS_CONTAINER_PORT_MAPPINGS="$THIS_DOCKER_MAP $VS_CONTAINER_PORT_MAPPINGS"
 	break
       elif [ ! "$FREE" = "" ] && [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then
-        echo " - netstat says $THIS_PORT is not free - checking if it's reserved by this branch "
+        echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - netstat says $THIS_PORT is not free - checking if it's reserved by this branch "
         HAS_PORT_ID=`docker ps -a | grep $THIS_PORT | tail -1 | awk '{print $1}'`
         HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
         if [ "$HAS_PORT_NAME" == "$VS_CONTAINER_NAME" ]; then
-          echo " -- success - port is owned by $HAS_PORT_NAME"
+          echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  -- success - port is owned by $HAS_PORT_NAME"
 	  eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
 	  break
 	fi
       else
-        echo " - $THIS_PORT is in use, trying "$((THIS_PORT+$VS_CONTAINER_PORT_INCREMENT))
+        echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - $THIS_PORT is in use, trying "$((THIS_PORT+$VS_CONTAINER_PORT_INCREMENT))
       fi
     done
   done
@@ -603,9 +603,9 @@ findDynamicPorts() {
     for MAPPING in `set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"`; do
       MAPPINGS=$MAPPING" "$MAPPINGS
     done
-    echo " - for service $SERVICE: $MAPPINGS" 
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - for service $SERVICE: $MAPPINGS" 
   done
-  if [ ! -z "$VS_CONTAINER_PORT_MAPPINGS" ]; then echo " - Docker will be presented with: $VS_CONTAINER_PORT_MAPPINGS"; fi
+  if [ ! -z "$VS_CONTAINER_PORT_MAPPINGS" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - Docker will be presented with: $VS_CONTAINER_PORT_MAPPINGS"; fi
   echo ""
 }
 
@@ -614,15 +614,15 @@ findHippoArtifact() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     if [ -z $HIPPO_LATEST ]; then
       # search in $WORKSPACE/target/ for files matching "*.tar.gz"
-      echo "searching for latest Hippo distribution files in $WORKSPACE/target"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] searching for latest Hippo distribution files in $WORKSPACE/target"
       HIPPO_LATEST=`ls -alht $WORKSPACE/target/visit*.tar.gz | head -1 | awk '{print $9}'` 2>&1 > /dev/null
       if [ -z "$HIPPO_LATEST" ]; then
         # recursive search in $WORKSPACE/ for files matching "visit*.tar.gz"
-        echo "no archive found in $WORKSPACE/target/, widening search"
+        echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME] no archive found in $WORKSPACE/target/, widening search"
         HIPPO_LATEST=`find $WORKSPACE/ -name "visit*.tar.gz" | head -1`
       fi
       if [ ! -z "$HIPPO_LATEST" ]; then
-        echo " - found $HIPPO_LATEST"
+        echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - found $HIPPO_LATEST"
       else
         HIPPO_LATEST=NULL
         SAFE_TO_PROCEED=FALSE
@@ -630,11 +630,11 @@ findHippoArtifact() {
         echo " - $FAIL_REASON"
       fi
     else
-      echo "search for distribution files will not be run as HIPPO_LATEST was overridden to $HIPPO_LATEST"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] search for distribution files will not be run as HIPPO_LATEST was overridden to $HIPPO_LATEST"
     fi
   else
     echo ""
-    echo "search for distribution files will not be run due to previous failures"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] search for distribution files will not be run due to previous failures"
   fi
   echo ""
 }
@@ -664,23 +664,23 @@ containerCreateAndStart() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     VS_CONTAINER_EXPOSE_PORT=$VS_BRXM_TOMCAT_PORT
     echo ""
-    echo "about to create a new Docker container with:"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] about to create a new Docker container with:"
     #VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     if [ "$VS_BRXM_PERSISTENCE_METHOD" == "mysql" ]; then
       VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST='$VS_HIPPO_REPOSITORY_PERSIST' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     else
       VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST='$VS_HIPPO_REPOSITORY_PERSIST' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' --env VS_CONTAINER_NAME='$VS_CONTAINER_NAME' --env VS_BRXM_TOMCAT_PORT='$VS_BRXM_TOMCAT_PORT' --env VS_BRANCH_NAME='$VS_BRANCH_NAME' --env VS_COMMIT_AUTHOR='$VS_COMMIT_AUTHOR' --env CHANGE_ID='$CHANGE_ID' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     fi
-    echo " - $VS_DOCKER_CMD"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
-    RETURN_CODE=$?; echo " - return code: " $RETURN_CODE
+    RETURN_CODE=$?; echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - return code: " $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
       SAFE_TO_PROCEED=FALSE
       FAIL_REASON="Docker failed to start container $VS_CONTAINER_NAME, command exited with $RETURN_CODE"
     fi
     else
     echo ""
-    echo "container will not be started due to previous failures"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME] container will not be started due to previous failures"
   fi
   echo ""
 }
@@ -692,17 +692,17 @@ containerUpdates() {
   for i in ${!TEST_FILES[@]}; do
     THIS_FILE="${TEST_FILES[$i]}"
     THIS_SUM="${TEST_SUMS[$i]}"
-    echo "checking $THIS_FILE for update - md5sum must not match $THIS_SUM"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] checking $THIS_FILE for update - md5sum must not match $THIS_SUM"
     THIS_TEST="`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>/dev/null | awk '{print $1}'`"
     THIS_LOCAL_FILE="`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_FILE`"
     if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "$THIS_LOCAL_FILE" ]; then
-      echo " - sums match, an updated version of $THIS_FILE is available, copying to container"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - sums match, an updated version of $THIS_FILE is available, copying to container"
       docker exec $VS_CONTAINER_NAME cp $THIS_FILE $THIS_FILE.old 2>>$VS_CONTAINER_CONSOLE_FILE
       docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE 2>>$VS_CONTAINER_CONSOLE_FILE
       THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>>$VS_CONTAINER_CONSOLE_FILE | awk '{print $1}'`
-      echo " - sum now: $THIS_TEST"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - sum now: $THIS_TEST"
     else
-      echo " - no match"
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - no match"
     fi
   done
   docker exec $VS_CONTAINER_NAME /bin/bash -c "find /usr/local/bin -type f | xargs chmod +x"
@@ -711,9 +711,9 @@ containerUpdates() {
 containerStartSSH() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
-    echo "about to enable SSH in container $VS_CONTAINER_NAME:"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] about to enable SSH in container $VS_CONTAINER_NAME:"
     VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "ssh-keygen -A; /usr/sbin/sshd; echo hippo:$VS_CONTAINER_SSH_PASS_HIPPO | chpasswd; echo root:$VS_CONTAINER_SSH_PASS_ROOT | chpasswd"'
-    echo " - $VS_DOCKER_CMD"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
@@ -722,7 +722,7 @@ containerStartSSH() {
     fi
   else
     echo ""
-    echo "container will not be started due to previous failures"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME] container will not be started due to previous failures"
   fi
 }
 
@@ -730,7 +730,7 @@ containerStartSSH() {
 containerCopyHippoArtifact() {
     if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
-    echo "about to copy $HIPPO_LATEST to container $VS_CONTAINER_NAME:/home/hippo"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] about to copy $HIPPO_LATEST to container $VS_CONTAINER_NAME:/home/hippo"
     docker cp $HIPPO_LATEST $VS_CONTAINER_NAME:/home/hippo
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
@@ -739,14 +739,14 @@ containerCopyHippoArtifact() {
     fi
     else
     echo ""
-    echo "docker cp will not be run due to previous failures"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME] docker cp will not be run due to previous failures"
   fi
 }
 
 containerCopySSRArtifact() {
   if [ "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
-    echo "about to copy $VS_SSR_PACKAGE_NAME to container $VS_CONTAINER_NAME:/home/hippo"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] about to copy $VS_SSR_PACKAGE_NAME to container $VS_CONTAINER_NAME:/home/hippo"
     docker cp $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_CONTAINER_NAME:/home/hippo
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
@@ -755,10 +755,10 @@ containerCopySSRArtifact() {
     fi
   elif [ ! "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
-    echo "docker cp of VS_SSR_PACKAGE_NAME:$VS_SSR_PACKAGE_NAME will not be run due VS_SSR_PROXY_ON:$VS_SSR_PROXY_ON"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] docker cp of VS_SSR_PACKAGE_NAME:$VS_SSR_PACKAGE_NAME will not be run due VS_SSR_PROXY_ON:$VS_SSR_PROXY_ON"
   else
     echo ""
-    echo "docker cp will not be run due to previous failures"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME] docker cp will not be run due to previous failures"
   fi
 }
 
@@ -766,7 +766,7 @@ containerStartHippo() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
     # temporary mamangement of node app here until changes can be made in vs-hippo
-    echo "about to execute "/usr/bin/pkill node" in container $VS_CONTAINER_NAME"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] about to execute "/usr/bin/pkill node" in container $VS_CONTAINER_NAME"
     docker exec -d $VS_CONTAINER_NAME /usr/bin/pkill node
     #VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "for PID in `ps -ef | grep "java" | grep "$VS_BRXM_TOMCAT_PORT" | awk \'{print $2}\'`; do echo "terminating $PID"; kill -9 $PID; done"'
     #echo "about to execute $VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
@@ -776,8 +776,8 @@ containerStartHippo() {
     else
       VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/vs-hippo nodb >> $VS_CONTAINER_CONSOLE_FILE"'
     fi
-    echo "about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
-    echo " - $VS_DOCKER_CMD"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
@@ -786,7 +786,7 @@ containerStartHippo() {
     fi
   else
     echo ""
-    echo "docker exec will not be run due to previous failures"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME] docker exec will not be run due to previous failures"
   fi
 }
 
@@ -794,8 +794,8 @@ containerStartTailon() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
     VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/tailon --relative-root /tailon -b :$VS_CONTAINER_INT_PORT_TLN /home/hippo/tomcat_8080/logs/ > /tmp/tailon.log"'
-    echo "about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
-    echo " - $VS_DOCKER_CMD"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
@@ -804,7 +804,7 @@ containerStartTailon() {
     fi
   else
     echo ""
-    echo "docker exec will not be run due to previous failures"
+    echo "`eval $VS_LOG_DATESTAMP` ERROR [$VS_SCRIPTNAME] docker exec will not be run due to previous failures"
   fi
 }
 
@@ -814,13 +814,13 @@ exportVSVariables() {
 }
 
 copyVSVariables() {
-  echo " - writing VS variables from $VS_LAST_ENV and $VS_JENKINS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - writing VS variables from $VS_LAST_ENV and $VS_JENKINS_LAST_ENV to $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME"
   # to-do: gp - set VS_TARGET in defaultSettings
   if [ ! -d $VS_BUILD_PROPERTIES_TARGET_DIR ]; then
-    echo " - $VS_BUILD_PROPERTIES_TARGET_DIR does not exist, creating"
+    echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME]  - $VS_BUILD_PROPERTIES_TARGET_DIR does not exist, creating"
     mkdir -p $VS_BUILD_PROPERTIES_TARGET_DIR
   fi
-  echo "# properties from $BUILD_TAG" > $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] # properties from $BUILD_TAG" > $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME
   if [ -a $VS_JENKINS_LAST_ENV ]; then cat $VS_JENKINS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME; fi
   if [ -a $VS_LAST_ENV ]; then cat $VS_LAST_ENV >> $VS_BUILD_PROPERTIES_TARGET_DIR/$VS_BUILD_PROPERTIES_TARGET_NAME; fi
 }
@@ -829,11 +829,10 @@ createBuildReport() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     EXIT_CODE=0
     echo ""
-    echo "writing mail message to $VS_MAIL_NOTIFY_BUILD_MESSAGE"
-    echo ""
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] writing mail message to $VS_MAIL_NOTIFY_BUILD_MESSAGE"
     echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "# Feature Environment Details ##########################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "The site instance for branch $VS_BRANCH_NAME should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -871,6 +870,7 @@ createBuildReport() {
     if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA" ]; then
       cat $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
+    echo ""
     echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -898,7 +898,7 @@ testSite() {
 sendBuildReport() {
   if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE" ] && [ "$VS_MAIL_NOTIFY_BUILD" == "TRUE" ]; then
     echo ""
-    echo "sending environment build notification to $VS_MAIL_NOTIFY_BUILD_TO"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] sending environment build notification to $VS_MAIL_NOTIFY_BUILD_TO"
     mailx -s "$VS_MAIL_NOTIFY_BUILD_SUBJECT" -r "$VS_MAIL_NOTIFY_BUILD_SENDER" "$VS_MAIL_NOTIFY_BUILD_TO" < $VS_MAIL_NOTIFY_BUILD_MESSAGE
   fi
 }
@@ -906,7 +906,7 @@ sendBuildReport() {
 sendSiteReport() {
   if [ -e "$VS_MAIL_NOTIFY_SITE_MESSAGE" ] && [ "$VS_MAIL_NOTIFY_SITE" == "TRUE" ]; then
     echo ""
-    echo "sending site check notification to $VS_MAIL_NOTIFY_SITE_TO"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] sending site check notification to $VS_MAIL_NOTIFY_SITE_TO"
     mailx -s "$VS_MAIL_NOTIFY_SITE_SUBJECT" -r "$VS_MAIL_NOTIFY_SITE_SENDER" "$VS_MAIL_NOTIFY_SITE_TO" < $VS_MAIL_NOTIFY_SITE_MESSAGE
   fi
 }
@@ -914,7 +914,7 @@ sendSiteReport() {
 # ====/FUNCTIONS ====
 
 # ==== RUN ====
-echo "$0 was called with $METHOD"
+echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] $0 was called with $METHOD"
 case $METHOD in
   other)
     false
@@ -934,7 +934,7 @@ case $METHOD in
     createBuildReport
   ;;
   *)
-    echo "no function specified - running defaults"
+    echo "`eval $VS_LOG_DATESTAMP` WARN [$VS_SCRIPTNAME] no function specified - running defaults"
     checkVariables
     defaultSettings
     reportSettings
@@ -960,7 +960,7 @@ case $METHOD in
     elif [ "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ -z "$CONTAINER_ID" ]; then
       containerCreateAndStart
     else
-      echo "re-using existing container $CONTAINER_ID"; echo "" 
+      echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] re-using existing container $CONTAINER_ID"; echo "" 
     fi
     containerUpdates
     containerStartSSH
