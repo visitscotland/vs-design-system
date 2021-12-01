@@ -240,7 +240,7 @@ reportSettings() {
   echo "========================================================================"
   echo "== RUNNING JENKINS SHELL COMMANDS on $VS_THIS_SERVER"
   echo "== as user " $USER
-  echo "== from " `basename $0`
+  echo "== from " $VS_SCRIPTNAME
   echo "========================================================================"
   echo ""
   if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== printenv ===="; printenv; echo "====/printenv ===="; echo ""; fi
@@ -642,18 +642,19 @@ findHippoArtifact() {
 # package SSR app files
 packageSSRArtifact() {
   if [ "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
-    echo "packaging SSR application"
+    echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] packaging SSR application"
     if [ -d "$VS_FRONTEND_DIR" ]; then
       tar -zcf $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_SSR_PACKAGE_SOURCE
-      RETURN_CODE=$?; echo " - return code: " $RETURN_CODE; echo ""
+      RETURN_CODE=$?; echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - return code: " $RETURN_CODE
       if [ -a $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME ]; then
         VS_SSR_PACKAGE_SIZE=`ls -alh $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME | awk '{print $5}'`
-        echo $VS_SSR_PACKAGE_NAME " is " $VS_SSR_PACKAGE_SIZE " in size"
+        echo $VS_SSR_PACKAGE_NAME " is " `eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] $VS_SSR_PACKAGE_SIZE " in size"
       fi
       if [ ! "$RETURN_CODE" = "0" ]; then
         SAFE_TO_PROCEED=FALSE
         FAIL_REASON="Failed to package SSR app from $VS_FRONTEND_DIR, command exited with $RETURN_CODE"
       fi
+      echo ""
     fi
   fi
 }
@@ -808,7 +809,7 @@ containerStartTailon() {
 }
 
 exportVSVariables() {
-  echo "`eval $VS_LOG_DATESTAMP` INFO [`basename $0`] exporting VS variables to $VS_LAST_ENV and $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD" | tee -a $VS_SCRIPT_LOG
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] exporting VS variables to $VS_LAST_ENV and $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD" | tee -a $VS_SCRIPT_LOG
   set | egrep "^(VS_)" | tee $VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
 }
 
