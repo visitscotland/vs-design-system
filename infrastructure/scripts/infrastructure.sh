@@ -810,7 +810,7 @@ containerStartTailon() {
 
 exportVSVariables() {
   echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] exporting VS variables to $VS_LAST_ENV and $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX and $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX to $PWD" | tee -a $VS_SCRIPT_LOG
-  set | egrep "^(VS_)" | tee $VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
+  set | egrep "^(VS_)" | egrep -v "^VS_LOG_DATESTAMP" | tee $VS_LAST_ENV | sed -e "s/^/env./" -e "s/=\([^'$]\)/=\"\1/" -e "s/\([^'=]\)$/\1\"/" | tee $VS_LAST_ENV$VS_LAST_ENV_QUOTED_SUFFIX | sed -e "s/=/ = /" > $VS_LAST_ENV$VS_LAST_ENV_GROOVY_SUFFIX
 }
 
 copyVSVariables() {
