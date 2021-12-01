@@ -473,7 +473,7 @@ tidyContainers() {
 
 setPortRange() {
   # to-do: gp - consider if this logic should live in the pipeline rather than the script
-  echo "determining port range to test for available base ports"
+  echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] determining port range to test for available base ports"
     if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
     if [ "$VS_PARENT_JOB_NAME" == "develop-stable.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
       VS_CONTAINER_BASE_PORT_OVERRIDE=8100
@@ -832,7 +832,7 @@ createBuildReport() {
     echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] writing mail message to $VS_MAIL_NOTIFY_BUILD_MESSAGE"
     echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "# Feature Environment Details ##########################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "#### Feature Environment Details ##########################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "The site instance for branch $VS_BRANCH_NAME should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -870,8 +870,7 @@ createBuildReport() {
     if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA" ]; then
       cat $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
-    echo ""
-    echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "####/Feature Environment Details ##########################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" >> $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "$VS_CONTAINER_BASE_PORT" > env_port.txt
