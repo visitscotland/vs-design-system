@@ -12,7 +12,7 @@
                 "position": 1,
                 "item": {
                     "@id": "<@hst.link siteMapItemRefId="root" fullyQualified=true/>",
-                    "name": "<@fmt.message key="home"/>"
+                    "name": "${label("essentials.global", "home")}"
                 }
         <#assign count = 1>
         <#list breadcrumb.items as item>
