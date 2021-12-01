@@ -243,7 +243,7 @@ reportSettings() {
   echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] == from " $VS_SCRIPTNAME
   echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] ========================================================================"
   echo ""
-  if [ "$VS_DEBUG" = "TRUE" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] ==== printenv ===="; printenv; echo "====/printenv ===="; echo ""; fi
+  if [ "$VS_DEBUG" = "TRUE" ]; then echo "`eval $VS_LOG_DATESTAMP` DEBUG [$VS_SCRIPTNAME] ==== printenv ===="; printenv; echo "`eval $VS_LOG_DATESTAMP` DEBUG [$VS_SCRIPTNAME] ====/printenv ===="; echo ""; fi
   #if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== set ===="; set; echo "====/set ====";  echo ""; fi
   echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] ==== selected Jenkins environment variables ===="
   set | egrep "^(BRANCH|BUILD|CHANGE|GIT|JENKINS|JOB|RUN|WORKSPACE)"
@@ -387,7 +387,7 @@ getBranchListFromWorkspace() {
   echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] checking for branches and PRs for $VS_PARENT_JOB_NAME listed in workspaces.txt"
   # to-do: gp - update echo above to reflect changes to branch and PR scan method
   for BRANCH in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME" | sed -e "s/%2F/\//g" | sed "s/.*\//$VS_PARENT_JOB_NAME\_/g"`; do
-    if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH"; fi
+    if [ "$VS_DEBUG" = "TRUE" ]; then echo "`eval $VS_LOG_DATESTAMP` DEBUG [$VS_SCRIPTNAME]  - found branch $BRANCH"; fi
     BRANCH_LIST="$BRANCH_LIST $BRANCH"
   done
   # to-do: gp add for loop to check for vs-container-name map files in _PR only (avoid doubles)
@@ -406,16 +406,16 @@ getBranchListFromWorkspace() {
 #        echo "found $VS_CONTAINER_NAME_FILE_FOUND"
         BRANCH=`cat $VS_CONTAINER_NAME_FILE_FOUND | head -1`
 #        echo "BRANCH=$BRANCH in 2"
-        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - found branch $BRANCH for `basename $PR` in $VS_CONTAINER_NAME_FILE"; fi
+        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo "`eval $VS_LOG_DATESTAMP` DEBUG [$VS_SCRIPTNAME]  - found branch $BRANCH for `basename $PR` in $VS_CONTAINER_NAME_FILE"; fi
         if [ ! -z "$BRANCH" ]; then BRANCH_LIST="$BRANCH_LIST $BRANCH"; fi
       elif [ ! -z "$VS_LAST_ENV_FOUND" ] && [ -a $VS_LAST_ENV_FOUND ]; then
 #        echo "found $VS_LAST_ENV_FOUND"
         BRANCH=`cat $VS_LAST_ENV_FOUND | egrep "(VS_)(CHANGE_BRANCH|CONTAINER_NAME)=" | sed -e "s/.*=//g" | head -1`
 #        echo "BRANCH=$BRANCH in 1"
-        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - found branch $BRANCH for `basename $PR` in $VS_LAST_ENV"; fi
+        if [ "$VS_DEBUG" = "TRUE" ] && [ ! -z "$BRANCH" ]; then echo "`eval $VS_LOG_DATESTAMP` DEBUG [$VS_SCRIPTNAME]  - found branch $BRANCH for `basename $PR` in $VS_LAST_ENV"; fi
         if [ ! -z "$BRANCH" ]; then BRANCH_LIST="$BRANCH_LIST $BRANCH"; fi
       else
-        if [ "$VS_DEBUG" = "TRUE" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - no branch found for $PR"; fi
+        if [ "$VS_DEBUG" = "TRUE" ]; then echo "`eval $VS_LOG_DATESTAMP` DEBUG [$VS_SCRIPTNAME]  - no branch found for $PR"; fi
       fi
     fi
   done
@@ -436,7 +436,7 @@ getReservedPortList() {
       else
         RESERVED_PORT_LIST="$RESERVED_PORT"
       fi
-      if [ "$VS_DEBUG" == "TRUE" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  -- $RESERVED_PORT is reserved by $BRANCH"; fi
+      if [ "$VS_DEBUG" == "TRUE" ]; then echo "`eval $VS_LOG_DATESTAMP` DEBUG [$VS_SCRIPTNAME]  -- $RESERVED_PORT is reserved by $BRANCH"; fi
     fi
   done
   if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - ports $RESERVED_PORT_LIST are reserved"; fi
