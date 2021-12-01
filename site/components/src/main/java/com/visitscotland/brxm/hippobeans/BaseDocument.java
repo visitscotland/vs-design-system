@@ -1,5 +1,7 @@
 package com.visitscotland.brxm.hippobeans;
 
+import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.services.DocumentUtilsService;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocument;
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 public class BaseDocument extends HippoDocument {
 
     private static final Logger logger = LoggerFactory.getLogger(BaseDocument.class.getName());
+    private final DocumentUtilsService documentUtils = VsComponentManager.get(DocumentUtilsService.class);
 
     public String getPrimaryType() {
         try {
@@ -36,8 +39,6 @@ public class BaseDocument extends HippoDocument {
         }
     }
 
-
-
     /**
      * There is an existing issue in BloomReach affecting only images where they are not correctly mapped. This method
      * works as a workaround to that issue
@@ -53,4 +54,5 @@ public class BaseDocument extends HippoDocument {
                 }
         ).collect(Collectors.toList());
     }
+
 }

@@ -48,7 +48,13 @@ props:
       value: "#6A6366"
       category: "Theme colours"
     - name: color_theme_secondary_teal
-      value: "#109DA3"
+      value: "#28C7C4"
+      category: "Theme colours"
+    - name: color_theme_secondary_indigo
+      value: "#432FB2"
+      category: "Theme colours"
+    - name: color_theme_secondary_orange
+      value: "#FD7339"
       category: "Theme colours"
     - name: color_theme_success
       value: "#1E6101"
@@ -272,39 +278,100 @@ props:
       category: "Secondary Gray Shades"
 
     - name: color_secondary_teal_tint_1
-      value: "#34ACB1"
+      value: "#3ECDCA"
       category: "Secondary Teal Tints"
     - name: color_secondary_teal_tint_2
-      value: "#58BABF"
+      value: "#53D2D0"
       category: "Secondary Teal Tints"
     - name: color_secondary_teal_tint_3
-      value: "#7CC9CC"
+      value: "#7EDDDC"
       category: "Secondary Teal Tints"
     - name: color_secondary_teal_tint_4
-      value: "#9FD8DA"
+      value: "#A9E9E7"
       category: "Secondary Teal Tints"
     - name: color_secondary_teal_tint_5
-      value: "#C3E7E8"
+      value: "#D4F4F3"
       category: "Secondary Teal Tints"
     - name: color_secondary_teal_tint_6
-      value: "#E7F5F6"
+      value: "#EAF9F9"
       category: "Secondary Teal Tints"
 
     - name: color_secondary_teal_shade_1
-      value: "#0E858B"
+      value: "#24B3B0"
       category: "Secondary Teal Shades"
     - name: color_secondary_teal_shade_2
-      value: "#0B6E72"
+      value: "#209F9D"
       category: "Secondary Teal Shades"
     - name: color_secondary_teal_shade_3
-      value: "#09565A"
+      value: "#187776"
       category: "Secondary Teal Shades"
     - name: color_secondary_teal_shade_4
-      value: "#063F41"
+      value: "#10504E"
       category: "Secondary Teal Shades"
-    - name: color_secondary_teal_shade_5
-      value: "#042729"
-      category: "Secondary Teal Shades"
+
+    - name: color_secondary_indigo_tint_1
+      value: "#5644BA"
+      category: "Secondary Indigo Tints"
+    - name: color_secondary_indigo_tint_2
+      value: "#6959C1"
+      category: "Secondary Indigo Tints"
+    - name: color_secondary_indigo_tint_3
+      value: "#8E82D1"
+      category: "Secondary Indigo Tints"
+    - name: color_secondary_indigo_tint_4
+      value: "#B4ACE0"
+      category: "Secondary Indigo Tints"
+    - name: color_secondary_indigo_tint_5
+      value: "#D9D5F0"
+      category: "Secondary Indigo Tints"
+    - name: color_secondary_indigo_tint_6
+      value: "#ECEAF7"
+      category: "Secondary Indigo Tints"
+
+    - name: color_secondary_indigo_shade_1
+      value: "#3C2AA0"
+      category: "Secondary Indigo Shades"
+    - name: color_secondary_indigo_shade_2
+      value: "#36268E"
+      category: "Secondary Indigo Shades"
+    - name: color_secondary_indigo_shade_3
+      value: "#281C6B"
+      category: "Secondary Indigo Shades"
+    - name: color_secondary_indigo_shade_4
+      value: "#33170C"
+      category: "Secondary Indigo Shades"
+
+    - name: color_secondary_teal_tint_1
+      value: "#FD8F60"
+      category: "Secondary Orange Tints"
+    - name: color_secondary_orange_tint_2
+      value: "#FEAB88"
+      category: "Secondary Orange Tints"
+    - name: color_secondary_orange_tint_3
+      value: "#FEC7AF"
+      category: "Secondary Orange Tints"
+    - name: color_secondary_orange_tint_4
+      value: "#FDD6C3"
+      category: "Secondary Orange Tints"
+    - name: color_secondary_orange_tint_5
+      value: "#FFE3D7"
+      category: "Secondary Orange Tints"
+    - name: color_secondary_orange_tint_6
+      value: "#FFF0EB"
+      category: "Secondary Orange Tints"
+
+    - name: color_secondary_orange_shade_1
+      value: "#CA5C2E"
+      category: "Secondary Orange Shades"
+    - name: color_secondary_orange_shade_2
+      value: "#984522"
+      category: "Secondary Orange Shades"
+    - name: color_secondary_orange_shade_3
+      value: "#652E18"
+      category: "Secondary Orange Shades"
+    - name: color_secondary_orange_shade_4
+      value: "#33170C"
+      category: "Secondary Orange Shades"
 
 global:
     type: color

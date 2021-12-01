@@ -72,9 +72,10 @@
       hippo:availability: []
       hippostd:retainable: false
       hippostd:state: draft
+      hippostd:transferable: false
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2021-10-20T12:05:54.292+01:00
+      hippostdpubwf:lastModificationDate: 2021-11-18T13:05:57.375Z
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '', '', '']
       resourcebundle:id: essentials.global

@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: be7ae8c0-5a9b-40db-b9ae-a32b7c4afa07
+          jcr:uuid: 6bcc1f3c-e134-4a33-9538-03d9d5af72b2
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -42,14 +42,6 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: String
             hipposysedit:validators: [required, non-empty, 'visitscotland:short-string-validator']
-          /image:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:image
-            hipposysedit:primary: false
-            hipposysedit:type: hippogallerypicker:imagelink
           /subtitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -94,7 +86,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: a3d8942c-6945-4933-bace-0a70173767df
+          jcr:uuid: 09869449-2d2a-4bc5-852b-7264645c8ce4
           hippostdpubwf:lastModificationDate: 2019-12-05T15:13:21.853Z
           hippostdpubwf:creationDate: 2019-12-05T15:13:21.853Z
           visitscotland:title: ''
@@ -103,12 +95,6 @@ definitions:
           /visitscotland:description:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -164,15 +150,6 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1
-          /image:
-            jcr:primaryType: frontend:plugin
-            caption: Image (Deprecated)
-            field: image
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
-            hint: ''
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /product:
             jcr:primaryType: frontend:plugin
             caption: Product

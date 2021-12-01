@@ -40,7 +40,7 @@ describe('VsPsrModule', () => {
             const wrapper = factoryShallowMount();
 
             const embedStub = wrapper.find('vspsrembed-stub');
-            expect(embedStub.contains('[config]')).toBe(true);
+            expect(embedStub.attributes('config')).toBe('[object Object]');
         });
     });
 });

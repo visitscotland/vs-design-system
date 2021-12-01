@@ -155,12 +155,6 @@
         visitscotland:anchor: ''
         visitscotland:title: Family holidays in Scotland
         visitscotland:translation: ''
-        /visitscotland:image:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
         /visitscotland:copy:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Your family holiday in Scotland will be one to remember
@@ -186,6 +180,12 @@
               <h3>Weekend Away with Kids in Scotland</h3>
 
               <p>You don't need to <a href="https://www.visitscotland.com/holidays-breaks/" title="Holidays &amp; Breaks">holiday</a> for a whole week or more in Scotland, a <a href="https://www.visitscotland.com/holidays-breaks/weekend-short/" title="Short &amp; weekend">weekend break</a> away is plenty of time to explore some amazing sights and attractions. Enjoy a long weekend uncovering the dramatic mountain landscapes that you can find across the country, or treat the family to spot of <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/" title="Glamping">glamping</a> in an <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/pods/" title="Eco &amp; camping pods">eco pod</a> where you can immerse yourself in nature but with a few home comforts too. Why not plan a weekend away at the seaside filled with exhilarating <a href="https://www.visitscotland.com/see-do/active/watersports/" title="Watersports">watersports</a> that will keep the kids entertained? There's lots to do on a weekend break in Scotland.</p>
+        /visitscotland:media:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /article-module[2]:
         jcr:primaryType: visitscotland:Article
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -202,12 +202,6 @@
         visitscotland:anchor: ''
         visitscotland:title: Family holidays in Scotland
         visitscotland:translation: ''
-        /visitscotland:image:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
         /visitscotland:copy:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Your family holiday in Scotland will be one to remember
@@ -233,6 +227,12 @@
               <h3>Weekend Away with Kids in Scotland</h3>
 
               <p>You don't need to <a href="https://www.visitscotland.com/holidays-breaks/" title="Holidays &amp; Breaks">holiday</a> for a whole week or more in Scotland, a <a href="https://www.visitscotland.com/holidays-breaks/weekend-short/" title="Short &amp; weekend">weekend break</a> away is plenty of time to explore some amazing sights and attractions. Enjoy a long weekend uncovering the dramatic mountain landscapes that you can find across the country, or treat the family to spot of <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/" title="Glamping">glamping</a> in an <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/pods/" title="Eco &amp; camping pods">eco pod</a> where you can immerse yourself in nature but with a few home comforts too. Why not plan a weekend away at the seaside filled with exhilarating <a href="https://www.visitscotland.com/see-do/active/watersports/" title="Watersports">watersports</a> that will keep the kids entertained? There's lots to do on a weekend break in Scotland.</p>
+        /visitscotland:media:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /article-module[3]:
         jcr:primaryType: visitscotland:Article
         jcr:mixinTypes: ['mix:referenceable']
@@ -250,12 +250,6 @@
         visitscotland:anchor: ''
         visitscotland:title: Family holidays in Scotland
         visitscotland:translation: ''
-        /visitscotland:image:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
         /visitscotland:copy:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Your family holiday in Scotland will be one to remember
@@ -281,6 +275,12 @@
               <h3>Weekend Away with Kids in Scotland</h3>
 
               <p>You don't need to <a href="https://www.visitscotland.com/holidays-breaks/" title="Holidays &amp; Breaks">holiday</a> for a whole week or more in Scotland, a <a href="https://www.visitscotland.com/holidays-breaks/weekend-short/" title="Short &amp; weekend">weekend break</a> away is plenty of time to explore some amazing sights and attractions. Enjoy a long weekend uncovering the dramatic mountain landscapes that you can find across the country, or treat the family to spot of <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/" title="Glamping">glamping</a> in an <a href="https://www.visitscotland.com/accommodation/caravan-camping/glamping/pods/" title="Eco &amp; camping pods">eco pod</a> where you can immerse yourself in nature but with a few home comforts too. Why not plan a weekend away at the seaside filled with exhilarating <a href="https://www.visitscotland.com/see-do/active/watersports/" title="Watersports">watersports</a> that will keep the kids entertained? There's lots to do on a weekend break in Scotland.</p>
+        /visitscotland:media:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
     /list-of-examples:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -403,37 +403,37 @@
         /visitscotland:megalinkItems[1]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
         /visitscotland:megalinkItems[2]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
         /visitscotland:megalinkItems[3]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
         /visitscotland:megalinkItems[4]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
         /visitscotland:megalinkItems[5]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
         /visitscotland:megalinkItems[6]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: eb419930-2ac1-463c-aee1-a8e3a2caaa3d
       /megalinks[2]:
@@ -458,37 +458,37 @@
         /visitscotland:megalinkItems[1]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
         /visitscotland:megalinkItems[2]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
         /visitscotland:megalinkItems[3]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
         /visitscotland:megalinkItems[4]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
         /visitscotland:megalinkItems[5]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
         /visitscotland:megalinkItems[6]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: eb419930-2ac1-463c-aee1-a8e3a2caaa3d
       /megalinks[3]:
@@ -514,36 +514,36 @@
         /visitscotland:megalinkItems[1]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
         /visitscotland:megalinkItems[2]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
         /visitscotland:megalinkItems[3]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
         /visitscotland:megalinkItems[4]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
         /visitscotland:megalinkItems[5]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
         /visitscotland:megalinkItems[6]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: eb419930-2ac1-463c-aee1-a8e3a2caaa3d

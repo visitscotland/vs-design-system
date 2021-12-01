@@ -112,7 +112,7 @@ public class ListicleFactory {
             EnhancedLink eLink = linksService.createEnhancedLink((Linkable) cmsLink.getLink(), module, locale,false);
             //Override default link label when the module has an override text
             if (!Contract.isEmpty(cmsLink.getLabel())){
-                eLink.setCta(linksService.formatLabel(cmsLink.getLink(), cmsLink.getLabel(), locale, module));
+                eLink.setCta(linksService.formatLabel(cmsLink.getLink(), cmsLink.getLabel(), module, locale));
                 eLink.setLabel(eLink.getCta());
             }
 

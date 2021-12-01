@@ -1,11 +1,13 @@
 package com.visitscotland.brxm.services;
 
+import com.google.common.base.Strings;
 import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.LocalizedURL;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
+import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -17,10 +19,7 @@ import org.springframework.stereotype.Component;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Singleton
@@ -29,6 +28,7 @@ import java.util.Optional;
 public class DocumentUtilsService {
 
     private static final Logger logger = LoggerFactory.getLogger(DocumentUtilsService.class.getName());
+    private static final Logger contentLog = LoggerFactory.getLogger("content");
 
     public static final String DOCUMENT_TYPE = "jcr:primaryType";
 
@@ -150,6 +150,33 @@ public class DocumentUtilsService {
     }
 
     /**
+     * Reorganize the document translations depending on an order predefined by SEO so hreflang
+     *
+     * @param <B>
+     * @return
+     */
+    public <B extends BaseDocument> List<B> sortTranslationsForSeo(List<BaseDocument> availableTranslations){
+        List<B> sortedTranslations = new ArrayList<>();
+        // The ordering of translations for SEO purposes is defined in VS-1416 (see issue comments)
+        // This is stored as a comma separated list in the channel properties file
+        String seoSortOrderProperty = Contract.defaultIfNull(bundle.getResourceBundle("channel", "seo.alternate-link-locale-order", Locale.UK), "");
+        for (String locale: seoSortOrderProperty.split(",")) {
+            for (BaseDocument bean : availableTranslations){
+                if (locale != null && bean.getLocale().getLanguage().equals(locale)){
+                    sortedTranslations.add((B) bean);
+                }
+            }
+        }
+        // If, for example, channel.seo.alternate-link-locale-orders is missing the fr language, then all french documents
+        // in availableTranslations will not be placed in the sortedTranslations list
+        if (sortedTranslations.size() != availableTranslations.size()) {
+            contentLog.warn("Failed to order translations as property channel.seo.alternate-link-locale-orders is set incorrectly");
+            return (List<B>)availableTranslations;
+        }
+        return sortedTranslations;
+    }
+
+    /**
      * Composes the URL from the current request for a non-existing URL.
      */
     private String composeNonExistingLanguageURL(Locale locale, HstRequest request){
@@ -162,4 +189,6 @@ public class DocumentUtilsService {
         return properties.getCmsBasePath() +
                 languagePath + request.getRequestContext().getBaseURL().getPathInfo();
     }
+
+
 }

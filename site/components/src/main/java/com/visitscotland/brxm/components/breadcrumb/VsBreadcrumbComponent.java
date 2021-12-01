@@ -1,9 +1,11 @@
 package com.visitscotland.brxm.components.breadcrumb;
 
 
+import com.visitscotland.brxm.hippobeans.BaseDocument;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.config.VsComponentManager;
-import com.visitscotland.brxm.services.ResourceBundleService;
+import com.visitscotland.brxm.services.DocumentUtilsService;
+import com.visitscotland.brxm.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -14,6 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContext;
+import java.util.List;
+import java.util.Optional;
 
 public class VsBreadcrumbComponent extends CommonComponent {
 
@@ -23,9 +27,11 @@ public class VsBreadcrumbComponent extends CommonComponent {
     final String IS_HOME = "isHome";
     final String BREADCRUMB = "breadcrumb";
     final String DOCUMENT = "document";
+    final String ORDERED_TRANSLATIONS = "orderedTranslations";
 
     private VsBreadCrumbProvider breadcrumbProvider;
-    private ResourceBundleService bundle;
+    private HippoUtilsService hippoUtilsService;
+    private DocumentUtilsService documentUtils;
 
     public void doBeforeRender(HstRequest request, HstResponse response) throws HstComponentException {
         super.doBeforeRender(request, response);
@@ -41,9 +47,12 @@ public class VsBreadcrumbComponent extends CommonComponent {
     }
 
     private void setDocument(HstRequest request){
-        HippoBean document = request.getRequestContext().getContentBean();
-        if (document instanceof Page) {
-            request.setAttribute(DOCUMENT, document);
+        Optional<HippoBean> document = hippoUtilsService.getContentBeanWithTranslationFallback(request);
+        if (document.isPresent() &&  document.get() instanceof Page) {
+            request.setAttribute(DOCUMENT, document.get());
+            // Translations ordered by SEO order
+            List<BaseDocument> availableTranslations = ((Page) document.get()).getAvailableTranslations(BaseDocument.class).getTranslations();
+            request.setAttribute(ORDERED_TRANSLATIONS, documentUtils.sortTranslationsForSeo(availableTranslations));
         } else {
             logger.error("There is not a document associated for the following request: " + request.getRequestURI());
         }
@@ -51,8 +60,9 @@ public class VsBreadcrumbComponent extends CommonComponent {
 
     public void init(ServletContext servletContext, ComponentConfiguration componentConfig) throws HstComponentException {
         super.init(servletContext, componentConfig);
-        this.bundle = VsComponentManager.get(ResourceBundleService.class);
         this.breadcrumbProvider = new VsBreadCrumbProvider(this);
+        this.hippoUtilsService = VsComponentManager.get(HippoUtilsService.class);
+        this.documentUtils = VsComponentManager.get(DocumentUtilsService.class);
     }
 
 }
