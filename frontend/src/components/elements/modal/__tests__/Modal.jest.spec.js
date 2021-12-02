@@ -36,6 +36,18 @@ describe('VsModal', () => {
 
             expect(closeBtn.text()).toContain('Close');
         });
+
+        it('isVideoModal: defines static prop on BModal', async() => {
+            const wrapper = factoryShallowMount();
+            wrapper.setProps({
+                isVideoModal: true,
+            });
+            await wrapper.vm.$nextTick();
+
+            const modalStub = wrapper.find('bmodal-stub').html();
+
+            expect(modalStub).toContain('static="true"');
+        });
     });
 
     describe(':slots', () => {
