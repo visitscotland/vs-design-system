@@ -793,7 +793,7 @@ containerStartHippo() {
 containerStartTailon() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
-    VS_DOCKER_CMD=docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/tailon --relative-root /tailon -b :$VS_CONTAINER_INT_PORT_TLN '/home/hippo/tomcat_8080/logs/' > /tmp/tailon.log"
+    VS_DOCKER_CMD=docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/tailon --relative-root /tailon -b :$VS_CONTAINER_INT_PORT_TLN '"'"'/home/hippo/tomcat_8080/logs/'"'"' > /tmp/tailon.log"
     echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME] about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
     echo "`eval $VS_LOG_DATESTAMP` INFO [$VS_SCRIPTNAME]  - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
