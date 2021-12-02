@@ -118,6 +118,7 @@ export default {
     height: 28px;
     display: flex;
     align-items: center;
+    overflow-y: hidden;
 
     @include media-breakpoint-up(lg) {
         height: 35px;
