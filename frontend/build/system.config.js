@@ -15,7 +15,7 @@ module.exports = {
      * Most of the styles are defined in /docs/styles/docs.styles.scss
      */
     theme: {
-        maxWidth: '1320px',
+        maxWidth: '100%',
         sidebarWidth: 260,
         fontFamily: {
             base: ['Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif'],
