@@ -1,7 +1,10 @@
 package com.visitscotland.brxm.validator;
 
 import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.translation.MockNodeBuilder;
 import com.visitscotland.brxm.translation.SessionFactory;
+import jdk.nashorn.internal.runtime.regexp.joni.constants.NodeType;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,6 +20,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
 import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
+import static org.hippoecm.repository.api.HippoNodeType.NT_MIRROR;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
@@ -27,168 +31,105 @@ class LinkImageValidatorTest {
     @Mock(lenient = true)
     ValidationContext context;
 
-    @Mock(answer = Answers.RETURNS_DEEP_STUBS)
-    SessionFactory mockSessionFactory;
-
     @BeforeEach
     void init (){
         when(context.createViolation()).thenReturn(mock(Violation.class));
     }
 
     @Test
-    @DisplayName("Shared links, if the product is not a DMS and no image is provided, error")
+    @DisplayName("Shared links - Validation fails when the product is not a DMS and no image is provided")
     void sharedLinkNoDms_noImageProvided() throws RepositoryException {
-        LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
+        LinkImageValidator validator = new LinkImageValidator();
+        Node image = new MockNodeBuilder().withPrimaryNodeType(NT_MIRROR).withProperty(HIPPO_DOCBASE, LinkImageValidator.EMPTY_IMAGE).build();
+        Node document = new MockNodeBuilder()
+                .withChildNode(LinkImageValidator.PRODUCT, Mockito.mock(Node.class))
+                .withChildNode("visitscotland:image", image).build();
 
-        Node node = Mockito.mock(Node.class,withSettings().lenient());
-        when(node.hasNode("visitscotland:image")).thenReturn(true);
-
-        Node imageNode = mockChildNode  (node,true, false,false);
-        when(node.getNode("visitscotland:image")).thenReturn(imageNode);
-        when(imageNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn(LinkImageValidator.EMPTY_IMAGE);
-
-        assertTrue(validator.validate(context, node).isPresent());
+        assertTrue(validator.validate(context, document).isPresent());
     }
 
     @Test
-    @DisplayName("Shared links, valid image")
+    @DisplayName("Shared links - Validation passes")
     void sharedLinkNoDms_validImage() throws RepositoryException {
-        LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
+        LinkImageValidator validator = new LinkImageValidator();
+        Node image = new MockNodeBuilder().withPrimaryNodeType(NT_MIRROR).withProperty(HIPPO_DOCBASE, "node-id-for-image").build();
+        Node document = new MockNodeBuilder()
+                .withChildNode(LinkImageValidator.PRODUCT, Mockito.mock(Node.class))
+                .withChildNode("visitscotland:image", image).build();
 
-        Node node = Mockito.mock(Node.class,withSettings().lenient());
-        when(node.hasNode("visitscotland:image")).thenReturn(true);
-
-        Node imageNode = mockChildNode  (node,true, false,false);
-        when(node.getNode("visitscotland:image")).thenReturn(imageNode);
-        when(imageNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("ImageName");
-
-        assertFalse(validator.validate(context, node).isPresent());
+        assertFalse(validator.validate(context, document).isPresent());
     }
 
     @Test
-    @DisplayName("Stop, if the product is not a DMS and no image is provided, error")
+    @DisplayName("Stop - Validation fails when the product is not a DMS and no image is provided")
     void stopNoDms_noImageProvided() throws RepositoryException {
-        LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
+        LinkImageValidator validator = new LinkImageValidator();
+        Node image = new MockNodeBuilder().withPrimaryNodeType(NT_MIRROR).withProperty(HIPPO_DOCBASE, LinkImageValidator.EMPTY_IMAGE).build();
+        Node document = new MockNodeBuilder()
+                .withChildNode(LinkImageValidator.PRODUCTS, Mockito.mock(Node.class))
+                .withChildNode("visitscotland:image", image).build();
 
-        Node node = Mockito.mock(Node.class,withSettings().lenient());
-        when(node.hasNode("visitscotland:image")).thenReturn(true);
-
-        Node imageNode = mockChildNode  (node,false, true,false);
-        when(node.getNode("visitscotland:image")).thenReturn(imageNode);
-        when(imageNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn(LinkImageValidator.EMPTY_IMAGE);
-
-        assertTrue(validator.validate(context, node).isPresent());
+        assertTrue(validator.validate(context, document).isPresent());
     }
 
     @Test
-    @DisplayName("Stops, valid image")
+    @DisplayName("Stops - Validation passes")
     void stopNoDms_validImage() throws RepositoryException {
-        LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
+        LinkImageValidator validator = new LinkImageValidator();
+        Node image = new MockNodeBuilder().withPrimaryNodeType(NT_MIRROR).withProperty(HIPPO_DOCBASE, "node-id-for-image").build();
+        Node document = new MockNodeBuilder()
+                .withChildNode(LinkImageValidator.PRODUCTS, Mockito.mock(Node.class))
+                .withChildNode("visitscotland:image", image).build();
 
-        Node node = Mockito.mock(Node.class,withSettings().lenient());
-        when(node.hasNode("visitscotland:image")).thenReturn(true);
-
-        Node imageNode = mockChildNode  (node,false, true,false);
-        when(node.getNode("visitscotland:image")).thenReturn(imageNode);
-        when(imageNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("ImageName");
-
-        assertFalse(validator.validate(context, node).isPresent());
+        assertFalse(validator.validate(context, document).isPresent());
     }
 
     @Test
-    @DisplayName("Listicle, if the product is not a DMS and no image is provided, error")
-    void ListicleNoDms_noImageProvided() throws RepositoryException {
-        LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
+    @DisplayName("Listicle - Validation fails when the product is not a DMS or CMSLink and no media is provided")
+    void listicleNoDms_noContentblockImagesProvided() throws RepositoryException {
+        LinkImageValidator validator = new LinkImageValidator();
+        Node document = new MockNodeBuilder()
+                .withChildNode(LinkImageValidator.PRODUCT, new MockNodeBuilder().build())
+                .build();
 
-        Node node = Mockito.mock(Node.class,withSettings().lenient());
-        when(node.hasNode("visitscotland:image")).thenReturn(false);
-        mockChildNode(node,false, false,true);
-
-        when(node.hasNode(ListicleItem.IMAGES)).thenReturn(true);
-        mockListicleNode(node);
-
-        assertTrue(validator.validate(context, node).isPresent());
-    }
-
-    @Test
-    @DisplayName("Listicle, if the product is not a DMS and no image content block is added, error")
-    void ListicleNoDms_noContentblockImagesProvided() throws RepositoryException {
-        LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
-
-        Node node = Mockito.mock(Node.class,withSettings().lenient());
-        when(node.hasNode("visitscotland:image")).thenReturn(false);
-        Node childNode = mockChildNode  (node,false, false,true);
-
-        when(node.hasNode(ListicleItem.IMAGES)).thenReturn(false);
-
-        assertTrue(validator.validate(context, node).isPresent());
+        assertTrue(validator.validate(context, document).isPresent());
     }
 
 
     @Test
-    @DisplayName("Listicle, does not force image when linking to CMS Items")
+    @DisplayName("Listicle - The image is not mandatory for CMS Items (Shared Link & Pages)")
     void listicle_cmsLink() throws RepositoryException {
-        LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
-        Node node = Mockito.mock(Node.class,withSettings().lenient());
+        LinkImageValidator validator = new LinkImageValidator();
+        Node product = new MockNodeBuilder().withPrimaryNodeType("visitscotland:CMSLink").build();
+        Node document = new MockNodeBuilder()
+                .withChildNode(LinkImageValidator.PRODUCT, product).build();
 
-        when(node.hasProperty("visitscotland:link")).thenReturn(true);
-        mockChildNode(node,false, false,true);
+        assertFalse(validator.validate(context, document).isPresent());
+  }
 
-        assertTrue(validator.validate(context, node).isPresent());
+    @Test
+    @DisplayName("Validation passes when an Instagram Image is provided")
+    void listicleNoDms_InstagramProvided() throws RepositoryException {
+        LinkImageValidator validator = new LinkImageValidator();
+        Node media = new MockNodeBuilder().withPrimaryNodeType("visitscotland:InstagramImage").build();
+        Node compound = new MockNodeBuilder().withPrimaryNodeType("visitscotland:CMSLink").build();
+        Node document = new MockNodeBuilder()
+                .withChildNode(LinkImageValidator.PRODUCT, compound)
+                .withChildNode("visitscotland:image", media).build();
+
+        assertFalse(validator.validate(context, document).isPresent());
     }
 
     @Test
-    @DisplayName("Image is valid oif Instagram is provided")
-    void listicleNoDms_InstagramProvided() throws RepositoryException {
-        LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
+    @DisplayName("Validation passes when a video is provided")
+    void video() throws RepositoryException {
 
-        Node node = Mockito.mock(Node.class,withSettings().lenient());
-        when(node.hasNode("visitscotland:image")).thenReturn(false);
-        mockChildNode  (node,false, false,true);
+        LinkImageValidator validator = new LinkImageValidator();
+        Node media = new MockNodeBuilder().withPrimaryNodeType("visitscotland:VideoLink").build();
+        Node document = new MockNodeBuilder()
+                .withChildNode(LinkImageValidator.PRODUCT, new MockNodeBuilder().build())
+                .withChildNode("visitscotland:image", media).build();
 
-        when(node.hasNode(ListicleItem.IMAGES)).thenReturn(true);
-        Node imageNode = mockListicleNode(node);
-
-        when(imageNode.hasProperty(InstagramImage.CAPTION)).thenReturn(true);
-
-        assertFalse(validator.validate(context, node).isPresent());
+        assertFalse(validator.validate(context, document).isPresent());
     }
-
-    private Node mockChildNode (Node node , boolean sharedLink, boolean stop, boolean listicle) throws RepositoryException {
-        Node imageNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Node childNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Node auxNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-
-        when(node.hasNode(SharedLink.LINK_TYPES)).thenReturn(sharedLink);
-        when(node.hasNode(Stop.PRODUCTS)).thenReturn(stop);
-        when(node.hasNode(ListicleItem.PRODUCT)).thenReturn(listicle);
-
-        when(node.getNode(SharedLink.LINK_TYPES)).thenReturn(auxNode);
-        when(node.getNode(Stop.PRODUCTS)).thenReturn(auxNode);
-        when(node.getNode(ListicleItem.PRODUCT)).thenReturn(auxNode);
-
-        when(auxNode.getIdentifier()).thenReturn("imageName");
-        when(mockSessionFactory.getJcrSession().getNodeByIdentifier("imageName")).thenReturn(childNode);
-
-        return imageNode;
-    }
-
-    private Node mockListicleNode (Node node) {
-        Node imageNode = Mockito.mock(Node.class,withSettings().lenient());
-        try {
-            when(node.hasNode(ListicleItem.IMAGES)).thenReturn(true);
-
-            Node auxImageNode = Mockito.mock(Node.class);
-            when(node.getNode(ListicleItem.IMAGES)).thenReturn(auxImageNode);
-            when(auxImageNode.getIdentifier()).thenReturn("imageName");
-            when(mockSessionFactory.getJcrSession().getNodeByIdentifier("imageName")).thenReturn(imageNode);
-
-        } catch (RepositoryException e) {
-            //This cannot happen
-            e.printStackTrace();
-        }
-
-        return imageNode;
-    }
-
 }

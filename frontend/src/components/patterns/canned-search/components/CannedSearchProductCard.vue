@@ -5,6 +5,7 @@
         :lg="slideCols.md"
         :xl="slideCols.lg"
         class="vs-carousel-slide__card"
+        :aria-disabled="!isVisible(slideIndex)"
     >
         <div
             class="vs-product-card"

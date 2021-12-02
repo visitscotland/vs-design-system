@@ -108,6 +108,6 @@
       /visitscotland:items:
         jcr:primaryType: visitscotland:MegalinkItem
         visitscotland:feature: false
-        /visitscotland:link:
+        /visitscotland:links:
           jcr:primaryType: hippo:mirror
           hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
