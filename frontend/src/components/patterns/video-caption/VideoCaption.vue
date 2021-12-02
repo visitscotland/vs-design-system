@@ -36,8 +36,7 @@
             </p>
 
             <p class="vs-video-caption__duration">
-                <!-- @slot Slot for video duration text -->
-                <slot name="video-duration" />
+                {{ videoDetails.videoDurationMsg }}
             </p>
         </div>
     </div>
@@ -47,6 +46,8 @@
 import VsButton from '@components/elements/button/Button';
 import VsIcon from '@components/elements/icon/Icon';
 import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
+import videoStore from '../../../stores/video.store';
+
 /**
  * Caption to be used for opening a video
  *
@@ -76,6 +77,25 @@ export default {
         withToggleBtn: {
             type: Boolean,
             default: false,
+        },
+        /**
+         * The YouTube ID for the video
+         */
+        videoId: {
+            type: String,
+            required: true,
+        },
+    },
+    computed: {
+        videoDetails() {
+            return videoStore.getters.getVideoDetails(this.videoId);
+        },
+        videoLoaded() {
+            if (typeof this.videoDetails !== 'undefined' && this.videoDetails.videoDuration > 0) {
+                return true;
+            }
+
+            return false;
         },
     },
     methods: {
@@ -198,6 +218,7 @@ export default {
     <VsVideoCaption
         class="mb-5"
         videoBtnText="Play video"
+        videoId="c05sg3G4oA4"
     >
         <template slot="video-title">
             This is the video title
@@ -215,6 +236,7 @@ export default {
         withToggleBtn
         class="mb-5"
         videoBtnText="Play video"
+        videoId="c05sg3G4oA4"
     >
         <template slot="video-title">
             This video caption has a toggle button
@@ -232,6 +254,7 @@ export default {
         <VsVideoCaption
             withToggleBtn
             videoBtnText="Play video"
+            videoId="c05sg3G4oA4"
         >
             <template slot="video-title">
                 This is the video title
@@ -246,5 +269,10 @@ export default {
             </template>
         </VsVideoCaption>
     </div>
+
+    <VsVideo
+        video-id="c05sg3G4oA4"
+        class="mb-8 d-none"
+    />
     ```
 </docs>
