@@ -1,6 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
 import VsVideoCaption from '../VideoCaption';
 
+jest.mock('../../../../stores/video.store.js');
+
 const videoTitleSlot = 'Video title';
 const videoDurationSlot = '3 minute video';
 const alertMsgSlot = 'This is a no-js alert';
@@ -33,16 +35,25 @@ describe('VsVideoCaption', () => {
             expect(wrapper.html()).toContain(videoTitleSlot);
         });
 
-        it('should render the video length slot content', () => {
-            const wrapper = factoryShallowMount();
-
-            expect(wrapper.html()).toContain(videoDurationSlot);
-        });
-
         it('should render the video alert message slot content', () => {
             const wrapper = factoryShallowMount();
 
             expect(wrapper.html()).toContain(alertMsgSlot);
+        });
+    });
+
+    describe(':computed', () => {
+        it('should get the video details', () => {
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.vm.videoDetails.videoId).toBe('123456');
+        });
+
+        it('renders the video duration', () => {
+            const wrapper = factoryShallowMount();
+            const durationText = wrapper.find('.vs-video-caption__duration');
+
+            expect(durationText.text()).toBe('1 minute video');
         });
     });
 
