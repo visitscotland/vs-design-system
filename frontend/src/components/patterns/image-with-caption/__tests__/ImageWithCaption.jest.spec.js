@@ -8,12 +8,14 @@ const videoTitleSlot = 'Video title';
 const videoDurationSlot = 'Video duration';
 const captionSlot = 'Image caption';
 const imageSrcValue = 'visitscotland';
+const youtubeId = 'abc213';
 
 const factoryShallowMount = (propsData) => shallowMount(VsImageWithCaption, {
     propsData: {
         imageSrc: imageSrcValue,
         isVideo: true,
         playButtonText: 'Play video',
+        videoId: youtubeId,
         ...propsData,
     },
     slots: {
@@ -94,6 +96,13 @@ describe('VsImageWithCaption', () => {
             });
 
             expect(wrapper.find('.vs-image-with-caption__video-caption-wrapper').exists()).toBe(true);
+        });
+
+        it('should pass the correct videoID via prop to the video caption component', () => {
+            const wrapper = factoryShallowMount();
+            const videoCaption = wrapper.find('vsvideocaption-stub');
+
+            expect(videoCaption.html()).toContain(youtubeId);
         });
     });
 
