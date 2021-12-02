@@ -3,6 +3,7 @@
         class="vs-mega-nav-list-item"
         data-test="vs-mega-nav-list-item"
         :class="navItemClasses"
+        role="presentation"
     >
         <VsLink
             :href="href"

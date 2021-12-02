@@ -5,6 +5,7 @@
         :lg="slideCols.md"
         :xl="slideCols.lg"
         data-test="vs-carousel-slide"
+        :aria-disabled="!isVisible(slideIndex)"
     >
         <div class="vs-carousel-slide">
             <VsStretchedLinkCard
