@@ -7,6 +7,7 @@
         size="xl"
         hide-footer
         hide-header
+        :static="isVideoModal"
     >
         <VsContainer>
             <VsRow>
@@ -82,6 +83,14 @@ export default {
         closeBtnText: {
             type: String,
             required: true,
+        },
+        /**
+         * Whether or not the modal contains an embedded
+         * video
+         */
+        isVideoModal: {
+            type: Boolean,
+            default: false,
         },
     },
     methods: {
