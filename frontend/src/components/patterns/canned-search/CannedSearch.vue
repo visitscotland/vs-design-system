@@ -8,9 +8,13 @@
         </template>
         <template
             slot="vsModuleWrapperIntro"
-            v-if="intro"
+            v-if="!!this.$slots['vsCannedSearchIntro']"
         >
-            {{ intro }}
+            <!--
+                @slot Holds optional introduction copy
+                Expects html
+            -->
+            <slot name="vsCannedSearchIntro" />
         </template>
         <div
             class="vs-canned-search"
@@ -267,13 +271,6 @@ export default {
             default: '',
         },
         /**
-        * Optional intro copy that appears above the canned search carousel
-        */
-        intro: {
-            type: String,
-            default: '',
-        },
-        /**
         * Accessible text for next carousel control, passed to vs-carousel
         */
         carouselNextText: {
@@ -453,8 +450,10 @@ export default {
     <VsCannedSearch
         apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
         heading="B&Bs, guesthouses and hostels in Loch Lomond and The Trossachs national park"
-        intro="Find your perfect place to stay"
     >
+        <template slot="vsCannedSearchIntro">
+            <p>Find your perfect place to stay</p>
+        </template>
         <template slot="vsCannedSearchButtons">
             <VsButton
                 href="https://www.visitscotland.com"
