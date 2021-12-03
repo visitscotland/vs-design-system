@@ -651,14 +651,5 @@ export default {
             </VsCaption>
         </VsImageWithCaption>
     </BsWrapper>
-
-    <VsButton
-        id="toggle-btn"
-        class="mb-4"
-        ref="btnShow"
-        @click.native="$root.$emit('bv::show::modal', 'videoModal', '#btnShow')"
-    >
-        Play Video
-    </VsButton>
   ```
 </docs>
