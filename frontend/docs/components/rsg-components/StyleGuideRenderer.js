@@ -25,42 +25,37 @@ const styles = ({ font, maxWidth, space, color }) => ({
         padding: space[2],
         borderBottom: [[1, color.border, 'solid']],
     },
-
     navBar: {
         display: 'flex',
     },
-
     sidebar: {
         flex: '0 0 auto',
     },
-
     sections: {
         flex: '0 0 auto',
     },
-
     contentWrapper: {
 		maxWidth,
 		margin: [[0, 'auto']],
 		display: 'block',
 	},
-
     content:{
         display: 'flex',
         flexWrap: 'wrap',
     },
-
+    mainMenuList: {
+        margin: '0',
+    },
+    mainMenuListItem: {
+        listStyleType: 'none',
+        display: 'inline-block',
+    },
     components: {
         overflow: 'auto', // To prevent the pane from growing out of the screen
     },
-
-    footer: {
-    },
-
-    footerText:{
-    },
-
-    mainContent:{
-    },
+    footer: {},
+    footerText:{},
+    mainContent:{},
 });
 
 export function StyleGuideRenderer({
@@ -81,19 +76,25 @@ export function StyleGuideRenderer({
                             <div className={classes.logoWrapper}>
                                 <Logo>{title}</Logo>
                             </div>
-                            <nav className={classes.nav}>
-                                <a
-                                    className={classes.headerLink}
-                                    href="https://vue-styleguidist.github.io"
-                                >
-                                    Docs
-                                </a>
-                                <a
-                                    className={classes.headerLink}
-                                    href="https://github.com/vue-styleguidist/vue-styleguidist"
-                                >
-                                    GitHub
-                                </a>
+                            <nav className={classes.nav} aria-label="sub-menu">
+                                <ul className={classes.mainMenuList}>
+                                    <li className={classes.mainMenuListItem}>
+                                        <a
+                                            className={classes.headerLink}
+                                            href="https://vue-styleguidist.github.io"
+                                        >
+                                            Docs
+                                        </a>
+                                    </li>
+                                    <li className={classes.mainMenuListItem}>
+                                        <a
+                                            className={classes.headerLink}
+                                            href="https://github.com/vue-styleguidist/vue-styleguidist"
+                                        >
+                                            GitHub
+                                        </a>
+                                    </li>
+                                </ul>
                             </nav>
                         </div>
                     </div>
