@@ -29,9 +29,10 @@ div.rsg--root-1 {
 // Main content
 main[class^='rsg--content'] {
     display: block; /* IE11 fix */
+    padding: $space-s $space-m;
     
-    @media (max-width: #{$docs-breakpoint}) {
-        padding: $space-s $space-m;
+    @media (min-width: #{$docs-breakpoint-lg}) {
+        padding: 0;
     }
 }
 
@@ -49,12 +50,17 @@ main section section > div > div[class^='rsg--root'] {
  --------------------------------------------- */
 
 // Link color
-div[class^='rsg--root'] a[class^='rsg--link'] {
+div[class^='rsg--root'] a[class^='rsg--link'], a {
     color: $docs-color-pink;
     text-decoration: underline;
 
     &:hover {
         text-decoration: none;
+    }
+
+    &:focus, &:focus-visible {
+        outline-offset: 0;
+        outline: 2px solid $docs-color-pink;
     }
 }
 
@@ -66,7 +72,6 @@ div[class^='rsg--wrapper'] > h2[class^='rsg--heading'] {
     border: 0;
     line-height: $line-height-s;
     width: 100%;
-    background: $docs-color-white;
     font-size: $size-xxxl;
     font-family: $font-heading;
     margin: 0 0 $space-xs;
@@ -102,7 +107,7 @@ h2[class^='rsg--heading'] {
         font-size: $size-xxl / 1.3;
     }
 
-    @media (max-width: #{$docs-breakpoint-small}) {
+    @media (max-width: #{$docs-breakpoint-sm}) {
         font-size: $size-xxl / 1.6;
     }
 
@@ -201,50 +206,104 @@ td[class^='rsg--cell'] p {
 
 /* HEADER BAR/NAV
  --------------------------------------------- */
- div[class^=rsg--mainContent] > header[class^='rsg--header']{
+div[class^=rsg--mainContent] > header[class^='rsg--header']{
     border-top: 10px solid $color-purple;
-    padding: $space-m $space-xl;
-    margin-bottom: 2rem;
-}
+    padding: $space-m $space-m;
+    margin-bottom: $space-base;
 
- div[class^='rsg--navBar'] {
-    align-items: center;
+    @media (min-width: #{$docs-breakpoint}) {
+        margin-bottom: 2rem;
+    }
 
-    @media (max-width: #{$docs-breakpoint}) {
+    @media (min-width: #{$docs-breakpoint-xl}) {
+        padding: $space-m $space-xl;
+    }
+
+    div[class^='rsg--navBar'] {
         align-items: center;
         flex-direction: column;
+
+        @media (min-width: #{$docs-breakpoint-xl}) {
+            flex-direction: row;
+        }
     }
+
+    nav[class^='rsg--nav'] {
+        @media (min-width: #{$docs-breakpoint-xl}) {
+            margin-left: auto;
+        }
+    }
+
+    div[class^='rsg--logo'] {
+        padding: 0;
+        border-bottom: 0;
+        line-height: 0;
+        margin-bottom: $space-base;
+
+        @media (min-width: #{$docs-breakpoint-xl}) {
+            margin-bottom: 0;
+        }
+    }
+
+    li[class^='rsg--mainMenuListItem'] {
+        margin: 0 $space-m;
+
+        &:first-of-type{
+            margin-left: 0;
+        }
+
+        &:last-of-type{
+            margin-right: 0;
+        }
+
+        a[class^='rsg--headerLink'] {
+            color: $docs-color-grey-dark;
+            cursor: pointer;
+            font-size: $font-size-lg;
+    
+            &:last-of-type{
+                margin-right: 0;
+            }
+    
+            &:hover, &:active {
+                color: $docs-color-pink;
+            }
+        }
+    }
+    
+    
 }
 
-nav[class^='rsg--nav'] {
-    margin-left: auto;
 
-    @media (max-width: #{$docs-breakpoint}) {
-        margin: 0;
-    }
-}
 
-a[class^='rsg--headerLink'] {
-    margin: 0 1.5em;
-    color: $docs-color-grey-dark;
-    cursor: pointer;
-    font-size: $font-size-lg;
-
-    &:last-of-type{
-        margin-right: 0;
-    }
-
-    &:hover, &:active {
-        color: $docs-color-pink;
-    }
-}
-
-div[class^='rsg--logo'] {
+/* SECTIONS
+ --------------------------------------------- */
+ div[class^='rsg--sections'] {
+    width: 100%;
+    order: 1;
     padding: 0;
-    border-bottom: 0;
-    line-height: 0;
-}
 
+    @media (min-width: #{$docs-breakpoint-lg}) {
+        padding: 0 $space-m;
+        width: 68%;
+        order: 2;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xl}) {
+        padding-left: $space-l;
+        padding-right: $space-xl;
+        width: 65%;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xxl}) {
+        padding-left: $space-xl;
+        width: 70%;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xxxl}) {
+        width: 75%;
+    }
+}
 
 
 
@@ -257,14 +316,27 @@ div[class^='rsg--sidebar'] {
     border: 0;
     order: 2;
     width: 100%;
-    padding: $space-s $space-xl $space-l;
+    padding: 0;
+    margin-bottom: $space-l;
 
-    @media (min-width: #{$docs-breakpoint}) {
+    @media (min-width: #{$docs-breakpoint-lg}) {
+        padding: $space-s $space-m $space-l;
+        width: 32%;
         order: 1;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xl}) {
+        padding-left: $space-xl;
+        padding-right: $space-l;
+        width: 35%;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xxl}) {
+        padding-right: $space-xl;
         width: 30%;
     }
 
-    @media (min-width: #{$docs-breakpoint-lg}) {
+    @media (min-width: #{$docs-breakpoint-xxxl}) {
         width: 25%;
     }
 
@@ -291,11 +363,15 @@ div[class^='rsg--sidebar'] {
         font-weight: normal;
         color: $docs-color-grey-dark;
         display: block;
-        font-size: $size-l;
+        font-size: $size-base;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         text-decoration: none;
+
+        @media (min-width: #{$docs-breakpoint-xl}) {
+            font-size: $size-l;
+        }
 
         &:hover, &:active {
             color: $docs-color-pink;
@@ -328,28 +404,16 @@ div[class^='rsg--sidebar'] {
         ul {
             padding-left: $space-s;
             line-height: $line-height-s;
-            
-            @media (max-width: #{$docs-breakpoint-small}) {
-                padding: 0 0 0 $space-l;
-                width: 90%;
-
-                // Sidebar sub-list item
-                li {
-                    display: inline;
-                    line-height: $line-height-m;
-                }
-            }
 
             // Sidebar second level link
             a[class*="rsg--link"] {
-                font-size: $size-base;
+                font-size: $size-m;
                 font-weight: $weight-normal;
                 -webkit-font-smoothing: subpixel-antialiased;
                 -moz-osx-font-smoothing: auto;
-                
-                @media (max-width: #{$docs-breakpoint-small}) {
-                    float: left;
-                    padding: 0 $space-xs 0 0;
+
+                @media (min-width: #{$docs-breakpoint-xl}) {
+                    font-size: $size-base;
                 }
             }
 
@@ -421,25 +485,6 @@ p[class^='rsg--version'] {
     letter-spacing: 1px;
     font-size: $size-xs;
     border-radius: $radius-default;
-}
-
-
-
-/* SECTIONS
- --------------------------------------------- */
-div[class^='rsg--sections'] {
-    width: 100%;
-    order: 1;
-    padding: 0 $space-xl;
-
-    @media (min-width: #{$docs-breakpoint}) {
-        order: 2;
-        width: 70%;
-    }
-
-    @media (min-width: #{$docs-breakpoint-lg}) {
-        width: 75%;
-    }
 }
 
 
