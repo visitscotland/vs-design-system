@@ -660,34 +660,5 @@ export default {
     >
         Play Video
     </VsButton>
-
-    <VsModal
-        modalId="videoModal"
-        closeBtnText="Close"
-        isVideoModal
-    >
-        <VsRow>
-            <VsCol cols="12">
-                <VsVideo
-                    video-id="c05sg3G4oA4"
-                    class="mb-8"
-                />
-            </VsCol>
-
-            <VsCol
-                cols="10"
-                offset="1"
-            >
-                <VsRichTextWrapper>
-                    <p>
-                        Discover our incredible castles from a new perspective.
-                        This incredible drone footage shows castles from Dumfries &
-                        Galloway to Wick on the north coastline.
-                    </p>
-                </VsRichTextWrapper>
-            </VsCol>
-        </VsRow>
-    </VsModal>
-
   ```
 </docs>
