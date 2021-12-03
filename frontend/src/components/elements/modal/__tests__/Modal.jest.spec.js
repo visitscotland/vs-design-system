@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createWrapper } from '@vue/test-utils';
 
 import VsModal from '../Modal';
 
@@ -20,6 +20,14 @@ describe('VsModal', () => {
         const wrapper = factoryShallowMount();
 
         expect(wrapper.element.tagName).toBe('BMODAL-STUB');
+    });
+
+    it('should emit `video-controls` when the modal is shown', () => {
+        const wrapper = factoryShallowMount();
+        const rootWrapper = createWrapper(wrapper.vm.$root);
+        rootWrapper.vm.$emit('bv::modal::shown');
+
+        expect(rootWrapper.emitted('video-controls')).toBeTruthy();
     });
 
     describe(':props', () => {
