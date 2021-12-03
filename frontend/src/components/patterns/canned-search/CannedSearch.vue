@@ -1,5 +1,7 @@
 <template>
-    <VsModuleWrapper>
+    <VsModuleWrapper
+        v-show="products.length"
+    >
         <template
             slot="vsModuleWrapperHeading"
             v-if="heading"
