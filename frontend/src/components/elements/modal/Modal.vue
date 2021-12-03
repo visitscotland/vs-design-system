@@ -94,9 +94,11 @@ export default {
         },
     },
     mounted() {
-        this.$root.$on('bv::modal::shown', (bvEvent, modalId) => {
-            this.$root.$emit('video-controls', 'play', modalId);
-        });
+        if (this.isVideoModal) {
+            this.$root.$on('bv::modal::shown', (bvEvent, modalId) => {
+                this.$root.$emit('video-controls', 'play', modalId);
+            });
+        }
     },
     methods: {
         /**
