@@ -2,11 +2,14 @@
     <div
         class="vs-video-caption"
         data-test="video-caption"
+        v-if="videoLoaded"
     >
         <VsButton
             class="vs-video-caption__button"
             icon="play"
             size="md"
+            ref="videoShow"
+            @click.native="emitShowModal"
         >
             {{ videoBtnText }}
         </VsButton>
@@ -101,6 +104,9 @@ export default {
     methods: {
         emitToggle() {
             this.$emit('toggleAction');
+        },
+        emitShowModal() {
+            this.$root.$emit('bv::show::modal', this.videoId, '#videoShow');
         },
     },
 };
@@ -236,7 +242,7 @@ export default {
         withToggleBtn
         class="mb-5"
         videoBtnText="Play video"
-        videoId="c05sg3G4oA4"
+        videoId="FlG6tbYaA88"
     >
         <template slot="video-title">
             This video caption has a toggle button
@@ -254,7 +260,7 @@ export default {
         <VsVideoCaption
             withToggleBtn
             videoBtnText="Play video"
-            videoId="c05sg3G4oA4"
+            videoId="FlG6tbYaA88"
         >
             <template slot="video-title">
                 This is the video title
@@ -270,9 +276,34 @@ export default {
         </VsVideoCaption>
     </div>
 
-    <VsVideo
-        video-id="c05sg3G4oA4"
-        class="mb-8 d-none"
-    />
+    <VsModal
+        modalId="c05sg3G4oA4"
+        closeBtnText="Close"
+        :isVideoModal="true"
+    >
+        <VsRow>
+            <VsCol cols="12">
+                <VsVideo
+                    video-id="c05sg3G4oA4"
+                    class="mb-8"
+                />
+            </VsCol>
+        </VsRow>
+    </VsModal>
+
+    <VsModal
+        modalId="FlG6tbYaA88"
+        closeBtnText="Close"
+        :isVideoModal="true"
+    >
+        <VsRow>
+            <VsCol cols="12">
+                <VsVideo
+                    video-id="FlG6tbYaA88"
+                    class="mb-8"
+                />
+            </VsCol>
+        </VsRow>
+    </VsModal>
     ```
 </docs>

@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createWrapper } from '@vue/test-utils';
 import VsVideoCaption from '../VideoCaption';
 
 jest.mock('../../../../stores/video.store.js');
@@ -82,12 +82,20 @@ describe('VsVideoCaption', () => {
     });
 
     describe(':methods', () => {
-        it('emits `toggleAction` when clicked', async() => {
+        it('emits `toggleAction` when emitToggle method is called', async() => {
             const wrapper = factoryShallowMount();
             wrapper.vm.emitToggle();
             await wrapper.vm.$nextTick();
 
             expect(wrapper.emitted().toggleAction).toBeTruthy();
+        });
+
+        it('emits `bv::show::modal` when emitShowModal method is called', async() => {
+            const wrapper = factoryShallowMount();
+            const rootWrapper = createWrapper(wrapper.vm.$root);
+            wrapper.vm.emitShowModal();
+            await wrapper.vm.$nextTick();
+            expect(rootWrapper.emitted('bv::show::modal')).toBeTruthy();
         });
     });
 });
