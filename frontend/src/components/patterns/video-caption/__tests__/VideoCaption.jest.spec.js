@@ -8,7 +8,7 @@ const videoDurationSlot = '3 minute video';
 const alertMsgSlot = 'This is a no-js alert';
 const buttonText = 'Button text';
 
-const factoryShallowMount = (propsData) => shallowMount(VsVideoCaption, {
+const factoryShallowMount = (propsData, computedData) => shallowMount(VsVideoCaption, {
     slots: {
         'video-title': videoTitleSlot,
         'video-duration': videoDurationSlot,
@@ -17,7 +17,11 @@ const factoryShallowMount = (propsData) => shallowMount(VsVideoCaption, {
     propsData: {
         videoBtnText: buttonText,
         withToggleBtn: true,
+        videoId: '123456',
         ...propsData,
+    },
+    computed: {
+        ...computedData,
     },
 });
 
@@ -54,6 +58,34 @@ describe('VsVideoCaption', () => {
             const durationText = wrapper.find('.vs-video-caption__duration');
 
             expect(durationText.text()).toBe('1 minute video');
+        });
+
+        it('should show the content if a video has been loaded', () => {
+            const videoData = {
+                videoId: '123456',
+                videoDurationMsg: '1 minute video',
+                videoDuration: 55,
+            };
+
+            const wrapper = factoryShallowMount({
+                computed: {
+                    videoDetails() {
+                        return videoData;
+                    },
+                },
+            });
+
+            expect(wrapper.find('.vs-video-caption').exists()).toBe(true);
+        });
+
+        it('should not show the content if a video has not been loaded', () => {
+            const wrapper = factoryShallowMount(null, {
+                videoLoaded() {
+                    return false;
+                },
+            });
+
+            expect(wrapper.find('.vs-video-caption').exists()).toBe(false);
         });
     });
 
