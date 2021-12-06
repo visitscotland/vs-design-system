@@ -4,7 +4,6 @@
             <li>
                 <VsIcon
                     name="docs/ready"
-                    custom-colour="green"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -14,7 +13,6 @@
             <li>
                 <VsIcon
                     name="docs/review"
-                    custom-colour="orange"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -24,7 +22,6 @@
             <li>
                 <VsIcon
                     name="docs/deprecated"
-                    custom-colour="red"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -34,7 +31,6 @@
             <li>
                 <VsIcon
                     name="docs/prototype"
-                    custom-colour="blue"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -74,7 +70,7 @@
                     class="component"
                 >
                     <td v-if="component.name">
-                        <code class="name">{{ component.name }}</code>
+                        {{ component.name }}
                     </td>
                     <td v-else>
                         N/A
@@ -208,7 +204,7 @@ export default {
         }
 
         thead th {
-            padding: $space-s;
+            padding: 14px $space-s;
             background: $docs-color-purple;
             font-size: $size-m;
             font-weight: $weight-normal;
@@ -231,58 +227,61 @@ export default {
             }
         }
 
-        tr {
-            border-bottom: 1px solid #dfe3e6;
+        tbody{
+            td {
+                font-size: $size-m;
+                padding: 14px $space-s;
 
-            &:last-child {
-                border: 0;
+                &:first-child {
+                    white-space: nowrap;
+                }
+            }
+
+            tr{
+                &:nth-of-type(even){
+                    background: #F3FAFA;
+                }
             }
         }
-        td {
-            font-size: $size-s;
-            padding: $space-s;
 
-            &:first-child {
-                font-weight: $weight-bold;
-                white-space: nowrap;
-            }
-        }
         .status-list {
-            margin: 0 0 $space-m;
+            margin: 0 0 $space-base;
             overflow: hidden;
             padding: 0;
             list-style: none;
             flex-direction: row;
             align-items: center;
-            display: flex;
+            display: block;
 
-            @media (max-width: 1000px) {
-                display: block;
+            @media (min-width: $docs-breakpoint-lg) {
+                display: flex;
             }
 
             li {
-                margin: 0 $space-m 0 0;
-                color: shade($docs-color-silver, 20%);
+                color: $docs-color-grey-dark;
                 font-size: $size-s;
                 align-items: center;
                 display: flex;
+                width: 50%;
+                float: left;
+                margin: 0;
 
-                @media (max-width: 1000px) {
-                    width: 50%;
-                    float: left;
-                    margin: 0;
+                @media (min-width: $docs-breakpoint-lg) {
+                    width: auto;
+                    margin: 0 $space-m 0 0;
+                    float: none;
                 }
 
                 svg,
                 span {
-                    margin: 0 calc(#{$space-s} / 2) 0 0;
+                    margin: 0 calc(#{$space-s} / 4) 0 0;
                 }
 
                 p {
-                    margin-bottom: 0;
+                    margin: $space-xs $space-xs 0;
 
-                    @media (max-width: 1000px) {
-                        margin: $space-xs;
+                    @media (min-width: $docs-breakpoint-lg) {
+                        margin: 0;
                     }
                 }
             }

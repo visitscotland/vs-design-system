@@ -748,13 +748,6 @@ div[class^='rsg--root'] div[class^='rsg--tabs'] {
  --------------------------------------------- */
 
 // Global tr setting so that vueds custom components use this as well
-tr {
-    transition: background-color 0.1s ease;
-    &:hover {
-        background: rgba($docs-color-cloud, 0.3);
-    }
-}
-
 table[class^='rsg--table'] {
     border-collapse: collapse;
     border-spacing: 0;
