@@ -20,6 +20,9 @@
 [visitscotland:ArticleSection] > hippo:compound, hippostd:relaxed
   orderable
 
+[visitscotland:Banner] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
+  orderable
+
 [visitscotland:CMSLink] > hippo:compound, hippostd:relaxed
   orderable
 
