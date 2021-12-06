@@ -118,11 +118,16 @@ export default {
          * Sets up listener for play/pause events
          * from $root
          */
-        this.$root.$on('video-controls', (action) => {
-            if (action === 'play') {
-                this.playVideo();
-            } else if (action === 'pause') {
-                this.pauseVideo();
+        this.$root.$on('video-controls', (action, id) => {
+            if (id === this.videoId) {
+                // timeout allows for video in modal to appear
+                setTimeout(() => {
+                    if (action === 'play') {
+                        this.playVideo();
+                    } else if (action === 'pause') {
+                        this.pauseVideo();
+                    }
+                }, 500);
             }
         });
     },
@@ -219,17 +224,32 @@ export default {
             </VsCol>
         </VsRow>
         <VsRow>
-            <VsCol>
+            <VsCol md="6">
                 <VsButton
-                    @click.native="$root.$emit('video-controls', 'play')"
-                    @keydown="$root.$emit('video-controls', 'play')"
+                    @click.native="$root.$emit('video-controls', 'play', 'c05sg3G4oA4')"
+                    @keydown="$root.$emit('video-controls', 'play', 'c05sg3G4oA4')"
                 >
                     Play
                 </VsButton>
 
                 <VsButton
-                    @click.native="$root.$emit('video-controls', 'pause')"
-                    @keydown="$root.$emit('video-controls', 'pause')"
+                    @click.native="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
+                    @keydown="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
+                >
+                    Pause
+                </VsButton>
+            </VsCol>
+            <VsCol md="6">
+                <VsButton
+                    @click.native="$root.$emit('video-controls', 'play', 'dKI8IEnqvbU')"
+                    @keydown="$root.$emit('video-controls', 'play', 'dKI8IEnqvbU')"
+                >
+                    Play
+                </VsButton>
+
+                <VsButton
+                    @click.native="$root.$emit('video-controls', 'pause', 'dKI8IEnqvbU')"
+                    @keydown="$root.$emit('video-controls', 'pause', 'dKI8IEnqvbU')"
                 >
                     Pause
                 </VsButton>
