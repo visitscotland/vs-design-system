@@ -316,6 +316,7 @@ const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-iti
         slot="vsIntroHero"
         isHeroImage
         isVideo
+        videoId="c05sg3G4oA4"
         playButtonText="Play the video"
         toggleButtonText="Toggle image caption"
         :altText="itineraries.sampleItinerary.image.altText"
@@ -543,5 +544,20 @@ const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-iti
         </VsRow>
     </VsContainer>
 </VsPageIntro>
+
+<VsModal
+    modalId="c05sg3G4oA4"
+    closeBtnText="Close"
+    :isVideoModal="true"
+>
+    <VsRow>
+        <VsCol cols="12">
+            <VsVideo
+                video-id="c05sg3G4oA4"
+                class="mb-8"
+            />
+        </VsCol>
+    </VsRow>
+</VsModal>
   ```
 </docs>
