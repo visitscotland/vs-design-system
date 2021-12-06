@@ -118,16 +118,16 @@ export default {
          * Sets up listener for play/pause events
          * from $root
          */
-        this.$root.$on('video-controls', (action, id) => {
+        this.$root.$on('video-controls', (action, id, type) => {
             if (id === this.videoId) {
-                // timeout allows for video in modal to appear
-                setTimeout(() => {
-                    if (action === 'play') {
+                if (action === 'play' && type === 'modal') {
+                    // timeout allows for video in modal to appear
+                    setTimeout(() => {
                         this.playVideo();
-                    } else if (action === 'pause') {
-                        this.pauseVideo();
-                    }
-                }, 500);
+                    }, 1000);
+                } else if (action === 'pause') {
+                    this.pauseVideo();
+                }
             }
         });
     },
