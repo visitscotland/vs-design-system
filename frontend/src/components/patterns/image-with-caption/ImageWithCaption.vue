@@ -45,6 +45,7 @@
                     :video-btn-text="playButtonText"
                     :with-toggle-btn="true"
                     @toggleAction="toggleCaption"
+                    :video-id="videoId"
                 >
                     <!-- @slot Slot for the video alert message -->
                     <template slot="video-alert">
@@ -156,6 +157,14 @@ export default {
          * The text for the video play button
          */
         playButtonText: {
+            type: String,
+            default: '',
+        },
+
+        /**
+         * The YouTube video ID
+         */
+        videoId: {
             type: String,
             default: '',
         },
@@ -642,6 +651,5 @@ export default {
             </VsCaption>
         </VsImageWithCaption>
     </BsWrapper>
-
   ```
 </docs>

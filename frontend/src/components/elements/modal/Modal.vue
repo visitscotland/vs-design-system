@@ -7,6 +7,7 @@
         size="xl"
         hide-footer
         hide-header
+        :static="isVideoModal"
     >
         <VsContainer>
             <VsRow>
@@ -83,6 +84,21 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * Whether or not the modal contains an embedded
+         * video
+         */
+        isVideoModal: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    mounted() {
+        if (this.isVideoModal) {
+            this.$root.$on('bv::modal::shown', (bvEvent, modalId) => {
+                this.$root.$emit('video-controls', 'play', modalId);
+            });
+        }
     },
     methods: {
         /**
@@ -161,13 +177,13 @@ export default {
         id="toggle-btn"
         class="mb-4"
         ref="btnShow"
-        @click.native="$root.$emit('bv::show::modal', 'videoModal', '#btnShow')"
+        @click.native="$root.$emit('bv::show::modal', 'c05sg3G4oA4', '#btnShow')"
     >
         Play Video
     </VsButton>
 
     <VsModal
-        modalId="videoModal"
+        modalId="c05sg3G4oA4"
         closeBtnText="Close"
     >
         <VsRow>
