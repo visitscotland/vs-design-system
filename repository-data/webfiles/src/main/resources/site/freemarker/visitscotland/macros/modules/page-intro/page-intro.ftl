@@ -28,12 +28,6 @@
         <#assign themeName = themeCalculator(introTheme, "", [])>
     </#if>
 
-    <#if (heroVideo)??>
-        <#assign heroExists = "true">
-    <#else>
-        <#assign heroExists = "false">
-    </#if>
-
     <#if content.heroImage??>
         <@hst.link var="hero" hippobean=content.heroImage.original/>
     </#if>
