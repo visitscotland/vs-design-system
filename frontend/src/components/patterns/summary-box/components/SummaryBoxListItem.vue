@@ -25,7 +25,7 @@
                     size="xl"
                 />
             </div>
-            <div class="text-wrapper d-block w-auto pt-1">
+            <div class="text-wrapper d-block w-auto ml-1 pl-1">
                 <span>{{ iconLabel }}</span>
             </div>
         </div>
@@ -143,8 +143,6 @@ export default {
 
 .vs-summary-box-item__icon {
     bottom: 35%;
-    flex-direction: column;
-    text-align: center;
 
     .icon-wrapper {
         max-width: 40%;
@@ -154,7 +152,7 @@ export default {
     .text-wrapper {
         font-size: $small-font-size;
         line-height: $line_height_xs;
-        max-width: 90%;
+        max-width: 50%;
         word-wrap: break-word;
         flex-basis: 0;
 
