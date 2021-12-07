@@ -4,6 +4,5 @@
 <#macro video videoId>
     <vs-video
         video-id="${videoId}"
-        class="mb-8"
     />
 </#macro>
