@@ -145,24 +145,20 @@ describe('VsVideo', () => {
             const mockPlayMethod = jest.fn();
             wrapper.vm.playVideo = mockPlayMethod;
 
-            wrapper.vm.$root.$emit('video-controls', 'play', videoId);
+            wrapper.vm.$root.$emit('video-controls', 'play', videoId, 'modal');
 
             // wait for setTimeout to run
-            jest.advanceTimersByTime(500);
+            jest.advanceTimersByTime(1500);
 
             expect(mockPlayMethod).toHaveBeenCalled();
         });
 
         it('should call the pauseVideo method when receiving emitted event', () => {
-            jest.useFakeTimers();
             const wrapper = factoryShallowMount();
             const mockPauseMethod = jest.fn();
             wrapper.vm.pauseVideo = mockPauseMethod;
 
             wrapper.vm.$root.$emit('video-controls', 'pause', videoId);
-
-            // wait for setTimeout to run
-            jest.advanceTimersByTime(500);
 
             expect(mockPauseMethod).toHaveBeenCalled();
         });
