@@ -6524,7 +6524,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 379b86e5-872c-441c-bd30-aaf3f49054d6
         hippo:name: General page - standard layout
-        hippo:versionHistory: 556ead77-b401-4087-9d2c-a4d887df8db5
+        hippo:versionHistory: f1b97a5f-ee99-4b3f-9ce5-a4acb971af41
         /content[1]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable']
@@ -6534,11 +6534,12 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:28:17.650+01:00
-          hippostdpubwf:lastModificationDate: 2021-06-25T14:54:04.339+01:00
+          hippostdpubwf:lastModificationDate: 2021-12-06T10:23:33.221Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 19c532c1-9b4f-444d-b48a-d38aa9447883
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
           visitscotland:newsletter: true
           visitscotland:seoDescription: Meta description
           visitscotland:seoNoIndex: false
@@ -6560,6 +6561,11 @@
               <p>The standard layout for the general page has a hero image with an intro block below it. Below that, different configurations of modules can be added. These include megalinks, content modules and iCentre modules. The template includes an optional 'Other Things You Might Like' module which can be used to link to other parts of the site.</p>
 
               <p>Ut interdum molestie ligula, vel faucibus sem porttitor eget. In sed ligula turpis. Maecenas a egestas dolor, suscipit suscipit lacus. Donec molestie, ipsum sed consectetur sollicitudin, lorem felis fermentum arcu, quis semper nisl arcu at nisl. Quisque ac felis id erat ultricies tincidunt.</p>
+          /visitscotland:heroVideo:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
         /content[2]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -6569,11 +6575,12 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:28:17.650+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-27T09:30:29.081+01:00
+          hippostdpubwf:lastModificationDate: 2021-12-06T10:24:59.746Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 19c532c1-9b4f-444d-b48a-d38aa9447883
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
           visitscotland:newsletter: true
           visitscotland:seoDescription: Meta description
           visitscotland:seoNoIndex: false
@@ -6595,6 +6602,11 @@
               <p>The standard layout for the general page has a hero image with an intro block below it. Below that, different configurations of modules can be added. These include megalinks, content modules and iCentre modules. The template includes an optional 'Other Things You Might Like' module which can be used to link to other parts of the site.</p>
 
               <p>Ut interdum molestie ligula, vel faucibus sem porttitor eget. In sed ligula turpis. Maecenas a egestas dolor, suscipit suscipit lacus. Donec molestie, ipsum sed consectetur sollicitudin, lorem felis fermentum arcu, quis semper nisl arcu at nisl. Quisque ac felis id erat ultricies tincidunt.</p>
+          /visitscotland:heroVideo:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
         /content[3]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable']
@@ -6604,12 +6616,13 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-24T12:28:17.650+01:00
-          hippostdpubwf:lastModificationDate: 2021-05-27T09:30:29.081+01:00
+          hippostdpubwf:lastModificationDate: 2021-12-06T10:24:59.746Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-05-27T09:31:11.892+01:00
+          hippostdpubwf:publicationDate: 2021-12-06T10:25:03.380Z
           hippotranslation:id: 19c532c1-9b4f-444d-b48a-d38aa9447883
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
           visitscotland:newsletter: true
           visitscotland:seoDescription: Meta description
           visitscotland:seoNoIndex: false
@@ -6631,6 +6644,11 @@
               <p>The standard layout for the general page has a hero image with an intro block below it. Below that, different configurations of modules can be added. These include megalinks, content modules and iCentre modules. The template includes an optional 'Other Things You Might Like' module which can be used to link to other parts of the site.</p>
 
               <p>Ut interdum molestie ligula, vel faucibus sem porttitor eget. In sed ligula turpis. Maecenas a egestas dolor, suscipit suscipit lacus. Donec molestie, ipsum sed consectetur sollicitudin, lorem felis fermentum arcu, quis semper nisl arcu at nisl. Quisque ac felis id erat ultricies tincidunt.</p>
+          /visitscotland:heroVideo:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
     /general-simple:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']

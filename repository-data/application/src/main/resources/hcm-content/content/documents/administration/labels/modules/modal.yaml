@@ -1,0 +1,52 @@
+/content/documents/administration/labels/modules/modal:
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+  jcr:uuid: 00668580-eeff-4e06-b1b1-335db5cdb96f
+  hippo:name: Modal
+  hippo:versionHistory: 5329b53a-a1d9-4ab0-9b99-1930be172f7c
+  /modal[1]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 9206738e-e14b-4505-ac3e-3ad6f9b63073
+    hippo:availability: []
+    hippostd:retainable: false
+    hippostd:state: draft
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-12-06T14:02:45.014Z
+    hippostdpubwf:lastModificationDate: 2021-12-06T14:16:02.243Z
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['']
+    resourcebundle:id: modal
+    resourcebundle:keys: [modal.close]
+    resourcebundle:messages: [Close]
+  /modal[2]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:uuid: 8af94583-dfd9-4480-a99d-1e1c8b0c5e8d
+    hippo:availability: [preview]
+    hippostd:retainable: false
+    hippostd:state: unpublished
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-12-06T14:02:45.014Z
+    hippostdpubwf:lastModificationDate: 2021-12-06T14:16:10.823Z
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['']
+    resourcebundle:id: modal
+    resourcebundle:keys: [modal.close]
+    resourcebundle:messages: [Close]
+  /modal[3]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: b0653328-dfad-4a65-a49c-bce350539574
+    hippo:availability: [live]
+    hippostd:retainable: false
+    hippostd:state: published
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-12-06T14:02:45.014Z
+    hippostdpubwf:lastModificationDate: 2021-12-06T14:16:10.823Z
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2021-12-06T14:16:12.596Z
+    resourcebundle:descriptions: ['']
+    resourcebundle:id: modal
+    resourcebundle:keys: [modal.close]
+    resourcebundle:messages: [Close]
