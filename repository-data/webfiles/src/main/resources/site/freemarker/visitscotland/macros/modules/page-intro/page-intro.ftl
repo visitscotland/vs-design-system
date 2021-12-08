@@ -44,7 +44,7 @@
                     <#if (heroVideo)??>
                         <@modal
                             modalId="${heroVideo.youtubeId}"
-                            closeBtnText="${label('modal', 'modal.close')}"
+                            closeBtnText="${label('essentials.global', 'close')}"
                             isVideoModal="true"
                         >
                             <vs-row>

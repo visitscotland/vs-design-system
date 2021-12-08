@@ -1,5 +1,4 @@
 /content/documents/administration/labels/modules/travel-information-transports:
-  .meta:order-before: modal
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 81cf90d3-a427-4a6d-85f6-0de65794d5a9
