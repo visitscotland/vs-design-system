@@ -44,7 +44,7 @@
                 </p>
             </li>
         </ul>
-        <table>
+        <table class="rsg--table">
             <thead>
                 <tr>
                     <th v-if="show === 'all'">
@@ -186,64 +186,6 @@ export default {
     --------------------------------------------- */
 
     .component-status {
-        @include reset;
-        font-weight: $weight-normal;
-        line-height: $line-height-xs;
-        color: $docs-color-rich-black;
-        margin-bottom: $space-s;
-        font-style: normal;
-
-        @media (max-width: 1000px) {
-            overflow-x: auto;
-        }
-
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-            width: 100%;
-        }
-
-        thead th {
-            padding: 14px $space-s;
-            background: $docs-color-purple;
-            font-size: $size-m;
-            font-weight: $weight-normal;
-            color: $docs-color-white;
-            font-weight: $weight-semi-bold;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-align: left;
-            // Chrome has a bug related to thead, this only works on th:
-            position: -webkit-sticky;
-            position: sticky;
-            top: -1px;
-
-            &:first-child {
-                border-top-left-radius: $radius-m;
-            }
-
-            &:last-child {
-                border-top-right-radius: $radius-m;
-            }
-        }
-
-        tbody{
-            td {
-                font-size: $size-m;
-                padding: 14px $space-s;
-
-                &:first-child {
-                    white-space: nowrap;
-                }
-            }
-
-            tr{
-                &:nth-of-type(even){
-                    background: #F3FAFA;
-                }
-            }
-        }
-
         .status-list {
             margin: 0 0 $space-base;
             overflow: hidden;

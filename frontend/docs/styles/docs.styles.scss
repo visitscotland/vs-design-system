@@ -159,7 +159,7 @@ p[class^='rsg--para'] {
     code {
         -webkit-font-smoothing: subpixel-antialiased;
         -moz-osx-font-smoothing: auto;
-        background: tint($docs-color-grey, 75%);
+        background: tint(#F3FAFA, 75%);
         color: shade($docs-color-silver, 20%);
         padding: $space-xx-small;
         border-radius: $radius-default;
@@ -198,7 +198,7 @@ h4[class^='rsg--heading'] {
 
 // Paragraphs inside table cells
 td[class^='rsg--cell'] p {
-    font-size: $size-s;
+    font-size: $size-m;
     width: 100%;
 }
 
@@ -666,14 +666,13 @@ div[class^='rsg--tab'] {
 
 // Code highlighting elsewhere
 span[class^='rsg--type'],
-code[class^='rsg--code'] {
-    color: $docs-color-silver;
-}
-span[class^='rsg--name'] code[class^='rsg--code'],
+code[class^='rsg--code'],
+code[class^='rsg--name'], 
 code.name {
-    font-weight: $weight-bold;
-    color: shade($docs-color-silver, 50%);
+    font-size: $size-s;
+    color: $docs-color-grey-dark;
 }
+
 span[class^='rsg--type'] code[class^='rsg--code'],
 code.type {
     background: tint($docs-color-grey, 75%);
@@ -752,51 +751,63 @@ table[class^='rsg--table'] {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    th {
-        padding: $space-s $space-l $space-s $space-s;
-        font-size: $size-s;
-        font-weight: $weight-semi-bold;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        border-radius: 0;
-        background: $docs-color-cloud;
-        color: tint($docs-color-oxford-blue, 10%);
-        text-align: left;
+    margin-bottom: $space-l;
+
+    @media (max-width: $docs-breakpoint-lg) {
+        overflow-x: auto;
     }
-    th[class^='rsg--cellHeading'],
-    td {
-        padding: $space-s $space-l $space-s $space-s;
-        background: transparent;
-    }
-    td {
-        font-size: $size-s;
-        padding: $space-s $space-l $space-s $space-s;
-        &:first-child {
-            font-weight: $weight-bold;
-            white-space: nowrap;
+
+    thead {
+        th {
+            padding: 14px $space-s;
+            background: $docs-color-purple;
+            font-size: $size-m;
+            color: $docs-color-white;
+            font-weight: $weight-semi-bold;
+            text-align: left;
+            line-height: 1;
+            // Chrome has a bug related to thead, this only works on th:
+            position: -webkit-sticky;
+            position: sticky;
+            top: -1px;
+
+            &:first-child {
+                border-top-left-radius: $radius-m;
+            }
+
+            &:last-child {
+                border-top-right-radius: $radius-m;
+            }
         }
     }
-    tr {
-        border-bottom: 1px solid tint($docs-color-grey, 50%);
-    }
-    tbody tr:last-child {
-        border-bottom: 0;
+
+    tbody{
+        td {
+            font-size: $size-m;
+            padding: $space-xs $space-s;
+
+            &:first-child {
+                white-space: nowrap;
+            }
+
+            &[class^='rsg--cell']:last-child{
+                padding-right: 16px;
+            }
+            
+        }
+
+        tr{
+            &:nth-of-type(even){
+                background: #F3FAFA;
+            }
+        }
     }
 }
 
-thead[class^='rsg--thead'] {
-    th:first-child {
-        border-top-left-radius: $radius-default;
-        border-bottom-left-radius: $radius-default;
-    }
-    th:last-child {
-        border-top-right-radius: $radius-default;
-        border-bottom-right-radius: $radius-default;
-    }
-}
+
+
 
 /* CHILD COMPONENT LIST */
-
 .child-component-list {
     margin: 4px 0 12px;
     span {
