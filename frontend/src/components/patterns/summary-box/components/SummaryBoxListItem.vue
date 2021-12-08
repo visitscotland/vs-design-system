@@ -4,6 +4,14 @@
         data-test="vs-summary-box-list-item"
     >
         <div
+            class="text-center vs-summary-box-item__label d-block position-absolute w-100"
+            data-test="vs-summary-box-list-item-label"
+            v-if="label"
+        >
+            <span class="vs-summary-box-item__label-inner">{{ label }}</span>
+        </div>
+
+        <div
             class="vs-summary-box-item__display position-absolute d-block text-center w-100"
             data-test="vs-summary-box-list-item-display"
             v-if="text"
@@ -25,17 +33,9 @@
                     size="xl"
                 />
             </div>
-            <div class="text-wrapper d-block w-auto pt-1">
+            <div class="text-wrapper d-block w-auto pt-4">
                 <span>{{ iconLabel }}</span>
             </div>
-        </div>
-
-        <div
-            class="text-center vs-summary-box-item__label d-block position-absolute w-100"
-            data-test="vs-summary-box-list-item-label"
-            v-if="label"
-        >
-            <span class="vs-summary-box-item__label-inner">{{ label }}</span>
         </div>
     </li>
 </template>
@@ -110,7 +110,7 @@ export default {
 }
 
 .vs-summary-box-item__label {
-    bottom: $spacer-3;
+    top: $spacer-3;
     left: 0;
     line-height: $line_height_xs;
 
@@ -129,20 +129,19 @@ export default {
 .vs-summary-box-item__display {
     font-family: $headings-font-family;
     font-size: 1.625rem;
-    top: 40%;
-    transform: translateY(-50%);
+    bottom: 35%;
 
     .divider {
         font-family: $headings-font-family-thin;
     }
 
     @include media-breakpoint-up(lg) {
-        font-size: $spacer-7;
+        font-size: $font-size-xl;
     }
 }
 
 .vs-summary-box-item__icon {
-    bottom: 35%;
+    top: 35%;
     flex-direction: column;
     text-align: center;
 
