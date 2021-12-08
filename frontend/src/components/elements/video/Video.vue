@@ -125,6 +125,8 @@ export default {
                     setTimeout(() => {
                         this.playVideo();
                     }, 1000);
+                } else if (action === 'play') {
+                    this.playVideo();
                 } else if (action === 'pause') {
                     this.pauseVideo();
                 }
