@@ -116,22 +116,24 @@ export default {
     font-size: $small-font-size;
 
     .vs-summary-box-distance__display-entry {
-        width: 50%;
+        width: 55%;
         text-align: left;
         margin: 0 auto;
+        font-size: 0;
     }
 
     .vs-summary-box-distance__display-value {
+        font-size: $font-size-lg;
         display: inline-block;
         width: 60%;
-        text-align: centre;
+        text-align: left;
         vertical-align: middle;
         font-family: $headings-font-family;
         font-weight: $font-weight-bold;
-        font-size: $font-size-lg;
     }
 
     .vs-summary-box-distance__display-label {
+        font-size: $font-size-base;
         display: inline-block;
         width: 40%;
         text-align: right;
