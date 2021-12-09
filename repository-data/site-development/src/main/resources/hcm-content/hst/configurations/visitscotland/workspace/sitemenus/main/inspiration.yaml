@@ -104,5 +104,5 @@
       hst:repobased: false
   /Inspiration Featured Items Widget:
     jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: widget/inspiration---feature-widget
+    hst:referencesitemapitem: sandbox/navigation/inspiration---feature-widget
     hst:repobased: false
