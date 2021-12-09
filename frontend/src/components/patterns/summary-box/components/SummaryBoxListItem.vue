@@ -128,7 +128,7 @@ export default {
 
 .vs-summary-box-item__display {
     font-family: $headings-font-family;
-    font-size: 1.625rem;
+    font-size: $h1-font-size-md;
     bottom: 35%;
 
     .divider {
