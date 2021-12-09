@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 64bfad23-4137-42d5-bf4d-237aaf4cfbc2
+          jcr:uuid: f0ef2b6e-eefa-4440-afbd-14fef7810d14
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -39,7 +39,7 @@ definitions:
             hipposysedit:ordered: true
             hipposysedit:path: visitscotland:ctaLink
             hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
+            hipposysedit:validators: [contentblocks-validator, required]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -52,7 +52,7 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 6642151f-b2ef-4fa4-bed9-c9aeb6200bf4
+          jcr:uuid: 07e35d9c-a0c1-4337-98a6-b1e09aee2f01
           hippostdpubwf:lastModificationDate: 2021-12-03T13:55:59.687Z
           hippostdpubwf:creationDate: 2021-12-03T13:55:59.687Z
           /visitscotland:copy:
@@ -98,6 +98,7 @@ definitions:
             field: ctaLink
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1
