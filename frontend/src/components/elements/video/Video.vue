@@ -7,7 +7,8 @@
             <!-- eslint-disable-next-line vue/component-name-in-template-casing -->
             <youtube
                 :video-id="videoId"
-                ref="youtube"
+                hl="fr"
+                :player-vars="playerVars"
             />
         </div>
     </div>
@@ -60,6 +61,14 @@ export default {
         /**
         * The YouTube ID for the video
         */
+        language: {
+            type: String,
+            default: 'en',
+            validator: (value) => value.match(/(en|fr|nl|de|it|es)/),
+        },
+        /**
+        * The YouTube ID for the video
+        */
         videoId: {
             type: String,
             required: true,
@@ -93,6 +102,9 @@ export default {
                 minutes: 0,
                 seconds: 0,
                 roundedMinutes: '',
+            },
+            playerVars: {
+                hl: this.language,
             },
         };
     },
@@ -215,6 +227,7 @@ export default {
             <VsCol md="6">
                 <VsVideo
                     video-id="c05sg3G4oA4"
+                    language="es"
                 />
             </VsCol>
             <VsCol md="6">
@@ -222,6 +235,7 @@ export default {
                     video-id="dKI8IEnqvbU"
                     single-minute-descriptor="Video de %s minuto"
                     plural-minute-descriptor="Video de %s minutos"
+                    language="nl"
                 />
             </VsCol>
         </VsRow>
