@@ -7,8 +7,8 @@
             <!-- eslint-disable-next-line vue/component-name-in-template-casing -->
             <youtube
                 :video-id="videoId"
-                hl="fr"
                 :player-vars="playerVars"
+                ref="youtube"
             />
         </div>
     </div>
