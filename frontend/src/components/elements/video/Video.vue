@@ -64,7 +64,6 @@ export default {
         language: {
             type: String,
             default: 'en',
-            validator: (value) => value.match(/(en|fr|nl|de|it|es)/),
         },
         /**
         * The YouTube ID for the video
@@ -227,7 +226,7 @@ export default {
             <VsCol md="6">
                 <VsVideo
                     video-id="c05sg3G4oA4"
-                    language="es"
+                    language="es-es"
                 />
             </VsCol>
             <VsCol md="6">
@@ -235,7 +234,7 @@ export default {
                     video-id="dKI8IEnqvbU"
                     single-minute-descriptor="Video de %s minuto"
                     plural-minute-descriptor="Video de %s minutos"
-                    language="nl"
+                    language="nl-nl"
                 />
             </VsCol>
         </VsRow>
