@@ -381,10 +381,10 @@ definitions:
             hst:relativecontentpath: general/error/500-server-error/content
           /widget:
             jcr:primaryType: hst:sitemapitem
-            hst:relativecontentpath: general/navigation
+            hst:relativecontentpath: general/navigation/widgets
             /_any_:
               jcr:primaryType: hst:sitemapitem
-              hst:componentconfigurationid: hst:pages/widget
+              hst:componentconfigurationid: hst:pages/pagenotfound
               hst:relativecontentpath: ${parent}/${1}
         /hst:abstractpages:
           jcr:primaryType: hst:pages
