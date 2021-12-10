@@ -44,6 +44,8 @@ div[class^='rsg--mainContent'] {
 main section section > div > div[class^='rsg--root'] {
     display: flex;
     flex-direction: column;
+    margin-bottom: $space-xl;
+    border-bottom: 1px solid $docs-color-grey;
 }
 
 /* TYPOGRAPHY
@@ -147,7 +149,7 @@ h4[class^='rsg--heading'] a {
 p[class^='rsg--para'] {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: $docs-color-text;
+    color: $docs-color-grey-dark;
     margin-bottom: $space-s;
     line-height: $line-height-m;
     font-size: $size-base;
@@ -196,6 +198,12 @@ h4[class^='rsg--heading'] {
     }
 }
 
+.section-components p[class^='rsg--para']{
+    @media (min-width: 1300px) {
+        width: 100%;
+    }
+}
+
 // Paragraphs inside table cells
 td[class^='rsg--cell'] p {
     font-size: $size-m;
@@ -203,6 +211,10 @@ td[class^='rsg--cell'] p {
 }
 
 
+td[class^='rsg--cell'] span[class^='rsg--text']{
+    font-size: $size-m;
+    color: $docs-color-grey-dark;
+}
 
 /* HEADER BAR/NAV
  --------------------------------------------- */
@@ -282,6 +294,7 @@ div[class^=rsg--mainContent] > header[class^='rsg--header']{
     width: 100%;
     order: 1;
     padding: 0;
+    margin-bottom: $space-m;
 
     @media (min-width: #{$docs-breakpoint-lg}) {
         padding: 0 $space-m;
@@ -508,9 +521,8 @@ p[class^='rsg--version'] {
 // Previews of the components
 div[class^='rsg--preview'] {
     padding: $space-l / 1.2;
-    background-color: tint($docs-color-grey, 90%);
+    background-color: $docs-color-white;
     border: 1px solid tint($docs-color-grey, 50%);
-    box-shadow: inset 0 0 $space-xs rgba($docs-color-rich-black, 0.05);
     margin: $space-s 0 0;
     border-radius: 0;
     display: block;
@@ -545,7 +557,7 @@ div[data-preview]:after {
 // Code tabs and table
 div[class^='rsg--tabs'],
 table[class^='rsg--table'] {
-    margin-bottom: $space-s;
+    margin-bottom: $space-l;
     overflow-x: auto;
 }
 thead[class^='rsg--tableHead'] {
@@ -554,51 +566,55 @@ thead[class^='rsg--tableHead'] {
 
 // Codemirror and markdown code blocks
 pre[class^='rsg--pre'],
-.vueds-html.cm-s-night.CodeMirror,
+.vueds-html.cm-s-base16-light.CodeMirror,
 .react-codemirror2 .CodeMirror.CodeMirror {
-    background: mix($docs-color-blue, $docs-color-rich-black, 10%);
+    background: $docs-color-very-light-blue;
     border-bottom-left-radius: $radius-default;
     border-bottom-right-radius: $radius-default;
     box-sizing: border-box;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     height: auto;
-    border: 0;
+    border: 1px solid $docs-color-light-grey;
+    border-top: 0;
     font-family: Consolas, 'Liberation Mono', Menlo, monospace;
     font-size: $size-s;
     margin: 0;
     min-height: $space-xxl / 1.5;
     margin-bottom: $space-m;
-    color: $docs-color-white;
+    color: $docs-color-grey-dark;
     padding: $space-m;
     word-wrap: break-word;
     white-space: pre-wrap;
     word-break: normal;
+
     .CodeMirror-scroll,
     .CodeMirror-vscrollbar {
         overflow: hidden;
     }
+
     code {
-        color: $docs-color-white;
+        color: $docs-color-grey-dark;
     }
 }
 
 // HTML preview needs some padding adjustments to match Styleguidist
-.vueds-html.cm-s-night.CodeMirror {
+.vueds-html.cm-s-base16-light.CodeMirror {
     padding-left: $space-m - 4px;
 }
 
 // VUE & HTML Code tabs
 div[class^='rsg--tab'] {
     position: relative;
+
     .vueds-tabs {
         z-index: 5;
         border-radius: $radius-default;
-        box-shadow: 0 2px 8px rgba($docs-color-rich-black, 0.8);
         overflow: hidden;
         position: absolute;
         top: $space-m;
         right: $space-m;
+
         .vueds-tab {
             border: 0;
             margin: 0;
@@ -609,16 +625,18 @@ div[class^='rsg--tab'] {
             line-height: $line-height-s;
             @include inset-squish-space($space-s);
             cursor: pointer;
-            background: mix($docs-color-blue, $docs-color-rich-black, 50%);
+            background: $docs-color-purple;
             color: $docs-color-white;
-            &:active {
-                background: mix($docs-color-blue, $docs-color-rich-black, 45%);
+            
+            &:active, &--active {
+                background: mix($docs-color-purple, $docs-color-rich-black, 80%);
             }
+
             &:focus {
                 outline: none;
             }
+
             &--active {
-                background: mix($docs-color-blue, $docs-color-rich-black, 40%);
                 box-shadow: inset 0 2px 8px rgba($docs-color-rich-black, 0.2);
             }
         }
@@ -643,35 +661,49 @@ div[class^='rsg--tab'] {
 // Code highlighting for both CodeMirror and Markdown files
 .hljs-variable,
 .hljs-selector-class,
-.cm-s-night span.cm-variable,
-.cm-s-night span.cm-variable-2,
-.cm-s-night span.cm-bracket,
-.cm-s-night span.cm-tag,
+.cm-s-base16-light span.cm-variable,
+.cm-s-base16-light span.cm-variable-2,
+.cm-s-base16-light span.cm-bracket,
+.cm-s-base16-light span.cm-tag,
 .hljs-tag,
 .hljs-name {
-    color: $docs-color-blue-light !important;
+    color: $docs-code-blue!important;
 }
 .hljs-attribute,
 .hljs-keyword,
 .hljs-attr,
-.cm-s-night span.cm-operator,
-.cm-s-night span.cm-number,
-.cm-s-night span.cm-attribute {
-    color: $docs-color-gold-light !important;
+.cm-s-base16-light span.cm-operator,
+.cm-s-base16-light span.cm-number,
+.cm-s-base16-light span.cm-attribute {
+    color:  $docs-code-red!important;
 }
-.cm-s-night span.cm-string,
+.cm-s-base16-light span.cm-string,
 .hljs-string {
-    color: lighten($docs-status-ready, 20%) !important;
+    color: $docs-code-pink!important;
 }
 
 // Code highlighting elsewhere
 span[class^='rsg--type'],
 code[class^='rsg--code'],
 code[class^='rsg--name'], 
-code.name {
+code.name{
     font-size: $size-s;
+}
+
+span[class^='rsg--type'],
+code[class^='rsg--code'] {
     color: $docs-color-grey-dark;
 }
+
+code[class^='rsg--name'], 
+code.name {
+    color: $docs-code-red;
+}
+
+span[class^='rsg--type']{
+    color: $docs-color-grey-med;
+}
+
 
 span[class^='rsg--type'] code[class^='rsg--code'],
 code.type {
@@ -680,6 +712,7 @@ code.type {
     padding: $space-xx-small;
     border-radius: $radius-default;
 }
+
 
 /* COMPONENT STATUS LABELS
  --------------------------------------------- */
@@ -798,7 +831,7 @@ table[class^='rsg--table'] {
 
         tr{
             &:nth-of-type(even){
-                background: #F3FAFA;
+                background: $docs-color-very-light-blue;
             }
         }
     }
@@ -809,17 +842,19 @@ table[class^='rsg--table'] {
 
 /* CHILD COMPONENT LIST */
 .child-component-list {
-    margin: 4px 0 12px;
+    margin: $space-xx-small 0 $space-l;
+
     span {
         @extend .status;
         position: relative;
+        font-size: 12px;
         right: auto;
         top: auto;
         cursor: pointer;
         color: $docs-color-white;
-        background: $docs-color-oxford-blue;
+        background: $docs-color-purple;
         display: inline-block;
-        margin: 4px 6px 4px 0;
+        margin: $space-xx-small 6px $space-xx-small 0;
         text-transform: initial;
     }
 }
