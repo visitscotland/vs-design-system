@@ -414,7 +414,7 @@ div[class^='rsg--sidebar'] {
         padding-left: 0;
 
         // Sidebar sub-list
-        ul {
+        ul{
             padding-left: $space-s;
             line-height: $line-height-s;
 
@@ -431,25 +431,27 @@ div[class^='rsg--sidebar'] {
             }
 
             // Adding icon to items that are sections
-            ul{
-                li[class^="rsg--item"] {        
-                    a[class^="rsg--link"]:after{
-                        content: "\2192";
-                        display: inline-block;
-                        padding-left: 0.25rem;
-                    }
+            li[class^="rsg--item"] {        
+                a[class^="rsg--link"]:after{
+                    content: "\203A";
+                    display: inline-block;
+                    padding-left: 0.25rem;
+                    font-size: 26px;
+                    line-height: 0;
+                    vertical-align: middle;
+                    margin-top: -5px;
                 }
+            }
 
-                li[class*=" vueds-active"]{
-                    > a[class^="rsg--link"]:after{
-                        content: "\2193"!important;
-                    } 
-                }
-            
-                li[class*=" rsg--isChild"]{
-                    a[class^="rsg--link"]:after{
-                        display: none!important;
-                    }
+            li[class*=" vueds-active"]{
+                > a[class^="rsg--link"]:after{
+                    content: "\203A"!important;
+                } 
+            }
+        
+            li[class*=" rsg--isChild"]{
+                a[class^="rsg--link"]:after{
+                    display: none!important;
                 }
             }
         }
