@@ -23,9 +23,6 @@ module.exports = {
         },
     },
     renderRootJsx: path.join(__dirname, '../docs/components/Preview.js'),
-    editorConfig: {
-        theme: 'night',
-    },
     assetsDir: path.join(__dirname, '../src/assets'),
     /**
      * Enabling the below option will break things!
