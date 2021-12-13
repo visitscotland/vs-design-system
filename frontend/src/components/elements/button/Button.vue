@@ -240,7 +240,7 @@ export default {
         font-weight: $font-weight-light;
         transition: $transition-base;
         text-decoration: none;
-        letter-spacing: 2px;
+        letter-spacing: $letter-spacing-xl;
         position: relative;
         overflow: hidden;
 
