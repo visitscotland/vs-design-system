@@ -249,7 +249,7 @@ export default {
 
                 &__title {
                     font-size: $font-size-sm;
-                    letter-spacing: .05rem;
+                    letter-spacing: $letter-spacing-l;
                     line-height: $line-height-m;
                     color: $color-base-text;
                     text-decoration: none;
