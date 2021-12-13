@@ -212,7 +212,7 @@ export default {
     font-weight: $weight-bold;
     color: $docs-color-oxford-blue;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: $letter-spacing-l;
     font-weight: $weight-semi-bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
