@@ -6579,9 +6579,10 @@
       hippotranslation:locale: en
       /video---cop26---why-scotland-needs-you:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: b193d2fa-424d-44b0-a720-1d2cb5cf0184
         hippo:name: Video - Tread Lightly - Why Scotland needs you
+        hippo:versionHistory: a0d4b220-93c0-4ddb-add6-ac03a62b145f
         /video---cop26---why-scotland-needs-you[1]:
           jcr:primaryType: visitscotland:Video
           jcr:mixinTypes: ['mix:referenceable']
@@ -6619,6 +6620,33 @@
           hippostdpubwf:creationDate: 2021-11-08T14:29:08.535Z
           hippostdpubwf:lastModificationDate: 2021-11-08T14:31:07.974Z
           hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 99b1b893-3fe4-4e13-9377-6432dfa741f7
+          hippotranslation:locale: en
+          visitscotland:label: Discover why Scotland needs you
+          visitscotland:teaser: The country you love needs you.  Our awe-inspiring
+            landmarks and coastal seascapes have missed you and have been waiting
+            patiently for your return.
+          visitscotland:title: 'Only in Scotland: Why Scotland Needs You'
+          visitscotland:translation: ''
+          visitscotland:url: https://www.youtube.com/watch?v=h9bQwcndGfo
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /video---cop26---why-scotland-needs-you[3]:
+          jcr:primaryType: visitscotland:Video
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 2b29d60d-568c-4c6e-8a20-34f79f37c4d2
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-08T14:29:08.535Z
+          hippostdpubwf:lastModificationDate: 2021-11-08T14:31:07.974Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-12-06T10:24:51.593Z
           hippotranslation:id: 99b1b893-3fe4-4e13-9377-6432dfa741f7
           hippotranslation:locale: en
           visitscotland:label: Discover why Scotland needs you
