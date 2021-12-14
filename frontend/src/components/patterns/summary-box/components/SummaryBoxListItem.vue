@@ -114,6 +114,10 @@ export default {
     left: 0;
     line-height: $line_height_xs;
 
+    @include media-breakpoint-up(lg) {
+        top: $spacer-2;
+    }
+
     .vs-summary-box-item__label-inner {
         display: block;
         font-size: $small-font-size;
