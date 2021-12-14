@@ -18,14 +18,11 @@ module.exports = {
         maxWidth: '100%',
         sidebarWidth: 260,
         fontFamily: {
-            base: ['\'Fira Sans\'', 'Helvetica', 'Arial', 'sans-serif'],
-            monospace: ['Consolas', '\'Liberation Mono\'', 'Menlo', 'monospace'],
+            base: ['Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif'],
+            heading: ['evelethclean-regular', 'Helvetica', 'Arial', 'sans-serif'],
         },
     },
     renderRootJsx: path.join(__dirname, '../docs/components/Preview.js'),
-    editorConfig: {
-        theme: 'night',
-    },
     assetsDir: path.join(__dirname, '../src/assets'),
     /**
      * Enabling the below option will break things!
@@ -102,6 +99,7 @@ module.exports = {
         LogoRenderer: path.join(__dirname, '../docs/components/rsg-components/LogoRenderer'),
         Playground: path.join(__dirname, '../docs/components/rsg-components/Playground'),
         ReactComponent: path.join(__dirname, '../docs/components/rsg-components/ReactComponent'),
+        StyleGuideRenderer: path.join(__dirname, '../docs/components/rsg-components/StyleGuideRenderer'),
         ComponentsRenderer: path.join(__dirname, '../docs/components/rsg-components/ComponentsRenderer'),
     },
     propsParser(filePath) {
@@ -121,7 +119,7 @@ module.exports = {
    */
     // configureServer(app) {
     //   // `app` is the instance of the express server running the docs
-    //   app.get("/assets/:file", (req, res) => {
+    //   app.get('/assets/:file', (req, res) => {
     //     res.redirect(req.params.file)
     //   })
     // },
