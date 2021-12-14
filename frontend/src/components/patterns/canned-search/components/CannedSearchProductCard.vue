@@ -344,7 +344,7 @@ export default {
 
         &--disabled {
             .card {
-                opacity: $opacity_disabled;
+                opacity: $opacity-50;
             }
 
             .card:hover {

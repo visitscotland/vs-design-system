@@ -128,7 +128,7 @@ export default {
         background: $color-purple;
         max-height: 0;
         overflow: hidden;
-        opacity: 0;
+        opacity: $opacity-0;
         transform: translate3d(0px, 0px, 0px);
 
         li {
@@ -158,7 +158,7 @@ export default {
 
         &.show {
             max-height: 500px;
-            opacity: 1;
+            opacity: $opacity-100;
             transform: translate3d(0px, 26px, 0px) !important;
             border: none;
             padding: 0;

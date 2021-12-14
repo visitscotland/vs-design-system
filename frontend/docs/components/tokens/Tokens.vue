@@ -10,7 +10,6 @@
                     <tr>
                         <th>Token Name</th>
                         <th>Value</th>
-                        <th>Category</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,12 +55,6 @@
                             >
                                 {{ token.value }}
                             </div>
-                        </td>
-                        <td v-else>
-                            N/A
-                        </td>
-                        <td v-if="token.category">
-                            {{ token.category }}
                         </td>
                         <td v-else>
                             N/A
@@ -148,6 +141,7 @@ export default {
         background: $docs-color-white;
         box-shadow: $shadow-s-inset, $shadow-s-inset, $shadow-s-inset;
         width: $space-s;
+        margin-top: 5px;
         height: $space-s;
         float: left;
     }

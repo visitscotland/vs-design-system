@@ -1,6 +1,6 @@
 #
-# MEDIA QUERY TOKENS
-# Use these tokens to set media query width ranges.
+# BREAKPOINT TOKENS
+# Use these tokens to set breakpoint widths.
 #
 
 props:
@@ -28,4 +28,4 @@ props:
     value: "1340px"
 global:
   type: number
-  category: sizing
+  category: breakpoints
