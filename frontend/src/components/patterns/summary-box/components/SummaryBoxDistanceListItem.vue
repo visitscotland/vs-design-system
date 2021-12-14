@@ -122,7 +122,7 @@ export default {
         font-size: 0;
 
         @include media-breakpoint-up(lg) {
-            width: 55%;
+            width: 60%;
         }
     }
 
