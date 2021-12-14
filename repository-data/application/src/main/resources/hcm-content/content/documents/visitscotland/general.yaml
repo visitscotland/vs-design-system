@@ -25,7 +25,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 0144198e-a3d5-4d5a-8aa9-ad38c8acfd89
         hippo:name: 404notfound
-        hippo:versionHistory: ed0927db-139a-4428-a8de-b76c1941b538
+        hippo:versionHistory: afb4c6e6-9feb-40bc-a456-ff06fa6c53b8
         /content[1]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable']
@@ -35,7 +35,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-11-02T13:27:34.015Z
-          hippostdpubwf:lastModificationDate: 2021-11-08T09:18:37.621Z
+          hippostdpubwf:lastModificationDate: 2021-12-14T15:34:36.510Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: c7558344-b1af-47eb-9d4d-62e58c97f961
           hippotranslation:locale: en
@@ -50,7 +50,7 @@
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
+            hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -66,7 +66,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-11-02T13:27:34.015Z
-          hippostdpubwf:lastModificationDate: 2021-11-08T09:18:39.548Z
+          hippostdpubwf:lastModificationDate: 2021-12-14T15:34:57.579Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: c7558344-b1af-47eb-9d4d-62e58c97f961
           hippotranslation:locale: en
@@ -81,7 +81,7 @@
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
+            hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -97,9 +97,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-11-02T13:27:34.015Z
-          hippostdpubwf:lastModificationDate: 2021-11-08T09:18:39.548Z
+          hippostdpubwf:lastModificationDate: 2021-12-14T15:34:57.579Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-11-09T14:51:03.195Z
+          hippostdpubwf:publicationDate: 2021-12-14T15:35:00.146Z
           hippotranslation:id: c7558344-b1af-47eb-9d4d-62e58c97f961
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -113,7 +113,7 @@
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
+            hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -133,7 +133,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 3e3594d6-7791-4b83-aeb2-72cdefa46094
         hippo:name: 500error
-        hippo:versionHistory: 0b346795-5ae6-4b4d-ba0f-bc546e072ae2
+        hippo:versionHistory: 84df2972-c83b-4298-97d2-cf5c47196d22
         /content[1]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable']
@@ -143,7 +143,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-11-05T14:31:46.083Z
-          hippostdpubwf:lastModificationDate: 2021-11-08T09:18:25.793Z
+          hippostdpubwf:lastModificationDate: 2021-12-14T15:36:26.880Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e792278f-42ea-4506-a021-cd6e4e944b4a
           hippotranslation:locale: en
@@ -158,7 +158,7 @@
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 17f9d549-ba5f-48a2-b234-3a3daf0f5766
+            hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -174,7 +174,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-11-05T14:31:46.083Z
-          hippostdpubwf:lastModificationDate: 2021-11-08T09:18:33.902Z
+          hippostdpubwf:lastModificationDate: 2021-12-14T15:36:32.212Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e792278f-42ea-4506-a021-cd6e4e944b4a
           hippotranslation:locale: en
@@ -189,7 +189,7 @@
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 17f9d549-ba5f-48a2-b234-3a3daf0f5766
+            hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -205,9 +205,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-11-05T14:31:46.083Z
-          hippostdpubwf:lastModificationDate: 2021-11-08T09:18:33.902Z
+          hippostdpubwf:lastModificationDate: 2021-12-14T15:36:32.212Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-11-09T14:51:07.792Z
+          hippostdpubwf:publicationDate: 2021-12-14T15:36:37.139Z
           hippotranslation:id: e792278f-42ea-4506-a021-cd6e4e944b4a
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -221,7 +221,7 @@
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 17f9d549-ba5f-48a2-b234-3a3daf0f5766
+            hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
