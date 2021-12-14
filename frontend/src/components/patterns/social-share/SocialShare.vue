@@ -374,7 +374,7 @@ export default {
             &__popover{
                 position: relative!important;
                 display: block!important;
-                opacity: 1!important;
+                opacity: $opacity-100!important;
                 outline: 0!important;
             }
         }

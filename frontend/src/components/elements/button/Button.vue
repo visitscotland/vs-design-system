@@ -240,7 +240,7 @@ export default {
         font-weight: $font-weight-light;
         transition: $transition-base;
         text-decoration: none;
-        letter-spacing: $letter-spacing-xl;
+        letter-spacing: $letter-spacing-xxl;
         position: relative;
         overflow: hidden;
 
@@ -307,7 +307,7 @@ export default {
         &:disabled {
             background-color: $color-secondary-gray-tint-4;
             color: $color-white;
-            opacity: 1;
+            opacity: $opacity-100;
             border-width: 0;
         }
 
@@ -315,10 +315,10 @@ export default {
             @keyframes bubble {
                 0% {
                     transform: scale(0, 0);
-                    opacity: 1;
+                    opacity: $opacity-100;
                 }
                 100% {
-                    opacity: 0;
+                    opacity: $opacity-0;
                     transform: scale(100, 100);
                 }
             }
@@ -329,7 +329,7 @@ export default {
                 bottom: 0;
                 content: "";
                 height: 5px;
-                opacity: 0;
+                opacity: $opacity-0;
                 position: absolute;
                 right: 0;
                 transform-origin: 50% 50%;

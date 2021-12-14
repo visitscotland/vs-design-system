@@ -169,13 +169,13 @@ export default {
 
         .vs-carousel-slide__card {
             flex-shrink: 0;
-            opacity: 0.5;
+            opacity: $opacity-50;
             transition: $duration-slowly;
             padding: $spacer-2;
             max-width: 100%;
 
             &--active {
-                opacity: 1;
+                opacity: $opacity-100;
             }
         }
 
@@ -213,7 +213,7 @@ export default {
             }
 
             .vs-stretched-link-card {
-                opacity: 1;
+                opacity: $opacity-100;
                 display: flex;
                 flex-direction: row;
                 padding: $spacer-2;
