@@ -77,7 +77,7 @@ export default {
          */
         kilometresLabel: {
             type: String,
-            default: 'kilometres',
+            default: 'km',
         },
         /**
          * Whether the summary box should default to miles
@@ -138,6 +138,7 @@ export default {
         width: 40%;
         text-align: right;
         vertical-align: middle;
+        text-transform: lowercase;
     }
 }
 
@@ -174,7 +175,7 @@ export default {
                 :miles=itineraries.sampleItinerary.totalMiles
                 :kilometres=itineraries.sampleItinerary.totalKM
                 distance-label="Distance"
-                miles-label="miles"
+                miles-label="Miles"
                 kilometres-label="km"
             >
             </VsSummaryBoxDistanceListItem>
@@ -182,7 +183,7 @@ export default {
                 :miles=itineraries.sampleItinerary.totalMiles
                 :kilometres=itineraries.sampleItinerary.totalKM
                 distance-label="Distance"
-                miles-label="miles"
+                miles-label="Miles"
                 kilometres-label="km"
             >
             </VsSummaryBoxDistanceListItem>
