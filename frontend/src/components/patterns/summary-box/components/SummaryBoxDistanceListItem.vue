@@ -116,10 +116,14 @@ export default {
     font-size: $small-font-size;
 
     .vs-summary-box-distance__display-entry {
-        width: 55%;
+        width: 80%;
         text-align: left;
         margin: 0 auto;
         font-size: 0;
+
+        @include media-breakpoint-up(lg) {
+            width: 55%;
+        }
     }
 
     .vs-summary-box-distance__display-value {
@@ -143,16 +147,25 @@ export default {
 }
 
 .vs-summary-box-distance__divider {
-    width: 80%;
+    width: 85%;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
-    margin-top: $spacer-2;
-    margin-bottom: $spacer-2;
+    margin-top: $spacer-1;
+    margin-bottom: $spacer-1;
+
+    @include media-breakpoint-up(lg) {
+        margin-top: $spacer-2;
+        margin-bottom: $spacer-2;
+    }
 }
 
 .vs-summary-box-distance__label {
     top: $spacer-3;
     left: 0;
     line-height: $line_height_xs;
+
+    @include media-breakpoint-up(lg) {
+        top: $spacer-2;
+    }
 
     .vs-summary-box-distance__label-inner {
         display: block;
