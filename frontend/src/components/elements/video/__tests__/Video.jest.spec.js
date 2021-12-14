@@ -4,6 +4,7 @@ import VsVideo from '../Video';
 const videoId = 'C0DPdy98e4c';
 const singleMinuteDescriptor = '%s minute';
 const pluralMinuteDescriptor = '%s minutos';
+const language = 'de';
 
 const factoryShallowMount = (propsData, compData) => shallowMount(VsVideo, {
     propsData: {
@@ -11,6 +12,7 @@ const factoryShallowMount = (propsData, compData) => shallowMount(VsVideo, {
         showDuration: true,
         singleMinuteDescriptor,
         pluralMinuteDescriptor,
+        language,
         ...propsData,
     },
     computed: {
@@ -38,6 +40,12 @@ describe('VsVideo', () => {
             const wrapper = factoryShallowMount();
 
             expect(wrapper.find('youtube-stub').attributes('videoid')).toBe(videoId);
+        });
+
+        it('should pass a language prop to `playerVars` data object', () => {
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.vm.playerVars.hl).toBe('de');
         });
     });
 
@@ -145,24 +153,20 @@ describe('VsVideo', () => {
             const mockPlayMethod = jest.fn();
             wrapper.vm.playVideo = mockPlayMethod;
 
-            wrapper.vm.$root.$emit('video-controls', 'play', videoId);
+            wrapper.vm.$root.$emit('video-controls', 'play', videoId, 'modal');
 
             // wait for setTimeout to run
-            jest.advanceTimersByTime(500);
+            jest.advanceTimersByTime(1500);
 
             expect(mockPlayMethod).toHaveBeenCalled();
         });
 
         it('should call the pauseVideo method when receiving emitted event', () => {
-            jest.useFakeTimers();
             const wrapper = factoryShallowMount();
             const mockPauseMethod = jest.fn();
             wrapper.vm.pauseVideo = mockPauseMethod;
 
             wrapper.vm.$root.$emit('video-controls', 'pause', videoId);
-
-            // wait for setTimeout to run
-            jest.advanceTimersByTime(500);
 
             expect(mockPauseMethod).toHaveBeenCalled();
         });
