@@ -45,7 +45,7 @@ export default {
 
     .vs-icon-list__title {
         font-size: $h4-font-size;
-        font-weight: $lead-font-weight;
+        font-weight: $font-weight-normal;
         margin-bottom: $spacer-5;
     }
 
