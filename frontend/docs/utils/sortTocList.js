@@ -12,7 +12,7 @@
 export default {
     methods: {
         sortList() {
-            const tocList = document.querySelectorAll('div[class^="rsg--sidebar"] nav > ul > li > ul > li > ul ');
+            const tocList = document.querySelectorAll('div[class^="rsg--sidebar"] nav > ul > li > ul ');
 
             if (tocList) {
                 Array.from(tocList).forEach((element) => {
