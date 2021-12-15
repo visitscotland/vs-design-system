@@ -687,8 +687,8 @@ containerCreateAndStart() {
 
 containerUpdates() {
   # check files for updated versions, if the checksum matches we want to update
-  TEST_FILES=("/usr/local/bin/vs-hippo" "/usr/local/bin/vs-hippo" "/usr/local/bin/vs-test")
-  TEST_SUMS=("5c92fa2dfbc167d0163c1dc1d8690bfa" "a15eed06d6840e95cc7d68c5223b79ae" "")
+  TEST_FILES=("/usr/local/bin/vs-hippo" "/usr/local/bin/vs-hippo" "/usr/local/bin/vs-hippo" "/usr/local/bin/vs-test")
+  TEST_SUMS=("5c92fa2dfbc167d0163c1dc1d8690bfa" "a15eed06d6840e95cc7d68c5223b79ae" "" "")
   for i in ${!TEST_FILES[@]}; do
     THIS_FILE="${TEST_FILES[$i]}"
     THIS_SUM="${TEST_SUMS[$i]}"
