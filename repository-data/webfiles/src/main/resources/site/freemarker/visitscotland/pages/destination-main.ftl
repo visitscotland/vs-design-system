@@ -20,6 +20,19 @@
 
     <@pageIntro content=document heroDetails=heroImage />
 
+    <#-- Does PSR goes here -->
+    <h2>PSR GOES HERE</h2>
+    <h3>${psrWidget.title}</h3>
+    ${psrWidget.description}
+    location=${psrWidget.location}
+    <br>
+    search results link = /info/${psrWidget.pathVariable}/search-results?parameters
+    <br>
+    product types = ${psrWidget.productTypes}
+    <br>
+
+
+
 	<#list pageItems as item>
         <@moduleBuilder item />
 	</#list>

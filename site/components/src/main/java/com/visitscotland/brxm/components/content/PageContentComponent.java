@@ -31,19 +31,20 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
     public static final String PREVIEW_ALERTS = "alerts";
     public static final String HERO_IMAGE = "heroImage";
     public static final String HERO_VIDEO = "heroVideo";
+    public static final String PSR_WIDGET = "psrWidget";
 
     private final MegalinkFactory megalinkFactory;
     private final ImageFactory imageFactory;
     private final LinkService linksService;
     private final SignpostFactory signpostFactory;
-    private final ProductSearchWidgetFactory psrWidget;
+    private final ProductSearchWidgetFactory psrFactory;
 
     public PageContentComponent() {
         megalinkFactory = VsComponentManager.get(MegalinkFactory.class);
         imageFactory = VsComponentManager.get(ImageFactory.class);
         signpostFactory = VsComponentManager.get(SignpostFactory.class);
         linksService = VsComponentManager.get(LinkService.class);
-        psrWidget = VsComponentManager.get(ProductSearchWidgetFactory.class);
+        psrFactory = VsComponentManager.get(ProductSearchWidgetFactory.class);
     }
 
     @Override
@@ -101,7 +102,7 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
      * TODO: Check in FreeMarker if null so it can be deactivated in the future
      */
     private void addProductSearchWidget(HstRequest request){
-        psrWidget.getWidget(request, request.getLocale());
+        request.setAttribute(PSR_WIDGET, psrFactory.getWidget(request, request.getLocale()));
     }
 
     /**
