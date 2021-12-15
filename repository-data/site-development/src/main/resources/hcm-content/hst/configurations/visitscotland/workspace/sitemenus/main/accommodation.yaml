@@ -114,5 +114,5 @@
       hst:repobased: false
   /Accommodation Featured Items Widget:
     jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: widget/accommodation
+    hst:referencesitemapitem: sandbox/navigation/accommodation
     hst:repobased: false

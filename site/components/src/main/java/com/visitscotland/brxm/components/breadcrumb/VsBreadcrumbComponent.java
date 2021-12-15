@@ -43,18 +43,19 @@ public class VsBreadcrumbComponent extends CommonComponent {
         //Breadcrumb Items list
         request.setAttribute(BREADCRUMB, this.breadcrumbProvider.getBreadcrumb(request));
         //Main document for the page
-        setDocument(request);
+        setDocument(request, response);
     }
 
-    private void setDocument(HstRequest request){
+    private void setDocument(HstRequest request, HstResponse response) {
         Optional<HippoBean> document = hippoUtilsService.getContentBeanWithTranslationFallback(request);
-        if (document.isPresent() &&  document.get() instanceof Page) {
+        if (document.isPresent() && document.get() instanceof Page) {
             request.setAttribute(DOCUMENT, document.get());
             // Translations ordered by SEO order
             List<BaseDocument> availableTranslations = ((Page) document.get()).getAvailableTranslations(BaseDocument.class).getTranslations();
             request.setAttribute(ORDERED_TRANSLATIONS, documentUtils.sortTranslationsForSeo(availableTranslations));
         } else {
             logger.error("There is not a document associated for the following request: " + request.getRequestURI());
+            this.pageNotFound(response);
         }
     }
 
