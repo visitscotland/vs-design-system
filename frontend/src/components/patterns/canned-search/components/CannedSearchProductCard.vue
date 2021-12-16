@@ -311,7 +311,7 @@ export default {
         .vs-product-card__title {
             font-size: $font-size-base;
             line-height: $line-height-s;
-            letter-spacing: 1px;
+            letter-spacing: $letter-spacing-l;
             color: $color-base-text;
             display: flex;
             margin: $spacer-3 $spacer-0 $spacer-2;
@@ -344,7 +344,7 @@ export default {
 
         &--disabled {
             .card {
-                opacity: $opacity_disabled;
+                opacity: $opacity-50;
             }
 
             .card:hover {
