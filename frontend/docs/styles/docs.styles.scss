@@ -123,23 +123,21 @@ h3[class^='rsg--heading'],
 h3[class^='rsg--heading'] a {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    font-weight: $weight-light;
-    line-height: $line-height-m;
-    margin: 0 0 $space-l;
-    font-size: $size-l;
+    margin: $space-base 0 $space-xs;
+    font-size: 30px;
     color: $docs-color-text;
+
     @media (max-width: #{$docs-breakpoint}) {
-        font-size: $size-l / 1.2;
-        margin: 0 0 $space-m;
+        font-size: $size-xl / 1.2;
     }
 }
 
 // Heading, level 4
 h4[class^='rsg--heading'],
 h4[class^='rsg--heading'] a {
-    font-weight: $weight-semi-bold;
+    font-weight: $weight-bold;
     letter-spacing: 0;
-    margin: $space-l 0 $space-m;
+    margin: $space-base 0 $space-xs;
     font-size: $size-l;
     line-height: $line-height-s;
     color: $docs-color-heading;
@@ -193,13 +191,13 @@ h3[class^='rsg--heading'],
 h4[class^='rsg--heading'] {
     width: 100%;
 
-    @media (min-width: 1300px) {
+    @media (min-width: $docs-breakpoint-xl) {
         width: 75%;
     }
 }
 
 .section-components p[class^='rsg--para']{
-    @media (min-width: 1300px) {
+    @media (min-width: $docs-breakpoint-xl) {
         width: 100%;
     }
 }
@@ -209,7 +207,6 @@ td[class^='rsg--cell'] p {
     font-size: $size-m;
     width: 100%;
 }
-
 
 td[class^='rsg--cell'] span[class^='rsg--text']{
     font-size: $size-m;
@@ -790,6 +787,10 @@ table[class^='rsg--table'] {
 
     @media (max-width: $docs-breakpoint-lg) {
         overflow-x: auto;
+    }
+
+    @media (min-width: $docs-breakpoint-xl) {
+        width: 75%;
     }
 
     thead {
