@@ -13,15 +13,16 @@
 
         <template #icon-open>
             <VsIcon
-                name="minus"
+                name="chevron"
                 variant="secondary"
+                orientation="up"
                 size="xs"
             />
         </template>
         <template #icon-closed>
             <VsIcon
-                name="plus"
-                orientation="right"
+                name="chevron"
+                orientation="down"
                 variant="secondary"
                 size="xs"
             />
