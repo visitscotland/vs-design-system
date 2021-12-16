@@ -58,6 +58,7 @@
         padding: 4px 16px;
         font-size: $size-m;
         transition: background .2s;
+        display: none;
 
         &:hover {
             background-color: darken($docs-color-pink, 10%);
@@ -66,6 +67,15 @@
         &:focus, &:focus-within{
             box-shadow: 0 0 0 0.2rem #7edddc;
             outline: none;
+        }
+    }
+}
+
+// Only show example button on component pages
+.section-components {
+    .vds-example {
+        .vds-example-toggle {
+            display: block;
         }
     }
 }

@@ -161,7 +161,7 @@ export default {
         position: relative;
         letter-spacing: 0;
         font-weight: $font-weight-normal;
-        line-height: $standard-line-height;
+        line-height: $line-height-standard;
         border-radius: 0;
         border: 0;
         height: 32px;
@@ -258,7 +258,7 @@ export default {
             }
 
             &.disabled {
-                opacity: 1;
+                opacity: $opacity-100;
             }
 
             &:focus {
