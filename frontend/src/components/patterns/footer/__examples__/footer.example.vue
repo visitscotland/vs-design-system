@@ -24,7 +24,7 @@
                     <span slot="icon-closed">
                         <VsIcon
                             name="chevron"
-                            orientation="right"
+                            orientation="down"
                             variant="light"
                             size="xs"
                         />
@@ -73,7 +73,7 @@
                     <span slot="icon-closed">
                         <VsIcon
                             name="chevron"
-                            orientation="right"
+                            orientation="down"
                             variant="light"
                             size="xs"
                         />
@@ -123,7 +123,7 @@
                     <span slot="icon-closed">
                         <VsIcon
                             name="chevron"
-                            orientation="right"
+                            orientation="down"
                             variant="light"
                             size="xs"
                         />
