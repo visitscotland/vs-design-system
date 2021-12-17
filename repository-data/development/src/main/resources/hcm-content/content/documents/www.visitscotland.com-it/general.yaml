@@ -40,7 +40,6 @@
           hippotranslation:id: c7558344-b1af-47eb-9d4d-62e58c97f961
           hippotranslation:locale: it
           visitscotland:breadcrumb: ''
-          visitscotland:diff: ''
           visitscotland:hideNewsletter: false
           visitscotland:seoDescription: Page not found
           visitscotland:seoNoIndex: true
@@ -49,7 +48,7 @@
           visitscotland:theme: Simple
           visitscotland:title: Page not found
           visitscotland:translation: ''
-          visitscotland:translationFlag: true
+          visitscotland:translationFlag: false
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
@@ -66,9 +65,10 @@
           hippo:availability: []
           hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-12-14T12:06:05.666Z
-          hippostdpubwf:lastModificationDate: 2021-12-17T12:03:18.230Z
+          hippostdpubwf:lastModificationDate: 2021-12-17T12:06:20.642Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: c7558344-b1af-47eb-9d4d-62e58c97f961
           hippotranslation:locale: it
@@ -154,7 +154,6 @@
           hippotranslation:id: e792278f-42ea-4506-a021-cd6e4e944b4a
           hippotranslation:locale: it
           visitscotland:breadcrumb: ''
-          visitscotland:diff: ''
           visitscotland:hideNewsletter: false
           visitscotland:seoDescription: '500'
           visitscotland:seoNoIndex: true
@@ -163,7 +162,7 @@
           visitscotland:theme: Simple
           visitscotland:title: '500'
           visitscotland:translation: ''
-          visitscotland:translationFlag: true
+          visitscotland:translationFlag: false
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
@@ -180,9 +179,10 @@
           hippo:availability: []
           hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-12-14T12:06:13.521Z
-          hippostdpubwf:lastModificationDate: 2021-12-17T12:03:26.445Z
+          hippostdpubwf:lastModificationDate: 2021-12-17T12:06:25.489Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e792278f-42ea-4506-a021-cd6e4e944b4a
           hippotranslation:locale: it
