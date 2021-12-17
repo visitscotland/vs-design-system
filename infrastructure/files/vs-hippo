@@ -156,6 +156,20 @@ echo copying ALL files from $CATALINA_VS to $CATALINA_BASE
 
 cp -R $CATALINA_VS/* $CATALINA_BASE/
 
+# removing offending classes from log4j
+echo ""
+echo removing offending classes from MATCHED log4j files in $CATALINA_BASE/
+if [ ! -x /usr/bin/zip ]; then echo "Installing ZIP"; yum install -y zip; fi
+if [ -x /usr/bin/zip ]; then
+  for JAR in `find $CATALINA_BASE/ -type f -name "*log4*" | egrep "log4j-core-2\.[0-9]+\.[0-9]+\.jar"`; do
+    echo -e "Before:\n`$JAVA_HOME/bin/jar tvf $JAR | egrep "org/apache/logging/log4j/core/lookup/J"`\n"
+    zip -q -d $JAR org/apache/logging/log4j/core/lookup/JndiLookup.class
+    echo -e "After:\n`$JAVA_HOME/bin/jar tvf $JAR | egrep "org/apache/logging/log4j/core/lookup/J"`\n"
+  done
+else
+  echo "ZIP was not found - a vulnerable log4j JAR may still be in use"
+fi
+
 if [ "$1" == "no-db" ]||[ "$1" == "nodb" ]; then
   echo " - $1 stated, applying basic context.xml"
   cp -f $CATALINA_BASE/conf/context.xml.nodb $CATALINA_BASE/conf/context.xml
