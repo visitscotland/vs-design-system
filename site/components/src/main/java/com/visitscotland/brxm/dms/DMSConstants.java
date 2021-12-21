@@ -7,10 +7,10 @@ public class DMSConstants {
 
     public enum PSType {
         ACCOMMODATION(PATH_ACCOMMODATION, TYPE_ACCOMMODATION),
-        SEE_DO(PATH_SEE_DO, TYPE_SEE_DO),
         EVENTS(PATH_EVENTS, TYPE_EVENTS),
         FOOD_DRINK(PATH_FOOD_DRINK, TYPE_FOOD_DRINK),
-        TOURS(PATH_TOURS, TYPE_TOURS);
+        TOURS(PATH_TOURS, TYPE_TOURS),
+        SEE_DO(PATH_SEE_DO, TYPE_SEE_DO);
 
         private final String pathVariable;
         private final String productTypes;
@@ -20,15 +20,25 @@ public class DMSConstants {
             this.productTypes = productTypes;
         }
 
-        /*
-        TODO localize ULRs
-         */
         public String getPathVariable() {
             return pathVariable;
         }
 
         public String getProductTypes() {
             return productTypes;
+        }
+
+        public static PSType getType(String url){
+            String[] path = url.split("/");
+            for (String segment: path) {
+                for (PSType type : PSType.values()) {
+                    if (segment.equals(type.pathVariable)){
+                        return type;
+                    }
+                }
+            }
+
+            return SEE_DO;
         }
     }
 

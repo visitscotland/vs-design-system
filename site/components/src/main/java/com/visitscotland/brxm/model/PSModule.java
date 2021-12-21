@@ -8,9 +8,8 @@ public class PSModule {
     private String title;
     private String description;
     private PSType category;
-
     private LocationObject location;
-
+    private String searchUrl;
 
     public String getTitle() {
         return title;
@@ -42,5 +41,13 @@ public class PSModule {
 
     public void setLocation(LocationObject location) {
         this.location = location;
+    }
+
+    public String getSearchUrl() {
+        return searchUrl;
+    }
+
+    public void setSearchUrl(String searchUrl) {
+        this.searchUrl = searchUrl;
     }
 }
