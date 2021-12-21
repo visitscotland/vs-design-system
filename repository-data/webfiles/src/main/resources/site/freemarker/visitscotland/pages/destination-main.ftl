@@ -5,6 +5,7 @@
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/modules/signpost/signpost.ftl">
 <#include "../macros/shared/module-builder.ftl">
+<#include "../../frontend/components/vs-psr-module.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
@@ -20,18 +21,39 @@
 
     <@pageIntro content=document heroDetails=heroImage />
 
-    <#-- Does PSR goes here -->
-    <h2>PSR GOES HERE</h2>
-    <h3>${psrWidget.title}</h3>
-    ${psrWidget.description}
-    location=${psrWidget.location}
     <br>
-    search results link = /info/${psrWidget.pathVariable}/search-results?parameters
+    <#-- search results link = ${lang}/info/${psrWidget.category.pathVariable}/search-results?parameters -->
     <br>
-    product types = ${psrWidget.productTypes}
+    product types = ${psrWidget.category.productTypes}
     <br>
+    location = ${psrWidget.location}
 
 
+    <#--
+        :configArr="[
+            {'subSearchType': 'acco'},
+            {'loc': '${psrWidget.location}'},
+            // OR
+            {'locpoly': lksajdflksda}
+            {'lang':'en'},
+        ]"
+    -->
+
+    <vs-psr-module
+        :config-arr="[
+            {'subSearchType': '${psrWidget.category.productTypes}'},
+            {'loc': '3951'},
+            {'lang':'en'},
+        ]"
+    >
+        <template slot="vsModuleHeading">
+            ${psrWidget.title}
+        </template>
+
+        <template slot="vsModuleIntro">
+            ${psrWidget.description}
+        </template>
+    </vs-psr-module>
 
 	<#list pageItems as item>
         <@moduleBuilder item />
