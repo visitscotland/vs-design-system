@@ -20,6 +20,9 @@ public class DMSConstants {
             this.productTypes = productTypes;
         }
 
+        /*
+        TODO localize ULRs
+         */
         public String getPathVariable() {
             return pathVariable;
         }

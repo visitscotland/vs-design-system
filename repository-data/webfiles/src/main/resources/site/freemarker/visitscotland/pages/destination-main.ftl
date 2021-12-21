@@ -26,18 +26,32 @@
     <br>
     product types = ${psrWidget.category.productTypes}
     <br>
-    location = ${psrWidget.location}
+    location = ${psrWidget.location.type}
 
 
-    <#--
         :configArr="[
-            {'subSearchType': 'acco'},
-            {'loc': '${psrWidget.location}'},
-            // OR
-            {'locpoly': lksajdflksda}
-            {'lang':'en'},
+            {'subSearchType': '${psrWidget.category.productTypes}'},
+            <#if psrWidget.location??>
+                <#--- MODE 1: -->
+                <#if psrWidget.location.type == "POLYGON">
+                    {'locpoly': '${psrWidget.location.key}'}
+                <#else >
+                    {'loc': '${psrWidget.location.key}'},
+                </#if>
+
+                <#--- MODE 2: -->
+                <#assign isPolygon = (psrWidget.location.type == "POLYGON")>
+                {'${isPolygon?then('locpoly', 'loc')}': '${psrWidget.location.key}'},
+
+                <#--- MODE 3: -->
+                {'location': '${psrWidget.location.id}'},
+
+                <#--- display name for the combo (Probably not necessary if we select the right option) but it is the current functionality in production -->
+                {'displayName': '${psrWidget.location.name}'},
+            </#if>
+            {'lang':'${document.locale.language}'},
         ]"
-    -->
+
 
     <vs-psr-module
         :config-arr="[
