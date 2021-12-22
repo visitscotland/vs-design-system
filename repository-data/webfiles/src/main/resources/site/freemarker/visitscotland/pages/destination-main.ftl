@@ -22,48 +22,12 @@
 
     <@pageIntro content=document heroDetails=heroImage />
 
-    <br>
-    <#-- search results link = ${lang}/info/${psrWidget.category.pathVariable}/search-results?parameters -->
+    <#-- 
     <br>
     product types = ${psrWidget.category.productTypes}
     <br>
-    location = ${psrWidget.location.type}
+    location = ${psrWidget.location.type}  -->
 
-    <#if psrWidget.location??>
-        <#if psrWidget.location.type == "POLYGON">
-            <#assign configArray = "[
-                    {'subSearchType': '${psrWidget.category.productTypes}'},
-                    {'locpoly': '${psrWidget.location.key}'},
-                    {'lang':'${document.locale.language}'},
-                ]"
-            >
-        <#elseif  psrWidget.location.type == "SUBREGION">
-            <#assign configArray = "[
-                    {'subSearchType': '${psrWidget.category.productTypes}'},
-                    {'loc': '${psrWidget.location.key}'},
-                    {'lang':'${document.locale.language}'},
-                ]"
-            >
-        </#if>
-    </#if>
-
-    ${psrWidget.location.key}
-
-    <vs-psr-module
-        :config-arr="[
-            {'subSearchType': '${psrWidget.category.productTypes}'},
-            {'locPoly': '${psrWidget.location.key}'},
-            {'lang':'${document.locale.language}'},
-        ]"
-    >
-        <template slot="vsModuleHeading">
-            ${psrWidget.title}
-        </template>
-
-        <template slot="vsModuleIntro">
-            ${psrWidget.description}
-        </template>
-    </vs-psr-module>
     <@productSearchWidget psrWidget document.locale.language/>
 
 	<#list pageItems as item>
