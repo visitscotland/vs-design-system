@@ -28,36 +28,31 @@
     <br>
     location = ${psrWidget.location.type}
 
-
-        :configArr="[
-            {'subSearchType': '${psrWidget.category.productTypes}'},
-            <#if psrWidget.location??>
-                <#--- MODE 1: -->
-                <#if psrWidget.location.type == "POLYGON">
-                    {'locpoly': '${psrWidget.location.key}'}
-                <#else >
+    <#if psrWidget.location??>
+        <#if psrWidget.location.type == "POLYGON">
+            <#assign configArray = "[
+                    {'subSearchType': '${psrWidget.category.productTypes}'},
+                    {'locpoly': '${psrWidget.location.key}'},
+                    {'lang':'${document.locale.language}'},
+                ]"
+            >
+        <#elseif  psrWidget.location.type == "SUBREGION">
+            <#assign configArray = "[
+                    {'subSearchType': '${psrWidget.category.productTypes}'},
                     {'loc': '${psrWidget.location.key}'},
-                </#if>
+                    {'lang':'${document.locale.language}'},
+                ]"
+            >
+        </#if>
+    </#if>
 
-                <#--- MODE 2: -->
-                <#assign isPolygon = (psrWidget.location.type == "POLYGON")>
-                {'${isPolygon?then('locpoly', 'loc')}': '${psrWidget.location.key}'},
-
-                <#--- MODE 3: -->
-                {'location': '${psrWidget.location.id}'},
-
-                <#--- display name for the combo (Probably not necessary if we select the right option) but it is the current functionality in production -->
-                {'displayName': '${psrWidget.location.name}'},
-            </#if>
-            {'lang':'${document.locale.language}'},
-        ]"
-
+    ${psrWidget.location.key}
 
     <vs-psr-module
         :config-arr="[
             {'subSearchType': '${psrWidget.category.productTypes}'},
-            {'loc': '3951'},
-            {'lang':'en'},
+            {'locPoly': '${psrWidget.location.key}'},
+            {'lang':'${document.locale.language}'},
         ]"
     >
         <template slot="vsModuleHeading">
