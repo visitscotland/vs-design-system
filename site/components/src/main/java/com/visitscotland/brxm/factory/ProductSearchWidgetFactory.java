@@ -37,7 +37,7 @@ public class ProductSearchWidgetFactory {
         module.setDescription(bundle.getResourceBundle(BUNDLE_ID, type.getPathVariable() + ".description", locale));
         module.setCategory(type);
         module.setLocation(getLocation(request));
-        module.setSearchUrl(Language.DUTCH.getDMSPathVariable() + String.format(DMSConstants.PRODUCT_SEARCH, type.getPathVariable()));
+        module.setSearchUrl(Language.getLanguageForLocale(locale).getDMSPathVariable() + String.format(DMSConstants.PRODUCT_SEARCH, type.getPathVariable()));
 
         return module;
     }
