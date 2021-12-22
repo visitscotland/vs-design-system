@@ -2,23 +2,21 @@
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/modules/page-intro/social-share.ftl">
+<#include "../macros/modules/page-intro/page-intro.ftl">
+<#include "../macros/modules/product-search/psr-module.ftl">
+<#include "../macros/modules/signpost/signpost.ftl">
+<#include "../macros/shared/module-builder.ftl">
+
 <#include "../../frontend/components/vs-container.ftl">
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-heading.ftl">
 
-<#include "../macros/modules/page-intro/page-intro.ftl">
-<#include "../macros/global/cms-errors.ftl">
-<#include "../macros/shared/module-builder.ftl">
-<#include "../macros/modules/signpost/signpost.ftl">
-
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.General" -->
-<#-- @ftlvariable name="pageItems" type="com.visitscotland.brxm.hippobeans.Megalinks" -->
 
 <#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.model.FlatImage" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.model.Coordinates" -->
 
 <#assign standardTemplate = (document.theme == "Standard") />
 
@@ -45,6 +43,8 @@
 	</#list>
 
     <@socialShare nojs=true/>
+
+	<@productSearchWidget psrWidget document.locale.language/>
 
 	<#if otyml??>
 		<@horizontalList otyml themeName />

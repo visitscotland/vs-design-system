@@ -1,16 +1,15 @@
 package com.visitscotland.brxm.factory;
 
-import com.visitscotland.brxm.components.breadcrumb.VsBreadcrumbComponent;
-import com.visitscotland.brxm.config.VsComponentManager;
+import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.hippobeans.Destination;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.PSModule;
 import com.visitscotland.brxm.services.ResourceBundleService;
+import com.visitscotland.brxm.utils.Language;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.jetbrains.annotations.NotNull;
-import org.onehippo.forge.breadcrumb.components.BreadcrumbProvider;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
@@ -32,29 +31,31 @@ public class ProductSearchWidgetFactory {
 
     public PSModule getWidget(@NotNull HstRequest request, Locale locale){
         PSModule module = new PSModule();
-        PSType type = getType(request);
+        PSType type = PSType.getType(request.getRequestURI());
 
         module.setTitle(bundle.getResourceBundle(BUNDLE_ID, type.getPathVariable() + ".title", locale));
         module.setDescription(bundle.getResourceBundle(BUNDLE_ID, type.getPathVariable() + ".description", locale));
         module.setCategory(type);
-
         module.setLocation(getLocation(request));
+        module.setSearchUrl(Language.DUTCH.getDMSPathVariable() + String.format(DMSConstants.PRODUCT_SEARCH, type.getPathVariable()));
 
         return module;
     }
 
-    private PSType getType(HstRequest request){
+    /**
+     * @param request
+     * @return
+     */
+    private LocationObject getLocation(HstRequest request){
         Page page = request.getModel("document");
 
-        return PSType.SEE_DO;
-    }
+        while (page != null && !(page instanceof Destination)){
+            page = page.getParentBean().getParentBean().getBean("content");
+        }
 
-
-
-    private LocationObject getLocation(HstRequest request){
-
-        if (request.getModel("document") instanceof Destination){
-            return locationLoader.getLocation(((Destination) request.getModel("document")).getLocation(), request.getLocale()); //"furnance" "Furnance" --> loc="Furnance", locplace=351
+        if (page != null) {
+            //"furnance" "Furnace" --> loc="Furnace", locplace=351
+            return locationLoader.getLocation(((Destination) request.getModel("document")).getLocation(), request.getLocale());
         } else {
             return null;
         }

@@ -4,8 +4,9 @@
 <#include "../macros/modules/page-intro/social-share.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/modules/signpost/signpost.ftl">
+<#include "../macros/modules/product-search/psr-module.ftl">
 <#include "../macros/shared/module-builder.ftl">
-<#include "../../frontend/components/vs-psr-module.ftl">
+
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.Destination" -->
@@ -63,6 +64,7 @@
             ${psrWidget.description}
         </template>
     </vs-psr-module>
+    <@productSearchWidget psrWidget document.locale.language/>
 
 	<#list pageItems as item>
         <@moduleBuilder item />
