@@ -22,7 +22,7 @@
 
     <@pageIntro content=document heroDetails=heroImage />
 
-    <@productSearchWidget psrWidget document.locale.language/>
+    <@productSearchWidget psrWidget!'' document.locale.language/>
 
 	<#list pageItems as item>
         <@moduleBuilder item />
