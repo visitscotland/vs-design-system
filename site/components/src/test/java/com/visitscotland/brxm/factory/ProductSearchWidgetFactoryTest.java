@@ -71,7 +71,6 @@ public class ProductSearchWidgetFactoryTest {
     @DisplayName("VS-3084 - ProductSearchWidget - Path accommodation is identified and Resource Bundle are coherent")
     void defaultTextForAccommodation(){
         request.setRequestURI("/accommodation");
-
         when(bundle.getResourceBundle(BUNDLE_ID, "accommodation.title", Locale.UK)).thenReturn("Title");
         when(bundle.getResourceBundle(BUNDLE_ID, "accommodation.description", Locale.UK)).thenReturn("Description");
 
@@ -88,17 +87,15 @@ public class ProductSearchWidgetFactoryTest {
     void inferLocation(){
         LocationObject location = new LocationObject();
         Destination page = mock(Destination.class);
-        when(page.getLocation()).thenReturn("location");
 
         request.setModel("document", page);
-
+        when(page.getLocation()).thenReturn("location");
         when(locationLoader.getLocation("location", Locale.UK)).thenReturn(location);
 
         PSModule module = factory.getWidget(request);
 
         Assertions.assertEquals(location, module.getLocation());
     }
-
 
 
     @Test
@@ -107,18 +104,16 @@ public class ProductSearchWidgetFactoryTest {
         LocationObject location = new LocationObject();
         Page page = mock(Page.class, RETURNS_DEEP_STUBS);
         Destination parent = mock(Destination.class);
-        when(page.getParentBean().getParentBean().getBean("content")).thenReturn(parent);
-        when(parent.getLocation()).thenReturn("location");
 
         request.setModel("document", page);
-
+        when(page.getParentBean().getParentBean().getBean("content")).thenReturn(parent);
+        when(parent.getLocation()).thenReturn("location");
         when(locationLoader.getLocation("location", Locale.UK)).thenReturn(location);
 
         PSModule module = factory.getWidget(request);
 
         Assertions.assertEquals(location, module.getLocation());
     }
-
 
     @ParameterizedTest
     @ValueSource(strings = {"accommodation", "/accommodation", "/destinations-maps/edinburgh/accommodation", "x/accommodation/y/z", "see-do/accommodation", "accommodation/see-do"})
