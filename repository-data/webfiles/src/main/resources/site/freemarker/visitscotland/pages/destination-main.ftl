@@ -22,12 +22,6 @@
 
     <@pageIntro content=document heroDetails=heroImage />
 
-    <#-- 
-    <br>
-    product types = ${psrWidget.category.productTypes}
-    <br>
-    location = ${psrWidget.location.type}  -->
-
     <@productSearchWidget psrWidget document.locale.language/>
 
 	<#list pageItems as item>

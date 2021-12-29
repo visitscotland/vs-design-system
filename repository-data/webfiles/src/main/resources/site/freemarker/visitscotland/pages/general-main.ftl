@@ -26,6 +26,7 @@
 
     <#if standardTemplate>
         <@pageIntro content=document heroDetails=heroImage />
+		<@productSearchWidget psrWidget document.locale.language/>
     <#else>
         <@pageIntro content=document simplePage=!standardTemplate/>
     </#if>
@@ -44,7 +45,9 @@
 
     <@socialShare nojs=true/>
 
-	<@productSearchWidget psrWidget document.locale.language/>
+	<#if !standardTemplate>
+		<@productSearchWidget psrWidget document.locale.language/>
+	</#if>
 
 	<#if otyml??>
 		<@horizontalList otyml themeName />
