@@ -5,43 +5,6 @@ import com.visitscotland.brxm.utils.NonTestable;
 @NonTestable()
 public class DMSConstants {
 
-    public enum PSType {
-        ACCOMMODATION(PATH_ACCOMMODATION, TYPE_ACCOMMODATION),
-        EVENTS(PATH_EVENTS, TYPE_EVENTS),
-        FOOD_DRINK(PATH_FOOD_DRINK, TYPE_FOOD_DRINK),
-        TOURS(PATH_TOURS, TYPE_TOURS),
-        SEE_DO(PATH_SEE_DO, TYPE_SEE_DO);
-
-        private final String pathVariable;
-        private final String productTypes;
-
-        PSType(String pathVariable, String productTypes) {
-            this.pathVariable = pathVariable;
-            this.productTypes = productTypes;
-        }
-
-        public String getPathVariable() {
-            return pathVariable;
-        }
-
-        public String getProductTypes() {
-            return productTypes;
-        }
-
-        public static PSType getType(String url){
-            String[] path = url.split("/");
-            for (String segment: path) {
-                for (PSType type : PSType.values()) {
-                    if (segment.equals(type.pathVariable)){
-                        return type;
-                    }
-                }
-            }
-
-            return SEE_DO;
-        }
-    }
-
     public static final String PATH_SEE_DO = "see-do";
     public static final String PATH_ACCOMMODATION = "accommodation";
     public static final String PATH_FOOD_DRINK = "food-drink";

@@ -2,7 +2,6 @@ package com.visitscotland.brxm.factory;
 
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSConstants;
-import com.visitscotland.brxm.dms.DMSProxy;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.hippobeans.Destination;
@@ -19,7 +18,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.visitscotland.brxm.dms.DMSConstants.PSType;
+import com.visitscotland.brxm.dms.PSType;
 
 @Component
 public class ProductSearchWidgetFactory {

@@ -1,6 +1,6 @@
 package com.visitscotland.brxm.model;
 
-import com.visitscotland.brxm.dms.DMSConstants.PSType;
+import com.visitscotland.brxm.dms.PSType;
 import com.visitscotland.brxm.dms.model.LocationObject;
 
 import java.util.Map;
