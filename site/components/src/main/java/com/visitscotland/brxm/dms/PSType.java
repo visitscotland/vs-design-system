@@ -1,5 +1,8 @@
 package com.visitscotland.brxm.dms;
 
+/**
+ * Note: Read description of the method getType before altering the order of this values of this enum
+ */
 public enum PSType {
     ACCOMMODATION(DMSConstants.PATH_ACCOMMODATION, DMSConstants.TYPE_ACCOMMODATION),
     EVENTS(DMSConstants.PATH_EVENTS, DMSConstants.TYPE_EVENTS),
@@ -23,10 +26,14 @@ public enum PSType {
         return productTypes;
     }
 
+    /**
+     * Guess the type from a URL. The order of importance is defined by the order in which the values of this enum
+     * are defined.
+     */
     public static PSType getType(String url) {
         String[] path = url.split("/");
-        for (String segment : path) {
-            for (PSType type : PSType.values()) {
+        for (PSType type : PSType.values()) {
+            for (String segment : path) {
                 if (segment.equals(type.pathVariable)) {
                     return type;
                 }

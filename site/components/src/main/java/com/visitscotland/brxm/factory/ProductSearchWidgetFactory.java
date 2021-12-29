@@ -1,8 +1,8 @@
 package com.visitscotland.brxm.factory;
 
-import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSConstants;
 import com.visitscotland.brxm.dms.LocationLoader;
+import com.visitscotland.brxm.dms.PSType;
 import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.hippobeans.Destination;
 import com.visitscotland.brxm.hippobeans.Page;
@@ -15,10 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-
-import com.visitscotland.brxm.dms.PSType;
 
 @Component
 public class ProductSearchWidgetFactory {
@@ -27,28 +24,29 @@ public class ProductSearchWidgetFactory {
 
     final ResourceBundleService bundle;
     final LocationLoader locationLoader;
+    final Properties properties;
 
-    public ProductSearchWidgetFactory(ResourceBundleService bundle, LocationLoader locationLoader) {
+    public ProductSearchWidgetFactory(ResourceBundleService bundle, LocationLoader locationLoader, Properties properties) {
         this.bundle = bundle;
         this.locationLoader = locationLoader;
+        this.properties = properties;
     }
 
-    public PSModule getWidget(@NotNull HstRequest request, Locale locale){
+    public PSModule getWidget(@NotNull HstRequest request){
         PSModule module = new PSModule();
         PSType type = PSType.getType(request.getRequestURI());
 
-        module.setTitle(bundle.getResourceBundle(BUNDLE_ID, type.getPathVariable() + ".title", locale));
-        module.setDescription(bundle.getResourceBundle(BUNDLE_ID, type.getPathVariable() + ".description", locale));
+        module.setTitle(bundle.getResourceBundle(BUNDLE_ID, type.getPathVariable() + ".title", request.getLocale()));
+        module.setDescription(bundle.getResourceBundle(BUNDLE_ID, type.getPathVariable() + ".description", request.getLocale()));
         module.setCategory(type);
         module.setLocation(getLocation(request));
-        Properties properties = VsComponentManager.get(Properties.class);
 
-        module.setSearchUrl(properties.getDmsHost() + Language.getLanguageForLocale(locale).getDMSPathVariable() + String.format(DMSConstants.PRODUCT_SEARCH, type.getPathVariable()));
+        module.setSearchUrl(properties.getDmsHost() + Language.getLanguageForLocale(request.getLocale()).getDMSPathVariable() + String.format(DMSConstants.PRODUCT_SEARCH, type.getPathVariable()));
 
         Map<String, String> supportingURLs = new HashMap<>();
         for (PSType pstype: PSType.values()){
             supportingURLs.put(pstype.getProductTypes(),
-                    properties.getDmsHost() + Language.getLanguageForLocale(locale).getDMSPathVariable()
+                    properties.getDmsHost() + Language.getLanguageForLocale(request.getLocale()).getDMSPathVariable()
                             + String.format(DMSConstants.PRODUCT_SEARCH, pstype.getPathVariable()));
         }
 

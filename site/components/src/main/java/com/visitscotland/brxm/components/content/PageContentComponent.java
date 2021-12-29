@@ -102,7 +102,7 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
      * TODO: Check in FreeMarker if null so it can be deactivated in the future
      */
     private void addProductSearchWidget(HstRequest request){
-        request.setAttribute(PSR_WIDGET, psrFactory.getWidget(request, request.getLocale()));
+        request.setAttribute(PSR_WIDGET, psrFactory.getWidget(request));
     }
 
     /**
