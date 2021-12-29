@@ -3,6 +3,8 @@ package com.visitscotland.brxm.model;
 import com.visitscotland.brxm.dms.DMSConstants.PSType;
 import com.visitscotland.brxm.dms.model.LocationObject;
 
+import java.util.Map;
+
 public class PSModule {
 
     private String title;
@@ -10,6 +12,7 @@ public class PSModule {
     private PSType category;
     private LocationObject location;
     private String searchUrl;
+    private Map<String,String> supportingURLs;
 
     public String getTitle() {
         return title;
@@ -49,5 +52,13 @@ public class PSModule {
 
     public void setSearchUrl(String searchUrl) {
         this.searchUrl = searchUrl;
+    }
+
+    public Map<String, String> getSupportingURLs() {
+        return supportingURLs;
+    }
+
+    public void setSupportingURLs(Map<String, String> supportingURLs) {
+        this.supportingURLs = supportingURLs;
     }
 }

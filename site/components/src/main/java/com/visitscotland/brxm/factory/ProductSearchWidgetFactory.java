@@ -1,6 +1,8 @@
 package com.visitscotland.brxm.factory;
 
+import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.dms.DMSConstants;
+import com.visitscotland.brxm.dms.DMSProxy;
 import com.visitscotland.brxm.dms.LocationLoader;
 import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.hippobeans.Destination;
@@ -8,11 +10,14 @@ import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.PSModule;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.Language;
+import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import static com.visitscotland.brxm.dms.DMSConstants.PSType;
 
@@ -37,7 +42,18 @@ public class ProductSearchWidgetFactory {
         module.setDescription(bundle.getResourceBundle(BUNDLE_ID, type.getPathVariable() + ".description", locale));
         module.setCategory(type);
         module.setLocation(getLocation(request));
-        module.setSearchUrl(Language.getLanguageForLocale(locale).getDMSPathVariable() + String.format(DMSConstants.PRODUCT_SEARCH, type.getPathVariable()));
+        Properties properties = VsComponentManager.get(Properties.class);
+
+        module.setSearchUrl(properties.getDmsHost() + Language.getLanguageForLocale(locale).getDMSPathVariable() + String.format(DMSConstants.PRODUCT_SEARCH, type.getPathVariable()));
+
+        Map<String, String> supportingURLs = new HashMap<>();
+        for (PSType pstype: PSType.values()){
+            supportingURLs.put(pstype.getProductTypes(),
+                    properties.getDmsHost() + Language.getLanguageForLocale(locale).getDMSPathVariable()
+                            + String.format(DMSConstants.PRODUCT_SEARCH, pstype.getPathVariable()));
+        }
+
+        module.setSupportingURLs(supportingURLs);
 
         return module;
     }
@@ -53,9 +69,8 @@ public class ProductSearchWidgetFactory {
             page = page.getParentBean().getParentBean().getBean("content");
         }
 
-        if (page != null) {
-            //"furnance" "Furnace" --> loc="Furnace", locplace=351
-            return locationLoader.getLocation(((Destination) request.getModel("document")).getLocation(), request.getLocale());
+        if (page instanceof Destination) {
+            return locationLoader.getLocation(((Destination) page).getLocation(), request.getLocale());
         } else {
             return null;
         }
