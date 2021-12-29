@@ -19,7 +19,6 @@
     (async () => {
         try {
             ui = await UiExtension.register();
-            const options = await ui.dialog.options();
         } catch(error) {
             console.error('Failed to register extension:', error.message);
             console.error('- error code:', error.code);
@@ -27,12 +26,25 @@
     })();
 
     const okButton = document.querySelector('#okButton');
+    const cancelButton = document.querySelector('#cancelButton');
+
     okButton.addEventListener('click', async () => {
-        ui.dialog.close(true);
+        // Make the request to clear the flag here before closing dialog. This prevents the user from interacting
+        // with the CMS until it is complete
+        const options = await ui.dialog.options()
+        const nodeId = options.value;
+        if (!nodeId) {
+            console.error("No node id passed into dialogTranslationComplete, options=", options)
+            return ui.dialog.cancel(500);
+        }
+        // Disable buttons whilst request is in progress
+        okButton.className = "btn disabled-clickable"
+        cancelButton.className = "btn disabled-clickable"
+        const response = await fetch(`/cms/vs-service/node/${nodeId}/translation/flag`, {method: 'DELETE'})
+        return ui.dialog.close(response.status);
     });
 
-    const cancelButton = document.querySelector('#cancelButton');
     cancelButton.addEventListener('click', async () => {
-       ui.dialog.cancel();
+        ui.dialog.cancel();
     });
 </script>

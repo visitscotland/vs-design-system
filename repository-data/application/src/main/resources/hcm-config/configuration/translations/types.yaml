@@ -61,7 +61,7 @@ definitions:
       jcr:primaryType: hipposys:resourcebundles
       /en:
         jcr:primaryType: hipposys:resourcebundle
-        jcr:name: DMS Link
+        jcr:name: DMS Listing
     /hippo:configuration/hippo:translations/hippo:types/visitscotland:ExternalDocument:
       jcr:primaryType: hipposys:resourcebundles
       /en:
@@ -71,17 +71,17 @@ definitions:
       jcr:primaryType: hipposys:resourcebundles
       /en:
         jcr:primaryType: hipposys:resourcebundle
-        jcr:name: External Link
+        jcr:name: External
     /hippo:configuration/hippo:translations/hippo:types/visitscotland:VideoLink:
       jcr:primaryType: hipposys:resourcebundles
       /en:
         jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Video Link
+        jcr:name: Video
     /hippo:configuration/hippo:translations/hippo:types/visitscotland:CMSLink:
       jcr:primaryType: hipposys:resourcebundles
       /en:
         jcr:primaryType: hipposys:resourcebundle
-        jcr:name: CMS Link
+        jcr:name: Internal
     /hippo:configuration/hippo:translations/hippo:types/visitscotland:IknowCommunity:
       jcr:primaryType: hipposys:resourcebundles
       /en:
@@ -121,7 +121,7 @@ definitions:
       jcr:primaryType: hipposys:resourcebundles
       /en:
         jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Product Search Link
+        jcr:name: Product Search
     /hippo:configuration/hippo:translations/hippo:types/visitscotland:SharedLink:
       jcr:primaryType: hipposys:resourcebundles
       /en:
@@ -151,4 +151,4 @@ definitions:
       jcr:primaryType: hipposys:resourcebundles
       /en:
         jcr:primaryType: hipposys:resourcebundle
-        jcr:name: Product Search
+        jcr:name: Product Search Filters

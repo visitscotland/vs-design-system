@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: f0ef2b6e-eefa-4440-afbd-14fef7810d14
+          jcr:uuid: 748c4e48-8ec0-4ad5-868e-0be268b15e0d
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -24,7 +24,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:medium-string-validator']
           /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -52,7 +52,7 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 07e35d9c-a0c1-4337-98a6-b1e09aee2f01
+          jcr:uuid: e358f25c-cd46-4e96-9d52-052a864679ad
           hippostdpubwf:lastModificationDate: 2021-12-03T13:55:59.687Z
           hippostdpubwf:creationDate: 2021-12-03T13:55:59.687Z
           /visitscotland:copy:
@@ -87,7 +87,7 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.appended.json: '{extraPlugins: ''wordcount'', wordcount:
-                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 375}}'
+                {countSpacesAsChars: true, showCharCount: true, maxCharCount: 200}}'
               ckeditor.config.overlayed.json: '{toolbarGroups: [{name:''links''},{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}
                 ] , removeButtons: ''PickImage,Youtube,Table''}'
           /ctaLink:

@@ -21,14 +21,6 @@ definitions:
             hst:componentconfigurationid: hst:pages/pagenotfound
             hst:relativecontentpath: general/error/404-not-found/content
             hst:refId: pagenotfound
-          /widget:
-            jcr:primaryType: hst:sitemapitem
-            hst:componentconfigurationid: hst:pages/widget
-            hst:relativecontentpath: navigation
-            /_any_:
-              jcr:primaryType: hst:sitemapitem
-              hst:componentconfigurationid: hst:pages/widget
-              hst:relativecontentpath: ${parent}/${1}
           /sandbox:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
@@ -504,6 +496,13 @@ definitions:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/servererror
             hst:relativecontentpath: general/error/500-server-error/content
+          /widget:
+            jcr:primaryType: hst:sitemapitem
+            hst:relativecontentpath: general/navigation/widgets
+            /_any_:
+              jcr:primaryType: hst:sitemapitem
+              hst:componentconfigurationid: hst:pages/pagenotfound
+              hst:relativecontentpath: ${parent}/${1}
         /hst:abstractpages:
           jcr:primaryType: hst:pages
         /hst:pages:

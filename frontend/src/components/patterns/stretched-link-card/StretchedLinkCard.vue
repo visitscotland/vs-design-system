@@ -200,7 +200,7 @@ export default {
         .vs-stretched-link-card__title {
             font-size: $small-font-size;
             line-height: $line-height-s;
-            letter-spacing: 1px;
+            letter-spacing: $letter-spacing-l;
             color: $color-base-text;
             display: flex;
 

@@ -31,6 +31,8 @@
     <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
 
+    <bloomreach.forge.ipfilter.version>3.1.0</bloomreach.forge.ipfilter.version>
+
     <cliOptions></cliOptions>
   </properties>
   
@@ -94,6 +96,18 @@
         <groupId>org.freemarker</groupId>
         <artifactId>freemarker</artifactId>
         <version>${freemarker.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.bloomreach.forge.ipfilter</groupId>
+        <artifactId>bloomreach-ipfilter-hst</artifactId>
+        <version>${bloomreach.forge.ipfilter.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.bloomreach.forge.ipfilter</groupId>
+        <artifactId>bloomreach-ipfilter-cms</artifactId>
+        <version>${bloomreach.forge.ipfilter.version}</version>
       </dependency>
 
       <!-- VisitScotland Dependencies -->
