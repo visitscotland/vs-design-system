@@ -1,5 +1,4 @@
-def DS_BRANCH = "feature/VS-2898-add-nNexus-IQ-Security-Scan-Step-to-Jenkins-Build-Pipeline"
-def MAIL_TO = "steve.taylor@visitscotland.com"
+def MAIL_TO = "webops@visitscotland.net"
 
 def thisAgent
 def VS_CONTAINER_BASE_PORT_OVERRIDE
@@ -57,12 +56,11 @@ pipeline {
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
     // VS_SKIP_BUILD_FOR_BRANCH is useful for testing, only ever set to your working branch name - never to a variable!
-    //VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-2898-add-nNexus-IQ-Security-Scan-Step-to-Jenkins-Build-Pipeline'
     VS_SKIP_BUILD_FOR_BRANCH = ''
     // VS_COMMIT_AUTHOR is required by later stages which will fail if it's not set, default value of jenkins@visitscotland.net
     // turns out if you set it here it will not be overwritten by the load later in the pipeline
     //VS_COMMIT_AUTHOR = 'jenkins@visitscotland.net'
-    VS_RUN_LIGHTHOUSE_TESTS = 'FALSE'
+    VS_RUN_LIGHTHOUSE_TESTS = 'TRUE'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
@@ -82,18 +80,6 @@ pipeline {
   }
 
   stages {
-
-//  -- "Checkout Design System". This stage now commented out as it's no longer required since VS-1081 - please merge this change as required but leave the block for reference
-//  stage ('Checkout Design System') {
-//    steps {
-//      // -- create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
-//      sh 'mkdir -p design-system'
-//      dir('design-system') {
-//        //git branch: '${DS_BRANCH}', credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43', url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git'
-//        checkout([$class: 'GitSCM', branches: [[name: "*/${DS_BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'dist/']]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43',url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git']]])
-//      }
-//    }
-//  }
 
     stage ('Pre-build') {
       steps {
@@ -241,7 +227,7 @@ pipeline {
 
         stage('Nexus IQ Scan: Site') {
           when {
-            branch 'feature/VS-2898-add-nNexus-IQ-Security-Scan-Step-to-Jenkins-Build-Pipeline' 
+            branch 'develop' 
           }
           steps {
             script{
@@ -261,7 +247,7 @@ pipeline {
 
         stage('Nexus IQ Scan: CMS') {
           when {
-            branch 'feature/VS-2898-add-nNexus-IQ-Security-Scan-Step-to-Jenkins-Build-Pipeline' 
+            branch 'develop' 
           }
           steps {
             script{
@@ -281,7 +267,7 @@ pipeline {
 
         stage('Nexus IQ Scan: SSR') {
           when {
-            branch 'feature/VS-2898-add-nNexus-IQ-Security-Scan-Step-to-Jenkins-Build-Pipeline' 
+            branch 'develop' 
           }
           steps {
             script{
