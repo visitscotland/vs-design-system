@@ -20,7 +20,7 @@
     "totalKM": "96",
     "transport": {
         "key": "bus",
-        "value": "Public Transport"
+        "value": "Public Transport / Walking"
     },
     "theme": {
         "key": "child",
