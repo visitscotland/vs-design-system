@@ -5,7 +5,7 @@
 
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.CannedSearchModule" -->
 
-<#macro productSearchWidget module language >
+<#macro productSearchWidget module=""  >
     <#if module?has_content>
 
         <vs-psr-module
@@ -22,7 +22,7 @@
                     {'${type}' : '${url}'},
                 </#list>
                 ]},
-                {'lang':'${language}'},
+                {'lang':'${locale[0..1]}'},
             ]"
         >
             <template slot="vsModuleHeading">

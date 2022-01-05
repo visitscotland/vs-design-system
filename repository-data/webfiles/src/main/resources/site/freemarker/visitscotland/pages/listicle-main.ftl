@@ -68,7 +68,7 @@
 
     <@socialShare nojs=true/>
 
-    <@productSearchWidget psrWidget!'' document.locale.language/>
+    <@productSearchWidget psrWidget />
 
     <#if otyml??>
         <@horizontalList otyml themeName />
