@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
@@ -26,7 +25,7 @@ public class IKnowCommunityFactory {
     private final ResourceBundleService bundle;
     private final Properties properties;
     private static final String BUNDLE_ID = "iknow-community";
-    private static final String TAG_VALUE_LIST_IDENTIFIER = "iknow-community-tags";
+    private static final String TAGS_BUNDLE_ID = "iknow-community-tags";
     private static final Logger logger = LoggerFactory.getLogger(IKnowCommunityFactory.class);
 
 
@@ -52,12 +51,12 @@ public class IKnowCommunityFactory {
         iKnowCommunityModule.setLink(new FlatLink(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.link.label", locale),
                 this.properties.getIknowCommunityUrl(), LinkType.INTERNAL));
 
-        Map<String, String> tagValueMap = utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER);
         List<FlatLink> tagLinks = Arrays.stream(iknowCommunity.getTags()).map(tagKey -> {
-            if (!tagValueMap.containsKey(tagKey)) {
-                logger.error("Failed to find key {} in value list iknow-community-tags", tagKey);
+            String tagLabel = bundle.getResourceBundle(TAGS_BUNDLE_ID, tagKey, locale);
+            if (tagLabel == null) {
+                logger.error("Tag {} not found in {} labels", tagKey, TAGS_BUNDLE_ID);
             }
-            return new FlatLink(tagValueMap.getOrDefault(tagKey, tagKey), getTaggedDiscussionUrl(tagKey), LinkType.INTERNAL);
+            return new FlatLink(Contract.defaultIfNull(tagLabel, tagKey), getTaggedDiscussionUrl(tagKey), LinkType.INTERNAL);
         }).collect(Collectors.toList());
 
         iKnowCommunityModule.setTags(tagLinks);

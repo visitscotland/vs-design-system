@@ -177,15 +177,19 @@ export default {
             <VsImageWithCaption
                 imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 altText="This is the alt text"
-                slot="icentreImageWithCaption">
+                slot="icentreImageWithCaption"
+            >
+                <VsCaption
+                    slot="img-caption"
+                >
+                    <span slot="caption">
+                        A test caption
+                    </span>
 
-                <span slot="caption">
-                    A test caption
-                </span>
-
-                <span slot="credit">
-                    &copy; Some test credits
-                </span>
+                    <span slot="credit">
+                        &copy; VisitScotland
+                    </span>
+                </VsCaption>
             </VsImageWithCaption>
 
             <span slot="icentreQuote">
@@ -228,15 +232,19 @@ export default {
             <VsImageWithCaption
                 imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 altText="This is the alt text"
-                slot="icentreImageWithCaption">
+                slot="icentreImageWithCaption"
+            >
+                <VsCaption
+                    slot="img-caption"
+                >
+                    <span slot="caption">
+                        A test caption
+                    </span>
 
-                <span slot="caption">
-                    A test caption
-                </span>
-
-                <span slot="credit">
-                    &copy; Some test credits
-                </span>
+                    <span slot="credit">
+                        &copy; VisitScotland
+                    </span>
+                </VsCaption>
             </VsImageWithCaption>
 
             <p slot="icentreLinks">Test content <a href="#">link</a></p>

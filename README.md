@@ -22,15 +22,6 @@ Alternatively, developers might prefer to run a quicker version were UI packages
 Please, note that the full run is advised every time the branch is changed or when front end changes 
 are expected.
 
-Windows Based Console
-
-    mvn clean verify -P !fed-build -DskipTests
-    mvn -P cargo.run
-   
-or 
-
-    mvn clean verify -P !fed-build -DskipTests &&mvn -P cargo.run
-    
 Unix Based Console
 
     mvn clean verify -P \!fed-build -DskipTests 
@@ -64,6 +55,14 @@ will not be available.
 - Username: admin
 - Password: admin (Do not share it. It is a secret)
 
+Windows Based Console
+
+    mvn clean verify -P !fed-build -DskipTests
+    mvn -P cargo.run
+
+or
+
+    mvn clean verify -P !fed-build -DskipTests &&mvn -P cargo.run
     
 ## Troubleshooting
 **I get the following error when I try to clone the message: _fatal: cannot create directory at '{some big path}': Filename too long_**

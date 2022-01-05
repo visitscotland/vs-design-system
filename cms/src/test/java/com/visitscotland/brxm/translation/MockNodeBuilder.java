@@ -11,11 +11,10 @@ import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public final class MockNodeBuilder {
+
     Map<String, Property> properties = new HashMap<>();
     String primaryNodeType;
     List<String> nodeTypes = new ArrayList<>();
@@ -70,9 +69,10 @@ public final class MockNodeBuilder {
         return this;
     }
 
-    public MockNodeBuilder withProperty(String propertyPath, String propertyValue) throws Exception {
+    public MockNodeBuilder withProperty(String propertyPath, String propertyValue) throws RepositoryException {
         Property mockProperty = mock(Property.class);
         lenient().when(mockProperty.getString()).thenReturn(propertyValue);
+
         properties.put(propertyPath, mockProperty);
         return this;
     }
@@ -147,34 +147,42 @@ public final class MockNodeBuilder {
         return this;
     }
 
-    public Node build() throws Exception {
-        Node mockNode = mock(HippoNode.class);
-        lenient().when(mockNode.hasProperty(any())).thenReturn(false);
-        lenient().when(mockNode.isNodeType(any())).thenReturn(false);
+    public Node build() throws RepositoryException {
+        Node mockNode = mock(HippoNode.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
 
-        if ( null != jcrSession && null != nodeId) {
-            when(jcrSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
+        when(mockNode.hasProperty(any())).thenReturn(false);
+        when(mockNode.isNodeType(any())).thenReturn(false);
+
+        if (nodeId != null) {
+            when(mockNode.getIdentifier()).thenReturn(nodeId);
+
+            if (jcrSession != null) {
+                when(jcrSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
+            }
         }
 
         if ( null != primaryNodeType) {
-            NodeType mockNodeType = mock(NodeType.class);
-            when(mockNode.getPrimaryNodeType()).thenReturn(mockNodeType);
-            when(mockNodeType.getName()).thenReturn(primaryNodeType);
+            lenient().when(mockNode.getPrimaryNodeType().getName()).thenReturn(primaryNodeType);
             lenient().when(mockNode.isNodeType(eq(primaryNodeType))).thenReturn(true);
         }
 
         for (String type : nodeTypes) {
-            lenient().when(mockNode.isNodeType(type)).thenReturn(true);
+            when(mockNode.isNodeType(type)).thenReturn(true);
         }
 
         for (Map.Entry<String, Property> propertyEntry : properties.entrySet()) {
-            lenient().when(mockNode.hasProperty(eq(propertyEntry.getKey()))).thenReturn(true);
-            lenient().when(mockNode.getProperty(eq(propertyEntry.getKey()))).thenReturn(propertyEntry.getValue());
+            when(mockNode.hasProperty(eq(propertyEntry.getKey()))).thenReturn(true);
+            when(mockNode.getProperty(eq(propertyEntry.getKey()))).thenReturn(propertyEntry.getValue());
         }
 
         for (Map.Entry<String, List<Node>> childNodeEntry : childNodes.entrySet()) {
             final NodeIterator mockNodeIterator = createNodeIterator(childNodeEntry.getValue());
-            lenient().when(mockNode.getNodes(eq(childNodeEntry.getKey()))).thenReturn(mockNodeIterator);
+            when(mockNode.hasNode(eq(childNodeEntry.getKey()))).thenReturn(true);
+
+            when(mockNode.getNodes(eq(childNodeEntry.getKey()))).thenReturn(mockNodeIterator);
+            if (childNodeEntry.getValue().size() == 1) {
+                when(mockNode.getNode(eq(childNodeEntry.getKey()))).thenReturn(childNodeEntry.getValue().get(0));
+            }
         }
 
         List<Node> allChildNodes = new ArrayList<>();
@@ -182,7 +190,7 @@ public final class MockNodeBuilder {
             allChildNodes.addAll(childNodeEntry.getValue());
         }
         final NodeIterator mockAllNodeIterator = createNodeIterator(allChildNodes);
-        lenient().when(mockNode.getNodes()).thenReturn(mockAllNodeIterator);
+        when(mockNode.getNodes()).thenReturn(mockAllNodeIterator);
 
         return mockNode;
     }

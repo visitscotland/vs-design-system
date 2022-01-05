@@ -64,7 +64,7 @@ export default {
             }
 
             &:focus-visible{
-                outline: 2px solid $color-pink;
+                outline: 2px solid $color-secondary-teal-tint-3;
                 outline-offset: 0;
             }
 

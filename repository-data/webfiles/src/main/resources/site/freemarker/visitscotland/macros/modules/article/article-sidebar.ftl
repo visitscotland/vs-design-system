@@ -12,7 +12,7 @@
             </#if>
             
             <template slot="vsArticleSidebarImg">
-                <@imageWithCaption imageSrc=media imageDetails=section.image variant="fullwidth"/>
+                <@imageWithCaption imageSrc=media imageDetails=section.image/>
             </template>
         </#if>
         

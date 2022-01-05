@@ -10,14 +10,6 @@
                 ref="youtube"
             />
         </div>
-
-        <p
-            class="vs-video__duration"
-            data-test="vs-video-duration"
-            v-if="showDuration"
-        >
-            {{ duration.minutes }}:{{ duration.seconds }}
-        </p>
     </div>
 </template>
 
@@ -42,6 +34,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import VueYoutube from 'vue-youtube';
 import Vue from 'vue';
+import videoStore from '../../../stores/video.store';
 
 Vue.use(VueYoutube, {
     global: false,
@@ -71,14 +64,36 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * A string to be shown with the rounded time, when the rounded
+         * minute value is singular. Should contain '%s' to be replaced by the
+         * number of minutes
+         *
+         * Eg: '%s minute video', 'Video de %s minuto'
+         */
+        singleMinuteDescriptor: {
+            type: String,
+            default: '%s minute video',
+        },
+        /**
+         * A string to be shown with the rounded time, when the rounded
+         * minute value is plural. Should contain '%s' to be replaced
+         * by the number of minutes
+         *
+         * Eg: '%s minute video', 'Video de %s minutos'
+         */
+        pluralMinuteDescriptor: {
+            type: String,
+            default: '%s minute video',
+        },
     },
     data() {
         return {
             duration: {
                 minutes: 0,
                 seconds: 0,
+                roundedMinutes: '',
             },
-            showDuration: false,
         };
     },
     computed: {
@@ -95,23 +110,24 @@ export default {
          * a YouTube video, process the time into the desired format.
          */
         this.player.getDuration().then((response) => {
-            if (response === 0) {
-                this.showDuration = false;
-            } else {
-                this.showDuration = true;
-                this.formatTime(response);
-            }
+            this.formatTime(response);
+            this.storeVideoDetails();
         });
 
         /**
          * Sets up listener for play/pause events
          * from $root
          */
-        this.$root.$on('video-controls', (action) => {
-            if (action === 'play') {
-                this.playVideo();
-            } else if (action === 'pause') {
-                this.pauseVideo();
+        this.$root.$on('video-controls', (action, id) => {
+            if (id === this.videoId) {
+                // timeout allows for video in modal to appear
+                setTimeout(() => {
+                    if (action === 'play') {
+                        this.playVideo();
+                    } else if (action === 'pause') {
+                        this.pauseVideo();
+                    }
+                }, 500);
             }
         });
     },
@@ -138,6 +154,53 @@ export default {
 
             this.duration.minutes = minutes;
             this.duration.seconds = seconds;
+
+            const roundedMinutes = this.getRoundedMinutes(minutes, seconds);
+
+            this.duration.roundedMinutes = this.formatSingularOrPlural(roundedMinutes);
+        },
+        /**
+         * Takes a time expressed as minutes and seconds and returns the number of minutes rounded
+         * to the nearest one. Any time less than one minute is rounded up to one.
+         */
+        getRoundedMinutes(minutes, seconds) {
+            if (seconds < 30 && minutes !== 0) {
+                return minutes;
+            }
+
+            return minutes + 1;
+        },
+        /**
+         * Checks if the number of (rounded) minutes the video is long is singular or plural, then
+         * returns the appropriate descriptor string with the duration subbed in
+         */
+        formatSingularOrPlural(minutes) {
+            if (minutes === 1) {
+                return this.singleMinuteDescriptor.replace('%s', minutes);
+            }
+
+            return this.pluralMinuteDescriptor.replace('%s', minutes);
+        },
+        /**
+         * Takes a number, returns a string padded with a
+         * leading 0 if the number is less than 10
+         */
+        pad(toPad) {
+            if (toPad >= 10) {
+                return toPad;
+            }
+
+            return `0${toPad}`;
+        },
+        /**
+         * Send video details to Vuex store
+         */
+        storeVideoDetails() {
+            videoStore.dispatch('newVideoRef', {
+                id: this.videoId,
+                durationMsg: this.duration.roundedMinutes,
+                duration: (this.duration.minutes * 60) + this.duration.seconds,
+            });
         },
     },
 };
@@ -152,19 +215,41 @@ export default {
                     video-id="c05sg3G4oA4"
                 />
             </VsCol>
+            <VsCol md="6">
+                <VsVideo
+                    video-id="dKI8IEnqvbU"
+                    single-minute-descriptor="Video de %s minuto"
+                    plural-minute-descriptor="Video de %s minutos"
+                />
+            </VsCol>
         </VsRow>
         <VsRow>
-            <VsCol>
+            <VsCol md="6">
                 <VsButton
-                    @click.native="$root.$emit('video-controls', 'play')"
-                    @keydown="$root.$emit('video-controls', 'play')"
+                    @click.native="$root.$emit('video-controls', 'play', 'c05sg3G4oA4')"
+                    @keydown="$root.$emit('video-controls', 'play', 'c05sg3G4oA4')"
                 >
                     Play
                 </VsButton>
 
                 <VsButton
-                    @click.native="$root.$emit('video-controls', 'pause')"
-                    @keydown="$root.$emit('video-controls', 'pause')"
+                    @click.native="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
+                    @keydown="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
+                >
+                    Pause
+                </VsButton>
+            </VsCol>
+            <VsCol md="6">
+                <VsButton
+                    @click.native="$root.$emit('video-controls', 'play', 'dKI8IEnqvbU')"
+                    @keydown="$root.$emit('video-controls', 'play', 'dKI8IEnqvbU')"
+                >
+                    Play
+                </VsButton>
+
+                <VsButton
+                    @click.native="$root.$emit('video-controls', 'pause', 'dKI8IEnqvbU')"
+                    @keydown="$root.$emit('video-controls', 'pause', 'dKI8IEnqvbU')"
                 >
                     Pause
                 </VsButton>

@@ -2,13 +2,15 @@
     <VsDropdownItem
         class="vs-global-menu__languages__item"
         :href="languageLink"
+        @click.native="setLanguage()"
     >
         {{ languageName }}
     </VsDropdownItem>
 </template>
 
 <script>
-import VsDropdownItem from '../dropdown/components/DropdownItem';
+import VsDropdownItem from '@components/patterns/dropdown/components/DropdownItem';
+import cookieMixin from '../../../mixins/cookieMixin';
 
 /**
  * TODO: Document usage
@@ -22,14 +24,41 @@ export default {
     components: {
         VsDropdownItem,
     },
+    mixins: [
+        cookieMixin,
+    ],
     props: {
+        /**
+         * Language name to be shown.
+         * Example: "English"
+         */
         languageName: {
             type: String,
             default: null,
         },
+        /**
+         * Link for the translated page version
+         */
         languageLink: {
             type: String,
             default: null,
+        },
+        /**
+         * Language locale string.
+         * Example: "en_GB"
+         */
+        language: {
+            type: String,
+            default: null,
+        },
+    },
+    methods: {
+        setLanguage() {
+            const localeExists = this.cookieExists('vs_locale');
+            const googleExists = this.cookieExists('googtrans');
+
+            this.setCookie('vs_locale', this.localeCookie, !localeExists);
+            this.setCookie('googtrans', this.translationCookie, !googleExists);
         },
     },
 };

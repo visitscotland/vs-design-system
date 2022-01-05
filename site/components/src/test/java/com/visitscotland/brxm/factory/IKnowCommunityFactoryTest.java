@@ -9,7 +9,6 @@ import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,9 +23,6 @@ import static org.mockito.Mockito.*;
 class IKnowCommunityFactoryTest {
 
     @Mock
-    HippoUtilsService utils;
-
-    @Mock
     ResourceBundleService bundle;
 
     @Mock
@@ -36,7 +32,7 @@ class IKnowCommunityFactoryTest {
     IKnowCommunityFactory factory;
 
     private static final String BUNDLE_ID = "iknow-community";
-    private static final String TAG_VALUE_LIST_IDENTIFIER = "iknow-community-tags";
+    private static final String TAG_BUNDLE_KEY = "iknow-community-tags";
 
     @DisplayName("When no title or copy provided then default title and copy are used")
     @Test
@@ -45,8 +41,6 @@ class IKnowCommunityFactoryTest {
                 .thenReturn("default title");
         when(bundle.getResourceBundle(BUNDLE_ID, "iknow-community.copy.default", Locale.UK))
                 .thenReturn("default copy");
-        when(utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER))
-                .thenReturn(Collections.emptyMap());
         IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().copy("").tags(Collections.emptyList()).build();
 
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
@@ -59,8 +53,6 @@ class IKnowCommunityFactoryTest {
     @DisplayName("When title or copy provided then they are used in module")
     @Test
     void whenTitleOrCopyProvided_thenUsedInModule() {
-        when(utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER))
-                .thenReturn(Collections.emptyMap());
         IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder()
                 .title("title").copy("copy").tags(Collections.emptyList()).build();
 
@@ -79,11 +71,11 @@ class IKnowCommunityFactoryTest {
         when(properties.getIknowCommunityTaggedDiscussion())
                 .thenReturn("subdomain/");
 
-        Map<String, String> valueMap = new HashMap<>();
-        valueMap.put("first", "First Label");
-        valueMap.put("second", "Second Label");
-        valueMap.put("third", "Third Label");
-        when(utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER)).thenReturn(valueMap);
+        doReturn("title").when(bundle).getResourceBundle(BUNDLE_ID, "iknow-community.title.default", Locale.UK);
+        doReturn("copy").when(bundle).getResourceBundle(BUNDLE_ID, "iknow-community.copy.default", Locale.UK);
+        doReturn("link").when(bundle).getResourceBundle(BUNDLE_ID, "iknow-community.link.label", Locale.UK);
+        doReturn("First Label").when(bundle).getResourceBundle(TAG_BUNDLE_KEY, "first", Locale.UK);
+        doReturn("Second Label").when(bundle).getResourceBundle(TAG_BUNDLE_KEY, "second", Locale.UK);
         IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().tags(Arrays.asList("first", "second")).build();
 
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);
@@ -100,12 +92,15 @@ class IKnowCommunityFactoryTest {
 
     @DisplayName("When tag doesn't exist in value map, then use tag key as link label")
     @Test
-    void tagValueDoesNotExist(){
+    void tagValueDoesNotExist() {
         when(properties.getIknowCommunityUrl())
                 .thenReturn("domain/");
         when(properties.getIknowCommunityTaggedDiscussion())
                 .thenReturn("subdomain/");
-        when(utils.getValueMap(TAG_VALUE_LIST_IDENTIFIER)).thenReturn(Collections.emptyMap());
+        doReturn("title").when(bundle).getResourceBundle(BUNDLE_ID, "iknow-community.title.default", Locale.UK);
+        doReturn("copy").when(bundle).getResourceBundle(BUNDLE_ID, "iknow-community.copy.default", Locale.UK);
+        doReturn("link").when(bundle).getResourceBundle(BUNDLE_ID, "iknow-community.link.label", Locale.UK);
+        doReturn(null).when(bundle).getResourceBundle(TAG_BUNDLE_KEY, "third", Locale.UK);
         IknowCommunity iknowCommunity = new IKnowCommunityMockBuilder().tags(Collections.singletonList("third")).build();
 
         IKnowCommunityModule module = factory.getIKnowCommunityModule(iknowCommunity, Locale.UK);

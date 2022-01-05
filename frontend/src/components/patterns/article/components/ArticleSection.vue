@@ -116,29 +116,6 @@ export default {
 
 <docs>
   ```jsx
-
-<VsPageIntro background="light" :heroIntro="false">
-    <template slot="vsIntroBreadcrumb">
-        <VsBreadcrumb>
-            <VsBreadcrumbItem
-            v-for="(item, index) in breadcrumb.breadcrumb"
-            :key="index"
-            :href="item.href"
-            :active="item.active"
-            :text="item.name"
-            >
-            </VsBreadcrumbItem>
-        </VsBreadcrumb>
-    </template>
-    <template slot="vsIntroHeading">
-        {{itineraries.sampleItinerary.h1Heading}}
-    </template>
-
-    <template slot="vsIntroContent">
-        <div v-html="itineraries.sampleItinerary.introduction" />
-    </template>
-</VsPageIntro>
-
 <VsArticle>
     <template slot="vsArticleImg">
         <VsImageWithCaption
@@ -147,15 +124,19 @@ export default {
             :closedDefaultCaption="item.isSmall"
             :image-src="item.imageSrc"
             :key="`fullwidth1-${index}`"
-            variant="fullwidth"
         >
-            <span slot="caption" v-if="item.caption">
-                {{ item.caption }}
-            </span>
+            <VsCaption
+                slot="img-caption"
+                variant="fullwidth"
+            >
+                <span slot="caption" v-if="item.caption">
+                    {{ item.caption }}
+                </span>
 
-            <span slot="credit" v-if="item.credit">
-                &copy; {{ item.credit }}
-            </span>
+                <span slot="credit" v-if="item.credit">
+                    {{ item.credit }}
+                </span>
+            </VsCaption>
         </VsImageWithCaption>
     </template>
 
@@ -178,13 +159,17 @@ export default {
                         altText="An image"
                         image-src="fixtures\image-with-caption\images\city-country-breaks.jpg"
                     >
-                        <span slot="caption">
-                            A nice image
-                        </span>
+                        <VsCaption
+                            slot="img-caption"
+                        >
+                            <span slot="caption">
+                                A nice image
+                            </span>
 
-                        <span slot="credit">
-                            &copy; Gemma Stephen
-                        </span>
+                            <span slot="credit">
+                                &copy; VisitScotland
+                            </span>
+                        </VsCaption>
                     </VsImageWithCaption>
                 </template>
                 <template slot="vsArticleSidebarQuote">
@@ -252,13 +237,17 @@ export default {
                         altText="An image"
                         image-src="fixtures\image-with-caption\images\city-country-breaks.jpg"
                     >
-                        <span slot="caption">
-                            A nice image
-                        </span>
+                        <VsCaption
+                            slot="img-caption"
+                        >
+                            <span slot="caption">
+                                A nice image
+                            </span>
 
-                        <span slot="credit">
-                            &copy; Gemma Stephen
-                        </span>
+                            <span slot="credit">
+                                &copy; VisitScotland
+                            </span>
+                        </VsCaption>
                     </VsImageWithCaption>
                 </template>
             </VsArticleSidebar>

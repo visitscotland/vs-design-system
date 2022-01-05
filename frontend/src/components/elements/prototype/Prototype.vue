@@ -24,7 +24,7 @@ export default {
 
 <style lang="scss">
 .vs-prototype {
-    opacity: 30%;
+    opacity: $opacity-50;
 
     & > * {
         color: darken(grey, 70%);

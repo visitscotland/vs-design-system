@@ -1,10 +1,5 @@
 package com.visitscotland.brxm.validator;
 
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.RepositoryException;
-
-import com.visitscotland.utils.Contract;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.ValidationContextException;
 import org.onehippo.cms.services.validation.api.Validator;
@@ -13,6 +8,9 @@ import org.onehippo.repository.util.JcrConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.RepositoryException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +31,7 @@ public class UniqueLinksValidator implements Validator<Node> {
 
     private static final String TARGET_FIELD = "targetField";
     private static final String LINK_ID_FIELD = "linkIdField";
-    private final String DEFAULT_HIPPO_LINK = "hippo:docbase";
+    private static final String DEFAULT_HIPPO_LINK = "hippo:docbase";
     private final String targetField;
     private final String linkIdProperty;
     private static final Logger logger = LoggerFactory.getLogger(UniqueLinksValidator.class);
@@ -60,12 +58,12 @@ public class UniqueLinksValidator implements Validator<Node> {
             NodeIterator linkNodes = node.getNodes(targetField);
             List<String> linkIds = new ArrayList<>();
             while (linkNodes.hasNext()) {
-                Node nextNode = linkNodes.nextNode();
+                Node linkNode = linkNodes.nextNode();
                 String id;
-                if (nextNode.hasNode(linkIdProperty) && nextNode.getNode(linkIdProperty).hasProperty(DEFAULT_HIPPO_LINK)) {
-                    id = nextNode.getNode(linkIdProperty).getProperty(DEFAULT_HIPPO_LINK).getString();
-                } else if (nextNode.hasProperty(linkIdProperty)) {
-                    id = nextNode.getProperty(linkIdProperty).getString();
+                if (linkNode.hasNode(linkIdProperty)) {
+                    id = getLinkId(linkNode.getNode(linkIdProperty));
+                } else if (linkNode.hasProperty(linkIdProperty)) {
+                    id = linkNode.getProperty(linkIdProperty).getString();
                 } else {
                     logger.error("Link on node `{}` does not have a linkIdProperty `{}` or property with hippo:docbase",node.getPath(), linkIdProperty);
                     continue;
@@ -82,5 +80,24 @@ public class UniqueLinksValidator implements Validator<Node> {
             logger.error("Repository error during unique links validator", ex);
         }
         return Optional.empty();
+    }
+
+    /**
+     * This method takes care of nested structure where the hippo:mirror is deep down inside the document
+     */
+    private String getLinkId(Node linkNode) throws RepositoryException {
+        String id = null;
+        Node node = linkNode;
+        while (id == null) {
+            if (node.hasProperty(DEFAULT_HIPPO_LINK)){
+                id = node.getProperty(DEFAULT_HIPPO_LINK).getString();
+            } else if (node.getNodes().getSize() == 1) {
+                node = node.getNodes().nextNode();
+            } else {
+                logger.error("LinkValidator does not support the structure of the node `{}`", node.getPath());
+                id = JcrConstants.ROOT_NODE_ID;
+            }
+        }
+        return id;
     }
 }

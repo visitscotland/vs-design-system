@@ -50,6 +50,7 @@ CATALINA_BASE=$VS_PROJECT_BASE_DIR/$TOMCAT_DIR_PREFIX$TOMCAT_PORT_NUMBER
 CATALINA_REF=$VS_PROJECT_BASE_DIR/apache-tomcat-$TOMCAT_FULL_VERSION
 CATALINA_VS=$VS_PROJECT_BASE_DIR/$VS_REQUIRED_TOMCAT_FILES_DIR
 JAVA_HOME=$VS_OPTIONAL_SOFTWARE_DIR/jdk$JAVA_MAJOR_VERSION
+JAVA_OPTS="-Dlog4j2.formatMsgNoLookups=true"
 # build Hippo repository dir name from Tomcat port number ID + VS_DATESTAMP
 VS_HIPPO_REPOSITORY_SUFFIX="$TOMCAT_PORT_NUMBER"_"$VS_DATESTAMP"
 # set VS_HIPPO_REPOSITORY_DIR to the computed value unless it is already set
@@ -64,6 +65,7 @@ echo ====/VARIABLES ====
 echo ""
 echo == stopping Tomcat
 export JAVA_HOME=$JAVA_HOME
+export JAVA_OPTS=$JAVA_OPTS
 export CATALINA_HOME=$CATALINA_HOME
 export CATALINA_BASE=$CATALINA_BASE
 $CATALINA_HOME/bin/catalina.sh stop -force
@@ -154,6 +156,20 @@ echo copying ALL files from $CATALINA_VS to $CATALINA_BASE
 
 cp -R $CATALINA_VS/* $CATALINA_BASE/
 
+# removing offending classes from log4j
+echo ""
+echo removing offending classes from MATCHED log4j files in $CATALINA_BASE/
+if [ ! -x /usr/bin/zip ]; then echo "Installing ZIP"; yum install -y zip; fi
+if [ -x /usr/bin/zip ]; then
+  for JAR in `find $CATALINA_BASE/ -type f -name "*log4*" | egrep "log4j-core-2\.[0-9]+\.[0-9]+\.jar"`; do
+    echo -e "Before:\n`$JAVA_HOME/bin/jar tvf $JAR | egrep "org/apache/logging/log4j/core/lookup/J"`\n"
+    zip -q -d $JAR org/apache/logging/log4j/core/lookup/JndiLookup.class
+    echo -e "After:\n`$JAVA_HOME/bin/jar tvf $JAR | egrep "org/apache/logging/log4j/core/lookup/J"`\n"
+  done
+else
+  echo "ZIP was not found - a vulnerable log4j JAR may still be in use"
+fi
+
 if [ "$1" == "no-db" ]||[ "$1" == "nodb" ]; then
   echo " - $1 stated, applying basic context.xml"
   cp -f $CATALINA_BASE/conf/context.xml.nodb $CATALINA_BASE/conf/context.xml
@@ -165,7 +181,7 @@ fi
 echo ""
 echo using sed to modify the copied server.xml
 echo " - before " `cat $CATALINA_BASE/conf/server.xml | egrep -b4 "Host name="`
-sed -i "s/\(.*\)\(<Host name=\"localhost\"\)/\1<Valve className=\"org.apache.catalina.valves.AccessLogValve\" directory=\"logs\"\n              prefix=\"engine_access_log\" suffix=\".txt\"\n              pattern=\"%h %l %u %t \&quot;%r\&quot; %s %b \&quot;Host i:%{Host}i\&quot;\" \/>\n\n\1\2/" $CATALINA_BASE/conf/server.xml
+sed -i "s/\(.*\)\(<Host name=\"localhost\"\)/\1<Valve className=\"org.apache.catalina.valves.AccessLogValve\" directory=\"logs\"\n              prefix=\"engine_access_log\" suffix=\".txt\"\n              pattern=\"%h %l %u %t \&quot;%r\&quot; %s %b \&quot;Host i:%{Host}i\&quot;\  \&quot;X-Forwarded-For i:%{X-Forwarded-For}i\&quot;\  \&quot;X-Forwarded-Host i:%{X-Forwarded-Host}i\&quot;\" \/>\n\n\1\2/" $CATALINA_BASE/conf/server.xml
 echo " - after  " `cat $CATALINA_BASE/conf/server.xml | egrep -b4 "Host name="`
 
 # use sed to modify the copied catalina.properties - store this in SCM too?

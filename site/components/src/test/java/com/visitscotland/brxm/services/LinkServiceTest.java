@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.mock.SharedLinkMockBuilder;
+import com.visitscotland.brxm.mock.VideoMockBuilder;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
@@ -17,7 +19,6 @@ import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.brxm.dms.DMSConstants;
-import net.bytebuddy.asm.Advice;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.container.ComponentManager;
 import org.junit.jupiter.api.*;
@@ -88,7 +89,7 @@ class LinkServiceTest {
         when(properties.getDmsHost()).thenReturn("http://localhost:8080");
         when(resourceBundle.getCtaLabel(eq(""), any())).thenReturn("Find out more");
 
-        FlatLink link = service.createLink(Locale.UK, externalLink);
+        FlatLink link = service.createCTALink(null, Locale.UK, externalLink);
 
         assertEquals("http://fake.link", link.getLink());
         assertEquals("Find out more", link.getLabel());
@@ -127,7 +128,7 @@ class LinkServiceTest {
 
         when(utils.createUrl(any(Page.class))).thenReturn("http://cms-url");
 
-        FlatLink link = service.createLink(Locale.UK, cmsLink);
+        FlatLink link = service.createCTALink(null, Locale.UK, cmsLink);
 
         assertEquals("http://cms-url", link.getLink());
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -138,12 +139,15 @@ class LinkServiceTest {
     void dmsLink_notExistingProduct() {
         //Verifies that when and DMS item doesn't exist, the link is not created.
         DMSLink dmsLink = mock(DMSLink.class);
+        Module m = new Module();
         when(dmsLink.getProduct()).thenReturn("123");
 
         when(dmsData.productCard("123", Locale.UK)).thenReturn(null);
 
-        FlatLink link = service.createLink(Locale.UK, dmsLink);
 
+        FlatLink link = service.createCTALink(m, Locale.UK, dmsLink);
+
+        assertEquals(1, m.getErrorMessages().size());
         assertNull(link);
     }
 
@@ -161,7 +165,7 @@ class LinkServiceTest {
         when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK)).thenReturn(url);
         when(url.asText()).thenReturn("/dms-page");
 
-        FlatLink link = service.createLink(Locale.UK, dmsLink);
+        FlatLink link = service.createCTALink(null, Locale.UK, dmsLink);
 
         assertTrue(link.getLink().endsWith("/dms-page"));
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -178,7 +182,7 @@ class LinkServiceTest {
         ProductsSearch ps = mock(ProductsSearch.class);
         when(productSearchLink.getSearch()).thenReturn(ps);
 
-        FlatLink link = service.createLink(Locale.UK, productSearchLink);
+        FlatLink link = service.createCTALink(null, Locale.UK, productSearchLink);
 
         verify(builder, times(1)).build();
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -412,6 +416,18 @@ class LinkServiceTest {
     }
 
     @Test
+    @DisplayName("DMSLink - DMS Id is not valid")
+    void DMS_enhanced_notValidId(){
+        Module<?> module = new Module<>();
+
+        SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, null).build();
+
+        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+
+        assertEquals(1, module.getErrorMessages().size());
+    }
+
+    @Test
     @DisplayName("DMSLink - Test that the image is loaded from the DMS")
     void DMS_enhanced_SharedLink_defaultsImage() throws IOException {
         JsonNode node = new ObjectMapper().readTree(MegalinksMockBuilder.MOCK_JSON);
@@ -429,7 +445,7 @@ class LinkServiceTest {
     @DisplayName("No image throw a warning in preview mode")
     void noImageDefined_DMS_defaultsImageNotFound() throws IOException {
         final String NO_IMAGE_JSON = "{" +
-                " \"dmsLink\": {\"link\": \"/info/fake-product-p0123456798\"}," +
+                " \"productLink\": {\"link\": \"/info/fake-product-p0123456798\"}," +
                 " \"name\":\"Fake Product\" " +
                 "}";
         JsonNode node = new ObjectMapper().readTree(NO_IMAGE_JSON);
@@ -499,12 +515,6 @@ class LinkServiceTest {
         assertEquals("tel:+441311234567", service.createExternalLink(Locale.forLanguageTag(locale), "tel:+441311234567",null).getLink());
     }
 
-
-    @Test
-    void lala(){
-        assertEquals(Locale.FRANCE, Locale.forLanguageTag("fr-fr"));
-    }
-
     @Test
     @DisplayName("VS-2756 - Create a localized  External Link for a non-existing locale page")
     void createExternalLink_unrecognized_language(){
@@ -535,7 +545,56 @@ class LinkServiceTest {
         assertEquals("https://www.visitscotland.com/fr-fr/info/accommodation/unit-test/", service.createExternalLink(Locale.FRANCE, "https://www.visitscotland.com/fr-fr/info/accommodation/unit-test/",null).getLink());
     }
 
+    @Test
+    @DisplayName("Allow shared links to be recognized")
+    void createSimpleLink(){
+        SharedLink sl = new SharedLinkMockBuilder().externalDocument("title", "doc.pdf", null).build();
 
+        when(properties.getInternalSites()).thenReturn(Collections.singletonList("www.visitscotland.com"));
 
+        FlatLink link = service.createSimpleLink(sl, null, Locale.UK);
 
+        assertEquals("doc.pdf", link.getLink());
+        assertEquals("title", link.getLabel());
+    }
+
+    //TODO
+    @Test
+    @DisplayName(("VS-2949 - Create video link to be used by Freemarker"))
+    void createVideo(){
+        Video video = new VideoMockBuilder().withImage().url("http://youtube.com?v=123")
+                .title("Title").teaser("Teaser").label("Enjoy the video").build();
+
+        when(resourceBundle.getVideoCtaLabel(any(), any())).thenReturn("Enjoy the video");
+        EnhancedLink link = service.createVideo(video, null, null);
+
+        assertEquals("Title", link.getLabel());
+        assertEquals("Teaser", link.getTeaser());
+        assertEquals("Enjoy the video", link.getCta());
+        assertEquals("http://youtube.com?v=123", link.getLink());
+        assertEquals("123", link.getYoutubeId());
+        assertEquals(LinkType.VIDEO, link.getType());
+    }
+
+    @Test
+    @DisplayName(("VS-2935 - Allow videos for Megalinks Items"))
+    void enhancedLink_fromVideo(){
+        Video video = new VideoMockBuilder().url("youtu.be?v=1").build();
+
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false);
+
+        assertNotNull(link);
+        assertEquals("youtu.be?v=1", link.getLink());
+        assertEquals("1", link.getYoutubeId());
+        assertEquals(LinkType.VIDEO, link.getType());
+    }
+
+    @Test
+    @DisplayName(("VS-2935 - Allow videos for Megalinks Items"))
+    void getPlainLink_fromVideo(){
+        Video video = new VideoMockBuilder().url("https://www.youtube.com/watch?v=h9bQwcndGfo").build();
+
+        assertEquals("https://www.youtube.com/watch?v=h9bQwcndGfo", service.getPlainLink(Locale.UK, video,null));
+        assertEquals("https://www.youtube.com/watch?v=h9bQwcndGfo", service.getPlainLink(Locale.FRANCE, video,null));
+    }
 }

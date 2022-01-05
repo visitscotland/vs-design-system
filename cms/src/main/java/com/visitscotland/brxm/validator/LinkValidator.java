@@ -21,6 +21,9 @@ public class LinkValidator implements Validator<Node> {
     public static final String EMPTY_DOCUMENT = "cafebabe-cafe-babe-cafe-babecafebabe";
     private SessionFactory sessionFactory;
 
+    static final String DAY = "visitscotland:Day";
+    static final String VIDEO = "visitscotland:VideoLink";
+
     public LinkValidator() {
         this.sessionFactory = new SessionFactory();
     }
@@ -33,17 +36,8 @@ public class LinkValidator implements Validator<Node> {
         try {
             String nodeId = document.getProperty(HIPPO_DOCBASE).getValue().getString();
              if(!nodeId.equals(EMPTY_DOCUMENT)) {
-                 Node childNode = sessionFactory.getHippoNodeByIdentifier(nodeId);
-                 if (document.getParent().isNodeType("visitscotland:Day")) {
-                     if (!childNode.isNodeType("visitscotland:Stop")) {
-                         return Optional.of(context.createViolation("stop"));
-                     }
-                 }else{
-                     if (!childNode.isNodeType("visitscotland:Page") && !childNode.isNodeType("visitscotland:SharedLink")){
-                         return Optional.of(context.createViolation());
-                     }
-                 }
-               }else{
+                 return checkAllowedDocuments(context, document, sessionFactory.getHippoNodeByIdentifier(nodeId));
+             } else {
                  return Optional.of(context.createViolation("EmptyLink"));
              }
         } catch (PathNotFoundException e) {
@@ -51,8 +45,25 @@ public class LinkValidator implements Validator<Node> {
         } catch (RepositoryException e) {
             return Optional.of(context.createViolation());
         }
+    }
+
+    private Optional<Violation> checkAllowedDocuments(final ValidationContext context, final Node document, final Node childNode) throws RepositoryException {
+        if (document.getParent().isNodeType(DAY)) {
+            if (!childNode.isNodeType("visitscotland:Stop")) {
+                return Optional.of(context.createViolation("stop"));
+            }
+        } else if (document.getParent().isNodeType(VIDEO)) {
+            if (!childNode.isNodeType("visitscotland:Video")){
+                return Optional.of(context.createViolation("video"));
+            }
+        } else {
+            if (!childNode.isNodeType("visitscotland:Page") && !childNode.isNodeType("visitscotland:SharedLink")){
+                return Optional.of(context.createViolation());
+            }
+        }
 
         return Optional.empty();
     }
+
 }
 

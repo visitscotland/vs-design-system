@@ -11,6 +11,7 @@ public class EnhancedLink extends FlatLink {
     private String category;
     private String cta;
     private String itineraryTransport;
+    private String youtubeId;
     private int itineraryDays;
 
     public FlatImage getImage() {
@@ -67,5 +68,13 @@ public class EnhancedLink extends FlatLink {
 
     public void setCta(String cta) {
         this.cta = cta;
+    }
+
+    public String getYoutubeId() {
+        return youtubeId;
+    }
+
+    public void setYoutubeId(String youtubeId) {
+        this.youtubeId = youtubeId;
     }
 }

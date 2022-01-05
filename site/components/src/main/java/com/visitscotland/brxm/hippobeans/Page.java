@@ -82,4 +82,9 @@ public class Page extends BaseDocument implements TranslationParent, Linkable {
     public Boolean getHideNewsletter() {
         return getSingleProperty("visitscotland:hideNewsletter");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:heroVideo")
+    public VideoLink getHeroVideo() {
+        return getBean("visitscotland:heroVideo", VideoLink.class);
+    }
 }

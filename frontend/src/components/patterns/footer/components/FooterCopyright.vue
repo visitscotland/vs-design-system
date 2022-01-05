@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import VsSvgLink from '@components/patterns/svg-link/SvgLink';
+import VsSvgLink from '@components/elements/svg-link/SvgLink';
 
 import {
     VsRow, VsContainer, VsCol,

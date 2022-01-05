@@ -21,41 +21,60 @@ import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
 public class LinkImageValidator implements Validator<Node> {
 
     public static final String EMPTY_IMAGE = "cafebabe-cafe-babe-cafe-babecafebabe";
-    private SessionFactory sessionFactory;
 
-    public LinkImageValidator() {
-        this.sessionFactory = new SessionFactory();
+    //TODO Should we rename these fields?
+    /** Mainly used by Listicle */
+    final static String PRODUCT = ListicleItem.PRODUCT;
+    /** Mainly used by Stop */
+    final static String PRODUCTS = Stop.PRODUCTS;
+    /** Mainly used by SharedLink */
+    final static String LINK_TYPE = SharedLink.LINK_TYPES;
+
+    /**
+     * Evaluates if the Media item is required for the document.
+     * - When the document is linked to a Page the image can be obtained from the hero Image
+     * - When the document is linked to a SharedLink the image can be obtained from the main Image of the document
+     * - When the document is linked to a DMS product the image can be obtained from the DMS
+     * - In any other case the image should be mandatory.
+     */
+    private boolean isMediaRequired(final Node document) throws RepositoryException {
+        Node node = null;
+        if (document.hasNode(LINK_TYPE)) {
+            node = document.getNode(LINK_TYPE);
+        } else if (document.hasNode(PRODUCTS)) {
+            node = document.getNode(PRODUCTS);
+        } else if (document.hasNode(PRODUCT)) {
+            node = document.getNode(PRODUCT);
+        }
+
+        return node != null && !node.isNodeType("visitscotland:CMSLink") && !node.isNodeType("visitscotland:DMSLink");
     }
 
-    LinkImageValidator(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
+    @Override
     public Optional<Violation> validate(final ValidationContext context, final Node document) {
         try {
-            Node node = null;
-            if (document.hasNode(SharedLink.LINK_TYPES)) {
-                node = sessionFactory.getJcrSession().getNodeByIdentifier(document.getNode(SharedLink.LINK_TYPES).getIdentifier());
-            } else if (document.hasNode(Stop.PRODUCTS)) {
-                node = sessionFactory.getJcrSession().getNodeByIdentifier(document.getNode(Stop.PRODUCTS).getIdentifier());
-            } else if (document.hasNode(ListicleItem.PRODUCT)) {
-                node = sessionFactory.getJcrSession().getNodeByIdentifier(document.getNode(ListicleItem.PRODUCT).getIdentifier());
-            }
+            if (isMediaRequired(document)) {
+                boolean valid = false;
+                Node media;
 
-            //Make sure that for Share links and stops, if the product is not dms or cms, an image is provided or/and selected
-            if (node != null && !node.hasProperty(ListicleItem.PRODUCT) && !node.hasNode("visitscotland:link")) {
                 if (document.hasNode("visitscotland:image")) {
-                    if (document.getNode("visitscotland:image").getProperty(HIPPO_DOCBASE).getValue().getString().equals(EMPTY_IMAGE)) {
-                        return Optional.of(context.createViolation());
-                    }
-                } else if (document.hasNode(ListicleItem.IMAGES)) {
-                    //Images for Listicle that allows CMS images but also Instagram images
-                    Node images = sessionFactory.getJcrSession().getNodeByIdentifier(document.getNode(ListicleItem.IMAGES).getIdentifier());
-                    if (!images.hasProperty(InstagramImage.CAPTION) && ((!images.hasProperty(HIPPO_DOCBASE))
-                            || (images.hasProperty(HIPPO_DOCBASE) && images.getProperty(HIPPO_DOCBASE).getValue().getString().equals(EMPTY_IMAGE)))) {
-                        return Optional.of(context.createViolation());
-                    }
+                    media = document.getNode("visitscotland:image");
+                } else if (document.hasNode("visitscotland:images")) {
+                    media = document.getNode("visitscotland:images");
+                } else if (document.hasNode("visitscotland:media")) {
+                    media = document.getNode("visitscotland:media");
                 } else {
+                    return Optional.of(context.createViolation());
+                }
+
+                if (media.hasProperty(HIPPO_DOCBASE)) {
+                    valid = !media.getProperty(HIPPO_DOCBASE).getString().equals(EMPTY_IMAGE);
+                } else if (media.isNodeType("visitscotland:VideoLink") ||
+                        media.isNodeType("visitscotland:InstagramImage")) {
+                    valid = true;
+                }
+
+                if (!valid) {
                     return Optional.of(context.createViolation());
                 }
             }

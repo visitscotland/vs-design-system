@@ -42,7 +42,7 @@
 
 <#function productSearch locale productType lat lon proximity>
 <#--TODO: proximity as optional-->
-    <#return ProductSearchBuilder.newInstance().productTypes(productType).proximity(proximity).coordinates(lat, lon).build()>
+    <#return ProductSearchBuilder.newInstance().locale(locale).productTypes(productType).proximity(proximity).coordinates(lat, lon).build()>
 </#function>
 
 <#--  Get correct URL for internal or external link -->
@@ -58,6 +58,13 @@
     </#if>
 </#function>
 
+<#--  Escape some characters from a JSON object so it can be consumed by a Vue component -->
+<#--  Usage: ${escapeJSON(stop.opening)} -->
+<#function escapeJSON original>
+    <#assign escaped = original?replace("'", "\\'")>
+    <#assign escaped = escaped?replace("\"", "'")>
+    <#return escaped>
+</#function>
 
 
 <#--TODO: polimorphism-->

@@ -8,7 +8,7 @@ public class MegalinkItemMockService {
         MegalinkItem item = EasyMock.createMock(MegalinkItem.class);
 
         EasyMock.expect(item.getFeature()).andReturn(featured).anyTimes();
-        EasyMock.expect(item.getLink()).andReturn(mockCMSLink()).anyTimes();
+        EasyMock.expect(item.getLinkItem()).andReturn(mockCMSLink()).anyTimes();
 
         EasyMock.replay(item);
 

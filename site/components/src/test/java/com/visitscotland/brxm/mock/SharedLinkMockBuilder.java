@@ -2,10 +2,7 @@ package com.visitscotland.brxm.mock;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.dms.DMSDataService;
-import com.visitscotland.brxm.hippobeans.DMSLink;
-import com.visitscotland.brxm.hippobeans.ExternalDocument;
-import com.visitscotland.brxm.hippobeans.ProductsSearch;
-import com.visitscotland.brxm.hippobeans.SharedLink;
+import com.visitscotland.brxm.hippobeans.*;
 import org.mockito.Mockito;
 
 import java.util.Locale;

@@ -2,6 +2,7 @@ package com.visitscotland.brxm.dms;
 
 import com.visitscotland.brxm.hippobeans.ProductsSearch;
 import com.visitscotland.brxm.dms.model.LocationObject;
+import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.brxm.utils.VsException;
 import com.visitscotland.utils.Contract;
@@ -36,7 +37,6 @@ class ProductSearchBuilderTest {
     ProductSearchBuilder builder;
 
     private ProductSearchBuilder createBuilder(){
-
         return builder;
     }
 
@@ -519,6 +519,32 @@ class ProductSearchBuilderTest {
         assertTrue(url.contains("locprox=4"), "The parameter proximity hasn't been populated");
         assertFalse(url.contains("cat="), "The parameter for category should not contain any value");
         assertFalse(url.contains("fac_id="), "The parameter for facilities should not contain any value");
+    }
+
+    @Test
+    @DisplayName("URLs are localized")
+    void localization() {
+        String url = createBuilder().productTypes(DEFAULT_TYPE)
+                .locale(Language.SPANISH.getLocale())
+                .build();
+
+        validateUrl(url);
+        assertTrue(url.startsWith(Language.SPANISH.getDMSPathVariable()),
+                "The URL doesn't seem to be properly localized: " + url
+        );
+    }
+
+    @Test
+    @DisplayName("Data endpoints contain the locale parameter")
+    void localization_dataEndpoints() {
+        when(properties.getDmsDataPublicHost()).thenReturn("/data");
+
+        String url = createBuilder().productTypes(DEFAULT_TYPE)
+                .locale(Language.SPANISH.getLocale())
+                .buildCannedSearch();
+
+        validateUrl(url);
+        assertTrue(url.contains("locale="),"The URL does not contain the language query parameter (locale): " + url);
     }
 
     private void mockLocationLoader(String location) {

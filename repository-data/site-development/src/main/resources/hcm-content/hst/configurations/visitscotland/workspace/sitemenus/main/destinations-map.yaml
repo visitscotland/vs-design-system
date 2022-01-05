@@ -1,10 +1,11 @@
 /hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/main/destinations-map:
   .meta:order-before: accommodation
   jcr:primaryType: hst:sitemenuitem
-  hst:referencesitemapitem: destinations-maps/orkney/short-break-itinerary
+  hst:referencesitemapitem: sandbox
   hst:repobased: false
   /cities.nav:
     jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: sandbox/destinations
     hst:repobased: false
     /Aberdeen:
       jcr:primaryType: hst:sitemenuitem

@@ -1,14 +1,13 @@
 package com.visitscotland.brxm.factory;
 
-import com.visitscotland.brxm.hippobeans.MegalinkItem;
-import com.visitscotland.brxm.hippobeans.Megalinks;
-import com.visitscotland.brxm.hippobeans.OTYML;
+import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.*;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,10 +24,10 @@ public class MegalinkFactory {
     private static final Logger logger = LoggerFactory.getLogger(MegalinkFactory.class);
     private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
-    public final static int MAX_ITEMS = 6;
-    public final static int MIN_ITEMS_CAROUSEL = 5;
-    public final static String HORIZONTAL_LAYOUT = "Horizontal Links";
-    public final static String DEFAULT_LAYOUT = "Default";
+    public static final int MAX_ITEMS = 6;
+    public static final int MIN_ITEMS_CAROUSEL = 5;
+    public static final String HORIZONTAL_LAYOUT = "Horizontal Links";
+    public static final String DEFAULT_LAYOUT = "Default";
 
 
     private final LinkService linkService;
@@ -41,10 +40,10 @@ public class MegalinkFactory {
         this.imageFactory = imageFactory;
     }
 
-    public LinksModule<?> getMegalinkModule(Megalinks doc, Locale locale) {
+    public LinksModule<EnhancedLink> getMegalinkModule(Megalinks doc, Locale locale) {
         if (!Contract.isEmpty(doc.getLayout()) && doc.getLayout().equals(HORIZONTAL_LAYOUT) && doc.getMegalinkItems().size() >= MIN_ITEMS_CAROUSEL) {
             return horizontalListLayout(doc, locale);
-        }else  if (!Contract.isEmpty(doc.getLayout()) && !doc.getLayout().equals(DEFAULT_LAYOUT) || doc.getMegalinkItems().size() > MAX_ITEMS ) {
+        } else  if (!Contract.isEmpty(doc.getLayout()) && !doc.getLayout().equals(DEFAULT_LAYOUT) || doc.getMegalinkItems().size() > MAX_ITEMS ) {
             return listLayout(doc, locale);
         } else if (doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
@@ -84,7 +83,7 @@ public class MegalinkFactory {
         HorizontalListLinksModule hll = new HorizontalListLinksModule();
         hll.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("otyml", "otyml.title.default", locale)): doc.getTitle());
         hll.setIntroduction(doc.getIntroduction());
-        hll.setLinks(convertToEnhancedLinks(hll, doc.getMegalinkItems(), locale,true));
+        hll.setLinks(convertOTYMLToEnhancedLinks(hll, doc.getMegalinkItems(), locale,true));
 
         return hll;
     }
@@ -173,7 +172,7 @@ public class MegalinkFactory {
         target.setIntroduction(doc.getIntroduction());
 
         if (doc.getProductItem() != null) {
-            target.setCta(linkService.createLink(locale, doc.getProductItem()));
+            target.setCta(linkService.createCTALink(target, locale, doc.getProductItem()));
         }
     }
 
@@ -183,28 +182,51 @@ public class MegalinkFactory {
     List<EnhancedLink> convertToEnhancedLinks(Module<Megalinks> module, List<MegalinkItem> items, Locale locale, boolean addCategory) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
-            if (item.getLink() == null) {
-                addError(module, "One of the Megalinks items contains an invalid reference");
-                contentLogger.warn("The module {} contains a link without any reference", item.getPath());
-            } else {
-                EnhancedLink link = null;
-                if (item.getLink() instanceof Linkable) {
-                    link = linkService.createEnhancedLink((Linkable) item.getLink(), module, locale, addCategory);
-                }
+            EnhancedLink link = convertToEnhancedLink(module, item.getLinkItem(), locale, addCategory);
 
-                if (link != null) {
-                    link.setFeatured(item.getFeature());
-                    links.add(link);
-                } else {
-                    addError(module, "One of the Megalink items cannot be recognized and will not be included in the page.");
-                    contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
-                }
+            if (link != null) {
+                link.setFeatured(item.getFeature());
+                links.add(link);
             }
         }
+
         return links;
     }
 
-    private void addError(Module<Megalinks> module, String message){
+    private List<EnhancedLink> convertOTYMLToEnhancedLinks(Module<?> module, List<HippoBean> items, Locale locale, boolean addCategory) {
+        List<EnhancedLink> links = new ArrayList<>();
+        for (HippoBean item : items) {
+            links.add(convertToEnhancedLink(module, item, locale, addCategory));
+        }
+
+        // Remove nulls (if needed)
+        while (links.remove(null));
+
+        return links;
+    }
+
+    private EnhancedLink convertToEnhancedLink(Module<?> module, HippoBean item, Locale locale, boolean addCategory) {
+        EnhancedLink link = null;
+
+        if (item instanceof Linkable) {
+            link = linkService.createEnhancedLink((Linkable) item, module, locale, addCategory);
+        } else if (item instanceof VideoLink){
+            link = linkService.createEnhancedLink(((VideoLink) item).getVideoLink(), module, locale, addCategory);
+        } else if (item == null){
+            contentLogger.warn("One of the links seems contain no link");
+            return null;
+        }
+
+
+        if (link == null) {
+            addError(module, "One of the Megalink items cannot be recognized and will not be included in the page.");
+            contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getClass().getSimpleName());
+        }
+
+        return link;
+    }
+
+    private void addError(Module<?> module, String message){
         if (module != null) {
             module.addErrorMessage(message);
         } else {

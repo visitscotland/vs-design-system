@@ -22,7 +22,7 @@
         <vs-container>
             <vs-icentre>
                 <template slot="icentreImageWithCaption">
-                    <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
+                    <@imageWithCaption imageSrc=image imageDetails=module.image />
                 </template>
 
                 <template slot="icentreLinks">

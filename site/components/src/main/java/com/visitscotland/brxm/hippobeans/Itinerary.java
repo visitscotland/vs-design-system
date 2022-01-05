@@ -1,8 +1,7 @@
 package com.visitscotland.brxm.hippobeans;
 
-import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
-import java.util.List;
+import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Itinerary")
 @Node(jcrType = "visitscotland:Itinerary")
@@ -63,4 +62,8 @@ public class Itinerary extends Page {
         return getSingleProperty("visitscotland:translationPriority");
     }
 
+    @HippoEssentialsGenerated(internalName = "visitscotland:heroVideo")
+    public VideoLink getHeroVideo() {
+        return getBean("visitscotland:heroVideo", VideoLink.class);
+    }
 }

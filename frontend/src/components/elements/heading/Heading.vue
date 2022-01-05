@@ -4,6 +4,7 @@
         class="vs-heading"
         :class="{
             'vs-heading--thin': thin,
+            'vs-heading--alternative': alternative,
         }"
     >
         <!-- @slot The main heading content goes here -->
@@ -47,6 +48,13 @@ export default {
          */
         thin: {
             type: Boolean,
+        },
+        /**
+         * Alternative font
+         */
+        alternative: {
+            type: Boolean,
+            default: false,
         },
     },
     computed: {
@@ -126,6 +134,11 @@ $sub-font-sizes: (
             }
         }
     }
+
+    &--alternative {
+        font-family: $font_family_sans_serif;
+        font-weight: $font-weight-normal;
+    }
 }
 
 h6.vs-heading, h5.vs-heading{
@@ -146,6 +159,10 @@ h6.vs-heading, h5.vs-heading{
 
     <VsHeading level="2">H2 Heading</VsHeading>
     <VsHeading thin level="2">H2 Heading  Thin</VsHeading>
+
+    <hr/>
+
+    <VsHeading level="2" alternative>H2 Heading</VsHeading>
 
     <hr/>
 

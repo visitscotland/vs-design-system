@@ -12,7 +12,7 @@
                 <slot name="buttonContent" />
             </template>
 
-            <li>
+            <li role="menuitem">
                 <VsContainer
                     fluid="lg"
                     class="px-0 px-lg-3"
@@ -142,10 +142,6 @@ export default {
         right: 20px;
         top: -40px;
 
-        &:focus {
-            box-shadow: 0 0 0 0.1rem $color-pink inset;
-        }
-
         &:hover {
             .vs-icon{
                 fill: $color-pink;
@@ -165,7 +161,7 @@ export default {
         position: relative;
         letter-spacing: 0;
         font-weight: $font-weight-normal;
-        line-height: $standard-line-height;
+        line-height: $line-height-standard;
         border-radius: 0;
         border: 0;
         height: 32px;
@@ -174,7 +170,7 @@ export default {
         padding: $spacer-1;
 
         &:focus, &:active, &:active:focus {
-            box-shadow: 0 0 0 0.1rem $color-pink inset;
+            box-shadow: $shadow-button-focus inset;
         }
 
         &:hover {
@@ -262,11 +258,11 @@ export default {
             }
 
             &.disabled {
-                opacity: 1;
+                opacity: $opacity-100;
             }
 
             &:focus {
-                box-shadow: 0 0 0 0.1rem $color-pink inset;
+                box-shadow: $shadow-button-focus inset;
 
                 &::after{
                     display: none;

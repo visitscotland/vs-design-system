@@ -21,10 +21,8 @@
             miles="${itinerary.distance}"
             kilometres="${(itinerary.distance*1.6)}"
             miles-label="${label("itinerary", "miles")}"
-            kilometres-label="${label("itinerary", "kilometres")}"
+            kilometres-label="${label("itinerary", "kilometres-abbreviation")}"
             distance-label="${label("itinerary", "distance")}"
-            miles-abbr="${label("itinerary", "miles-abbreviation")}"
-            kilometres-abbr="${label("itinerary", "kilometres-abbreviation")}"
         >
         </vs-summary-box-distance-list-item>
         <vs-summary-box-list-item

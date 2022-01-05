@@ -50,8 +50,10 @@
                             :id="'dayPanel_' + dayNumber"
                             class="vs-itinerary-day__panel"
                         >
-                            <slot name="day-transport" />
-                            <slot name="day-introduction" />
+                            <div class="vs-itinerary-day__intro-content">
+                                <slot name="day-transport" />
+                                <slot name="day-introduction" />
+                            </div>
                             <ul class="list-unstyled">
                                 <slot name="stops" />
                             </ul>
@@ -134,7 +136,7 @@ export default {
 .vs-itinerary-day__list-item.card {
     width: calc(100% + #{$spacer-4});
     margin-left: -#{$spacer-2};
-    padding: $spacer-4 $spacer-6 0;
+    padding: $spacer-4 $spacer-3 0;
 
     @include media-breakpoint-up(md) {
         width: calc(100% + #{$spacer-6});
@@ -178,6 +180,16 @@ export default {
     }
 }
 
+.vs-itinerary-day__intro-content {
+    padding: $spacer-0 $spacer-5;
+    margin-bottom: $spacer-9;
+
+    @include media-breakpoint-up(md) {
+        padding: $spacer-0;
+        margin-bottom: $spacer-0;
+    }
+}
+
 .vs-itinerary-day__panel .list-inline-item:not(:last-child) {
     @include media-breakpoint-down(xs) {
         margin-right: $spacer-1;
@@ -216,15 +228,20 @@ export default {
                     class="list-inline-item"
                     v-for="(transportType, transportTypeIndex) in day.transport"
                 >
-                    <VsTooltip :title="transportType.value">
-                        <vs-icon
-                            :name="transportType.key"
-                            variant="dark"
-                            size="md"
-                            smallSize="xs"
-                        />
+                    <VsTooltip
+                        :title="transportType.value"
+                        href="#"
+                        :icon="transportType.key"
+                        size="lg"
+                        icon-only
+                        icon-variant-override="dark"
+                        class="p-0"
+                        variant="transparent"
+                    >
+                        <span class="sr-only">
+                            {{transportType.value}}
+                        </span>
                     </VsTooltip>
-                    <span class="sr-only">{{transportType.value}}</span>
                 </dd>
             </VsDescriptionList>
 

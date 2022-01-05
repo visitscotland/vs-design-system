@@ -2,6 +2,7 @@ package com.visitscotland.brxm.translation.plugin;
 
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.HippoStdNodeType;
+import org.hippoecm.repository.HippoStdPubWfNodeType;
 import org.hippoecm.repository.api.*;
 import org.hippoecm.repository.ext.InternalWorkflow;
 import org.hippoecm.repository.standardworkflow.CopyWorkflow;
@@ -18,10 +19,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWorkflow {
     public static final String CAFEBABE = "cafebabe-";
@@ -135,6 +133,8 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             // Update the locale that this copy is for,
             // will currently have the value of the node that was copied (English)
             copiedVariant.setProperty(HippoTranslationNodeType.LOCALE, language);
+            // Translation created date must be set to the time the document was cloned
+            copiedVariant.setProperty(HippoStdPubWfNodeType.HIPPOSTDPUBWF_CREATION_DATE, Calendar.getInstance());
 
             // If the document has Translatable children (hippo:mirror) we need to attempt to change
             // the links to point to the relevant translated child

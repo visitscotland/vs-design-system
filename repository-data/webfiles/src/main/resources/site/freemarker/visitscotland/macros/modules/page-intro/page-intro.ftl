@@ -5,8 +5,8 @@
 <#include "./social-share.ftl">
 <#include "../../shared/theme-calculator.ftl">
 <#include "../../../macros/global/cms-errors.ftl">
+<#include "../../global/image-with-caption.ftl">
 
-<#include "../../../../frontend/components/vs-hero.ftl">
 <#include "../../../../frontend/components/vs-page-intro.ftl">
 <#include "../../../../frontend/components/vs-container.ftl">
 <#include "../../../../frontend/components/vs-row.ftl">
@@ -31,24 +31,25 @@
     </#if>
     
     <div class="has-edit-button">
-        <vs-page-intro background="${themeName}" <#if heroDetails?has_content>hero-intro</#if> <#if itinerary?has_content>is-itinerary</#if>>
+        <vs-page-intro 
+            background="${themeName}" 
+            <#if heroDetails?has_content>hero-intro</#if>
+            <#if itinerary?has_content>is-itinerary</#if>
+        >
             <#if heroDetails?has_content>
                 <@hst.link var="heroSrc" hippobean=heroImage.cmsImage.original/>
+                <template slot="vsIntroHero">
+                    <#if (heroVideo)??>
 
-                <vs-hero
-                    slot="vsIntroHero"
-                    alt-text="${heroDetails.altText!''}"
-                    credit="${heroDetails.credit!''}"
-                    caption="${heroDetails.description!''}"
-                    image-src="${heroSrc}"
-                    latitude="${(heroImage.coordinates.latitude)!''}"
-                    longitude="${(heroImage.coordinates.longitude)!''}"
-                >
-                    <vs-img
-                        src="${heroSrc}"
-                        alt="${heroDetails.altText!''}"
-                    > </vs-img>
-                </vs-hero>
+                        <!-- Youtube video Data
+                            youtubeID="${heroVideo.youtubeId}" <
+                            title="${heroVideo.label}"
+                            teaser="${heroVideo.teaser}"
+                            cta="${heroVideo.cta}"
+                        -->
+                    </#if>
+                    <@imageWithCaption imageSrc=heroSrc imageDetails=heroDetails variant="large" isHero="true"/>
+                </template>
             </#if>
 
             <template slot="vsIntroBreadcrumb">

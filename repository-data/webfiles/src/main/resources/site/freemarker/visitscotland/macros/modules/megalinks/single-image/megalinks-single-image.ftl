@@ -2,6 +2,7 @@
 <#include "../../../../../frontend/components/vs-megalink-single-image.ftl">
 <#include "../../../../../frontend/components/vs-link.ftl">
 <#include "../../../../../frontend/components/vs-link-list-item.ftl">
+<#include "../../../global/image-with-caption.ftl">
 
 <#macro singleImage item theme>
     <#if item.image.cmsImage??>
@@ -21,17 +22,12 @@
     <vs-col cols="12">
         <vs-megalink-single-image 
             title="${item.innerTitle}"
-            img-src="${image}"
             <#if (item.cta.link)??>button-link="${item.cta.link}"</#if>
             <#if item.alignment == 'left'>alternate</#if>
             theme="${theme}"
         >
-            <template slot="vsSingleImageCaption">
-                ${item.image.description}
-            </template>
-
-            <template slot="vsSingleImageCredit">
-                ${item.image.credit}
+            <template slot="vsSingleImage">
+                <@imageWithCaption imageSrc=image imageDetails=item.image mobileOverlap="true" alignment=item.alignment/>
             </template>
 
             <template slot="vsSingleImageContent">

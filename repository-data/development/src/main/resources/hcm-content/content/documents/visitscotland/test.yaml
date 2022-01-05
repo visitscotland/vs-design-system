@@ -1,4 +1,5 @@
 /content/documents/visitscotland/test:
+  .meta:order-before: sandbox
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
   jcr:uuid: 423398ef-2f28-4e88-990f-81f2570aca24
@@ -64,16 +65,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-1a[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -97,16 +98,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-1a[3]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -131,16 +132,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /stop-1b:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -170,16 +171,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-1b[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -203,16 +204,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-1b[3]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -237,16 +238,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /stop-2a:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -276,16 +277,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-2a[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -309,16 +310,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-2a[3]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -343,16 +344,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /stop-2b:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -382,16 +383,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-2b[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -415,16 +416,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-2b[3]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -449,16 +450,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /stop-3:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -488,16 +489,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-3[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -521,16 +522,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-3[3]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -555,16 +556,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
         /content:
           jcr:primaryType: hippo:handle
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -906,16 +907,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-1a[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -940,16 +941,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-1a[3]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -973,16 +974,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /stop-1b:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -1012,16 +1013,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-1b[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1045,16 +1046,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-1b[3]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1079,16 +1080,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /stop-2a:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -1118,16 +1119,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-2a[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1152,16 +1153,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-2a[3]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1185,16 +1186,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /stop-2b:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -1224,16 +1225,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-2b[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1258,16 +1259,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-2b[3]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1292,16 +1293,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /stop-3:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -1331,16 +1332,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-3[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1365,16 +1366,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-3[3]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1398,16 +1399,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
         /translated-itinerary:
           jcr:primaryType: hippo:handle
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -1747,16 +1748,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-1a[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1779,16 +1780,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /stop-1b:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -1816,16 +1817,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-1b[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1848,16 +1849,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /stop-2a:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -1885,16 +1886,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-2a[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1917,16 +1918,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /stop-2b:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -1954,16 +1955,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
             /stop-2b[2]:
               jcr:primaryType: visitscotland:Stop
               jcr:mixinTypes: ['mix:referenceable']
@@ -1986,16 +1987,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
         /translated-itinerary:
           jcr:primaryType: hippo:handle
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -2397,37 +2398,37 @@
         /visitscotland:megalinkItems[1]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
         /visitscotland:megalinkItems[2]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
         /visitscotland:megalinkItems[3]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 845bcf7c-38ab-400a-a589-8741ea1d6685
         /visitscotland:megalinkItems[4]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
         /visitscotland:megalinkItems[5]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 47135bf0-c6ea-4463-9e27-7b3e13ea3889
         /visitscotland:megalinkItems[6]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 92c22220-b994-4f13-818b-fed30ce812b9
       /modules-list[2]:
@@ -2453,37 +2454,37 @@
         /visitscotland:megalinkItems[1]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
         /visitscotland:megalinkItems[2]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
         /visitscotland:megalinkItems[3]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 845bcf7c-38ab-400a-a589-8741ea1d6685
         /visitscotland:megalinkItems[4]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
         /visitscotland:megalinkItems[5]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 47135bf0-c6ea-4463-9e27-7b3e13ea3889
         /visitscotland:megalinkItems[6]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 92c22220-b994-4f13-818b-fed30ce812b9
       /modules-list[3]:
@@ -2510,37 +2511,37 @@
         /visitscotland:megalinkItems[1]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
         /visitscotland:megalinkItems[2]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
         /visitscotland:megalinkItems[3]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 845bcf7c-38ab-400a-a589-8741ea1d6685
         /visitscotland:megalinkItems[4]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
         /visitscotland:megalinkItems[5]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 47135bf0-c6ea-4463-9e27-7b3e13ea3889
         /visitscotland:megalinkItems[6]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 92c22220-b994-4f13-818b-fed30ce812b9
     /icentre:
@@ -2933,15 +2934,16 @@
           hippo:availability: []
           hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-12-09T15:40:45.161Z
-          hippostdpubwf:lastModificationDate: 2021-09-09T16:40:17.587+01:00
+          hippostdpubwf:lastModificationDate: 2021-11-10T14:29:34.106Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: ce016ad4-7038-4e88-a11c-6f20c8b66c33
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
           visitscotland:hideNewsletter: false
-          visitscotland:location: Aberdeen
+          visitscotland:location: ''
           visitscotland:newsletter: false
           visitscotland:seoDescription: The OTYML module displays links to recommended
             pages in a carousel
@@ -2972,53 +2974,29 @@
               jcr:primaryType: hippostd:html
               hippostd:content: ''
             /visitscotland:links[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
             /visitscotland:links[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
             /visitscotland:links[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
             /visitscotland:links[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
             /visitscotland:links[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
             /visitscotland:links[6]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
             /visitscotland:links[7]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
             /visitscotland:links[8]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 379b86e5-872c-441c-bd30-aaf3f49054d6
         /content[2]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -3065,53 +3043,29 @@
               jcr:primaryType: hippostd:html
               hippostd:content: ''
             /visitscotland:links[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
             /visitscotland:links[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
             /visitscotland:links[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
             /visitscotland:links[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
             /visitscotland:links[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
             /visitscotland:links[6]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
             /visitscotland:links[7]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
             /visitscotland:links[8]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
         /content[3]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
@@ -3159,53 +3113,29 @@
               jcr:primaryType: hippostd:html
               hippostd:content: ''
             /visitscotland:links[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
             /visitscotland:links[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
             /visitscotland:links[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
             /visitscotland:links[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
             /visitscotland:links[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
             /visitscotland:links[6]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
             /visitscotland:links[7]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
             /visitscotland:links[8]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
     /megalinks:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -3502,13 +3432,13 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
             /visitscotland:products:
@@ -3560,13 +3490,13 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
             /visitscotland:products:
@@ -3619,13 +3549,13 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
             /visitscotland:products:
@@ -3676,7 +3606,7 @@
             /visitscotland:megalinkItems:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
           /single-image-example-2[2]:
@@ -3717,7 +3647,7 @@
             /visitscotland:megalinkItems:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
           /single-image-example-2[3]:
@@ -3759,7 +3689,7 @@
             /visitscotland:megalinkItems:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
         /single-image-dark:
@@ -3808,7 +3738,7 @@
             /visitscotland:megalinkItems:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
           /single-image-dark[2]:
@@ -3851,7 +3781,7 @@
             /visitscotland:megalinkItems:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
           /single-image-dark[3]:
@@ -3895,7 +3825,7 @@
             /visitscotland:megalinkItems:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
         /single-image-dark-2:
@@ -3939,19 +3869,19 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
           /single-image-dark-2[2]:
@@ -3990,19 +3920,19 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
           /single-image-dark-2[3]:
@@ -4040,19 +3970,19 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
       /megalinks-multi-image:
@@ -4204,19 +4134,19 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: true
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
           /megalinks-multi-image-example-1[2]:
@@ -4244,19 +4174,19 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: true
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
           /megalinks-multi-image-example-1[3]:
@@ -4285,19 +4215,19 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: true
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 31866b64-7a1c-4e33-8362-567150f0a2e3
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
       /megalinks-link-list:
@@ -4449,25 +4379,25 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
             /visitscotland:megalinkItems[4]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
           /links-list-example[2]:
@@ -4493,25 +4423,25 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
             /visitscotland:megalinkItems[4]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
           /links-list-example[3]:
@@ -4538,25 +4468,25 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
             /visitscotland:megalinkItems[4]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
         /links-list-example-two:
@@ -4589,25 +4519,25 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
             /visitscotland:megalinkItems[4]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
           /links-list-example-two[2]:
@@ -4634,25 +4564,25 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
             /visitscotland:megalinkItems[4]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
           /links-list-example-two[3]:
@@ -4680,25 +4610,25 @@
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
             /visitscotland:megalinkItems[2]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
             /visitscotland:megalinkItems[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 2ea8781d-5fe9-487c-bdeb-8b306d2fb7c2
             /visitscotland:megalinkItems[4]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
-              /visitscotland:link:
+              /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 44ad86b4-a8b2-45a3-901d-66751d2345a9
       /megalinks-landing-links:
@@ -4729,19 +4659,19 @@
           /visitscotland:megalinkItems[1]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
-            /visitscotland:link:
+            /visitscotland:links:
               jcr:primaryType: hippo:mirror
               hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
-            /visitscotland:link:
+            /visitscotland:links:
               jcr:primaryType: hippo:mirror
               hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
           /visitscotland:megalinkItems[3]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
-            /visitscotland:link:
+            /visitscotland:links:
               jcr:primaryType: hippo:mirror
               hippo:docbase: e027337d-fc49-4181-b568-fc35f464a176
         /megalinks-landing-links[2]:
@@ -4766,19 +4696,19 @@
           /visitscotland:megalinkItems[1]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
-            /visitscotland:link:
+            /visitscotland:links:
               jcr:primaryType: hippo:mirror
               hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
-            /visitscotland:link:
+            /visitscotland:links:
               jcr:primaryType: hippo:mirror
               hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
           /visitscotland:megalinkItems[3]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
-            /visitscotland:link:
+            /visitscotland:links:
               jcr:primaryType: hippo:mirror
               hippo:docbase: e027337d-fc49-4181-b568-fc35f464a176
         /megalinks-landing-links[3]:
@@ -4804,19 +4734,19 @@
           /visitscotland:megalinkItems[1]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
-            /visitscotland:link:
+            /visitscotland:links:
               jcr:primaryType: hippo:mirror
               hippo:docbase: b2cdb04b-2a32-4003-b865-78fde7a8bbea
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
-            /visitscotland:link:
+            /visitscotland:links:
               jcr:primaryType: hippo:mirror
               hippo:docbase: ff0feb23-7c64-4d69-b6b1-01106aad48f0
           /visitscotland:megalinkItems[3]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
-            /visitscotland:link:
+            /visitscotland:links:
               jcr:primaryType: hippo:mirror
               hippo:docbase: e027337d-fc49-4181-b568-fc35f464a176
     /iknow-community:
@@ -5887,6 +5817,593 @@
               <p>The signpost module is a generic call to action module that takes a description, image and call to action link.</p>
 
               <p>Currently, this is only used for Newsletter Signpost and can't be added via the CMS.&nbsp;</p>
+    /canned-search:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 3205bc24-7add-469b-9255-55f0d34525c7
+      hippo:name: Canned Search
+      hippostd:foldertype: [new-translated-folder-test, new-document]
+      hippotranslation:id: aeb25ff7-8371-4c58-a82f-c9942b2b06c8
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: c316f904-075f-4a86-b751-791b7eb28252
+        hippo:name: Content
+        hippo:versionHistory: 922f41ed-02e4-4287-9cdb-2cb6609b8c2d
+        /content[1]:
+          jcr:primaryType: visitscotland:General
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e4fa66fa-4bf4-434e-8672-0230567024ed
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:10:59.532Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:10:59.532Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 5db7c16f-fd68-4226-a243-38530832d090
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:seoDescription: Canned Search Demo
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Canned Search Demo
+          visitscotland:teaser: Canned Search Demo
+          visitscotland:theme: Standard
+          visitscotland:title: Canned Search Demo
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>These are some demo canned searches</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:General
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 5afdab7d-5300-4157-83c2-e49b40167954
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:10:59.532Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:12:36.729Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 5db7c16f-fd68-4226-a243-38530832d090
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:seoDescription: Canned Search Demo
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Canned Search Demo
+          visitscotland:teaser: Canned Search Demo
+          visitscotland:theme: Standard
+          visitscotland:title: Canned Search Demo
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>These are some demo canned searches</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:General
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c6eae18a-6f28-4cee-8dc0-3d3008f2451a
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:10:59.532Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:12:36.729Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-23T12:40:38.363Z
+          hippotranslation:id: 5db7c16f-fd68-4226-a243-38530832d090
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:seoDescription: Canned Search Demo
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Canned Search Demo
+          visitscotland:teaser: Canned Search Demo
+          visitscotland:theme: Standard
+          visitscotland:title: Canned Search Demo
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>These are some demo canned searches</p>
+      /accomodation:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 0a471d85-7c5a-42d9-a668-c6c044d66fb1
+        hippo:name: Accomodation
+        hippo:versionHistory: a77a21a1-bb64-486c-bc69-a532abaffcc5
+        /accomodation[1]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 000ed186-57f4-4616-9e82-4ccc37db350e
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:18:08.382Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:18:08.382Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 02890776-635e-4c63-9e90-207dacd601fd
+          hippotranslation:locale: en
+          visitscotland:title: Accomodation
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: acco
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Test copy please ignore</p>
+        /accomodation[2]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 7e65e4a7-9414-49b6-a8a1-9c28f6c5e11d
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:18:08.382Z
+          hippostdpubwf:lastModificationDate: 2021-12-03T11:52:34.318Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 02890776-635e-4c63-9e90-207dacd601fd
+          hippotranslation:locale: en
+          visitscotland:title: Accomodation
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: acco
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Test copy please ignore</p>
+        /accomodation[3]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e62907de-86f4-4983-8c67-47a97f58ec6a
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:18:08.382Z
+          hippostdpubwf:lastModificationDate: 2021-12-03T11:52:34.318Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-12-03T11:52:36.860Z
+          hippotranslation:id: 02890776-635e-4c63-9e90-207dacd601fd
+          hippotranslation:locale: en
+          visitscotland:title: Accomodation
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: acco
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Test copy please ignore</p>
+      /things-to-do:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: eed7a636-8bf3-4351-88b9-6ef9e65c852b
+        hippo:name: Things to Do
+        hippo:versionHistory: 6cf3660a-b27b-4a4a-8395-b892270e717d
+        /things-to-do[1]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 7670ccf2-55f1-4722-bd55-2828e6bf1eab
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:22:37.412Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:22:37.412Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 4b0386d0-5d1b-4273-bf92-6aac6e3af36d
+          hippotranslation:locale: en
+          visitscotland:title: Things to Do
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: acti,attr,reta
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+        /things-to-do[2]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: ed4bf329-d996-46c3-8e82-c74635d982af
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:22:37.412Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:22:48.538Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 4b0386d0-5d1b-4273-bf92-6aac6e3af36d
+          hippotranslation:locale: en
+          visitscotland:title: Things to Do
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: acti,attr,reta
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+        /things-to-do[3]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 967af5b2-0e1b-4ff4-a3ad-4ab98bfaf54c
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:22:37.412Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:22:48.538Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-23T12:40:49.775Z
+          hippotranslation:id: 4b0386d0-5d1b-4273-bf92-6aac6e3af36d
+          hippotranslation:locale: en
+          visitscotland:title: Things to Do
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: acti,attr,reta
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+      /food--drink:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 7cfd342a-5c48-4a19-99c3-a55ce5097183
+        hippo:name: Food & Drink
+        hippo:versionHistory: 70c7bc55-63db-47a8-b110-83260ce8551b
+        /food--drink[1]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 21e3d1b4-ba68-4f12-b160-88eb29af00bc
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:23:07.641Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:23:07.641Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 6f63a7eb-ad46-4bc3-823d-12b2a54db405
+          hippotranslation:locale: en
+          visitscotland:title: Food & Drink
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: cate
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+        /food--drink[2]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 07390755-e2ab-47ea-986f-cdf4eb05e268
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:23:07.641Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:23:42.120Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 6f63a7eb-ad46-4bc3-823d-12b2a54db405
+          hippotranslation:locale: en
+          visitscotland:title: Food & Drink
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: cate
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+        /food--drink[3]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: bb2900dc-4946-45a6-a455-874e9ba1a745
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:23:07.641Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:23:42.120Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-23T12:40:54.889Z
+          hippotranslation:id: 6f63a7eb-ad46-4bc3-823d-12b2a54db405
+          hippotranslation:locale: en
+          visitscotland:title: Food & Drink
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: cate
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+      /events:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 9d538eb7-3b59-49a4-88d0-2bab0d9cf072
+        hippo:name: Events
+        hippo:versionHistory: 6e489652-10c4-4c39-a1c8-7b711d3988b6
+        /events[1]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c1e75f3d-9115-49cb-995d-7b33324df257
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:24:02.265Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:24:02.265Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: b7e4cfaf-66ea-4029-8647-f768579201f4
+          hippotranslation:locale: en
+          visitscotland:title: Events
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: even
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+        /events[2]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 1c157dfa-7c63-4f9e-ad01-c4f00b49d9be
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:24:02.265Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:24:19.814Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: b7e4cfaf-66ea-4029-8647-f768579201f4
+          hippotranslation:locale: en
+          visitscotland:title: Events
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: even
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+        /events[3]:
+          jcr:primaryType: visitscotland:CannedSearch
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: d0a535f0-410b-43ce-8f7f-8b04fdff1a10
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:24:02.265Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:24:19.814Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-23T12:41:00.842Z
+          hippotranslation:id: b7e4cfaf-66ea-4029-8647-f768579201f4
+          hippotranslation:locale: en
+          visitscotland:title: Events
+          visitscotland:translation: ''
+          /visitscotland:criteria:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: []
+              visitscotland:dmsFacilities: []
+              visitscotland:free: false
+              visitscotland:goodToGo: false
+              visitscotland:location: Glasgow
+              visitscotland:offers: false
+              visitscotland:officialrating: []
+              visitscotland:productType: even
+              visitscotland:producttype: ''
+              visitscotland:safeTravels: false
+      /tours:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 3a40c768-8c34-428b-acc9-b03c26da618b
+        hippo:name: Tours
+        hippo:versionHistory: 34609230-452e-464b-be0e-6fb8b1805bc0
+        /tours[1]:
+          jcr:primaryType: visitscotland:CannedSearchTours
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: b7cd5917-a132-40d5-8fc1-da87dabb0425
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:30:25.527Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:30:25.527Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ff560448-8eb4-47f7-974e-8cdeb7800521
+          hippotranslation:locale: en
+          visitscotland:title: Tours
+          visitscotland:toursSearch: https://www.visitscotland.com/info/tours/search-results?prodtypes=tour&origins%5B%5D=glasgow&source=tms
+          visitscotland:translation: ''
+          visitscotland:viewAll: ''
+        /tours[2]:
+          jcr:primaryType: visitscotland:CannedSearchTours
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: b869ebfd-7b2b-401e-87c0-e31a93709860
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:30:25.527Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:30:32.729Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ff560448-8eb4-47f7-974e-8cdeb7800521
+          hippotranslation:locale: en
+          visitscotland:title: Tours
+          visitscotland:toursSearch: https://www.visitscotland.com/info/tours/search-results?prodtypes=tour&origins%5B%5D=glasgow&source=tms
+          visitscotland:translation: ''
+          visitscotland:viewAll: ''
+        /tours[3]:
+          jcr:primaryType: visitscotland:CannedSearchTours
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: b9ef11f4-bdf3-440b-a7b5-2a14ce5374d3
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2021-11-23T12:30:25.527Z
+          hippostdpubwf:lastModificationDate: 2021-11-23T12:30:32.729Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2021-11-23T12:41:06.686Z
+          hippotranslation:id: ff560448-8eb4-47f7-974e-8cdeb7800521
+          hippotranslation:locale: en
+          visitscotland:title: Tours
+          visitscotland:toursSearch: https://www.visitscotland.com/info/tours/search-results?prodtypes=tour&origins%5B%5D=glasgow&source=tms
+          visitscotland:translation: ''
+          visitscotland:viewAll: ''
   /pages:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -6259,7 +6776,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-05-24T12:35:20.150+01:00
-        hippostdpubwf:lastModificationDate: 2021-06-25T14:53:58.565+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:09:39.984+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 59d23167-7b2b-4421-b4e3-0d4563b4c19f
         hippotranslation:locale: en
@@ -6273,31 +6790,31 @@
         /visitscotland:megalinkItems[1]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 3234b5f3-9a6f-46b0-8feb-7f408c2cbdda
         /visitscotland:megalinkItems[2]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 379b86e5-872c-441c-bd30-aaf3f49054d6
         /visitscotland:megalinkItems[3]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
         /visitscotland:megalinkItems[4]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 7746679b-6821-4a09-9173-664653dad7dd
         /visitscotland:megalinkItems[5]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: d0ff207b-ec03-4e27-a4d8-adeafb6e416f
       /pages-links[2]:
@@ -6323,31 +6840,31 @@
         /visitscotland:megalinkItems[1]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 3234b5f3-9a6f-46b0-8feb-7f408c2cbdda
         /visitscotland:megalinkItems[2]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 379b86e5-872c-441c-bd30-aaf3f49054d6
         /visitscotland:megalinkItems[3]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
         /visitscotland:megalinkItems[4]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 7746679b-6821-4a09-9173-664653dad7dd
         /visitscotland:megalinkItems[5]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: d0ff207b-ec03-4e27-a4d8-adeafb6e416f
       /pages-links[3]:
@@ -6374,31 +6891,31 @@
         /visitscotland:megalinkItems[1]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 3234b5f3-9a6f-46b0-8feb-7f408c2cbdda
         /visitscotland:megalinkItems[2]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 379b86e5-872c-441c-bd30-aaf3f49054d6
         /visitscotland:megalinkItems[3]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
         /visitscotland:megalinkItems[4]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 7746679b-6821-4a09-9173-664653dad7dd
         /visitscotland:megalinkItems[5]:
           jcr:primaryType: visitscotland:MegalinkItem
           visitscotland:feature: false
-          /visitscotland:link:
+          /visitscotland:links:
             jcr:primaryType: hippo:mirror
             hippo:docbase: d0ff207b-ec03-4e27-a4d8-adeafb6e416f
     /itinerary:
@@ -6790,35 +7307,20 @@
               jcr:primaryType: hippostd:html
               hippostd:content: ''
             /visitscotland:links[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 3f7c6470-d897-489a-b02a-52d56d124dca
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 3f7c6470-d897-489a-b02a-52d56d124dca
             /visitscotland:links[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 379b86e5-872c-441c-bd30-aaf3f49054d6
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 379b86e5-872c-441c-bd30-aaf3f49054d6
             /visitscotland:links[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 3234b5f3-9a6f-46b0-8feb-7f408c2cbdda
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 3234b5f3-9a6f-46b0-8feb-7f408c2cbdda
             /visitscotland:links[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
             /visitscotland:links[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
         /content[2]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -6861,35 +7363,20 @@
               jcr:primaryType: hippostd:html
               hippostd:content: ''
             /visitscotland:links[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 3f7c6470-d897-489a-b02a-52d56d124dca
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 3f7c6470-d897-489a-b02a-52d56d124dca
             /visitscotland:links[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 379b86e5-872c-441c-bd30-aaf3f49054d6
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 379b86e5-872c-441c-bd30-aaf3f49054d6
             /visitscotland:links[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 3234b5f3-9a6f-46b0-8feb-7f408c2cbdda
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 3234b5f3-9a6f-46b0-8feb-7f408c2cbdda
             /visitscotland:links[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
             /visitscotland:links[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
         /content[3]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
@@ -6933,35 +7420,20 @@
               jcr:primaryType: hippostd:html
               hippostd:content: ''
             /visitscotland:links[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 3f7c6470-d897-489a-b02a-52d56d124dca
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 3f7c6470-d897-489a-b02a-52d56d124dca
             /visitscotland:links[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 379b86e5-872c-441c-bd30-aaf3f49054d6
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 379b86e5-872c-441c-bd30-aaf3f49054d6
             /visitscotland:links[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 3234b5f3-9a6f-46b0-8feb-7f408c2cbdda
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 3234b5f3-9a6f-46b0-8feb-7f408c2cbdda
             /visitscotland:links[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
             /visitscotland:links[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
     /listicle:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -7659,7 +8131,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 5e0d09e3-fdf2-479e-880d-8052730ec4e5
     hippo:name: Test landing page
-    hippo:versionHistory: 555482bb-dc63-4a5c-9ebb-06d4c8603722
+    hippo:versionHistory: 1ff8c915-f81b-470e-a13c-2d2d43eb8a27
     /content[1]:
       jcr:primaryType: visitscotland:General
       jcr:mixinTypes: ['mix:referenceable']
@@ -7669,19 +8141,21 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-25T14:47:56.308+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:41:57.408+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: Meta description
+      visitscotland:seoDescription: This area is designed to hold stable content to
+        test layout and functionality of the site.
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Meta title
+      visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
       visitscotland:theme: Standard
-      visitscotland:title: VIsitscotland.com redevelopment test area
+      visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -7706,19 +8180,21 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-25T14:48:12.579+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:42:03.262+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: Meta description
+      visitscotland:seoDescription: This area is designed to hold stable content to
+        test layout and functionality of the site.
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Meta title
+      visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
       visitscotland:theme: Standard
-      visitscotland:title: VIsitscotland.com redevelopment test area
+      visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -7743,20 +8219,22 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-05-25T14:48:12.579+01:00
+      hippostdpubwf:lastModificationDate: 2021-10-18T16:42:03.262+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-05-25T14:48:14.335+01:00
+      hippostdpubwf:publicationDate: 2021-10-18T16:42:05.236+01:00
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
+      visitscotland:hideNewsletter: false
       visitscotland:newsletter: true
-      visitscotland:seoDescription: Meta description
+      visitscotland:seoDescription: This area is designed to hold stable content to
+        test layout and functionality of the site.
       visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Meta title
+      visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
       visitscotland:theme: Standard
-      visitscotland:title: VIsitscotland.com redevelopment test area
+      visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
         jcr:primaryType: hippogallerypicker:imagelink
@@ -7801,19 +8279,19 @@
       /visitscotland:megalinkItems[1]:
         jcr:primaryType: visitscotland:MegalinkItem
         visitscotland:feature: false
-        /visitscotland:link:
+        /visitscotland:links:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 3f7c6470-d897-489a-b02a-52d56d124dca
       /visitscotland:megalinkItems[2]:
         jcr:primaryType: visitscotland:MegalinkItem
         visitscotland:feature: false
-        /visitscotland:link:
+        /visitscotland:links:
           jcr:primaryType: hippo:mirror
           hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
       /visitscotland:megalinkItems[3]:
         jcr:primaryType: visitscotland:MegalinkItem
         visitscotland:feature: false
-        /visitscotland:link:
+        /visitscotland:links:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 0b020b39-a623-4535-a813-3706f20308b2
     /test-landing-page-links[2]:
@@ -7839,19 +8317,19 @@
       /visitscotland:megalinkItems[1]:
         jcr:primaryType: visitscotland:MegalinkItem
         visitscotland:feature: false
-        /visitscotland:link:
+        /visitscotland:links:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 3f7c6470-d897-489a-b02a-52d56d124dca
       /visitscotland:megalinkItems[2]:
         jcr:primaryType: visitscotland:MegalinkItem
         visitscotland:feature: false
-        /visitscotland:link:
+        /visitscotland:links:
           jcr:primaryType: hippo:mirror
           hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
       /visitscotland:megalinkItems[3]:
         jcr:primaryType: visitscotland:MegalinkItem
         visitscotland:feature: false
-        /visitscotland:link:
+        /visitscotland:links:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 0b020b39-a623-4535-a813-3706f20308b2
     /test-landing-page-links[3]:
@@ -7878,19 +8356,19 @@
       /visitscotland:megalinkItems[1]:
         jcr:primaryType: visitscotland:MegalinkItem
         visitscotland:feature: false
-        /visitscotland:link:
+        /visitscotland:links:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 3f7c6470-d897-489a-b02a-52d56d124dca
       /visitscotland:megalinkItems[2]:
         jcr:primaryType: visitscotland:MegalinkItem
         visitscotland:feature: false
-        /visitscotland:link:
+        /visitscotland:links:
           jcr:primaryType: hippo:mirror
           hippo:docbase: a917046f-7774-4544-9762-3e51e4fa0529
       /visitscotland:megalinkItems[3]:
         jcr:primaryType: visitscotland:MegalinkItem
         visitscotland:feature: false
-        /visitscotland:link:
+        /visitscotland:links:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 0b020b39-a623-4535-a813-3706f20308b2
   /examples:
@@ -7914,13 +8392,15 @@
         hippo:availability: []
         hippostd:retainable: false
         hippostd:state: draft
+        hippostd:transferable: false
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-05-25T14:14:14.492+01:00
-        hippostdpubwf:lastModificationDate: 2021-06-25T15:01:09.158+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:06:24.662+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: fc8650f4-a746-4b5f-9137-49894cbaeca9
         hippotranslation:locale: en
         visitscotland:breadcrumb: ''
+        visitscotland:hideNewsletter: false
         visitscotland:newsletter: true
         visitscotland:seoDescription: Meta description
         visitscotland:seoNoIndex: false
@@ -8077,35 +8557,20 @@
               jcr:primaryType: hippostd:html
               hippostd:content: <p>Find out more about Scotland</p>
             /visitscotland:links[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: a2ca775b-0df5-4e2c-900c-c51c9f2e5d47
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: a2ca775b-0df5-4e2c-900c-c51c9f2e5d47
             /visitscotland:links[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
             /visitscotland:links[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
             /visitscotland:links[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
             /visitscotland:links[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 191da414-2b36-40eb-85bc-0a1730f5a5da
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 191da414-2b36-40eb-85bc-0a1730f5a5da
         /content[2]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -8157,35 +8622,20 @@
               jcr:primaryType: hippostd:html
               hippostd:content: <p>Find out more about Scotland</p>
             /visitscotland:links[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: a2ca775b-0df5-4e2c-900c-c51c9f2e5d47
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: a2ca775b-0df5-4e2c-900c-c51c9f2e5d47
             /visitscotland:links[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
             /visitscotland:links[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
             /visitscotland:links[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
             /visitscotland:links[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 191da414-2b36-40eb-85bc-0a1730f5a5da
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 191da414-2b36-40eb-85bc-0a1730f5a5da
         /content[3]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -8238,35 +8688,20 @@
               jcr:primaryType: hippostd:html
               hippostd:content: <p>Find out more about Scotland</p>
             /visitscotland:links[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: a2ca775b-0df5-4e2c-900c-c51c9f2e5d47
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: a2ca775b-0df5-4e2c-900c-c51c9f2e5d47
             /visitscotland:links[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b3a03184-6cf7-4186-bf5f-2c7f4e8c64b6
             /visitscotland:links[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8e942b8d-2945-4c08-a5f7-436516425c05
             /visitscotland:links[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
             /visitscotland:links[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 191da414-2b36-40eb-85bc-0a1730f5a5da
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 191da414-2b36-40eb-85bc-0a1730f5a5da
       /sumburgh-head-shetland:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -11037,12 +11472,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: introduction
           visitscotland:title: The mountain with its head in the clouds
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>In light of COVID-19, everyone's health and safety
@@ -11090,6 +11519,12 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /experiencing-ben-nevis[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -11105,12 +11540,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: introduction
           visitscotland:title: The mountain with its head in the clouds
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>In light of COVID-19, everyone's health and safety
@@ -11158,6 +11587,12 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /experiencing-ben-nevis[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -11174,12 +11609,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: introduction
           visitscotland:title: The mountain with its head in the clouds
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>In light of COVID-19, everyone's health and safety
@@ -11227,6 +11656,12 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /routes-to-the-summit:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -11240,20 +11675,16 @@
           hippo:availability: []
           hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-01-11T14:15:20.689Z
-          hippostdpubwf:lastModificationDate: 2021-06-25T15:01:33.014+01:00
+          hippostdpubwf:lastModificationDate: 2021-11-23T16:23:05.514Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5e0fc71f-5844-48ba-92e8-97f760987dbf
           hippotranslation:locale: en
           visitscotland:anchor: routes
           visitscotland:title: Routes to the summit
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
+          visitscotland:translation: ''
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>There are two main walking routes up Ben Nevis. The
@@ -11333,6 +11764,12 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /routes-to-the-summit[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -11348,12 +11785,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: routes
           visitscotland:title: Routes to the summit
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>There are two main walking routes up Ben Nevis. The
@@ -11433,6 +11864,12 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /routes-to-the-summit[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -11449,12 +11886,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: routes
           visitscotland:title: Routes to the summit
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>There are two main walking routes up Ben Nevis. The
@@ -11534,6 +11965,12 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /faq:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -11555,12 +11992,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: faq
           visitscotland:title: Frequently asked questions
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>Turn your Munro-bagging dreams into reality and find
@@ -11638,6 +12069,12 @@
                 <h6>Is Ben Nevis suitable for children to climb?</h6>
 
                 <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /faq[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -11653,12 +12090,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: faq
           visitscotland:title: Frequently asked questions
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>Turn your Munro-bagging dreams into reality and find
@@ -11736,6 +12167,12 @@
                 <h6>Is Ben Nevis suitable for children to climb?</h6>
 
                 <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /faq[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -11752,12 +12189,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: faq
           visitscotland:title: Frequently asked questions
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>Turn your Munro-bagging dreams into reality and find
@@ -11835,6 +12266,12 @@
                 <h6>Is Ben Nevis suitable for children to climb?</h6>
 
                 <p>Absolutely, as long as they are prepared for all weather conditions and keen for a challenge. The Carn Mor Dearg Arete route is generally not advised for children.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 7c3dcf89-b0e4-4a4f-91ad-1754fd05dd07
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /things-to-do:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -11856,12 +12293,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: acco-see-do
           visitscotland:title: Places to stay & things to do
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -11924,6 +12355,12 @@
                 hippostd:content: <p>Scotland's largest mountain was once a massive
                   active volcano which exploded and collapsed inwards on itself millions
                   of years ago.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /things-to-do[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -11939,12 +12376,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: acco-see-do
           visitscotland:title: Places to stay & things to do
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12007,6 +12438,12 @@
                 hippostd:content: <p>Scotland's largest mountain was once a massive
                   active volcano which exploded and collapsed inwards on itself millions
                   of years ago.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /things-to-do[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -12023,12 +12460,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: acco-see-do
           visitscotland:title: Places to stay & things to do
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12091,6 +12522,12 @@
                 hippostd:content: <p>Scotland's largest mountain was once a massive
                   active volcano which exploded and collapsed inwards on itself millions
                   of years ago.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
     /winter-breaks:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -12240,12 +12677,6 @@
           visitscotland:anchor: dark-skies
           visitscotland:title: A dark skies and Burns Night celebration in Ayrshire
             and Dumfries & Galloway
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12305,6 +12736,12 @@
                 jcr:primaryType: hippostd:html
                 hippostd:content: <p>This is the best for those looking to experience
                   unforgettably dark skies and traditional Scottish culture.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway-with-quote[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -12321,12 +12758,6 @@
           visitscotland:anchor: dark-skies
           visitscotland:title: A dark skies and Burns Night celebration in Ayrshire
             and Dumfries & Galloway
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12386,6 +12817,12 @@
                 jcr:primaryType: hippostd:html
                 hippostd:content: <p>This is the best for those looking to experience
                   unforgettably dark skies and traditional Scottish culture.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway-with-quote[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -12403,12 +12840,6 @@
           visitscotland:anchor: dark-skies
           visitscotland:title: A dark skies and Burns Night celebration in Ayrshire
             and Dumfries & Galloway
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12468,6 +12899,12 @@
                 jcr:primaryType: hippostd:html
                 hippostd:content: <p>This is the best for those looking to experience
                   unforgettably dark skies and traditional Scottish culture.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /a-whisky-lovers-winter-break-on-islay:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -12489,12 +12926,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: whisky
           visitscotland:title: A whisky lover's winter break on Islay
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12530,6 +12961,12 @@
                 <p>Located off the coast of the Kintyre peninsula on Scotland's west coast, Islay is most easily accessed from the port of Kennacraig, with car <a href="https://www.calmac.co.uk/kennacraig-portellen-portaskaig-islay-ferry-winter-timetable" title="CalMac - Islay- Kennacraig Winter Timetable" target="_blank">ferries</a> running daily. A ferry also departs from Oban once a week.</p>
 
                 <p>When it comes to getting around the&nbsp;distilleries without a car, <a href="https://www.visitscotland.com/info/see-do/search-results?prodtypes=acti%2Cattr%2Creta%2Ctour&amp;cat=cgalltour&amp;loc=Isle+of+Islay&amp;locpoly=391&amp;locprox=0" title="Taxi and tour companies on Islay search results">local taxi companies</a> can arrange bespoke tours.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /a-whisky-lovers-winter-break-on-islay[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -12545,12 +12982,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: whisky
           visitscotland:title: A whisky lover's winter break on Islay
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12586,6 +13017,12 @@
                 <p>Located off the coast of the Kintyre peninsula on Scotland's west coast, Islay is most easily accessed from the port of Kennacraig, with car <a href="https://www.calmac.co.uk/kennacraig-portellen-portaskaig-islay-ferry-winter-timetable" title="CalMac - Islay- Kennacraig Winter Timetable" target="_blank">ferries</a> running daily. A ferry also departs from Oban once a week.</p>
 
                 <p>When it comes to getting around the&nbsp;distilleries without a car, <a href="https://www.visitscotland.com/info/see-do/search-results?prodtypes=acti%2Cattr%2Creta%2Ctour&amp;cat=cgalltour&amp;loc=Isle+of+Islay&amp;locpoly=391&amp;locprox=0" title="Taxi and tour companies on Islay search results">local taxi companies</a> can arrange bespoke tours.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /a-whisky-lovers-winter-break-on-islay[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -12602,12 +13039,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: whisky
           visitscotland:title: A whisky lover's winter break on Islay
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12643,6 +13074,12 @@
                 <p>Located off the coast of the Kintyre peninsula on Scotland's west coast, Islay is most easily accessed from the port of Kennacraig, with car <a href="https://www.calmac.co.uk/kennacraig-portellen-portaskaig-islay-ferry-winter-timetable" title="CalMac - Islay- Kennacraig Winter Timetable" target="_blank">ferries</a> running daily. A ferry also departs from Oban once a week.</p>
 
                 <p>When it comes to getting around the&nbsp;distilleries without a car, <a href="https://www.visitscotland.com/info/see-do/search-results?prodtypes=acti%2Cattr%2Creta%2Ctour&amp;cat=cgalltour&amp;loc=Isle+of+Islay&amp;locpoly=391&amp;locprox=0" title="Taxi and tour companies on Islay search results">local taxi companies</a> can arrange bespoke tours.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /a-weekend-of-arts-and-culture-in-glasgow:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -12664,12 +13101,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: culture
           visitscotland:title: A weekend of arts and culture in Glasgow
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12701,6 +13132,12 @@
                 <h3>Getting there</h3>
 
                 <p>Glasgow is served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/air" title="People Make Glasgow - Getting to Glasgow by air" target="_blank">three international airports</a> with regular flights to cities in the UK and Europe. It's also very well served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/by-rail" title="People Make Glasgow - Getting to Glasgow by train" target="_blank">train</a> and bus routes.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /a-weekend-of-arts-and-culture-in-glasgow[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -12716,12 +13153,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: culture
           visitscotland:title: A weekend of arts and culture in Glasgow
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12753,6 +13184,12 @@
                 <h3>Getting there</h3>
 
                 <p>Glasgow is served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/air" title="People Make Glasgow - Getting to Glasgow by air" target="_blank">three international airports</a> with regular flights to cities in the UK and Europe. It's also very well served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/by-rail" title="People Make Glasgow - Getting to Glasgow by train" target="_blank">train</a> and bus routes.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /a-weekend-of-arts-and-culture-in-glasgow[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -12769,12 +13206,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: culture
           visitscotland:title: A weekend of arts and culture in Glasgow
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12806,6 +13237,12 @@
                 <h3>Getting there</h3>
 
                 <p>Glasgow is served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/air" title="People Make Glasgow - Getting to Glasgow by air" target="_blank">three international airports</a> with regular flights to cities in the UK and Europe. It's also very well served by <a href="https://peoplemakeglasgow.com/visiting/getting-here/by-rail" title="People Make Glasgow - Getting to Glasgow by train" target="_blank">train</a> and bus routes.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /a-getaway-exploring-the-moray-coastline:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -12827,12 +13264,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: coastline
           visitscotland:title: A getaway exploring the Moray coastline
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12864,6 +13295,12 @@
                 <h3>Getting there</h3>
 
                 <p>From Inverness, it's easy to drive to Moray. <a href="https://www.visitscotland.com/info/towns-villages/elgin-p237701" title="Elgin">Elgin</a>, one of the largest towns in the area, is just an hour away by car.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /a-getaway-exploring-the-moray-coastline[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -12879,12 +13316,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: coastline
           visitscotland:title: A getaway exploring the Moray coastline
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12916,6 +13347,12 @@
                 <h3>Getting there</h3>
 
                 <p>From Inverness, it's easy to drive to Moray. <a href="https://www.visitscotland.com/info/towns-villages/elgin-p237701" title="Elgin">Elgin</a>, one of the largest towns in the area, is just an hour away by car.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /a-getaway-exploring-the-moray-coastline[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -12932,12 +13369,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: coastline
           visitscotland:title: A getaway exploring the Moray coastline
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -12969,6 +13400,12 @@
                 <h3>Getting there</h3>
 
                 <p>From Inverness, it's easy to drive to Moray. <a href="https://www.visitscotland.com/info/towns-villages/elgin-p237701" title="Elgin">Elgin</a>, one of the largest towns in the area, is just an hour away by car.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /an-active-winter-break-in-the-great-outdoors:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -12990,12 +13427,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: outdoors
           visitscotland:title: An active winter break in the great outdoors
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -13027,6 +13458,12 @@
                 <h3>Getting there</h3>
 
                 <p>The Torridon is accessible by <a href="https://www.thetorridon.com/contact-us/travel-advice/" title="Travel to The Torridon" target="_blank">road</a>. From Inverness, the journey takes approximately 1 hour and 30 mins, crossing the Kessock Bridge and following the A835, A832, and the A896.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /an-active-winter-break-in-the-great-outdoors[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -13042,12 +13479,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: outdoors
           visitscotland:title: An active winter break in the great outdoors
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -13079,6 +13510,12 @@
                 <h3>Getting there</h3>
 
                 <p>The Torridon is accessible by <a href="https://www.thetorridon.com/contact-us/travel-advice/" title="Travel to The Torridon" target="_blank">road</a>. From Inverness, the journey takes approximately 1 hour and 30 mins, crossing the Kessock Bridge and following the A835, A832, and the A896.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /an-active-winter-break-in-the-great-outdoors[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -13095,12 +13532,6 @@
           hippotranslation:locale: en
           visitscotland:anchor: outdoors
           visitscotland:title: An active winter break in the great outdoors
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -13132,6 +13563,12 @@
                 <h3>Getting there</h3>
 
                 <p>The Torridon is accessible by <a href="https://www.thetorridon.com/contact-us/travel-advice/" title="Travel to The Torridon" target="_blank">road</a>. From Inverness, the journey takes approximately 1 hour and 30 mins, crossing the Kessock Bridge and following the A835, A832, and the A896.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -13155,12 +13592,6 @@
           visitscotland:anchor: dark-skies
           visitscotland:title: A dark skies and Burns Night celebration in Ayrshire
             and Dumfries & Galloway
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -13210,6 +13641,12 @@
                 <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
 
                 <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway[2]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -13226,12 +13663,6 @@
           visitscotland:anchor: dark-skies
           visitscotland:title: A dark skies and Burns Night celebration in Ayrshire
             and Dumfries & Galloway
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -13281,6 +13712,12 @@
                 <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
 
                 <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /a-dark-skies-and-burns-night-celebration-in-ayrshire-and-dumfries--galloway[3]:
           jcr:primaryType: visitscotland:Article
           jcr:mixinTypes: ['mix:referenceable']
@@ -13298,12 +13735,6 @@
           visitscotland:anchor: dark-skies
           visitscotland:title: A dark skies and Burns Night celebration in Ayrshire
             and Dumfries & Galloway
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -13353,6 +13784,213 @@
                 <p>Travelling by car to either Ayrshire or Dumfries &amp; Galloway is straightforward, with good road connections throughout both regions.</p>
 
                 <p>You can also travel by train from Glasgow to Dumfries or Edinburgh to Lockerbie in Dumfries &amp; Galloway. The train line through Ayrshire from Glasgow to Stranraer stops at many destinations along the Ayrshire coast, including the major town of Ayr.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+    /examples-links-listicles:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 626da7a8-5208-4dfa-b5fe-2e122f929202
+      hippo:name: Example Links Listicles
+      hippo:versionHistory: 01b7ef12-439e-41e1-8f99-0ad270add222
+      /examples-links-listicles[1]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 0926cc4a-f724-477c-9377-1200ee0e0db3
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostd:transferable: false
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:10:42.680+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:12:00.923+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a9174166-f581-4f1c-995a-cc261bd75ce4
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Listicles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+      /examples-links-listicles[2]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 2b63a52a-1628-4662-ba69-50f34455f320
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:10:42.680+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:11:51.586+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a9174166-f581-4f1c-995a-cc261bd75ce4
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Listicles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+      /examples-links-listicles[3]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 2ce39aee-b439-40e8-95f9-cc7e10e10eec
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:10:42.680+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:11:51.586+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-10-18T17:13:03.011+01:00
+        hippotranslation:id: a9174166-f581-4f1c-995a-cc261bd75ce4
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Listicles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+    /example-links-articles:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: e94400d6-0aa7-43bd-b321-1d699899d7e1
+      hippo:name: Example Links Articles
+      hippo:versionHistory: c3657fbb-cd67-424e-9150-93d60db0c5b1
+      /example-links-articles[1]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 2d0d0b84-20f6-49f0-b90c-5f518005b024
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:12:21.034+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:12:21.034+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: c644b20f-636c-4abb-966a-51006e8efe7a
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Articles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: ca93dea2-4771-4c6c-8cd2-d90246a97684
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: b4f5210a-8aec-4a67-861f-bc8d1c85e861
+      /example-links-articles[2]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 86c39634-1e55-4cd7-91d3-7cbf10cfbfd1
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:12:21.034+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:12:39.897+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: c644b20f-636c-4abb-966a-51006e8efe7a
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Articles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: ca93dea2-4771-4c6c-8cd2-d90246a97684
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: b4f5210a-8aec-4a67-861f-bc8d1c85e861
+      /example-links-articles[3]:
+        jcr:primaryType: visitscotland:Megalinks
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 0efad1ca-7cbc-4cb8-940b-d6160468b18e
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2021-10-18T17:12:21.034+01:00
+        hippostdpubwf:lastModificationDate: 2021-10-18T17:12:39.897+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2021-10-18T17:12:43.453+01:00
+        hippotranslation:id: c644b20f-636c-4abb-966a-51006e8efe7a
+        hippotranslation:locale: en
+        visitscotland:teaserVisible: true
+        visitscotland:title: Articles
+        visitscotland:translation: ''
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:megalinkItems[1]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: ca93dea2-4771-4c6c-8cd2-d90246a97684
+        /visitscotland:megalinkItems[2]:
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:links:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: b4f5210a-8aec-4a67-861f-bc8d1c85e861
   /automation:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']

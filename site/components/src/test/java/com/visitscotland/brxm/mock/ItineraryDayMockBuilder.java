@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ItineraryDayMockBuilder {
 
@@ -115,7 +114,8 @@ public class ItineraryDayMockBuilder {
         link = mock(ItineraryExternalLink.class, Answers.RETURNS_DEEP_STUBS);
 
         when(currentStop.getStopItem()).thenReturn(link);
-        when(link.getExternalLink().getLink()).thenReturn(url);
+        //This is only used for opening times
+        lenient().when(link.getExternalLink().getLink()).thenReturn(url);
 
         //This mocked value is not representative of the real object.
         when(currentStop.getIdentifier()).thenReturn(url);

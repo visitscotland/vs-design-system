@@ -42,18 +42,10 @@ public class ListicleItemMockBuilder {
     }
 
     public ListicleItemMockBuilder cmsLink(){
-        return cmsLink(false);
-    }
-
-    public ListicleItemMockBuilder cmsLink(boolean addImage){
         CMSLink cmsLink = mock(CMSLink.class);
         Page page = mock(Page.class);
         when(cmsLink.getLink()).thenReturn(page);
         when(listicle.getListicleItem()).thenReturn(cmsLink);
-
-        if (addImage) {
-            when(page.getHeroImage()).thenReturn(mock(Image.class));
-        }
 
         return this;
     }

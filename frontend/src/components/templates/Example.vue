@@ -1,14 +1,5 @@
 <template>
     <div>
-        <VsHero
-            image-src="https://cimg.visitscotland.com/cms-images/holidays/new/camping-beach-dunes-dog?size=md"
-            image-align-v="40%"
-            type="section"
-            display-text="Responsive template"
-            display-text-sub="2 columns"
-            display-align-v="top"
-        />
-
         <VsContainer>
             <VsRow>
                 <VsCol
@@ -72,7 +63,6 @@ import {
     VsContainer, VsRow, VsCol,
 } from '../elements/layout';
 import VsHeading from '../elements/heading/Heading';
-import VsHero from '../patterns/hero/Hero';
 import VsArticle from '../patterns/article/Article';
 
 /**
@@ -94,7 +84,6 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
-        VsHero,
         VsHeading,
         VsArticle,
     },

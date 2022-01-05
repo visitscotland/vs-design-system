@@ -1,6 +1,5 @@
 package com.visitscotland.brxm.factory;
 
-import com.visitscotland.brxm.hippobeans.CMSLink;
 import com.visitscotland.brxm.hippobeans.Quote;
 import com.visitscotland.brxm.hippobeans.SharedLink;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
@@ -29,7 +28,7 @@ public class QuoteFactory {
         this.linkService = linkService;
     }
 
-    public FlatQuote getQuote(Quote doc, Module module, Locale locale){
+    public FlatQuote getQuote(Quote doc, Module<?> module, Locale locale){
         FlatQuote quote = new FlatQuote();
         quote.setQuote(doc.getQuote());
         quote.setAuthorName(doc.getAuthor());
@@ -42,7 +41,7 @@ public class QuoteFactory {
         if (doc.getProduct() instanceof Linkable) {
             EnhancedLink link = linkService.createEnhancedLink((Linkable) doc.getProduct(), module, locale, false);
             if (doc.getProduct() instanceof SharedLink){
-                FlatLink flatLink = linkService.createLink(locale, ((SharedLink) doc.getProduct()).getLinkType());
+                FlatLink flatLink = linkService.createCTALink(module, locale, ((SharedLink) doc.getProduct()).getLinkType());
                 link.setLabel(flatLink.getLabel());
             }
             quote.setLink(link);

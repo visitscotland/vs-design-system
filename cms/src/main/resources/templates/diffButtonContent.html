@@ -46,32 +46,30 @@
 
     async function clearTranslationFlag(nodeId) {
         const dialogOptions = {
-            title: 'TranslationComplete',
+            title: 'Translation Complete',
             url: `/cms/vs-openui/${nodeId}/dialog/translation/complete`,
-            size: 'small'
+            size: 'small',
+            value: nodeId
         };
-        const response = await uiExtension.dialog.open(dialogOptions);
-        if (response == true) {
-            var request = new XMLHttpRequest();
-            request.open("DELETE", `/cms/vs-service/node/${nodeId}/translation/flag`);
-            request.send();
-            request.onload = () => {
-                if (request.status === 409) {
-                    uiExtension.dialog.open({
-                        title: 'Translation Blocked',
-                        url: `/cms/vs-openui/${nodeId}/dialog/current/blocked`,
-                        size: 'small'
-                    });
-                } else if (request.status === 200) {
-                    parent.parent.location.reload();
-                } else {
-                    uiExtension.dialog.open({
-                        title: 'Error',
-                        url: `/cms/vs-openui/${nodeId}/dialog/error`,
-                        size: 'small'
-                    });
-                }
+        try {
+            // Dialog returns HTTP status of the delete translation flag request
+            const response = await uiExtension.dialog.open(dialogOptions);
+            if (response === 409) {
+                uiExtension.dialog.open({
+                    title: 'Translation Blocked',
+                    url: `/cms/vs-openui/${nodeId}/dialog/current/blocked`,
+                    size: 'small'
+                });
+            } else if (response !== 200) {
+                uiExtension.dialog.open({
+                    title: 'Error',
+                    url: `/cms/vs-openui/${nodeId}/dialog/error`,
+                    size: 'small'
+                });
             }
+        } catch (err) {
+            // Promise rejected when user closes dialog with 'x' or 'Cancel button
+            console.trace("Dialog closed", err);
         }
     }
 </script>

@@ -13,17 +13,20 @@
     </#if>
 
     <vs-global-menu
-            dropdown-label="${label('navigation.static', 'uninav.our-sites')}"
-            active-site="https://www.visitscotland.com/"
+        dropdown-label="${label('navigation.static', 'uninav.our-sites')}"
+        active-site="https://www.visitscotland.com/"
     >
         <template slot="third-menu-item">
-            <vs-global-menu-language current-locale="${currentLocale}"
-                                     language-label="${label('navigation.static', 'universal.language')}">
+            <vs-global-menu-language 
+                language="${currentLocale}"
+                language-label="${label('navigation.static', 'universal.language')}"
+            >
                 <#list localizedURLs as language>
                     <vs-global-menu-language-item
-                            key="${language.language}"
-                            language-link="${language.url}"
-                            language-name="${language.displayName}<#-- (${language.isExists()?c}) -->"
+                        key="${language.language}"
+                        language-link="${language.url}"
+                        language-name="${language.displayName}"
+                        language="${language.locale.language}"
                     >
                     </vs-global-menu-language-item>
                 </#list>

@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 import VsFooterSocialItem from '../FooterSocialItem';
 
@@ -10,34 +10,27 @@ const factoryShallowMount = (propsData) => shallowMount(VsFooterSocialItem, {
     },
 });
 
-const factoryMount = (propsData) => mount(VsFooterSocialItem, {
-    propsData: {
-        ...propsData,
-        href: 'https://facebook.com',
-        icon: 'facebook',
-    },
+let wrapper;
+beforeEach(() => {
+    wrapper = factoryShallowMount();
 });
 
 describe('VsFooterSocialItem', () => {
     it('should render a component with the data-test attribute `vs-footer-social-item`', () => {
-        const wrapper = factoryShallowMount();
-
         expect(wrapper.attributes('data-test')).toBe('vs-footer-social-item');
     });
 
     describe(':props', () => {
-        it('should pass the `href` property to the child link', () => {
-            const wrapper = factoryMount();
-            const vsLink = wrapper.find('[data-test="vs-footer-social-item__button"');
+        it(':icon - Should show correct social icon', () => {
+            const icon = wrapper.find('[data-test="vs-footer-social-item__link"').find('vsicon-stub');
 
-            expect(vsLink.props().href).toBe('https://facebook.com');
+            expect(icon.attributes('name')).toBe('facebook');
         });
 
-        it('should pass the `link-alt-text` property to the child link', () => {
-            const wrapper = factoryMount();
-            const vsLink = wrapper.find('[data-test="vs-footer-social-item__button"');
+        it(':href - Should show the correct social URL on the link', () => {
+            const link = wrapper.find('[data-test="vs-footer-social-item__link"');
 
-            expect(vsLink.props().icon).toBe('facebook');
+            expect(link.attributes('href')).toBe('https://facebook.com');
         });
     });
 });

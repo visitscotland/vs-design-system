@@ -25,6 +25,7 @@ definitions:
       new-translated-folder-shared: new translated folder
       new-shared-document: new shared link
       new-stop: new stop
+      new-video: new video
       new-translated-folder-stops: new translated folder
       new-listicle-item: new listicle item
       new-day: new day
@@ -34,6 +35,7 @@ definitions:
       new-translated-folder-test: new translated folder
       new-sandbox-document: new document
       new-translated-folder-sandbox: new translated folder
+      new-translated-folder-videos: new translated folder
     /hippo:configuration/hippo:translations/hippo:templates/fr:
       new-resource-bundle: nouveau resource bundle
       new-untranslated-folder: nouveau dossier non traduit

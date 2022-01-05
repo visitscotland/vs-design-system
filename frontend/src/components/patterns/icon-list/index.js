@@ -1,2 +1,7 @@
-export { VsIconList } from './IconList';
-export { VsIconListItem } from './components/IconListItem';
+import VsIconList from './IconList';
+import VsIconListItem from './components/IconListItem';
+
+export default {
+    VsIconList,
+    VsIconListItem,
+};

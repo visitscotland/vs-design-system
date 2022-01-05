@@ -1,4 +1,5 @@
 /content/documents/www.visitscotland.com-it/test:
+  .meta:order-before: sandbox
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
   jcr:uuid: 8c77ce91-2504-40c7-a315-09c78688825e
@@ -59,16 +60,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /Stop 1b (IT):
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['mix:referenceable']
@@ -94,16 +95,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /Stop 2a (IT):
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['mix:referenceable']
@@ -129,16 +130,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /Stop 2b (IT):
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['mix:referenceable']
@@ -164,16 +165,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
         /Translated Itinerary (IT):
           jcr:primaryType: hippo:handle
           jcr:mixinTypes: ['mix:referenceable']
@@ -361,16 +362,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /Stop 1b (IT):
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['mix:referenceable']
@@ -396,16 +397,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /Stop 2a (IT):
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['mix:referenceable']
@@ -431,16 +432,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
           /Stop 2b (IT):
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['mix:referenceable']
@@ -466,16 +467,16 @@
               /visitscotland:tips:
                 jcr:primaryType: hippostd:html
                 hippostd:content: ''
-              /visitscotland:image:
+              /visitscotland:product:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '123456'
+              /visitscotland:media:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:product:
-                jcr:primaryType: visitscotland:DMSLink
-                visitscotland:label: ''
-                visitscotland:product: '123456'
         /Translated Itinerary (IT):
           jcr:primaryType: hippo:handle
           jcr:mixinTypes: ['mix:referenceable']
