@@ -3,7 +3,7 @@
 <#include "../../../../frontend/components/vs-psr-module.ftl">
 
 
-<#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.CannedSearchModule" -->
+<#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.PSModule" -->
 
 <#macro productSearchWidget module=""  >
     <#if module?has_content>
@@ -16,12 +16,7 @@
                     {'type': '${module.location.type}'}, <#-- TODO: Is this parameter required -->
                     {'${isPolygon?then('locpoly', 'locplace')}': '${module.location.key}'},
                 </#if>
-                {'searchUrl' : '${module.searchUrl}'},
-                {'urls': [
-                <#list module.supportingURLs as type, url>
-                    {'${type}' : '${url}'},
-                </#list>
-                ]},
+                {'domain' : '${module.domain}'}
                 {'lang':'${locale[0..1]}'},
             ]"
         >

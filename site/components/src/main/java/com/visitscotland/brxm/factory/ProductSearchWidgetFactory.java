@@ -40,17 +40,10 @@ public class ProductSearchWidgetFactory {
         module.setDescription(bundle.getResourceBundle(BUNDLE_ID, type.getPathVariable() + ".description", request.getLocale()));
         module.setCategory(type);
         module.setLocation(getLocation(request));
+        module.setDomain(properties.getDmsHost());
 
+        // Non-JavaScript fall-back URL
         module.setSearchUrl(properties.getDmsHost() + Language.getLanguageForLocale(request.getLocale()).getDMSPathVariable() + String.format(DMSConstants.PRODUCT_SEARCH, type.getPathVariable()));
-
-        Map<String, String> supportingURLs = new HashMap<>();
-        for (PSType pstype: PSType.values()){
-            supportingURLs.put(pstype.getProductTypes(),
-                    properties.getDmsHost() + Language.getLanguageForLocale(request.getLocale()).getDMSPathVariable()
-                            + String.format(DMSConstants.PRODUCT_SEARCH, pstype.getPathVariable()));
-        }
-
-        module.setSupportingURLs(supportingURLs);
 
         return module;
     }

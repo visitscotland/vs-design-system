@@ -11,8 +11,8 @@ public class PSModule {
     private String description;
     private PSType category;
     private LocationObject location;
+    private String domain;
     private String searchUrl;
-    private Map<String,String> supportingURLs;
 
     public String getTitle() {
         return title;
@@ -46,6 +46,7 @@ public class PSModule {
         this.location = location;
     }
 
+    /** Non-JavaScript fall-back URL */
     public String getSearchUrl() {
         return searchUrl;
     }
@@ -54,11 +55,11 @@ public class PSModule {
         this.searchUrl = searchUrl;
     }
 
-    public Map<String, String> getSupportingURLs() {
-        return supportingURLs;
+    public String getDomain() {
+        return domain;
     }
 
-    public void setSupportingURLs(Map<String, String> supportingURLs) {
-        this.supportingURLs = supportingURLs;
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 }

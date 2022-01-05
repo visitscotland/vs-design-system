@@ -62,9 +62,8 @@ public class ProductSearchWidgetFactoryTest {
 
         Assertions.assertEquals(PSType.SEE_DO, module.getCategory());
         Assertions.assertEquals("p://dms-host:1234/info/see-do/search-results?", module.getSearchUrl());
-        Assertions.assertNotNull(module.getSupportingURLs());
-        Assertions.assertEquals(PSType.values().length, module.getSupportingURLs().size());
-        Assertions.assertEquals("p://dms-host:1234/info/see-do/search-results?", module.getSupportingURLs().get(DMSConstants.TYPE_SEE_DO));
+        Assertions.assertEquals("p://dms-host:1234", module.getDomain());
+
     }
 
     @Test
@@ -123,7 +122,7 @@ public class ProductSearchWidgetFactoryTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"/", "/see-do", "/accommodation-map/", "/accomodation", "accommo/dation", "/event"})
+    @ValueSource(strings = {"", "/", "/see-do", "/accommodation-map/", "/accomodation", "accommo/dation", "/event", "/#accomodation", "/x/?accommodation"})
     @DisplayName("VS-3084 - ProductSearchWidget - Default all non-recognized URLs to see-do")
     void defaultTextCategory(String uri){
         Assertions.assertEquals(PSType.SEE_DO, PSType.getType(uri));
