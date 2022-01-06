@@ -529,7 +529,7 @@ class ProductSearchBuilderTest {
                 .build();
 
         validateUrl(url);
-        assertTrue(url.startsWith(Language.SPANISH.getDMSPathVariable()),
+        assertTrue(url.startsWith(Language.SPANISH.getPathVariable()),
                 "The URL doesn't seem to be properly localized: " + url
         );
     }

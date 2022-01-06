@@ -3,7 +3,6 @@ package com.visitscotland.brxm.factory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brxm.hippobeans.ICentre;
 import com.visitscotland.brxm.hippobeans.Image;
-import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.ICentreModule;
 import com.visitscotland.brxm.model.LinkType;
@@ -147,7 +146,7 @@ public class ICentreFactory {
                     child.get(DMSConstants.MapSearch.PROPERTIES).has(DMSConstants.MapSearch.ID)) {
                 String label = child.get(DMSConstants.MapSearch.PROPERTIES).get(DMSConstants.MapSearch.NAME).asText();
                 String id = child.get(DMSConstants.MapSearch.PROPERTIES).get(DMSConstants.MapSearch.ID).asText();
-                String languagePath = Language.getLanguageForLocale(locale).getDMSPathVariable();
+                String languagePath = Language.getLanguageForLocale(locale).getPathVariable();
                 String url = properties.getDmsHost() + DataServiceUtils.getProductURL(label, id, DMSConstants.TYPE_SERVICES, languagePath);
                 vicList.add(new FlatLink(label, url, LinkType.INTERNAL));
             }
