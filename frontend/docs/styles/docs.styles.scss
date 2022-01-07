@@ -966,13 +966,6 @@ ul a[href*='/#/Private Components'] {
 }
 
 
-.vds-example-full-screen {
-    div[class^=rsg--controls] {
-        display: none;
-    }
-}
-
-
 /* SCREENSHOT MODE
 /* While regression tests are running the screen needs to be set up in such
 /* a way that the full screen component occupies the actual html scroll bar
