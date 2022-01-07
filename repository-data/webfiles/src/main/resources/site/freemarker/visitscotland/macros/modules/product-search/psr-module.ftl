@@ -7,8 +7,12 @@
 
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.PSModule" -->
 
-<#macro productSearchWidget module="" isAboveContent=true >
+<#macro productSearchWidget module="" position="bottom" >
     <#if module?has_content>
+
+        <#if position=="bottom">
+            <br><br>
+        </#if>
 
         <vs-psr-module
                 :config-arr="[
@@ -32,9 +36,9 @@
         </vs-psr-module>
     </#if>
 
-    <#if isAboveContent>
+    <#if position=="top">
         <#if themeCalculator(introTheme) != "light">
-            <br>SPACE<br>
+            <br><br>
         </#if>
     </#if>
 </#macro>

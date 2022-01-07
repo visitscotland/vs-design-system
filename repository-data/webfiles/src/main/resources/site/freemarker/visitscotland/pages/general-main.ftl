@@ -26,7 +26,7 @@
 
     <#if standardTemplate>
         <@pageIntro content=document heroDetails=heroImage lightBackground=psrWidget?has_content />
-		<@productSearchWidget module=psrWidget isAboveContent=true/>
+		<@productSearchWidget psrWidget "top"/>
     <#else>
         <@pageIntro content=document lightBackground=true />
     </#if>

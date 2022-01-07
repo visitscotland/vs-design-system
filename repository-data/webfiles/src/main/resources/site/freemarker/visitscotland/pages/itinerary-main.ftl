@@ -99,7 +99,7 @@
 
     <@socialShare nojs=true/>
 
-    <@productSearchWidget psrWidget >
+    <@productSearchWidget psrWidget />
 
     <#if otyml??>
         <@horizontalList otyml themeName />

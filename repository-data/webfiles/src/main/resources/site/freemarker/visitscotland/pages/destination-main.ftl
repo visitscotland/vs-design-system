@@ -22,7 +22,7 @@
 
     <@pageIntro content=document heroDetails=heroImage lightBackground=true/>
 
-    <@productSearchWidget psrWidget isAboveContent=true/>
+    <@productSearchWidget psrWidget "top"/>
 
 	<#list pageItems as item>
         <@moduleBuilder item />
