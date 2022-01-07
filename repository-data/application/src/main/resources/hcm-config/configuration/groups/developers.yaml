@@ -2,7 +2,7 @@ definitions:
   config:
     /hippo:configuration/hippo:groups/developers:
       jcr:primaryType: hipposys:group
-      hipposys:description: Hippo Developers! Happy developers!
+      hipposys:description: CMS Administrators
       hipposys:securityprovider: internal
       hipposys:userroles:
         .meta:category: system

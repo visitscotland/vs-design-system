@@ -18,7 +18,7 @@
     /selection:listitem[2]:
       jcr:primaryType: selection:listitem
       selection:key: acti,attr,reta
-      selection:label: See and do
+      selection:label: Things To Do
     /selection:listitem[3]:
       jcr:primaryType: selection:listitem
       selection:key: even
@@ -26,4 +26,5 @@
     /selection:listitem[4]:
       jcr:primaryType: selection:listitem
       selection:key: cate
-      selection:label: Restaurant
+      selection:label: Food & Drink
+
