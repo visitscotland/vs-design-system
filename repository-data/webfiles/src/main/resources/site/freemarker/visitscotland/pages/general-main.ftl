@@ -25,10 +25,10 @@
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
     <#if standardTemplate>
-        <@pageIntro content=document heroDetails=heroImage />
-		<@productSearchWidget psrWidget />
+        <@pageIntro content=document heroDetails=heroImage lightBackground=psrWidget?has_content />
+		<@productSearchWidget module=psrWidget isAboveContent=true/>
     <#else>
-        <@pageIntro content=document simplePage=!standardTemplate/>
+        <@pageIntro content=document lightBackground=true />
     </#if>
 
     <#--TODO Control abput colours, change style="background-color:${style}  -->

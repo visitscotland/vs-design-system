@@ -20,9 +20,9 @@
 	<@hst.manageContent hippobean=document/>
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
-    <@pageIntro content=document heroDetails=heroImage />
+    <@pageIntro content=document heroDetails=heroImage lightBackground=true/>
 
-    <@productSearchWidget psrWidget />
+    <@productSearchWidget psrWidget isAboveContent=true/>
 
 	<#list pageItems as item>
         <@moduleBuilder item />

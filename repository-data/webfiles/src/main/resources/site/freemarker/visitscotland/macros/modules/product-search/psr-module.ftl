@@ -2,10 +2,12 @@
 
 <#include "../../../../frontend/components/vs-psr-module.ftl">
 
+<#include "../../shared/theme-calculator.ftl">
+
 
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.PSModule" -->
 
-<#macro productSearchWidget module=""  >
+<#macro productSearchWidget module="" isAboveContent=true >
     <#if module?has_content>
 
         <vs-psr-module
@@ -28,5 +30,11 @@
                 ${module.description}
             </template>
         </vs-psr-module>
+    </#if>
+
+    <#if isAboveContent>
+        <#if themeCalculator(introTheme) != "light">
+            <br>SPACE<br>
+        </#if>
     </#if>
 </#macro>
