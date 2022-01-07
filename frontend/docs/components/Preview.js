@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import CodeMirror from 'codemirror';
-import CodeTabs from '../utils/tabs';
 
 function format(node, level) {
     const indentBefore = new Array(level + 1).join('  ');
@@ -49,25 +48,22 @@ export default (previewComponent) => ({
         });
     },
     mounted() {
-        CodeTabs.clean();
-        const tabs = CodeTabs.create();
         const strDiv = this.$el.innerHTML.replace(/<!---->/g, '').replace(/data-v-\w*=""/g, '');
         const div = document.createElement('div');
         div.innerHTML = `<${this.$el.localName} class='${this.$el.className}'>${strDiv.trim()}</${
             this.$el.localName
         }>`;
-
         const elemText = format(div, 1).innerHTML.replace(/ class=""/g, '');
         const elem = document.createElement('div');
         const pre = document.createElement('pre');
         const parent = document.querySelector('article div[class^="rsg--tab"]');
+
         pre.appendChild(document.createTextNode(elemText.trim()));
         elem.appendChild(pre);
         if (parent) {
             // Allow some time to pass to make sure codemirror is visible first
             setTimeout(() => {
                 parent.appendChild(elem);
-                parent.appendChild(tabs);
 
                 CodeMirror(
                     (code) => {
@@ -85,8 +81,6 @@ export default (previewComponent) => ({
                         viewportMargin: Infinity,
                     }
                 );
-
-                CodeTabs.init();
             }, 300);
         }
     },
