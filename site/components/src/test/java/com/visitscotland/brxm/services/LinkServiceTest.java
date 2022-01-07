@@ -16,6 +16,8 @@ import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
+import com.visitscotland.brxm.services.youtube.YoutubeApiService;
+import com.visitscotland.brxm.services.youtube.YoutubeVideo;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.brxm.dms.DMSConstants;
@@ -33,9 +35,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Locale;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -68,11 +72,14 @@ class LinkServiceTest {
     @Mock
     private ImageFactory imageFactory;
 
+    @Mock
+    private YoutubeApiService youtubeApiService;
+
     @Resource
     @InjectMocks
     LinkService service;
 
-    private void initProductSearchBuilder(){
+    private void initProductSearchBuilder() {
         ComponentManager context = mock(ComponentManager.class, withSettings().lenient());
         when(context.getComponent(ProductSearchBuilder.class)).thenReturn(builder);
         VsComponentManager.setComponentManager(context);
@@ -587,6 +594,7 @@ class LinkServiceTest {
         assertEquals("youtu.be?v=1", link.getLink());
         assertEquals("1", link.getYoutubeId());
         assertEquals(LinkType.VIDEO, link.getType());
+        assertNull(link.getPublishedDate());
     }
 
     @Test
@@ -597,4 +605,19 @@ class LinkServiceTest {
         assertEquals("https://www.youtube.com/watch?v=h9bQwcndGfo", service.getPlainLink(Locale.UK, video,null));
         assertEquals("https://www.youtube.com/watch?v=h9bQwcndGfo", service.getPlainLink(Locale.FRANCE, video,null));
     }
+
+    @Test
+    @DisplayName(("YoutTube video published date obtained from api"))
+    void enhancedLink_fromVideoWithPublishedDate() throws ParseException {
+        Video video = new VideoMockBuilder().url("https://www.youtube.com/watch?v=h9bQwcndGfo").build();
+        Date datePublished = new SimpleDateFormat("yyyy-MM-dd").parse("2020-10-10");
+        YoutubeVideo yt = new YoutubeVideo();
+        yt.setPublishDate(datePublished);
+        when(youtubeApiService.getVideoInfo("h9bQwcndGfo")).thenReturn(Optional.of(yt));
+
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false);
+
+        assertEquals(datePublished, link.getPublishedDate());
+    }
+
 }
