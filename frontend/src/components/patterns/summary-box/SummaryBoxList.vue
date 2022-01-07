@@ -60,9 +60,7 @@ export default {
             :kilometres=itineraries.sampleItinerary.totalKM
             distance-label="Distance"
             miles-label="miles"
-            miles-abbr="mi"
-            kilometres-label="kilometres"
-            kilometres-abbr="km"
+            kilometres-label="km"
         >
         </VsSummaryBoxDistanceListItem>
         <VsSummaryBoxListItem

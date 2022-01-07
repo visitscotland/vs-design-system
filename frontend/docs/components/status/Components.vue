@@ -149,32 +149,32 @@ export default {
                     require.context('@components/patterns/', true, /\.vue$/),
                     // require.context('@components/modules/', true, /\.vue$/),
                     require.context('@components/templates/', true, /\.vue$/),
-                ]
+                ];
             } else if (this.show === 'elements') {
-                contexts = [require.context('@components/elements/', true, /\.vue$/)]
+                contexts = [require.context('@components/elements/', true, /\.vue$/)];
             } else if (this.show === 'patterns') {
-                contexts = [require.context('@components/patterns/', true, /\.vue$/)]
+                contexts = [require.context('@components/patterns/', true, /\.vue$/)];
                 // } else if (this.show === 'modules') {
                 //   contexts = [require.context('@components/modules/', true, /\.vue$/)]
             } else if (this.show === 'templates') {
-                contexts = [require.context('@components/templates/', true, /\.vue$/)]
+                contexts = [require.context('@components/templates/', true, /\.vue$/)];
             }
 
-            const components = []
+            const components = [];
             contexts.forEach((context) => {
-                context.keys().forEach((key) => components.push(context(key).default))
-            })
+                context.keys().forEach((key) => components.push(context(key).default));
+            });
 
-            return components
+            return components;
         },
         orderData(data) {
-            return orderBy(data, 'name', 'asc')
+            return orderBy(data, 'name', 'asc');
         },
         getColour(colourName) {
-            return get(this.tokens, `docs_color_${colourName}.value`, '#aaa')
+            return get(this.tokens, `docs_color_${colourName}.value`, '#aaa');
         },
     },
-}
+};
 </script>
 
 <style lang='scss'>
