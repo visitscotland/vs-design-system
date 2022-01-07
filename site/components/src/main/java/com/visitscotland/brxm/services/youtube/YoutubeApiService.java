@@ -59,11 +59,13 @@ public class YoutubeApiService {
                 videoDto.setPublishDate(snippet.publishedAt);
                 return Optional.of(videoDto);
             } else {
-                logger.warn("Failed to map youtube API response for video id {} (url={})", youtubeId, apiRequestUrl);
+                logger.warn("Failed to map youtube API response for video id {}", youtubeId);
                 return Optional.empty();
             }
         } catch (IOException e) {
-            logger.error("Failed to retrieve video {} list information", youtubeId, e);
+            // Don't log the API key
+            String exceptionMessage = e.getMessage().replace(youtubeApiKey, "<YOUTUBE_API_KEY>");
+            logger.error("Failed to retrieve video {} list information - {}", youtubeId, exceptionMessage);
             return Optional.empty();
         }
     }
