@@ -156,7 +156,7 @@ export default {
         .vs-megalink-multi-image__title {
             font-size: $font-size-sm;
             line-height: $line-height-s;
-            letter-spacing: 0.0875rem;
+            letter-spacing: $letter-spacing-xl;
         }
 
         .card-title {
@@ -211,7 +211,7 @@ export default {
 
             .vs-megalink-multi-image__title {
                 font-size: $h3-font-size;
-                letter-spacing: 0.125rem;
+                letter-spacing: $letter-spacing-xxl;
             }
 
             .vs-link__icon {
