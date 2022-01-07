@@ -131,6 +131,11 @@
       <version>1.2</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.bloomreach.forge.ipfilter</groupId>
+      <artifactId>bloomreach-ipfilter-cms</artifactId>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>cms</finalName>

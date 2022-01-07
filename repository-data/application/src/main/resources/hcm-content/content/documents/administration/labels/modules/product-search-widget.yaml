@@ -1,0 +1,82 @@
+/content/documents/administration/labels/modules/product-search-widget:
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+  jcr:uuid: d85b23e4-dbca-411f-a55b-eee05ce7b921
+  hippo:name: PSR Widget
+  hippo:versionHistory: bde4d2b4-1f0e-4cd0-b980-0fe9649a5df2
+  /product-search-widget[1]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: f5beb66a-f030-495e-b988-0b8842a5d143
+    hippo:availability: []
+    hippostd:retainable: false
+    hippostd:state: draft
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-12-14T08:20:04.813Z
+    hippostdpubwf:lastModificationDate: 2021-12-14T08:20:04.814Z
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:id: product-search-widget
+    resourcebundle:keys: [see-do.title, see-do.description, accommodation.title, accommodation.description,
+      events.title, events.description, tours.title, tours.description, food-drink.description,
+      food-drink.title]
+    resourcebundle:messages: [Find places to stay & things to do, 'Search through
+        a fantastic range of things to do, places to stay, local events and tours',
+      Find the perfect place to stay, 'Search a wide range of accommodation providers
+        from hotels, B&B''s, hostels cabins, cottages and campsites', Find world renowned
+        events and festivals, 'Search a wide range of events, including the arts,
+        music, sport, food & drink and seasonal events', Find a tour and start exploring
+        Scotland, 'Search a wide range of organised tours, bespoke tours, self guided
+        tours and day trips', 'Search a wide range of organised tours, bespoke tours,
+        self guided tours and day trips', Find food & drink experiences]
+  /product-search-widget[2]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:uuid: d9b52942-27cf-44c0-b135-70eb5a132d32
+    hippo:availability: [preview]
+    hippostd:retainable: false
+    hippostd:state: unpublished
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-12-14T08:20:04.813Z
+    hippostdpubwf:lastModificationDate: 2021-12-14T08:31:24.048Z
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:id: product-search-widget
+    resourcebundle:keys: [see-do.title, see-do.description, accommodation.title, accommodation.description,
+      events.title, events.description, tours.title, tours.description, food-drink.description,
+      food-drink.title]
+    resourcebundle:messages: [Find places to stay & things to do, 'Search through
+        a fantastic range of things to do, places to stay, local events and tours',
+      Find the perfect place to stay, 'Search a wide range of accommodation providers
+        from hotels, B&B''s, hostels cabins, cottages and campsites', Find world renowned
+        events and festivals, 'Search a wide range of events, including the arts,
+        music, sport, food & drink and seasonal events', Find a tour and start exploring
+        Scotland, 'Search a wide range of organised tours, bespoke tours, self guided
+        tours and day trips', 'Search a wide range of organised tours, bespoke tours,
+        self guided tours and day trips', Find food & drink experiences]
+  /product-search-widget[3]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 153e3e65-f277-4bcd-a635-e99219455868
+    hippo:availability: [live]
+    hippostd:retainable: false
+    hippostd:state: published
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2021-12-14T08:20:04.813Z
+    hippostdpubwf:lastModificationDate: 2021-12-14T08:31:24.048Z
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2021-12-14T08:31:57.492Z
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:id: product-search-widget
+    resourcebundle:keys: [see-do.title, see-do.description, accommodation.title, accommodation.description,
+      events.title, events.description, tours.title, tours.description, food-drink.description,
+      food-drink.title]
+    resourcebundle:messages: [Find places to stay & things to do, 'Search through
+        a fantastic range of things to do, places to stay, local events and tours',
+      Find the perfect place to stay, 'Search a wide range of accommodation providers
+        from hotels, B&B''s, hostels cabins, cottages and campsites', Find world renowned
+        events and festivals, 'Search a wide range of events, including the arts,
+        music, sport, food & drink and seasonal events', Find a tour and start exploring
+        Scotland, 'Search a wide range of organised tours, bespoke tours, self guided
+        tours and day trips', 'Search a wide range of organised tours, bespoke tours,
+        self guided tours and day trips', Find food & drink experiences]

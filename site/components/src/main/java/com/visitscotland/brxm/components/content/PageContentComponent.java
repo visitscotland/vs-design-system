@@ -3,6 +3,7 @@ package com.visitscotland.brxm.components.content;
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.factory.MegalinkFactory;
+import com.visitscotland.brxm.factory.ProductSearchWidgetFactory;
 import com.visitscotland.brxm.factory.SignpostFactory;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.model.FlatImage;
@@ -30,17 +31,20 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
     public static final String PREVIEW_ALERTS = "alerts";
     public static final String HERO_IMAGE = "heroImage";
     public static final String HERO_VIDEO = "heroVideo";
+    public static final String PSR_WIDGET = "psrWidget";
 
-    private MegalinkFactory megalinkFactory;
-    private ImageFactory imageFactory;
-    private LinkService linksService;
+    private final MegalinkFactory megalinkFactory;
+    private final ImageFactory imageFactory;
+    private final LinkService linksService;
     private final SignpostFactory signpostFactory;
+    private final ProductSearchWidgetFactory psrFactory;
 
     public PageContentComponent() {
         megalinkFactory = VsComponentManager.get(MegalinkFactory.class);
         imageFactory = VsComponentManager.get(ImageFactory.class);
         signpostFactory = VsComponentManager.get(SignpostFactory.class);
         linksService = VsComponentManager.get(LinkService.class);
+        psrFactory = VsComponentManager.get(ProductSearchWidgetFactory.class);
     }
 
     @Override
@@ -51,6 +55,7 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
 
         addOTYML(request);
         addNewsletterSignup(request);
+        addProductSearchWidget(request);
     }
 
     /**
@@ -92,6 +97,15 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
     }
 
     /**
+     * Add the configuration related to the Product Search Widget for the page
+     *
+     * TODO: Check in FreeMarker if null so it can be deactivated in the future
+     */
+    private void addProductSearchWidget(HstRequest request){
+        request.setAttribute(PSR_WIDGET, psrFactory.getWidget(request));
+    }
+
+    /**
      * Return the document from the request
      *
      * @param request HstRequest
@@ -108,8 +122,8 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
 
     protected void setErrorMessages(HstRequest request, Collection<String> errorMessages) {
         if (request.getAttribute(PREVIEW_ALERTS) != null){
-            Collection<String> requestMesages = (Collection<String>) request.getAttribute(PREVIEW_ALERTS);
-            requestMesages.addAll(errorMessages);
+            Collection<String> requestMessages = (Collection<String>) request.getAttribute(PREVIEW_ALERTS);
+            requestMessages.addAll(errorMessages);
         } else {
             request.setAttribute(PREVIEW_ALERTS, errorMessages);
         }

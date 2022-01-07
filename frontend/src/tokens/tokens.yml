@@ -5,12 +5,11 @@
 imports:
   - ./color.yml
   - ./font-size.yml
+  - ./font-weight.yml
   - ./font.yml
   - ./icons.yml
   - ./opacity.yml
-  - ./size.yml
   - ./timing.yml
-  - ./z-index.yml
   - ./breakpoints.yml
   - ./box-shadow.yml
   - ./letter-spacing.yml

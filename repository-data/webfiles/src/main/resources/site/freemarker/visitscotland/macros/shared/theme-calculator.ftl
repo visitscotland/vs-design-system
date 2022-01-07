@@ -1,4 +1,4 @@
-<#function themeCalculator  themeIndex="" module="" colourSchemeParam=["light", "light", "dark"]>
+<#function themeCalculator  themeIndex=1 module="" colourSchemeParam=["dark", "light", "light"]>
     <#if colourSchemeParam?size == 0>
         <#if breadcrumbs?? && breadcrumbs.items?size == 2>
             <!-- Note: There was a requirement about level 2 starting on light but It hasn't been either confirmed or discarded yet -->
