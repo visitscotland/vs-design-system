@@ -282,6 +282,7 @@ export default {
                     {'subSearchType': 'acco'},
                     {'locplace': '4161'},
                     {'lang':'en'},
+                    {'domain':'http://172.28.81.65:8089'},
                 ]"
             >
                 <template slot="vsModuleHeading">
