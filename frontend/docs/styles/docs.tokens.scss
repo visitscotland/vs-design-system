@@ -5,14 +5,25 @@
 --------------------------------------------- */
 $docs-color-white: #fff;
 $docs-color-very-light-grey: #f5f6fa;
+$docs-color-light-grey:#f2f2f2;
 $docs-color-grey: #e5e5e5;
-$docs-color-grey-dark: #595959;
+$docs-color-grey-med: #6a6366;
+$docs-color-grey-dark: #191919;
 
-$docs-color-purple: #95005e;
+$docs-color-purple: #700E57;
+$docs-color-pink: #af006e;
 $docs-color-blue: #005eb8;
+$docs-color-light-blue: #E7F5F6;
+$docs-color-very-light-blue: #fafdfd;
 $docs-status-ready: #7cb518;
-$docs-breakpoint: 800px;
-$docs-breakpoint-small: 600px;
+
+$docs-breakpoint-xxxl: 1600px;
+$docs-breakpoint-xxl: 1400px;
+$docs-breakpoint-xl: 1200px;
+$docs-breakpoint-lg: 992px;
+$docs-breakpoint: 768px;
+$docs-breakpoint-sm: 576px;
+$docs-breakpoint-xs: 0;
 
 $docs-color-heading: rgb(30, 30, 30);
 
@@ -37,16 +48,21 @@ $docs-color-cloud: rgb(233, 243, 253) !default;
 $docs-color-oxford-blue: rgb(0, 38, 77) !default;
 $docs-color-vermilion: rgb(235, 59, 36) !default;
 
-$size-xxxl: 64px !default;
+$docs-code-red: #cc2b22;
+$docs-code-blue: #005eaf;
+$docs-code-pink: #a647a4;
+
+$size-xxxl: 60px !default;
 $size-xxl: 48px !default;
 $size-xl: 36px !default;
 $size-l: 24px !default;
+$size-base: 20px !default;
 $size-m: 16px !default;
-$size-s: 13px !default;
+$size-s: 14px !default;
 $size-xs: 11px !default;
 
-$font-heading: "Fira Sans", Helvetica, Arial, sans-serif !default;
-$font-text: "Fira Sans", Helvetica, Arial, sans-serif !default;
+$font-heading: 'evelethclean-regular', Helvetica, Arial, sans-serif !default;
+$font-text: 'Source Sans Pro', Helvetica, Arial, sans-serif !default;
 
 $weight-bold: 700 !default;
 $weight-semi-bold: 600 !default;
@@ -63,12 +79,15 @@ $spacing-s: -0.5px !default;
 $spacing-xs: -1px !default;
 
 $radius-default: 3px !default;
+$radius-m: 8px !default;
+$radius-l: 32px !default;
 $radius-circle: 50% !default;
 
 $space-xxl: 128px !default;
 $space-xl: 64px !default;
 $space-l: 48px !default;
 $space-m: 24px !default;
+$space-base: 20px !default;
 $space-s: 16px !default;
 $space-xs: 8px !default;
 $space-xx-small: 4px !default;
