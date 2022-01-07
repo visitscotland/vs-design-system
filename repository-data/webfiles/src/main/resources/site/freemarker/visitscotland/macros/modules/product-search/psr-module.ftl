@@ -16,7 +16,7 @@
                     {'type': '${module.location.type}'}, <#-- TODO: Is this parameter required -->
                     {'${isPolygon?then('locpoly', 'locplace')}': '${module.location.key}'},
                 </#if>
-                {'domain' : '${module.domain}'}
+                {'domain' : '${module.domain}'},
                 {'lang':'${locale[0..1]}'},
             ]"
         >
