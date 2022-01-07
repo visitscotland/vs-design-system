@@ -5,13 +5,10 @@
 #
 
 props:
-    - name: theme_grey
-      value: "#EFEFEF"
-      category: "Module Themes"
-    - name: theme_dark
+    theme_dark:
       value: "#2A2829"
-      category: "Module Themes"
-
+    theme_grey:
+      value: "#EFEFEF"
 global:
   type: color
-  category: color
+  category: themes

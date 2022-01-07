@@ -1,7 +1,7 @@
 <template>
     <div>
         <div
-            v-for="(thisType, index1) in sortedTypes"
+            v-for="(thisCategory, index1) in sortedCategory"
             :key="index1"
             class="token-type"
         >
@@ -10,13 +10,12 @@
                     <tr>
                         <th>Token Name</th>
                         <th>Value</th>
-                        <th>Category</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr
                         v-once
-                        v-for="(token, index2) in filterBy('type', thisType)"
+                        v-for="(token, index2) in filterTokens(thisCategory)"
                         :key="index2"
                         class="token"
                     >
@@ -60,12 +59,6 @@
                         <td v-else>
                             N/A
                         </td>
-                        <td v-if="token.category">
-                            {{ token.category }}
-                        </td>
-                        <td v-else>
-                            N/A
-                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -88,6 +81,10 @@ import designTokens from '@/assets/tokens/tokens.raw.json';
 export default {
     name: 'Tokens',
     props: {
+        category: {
+            type: [String, Array],
+            default: null,
+        },
         types: {
             type: [String, Array],
             default: null,
@@ -100,26 +97,27 @@ export default {
     },
     data() {
         return {
-            tokens: this.orderData(designTokens.props),
+            tokens: designTokens.props,
         };
     },
     computed: {
-        sortedTypes() {
+        sortedCategory() {
+            if (this.category) {
+                return castArray(this.category);
+            }
+
             if (this.types) {
                 return castArray(this.types);
             }
 
-            return orderBy(uniq(map(this.tokens, 'type')));
+            return orderBy(uniq(map(this.tokens, 'category')));
         },
     },
     methods: {
-        orderData(data) {
-            const byName = orderBy(data, 'name', 'asc');
-            const byCategoryAndName = orderBy(byName, 'category');
-            return byCategoryAndName;
-        },
-        filterBy(filterOn, term) {
-            return filter(this.tokens, [filterOn, term]);
+        filterTokens(term) {
+            const filterType = this.types ? 'type' : 'category';
+
+            return filter(this.tokens, [filterType, term]);
         },
     },
 };
@@ -143,6 +141,7 @@ export default {
         background: $docs-color-white;
         box-shadow: $shadow-s-inset, $shadow-s-inset, $shadow-s-inset;
         width: $space-s;
+        margin-top: 5px;
         height: $space-s;
         float: left;
     }

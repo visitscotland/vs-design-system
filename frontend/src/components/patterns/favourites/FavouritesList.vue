@@ -80,7 +80,7 @@ export default {
     color: $color-gray-shade-2;
     font-size: 2rem;
     font-weight: $font-weight-light;
-    letter-spacing: 1px;
+    letter-spacing: $letter-spacing-l;
 }
 </style>
 
