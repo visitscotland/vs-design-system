@@ -1,4 +1,3 @@
-def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-products"
 def MAIL_TO = "webops@visitscotland.net"
 
 def thisAgent
@@ -81,18 +80,6 @@ pipeline {
   }
 
   stages {
-
-//  -- "Checkout Design System". This stage now commented out as it's no longer required since VS-1081 - please merge this change as required but leave the block for reference
-//  stage ('Checkout Design System') {
-//    steps {
-//      // -- create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
-//      sh 'mkdir -p design-system'
-//      dir('design-system') {
-//        //git branch: '${DS_BRANCH}', credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43', url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git'
-//        checkout([$class: 'GitSCM', branches: [[name: "*/${DS_BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'dist/']]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43',url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git']]])
-//      }
-//    }
-//  }
 
     stage ('Pre-build') {
       steps {
@@ -237,6 +224,66 @@ pipeline {
             }
           }
         }
+
+        stage('Nexus IQ Scan: Site') {
+          when {
+            branch 'develop' 
+          }
+          steps {
+            script{
+              try {
+                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, enableDebugLogging: true, iqApplication: selectedApplication('visitscotland-site'), iqScanPatterns: [[scanPattern: '**/site.war']], iqStage: 'build', jobCredentialsId: 'nexusiq'
+                echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
+                IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
+              } 
+              catch (error) {
+                def policyEvaluation = error.policyEvaluation
+                echo "Nexus IQ scan vulnerabilities detected', ${policyEvaluation.applicationCompositionReportUrl}"
+                throw error
+              }
+            }
+          }
+        } //end stage
+
+        stage('Nexus IQ Scan: CMS') {
+          when {
+            branch 'develop' 
+          }
+          steps {
+            script{
+              try {
+                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, enableDebugLogging: true, iqApplication: selectedApplication('visitscotland-cms'), iqScanPatterns: [[scanPattern: '**/cms.war']], iqStage: 'build', jobCredentialsId: 'nexusiq'
+                echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
+                IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
+              } 
+              catch (error) {
+                def policyEvaluation = error.policyEvaluation
+                echo "Nexus IQ scan vulnerabilities detected', ${policyEvaluation.applicationCompositionReportUrl}"
+                throw error
+              }
+            }
+          }
+        } //end stage
+
+        stage('Nexus IQ Scan: SSR') {
+          when {
+            branch 'develop' 
+          }
+          steps {
+            script{
+              try {
+                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, enableDebugLogging: true, iqApplication: selectedApplication('visitscotland-ssr'), iqScanPatterns: [[scanPattern: '**/*ssr*.tar.gz']], iqStage: 'build', jobCredentialsId: 'nexusiq'
+                echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
+                IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
+              } 
+              catch (error) {
+                def policyEvaluation = error.policyEvaluation
+                echo "Nexus IQ scan vulnerabilities detected', ${policyEvaluation.applicationCompositionReportUrl}"
+                throw error
+              }
+            }
+          }
+        } //end stage
 
         stage ('Snapshot to Nexus'){
               when {
