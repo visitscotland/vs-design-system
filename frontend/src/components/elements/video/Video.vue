@@ -19,6 +19,7 @@
         &__iframe-wrapper {
             aspect-ratio: 16 / 9;
             position: relative;
+            padding-top: 66.67%
 
             iframe {
                 position: absolute;
