@@ -78,7 +78,9 @@ export default {
         },
         /* returns the environment variable to include various files from */
         getEnvironment() {
-            if (window.location.hostname.includes('develop') || window.location.hostname.includes('localhost')) {
+            if (window.location.hostname.includes('develop')
+                || window.location.hostname.includes('localhost')
+                || window.location.hostname.includes('feature')) {
                 return 'develop';
             }
             return 'www';
