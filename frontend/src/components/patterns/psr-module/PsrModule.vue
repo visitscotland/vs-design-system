@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-psr-module pt-sm-9">
+    <div class="vs-psr-module pt-9">
         <VsContainer>
             <VsRow>
                 <VsCol
