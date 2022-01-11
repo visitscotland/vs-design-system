@@ -22,7 +22,7 @@
 
 <#macro pageIntro content heroDetails="" itinerary="" lightBackground=false >
     <#if lightBackground>
-        <#assign themeName = themeCalculator()>
+        <#assign themeName = themeCalculator(1)>
     <#else>
         <#assign themeName = themeCalculator(introTheme)>
     </#if>
