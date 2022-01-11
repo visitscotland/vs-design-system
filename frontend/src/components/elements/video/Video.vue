@@ -17,9 +17,10 @@
 <style lang="scss">
     .vs-video {
         &__iframe-wrapper {
-            // aspect-ratio: 16 / 9;
             position: relative;
-            padding-top: 66.67%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
 
             iframe {
                 position: absolute;
