@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: d85b23e4-dbca-411f-a55b-eee05ce7b921
   hippo:name: PSR Widget
-  hippo:versionHistory: bde4d2b4-1f0e-4cd0-b980-0fe9649a5df2
+  hippo:versionHistory: 280a6fca-c458-467f-aa46-d5a7d83347ad
   /product-search-widget[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,7 +13,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-12-14T08:20:04.813Z
-    hippostdpubwf:lastModificationDate: 2021-12-14T08:20:04.814Z
+    hippostdpubwf:lastModificationDate: 2022-01-11T10:20:08.859Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: product-search-widget
@@ -29,6 +29,11 @@
         Scotland, 'Search a wide range of organised tours, bespoke tours, self guided
         tours and day trips', 'Search a wide range of organised tours, bespoke tours,
         self guided tours and day trips', Find food & drink experiences]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
   /product-search-widget[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -38,7 +43,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-12-14T08:20:04.813Z
-    hippostdpubwf:lastModificationDate: 2021-12-14T08:31:24.048Z
+    hippostdpubwf:lastModificationDate: 2022-01-11T10:20:08.718Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: product-search-widget
@@ -54,6 +59,11 @@
         Scotland, 'Search a wide range of organised tours, bespoke tours, self guided
         tours and day trips', 'Search a wide range of organised tours, bespoke tours,
         self guided tours and day trips', Find food & drink experiences]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
   /product-search-widget[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -63,9 +73,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-12-14T08:20:04.813Z
-    hippostdpubwf:lastModificationDate: 2021-12-14T08:31:24.048Z
+    hippostdpubwf:lastModificationDate: 2022-01-11T10:20:08.718Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-12-14T08:31:57.492Z
+    hippostdpubwf:publicationDate: 2022-01-11T10:20:33.287Z
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: product-search-widget
     resourcebundle:keys: [see-do.title, see-do.description, accommodation.title, accommodation.description,
@@ -80,3 +90,8 @@
         Scotland, 'Search a wide range of organised tours, bespoke tours, self guided
         tours and day trips', 'Search a wide range of organised tours, bespoke tours,
         self guided tours and day trips', Find food & drink experiences]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
