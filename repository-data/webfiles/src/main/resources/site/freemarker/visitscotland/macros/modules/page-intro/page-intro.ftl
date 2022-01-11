@@ -39,6 +39,11 @@
             <#if itinerary?has_content>is-itinerary</#if>
         >
             <#if heroDetails?has_content>
+                <#if heroVideo.cta??>
+                    <#assign ctaText = heroVideo.cta>
+                <#else>
+                    <#assign ctaText = "">
+                </#if>
                 <@hst.link var="heroSrc" hippobean=heroImage.cmsImage.original/>
                 <template slot="vsIntroHero">
                     <#if (heroVideo)??>
@@ -72,6 +77,8 @@
                             isVideo="true"
                             videoId="${heroVideo.youtubeId}"
                             videoTitle="${heroVideo.label}"
+                            videoBtn="${ctaText}"
+                            
                         />
                     <#else>
                         <@imageWithCaption 
