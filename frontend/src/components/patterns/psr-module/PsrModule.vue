@@ -125,7 +125,6 @@ export default {
             .Select.form-control {
                 font-family: $font-family-base;
                 font-size: $font_size_base;
-                // line-height: 1;
                 margin-top: $spacer-1;
             }
 
