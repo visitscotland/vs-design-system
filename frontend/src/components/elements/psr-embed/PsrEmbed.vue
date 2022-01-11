@@ -78,7 +78,9 @@ export default {
         },
         /* returns the environment variable to include various files from */
         getEnvironment() {
-            if (window.location.hostname.includes('develop') || window.location.hostname.includes('localhost')) {
+            if (window.location.hostname.includes('develop')
+                || window.location.hostname.includes('localhost')
+                || window.location.hostname.includes('feature')) {
                 return 'develop';
             }
             return 'www';
@@ -124,7 +126,7 @@ export default {
         <VsRow>
             <VsCol md="6">
                 <vs-psr-embed
-                    :config="[{'lang': 'fr'},{'subSearchType': 'acco'},{'locplace': '4161'}]"
+                    :config="[{'lang': 'fr'},{'subSearchType': 'acco'},{'locplace': '4161'},{'domain':'http://172.28.81.65:8089'}]"
                 />
             </VsCol>
         </VsRow>
