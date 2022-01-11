@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-psr-module">
+    <div class="vs-psr-module pt-9">
         <VsContainer>
             <VsRow>
                 <VsCol
@@ -9,7 +9,7 @@
                     <VsHeading
                         level="2"
                         alternative
-                        class="vs-psr-module__heading"
+                        class="vs-psr-module__heading mt-0"
                     >
                         <!-- @slot Text for the module heading -->
                         <slot name="vsModuleHeading" />
@@ -125,7 +125,6 @@ export default {
             .Select.form-control {
                 font-family: $font-family-base;
                 font-size: $font_size_base;
-                line-height: 1;
                 margin-top: $spacer-1;
             }
 
@@ -141,6 +140,8 @@ export default {
                 font-size: $font_size_base;
                 display: flex;
                 align-items: center;
+                padding-top: 0;
+                padding-bottom: 0;
 
                 &:focus {
                     border: $color-pink 4px solid;
@@ -282,6 +283,7 @@ export default {
                     {'subSearchType': 'acco'},
                     {'locplace': '4161'},
                     {'lang':'en'},
+                    {'domain':'http://172.28.81.65:8089'},
                 ]"
             >
                 <template slot="vsModuleHeading">
