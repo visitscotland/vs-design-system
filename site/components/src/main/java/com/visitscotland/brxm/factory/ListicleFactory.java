@@ -12,10 +12,12 @@ import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import sun.awt.image.ImageWatched;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,6 +123,8 @@ public class ListicleFactory {
             }
 
             return  eLink;
+        }  else if (link instanceof ExternalLink || link instanceof ProductSearchLink ) {
+                return linksService.createCTALink(module, locale,link);
         } else {
             contentLogger.warn("The ListicleItem {} is pointing to a document that is not a page ", module.getHippoBean().getPath());
         }
