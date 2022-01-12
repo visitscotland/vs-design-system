@@ -12,12 +12,10 @@ import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.utils.Contract;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import sun.awt.image.ImageWatched;
 
 import java.util.ArrayList;
 import java.util.List;
