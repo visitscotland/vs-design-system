@@ -1,5 +1,5 @@
 <template>
-    <section class="vs-itinerary position-sticky">
+    <section class="vs-itinerary">
         <div
             class="fixed-bottom"
             v-show="!isDesktop && withinItineraryMain"
@@ -153,10 +153,6 @@ export default {
             position: sticky;
             width: 45vw;
         }
-
-         @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-            position: relative;
-        }
     }
 
     .vs-itinerary__map-toggle-button {
@@ -172,11 +168,6 @@ export default {
     @media not all and (min-resolution:.001dpcm) {
         @supports (-webkit-appearance:none) {
             @include media-breakpoint-up(lg) {
-                .vs-itinerary__map-container {
-                    height: 0;
-                    position: relative;
-                }
-
                 .vs-itinerary__accordion-container {
                     max-width: 50%;
                 }
