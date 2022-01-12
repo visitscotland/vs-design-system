@@ -9,6 +9,7 @@ import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.*;
 import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
+import org.hippoecm.repository.util.JcrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -213,6 +214,8 @@ public class DocumentTranslator {
                         sourceDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
                 Node unpublishedVariant = jcrDocumentFactory.createFromNode(translatedDocument.getNode(session)).getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
                 if (unpublishedVariant != null) {
+                    // If the user is an editor, then the node must be checked out before it can be modified
+                    JcrUtils.ensureIsCheckedOut(unpublishedVariant);
                     unpublishedVariant.setProperty(JcrDocument.VS_TRANSLATION_FLAG, true);
                     unpublishedVariant.setProperty(JcrDocument.VS_TRANSLATION_DIFF, "");
                 }

@@ -8,6 +8,7 @@ import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.api.HippoWorkspace;
 import org.hippoecm.repository.api.WorkflowManager;
 import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
+import org.hippoecm.repository.util.JcrUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -350,6 +351,7 @@ public class DocumentTranslatorApplyChangeSetTest {
     @Test
     @DisplayName("Documents are sent for translation when changeset applied")
     void applyChangeSet_sentForTranslation() throws Exception {
+        mockStatic(JcrUtils.class);
         // There should be a call for addTranslation for each document in the ChangeSet
         FolderTranslation translation1 = mock(FolderTranslation.class);
         HippoNode document1Node = mock(HippoNode.class);
