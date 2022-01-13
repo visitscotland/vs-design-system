@@ -1,11 +1,9 @@
 package com.visitscotland.brxm.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brxm.hippobeans.CMSLink;
 import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.hippobeans.Listicle;
 import com.visitscotland.brxm.hippobeans.ListicleItem;
-import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
