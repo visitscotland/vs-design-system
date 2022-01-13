@@ -59,22 +59,6 @@ export default {
         margin: $spacer-0;
         margin-bottom: $spacer-3;
     }
-
-    .text-truncate {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        display: -webkit-box !important;
-        -webkit-box-orient: vertical;
-        white-space: normal;
-
-        &--1 {
-            -webkit-line-clamp: 1;
-        }
-
-        &--2 {
-            -webkit-line-clamp: 2;
-        }
-    }
 </style>
 
 <docs>
