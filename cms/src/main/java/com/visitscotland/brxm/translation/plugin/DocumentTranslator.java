@@ -212,18 +212,10 @@ public class DocumentTranslator {
                 JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(session.getNodeByIdentifier(document.getId()));
                 Document translatedDocument = workflow.addTranslation(changeSet.getTargetLocale().getName(), document.getUrlfr(),
                         sourceDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
-                Node unpublishedVariant = jcrDocumentFactory.createFromNode(translatedDocument.getNode(session)).getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
-                if (unpublishedVariant != null) {
-                    // If the user is an editor, then the node must be checked out before it can be modified
-                    JcrUtils.ensureIsCheckedOut(unpublishedVariant);
-                    unpublishedVariant.setProperty(JcrDocument.VS_TRANSLATION_FLAG, true);
-                    unpublishedVariant.setProperty(JcrDocument.VS_TRANSLATION_DIFF, "");
-                }
                 DefaultWorkflow defaultWorkflow = (DefaultWorkflow) manager.getWorkflow("core", translatedDocument);
                 defaultWorkflow.setDisplayName(document.getNamefr());
             }
         }
-        session.save();
     }
 
     protected boolean saveFolder(FolderTranslation ft, Session session, String targetLanguage)

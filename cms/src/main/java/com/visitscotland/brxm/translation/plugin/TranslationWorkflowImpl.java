@@ -139,6 +139,12 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             // If the document has Translatable children (hippo:mirror) we need to attempt to change
             // the links to point to the relevant translated child
             translateHippoMirrors(copiedVariant, language);
+
+            // When document is cloned, immediately send it for translation
+            if (copiedVariant.getProperty(JcrDocument.HIPPOSTD_STATE).getString().equals(JcrDocument.VARIANT_UNPUBLISHED)) {
+                copiedVariant.setProperty(JcrDocument.VS_TRANSLATION_FLAG, true);
+                copiedVariant.setProperty(JcrDocument.VS_TRANSLATION_DIFF, "");
+            }
         }
 
         return newDocumentHandle;
