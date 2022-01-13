@@ -8,6 +8,7 @@ import com.visitscotland.brxm.hippobeans.ListicleItem;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
+import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.model.ListicleModule;
 import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.DMSUtils;
@@ -158,6 +159,47 @@ class ListicleFactoryTest {
 
         Assertions.assertEquals(link, module.getLinks().get(0));
         verify(dmsData, times(1)).productCard("1234", Locale.UK);
+    }
+
+    @Test
+    @DisplayName("ListicleItem from ExternalLink")
+    void listicle_externalLink() {
+        ListicleItem item = new ListicleItemMockBuilder().addImage().sutitle("Subtitle").externalLink().build();
+        FlatLink link = new FlatLink("Find out more", "www.visitscotland.com", LinkType.EXTERNAL);
+        FlatImage moduleImage = new FlatImage();
+
+        when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
+        when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(moduleImage);
+        when(linksService.createCTALink(any(), any(), any())).thenReturn(link);
+
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
+
+        Assertions.assertEquals(1, items.size());
+        ListicleModule module = items.get(0);
+
+        Assertions.assertEquals("Subtitle", module.getSubtitle());
+        Assertions.assertEquals(moduleImage, module.getImage());
+        Assertions.assertEquals(link, module.getLinks().get(0));
+    }
+    @Test
+    @DisplayName("ListicleItem from Product Search Results")
+    void listicle_psrLink() {
+        ListicleItem item = new ListicleItemMockBuilder().addImage().sutitle("Subtitle").productSearchLink().build();
+        FlatLink link = new FlatLink("Find out more", "www.visitscotland.com", LinkType.INTERNAL);
+        FlatImage moduleImage = new FlatImage();
+
+        when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
+        when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(moduleImage);
+        when(linksService.createCTALink(any(), any(), any())).thenReturn(link);
+
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
+
+        Assertions.assertEquals(1, items.size());
+        ListicleModule module = items.get(0);
+
+        Assertions.assertEquals("Subtitle", module.getSubtitle());
+        Assertions.assertEquals(moduleImage, module.getImage());
+        Assertions.assertEquals(link, module.getLinks().get(0));
     }
 
     @Test
