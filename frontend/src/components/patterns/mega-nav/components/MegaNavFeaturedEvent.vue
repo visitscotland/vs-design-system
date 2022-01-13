@@ -118,7 +118,7 @@ export default {
         }
 
         .vs-stretched-link-card__content {
-            padding-left: $spacer-5;
+            padding: $spacer-0 $spacer-5;
             border-left: $spacer-1 solid $color-pink;
         }
 
@@ -129,6 +129,7 @@ export default {
         .vs-mega-nav-featured-event__date-range {
             color: $color-pink;
             margin-bottom: $spacer-2;
+            font-size: $small-font-size;
         }
 
         .vs-mega-nav-featured-event__date-detail {
