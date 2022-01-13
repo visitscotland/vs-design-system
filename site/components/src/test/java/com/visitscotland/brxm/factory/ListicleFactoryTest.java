@@ -160,7 +160,7 @@ class ListicleFactoryTest {
     }
 
     @Test
-    @DisplayName("ListicleItem from ExternalLink")
+    @DisplayName("VS-3086 ListicleItem from ExternalLink")
     void listicle_externalLink() {
         ListicleItem item = new ListicleItemMockBuilder().addImage().sutitle("Subtitle").externalLink().build();
         FlatLink link = new FlatLink("Find out more", "www.visitscotland.com", LinkType.EXTERNAL);
@@ -180,7 +180,7 @@ class ListicleFactoryTest {
         Assertions.assertEquals(link, module.getLinks().get(0));
     }
     @Test
-    @DisplayName("ListicleItem from Product Search Results")
+    @DisplayName("VS-3086 ListicleItem from Product Search Results")
     void listicle_psrLink() {
         ListicleItem item = new ListicleItemMockBuilder().addImage().sutitle("Subtitle").productSearchLink().build();
         FlatLink link = new FlatLink("Find out more", "www.visitscotland.com", LinkType.INTERNAL);
