@@ -9,6 +9,15 @@
         :data-test="featured ? 'megalink-multi-image-featured' : 'megalink-multi-image-card'"
         :theme="theme"
     >
+        <VsStretchedLinkPanels
+            v-if="days && transport"
+            :days="days"
+            :transport="transport"
+            :transport-name="transportName"
+            slot="stretchedCardPanels"
+            :days-label="daysLabel"
+        />
+
         <span
             slot="stretchedCardHeader"
             class="vs-megalink-multi-image__title"
@@ -100,6 +109,35 @@ export default {
             type: String,
             default: 'light',
             validator: (value) => value.match(/(light|dark)/),
+        },
+        /**
+        * Optional prop for number of days
+        */
+        days: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Label for days - too allow translation in CMS
+        */
+        daysLabel: {
+            type: String,
+            default: 'days',
+        },
+        /**
+        * Optional prop for transport type (will show a the transport icon if used)
+        */
+        transport: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Display-friendly transport name
+        * to allow for translation
+        */
+        transportName: {
+            type: String,
+            default: '',
         },
     },
     computed: {
@@ -236,11 +274,12 @@ export default {
 
             &.vs-megalink-multi-image--featured-last {
                 flex-direction: row-reverse;
-                // margin-top: $spacer-12;
             }
-        }
 
-        @include media-breakpoint-up(xl) {
+            .vs-stretched-link-panels {
+                right: calc(50% + 30px);
+            }
+
             .megalink-multi-image--featured.card {
                 .card-body {
                     padding: $spacer-9 5% $spacer-5;
@@ -269,6 +308,10 @@ export default {
                         imgAlt="This is the alt text"
                         linkType="internal"
                         linkUrl="www.visitscotland.com"
+                        days="2"
+                        daysLabel="days"
+                        transport="bus"
+                        transportName="bus"
                     >
                         <template slot="vsMultiImageHeading">
                             The Edinburgh International Festival and summer festival</template>
