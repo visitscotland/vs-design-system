@@ -8,8 +8,11 @@
         data-test="vs-mega-nav-featured-event"
     >
         <template slot="stretchedCardContent">
-            <p>{{ datesLabel }}{{ dates }}</p>
-            <p>{{ title }}</p>
+            <p class="vs-mega-nav-featured-event__date-range">
+                {{ datesLabel }}&nbsp;
+                <span class="vs-mega-nav-featured-event__date-detail">{{ dates }}</span>
+            </p>
+            <h3>{{ title }}</h3>
             <p>{{ location }} </p>
         </template>
 
@@ -103,27 +106,28 @@ export default {
             bottom: 0;
             left: 0;
             background: $color-white;
-            padding: $spacer-5 $spacer-3;
+            padding: $spacer-0;
         }
 
         .card-title {
-            margin-top: $spacer-0;
-            font-size: $font-size-sm;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            display: none;
         }
 
         .vs-stretched-link-card__content {
-            display: none;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            padding-left: $spacer-5;
+            border-left: $spacer-1 solid $color-pink;
         }
 
         .vs-stretched-link-card__link {
             font-size: $small-font-size;
+        }
+
+        .vs-mega-nav-featured-event__date-range {
+            color: $color-pink;
+        }
+
+        .vs-mega-nav-featured-event__date-detail {
+            font-weight: $font-weight-bold;
         }
 
         @include media-breakpoint-up(sm) {
@@ -138,7 +142,6 @@ export default {
                 position: initial;
                 width: auto;
                 max-width: 100%;
-                padding: $spacer-8;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
@@ -161,23 +164,12 @@ export default {
             flex-direction: column;
             border-top: none;
 
-            .card-body {
-                padding: $spacer-5 $spacer-3;
-            }
-
             .vs-stretched-link-card__img {
                 width: 100%;
             }
 
             .card-title {
                 font-size: $font-size-sm;
-            }
-
-            .vs-stretched-link-card__content {
-                display: -webkit-box;
-                margin: $spacer-0;
-                color: $color-base-text;
-                font-size: $small-font-size;
             }
 
             .vs-stretched-link-card__link {
@@ -200,7 +192,6 @@ export default {
                     bottom: 0;
                     left: 0;
                     background: #fff;
-                    padding: $spacer-5 $spacer-3;
                 }
 
                 .card-title {
@@ -224,7 +215,7 @@ export default {
                         title="Autism Friendly Ancient Egyptian Family Workshop Day"
                         location="South Nutshill Industrial Park"
                         dates-label="Dates from"
-                        dates="4th Dec 2020"
+                        dates="4 Dec 2020"
                     >
 
                         <template slot="vsFeaturedEventLink">
