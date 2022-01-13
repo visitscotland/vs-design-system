@@ -12,8 +12,12 @@
                 {{ datesLabel }}&nbsp;
                 <span class="vs-mega-nav-featured-event__date-detail">{{ dates }}</span>
             </p>
-            <h3>{{ title }}</h3>
-            <p>{{ location }} </p>
+            <p class="vs-mega-nav-featured-event__title text-truncate text-truncate--2">
+                {{ title }}
+            </p>
+            <p class="vs-mega-nav-featured-event__location text-truncate text-truncate--1">
+                {{ location }}
+            </p>
         </template>
 
         <template slot="stretchedCardLink">
@@ -124,10 +128,21 @@ export default {
 
         .vs-mega-nav-featured-event__date-range {
             color: $color-pink;
+            margin-bottom: $spacer-2;
         }
 
         .vs-mega-nav-featured-event__date-detail {
             font-weight: $font-weight-bold;
+        }
+
+        .vs-mega-nav-featured-event__title {
+            font-size: $small-font-size;
+            font-weight: $font-weight-bold;
+            margin-bottom: $spacer-0;
+        }
+
+        .vs-mega-nav-featured-event__location {
+            font-size: $small-font-size;
         }
 
         @include media-breakpoint-up(sm) {
@@ -166,10 +181,6 @@ export default {
 
             .vs-stretched-link-card__img {
                 width: 100%;
-            }
-
-            .card-title {
-                font-size: $font-size-sm;
             }
 
             .vs-stretched-link-card__link {
