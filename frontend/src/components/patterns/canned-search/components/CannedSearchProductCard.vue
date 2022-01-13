@@ -337,6 +337,10 @@ export default {
             -webkit-box-orient: vertical;
             white-space: normal;
 
+            &--1 {
+                -webkit-line-clamp: 1;
+            }
+
             &--2 {
                 -webkit-line-clamp: 2;
             }
