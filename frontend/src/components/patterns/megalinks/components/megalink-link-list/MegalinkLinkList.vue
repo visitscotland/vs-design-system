@@ -11,6 +11,14 @@
             :img-alt="imgAlt"
             :theme="theme"
         >
+            <VsStretchedLinkPanels
+                v-if="days && transport"
+                :days="days"
+                :transport="transport"
+                :transport-name="transportName"
+                slot="stretchedCardPanels"
+                :days-label="daysLabel"
+            />
             <span
                 slot="stretchedCardHeader"
                 class="vs-megalink-link-list__title"
@@ -90,6 +98,35 @@ export default {
         linkUrl: {
             type: String,
             required: true,
+        },
+        /**
+        * Optional prop for number of days
+        */
+        days: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Label for days - too allow translation in CMS
+        */
+        daysLabel: {
+            type: String,
+            default: 'days',
+        },
+        /**
+        * Optional prop for transport type (will show a the transport icon if used)
+        */
+        transport: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Display-friendly transport name
+        * to allow for translation
+        */
+        transportName: {
+            type: String,
+            default: '',
         },
     },
 };
@@ -215,6 +252,22 @@ export default {
                 }
             }
         }
+
+        .vs-stretched-link-panels {
+            width: calc(33% - 0.5rem);
+            right: auto;
+            left: $spacer-2;
+            justify-content: flex-end;
+
+            &__panel {
+                display: none;
+
+                &--days {
+                    display: flex;
+                    margin-right: $spacer-2;
+                }
+            }
+        }
     }
 </style>
 
@@ -231,6 +284,10 @@ export default {
                     imgAlt="This is the alt text"
                     linkType="internal"
                     linkUrl="www.visitscotland.com"
+                    days="2"
+                    daysLabel="days"
+                    transport="bus"
+                    transportName="bus"
                 >
                     <template slot="vsLinkListHeading">
                         The Edinburgh International Festival and summer festival</template>
