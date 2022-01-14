@@ -27,7 +27,7 @@ public class ContentComponent extends EssentialsContentComponent {
     @Override
     public void setContentBeanWith404(HstRequest request, HstResponse response) {
         Optional<HippoBean> contentBean = hippoUtilsService.getContentBeanWithTranslationFallback(request);
-        if (contentBean.isPresent() && contentBean.get().getPath().endsWith(PAGE_PATH)) {
+        if (contentBean.isPresent() && contentBean.get().getPath().endsWith("/" + PAGE_PATH)) {
             request.setModel("document", contentBean.get());
         } else {
             this.pageNotFound(response);
