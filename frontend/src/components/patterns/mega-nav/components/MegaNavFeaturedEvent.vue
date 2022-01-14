@@ -192,25 +192,8 @@ export default {
     }
 
     @include no-js {
-        @include media-breakpoint-down(md) {
-            .card.vs-mega-nav-featured-event {
-                .vs-stretched-link-card__img {
-                    width: 100%;
-                }
-
-                .card-body {
-                    position: absolute;
-                    width: 80%;
-                    bottom: 0;
-                    left: 0;
-                    background: #fff;
-                }
-
-                .card-title {
-                    font-size: $font-size-sm;
-                    margin-bottom: 0;
-                }
-            }
+        .card.vs-mega-nav-featured-event {
+            display: none;
         }
     }
 </style>
