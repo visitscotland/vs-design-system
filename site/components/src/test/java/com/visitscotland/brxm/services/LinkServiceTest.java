@@ -597,4 +597,12 @@ class LinkServiceTest {
         assertEquals("https://www.youtube.com/watch?v=h9bQwcndGfo", service.getPlainLink(Locale.UK, video,null));
         assertEquals("https://www.youtube.com/watch?v=h9bQwcndGfo", service.getPlainLink(Locale.FRANCE, video,null));
     }
+
+    @Test
+    @DisplayName(("VS-3065 - Handling of non-published documents"))
+    void enhancedLink_empty(){
+        EnhancedLink link = service.createEnhancedLink(null, null, null, false);
+
+        assertNull(link);
+    }
 }

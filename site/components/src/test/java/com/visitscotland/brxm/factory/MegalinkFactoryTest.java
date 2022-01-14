@@ -140,6 +140,21 @@ public class MegalinkFactoryTest {
     }
 
     @Test
+    @DisplayName("VS-3065 -  Non Published Videos are handled correctly")
+    void megalinkItem_nonPublishedVideo() {
+        //Test that not allowed types gets skipped without throwing exception
+        VideoLink unpublishedVideo = mock(VideoLink.class);
+        List<MegalinkItem> items =  new MegalinksMockBuilder().addLink(unpublishedVideo).build().getMegalinkItems();
+        Module<Megalinks> module = new Module<>();
+
+        when(unpublishedVideo.getPath()).thenReturn("path-to-document");
+        when(linkService.createEnhancedLink(null, module, Locale.UK, false)).thenReturn(null);
+
+        assertEquals(0, factory.convertToEnhancedLinks(module, items, Locale.UK, false).size());
+    }
+
+
+    @Test
     @DisplayName("CTA is populated when the ProductItem field is populated")
     void multiImageLayout_optionCTA() {
         //Verifies that when the field ProductItem is populated
@@ -258,4 +273,6 @@ public class MegalinkFactoryTest {
         Assertions.assertEquals(minItems, ((MultiImageLinksModule) factory.getMegalinkModule(min.build(), Locale.UK)).getFeaturedLinks().size());
         Assertions.assertEquals(maxItems, ((MultiImageLinksModule) factory.getMegalinkModule(max.build(), Locale.UK)).getFeaturedLinks().size());
     }
+
+
 }
