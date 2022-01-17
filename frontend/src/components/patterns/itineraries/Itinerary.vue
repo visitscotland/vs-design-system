@@ -132,6 +132,13 @@ export default {
             width: calc(100% + #{$spacer-6});
             margin-left: -#{$spacer-3};
         }
+
+        @include media-breakpoint-up(lg) {
+            > .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
     }
 
     .vs-itinerary__map-container {
@@ -146,12 +153,18 @@ export default {
             left: 0;
             right: 0;
         }
+
         @include media-breakpoint-up(lg) {
             float: right;
-            margin-left: 6.25rem;
             position: -webkit-sticky;
             position: sticky;
             width: 45vw;
+        }
+    }
+
+    .vs-itinerary__accordion-container {
+        @include media-breakpoint-up(lg) {
+            max-width: calc(100% - 6.25rem);
         }
     }
 
@@ -161,17 +174,6 @@ export default {
 
         svg {
             margin-right: $spacer-3;
-        }
-    }
-
-    // layout styles for safari
-    @media not all and (min-resolution:.001dpcm) {
-        @supports (-webkit-appearance:none) {
-            @include media-breakpoint-up(lg) {
-                .vs-itinerary__accordion-container {
-                    max-width: 50%;
-                }
-            }
         }
     }
 }
