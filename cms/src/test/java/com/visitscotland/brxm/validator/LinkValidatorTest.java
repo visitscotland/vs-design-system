@@ -45,7 +45,7 @@ class LinkValidatorTest {
         Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
 
         when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn(LinkValidator.EMPTY_DOCUMENT);
-        when(context.createViolation("EmptyLink")).thenReturn(mock(Violation.class));
+        when(context.createViolation("emptyLink")).thenReturn(mock(Violation.class));
 
         assertTrue(validator.validate(context, node).isPresent());
     }
@@ -60,7 +60,7 @@ class LinkValidatorTest {
     })
     @DisplayName("VS-2905 - Validates that links are correctly validated depending on the parent")
     void correctValues(String parentType, String childType) throws RepositoryException {
-        assertFalse(validator.validate(context, mockLink(parentType, childType, true)).isPresent());
+        assertFalse(validator.validate(context, mockLink(parentType, childType, true,"/document/content/visitscotland")).isPresent());
     }
 
     @ParameterizedTest
@@ -75,7 +75,7 @@ class LinkValidatorTest {
     })
     @DisplayName("VS-2905 - Invalid documents cause a validation exception")
     void incorrectValues(String parentType, String childType) throws RepositoryException {
-        assertTrue(validator.validate(context, mockLink(parentType, childType, false)).isPresent());
+         assertTrue(validator.validate(context, mockLink(parentType, childType, false,"/document/content/visitscotland")).isPresent());
     }
 
     /**
@@ -87,12 +87,16 @@ class LinkValidatorTest {
      *
      * @return Node to be validated against the validator
      */
-    private Node mockLink(String parentType, String childType, boolean expected) throws  RepositoryException{
+    private Node mockLink(String parentType, String childType, boolean expected, String childChannel) throws  RepositoryException{
         Node parentNode = Mockito.mock(Node.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
-        Node childNode = Mockito.mock(Node.class, withSettings().lenient());
+        Node childNode = Mockito.mock(Node.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
         boolean isDefault = !LinkValidator.DAY.equals(parentType) && !LinkValidator.VIDEO.equals(parentType);
+        String channel = "/document/content/visitscotland";
 
         when(parentNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("NODE-ID");
+        when(mockSessionFactory.getHippoNodeByIdentifier("NODE-ID")).thenReturn(childNode);
+        when(parentNode.getPath()).thenReturn(channel);
+        when(childNode.getPath()).thenReturn(childChannel);
         lenient().when(parentNode.getParent().isNodeType(AdditionalMatchers.not(eq(parentType)))).thenReturn(false);
         if (!isDefault){
             when(parentNode.getParent().isNodeType(parentType)).thenReturn(true);
