@@ -36,9 +36,14 @@ public class LinkValidator implements Validator<Node> {
         try {
             String nodeId = document.getProperty(HIPPO_DOCBASE).getValue().getString();
              if(!nodeId.equals(EMPTY_DOCUMENT)) {
-                 return checkAllowedDocuments(context, document, sessionFactory.getHippoNodeByIdentifier(nodeId));
+                 Node childNode =  sessionFactory.getHippoNodeByIdentifier(nodeId);
+                 if (!document.getPath().split("/")[3].equals(childNode.getPath().split("/")[3])) {
+                     return Optional.of(context.createViolation("channel"));
+                 }else {
+                     return checkAllowedDocuments(context, document, childNode);
+                 }
              } else {
-                 return Optional.of(context.createViolation("EmptyLink"));
+                 return Optional.of(context.createViolation("emptyLink"));
              }
         } catch (PathNotFoundException e) {
             return Optional.of(context.createViolation("translation"));
@@ -64,6 +69,7 @@ public class LinkValidator implements Validator<Node> {
 
         return Optional.empty();
     }
+
 
 }
 
