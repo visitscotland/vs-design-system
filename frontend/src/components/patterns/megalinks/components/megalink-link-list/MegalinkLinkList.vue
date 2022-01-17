@@ -42,6 +42,7 @@
 
 <script>
 import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
+import VsStretchedLinkPanels from '@components/patterns/stretched-link-card/components/StretchedLinkPanels';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 
 /**
@@ -58,6 +59,7 @@ export default {
     components: {
         VsStretchedLinkCard,
         VsRichTextWrapper,
+        VsStretchedLinkPanels,
     },
     props: {
         /**
@@ -187,7 +189,7 @@ export default {
 
             .card-title {
                 display: flex;
-                margin-bottom: 0;
+                margin: 0;
 
                 & > a {
                     line-height: 0;
@@ -261,10 +263,29 @@ export default {
 
             &__panel {
                 display: none;
+                width: 36px;
+                height: 36px;
 
                 &--days {
                     display: flex;
                     margin-right: $spacer-2;
+                }
+            }
+
+            &__days {
+                font-size: $h3-font-size;
+                margin-bottom: 0;
+            }
+
+            @include media-breakpoint-up(xl) {
+                &__panel {
+                    width: 55px;
+                    height: 55px;
+                }
+
+                &__days {
+                    font-size: $font-size-lg;
+                    margin-bottom: $spacer-1;
                 }
             }
         }
