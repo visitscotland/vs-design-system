@@ -37,6 +37,7 @@
 
 <script>
 import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
+import VsStretchedLinkPanels from '@components/patterns/stretched-link-card/components/StretchedLinkPanels';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 
 /**
@@ -53,6 +54,7 @@ export default {
     components: {
         VsStretchedLinkCard,
         VsRichTextWrapper,
+        VsStretchedLinkPanels,
     },
     props: {
         /**
