@@ -18,6 +18,7 @@
                 :transport-name="transportName"
                 slot="stretchedCardPanels"
                 :days-label="daysLabel"
+                data-test="vs-itinerary-panels"
             />
             <span
                 slot="stretchedCardHeader"
