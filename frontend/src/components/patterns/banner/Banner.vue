@@ -1,6 +1,6 @@
 <template>
     <div
-        v-if="show"
+        v-if="showBanner"
         class="vs-banner"
         data-test="vs-banner"
     >
@@ -97,20 +97,20 @@ export default {
     ],
     data() {
         return {
-            show: true,
+            showBanner: true,
         };
     },
     mounted() {
         // Check if cookie exists and hides banner if true
         const cookieExists = this.cookieExists('vs_showbanner');
-        this.show = !cookieExists;
+        this.showBanner = !cookieExists;
     },
     methods: {
         /**
          * Hides banner from view
          */
         hideBanner() {
-            this.show = !this.show;
+            this.showBanner = !this.showBanner;
             this.setHiddenCookie();
         },
         /**
@@ -118,7 +118,7 @@ export default {
          */
         setHiddenCookie() {
             const cookieExists = this.cookieExists('vs_showbanner');
-            this.setCookie('vs_showbanner', this.show, !cookieExists, true);
+            this.setCookie('vs_showbanner', this.showBanner, !cookieExists, true);
         },
     },
 };
