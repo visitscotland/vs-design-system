@@ -213,6 +213,24 @@ export default {
             </VsMegaNavAccordionItem>
             <div class="featured-items">
                 <template
+                    v-if="item.title === 'Things to do'"
+                >
+                    <MegaNavFeaturedEvent
+                        link="www.visitscotland.com"
+                        img-url="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                        img-alt="Alt text"
+                        title="Autism Friendly Ancient Egyptian Family Workshop Day"
+                        location="South Nutshill Industrial Park"
+                        dates-label="Dates from"
+                        dates="4 Dec 2020"
+                    >
+
+                        <template slot="vsFeaturedEventLink">
+                            View event details
+                        </template>
+                    </MegaNavFeaturedEvent>
+                </template>
+                <template
                     v-if="item.title === 'Accommodation' || item.title === 'Inspiration'"
                 >
                     <VsMegaNavFeaturedItem
