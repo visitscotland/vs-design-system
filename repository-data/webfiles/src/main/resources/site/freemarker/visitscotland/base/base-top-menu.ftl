@@ -22,6 +22,7 @@
             <@headerGlobalMenu />
             <@headerMegaNav menu=menu/>
         </header>
+        <@hst.cmseditmenu menu=menu />
     </div>
 </#if>
 
