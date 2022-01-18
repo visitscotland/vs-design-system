@@ -43,8 +43,8 @@
 import {
     VsContainer, VsRow, VsCol,
 } from '@components/elements/layout';
-import VsGlobalMenuDropdown from './GlobalMenuDropdown';
-import VsGlobalMenuList from './GlobalMenuList';
+import VsGlobalMenuDropdown from './components/GlobalMenuDropdown';
+import VsGlobalMenuList from './components/GlobalMenuList';
 
 /**
  * This component is the main Global Nav Wrapper for the top of the page.
