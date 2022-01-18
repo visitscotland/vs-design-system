@@ -39,7 +39,6 @@ export default {
 
 <style lang="scss">
 .vs-rich-text-wrapper {
-
     &--variant-normal{
         font-family: $font-family-base;
         font-size: $body-font-size;
@@ -67,7 +66,7 @@ export default {
         <h3>Normal Variant</h3>
         <VsRichTextWrapper>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-             <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
+             <VsLink href="#foo">eget</VsLink> ante urna.<br/> Pellentesque aliquam faucibus
              enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
             Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.</p>
         </VsRichTextWrapper>
@@ -77,7 +76,7 @@ export default {
         <h3>Lead Variant</h3>
         <VsRichTextWrapper variant="lead">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-             <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
+             <VsLink href="#foo">eget</VsLink> ante urna.<br/> Pellentesque aliquam faucibus
               enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
             Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.</p>
         </VsRichTextWrapper>
@@ -88,7 +87,7 @@ export default {
             How do I climb Ben Nevis safely?
         </VsHeading>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-            <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
+            <VsLink href="#foo">eget</VsLink> ante urna.<br/> Pellentesque aliquam faucibus
             enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
         Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
     </VsRichTextWrapper>
