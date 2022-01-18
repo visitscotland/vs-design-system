@@ -46,6 +46,10 @@ main section section > div > div[class^='rsg--root'] {
     flex-direction: column;
     margin-bottom: $space-xl;
     border-bottom: 1px solid $docs-color-grey;
+
+    &:last-of-type{
+        border-bottom: 0;
+    }
 }
 
 /* TYPOGRAPHY
