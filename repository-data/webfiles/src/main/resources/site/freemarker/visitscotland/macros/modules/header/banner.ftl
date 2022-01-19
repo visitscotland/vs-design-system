@@ -23,7 +23,7 @@
         </template>
 
         <template slot="closeBtnText">
-            Close
+            ${label("essentials.global", "close")}
         </template>
     </vs-banner>
 </#macro>
