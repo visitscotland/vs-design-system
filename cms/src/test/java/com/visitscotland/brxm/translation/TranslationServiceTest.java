@@ -190,7 +190,6 @@ public class TranslationServiceTest {
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .withHandle(mockHandleNode)
                 .isDraftBeingEdited(false).build();
-        when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
 
         when(mockSessionFactory.getUserSession()).thenReturn(mockUserSession);
         Workflow mockWorkflow = mock(Workflow.class);
@@ -204,12 +203,9 @@ public class TranslationServiceTest {
     public void clearTranslationFlag_englishDocument() throws Exception {
         Node mockUnpublishedNode = new MockNodeBuilder()
                 .withProperty(HippoTranslationNodeType.LOCALE, "en").build();
-        Node mockHandleNode = new MockNodeBuilder()
-                .build();
         JcrDocument mockJcrDocument = new MockJcrDocumentBuilder()
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .isDraftBeingEdited(false).build();
-        when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
 
         assertThatThrownBy(() -> service.clearTranslationFlag(mockJcrDocument)).isInstanceOf(IllegalArgumentException.class);
     }
@@ -227,7 +223,6 @@ public class TranslationServiceTest {
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .withHandle(mockHandleNode)
                 .isDraftBeingEdited(false).build();
-        when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
 
         when(mockSessionFactory.getUserSession()).thenReturn(mockUserSession);
         TranslationWorkflow mockWorkflow = mock(TranslationWorkflow.class);
@@ -252,7 +247,6 @@ public class TranslationServiceTest {
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .withHandle(mockHandleNode)
                 .isDraftBeingEdited(false).build();
-        when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
 
         when(mockSessionFactory.getUserSession()).thenReturn(mockUserSession);
         TranslationWorkflow mockWorkflow = mock(TranslationWorkflow.class);
