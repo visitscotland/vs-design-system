@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 45278688-f372-4427-8e15-6b177cf51cc1
   hippo:name: Properties (Local Environment)
-  hippo:versionHistory: 4e283cfb-cff6-4f03-a978-876b0a0e5bae
+  hippo:versionHistory: a70d3aa7-6859-4cd0-9216-bdb10ffc8fe1
   /local-environment[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,7 +13,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-12-07T10:10:00.135Z
+    hippostdpubwf:lastModificationDate: 2022-01-17T10:19:00.303Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -44,7 +44,7 @@
       '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
       $VS_USE_RELATIVE_URLS, 'http://localhost:8080/site', 'http://172.28.81.65:8089',
       'http://172.28.81.65:8089/data', 'http://172.28.81.65:8089/data', www.visitscotland.com,
-      /content/general/navigation/banner/content]
+      general/navigation/banner/content]
   /local-environment[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -54,7 +54,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-12-07T10:10:48.871Z
+    hippostdpubwf:lastModificationDate: 2022-01-17T10:19:00.207Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -85,7 +85,7 @@
       '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
       $VS_USE_RELATIVE_URLS, 'http://localhost:8080/site', 'http://172.28.81.65:8089',
       'http://172.28.81.65:8089/data', 'http://172.28.81.65:8089/data', www.visitscotland.com,
-      /content/general/navigation/banner/content]
+      general/navigation/banner/content]
   /local-environment[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -95,9 +95,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2021-12-07T10:10:48.871Z
+    hippostdpubwf:lastModificationDate: 2022-01-17T10:19:00.207Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-12-07T10:10:51.716Z
+    hippostdpubwf:publicationDate: 2022-01-17T10:19:02.626Z
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
       "Token that identifies calls made to vs-dms-products as internal calls giving\
@@ -127,4 +127,4 @@
       '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
       $VS_USE_RELATIVE_URLS, 'http://localhost:8080/site', 'http://172.28.81.65:8089',
       'http://172.28.81.65:8089/data', 'http://172.28.81.65:8089/data', www.visitscotland.com,
-      /content/general/navigation/banner/content]
+      general/navigation/banner/content]

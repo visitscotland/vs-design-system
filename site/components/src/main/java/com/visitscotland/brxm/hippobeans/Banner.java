@@ -34,6 +34,6 @@ public class Banner extends BaseDocument {
     }
 
     public HippoBean getCtaLink() {
-        return getSingleProperty("visitscotland:ctaLink");
+        return getBean("visitscotland:ctaLink");
     }
 }
