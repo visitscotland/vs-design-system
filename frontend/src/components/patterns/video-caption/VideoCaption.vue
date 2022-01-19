@@ -20,6 +20,22 @@
         />
 
         <div class="vs-video-caption__details">
+            <p class="vs-video-caption__title">
+                <!-- @slot Slot for video title -->
+                <slot name="video-title" />
+            </p>
+
+            <p class="vs-video-caption__duration">
+                {{ videoDetails.videoDurationMsg }}
+            </p>
+        </div>
+    </div>
+    <div
+        v-else
+        class="vs-video-caption vs-video-caption--no-js"
+        data-test="video-caption-nojs"
+    >
+        <div class="vs-video-caption__details">
             <div class="vs-video-caption__alert">
                 <VsIcon
                     name="review"
@@ -32,15 +48,6 @@
                     <slot name="video-alert" />
                 </p>
             </div>
-
-            <p class="vs-video-caption__title">
-                <!-- @slot Slot for video title -->
-                <slot name="video-title" />
-            </p>
-
-            <p class="vs-video-caption__duration">
-                {{ videoDetails.videoDurationMsg }}
-            </p>
         </div>
     </div>
 </template>
@@ -117,6 +124,10 @@ export default {
         width: 100%;
         position: relative;
 
+        &--no-js {
+            display: none;
+        }
+
         &__details {
             background-color: $color-gray-shade-6;
             color: $color-white;
@@ -188,6 +199,10 @@ export default {
 
     @include no-js {
         .vs-video-caption {
+            &--no-js {
+                display: block;
+            }
+
             @include media-breakpoint-up(sm) {
                 &__details {
                     max-width: 84%;
