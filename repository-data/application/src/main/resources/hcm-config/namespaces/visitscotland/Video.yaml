@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 05685694-6f26-4f51-90f3-522a8054830e
+          jcr:uuid: bce89ebc-f8fb-4196-867f-ca27f3601ba8
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -33,7 +33,7 @@ definitions:
             hipposysedit:path: visitscotland:image
             hipposysedit:primary: false
             hipposysedit:type: hippogallerypicker:imagelink
-            hipposysedit:validators: ['visitscotland:image-validator']
+            hipposysedit:validators: [required, 'visitscotland:image-validator']
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -84,7 +84,7 @@ definitions:
           visitscotland:title: ''
           visitscotland:teaser: ''
           visitscotland:label: ''
-          jcr:uuid: a1b9c917-0fa2-4dec-9736-e10e82288599
+          jcr:uuid: c4ed47a8-ac60-450d-b912-f843b2d15706
           hippostdpubwf:lastModificationDate: 2021-11-05T10:54:33.360Z
           hippostdpubwf:creationDate: 2021-11-05T10:54:33.360Z
           visitscotland:translation: ''
@@ -111,6 +111,7 @@ definitions:
             field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /url:
