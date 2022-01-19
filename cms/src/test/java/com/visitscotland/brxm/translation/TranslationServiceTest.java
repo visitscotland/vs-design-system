@@ -3,6 +3,7 @@ package com.visitscotland.brxm.translation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
+import com.visitscotland.brxm.translation.plugin.TranslationWorkflow;
 import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.api.WorkflowException;
@@ -193,7 +194,7 @@ public class TranslationServiceTest {
 
         when(mockSessionFactory.getUserSession()).thenReturn(mockUserSession);
         Workflow mockWorkflow = mock(Workflow.class);
-        addToMockWorkflowManager("editing", mockHandleNode, mockWorkflow);
+        addToMockWorkflowManager("translation", mockUnpublishedNode, mockWorkflow);
 
         assertThatThrownBy(() -> service.clearTranslationFlag(mockJcrDocument)).isInstanceOf(IllegalStateException.class);
     }
@@ -229,14 +230,12 @@ public class TranslationServiceTest {
         when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
 
         when(mockSessionFactory.getUserSession()).thenReturn(mockUserSession);
-        EditableWorkflow mockWorkflow = mock(EditableWorkflow.class);
-        addToMockWorkflowManager("editing", mockHandleNode, mockWorkflow);
+        TranslationWorkflow mockWorkflow = mock(TranslationWorkflow.class);
+        addToMockWorkflowManager("translation", mockUnpublishedNode, mockWorkflow);
 
         service.clearTranslationFlag(mockJcrDocument);
 
-        verify(mockWorkflow).disposeEditableInstance();
-        verify(mockUnpublishedNode).setProperty(eq(JcrDocument.VS_TRANSLATION_FLAG), eq(false));
-        verify(mockJcrSession).save();
+        verify(mockWorkflow).clearTranslationFlag();
     }
 
     @DisplayName("clearTranslationFlag - should clear the diff and the flag")
@@ -256,15 +255,12 @@ public class TranslationServiceTest {
         when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
 
         when(mockSessionFactory.getUserSession()).thenReturn(mockUserSession);
-        EditableWorkflow mockWorkflow = mock(EditableWorkflow.class);
-        addToMockWorkflowManager("editing", mockHandleNode, mockWorkflow);
+        TranslationWorkflow mockWorkflow = mock(TranslationWorkflow.class);
+        addToMockWorkflowManager("translation", mockUnpublishedNode, mockWorkflow);
 
         service.clearTranslationFlag(mockJcrDocument);
 
-        verify(mockWorkflow).disposeEditableInstance();
-        verify(mockUnpublishedNode).setProperty(eq(JcrDocument.VS_TRANSLATION_FLAG), eq(false));
-        verify(mockDiffProperty).remove();
-        verify(mockJcrSession).save();
+        verify(mockWorkflow).clearTranslationFlag();
     }
 
     protected void addToMockWorkflowManager(String name, Node node, Workflow workflow) throws Exception {

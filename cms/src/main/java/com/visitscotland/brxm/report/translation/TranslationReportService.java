@@ -4,10 +4,11 @@ import com.visitscotland.brxm.report.ReportException;
 import com.visitscotland.brxm.translation.SessionFactory;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
+import com.visitscotland.brxm.translation.plugin.TranslationWorkflow;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.repository.api.HippoNode;
-import org.hippoecm.repository.api.WorkflowException;
+import org.hippoecm.repository.api.Workflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -45,13 +46,17 @@ public class TranslationReportService {
         try {
             Node jcrNode = sessionFactory.getJcrSession().getNodeByIdentifier(handleId);
             JcrDocument doc = jcrDocumentFactory.createFromNode(jcrNode);
-            jcrUtilService.setTranslationPriority(doc, priority);
+            Workflow workflow = sessionFactory.getUserSession().getWorkflowManager().getWorkflow("translation", doc.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
+            if (workflow instanceof TranslationWorkflow) {
+                TranslationWorkflow translationWorkflow = (TranslationWorkflow) workflow;
+                translationWorkflow.setTranslationPriority(priority);
+            } else {
+                throw new ReportException("Failed to load TranslationWorkflow");
+            }
         } catch (ItemNotFoundException ex) {
             throw new ReportException("Can not find item", ex);
         } catch (RepositoryException | RemoteException ex) {
             throw new ReportException("Failed to update item", ex);
-        } catch (WorkflowException ex) {
-            throw new ReportException("Document being modified by another user", ex);
         }
     }
 

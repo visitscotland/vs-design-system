@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.translation.plugin;
 
+import com.visitscotland.brxm.report.translation.TranslationPriority;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.HippoStdPubWfNodeType;
@@ -13,10 +14,7 @@ import org.hippoecm.repository.util.JcrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
+import javax.jcr.*;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.*;
@@ -295,6 +293,22 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
         rootSession.refresh(false);
     }
 
+    @Override
+    public void setTranslationPriority(TranslationPriority priority) throws RepositoryException, RemoteException {
+        rootSubject.setProperty("visitscotland:translationPriority", priority.toString());
+        saveSession();
+    }
+
+    @Override
+    public void clearTranslationFlag() throws RepositoryException, RemoteException {
+        rootSubject.setProperty(JcrDocument.VS_TRANSLATION_FLAG, false);
+        if (rootSubject.hasProperty(JcrDocument.VS_TRANSLATION_DIFF)) {
+            Property diffProperty = rootSubject.getProperty(JcrDocument.VS_TRANSLATION_DIFF);
+            diffProperty.remove();
+        }
+        saveSession();
+    }
+
     public Map<String, Serializable> hints() throws WorkflowException, RepositoryException {
         Map<String, Serializable> hints = new TreeMap<>();
 
@@ -347,6 +361,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             }
         }
 
+        hints.put("setTranslationPriority", Boolean.FALSE);
         hints.put("available", (Serializable) available);
         hints.put("locale", translatedNode.getLocale());
         return hints;
