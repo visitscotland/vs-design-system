@@ -450,7 +450,7 @@ export default {
 ```jsx
 
     <VsCannedSearch
-        apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
+        apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
         heading="B&Bs, guesthouses and hostels in Loch Lomond and The Trossachs national park"
     >
         <template slot="vsCannedSearchIntro">
@@ -469,7 +469,7 @@ export default {
         </template>
     </VsCannedSearch>
     <VsCannedSearch
-        apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
+        apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
         searchType="even"
         heading="An events search example"
     >
@@ -490,7 +490,7 @@ export default {
         </template>
     </VsCannedSearch>
     <VsCannedSearch
-        apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
+        apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
         searchType="cate"
         heading="A food & drink search example"
     >
@@ -507,7 +507,7 @@ export default {
         </template>
     </VsCannedSearch>
     <VsCannedSearch
-        apiUrl="http://172.28.81.65:8090/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
+        apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
         searchType="acti"
         heading="A things to do example"
     >
@@ -524,7 +524,7 @@ export default {
         </template>
     </VsCannedSearch>
     <VsCannedSearch
-        apiUrl="http://172.28.81.65:8090/data/component/cannedsearchtours?find%5B%5D=attractions%7Caberdeen%7CAberdeen&locale=en-GB"
+        apiUrl="http://172.28.81.65:8089/data/component/cannedsearchtours?find%5B%5D=attractions%7Caberdeen%7CAberdeen&locale=en-GB"
         searchType="tour"
         heading="A tours example"
     >
