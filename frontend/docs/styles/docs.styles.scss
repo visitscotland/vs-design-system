@@ -722,6 +722,7 @@ div[class^='rsg--tab'] {
 .vueds-hidden {
     opacity: 0;
     visibility: hidden;
+    display: none;
     z-index: -1;
     top: -10000px;
     left: 0;
