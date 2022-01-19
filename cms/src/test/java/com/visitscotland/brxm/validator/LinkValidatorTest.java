@@ -60,7 +60,7 @@ class LinkValidatorTest {
     })
     @DisplayName("VS-2905 - Validates that links are correctly validated depending on the parent")
     void correctValues(String parentType, String childType) throws RepositoryException {
-        assertFalse(validator.validate(context, mockLink(parentType, childType, true,"/document/content/visitscotland")).isPresent());
+        assertFalse(validator.validate(context, mockLink(parentType, childType, true)).isPresent());
     }
 
     @ParameterizedTest
@@ -75,44 +75,65 @@ class LinkValidatorTest {
     })
     @DisplayName("VS-2905 - Invalid documents cause a validation exception")
     void incorrectValues(String parentType, String childType) throws RepositoryException {
-         assertTrue(validator.validate(context, mockLink(parentType, childType, false,"/document/content/visitscotland")).isPresent());
+         assertTrue(validator.validate(context, mockLink(parentType, childType, false)).isPresent());
     }
-
-    /**
-     * Mocks a Document that cotains a link, the linked document and stubs any expected behaviour during the validation
-     *
-     * @param parentType JCR Type that act as a container (i.e. visitscotland:VideoLink)
-     * @param childType JCR Type that represent the linked document (i.e. visitscotland:Video)
-     * @param expected true when a validation exception is not expected
-     *
-     * @return Node to be validated against the validator
-     */
-    private Node mockLink(String parentType, String childType, boolean expected, String childChannel) throws  RepositoryException{
+    @ParameterizedTest
+    @CsvSource({
+            "visitscotland:MegalinkItem,visitscotland:MegalinkItem",
+            "visitscotland:MegalinkItem,visitscotland:Video",
+            "visitscotland:MegalinkItem,visitscotland:Stop",
+            "visitscotland:Day,visitscotland:SharedLink",
+            "visitscotland:Day,visitscotland:Video",
+            "visitscotland:VideoLink,visitscotland:Stop",
+            "visitscotland:VideoLink,visitscotland:Page"
+    })
+    @DisplayName("VS-2886 - documents can't link to a documents in different languages (except english)")
+    void incorrectChannel(String parentType, String childType) throws RepositoryException {
         Node parentNode = Mockito.mock(Node.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
         Node childNode = Mockito.mock(Node.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
-        boolean isDefault = !LinkValidator.DAY.equals(parentType) && !LinkValidator.VIDEO.equals(parentType);
-        String channel = "/document/content/visitscotland";
 
         when(parentNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("NODE-ID");
         when(mockSessionFactory.getHippoNodeByIdentifier("NODE-ID")).thenReturn(childNode);
-        when(parentNode.getPath()).thenReturn(channel);
-        when(childNode.getPath()).thenReturn(childChannel);
+
+        when(parentNode.getPath()).thenReturn("/document/content/visitscotland");
+        when(childNode.getPath()).thenReturn("/document/content/visitscotland-es");
+
+        lenient().when(context.createViolation("channel")).thenReturn(mock(Violation.class));
+        assertTrue(validator.validate(context, parentNode).isPresent());
+    }
+
+    /**
+     * Mocks a Document that contains a link, the linked document and stubs any expected behaviour during the validation
+     *
+     * @param parentType JCR Type that act as a container (i.e. visitscotland:VideoLink)
+     * @param childType JCR Type that represent the linked document (i.e. visitscotland:Video)
+     *
+     * @return Node to be validated against the validator
+     */
+    private Node mockLink(String parentType, String childType, boolean expected) throws  RepositoryException{
+        Node parentNode = Mockito.mock(Node.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
+        Node childNode = Mockito.mock(Node.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
+        boolean isDefault = !LinkValidator.DAY.equals(parentType) && !LinkValidator.VIDEO.equals(parentType);
+
+        when(parentNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("NODE-ID");
+        when(mockSessionFactory.getHippoNodeByIdentifier("NODE-ID")).thenReturn(childNode);
         lenient().when(parentNode.getParent().isNodeType(AdditionalMatchers.not(eq(parentType)))).thenReturn(false);
         if (!isDefault){
             when(parentNode.getParent().isNodeType(parentType)).thenReturn(true);
         }
-
+        when(childNode.getPath()).thenReturn("/content/document/visitscotland");
         when(childNode.isNodeType(childType)).thenReturn(true);
         when(childNode.isNodeType(AdditionalMatchers.not(eq(childType)))).thenReturn(false);
 
-        if (expected) {
-            when(mockSessionFactory.getHippoNodeByIdentifier("NODE-ID")).thenReturn(childNode);
-        } else if (isDefault) {
-            when(context.createViolation()).thenReturn(mock(Violation.class));
-        } else {
-            when(context.createViolation(any(String.class))).thenReturn(mock(Violation.class));
+        if (!expected) {
+            if (isDefault) {
+                when(context.createViolation()).thenReturn(mock(Violation.class));
+            } else {
+                when(context.createViolation(any(String.class))).thenReturn(mock(Violation.class));
+            }
         }
 
         return parentNode;
     }
+
 }
