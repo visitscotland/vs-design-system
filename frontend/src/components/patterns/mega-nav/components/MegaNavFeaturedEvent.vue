@@ -1,34 +1,38 @@
 <template>
     <VsStretchedLinkCard
-        :link="link"
+        v-if="featuredEvent"
+        :link="featuredEvent.productLink.link"
         type="internal"
-        :img-src="imgUrl"
-        :img-alt="imgAlt"
+        :img-src="featuredEvent.images[0].mediaUrl"
+        :img-alt="featuredEvent.name"
         class="vs-mega-nav-featured-event"
         data-test="vs-mega-nav-featured-event"
     >
         <template slot="stretchedCardContent">
             <p class="vs-mega-nav-featured-event__date-range">
-                {{ datesLabel }}&nbsp;
-                <span class="vs-mega-nav-featured-event__date-detail">{{ dates }}</span>
+                {{ featuredEvent.opening.period.label }}&nbsp;
+                <span class="vs-mega-nav-featured-event__date-detail">
+                    {{ featuredEvent.opening.period.startDay }}
+                </span>
             </p>
             <p class="vs-mega-nav-featured-event__title text-truncate text-truncate--2">
-                {{ title }}
+                {{ featuredEvent.name }}
             </p>
             <p class="vs-mega-nav-featured-event__location text-truncate text-truncate--1">
-                {{ location }}
+                {{ featuredEvent.address.shortAddress }}
             </p>
         </template>
 
         <template slot="stretchedCardLink">
-            <!-- @slot Featured Event link text  -->
-            <slot name="vsFeaturedEventLink" />
+            {{ featuredEvent.productLink.label }}
         </template>
     </VsStretchedLinkCard>
 </template>
 
 <script>
 import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
+
+const axios = require('axios');
 
 /**
  *  This component is used to show a featured event in the meganav
@@ -44,42 +48,76 @@ export default {
         VsStretchedLinkCard,
     },
     props: {
+        // /**
+        // * Link URL for the featured item
+        // */
+        // link: {
+        //     type: String,
+        //     required: true,
+        // },
+        // /**
+        // * Image URL for the featured item
+        // */
+        // imgUrl: {
+        //     type: String,
+        //     required: true,
+        // },
+        // /**
+        // * Image alt text for the featured item
+        // */
+        // imgAlt: {
+        //     type: String,
+        //     default: '',
+        // },
+        // datesLabel: {
+        //     type: String,
+        //     default: '',
+        // },
+        // dates: {
+        //     type: String,
+        //     default: '',
+        // },
+        // title: {
+        //     type: String,
+        //     default: '',
+        // },
+        // location: {
+        //     type: String,
+        //     default: '',
+        // },
         /**
-        * Link URL for the featured item
+        * URL to retrieve the information about the featured event
+        * from, if no response do not display
         */
-        link: {
+        sourceUrl: {
             type: String,
-            required: true,
+            default: '',
         },
+    },
+    data() {
+        return {
+            featuredEvent: null,
+        };
+    },
+    mounted() {
+        if (this.sourceUrl) {
+            this.retrieveFeaturedEvent();
+        }
+    },
+    methods: {
         /**
-        * Image URL for the featured item
-        */
-        imgUrl: {
-            type: String,
-            required: true,
-        },
-        /**
-        * Image alt text for the featured item
-        */
-        imgAlt: {
-            type: String,
-            default: '',
-        },
-        datesLabel: {
-            type: String,
-            default: '',
-        },
-        dates: {
-            type: String,
-            default: '',
-        },
-        title: {
-            type: String,
-            default: '',
-        },
-        location: {
-            type: String,
-            default: '',
+         * Invoked when mounted, retrieves a featured event from the dms
+         */
+        retrieveFeaturedEvent() {
+            axios.get(this.sourceUrl)
+                .then((response) => {
+                    if (response.data.data.products && response.data.data.products.length) {
+                        [this.featuredEvent] = response.data.data.products;
+                    }
+                })
+                .catch(() => {
+                    this.featuredEvent = [];
+                });
         },
     },
 };
