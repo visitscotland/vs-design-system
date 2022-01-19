@@ -23,3 +23,10 @@ definitions:
           .meta:category: system
           type: string
           value: xm.content.admin
+      /editor:
+        jcr:primaryType: hipposys:authrole
+        hipposys:role: readonly
+        hipposys:userrole:
+          .meta:category: system
+          type: string
+          value: xm.content.editor
