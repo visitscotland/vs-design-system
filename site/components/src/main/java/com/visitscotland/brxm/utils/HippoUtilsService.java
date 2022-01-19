@@ -89,6 +89,17 @@ public class HippoUtilsService {
         return localizedDocument != null ? localizedDocument : document;
     }
 
+
+    /**
+     * Return a HippoBean from the content folder associated with the current mount
+     */
+    @NonTestable(NonTestable.Cause.BRIDGE)
+    public <T extends HippoBean> T getDocumentFromContent(String relativeContentPath) throws QueryException, ObjectBeanManagerException, RepositoryException  {
+        Mount requestMount = RequestContextProvider.get().getResolvedMount().getMount();
+        String bannerPath = "/" + PathUtils.normalizePath(requestMount.getContentPath()) + "/" + PathUtils.normalizePath(relativeContentPath);
+        return getDocumentFromNode(bannerPath);
+    }
+
     /**
      * Return a HippoBean from the path of the Node
      */

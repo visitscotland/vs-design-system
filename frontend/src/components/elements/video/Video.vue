@@ -7,6 +7,7 @@
             <!-- eslint-disable-next-line vue/component-name-in-template-casing -->
             <youtube
                 :video-id="videoId"
+                :player-vars="playerVars"
                 ref="youtube"
             />
         </div>
@@ -16,8 +17,10 @@
 <style lang="scss">
     .vs-video {
         &__iframe-wrapper {
-            aspect-ratio: 16 / 9;
             position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
 
             iframe {
                 position: absolute;
@@ -60,6 +63,13 @@ export default {
         /**
         * The YouTube ID for the video
         */
+        language: {
+            type: String,
+            default: 'en',
+        },
+        /**
+        * The YouTube ID for the video
+        */
         videoId: {
             type: String,
             required: true,
@@ -94,6 +104,9 @@ export default {
                 seconds: 0,
                 roundedMinutes: '',
             },
+            playerVars: {
+                hl: this.language,
+            },
         };
     },
     computed: {
@@ -118,16 +131,18 @@ export default {
          * Sets up listener for play/pause events
          * from $root
          */
-        this.$root.$on('video-controls', (action, id) => {
+        this.$root.$on('video-controls', (action, id, type) => {
             if (id === this.videoId) {
-                // timeout allows for video in modal to appear
-                setTimeout(() => {
-                    if (action === 'play') {
+                if (action === 'play' && type === 'modal') {
+                    // timeout allows for video in modal to appear
+                    setTimeout(() => {
                         this.playVideo();
-                    } else if (action === 'pause') {
-                        this.pauseVideo();
-                    }
-                }, 500);
+                    }, 1000);
+                } else if (action === 'play') {
+                    this.playVideo();
+                } else if (action === 'pause') {
+                    this.pauseVideo();
+                }
             }
         });
     },
@@ -213,6 +228,7 @@ export default {
             <VsCol md="6">
                 <VsVideo
                     video-id="c05sg3G4oA4"
+                    language="es-es"
                 />
             </VsCol>
             <VsCol md="6">
@@ -220,6 +236,7 @@ export default {
                     video-id="dKI8IEnqvbU"
                     single-minute-descriptor="Video de %s minuto"
                     plural-minute-descriptor="Video de %s minutos"
+                    language="nl-nl"
                 />
             </VsCol>
         </VsRow>

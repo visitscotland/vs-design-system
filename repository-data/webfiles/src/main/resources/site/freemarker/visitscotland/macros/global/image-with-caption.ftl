@@ -3,7 +3,7 @@
 <#include "../../../frontend/components/vs-image-with-caption.ftl">
 <#include "../../../frontend/components/vs-caption.ftl">
 
-<#macro imageWithCaption imageSrc imageDetails variant="fullwidth" isHero="false" mobileOverlap="false" alignment="left">
+<#macro imageWithCaption imageSrc imageDetails variant="fullwidth" isHero="false" mobileOverlap="false" alignment="left" isVideo="false" videoId="" videoTitle="" videoBtn="">
     <vs-image-with-caption
         alt-text="${(imageDetails.altText)!'${label("essentials.global", "default.alt-text")}'}"
         image-src="${imageSrc}"
@@ -13,7 +13,21 @@
         toggle-button-text="${label('essentials.global', 'image.toggle.text')}"
         :is-hero-image="${isHero}"
         :mobile-overlap="${mobileOverlap}"
+        :is-video="${isVideo}"
+        video-id="${videoId}"
+        <#if videoBtn?? && videoBtn != "">
+            play-button-text="${videoBtn}"
+        <#else>
+            play-button-text="${label('video', 'video.play-btn')}"
+        </#if>
     >
+        <template slot="video-alert">
+            ${label('video', 'video.no-js')}
+        </template>
+        <template slot="video-title">
+            ${videoTitle}
+        </template>
+
         <vs-caption
             slot="img-caption"
             latitude="<#if variant != 'fullwidth'>${(imageDetails.coordinates.latitude)!''}</#if>"
@@ -22,7 +36,7 @@
             text-align="${alignment}"
         >
             <span slot="caption">
-                ${(imageDetails.description)!''}
+                ${label('essentials.global', 'image.title')}: ${(imageDetails.description)!''}
             </span>
 
             <#if imageDetails.source?has_content>
