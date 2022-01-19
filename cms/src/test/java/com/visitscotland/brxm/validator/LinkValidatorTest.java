@@ -77,18 +77,10 @@ class LinkValidatorTest {
     void incorrectValues(String parentType, String childType) throws RepositoryException {
          assertTrue(validator.validate(context, mockLink(parentType, childType, false)).isPresent());
     }
-    @ParameterizedTest
-    @CsvSource({
-            "visitscotland:MegalinkItem,visitscotland:MegalinkItem",
-            "visitscotland:MegalinkItem,visitscotland:Video",
-            "visitscotland:MegalinkItem,visitscotland:Stop",
-            "visitscotland:Day,visitscotland:SharedLink",
-            "visitscotland:Day,visitscotland:Video",
-            "visitscotland:VideoLink,visitscotland:Stop",
-            "visitscotland:VideoLink,visitscotland:Page"
-    })
+
+    @Test
     @DisplayName("VS-2886 - documents can't link to a documents in different languages (except english)")
-    void incorrectChannel(String parentType, String childType) throws RepositoryException {
+    void incorrectChannel() throws RepositoryException {
         Node parentNode = Mockito.mock(Node.class, withSettings().defaultAnswer(RETURNS_DEEP_STUBS));
         Node childNode = Mockito.mock(Node.class, withSettings().defaultAnswer(RETURNS_DEEP_STUBS));
 
