@@ -89,8 +89,8 @@ class LinkValidatorTest {
     })
     @DisplayName("VS-2886 - documents can't link to a documents in different languages (except english)")
     void incorrectChannel(String parentType, String childType) throws RepositoryException {
-        Node parentNode = Mockito.mock(Node.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
-        Node childNode = Mockito.mock(Node.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
+        Node parentNode = Mockito.mock(Node.class, withSettings().defaultAnswer(RETURNS_DEEP_STUBS));
+        Node childNode = Mockito.mock(Node.class, withSettings().defaultAnswer(RETURNS_DEEP_STUBS));
 
         when(parentNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("NODE-ID");
         when(mockSessionFactory.getHippoNodeByIdentifier("NODE-ID")).thenReturn(childNode);
@@ -98,7 +98,7 @@ class LinkValidatorTest {
         when(parentNode.getPath()).thenReturn("/document/content/visitscotland");
         when(childNode.getPath()).thenReturn("/document/content/visitscotland-es");
 
-        lenient().when(context.createViolation("channel")).thenReturn(mock(Violation.class));
+        when(context.createViolation("channel")).thenReturn(mock(Violation.class));
         assertTrue(validator.validate(context, parentNode).isPresent());
     }
 
