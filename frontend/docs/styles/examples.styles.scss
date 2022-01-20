@@ -27,6 +27,7 @@
 
         *[class^='rsg--tabs'],
         *[class^='rsg--tab'],
+        div[class^=rsg--controls],
         .vueds-tabs,
         .react-codemirror2 {
             display: none;
@@ -41,13 +42,14 @@
         }
 
         .vds-example-toggle {
-            top: 10px;
-            right: 10px;
+            bottom: 40px;
+            right: 40px;
+            top: auto;
         }
     }
 
     .vds-example-toggle {
-        z-index: 102;
+        z-index: 100;
         position: absolute;
         top: -48px;
         right: 0;
