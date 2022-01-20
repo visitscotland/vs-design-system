@@ -4,22 +4,27 @@
         data-test="video-caption"
         v-if="videoLoaded"
     >
-        <VsButton
-            class="vs-video-caption__button"
-            icon="play"
-            size="md"
-            ref="videoShow"
-            @click.native="emitShowModal"
-        >
-            {{ videoBtnText }}
-        </VsButton>
+        <div class="vs-video-caption__buttons-container">
+            <div class="container">
+                <VsButton
+                    class="vs-video-caption__button"
+                    icon="play"
+                    icon-position="right"
+                    size="md"
+                    ref="videoShow"
+                    @click.native="emitShowModal"
+                >
+                    {{ videoBtnText }}
+                </VsButton>
+            </div>
 
-        <VsToggleButton
-            v-if="withToggleBtn"
-            @toggleAction="emitToggle"
-        />
+            <VsToggleButton
+                v-if="withToggleBtn"
+                @toggleAction="emitToggle"
+            />
+        </div>
 
-        <div class="vs-video-caption__details">
+        <div class="vs-video-caption__details container">
             <p class="vs-video-caption__title">
                 <!-- @slot Slot for video title -->
                 <slot name="video-title" />
@@ -35,7 +40,7 @@
         class="vs-video-caption vs-video-caption--no-js"
         data-test="video-caption-nojs"
     >
-        <div class="vs-video-caption__details">
+        <div class="vs-video-caption__details container">
             <div class="vs-video-caption__alert">
                 <VsIcon
                     name="review"
@@ -134,15 +139,22 @@ export default {
             padding: $spacer-4 $spacer-3 $spacer-3;
         }
 
-        .vs-toggle-btn {
+        &__buttons-container {
             position: absolute;
-            right: 0;
-            top: 0;
-        }
+            transform: translateY(-100%);
+            width: 100%;
 
-        .vs-toggle-btn.vs-button.btn {
-            .vs-icon {
-                margin: 0;
+            .vs-toggle-btn {
+                display: block;
+                position: absolute;
+                right: $spacer-2;
+                top: calc(-24px - #{$spacer-3});
+            }
+
+            .vs-toggle-btn.vs-button.btn {
+                .vs-icon {
+                    margin: 0;
+                }
             }
         }
 
@@ -184,6 +196,20 @@ export default {
                 margin-right: $spacer-4;
                 margin-bottom: 0;
             }
+
+            &__buttons-container {
+                & > .container {
+                    padding: 0;
+               }
+
+                &__button {
+                    max-width: 400px;
+                }
+
+                .vs-toggle-btn {
+                    top: calc(50% - 12px);
+                }
+            }
         }
 
         @include media-breakpoint-up(lg) {
@@ -193,6 +219,10 @@ export default {
 
             &__title {
                 margin-bottom: $spacer-1;
+            }
+
+            &__button {
+                max-width: 360px;
             }
         }
     }
@@ -255,7 +285,7 @@ export default {
 
     <VsVideoCaption
         withToggleBtn
-        class="mb-5"
+        class="mb-5 mt-12"
         videoBtnText="Play video"
         videoId="FlG6tbYaA88"
     >

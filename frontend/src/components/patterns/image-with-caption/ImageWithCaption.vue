@@ -37,8 +37,7 @@
 
         <div class="vs-image-with-caption__captions">
             <div
-                class="vs-image-with-caption__video-caption-wrapper"
-                :class="isHeroImage ? 'container' : ''"
+                class="vs-image-with-caption__video-caption-wrapper container-lg"
                 v-if="isVideo"
             >
                 <VsVideoCaption
@@ -279,6 +278,14 @@ export default {
         }
 
         &--video {
+            &.vs-image-with-caption--hero {
+                .vs-image-with-caption__image-wrapper {
+                    .vs-toggle-btn {
+                        display: none;
+                    }
+                }
+            }
+
             .vs-image-with-caption__caption-wrapper {
                 display: none;
                 justify-content: flex-end;
@@ -286,24 +293,13 @@ export default {
 
             .vs-image-with-caption__video-caption-wrapper {
                 margin-top: -50px;
-
-                .vs-video-caption {
-                    &__button {
-                        margin-left: $spacer-3;
-                    }
-
-                    .vs-toggle-btn {
-                        display: none;
-                        top: 10px;
-                        right: $spacer-2;
-                    }
-                }
             }
 
             .vs-image-with-caption__captions {
                 position: relative;
                 top: auto;
                 left: auto;
+                background: $color-gray-shade-6;
             }
 
             .vs-caption {
@@ -334,10 +330,6 @@ export default {
                 .vs-image-with-caption__video-caption-wrapper {
                     .vs-video-caption {
                         width: 100%;
-
-                        &__button {
-                            margin-left: $spacer-2;
-                        }
                     }
                 }
             }
@@ -353,11 +345,7 @@ export default {
                     padding: 0;
 
                     .vs-video-caption {
-                        width: 310px;
-
-                        &__button {
-                            margin-left: 0;
-                        }
+                        width: 400px;
 
                         .vs-toggle-btn {
                             display: block;
@@ -373,6 +361,7 @@ export default {
                 .vs-caption {
                     position: absolute;
                     bottom: auto;
+                    width: 400px;
                 }
 
                 .vs-toggle-btn {
@@ -386,6 +375,7 @@ export default {
                         width: 100%;
                         right: 0;
                         z-index: 3;
+                        background: transparent;
                     }
                 }
             }
@@ -432,6 +422,7 @@ export default {
                         @include media-breakpoint-down(xs) {
                             text-align: left;
                             display: block;
+                            position: absolute;
 
                             .order-2 {
                                 order: 1;
