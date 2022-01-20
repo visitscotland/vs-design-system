@@ -5,15 +5,15 @@
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.BannerModule"-->
 <#macro emergencyBanner module>
     <vs-banner>
-        <template slot="vsBannerTitle">
+        <template slot="bannerTitle">
             ${module.title} 
         </template>
 
-        <template slot="vsBannerText">
+        <template slot="bannerText">
             <@hst.html hippohtml=module.copy />
         </template>
 
-        <template slot="vsBannerCta">
+        <template slot="bannerCta">
             <vs-link 
                 href="${module.ctaLink.link}"
                 <#if module.ctaLink.type != "internal">type="${module.ctaLink.type}"</#if>
