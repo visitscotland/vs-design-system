@@ -31,7 +31,7 @@ public class YoutubeApiService {
     }
 
     /**
-     * Retrieve information about a YouTube video (list operation in YouTube Data API
+     * Retrieve information about a YouTube video (list operation in YouTube Data API)
      * Note - Cache will only be used if this method is invoked outside this class
      *
      * @param youtubeId The video id
@@ -52,25 +52,29 @@ public class YoutubeApiService {
             YoutubeListResponse jsonResponse = new ObjectMapper().readValue(conn.getInputStream(), YoutubeListResponse.class);
             if (jsonResponse != null && jsonResponse.items.size() == 1 && jsonResponse.items.get(0) != null) {
                 YoutubeSnippet snippet = jsonResponse.items.get(0).snippet;
-                YoutubeVideo videoDto = new YoutubeVideo();
-                videoDto.setDescription(videoDto.getDescription());
-                videoDto.setId(youtubeId);
-                videoDto.setTitle(snippet.title);
-                videoDto.setPublishDate(snippet.publishedAt);
-                return Optional.of(videoDto);
+                YoutubeVideo youtubeVideo = new YoutubeVideo();
+                youtubeVideo.setDescription(youtubeVideo.getDescription());
+                youtubeVideo.setId(youtubeId);
+                youtubeVideo.setTitle(snippet.title);
+                youtubeVideo.setPublishDate(snippet.publishedAt);
+                return Optional.of(youtubeVideo);
             } else {
                 logger.warn("Failed to map youtube API response for video id {}", youtubeId);
                 return Optional.empty();
             }
         } catch (IOException e) {
             // Don't log the API key
-            String exceptionMessage = e.getMessage().replace(youtubeApiKey, "<YOUTUBE_API_KEY>");
+            String exceptionMessage = e.getMessage();
+            if (exceptionMessage != null) {
+                exceptionMessage = e.getMessage().replace(youtubeApiKey, "$YOUTUBE_API_KEY");
+            }
             logger.error("Failed to retrieve video {} list information - {}", youtubeId, exceptionMessage);
             return Optional.empty();
         }
     }
 }
 
+// Classes used by Jackson for marshalling JSON from YT API
 @JsonIgnoreProperties(ignoreUnknown = true)
 class YoutubeSnippet {
     public Date publishedAt;
