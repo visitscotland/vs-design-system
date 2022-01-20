@@ -237,6 +237,10 @@ export default {
                 return 'ml-2 align-self-center';
             }
 
+            if (!this.iconOnly) {
+                return 'mr-2';
+            }
+
             return '';
         },
     },
