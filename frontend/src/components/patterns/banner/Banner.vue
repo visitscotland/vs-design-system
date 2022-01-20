@@ -21,19 +21,19 @@
                         />
 
                         <!-- @slot Slot to contain banner title -->
-                        <slot name="vsBannerTitle" />
+                        <slot name="bannerTitle" />
                     </VsHeading>
 
                     <VsRichTextWrapper
                         class="vs-banner__text"
-                        v-if="!!this.$slots['vsBannerText']"
+                        v-if="!!this.$slots['bannerText']"
                     >
                         <!-- @slot Slot to contain banner text -->
-                        <slot name="vsBannerText" />
+                        <slot name="bannerText" />
 
                         <span class="vs-banner__cta-link">
                             <!-- @slot Slot to contain CTA link -->
-                            <slot name="vsBannerCta" />
+                            <slot name="bannerCta" />
                         </span>
                     </VsRichTextWrapper>
                 </VsCol>
@@ -169,11 +169,11 @@ export default {
 <docs>
   ```jsx
     <VsBanner>
-        <template slot="vsBannerTitle">
+        <template slot="bannerTitle">
             Covid-19 Travel Advice
         </template>
 
-        <template slot="vsBannerText">
+        <template slot="bannerText">
             <p>
                 Find the latest information on travel, and Good to Go (Covid-safe)
                 businesses. This is a test to check what would be the maximum number
@@ -182,7 +182,7 @@ export default {
             </p>
         </template>
 
-        <template slot="vsBannerCta">
+        <template slot="bannerCta">
             <VsLink href="#">
                 View Covid-19 Travel Advice
             </VsLink>
