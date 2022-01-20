@@ -22,7 +22,7 @@
                 </span>
 
                 <span slot="icon-closed">
-                    <vs-icon name="chevron" orientation="right" variant="light" size="xs"></vs-icon>
+                    <vs-icon name="chevron" orientation="down" variant="light" size="xs"></vs-icon>
                 </span>
 
                 <#if menuItem.childMenuItems?size gt 0>

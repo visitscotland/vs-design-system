@@ -1,6 +1,6 @@
 <template>
     <BRow v-bind="$attrs">
-        <!-- @slot The row's contents go here -->
+        <!-- @slot Default slot for row content -->
         <slot />
     </BRow>
 </template>
@@ -42,7 +42,6 @@ export default {
 
 <docs>
   ```jsx
-  <div>
     <VsContainer>
       <VsRow>
         <VsCol>
@@ -50,6 +49,5 @@ export default {
         </VsCol>
       </VsRow>
     </VsContainer>
-  </div>
   ```
 </docs>

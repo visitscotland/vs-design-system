@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 74e4ec75-efef-486e-b56d-59292452d399
   hippo:name: Properties (Feature & Develop Environments)
-  hippo:versionHistory: b1e5a472-22f3-4640-8545-8c13406799c3
+  hippo:versionHistory: 5d96a443-9bb8-4c77-aa6d-93fa25bc462a
   /properties[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,7 +13,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2022-01-06T16:15:52.487Z
+    hippostdpubwf:lastModificationDate: 2021-12-07T10:10:56.488Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -46,7 +46,7 @@
       UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
-      www.visitscotland.com, /content/general/navigation/banner/content, $YOUTUBE_API_KEY]
+      www.visitscotland.com, general/navigation/banner/content, $YOUTUBE_API_KEY]
   /properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -56,7 +56,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2022-01-06T16:16:15.339Z
+    hippostdpubwf:lastModificationDate: 2021-12-07T10:11:11.919Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -89,7 +89,7 @@
       UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
-      www.visitscotland.com, /content/general/navigation/banner/content, $YOUTUBE_API_KEY]
+      www.visitscotland.com, general/navigation/banner/content, $YOUTUBE_API_KEY]
   /properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -99,9 +99,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2022-01-06T16:16:15.339Z
+    hippostdpubwf:lastModificationDate: 2021-12-07T10:11:11.919Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2022-01-06T16:16:19.211Z
+    hippostdpubwf:publicationDate: 2021-12-07T10:11:13.431Z
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
       "Token that identifies calls made to vs-dms-products as internal calls giving\
@@ -133,4 +133,4 @@
       UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
-      www.visitscotland.com, /content/general/navigation/banner/content, $YOUTUBE_API_KEY]
+      www.visitscotland.com, general/navigation/banner/content, $YOUTUBE_API_KEY]
