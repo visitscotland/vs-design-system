@@ -46,6 +46,10 @@ main section section > div > div[class^='rsg--root'] {
     flex-direction: column;
     margin-bottom: $space-xl;
     border-bottom: 1px solid $docs-color-grey;
+
+    &:last-of-type{
+        border-bottom: 0;
+    }
 }
 
 /* TYPOGRAPHY
@@ -418,12 +422,13 @@ div[class^='rsg--sidebar'] {
             // Sidebar second level link
             a[class*="rsg--link"] {
                 font-size: $size-m;
+                padding: 3px 16px;
                 font-weight: $weight-normal;
                 -webkit-font-smoothing: subpixel-antialiased;
                 -moz-osx-font-smoothing: auto;
 
                 @media (min-width: #{$docs-breakpoint-xl}) {
-                    font-size: $size-base;
+                    font-size: 18px;
                 }
             }
 
@@ -516,18 +521,91 @@ p[class^='rsg--version'] {
 
 /* CODE & COMPONENT PREVIEWS
  --------------------------------------------- */
+.section-components{
+    div[class^='rsg--controls']{
+        display: block;
+        margin-bottom: 0;
+    }
+
+    div[class^='rsg--tabs']{
+        border: 1px solid tint($docs-color-grey-med, 40%);
+        border-top: 0;
+
+        div[class^='rsg--tabButtons']{
+            margin-bottom: 0;
+
+            button[class^='rsg--button']{
+                border: 0;
+            }
+        }
+
+        div[class^='rsg--tabBody'] > div{
+            border-top: 1px solid tint($docs-color-grey-med, 80%);
+            padding: 40px;
+
+            table[class^=rsg--table]:last-child{
+                margin-bottom: 0;
+            }
+        }
+        
+    }
+
+    button[class^='rsg--button']{
+        position: relative;
+        text-transform: none;
+        width: 100%;
+        padding: 12px 40px;
+        font-size: 20px;
+        color: $docs-color-pink;
+        border: 1px solid tint($docs-color-grey-med, 40%);
+        border-bottom: 1px solid tint($docs-color-grey-med, 80%);
+        border-top: 0;
+        font-weight: 700;
+
+        &:hover {
+            color: $docs-color-pink; 
+        }
+
+        &:focus {
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem #7edddc inset;
+        }
+
+        &:after {
+            content: '';
+            background-image: url(../images/chevron-down.png);
+            width: 20px;
+            height: 12px;
+            display: block;
+            position: absolute;
+            right: 40px;
+            top: 40%;
+            transition: all .2s;
+        }
+    }
+    button[class*='rsg--isActive']{
+        &:after{
+            transform: rotate(-180deg);
+        }
+    }
+
+    .vds-example{
+        div[class^='rsg--root']{
+            margin-bottom: 0;
+        }
+    }
+}
 
 // Previews of the components
 div[class^='rsg--preview'] {
     padding: $space-l / 1.2;
     background-color: $docs-color-white;
-    border: 1px solid tint($docs-color-grey, 50%);
+    border: 1px solid tint($docs-color-grey-med, 40%);
+    border-bottom: 1px solid tint($docs-color-grey-med, 80%);
     margin: $space-s 0 0;
     border-radius: 0;
     display: block;
     width: 100%;
-    border-top-left-radius: $radius-default;
-    border-top-right-radius: $radius-default;
 }
 
 // If you edit the component categories, you have to edit
@@ -556,7 +634,7 @@ div[data-preview]:after {
 // Code tabs and table
 div[class^='rsg--tabs'],
 table[class^='rsg--table'] {
-    margin-bottom: $space-l;
+    margin-bottom: $space-xl;
     overflow-x: auto;
 }
 thead[class^='rsg--tableHead'] {
@@ -567,20 +645,18 @@ thead[class^='rsg--tableHead'] {
 pre[class^='rsg--pre'],
 .vueds-html.cm-s-base16-light.CodeMirror,
 .react-codemirror2 .CodeMirror.CodeMirror {
-    background: $docs-color-very-light-blue;
-    border-bottom-left-radius: $radius-default;
-    border-bottom-right-radius: $radius-default;
+    background: #f9f9f9;
     box-sizing: border-box;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     height: auto;
-    border: 1px solid $docs-color-light-grey;
-    border-top: 0;
+    border: 1px solid tint($docs-color-grey-med, 40%);
+    border-top:0;
+    border-bottom: 1px solid tint($docs-color-grey-med, 80%);
     font-family: Consolas, 'Liberation Mono', Menlo, monospace;
     font-size: $size-s;
     margin: 0;
     min-height: $space-xxl / 1.5;
-    margin-bottom: $space-m;
     color: $docs-color-grey-dark;
     padding: $space-m;
     word-wrap: break-word;
@@ -646,6 +722,7 @@ div[class^='rsg--tab'] {
 .vueds-hidden {
     opacity: 0;
     visibility: hidden;
+    display: none;
     z-index: -1;
     top: -10000px;
     left: 0;
@@ -789,10 +866,6 @@ table[class^='rsg--table'] {
         overflow-x: auto;
     }
 
-    @media (min-width: $docs-breakpoint-xl) {
-        width: 75%;
-    }
-
     thead {
         th {
             padding: 14px $space-s;
@@ -865,8 +938,6 @@ table[class^='rsg--table'] {
 /* HIDDEN STYLEGUIDIST FUNCTIONALITY
  --------------------------------------------- */
 
-div[class^='rsg--tabButtons'],
-div[class^='rsg--controls'],
 div[class^='rsg--pathline'],
 div[class^='rsg--toolbar'] {
     display: none !important;
@@ -899,6 +970,7 @@ ul a[href*='/#/Private Components'] {
     display: none !important;
 }
 
+
 /* SCREENSHOT MODE
 /* While regression tests are running the screen needs to be set up in such
 /* a way that the full screen component occupies the actual html scroll bar
@@ -907,6 +979,7 @@ ul a[href*='/#/Private Components'] {
 .vds-screenshot-mode {
     .vds-example-full-screen {
         position: relative;
+        overflow: hidden;
     }
 
     div[class^='rsg--sidebar'] {
@@ -927,9 +1000,5 @@ ul a[href*='/#/Private Components'] {
 
     div[class^='rsg--tabs'] {
         display: none;
-    }
-
-    div.vds-example-full-screen {
-        overflow: hidden;
     }
 }
