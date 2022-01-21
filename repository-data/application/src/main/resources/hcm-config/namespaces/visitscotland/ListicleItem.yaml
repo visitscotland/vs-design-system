@@ -139,7 +139,7 @@ definitions:
           /images:
             jcr:primaryType: frontend:plugin
             caption: Media
-            compoundList: hippogallerypicker:imagelink,visitscotland:InstagramImage,visitscotland:VideoLink
+            compoundList: hippogallerypicker:imagelink,visitscotland:VideoLink
             contentPickerType: links
             field: images
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
