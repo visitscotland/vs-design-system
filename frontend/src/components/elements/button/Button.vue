@@ -244,12 +244,29 @@ export default {
         position: relative;
         overflow: hidden;
 
-        &:focus {
-            box-shadow: $shadow-button-focus;
-        }
-
         .vs-icon {
             margin-top: -.05em;
+        }
+
+        &:focus {
+            box-shadow: $shadow-button-focus;
+            background-color: $color-white;
+            color: $color-theme-primary;
+
+            .vs-icon {
+                fill: $color-theme-primary;
+            }
+        }
+
+        &.btn-outline-primary {
+            &:focus {
+                background-color: $color-theme-primary;
+                color: $color-white;
+
+                .vs-icon {
+                    fill: $color-white;
+                }
+            }
         }
 
         &.btn-secondary {
@@ -266,6 +283,16 @@ export default {
                 &:active {
                     color: $color-black;
                 }
+
+                &:focus {
+                    color: $color-yellow;
+                    border-color: $color-yellow;
+                    background-color: transparent;
+
+                    .vs-icon {
+                        fill: $color-yellow;
+                    }
+                }
             }
         }
 
@@ -277,6 +304,16 @@ export default {
                 color: $color-black;
                 background-color: $color-yellow;
                 border-color: $color-yellow;
+            }
+
+            &:focus {
+                color: $color-black;
+                background-color: $color-yellow;
+                border-color: $color-yellow;
+
+                .vs-icon {
+                    fill: $color-black;
+                }
             }
         }
 
