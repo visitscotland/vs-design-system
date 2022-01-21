@@ -15,6 +15,7 @@
  */
 package com.visitscotland.brxm.translation.plugin;
 
+import com.visitscotland.brxm.components.content.ContentComponent;
 import com.visitscotland.brxm.translation.plugin.menu.MenuLocaleProvider;
 import com.visitscotland.brxm.translation.plugin.menu.TranslationLocaleMenuDataView;
 import org.apache.wicket.Component;
@@ -54,7 +55,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TranslationWorkflowPlugin extends RenderPlugin {
-    public static final String ID_CONTENT = "content";
     public static final String ID_CURRENT_LANGUAGE = "current-language";
     public static final String ID_LANGUAGE = "language";
     public static final String ID_LANGUAGES = "languages";
@@ -128,7 +128,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
             log.warn("Could not determine translations status of document", e);
         }
 
-        add(new EmptyPanel("content"));
+        add(new EmptyPanel(ContentComponent.PAGE_PATH));
 
         add(new MenuDescription() {
             @Override
@@ -143,7 +143,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
 
             @Override
             public MarkupContainer getContent() {
-                Fragment fragment = new Fragment(ID_CONTENT, ID_LANGUAGES, TranslationWorkflowPlugin.this);
+                Fragment fragment = new Fragment(ContentComponent.PAGE_PATH, ID_LANGUAGES, TranslationWorkflowPlugin.this);
                 fragment.add(new TranslationLocaleMenuDataView(ID_LANGUAGES, TranslationWorkflowPlugin.this, languageModel, new MenuLocaleProvider(TranslationWorkflowPlugin.this)));
                 TranslationWorkflowPlugin.this.addOrReplace(fragment);
                 return fragment;

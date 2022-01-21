@@ -71,7 +71,7 @@ div[class^='rsg--root'] a[class^='rsg--link'], a {
 }
 
 // Main headings
-// (includes h2 as well since in component views that’s the first heading)
+// (includes h2 as well since in component views that’s the first heading) 
 div[class^='rsg--wrapper'] > h1[class^='rsg--heading'],
 div[class^='rsg--wrapper'] > h2[class^='rsg--heading'] {
     display: block;
@@ -97,6 +97,12 @@ div[class^='rsg--wrapper'] > h2[class^='rsg--heading'] {
     @media (max-width: #{$docs-breakpoint}) {
         font-size: $size-xl / 1.2;
         width: calc(100% + #{$space-xl});
+    }
+}
+
+div[class^='rsg--wrapper'] > h1[class^='rsg--heading']{
+    &.section-h1{
+        border-bottom: 1px solid $docs-color-grey;
     }
 }
 
@@ -722,6 +728,7 @@ div[class^='rsg--tab'] {
 .vueds-hidden {
     opacity: 0;
     visibility: hidden;
+    display: none;
     z-index: -1;
     top: -10000px;
     left: 0;

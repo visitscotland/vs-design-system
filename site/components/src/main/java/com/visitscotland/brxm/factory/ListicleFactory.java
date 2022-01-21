@@ -49,7 +49,7 @@ public class ListicleFactory {
      * @param locale Set the language for the labels
      * @param listicleItem CMS document with the data
      * @param index Index of the item
-     * @return
+     * @return Listicle Module created
      */
     public ListicleModule getListicleItem(Locale locale, ListicleItem listicleItem, Integer index) {
         logger.info("Creating ListicleItem module for {}", listicleItem.getPath());
@@ -121,6 +121,8 @@ public class ListicleFactory {
             }
 
             return  eLink;
+        }  else if (link instanceof ExternalLink || link instanceof ProductSearchLink ) {
+                return linksService.createCTALink(module, locale,link);
         } else {
             contentLogger.warn("The ListicleItem {} is pointing to a document that is not a page ", module.getHippoBean().getPath());
         }
@@ -129,7 +131,7 @@ public class ListicleFactory {
     }
 
     /**
-     * Loads as much information as it can from the DMS Prodcut data:
+     * Loads as much information as it can from the DMS Product data:
      *
      * Facilities are loaded from the dmsItem. Subtitle, Image and Coordinates are set only when the listicle item has
      * not defined the values
