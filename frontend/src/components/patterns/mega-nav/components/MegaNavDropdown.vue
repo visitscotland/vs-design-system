@@ -169,11 +169,11 @@ export default {
         padding: $spacer-1;
 
         &:focus, &:active, &:active:focus {
-            box-shadow: $shadow-button-focus inset;
+            box-shadow: $shadow-button-focus;
         }
 
-        &:hover {
-            .icon.icon-dark[data-v-196177e7] {
+        &:hover, &:focus {
+            .vs-icon {
                 fill: $color-pink;
             }
         }
