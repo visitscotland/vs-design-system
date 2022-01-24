@@ -170,8 +170,13 @@ export default {
     }
 
     .vs-accordion-item__title {
-        margin: $spacer-3;
-        line-height: 1;
+        line-height: $line-height-lead;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-lg;
+        letter-spacing: normal;
+        padding: $spacer-3;
+        margin-bottom: 0;
+        font-family: $font-family-sans-serif;
     }
 
     .vs-accordion-item__panel.card-body {
