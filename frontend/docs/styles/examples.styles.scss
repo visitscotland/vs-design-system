@@ -14,6 +14,21 @@
 
 .vds-example {
     position: relative;
+    margin-top: $space-l;
+    margin-bottom: $space-l;
+
+    div[class^='rsg--root']{
+        margin-bottom: 0;
+    }
+
+    div[class^='rsg--preview'] {
+        padding: 65px 40px 40px;
+        background-color: $docs-color-white;
+        border: 1px solid tint($docs-color-grey-med, 40%);
+        border-radius: 0;
+        display: block;
+        width: 100%;
+    }
 
     &.vds-example-full-screen {
         position: fixed;
@@ -23,6 +38,7 @@
         overflow-y: scroll;
         z-index: 101;
         width: 100%;
+        margin: 0;
         background: white;
 
         *[class^='rsg--tabs'],
@@ -51,12 +67,10 @@
     .vds-example-toggle {
         z-index: 100;
         position: absolute;
-        top: -48px;
         right: 0;
         border: none;
         background: $docs-color-pink;
         color: $docs-color-white;
-        border-radius: $radius-l;
         padding: 4px 16px;
         font-size: $size-m;
         transition: background .2s;
