@@ -3,7 +3,7 @@
         class="vs-accordion"
         data-test="vs-accordion"
     >
-        <!-- @slot Default slot to contain Accordion Items -->
+        <!-- @slot Default slot to contain a list of *AccordionItem* components -->
         <slot />
     </div>
 </template>
@@ -11,10 +11,12 @@
 <script>
 
 /**
- * Accordion wrapper used with AccordionItems.
+ * The accordion component is a list of stacked items that show or
+ * hide content on the page.
  *
  * @displayName Accordion
  */
+
 export default {
     name: 'VsAccordion',
     props: {
@@ -43,10 +45,18 @@ export default {
 </style>
 
 <docs>
+## Usage
+The accordion component displays a list of
+items that can be toggled to show hidden content panels. When one item is clicked,
+the item will expand an associated panel to reveal its contents. When clicked again, the panel
+will be hidden once again. Multiple items can be open at the same time.
+
+Used with a list of *AccordionItem* components, each item has the option
+to be open by default by passing in the `openByDefault` prop.
+The button style can also be changed by passing in the button
+`variant` to the item.
+
   ```js
-
-    <h3 class="mb-6">Basic Accordion</h3>
-
     <VsAccordion>
         <VsAccordionItem
             :open-by-default="true"
@@ -54,7 +64,13 @@ export default {
             control-id="accordion_item_1"
         >
             <span slot="title">
-                <VsIcon name="walk" variant="dark" size="sm" class="mr-2"/> Walking
+                <VsIcon
+                    name="walk"
+                    variant="dark"
+                    size="sm"
+                    class="mr-2"
+                />
+                Walking
             </span>
 
             <VsIcon
@@ -86,7 +102,13 @@ export default {
             control-id="accordion_item_2"
         >
             <span slot="title">
-                <VsIcon name="car" variant="dark" size="sm" class="mr-2"/> Driving
+                <VsIcon
+                    name="car"
+                    variant="dark"
+                    size="sm"
+                    class="mr-2"
+                />
+                Driving
             </span>
 
             <VsIcon
@@ -117,7 +139,13 @@ export default {
             control-id="accordion_item_3"
         >
             <span slot="title">
-                <VsIcon name="cycle" variant="dark" size="sm" class="mr-2"/> Cycling
+                <VsIcon
+                    name="cycle"
+                    variant="dark"
+                    size="sm"
+                    class="mr-2"
+                />
+                Cycling
             </span>
 
             <VsIcon
@@ -143,23 +171,45 @@ export default {
             </div>
         </VsAccordionItem>
     </VsAccordion>
+  ```
 
-    <h3 class="mt-12">Responsive Accordion</h3>
-    <p class="mb-4">Specifying a breakpoint on the Accordion will change this from just a heading
-    with content into an accordion list at the specified breakpoint. </p>
+  There is also an option of passing in a breakpoint prop that
+  will allow the accordion to display the content
+  without being collapsed and will turn into a collapsed accordion
+  list at the breakpoint specified.
 
+  ```js
     <VsAccordion break-point="md">
-        <VsAccordionItem :open-by-default="true" variant="dark" control-id="accordion_item_4">
+        <VsAccordionItem
+            :open-by-default="true"
+            variant="transparent"
+            control-id="accordion_item_4"
+        >
             <span slot="title">
-                This is a title
+                <VsIcon
+                    name="walk"
+                    variant="dark"
+                    size="sm"
+                    class="mr-2"
+                />
+                Walking
             </span>
 
             <span slot="icon-open">
-                <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
+                <VsIcon
+                    name="chevron"
+                    orientation="down"
+                    variant="dark"
+                    size="xs"
+                />
             </span>
 
             <span slot="icon-closed">
-                <VsIcon name="chevron" variant="light" size="xs" />
+                <VsIcon
+                    name="chevron"
+                    variant="dark"
+                    size="xs"
+                />
             </span>
 
             <div class="p-3">
@@ -170,17 +220,36 @@ export default {
             </div>
         </VsAccordionItem>
 
-        <VsAccordionItem :open-by-default="false" variant="dark" control-id="accordion_item_5">
+        <VsAccordionItem
+            :open-by-default="false"
+            variant="transparent"
+            control-id="accordion_item_5"
+        >
             <span slot="title">
-                This is a title
+                <VsIcon
+                    name="car"
+                    variant="dark"
+                    size="sm"
+                    class="mr-2"
+                />
+                Driving
             </span>
 
             <span slot="icon-open">
-                <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
+                <VsIcon
+                    name="chevron"
+                    orientation="down"
+                    variant="dark"
+                    size="xs"
+                />
             </span>
 
             <span slot="icon-closed">
-                <VsIcon name="chevron" variant="light" size="xs" />
+                <VsIcon
+                    name="chevron"
+                    variant="dark"
+                    size="xs"
+                />
             </span>
 
             <div class="p-3">
@@ -190,17 +259,36 @@ export default {
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
         </VsAccordionItem>
-        <VsAccordionItem :open-by-default="false" variant="dark" control-id="accordion_item_6">
+        <VsAccordionItem
+            :open-by-default="false"
+            variant="transparent"
+            control-id="accordion_item_6"
+        >
             <span slot="title">
-                This is a title
+                <VsIcon
+                    name="cycle"
+                    variant="dark"
+                    size="sm"
+                    class="mr-2"
+                />
+                Cycling
             </span>
 
             <span slot="icon-open">
-                <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
+                <VsIcon
+                    name="chevron"
+                    orientation="down"
+                    variant="dark"
+                    size="xs"
+                />
             </span>
 
             <span slot="icon-closed">
-                <VsIcon name="chevron" variant="light" size="xs" />
+                <VsIcon
+                    name="chevron"
+                    variant="dark"
+                    size="xs"
+                />
             </span>
 
             <div class="p-3">
@@ -213,4 +301,13 @@ export default {
     </VsAccordion>
 
   ```
+
+## Accessibility
+Each *AccordionItem* must have a unique `controlId` which will
+be used for the ARIA attribute `aria-controls` to identify the
+content panel that is controlled by the relevant button.
+
+If a user has JavaScript turned off, each *AccordionItem* will be open
+by default with the toggle buttons removed so the content is always available.
+
 </docs>
