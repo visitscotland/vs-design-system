@@ -32,7 +32,7 @@ definitions:
             hipposysedit:path: visitscotland:image
             hipposysedit:primary: false
             hipposysedit:type: hippogallerypicker:imagelink
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:image-validator']
           /introduction:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
