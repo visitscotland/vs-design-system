@@ -49,9 +49,7 @@
         <vs-container>
             <vs-row class="mb-6">
                 <vs-col cols="12">
-                    <vs-panel
-                        no-header-styling="true"
-                    >
+                    <vs-panel>
                         <#if document.listicleClosing.title?has_content>
                             <template slot="vs-panel-title">
                                 <vs-heading thin level="4">${document.listicleClosing.title}</vs-heading>
