@@ -138,7 +138,6 @@ export default {
         height: 26px;
         width: 26px;
         font-size: 0;
-        padding: $spacer-1;
         right: 20px;
         top: -40px;
 

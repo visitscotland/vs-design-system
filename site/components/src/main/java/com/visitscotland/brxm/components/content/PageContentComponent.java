@@ -5,6 +5,7 @@ import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.factory.MegalinkFactory;
 import com.visitscotland.brxm.factory.SignpostFactory;
 import com.visitscotland.brxm.hippobeans.Page;
+import com.visitscotland.brxm.hippobeans.VideoLink;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.SignpostModule;
@@ -63,8 +64,9 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
         FlatImage heroImage = imageFactory.createImage(getDocument(request).getHeroImage(), introModule, request.getLocale());
         request.setAttribute(HERO_IMAGE, heroImage);
 
-        if (getDocument(request).getHeroVideo() != null) {
-            EnhancedLink video = linksService.createVideo(getDocument(request).getHeroVideo().getVideoLink(), introModule, request.getLocale());
+        VideoLink videoDocument = getDocument(request).getHeroVideo();
+        if (videoDocument != null && videoDocument.getVideoLink() != null) {
+            EnhancedLink video = linksService.createVideo(videoDocument.getVideoLink(), introModule, request.getLocale());
             request.setAttribute(HERO_VIDEO, video);
         }
 
