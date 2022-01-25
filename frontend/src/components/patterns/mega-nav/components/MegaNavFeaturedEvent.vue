@@ -48,43 +48,6 @@ export default {
         VsStretchedLinkCard,
     },
     props: {
-        // /**
-        // * Link URL for the featured item
-        // */
-        // link: {
-        //     type: String,
-        //     required: true,
-        // },
-        // /**
-        // * Image URL for the featured item
-        // */
-        // imgUrl: {
-        //     type: String,
-        //     required: true,
-        // },
-        // /**
-        // * Image alt text for the featured item
-        // */
-        // imgAlt: {
-        //     type: String,
-        //     default: '',
-        // },
-        // datesLabel: {
-        //     type: String,
-        //     default: '',
-        // },
-        // dates: {
-        //     type: String,
-        //     default: '',
-        // },
-        // title: {
-        //     type: String,
-        //     default: '',
-        // },
-        // location: {
-        //     type: String,
-        //     default: '',
-        // },
         /**
         * URL to retrieve the information about the featured event
         * from, if no response do not display
