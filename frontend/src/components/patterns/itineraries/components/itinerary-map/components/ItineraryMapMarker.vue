@@ -111,7 +111,7 @@ export default {
         }
 
         svg {
-            fill: $color-secondary-teal-shade-4 !important;
+            fill: $color-secondary-teal-shade-3 !important;
         }
     }
 }
