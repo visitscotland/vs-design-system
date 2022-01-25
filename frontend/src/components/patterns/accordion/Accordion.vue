@@ -51,6 +51,8 @@ items that can be toggled to show hidden content panels. When one item is clicke
 the item will expand an associated panel to reveal its contents. When clicked again, the panel
 will be hidden once again. Multiple items can be open at the same time.
 
+### Standard
+
 Used with a list of *AccordionItem* components, each item has the option
 to be open by default by passing in the `openByDefault` prop.
 The button style can also be changed by passing in the button
@@ -173,15 +175,15 @@ The button style can also be changed by passing in the button
     </VsAccordion>
   ```
 
-  There is also an option of passing in a breakpoint prop that
-  will allow the accordion to display the content
-  without being collapsed and will turn into a collapsed accordion
-  list at the breakpoint specified.
+### Responsive
+  You can pass in a breakpoint prop that will display the content unhidden
+  which will turn into a collapsed accordion when the breakpoint
+  specified is reached. This is useful for condensing content on smaller screens
+  without having to hide it for larger viewports.
 
   ```js
     <VsAccordion break-point="md">
         <VsAccordionItem
-            :open-by-default="true"
             variant="transparent"
             control-id="accordion_item_4"
         >
