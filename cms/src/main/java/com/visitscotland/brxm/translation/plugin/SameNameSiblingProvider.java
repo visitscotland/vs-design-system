@@ -70,18 +70,18 @@ public class SameNameSiblingProvider implements IDataProvider<SameNameSiblingPro
         if (folderTranslation.hasSameNameSibling() && folderTranslation.hasSameUrlSibling() &&
                 folderTranslation.getSameUrlSiblingId().equals(folderTranslation.getSameNameSiblingId())) {
             HippoNode sibling = (HippoNode) jcrSession.getNodeByIdentifier(folderTranslation.getSameUrlSiblingId());
-            sameNameSiblingEntries.add(new Entry(locale, sibling.getName(),
+            sameNameSiblingEntries.add(new Entry(locale, sibling.getPath(),
                     sibling.getDisplayName(), true, true));
         } else {
             if (folderTranslation.hasSameUrlSibling()) {
                 HippoNode sibling = (HippoNode) jcrSession.getNodeByIdentifier(folderTranslation.getSameUrlSiblingId());
-                sameNameSiblingEntries.add(new Entry(locale, sibling.getName(),
+                sameNameSiblingEntries.add(new Entry(locale, sibling.getPath(),
                         sibling.getDisplayName(), false, true));
             }
 
             if (folderTranslation.hasSameNameSibling()) {
                 HippoNode sibling = (HippoNode) jcrSession.getNodeByIdentifier(folderTranslation.getSameNameSiblingId());
-                sameNameSiblingEntries.add(new Entry(locale, sibling.getName(),
+                sameNameSiblingEntries.add(new Entry(locale, sibling.getPath(),
                         sibling.getDisplayName(), true, false));
             }
         }
@@ -114,6 +114,14 @@ public class SameNameSiblingProvider implements IDataProvider<SameNameSiblingPro
 
         public String getUrl() {
             return url;
+        }
+
+        /**
+         *  For display in error dialogs
+         *  @return a shortened, mount-relative path
+         */
+        public String getDisplayUrl() {
+            return url.replaceAll("^/content/documents/[^/]+/", "");
         }
 
         public String getName() {
