@@ -253,7 +253,7 @@ $variants: (
     light: $color-theme-light,
     dark: $color-theme-dark,
     reverse-white: $color-white,
-    secondary-teal: $color-theme-secondary-teal,
+    secondary-teal: $color_secondary_teal_shade_3,
 );
 
 .vs-icon {
