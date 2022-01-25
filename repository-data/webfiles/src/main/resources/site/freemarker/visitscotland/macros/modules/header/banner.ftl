@@ -19,7 +19,7 @@
                 <#if module.ctaLink.type != "internal">type="${module.ctaLink.type}"</#if>
             >
                 ${module.ctaLink.label}
-            </VsLink>
+            </vs-link>
         </template>
 
         <template slot="closeBtnText">
