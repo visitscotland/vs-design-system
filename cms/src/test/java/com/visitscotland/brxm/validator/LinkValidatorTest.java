@@ -45,7 +45,7 @@ class LinkValidatorTest {
         Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
 
         when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn(LinkValidator.EMPTY_DOCUMENT);
-        when(context.createViolation("EmptyLink")).thenReturn(mock(Violation.class));
+        when(context.createViolation("emptyLink")).thenReturn(mock(Violation.class));
 
         assertTrue(validator.validate(context, node).isPresent());
     }
@@ -75,40 +75,57 @@ class LinkValidatorTest {
     })
     @DisplayName("VS-2905 - Invalid documents cause a validation exception")
     void incorrectValues(String parentType, String childType) throws RepositoryException {
-        assertTrue(validator.validate(context, mockLink(parentType, childType, false)).isPresent());
+         assertTrue(validator.validate(context, mockLink(parentType, childType, false)).isPresent());
+    }
+
+    @Test
+    @DisplayName("VS-2886 - documents can't link to a documents in different languages (except english)")
+    void incorrectChannel() throws RepositoryException {
+        Node parentNode = Mockito.mock(Node.class, withSettings().defaultAnswer(RETURNS_DEEP_STUBS));
+        Node childNode = Mockito.mock(Node.class, withSettings().defaultAnswer(RETURNS_DEEP_STUBS));
+
+        when(parentNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("NODE-ID");
+        when(mockSessionFactory.getHippoNodeByIdentifier("NODE-ID")).thenReturn(childNode);
+
+        when(parentNode.getPath()).thenReturn("/document/content/visitscotland");
+        when(childNode.getPath()).thenReturn("/document/content/visitscotland-es");
+
+        when(context.createViolation("channel")).thenReturn(mock(Violation.class));
+        assertTrue(validator.validate(context, parentNode).isPresent());
     }
 
     /**
-     * Mocks a Document that cotains a link, the linked document and stubs any expected behaviour during the validation
+     * Mocks a Document that contains a link, the linked document and stubs any expected behaviour during the validation
      *
      * @param parentType JCR Type that act as a container (i.e. visitscotland:VideoLink)
      * @param childType JCR Type that represent the linked document (i.e. visitscotland:Video)
-     * @param expected true when a validation exception is not expected
      *
      * @return Node to be validated against the validator
      */
     private Node mockLink(String parentType, String childType, boolean expected) throws  RepositoryException{
         Node parentNode = Mockito.mock(Node.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
-        Node childNode = Mockito.mock(Node.class, withSettings().lenient());
+        Node childNode = Mockito.mock(Node.class, withSettings().lenient().defaultAnswer(RETURNS_DEEP_STUBS));
         boolean isDefault = !LinkValidator.DAY.equals(parentType) && !LinkValidator.VIDEO.equals(parentType);
 
         when(parentNode.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("NODE-ID");
+        when(mockSessionFactory.getHippoNodeByIdentifier("NODE-ID")).thenReturn(childNode);
         lenient().when(parentNode.getParent().isNodeType(AdditionalMatchers.not(eq(parentType)))).thenReturn(false);
         if (!isDefault){
             when(parentNode.getParent().isNodeType(parentType)).thenReturn(true);
         }
-
+        when(childNode.getPath()).thenReturn("/content/document/visitscotland");
         when(childNode.isNodeType(childType)).thenReturn(true);
         when(childNode.isNodeType(AdditionalMatchers.not(eq(childType)))).thenReturn(false);
 
-        if (expected) {
-            when(mockSessionFactory.getHippoNodeByIdentifier("NODE-ID")).thenReturn(childNode);
-        } else if (isDefault) {
-            when(context.createViolation()).thenReturn(mock(Violation.class));
-        } else {
-            when(context.createViolation(any(String.class))).thenReturn(mock(Violation.class));
+        if (!expected) {
+            if (isDefault) {
+                when(context.createViolation()).thenReturn(mock(Violation.class));
+            } else {
+                when(context.createViolation(any(String.class))).thenReturn(mock(Violation.class));
+            }
         }
 
         return parentNode;
     }
+
 }
