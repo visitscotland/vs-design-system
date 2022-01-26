@@ -96,7 +96,6 @@ export default {
         <VsFooterNavList break-point="md">
             <VsCol cols="12" md="6">
                 <VsFooterAccordionItem
-                    :open-by-default="false"
                     title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
