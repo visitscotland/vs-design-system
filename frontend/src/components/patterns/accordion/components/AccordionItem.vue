@@ -23,11 +23,26 @@
 
                 <template #icon-open>
                     <!-- @slot Slot for the icon to show when accordion item is open  -->
-                    <slot name="icon-open" />
+                    <slot name="icon-open">
+                        <VsIcon
+                            name="chevron"
+                            variant="dark"
+                            size="sm"
+                            slot="icon-open"
+                        />
+                    </slot>
                 </template>
                 <template #icon-closed>
                     <!-- @slot Slot for the icon to show when accordion item is closed  -->
-                    <slot name="icon-closed" />
+                    <slot name="icon-closed">
+                        <VsIcon
+                            name="chevron"
+                            orientation="down"
+                            variant="dark"
+                            size="sm"
+                            slot="icon-closed"
+                        />
+                    </slot>
                 </template>
             </VsAccordionToggle>
 
@@ -99,7 +114,7 @@ export default {
          */
         openByDefault: {
             type: Boolean,
-            default: true,
+            default: false,
         },
         /**
          * Variant for which button to show in headers
@@ -227,7 +242,6 @@ export default {
         </VsAccordionItem>
 
         <VsAccordionItem
-            :open-by-default="false"
             variant="transparent"
             control-id="accordion_item_2"
         >
@@ -258,7 +272,6 @@ export default {
             </div>
         </VsAccordionItem>
         <VsAccordionItem
-            :open-by-default="false"
             variant="transparent"
             control-id="accordion_item_3"
         >
