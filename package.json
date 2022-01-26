@@ -2,7 +2,7 @@
   "name": "vs-dotcom-frontend",
   "version": "0.1.0",
   "description": "visitscotland.com Frontend",
-  "author": "lukenofurther",
+  "author": "visitscotland",
   "main": "dist/library/manifest.json",
   "files": [
     "dist/library"
