@@ -82,7 +82,8 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                     {name: "translatedLocales", dataIndex: "translatedLocales", header: "Translated", renderer: this.renderFlags, width: 9},
                     {name: "sentForTranslationLocales", dataIndex: "sentForTranslationLocales", header: "Sent for translation", renderer: this.renderFlags, width: 9},
                     {name: "translationPriority", dataIndex: "translationPriority", header: "Priority", sortable: true, editor: priorityComboConfig, renderer: {fn: this.renderTranslationPriority, scope: self}, width: 15},
-                    {name: "translationDeadline", dataIndex: "translationDeadline", header: "Deadline", sortable: true, type: "date", width: 5, renderer: Ext.util.Format.dateRenderer("d/M/y"), editor: {xtype: "datefield", format: "d/M/Y"}},
+                    {name: "translationDeadline", dataIndex: "translationDeadline", header: "Deadline", sortable: true, type: "date", width: 5, renderer: Ext.util.Format.dateRenderer("d/M/y"),
+                        editor: {xtype: "datefield", format: "d/M/Y", minValue: new Date()}},
                 ]
             }),
             loadMask: false,
