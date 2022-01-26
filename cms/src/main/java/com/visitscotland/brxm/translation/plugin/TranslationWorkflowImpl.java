@@ -295,7 +295,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
 
     @Override
     public void setTranslationPriority(TranslationPriority priority) throws RepositoryException, RemoteException {
-        rootSubject.setProperty("visitscotland:translationPriority", priority.toString());
+        rootSubject.setProperty(JcrDocument.VS_TRANSLATION_PRIORITY, priority.toString());
         saveSession();
     }
 
@@ -306,6 +306,12 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             Property diffProperty = rootSubject.getProperty(JcrDocument.VS_TRANSLATION_DIFF);
             diffProperty.remove();
         }
+        saveSession();
+    }
+
+    @Override
+    public void setTranslationDeadline(Calendar deadline) throws RepositoryException, RemoteException {
+        rootSubject.setProperty(JcrDocument.VS_TRANSLATION_DEADLINE, deadline);
         saveSession();
     }
 
