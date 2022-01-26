@@ -1,5 +1,6 @@
 .DS_Store
 .eslintcache
+.history
 node_modules/
 dist/
 /test/unit/coverage/
@@ -19,3 +20,7 @@ dist/
 
 # Ignore compiled tokens
 src/assets/tokens/
+
+# Ignore target and ssr folder folder
+target/
+ssr/
