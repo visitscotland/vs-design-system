@@ -44,7 +44,7 @@ public class SameNameSiblingDialog extends Dialog {
                         }
                     }
                 });
-                item.add(new Label(ID_URL, sameNameSibling.getUrl()) {
+                item.add(new Label(ID_URL, sameNameSibling.getDisplayUrl()) {
                     @Override
                     protected void onComponentTag(ComponentTag tag) {
                         super.onComponentTag(tag);
