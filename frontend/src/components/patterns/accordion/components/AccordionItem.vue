@@ -71,6 +71,7 @@
 
 <script>
 import VsAccordionToggle from '@components/patterns/accordion/components/AccordionToggle';
+import VsIcon from '@components/elements/icon/Icon';
 
 import {
     BCard, BCardHeader, BCardBody,
@@ -87,6 +88,7 @@ export default {
     components: {
         VsAccordionToggle,
         BCard,
+        VsIcon,
         BCardHeader,
         BCardBody,
     },
