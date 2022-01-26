@@ -11,7 +11,6 @@
                 <#assign title>${menuItem.title?html}</#assign>
             </#if>
             <vs-footer-accordion-item
-                :open-by-default="false" 
                 title="${title}"
                 variant="dark" 
                 control-id="footer_accordion_item_${menuItem?index}" 
