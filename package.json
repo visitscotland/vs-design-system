@@ -119,8 +119,6 @@
     "@contentful/rich-text-html-renderer": "^13.1.0",
     "@vue/test-utils": "^1.0.3",
     "autoprefixer": "^9.8.6",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.1.0",
     "chalk": "^2.4.1",
@@ -130,8 +128,6 @@
     "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^7.0.2",
     "css-loader": "^1.0.1",
-    "cypress": "^3.8.3",
-    "cypress-vue-unit-test": "^1.11.7",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-import-resolver-webpack": "^0.12.2",
@@ -196,7 +192,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "engines": {
-    "node": ">= 12.18.4",
+    "node": ">= 12.18.3",
     "npm": ">= 6.14.5",
     "yarn": ">= 1.22.4"
   },
@@ -204,7 +200,6 @@
     "> 1%",
     "last 2 versions",
     "not Explorer > 0",
-    "IE 11",
     "not ExplorerMobile > 0",
     "not BlackBerry > 0",
     "not OperaMini all",
