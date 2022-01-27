@@ -55,10 +55,9 @@ export default {
 
 <docs>
 ```jsx
+    const sampleFood = require("../../../../assets/fixtures/canned-search/sample-food.json");
+
     <VsCannedSearchCuisines
-        :cuisines="[
-            {'id':'scottish', 'name':'Scottish'},
-            {'id':'vege', 'name':'Vegetarian/Vegan'},
-            {'id':'+more', 'name':'+ More'}]"
+        :cuisines="sampleFood.cuisines"
     />
 </docs>

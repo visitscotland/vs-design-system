@@ -4,12 +4,7 @@
         :href="href"
         :tabindex="tabindex"
         class="vs-button"
-        :class="{
-            'vs-button--animated': animate,
-            'vs-button--is-animating': isAnimating,
-            [backgroundClass]: backgroundClass,
-            [textTransformClass]: textTransformClass,
-        }"
+        :class="buttonClasses"
         :size="size"
         v-bind="$attrs"
         @click="animateHandler"
@@ -179,8 +174,16 @@ export default {
         };
     },
     computed: {
-        backgroundClass() {
-            return this.background ? [`btn-bg-${this.background}`] : null;
+        buttonClasses() {
+            return [
+                {
+                    'vs-button--animated': this.animate,
+                    'vs-button--is-animating': this.isAnimating,
+                    'vs-button--icon-only': this.iconOnly,
+                },
+                this.background ? [`btn-bg-${this.background}`] : '',
+                this.uppercase ? 'text-uppercase' : '',
+            ];
         },
         calcIconSize() {
             switch (this.size) {
@@ -193,9 +196,6 @@ export default {
             default:
                 return 'md';
             }
-        },
-        textTransformClass() {
-            return this.uppercase ? 'text-uppercase' : null;
         },
         calcIconVariant() {
             if (this.isOutline) {
@@ -240,7 +240,7 @@ export default {
         font-weight: $font-weight-light;
         transition: $transition-base;
         text-decoration: none;
-        letter-spacing: 2px;
+        letter-spacing: $letter-spacing-xxl;
         position: relative;
         overflow: hidden;
 
@@ -307,18 +307,23 @@ export default {
         &:disabled {
             background-color: $color-secondary-gray-tint-4;
             color: $color-white;
-            opacity: 1;
+            opacity: $opacity-100;
             border-width: 0;
+        }
+
+        &.vs-button--icon-only{
+            padding: $spacer-1;
+            line-height: 1;
         }
 
         &.vs-button--animated {
             @keyframes bubble {
                 0% {
                     transform: scale(0, 0);
-                    opacity: 1;
+                    opacity: $opacity-100;
                 }
                 100% {
-                    opacity: 0;
+                    opacity: $opacity-0;
                     transform: scale(100, 100);
                 }
             }
@@ -329,7 +334,7 @@ export default {
                 bottom: 0;
                 content: "";
                 height: 5px;
-                opacity: 0;
+                opacity: $opacity-0;
                 position: absolute;
                 right: 0;
                 transform-origin: 50% 50%;
@@ -357,6 +362,14 @@ export default {
             Primary with an icon
         </VsButton>
         <VsButton variant="outline-primary" class="mr-2 mb-2">Primary Outline</VsButton>
+        <VsButton
+            class="mr-2 mb-2"
+            variant="outline-primary"
+            icon="food"
+            size="md"
+        >
+            Outline with an icon
+        </VsButton>
         <VsButton disabled class="mr-2 mb-2" variant="primary" size="md">
             Disabled primary
         </VsButton>

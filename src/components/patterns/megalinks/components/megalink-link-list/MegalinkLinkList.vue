@@ -144,7 +144,7 @@ export default {
 
             .vs-megalink-link-list__title {
                 font-size: $font-size-sm;
-                letter-spacing: .05rem;
+                letter-spacing: $letter-spacing-l;
                 line-height: $line-height-m;
             }
 
