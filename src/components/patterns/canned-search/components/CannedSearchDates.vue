@@ -71,12 +71,11 @@ export default {
 
 <docs>
 ```jsx
+    const sampleEvent = require("../../../../assets/fixtures/canned-search/sample-event.json");
+
     <VsCannedSearchDates
-        :period="{
-            'startDay': '2022-10-12',
-            'endDay': '2022-10-14'
-        }"
-        label="Dates from"
+        :period="sampleEvent.opening.period"
+        :label="sampleEvent.opening.label"
     />
 ```
 </docs>

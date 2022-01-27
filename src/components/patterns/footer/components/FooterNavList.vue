@@ -85,7 +85,7 @@ export default {
                     </span>
 
                     <span slot="icon-closed">
-                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
                     </span>
 
                     <VsList unstyled>
@@ -121,7 +121,7 @@ export default {
                     </span>
 
                     <span slot="icon-closed">
-                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
                     </span>
 
                     <VsList unstyled>
@@ -157,7 +157,7 @@ export default {
                     </span>
 
                     <span slot="icon-closed">
-                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
                     </span>
 
                     <VsList unstyled>
@@ -196,7 +196,7 @@ export default {
                     </span>
 
                     <span slot="icon-closed">
-                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
                     </span>
 
                     <VsList unstyled class="mt-5 pr-lg-8 pr-xl-4">

@@ -3,6 +3,7 @@
         class="vs-mega-nav-list-item"
         data-test="vs-mega-nav-list-item"
         :class="navItemClasses"
+        role="presentation"
     >
         <VsLink
             :href="href"
@@ -129,7 +130,7 @@ export default {
                     background-color: transparent;
 
                     &:after{
-                        opacity: 1;
+                        opacity: $opacity-100;
                     }
                 }
             }
@@ -149,7 +150,7 @@ export default {
                 &:after{
                     width: 6px;
                     height: 100%;
-                    opacity: 0;
+                    opacity: $opacity-0;
                     background: $color-pink;
                     transition: opacity 0.16s ease-in-out;
                 }
@@ -213,14 +214,14 @@ export default {
                     background-color: transparent;
 
                     &:after{
-                        opacity: 1;
+                        opacity: $opacity-100;
                     }
                 }
 
                 &::after{
                     width: 6px;
                     height: 100%;
-                    opacity: 0;
+                    opacity: $opacity-0;
                     background: $color-pink;
                     transition: opacity 0.16s ease-in-out;
                 }

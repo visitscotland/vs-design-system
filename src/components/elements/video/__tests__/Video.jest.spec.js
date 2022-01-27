@@ -4,6 +4,7 @@ import VsVideo from '../Video';
 const videoId = 'C0DPdy98e4c';
 const singleMinuteDescriptor = '%s minute';
 const pluralMinuteDescriptor = '%s minutos';
+const language = 'de';
 
 const factoryShallowMount = (propsData, compData) => shallowMount(VsVideo, {
     propsData: {
@@ -11,6 +12,7 @@ const factoryShallowMount = (propsData, compData) => shallowMount(VsVideo, {
         showDuration: true,
         singleMinuteDescriptor,
         pluralMinuteDescriptor,
+        language,
         ...propsData,
     },
     computed: {
@@ -39,19 +41,15 @@ describe('VsVideo', () => {
 
             expect(wrapper.find('youtube-stub').attributes('videoid')).toBe(videoId);
         });
+
+        it('should pass a language prop to `playerVars` data object', () => {
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.vm.playerVars.hl).toBe('de');
+        });
     });
 
     describe(':data', () => {
-        it('should not show the video duration if showDuration is set to false', async() => {
-            const wrapper = factoryShallowMount();
-
-            await wrapper.setData({
-                showDuration: false,
-            });
-
-            expect(wrapper.find('[data-test="vs-video-duration"]').exists()).toBe(true);
-        });
-
         it('should show a roundedDuration that rounds up, if the duration is 0 minutes and < 30 seconds', async() => {
             // a 25 second video, which should round down to 1 minute
             const wrapper = factoryShallowMount(null, {
@@ -68,7 +66,7 @@ describe('VsVideo', () => {
                 showDuration: true,
             });
 
-            expect(wrapper.find('[data-test="vs-video-rounded-duration"]').text()).toContain('1');
+            expect(wrapper.vm.duration.roundedMinutes).toContain('1');
         });
 
         it('should show a roundedDuration that rounds down, if the duration is x minutes and < 30 seconds', async() => {
@@ -87,7 +85,7 @@ describe('VsVideo', () => {
                 showDuration: true,
             });
 
-            expect(wrapper.find('[data-test="vs-video-rounded-duration"]').text()).toContain('1');
+            expect(wrapper.vm.duration.roundedMinutes).toContain('1');
         });
 
         it('should show a roundedDuration that rounds up, if the duration is x minutes and >= 30 seconds', async() => {
@@ -106,7 +104,7 @@ describe('VsVideo', () => {
                 showDuration: true,
             });
 
-            expect(wrapper.find('[data-test="vs-video-rounded-duration"]').text()).toContain('2');
+            expect(wrapper.vm.duration.roundedMinutes).toContain('2');
         });
 
         it('should show render the singleMinuteDescriptor for a 1 minute video', async() => {
@@ -125,8 +123,7 @@ describe('VsVideo', () => {
                 showDuration: true,
             });
 
-            expect(wrapper.find('[data-test="vs-video-rounded-duration"]').text())
-                .toContain(singleMinuteDescriptor.replace('%s', '1'));
+            expect(wrapper.vm.duration.roundedMinutes).toBe(singleMinuteDescriptor.replace('%s', '1'));
         });
 
         it('should show render the pluralMinuteDiscriptor for a multi minute video', async() => {
@@ -145,18 +142,21 @@ describe('VsVideo', () => {
                 showDuration: true,
             });
 
-            expect(wrapper.find('[data-test="vs-video-rounded-duration"]').text())
-                .toContain(pluralMinuteDescriptor.replace('%s', '4'));
+            expect(wrapper.vm.duration.roundedMinutes).toBe(pluralMinuteDescriptor.replace('%s', '4'));
         });
     });
 
     describe(':methods', () => {
         it('should call the playVideo method when receiving emitted event', () => {
+            jest.useFakeTimers();
             const wrapper = factoryShallowMount();
             const mockPlayMethod = jest.fn();
             wrapper.vm.playVideo = mockPlayMethod;
 
-            wrapper.vm.$root.$emit('video-controls', 'play');
+            wrapper.vm.$root.$emit('video-controls', 'play', videoId, 'modal');
+
+            // wait for setTimeout to run
+            jest.advanceTimersByTime(1500);
 
             expect(mockPlayMethod).toHaveBeenCalled();
         });
@@ -166,7 +166,7 @@ describe('VsVideo', () => {
             const mockPauseMethod = jest.fn();
             wrapper.vm.pauseVideo = mockPauseMethod;
 
-            wrapper.vm.$root.$emit('video-controls', 'pause');
+            wrapper.vm.$root.$emit('video-controls', 'pause', videoId);
 
             expect(mockPauseMethod).toHaveBeenCalled();
         });
