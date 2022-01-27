@@ -48,12 +48,12 @@ This package can be used to generate a design system using one of the `system` b
 To generate the design system using either of the `system` build scriots, the relevent environment variables must be set either in a `.env` file or made available as system variables on the system **building** the site.
 
 ```sh
-# Generates and runs the local instance of the deisgn system at localhost:6060
+# Generates and runs the local instance of the design system at localhost:6060
 yarn system
 
 # Generates assets encoding the design system for hosting on a production server
 yarn system:build
-``` 
+```
 
 ### Design system config
 
@@ -96,7 +96,7 @@ yarn system
 
 This build script generates and serves the design system at [localhost:6060](http://localhost:6060).
 
-Modifications to source files will trigger a rebuild and refresh the browser. 
+Modifications to source files will trigger a rebuild and refresh the browser.
 
 NOTE: Tokens will **not** be recompiled automatically on file change but this can be triggered manually if needed by running:
 
@@ -150,7 +150,7 @@ The core app module contains styles and scripts, such as the Bootstrap reboot st
 
 Each entry module is exposed by webpack as a UMD module that will be accessible once all the assets (as listed in the `manifest.json`) are loaded. The module's exports can then be accessed globally using the module's name.
 
-The core app module assets should be included before any component and store assets to ensure that any global scripts have been loaded. It has 2 named exports `window.VsApp.Vue` and `window.VsApp.initApp`. The `Vue` named export is the Vue library that's included in the package. It is the [Runtime and Compiler version](https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only) of Vue so it can initialise an app from an arbitrary app template. The `initApp` export can be used to initialise the Vue app and accepts an options argument that will be passed to the `new Vue()` call with some default options added. 
+The core app module assets should be included before any component and store assets to ensure that any global scripts have been loaded. It has 2 named exports `window.VsApp.Vue` and `window.VsApp.initApp`. The `Vue` named export is the Vue library that's included in the package. It is the [Runtime and Compiler version](https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only) of Vue so it can initialise an app from an arbitrary app template. The `initApp` export can be used to initialise the Vue app and accepts an options argument that will be passed to the `new Vue()` call with some default options added.
 
 Load the assets for component and store modules after the core app assets. The component and stores modules should be default exports so should be accessible like `window.{moduleName}.default`, respectively. Register the components
 
@@ -203,7 +203,7 @@ Load the assets for component and store modules after the core app assets. The c
   <link rel="stylesheet" href="{publicPath}/styles/VsApp.css" type="text/css">
 </head>
 <body>
-  
+
   <!-- Include a mount point and no-js class -->
   <div data-vs-vue-app class="no-js">
     <!-- Use the ItineraryStop component -->
@@ -215,7 +215,7 @@ Load the assets for component and store modules after the core app assets. The c
   <script src="{publicPath}/vendors~VsApp~VsButtonSquareSocial~VsDesktopN~f5f162b1.js" type="text/javascript"></script>
   <script src="{publicPath}/VsApp.js" type="text/javascript"></script>
 
-  <script type="text/javascript">    
+  <script type="text/javascript">
 
     // Globalise the Vue library (optional)
     Vue = VsApp.Vue
@@ -231,15 +231,15 @@ Load the assets for component and store modules after the core app assets. The c
   <script src="{publicPath}/scripts/VsStoreItinerariesStore.js" type="text/javascript"></script>
 
   <script type="text/javascript">
-    
+
     // Register the component
     VsApp.Vue.component("vs-itinerary", VsItinerary.default)
-    
+
     // Initialise the Vue app, passing the mount point selector on the "el" option
     VsApp.initApp({
       el: "[data-vs-vue-app]"
     })
-  
+
     // Use the store
     VsStoreItinerariesStore.default.subscribe(function(mutation, state) {
         console.log("The new state is...")
@@ -399,7 +399,7 @@ For example, to view the SSR version of the Hippo page [http://localhost:8080/si
 
 The site is browsable just like the regular Hippo site. Note that it's not possible to access the CMS pages via the SSR site.
 
-**NOTE: do not use the ssr:serve:dev npm script. It is broken and will be fixed soon** 
+**NOTE: do not use the ssr:serve:dev npm script. It is broken and will be fixed soon**
 
 ### SSR environment variable
 
