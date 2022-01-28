@@ -594,7 +594,6 @@ class LinkServiceTest {
         assertEquals("youtu.be?v=1", link.getLink());
         assertEquals("1", link.getYoutubeId());
         assertEquals(LinkType.VIDEO, link.getType());
-        assertNull(link.getPublishedDate());
     }
 
     @Test
@@ -615,7 +614,7 @@ class LinkServiceTest {
     }
 
     @Test
-    @DisplayName(("YoutTube video published date obtained from api"))
+    @DisplayName("YouTube video published date obtained from api")
     void enhancedLink_fromVideoWithPublishedDate() throws ParseException {
         Video video = new VideoMockBuilder().url("https://www.youtube.com/watch?v=h9bQwcndGfo").build();
         Date datePublished = new SimpleDateFormat("yyyy-MM-dd").parse("2020-10-10");
@@ -626,6 +625,17 @@ class LinkServiceTest {
         EnhancedLink link = service.createEnhancedLink(video, null, null, false);
 
         assertEquals(datePublished, link.getPublishedDate());
+    }
+
+    @Test
+    @DisplayName("Published date is never null, even when YouTube API is unavailable")
+    void enhancedLink_youtubeDateNotAvailable() {
+        Video video = new VideoMockBuilder().url("https://www.youtube.com/watch?v=h9bQwcndGfo").build();
+        when(youtubeApiService.getVideoInfo("h9bQwcndGfo")).thenReturn(Optional.empty());
+
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false);
+
+        assertNotNull(link.getPublishedDate());
     }
 
 }

@@ -28,6 +28,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -520,7 +521,13 @@ public class LinkService {
         videoLink.setYoutubeId(getYoutubeId(video.getUrl()));
         videoLink.setType(LinkType.VIDEO);
         Optional<YoutubeVideo> videoInfo = youtubeApiService.getVideoInfo(videoLink.getYoutubeId());
-        videoInfo.ifPresent(youtubeSnippet -> videoLink.setPublishedDate(youtubeSnippet.getPublishDate()));
+        // If the upload date can not be obtained from YouTube, set the published date to today to prevent a malformed
+        // schema
+        if (videoInfo.isPresent()) {
+            videoLink.setPublishedDate(videoInfo.get().getPublishDate());
+        } else {
+            videoLink.setPublishedDate(new Date());
+        }
         return videoLink;
     }
 
