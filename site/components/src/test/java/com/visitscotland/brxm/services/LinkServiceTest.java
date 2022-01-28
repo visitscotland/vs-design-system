@@ -607,6 +607,14 @@ class LinkServiceTest {
     }
 
     @Test
+    @DisplayName(("VS-3065 - Handling of non-published documents"))
+    void enhancedLink_empty(){
+        EnhancedLink link = service.createEnhancedLink(null, null, null, false);
+
+        assertNull(link);
+    }
+
+    @Test
     @DisplayName(("YoutTube video published date obtained from api"))
     void enhancedLink_fromVideoWithPublishedDate() throws ParseException {
         Video video = new VideoMockBuilder().url("https://www.youtube.com/watch?v=h9bQwcndGfo").build();

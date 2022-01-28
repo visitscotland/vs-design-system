@@ -61,7 +61,7 @@ definitions:
           /links:
             jcr:primaryType: frontend:plugin
             caption: Link
-            compoundList: hippo:mirror,visitscotland:VideoLink
+            compoundList: hippo:mirror
             contentPickerType: links
             field: links
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin

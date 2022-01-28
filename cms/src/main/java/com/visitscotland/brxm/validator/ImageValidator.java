@@ -15,7 +15,7 @@ import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
 
 /**
  * The purpose of this validator is to validate if a SELECTED image has all the required fields filled,therefore, we need to
- * check the ucer has selected and image (so image is not an EMPTY_IMAGE)
+ * check the user has selected and image (so image is not an EMPTY_IMAGE)
  *
  * This validator does * not validate if an image is required or optional
  *

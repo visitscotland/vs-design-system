@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.menu;
 
+import com.visitscotland.brxm.components.content.ContentComponent;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.utils.HippoUtilsService;
@@ -18,7 +19,6 @@ import java.util.*;
 @Component
 public class MenuItemProvider {
 
-    private static final String PAGE_PATH = "content";
     private static final String NEW_PAGE_MENU = "new-page";
     private static final String NEW_MODULE_MENU = "new-module";
     private static final String NEW_FOLDER_MENU = "new-translated-folder";
@@ -61,11 +61,11 @@ public class MenuItemProvider {
     }
 
     private Optional<Page> getPageContentBean(Node subjectNode) throws RepositoryException, ObjectBeanManagerException, QueryException {
-        if (!subjectNode.hasNode(PAGE_PATH) || !subjectNode.getNode(PAGE_PATH).isNodeType(JcrDocument.HIPPO_HANDLE)) {
+        if (!subjectNode.hasNode(ContentComponent.PAGE_PATH) || !subjectNode.getNode(ContentComponent.PAGE_PATH).isNodeType(JcrDocument.HIPPO_HANDLE)) {
             return Optional.empty();
         }
 
-        HippoBean subjectBean = hippoUtilsService.getDocumentFromNode(subjectNode.getNode(PAGE_PATH), true);
+        HippoBean subjectBean = hippoUtilsService.getDocumentFromNode(subjectNode.getNode(ContentComponent.PAGE_PATH), true);
         if (!(subjectBean instanceof Page)) {
             return Optional.empty();
         }

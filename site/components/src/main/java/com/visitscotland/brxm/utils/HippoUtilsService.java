@@ -72,7 +72,7 @@ public class HippoUtilsService {
             // Ensure links always link to the current mount
             // If the document does not exist on the current mount, HstLinkCreatorImpl will fall back to the english mount
             // However we want to link to the current mount, and let the translation fallback handle resolution of the english document
-            if (link.getMount().getLocale().equals(Locale.UK.toString()) && !requestMount.getLocale().equals(Locale.UK.toString())) {
+            if (localize && link.getMount().getLocale().equals(Locale.UK.toString()) && !requestMount.getLocale().equals(Locale.UK.toString())) {
                 link.setPath(String.format("%s/%s", requestMount.getMountPath(), link.getPath()));
             }
             return link.toUrlForm(requestContext, FULLY_QUALIFIED);

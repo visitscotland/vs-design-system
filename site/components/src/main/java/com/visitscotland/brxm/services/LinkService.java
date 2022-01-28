@@ -319,7 +319,9 @@ public class LinkService {
         } else if (linkable instanceof Video) {
             link = enhancedLinkFromVideo((Video) linkable, module, locale, addCategory);
         } else {
-            logger.warn("The type {} was not expected and will be skipped", linkable.getClass().getSimpleName());
+            if (linkable != null) {
+                logger.warn("The type {} was not expected and will be skipped", linkable.getClass().getSimpleName());
+            }
             return null;
         }
 
