@@ -39,7 +39,6 @@ export default {
 
 <style lang="scss">
 .vs-rich-text-wrapper {
-
     &--variant-normal{
         font-family: $font-family-base;
         font-size: $body-font-size;

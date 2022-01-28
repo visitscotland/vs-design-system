@@ -45,6 +45,7 @@
                     <!--
                         @slot Holds the content for the second optional item in the grey
                         summary box  at the bottom of the card, usually a duration
+
                         Expects html
                     -->
                     <slot
@@ -107,6 +108,7 @@ export default {
             &--tall {
                 min-height: 4.75rem;
             }
+
             .vs-canned-search-summary-box__summary-item {
                 display: flex;
                 justify-content: center;
@@ -133,22 +135,22 @@ export default {
 
     <div class="row">
         <div class="col-12 col-sm-6 col-md-4">
-    <VsCannedSearchSummaryBox>
-        <VsCannedSearchPrice
-            v-if="sampleAccom.price"
-            slot="vsCannedSearchSummaryLeft"
-            :priceIntro="sampleAccom.price.priceLabel"
+            <VsCannedSearchSummaryBox>
+                <VsCannedSearchPrice
+                    v-if="sampleAccom.price"
+                    slot="vsCannedSearchSummaryLeft"
+                    :priceIntro="sampleAccom.price.priceLabel"
                     :price="sampleAccom.price.price"
-            :priceOutro="sampleAccom.price.priceBasis"
-        />
-        <VsLink
+                    :priceOutro="sampleAccom.price.priceBasis"
+                />
+                <VsLink
                     :href="sampleAccom.website.link"
-            type="external"
-            slot="vsCannedSearchSummaryRight"
-        >
-            Visit Website
-        </VsLink>
-    </VsCannedSearchSummaryBox>
+                    type="external"
+                    slot="vsCannedSearchSummaryRight"
+                >
+                    Visit Website
+                </VsLink>
+            </VsCannedSearchSummaryBox>
         </div>
         <div class="col-12 col-sm-6 col-md-4">
             <VsCannedSearchSummaryBox>

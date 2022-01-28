@@ -46,9 +46,8 @@ describe('VsVideo', () => {
             const wrapper = factoryShallowMount();
 
             expect(wrapper.vm.playerVars.hl).toBe('de');
-            });
-
         });
+    });
 
     describe(':data', () => {
         it('should show a roundedDuration that rounds up, if the duration is 0 minutes and < 30 seconds', async() => {
@@ -158,6 +157,7 @@ describe('VsVideo', () => {
 
             // wait for setTimeout to run
             jest.advanceTimersByTime(1500);
+
             expect(mockPlayMethod).toHaveBeenCalled();
         });
 

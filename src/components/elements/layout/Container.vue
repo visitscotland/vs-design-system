@@ -32,13 +32,13 @@ export default {
 <docs>
   ```jsx
         <VsContainer fluid style="background:#eeeeee; padding: 12px"  class="mb-6">
-        <VsRow>
+            <VsRow>
                 <VsCol>This is a fluid container</VsCol>
-        </VsRow>
-      </VsContainer>
+            </VsRow>
+        </VsContainer>
 
         <VsContainer style="background:#eeeeee; padding: 12px">
-        <VsRow>
+            <VsRow>
                 <VsCol cols="12">
                     This is a fixed-width container
                 </VsCol>
@@ -47,8 +47,7 @@ export default {
                         Note: Enter full width view to see the difference between both containers.
                     </p>
                 </VsCol>
-        </VsRow>
-      </VsContainer>
-
+            </VsRow>
+        </VsContainer>
   ```
 </docs>
