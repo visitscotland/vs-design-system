@@ -66,7 +66,7 @@ export default {
          */
         openByDefault: {
             type: Boolean,
-            default: true,
+            default: false,
         },
         /**
          * The title for the submenu and alias for the testing data-unique-id
@@ -107,8 +107,10 @@ export default {
         margin: $spacer-3 0;
         background-color: $color-gray-shade-7;
         color: $color-white;
-        font-family: $font-family-sans-serif;
         font-weight: $font-weight-semi-bold;
+        font-size: $h4-font-size;
+        line-height: $line-height-xs;
+        padding: 0;
     }
 
      .vs-accordion-item__panel.card-body {
@@ -172,7 +174,6 @@ export default {
         <VsFooterNavList break-point="md">
             <VsCol cols="12" md="6">
                 <VsFooterAccordionItem
-                    :open-by-default="false"
                     title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
