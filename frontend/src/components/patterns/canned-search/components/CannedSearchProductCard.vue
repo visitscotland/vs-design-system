@@ -40,7 +40,7 @@
                 >
                     <VsHeading
                         level="3"
-                        class="card-title vs-product-card__title text-truncate text-truncate--2"
+                        class="card-title vs-product-card__title"
                         data-test="vs-product-card__title"
                     >
                         <VsLink
@@ -86,7 +86,7 @@
                             name="vsCannedSearchTourInfo"
                         />
                         <p
-                            class="text-truncate text-truncate--2"
+                            class="vs-product-card__description-inner"
                             v-if="description"
                         >
                             {{ description }}
@@ -316,6 +316,8 @@ export default {
             display: flex;
             margin: $spacer-3 $spacer-0 $spacer-2;
 
+            @include truncate-text(2);
+
             a {
                 letter-spacing: inherit;
             }
@@ -327,6 +329,10 @@ export default {
 
             p {
                 margin-bottom: $spacer-1;
+            }
+
+            .vs-product-card__description-inner {
+                @include truncate-text(2);
             }
         }
 
