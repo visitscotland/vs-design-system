@@ -79,7 +79,7 @@ export default {
                     }
                 })
                 .catch(() => {
-                    this.featuredEvent = [];
+                    this.featuredEvent = null;
                 });
         },
     },
@@ -209,19 +209,8 @@ export default {
             <VsRow>
                 <VsCol cols="12" lg="4">
                     <MegaNavFeaturedEvent
-                        link="www.visitscotland.com"
-                        img-url="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        img-alt="Alt text"
-                        title="Autism Friendly Ancient Egyptian Family Workshop Day"
-                        location="South Nutshill Industrial Park"
-                        dates-label="Dates from"
-                        dates="4 Dec 2020"
-                    >
-
-                        <template slot="vsFeaturedEventLink">
-                            View event details
-                        </template>
-                    </MegaNavFeaturedEvent>
+                        source-url="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=&loc=Scotland&size=1"
+                    />
                 </VsCol>
             </VsRow>
         </VsContainer>
