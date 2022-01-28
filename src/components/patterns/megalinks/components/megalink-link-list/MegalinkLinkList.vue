@@ -144,13 +144,14 @@ export default {
 
             .vs-megalink-link-list__title {
                 font-size: $font-size-sm;
-                letter-spacing: .05rem;
+                letter-spacing: $letter-spacing-l;
                 line-height: $line-height-m;
             }
 
             .card-title {
                 display: flex;
                 margin-bottom: 0;
+                margin-top: 0;
 
                 & > a {
                     line-height: 0;

@@ -3,6 +3,7 @@
         tag="div"
         v-bind="$attrs"
     >
+        <!-- @slot Default slot for container content -->
         <slot />
     </BContainer>
 </template>
@@ -30,22 +31,24 @@ export default {
 
 <docs>
   ```jsx
-    <div>
-      <VsContainer style="background:#ccc">
+        <VsContainer fluid style="background:#eeeeee; padding: 12px"  class="mb-6">
         <VsRow>
-          <VsCol>This is a fixed-width container</VsCol>
+                <VsCol>This is a fluid container</VsCol>
         </VsRow>
       </VsContainer>
-      <br />
-      <VsContainer fluid style="background:#ccc">
+
+        <VsContainer style="background:#eeeeee; padding: 12px">
         <VsRow>
-          <VsCol>This is a fluid container</VsCol>
+                <VsCol cols="12">
+                    This is a fixed-width container
+                </VsCol>
+                <VsCol cols="12">
+                    <p class="mt-6" style="font-size: 1rem;">
+                        Note: Enter full width view to see the difference between both containers.
+                    </p>
+                </VsCol>
         </VsRow>
       </VsContainer>
-      <br />
-      *Note: the fixed width container appears fluid here because
-       it is inside a parent element that is not full-page width.
-    </div>
 
   ```
 </docs>

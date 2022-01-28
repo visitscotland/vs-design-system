@@ -14,12 +14,12 @@ const cookieMixin = {
         cookieExists(cookie) {
             return (document.cookie.indexOf(`${cookie}=`) >= 0);
         },
-        setCookie(name, value, newCookie) {
+        setCookie(name, value, newCookie, sessionCookie = false) {
             let cookieString = '';
             cookieString = `${name}=${value};`;
             cookieString += 'path=/;';
 
-            if (newCookie) {
+            if (newCookie && !sessionCookie) {
                 const expiryDate = new Date();
                 expiryDate.setFullYear(expiryDate.getFullYear() + 1);
 

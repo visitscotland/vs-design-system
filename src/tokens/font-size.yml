@@ -7,6 +7,8 @@ aliases:
 props:
     - name: font-size-base
       value: "{!font_size_base}"
+    - name: font-size-xl
+      value: "{!font_size_base} * 2"
     - name: font-size-lg
       value: "{!font_size_base} * 1.25"
     - name: font-size-md

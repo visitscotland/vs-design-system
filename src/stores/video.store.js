@@ -26,7 +26,7 @@ export default new Vuex.Store({
     },
     getters: {
         // eslint-disable-next-line arrow-body-style
-        getVideoLength: (state) => (id) => {
+        getVideoDetails: (state) => (id) => {
             return state.videos.find((video) => video.videoId === id);
         },
     },

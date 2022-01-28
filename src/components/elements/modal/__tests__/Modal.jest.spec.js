@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, createWrapper } from '@vue/test-utils';
 
 import VsModal from '../Modal';
 
@@ -22,6 +22,14 @@ describe('VsModal', () => {
         expect(wrapper.element.tagName).toBe('BMODAL-STUB');
     });
 
+    it('should emit `video-controls` when the modal is shown', async() => {
+        const wrapper = factoryShallowMount({
+            isVideoModal: true,
+        });
+        const rootWrapper = createWrapper(wrapper.vm.$root);
+        rootWrapper.vm.$emit('bv::modal::shown');
+        expect(rootWrapper.emitted('video-controls')).toBeTruthy();
+    });
     describe(':props', () => {
         it('modalId: sets the correct ID on the modal element', () => {
             const wrapper = factoryShallowMount();
@@ -35,6 +43,15 @@ describe('VsModal', () => {
             const closeBtn = wrapper.find('[data-test=vs-modal__close-btn]');
 
             expect(closeBtn.text()).toContain('Close');
+        });
+        it('isVideoModal: defines static prop on BModal', async() => {
+            const wrapper = factoryShallowMount();
+            wrapper.setProps({
+                isVideoModal: true,
+            });
+            await wrapper.vm.$nextTick();
+            const modalStub = wrapper.find('bmodal-stub').html();
+            expect(modalStub).toContain('static="true"');
         });
     });
 
