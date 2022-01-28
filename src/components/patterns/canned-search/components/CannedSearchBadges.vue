@@ -93,6 +93,7 @@ export default {
                 return this.multiBadgeOne
                     .slice(0, 3);
             }
+
             return [];
         },
     },
@@ -153,6 +154,7 @@ export default {
                 padding: $spacer-0 $spacer-4;
             }
         }
+
         &__multi-badge-holder {
             position: absolute;
             text-align: right;
@@ -163,6 +165,7 @@ export default {
             top: $spacer-2;
             right: $spacer-2;
         }
+
         &__multi-badge {
             position: relative;
             display: inline-block;

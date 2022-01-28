@@ -78,6 +78,7 @@
                             @slot Holds the formatted info about a tour including months it runs
                             and the locations it departs from. Separated from description to allow
                             html formatting
+
                             Expects html
                         -->
                         <slot
@@ -174,7 +175,7 @@ export default {
          * rather than in the summary box, will be truncated if >2 lines
          *
          * Expects an object with a label, a startDay and an optional endDay
-        */
+         */
         inBodyDuration: {
             type: Object,
             default: null,
@@ -510,6 +511,7 @@ export default {
                 slot="vsCannedSearchSubHeading"
                 :sub-heading="sampleFood.address.city + ', ' + sampleFood.address.county"
             />
+
             <VsCannedSearchStars
                 slot="vsCannedSearchStarRating"
                 :min="sampleFood.grading.minStars"

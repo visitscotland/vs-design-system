@@ -315,6 +315,7 @@ export default {
             padding: $spacer-1;
             line-height: 1;
         }
+
         &.vs-button--animated {
             @keyframes bubble {
                 0% {

@@ -1,6 +1,5 @@
 .DS_Store
 .eslintcache
-.history
 node_modules/
 dist/
 /test/unit/coverage/
@@ -8,6 +7,7 @@ dist/
 *.log
 .env
 .lighthouseci
+.history/
 
 # Editor directories and files
 .idea
@@ -20,16 +20,4 @@ dist/
 
 # Ignore compiled tokens
 src/assets/tokens/
-
-# Ignore target and ssr folder folder
-target/
-ssr/
-
-#yarn 2 specific
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+.yarn/

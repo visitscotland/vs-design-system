@@ -17,8 +17,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsTooltip, {
 let wrapper;
 beforeEach(() => {
     wrapper = factoryShallowMount();
-
-    });
+});
 
 describe('VsTooltip', () => {
     it('should render a vsbutton-stub element', () => {
@@ -29,7 +28,6 @@ describe('VsTooltip', () => {
 
     describe(':props', () => {
         it(':title - should accept and render a `title` property', () => {
-
             expect(wrapper.attributes('title')).toBe('Bus');
         });
     });

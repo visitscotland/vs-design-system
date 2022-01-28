@@ -62,6 +62,7 @@ export default {
 <docs>
 ```jsx
     const sampleAccom = require("../../../../assets/fixtures/canned-search/sample-accom.json");
+
     <VsCannedSearchCategories
         :categories="sampleAccom.locations"
     />

@@ -123,8 +123,8 @@ export default {
          * a YouTube video, process the time into the desired format.
          */
         this.player.getDuration().then((response) => {
-                this.formatTime(response);
-                this.storeVideoDetails();
+            this.formatTime(response);
+            this.storeVideoDetails();
         });
 
         /**
@@ -139,9 +139,9 @@ export default {
                         this.playVideo();
                     }, 1000);
                 } else if (action === 'play') {
-                this.playVideo();
-            } else if (action === 'pause') {
-                this.pauseVideo();
+                    this.playVideo();
+                } else if (action === 'pause') {
+                    this.pauseVideo();
                 }
             }
         });
@@ -248,6 +248,21 @@ export default {
                 >
                     Play
                 </VsButton>
+                <VsButton
+                    @click.native="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
+                    @keydown="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
+                >
+                    Pause
+                </VsButton>
+            </VsCol>
+            <VsCol md="6">
+                <VsButton
+                    @click.native="$root.$emit('video-controls', 'play', 'dKI8IEnqvbU')"
+                    @keydown="$root.$emit('video-controls', 'play', 'dKI8IEnqvbU')"
+                >
+                    Play
+                </VsButton>
+
                 <VsButton
                     @click.native="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
                     @keydown="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
