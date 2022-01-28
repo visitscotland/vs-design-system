@@ -38,7 +38,7 @@
 <script>
 import VsIcon from '@components/elements/icon/Icon';
 import VsDropdown from '@components/patterns/dropdown/Dropdown';
-import cookieMixin from '../../../mixins/cookieMixin';
+import cookieMixin from '../../../../mixins/cookieMixin';
 
 /**
  * TODO: Document usage
@@ -97,12 +97,12 @@ export default {
         margin: 0;
         max-height: 0;
         overflow: hidden;
-        opacity: 0;
+        opacity: $opacity-0;
         transform: translate3d(0px, 0px, 0px) !important;
 
         &.show {
             max-height: 700px;
-            opacity: 1;
+            opacity: $opacity-100;
             transform: translate3d(0px, 28px, 0px) !important;
             border: none;
             padding: 0;

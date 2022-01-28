@@ -74,7 +74,6 @@ export default {
         <VsFooterNavList break-point="md">
             <VsCol cols="12" md="4" lg="3">
                 <VsFooterAccordionItem
-                    :open-by-default="false"
                     title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
@@ -85,7 +84,7 @@ export default {
                     </span>
 
                     <span slot="icon-closed">
-                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
                     </span>
 
                     <VsList unstyled>
@@ -111,7 +110,6 @@ export default {
 
             <VsCol cols="12" md="4" lg="3">
                 <VsFooterAccordionItem
-                    :open-by-default="false"
                     title="Get in touch"
                     variant="dark"
                     control-id="footer_accordion_item_2"
@@ -121,7 +119,7 @@ export default {
                     </span>
 
                     <span slot="icon-closed">
-                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
                     </span>
 
                     <VsList unstyled>
@@ -147,7 +145,6 @@ export default {
 
             <VsCol cols="12" md="4" lg="3">
                 <VsFooterAccordionItem
-                    :open-by-default="false"
                     title="Our other sites"
                     variant="dark"
                     control-id="footer_accordion_item_3"
@@ -157,7 +154,7 @@ export default {
                     </span>
 
                     <span slot="icon-closed">
-                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
                     </span>
 
                     <VsList unstyled>
@@ -196,7 +193,7 @@ export default {
                     </span>
 
                     <span slot="icon-closed">
-                        <VsIcon name="chevron" orientation="right" variant="light" size="xs" />
+                        <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
                     </span>
 
                     <VsList unstyled class="mt-5 pr-lg-8 pr-xl-4">

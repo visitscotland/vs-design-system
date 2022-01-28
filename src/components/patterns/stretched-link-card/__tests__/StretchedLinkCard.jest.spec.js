@@ -77,7 +77,8 @@ describe('VsStretchedLinkCard', () => {
         });
         it('renders a link in the header if no stretchedCardLink is supplied', () => {
             const wrapper = factoryShallowMount();
-            expect(wrapper.find('[data-test="vs-stretched-link-card__title"]').contains('[data-test="vs-stretched-link"]')).toBe(true);
+
+            expect(wrapper.find('[data-test="vs-stretched-link-card__title"]').find('[data-test="vs-stretched-link"]').exists()).toBe(true);
         });
         it('does not render a link in the header if a stretchedCardLink slot content is supplied', () => {
             const wrapper = factoryShallowMount({
@@ -85,7 +86,7 @@ describe('VsStretchedLinkCard', () => {
                     stretchedCardLink: 'Stretched link link text',
                 },
             });
-            expect(wrapper.find('[data-test="vs-stretched-link-card__title"]').contains('[data-test="vs-stretched-link"]')).toBe(false);
+            expect(wrapper.find('[data-test="vs-stretched-link-card__title"]').find('[data-test="vs-stretched-link"]').exists()).toBe(false);
         });
     });
 });

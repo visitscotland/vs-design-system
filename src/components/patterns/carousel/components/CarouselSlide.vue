@@ -5,6 +5,7 @@
         :lg="slideCols.md"
         :xl="slideCols.lg"
         data-test="vs-carousel-slide"
+        :aria-disabled="!isVisible(slideIndex)"
     >
         <div class="vs-carousel-slide">
             <VsStretchedLinkCard
@@ -168,13 +169,13 @@ export default {
 
         .vs-carousel-slide__card {
             flex-shrink: 0;
-            opacity: 0.5;
+            opacity: $opacity-50;
             transition: $duration-slowly;
             padding: $spacer-2;
             max-width: 100%;
 
             &--active {
-                opacity: 1;
+                opacity: $opacity-100;
             }
         }
 
@@ -212,7 +213,7 @@ export default {
             }
 
             .vs-stretched-link-card {
-                opacity: 1;
+                opacity: $opacity-100;
                 display: flex;
                 flex-direction: row;
                 padding: $spacer-2;
@@ -248,7 +249,7 @@ export default {
 
                 &__title {
                     font-size: $font-size-sm;
-                    letter-spacing: .05rem;
+                    letter-spacing: $letter-spacing-l;
                     line-height: $line-height-m;
                     color: $color-base-text;
                     text-decoration: none;

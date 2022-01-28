@@ -1,5 +1,6 @@
 <template>
     <BCol v-bind="$attrs">
+        <!-- @slot Default slot for column content -->
         <slot />
     </BCol>
 </template>

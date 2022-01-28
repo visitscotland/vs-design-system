@@ -12,7 +12,7 @@
                 <slot name="buttonContent" />
             </template>
 
-            <li>
+            <li role="menuitem">
                 <VsContainer
                     fluid="lg"
                     class="px-0 px-lg-3"
@@ -138,7 +138,6 @@ export default {
         height: 26px;
         width: 26px;
         font-size: 0;
-        padding: $spacer-1;
         right: 20px;
         top: -40px;
 
@@ -161,7 +160,7 @@ export default {
         position: relative;
         letter-spacing: 0;
         font-weight: $font-weight-normal;
-        line-height: $standard-line-height;
+        line-height: $line-height-standard;
         border-radius: 0;
         border: 0;
         height: 32px;
@@ -258,7 +257,7 @@ export default {
             }
 
             &.disabled {
-                opacity: 1;
+                opacity: $opacity-100;
             }
 
             &:focus {

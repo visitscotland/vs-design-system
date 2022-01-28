@@ -42,6 +42,10 @@
         {
             "id": "modbrit",
             "name": "British"
+        },
+        {
+            "id": "veg",
+            "name": "Vegetarian"
         }
     ],
     "awards": [

@@ -7,6 +7,7 @@
             <!-- eslint-disable-next-line vue/component-name-in-template-casing -->
             <youtube
                 :video-id="videoId"
+                :player-vars="playerVars"
                 ref="youtube"
             />
         </div>
@@ -16,8 +17,10 @@
 <style lang="scss">
     .vs-video {
         &__iframe-wrapper {
-            aspect-ratio: 16 / 9;
             position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
 
             iframe {
                 position: absolute;
@@ -60,6 +63,13 @@ export default {
         /**
         * The YouTube ID for the video
         */
+        language: {
+            type: String,
+            default: 'en',
+        },
+        /**
+        * The YouTube ID for the video
+        */
         videoId: {
             type: String,
             required: true,
@@ -94,7 +104,9 @@ export default {
                 seconds: 0,
                 roundedMinutes: '',
             },
-            showDuration: false,
+            playerVars: {
+                hl: this.language,
+            },
         };
     },
     computed: {
@@ -111,24 +123,26 @@ export default {
          * a YouTube video, process the time into the desired format.
          */
         this.player.getDuration().then((response) => {
-            if (response === 0) {
-                this.showDuration = false;
-            } else {
-                this.showDuration = true;
                 this.formatTime(response);
                 this.storeVideoDetails();
-            }
         });
 
         /**
          * Sets up listener for play/pause events
          * from $root
          */
-        this.$root.$on('video-controls', (action) => {
-            if (action === 'play') {
+        this.$root.$on('video-controls', (action, id, type) => {
+            if (id === this.videoId) {
+                if (action === 'play' && type === 'modal') {
+                    // timeout allows for video in modal to appear
+                    setTimeout(() => {
+                        this.playVideo();
+                    }, 1000);
+                } else if (action === 'play') {
                 this.playVideo();
             } else if (action === 'pause') {
                 this.pauseVideo();
+                }
             }
         });
     },
@@ -214,6 +228,7 @@ export default {
             <VsCol md="6">
                 <VsVideo
                     video-id="c05sg3G4oA4"
+                    language="es-es"
                 />
             </VsCol>
             <VsCol md="6">
@@ -221,21 +236,36 @@ export default {
                     video-id="dKI8IEnqvbU"
                     single-minute-descriptor="Video de %s minuto"
                     plural-minute-descriptor="Video de %s minutos"
+                    language="nl-nl"
                 />
             </VsCol>
         </VsRow>
         <VsRow>
-            <VsCol>
+            <VsCol md="6">
                 <VsButton
-                    @click.native="$root.$emit('video-controls', 'play')"
-                    @keydown="$root.$emit('video-controls', 'play')"
+                    @click.native="$root.$emit('video-controls', 'play', 'c05sg3G4oA4')"
+                    @keydown="$root.$emit('video-controls', 'play', 'c05sg3G4oA4')"
+                >
+                    Play
+                </VsButton>
+                <VsButton
+                    @click.native="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
+                    @keydown="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
+                >
+                    Pause
+                </VsButton>
+            </VsCol>
+            <VsCol md="6">
+                <VsButton
+                    @click.native="$root.$emit('video-controls', 'play', 'dKI8IEnqvbU')"
+                    @keydown="$root.$emit('video-controls', 'play', 'dKI8IEnqvbU')"
                 >
                     Play
                 </VsButton>
 
                 <VsButton
-                    @click.native="$root.$emit('video-controls', 'pause')"
-                    @keydown="$root.$emit('video-controls', 'pause')"
+                    @click.native="$root.$emit('video-controls', 'pause', 'dKI8IEnqvbU')"
+                    @keydown="$root.$emit('video-controls', 'pause', 'dKI8IEnqvbU')"
                 >
                     Pause
                 </VsButton>
