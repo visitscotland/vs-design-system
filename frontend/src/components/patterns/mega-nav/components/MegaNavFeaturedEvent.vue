@@ -15,10 +15,10 @@
                     {{ featuredEvent.opening.period.startDay }}
                 </span>
             </p>
-            <p class="vs-mega-nav-featured-event__title text-truncate text-truncate--2">
+            <p class="vs-mega-nav-featured-event__title">
                 {{ featuredEvent.name }}
             </p>
-            <p class="vs-mega-nav-featured-event__location text-truncate text-truncate--1">
+            <p class="vs-mega-nav-featured-event__location">
                 {{ featuredEvent.address.shortAddress }}
             </p>
         </template>
@@ -141,10 +141,14 @@ export default {
             font-size: $small-font-size;
             font-weight: $font-weight-bold;
             margin-bottom: $spacer-0;
+
+            @include truncate-text(2);
         }
 
         .vs-mega-nav-featured-event__location {
             font-size: $small-font-size;
+
+            @include truncate-text(1);
         }
 
         @include media-breakpoint-up(sm) {
