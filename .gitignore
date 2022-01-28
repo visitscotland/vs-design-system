@@ -6,6 +6,8 @@ dist/
 /.tmp
 *.log
 .env
+.lighthouseci
+.history/
 
 # Editor directories and files
 .idea
@@ -18,3 +20,4 @@ dist/
 
 # Ignore compiled tokens
 src/assets/tokens/
+.yarn/

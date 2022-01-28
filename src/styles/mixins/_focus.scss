@@ -2,7 +2,7 @@ $focus-y-offset-underline: -3px;
 $focus-spread-default: 3px;
 
 @mixin focus-box-shadow($value) {
-  transition: box-shadow 250ms ease-in-out;
+  transition: box-shadow $duration-base ease-in-out;
   &:focus,
   &:hover,
   &:active,
