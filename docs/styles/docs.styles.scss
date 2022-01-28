@@ -3,9 +3,10 @@
  * (the odd formatting hence most of the classes are dynamic)
  */
 
-@import "./docs.tokens.scss";
-@import "./docs.mixins.scss";
-@import "./examples.styles.scss";
+@import './docs.tokens.scss';
+@import './docs.mixins.scss';
+@import './docs.functions.scss';
+@import './examples.styles.scss';
 
 /* LOCAL DESIGN TOKENS
  --------------------------------------------- */
@@ -16,665 +17,936 @@ $docs-color-blue-dark: shade($docs-color-blue, 30%);
 $docs-color-blue-light: tint($docs-color-blue, 30%);
 $docs-color-purple-dark: shade($docs-color-purple, 30%);
 $docs-color-purple-light: tint($docs-color-purple, 30%);
-$docs-color-purple-lighter: tint($docs-color-purple, 60%);
+$docs-color-purple-lighter: tint($docs-color-purple, 70%);
 
 /* BASE
  --------------------------------------------- */
-
 // Background of page
 div.rsg--root-1 {
-  background: $docs-color-white;
+    background: $docs-color-white;
 }
 
 // Main content
-main[class^="rsg--content"] {
-  display: block; /* IE11 fix */
-  padding: $space-s $space-xl;
-  overflow-x: hidden;
-  @media (max-width: #{$docs-breakpoint}) {
+main[class^='rsg--content'] {
+    display: block; /* IE11 fix */
     padding: $space-s $space-m;
-  }
+    
+    @media (min-width: #{$docs-breakpoint-lg}) {
+        padding: 0;
+    }
 }
 
-// Resetting margins for Styleguidist
-header[class^="rsg--header"] > div[class^="rsg--wrapper"],
-section > div[class^="rsg--wrapper"] + article[class^="rsg--root"],
-article[class^="rsg--root"] div[class^="rsg--root"] {
-  margin: 0 !important;
+div[class^='rsg--mainContent'] {
+    min-height: calc(100vh - 50px);
 }
 
 // Display rsg--roots as flex
-main section section > div > div[class^="rsg--root"] {
-  display: flex;
-  flex-direction: column;
+main section section > div > div[class^='rsg--root'] {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $space-xl;
+    border-bottom: 1px solid $docs-color-grey;
+
+    &:last-of-type{
+        border-bottom: 0;
+    }
 }
 
 /* TYPOGRAPHY
  --------------------------------------------- */
 
 // Link color
-div[class^="rsg--root"] a[class^="rsg--link"] {
-  color: $docs-color-blue;
-  &:hover {
-    color: $docs-color-blue-dark;
-  }
+div[class^='rsg--root'] a[class^='rsg--link'], a {
+    color: $docs-color-pink;
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:focus, &:focus-visible {
+        outline-offset: 0;
+        outline: 2px solid $docs-color-pink;
+    }
 }
 
 // Main headings
-// (includes h2 as well since in component views that’s the first heading)
-div[class^="rsg--wrapper"] > h1[class^="rsg--heading"],
-div[class^="rsg--wrapper"] > h2[class^="rsg--heading"] {
-  display: block;
-  border: 0;
-  line-height: $line-height-s;
-  padding: $space-xl $space-xl;
-  width: calc(100% + #{$space-xl * 2});
-  margin: -#{$space-s} -#{$space-xl} $space-l -#{$space-xl};
-  background: $docs-color-very-light-grey;
-  font-size: $size-xxl;
-  a:hover {
-    text-decoration: none;
-    cursor: default;
-  }
-  @media (max-width: 1300px) {
-    padding: $space-l $space-xl;
-  }
-  @media (max-width: #{$docs-breakpoint}) {
-    font-size: $size-xl / 1.2;
-    width: calc(100% + #{$space-xl});
-    padding: $space-l $space-m;
-    margin: -#{$space-s} -#{$space-m} $space-m;
-  }
+// (includes h2 as well since in component views that’s the first heading) 
+div[class^='rsg--wrapper'] > h1[class^='rsg--heading'],
+div[class^='rsg--wrapper'] > h2[class^='rsg--heading'] {
+    display: block;
+    border: 0;
+    line-height: $line-height-s;
+    width: 100%;
+    font-size: $size-xxxl;
+    font-family: $font-heading;
+    margin: 0 0 $space-xs;
+    padding: 0;
+
+    a{
+        font-weight: $weight-normal;
+        color: $docs-color-purple;
+        letter-spacing: -1px;
+
+        &:hover {
+            text-decoration: none;
+            cursor: default;
+        }
+    }
+
+    @media (max-width: #{$docs-breakpoint}) {
+        font-size: $size-xl / 1.2;
+        width: calc(100% + #{$space-xl});
+    }
 }
 
-// Remove extra margins from all headers
-header[class^="rsg--header"] {
-  margin: 0;
-}
-
-// Links inside h1
-div[class^="rsg--wrapper"] > h1[class^="rsg--heading"] a {
-  font-weight: $weight-normal;
-  color: $docs-color-purple-dark;
-  letter-spacing: -1px;
-  &:hover {
-    text-decoration: none;
-    cursor: default;
-  }
+div[class^='rsg--wrapper'] > h1[class^='rsg--heading']{
+    &.section-h1{
+        border-bottom: 1px solid $docs-color-grey;
+    }
 }
 
 // Heading, level 2
-h2[class^="rsg--heading"] {
-  border-bottom: 1px solid $docs-color-grey;
-  padding-bottom: $space-s;
-  margin: $space-l 0 $space-m;
-  font-size: $size-xl;
-  line-height: $line-height-s;
-  font-weight: $weight-normal;
-  letter-spacing: -0.5px;
-  width: 100%;
-  @media (max-width: #{$docs-breakpoint}) {
-    font-size: $size-xl / 1.3;
-  }
-  @media (max-width: #{$docs-breakpoint-small}) {
-    font-size: $size-xl / 1.6;
-  }
-  a {
-    color: $docs-color-heading;
-  }
+h2[class^='rsg--heading'] {
+    font-size: $size-xxl;
+    line-height: $line-height-s;
+    font-weight: $weight-semi-bold;
+    letter-spacing: -0.5px;
+    width: 100%;
+    margin: $space-base 0 $space-xs;
+
+    @media (max-width: #{$docs-breakpoint}) {
+        font-size: $size-xxl / 1.3;
+    }
+
+    @media (max-width: #{$docs-breakpoint-sm}) {
+        font-size: $size-xxl / 1.6;
+    }
+
+    a {
+        color: $docs-color-heading;
+    }
 }
 
 // Heading, level 3
-h3[class^="rsg--heading"],
-h3[class^="rsg--heading"] a {
-  -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: auto;
-  font-weight: $weight-light;
-  line-height: $line-height-m;
-  margin: 0 0 $space-l;
-  font-size: $size-l;
-  color: $docs-color-text;
-  @media (max-width: #{$docs-breakpoint}) {
-    font-size: $size-l / 1.2;
-    margin: 0 0 $space-m;
-  }
+h3[class^='rsg--heading'],
+h3[class^='rsg--heading'] a {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: $space-base 0 $space-xs;
+    font-size: 30px;
+    color: $docs-color-text;
+
+    @media (max-width: #{$docs-breakpoint}) {
+        font-size: $size-xl / 1.2;
+    }
 }
 
 // Heading, level 4
-h4[class^="rsg--heading"],
-h4[class^="rsg--heading"] a {
-  font-weight: $weight-semi-bold;
-  letter-spacing: 0;
-  margin: $space-l 0 $space-m;
-  font-size: $size-l;
-  line-height: $line-height-s;
-  color: $docs-color-heading;
+h4[class^='rsg--heading'],
+h4[class^='rsg--heading'] a {
+    font-weight: $weight-bold;
+    letter-spacing: 0;
+    margin: $space-base 0 $space-xs;
+    font-size: $size-l;
+    line-height: $line-height-s;
+    color: $docs-color-heading;
 }
 
 // Paragraphs
-p[class^="rsg--para"] {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: $docs-color-text;
-  margin-bottom: $space-s;
-  line-height: $line-height-m;
-  strong a[class^="rsg--link"] {
-    font-weight: $weight-semi-bold;
-  }
-  code {
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    background: tint($docs-color-grey, 75%);
-    color: shade($docs-color-silver, 20%);
-    padding: $space-xx-small;
-    border-radius: $radius-default;
-    font-size: 87.5%;
-  }
-  a {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-all;
-    word-break: break-word;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-  pre + & {
-    margin-top: $space-s;
-  }
-  img {
-    max-width: 100%;
-  }
+p[class^='rsg--para'] {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: $docs-color-grey-dark;
+    margin-bottom: $space-s;
+    line-height: $line-height-m;
+    font-size: $size-base;
+
+    strong a[class^='rsg--link'] {
+        font-weight: $weight-semi-bold;
+    }
+
+    code {
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: auto;
+        background: tint(#F3FAFA, 75%);
+        color: shade($docs-color-silver, 20%);
+        padding: $space-xx-small;
+        border-radius: $radius-default;
+        font-size: 87.5%;
+    }
+
+    a {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-all;
+        word-break: break-word;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+
+    pre + & {
+        margin-top: $space-s;
+    }
+
+    img {
+        max-width: 100%;
+    }
 }
 
 // Type layout adjustments
-div[class^="rsg--docs"],
-p[class^="rsg--para"],
-h3[class^="rsg--heading"],
-h4[class^="rsg--heading"] {
-  max-width: 800px;
-  width: 75%;
-  p[class^="rsg--para"] {
+div[class^='rsg--docs'],
+p[class^='rsg--para'],
+h3[class^='rsg--heading'],
+h4[class^='rsg--heading'] {
     width: 100%;
-  }
-  @media (max-width: 1300px) {
-    width: 100%;
-  }
+
+    @media (min-width: $docs-breakpoint-xl) {
+        width: 75%;
+    }
+}
+
+.section-components p[class^='rsg--para']{
+    @media (min-width: $docs-breakpoint-xl) {
+        width: 100%;
+    }
 }
 
 // Paragraphs inside table cells
-td[class^="rsg--cell"] p {
-  width: 100%;
+td[class^='rsg--cell'] p {
+    font-size: $size-m;
+    width: 100%;
 }
+
+td[class^='rsg--cell'] span[class^='rsg--text']{
+    font-size: $size-m;
+    color: $docs-color-grey-dark;
+}
+
+/* HEADER BAR/NAV
+ --------------------------------------------- */
+div[class^=rsg--mainContent] > header[class^='rsg--header']{
+    border-top: 10px solid $color-purple;
+    padding: $space-m $space-m;
+    margin-bottom: $space-base;
+
+    @media (min-width: #{$docs-breakpoint}) {
+        margin-bottom: 2rem;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xl}) {
+        padding: $space-m $space-xl;
+    }
+
+    div[class^='rsg--navBar'] {
+        align-items: center;
+        flex-direction: column;
+
+        @media (min-width: #{$docs-breakpoint-xl}) {
+            flex-direction: row;
+        }
+    }
+
+    nav[class^='rsg--nav'] {
+        @media (min-width: #{$docs-breakpoint-xl}) {
+            margin-left: auto;
+        }
+    }
+
+    div[class^='rsg--logo'] {
+        padding: 0;
+        border-bottom: 0;
+        line-height: 0;
+        margin-bottom: $space-base;
+
+        @media (min-width: #{$docs-breakpoint-xl}) {
+            margin-bottom: 0;
+        }
+    }
+
+    li[class^='rsg--mainMenuListItem'] {
+        margin: 0 $space-m;
+
+        &:first-of-type{
+            margin-left: 0;
+        }
+
+        &:last-of-type{
+            margin-right: 0;
+        }
+
+        a[class^='rsg--headerLink'] {
+            color: $docs-color-grey-dark;
+            cursor: pointer;
+            font-size: $font-size-lg;
+    
+            &:last-of-type{
+                margin-right: 0;
+            }
+    
+            &:hover, &:active {
+                color: $docs-color-pink;
+            }
+        }
+    }
+    
+    
+}
+
+
+
+/* SECTIONS
+ --------------------------------------------- */
+ div[class^='rsg--sections'] {
+    width: 100%;
+    order: 1;
+    padding: 0;
+    margin-bottom: $space-m;
+
+    @media (min-width: #{$docs-breakpoint-lg}) {
+        padding: 0 $space-m;
+        width: 68%;
+        order: 2;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xl}) {
+        padding-left: $space-l;
+        padding-right: $space-xl;
+        width: 65%;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xxl}) {
+        padding-left: $space-xl;
+        width: 70%;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xxxl}) {
+        width: 75%;
+    }
+}
+
+
 
 /* SIDEBAR
  --------------------------------------------- */
 
-// Sidebar logo
-div[class^="rsg--logo"] {
-  @include inset-space($space-m);
-  border-bottom: 1px solid rgba($docs-color-white, 0.1);
-  h1 {
-    color: tint($docs-color-purple, 85%);
-    font-weight: $weight-normal;
-  }
+// Sets sidebar background
+div[class^='rsg--sidebar'] {
+    background: $docs-color-white;
+    border: 0;
+    order: 2;
+    width: 100%;
+    padding: 0;
+    margin-bottom: $space-l;
+
+    @media (min-width: #{$docs-breakpoint-lg}) {
+        padding: $space-s $space-m $space-l;
+        width: 32%;
+        order: 1;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xl}) {
+        padding-left: $space-xl;
+        padding-right: $space-l;
+        width: 35%;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xxl}) {
+        padding-right: $space-xl;
+        width: 30%;
+    }
+
+    @media (min-width: #{$docs-breakpoint-xxxl}) {
+        width: 25%;
+    }
+
+    // Sidebar sub navigations
+    ul ul[class^='rsg--list'] {
+        display: none;
+        &.vueds-visible {
+            display: block;
+        }
+    }
+
+    // Sidebar list item
+    li[class^="rsg--item"] {
+        margin: 0;
+        display: block;
+    }
+
+    // Sidebar first level links
+    a[class^='rsg--link'] {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        padding: $space-xx-small $space-s;
+        border: 2px solid $docs-color-white;
+        font-weight: normal;
+        color: $docs-color-grey-dark;
+        display: block;
+        font-size: $size-base;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-decoration: none;
+
+        @media (min-width: #{$docs-breakpoint-xl}) {
+            font-size: $size-l;
+        }
+
+        &:hover, &:active {
+            color: $docs-color-pink;
+        }
+
+        &:focus{
+            outline: 0;
+            border: 2px solid $docs-color-pink;
+        }
+    }
+
+    // Sidebar active link and ancestors
+    li[class*='rsg--isSelected'],
+    .vueds-active {
+        & > ul[class^='rsg--list'] {
+            display: block;
+        }
+
+        & > a,
+        & > a:hover {
+            color: $docs-color-pink;
+        }
+    }
+
+    // Sidebar list
+    ul[class^='rsg--list'] {
+        padding-left: 0;
+
+        // Sidebar sub-list
+        ul{
+            padding-left: $space-s;
+            line-height: $line-height-s;
+
+            // Sidebar second level link
+            a[class*="rsg--link"] {
+                font-size: $size-m;
+                padding: 3px 16px;
+                font-weight: $weight-normal;
+                -webkit-font-smoothing: subpixel-antialiased;
+                -moz-osx-font-smoothing: auto;
+
+                @media (min-width: #{$docs-breakpoint-xl}) {
+                    font-size: 18px;
+                }
+            }
+
+            // Adding icon to items that are sections
+            li[class^="rsg--item"] {        
+                a[class^="rsg--link"]:after{
+                    content: "\203A";
+                    display: inline-block;
+                    padding-left: 0.25rem;
+                    font-size: 26px;
+                    line-height: 0;
+                    vertical-align: middle;
+                    margin-top: -5px;
+                }
+            }
+
+            li[class*=" vueds-active"]{
+                > a[class^="rsg--link"]:after{
+                    content: "\203A"!important;
+                } 
+            }
+        
+            li[class*=" rsg--isChild"]{
+                a[class^="rsg--link"]:after{
+                    display: none!important;
+                }
+            }
+        }
+    }
 }
 
-// Sidebar version
-p[class^="rsg--version"] {
-  @include inset-squish-space($space-xs);
-  margin: $space-xs 0 0;
-  color: $docs-color-purple-lighter;
-  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-  font-weight: $weight-normal;
-  display: inline-block;
-  line-height: $line-height-xs;
-  border: 1px solid $docs-color-purple-lighter;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: $size-xs;
-  border-radius: $radius-default;
-}
 
 // Sidebar search
-div[class^="rsg--search"] input {
-  @include inset-squish-space($space-s);
-  color: $docs-color-white;
-  border: 1px solid transparent;
-  background: shade($docs-color-purple, 35%);
-  &:focus {
-    border: 1px solid $docs-color-purple-lighter;
-    &::-webkit-textfield-decoration-container {
-      display: none !important;
-    }
-    &::-webkit-contacts-auto-fill-button {
-      display: none !important;
-    }
-  }
-  &::-webkit-input-placeholder {
-    color: rgba(mix($docs-color-white, $docs-color-purple-lighter, 50%), 0.35);
-  }
-  &:-ms-input-placeholder {
-    color: rgba(mix($docs-color-white, $docs-color-purple-lighter, 50%), 0.35);
-  }
-  &::-moz-placeholder {
-    color: rgba(mix($docs-color-white, $docs-color-purple-lighter, 50%), 0.35);
-    opacity: 1;
-  }
+div[class^='rsg--search'] {
+    padding: 0;
 }
 
-// Sets sidebar background
-div[class^="rsg--sidebar"] {
-  background: $docs-color-purple;
-  border: 0;
-  @media (max-width: #{$docs-breakpoint}) {
-    padding-bottom: $space-l;
-  }
+div[class^='rsg--search'] input {
+    color: $docs-color-purple;
+    border: 0;
+    border-radius: $radius-l;
+    background: $docs-color-light-blue;
+    margin-bottom: $space-s;
+    font-size: $size-base;
+    padding: $space-xs $space-base;
 
-  // Sidebar sub navigations
-  ul ul[class^="rsg--list"] {
-    display: none;
-    &.vueds-visible {
-      display: block;
+    &:focus {
+        border-color: $docs-color-pink;
+        box-shadow: 0 0 0 2px $docs-color-pink;
+        outline: 0;
     }
-  }
 
-  // Sidebar list item
-  li[class^="rsg--item"] {
-    margin: 0;
-    display: block;
-  }
+    &::placeholder {
+        color: $docs-color-purple;
+        font-size: $size-base;
+    }
+}
 
-  // Sidebar first level links
-  a[class^="rsg--link"] {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding: $space-xx-small $space-m;
-    font-weight: $weight-semi-bold;
+
+// Sidebar version
+p[class^='rsg--version'] {
+    @include inset-squish-space($space-xs);
+    margin: $space-xs 0 0;
     color: $docs-color-purple-lighter;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    &:hover {
-      color: tint($docs-color-purple-lighter, 30%);
-    }
-    &:active {
-      color: tint($docs-color-purple-dark, 30%);
-    }
-  }
+    font-family: $font-text;
+    font-weight: $weight-normal;
+    display: inline-block;
+    line-height: $line-height-xs;
+    border: 1px solid $docs-color-purple-lighter;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: $size-xs;
+    border-radius: $radius-default;
+}
 
-  // Sidebar active link and ancestors
-  li[class*="rsg--isSelected"],
-  .vueds-active {
-    & > ul[class^="rsg--list"] {
-      display: block;
+
+/* FOOTER
+ --------------------------------------------- */
+ footer[class^='rsg--footer'] {
+    height: 50px;
+    background-color: $docs-color-grey-dark;
+    color: $docs-color-white;
+    padding: $space-xs $space-s;
+
+    p[class^='rsg--footerText']{
+        text-align: center;
     }
-    & > a,
-    & > a:hover {
-      color: tint($docs-color-purple-lighter, 80%);
-    }
-  }
-
-  // Sidebar list
-  ul[class^="rsg--list"] {
-    padding-left: 0;
-
-    // Sidebar sub-list
-    ul {
-      padding-left: $space-s;
-      line-height: $line-height-s;
-      @media (max-width: #{$docs-breakpoint-small}) {
-        padding: 0 0 0 $space-l;
-        width: 90%;
-
-        // Sidebar sub-list item
-        li {
-          display: inline;
-          line-height: $line-height-m;
-        }
-      }
-
-      // Sidebar second level link
-      a[class*="rsg--link"] {
-        font-size: $size-s;
-        font-weight: $weight-normal;
-        -webkit-font-smoothing: subpixel-antialiased;
-        -moz-osx-font-smoothing: auto;
-        @media (max-width: #{$docs-breakpoint-small}) {
-          float: left;
-          padding: 0 $space-xs 0 0;
-        }
-      }
-    }
-  }
+    
 }
 
 /* CODE & COMPONENT PREVIEWS
  --------------------------------------------- */
+.section-components{
+    div[class^='rsg--controls']{
+        display: block;
+        margin-bottom: 0;
+    }
+
+    div[class^='rsg--tabs']{
+        border: 1px solid tint($docs-color-grey-med, 40%);
+        border-top: 0;
+
+        div[class^='rsg--tabButtons']{
+            margin-bottom: 0;
+
+            button[class^='rsg--button']{
+                border: 0;
+            }
+        }
+
+        div[class^='rsg--tabBody'] > div{
+            border-top: 1px solid tint($docs-color-grey-med, 80%);
+            padding: 40px;
+
+            table[class^=rsg--table]:last-child{
+                margin-bottom: 0;
+            }
+        }
+        
+    }
+
+    button[class^='rsg--button']{
+        position: relative;
+        text-transform: none;
+        width: 100%;
+        padding: 12px 40px;
+        font-size: 20px;
+        color: $docs-color-pink;
+        border: 1px solid tint($docs-color-grey-med, 40%);
+        border-bottom: 1px solid tint($docs-color-grey-med, 80%);
+        border-top: 0;
+        font-weight: 700;
+
+        &:hover {
+            color: $docs-color-pink; 
+        }
+
+        &:focus {
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem #7edddc inset;
+        }
+
+        &:after {
+            content: '';
+            background-image: url(../images/chevron-down.png);
+            width: 20px;
+            height: 12px;
+            display: block;
+            position: absolute;
+            right: 40px;
+            top: 40%;
+            transition: all .2s;
+        }
+    }
+    button[class*='rsg--isActive']{
+        &:after{
+            transform: rotate(-180deg);
+        }
+    }
+
+    .vds-example{
+        div[class^='rsg--root']{
+            margin-bottom: 0;
+        }
+    }
+}
 
 // Previews of the components
-div[class^="rsg--preview"] {
-  padding: $space-l / 1.2;
-  background-color: tint($docs-color-grey, 90%);
-  border: 1px solid tint($docs-color-grey, 50%);
-  box-shadow: inset 0 0 $space-xs rgba($docs-color-rich-black, 0.05);
-  margin: $space-s 0 0;
-  border-radius: 0;
-  display: block;
-  width: 100%;
-  border-top-left-radius: $radius-default;
-  border-top-right-radius: $radius-default;
+div[class^='rsg--preview'] {
+    padding: $space-l / 1.2;
+    background-color: $docs-color-white;
+    border: 1px solid tint($docs-color-grey-med, 40%);
+    border-bottom: 1px solid tint($docs-color-grey-med, 80%);
+    margin: $space-s 0 0;
+    border-radius: 0;
+    display: block;
+    width: 100%;
 }
 
 // If you edit the component categories, you have to edit
 // these to match as well.
-div[data-preview="Elements"],
-div[data-preview="Patterns"],
-div[data-preview="Templates"] {
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-  border: 0;
+div[data-preview='Elements'],
+div[data-preview='Patterns'],
+div[data-preview='Templates'] {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    border: 0;
 
-  // This hides code previews from the above examples
-  & + div + div[class^="rsg--tab"] {
-    display: none !important;
-  }
+    // This hides code previews from the above examples
+    & + div + div[class^='rsg--tab'] {
+        display: none !important;
+    }
 }
 
 // Clearfix to take care of floated content inside previews
 div[data-preview]:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: '';
+    display: table;
+    clear: both;
 }
 
 // Code tabs and table
-div[class^="rsg--tabs"],
-table[class^="rsg--table"] {
-  margin-bottom: $space-s;
-  overflow-x: auto;
+div[class^='rsg--tabs'],
+table[class^='rsg--table'] {
+    margin-bottom: $space-xl;
+    overflow-x: auto;
 }
-thead[class^="rsg--tableHead"] {
-  border: 0;
+thead[class^='rsg--tableHead'] {
+    border: 0;
 }
 
 // Codemirror and markdown code blocks
-pre[class^="rsg--pre"],
-.vueds-html.cm-s-night.CodeMirror,
+pre[class^='rsg--pre'],
+.vueds-html.cm-s-base16-light.CodeMirror,
 .react-codemirror2 .CodeMirror.CodeMirror {
-  background: mix($docs-color-blue, $docs-color-rich-black, 10%);
-  border-bottom-left-radius: $radius-default;
-  border-bottom-right-radius: $radius-default;
-  box-sizing: border-box;
-  -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: auto;
-  height: auto;
-  border: 0;
-  font-family: Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: $size-s;
-  margin: 0;
-  min-height: $space-xxl / 1.5;
-  margin-bottom: $space-m;
-  color: $docs-color-white;
-  padding: $space-m;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  word-break: normal;
-  .CodeMirror-scroll,
-  .CodeMirror-vscrollbar {
-    overflow: hidden;
-  }
-  code {
-    color: $docs-color-white;
-  }
+    background: #f9f9f9;
+    box-sizing: border-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    height: auto;
+    border: 1px solid tint($docs-color-grey-med, 40%);
+    border-top:0;
+    border-bottom: 1px solid tint($docs-color-grey-med, 80%);
+    font-family: Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: $size-s;
+    margin: 0;
+    min-height: $space-xxl / 1.5;
+    color: $docs-color-grey-dark;
+    padding: $space-m;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: normal;
+
+    .CodeMirror-scroll,
+    .CodeMirror-vscrollbar {
+        overflow: hidden;
+    }
+
+    code {
+        color: $docs-color-grey-dark;
+    }
 }
 
 // HTML preview needs some padding adjustments to match Styleguidist
-.vueds-html.cm-s-night.CodeMirror {
-  padding-left: $space-m - 4px;
+.vueds-html.cm-s-base16-light.CodeMirror {
+    padding-left: $space-m - 4px;
 }
 
 // VUE & HTML Code tabs
-div[class^="rsg--tab"] {
-  position: relative;
-  .vueds-tabs {
-    z-index: 5;
-    border-radius: $radius-default;
-    box-shadow: 0 2px 8px rgba($docs-color-rich-black, 0.8);
-    overflow: hidden;
-    position: absolute;
-    top: $space-m;
-    right: $space-m;
-    .vueds-tab {
-      border: 0;
-      margin: 0;
-      letter-spacing: $spacing-l;
-      font-size: $size-s;
-      font-weight: $weight-normal;
-      font-family: $font-text;
-      line-height: $line-height-s;
-      @include inset-squish-space($space-s);
-      cursor: pointer;
-      background: mix($docs-color-blue, $docs-color-rich-black, 50%);
-      color: $docs-color-white;
-      &:active {
-        background: mix($docs-color-blue, $docs-color-rich-black, 45%);
-      }
-      &:focus {
-        outline: none;
-      }
-      &--active {
-        background: mix($docs-color-blue, $docs-color-rich-black, 40%);
-        box-shadow: inset 0 2px 8px rgba($docs-color-rich-black, 0.2);
-      }
+div[class^='rsg--tab'] {
+    position: relative;
+
+    .vueds-tabs {
+        z-index: 5;
+        border-radius: $radius-default;
+        overflow: hidden;
+        position: absolute;
+        top: $space-m;
+        right: $space-m;
+
+        .vueds-tab {
+            border: 0;
+            margin: 0;
+            letter-spacing: $spacing-l;
+            font-size: $size-s;
+            font-weight: $weight-normal;
+            font-family: $font-text;
+            line-height: $line-height-s;
+            @include inset-squish-space($space-s);
+            cursor: pointer;
+            background: $docs-color-purple;
+            color: $docs-color-white;
+            
+            &:active, &--active {
+                background: mix($docs-color-purple, $docs-color-rich-black, 80%);
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            &--active {
+                box-shadow: inset 0 2px 8px rgba($docs-color-rich-black, 0.2);
+            }
+        }
     }
-  }
 }
 
 // Hidden HTML/VUE code preview
 .vueds-hidden {
-  opacity: 0;
-  visibility: hidden;
-  z-index: -1;
-  top: -10000px;
-  left: 0;
-  position: absolute !important;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+    z-index: -1;
+    top: -10000px;
+    left: 0;
+    position: absolute !important;
 }
 
 // Fixes a few layout bugs with CodeMirror
 .CodeMirror-scroll.CodeMirror-scroll {
-  overflow: hidden !important;
+    overflow: hidden !important;
 }
 
 // Code highlighting for both CodeMirror and Markdown files
 .hljs-variable,
 .hljs-selector-class,
-.cm-s-night span.cm-variable,
-.cm-s-night span.cm-variable-2,
-.cm-s-night span.cm-bracket,
-.cm-s-night span.cm-tag,
+.cm-s-base16-light span.cm-variable,
+.cm-s-base16-light span.cm-variable-2,
+.cm-s-base16-light span.cm-bracket,
+.cm-s-base16-light span.cm-tag,
 .hljs-tag,
 .hljs-name {
-  color: $docs-color-blue-light !important;
+    color: $docs-code-blue!important;
 }
 .hljs-attribute,
 .hljs-keyword,
 .hljs-attr,
-.cm-s-night span.cm-operator,
-.cm-s-night span.cm-number,
-.cm-s-night span.cm-attribute {
-  color: $docs-color-gold-light !important;
+.cm-s-base16-light span.cm-operator,
+.cm-s-base16-light span.cm-number,
+.cm-s-base16-light span.cm-attribute {
+    color:  $docs-code-red!important;
 }
-.cm-s-night span.cm-string,
+.cm-s-base16-light span.cm-string,
 .hljs-string {
-  color: lighten($docs-status-ready, 20%) !important;
+    color: $docs-code-pink!important;
 }
 
 // Code highlighting elsewhere
-span[class^="rsg--type"],
-code[class^="rsg--code"] {
-  color: $docs-color-silver;
+span[class^='rsg--type'],
+code[class^='rsg--code'],
+code[class^='rsg--name'], 
+code.name{
+    font-size: $size-s;
 }
-span[class^="rsg--name"] code[class^="rsg--code"],
+
+span[class^='rsg--type'],
+code[class^='rsg--code'] {
+    color: $docs-color-grey-dark;
+}
+
+code[class^='rsg--name'], 
 code.name {
-  font-weight: $weight-bold;
-  color: shade($docs-color-silver, 50%);
+    color: $docs-code-red;
 }
-span[class^="rsg--type"] code[class^="rsg--code"],
+
+span[class^='rsg--type']{
+    color: $docs-color-grey-med;
+}
+
+
+span[class^='rsg--type'] code[class^='rsg--code'],
 code.type {
-  background: tint($docs-color-grey, 75%);
-  color: shade($docs-color-silver, 20%);
-  padding: $space-xx-small;
-  border-radius: $radius-default;
+    background: tint($docs-color-grey, 75%);
+    color: shade($docs-color-silver, 20%);
+    padding: $space-xx-small;
+    border-radius: $radius-default;
 }
+
 
 /* COMPONENT STATUS LABELS
  --------------------------------------------- */
 
 // Here we’re setting a custom order for Styleguidist’s pieces
-header[class^="rsg--header"] {
-  order: 2;
+header[class^='rsg--header'] {
+    margin-bottom: 0;
+    order: 2;
 }
-div[class^="rsg--docs"],
-article[class^="rsg--root"],
-button[class^="rsg--button"] {
-  order: 3;
+div[class^='rsg--docs'],
+article[class^='rsg--root'],
+button[class^='rsg--button'] {
+    order: 3;
 }
-div[class^="rsg--root"] div[class^="rsg--tabs"] {
-  order: 4;
+div[class^='rsg--root'] div[class^='rsg--tabs'] {
+    order: 4;
 }
 
 // Status label is shown in top right corner for each component
 .status {
-  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
-  font-weight: $weight-normal;
-  order: 1;
-  align-self: flex-end;
-  cursor: help;
-  line-height: $line-height-xs;
-  background: tint($docs-color-grey, 50%);
-  padding: $space-xs $space-s $space-xs/1.2;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: $size-xs;
-  border-radius: $radius-default;
-  color: $docs-color-rich-black;
-  position: absolute;
-  right: $space-xl;
-  top: $space-xl * 1.2;
-  z-index: 2;
-  @media (max-width: 1300px) {
-    top: $space-xl;
-  }
-  @media (max-width: #{$docs-breakpoint}) {
-    top: $space-l * 1.2;
-    right: $space-m;
-  }
-  &-ready {
-    background: $docs-status-ready;
-    color: $docs-color-white;
-  }
-  &-review,
-  &-under-review {
-    background: $docs-color-gold;
+    font-family: $font-text;
+    font-weight: $weight-normal;
+    order: 1;
+    align-self: flex-end;
+    cursor: help;
+    line-height: $line-height-xs;
+    background: tint($docs-color-grey, 50%);
+    padding: $space-xs $space-s $space-xs/1.2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: $size-xs;
+    border-radius: $radius-default;
     color: $docs-color-rich-black;
-  }
-  &-prototype {
-    background: $docs-color-blue;
-    color: $docs-color-white;
-  }
-  &-deprecated {
-    background: $docs-color-vermilion;
-    color: $docs-color-white;
-  }
+    position: absolute;
+    right: $space-xl;
+    top: $space-xl * 1.2;
+    z-index: 2;
+    @media (max-width: 1300px) {
+        top: $space-xl;
+    }
+    @media (max-width: #{$docs-breakpoint}) {
+        top: $space-l * 1.2;
+        right: $space-m;
+    }
+    &-ready {
+        background: $docs-status-ready;
+        color: $docs-color-white;
+    }
+    &-review,
+    &-under-review {
+        background: $docs-color-gold;
+        color: $docs-color-rich-black;
+    }
+    &-prototype {
+        background: $docs-color-blue;
+        color: $docs-color-white;
+    }
+    &-deprecated {
+        background: $docs-color-vermilion;
+        color: $docs-color-white;
+    }
 }
 
 /* TABLES
  --------------------------------------------- */
 
 // Global tr setting so that vueds custom components use this as well
-tr {
-  transition: background-color 0.1s ease;
-  &:hover {
-    background: rgba($docs-color-cloud, 0.3);
-  }
-}
+table[class^='rsg--table'] {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    margin-bottom: $space-l;
 
-table[class^="rsg--table"] {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  th {
-    padding: $space-s $space-l $space-s $space-s;
-    font-size: $size-s;
-    font-weight: $weight-semi-bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 0;
-    background: $docs-color-cloud;
-    color: tint($docs-color-oxford-blue, 10%);
-    text-align: left;
-  }
-  th[class^="rsg--cellHeading"],
-  td {
-    padding: $space-s $space-l $space-s $space-s;
-    background: transparent;
-  }
-  td {
-    font-size: $size-s;
-    padding: $space-s $space-l $space-s $space-s;
-    &:first-child {
-      font-weight: $weight-bold;
-      white-space: nowrap;
+    @media (max-width: $docs-breakpoint-lg) {
+        overflow-x: auto;
     }
-  }
-  tr {
-    border-bottom: 1px solid tint($docs-color-grey, 50%);
-  }
-  tbody tr:last-child {
-    border-bottom: 0;
-  }
+
+    thead {
+        th {
+            padding: 14px $space-s;
+            background: $docs-color-purple;
+            font-size: $size-m;
+            color: $docs-color-white;
+            font-weight: $weight-semi-bold;
+            text-align: left;
+            line-height: 1;
+            // Chrome has a bug related to thead, this only works on th:
+            position: -webkit-sticky;
+            position: sticky;
+            top: -1px;
+
+            &:first-child {
+                border-top-left-radius: $radius-m;
+            }
+
+            &:last-child {
+                border-top-right-radius: $radius-m;
+            }
+        }
+    }
+
+    tbody{
+        td {
+            font-size: $size-m;
+            padding: $space-xs $space-s;
+
+            &:first-child {
+                white-space: nowrap;
+            }
+
+            &[class^='rsg--cell']:last-child{
+                padding-right: 16px;
+            }
+            
+        }
+
+        tr{
+            &:nth-of-type(even){
+                background: $docs-color-very-light-blue;
+            }
+        }
+    }
 }
 
-thead[class^="rsg--thead"] {
-  th:first-child {
-    border-top-left-radius: $radius-default;
-    border-bottom-left-radius: $radius-default;
-  }
-  th:last-child {
-    border-top-right-radius: $radius-default;
-    border-bottom-right-radius: $radius-default;
-  }
-}
+
+
 
 /* CHILD COMPONENT LIST */
-
 .child-component-list {
-  margin: 4px 0 12px;
-  span {
-    @extend .status;
-    position: relative;
-    right: auto;
-    top: auto;
-    cursor: pointer;
-    color: $docs-color-white;
-    background: $docs-color-oxford-blue;
-    display: inline-block;
-    margin: 4px 6px 4px 0;
-    text-transform: initial;
-  }
+    margin: $space-xx-small 0 $space-l;
+
+    span {
+        @extend .status;
+        position: relative;
+        font-size: 12px;
+        right: auto;
+        top: auto;
+        cursor: pointer;
+        color: $docs-color-white;
+        background: $docs-color-purple;
+        display: inline-block;
+        margin: $space-xx-small 6px $space-xx-small 0;
+        text-transform: initial;
+    }
 }
 
 /* HIDDEN STYLEGUIDIST FUNCTIONALITY
  --------------------------------------------- */
 
-div[class^="rsg--tabButtons"],
-div[class^="rsg--controls"],
-div[class^="rsg--pathline"],
-footer[class^="rsg--footer"],
-div[class^="rsg--toolbar"] {
-  display: none !important;
+div[class^='rsg--pathline'],
+div[class^='rsg--toolbar'] {
+    display: none !important;
 }
 
 /* HIDDEN FUNCTIONALITY
@@ -683,23 +955,56 @@ div[class^="rsg--toolbar"] {
 // Hide private components
 .hide-private,
 .hide-private + div,
-a[href="#private-components"],
-a[href="#private-components"] + ul {
-  display: none !important;
+a[href='#private-components'],
+a[href='#private-components'] + ul {
+    display: none !important;
 }
 
 // Hide Private components and placeholder sections
-ul a[href*="/#/Getting%20Started/Components"],
-ul a[href*="/#/Design%20Tokens/Color"],
-ul a[href*="/#/Design%20Tokens/Spacing"],
-ul a[href*="/#/Design%20Tokens/FontSize"],
-ul a[href*="/#/Design%20Tokens/All"],
-ul a[href*="/#/Private%20Components"],
-ul a[href*="/#/Getting Started/Components"],
-ul a[href*="/#/Design Tokens/Color"],
-ul a[href*="/#/Design Tokens/Spacing"],
-ul a[href*="/#/Design Tokens/FontSize"],
-ul a[href*="/#/Design Tokens/All"],
-ul a[href*="/#/Private Components"] {
-  display: none !important;
+ul a[href*='/#/Getting%20Started/Components'],
+ul a[href*='/#/Design%20Tokens/Color'],
+ul a[href*='/#/Design%20Tokens/Spacing'],
+ul a[href*='/#/Design%20Tokens/FontSize'],
+ul a[href*='/#/Design%20Tokens/All'],
+ul a[href*='/#/Private%20Components'],
+ul a[href*='/#/Getting Started/Components'],
+ul a[href*='/#/Design Tokens/Color'],
+ul a[href*='/#/Design Tokens/Spacing'],
+ul a[href*='/#/Design Tokens/FontSize'],
+ul a[href*='/#/Design Tokens/All'],
+ul a[href*='/#/Private Components'] {
+    display: none !important;
+}
+
+
+/* SCREENSHOT MODE
+/* While regression tests are running the screen needs to be set up in such
+/* a way that the full screen component occupies the actual html scroll bar
+ --------------------------------------------- */
+
+.vds-screenshot-mode {
+    .vds-example-full-screen {
+        position: relative;
+        overflow: hidden;
+    }
+
+    div[class^='rsg--sidebar'] {
+        display: none;
+    }
+
+    main[class^='rsg--content'] {
+        padding: 0;
+    }
+
+    div[class^='rsg--root'] {
+        padding-left: 0;
+    }
+
+    div[class^='rsg--docs'] {
+        display: none;
+    }
+
+    div[class^='rsg--tabs'] {
+        display: none;
+    }
 }

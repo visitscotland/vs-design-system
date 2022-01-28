@@ -1,46 +1,53 @@
 <template>
-    <b-container tag="div" v-bind="$attrs"><slot /></b-container>
+    <BContainer
+        tag="div"
+        v-bind="$attrs"
+    >
+        <!-- @slot Default slot for container content -->
+        <slot />
+    </BContainer>
 </template>
 
 <script>
-import { BContainer } from "bootstrap-vue"
+import { BContainer } from 'bootstrap-vue';
 /**
- * Containers are the primary structural element used to organise page content. Our containers utilise
+ * Containers are the primary structural element used to
+ * organise page content. Our containers utilise
  * <a href="https://bootstrap-vue.js.org/docs/components/layout">Bootstrap Vue's b-container component</a>,
  * and can be fixed (default) or fluid.
+ *
+ * @displayName Container
  */
 
 export default {
-    name: "VsContainer",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsContainer',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         BContainer,
     },
-}
+};
 </script>
-
-<style lang="scss" scoped>
-@import "~bootstrap/scss/grid";
-</style>
 
 <docs>
   ```jsx
-    <div>
-      <vs-container style="background:#ccc">
-        <vs-row>
-          <vs-col>This is a fixed-width container</vs-col>
-        </vs-row>
-      </vs-container>
-      <br />
-      <vs-container fluid style="background:#ccc">
-        <vs-row>
-          <vs-col>This is a fluid container</vs-col>
-        </vs-row>
-      </vs-container>
-      <br />
-      *Note: the fixed width container appears fluid here because it is inside a parent element that is not full-page width.
-    </div>
+        <VsContainer fluid style="background:#eeeeee; padding: 12px"  class="mb-6">
+            <VsRow>
+                <VsCol>This is a fluid container</VsCol>
+            </VsRow>
+        </VsContainer>
 
+        <VsContainer style="background:#eeeeee; padding: 12px">
+            <VsRow>
+                <VsCol cols="12">
+                    This is a fixed-width container
+                </VsCol>
+                <VsCol cols="12">
+                    <p class="mt-6" style="font-size: 1rem;">
+                        Note: Enter full width view to see the difference between both containers.
+                    </p>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
   ```
 </docs>
