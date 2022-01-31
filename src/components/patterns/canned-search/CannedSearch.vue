@@ -172,10 +172,10 @@
                 class="vs-canned-search__credit-container"
             >
                 <!--
-                    @slot Holds credit info for search data from third parties
+                @slot Holds credit info for search data from third parties
 
-                    Expects html
-                -->
+                Expects html
+            -->
                 <slot
                     name="vsCannedSearchCredit"
                 />
@@ -338,7 +338,6 @@ export default {
             if (this.searchType === 'tour') {
                 return this.fetchCategoryStrings(product);
             }
-
             return this.fetchAddress(product);
         },
         /**
@@ -348,7 +347,6 @@ export default {
             if (product.category && product.category.length) {
                 return product.category.map((item) => item.name).join(', ');
             }
-
             return '';
         },
         /**
@@ -365,7 +363,6 @@ export default {
             if (!product.address) {
                 return '';
             }
-
             if (this.searchType === 'even') {
                 return `${product.eventVenue}, ${product.address.city}`;
             }
@@ -381,11 +378,9 @@ export default {
                     if (product.category[0]) {
                         return product.category[0].name;
                     }
-
                     return null;
                 }
             }
-
             return null;
         },
         /**
@@ -398,7 +393,6 @@ export default {
                     return product.tourVehicles.map((item) => item.name);
                 }
             }
-
             return null;
         },
         /**
@@ -449,80 +443,83 @@ export default {
 <docs>
 ```jsx
 
-    <VsCannedSearch
-        apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
         heading="B&Bs, guesthouses and hostels in Loch Lomond and The Trossachs national park"
-    >
+        >
         <template slot="vsCannedSearchIntro">
             <p>Find your perfect place to stay</p>
         </template>
-        <template slot="vsCannedSearchButtons">
-            <VsButton
-                href="https://www.visitscotland.com"
-            >
-                View All B&Bs
-            </VsButton>
-        </template>
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All B&Bs
+                </VsButton>
+            </template>
 
-        <template slot="vsCannedSearchOf">
-            Of
-        </template>
-    </VsCannedSearch>
-    <VsCannedSearch
-        apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
-        searchType="even"
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
+        </VsCannedSearch>
+
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
+            searchType="even"
         heading="An events search example"
-    >
-        <template slot="vsCannedSearchButtons">
-            <VsButton
-                href="https://www.visitscotland.com"
-            >
-                View All Events
-            </VsButton>
-        </template>
+        >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All Events
+                </VsButton>
+            </template>
 
         <template slot="vsCannedSearchCredit">
             These are some credits for a third party search
         </template>
 
-        <template slot="vsCannedSearchOf">
-            Of
-        </template>
-    </VsCannedSearch>
-    <VsCannedSearch
-        apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
-        searchType="cate"
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
+        </VsCannedSearch>
+
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
+            searchType="cate"
         heading="A food & drink search example"
-    >
-        <template slot="vsCannedSearchButtons">
-            <VsButton
-                href="https://www.visitscotland.com"
-            >
-                View All Food & Drink
-            </VsButton>
-        </template>
+        >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All Food & Drink
+                </VsButton>
+            </template>
 
-        <template slot="vsCannedSearchOf">
-            Of
-        </template>
-    </VsCannedSearch>
-    <VsCannedSearch
-        apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
-        searchType="acti"
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
+        </VsCannedSearch>
+
+        <VsCannedSearch
+            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
+            searchType="acti"
         heading="A things to do example"
-    >
-        <template slot="vsCannedSearchButtons">
-            <VsButton
-                href="https://www.visitscotland.com"
-            >
-                View All
-            </VsButton>
-        </template>
+        >
+            <template slot="vsCannedSearchButtons">
+                <VsButton
+                    href="https://www.visitscotland.com"
+                >
+                    View All
+                </VsButton>
+            </template>
 
-        <template slot="vsCannedSearchOf">
-            Of
-        </template>
-    </VsCannedSearch>
+            <template slot="vsCannedSearchOf">
+                Of
+            </template>
+        </VsCannedSearch>
     <VsCannedSearch
         apiUrl="http://172.28.81.65:8089/data/component/cannedsearchtours?find%5B%5D=attractions%7Caberdeen%7CAberdeen&locale=en-GB"
         searchType="tour"
@@ -535,7 +532,6 @@ export default {
                 View All
             </VsButton>
         </template>
-
         <template slot="vsCannedSearchOf">
             Of
         </template>

@@ -248,7 +248,6 @@ export default {
                 >
                     Play
                 </VsButton>
-
                 <VsButton
                     @click.native="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
                     @keydown="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
@@ -265,6 +264,7 @@ export default {
                 </VsButton>
 
                 <VsButton
+
                     @click.native="$root.$emit('video-controls', 'pause', 'dKI8IEnqvbU')"
                     @keydown="$root.$emit('video-controls', 'pause', 'dKI8IEnqvbU')"
                 >
