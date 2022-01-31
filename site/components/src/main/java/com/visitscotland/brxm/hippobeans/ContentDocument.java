@@ -42,4 +42,9 @@ public class ContentDocument extends BaseDocument {
     public String getTranslationPriority() {
         return getSingleProperty("visitscotland:translationPriority");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
+    public Calendar getTranslationDeadline() {
+        return getSingleProperty("visitscotland:translationDeadline");
+    }
 }

@@ -1,13 +1,12 @@
 package com.visitscotland.brxm.report.translation;
 
-import java.util.List;
 import java.util.Set;
 
 public class DocumentTranslationReportModel {
     public DocumentTranslationReportModel(String handleId, String displayName, String translationStatus,
                                           TranslationPriority translationPriority, Set<String> translatedLocales,
                                           Set<String> sentForTranslationLocales, String type, String lastModified, String lastModifiedBy,
-                                          PublishStatus publishStatus) {
+                                          PublishStatus publishStatus, String translationDeadline) {
         this.handleId = handleId;
         this.displayName = displayName;
         this.translatedLocales = translatedLocales;
@@ -18,6 +17,7 @@ public class DocumentTranslationReportModel {
         this.lastModified = lastModified;
         this.lastModifiedBy = lastModifiedBy;
         this.publishStatus = publishStatus;
+        this.translationDeadline = translationDeadline;
     }
 
 
@@ -31,6 +31,7 @@ public class DocumentTranslationReportModel {
     private final String lastModified;
     private final String lastModifiedBy;
     private final PublishStatus publishStatus;
+    private final String translationDeadline;
 
     public String getDisplayName() {
         return displayName;
@@ -71,4 +72,9 @@ public class DocumentTranslationReportModel {
     public PublishStatus getPublishStatus() {
         return publishStatus;
     }
+
+    public String getTranslationDeadline() {
+        return translationDeadline;
+    }
+
 }

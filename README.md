@@ -29,7 +29,7 @@ Unix Based Console
 
 or
 
-    mvn clean verify -P\!fed-build -DskipTests &&mvn -P cargo.run
+    mvn clean verify -P !fed-build -DskipTests && mvn -P cargo.run
 
     
 ### SpringBoot Actuators

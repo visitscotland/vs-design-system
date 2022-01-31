@@ -24,7 +24,7 @@ definitions:
             hipposysedit:path: visitscotland:heroImage
             hipposysedit:primary: false
             hipposysedit:type: hippogallerypicker:imagelink
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:image-validator']
           /seoTitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false

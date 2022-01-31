@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.translation.plugin;
 
+import com.visitscotland.brxm.report.translation.TranslationPriority;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.HippoStdPubWfNodeType;
@@ -13,10 +14,7 @@ import org.hippoecm.repository.util.JcrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
+import javax.jcr.*;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.*;
@@ -139,6 +137,12 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             // If the document has Translatable children (hippo:mirror) we need to attempt to change
             // the links to point to the relevant translated child
             translateHippoMirrors(copiedVariant, language);
+
+            // When document is cloned, immediately send it for translation
+            if (copiedVariant.getProperty(JcrDocument.HIPPOSTD_STATE).getString().equals(JcrDocument.VARIANT_UNPUBLISHED)) {
+                copiedVariant.setProperty(JcrDocument.VS_TRANSLATION_FLAG, true);
+                copiedVariant.setProperty(JcrDocument.VS_TRANSLATION_DIFF, "");
+            }
         }
 
         return newDocumentHandle;
@@ -289,6 +293,28 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
         rootSession.refresh(false);
     }
 
+    @Override
+    public void setTranslationPriority(TranslationPriority priority) throws RepositoryException, RemoteException {
+        rootSubject.setProperty(JcrDocument.VS_TRANSLATION_PRIORITY, priority.toString());
+        saveSession();
+    }
+
+    @Override
+    public void clearTranslationFlag() throws RepositoryException, RemoteException {
+        rootSubject.setProperty(JcrDocument.VS_TRANSLATION_FLAG, false);
+        if (rootSubject.hasProperty(JcrDocument.VS_TRANSLATION_DIFF)) {
+            Property diffProperty = rootSubject.getProperty(JcrDocument.VS_TRANSLATION_DIFF);
+            diffProperty.remove();
+        }
+        saveSession();
+    }
+
+    @Override
+    public void setTranslationDeadline(Calendar deadline) throws RepositoryException, RemoteException {
+        rootSubject.setProperty(JcrDocument.VS_TRANSLATION_DEADLINE, deadline);
+        saveSession();
+    }
+
     public Map<String, Serializable> hints() throws WorkflowException, RepositoryException {
         Map<String, Serializable> hints = new TreeMap<>();
 
@@ -341,6 +367,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             }
         }
 
+        hints.put("setTranslationPriority", Boolean.FALSE);
         hints.put("available", (Serializable) available);
         hints.put("locale", translatedNode.getLocale());
         return hints;

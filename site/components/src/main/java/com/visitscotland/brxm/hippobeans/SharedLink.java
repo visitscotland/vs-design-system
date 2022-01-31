@@ -5,6 +5,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import java.util.List;
+import java.util.Calendar;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:SharedLink")
 @Node(jcrType = "visitscotland:SharedLink")
@@ -53,5 +54,10 @@ public class SharedLink extends BaseDocument implements Linkable {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
     public String getTranslationPriority() {
         return getSingleProperty("visitscotland:translationPriority");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
+    public Calendar getTranslationDeadline() {
+        return getSingleProperty("visitscotland:translationDeadline");
     }
 }
