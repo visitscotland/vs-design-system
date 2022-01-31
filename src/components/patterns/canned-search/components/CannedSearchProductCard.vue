@@ -318,6 +318,7 @@ export default {
             a {
                 letter-spacing: inherit;
             }
+
         }
 
         .vs-product-card__description {

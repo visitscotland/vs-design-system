@@ -7,7 +7,6 @@
                 lg="3"
             >
                 <VsFooterAccordionItem
-                    :open-by-default="false"
                     title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
@@ -57,7 +56,6 @@
                 lg="3"
             >
                 <VsFooterAccordionItem
-                    :open-by-default="false"
                     title="Get in touch"
                     variant="dark"
                     control-id="footer_accordion_item_2"
@@ -106,7 +104,6 @@
                 lg="3"
             >
                 <VsFooterAccordionItem
-                    :open-by-default="false"
                     title="Our other sites"
                     variant="dark"
                     control-id="footer_accordion_item_3"
