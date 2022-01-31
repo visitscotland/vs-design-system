@@ -18,10 +18,10 @@
             -->
             <slot name="vsCannedSearchIntro" />
         </template>
-    <div
-        class="vs-canned-search"
-        data-test="vs-canned-search"
-    >
+        <div
+            class="vs-canned-search"
+            data-test="vs-canned-search"
+        >
             <VsContainer>
                 <VsRow>
                     <VsCol
@@ -47,22 +47,22 @@
                 slides-md="2"
                 slides-lg="3"
                 v-if="products.length"
-        >
-            <VsCannedSearchProductCard
-                v-for="(prod, index) in products"
-                :key="index"
-                :slide-index="'' + index"
-                :img-src="prod.images ? prod.images[0].mediaUrl : ''"
-                :img-alt="prod.name"
-                :title="prod.name"
-                :detail-link="{
+            >
+                <VsCannedSearchProductCard
+                    v-for="(prod, index) in products"
+                    :key="index"
+                    :slide-index="'' + index"
+                    :img-src="prod.images ? prod.images[0].mediaUrl : ''"
+                    :img-alt="prod.name"
+                    :title="prod.name"
+                    :detail-link="{
                         link: prod.productLink.link,
                         label: prod.productLink.label,
                         type: prod.productLink.type.toLowerCase()
-                }"
-                :description="prod.description"
-                :search-type="searchType"
-            >
+                    }"
+                    :description="prod.description"
+                    :search-type="searchType"
+                >
                     <div
                         v-if="searchType === 'tour'"
                         slot="vsCannedSearchTourInfo"
@@ -87,60 +87,60 @@
                         :sub-heading="fetchSubHeading(prod)"
                         :line-limit="searchType === 'tour' ? 1 : 2"
                     />
-                <VsCannedSearchStars
-                    v-if="prod.grading"
-                    slot="vsCannedSearchStarRating"
-                    :min="prod.grading.minStars"
-                    :max="prod.grading.maxStars"
-                    :gold="prod.grading.gold"
-                />
-                <VsCannedSearchCategories
-                    slot="vsCannedSearchCategories"
-                    v-if="prod.locations"
-                    :categories="prod.locations"
-                />
-                <VsCannedSearchLogos
-                    slot="vsCannedSearchLogos"
-                    v-if="showLogos"
-                    :good-to-go-logo="prod.covidInformation && prod.covidInformation.goodToGo ?
-                        prod.covidInformation.goodToGo : null"
+                    <VsCannedSearchStars
+                        v-if="prod.grading"
+                        slot="vsCannedSearchStarRating"
+                        :min="prod.grading.minStars"
+                        :max="prod.grading.maxStars"
+                        :gold="prod.grading.gold"
+                    />
+                    <VsCannedSearchCategories
+                        slot="vsCannedSearchCategories"
+                        v-if="prod.locations"
+                        :categories="prod.locations"
+                    />
+                    <VsCannedSearchLogos
+                        slot="vsCannedSearchLogos"
+                        v-if="showLogos"
+                        :good-to-go-logo="prod.covidInformation && prod.covidInformation.goodToGo ?
+                            prod.covidInformation.goodToGo : null"
                         :safe-travels-logo="prod.covidInformation &&
                             prod.covidInformation.safeTravels ?
                                 prod.covidInformation.safeTravels :
                                 null"
-                    :access-guide="prod.accessGuide || null"
-                    :awards="prod.awards"
-                />
-                <VsCannedSearchBadges
-                    slot="vsCannedSearchBadges"
+                        :access-guide="prod.accessGuide || null"
+                        :awards="prod.awards"
+                    />
+                    <VsCannedSearchBadges
+                        slot="vsCannedSearchBadges"
                         :badge-one="fetchBadgeOne(prod)"
                         :multi-badge-one="fetchMultiBadgeOne(prod)"
-                    :badge-two="prod.offers"
-                    :badge-three="fetchBadgeThree(prod)"
-                />
-                <VsCannedSearchSummaryBox
-                    slot="vsCannedSearchSummary"
-                >
-                    <VsCannedSearchDates
-                            v-if="prod.opening && searchType !== 'tour'"
-                        slot="vsCannedSearchSummaryTop"
-                        :period="prod.opening.period"
-                        :label="prod.opening.period.label"
+                        :badge-two="prod.offers"
+                        :badge-three="fetchBadgeThree(prod)"
                     />
+                    <VsCannedSearchSummaryBox
+                        slot="vsCannedSearchSummary"
+                    >
+                        <VsCannedSearchDates
+                            v-if="prod.opening && searchType !== 'tour'"
+                            slot="vsCannedSearchSummaryTop"
+                            :period="prod.opening.period"
+                            :label="prod.opening.period.label"
+                        />
                         <VsCannedSearchDuration
                             v-if="searchType === 'tour' && prod.tourLength"
                             :slot="'vsCannedSearchSummaryLeft'"
                             :duration-intro="prod.tourLength.label"
                             :duration="prod.tourLength.value"
                         />
-                    <VsCannedSearchPrice
-                        v-if="prod.price"
+                        <VsCannedSearchPrice
+                            v-if="prod.price"
                             :slot="searchType === 'tour' ? 'vsCannedSearchSummaryCentre'
                                 : 'vsCannedSearchSummaryLeft'"
-                        :price-intro="prod.price.priceLabel"
-                        :price="prod.price.price"
-                        :price-outro="prod.price.priceBasis"
-                    />
+                            :price-intro="prod.price.priceLabel"
+                            :price="prod.price.price"
+                            :price-outro="prod.price.priceBasis"
+                        />
                         <VsCannedSearchCuisines
                             v-if="prod.cuisines"
                             slot="vsCannedSearchSummaryLeft"
@@ -164,24 +164,23 @@
                     -->
                     <slot
                         name="vsCannedSearchOf"
-
-                />
-            </template>
-        </VsCarousel>
-        <VsContainer
-            v-if="!!this.$slots['vsCannedSearchCredit']"
-            class="vs-canned-search__credit-container"
-        >
-            <!--
+                    />
+                </template>
+            </VsCarousel>
+            <VsContainer
+                v-if="!!this.$slots['vsCannedSearchCredit']"
+                class="vs-canned-search__credit-container"
+            >
+                <!--
                 @slot Holds credit info for search data from third parties
 
                 Expects html
             -->
-            <slot
-                name="vsCannedSearchCredit"
-            />
-        </VsContainer>
-    </div>
+                <slot
+                    name="vsCannedSearchCredit"
+                />
+            </VsContainer>
+        </div>
     </VsModuleWrapper>
 </template>
 
