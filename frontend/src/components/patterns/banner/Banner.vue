@@ -3,6 +3,7 @@
         v-if="showBanner"
         class="vs-banner"
         data-test="vs-banner"
+        role="banner"
     >
         <VsContainer>
             <VsRow>
