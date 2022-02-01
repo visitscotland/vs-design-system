@@ -3,6 +3,7 @@ package com.visitscotland.brxm.hippobeans;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import org.hippoecm.hst.content.beans.Node;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+import java.util.Calendar;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Video")
 @Node(jcrType = "visitscotland:Video")
@@ -40,6 +41,11 @@ public class Video extends BaseDocument implements Linkable {
     @HippoEssentialsGenerated(internalName = "visitscotland:diff")
     public String getDiff() {
         return getSingleProperty("visitscotland:diff");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
+    public Calendar getTranslationDeadline() {
+        return getSingleProperty("visitscotland:translationDeadline");
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")

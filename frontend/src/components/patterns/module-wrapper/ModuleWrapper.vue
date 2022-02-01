@@ -105,7 +105,7 @@ export default {
         }
 
         @include media-breakpoint-up(sm) {
-            padding-top: $spacer-12;
+            padding-top: $spacer-10 + $spacer-3;
             padding-bottom: $spacer-12;
         }
 

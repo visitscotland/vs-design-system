@@ -5,7 +5,6 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
-
 import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:MegalinkItem")
@@ -16,18 +15,9 @@ public class MegalinkItem extends HippoCompound {
         return getSingleProperty("visitscotland:feature");
     }
 
-    /**
-     * @deprecated Remove after all Video Adjustments are done
-     */
-    @Deprecated
-    @HippoEssentialsGenerated(internalName = "visitscotland:link")
-    public HippoBean getLink() {
-        return getLinkedBean("visitscotland:link", HippoBean.class);
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:links", allowModifications = false)
-    public HippoBean getLinkItem(){
-        if (getBean("visitscotland:links") instanceof HippoMirror){
+    public HippoBean getLinkItem() {
+        if (getBean("visitscotland:links") instanceof HippoMirror) {
             return getLinkedBean("visitscotland:links", HippoBean.class);
         } else {
             return getBean("visitscotland:links");
