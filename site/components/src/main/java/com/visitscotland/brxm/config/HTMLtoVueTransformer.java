@@ -100,6 +100,12 @@ public class HTMLtoVueTransformer {
         return output;
     }
 
+    /**
+     * Process info alerts
+     *
+     * These are warnings that can appear in a General page introduction. They are inserted by the CKEditor as
+     * <span class="info-alert">...</span>, and must be converted into <vs-alert>...</vs-alert>
+     */
     public String processInfoAlert(final String html) {
         String output = html;
         final Pattern infoSpanRegex = Pattern.compile("<span\\s+class=\\\"info-text\\\">(.*?)</span>");
