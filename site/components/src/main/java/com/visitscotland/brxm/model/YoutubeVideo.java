@@ -1,4 +1,4 @@
-package com.visitscotland.brxm.services.youtube;
+package com.visitscotland.brxm.model;
 
 import java.util.Date;
 

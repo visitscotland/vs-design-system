@@ -1,6 +1,6 @@
-package com.visitscotland.brxm.services.youtube;
+package com.visitscotland.brxm.services;
 
-import com.visitscotland.brxm.services.CommonUtilsService;
+import com.visitscotland.brxm.model.YoutubeVideo;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
