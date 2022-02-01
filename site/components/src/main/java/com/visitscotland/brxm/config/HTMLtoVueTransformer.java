@@ -24,6 +24,7 @@ public class HTMLtoVueTransformer {
         String output = processHeadings(html);
         output = processLinks(output);
         output = processLists(output);
+        output = processInfoAlert(output);
 
         return output;
     }
@@ -96,6 +97,17 @@ public class HTMLtoVueTransformer {
             output = output.replace(a, vsLink);
         }
 
+        return output;
+    }
+
+    public String processInfoAlert(final String html) {
+        String output = html;
+        final Pattern infoSpanRegex = Pattern.compile("<span\\s+class=\\\"info-text\\\">(.*?)</span>");
+        Matcher matcher = infoSpanRegex.matcher(html);
+        while (matcher.find()) {
+            String alertHtml = "<vs-alert>" + matcher.group(1) + "</vs-alert>";
+            output = output.replace(matcher.group(0), alertHtml);
+        }
         return output;
     }
 
