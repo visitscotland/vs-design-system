@@ -163,10 +163,10 @@ export default {
         line-height: $line-height-standard;
         border-radius: 0;
         border: 0;
-        height: 32px;
-        width: 32px;
+        height: $spacer-7;
+        width: $spacer-7;
         font-size: 0;
-        padding: $spacer-1;
+        padding: .125rem;
 
         &:focus, &:active, &:active:focus {
             box-shadow: $shadow-button-focus;
