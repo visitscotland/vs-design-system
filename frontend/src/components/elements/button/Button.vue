@@ -300,13 +300,11 @@ export default {
             color: $color-yellow;
             border-color: $color-yellow;
 
-            &:hover {
-                color: $color-black;
-                background-color: $color-yellow;
-                border-color: $color-yellow;
+            .vs-icon {
+                fill: $color-yellow;
             }
 
-            &:focus {
+            &:hover, &:focus {
                 color: $color-black;
                 background-color: $color-yellow;
                 border-color: $color-yellow;
@@ -422,6 +420,14 @@ export default {
             Secondary with an icon
         </VsButton>
         <VsButton variant="outline-secondary" class="mr-2 mb-2">Secondary Outline</VsButton>
+        <VsButton
+            class="mr-2 mb-2"
+            variant="outline-secondary"
+            icon="food"
+            size="md"
+        >
+            Outline with an icon
+        </VsButton>
         <VsButton disabled class="mr-2 mb-2" variant="secondary" size="md">
             Disabled Secondary
         </VsButton>
