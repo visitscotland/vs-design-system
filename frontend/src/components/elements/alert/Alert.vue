@@ -20,7 +20,9 @@
 import VsSvg from '@components/elements/svg';
 
 /**
- * Alert
+ * A simple alert component, displays text in a responsive, highlighted box.
+ * Should be used at the top of a block of content or page to provide
+ * important contextual information to the user.
  *
  * @displayName Alert
  */
