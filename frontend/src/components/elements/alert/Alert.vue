@@ -87,22 +87,7 @@ export default {
 <docs>
   ```js
     <VsAlert>
-        <span>This guide is only for visitors living outside the UK.</span>
-    </VsAlert>
-
-    <br>
-
-    <VsAlert>
-        <span>This guide is only for visitors living outside the UK.
-        This guide is only for visitors living outside the UK.</span>
-    </VsAlert>
-
-    <br>
-
-    <VsAlert>
-        <span>This guide is only for visitors living outside the UK.
         This guide is only for visitors living outside the UK.
-        This guide is only for visitors living outside the UK.</span>
     </VsAlert>
   ```
 </docs>
