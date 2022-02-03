@@ -16,6 +16,7 @@
 <#include "../../../../frontend/components/vs-img.ftl">
 <#include "../../../../frontend/components/vs-description-list.ftl">
 <#include "../../../../frontend/components/vs-description-list-item.ftl">
+<#include "../../../../frontend/components/vs-alert.ftl">
 
 <#-- @ftlvariable name="content" type="com.visitscotland.brxm.hippobeans.Page" -->
 <#-- @ftlvariable name="heroDetails" type="com.visitscotland.brxm.model.FlatImage" -->
