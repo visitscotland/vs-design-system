@@ -11,6 +11,7 @@
         </div>
         <div class="vs-alert__content-wrapper">
             <div class="vs-alert__content">
+                <!-- @slot Holds content for the alert - text expected -->
                 <slot />
             </div>
         </div>
