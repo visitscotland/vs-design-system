@@ -11,6 +11,7 @@
         </div>
         <div class="vs-alert__content-wrapper">
             <div class="vs-alert__content">
+                <!-- @slot Holds content for the alert - text expected -->
                 <slot />
             </div>
         </div>
@@ -20,9 +21,7 @@
 import VsSvg from '@components/elements/svg';
 
 /**
- * A simple alert component, displays text in a responsive, highlighted box.
- * Should be used at the top of a block of content or page to provide
- * important contextual information to the user.
+ * A simple alert component. Displays text in a responsive, highlighted box.
  *
  * @displayName Alert
  */
@@ -83,26 +82,3 @@ export default {
         min-height: 100%;
     }
 </style>
-
-<docs>
-  ```js
-    <VsAlert>
-        <span>This guide is only for visitors living outside the UK.</span>
-    </VsAlert>
-
-    <br>
-
-    <VsAlert>
-        <span>This guide is only for visitors living outside the UK.
-        This guide is only for visitors living outside the UK.</span>
-    </VsAlert>
-
-    <br>
-
-    <VsAlert>
-        <span>This guide is only for visitors living outside the UK.
-        This guide is only for visitors living outside the UK.
-        This guide is only for visitors living outside the UK.</span>
-    </VsAlert>
-  ```
-</docs>
