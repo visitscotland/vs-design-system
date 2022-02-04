@@ -4,9 +4,10 @@
         data-test="vs-alert"
     >
         <div class="vs-alert__icon-holder">
-            <VsSvg
+            <VsIcon
                 class="vs-alert__icon"
-                path="info-toggle"
+                name="information"
+                variant="light"
             />
         </div>
         <div class="vs-alert__content-wrapper">
@@ -18,7 +19,7 @@
     </div>
 </template>
 <script>
-import VsSvg from '@components/elements/svg';
+import VsIcon from '@components/elements/icon';
 
 /**
  * A simple alert component. Displays text in a responsive, highlighted box.
@@ -30,7 +31,7 @@ export default {
     status: 'prototype',
     release: '0.1.0',
     components: {
-        VsSvg,
+        VsIcon,
     },
 };
 </script>
@@ -57,7 +58,6 @@ export default {
     }
 
     .vs-alert__icon {
-        fill: $color-pink-shade-1;
         width: $spacer-4;
         width: $spacer-4;
 
