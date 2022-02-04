@@ -22,8 +22,6 @@ import VsSvg from '@components/elements/svg';
 
 /**
  * A simple alert component, displays text in a responsive, highlighted box.
- * Should be used at the top of a block of content or page to provide
- * important contextual information to the user.
  *
  * @displayName Alert
  */
@@ -84,11 +82,3 @@ export default {
         min-height: 100%;
     }
 </style>
-
-<docs>
-  ```js
-    <VsAlert>
-        This guide is only for visitors living outside the UK.
-    </VsAlert>
-  ```
-</docs>
