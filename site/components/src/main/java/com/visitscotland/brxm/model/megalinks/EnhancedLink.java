@@ -3,6 +3,8 @@ package com.visitscotland.brxm.model.megalinks;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 
+import java.util.Date;
+
 public class EnhancedLink extends FlatLink {
 
     private FlatImage image;
@@ -13,6 +15,7 @@ public class EnhancedLink extends FlatLink {
     private String itineraryTransport;
     private String youtubeId;
     private int itineraryDays;
+    private Date publishedDate;
 
     public FlatImage getImage() {
         return image;
@@ -76,5 +79,13 @@ public class EnhancedLink extends FlatLink {
 
     public void setYoutubeId(String youtubeId) {
         this.youtubeId = youtubeId;
+    }
+
+    public Date getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(Date publishedDate) {
+        this.publishedDate = publishedDate;
     }
 }
