@@ -6403,6 +6403,128 @@
           visitscotland:toursSearch: https://www.visitscotland.com/info/tours/search-results?prodtypes=tour&origins%5B%5D=glasgow&source=tms
           visitscotland:translation: ''
           visitscotland:viewAll: ''
+    /info-alert:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 5751ca63-bd38-4193-a12c-9f509e9c9f76
+      hippo:name: Info Alert
+      hippostd:foldertype: [new-translated-folder-test, new-document]
+      hippotranslation:id: 0cec78db-9e87-400e-88e9-81bb15fb2001
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 28bb0419-aaf4-4454-be2b-e2688bc467b0
+        hippo:versionHistory: 6a9bbc5c-f248-4f3d-b7b0-d3cc8c248f44
+        /content[1]:
+          jcr:primaryType: visitscotland:General
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 2ead0add-7de4-4b61-b93b-d8e3f6aa7395
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-02-04T13:55:13.903Z
+          hippostdpubwf:lastModificationDate: 2022-02-04T14:20:36.918Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 64ff2551-f06b-49c3-98c5-ece6083e2db4
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:seoDescription: Info Alert
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Info Alert
+          visitscotland:teaser: Info Alert
+          visitscotland:theme: Standard
+          visitscotland:title: Info Alert
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p><span class="info-text">This is a test alert</span></p>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit tempus mi eget malesuada. Cras volutpat, libero in ullamcorper porttitor, lectus enim accumsan ipsum, quis efficitur augue est ac erat. Integer viverra nibh a ex elementum commodo.</p>
+
+              <p>Curabitur ornare diam sed sem vehicula, eu volutpat est malesuada. Maecenas tempor eros at eros semper, non tincidunt purus aliquam. Integer interdum mauris lorem, at aliquam augue pellentesque lacinia. Donec a sodales dolor, ut consequat neque.</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:General
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: a44d8a89-3e94-4513-8891-1b9cf6e6a1a8
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-02-04T13:55:13.903Z
+          hippostdpubwf:lastModificationDate: 2022-02-04T14:20:44.019Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 64ff2551-f06b-49c3-98c5-ece6083e2db4
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:seoDescription: Info Alert
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Info Alert
+          visitscotland:teaser: Info Alert
+          visitscotland:theme: Standard
+          visitscotland:title: Info Alert
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p><span class="info-text">This is a test alert</span></p>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit tempus mi eget malesuada. Cras volutpat, libero in ullamcorper porttitor, lectus enim accumsan ipsum, quis efficitur augue est ac erat. Integer viverra nibh a ex elementum commodo.</p>
+
+              <p>Curabitur ornare diam sed sem vehicula, eu volutpat est malesuada. Maecenas tempor eros at eros semper, non tincidunt purus aliquam. Integer interdum mauris lorem, at aliquam augue pellentesque lacinia. Donec a sodales dolor, ut consequat neque.</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:General
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 300f9c97-bdfb-443c-974a-5cea329af97c
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-02-04T13:55:13.903Z
+          hippostdpubwf:lastModificationDate: 2022-02-04T14:20:44.019Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2022-02-04T14:20:46.347Z
+          hippotranslation:id: 64ff2551-f06b-49c3-98c5-ece6083e2db4
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:seoDescription: Info Alert
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Info Alert
+          visitscotland:teaser: Info Alert
+          visitscotland:theme: Standard
+          visitscotland:title: Info Alert
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p><span class="info-text">This is a test alert</span></p>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit tempus mi eget malesuada. Cras volutpat, libero in ullamcorper porttitor, lectus enim accumsan ipsum, quis efficitur augue est ac erat. Integer viverra nibh a ex elementum commodo.</p>
+
+              <p>Curabitur ornare diam sed sem vehicula, eu volutpat est malesuada. Maecenas tempor eros at eros semper, non tincidunt purus aliquam. Integer interdum mauris lorem, at aliquam augue pellentesque lacinia. Donec a sodales dolor, ut consequat neque.</p>
   /pages:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
