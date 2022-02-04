@@ -21,7 +21,7 @@
 import VsSvg from '@components/elements/svg';
 
 /**
- * A simple alert component, displays text in a responsive, highlighted box.
+ * A simple alert component. Displays text in a responsive, highlighted box.
  *
  * @displayName Alert
  */
