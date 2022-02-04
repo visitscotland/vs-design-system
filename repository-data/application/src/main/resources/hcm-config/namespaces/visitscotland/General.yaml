@@ -176,7 +176,7 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
-                {countSpacesAsChars: true, showCharCount: true}}'
+                {countSpacesAsChars: true, showCharCount: true, maxCharCount:750}}'
               ckeditor.config.overlayed.json: '{stylesSet: ''general_intro:./vs_styles.js'',toolbarGroups:
                 [{name: ''styles''},{name:''links''},{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}
                 ] , removeButtons: ''PickImage,Youtube,Table''}'
