@@ -1,8 +1,10 @@
 <template>
-    <div class="vs-form">
+    <div
+        class="vs-form"
+        data-test="vs-form"
+    >
         <!-- element into which the (completely empty) form is embedded invisibly -->
         <form
-            id="mktoForm_90"
             style="display:none"
         />
 
@@ -14,12 +16,55 @@
                     :key="field.name"
                 >
                     {{ field.label }}
+                    <span v-if="field.validation.required">
+                        (required)
+                    </span>
                     <VsFormInput
+                        :ref="field.name"
+                        @status-update="updateFieldData"
+                        :field-name="field.name"
                         :type="field.type"
-                        :label="field.label"
-                        size="md"
+                        :validation-rules="field.validation || {}"
+                        :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                        :trigger-validate="triggerValidate"
                     />
                 </label>
+
+                <label
+                    v-if="field.element === 'select'"
+                    for="field.name"
+                    :key="field.name"
+                >
+                    {{ field.label }}
+                    <span v-if="field.validation.required">
+                        (required)
+                    </span>
+                    <VsFormSelect
+                        :options="field.options"
+                        :ref="field.name"
+                        @status-update="updateFieldData"
+                        :field-name="field.name"
+                        :validation-rules="field.validation || {}"
+                        :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                        :trigger-validate="triggerValidate"
+                    />
+                </label>
+
+                <template v-if="field.element === 'checkbox'">
+                    <VsFormCheckbox
+                        :key="field.name"
+                        :ref="field.name"
+                        :name="field.name"
+                        :value="field.value"
+                        :id="field.name"
+                        :label="field.label"
+                        @status-update="updateFieldData"
+                        :field-name="field.name"
+                        :validation-rules="field.validation || {}"
+                        :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                        :trigger-validate="triggerValidate"
+                    />
+                </template>
             </template>
             <button
                 @click.stop="marketoSubmit"
@@ -30,6 +75,10 @@
                 Submit
             </button>
         </form>
+
+        <p v-if="showErrorMessage">
+            Please ensure all fields are completed correctly
+        </p>
 
         <p v-if="submitting">
             We're just submitting your form
@@ -43,6 +92,8 @@
 
 <script>
 import VsFormInput from '../../elements/form-input/FormInput';
+import VsFormSelect from '../../elements/form-select/FormSelect';
+import VsFormCheckbox from '../../elements/form-checkbox/FormCheckbox';
 
 const axios = require('axios');
 
@@ -59,12 +110,13 @@ export default {
     release: '0.0.1',
     components: {
         VsFormInput,
+        VsFormSelect,
+        VsFormCheckbox,
     },
     props: {
-        formId: {
-            type: Number,
-            default: 90,
-        },
+        /**
+         * the url for the form data file
+         */
         dataUrl: {
             type: String,
             default: './data/simpleForm.json',
@@ -72,20 +124,27 @@ export default {
     },
     data() {
         return {
-            firstname: '',
-            lastname: '',
-            email: '',
             submitted: false,
             submitting: false,
             formData: {
             },
+            form: {
+            },
+            formIsInvalid: false,
+            showErrorMessage: false,
+            errorFields: [
+            ],
+            triggerValidate: false,
         };
     },
     created() {
-        axios.get('http://172.28.74.161:5050/simpleForm.json')
+        axios.get('http://127.0.0.1:5050/simpleForm.json')
             .then((response) => {
-                console.log(response.data);
                 this.formData = response.data;
+
+                response.data.fields.forEach((field) => {
+                    this.form[field.name] = '';
+                });
             });
     },
     mounted() {
@@ -93,34 +152,78 @@ export default {
         window.MktoForms2.loadForm('//app-lon10.marketo.com', '830-QYE-256', 90);
     },
     methods: {
-        marketoSubmit(event) {
-            const firstName = this.firstname;
-            const lastName = this.lastname;
-            const emailAddress = this.email;
+        /**
+         * update field data and error status
+         */
+        updateFieldData(data) {
+            this.form[data.field] = data.value || '';
 
-            const data = {
-                Email: emailAddress,
-                FirstName: firstName,
-                LastName: lastName,
-            };
+            if (data.errors.length > 0) {
+                this.formIsInvalid = true;
+            } else {
+                this.formIsInvalid = false;
+            }
 
-            console.log(event);
+            this.manageErrorStatus(data.field, data.errors);
+        },
+        /**
+         * update error status of fields for validation feedback
+         */
+        manageErrorStatus(field, errors) {
+            const index = this.errorFields.indexOf(field);
 
-            const myForm = window.MktoForms2.allForms()[0];
-            myForm.addHiddenFields(data);
-            myForm.submit(() => {
-                this.submitting = true;
-            });
-            /* eslint-ignore-next-line */
-            myForm.onSuccess(() => {
-                console.log('data submitted');
-                this.submitting = false;
-                this.submitted = true;
-                return false;
-            });
+            if (index !== -1) {
+                if (!errors || errors.length < 1) {
+                    this.errorFields.splice(index, 1);
+                }
+            } else if (errors) {
+                this.errorFields.push(field);
+            }
+        },
+        /**
+         * submit form
+         */
+        marketoSubmit() {
+            function isRequired(value) {
+                return value.validation && value.validation.required;
+            }
+
+            this.triggerValidate = true;
+
+            const fieldIsRequired = this.formData.fields.filter(isRequired);
+
+            if (fieldIsRequired.length === 0) {
+                this.formIsInvalid = false;
+            } else {
+                fieldIsRequired.forEach((field) => {
+                    if (this.form[field.name] === '') {
+                        this.formIsInvalid = true;
+                    }
+                });
+            }
+
+            this.showErrorMessage = this.formIsInvalid.length > 1;
+
+            if (!this.formIsInvalid) {
+                console.log('I would submit');
+            } else {
+                console.log('I would not submit');
+            }
+
+            // const myForm = window.MktoForms2.allForms()[0];
+            // myForm.addHiddenFields(data);
+            // myForm.submit(() => {
+            //     this.submitting = true;
+            // });
+            // /* eslint-ignore-next-line */
+            // myForm.onSuccess(() => {
+            //     console.log('data submitted');
+            //     this.submitting = false;
+            //     this.submitted = true;
+            //     return false;
+            // });
         },
     },
-
 };
 </script>
 
