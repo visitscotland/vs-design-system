@@ -1,5 +1,22 @@
 <template>
-    <VsSvg
+    <div>
+        <i
+            :class="{
+                'fak': true,
+                'vs-icon': true,
+                [`fa-${icon}`]:true,
+                [`vs-icon--size-${size}`]: true,
+                [`vs-icon--sm-size-${smallSize}`]: smallSize,
+                [`vs-icon--${formattedName}`]: true,
+                [`vs-icon--variant-${variant}`]: variant,
+                ['icon--' + orientation]: orientation,
+            }"
+            :style="[customColour ? {fill: customColour} : {}]"
+            v-bind="$attrs"
+            data-test="vs-icon"
+        />
+    </div>
+    <!-- <VsSvg
         :path="path"
         :class="{
             'vs-icon': true,
@@ -12,15 +29,30 @@
         :style="[customColour ? {fill: customColour} : {}]"
         v-bind="$attrs"
         data-test="vs-icon"
-    />
+    /> -->
 </template>
 
 <script>
 import { get } from 'lodash';
 import designTokens from '@/assets/tokens/tokens.raw.json';
-import VsSvg from '../svg';
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { faBinary } from '@fortawesome/pro-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+// import VsSvg from '../svg';
 
-const iconPath = 'icons/';
+const addFontAwesome = () => {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://kit.fontawesome.com/7c48e8b3d4.js';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+};
+
+// eslint-disable-next-line no-console
+
+// const iconPath = 'icons/';
+
+// library.add(faBinary);
 
 /**
  * Icons are used to visually communicate core parts of the product and
@@ -37,7 +69,8 @@ export default {
     status: 'prototype',
     release: '0.1.0',
     components: {
-        VsSvg,
+        // VsSvg,
+        // FontAwesomeIcon,
     },
     props: {
         /**
@@ -205,6 +238,10 @@ export default {
                     value: 'walk',
                 },
                 {
+                    key: 'boat',
+                    value: 'boat',
+                },
+                {
                     key: 'transport',
                     value: 'transport',
                 },
@@ -216,8 +253,8 @@ export default {
         };
     },
     computed: {
-        path() {
-            return iconPath + this.formattedName;
+        icon() {
+            return this.formattedName;
         },
         dimension() {
             return get(designTokens, `props.icon_size_${this.size}.value`, '40px');
@@ -228,10 +265,13 @@ export default {
              * organise / group icons within the design system
              * there is a lookup for how keys may be passed from the backend
              */
-            const formattedNameLookup = this.iconLookup.find(({ key }) => key === this.name);
+            const formattedNameLookup = this.iconLookup.find(({ value }) => value === this.name);
 
             return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name;
         },
+    },
+    mounted() {
+        addFontAwesome();
     },
 };
 </script>
@@ -321,7 +361,7 @@ $variants: (
     <VsIcon name="search" />
 
     <h3 class="mt-8">Variant</h3>
-    <VsIcon name="user" variant="primary" />
+    <VsIcon name="boat" variant="primary" />
     <VsIcon name="user" variant="secondary" />
     <VsIcon name="user" variant="light" />
     <VsIcon name="user" variant="dark" />
@@ -337,7 +377,7 @@ $variants: (
     <div class="d-flex">
         <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xxs</h4>
-            <VsIcon name="favourite" size="xxs" />
+            <VsIcon name="boat" size="xxs" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">
