@@ -14,4 +14,4 @@ definitions:
         .meta:category: system
         .meta:add-new-system-values: true
         type: string
-        value: [xm.default-user.cms-admin, xm.repository-browser.user, xm.console.user]
+        value: [xm.default-user.system-admin, xm.repository-browser.user, xm.console.user]
