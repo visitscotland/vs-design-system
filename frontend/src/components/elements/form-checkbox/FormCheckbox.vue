@@ -1,25 +1,32 @@
 <template>
     <div>
-        <BFormInput
-            :type="type"
-            class="input"
-            :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
+        <BFormCheckbox
             v-model="inputVal"
-            @input="emitStatus"
-            @blur="emitStatus"
-            id="name"
-            name="name"
-        />
+            class="vs-form-checkbox mr-4"
+            :class="errors.length > 0 ? 'hasError' : ''"
+            :size="size"
+            :name="fieldName"
+            :id="fieldName"
+            :value="value"
+            :unchecked_value="`not_${value}`"
+            v-bind="$attrs"
+            data-test="vs-form-checkbox"
+            @change="emitStatus"
+        >
+            {{ label }}
+            <span v-if="showRequiredText">
+                (required)
+            </span>
+        </BFormCheckbox>
     </div>
 </template>
 
 <script>
-// eslint-disable-next-line
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 // eslint-disable-next-line
-import { required, email } from 'vuelidate/lib/validators';
-import { BFormInput } from 'bootstrap-vue';
+import { required, sameAs } from 'vuelidate/lib/validators';
+import { BFormCheckbox } from 'bootstrap-vue';
 
 Vue.use(Vuelidate);
 
@@ -27,15 +34,15 @@ Vue.use(Vuelidate);
  * https://bootstrap-vue.js.org/docs/components/form-input
  * https://getbootstrap.com/docs/4.3/components/forms/
  *
- * @displayName Form Input
+ * @displayName Form Checkbox
  */
 
 export default {
-    name: 'VsFormInput',
+    name: 'VsFormCheckbox',
     status: 'prototype',
     release: '0.0.1',
     components: {
-        BFormInput,
+        BFormCheckbox,
     },
     props: {
         /**
@@ -47,23 +54,23 @@ export default {
             validator: (value) => value.match(/(sm|md|lg)/),
         },
         /**
-         * Default value of the field
-         */
-        value: {
-            type: String,
-            default: '',
-        },
-        /**
-         * Name of the field (for name and id attributes)
+         * Name of the input
          */
         fieldName: {
             type: String,
             required: true,
         },
         /**
-         * Type of input
+         * Value when checked
          */
-        type: {
+        value: {
+            type: String,
+            default: '',
+        },
+        /**
+         * Label for checkbox
+         */
+        label: {
             type: String,
             required: true,
         },
@@ -78,13 +85,6 @@ export default {
             },
         },
         /**
-         * Prop to define invalid from parent
-         */
-        invalid: {
-            type: Boolean,
-            default: false,
-        },
-        /**
          * Prop to trigger manual validation
          */
         triggerValidate: {
@@ -94,8 +94,8 @@ export default {
     },
     data() {
         return {
-            inputVal: this.value,
-            blurred: false,
+            inputVal: '',
+            errors: [],
         };
     },
     computed: {
@@ -114,11 +114,7 @@ export default {
                     rulesObj = {
                         ...rulesObj,
                         required,
-                    };
-                } else if (key === 'email') {
-                    rulesObj = {
-                        ...rulesObj,
-                        email,
+                        sameAs: sameAs(() => true),
                     };
                 } else {
                     rulesObj[key] = value;
@@ -132,15 +128,15 @@ export default {
             return {
             };
         },
+        showRequiredText() {
+            if (typeof this.validationRules !== 'undefined' && this.validationRules.required) {
+                return true;
+            }
+
+            return false;
+        },
     },
     watch: {
-        /**
-         * Watch for prop changing to allow parent
-         * to trigger validation
-         */
-        triggerValidate() {
-            this.manualValidate();
-        },
         inputVal(newValue) {
             this.$emit('updated', {
                 field: this.name,
@@ -150,28 +146,58 @@ export default {
         value(newValue) {
             this.inputVal = newValue;
         },
+        /**
+         * Watch for prop changing to allow parent
+         * to trigger validation
+         */
+        triggerValidate() {
+            this.manualValidate();
+        },
     },
     methods: {
         /**
          * manually run validation and emit to parent
          */
         manualValidate() {
+            if (this.rules.required && !this.inputVal) {
+                this.errors.push('required');
+            } else {
+                for (let i = 0; i < this.errors.length; i++) {
+                    if (this.errors[i] === 'required') {
+                        this.errors.splice(i, 1);
+                    }
+                }
+            }
+
             this.$emit('status-update', {
                 field: this.fieldName,
                 value: this.inputVal,
-                errors: this.$v.$invalid,
+                errors: this.errors,
             });
         },
         /**
          * Emit status of input - for automatic updating
          */
         emitStatus() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$anyError,
-            });
-            this.$v.$touch();
+            setTimeout(() => {
+                if (this.rules.required && !this.inputVal) {
+                    this.errors.push('required');
+                } else {
+                    for (let i = 0; i < this.errors.length; i++) {
+                        if (this.errors[i] === 'required') {
+                            this.errors.splice(i, 1);
+                        }
+                    }
+                }
+
+                this.$emit('status-update', {
+                    field: this.fieldName,
+                    value: this.inputVal,
+                    errors: this.errors,
+                });
+                this.touched = true;
+                this.$v.$touch();
+            }, 50);
         },
     },
     validations() {
@@ -183,43 +209,24 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-form-input {
-    &.form-control {
-        border-color: $color-gray-tint-1;
-        transition: box-shadow $duration-base;
-
-        &:focus {
-        border-color: $color-gray-tint-1;
-        box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-        }
-
-        &[type="search"] {
-        @extend %reset-clear;
+    .vs-form-checkbox {
+        input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+            margin-right: $spacer-4;
         }
     }
-}
-
-.hasError {
-    border: red 3px solid !important;
-}
 </style>
 
 <docs>
 ```jsx
 <BsWrapper>
-  <label for="small">Small</label>
-  <VsFormInput id="small" placeholder="Enter your name" class="mb-5" size="sm" />
-  <label for="medium">Medium (default)</label>
-  <VsFormInput id="medium" placeholder="Enter your name" class="mb-5" size="md" />
-  <label for="large">Large</label>
-  <VsFormInput id="large" placeholder="Enter your name" class="mb-5" size="lg" />
-
-  <label for="input-none">No State</label>
-  <VsFormInput id="input-none" :state="null" placeholder="No validation" class="mb-5"/>
-  <label for="input-valid">Valid state</label>
-  <VsFormInput id="input-valid" :state="true" placeholder="Valid" class="mb-5" />
-  <label for="input-invalid">Invalid state</label>
-  <VsFormInput id="input-invalid" :state="false" placeholder="Invalid" class="mb-5" />
+    <VsFormCheckbox
+        name="checkbox-example"
+        value="accepted"
+        id="checkbox-example"
+        label="I accept the terms and conditions"
+    />
 </BsWrapper>
 ```
 </docs>
