@@ -2,6 +2,7 @@
 <#include "../../include/imports.ftl">
 <#include "headerContributions.ftl">
 <#include "footerContributions.ftl">
+<#include "../macros/modules/embedded-form/embedded-form.ftl">
 
 <html data-version="${version}" lang="en">
     <head>
@@ -19,6 +20,8 @@
 
             <main id="main">
                 <@hst.include ref="main"/>
+
+                <@embeddedForm />
             </main>
 
             <@hst.include ref="footer"/>
