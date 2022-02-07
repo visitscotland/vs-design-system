@@ -1,0 +1,4 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:groups/editor:
+      hipposys:description: NOT IN USE - BloomReach's default editor group

@@ -1,0 +1,4 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:groups/author:
+      hipposys:description: NOT IN USE - BloomReach's default author group

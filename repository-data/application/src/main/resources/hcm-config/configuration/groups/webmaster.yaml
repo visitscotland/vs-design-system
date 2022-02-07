@@ -1,0 +1,4 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:groups/webmaster:
+      hipposys:description: NOT IN USE - BloomReach's default webmaster group
