@@ -1,25 +1,37 @@
 <template>
-    <div>
-        <BFormInput
-            :type="type"
-            class="input"
-            :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
+    <BFormGroup
+        :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
+    >
+        <BFormSelect
             v-model="inputVal"
-            @input="emitStatus"
+            :size="size"
+            v-bind="$attrs"
+            :options="options"
+            :name="fieldName"
+            :id="fieldName"
+            @change="emitStatus"
             @blur="emitStatus"
-            id="name"
-            name="name"
         />
-    </div>
+
+        <!-- <BFormSelect
+            v-model="inputVal"
+            class="vs-form-select"
+            :size="size"
+            v-bind="$attrs"
+            :options="options"
+            :name="name"
+            :id="name"
+            @change="testValidation"
+        /> -->
+    </BFormGroup>
 </template>
 
 <script>
-// eslint-disable-next-line
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 // eslint-disable-next-line
-import { required, email } from 'vuelidate/lib/validators';
-import { BFormInput } from 'bootstrap-vue';
+import { required } from 'vuelidate/lib/validators';
+import { BFormSelect, BFormGroup } from 'bootstrap-vue';
 
 Vue.use(Vuelidate);
 
@@ -27,15 +39,16 @@ Vue.use(Vuelidate);
  * https://bootstrap-vue.js.org/docs/components/form-input
  * https://getbootstrap.com/docs/4.3/components/forms/
  *
- * @displayName Form Input
+ * @displayName Form Select
  */
 
 export default {
-    name: 'VsFormInput',
+    name: 'VsFormSelect',
     status: 'prototype',
     release: '0.0.1',
     components: {
-        BFormInput,
+        BFormSelect,
+        BFormGroup,
     },
     props: {
         /**
@@ -47,11 +60,11 @@ export default {
             validator: (value) => value.match(/(sm|md|lg)/),
         },
         /**
-         * Default value of the field
+         * Options for select element
          */
-        value: {
-            type: String,
-            default: '',
+        options: {
+            type: Array,
+            required: true,
         },
         /**
          * Name of the field (for name and id attributes)
@@ -61,11 +74,11 @@ export default {
             required: true,
         },
         /**
-         * Type of input
+         * Default value of the field
          */
-        type: {
+        value: {
             type: String,
-            required: true,
+            default: '',
         },
         /**
          * Rules for Vuelidate plugin
@@ -78,16 +91,16 @@ export default {
             },
         },
         /**
-         * Prop to define invalid from parent
+         * Prop to trigger manual validation
          */
-        invalid: {
+        triggerValidate: {
             type: Boolean,
             default: false,
         },
         /**
-         * Prop to trigger manual validation
+         * Prop to define invalid from parent
          */
-        triggerValidate: {
+        invalid: {
             type: Boolean,
             default: false,
         },
@@ -95,7 +108,7 @@ export default {
     data() {
         return {
             inputVal: this.value,
-            blurred: false,
+            touched: false,
         };
     },
     computed: {
@@ -115,11 +128,6 @@ export default {
                         ...rulesObj,
                         required,
                     };
-                } else if (key === 'email') {
-                    rulesObj = {
-                        ...rulesObj,
-                        email,
-                    };
                 } else {
                     rulesObj[key] = value;
                 }
@@ -134,13 +142,6 @@ export default {
         },
     },
     watch: {
-        /**
-         * Watch for prop changing to allow parent
-         * to trigger validation
-         */
-        triggerValidate() {
-            this.manualValidate();
-        },
         inputVal(newValue) {
             this.$emit('updated', {
                 field: this.name,
@@ -149,6 +150,13 @@ export default {
         },
         value(newValue) {
             this.inputVal = newValue;
+        },
+        /**
+         * Watch for prop changing to allow parent
+         * to trigger validation
+         */
+        triggerValidate() {
+            this.manualValidate();
         },
     },
     methods: {
@@ -171,6 +179,7 @@ export default {
                 value: this.inputVal,
                 errors: this.$v.$anyError,
             });
+            this.touched = true;
             this.$v.$touch();
         },
     },
@@ -184,42 +193,35 @@ export default {
 
 <style lang="scss">
 .vs-form-input {
-    &.form-control {
-        border-color: $color-gray-tint-1;
-        transition: box-shadow $duration-base;
+  &.form-control {
+    border-color: $color-gray-tint-1;
+    transition: box-shadow $duration-base;
 
-        &:focus {
-        border-color: $color-gray-tint-1;
-        box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-        }
-
-        &[type="search"] {
-        @extend %reset-clear;
-        }
+    &:focus {
+      border-color: $color-gray-tint-1;
+      box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
     }
-}
 
-.hasError {
-    border: red 3px solid !important;
+    &[type="search"] {
+      @extend %reset-clear;
+    }
+  }
 }
 </style>
 
 <docs>
 ```jsx
 <BsWrapper>
-  <label for="small">Small</label>
-  <VsFormInput id="small" placeholder="Enter your name" class="mb-5" size="sm" />
-  <label for="medium">Medium (default)</label>
-  <VsFormInput id="medium" placeholder="Enter your name" class="mb-5" size="md" />
-  <label for="large">Large</label>
-  <VsFormInput id="large" placeholder="Enter your name" class="mb-5" size="lg" />
-
-  <label for="input-none">No State</label>
-  <VsFormInput id="input-none" :state="null" placeholder="No validation" class="mb-5"/>
-  <label for="input-valid">Valid state</label>
-  <VsFormInput id="input-valid" :state="true" placeholder="Valid" class="mb-5" />
-  <label for="input-invalid">Invalid state</label>
-  <VsFormInput id="input-invalid" :state="false" placeholder="Invalid" class="mb-5" />
+    <VsFormSelect
+        :options="[
+          { value: null, text: 'Please select an option', selected: 'true' },
+          { value: 'a', text: 'This is First option' },
+          { value: 'b', text: 'Selected Option' },
+          { value: { C: '3PO' }, text: 'This is an option with object value' },
+          { value: 'd', text: 'This one is disabled', disabled: true }
+        ]"
+        name="select-example"
+    >
 </BsWrapper>
 ```
 </docs>
