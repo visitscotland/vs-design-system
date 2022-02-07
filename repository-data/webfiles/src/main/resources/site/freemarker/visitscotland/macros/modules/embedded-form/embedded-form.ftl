@@ -9,8 +9,10 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </@hst.headContribution> 
 
-<#macro embeddedForm marketoId>
-    <section class="vs-embedded-form">
+<#macro embeddedForm>
+    <vs-form>
+    </vs-form>
+    <#--  <section class="vs-embedded-form">
         <vs-container>
             <vs-row>
                 <vs-col cols="12">
@@ -24,5 +26,5 @@
                 </vs-col>
             </vs-row>
         </vs-container>
-    </section>
+    </section>  -->
 </#macro>
