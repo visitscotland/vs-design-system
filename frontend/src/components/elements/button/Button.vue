@@ -14,7 +14,6 @@
         @focusout="hovered = false"
     >
         <VsIcon
-            :class="{ 'mr-2': !iconOnly }"
             v-if="icon"
             :name="icon"
             :size="iconSizeOverride || calcIconSize"
@@ -206,7 +205,7 @@ export default {
                 return this.outlineColour;
             }
 
-            if (this.variant === 'secondary') {
+            if (this.variant === 'secondary' || this.variant === 'light') {
                 return 'dark';
             }
 
@@ -250,6 +249,7 @@ export default {
 
         .vs-icon {
             margin-top: -.05em;
+            margin-right: $spacer-2;
         }
 
         &.btn-secondary {
@@ -314,6 +314,10 @@ export default {
         &.vs-button--icon-only{
             padding: $spacer-1;
             line-height: 1;
+
+            .vs-icon{
+                margin-right: 0;
+            }
         }
 
         &.vs-button--animated {
