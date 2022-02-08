@@ -79,7 +79,6 @@ public class ListicleFactory {
         //Set Extra Links
         //Original designs used to had more that one link, so the logic is prepared to be opened to several links
         for (HippoCompound compound : listicleItem.getExtraLinks()) {
-            //TODO Create test for CMSLinks
             if (compound instanceof CMSLink) {
                 CMSLink cmsLink = (CMSLink) compound;
                 link = linksService.createSimpleLink((Linkable) cmsLink.getLink(),module, locale);
