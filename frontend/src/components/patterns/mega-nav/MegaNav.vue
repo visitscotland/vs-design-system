@@ -45,7 +45,7 @@
                     >
                         <VsSiteSearch
                             @toggleAction="toggleSearch"
-                            :show-search-form="showSearch"
+                            :is-showing="showSearch"
                         >
                             {{ searchButtonText }}
                         </VsSiteSearch>
@@ -160,6 +160,9 @@ export default {
         menuToggle() {
             this.isOpen = !this.isOpen;
         },
+        /**
+         * Toggles site search box when event emitted from button
+        */
         toggleSearch() {
             this.showSearch = !this.showSearch;
         },
