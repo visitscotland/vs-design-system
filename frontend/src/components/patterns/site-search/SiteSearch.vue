@@ -1,10 +1,11 @@
 <template>
     <VsButton
+        data-test="vs-site-search"
         class="vs-site-search"
         icon="search"
         size="md"
         :animate="false"
-        :variant="showSearchForm ? 'light' : 'primary'"
+        :variant="isShowing ? 'light' : 'primary'"
         @click.native="toggleAction"
     >
         <!-- Default slot for Search button text -->
@@ -17,7 +18,7 @@
 <script>
 import VsButton from '@components/elements/button/Button';
 /**
- * TODO: Document Usage
+ * Site search button used to toggle the global site search form.
  *
  * @displayName Site Search
  */
@@ -29,14 +30,23 @@ export default {
     },
     props: {
         /**
-         * Toggles the search form
+         * Used to know if the search form has been closed
+         * via close button within search form
          */
-        showSearchForm: {
+        isShowing: {
             type: Boolean,
             default: false,
         },
     },
+    data() {
+        return {
+            showSearchForm: true,
+        };
+    },
     methods: {
+        /**
+         * Toggles search form and emits event with the data
+         */
         toggleAction() {
             this.showSearchForm = !this.showSearchForm;
             this.$emit('toggleAction', this.showSearchForm);
