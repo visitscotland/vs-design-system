@@ -1,24 +1,23 @@
 <template>
-    <div>
-        <BFormCheckbox
-            v-model="inputVal"
-            class="vs-form-checkbox mr-4"
-            :class="errors.length > 0 ? 'hasError' : ''"
-            :size="size"
-            :name="fieldName"
-            :id="fieldName"
-            :value="value"
-            :unchecked_value="`not_${value}`"
-            v-bind="$attrs"
-            data-test="vs-form-checkbox"
-            @change="emitStatus"
-        >
-            {{ label }}
-            <span v-if="showRequiredText">
-                (required)
-            </span>
-        </BFormCheckbox>
-    </div>
+    <BFormCheckbox
+        v-if="fieldName"
+        v-model="inputVal"
+        class="vs-form-checkbox mr-4"
+        :class="errors.length > 0 ? 'vs-form-checkbox__invalid' : ''"
+        :size="size"
+        :name="fieldName"
+        :id="fieldName"
+        :value="value"
+        :unchecked_value="`not_${value}`"
+        v-bind="$attrs"
+        data-test="vs-form-checkbox"
+        @change="emitStatus"
+    >
+        {{ label }}
+        <span v-if="showRequiredText">
+            ({{ requiredText }})
+        </span>
+    </BFormCheckbox>
 </template>
 
 <script>
@@ -90,6 +89,13 @@ export default {
         triggerValidate: {
             type: Boolean,
             default: false,
+        },
+        /**
+         * text for `required`
+         */
+        requiredText: {
+            type: String,
+            default: 'required',
         },
     },
     data() {
@@ -214,6 +220,10 @@ export default {
             width: 15px;
             height: 15px;
             margin-right: $spacer-4;
+        }
+
+        &__invalid {
+            border: red 2px solid;
         }
     }
 </style>
