@@ -76,7 +76,7 @@ class ListicleFactoryTest {
         FlatLink link = new FlatLink();
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
-        when(linksService.createCTALink(any(), any(), any())).thenReturn(link);
+        when(linksService.createFindOutMoreLink(any(), any(), any())).thenReturn(link);
 
         List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
@@ -168,7 +168,7 @@ class ListicleFactoryTest {
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(moduleImage);
-        when(linksService.createCTALink(any(), any(), any())).thenReturn(link);
+        when(linksService.createFindOutMoreLink(any(), any(), any())).thenReturn(link);
 
         List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
@@ -188,7 +188,7 @@ class ListicleFactoryTest {
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(moduleImage);
-        when(linksService.createCTALink(any(), any(), any())).thenReturn(link);
+        when(linksService.createFindOutMoreLink(any(), any(), any())).thenReturn(link);
 
         List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
