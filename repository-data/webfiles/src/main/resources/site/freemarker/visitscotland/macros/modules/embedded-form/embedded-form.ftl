@@ -10,21 +10,24 @@
 </@hst.headContribution> 
 
 <#macro embeddedForm>
-    <vs-form>
-    </vs-form>
-    <#--  <section class="vs-embedded-form">
-        <vs-container>
-            <vs-row>
-                <vs-col cols="12">
-                    <p>Form ID ${marketoId}</p>
+    <vs-form
+        required-text="required"
+        data-url="http://127.0.0.1:5050/marketoTest.json"
+    >
+        <template slot="invalid">
+            You have invalid fields - please check the form.
+        </template>
 
-                    <vs-form form-id="${marketoId}" munchkinId="${label("channel", "marketo.munchkinId")}">
-                        <template v:slot-success-text>
-                            <p>Well done, the form was submitted</p>
-                        </template>
-                    </vs-form>
-                </vs-col>
-            </vs-row>
-        </vs-container>
-    </section>  -->
+        <template slot="submitError">
+            We're sorry there's been a problem, please try again later.
+        </template>
+
+        <template slot="submitting">
+            We're just submitting your form
+        </template>
+
+        <template slot="submitted">
+            Thank you for your details, your form has been submitted
+        </template>
+    </vs-form>
 </#macro>
