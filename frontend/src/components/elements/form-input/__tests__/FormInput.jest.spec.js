@@ -3,6 +3,8 @@ import VsFormInput from '../FormInput';
 
 const factoryShallowMount = (propsData) => shallowMount(VsFormInput, {
     propsData: {
+        fieldName: 'testname',
+        type: 'text',
         ...propsData,
     },
 });
@@ -25,7 +27,8 @@ describe('VsFormInput', () => {
 
     describe(':props', () => {
         it('size - should be `md` by default', () => {
-            expect(wrapper.attributes('size')).toBe('md');
+            const modifiedWrapper = factoryMount();
+            expect(modifiedWrapper.classes()).toContain('form-control-md');
         });
 
         it('size - should accept and render a `size` property', () => {
@@ -47,31 +50,47 @@ describe('VsFormInput', () => {
 
             expect(wrapper.vm.inputVal).toBe(testValue);
         });
-    });
 
-    describe(':events', () => {
-        it('it should emit an `input` event when `value` changes', async() => {
-            const testValue = 'Test Value';
-            const modifiedWrapper = factoryMount();
-            modifiedWrapper.setProps({
-                value: testValue,
+        it('value - should accept and render a `fieldName` property', async() => {
+            wrapper.setProps({
+                fieldName: 'testValue',
             });
 
             await wrapper.vm.$nextTick();
 
-            expect(modifiedWrapper.emitted('input')).toBeTruthy();
+            expect(wrapper.find('[data-test="vs-input"]').attributes('name')).toBe('testValue');
         });
 
-        it('it should emit an `input` event with the new value when `value` changes', async() => {
-            const testValue = 'Test Value';
-            const modifiedWrapper = factoryMount();
-            modifiedWrapper.setProps({
-                value: testValue,
+        it('value - should accept and render a `type` property', async() => {
+            expect(wrapper.find('[data-test="vs-input"]').attributes('type')).toBe('text');
+        });
+    });
+
+    describe(':computed', () => {
+        it('should add a required prop when its included in valdiation rules', async() => {
+            wrapper.setProps({
+                validationRules: {
+                    required: true,
+                },
             });
 
             await wrapper.vm.$nextTick();
 
-            expect(modifiedWrapper.emitted('input')[0]).toEqual([testValue]);
+            expect(wrapper.find('[data-test="vs-input"]').attributes('required')).toBe('true');
+        });
+    });
+
+    describe(':watchers', () => {
+        it('it should call the `manualValidate` method when `triggerValidation` is emitted', async() => {
+            const mockedMethod = jest.spyOn(wrapper.vm, 'manualValidate');
+
+            wrapper.setProps({
+                triggerValidate: true,
+            });
+
+            await wrapper.vm.$nextTick();
+
+            expect(mockedMethod).toBeCalled();
         });
     });
 });
