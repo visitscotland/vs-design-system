@@ -9,15 +9,18 @@
         />
 
         <form v-if="!submitted">
-            <template v-for="field in formData.fields">
+            <BFormGroup
+                v-for="field in formData.fields"
+                :key="field.name"
+            >
                 <label
                     v-if="field.element === 'input'"
                     for="field.name"
                     :key="field.name"
                 >
                     {{ field.label }}
-                    <span v-if="field.validation.required">
-                        (required)
+                    <span v-if="showRequiredText(field)">
+                        ({{ requiredText }})
                     </span>
                     <VsFormInput
                         :ref="field.name"
@@ -36,9 +39,7 @@
                     :key="field.name"
                 >
                     {{ field.label }}
-                    <span v-if="field.validation.required">
-                        (required)
-                    </span>
+                    ({{ requiredText }})
                     <VsFormSelect
                         :options="field.options"
                         :ref="field.name"
@@ -63,12 +64,18 @@
                         :validation-rules="field.validation || {}"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
+                        :required-text="requiredText"
                     />
                 </template>
-            </template>
+            </BFormGroup>
+
+            <p v-if="showErrorMessage && errorFields.length > 0">
+                <slot name="invalid" />
+            </p>
+
             <button
-                @click.stop="marketoSubmit"
-                @keydown.stop="marketoSubmit"
+                @click.stop="preSubmit"
+                @keydown.stop="preSubmit"
                 type="button"
                 class="formSubmit"
             >
@@ -76,21 +83,22 @@
             </button>
         </form>
 
-        <p v-if="showErrorMessage">
-            Please ensure all fields are completed correctly
-        </p>
-
         <p v-if="submitting">
-            We're just submitting your form
+            <slot name="submitting" />
         </p>
 
         <p v-if="submitted">
-            Thank you for your details, your form has been submitted
+            <slot name="submitted" />
+        </p>
+
+        <p v-if="submitError">
+            <slot name="submitError" />
         </p>
     </div>
 </template>
 
 <script>
+import { BFormGroup } from 'bootstrap-vue';
 import VsFormInput from '../../elements/form-input/FormInput';
 import VsFormSelect from '../../elements/form-select/FormSelect';
 import VsFormCheckbox from '../../elements/form-checkbox/FormCheckbox';
@@ -112,6 +120,7 @@ export default {
         VsFormInput,
         VsFormSelect,
         VsFormCheckbox,
+        BFormGroup,
     },
     props: {
         /**
@@ -119,13 +128,21 @@ export default {
          */
         dataUrl: {
             type: String,
-            default: './data/simpleForm.json',
+            required: true,
+        },
+        /**
+         * text for `required`
+         */
+        requiredText: {
+            type: String,
+            default: 'required',
         },
     },
     data() {
         return {
             submitted: false,
             submitting: false,
+            submitError: false,
             formData: {
             },
             form: {
@@ -138,7 +155,7 @@ export default {
         };
     },
     created() {
-        axios.get('http://127.0.0.1:5050/simpleForm.json')
+        axios.get(this.dataUrl)
             .then((response) => {
                 this.formData = response.data;
 
@@ -180,10 +197,17 @@ export default {
                 this.errorFields.push(field);
             }
         },
+        showRequiredText(field) {
+            if (typeof field.validation !== 'undefined' && field.validation.required) {
+                return true;
+            }
+
+            return false;
+        },
         /**
          * submit form
          */
-        marketoSubmit() {
+        preSubmit() {
             function isRequired(value) {
                 return value.validation && value.validation.required;
             }
@@ -205,23 +229,25 @@ export default {
             this.showErrorMessage = this.formIsInvalid.length > 1;
 
             if (!this.formIsInvalid) {
-                console.log('I would submit');
+                console.log('submitted');
+                this.marketoSubmit();
             } else {
-                console.log('I would not submit');
+                this.showErrorMessage = true;
             }
-
-            // const myForm = window.MktoForms2.allForms()[0];
-            // myForm.addHiddenFields(data);
-            // myForm.submit(() => {
-            //     this.submitting = true;
-            // });
-            // /* eslint-ignore-next-line */
-            // myForm.onSuccess(() => {
-            //     console.log('data submitted');
-            //     this.submitting = false;
-            //     this.submitted = true;
-            //     return false;
-            // });
+        },
+        marketoSubmit() {
+            const myForm = window.MktoForms2.allForms()[0];
+            myForm.addHiddenFields(this.form);
+            myForm.submit(() => {
+                this.submitting = true;
+            });
+            /* eslint-ignore-next-line */
+            myForm.onSuccess(() => {
+                console.log('data submitted');
+                this.submitting = false;
+                this.submitted = true;
+                return false;
+            });
         },
     },
 };
@@ -242,7 +268,24 @@ export default {
 <docs>
     ```jsx
         <VsForm
-            :formId = 123
-        />
+            requiredText="required"
+            dataUrl="http://127.0.0.1:5050/marketoTest.json"
+        >
+            <template slot="invalid">
+                You have invalid fields - please check the form.
+            </template>
+
+            <template slot="submitError">
+                We're sorry there's been a problem, please try again later.
+            </template>
+
+            <template slot="submitting">
+                We're just submitting your form
+            </template>
+
+            <template slot="submitted">
+                Thank you for your details, your form has been submitted
+            </template>
+        </VsForm>
     ```
 </docs>

@@ -1,16 +1,17 @@
 <template>
-    <div>
-        <BFormInput
-            :type="type"
-            class="input"
-            :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
-            v-model="inputVal"
-            @input="emitStatus"
-            @blur="emitStatus"
-            id="name"
-            name="name"
-        />
-    </div>
+    <BFormInput
+        :type="type"
+        class="input"
+        :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
+        v-model="inputVal"
+        @input="emitStatus"
+        @blur="emitStatus"
+        :id="fieldName"
+        :name="fieldName"
+        data-test="vs-input"
+        :required="isRequired"
+        :size="size"
+    />
 </template>
 
 <script>
@@ -131,6 +132,13 @@ export default {
 
             return {
             };
+        },
+        isRequired() {
+            if (typeof required !== 'undefined' && 'required' in this.validationRules) {
+                return true;
+            }
+
+            return false;
         },
     },
     watch: {
