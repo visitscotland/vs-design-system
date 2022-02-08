@@ -120,8 +120,8 @@ class LinkServiceTest {
 
 
     @Test
-    @DisplayName("Create a link from an CMSLink Compound")
-    void cmsLink() {
+    @DisplayName("Create a link from an CMSLink Compound to a page")
+    void cmsPageLink() {
         CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
         when(cmsLink.getLink()).thenReturn(mock(Page.class));
 
@@ -131,6 +131,48 @@ class LinkServiceTest {
 
         assertEquals("http://cms-url", link.getLink());
         assertEquals(LinkType.INTERNAL, link.getType());
+    }
+    @Test
+    @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, default label")
+    void cmsSharedLink_findOutMore() {
+        SharedLink sharedLink = mock(SharedLink.class);
+        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+
+        when(sharedLink.getLinkType()).thenReturn(externalLink);
+        when(cmsLink.getLabel()).thenReturn("");
+        when(externalLink.getLink()).thenReturn("http://cms-url");
+        when(cmsLink.getLink()).thenReturn(sharedLink);
+        when(resourceBundle.getCtaLabel(any(), any())).thenReturn("Find out more");
+
+
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, cmsLink);
+
+        assertEquals("http://cms-url", link.getLink());
+        assertEquals("Find out more", link.getLabel());
+        assertEquals(LinkType.EXTERNAL, link.getType());
+
+    }
+    @Test
+    @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, override label")
+    void cmsSharedLink_overrideFindOutMore() {
+        SharedLink sharedLink = mock(SharedLink.class);
+        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+
+        when(sharedLink.getLinkType()).thenReturn(externalLink);
+        when(cmsLink.getLabel()).thenReturn("CTA override");
+        when(externalLink.getLink()).thenReturn("http://cms-url");
+        when(cmsLink.getLink()).thenReturn(sharedLink);
+        when(resourceBundle.getCtaLabel(any(), any())).thenReturn("Find out more");
+
+
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, cmsLink);
+
+        assertEquals("http://cms-url", link.getLink());
+        assertEquals("CTA override", link.getLabel());
+        assertEquals(LinkType.EXTERNAL, link.getType());
+
     }
 
     @Test
