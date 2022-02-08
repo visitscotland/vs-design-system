@@ -100,9 +100,9 @@ import {
 import { BForm } from 'bootstrap-vue';
 
 /**
- * TODO: Document Usage
+ * Search form used for the global site search.
  *
- * @displayName Site Search
+ * @displayName Site Search Form
  */
 export default {
     name: 'VsSiteSearchForm',
@@ -155,6 +155,9 @@ export default {
         };
     },
     computed: {
+        /**
+         * Checks if anything has been entered into the search form
+         */
         isValid() {
             return this.searchTerm.length > 0;
         },
@@ -198,12 +201,6 @@ export default {
          */
         onInput() {
             this.validated = this.isValid ? null : false;
-        },
-        /**
-         * Reset the validation
-         */
-        resetValidation() {
-            this.validated = null;
         },
         /**
          * Closes the search form popover
