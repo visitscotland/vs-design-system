@@ -11,18 +11,8 @@
             :id="fieldName"
             @change="emitStatus"
             @blur="emitStatus"
+            data-test="vs-form-select"
         />
-
-        <!-- <BFormSelect
-            v-model="inputVal"
-            class="vs-form-select"
-            :size="size"
-            v-bind="$attrs"
-            :options="options"
-            :name="name"
-            :id="name"
-            @change="testValidation"
-        /> -->
     </BFormGroup>
 </template>
 
