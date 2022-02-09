@@ -97,6 +97,7 @@ class ListicleFactoryTest {
         ListicleItem item = new ListicleItemMockBuilder().addImage().cmsLink().build();
         EnhancedLink link = new EnhancedLink();
         FlatImage moduleImage = new FlatImage();
+        link.setLink("www.google.com");
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(imageFactory.getImage(eq(item.getListicleItemImage()), any(), any())).thenReturn(moduleImage);
@@ -116,6 +117,7 @@ class ListicleFactoryTest {
         ListicleItem item = new ListicleItemMockBuilder().cmsLink().build();
         EnhancedLink link = new EnhancedLink();
         link.setImage(new FlatImage());
+        link.setLink("www.google.com");
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(linksService.createEnhancedLink(any(), any(), any(),anyBoolean())).thenReturn(link);
@@ -124,6 +126,7 @@ class ListicleFactoryTest {
 
         Assertions.assertEquals(1, items.size());
         Assertions.assertEquals(1, items.get(0).getLinks().size());
+        Assertions.assertEquals("www.google.com", items.get(0).getLinks().get(0).getLink());
 
         Assertions.assertNull(item.getListicleItemImage());
         Assertions.assertEquals(link.getImage(), items.get(0).getImage());
