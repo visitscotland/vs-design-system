@@ -47,9 +47,11 @@ public class QuoteFactory {
                 }
                 quote.setLink(link);
             } else{
+                module.addErrorMessage("The product provided for the quote is not valid, please review the document at: " + doc.getPath());
                 contentLogger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
             }
         } else if (doc.getProduct() != null){
+            module.addErrorMessage("The product provided for the quote is not valid, please review the document at: " + doc.getPath());
             contentLogger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
         }
         return quote;
