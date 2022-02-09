@@ -53,7 +53,7 @@ class QuoteFactoryTest {
         when(quote.getProduct()).thenReturn(link);
         when((linkService).createEnhancedLink((Linkable)quote.getProduct(),null,Locale.UK,false)).thenReturn(enhancedLink);
         when(link.getLinkType()).thenReturn(link);
-        when((linkService).createCTALink(any(), eq(Locale.UK), eq(link))).thenReturn(flatLink);
+        when((linkService).createFindOutMoreLink(any(), eq(Locale.UK), eq(link))).thenReturn(flatLink);
 
         when(enhancedLink.getLink()).thenReturn("www.google.com");
         FlatQuote flat = embedder.getQuote(quote, null, Locale.UK);
