@@ -12,6 +12,7 @@ import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
+import com.visitscotland.brxm.model.YoutubeVideo;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
@@ -26,7 +27,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.Locale;
+import java.util.Optional;
 
 @Component
 public class LinkService {
@@ -43,9 +46,10 @@ public class LinkService {
     private final ImageFactory imageFactory;
     private final CommonUtilsService commonUtils;
     private final DocumentUtilsService documentUtilsService;
+    private final YoutubeApiService youtubeApiService;
 
     @Autowired
-    public LinkService(DMSDataService dmsData, ResourceBundleService bundle, HippoUtilsService utils, Properties properties, ImageFactory imageFactory, CommonUtilsService commonUtils, DocumentUtilsService documentUtilsService) {
+    public LinkService(DMSDataService dmsData, ResourceBundleService bundle, HippoUtilsService utils, Properties properties, ImageFactory imageFactory, CommonUtilsService commonUtils, DocumentUtilsService documentUtilsService, YoutubeApiService youtubeApiService) {
         this.dmsData = dmsData;
         this.bundle = bundle;
         this.utils = utils;
@@ -54,6 +58,7 @@ public class LinkService {
         this.imageFactory = imageFactory;
         this.commonUtils = commonUtils;
         this.documentUtilsService = documentUtilsService;
+        this.youtubeApiService = youtubeApiService;
     }
 
     /**
@@ -509,13 +514,12 @@ public class LinkService {
     /**
      * Creates a PlainVideoLink Object from a videoLink
      *
-     * @param video Video Document
+     * @param video  Video Document
      * @param module Module that will log all issues for the modules.
      * @param locale Locale for the localization
-     *
      * @return
      */
-    public EnhancedLink createVideo(Video video, Module<?> module, Locale locale){
+    public EnhancedLink createVideo(Video video, Module<?> module, Locale locale) {
         EnhancedLink videoLink = new EnhancedLink();
         videoLink.setImage(imageFactory.createImage(video.getImage(), module, locale));
         videoLink.setLabel(video.getTitle());
@@ -524,7 +528,14 @@ public class LinkService {
         videoLink.setCta(bundle.getVideoCtaLabel(video.getLabel(), locale));
         videoLink.setYoutubeId(getYoutubeId(video.getUrl()));
         videoLink.setType(LinkType.VIDEO);
-
+        Optional<YoutubeVideo> videoInfo = youtubeApiService.getVideoInfo(videoLink.getYoutubeId());
+        // If the upload date can not be obtained from YouTube, set the published date to today to prevent a malformed
+        // schema
+        if (videoInfo.isPresent()) {
+            videoLink.setPublishedDate(videoInfo.get().getPublishDate());
+        } else {
+            videoLink.setPublishedDate(new Date());
+        }
         return videoLink;
     }
 
