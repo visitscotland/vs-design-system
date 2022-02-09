@@ -39,7 +39,7 @@
             <#if itinerary?has_content>is-itinerary</#if>
         >
             <#if heroDetails?has_content>
-                <#if heroVideo.cta??>
+                <#if heroVideo?? && heroVideo.cta??>
                     <#assign ctaText = heroVideo.cta>
                 <#else>
                     <#assign ctaText = "">
