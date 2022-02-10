@@ -22,6 +22,8 @@ public class Properties {
     private static final Logger logger = LoggerFactory.getLogger(Properties.class.getName());
 
     static final String DEFAULT_ID = "config.cms";
+    static final String ENVIRONMENT_CONFIG = "environment.config";
+    static final String COMMON_CONFIG = "common.config";
 
     static final String INSTAGRAM_API = "instagram.api";
     static final String INSTAGRAM_ACCESS_TOKEN ="instagram.accesstoken";
@@ -243,7 +245,11 @@ public class Properties {
         String bundleId = getEnvironmentProperties();
         String value = bundle.getResourceBundle(bundleId, key, Locale.UK);
 
-        if (Contract.isEmpty(value)){
+        if (Contract.isEmpty(value)) {
+            value = bundle.getResourceBundle(COMMON_CONFIG, key, Locale.UK);
+        }
+
+        if (Contract.isEmpty(value)) {
             logger.info("The property {} hasn't been set in the resourceBundle {}", key, bundleId);
         } else if (value.startsWith("$")){
             return getEnvironmentVariable(value.substring(1));
