@@ -54,7 +54,7 @@
                         >
                             <vs-row>
                                 <vs-col cols="12">
-                                    <@video videoId="${heroVideo.youtubeId}" />
+                                    <@video video=heroVideo />
                                 </vs-col>
                             </vs-row>
 
