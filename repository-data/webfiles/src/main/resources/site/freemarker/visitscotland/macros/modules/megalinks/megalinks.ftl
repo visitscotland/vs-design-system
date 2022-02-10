@@ -3,7 +3,7 @@
 <#include "./multi-image/megalinks-multi-image.ftl">
 <#include "./link-list/megalinks-link-list.ftl">
 <#include "./single-image/megalinks-single-image.ftl">
-<#include "../../../global/cms-errors.ftl">
+<#include "../../global/cms-errors.ftl">
 
 <#macro megalinks item type theme="">
     <@cmsErrors errors=item.errorMessages!"" editMode=editMode />

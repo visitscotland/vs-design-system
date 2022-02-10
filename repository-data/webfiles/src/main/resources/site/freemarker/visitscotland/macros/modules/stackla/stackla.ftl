@@ -2,7 +2,7 @@
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
 <#include "../../../../frontend/components/vs-embed-wrapper.ftl">
 
-<#include "../../../global/cms-errors.ftl">
+<#include "../../global/cms-errors.ftl">
 
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.StacklaModule" -->
 
