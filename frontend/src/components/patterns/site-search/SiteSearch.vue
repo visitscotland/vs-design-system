@@ -18,7 +18,8 @@
 <script>
 import VsButton from '@components/elements/button/Button';
 /**
- * Site search button used to toggle the global site search form.
+ * Site search lets users find relevant information using
+ * a word or phrase to find content.
  *
  * @displayName Site Search
  */
@@ -46,9 +47,16 @@ export default {
     methods: {
         /**
          * Toggles search form and emits event with the data
-         */
+        */
         toggleAction() {
             this.showSearchForm = !this.showSearchForm;
+
+            /**
+             * @event toggleAction
+             * @type {boolean}
+             * @property {boolean} showSearchForm - indicates whether
+             * the search form should be hidden or not.
+            */
             this.$emit('toggleAction', this.showSearchForm);
         },
     },
@@ -73,11 +81,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsSiteSearch>
-        Search
-    </VsSiteSearch>
-  ```
-</docs>
