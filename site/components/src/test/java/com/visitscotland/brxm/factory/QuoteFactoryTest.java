@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.factory;
 
+import com.visitscotland.brxm.hippobeans.CMSLink;
 import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.hippobeans.Quote;
 import com.visitscotland.brxm.hippobeans.SharedLink;
@@ -40,8 +41,10 @@ class QuoteFactoryTest {
     void getQuote() {
         Quote quote = mock(Quote.class);
         Image image = mock(Image.class);
+
+        CMSLink cmsLink = mock(CMSLink.class);
         SharedLink link = mock(SharedLink.class);
-        EnhancedLink enhancedLink = mock(EnhancedLink.class);
+
         FlatLink flatLink = mock(FlatLink.class);
         HippoHtml copy = mock(HippoHtml.class);
         when(quote.getQuote()).thenReturn(mock(HippoHtml.class));
@@ -49,11 +52,12 @@ class QuoteFactoryTest {
         when(quote.getRole()).thenReturn("Role");
         when(quote.getQuote()).thenReturn(copy);
         when(quote.getImage()).thenReturn(image);
-        when(quote.getProduct()).thenReturn(link);
-        when((linkService).createEnhancedLink((Linkable)quote.getProduct(),null,Locale.UK,false)).thenReturn(enhancedLink);
+        when(quote.getProduct()).thenReturn(cmsLink);
+        when(cmsLink.getLink()).thenReturn(link);
         when(link.getLinkType()).thenReturn(link);
-        when((linkService).createCTALink(any(), eq(Locale.UK), eq(link))).thenReturn(flatLink);
 
+        when((linkService).createEnhancedLink(link,null,Locale.UK,false)).thenReturn(new EnhancedLink());
+        when((linkService).createCTALink(any(), eq(Locale.UK), eq(link))).thenReturn(flatLink);
 
         FlatQuote flat = embedder.getQuote(quote, null, Locale.UK);
 
