@@ -133,12 +133,13 @@ export default {
             .Select.form-control,
             .Select-multi-value-wrapper,
             .Select-placeholder {
-                height: 50px;
+                min-height: 50px;
                 font-style: normal;
                 font-weight: $font-weight-normal;
                 color: $color-gray-shade-7;
                 font-size: $font_size_base;
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
                 padding-top: 0;
                 padding-bottom: 0;
@@ -184,6 +185,32 @@ export default {
             .c-search__date-reset,
             .c-search__rooms-guests-picker__label {
                 color: $color-gray-shade-5;
+            }
+
+            .c-search__rooms-guests-picker__button {
+                position: relative;
+
+                &:focus {
+                   border: 1px solid $color-pink;
+                   background-color: $color-white;
+                   color: $color-pink;
+                   outline: none;
+
+                    &::before {
+                        content: '';
+                        border: 3px solid  $color-secondary-teal;
+                        position: absolute;
+                        top: -4px;
+                        left: -4px;
+                        width: calc(100% + 8px);
+                        height: calc(100% + 8px);
+
+                    }
+                }
+            }
+
+            .c-search__date-reset:focus {
+                outline: 3px solid $color-secondary-teal;
             }
 
             .c-search__date-summary .DateRangePickerInput div:nth-child(3) {
@@ -233,6 +260,14 @@ export default {
 
                     &__selected_span {
                         background-color: $color-secondary-teal-tint-5;
+                    }
+                }
+            }
+
+            .button-row {
+                & > a {
+                    &:focus {
+                        outline: 3px solid $color-secondary-teal;
                     }
                 }
             }
