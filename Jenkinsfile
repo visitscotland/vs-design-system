@@ -82,7 +82,24 @@ pipeline {
   stages {
 
     stage ('Pre-build') {
+
       steps {
+        // Set any defined build property overrides for this work-in-progress branch
+        script {
+
+          // Set any supported build property overrides defined in ci/BRANCH_NAME.buildprops
+          branchBuildScripts = load("./ci/branchBuildScripts.groovy")
+
+          // Set the buildprop environment variables either to their default values or any specified overrides
+          Map buildProps = branchBuildScripts.loadPropOverrides("${env.WORKSPACE}" + "/ci/", branchBuildScripts.getBranchKey())
+          Map buildPropParsers = branchBuildScripts.getPropParsers()
+          buildPropParsers.each {
+            k, v ->
+              String parsedValue = ( buildProps?.containsKey(k) ? v.parser(buildProps[k]) : v.default )
+              env."${k}" = parsedValue
+          }
+        }
+
         sh 'printenv'
       }
     }
@@ -171,6 +188,15 @@ pipeline {
     } //end stage
 
     stage ('vs build feature env') {
+      when {
+        anyOf {
+          // Always build the feature environment for pull requests to 'develop'
+          changeRequest target: 'develop'
+
+          // If requested, build feature environment for feature branches prior to PR
+          environment name: 'VS_BUILD_FEATURE_ENVIRONMENT', value: 'true'
+        }
+      }
       steps{
         script{
           //sh 'sh ./infrastructure/scripts/docker.sh'
