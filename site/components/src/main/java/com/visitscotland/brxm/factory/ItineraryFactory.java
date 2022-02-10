@@ -17,8 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
@@ -196,7 +194,7 @@ public class ItineraryFactory {
         }
 
         if (externalLink.getExternalLink() != null) {
-            FlatLink ctaLink = linkService.createCTALink(module, locale, externalLink.getExternalLink());
+            FlatLink ctaLink = linkService.createFindOutMoreLink(module, locale, externalLink.getExternalLink());
             module.setCtaLink(ctaLink);
         }
 
@@ -219,7 +217,7 @@ public class ItineraryFactory {
             return;
         }
 
-        module.setCtaLink(linkService.createCTALink(module, locale, dmsLink));
+        module.setCtaLink(linkService.createFindOutMoreLink(module, locale, dmsLink));
         module.setFacilities(utils.getKeyFacilities(product));
 
         if (module.getImage() == null && product.has(IMAGE)) {
