@@ -92,7 +92,7 @@ class LinkServiceTest {
         when(properties.getDmsHost()).thenReturn("http://localhost:8080");
         when(resourceBundle.getCtaLabel(eq(""), any())).thenReturn("Find out more");
 
-        FlatLink link = service.createCTALink(null, Locale.UK, externalLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, externalLink);
 
         assertEquals("http://fake.link", link.getLink());
         assertEquals("Find out more", link.getLabel());
@@ -124,17 +124,59 @@ class LinkServiceTest {
 
 
     @Test
-    @DisplayName("Create a link from an CMSLink Compound")
-    void cmsLink() {
+    @DisplayName("Create a link from an CMSLink Compound to a page")
+    void cmsPageLink() {
         CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
         when(cmsLink.getLink()).thenReturn(mock(Page.class));
 
         when(utils.createUrl(any(Page.class))).thenReturn("http://cms-url");
 
-        FlatLink link = service.createCTALink(null, Locale.UK, cmsLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, cmsLink);
 
         assertEquals("http://cms-url", link.getLink());
         assertEquals(LinkType.INTERNAL, link.getType());
+    }
+    @Test
+    @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, default label")
+    void cmsSharedLink_findOutMore() {
+        SharedLink sharedLink = mock(SharedLink.class);
+        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+
+        when(sharedLink.getLinkType()).thenReturn(externalLink);
+        when(cmsLink.getLabel()).thenReturn("");
+        when(externalLink.getLink()).thenReturn("http://cms-url");
+        when(cmsLink.getLink()).thenReturn(sharedLink);
+        when(resourceBundle.getCtaLabel(any(), any())).thenReturn("Find out more");
+
+
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, cmsLink);
+
+        assertEquals("http://cms-url", link.getLink());
+        assertEquals("Find out more", link.getLabel());
+        assertEquals(LinkType.EXTERNAL, link.getType());
+
+    }
+    @Test
+    @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, override label")
+    void cmsSharedLink_overrideFindOutMore() {
+        SharedLink sharedLink = mock(SharedLink.class);
+        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+
+        when(sharedLink.getLinkType()).thenReturn(externalLink);
+        when(cmsLink.getLabel()).thenReturn("CTA override");
+        when(externalLink.getLink()).thenReturn("http://cms-url");
+        when(cmsLink.getLink()).thenReturn(sharedLink);
+        when(resourceBundle.getCtaLabel(any(), any())).thenReturn("Find out more");
+
+
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, cmsLink);
+
+        assertEquals("http://cms-url", link.getLink());
+        assertEquals("CTA override", link.getLabel());
+        assertEquals(LinkType.EXTERNAL, link.getType());
+
     }
 
     @Test
@@ -148,7 +190,7 @@ class LinkServiceTest {
         when(dmsData.productCard("123", Locale.UK)).thenReturn(null);
 
 
-        FlatLink link = service.createCTALink(m, Locale.UK, dmsLink);
+        FlatLink link = service.createFindOutMoreLink(m, Locale.UK, dmsLink);
 
         assertEquals(1, m.getErrorMessages().size());
         assertNull(link);
@@ -168,7 +210,7 @@ class LinkServiceTest {
         when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK)).thenReturn(url);
         when(url.asText()).thenReturn("/dms-page");
 
-        FlatLink link = service.createCTALink(null, Locale.UK, dmsLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, dmsLink);
 
         assertTrue(link.getLink().endsWith("/dms-page"));
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -185,7 +227,7 @@ class LinkServiceTest {
         ProductsSearch ps = mock(ProductsSearch.class);
         when(productSearchLink.getSearch()).thenReturn(ps);
 
-        FlatLink link = service.createCTALink(null, Locale.UK, productSearchLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, productSearchLink);
 
         verify(builder, times(1)).build();
         assertEquals(LinkType.INTERNAL, link.getType());

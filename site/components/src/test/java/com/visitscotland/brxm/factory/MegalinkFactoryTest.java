@@ -161,7 +161,7 @@ public class MegalinkFactoryTest {
         ExternalLink mockLink = mock(ExternalLink.class);
         Megalinks mega = mockMultiImage();
         when(mega.getProductItem()).thenReturn(mockLink);
-        when(linkService.createCTALink(any(), any(Locale.class), eq(mockLink))).thenReturn(new FlatLink(null, "cta-link", null));
+        when(linkService.createFindOutMoreLink(any(), any(Locale.class), eq(mockLink))).thenReturn(new FlatLink(null, "cta-link", null));
 
         LinksModule<?> layout = factory.multiImageLayout(mega, Locale.UK);
 
