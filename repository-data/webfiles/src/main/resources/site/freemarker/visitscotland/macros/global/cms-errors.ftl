@@ -1,8 +1,18 @@
+<#include "../../../../frontend/components/vs-container.ftl">
+
 <#macro cmsErrors errors editMode>
-    <h1 class="text-danger">Test error baybee</h1>
     <#if errors?? && errors?has_content && editMode>
-        <#list errors as error>
-            <h1 class="text-danger">${error?upper_case}</h1>
-        </#list>
+        <vs-container
+            class="py-4"
+        >
+            <#list errors as error>
+                <h1
+                    class="text-danger"
+                    role="alert"
+                >
+                    ${error?upper_case}
+                </h1>
+            </#list>
+        </vs-container>
     </#if>
 </#macro>
