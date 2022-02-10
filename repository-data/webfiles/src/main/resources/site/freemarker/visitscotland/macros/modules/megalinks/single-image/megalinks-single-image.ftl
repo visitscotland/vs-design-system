@@ -3,8 +3,10 @@
 <#include "../../../../../frontend/components/vs-link.ftl">
 <#include "../../../../../frontend/components/vs-link-list-item.ftl">
 <#include "../../../global/image-with-caption.ftl">
+<#include "../../../global/cms-errors.ftl">
 
 <#macro singleImage item theme>
+    <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
     <#if item.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=item.image.cmsImage.original/>

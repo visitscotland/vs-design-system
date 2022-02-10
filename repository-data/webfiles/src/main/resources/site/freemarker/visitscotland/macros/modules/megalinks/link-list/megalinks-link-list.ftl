@@ -3,6 +3,7 @@
 <#include "../../../global/cms-errors.ftl">
 
 <#macro linkList item showTeaser theme>
+    <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
     <vs-row>
         <vs-col
             cols="12"
@@ -10,7 +11,6 @@
             class="offset-lg-1"
         >
             <vs-row>
-                <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
                 <#list item.links as listItem>
                     <#if listItem.image.cmsImage??>
                         <#assign image>
