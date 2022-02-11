@@ -259,19 +259,9 @@ export default {
                 border-color: $color-pink;
             }
 
-            &.form-control.is-invalid{
-                background-position: right calc(0.2em + 0.2rem) center;
-                background-size: calc(0.5em + 0.5rem) calc(0.5em + 0.5rem);
-            }
-
             @include media-breakpoint-up(lg) {
                 padding: $spacer-4 $spacer-10 $spacer-4 $spacer-12;
                 font-size: $display1-size;
-
-                &.form-control.is-invalid{
-                    background-position: right calc(0.375em + 0.375rem) center;
-                    background-size: calc(0.75m + 0.75rem) calc(0.75em + 0.75rem);
-                }
             }
 
             @include media-breakpoint-up(xl) {
