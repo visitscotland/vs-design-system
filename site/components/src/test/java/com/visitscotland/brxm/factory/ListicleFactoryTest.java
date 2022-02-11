@@ -112,6 +112,26 @@ class ListicleFactoryTest {
     }
 
     @Test
+    @DisplayName("VS-3225 ListicleItem from CMSLink with override label")
+    void listicle_cmsLinkOverrideLabel() {
+        ListicleItem item = new ListicleItemMockBuilder().addImage().cmsLinkOverrideLabel().build();
+        EnhancedLink link = new EnhancedLink();
+        FlatImage moduleImage = new FlatImage();
+        link.setLink("www.google.com");
+
+        when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
+        when(imageFactory.getImage(eq(item.getListicleItemImage()), any(), any())).thenReturn(moduleImage);
+        when(linksService.createEnhancedLink(any(), any(), any(),anyBoolean())).thenReturn(link);
+
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
+
+        Assertions.assertEquals(1, items.size());
+        Assertions.assertEquals(1, items.get(0).getLinks().size());
+        Assertions.assertEquals(moduleImage, items.get(0).getImage());
+        Assertions.assertEquals(link, items.get(0).getLinks().get(0));
+    }
+
+    @Test
     @DisplayName("ListicleItem from CMSLink - When the image is not set on the CMS")
     void listicle_cmsLink_fallbackImage() {
         ListicleItem item = new ListicleItemMockBuilder().cmsLink().build();
@@ -130,6 +150,21 @@ class ListicleFactoryTest {
 
         Assertions.assertNull(item.getListicleItemImage());
         Assertions.assertEquals(link.getImage(), items.get(0).getImage());
+    }
+
+    @Test
+    @DisplayName("VS- 3225 ListicleItem from CMSLink - the main link is null")
+    void listicle_cmsLink_NullLink() {
+        ListicleItem item = new ListicleItemMockBuilder().cmsLink().build();
+        EnhancedLink link = new EnhancedLink();
+        link.setImage(new FlatImage());
+
+        when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
+        when(linksService.createEnhancedLink(any(), any(), any(),anyBoolean())).thenReturn(link);
+
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
+
+        Assertions.assertEquals(1, items.get(0).getErrorMessages().size());
     }
 
     @Test
