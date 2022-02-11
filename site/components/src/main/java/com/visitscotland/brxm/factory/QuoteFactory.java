@@ -38,19 +38,16 @@ public class QuoteFactory {
             quote.setImage(imageFactory.createImage(doc.getImage(), module, locale));
         }
 
-        if (doc.getProduct() != null){
-            if (doc.getProduct().getLink() instanceof Linkable) {
-                EnhancedLink link = linkService.createEnhancedLink((Linkable) doc.getProduct().getLink(), module, locale, false);
-                if (doc.getProduct().getLink() instanceof SharedLink){
-                    FlatLink flatLink = linkService.createCTALink(module, locale, ((SharedLink) doc.getProduct().getLink()).getLinkType());
-                    link.setLabel(flatLink.getLabel());
-                }
-                quote.setLink(link);
-            } else if (doc.getProduct() != null){
-                contentLogger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
+        if (doc.getProduct() instanceof Linkable) {
+            EnhancedLink link = linkService.createEnhancedLink((Linkable) doc.getProduct(), module, locale, false);
+            if (doc.getProduct() instanceof SharedLink){
+                FlatLink flatLink = linkService.createFindOutMoreLink(module, locale, ((SharedLink) doc.getProduct()).getLinkType());
+                link.setLabel(flatLink.getLabel());
             }
+            quote.setLink(link);
+        } else if (doc.getProduct() != null){
+            contentLogger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
         }
-
         return quote;
     }
 

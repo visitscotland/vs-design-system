@@ -4,7 +4,6 @@ import com.visitscotland.brxm.hippobeans.CMSLink;
 import com.visitscotland.brxm.hippobeans.Image;
 import com.visitscotland.brxm.hippobeans.Quote;
 import com.visitscotland.brxm.hippobeans.SharedLink;
-import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.FlatQuote;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
@@ -57,7 +56,7 @@ class QuoteFactoryTest {
         when(link.getLinkType()).thenReturn(link);
 
         when((linkService).createEnhancedLink(link,null,Locale.UK,false)).thenReturn(new EnhancedLink());
-        when((linkService).createCTALink(any(), eq(Locale.UK), eq(link))).thenReturn(flatLink);
+        when((linkService).createFindOutMoreLink(any(), eq(Locale.UK), eq(link))).thenReturn(flatLink);
 
         FlatQuote flat = embedder.getQuote(quote, null, Locale.UK);
 
