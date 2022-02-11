@@ -9,7 +9,7 @@ definitions:
         .meta:category: system
         .meta:add-new-system-values: true
         type: string
-        value: [xm.security.viewer, xm.default-user.author]
+        value: [xm.default-user.author]
       hipposys:members:
         .meta:category: system
         .meta:add-new-system-values: true
