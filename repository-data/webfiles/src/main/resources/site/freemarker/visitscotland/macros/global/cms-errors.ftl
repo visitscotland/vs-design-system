@@ -7,7 +7,7 @@
         >
             <#list errors as error>
                 <h1
-                    class="text-danger"
+                    class="text-danger pb-2"
                     role="alert"
                 >
                     ${error?upper_case}
