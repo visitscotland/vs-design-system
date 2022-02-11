@@ -23,7 +23,7 @@ public class Properties {
 
     static final String DEFAULT_ID = "config.cms";
     static final String ENVIRONMENT_CONFIG = "environment.config";
-    static final String COMMON_CONFIG = "common.config";
+    static final String COMMON_CONFIG = "default.config";
 
     static final String INSTAGRAM_API = "instagram.api";
     static final String INSTAGRAM_ACCESS_TOKEN ="instagram.accesstoken";
@@ -241,7 +241,7 @@ public class Properties {
         return DEFAULT_ID;
     }
 
-    private String getProperty(String key){
+    public String getProperty(String key){
         String bundleId = getEnvironmentProperties();
         String value = bundle.getResourceBundle(bundleId, key, Locale.UK);
 
