@@ -51,7 +51,7 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: String
             hipposysedit:validators: ['visitscotland:short-string-validator']
-          /CMSLink:
+          /product:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
@@ -103,7 +103,7 @@ definitions:
           /product:
             jcr:primaryType: frontend:plugin
             caption: Product
-            field: CMSLink
+            field: product
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             hint: ''
