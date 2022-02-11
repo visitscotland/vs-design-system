@@ -1,9 +1,7 @@
 <#include "../../../../../include/imports.ftl">
 <#include "../../../../../frontend/components/vs-megalink-link-list.ftl">
-<#include "../../../global/cms-errors.ftl">
 
 <#macro linkList item showTeaser theme>
-    <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
     <vs-row>
         <vs-col
             cols="12"

@@ -3,10 +3,8 @@
 <#include "./multi-image-featured.ftl">
 <#include "./multi-image-two-items.ftl">
 <#include "./multi-image-three-items.ftl">
-<#include "../../../global/cms-errors.ftl">
 
 <#macro multiImage item showTeaser theme>
-    <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
     <vs-col
         cols="10"
         class="offset-1"
