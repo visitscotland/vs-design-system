@@ -36,6 +36,7 @@ class QuoteFactoryTest {
     @Resource
     QuoteFactory embedder;
 
+    /** TODO Break down this test case in several parts */
     @Test
     @DisplayName("Happy path - All fields are mapped correctly")
     void getQuote() {
@@ -45,20 +46,20 @@ class QuoteFactoryTest {
         CMSLink cmsLink = mock(CMSLink.class);
         SharedLink link = mock(SharedLink.class);
 
-        FlatLink flatLink = mock(FlatLink.class);
-        HippoHtml copy = mock(HippoHtml.class);
         when(quote.getQuote()).thenReturn(mock(HippoHtml.class));
         when(quote.getAuthor()).thenReturn("Author");
         when(quote.getRole()).thenReturn("Role");
-        when(quote.getQuote()).thenReturn(copy);
+        when(quote.getQuote()).thenReturn(mock(HippoHtml.class));
         when(quote.getImage()).thenReturn(image);
         when(quote.getProduct()).thenReturn(cmsLink);
         when(cmsLink.getLink()).thenReturn(link);
 
-        when((linkService).createEnhancedLink(link,null,Locale.UK,false)).thenReturn(new EnhancedLink());
-        when((linkService).createFindOutMoreLink(any(), eq(Locale.UK), eq(cmsLink))).thenReturn(flatLink);
+        EnhancedLink enhancedLink = new EnhancedLink();
+        enhancedLink.setLink("www.google.com");
 
-        when(enhancedLink.getLink()).thenReturn("www.google.com");
+        when(linkService.createEnhancedLink(link,null,Locale.UK,false)).thenReturn(enhancedLink);
+        when(linkService.createFindOutMoreLink(null, Locale.UK, cmsLink)).thenReturn(new FlatLink());
+
         FlatQuote flat = embedder.getQuote(quote, null, Locale.UK);
 
         verify(linkService).createEnhancedLink(link, null, Locale.UK, false);
