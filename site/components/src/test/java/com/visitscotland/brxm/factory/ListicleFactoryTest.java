@@ -1,9 +1,8 @@
 package com.visitscotland.brxm.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brxm.hippobeans.Image;
-import com.visitscotland.brxm.hippobeans.Listicle;
-import com.visitscotland.brxm.hippobeans.ListicleItem;
+import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.LinkType;
@@ -16,6 +15,7 @@ import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.brxm.utils.VsException;
 import com.visitscotland.dataobjects.DataType;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Answers;
@@ -31,6 +31,7 @@ import java.util.Locale;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.LATITUDE;
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.LONGITUDE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -72,11 +73,11 @@ class ListicleFactoryTest {
     @DisplayName("ListicleItem - Basic Item with no main product")
     void listicle_basic() {
 
-        ListicleItem item = new ListicleItemMockBuilder().title("Title").sutitle("Edinburgh").addDescription().extraLink().build();
+        ListicleItem item = new ListicleItemMockBuilder().title("Title").subtitle("Edinburgh").addDescription().extraLink().build();
         FlatLink link = new FlatLink();
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
-        when(linksService.createCTALink(any(), any(), any())).thenReturn(link);
+        when(linksService.createFindOutMoreLink(any(), any(), any())).thenReturn(link);
 
         List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
@@ -96,6 +97,7 @@ class ListicleFactoryTest {
         ListicleItem item = new ListicleItemMockBuilder().addImage().cmsLink().build();
         EnhancedLink link = new EnhancedLink();
         FlatImage moduleImage = new FlatImage();
+        link.setLink("www.google.com");
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(imageFactory.getImage(eq(item.getListicleItemImage()), any(), any())).thenReturn(moduleImage);
@@ -115,6 +117,7 @@ class ListicleFactoryTest {
         ListicleItem item = new ListicleItemMockBuilder().cmsLink().build();
         EnhancedLink link = new EnhancedLink();
         link.setImage(new FlatImage());
+        link.setLink("www.google.com");
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(linksService.createEnhancedLink(any(), any(), any(),anyBoolean())).thenReturn(link);
@@ -123,6 +126,7 @@ class ListicleFactoryTest {
 
         Assertions.assertEquals(1, items.size());
         Assertions.assertEquals(1, items.get(0).getLinks().size());
+        Assertions.assertEquals("www.google.com", items.get(0).getLinks().get(0).getLink());
 
         Assertions.assertNull(item.getListicleItemImage());
         Assertions.assertEquals(link.getImage(), items.get(0).getImage());
@@ -131,7 +135,7 @@ class ListicleFactoryTest {
     @Test
     @DisplayName("ListicleItem from DMSLink")
     void listicle_dmsLink() {
-        ListicleItem item = new ListicleItemMockBuilder().addImage().sutitle("Subtitle").dmsLink("1234").build();
+        ListicleItem item = new ListicleItemMockBuilder().addImage().subtitle("Subtitle").dmsLink("1234").build();
         FlatLink link = new FlatLink();
         FlatImage moduleImage = new FlatImage();
         JsonNode node = mock(JsonNode.class);
@@ -162,13 +166,13 @@ class ListicleFactoryTest {
     @Test
     @DisplayName("VS-3086 ListicleItem from ExternalLink")
     void listicle_externalLink() {
-        ListicleItem item = new ListicleItemMockBuilder().addImage().sutitle("Subtitle").externalLink().build();
+        ListicleItem item = new ListicleItemMockBuilder().addImage().subtitle("Subtitle").externalLink().build();
         FlatLink link = new FlatLink("Find out more", "www.visitscotland.com", LinkType.EXTERNAL);
         FlatImage moduleImage = new FlatImage();
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(moduleImage);
-        when(linksService.createCTALink(any(), any(), any())).thenReturn(link);
+        when(linksService.createFindOutMoreLink(any(), any(), any())).thenReturn(link);
 
         List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 
@@ -179,16 +183,64 @@ class ListicleFactoryTest {
         Assertions.assertEquals(moduleImage, module.getImage());
         Assertions.assertEquals(link, module.getLinks().get(0));
     }
+
+    @Test
+    @DisplayName("VS-3206 ListicleItem extra links from shared link ")
+    void listicle_extraSharedlLink() {
+        ListicleItem item = new ListicleItemMockBuilder().addImage().subtitle("Subtitle").extraSharedLink("").build();
+
+        FlatLink link = new FlatLink("Discover Spain", "www.visitspain.com", LinkType.EXTERNAL);
+        FlatImage moduleImage = new FlatImage();
+
+        when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
+        when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(moduleImage);
+        when(linksService.createSimpleLink(any(), any(), any())).thenReturn(link);
+
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
+
+        Assertions.assertEquals(1, items.size());
+        ListicleModule module = items.get(0);
+        FlatLink extraLink = module.getLinks().get(0);
+
+        Assertions.assertEquals("www.visitspain.com", extraLink.getLink());
+        Assertions.assertEquals("Discover Spain", extraLink.getLabel());
+        assertEquals(LinkType.EXTERNAL, extraLink.getType());
+    }
+
+    @Test
+    @DisplayName("VS-3206 ListicleItem extra links from shared link override label")
+    void listicle_extraSharedlLinkOverride() {
+        ListicleItem item = new ListicleItemMockBuilder().addImage().subtitle("Subtitle").extraSharedLink("Override text").build();
+
+        FlatLink link = new FlatLink("Discover Spain", "www.visitspain.com", LinkType.EXTERNAL);
+        FlatImage moduleImage = new FlatImage();
+
+        when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
+        when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(moduleImage);
+        when(linksService.createSimpleLink(any(), any(), any())).thenReturn(link);
+
+        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
+
+        Assertions.assertEquals(1, items.size());
+        ListicleModule module = items.get(0);
+        FlatLink extraLink = module.getLinks().get(0);
+
+        Assertions.assertEquals("www.visitspain.com", extraLink.getLink());
+        Assertions.assertEquals("Override text", extraLink.getLabel());
+        assertEquals(LinkType.EXTERNAL, extraLink.getType());
+    }
+
+
     @Test
     @DisplayName("VS-3086 ListicleItem from Product Search Results")
     void listicle_psrLink() {
-        ListicleItem item = new ListicleItemMockBuilder().addImage().sutitle("Subtitle").productSearchLink().build();
+        ListicleItem item = new ListicleItemMockBuilder().addImage().subtitle("Subtitle").productSearchLink().build();
         FlatLink link = new FlatLink("Find out more", "www.visitscotland.com", LinkType.INTERNAL);
         FlatImage moduleImage = new FlatImage();
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
         when(imageFactory.getImage(any(Image.class), any(), any())).thenReturn(moduleImage);
-        when(linksService.createCTALink(any(), any(), any())).thenReturn(link);
+        when(linksService.createFindOutMoreLink(any(), any(), any())).thenReturn(link);
 
         List<ListicleModule> items = factory.generateItems(Locale.UK, page);
 

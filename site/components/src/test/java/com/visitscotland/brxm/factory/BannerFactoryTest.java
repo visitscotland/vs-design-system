@@ -45,7 +45,7 @@ public class BannerFactoryTest {
         when(mockLink.getLink()).thenReturn("link");
         when(properties.getBannerContentPath()).thenReturn("banner");
         when(hippoUtilsService.getDocumentFromContent("banner")).thenReturn(bannerBean);
-        when(linkService.createCTALink(any(), any(), any())).thenReturn(mockLink);
+        when(linkService.createFindOutMoreLink(any(), any(), any())).thenReturn(mockLink);
         BannerModule banner = factory.getBannerModule(request);
 
         Assertions.assertEquals("title", banner.getTitle());

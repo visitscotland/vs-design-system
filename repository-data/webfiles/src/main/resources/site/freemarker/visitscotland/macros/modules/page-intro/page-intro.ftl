@@ -33,13 +33,13 @@
     </#if>
 
     <div class="has-edit-button">
-        <vs-page-intro
-            background="${themeName}"
+        <vs-page-intro 
+            background="${themeName}" 
             <#if heroDetails?has_content>hero-intro</#if>
             <#if itinerary?has_content>is-itinerary</#if>
         >
             <#if heroDetails?has_content>
-                <#if heroVideo.cta??>
+                <#if (heroVideo.cta)??>
                     <#assign ctaText = heroVideo.cta>
                 <#else>
                     <#assign ctaText = "">
@@ -69,7 +69,7 @@
                                 </vs-col>
                         </@modal>
 
-                        <@imageWithCaption
+                        <@imageWithCaption 
                             imageSrc=heroSrc
                             imageDetails=heroDetails
                             variant="large"
@@ -81,7 +81,7 @@
                             
                         />
                     <#else>
-                        <@imageWithCaption
+                        <@imageWithCaption 
                             imageSrc=heroSrc
                             imageDetails=heroDetails
                             variant="large"
@@ -115,7 +115,7 @@
                         <dd class="list-inline-item">${itinerary.firstStopLocation} / ${itinerary.lastStopLocation}</dd>
                     </template>
                 </#if>
-
+            
                 <template slot="VsIntroSummaryBox">
                     <@summaryBox itinerary />
                 </template>
@@ -128,7 +128,7 @@
                                     <vs-description-list-item title>
                                         ${label("itinerary", "highlights")}
                                     </vs-description-list-item>
-
+                                    
                                     <#list itinerary.document.highlights as highlight>
                                         <vs-description-list-item>
                                             ${highlight}

@@ -75,13 +75,12 @@ public class LinkService {
      * @param locale locale Language for the labels
      * @param item   Compound Item
      */
-    public FlatLink createCTALink(Module<?> module, Locale locale, HippoBean item) {
-
+    public FlatLink createFindOutMoreLink(Module<?> module, Locale locale, HippoBean item) {
         if (item instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) item;
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
 
-            if (dmsLink.getProduct() == null) {
+            if (product == null) {
                 contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), item.getPath());
                 module.addErrorMessage("There is no product with the id " + dmsLink.getProduct());
 
@@ -96,11 +95,23 @@ public class LinkService {
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;
             return createExternalLink(locale, externalLink.getLink(), bundle.getCtaLabel(externalLink.getLabel(), locale));
-        } else if (item instanceof CMSLink){
+        } else if (item instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) item;
-            if (cmsLink.getLink() instanceof Linkable){
-                FlatLink link = createSimpleLink((Linkable) cmsLink.getLink(), module, locale);
+            if (cmsLink.getLink() instanceof SharedLink) {
+                FlatLink flatLink = createFindOutMoreLink(module, locale, ((SharedLink) cmsLink.getLink()).getLinkType());
+                if (!Contract.isEmpty(cmsLink.getLabel())) {
+                    flatLink.setLabel(cmsLink.getLabel());
+                }
+                return flatLink;
+            } else if (cmsLink.getLink() instanceof Linkable) {
+                Linkable linkable = (Linkable) cmsLink.getLink();
+                FlatLink link = createSimpleLink(linkable, module, locale);
                 link.setLabel(formatLabel(cmsLink.getLink(), bundle.getCtaLabel(cmsLink.getLabel(), locale), module, locale));
+                if (link.getLink() == null){
+                    contentLogger.warn("There is no product with the id '{}', ({}) ", linkable.getTitle(), cmsLink.getLink().getPath());
+                    module.addErrorMessage("Main Link: The DMS id is not valid, check " + linkable.getTitle());
+                    return null;
+                }
                 return link;
             }
         }
@@ -112,6 +123,7 @@ public class LinkService {
 
     /**
      * Creates a localized FlatLink from a URL. It request
+     *
      * @param url: URl
      */
     public FlatLink createExternalLink(final String url) {
@@ -166,7 +178,7 @@ public class LinkService {
         if (path.startsWith(languagePath)) {
             return site + path;
         } else if (isDms && path.startsWith(Language.getLanguageForLocale(locale).getCMSPathVariable())) {
-            return site + languagePath + path.substring(path.indexOf("/",1));
+            return site + languagePath + path.substring(path.indexOf("/", 1));
         } else {
             return site + languagePath + path;
         }
@@ -178,8 +190,9 @@ public class LinkService {
 
     /**
      * Creates a standard link from a Shared Link
-     * @param locale  Locale
-     * @param link    SharedLink Object;
+     *
+     * @param locale Locale
+     * @param link   SharedLink Object;
      * @return
      */
     public String getPlainLink(Locale locale, SharedLink link) {
@@ -213,7 +226,7 @@ public class LinkService {
             url = ((ExternalDocument) link).getLink();
         } else if (link instanceof Video) {
             url = ((Video) link).getUrl();
-        } else{
+        } else {
             String linkType = link == null ? "null" : link.getClass().getSimpleName();
             logger.warn("This class {} is not recognized as a link type and cannot be converted", linkType);
         }
@@ -343,6 +356,7 @@ public class LinkService {
 
     /**
      * Creates a FlatLink from a Page or a Shared Document
+     *
      * @param linkable
      * @param module
      * @param locale
@@ -351,6 +365,7 @@ public class LinkService {
     public FlatLink createSimpleLink(@NotNull Linkable linkable, Module<?> module, Locale locale) {
         FlatLink link = new FlatLink();
         link.setLabel(linkable.getTitle());
+        //link.setctaText
 
         if (linkable instanceof Page) {
             link.setLink(utils.createUrl((Page) linkable));
@@ -384,10 +399,9 @@ public class LinkService {
     /**
      * Populated the information about an enhanced Link from a Page Document.
      *
-     * @param page SharedLink document that contains extra information
-     * @param module      Module to feed with any possible issue found while creating the page.
-     * @param locale      Language for the label
-     *
+     * @param page   SharedLink document that contains extra information
+     * @param module Module to feed with any possible issue found while creating the page.
+     * @param locale Language for the label
      */
     private EnhancedLink enhancedLinkFromPage(Page page, Module<?> module, Locale locale) {
         EnhancedLink link = new EnhancedLink();
@@ -421,26 +435,26 @@ public class LinkService {
         EnhancedLink link = new EnhancedLink();
         JsonNode product = getNodeFromSharedLink(sharedLink, locale);
 
-        link.setTeaser(sharedLink.getTeaser());
-        link.setLink(getPlainLink(locale, sharedLink.getLinkType(), product));
+            link.setTeaser(sharedLink.getTeaser());
+            link.setLink(getPlainLink(locale, sharedLink.getLinkType(), product));
 
-        if (sharedLink.getImage() != null) {
-            link.setImage(imageFactory.createImage(sharedLink.getImage(), module, locale));
-        } else if (product != null && product.has(DMSConstants.DMSProduct.IMAGE)) {
-            link.setImage(imageFactory.createImage(product, module));
-        }
-
-        if (sharedLink.getLinkType() instanceof ExternalDocument) {
-            link.setLabel(formatLabel(sharedLink, sharedLink.getTitle(), module, locale));
-            link.setType(LinkType.DOWNLOAD);
-
-            if (addCategory) {
-                link.setCategory(((ExternalDocument) sharedLink.getLinkType()).getCategory());
+            if (sharedLink.getImage() != null) {
+                link.setImage(imageFactory.createImage(sharedLink.getImage(), module, locale));
+            } else if (product != null && product.has(DMSConstants.DMSProduct.IMAGE)) {
+                link.setImage(imageFactory.createImage(product, module));
             }
-        } else {
-            link.setLabel(sharedLink.getTitle());
-            link.setType(getType(link.getLink()));
-        }
+
+            if (sharedLink.getLinkType() instanceof ExternalDocument) {
+                link.setLabel(formatLabel(sharedLink, sharedLink.getTitle(), module, locale));
+                link.setType(LinkType.DOWNLOAD);
+
+                if (addCategory) {
+                    link.setCategory(((ExternalDocument) sharedLink.getLinkType()).getCategory());
+                }
+            } else {
+                link.setLabel(sharedLink.getTitle());
+                link.setType(getType(link.getLink()));
+            }
 
         return link;
     }
@@ -457,7 +471,7 @@ public class LinkService {
         EnhancedLink link = createVideo(video, module, locale);
 
         //TODO: Confirm requirements for Videos in HorizontalLinks VS-2086 indicates that no category is needed but we need to wait for the final designs before taking action.
-        if (addCategory){
+        if (addCategory) {
             link.setCategory("Video");
             module.addErrorMessage("This module should not contain a Video Link");
         }
@@ -469,14 +483,13 @@ public class LinkService {
      * Formats label and includes additional information when needed
      *
      * @param linkable
-     * @param locale      Language for the label
-     * @param module      Module to feed with any possible issue found while creating the page.
-     *
+     * @param locale   Language for the label
+     * @param module   Module to feed with any possible issue found while creating the page.
      * @return Formatted label
      */
-    public String formatLabel(HippoBean linkable, String label,  Module<?> module, Locale locale){
-        if (linkable instanceof SharedLink && ((SharedLink)linkable).getLinkType() instanceof ExternalDocument){
-            return label + getDownloadText(((ExternalDocument) ((SharedLink)linkable).getLinkType()).getLink(), locale, module);
+    public String formatLabel(HippoBean linkable, String label, Module<?> module, Locale locale) {
+        if (linkable instanceof SharedLink && ((SharedLink) linkable).getLinkType() instanceof ExternalDocument) {
+            return label + getDownloadText(((ExternalDocument) ((SharedLink) linkable).getLinkType()).getLink(), locale, module);
         } else {
             return label;
         }
@@ -530,7 +543,7 @@ public class LinkService {
         return videoLink;
     }
 
-    private String getYoutubeId(String url){
+    private String getYoutubeId(String url) {
         return UriComponentsBuilder.fromUriString(url).build().getQueryParams().getFirst("v");
     }
 

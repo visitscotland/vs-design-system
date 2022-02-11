@@ -15,7 +15,6 @@ import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.utils.Contract;
-import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +24,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.verification.VerificationMode;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -182,7 +180,7 @@ class ItineraryFactoryTest {
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
 //        when(properties.getDmsHost()).thenReturn("https://mock.visitscotland.com");
-        when(linkService.createCTALink(any(), eq(Locale.UK), any())).thenReturn(
+        when(linkService.createFindOutMoreLink(any(), eq(Locale.UK), any())).thenReturn(
                 new FlatLink("Find out more", "https://mock.visitscotland.com/info/fake-product-p123", LinkType.INTERNAL));
 
         ItineraryPage iti = factory.buildItinerary(itinerary, Locale.UK);
@@ -276,7 +274,7 @@ class ItineraryFactoryTest {
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
         when(bundle.getResourceBundle(ItineraryFactory.BUNDLE_FILE, "stop.opening", Locale.UK)).thenReturn("show times");
 //        when(properties.getDmsHost()).thenReturn("https://mock.visitscotland.com");
-        when(linkService.createCTALink(any(), eq(Locale.UK), any())).thenReturn(
+        when(linkService.createFindOutMoreLink(any(), eq(Locale.UK), any())).thenReturn(
                 new FlatLink(null, "https://mock.visitscotland.com/info/fake-product-p123", LinkType.INTERNAL));
 
         ItineraryStopModule module = getSingleStop(factory.buildItinerary(itinerary, Locale.UK));
@@ -307,7 +305,7 @@ class ItineraryFactoryTest {
 
         ItineraryStopModule module = getSingleStop(factory.buildItinerary(itinerary, Locale.UK));
 
-        verify(linkService, atLeastOnce()).createCTALink(any(), any(), any());
+        verify(linkService, atLeastOnce()).createFindOutMoreLink(any(), any(), any());
 
         assertTrue(Contract.isEmpty(module.getErrorMessages()));
         assertEquals(1., module.getCoordinates().getLatitude());

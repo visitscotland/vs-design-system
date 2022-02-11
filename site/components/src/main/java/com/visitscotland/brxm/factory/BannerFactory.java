@@ -53,7 +53,7 @@ public class BannerFactory {
         BannerModule module = new BannerModule();
         module.setTitle(document.getTitle());
         module.setCopy(document.getCopy());
-        FlatLink ctaLink = linkService.createCTALink(module, locale, document.getCtaLink());
+        FlatLink ctaLink = linkService.createFindOutMoreLink(module, locale, document.getCtaLink());
         if (ctaLink == null) {
             contentLogger.error("Banner module contains no published link. Skipping banner");
             return null;
