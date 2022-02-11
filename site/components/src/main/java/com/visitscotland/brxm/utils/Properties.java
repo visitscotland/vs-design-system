@@ -34,6 +34,7 @@ public class Properties {
     static final String IKNOW_COMMUNITY_TAGGED_DISCUSSION = "iknow-community.tagged-discussion";
     static final String YOUTUBE_API_KEY = "youtube.api-key";
     static final String BANNER_CONTENT_PATH = "banner.path";
+    static final String CHANNEL_ORDER = "seo.alternate-link-locale-order";
 
     //Environment
     static final String USE_RELATIVE_URLS = "links.use-relative-urls";
@@ -76,6 +77,10 @@ public class Properties {
         } else {
             return readString(INSTAGRAM_APP_ID) +"|"+accessCode;
         }
+    }
+
+    public String getChannelOrder(){
+        return readString(CHANNEL_ORDER);
     }
 
     public String getHelpdeskEmail() {
