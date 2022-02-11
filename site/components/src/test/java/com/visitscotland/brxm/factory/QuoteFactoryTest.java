@@ -53,10 +53,9 @@ class QuoteFactoryTest {
         when(quote.getImage()).thenReturn(image);
         when(quote.getProduct()).thenReturn(cmsLink);
         when(cmsLink.getLink()).thenReturn(link);
-        when(link.getLinkType()).thenReturn(link);
 
         when((linkService).createEnhancedLink(link,null,Locale.UK,false)).thenReturn(new EnhancedLink());
-        when((linkService).createFindOutMoreLink(any(), eq(Locale.UK), eq(link))).thenReturn(flatLink);
+        when((linkService).createFindOutMoreLink(any(), eq(Locale.UK), eq(cmsLink))).thenReturn(flatLink);
 
         FlatQuote flat = embedder.getQuote(quote, null, Locale.UK);
 
