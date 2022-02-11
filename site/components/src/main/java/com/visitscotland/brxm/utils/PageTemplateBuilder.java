@@ -131,6 +131,10 @@ public class PageTemplateBuilder {
      */
     private void processMegalinks(HstRequest request, PageConfiguration page, Megalinks item){
         LinksModule<?> al = linksFactory.getMegalinkModule(item, request.getLocale());
+        if (Contract.isEmpty(al.getLinks())) {
+            contentLogger.error("Megalinks module at {} contains no published items. Skipping module", item.getPath());
+            return;
+        }
 
         if (al.getType().equalsIgnoreCase(SingleImageLinksModule.class.getSimpleName())) {
             al.setAlignment(alignment[page.alignment++ % alignment.length]);

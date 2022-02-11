@@ -42,6 +42,7 @@ public class BannerFactoryTest {
         HstRequest request = mock(HstRequest.class);
         Banner bannerBean = new BannerMockBuilder().title("title").copy("copy").build();
         FlatLink mockLink = mock(FlatLink.class);
+        when(mockLink.getLink()).thenReturn("link");
         when(properties.getBannerContentPath()).thenReturn("banner");
         when(hippoUtilsService.getDocumentFromContent("banner")).thenReturn(bannerBean);
         when(linkService.createCTALink(any(), any(), any())).thenReturn(mockLink);
@@ -59,5 +60,19 @@ public class BannerFactoryTest {
         when(properties.getBannerContentPath()).thenReturn("banner");
         when(hippoUtilsService.getDocumentFromContent("banner")).thenReturn(null);
         Assertions.assertNull(factory.getBannerModule(request));
+    }
+
+    @DisplayName("VS-3221 - If link is not published, then don't create banner")
+    @Test
+    public void linkDoesNotExist() throws Exception {
+        HstRequest request = mock(HstRequest.class);
+        Banner bannerBean = new BannerMockBuilder().build();
+        when(properties.getBannerContentPath()).thenReturn("banner");
+        when(hippoUtilsService.getDocumentFromContent("banner")).thenReturn(bannerBean);
+
+        BannerModule banner = factory.getBannerModule(request);
+
+        Assertions.assertNull(banner);
+        verify(linkService).createCTALink(any(), any(), any());
     }
 }

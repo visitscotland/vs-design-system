@@ -361,5 +361,18 @@ class ItineraryFactoryTest {
         assertEquals(1, iti.getErrorMessages().size());
     }
 
+    @Test
+    @DisplayName("VS-3221 - If day has not stops, it should be skipped")
+    void dayNoStops() {
+        List<Day> days = new ArrayList<>();
+        days.add(new ItineraryDayMockBuilder().build());
+        Itinerary itin = mock(Itinerary.class);
+        when(documentUtils.getAllowedDocuments(itin, Day.class)).thenReturn(days);
+
+        ItineraryPage itinerary = factory.buildItinerary(itin, Locale.UK);
+
+        assertEquals(0, itinerary.getDays().size());
+    }
+
 
 }

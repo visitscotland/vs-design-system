@@ -65,9 +65,14 @@ public class ItineraryFactory {
         int index = 1;
 
         page.setDocument(itinerary);
-        page.setDays(documentUtils.getAllowedDocuments(itinerary, Day.class));
+        List<Day> days = new ArrayList<>();
 
-        for (Day day : page.getDays()) {
+        for (Day day :documentUtils.getAllowedDocuments(itinerary, Day.class)) {
+            if (day.getStops().isEmpty()) {
+                contentLogger.error("Itinerary Day at {} contains no published stop. Skipping day", day.getPath());
+                continue;
+            }
+
             for (Stop stop : day.getStops()) {
                 if (page.getStops() != null && page.getStops().containsKey(stop.getIdentifier())) {
                     contentLogger.error("Duplicate stop {} found on itinerary {}", stop.getPath(), itinerary.getPath());
@@ -89,8 +94,9 @@ public class ItineraryFactory {
 
                 page.addStop(module);
             }
+            days.add(day);
         }
-
+        page.setDays(days);
         page.setDistance(calculateDistance ? totalDistance :BigDecimal.valueOf(itinerary.getDistance()));
 
         populateFirstAndLastStopTexts(page, firstStop, lastStop);
