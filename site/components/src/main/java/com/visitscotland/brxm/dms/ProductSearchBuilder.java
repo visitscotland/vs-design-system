@@ -29,7 +29,7 @@ public class ProductSearchBuilder {
     private static final Logger logger = LoggerFactory.getLogger(ProductSearchBuilder.class.getName());
 
     enum Order {
-        DISTANCE("proximityAsc"), NONE(null);
+        DISTANCE("proximityAsc"), ALPHA("alpha"),  NONE(null);
 
         final String value;
 
