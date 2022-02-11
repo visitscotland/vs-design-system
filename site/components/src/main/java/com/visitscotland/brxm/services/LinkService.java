@@ -80,7 +80,7 @@ public class LinkService {
             DMSLink dmsLink = (DMSLink) item;
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
 
-            if (dmsLink.getProduct() == null) {
+            if (product == null) {
                 contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), item.getPath());
                 module.addErrorMessage("There is no product with the id " + dmsLink.getProduct());
 

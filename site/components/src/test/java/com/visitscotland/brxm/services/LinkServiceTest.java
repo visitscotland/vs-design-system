@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.hippobeans.*;
+import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.mock.SharedLinkMockBuilder;
 import com.visitscotland.brxm.mock.VideoMockBuilder;
@@ -122,7 +123,6 @@ class LinkServiceTest {
         assertEquals("https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf", link);
     }
 
-
     @Test
     @DisplayName("Create a link from an CMSLink Compound to a page")
     void cmsPageLink() {
@@ -136,6 +136,7 @@ class LinkServiceTest {
         assertEquals("http://cms-url", link.getLink());
         assertEquals(LinkType.INTERNAL, link.getType());
     }
+
     @Test
     @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, default label")
     void cmsSharedLink_findOutMore() {
@@ -157,6 +158,29 @@ class LinkServiceTest {
         assertEquals(LinkType.EXTERNAL, link.getType());
 
     }
+
+    @Test
+    @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, default label")
+    void cmsPageLink_linkNull() {
+        Page pageLink = mock(Page.class);
+        Module m = new Module();
+        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+
+        when(cmsLink.getLabel()).thenReturn("");
+        when(pageLink.getTitle()).thenReturn("Edinburgh");
+        when(externalLink.getLink()).thenReturn("http://cms-url");
+        when(cmsLink.getLink()).thenReturn(pageLink);
+        when(resourceBundle.getCtaLabel(any(), any())).thenReturn("Find out more");
+
+
+        FlatLink link = service.createFindOutMoreLink(m, Locale.UK, cmsLink);
+
+        assertNull(link);
+        assertTrue(m.getErrorMessages().size()>0);
+
+    }
+
     @Test
     @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, override label")
     void cmsSharedLink_overrideFindOutMore() {
@@ -192,7 +216,7 @@ class LinkServiceTest {
 
         FlatLink link = service.createFindOutMoreLink(m, Locale.UK, dmsLink);
 
-        assertEquals(1, m.getErrorMessages().size());
+        assertTrue(m.getErrorMessages().size() > 1);
         assertNull(link);
     }
 
