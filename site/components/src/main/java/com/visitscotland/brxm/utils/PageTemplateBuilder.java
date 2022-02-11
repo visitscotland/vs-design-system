@@ -5,6 +5,7 @@ import com.visitscotland.brxm.factory.*;
 import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.model.*;
 import com.visitscotland.brxm.model.megalinks.LinksModule;
+import com.visitscotland.brxm.model.megalinks.MultiImageLinksModule;
 import com.visitscotland.brxm.model.megalinks.SingleImageLinksModule;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.utils.Contract;
@@ -131,7 +132,11 @@ public class PageTemplateBuilder {
      */
     private void processMegalinks(HstRequest request, PageConfiguration page, Megalinks item){
         LinksModule<?> al = linksFactory.getMegalinkModule(item, request.getLocale());
-        if (Contract.isEmpty(al.getLinks())) {
+        int numLinks = al.getLinks().size();
+        if (al instanceof MultiImageLinksModule) {
+            numLinks += ((MultiImageLinksModule) al).getFeaturedLinks().size();
+        }
+        if (numLinks == 0) {
             contentLogger.error("Megalinks module at {} contains no published items. Skipping module", item.getPath());
             return;
         }
