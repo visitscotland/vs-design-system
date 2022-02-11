@@ -30,6 +30,6 @@ public class Quote extends HippoCompound {
 
     @HippoEssentialsGenerated(internalName = "visitscotland:product")
     public CMSLink getProduct() {
-        return getLinkedBean("visitscotland:product", CMSLink.class);
+        return getBean("visitscotland:product", CMSLink.class);
     }
 }
