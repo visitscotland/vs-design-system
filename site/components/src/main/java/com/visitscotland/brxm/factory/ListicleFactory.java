@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.NoSuchElementException;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
 
@@ -48,17 +49,15 @@ public class ListicleFactory {
      *
      * @param locale Set the language for the labels
      * @param listicleItem CMS document with the data
-     * @param index Index of the item
      * @return Listicle Module created
      */
-    public ListicleModule getListicleItem(Locale locale, ListicleItem listicleItem, Integer index) {
+    public ListicleModule getListicleItem(Locale locale, ListicleItem listicleItem) {
         logger.info("Creating ListicleItem module for {}", listicleItem.getPath());
 
         List<FlatLink> links = new ArrayList<>();
         FlatLink link;
 
         ListicleModule module = new ListicleModule();
-        module.setIndex(index);
         module.setHippoBean(listicleItem);
         module.setTitle(listicleItem.getTitle());
         module.setDescription(listicleItem.getDescription());
@@ -70,7 +69,11 @@ public class ListicleFactory {
         }
 
         //Set the main product
-        link = processMainProduct(locale, listicleItem.getListicleItem(), module);
+        try {
+            link = processMainProduct(locale, listicleItem.getListicleItem(), module);
+        } catch (NoSuchElementException e) {
+            return null;
+        }
 
         if (link != null) {
             links.add(link);
@@ -123,6 +126,10 @@ public class ListicleFactory {
             }
         } else if (link instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) link;
+            if (cmsLink.getLink() == null) {
+                contentLogger.error("Listicle item {} contains no published link, skipping item", cmsLink.getPath());
+                throw new NoSuchElementException("Failed to find main product link for listicle item");
+            }
             EnhancedLink eLink = linksService.createEnhancedLink((Linkable) cmsLink.getLink(), module, locale,false);
             //Override default link label when the module has an override text
             if (!Contract.isEmpty(cmsLink.getLabel())){
@@ -181,12 +188,19 @@ public class ListicleFactory {
         final List<ListicleModule> items = new ArrayList<>();
 
         boolean descOrder = Boolean.TRUE.equals(listicle.getDescOrder());
-        int index = descOrder ? listicleItems.size() : 1;
 
         for (ListicleItem listicleItem : listicleItems) {
-            Integer itemNumber = descOrder ? index-- : index++;
-            items.add(getListicleItem(locale, listicleItem, itemNumber));
+            ListicleModule module = getListicleItem(locale, listicleItem);
+            if (module != null) {
+                items.add(module);
+            }
         }
+        int index = descOrder ? items.size() : 1;
+        for (ListicleModule module : items) {
+            Integer itemNumber = descOrder ? index-- : index++;
+            module.setIndex(itemNumber);
+        }
+
         return items;
     }
 }

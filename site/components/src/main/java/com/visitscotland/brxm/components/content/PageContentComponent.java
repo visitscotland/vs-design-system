@@ -82,12 +82,12 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
      */
     protected void addOTYML(HstRequest request) {
         Page page = getDocument(request);
-        HorizontalListLinksModule otyml = megalinkFactory.horizontalListLayout(page.getOtherThings(), request.getLocale());
-        if (otyml.getLinks().size() < MegalinkFactory.MIN_ITEMS_CAROUSEL) {
-            contentLogger.error("OTYML at {} contains fewer than 5 published items. Skipping module", page.getOtherThings().getPath());
-            return;
-        }
         if (page.getOtherThings() != null) {
+            HorizontalListLinksModule otyml = megalinkFactory.horizontalListLayout(page.getOtherThings(), request.getLocale());
+            if (otyml.getLinks().size() < MegalinkFactory.MIN_ITEMS_CAROUSEL) {
+                contentLogger.error("OTYML at {} contains fewer than 5 published items. Skipping module", page.getOtherThings().getPath());
+                return;
+            }
             request.setAttribute(OTYML, otyml);
         }
     }
