@@ -8,6 +8,7 @@
                 <VsCol cols="12">
                     <BForm
                         role="search"
+                        id="cludo-search-form"
                         class="d-flex align-items-start"
                         action
                         method="get"
@@ -34,7 +35,8 @@
 
                             <VsFormInput
                                 type="search"
-                                class="vs-site-search-form__input"
+                                class="vs-site-search-form__input search-input"
+                                aria-label="Search"
                                 :placeholder="labelText"
                                 autocomplete="off"
                                 v-model="searchTerm"
@@ -62,9 +64,10 @@
 
                         <VsButton
                             type="submit"
-                            class="vs-site-search-form__search-button"
+                            class="vs-site-search-form__search-button search-button"
                             variant="primary"
                             size="lg"
+                            id="search-button"
                         >
                             {{ submitButtonText }}
                         </VsButton>
