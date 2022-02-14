@@ -20,6 +20,11 @@
             <@headerAccordionNav menu=menu/>
         </template>
     </vs-mega-nav>
+
+    <@hst.headContribution category="htmlBodyEndScripts">
+        <script type="text/javascript" src="https://customer.cludo.com/scripts/bundles/search-script.min.js"></script>
+    </@hst.headContribution>
+
     <@hst.headContribution category="htmlBodyEndScripts">
         <script type="text/javascript" src="https://customer.cludo.com/scripts/bundles/search-script.min.js"></script>
     </@hst.headContribution>
