@@ -11,10 +11,11 @@
     hippo:availability: []
     hippostd:retainable: false
     hippostd:state: draft
+    hippostd:transferable: false
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-06-12T19:38:17.843+01:00
-    hippostdpubwf:lastModificationDate: 2021-11-19T14:39:09.702Z
-    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:lastModificationDate: 2022-02-04T16:20:33.988Z
+    hippostdpubwf:lastModifiedBy: cmsadmin
     resourcebundle:descriptions: ['', '', '', '']
     resourcebundle:id: channel
     resourcebundle:keys: [og.site-name, og.twitter.site, seo.title-suffix, seo.alternate-link-locale-order]
