@@ -69,8 +69,9 @@ public class BannerFactoryTest {
     public void linkDoesNotExist() throws Exception {
         HstRequest request = mock(HstRequest.class);
         Banner bannerBean = new BannerMockBuilder().build();
-        when(properties.getBannerContentPath()).thenReturn("banner");
         when(hippoUtilsService.getDocumentFromContent("banner")).thenReturn(bannerBean);
+        when(hippoUtilsService.getDocumentFromContent("banner")).thenReturn(bannerBean);
+        when(bundleService.getResourceBundle("banner", "path", Locale.UK)).thenReturn("banner");
 
         BannerModule banner = factory.getBannerModule(request);
 
