@@ -72,6 +72,7 @@ public class ListicleFactory {
         try {
             link = processMainProduct(locale, listicleItem.getListicleItem(), module);
         } catch (NoSuchElementException e) {
+            contentLogger.error("Listicle item {} contains no published link, skipping item", listicleItem.getPath());
             return null;
         }
 
@@ -127,7 +128,6 @@ public class ListicleFactory {
         } else if (link instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) link;
             if (cmsLink.getLink() == null) {
-                contentLogger.error("Listicle item {} contains no published link, skipping item", cmsLink.getPath());
                 throw new NoSuchElementException("Failed to find main product link for listicle item");
             }
             EnhancedLink eLink = linksService.createEnhancedLink((Linkable) cmsLink.getLink(), module, locale,false);
