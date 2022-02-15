@@ -21,9 +21,7 @@ public class Properties {
 
     private static final Logger logger = LoggerFactory.getLogger(Properties.class.getName());
 
-    static final String DEFAULT_ID = "config.cms";
-    static final String ENVIRONMENT_CONFIG = "environment.config";
-    static final String COMMON_CONFIG = "default.config";
+    static final String DEFAULT_CONFIG = "default.config";
 
     static final String INSTAGRAM_API = "instagram.api";
     static final String INSTAGRAM_ACCESS_TOKEN ="instagram.accesstoken";
@@ -238,7 +236,7 @@ public class Properties {
             }
         }
 
-        return DEFAULT_ID;
+        return DEFAULT_CONFIG;
     }
 
     public String getProperty(String key){
@@ -246,7 +244,7 @@ public class Properties {
         String value = bundle.getResourceBundle(bundleId, key, Locale.UK);
 
         if (Contract.isEmpty(value)) {
-            value = bundle.getResourceBundle(COMMON_CONFIG, key, Locale.UK);
+            value = bundle.getResourceBundle(DEFAULT_CONFIG, key, Locale.UK);
         }
 
         if (Contract.isEmpty(value)) {
