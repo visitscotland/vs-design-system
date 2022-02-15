@@ -66,7 +66,7 @@ describe('VsCarousel', () => {
 
     describe(':methods', () => {
         it('sets the correct active page on arrow click', async() => {
-            jest.useFakeTimers()
+            jest.useFakeTimers();
 
             const wrapper = factoryShallowMount();
 
@@ -84,7 +84,7 @@ describe('VsCarousel', () => {
         });
 
         it('throttles page navigation to not work within a 250ms period of a previous nav event', async() => {
-            jest.useFakeTimers()
+            jest.useFakeTimers();
 
             const wrapper = factoryShallowMount();
 
