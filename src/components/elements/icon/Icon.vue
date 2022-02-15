@@ -1,58 +1,31 @@
 <template>
-    <div>
-        <i
-            :class="{
-                'fak': true,
-                'vs-icon': true,
-                [`fa-${icon}`]:true,
-                [`vs-icon--size-${size}`]: true,
-                [`vs-icon--sm-size-${smallSize}`]: smallSize,
-                [`vs-icon--${formattedName}`]: true,
-                [`vs-icon--variant-${variant}`]: variant,
-                ['icon--' + orientation]: orientation,
-            }"
-            :style="[customColour ? {fill: customColour} : {}]"
-            v-bind="$attrs"
-            data-test="vs-icon"
-        />
-    </div>
-    <!-- <VsSvg
-        :path="path"
+    <span
         :class="{
             'vs-icon': true,
             [`vs-icon--size-${size}`]: true,
             [`vs-icon--sm-size-${smallSize}`]: smallSize,
             [`vs-icon--${formattedName}`]: true,
-            [`vs-icon--variant-${variant}`]: variant,
             ['icon--' + orientation]: orientation,
+            [`vs-icon--variant-${variant}`]: variant,
         }"
-        :style="[customColour ? {fill: customColour} : {}]"
-        v-bind="$attrs"
-        data-test="vs-icon"
-    /> -->
+        :style="[customColour ? {color: customColour} : {}]"
+    >
+        <i
+            :class="{
+                'fak': true,
+                [`fa-${icon}`]:true,
+
+            }"
+
+            v-bind="$attrs"
+            data-test="vs-icon"
+        />
+    </span>
 </template>
 
 <script>
 import { get } from 'lodash';
 import designTokens from '@/assets/tokens/tokens.raw.json';
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { faBinary } from '@fortawesome/pro-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-// import VsSvg from '../svg';
-
-const addFontAwesome = () => {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://kit.fontawesome.com/7c48e8b3d4.js';
-    script.crossOrigin = 'anonymous';
-    document.head.appendChild(script);
-};
-
-// eslint-disable-next-line no-console
-
-// const iconPath = 'icons/';
-
-// library.add(faBinary);
 
 /**
  * Icons are used to visually communicate core parts of the product and
@@ -68,10 +41,6 @@ export default {
     name: 'VsIcon',
     status: 'prototype',
     release: '0.1.0',
-    components: {
-        // VsSvg,
-        // FontAwesomeIcon,
-    },
     props: {
         /**
          * The name of the icon to display, which will be the name of the icon file
@@ -265,13 +234,23 @@ export default {
              * organise / group icons within the design system
              * there is a lookup for how keys may be passed from the backend
              */
-            const formattedNameLookup = this.iconLookup.find(({ value }) => value === this.name);
+            const formattedNameLookup = this.iconLookup.find(({ key }) => key === this.name);
 
             return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name;
         },
     },
     mounted() {
-        addFontAwesome();
+        /*
+        * To use the font awesome icons correctly we need to inject the Font Kit for .com
+        */
+        if (!window.fontAwesomeRequested) {
+            window.fontAwesomeRequested = true;
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = `https://kit.fontawesome.com/${process.env.ICON_KIT_TOKEN}.js`;
+            script.crossOrigin = 'anonymous';
+            document.head.appendChild(script);
+        }
     },
 };
 </script>
@@ -330,10 +309,10 @@ $variants: (
 
     @each $variant in map-keys($variants) {
         &.vs-icon--variant-#{$variant} {
-            fill: map-get($variants, $variant);
+            color: map-get($variants, $variant);
 
              &.icon--reverse {
-                fill: $color-white;
+                color: $color-white;
                 background: map-get($variants, $variant);
             }
         }
