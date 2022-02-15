@@ -11,6 +11,7 @@
     hippo:availability: []
     hippostd:retainable: false
     hippostd:state: draft
+    hippostd:transferable: false
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-06-12T19:38:17.843+01:00
     hippostdpubwf:lastModificationDate: 2022-02-08T15:04:46.519Z

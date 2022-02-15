@@ -1,4 +1,4 @@
-<#include "../../../../frontend/components/vs-container.ftl">
+<#include "../../../frontend/components/vs-container.ftl">
 
 <#macro cmsErrors errors editMode>
     <#if errors?? && errors?has_content && editMode>

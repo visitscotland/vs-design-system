@@ -33,7 +33,6 @@ public class Properties {
     static final String IKNOW_COMMUNITY_URL = "iknow-community.url";
     static final String IKNOW_COMMUNITY_TAGGED_DISCUSSION = "iknow-community.tagged-discussion";
     static final String YOUTUBE_API_KEY = "youtube.api-key";
-    static final String BANNER_CONTENT_PATH = "banner.path";
     static final String CHANNEL_ORDER = "seo.alternate-link-locale-order";
 
     //Environment
@@ -149,10 +148,6 @@ public class Properties {
 
     public String getIknowCommunityTaggedDiscussion() {
         return readString(IKNOW_COMMUNITY_TAGGED_DISCUSSION);
-    }
-
-    public String getBannerContentPath()  {
-        return readString(BANNER_CONTENT_PATH);
     }
 
     public String getYoutubeApiKey() {
