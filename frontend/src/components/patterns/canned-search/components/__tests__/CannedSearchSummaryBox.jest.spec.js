@@ -61,5 +61,5 @@ describe('VsCannedSearchSummaryBox', () => {
         it('should render the content of the `linkLabel` property', () => {
             expect(wrapper.html()).toContain(linkLabel);
         });
-    })
+    });
 });
