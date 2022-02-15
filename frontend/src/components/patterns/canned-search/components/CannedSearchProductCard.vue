@@ -285,6 +285,12 @@ export default {
             }
         }
 
+        .vs-product-card__link {
+            &:focus {
+                border: 2px solid $color_pink;
+            }
+        }
+
         .vs-product-card__image-container {
             position: relative;
             height: 0;
