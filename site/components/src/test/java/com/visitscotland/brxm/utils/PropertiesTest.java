@@ -238,7 +238,7 @@ class PropertiesTest {
     }
 
     @Test
-    @DisplayName("VS-3183 - Use default.config as the default properties given by the CMS from the codebase")
+    @DisplayName("VS-3183 - Override properties when configured in the mount")
     void propertyValues_overrideConfig(){
         final String ENV_PROPERTIES = "environment-properties";
 
@@ -254,7 +254,7 @@ class PropertiesTest {
     }
 
     @Test
-    @DisplayName("VS-3183 - Use default.config as the default properties given by the CMS from the codebase")
+    @DisplayName("VS-3183 - If the property is not found in the file defined in the mount, it takes the value from default.config")
     void propertyValues_overrideConfig_defaultValue(){
         final String ENV_PROPERTIES = "environment-properties";
 
