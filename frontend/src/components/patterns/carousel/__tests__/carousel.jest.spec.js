@@ -66,8 +66,6 @@ describe('VsCarousel', () => {
 
     describe(':methods', () => {
         it('sets the correct active page on arrow click', async() => {
-            jest.useFakeTimers();
-
             const wrapper = factoryShallowMount();
 
             await wrapper.setData({
