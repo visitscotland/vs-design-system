@@ -60,6 +60,7 @@
                     v-if="linkHref"
                 >
                     <VsLink
+                        data-test="vs-canned-search-summary-box__link"
                         :href="linkHref"
                         :type="linkType.toLowerCase()"
                         :disabled="!slideVisible()"
@@ -97,21 +98,22 @@ export default {
     },
     props: {
         /**
-        *
+        * The href of a product link, should match the website on the
+        * parent product card
         */
         linkHref: {
             type: String,
             default: '',
         },
         /**
-        *
+        * The label of the product link, usually "View Details"
         */
         linkLabel: {
             type: String,
             default: '',
         },
         /**
-        *
+        * The link type for the product link, usually "external"
         */
         linkType: {
             type: String,
@@ -170,13 +172,6 @@ export default {
                     :price="sampleAccom.price.price"
                     :priceOutro="sampleAccom.price.priceBasis"
                 />
-                <VsLink
-                    :href="sampleAccom.website.link"
-                    type="external"
-                    slot="vsCannedSearchSummaryRight"
-                >
-                    Visit Website
-                </VsLink>
             </VsCannedSearchSummaryBox>
         </div>
         <div class="col-12 col-sm-6 col-md-4">
@@ -194,13 +189,6 @@ export default {
                     :price="sampleEvent.price.price"
                     :priceOutro="sampleEvent.price.priceBasis"
                 />
-                <VsLink
-                    :href="sampleEvent.website.link"
-                    :type="sampleEvent.website.type.toLowerCase()"
-                    slot="vsCannedSearchSummaryRight"
-                >
-                    {{ sampleEvent.dmsLink.label }}
-                </VsLink>
             </VsCannedSearchSummaryBox>
         </div>
         <div class="col-12 col-sm-6 col-md-4">
@@ -217,13 +205,6 @@ export default {
                     durationIntro="Length"
                     duration="2 hours"
                 />
-                <VsLink
-                    :href="sampleAccom.website.link"
-                    type="external"
-                    slot="vsCannedSearchSummaryRight"
-                >
-                    Visit Website
-                </VsLink>
             </VsCannedSearchSummaryBox>
         </div>
     </div>
