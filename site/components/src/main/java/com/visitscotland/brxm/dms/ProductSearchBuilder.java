@@ -337,7 +337,7 @@ public class ProductSearchBuilder {
 
         compose = addParams(compose, PROXIMITY_LOCATION_PARAM, locProx);
 
-        //add parameter distance only for lcoation types that allows search by distance
+        //add parameter distance only for location types that allows search by distance
         if ("1".equals(locProx)){
             if (proximity == null){
                 proximity = properties.getDmsMapDefaultDistance();
