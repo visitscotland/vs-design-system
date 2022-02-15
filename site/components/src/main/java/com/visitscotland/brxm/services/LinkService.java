@@ -96,29 +96,44 @@ public class LinkService {
             ExternalLink externalLink = (ExternalLink) item;
             return createExternalLink(locale, externalLink.getLink(), bundle.getCtaLabel(externalLink.getLabel(), locale));
         } else if (item instanceof CMSLink) {
-            CMSLink cmsLink = (CMSLink) item;
-            if (cmsLink.getLink() instanceof SharedLink) {
-                FlatLink flatLink = createFindOutMoreLink(module, locale, ((SharedLink) cmsLink.getLink()).getLinkType());
-                if (!Contract.isEmpty(cmsLink.getLabel())) {
-                    flatLink.setLabel(cmsLink.getLabel());
-                }
-                return flatLink;
-            } else if (cmsLink.getLink() instanceof Linkable) {
-                Linkable linkable = (Linkable) cmsLink.getLink();
-                FlatLink link = createSimpleLink(linkable, module, locale);
-                link.setLabel(formatLabel(cmsLink.getLink(), bundle.getCtaLabel(cmsLink.getLabel(), locale), module, locale));
-                if (link.getLink() == null){
-                    contentLogger.warn("There is no product with the id '{}', ({}) ", linkable.getTitle(), cmsLink.getLink().getPath());
-                    module.addErrorMessage("Main Link: The DMS id is not valid, check " + linkable.getTitle());
-                    return null;
-                }
-                return link;
-            }
+            return createCMSLink(module, locale, (CMSLink) item);
         }
 
         logger.warn("The document {} could not be turned into a link", item.getPath());
         module.addErrorMessage("The link was not correctly processed");
         return null;
+    }
+
+    /**
+     * Creates a FlatLink from a CMSLink Document
+     * @param module
+     * @param locale
+     * @param cmsLink
+     * @return
+     */
+    FlatLink createCMSLink(Module<?> module, Locale locale, CMSLink cmsLink){
+        FlatLink link = null;
+        if (cmsLink.getLink() instanceof SharedLink) {
+            link = createFindOutMoreLink(module, locale, ((SharedLink) cmsLink.getLink()).getLinkType());
+            if (!Contract.isEmpty(cmsLink.getLabel()) && link != null && !Contract.isEmpty(link.getLink())) {
+                link.setLabel(cmsLink.getLabel());
+            }
+        } else if (cmsLink.getLink() instanceof Linkable) {
+            Linkable linkable = (Linkable) cmsLink.getLink();
+            link = createSimpleLink(linkable, module, locale);
+
+            if (link != null && !Contract.isEmpty(link.getLink())) {
+                link.setLabel(formatLabel(cmsLink.getLink(), bundle.getCtaLabel(cmsLink.getLabel(), locale), module, locale));
+            }
+        }
+
+        if (link == null || link.getLink() == null){
+            contentLogger.warn("There is an unexpected issue with the link at {}", cmsLink.getPath());
+            module.addErrorMessage("There is an unexpected issue with the link at " + cmsLink.getPath());
+            return null;
+        }
+
+        return link;
     }
 
     /**
@@ -195,8 +210,8 @@ public class LinkService {
      * @param link   SharedLink Object;
      * @return
      */
-    public String getPlainLink(Locale locale, SharedLink link) {
-        return getPlainLink(locale, link.getLinkType(), getNodeFromSharedLink(link, locale));
+    public String getPlainLink(Module module, Locale locale, SharedLink link) {
+        return getPlainLink(locale, link.getLinkType(), getNodeFromSharedLink(link, module,locale));
     }
 
     /**
@@ -323,7 +338,7 @@ public class LinkService {
      * @return
      */
     public EnhancedLink createEnhancedLink(Linkable linkable, Module<?> module, Locale locale, boolean addCategory) {
-        EnhancedLink link;
+        EnhancedLink link = null;
 
         if (linkable instanceof Page) {
             link = enhancedLinkFromPage((Page) linkable, module, locale);
@@ -331,10 +346,11 @@ public class LinkService {
             link = enhancedLinkFromSharedLink((SharedLink) linkable, module, locale, addCategory);
         } else if (linkable instanceof Video) {
             link = enhancedLinkFromVideo((Video) linkable, module, locale, addCategory);
-        } else {
-            if (linkable != null) {
-                logger.warn("The type {} was not expected and will be skipped", linkable.getClass().getSimpleName());
-            }
+        } else if (linkable != null) {
+            logger.warn("The type {} was not expected and will be skipped", linkable.getClass().getSimpleName());
+        }
+
+        if (link == null) {
             return null;
         }
 
@@ -365,14 +381,13 @@ public class LinkService {
     public FlatLink createSimpleLink(@NotNull Linkable linkable, Module<?> module, Locale locale) {
         FlatLink link = new FlatLink();
         link.setLabel(linkable.getTitle());
-        //link.setctaText
 
         if (linkable instanceof Page) {
             link.setLink(utils.createUrl((Page) linkable));
             link.setType(LinkType.INTERNAL);
         } else if (linkable instanceof SharedLink) {
             SharedLink sharedLink = (SharedLink) linkable;
-            link.setLink(getPlainLink(locale, sharedLink));
+            link.setLink(getPlainLink(module, locale, sharedLink));
             link.setType(getType(link.getLink()));
         } else if (module != null) {
             module.addErrorMessage(String.format("The type %s cannot be converted into a link", linkable.getClass().getSimpleName()));
@@ -385,15 +400,21 @@ public class LinkService {
     /**
      * Query the DMSDataService and extract the information about the product as a {@code JsonNode}
      *
-     * @param link   SharedLink where the DMS product (ID) is defined
+     * @param sharedLink   SharedLink where the DMS product (ID) is defined
      * @param locale User language to consume DMS texts such a category, location, facilities...
      * @return JSON with DMS product information to create the card or null if the product does not exist
      */
-    private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
-        if (link.getLinkType() instanceof DMSLink) {
-            return dmsData.productCard(((DMSLink) link.getLinkType()).getProduct(), locale);
+    private JsonNode getNodeFromSharedLink(SharedLink sharedLink, Module<?> module, Locale locale) {
+        JsonNode product = null;
+
+        if (sharedLink.getLinkType() instanceof DMSLink) {
+            product = dmsData.productCard(((DMSLink) sharedLink.getLinkType()).getProduct(), locale);
+            if (product == null){
+                contentLogger.warn("The DMS ID for '{}' is not valid. Please review at {}", sharedLink.getTitle(), sharedLink.getPath());
+                module.addErrorMessage(String.format("The DMS ID for '%s' is not valid. Please review at %s", sharedLink.getTitle(), sharedLink.getPath()));
+            }
         }
-        return null;
+        return product;
     }
 
     /**
@@ -433,28 +454,32 @@ public class LinkService {
      */
     private EnhancedLink enhancedLinkFromSharedLink(SharedLink sharedLink, Module<?> module, Locale locale, boolean addCategory) {
         EnhancedLink link = new EnhancedLink();
-        JsonNode product = getNodeFromSharedLink(sharedLink, locale);
+        JsonNode product = getNodeFromSharedLink(sharedLink, module, locale);
 
-            link.setTeaser(sharedLink.getTeaser());
-            link.setLink(getPlainLink(locale, sharedLink.getLinkType(), product));
+        link.setTeaser(sharedLink.getTeaser());
+        link.setLink(getPlainLink(locale, sharedLink.getLinkType(), product));
 
-            if (sharedLink.getImage() != null) {
-                link.setImage(imageFactory.createImage(sharedLink.getImage(), module, locale));
-            } else if (product != null && product.has(DMSConstants.DMSProduct.IMAGE)) {
-                link.setImage(imageFactory.createImage(product, module));
+        if (link.getLink() == null){
+            return null;
+        }
+
+        if (sharedLink.getImage() != null) {
+            link.setImage(imageFactory.createImage(sharedLink.getImage(), module, locale));
+        } else if (product != null && product.has(DMSConstants.DMSProduct.IMAGE)) {
+            link.setImage(imageFactory.createImage(product, module));
+        }
+
+        if (sharedLink.getLinkType() instanceof ExternalDocument) {
+            link.setLabel(formatLabel(sharedLink, sharedLink.getTitle(), module, locale));
+            link.setType(LinkType.DOWNLOAD);
+
+            if (addCategory) {
+                link.setCategory(((ExternalDocument) sharedLink.getLinkType()).getCategory());
             }
-
-            if (sharedLink.getLinkType() instanceof ExternalDocument) {
-                link.setLabel(formatLabel(sharedLink, sharedLink.getTitle(), module, locale));
-                link.setType(LinkType.DOWNLOAD);
-
-                if (addCategory) {
-                    link.setCategory(((ExternalDocument) sharedLink.getLinkType()).getCategory());
-                }
-            } else {
-                link.setLabel(sharedLink.getTitle());
-                link.setType(getType(link.getLink()));
-            }
+        } else {
+            link.setLabel(sharedLink.getTitle());
+            link.setType(getType(link.getLink()));
+        }
 
         return link;
     }

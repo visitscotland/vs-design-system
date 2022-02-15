@@ -137,6 +137,7 @@ public class NavigationFactory {
             }
             EnhancedLink link = linkService.createEnhancedLink((Linkable) cmsLink.getLink(), widget, locale, false);
 
+            //TODO check null
             if (!Contract.isEmpty(cmsLink.getLabel())){
                 link.setCta(cmsLink.getLabel());
             } else {
