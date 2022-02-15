@@ -194,6 +194,7 @@ export default {
             currentWidth: 'lg',
             activeSlides: [],
             remainderOffset: 0,
+            navigating: false,
         };
     },
     computed: {
@@ -325,6 +326,12 @@ export default {
             this.sliderNavigate(this.currentPage);
         },
         sliderNavigate(direction) {
+            if (this.navigating) {
+                return;
+            }
+
+            this.navigating = true;
+
             if (direction === 'next') {
                 this.currentPage += 1;
             } else if (direction === 'prev') {
@@ -349,6 +356,8 @@ export default {
             }
 
             this.defineActiveSlides(finalSlideRemainder);
+
+            setTimeout(() => { this.navigating = false; }, 250);
         },
         initNavigation() {
             // method to enable/disable arrow controls for carousel
