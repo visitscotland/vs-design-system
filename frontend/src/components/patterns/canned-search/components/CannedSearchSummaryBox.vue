@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-canned-search-summary-box">
+    <div
+        class="vs-canned-search-summary-box"
+        :disabled="!slideVisible() ? true : false"
+    >
         <VsContainer>
             <VsRow
                 v-if="!!this.$slots['vsCannedSearchSummaryTop']"
@@ -54,17 +57,15 @@
                 </VsCol>
                 <VsCol
                     class="vs-canned-search-summary-box__summary-item"
-                    v-if="!!this.$slots['vsCannedSearchSummaryRight']"
+                    v-if="linkHref"
                 >
-                    <!--
-                        @slot Holds the content for the third optional item in the grey
-                        summary box  at the bottom of the card, usually a link
-
-                        Expects html
-                    -->
-                    <slot
-                        name="vsCannedSearchSummaryRight"
-                    />
+                    <VsLink
+                        :href="linkHref"
+                        :type="linkType.toLowerCase()"
+                        :disabled="!slideVisible()"
+                    >
+                        {{ linkLabel }}
+                    </VsLink>
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -75,6 +76,7 @@
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
+import VsLink from '@components/elements/link/Link';
 
 /**
 * Component that displays a grey summary box for product cards within canned
@@ -91,7 +93,32 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
+        VsLink,
     },
+    props: {
+        /**
+        *
+        */
+        linkHref: {
+            type: String,
+            default: '',
+        },
+        /**
+        *
+        */
+        linkLabel: {
+            type: String,
+            default: '',
+        },
+        /**
+        *
+        */
+        linkType: {
+            type: String,
+            default: '',
+        },
+    },
+    inject: ['slideVisible'],
 };
 
 </script>
