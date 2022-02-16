@@ -253,7 +253,13 @@ pipeline {
 
         stage('Nexus IQ Scan: Site') {
           when {
-            branch 'develop' 
+            anyOf {
+              // Always run Nexus IQ scan for builds on 'develop'
+              branch 'develop' 
+ 
+              // Always run Nexus IQ scan for pull requests to 'develop'
+              changeRequest target: 'develop'
+            }
           }
           steps {
             script{
@@ -273,7 +279,13 @@ pipeline {
 
         stage('Nexus IQ Scan: CMS') {
           when {
-            branch 'develop' 
+            anyOf {
+              // Always run Nexus IQ scan for builds on 'develop'
+              branch 'develop' 
+ 
+              // Always run Nexus IQ scan for pull requests to 'develop'
+              changeRequest target: 'develop'
+            }
           }
           steps {
             script{
@@ -293,7 +305,13 @@ pipeline {
 
         stage('Nexus IQ Scan: SSR') {
           when {
-            branch 'develop' 
+            anyOf {
+              // Always run Nexus IQ scan for builds on 'develop'
+              branch 'develop' 
+ 
+              // Always run Nexus IQ scan for pull requests to 'develop'
+              changeRequest target: 'develop'
+            }
           }
           steps {
             script{
