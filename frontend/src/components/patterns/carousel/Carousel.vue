@@ -20,18 +20,15 @@
                             <!-- @slot default slot to contain slides -->
                             <slot />
                         </VsRow>
-                        <button
+                        <VsButton
                             v-if="!prevDisabled"
                             class="vs-carousel__control vs-carousel__control--prev"
-                            @click.prevent="sliderNavigate('prev')"
-                            @keypress.prevent="sliderNavigate('prev')"
+                            @click.native="sliderNavigate('prev')"
+                            @keypress.native="sliderNavigate('prev')"
+                            icon="internal-link"
+                            icon-orientation="down"
+                            icon-size-override="xs"
                         >
-                            <VsIcon
-                                name="internal-link"
-                                size="xs"
-                                orientation="down"
-                                variant="light"
-                            />
                             <div class="vs-carousel__control-label-container">
                                 <span
                                     class="vs-carousel__control-label
@@ -40,12 +37,16 @@
                                     {{ prevText }}
                                 </span>
                             </div>
-                        </button>
-                        <button
+                            <span class="sr-only">{{ prevText }}</span>
+                        </VsButton>
+                        <VsButton
                             v-if="!nextDisabled"
                             class="vs-carousel__control vs-carousel__control--next"
-                            @keypress.prevent="sliderNavigate('next')"
-                            @click.prevent="sliderNavigate('next')"
+                            @keypress.native="sliderNavigate('next')"
+                            @click.native="sliderNavigate('next')"
+                            icon="internal-link"
+                            icon-position="right"
+                            icon-size-override="xs"
                         >
                             <div class="vs-carousel__control-label-container">
                                 <span
@@ -55,13 +56,8 @@
                                     {{ nextText }}
                                 </span>
                             </div>
-                            <VsIcon
-                                name="internal-link"
-                                size="xs"
-                                variant="light"
-                            />
                             <span class="sr-only">{{ nextText }}</span>
-                        </button>
+                        </VsButton>
 
                         <ul
                             v-if="totalSlides > slidesPerPage[currentWidth]"
@@ -110,7 +106,7 @@
 </template>
 
 <script>
-import VsIcon from '@components/elements/icon';
+import VsButton from '@components/elements/button';
 import {
     VsContainer,
     VsRow,
@@ -132,7 +128,7 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
-        VsIcon,
+        VsButton,
     },
     props: {
         /**
@@ -395,10 +391,8 @@ export default {
         }
 
         &__control {
-            position: absolute;
+            position: absolute !important;
             top: 25%;
-            border: none;
-            background: $color-theme-primary;
             z-index: 20;
             min-width: 35px;
             height: 35px;
@@ -406,6 +400,7 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: $spacer-3;
 
             &--next {
                 right: 0;
@@ -430,12 +425,17 @@ export default {
                 font-weight: $font-weight-light;
 
                 &--next {
-                    padding-right: $spacer-4;
+                    padding-right: $spacer-2;
                 }
 
                 &--prev {
-                    padding-left: $spacer-4;
+                    padding-left: $spacer-2;
                 }
+            }
+
+            .vs-icon {
+                margin-left: $spacer-0 !important;
+                margin-right: $spacer-0 !important
             }
 
             .vs-carousel__control-label-container {
@@ -444,22 +444,15 @@ export default {
                 overflow: hidden;
             }
 
-            &:focus {
-                box-shadow: $shadow-button-focus;
-                outline: none;
-                background-color: $color-white;
-                border: 1px solid $color-theme-primary;
-
-                .vs-carousel__control-label-container {
-                    max-width: 15.5rem;
+            &:active {
+                .vs-carousel__control-label {
+                    color: $color-white;
                 }
+            }
 
+            &:focus:not(:active) {
                 .vs-carousel__control-label {
                     color: $color-theme-primary;
-                }
-
-                .vs-icon {
-                    fill: $color-theme-primary;
                 }
             }
 
