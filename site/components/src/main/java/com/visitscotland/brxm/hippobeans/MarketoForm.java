@@ -4,6 +4,7 @@ import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerat
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import java.util.Calendar;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:MarketoForm")
 @Node(jcrType = "visitscotland:MarketoForm")
@@ -46,5 +47,10 @@ public class MarketoForm extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:guide")
     public HippoHtml getGuide() {
         return getHippoHtml("visitscotland:guide");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
+    public Calendar getTranslationDeadline() {
+        return getSingleProperty("visitscotland:translationDeadline");
     }
 }

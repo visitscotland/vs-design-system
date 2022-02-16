@@ -2,6 +2,7 @@ package com.visitscotland.brxm.hippobeans;
 
 import org.hippoecm.hst.content.beans.Node;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+import java.util.Calendar;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Listicle")
 @Node(jcrType = "visitscotland:Listicle")
@@ -24,5 +25,10 @@ public class Listicle extends Page {
     @HippoEssentialsGenerated(internalName = "visitscotland:heroVideo")
     public VideoLink getHeroVideo() {
         return getBean("visitscotland:heroVideo", VideoLink.class);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
+    public Calendar getTranslationDeadline() {
+        return getSingleProperty("visitscotland:translationDeadline");
     }
 }

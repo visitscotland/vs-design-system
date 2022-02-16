@@ -118,7 +118,7 @@ public class CommonUtilsService {
     /**
      * This method allow us to test this class
      */
-    HttpURLConnection openConnection(String url) throws IOException {
+    public HttpURLConnection openConnection(String url) throws IOException {
         return (HttpURLConnection) new URL(url).openConnection();
     }
 }

@@ -39,13 +39,14 @@
       dms-data.encoding, dms-data.api-key, dms-data.timeout, dms-data.tries, dms-data.sleep-time,
       iknow-community.url, iknow-community.tagged-discussion, instagram.app-id, links.internal-sites,
       links.use-relative-urls, links.cms-base-path.url, links.vs-dms-products.url,
-      dms-data.public-url, dms-data.private-url, links.convert-to-relative, banner.path]
+      dms-data.public-url, dms-data.private-url, links.convert-to-relative,
+      youtube.api-key]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
-      www.visitscotland.com, general/navigation/banner/content]
+      www.visitscotland.com, $YOUTUBE_API_KEY]
   /properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -81,13 +82,14 @@
       dms-data.encoding, dms-data.api-key, dms-data.timeout, dms-data.tries, dms-data.sleep-time,
       iknow-community.url, iknow-community.tagged-discussion, instagram.app-id, links.internal-sites,
       links.use-relative-urls, links.cms-base-path.url, links.vs-dms-products.url,
-      dms-data.public-url, dms-data.private-url, links.convert-to-relative, banner.path]
+      dms-data.public-url, dms-data.private-url, links.convert-to-relative,
+      youtube.api-key]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
-      www.visitscotland.com, general/navigation/banner/content]
+      www.visitscotland.com, $YOUTUBE_API_KEY]
   /properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -124,10 +126,11 @@
       dms-data.encoding, dms-data.api-key, dms-data.timeout, dms-data.tries, dms-data.sleep-time,
       iknow-community.url, iknow-community.tagged-discussion, instagram.app-id, links.internal-sites,
       links.use-relative-urls, links.cms-base-path.url, links.vs-dms-products.url,
-      dms-data.public-url, dms-data.private-url, links.convert-to-relative, banner.path]
+      dms-data.public-url, dms-data.private-url, links.convert-to-relative,
+      youtube.api-key]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
-      www.visitscotland.com, general/navigation/banner/content]
+      www.visitscotland.com, $YOUTUBE_API_KEY]

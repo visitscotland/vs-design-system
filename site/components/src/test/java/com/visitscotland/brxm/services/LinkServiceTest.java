@@ -16,6 +16,7 @@ import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
+import com.visitscotland.brxm.model.YoutubeVideo;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.brxm.dms.DMSConstants;
@@ -33,9 +34,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Locale;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -68,11 +69,14 @@ class LinkServiceTest {
     @Mock
     private ImageFactory imageFactory;
 
+    @Mock
+    private YoutubeApiService youtubeApiService;
+
     @Resource
     @InjectMocks
     LinkService service;
 
-    private void initProductSearchBuilder(){
+    private void initProductSearchBuilder() {
         ComponentManager context = mock(ComponentManager.class, withSettings().lenient());
         when(context.getComponent(ProductSearchBuilder.class)).thenReturn(builder);
         VsComponentManager.setComponentManager(context);
@@ -89,7 +93,7 @@ class LinkServiceTest {
         when(properties.getDmsHost()).thenReturn("http://localhost:8080");
         when(resourceBundle.getCtaLabel(eq(""), any())).thenReturn("Find out more");
 
-        FlatLink link = service.createCTALink(null, Locale.UK, externalLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, externalLink);
 
         assertEquals("http://fake.link", link.getLink());
         assertEquals("Find out more", link.getLabel());
@@ -119,19 +123,84 @@ class LinkServiceTest {
         assertEquals("https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf", link);
     }
 
-
     @Test
-    @DisplayName("Create a link from an CMSLink Compound")
-    void cmsLink() {
+    @DisplayName("Create a link from an CMSLink Compound to a page")
+    void cmsPageLink() {
         CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
         when(cmsLink.getLink()).thenReturn(mock(Page.class));
 
         when(utils.createUrl(any(Page.class))).thenReturn("http://cms-url");
 
-        FlatLink link = service.createCTALink(null, Locale.UK, cmsLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, cmsLink);
 
         assertEquals("http://cms-url", link.getLink());
         assertEquals(LinkType.INTERNAL, link.getType());
+    }
+
+    @Test
+    @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, default label")
+    void cmsSharedLink_findOutMore() {
+        SharedLink sharedLink = mock(SharedLink.class);
+        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+
+        when(sharedLink.getLinkType()).thenReturn(externalLink);
+        when(cmsLink.getLabel()).thenReturn("");
+        when(externalLink.getLink()).thenReturn("http://cms-url");
+        when(cmsLink.getLink()).thenReturn(sharedLink);
+        when(resourceBundle.getCtaLabel(any(), any())).thenReturn("Find out more");
+
+
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, cmsLink);
+
+        assertEquals("http://cms-url", link.getLink());
+        assertEquals("Find out more", link.getLabel());
+        assertEquals(LinkType.EXTERNAL, link.getType());
+
+    }
+
+    @Test
+    @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, default label")
+    void cmsPageLink_linkNull() {
+        Page pageLink = mock(Page.class);
+        Module m = new Module();
+        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+
+        when(cmsLink.getLabel()).thenReturn("");
+        when(pageLink.getTitle()).thenReturn("Edinburgh");
+        when(externalLink.getLink()).thenReturn("http://cms-url");
+        when(cmsLink.getLink()).thenReturn(pageLink);
+        when(resourceBundle.getCtaLabel(any(), any())).thenReturn("Find out more");
+
+
+        FlatLink link = service.createFindOutMoreLink(m, Locale.UK, cmsLink);
+
+        assertNull(link);
+        assertTrue(m.getErrorMessages().size()>0);
+
+    }
+
+    @Test
+    @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, override label")
+    void cmsSharedLink_overrideFindOutMore() {
+        SharedLink sharedLink = mock(SharedLink.class);
+        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+
+        when(sharedLink.getLinkType()).thenReturn(externalLink);
+        when(cmsLink.getLabel()).thenReturn("CTA override");
+        when(externalLink.getLink()).thenReturn("http://cms-url");
+        when(cmsLink.getLink()).thenReturn(sharedLink);
+        when(resourceBundle.getCtaLabel(any(), any())).thenReturn("Find out more");
+
+
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, cmsLink);
+
+        assertEquals("http://cms-url", link.getLink());
+        assertEquals("CTA override", link.getLabel());
+        assertEquals(LinkType.EXTERNAL, link.getType());
+
     }
 
     @Test
@@ -145,9 +214,9 @@ class LinkServiceTest {
         when(dmsData.productCard("123", Locale.UK)).thenReturn(null);
 
 
-        FlatLink link = service.createCTALink(m, Locale.UK, dmsLink);
+        FlatLink link = service.createFindOutMoreLink(m, Locale.UK, dmsLink);
 
-        assertEquals(1, m.getErrorMessages().size());
+        assertTrue(m.getErrorMessages().size() > 1);
         assertNull(link);
     }
 
@@ -165,7 +234,7 @@ class LinkServiceTest {
         when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK)).thenReturn(url);
         when(url.asText()).thenReturn("/dms-page");
 
-        FlatLink link = service.createCTALink(null, Locale.UK, dmsLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, dmsLink);
 
         assertTrue(link.getLink().endsWith("/dms-page"));
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -182,7 +251,7 @@ class LinkServiceTest {
         ProductsSearch ps = mock(ProductsSearch.class);
         when(productSearchLink.getSearch()).thenReturn(ps);
 
-        FlatLink link = service.createCTALink(null, Locale.UK, productSearchLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, productSearchLink);
 
         verify(builder, times(1)).build();
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -605,4 +674,30 @@ class LinkServiceTest {
 
         assertNull(link);
     }
+
+    @Test
+    @DisplayName("VS-1419  - YouTube video published date obtained from api")
+    void enhancedLink_fromVideoWithPublishedDate() throws ParseException {
+        Video video = new VideoMockBuilder().url("https://www.youtube.com/watch?v=h9bQwcndGfo").build();
+        Date datePublished = new SimpleDateFormat("yyyy-MM-dd").parse("2020-10-10");
+        YoutubeVideo yt = new YoutubeVideo();
+        yt.setPublishDate(datePublished);
+        when(youtubeApiService.getVideoInfo("h9bQwcndGfo")).thenReturn(Optional.of(yt));
+
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false);
+
+        assertEquals(datePublished, link.getPublishedDate());
+    }
+
+    @Test
+    @DisplayName("VS-1419 Published date is never null, even when YouTube API is unavailable")
+    void enhancedLink_youtubeDateNotAvailable() {
+        Video video = new VideoMockBuilder().url("https://www.youtube.com/watch?v=h9bQwcndGfo").build();
+        when(youtubeApiService.getVideoInfo("h9bQwcndGfo")).thenReturn(Optional.empty());
+
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false);
+
+        assertNotNull(link.getPublishedDate());
+    }
+
 }

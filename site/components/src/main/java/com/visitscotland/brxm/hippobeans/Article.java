@@ -4,8 +4,8 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
-
 import java.util.List;
+import java.util.Calendar;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Article")
 @Node(jcrType = "visitscotland:Article")
@@ -59,5 +59,10 @@ public class Article extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translation")
     public String getTranslation() {
         return getSingleProperty("visitscotland:translation");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
+    public Calendar getTranslationDeadline() {
+        return getSingleProperty("visitscotland:translationDeadline");
     }
 }
