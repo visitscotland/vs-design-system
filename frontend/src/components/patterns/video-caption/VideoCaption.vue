@@ -9,7 +9,7 @@
                 <VsButton
                     class="vs-video-caption__button"
                     icon="play"
-                    icon-position="right"
+                    icon-position="left"
                     size="md"
                     ref="videoShow"
                     @click.native="emitShowModal"
@@ -184,11 +184,30 @@ export default {
             }
         }
 
+        &__button {
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            padding-top: $spacer-1;
+            padding-bottom: $spacer-1;
+            min-height: 53px;
+            text-align: left;
+            line-height: 1.1;
+
+            .vs-icon {
+                margin-right: $spacer-6;
+            }
+        }
+
+        .vs-caption--large .vs-caption__image-caption {
+            margin-bottom: $spacer-2;
+        }
+
         @include media-breakpoint-up(sm) {
             &__details {
                 display: flex;
                 align-items: baseline;
-                padding: $spacer-4 $spacer-3 $spacer-5;
+                padding: $spacer-4 $spacer-5 $spacer-5;
             }
 
             &__title {
@@ -267,8 +286,8 @@ export default {
 <docs>
     ``` jsx
     <VsVideoCaption
-        class="mb-5"
-        videoBtnText="Play video"
+        class="mt-5 mb-5"
+        videoBtnText="Play video this is a longer caption"
         videoId="c05sg3G4oA4"
     >
         <template slot="video-title">
@@ -306,6 +325,7 @@ export default {
             withToggleBtn
             videoBtnText="Play video"
             videoId="FlG6tbYaA88"
+            class="mt-12"
         >
             <template slot="video-title">
                 This is the video title
