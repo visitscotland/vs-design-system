@@ -136,7 +136,7 @@ export default {
         &__details {
             background-color: $color-gray-shade-6;
             color: $color-white;
-            padding: $spacer-4 $spacer-3 $spacer-3;
+            padding: $spacer-4 $spacer-2 $spacer-3;
         }
 
         &__buttons-container {
@@ -234,6 +234,7 @@ export default {
         @include media-breakpoint-up(lg) {
             &__details {
                 display: block;
+                padding: $spacer-4 $spacer-6 $spacer-5;
             }
 
             &__title {
