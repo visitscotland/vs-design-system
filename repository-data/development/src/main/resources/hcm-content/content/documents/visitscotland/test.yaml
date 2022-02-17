@@ -6404,6 +6404,138 @@
           visitscotland:toursSearch: https://www.visitscotland.com/info/tours/search-results?prodtypes=tour&origins%5B%5D=glasgow&source=tms
           visitscotland:translation: ''
           visitscotland:viewAll: ''
+    /hero-with-video:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 6d0b261e-2026-499d-aad5-0ebba2186963
+      hippo:name: Hero with video
+      hippostd:foldertype: [new-translated-folder-test, new-document]
+      hippotranslation:id: 69a1c760-7cc9-494c-ac76-3994dfd42bc9
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 8ce6a780-7835-46f1-b006-95d70772e653
+        hippo:name: Hero with video example
+        hippo:versionHistory: 62022d47-087f-4581-b75d-5f3fb88a7af9
+        /content[1]:
+          jcr:primaryType: visitscotland:General
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 2a4cacda-001e-46ab-96e4-b59a67aceab4
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-02-16T09:27:04.032Z
+          hippostdpubwf:lastModificationDate: 2022-02-16T10:05:51.196Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e932e79e-e191-4db5-a477-8a22eac36a20
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:seoDescription: Hero with video
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Hero with video
+          visitscotland:teaser: This is an example of a general page which uses a
+            video hero
+          visitscotland:theme: Standard
+          visitscotland:title: Hero with video example
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ea857cd5-2d45-4f7c-9da9-503b2be8f382
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>A hero section has the option to open a modal window
+              which plays a video. This will automatically add a button and some information
+              about the video to the hero section.</p>
+          /visitscotland:heroVideo:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+        /content[2]:
+          jcr:primaryType: visitscotland:General
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 3d26e263-604d-4530-83dc-1d0beda82f88
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-02-16T09:27:04.032Z
+          hippostdpubwf:lastModificationDate: 2022-02-16T10:06:02.663Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e932e79e-e191-4db5-a477-8a22eac36a20
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:seoDescription: Hero with video
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Hero with video
+          visitscotland:teaser: This is an example of a general page which uses a
+            video hero
+          visitscotland:theme: Standard
+          visitscotland:title: Hero with video example
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ea857cd5-2d45-4f7c-9da9-503b2be8f382
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>A hero section has the option to open a modal window
+              which plays a video. This will automatically add a button and some information
+              about the video to the hero section.</p>
+          /visitscotland:heroVideo:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
+        /content[3]:
+          jcr:primaryType: visitscotland:General
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 03174f71-9750-4695-b9ff-25c23d0b845e
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-02-16T09:27:04.032Z
+          hippostdpubwf:lastModificationDate: 2022-02-16T10:06:02.663Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2022-02-16T10:06:04.301Z
+          hippotranslation:id: e932e79e-e191-4db5-a477-8a22eac36a20
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:hideNewsletter: false
+          visitscotland:seoDescription: Hero with video
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Hero with video
+          visitscotland:teaser: This is an example of a general page which uses a
+            video hero
+          visitscotland:theme: Standard
+          visitscotland:title: Hero with video example
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ea857cd5-2d45-4f7c-9da9-503b2be8f382
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>A hero section has the option to open a modal window
+              which plays a video. This will automatically add a button and some information
+              about the video to the hero section.</p>
+          /visitscotland:heroVideo:
+            jcr:primaryType: visitscotland:VideoLink
+            /visitscotland:videoLink:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
   /pages:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -8147,138 +8279,6 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
-    /general-page-with-video-hero:
-      jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
-      jcr:uuid: 94fdf23b-1fc7-44bf-bc1c-57bea9f1f525
-      hippo:name: General page with video hero
-      hippostd:foldertype: [new-translated-folder-test, new-document]
-      hippotranslation:id: 8a83ecb6-f4e8-454c-8114-cd6c0234c0c6
-      hippotranslation:locale: en
-      /content:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 529453f8-9e5e-4575-864f-4dcec0850574
-        hippo:name: General page with video hero
-        hippo:versionHistory: 3fab03b7-f82d-4924-84c1-1407c6d69399
-        /content[1]:
-          jcr:primaryType: visitscotland:General
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: b306a033-27e2-4a14-b1ce-4b73272d9fb2
-          hippo:availability: []
-          hippostd:retainable: false
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2021-12-07T13:58:57.830Z
-          hippostdpubwf:lastModificationDate: 2021-12-07T14:00:43.343Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 419ee6eb-9a1f-4cb6-8588-7c645544394a
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: ''
-          visitscotland:hideNewsletter: false
-          visitscotland:seoDescription: General page with video hero
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: General page with video hero
-          visitscotland:teaser: This is an example of a general page which uses a
-            video hero
-          visitscotland:theme: Standard
-          visitscotland:title: General page with video hero
-          visitscotland:translation: ''
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>Videos can be added to a page with a hero on it.
-              This will add a video caption to the hero, allowing for the user to
-              click a play button to open a modal and see the video.</p>
-          /visitscotland:heroVideo:
-            jcr:primaryType: visitscotland:VideoLink
-            /visitscotland:videoLink:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
-        /content[2]:
-          jcr:primaryType: visitscotland:General
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: bab7421c-d52c-4a1a-b183-a227b7dde658
-          hippo:availability: [preview]
-          hippostd:retainable: false
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2021-12-07T13:58:57.830Z
-          hippostdpubwf:lastModificationDate: 2021-12-07T14:00:43.251Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 419ee6eb-9a1f-4cb6-8588-7c645544394a
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: ''
-          visitscotland:hideNewsletter: false
-          visitscotland:seoDescription: General page with video hero
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: General page with video hero
-          visitscotland:teaser: This is an example of a general page which uses a
-            video hero
-          visitscotland:theme: Standard
-          visitscotland:title: General page with video hero
-          visitscotland:translation: ''
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>Videos can be added to a page with a hero on it.
-              This will add a video caption to the hero, allowing for the user to
-              click a play button to open a modal and see the video.</p>
-          /visitscotland:heroVideo:
-            jcr:primaryType: visitscotland:VideoLink
-            /visitscotland:videoLink:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
-        /content[3]:
-          jcr:primaryType: visitscotland:General
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 8b38be4f-9b07-4359-aa58-51aad2bcb896
-          hippo:availability: [live]
-          hippostd:retainable: false
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2021-12-07T13:58:57.830Z
-          hippostdpubwf:lastModificationDate: 2021-12-07T14:00:43.251Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-12-07T14:00:47.033Z
-          hippotranslation:id: 419ee6eb-9a1f-4cb6-8588-7c645544394a
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: ''
-          visitscotland:hideNewsletter: false
-          visitscotland:seoDescription: General page with video hero
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: General page with video hero
-          visitscotland:teaser: This is an example of a general page which uses a
-            video hero
-          visitscotland:theme: Standard
-          visitscotland:title: General page with video hero
-          visitscotland:translation: ''
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>Videos can be added to a page with a hero on it.
-              This will add a video caption to the hero, allowing for the user to
-              click a play button to open a modal and see the video.</p>
-          /visitscotland:heroVideo:
-            jcr:primaryType: visitscotland:VideoLink
-            /visitscotland:videoLink:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: b193d2fa-424d-44b0-a720-1d2cb5cf0184
   /content:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']

@@ -316,7 +316,7 @@ export default {
                 }
 
                 .vs-caption__caption-info {
-                    padding-left: $spacer-4;
+                    padding-left: $spacer-5;
                 }
 
                 .row {
