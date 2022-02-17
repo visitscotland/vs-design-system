@@ -447,10 +447,9 @@ export default {
 
             &:focus {
                 border: 2px solid $color-secondary-teal-tint-3;
-                outline: none;
             }
 
-            &:hover {
+            &:hover, &:focus {
                 outline: none;
 
                 .vs-carousel__control-label-container {
