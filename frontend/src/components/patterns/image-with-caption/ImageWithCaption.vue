@@ -199,7 +199,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .vs-image-with-caption{
+    .vs-image-with-caption {
         position: relative;
 
         &__image-wrapper {
@@ -307,6 +307,24 @@ export default {
 
                 &--large {
                     bottom: auto;
+                }
+            }
+
+            .vs-caption {
+                .vs-caption__image-caption {
+                    margin-bottom: $spacer-2;
+                }
+
+                .vs-caption__caption-info {
+                    padding-left: $spacer-4;
+                }
+
+                .row {
+                    margin: 0;
+                }
+
+                .col {
+                    padding: 0;
                 }
             }
 
@@ -561,36 +579,6 @@ export default {
             :image-src="item.imageSrc"
             :key="`fullwidth1-${index}`"
         >
-            <VsCaption
-                slot="img-caption"
-                variant="fullwidth"
-            >
-                <span slot="caption" v-if="item.caption">
-                    {{ item.caption }}
-                </span>
-
-                <span slot="credit" v-if="item.credit">
-                    {{ item.credit }}
-                </span>
-            </VsCaption>
-        </VsImageWithCaption>
-
-        <VsImageWithCaption
-            v-for="(item, index) in imageWithCaption.imageExamples.small"
-            :altText="item.altText"
-            :closedDefaultCaption="item.isSmall"
-            :image-src="item.imageSrc"
-            :key="`fullwidth2-${index}`"
-            style="max-width:300px"
-        >
-            <VsImg
-                class="lazyload"
-                :src="item.imageSrc"
-                :data-srcset="item.imageSrc"
-                :alt="item.altText"
-                data-sizes="auto">
-            </VsImg>
-
             <VsCaption
                 slot="img-caption"
                 variant="fullwidth"
