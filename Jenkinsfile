@@ -190,8 +190,11 @@ pipeline {
     stage ('vs build feature env') {
       when {
         anyOf {
-          // Always build the feature environment for pull requests to 'develop'
-          changeRequest target: 'develop'
+          // Always build the feature environment for 'develop' builds
+          branch 'develop'
+
+          // Always build the feature environment for pull requests
+          changeRequest()
 
           // If requested, build feature environment for feature branches prior to PR
           environment name: 'VS_BUILD_FEATURE_ENVIRONMENT', value: 'true'
@@ -257,8 +260,8 @@ pipeline {
               // Always run Nexus IQ scan for builds on 'develop'
               branch 'develop' 
  
-              // Always run Nexus IQ scan for pull requests to 'develop'
-              changeRequest target: 'develop'
+              // Always run Nexus IQ scan for pull requests
+              changeRequest()
             }
           }
           steps {
@@ -283,8 +286,8 @@ pipeline {
               // Always run Nexus IQ scan for builds on 'develop'
               branch 'develop' 
  
-              // Always run Nexus IQ scan for pull requests to 'develop'
-              changeRequest target: 'develop'
+              // Always run Nexus IQ scan for pull requests
+              changeRequest()
             }
           }
           steps {
@@ -309,8 +312,8 @@ pipeline {
               // Always run Nexus IQ scan for builds on 'develop'
               branch 'develop' 
  
-              // Always run Nexus IQ scan for pull requests to 'develop'
-              changeRequest target: 'develop'
+              // Always run Nexus IQ scan for pull requests
+              changeRequest()
             }
           }
           steps {
