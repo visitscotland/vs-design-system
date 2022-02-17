@@ -60,7 +60,6 @@ pipeline {
     // VS_COMMIT_AUTHOR is required by later stages which will fail if it's not set, default value of jenkins@visitscotland.net
     // turns out if you set it here it will not be overwritten by the load later in the pipeline
     //VS_COMMIT_AUTHOR = 'jenkins@visitscotland.net'
-    VS_RUN_LIGHTHOUSE_TESTS = 'TRUE'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
@@ -374,7 +373,20 @@ pipeline {
     stage('Lighthouse Testing'){
       when {
         allOf {
-          expression {return env.VS_RUN_LIGHTHOUSE_TESTS == 'TRUE'}
+          not {
+            // Allow lighthouse to be skipped even if a feature environment was built
+            environment name: 'VS_SKIP_LIGHTHOUSE_TESTS', value: 'true'
+          }
+          anyOf {
+            // Always run the Lighthouse Tests for 'develop' builds
+            branch 'develop' 
+
+            // Always run the Lighthouse Tests for pull requests
+            changeRequest()
+
+            // If the feature environment was forced to be built, run the Lighthouse tests
+            environment name: 'VS_BUILD_FEATURE_ENVIRONMENT', value: 'true'
+          }
         }
       }
       steps{
