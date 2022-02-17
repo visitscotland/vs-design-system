@@ -458,6 +458,7 @@ export default {
 
             &:hover {
                 outline: none;
+                background-color: $color-theme-primary;
 
                 .vs-carousel__control-label-container {
                     max-width: 15rem;
