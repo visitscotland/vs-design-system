@@ -132,6 +132,16 @@ export default {
             }
         }
     }
+
+    .vs-module-wrapper__outer--light + .vs-module-wrapper__outer--hidden +
+        .vs-module-wrapper--light,
+    .vs-module-wrapper__outer--light + .vs-module-wrapper--light {
+        padding-top: $spacer-4;
+
+        @include media-breakpoint-up(sm) {
+            padding-top: $spacer-2;
+        }
+    }
 </style>
 
 <docs>
