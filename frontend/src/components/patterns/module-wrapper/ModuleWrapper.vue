@@ -105,7 +105,7 @@ export default {
         }
 
         @include media-breakpoint-up(sm) {
-            padding-top: $spacer-10 + $spacer-3;
+            padding-top: $spacer-10 + $spacer-2;
             padding-bottom: $spacer-12;
         }
 
@@ -119,6 +119,16 @@ export default {
 
             .vs-module-wrapper__heading.vs-heading {
                 color: $color-yellow;
+            }
+        }
+    }
+
+    .vs-module-wrapper__outer--light + .vs-module-wrapper__outer--light {
+        .vs-module-wrapper {
+            padding-top: $spacer-4;
+
+            @include media-breakpoint-up(sm) {
+                padding-top: $spacer-2;
             }
         }
     }
