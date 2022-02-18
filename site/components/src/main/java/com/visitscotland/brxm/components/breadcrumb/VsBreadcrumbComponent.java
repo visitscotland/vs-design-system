@@ -12,10 +12,13 @@ import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.onehippo.cms7.essentials.components.CommonComponent;
+import org.onehippo.forge.breadcrumb.om.Breadcrumb;
+import org.onehippo.forge.breadcrumb.om.BreadcrumbItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContext;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,7 +57,7 @@ public class VsBreadcrumbComponent extends CommonComponent {
             List<BaseDocument> availableTranslations = ((Page) document.get()).getAvailableTranslations(BaseDocument.class).getTranslations();
             request.setAttribute(ORDERED_TRANSLATIONS, documentUtils.sortTranslationsForSeo(availableTranslations));
         } else {
-            logger.error("There is not a document associated for the following request: " + request.getRequestURI());
+            logger.debug("404 - redirecting to page not found from" + request.getRequestURI());
             this.pageNotFound(response);
         }
     }
