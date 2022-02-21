@@ -39,9 +39,12 @@ public class MenuComponent extends EssentialsMenuComponent {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
+        RootMenuItem menu = factory.buildMenu(request, request.getModel(MENU));
+        request.setModel(MENU, menu);
 
-        request.setModel(MENU, factory.buildMenu(request, request.getModel(MENU)));
-        request.setModel(LOCALIZED_URLS, utils.getLocalizedURLs(request));
-        request.setModel(BANNER, bannerFactory.getBannerModule(request));
+        if (menu.getName().equals("main")) {
+            request.setModel(LOCALIZED_URLS, utils.getLocalizedURLs(request));
+            request.setModel(BANNER, bannerFactory.getBannerModule(request));
+        }
     }
 }
