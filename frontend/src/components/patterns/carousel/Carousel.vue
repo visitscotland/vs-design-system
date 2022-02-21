@@ -16,8 +16,9 @@
                         <button
                             v-if="!prevDisabled"
                             class="vs-carousel__control vs-carousel__control--prev"
+                            ref="prevButton"
                             @click.prevent="sliderNavigate('prev')"
-                            @keypress.prevent="sliderNavigate('prev')"
+                            @keypress.prevent="sliderNavigate('prev', true)"
                         >
                             <VsIcon
                                 name="internal-link"
@@ -44,8 +45,9 @@
                         <button
                             v-if="!nextDisabled"
                             class="vs-carousel__control vs-carousel__control--next"
-                            @keypress.prevent="sliderNavigate('next')"
+                            ref="nextButton"
                             @click.prevent="sliderNavigate('next')"
+                            @keypress.prevent="sliderNavigate('next', true)"
                         >
                             <div class="vs-carousel__control-label-container">
                                 <span
@@ -76,7 +78,7 @@
                                     :class="index === currentPage + 1 ?
                                         'vs-carousel__navigation-item--active' : ''"
                                     @click.prevent="sliderNavigate(index - 1)"
-                                    @keypress.prevent="sliderNavigate(index - 1)"
+                                    @keypress.prevent="sliderNavigate(index - 1, true)"
                                     tabindex="0"
                                     :data-test="`vs-carousel__nav-${index}`"
                                 >
@@ -325,7 +327,7 @@ export default {
             // the same position they were at before the resize
             this.sliderNavigate(this.currentPage);
         },
-        sliderNavigate(direction) {
+        sliderNavigate(direction, keypressNavigation) {
             if (this.navigating) {
                 return;
             }
@@ -357,7 +359,17 @@ export default {
 
             this.defineActiveSlides(finalSlideRemainder);
 
-            setTimeout(() => { this.navigating = false; }, 250);
+            setTimeout(() => {
+                this.navigating = false;
+
+                if (keypressNavigation) {
+                    if (direction === 'next') {
+                        this.$refs.prevButton.focus();
+                    } else if (direction === 'prev') {
+                        this.$refs.nextButton.focus();
+                    }
+                }
+            }, 250);
         },
         initNavigation() {
             // method to enable/disable arrow controls for carousel
