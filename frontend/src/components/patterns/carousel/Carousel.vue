@@ -13,13 +13,6 @@
                     offset-sm="0"
                 >
                     <div class="slider">
-                        <VsRow
-                            class="vs-carousel__track"
-                            :style="{ 'transform': `translateX(${trackOffset})` }"
-                        >
-                            <!-- @slot default slot to contain slides -->
-                            <slot />
-                        </VsRow>
                         <button
                             v-if="!prevDisabled"
                             class="vs-carousel__control vs-carousel__control--prev"
@@ -41,6 +34,13 @@
                                 </span>
                             </div>
                         </button>
+                        <VsRow
+                            class="vs-carousel__track"
+                            :style="{ 'transform': `translateX(${trackOffset})` }"
+                        >
+                            <!-- @slot default slot to contain slides -->
+                            <slot />
+                        </VsRow>
                         <button
                             v-if="!nextDisabled"
                             class="vs-carousel__control vs-carousel__control--next"
