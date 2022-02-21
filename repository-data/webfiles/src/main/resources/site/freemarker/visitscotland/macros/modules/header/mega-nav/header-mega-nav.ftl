@@ -20,9 +20,13 @@
             <@headerAccordionNav menu=menu/>
         </template>
     </vs-mega-nav>
+
+    <#assign currentLocale=hstRequestContext.resolvedMount.mount.locale>
+
     <@hst.headContribution category="htmlBodyEndScripts">
         <script type="text/javascript" src="https://customer.cludo.com/scripts/bundles/search-script.min.js"></script>
     </@hst.headContribution>
+
     <@hst.headContribution category="htmlBodyEndScripts">
         <script>
             document.addEventListener("DOMContentLoaded", function(){
@@ -31,8 +35,8 @@
                     var cludoSettings = {
                         customerId: 623,
                         engineId: 8738,
-                        searchUrl: 'http://localhost:8080/site/test/pages/search-results/content',
-                        language: 'en',
+                        searchUrl: 'test/pages/search-results/content',
+                        language: '${currentLocale}',
                         searchInputs: ['cludo-search-form'],
                         template: 'InlineBasicImages',
                         focusOnResultsAfterSearch: true,
