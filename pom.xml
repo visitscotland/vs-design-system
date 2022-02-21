@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.visitscotland</groupId>
     <artifactId>hippo-defaults</artifactId>
-    <version>3.1.0-SNAPSHOT</version>
+    <version>4.0.0</version>
   </parent>
   
   <name>www.visitscotland.com CMS Pages</name>
@@ -21,7 +21,7 @@
     <!-- ***END temporary override of versions*** -->
     <!--TODO define this in parent pom -->
    
-    <data-service-api.version>1.2.0-SNAPSHOT</data-service-api.version>
+    <data-service-api.version>1.2.1</data-service-api.version>
     <commons-lan3.version>3.8.1</commons-lan3.version>
     
     <junit.jupiter.version>5.7.1</junit.jupiter.version>
