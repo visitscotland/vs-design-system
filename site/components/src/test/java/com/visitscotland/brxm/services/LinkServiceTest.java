@@ -462,6 +462,7 @@ class LinkServiceTest {
     void createEnhancedLink_itinerary() {
         Itinerary itinerary = new MegalinksMockBuilder().getItinerary("bus");
         when(documentUtilsService.getSiblingDocuments(itinerary,Day.class, "visitscotland:Day")).thenReturn(Arrays.asList(mock(Day.class), mock(Day.class)));
+        when(utils.createUrl(itinerary)).thenReturn("URL");
 
         EnhancedLink enhancedLink = service.createEnhancedLink(itinerary, null, Locale.UK, false);
 
@@ -488,10 +489,12 @@ class LinkServiceTest {
     @DisplayName("DMSLink - DMS Id is not valid")
     void DMS_enhanced_notValidId(){
         Module<?> module = new Module<>();
+        JsonNode node = mock(JsonNode.class, RETURNS_DEEP_STUBS);
+        SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
 
-        SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, null).build();
+        when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK).asText()).thenReturn("mock-url");
 
-        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+        service.createEnhancedLink(dmsLink, module,Locale.UK,false);
 
         assertEquals(1, module.getErrorMessages().size());
     }
