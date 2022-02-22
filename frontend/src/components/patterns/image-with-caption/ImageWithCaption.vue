@@ -311,11 +311,11 @@ export default {
             }
 
             .vs-caption {
-                .vs-caption__image-caption {
+                &__image-caption {
                     margin-bottom: $spacer-2;
                 }
 
-                .vs-caption__caption-info {
+                &__caption-info {
                     padding-left: $spacer-5;
                 }
 
@@ -579,6 +579,36 @@ export default {
             :image-src="item.imageSrc"
             :key="`fullwidth1-${index}`"
         >
+            <VsCaption
+                slot="img-caption"
+                variant="fullwidth"
+            >
+                <span slot="caption" v-if="item.caption">
+                    {{ item.caption }}
+                </span>
+
+                <span slot="credit" v-if="item.credit">
+                    {{ item.credit }}
+                </span>
+            </VsCaption>
+        </VsImageWithCaption>
+
+        <VsImageWithCaption
+            v-for="(item, index) in imageWithCaption.imageExamples.small"
+            :altText="item.altText"
+            :closedDefaultCaption="item.isSmall"
+            :image-src="item.imageSrc"
+            :key="`fullwidth2-${index}`"
+            style="max-width:300px"
+        >
+            <VsImg
+                class="lazyload"
+                :src="item.imageSrc"
+                :data-srcset="item.imageSrc"
+                :alt="item.altText"
+                data-sizes="auto">
+            </VsImg>
+
             <VsCaption
                 slot="img-caption"
                 variant="fullwidth"
