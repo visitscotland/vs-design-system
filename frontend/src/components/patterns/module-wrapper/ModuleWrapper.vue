@@ -133,18 +133,13 @@ export default {
         }
     }
 
-    // Applies the above spacing to the fixed modules at the bottom of each page.
-    //
-    // When js is active, the social share is not visible and marked with --hidden,
-    // this checks if the last module before it is light then reduces spacing on the
-    // newsletter signup.
+    // The fixed modules at the bottom of each page (no-js social share, newsletter
+    // and otyml) don't use the module-wrapper__outer normally and need these special
+    // cases. Reassess as and when those get refactored whether these can be removed.
+
     .vs-module-wrapper__outer--light + .vs-module-wrapper__outer--hidden +
         .vs-module-wrapper--light,
-    // When js is inactive, this reduces spacing on the newsletter signup based on
-    // the social share's light wrapper.
     .vs-module-wrapper__outer--light + .vs-module-wrapper--light,
-    // When both otyml and newsletter signup are both visible and light, this reduces
-    // spacing on the newsletter signup based on otyml's light wrapper.
     .vs-module-wrapper--light + .vs-module-wrapper--light {
         padding-top: $spacer-4;
 
