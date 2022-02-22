@@ -38,7 +38,7 @@
 <script>
 import VsIcon from '@components/elements/icon/Icon';
 import VsDropdown from '@components/patterns/dropdown/Dropdown';
-import cookieMixin from '../../../mixins/cookieMixin';
+import cookieMixin from '../../../../mixins/cookieMixin';
 
 /**
  * TODO: Document usage

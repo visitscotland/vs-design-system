@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['hipposysedit:remodel', 'mix:referenceable']
-          jcr:uuid: 56577d29-e60e-4c6c-a81a-49eac3d37f7e
+          jcr:uuid: f7c57d16-f9f9-4183-9994-4c2134aa8a6e
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -97,4 +97,4 @@ definitions:
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              valuelistProvider: service.locationlist.psr
+              valuelistProvider: service.locationlist.image

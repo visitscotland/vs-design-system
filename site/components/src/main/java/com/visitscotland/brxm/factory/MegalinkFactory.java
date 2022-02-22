@@ -212,15 +212,18 @@ public class MegalinkFactory {
             link = linkService.createEnhancedLink((Linkable) item, module, locale, addCategory);
         } else if (item instanceof VideoLink){
             link = linkService.createEnhancedLink(((VideoLink) item).getVideoLink(), module, locale, addCategory);
-        } else if (item == null){
-            contentLogger.warn("One of the links seems contain no link");
+        } else {
+            if (item != null) {
+                addError(module, "One of the links cannot be recognized and will not be included in the page.");
+                contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getClass().getSimpleName());
+            } else {
+                contentLogger.warn("One of the links seems contain no link");
+            }
             return null;
         }
 
-
         if (link == null) {
-            addError(module, "One of the Megalink items cannot be recognized and will not be included in the page.");
-            contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getClass().getSimpleName());
+            contentLogger.warn("The module {} might be linking an unpublished document", item.getPath());
         }
 
         return link;

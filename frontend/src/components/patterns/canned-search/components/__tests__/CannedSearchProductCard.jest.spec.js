@@ -93,10 +93,10 @@ describe('VsCannedSearchProductCard', () => {
                 expect(prodLink.props().href).toBe(detailLink.link);
             });
 
-            it('should render a `vs-link` with the `type` provided in `detailLink.type`', () => {
+            it('should render a `vs-link` with the `default` type', () => {
                 const prodLink = wrapper.find('[data-test="vs-product-card__link"]');
 
-                expect(prodLink.props().type).toBe(detailLink.type);
+                expect(prodLink.props().type).toBe('default');
             });
 
             it('should render the content of the `detailLink.label` property', () => {

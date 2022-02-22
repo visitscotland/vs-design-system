@@ -167,7 +167,6 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation1.getId()).thenReturn("doc1");
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
         doReturn(document1).when(mockJcrDocumentFactory).createFromNode(document1Node);
-        doReturn(mock(JcrDocument.class)).when(mockJcrDocumentFactory).createFromNode(null);
         documentList.add(translation1);
 
         FolderTranslation translation2 = mock(FolderTranslation.class);
@@ -216,7 +215,6 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation1.getId()).thenReturn("doc1");
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
         doReturn(document1).when(mockJcrDocumentFactory).createFromNode(document1Node);
-        doReturn(mock(JcrDocument.class)).when(mockJcrDocumentFactory).createFromNode(null);
         documentList.add(translation1);
 
         FolderTranslation translation2 = mock(FolderTranslation.class);
@@ -265,7 +263,6 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation1.isLinkedDocument()).thenReturn(false);
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
         doReturn(document1).when(mockJcrDocumentFactory).createFromNode(document1Node);
-        doReturn(mock(JcrDocument.class)).when(mockJcrDocumentFactory).createFromNode(null);
         documentList.add(translation1);
 
         FolderTranslation translation2 = mock(FolderTranslation.class);
@@ -322,7 +319,6 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation1.isLinkedDocument()).thenReturn(true);
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
         doReturn(document1).when(mockJcrDocumentFactory).createFromNode(document1Node);
-        doReturn(mock(JcrDocument.class)).when(mockJcrDocumentFactory).createFromNode(null);
         documentList.add(translation1);
 
         FolderTranslation translation2 = mock(FolderTranslation.class);
@@ -346,32 +342,4 @@ public class DocumentTranslatorApplyChangeSetTest {
         verify(mockDefaultWorkflow).setDisplayName(eq("document1"));
         verify(mockWorkflow).saveSession();
     }
-
-    @Test
-    @DisplayName("Documents are sent for translation when changeset applied")
-    void applyChangeSet_sentForTranslation() throws Exception {
-        // There should be a call for addTranslation for each document in the ChangeSet
-        FolderTranslation translation1 = mock(FolderTranslation.class);
-        HippoNode document1Node = mock(HippoNode.class);
-        JcrDocument document1 = mock(JcrDocument.class);
-        HippoNode document1Variant = mock(HippoNode.class);
-        when(translation1.getNamefr()).thenReturn("document1");
-        when(translation1.getUrlfr()).thenReturn("document1url");
-        when(document1.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document1Variant);
-        when(translation1.getId()).thenReturn("doc1");
-        when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
-        doReturn(document1).when(mockJcrDocumentFactory).createFromNode(document1Node);
-        documentList.add(translation1);
-
-        JcrDocument translatedDocumentJcr = mock(JcrDocument.class);
-        Node translatedUnpublishedVariant = mock(Node.class);
-        doReturn(translatedDocumentJcr).when(mockJcrDocumentFactory).createFromNode(null);
-        doReturn(translatedUnpublishedVariant).when(translatedDocumentJcr).getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
-
-        documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
-
-        verify(translatedUnpublishedVariant).setProperty(JcrDocument.VS_TRANSLATION_DIFF, "");
-        verify(translatedUnpublishedVariant).setProperty(JcrDocument.VS_TRANSLATION_FLAG, true);
-    }
-
 }

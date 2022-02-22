@@ -57,6 +57,17 @@ public class ListicleItemMockBuilder {
         return this;
     }
 
+    public ListicleItemMockBuilder externalLink(){
+        ExternalLink externalLink = mock(ExternalLink.class);
+        when(listicle.getListicleItem()).thenReturn(externalLink);
+        return this;
+    }
+    public ListicleItemMockBuilder productSearchLink(){
+        ProductSearchLink psrLink = mock(ProductSearchLink.class);
+        when(listicle.getListicleItem()).thenReturn(psrLink);
+        return this;
+    }
+
     public ListicleItem build() {
         return listicle;
     }

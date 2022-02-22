@@ -4,12 +4,7 @@
         :href="href"
         :tabindex="tabindex"
         class="vs-button"
-        :class="{
-            'vs-button--animated': animate,
-            'vs-button--is-animating': isAnimating,
-            [backgroundClass]: backgroundClass,
-            [textTransformClass]: textTransformClass,
-        }"
+        :class="buttonClasses"
         :size="size"
         v-bind="$attrs"
         @click="animateHandler"
@@ -179,8 +174,16 @@ export default {
         };
     },
     computed: {
-        backgroundClass() {
-            return this.background ? [`btn-bg-${this.background}`] : null;
+        buttonClasses() {
+            return [
+                {
+                    'vs-button--animated': this.animate,
+                    'vs-button--is-animating': this.isAnimating,
+                    'vs-button--icon-only': this.iconOnly,
+                },
+                this.background ? [`btn-bg-${this.background}`] : '',
+                this.uppercase ? 'text-uppercase' : '',
+            ];
         },
         calcIconSize() {
             switch (this.size) {
@@ -193,9 +196,6 @@ export default {
             default:
                 return 'md';
             }
-        },
-        textTransformClass() {
-            return this.uppercase ? 'text-uppercase' : null;
         },
         calcIconVariant() {
             if (this.isOutline) {
@@ -309,6 +309,11 @@ export default {
             color: $color-white;
             opacity: $opacity-100;
             border-width: 0;
+        }
+
+        &.vs-button--icon-only{
+            padding: $spacer-1;
+            line-height: 1;
         }
 
         &.vs-button--animated {
