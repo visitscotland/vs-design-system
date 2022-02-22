@@ -41,10 +41,5 @@ public class MenuComponent extends EssentialsMenuComponent {
         super.doBeforeRender(request, response);
         RootMenuItem menu = factory.buildMenu(request, request.getModel(MENU));
         request.setModel(MENU, menu);
-
-        if (menu.getName().equals("main")) {
-            request.setModel(LOCALIZED_URLS, utils.getLocalizedURLs(request));
-            request.setModel(BANNER, bannerFactory.getBannerModule(request));
-        }
     }
 }
