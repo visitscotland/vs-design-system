@@ -85,8 +85,12 @@
         </nav>
 
         <VsSiteSearchForm
-            v-if="showSearch"
+            v-show="showSearch"
             @toggleAction="toggleSearch"
+            :label-text="searchLabelText"
+            :submit-button-text="searchButtonText"
+            :clear-button-text="searchClearButtonText"
+            :close-button-text="searchCloseButtonText"
         />
     </div>
 </template>
@@ -144,6 +148,30 @@ export default {
         searchButtonText: {
             type: String,
             required: true,
+        },
+        /**
+         * Text that renders in search form label (sr-only)
+         * and input placeholder
+         */
+        searchLabelText: {
+            type: String,
+            default: 'What are you looking for?',
+        },
+        /**
+         * Text that renders inside the clear button
+         * on the search form (sr-only)
+         */
+        searchClearButtonText: {
+            type: String,
+            default: 'Clear form',
+        },
+        /**
+         * Text that renders inside the close button on
+         * the search form (sr-only)
+         */
+        searchCloseButtonText: {
+            type: String,
+            default: 'Close search form',
         },
     },
     data() {
