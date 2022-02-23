@@ -1,11 +1,12 @@
 import { shallowMount, mount } from '@vue/test-utils';
 import VsMegaNav from '../MegaNav';
 
-const factoryShallowMount = () => shallowMount(VsMegaNav, {
+const factoryShallowMount = (propsData) => shallowMount(VsMegaNav, {
     propsData: {
         href: 'https://www.visitscotland.com',
         menuToggleAltText: 'Open Menu',
         searchButtonText: 'Search',
+        ...propsData,
     },
     slots: {
         megaNavTopMenuItems: '<div class="mega-nav-top-menu-items"></div>',
@@ -56,6 +57,34 @@ describe('VsMegaNav', () => {
 
             expect(siteSearchStub.text()).toContain('Search');
         });
+
+        it('should pass `searchLabelText` prop to search form', () => {
+            const wrapper = factoryShallowMount();
+            const siteSearchFormStub = wrapper.find('vssitesearchform-stub');
+
+            expect(siteSearchFormStub.attributes().labeltext).toBe('What are you looking for?');
+        });
+
+        it('should pass `searchButtonText` prop to search form', () => {
+            const wrapper = factoryShallowMount();
+            const siteSearchFormStub = wrapper.find('vssitesearchform-stub');
+
+            expect(siteSearchFormStub.attributes().submitbuttontext).toBe('Search');
+        });
+
+        it('should pass `searchClearButtonText` prop to search form', () => {
+            const wrapper = factoryShallowMount();
+            const siteSearchFormStub = wrapper.find('vssitesearchform-stub');
+
+            expect(siteSearchFormStub.attributes().clearbuttontext).toBe('Clear form');
+        });
+
+        it('should pass `searchCloseButtonText` prop to search form', () => {
+            const wrapper = factoryShallowMount();
+            const siteSearchFormStub = wrapper.find('vssitesearchform-stub');
+
+            expect(siteSearchFormStub.attributes().closebuttontext).toBe('Close search form');
+        });
     });
 
     describe(':slots', () => {
@@ -71,13 +100,13 @@ describe('VsMegaNav', () => {
             const siteSearchBtn = wrapper.find('[data-test=vs-site-search]');
 
             const siteSearchForm = wrapper.find('[data-test=vs-site-search-form]');
-            expect(siteSearchForm.exists()).toBe(false);
+            expect(siteSearchForm.attributes('style')).toBe('display: none;');
 
             siteSearchBtn.trigger('click');
             await wrapper.vm.$nextTick();
 
             setTimeout(() => {
-                expect(siteSearchForm.exists()).toBe(true);
+                expect(siteSearchForm.attributes('style')).toBe('');
             }, 100);
         });
     });
