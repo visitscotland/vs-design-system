@@ -9,6 +9,8 @@
             <link rel="stylesheet" href="<@hst.webfile  path="/assets/css/cms-request.css"/>" type="text/css"/>
         </#if>
 
+        <link href="https://customer.cludo.com/css/templates/v2.1/essentials/cludo-search.min.css" type="text/css" rel="stylesheet">
+
         <@headContributions />
     </head>
     <body>

@@ -36,7 +36,7 @@
                         customerId: 623,
                         engineId: 8738,
                         searchUrl: 'test/pages/search-results/content',
-                        language: '${currentLocale}',
+                        language: 'en',
                         searchInputs: ['cludo-search-form'],
                         template: 'InlineBasicImages',
                         focusOnResultsAfterSearch: true,

@@ -1,3 +1,45 @@
-#cludo-search-results{
+#cludo-search-results, 
+.cludo-search-results {
+    .cludo-c-3, .cludo-c-9{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .cludo-c-3{
+        .search-filters{
+            background: $color-gray-tint-7;
+            padding: $spacer-7 $spacer-7 $spacer-5;
+        }
+    
+        ul{
+            .facet-list-item{
+                display: inline-block;
+                margin: 0 $spacer-1 $spacer-2 0;
+    
+                a{
+                    background: $color-white;
+                    padding: $spacer-2 $spacer-3;
+                    display: block;
+                    border-radius: $border-radius-lg;
+                    font-size: $font-size-lg;
+                    text-decoration: none;
+                    color: $color-base-text;
+                    transition: all .2s;
+    
+                    &:hover {
+                        background: $color-pink;
+                        color: $color-white;
+                    }
+                }
+    
+                &.active{
+                    a{
+                        background: $color-pink;
+                        color: $color-white;
+                    }
+                }
+            }
+        }
+    }
 
 }
