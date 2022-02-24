@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.NoSuchElementException;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
 
@@ -49,6 +48,7 @@ public class ListicleFactory {
      *
      * @param locale Set the language for the labels
      * @param listicleItem CMS document with the data
+     * @param index Index of the item
      * @return Listicle Module created
      */
     public ListicleModule getListicleItem(Locale locale, ListicleItem listicleItem, Integer index) {
@@ -188,4 +188,5 @@ public class ListicleFactory {
             items.add(getListicleItem(locale, listicleItem, itemNumber));
         }
         return items;
-    }}
+    }
+}

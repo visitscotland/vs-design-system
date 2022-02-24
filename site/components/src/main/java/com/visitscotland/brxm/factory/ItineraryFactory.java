@@ -17,8 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
@@ -66,6 +64,7 @@ public class ItineraryFactory {
 
         page.setDocument(itinerary);
         page.setDays(documentUtils.getAllowedDocuments(itinerary, Day.class));
+
         for (Day day : page.getDays()) {
             for (Stop stop : day.getStops()) {
                 if (page.getStops() != null && page.getStops().containsKey(stop.getIdentifier())) {
@@ -73,6 +72,7 @@ public class ItineraryFactory {
                     page.addErrorMessage(String.format("Duplicate stop '%s' found on itinerary", stop.getTitle()));
                     continue;
                 }
+
                 ItineraryStopModule module = generateStop(locale, stop, itinerary, index++);
 
                 lastStop = module;
@@ -88,6 +88,7 @@ public class ItineraryFactory {
                 page.addStop(module);
             }
         }
+
         page.setDistance(calculateDistance ? totalDistance :BigDecimal.valueOf(itinerary.getDistance()));
 
         populateFirstAndLastStopTexts(page, firstStop, lastStop);
