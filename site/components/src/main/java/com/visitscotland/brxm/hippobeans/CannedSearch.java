@@ -3,6 +3,7 @@ package com.visitscotland.brxm.hippobeans;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+import java.util.Calendar;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:CannedSearch")
 @Node(jcrType = "visitscotland:CannedSearch")
@@ -40,5 +41,10 @@ public class CannedSearch extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translation")
     public String getTranslation() {
         return getSingleProperty("visitscotland:translation");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
+    public Calendar getTranslationDeadline() {
+        return getSingleProperty("visitscotland:translationDeadline");
     }
 }

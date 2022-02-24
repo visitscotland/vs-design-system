@@ -5,7 +5,7 @@ definitions:
       allow-cms-users: true
       allowed-ip-ranges: [10.0.0.0/8, 172.16.16.0/12, 192.168.0.0/16]
       cache-enabled: true
-      enabled: true
+      enabled: false
       forwarded-for-header: X-Forwarded-For
       hostnames: [feature\.visitscotland\.com, develop\.visitscotland\.com, develop-nightly\.visitscotland\.com,
         develop-stable\.visitscotland\.com]
@@ -18,7 +18,7 @@ definitions:
       allow-cms-users: true
       allowed-ip-ranges: [62.254.223.177, 62.232.212.27]
       cache-enabled: true
-      enabled: true
+      enabled: false
       forwarded-for-header: X-Forwarded-For
       hostnames: [feature-brc\.visitscotland\.com, develop-brc\.visitscotland\.com,
         develop-nightly-brc\.visitscotland\.com, develop-stable-brc\.visitscotland\.com]
@@ -31,7 +31,7 @@ definitions:
       allow-cms-users: true
       allowed-ip-ranges: [62.254.223.177, 62.232.212.27]
       cache-enabled: true
-      enabled: true
+      enabled: false
       forwarded-for-header: X-Forwarded-For
       hostnames: [cms-feature-brc\.visitscotland\.com, cms-develop-brc\.visitscotland\.com,
         cms-develop-nightly-brc\.visitscotland\.com, cms-develop-stable-brc\.visitscotland\.com]

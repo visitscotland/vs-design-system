@@ -21,7 +21,7 @@ public class ListicleItemMockBuilder {
         return this;
     }
 
-    public ListicleItemMockBuilder sutitle (String subtitle){
+    public ListicleItemMockBuilder subtitle(String subtitle){
         when(listicle.getSubtitle()).thenReturn(subtitle);
         return this;
     }
@@ -35,6 +35,12 @@ public class ListicleItemMockBuilder {
         when(listicle.getExtraLinks()).thenReturn(Collections.singletonList(mock(HippoCompound.class)));
         return this;
     }
+    public ListicleItemMockBuilder extraSharedLink(String label){
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+        when(cmsLink.getLabel()).thenReturn(label);
+        when(listicle.getExtraLinks()).thenReturn(Collections.singletonList(cmsLink));
+        return this;
+    }
 
     public ListicleItemMockBuilder addImage(){
         when(listicle.getListicleItemImage()).thenReturn(mock(Image.class));
@@ -45,6 +51,15 @@ public class ListicleItemMockBuilder {
         CMSLink cmsLink = mock(CMSLink.class);
         Page page = mock(Page.class);
         when(cmsLink.getLink()).thenReturn(page);
+        when(listicle.getListicleItem()).thenReturn(cmsLink);
+
+        return this;
+    }
+    public ListicleItemMockBuilder cmsLinkOverrideLabel(){
+        CMSLink cmsLink = mock(CMSLink.class);
+        Page page = mock(Page.class);
+        when(cmsLink.getLink()).thenReturn(page);
+        when( cmsLink.getLabel()).thenReturn("override label");
         when(listicle.getListicleItem()).thenReturn(cmsLink);
 
         return this;

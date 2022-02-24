@@ -32,7 +32,7 @@ class CommonUtilsServiceTest {
     void init() {
         utils = new CommonUtilsService(){
             @Override
-            HttpURLConnection openConnection(String url) {
+            public HttpURLConnection openConnection(String url) {
                 return huc;
             }
         };
@@ -125,7 +125,7 @@ class CommonUtilsServiceTest {
     void getExternalDocumentSize_invalidUrl(){
         CommonUtilsService utils = new CommonUtilsService(){
             @Override
-            HttpURLConnection openConnection(String url) throws IOException {
+            public HttpURLConnection openConnection(String url) throws IOException {
                 throw new IOException();
             }
         };

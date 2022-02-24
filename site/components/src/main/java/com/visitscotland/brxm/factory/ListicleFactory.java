@@ -79,12 +79,21 @@ public class ListicleFactory {
         //Set Extra Links
         //Original designs used to had more that one link, so the logic is prepared to be opened to several links
         for (HippoCompound compound : listicleItem.getExtraLinks()) {
-            link = linksService.createCTALink(module, locale, compound);
-
-            if (link != null) {
-                links.add(link);
+            if (compound instanceof CMSLink) {
+                CMSLink cmsLink = (CMSLink) compound;
+                link = linksService.createSimpleLink((Linkable) cmsLink.getLink(),module, locale);
+                if(!Contract.isEmpty(cmsLink.getLabel())){
+                    link.setLabel(cmsLink.getLabel());
+                }
+            }else{
+                link = linksService.createFindOutMoreLink(module, locale, compound);
             }
+
+
+        if (link != null) {
+            links.add(link);
         }
+    }
 
         if (Contract.isEmpty(module.getSubtitle()) && module.getImage() != null) {
             module.setSubtitle(module.getImage().getLocation());
@@ -105,8 +114,13 @@ public class ListicleFactory {
         } else if (link instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) link;
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
-            processDMSMainProduct(module, dmsLink, product);
-            return linksService.createDmsLink(locale, dmsLink, product);
+            if (product == null) {
+                contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), link.getPath());
+                module.addErrorMessage("Main Link: There is no a product with the id " + dmsLink.getProduct());
+            }else {
+                processDMSMainProduct(module, dmsLink, product);
+                return linksService.createDmsLink(locale, dmsLink, product);
+            }
         } else if (link instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) link;
             EnhancedLink eLink = linksService.createEnhancedLink((Linkable) cmsLink.getLink(), module, locale,false);
@@ -119,10 +133,14 @@ public class ListicleFactory {
             if (module.getImage() == null) {
                 module.setImage(eLink.getImage());
             }
-
+            if (eLink.getLink() == null){
+                contentLogger.warn("There is no product with the id '{}', ({}) ", cmsLink.getLink(), cmsLink.getLink().getPath());
+                module.addErrorMessage("Main Link: The DMS id is not valid, please review the document at: " + cmsLink.getLink().getPath());
+                return null;
+            }
             return  eLink;
         }  else if (link instanceof ExternalLink || link instanceof ProductSearchLink ) {
-                return linksService.createCTALink(module, locale,link);
+                return linksService.createFindOutMoreLink(module, locale,link);
         } else {
             contentLogger.warn("The ListicleItem {} is pointing to a document that is not a page ", module.getHippoBean().getPath());
         }

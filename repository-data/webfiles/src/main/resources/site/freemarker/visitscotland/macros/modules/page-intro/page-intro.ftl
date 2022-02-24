@@ -16,6 +16,7 @@
 <#include "../../../../frontend/components/vs-img.ftl">
 <#include "../../../../frontend/components/vs-description-list.ftl">
 <#include "../../../../frontend/components/vs-description-list-item.ftl">
+<#include "../../../../frontend/components/vs-alert.ftl">
 
 <#-- @ftlvariable name="content" type="com.visitscotland.brxm.hippobeans.Page" -->
 <#-- @ftlvariable name="heroDetails" type="com.visitscotland.brxm.model.FlatImage" -->
@@ -39,7 +40,7 @@
             <#if itinerary?has_content>is-itinerary</#if>
         >
             <#if heroDetails?has_content>
-                <#if heroVideo.cta??>
+                <#if (heroVideo.cta)??>
                     <#assign ctaText = heroVideo.cta>
                 <#else>
                     <#assign ctaText = "">
@@ -54,7 +55,7 @@
                         >
                             <vs-row>
                                 <vs-col cols="12">
-                                    <@video videoId="${heroVideo.youtubeId}" />
+                                    <@video video=heroVideo />
                                 </vs-col>
                             </vs-row>
 

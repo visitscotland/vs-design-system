@@ -8,6 +8,7 @@ import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Calendar;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:ListicleItem")
 @Node(jcrType = "visitscotland:ListicleItem")
@@ -40,18 +41,17 @@ public class ListicleItem extends BaseDocument {
         return getOnlyChild(getProducts());
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:images", allowModifications = false)
-    public List<HippoBean> getImages() {
-        return getChildBeansByName("visitscotland:images", HippoBean.class).stream().map(hippoBean -> {
-                    if (hippoBean instanceof HippoMirror) {
-                        return ((HippoMirror) hippoBean).getReferencedBean();
-                    }
-                    return hippoBean;
-                }
-        ).collect(Collectors.toList());
+    @HippoEssentialsGenerated(internalName="visitscotland:images",allowModifications=false) public List<HippoBean> getImages(){
+    return getChildBeansByName("visitscotland:images",HippoBean.class).stream().map(hippoBean -> {
+      if (hippoBean instanceof HippoMirror) {
+        return ((HippoMirror)hippoBean).getReferencedBean();
+      }
+      return hippoBean;
     }
+).collect(Collectors.toList());
+  }
 
-    /**
+    /** 
      * The method return an bean of the allowed types or null. Allowed types are InstagramImage and Image (Image Link)
      */
     public HippoBean getListicleItemImage() {
@@ -82,5 +82,10 @@ public class ListicleItem extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
     public String getTranslationPriority() {
         return getSingleProperty("visitscotland:translationPriority");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
+    public Calendar getTranslationDeadline() {
+        return getSingleProperty("visitscotland:translationDeadline");
     }
 }
