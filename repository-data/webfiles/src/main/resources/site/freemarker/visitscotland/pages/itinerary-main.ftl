@@ -40,9 +40,7 @@
     <@pageIntro content=document heroDetails=heroImage itinerary=itinerary />
 
     <vs-itinerary>
-        <#if itinerary.days?has_content>
-            <@itineraryMap itinerary />
-        </#if>
+        <@itineraryMap itinerary />
         <#list itinerary.days as day>
             <#assign dayNumber++>
 
