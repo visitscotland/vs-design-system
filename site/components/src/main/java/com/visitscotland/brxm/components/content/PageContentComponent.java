@@ -85,8 +85,7 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
         if (page.getOtherThings() != null) {
             HorizontalListLinksModule otyml = megalinkFactory.horizontalListLayout(page.getOtherThings(), request.getLocale());
             if (otyml.getLinks().size() < MegalinkFactory.MIN_ITEMS_CAROUSEL) {
-                contentLogger.error("OTYML at {} contains fewer than 5 published items. Skipping module", page.getOtherThings().getPath());
-                return;
+                contentLogger.error("OTYML at {} contains only {} published items. Expected a minimum of 5", otyml.getLinks().size(), page.getOtherThings().getPath());
             }
             request.setAttribute(OTYML, otyml);
         }

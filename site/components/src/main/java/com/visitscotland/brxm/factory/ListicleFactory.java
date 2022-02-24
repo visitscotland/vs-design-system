@@ -51,13 +51,14 @@ public class ListicleFactory {
      * @param listicleItem CMS document with the data
      * @return Listicle Module created
      */
-    public ListicleModule getListicleItem(Locale locale, ListicleItem listicleItem) {
+    public ListicleModule getListicleItem(Locale locale, ListicleItem listicleItem, Integer index) {
         logger.info("Creating ListicleItem module for {}", listicleItem.getPath());
 
         List<FlatLink> links = new ArrayList<>();
         FlatLink link;
 
         ListicleModule module = new ListicleModule();
+        module.setIndex(index);
         module.setHippoBean(listicleItem);
         module.setTitle(listicleItem.getTitle());
         module.setDescription(listicleItem.getDescription());
@@ -69,12 +70,7 @@ public class ListicleFactory {
         }
 
         //Set the main product
-        try {
-            link = processMainProduct(locale, listicleItem.getListicleItem(), module);
-        } catch (NoSuchElementException e) {
-            contentLogger.error("Listicle item {} contains no published link, skipping item", listicleItem.getPath());
-            return null;
-        }
+        link = processMainProduct(locale, listicleItem.getListicleItem(), module);
 
         if (link != null) {
             links.add(link);
@@ -127,9 +123,6 @@ public class ListicleFactory {
             }
         } else if (link instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) link;
-            if (cmsLink.getLink() == null) {
-                throw new NoSuchElementException("Failed to find main product link for listicle item");
-            }
             EnhancedLink eLink = linksService.createEnhancedLink((Linkable) cmsLink.getLink(), module, locale,false);
             //Override default link label when the module has an override text
             if (!Contract.isEmpty(cmsLink.getLabel())){
@@ -188,19 +181,11 @@ public class ListicleFactory {
         final List<ListicleModule> items = new ArrayList<>();
 
         boolean descOrder = Boolean.TRUE.equals(listicle.getDescOrder());
+        int index = descOrder ? listicleItems.size() : 1;
 
         for (ListicleItem listicleItem : listicleItems) {
-            ListicleModule module = getListicleItem(locale, listicleItem);
-            if (module != null) {
-                items.add(module);
-            }
-        }
-        int index = descOrder ? items.size() : 1;
-        for (ListicleModule module : items) {
             Integer itemNumber = descOrder ? index-- : index++;
-            module.setIndex(itemNumber);
+            items.add(getListicleItem(locale, listicleItem, itemNumber));
         }
-
         return items;
-    }
-}
+    }}

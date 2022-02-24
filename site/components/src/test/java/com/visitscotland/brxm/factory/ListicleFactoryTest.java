@@ -381,64 +381,6 @@ class ListicleFactoryTest {
     }
 
     @Test
-    @DisplayName("VS-3221 - Listicle item with no published link should be skipped")
-    void noPublishedLink() {
-        List<ListicleItem> listicleItems = Arrays.asList(
-                new ListicleItemMockBuilder().cmsLink(null).build()
-        );
-        when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(listicleItems);
-
-        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
-
-        Assertions.assertEquals(0, items.size());
-    }
-
-    @Test
-    @DisplayName("VS-3221 - When item is skipped due to not containing a published link, numbering of other items should still be correct - desc")
-    void noPublishedLink_numberingStillCorrect_desc() {
-        List<ListicleItem> listicleItems = Arrays.asList(
-                new ListicleItemMockBuilder().cmsLink(null).build(),
-                new ListicleItemMockBuilder().build(),
-                new ListicleItemMockBuilder().cmsLink(null).build(),
-                new ListicleItemMockBuilder().build(),
-                new ListicleItemMockBuilder().build(),
-                new ListicleItemMockBuilder().cmsLink(null).build()
-        );
-
-        when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(listicleItems);
-
-        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
-
-        Assertions.assertEquals(3, items.size());
-        for (int i = items.size() - 1; i > 0; i--) {
-            Assertions.assertEquals(i + 1, items.get(i).getIndex());
-        }
-    }
-
-    @Test
-    @DisplayName("VS-3221 - When item is skipped due to not containing a published link, numbering of other items should still be correct - asc")
-    void noPublishedLink_numberingStillCorrect_asc() {
-        List<ListicleItem> listicleItems = Arrays.asList(
-                new ListicleItemMockBuilder().cmsLink(null).build(),
-                new ListicleItemMockBuilder().build(),
-                new ListicleItemMockBuilder().cmsLink(null).build(),
-                new ListicleItemMockBuilder().build(),
-                new ListicleItemMockBuilder().build(),
-                new ListicleItemMockBuilder().cmsLink(null).build()
-        );
-
-        when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(listicleItems);
-
-        List<ListicleModule> items = factory.generateItems(Locale.UK, page);
-
-        Assertions.assertEquals(3, items.size());
-        for (int i = 1; i <= items.size(); i++) {
-            Assertions.assertEquals(i, items.get(i-1).getIndex());
-        }
-    }
-
-
-    @Test
     @DisplayName("Precedence order for images sources")
     @Disabled("To be confirmed")
     void imageOrder() {

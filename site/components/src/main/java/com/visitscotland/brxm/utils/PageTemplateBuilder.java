@@ -137,8 +137,7 @@ public class PageTemplateBuilder {
             numLinks += ((MultiImageLinksModule) al).getFeaturedLinks().size();
         }
         if (numLinks == 0) {
-            contentLogger.error("Megalinks module at {} contains no published items. Skipping module", item.getPath());
-            return;
+            contentLogger.error("Megalinks module at {} contains no published items", item.getPath());
         }
 
         if (al.getType().equalsIgnoreCase(SingleImageLinksModule.class.getSimpleName())) {

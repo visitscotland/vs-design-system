@@ -371,41 +371,4 @@ class PageTemplateBuilderTest {
 
         assertEquals(1, ((List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).size());
     }
-
-    @Test
-    @DisplayName("VS-3221 - When megalinks contains no published items, skip the megalinks module")
-    void megalinks_noPublishedItems() {
-        List<BaseDocument> list = Arrays.asList(
-                new MegalinksMockBuilder().build());
-
-        when(utils.getAllowedDocuments(page)).thenReturn(list);
-        MultiImageLinksModule module1 = (MultiImageLinksModule)new LinksModuleMockBuilder().build();
-        when(module1.getFeaturedLinks()).thenReturn(Collections.emptyList());
-        doReturn(module1).when(linksFactory).getMegalinkModule((Megalinks) list.get(0), Locale.UK);
-
-        builder.addModules(request);
-        List<LinksModule> items = (List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
-
-        assertEquals(0, items.size());
-
-        verify(module1, times(0)).setThemeIndex(0);
-    }
-
-    @Test
-    @DisplayName("VS-3221 - When megalinks contains no only featured links, don't skip module")
-    void megalinks_onlyFeaturedLinks_notSkipped() {
-        List<BaseDocument> list = Arrays.asList(
-                new MegalinksMockBuilder().build());
-
-        when(utils.getAllowedDocuments(page)).thenReturn(list);
-        MultiImageLinksModule module1 = (MultiImageLinksModule)new LinksModuleMockBuilder().build();
-        when(module1.getFeaturedLinks()).thenReturn(Collections.singletonList(mock(EnhancedLink.class)));
-        doReturn(module1).when(linksFactory).getMegalinkModule((Megalinks) list.get(0), Locale.UK);
-
-        builder.addModules(request);
-        List<LinksModule> items = (List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
-
-        assertEquals(1, items.size());
-    }
-
 }
