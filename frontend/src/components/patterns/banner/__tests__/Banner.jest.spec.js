@@ -10,9 +10,9 @@ const closeBtnSlotText = 'Close';
 
 const factoryShallowMount = () => shallowMount(VsBanner, {
     slots: {
-        vsBannerTitle: titleSlotText,
-        vsBannerText: textSlotText,
-        vsBannerCta: ctaSlotText,
+        bannerTitle: titleSlotText,
+        bannerText: textSlotText,
+        bannerCta: ctaSlotText,
         closeBtnText: closeBtnSlotText,
     },
 });
@@ -28,15 +28,15 @@ describe('VsBanner', () => {
     });
 
     describe(':slots', () => {
-        it('renders content inserted in a vsBannerTitle slot', () => {
+        it('renders content inserted in a bannerTitle slot', () => {
             expect(wrapper.text()).toContain(titleSlotText);
         });
 
-        it('renders content inserted in a vsBannerText slot', () => {
+        it('renders content inserted in a bannerText slot', () => {
             expect(wrapper.text()).toContain(textSlotText);
         });
 
-        it('renders content inserted in a vsBannerCta slot', () => {
+        it('renders content inserted in a bannerCta slot', () => {
             expect(wrapper.text()).toContain(ctaSlotText);
         });
 

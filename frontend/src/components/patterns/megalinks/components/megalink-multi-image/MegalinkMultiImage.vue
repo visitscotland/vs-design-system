@@ -202,6 +202,7 @@ export default {
 
         .card-title {
             margin-bottom: 0;
+            margin-top: 0;
         }
 
         .vs-link__icon {
