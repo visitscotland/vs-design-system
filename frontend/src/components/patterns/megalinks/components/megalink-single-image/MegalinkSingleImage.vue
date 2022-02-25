@@ -126,6 +126,7 @@ export default {
 
         .vs-megalink-single-image__title {
             margin-bottom: $spacer-8;
+            margin-top:0;
         }
 
         .vs-megalink-single-image__content {
