@@ -6579,10 +6579,9 @@
       hippotranslation:locale: en
       /video---cop26---why-scotland-needs-you:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
         jcr:uuid: b193d2fa-424d-44b0-a720-1d2cb5cf0184
         hippo:name: Video - Tread Lightly - Why Scotland needs you
-        hippo:versionHistory: a0d4b220-93c0-4ddb-add6-ac03a62b145f
         /video---cop26---why-scotland-needs-you[1]:
           jcr:primaryType: visitscotland:Video
           jcr:mixinTypes: ['mix:referenceable']
@@ -6620,33 +6619,6 @@
           hippostdpubwf:creationDate: 2021-11-08T14:29:08.535Z
           hippostdpubwf:lastModificationDate: 2021-11-08T14:31:07.974Z
           hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 99b1b893-3fe4-4e13-9377-6432dfa741f7
-          hippotranslation:locale: en
-          visitscotland:label: Discover why Scotland needs you
-          visitscotland:teaser: The country you love needs you.  Our awe-inspiring
-            landmarks and coastal seascapes have missed you and have been waiting
-            patiently for your return.
-          visitscotland:title: 'Only in Scotland: Why Scotland Needs You'
-          visitscotland:translation: ''
-          visitscotland:url: https://www.youtube.com/watch?v=h9bQwcndGfo
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-        /video---cop26---why-scotland-needs-you[3]:
-          jcr:primaryType: visitscotland:Video
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 2b29d60d-568c-4c6e-8a20-34f79f37c4d2
-          hippo:availability: [live]
-          hippostd:retainable: false
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2021-11-08T14:29:08.535Z
-          hippostdpubwf:lastModificationDate: 2021-11-08T14:31:07.974Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-12-06T10:24:51.593Z
           hippotranslation:id: 99b1b893-3fe4-4e13-9377-6432dfa741f7
           hippotranslation:locale: en
           visitscotland:label: Discover why Scotland needs you
@@ -16008,14 +15980,16 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 5a08f54c-cfbf-4896-8ce9-3071e105bdf0
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:retainable: false
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2021-02-18T15:58:18.320Z
-        hippostdpubwf:lastModificationDate: 2021-06-08T16:01:18.165+01:00
+        hippostdpubwf:lastModificationDate: 2022-02-03T12:31:11.216Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: d92c5d52-b57e-4907-a9f4-750b5c35ee54
         hippotranslation:locale: en
+        visitscotland:translation: ''
         /visitscotland:copy:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
@@ -18709,3 +18683,119 @@
           /visitscotland:link:
             jcr:primaryType: hippo:mirror
             hippo:docbase: ab8d2643-1517-4a6a-aa86-f5a9c8b5e2c3
+  /info-alert:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: bbbd6c3f-db5e-4a61-abc5-ae579005ee3d
+    hippostd:foldertype: [new-translated-folder-test, new-document]
+    hippotranslation:id: 6c55d821-e9f9-40e1-91fa-b0b6fff301e2
+    hippotranslation:locale: en
+    /content:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 500aa206-7c1e-4e8e-b994-6ad6d4b66534
+      hippo:name: Info Alert
+      hippo:versionHistory: c970a190-8638-4ef0-a99e-d9b862a77bcc
+      /content[1]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 29af5953-aa31-4395-a860-aa66f2e6ac8f
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2022-02-03T12:00:25.501Z
+        hippostdpubwf:lastModificationDate: 2022-02-03T12:49:38.714Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 85302686-0b38-4fca-835d-e797fb3b5654
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:hideNewsletter: false
+        visitscotland:seoDescription: Info Alert
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: Info Alert
+        visitscotland:teaser: Info Alert
+        visitscotland:theme: Standard
+        visitscotland:title: Info Alert
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p><span class="info-text">This guide is only for visitors living outside the UK.</span></p>
+
+            <p>This is some test content that should appear underneath the alert</p>
+      /content[2]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 28913880-a426-4271-ad9e-a7a04edea04e
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2022-02-03T12:00:25.501Z
+        hippostdpubwf:lastModificationDate: 2022-02-03T12:49:56.241Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 85302686-0b38-4fca-835d-e797fb3b5654
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:hideNewsletter: false
+        visitscotland:seoDescription: Info Alert
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: Info Alert
+        visitscotland:teaser: Info Alert
+        visitscotland:theme: Standard
+        visitscotland:title: Info Alert
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p><span class="info-text">This guide is only for visitors living outside the UK.</span></p>
+
+            <p>This is some test content that should appear underneath the alert</p>
+      /content[3]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 0990376f-cffc-4246-80b2-3d0a2fac01c7
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2022-02-03T12:00:25.501Z
+        hippostdpubwf:lastModificationDate: 2022-02-03T12:49:56.241Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2022-02-03T12:49:58.037Z
+        hippotranslation:id: 85302686-0b38-4fca-835d-e797fb3b5654
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:hideNewsletter: false
+        visitscotland:seoDescription: Info Alert
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: Info Alert
+        visitscotland:teaser: Info Alert
+        visitscotland:theme: Standard
+        visitscotland:title: Info Alert
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 43c4e6d8-5284-444c-be54-4f251f34fa9b
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p><span class="info-text">This guide is only for visitors living outside the UK.</span></p>
+
+            <p>This is some test content that should appear underneath the alert</p>

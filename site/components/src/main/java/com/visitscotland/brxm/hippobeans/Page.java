@@ -5,6 +5,7 @@ import com.visitscotland.brxm.hippobeans.capabilities.TranslationParent;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+import java.util.Calendar;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Page")
 @Node(jcrType = "visitscotland:Page")
@@ -86,5 +87,10 @@ public class Page extends BaseDocument implements TranslationParent, Linkable {
     @HippoEssentialsGenerated(internalName = "visitscotland:heroVideo")
     public VideoLink getHeroVideo() {
         return getBean("visitscotland:heroVideo", VideoLink.class);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
+    public Calendar getTranslationDeadline() {
+        return getSingleProperty("visitscotland:translationDeadline");
     }
 }

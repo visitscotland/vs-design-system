@@ -3,6 +3,7 @@ package com.visitscotland.brxm.translation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
+import com.visitscotland.brxm.translation.plugin.TranslationWorkflow;
 import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.api.WorkflowException;
@@ -189,11 +190,10 @@ public class TranslationServiceTest {
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .withHandle(mockHandleNode)
                 .isDraftBeingEdited(false).build();
-        when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
 
         when(mockSessionFactory.getUserSession()).thenReturn(mockUserSession);
         Workflow mockWorkflow = mock(Workflow.class);
-        addToMockWorkflowManager("editing", mockHandleNode, mockWorkflow);
+        addToMockWorkflowManager("translation", mockUnpublishedNode, mockWorkflow);
 
         assertThatThrownBy(() -> service.clearTranslationFlag(mockJcrDocument)).isInstanceOf(IllegalStateException.class);
     }
@@ -203,12 +203,9 @@ public class TranslationServiceTest {
     public void clearTranslationFlag_englishDocument() throws Exception {
         Node mockUnpublishedNode = new MockNodeBuilder()
                 .withProperty(HippoTranslationNodeType.LOCALE, "en").build();
-        Node mockHandleNode = new MockNodeBuilder()
-                .build();
         JcrDocument mockJcrDocument = new MockJcrDocumentBuilder()
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .isDraftBeingEdited(false).build();
-        when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
 
         assertThatThrownBy(() -> service.clearTranslationFlag(mockJcrDocument)).isInstanceOf(IllegalArgumentException.class);
     }
@@ -226,17 +223,14 @@ public class TranslationServiceTest {
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .withHandle(mockHandleNode)
                 .isDraftBeingEdited(false).build();
-        when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
 
         when(mockSessionFactory.getUserSession()).thenReturn(mockUserSession);
-        EditableWorkflow mockWorkflow = mock(EditableWorkflow.class);
-        addToMockWorkflowManager("editing", mockHandleNode, mockWorkflow);
+        TranslationWorkflow mockWorkflow = mock(TranslationWorkflow.class);
+        addToMockWorkflowManager("translation", mockUnpublishedNode, mockWorkflow);
 
         service.clearTranslationFlag(mockJcrDocument);
 
-        verify(mockWorkflow).disposeEditableInstance();
-        verify(mockUnpublishedNode).setProperty(eq(JcrDocument.VS_TRANSLATION_FLAG), eq(false));
-        verify(mockJcrSession).save();
+        verify(mockWorkflow).clearTranslationFlag();
     }
 
     @DisplayName("clearTranslationFlag - should clear the diff and the flag")
@@ -253,18 +247,14 @@ public class TranslationServiceTest {
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .withHandle(mockHandleNode)
                 .isDraftBeingEdited(false).build();
-        when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
 
         when(mockSessionFactory.getUserSession()).thenReturn(mockUserSession);
-        EditableWorkflow mockWorkflow = mock(EditableWorkflow.class);
-        addToMockWorkflowManager("editing", mockHandleNode, mockWorkflow);
+        TranslationWorkflow mockWorkflow = mock(TranslationWorkflow.class);
+        addToMockWorkflowManager("translation", mockUnpublishedNode, mockWorkflow);
 
         service.clearTranslationFlag(mockJcrDocument);
 
-        verify(mockWorkflow).disposeEditableInstance();
-        verify(mockUnpublishedNode).setProperty(eq(JcrDocument.VS_TRANSLATION_FLAG), eq(false));
-        verify(mockDiffProperty).remove();
-        verify(mockJcrSession).save();
+        verify(mockWorkflow).clearTranslationFlag();
     }
 
     protected void addToMockWorkflowManager(String name, Node node, Workflow workflow) throws Exception {
@@ -406,8 +396,13 @@ public class TranslationServiceTest {
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, translation1Unpublished).build();
         Node translation2Handle = new MockNodeBuilder().build();
         Node translation2Unpublished = new MockNodeBuilder().build();
-        EditableWorkflow translation2Workflow = mock(EditableWorkflow.class);
-        addToMockWorkflowManager("editing", translation2Handle, translation2Workflow);
+
+        EditableWorkflow editingWorkflow = mock(EditableWorkflow.class);
+        addToMockWorkflowManager("editing", translation2Handle, editingWorkflow);
+        TranslationWorkflow translationWorkflow = mock(TranslationWorkflow.class);
+        addToMockWorkflowManager("translation", translation2Unpublished, translationWorkflow);
+        addToMockWorkflowManager("translation", translation1Unpublished, translationWorkflow);
+
         JcrDocument translation2 = new MockJcrDocumentBuilder()
                 .withHandle(translation2Handle)
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, translation2Unpublished).build();
@@ -422,14 +417,12 @@ public class TranslationServiceTest {
         List<JcrDocument> documentsBeingEditedList = service.setTranslationContent(mockJcrDocument, content);
         assertThat(documentsBeingEditedList).isNotNull().isEmpty();
         verify(translation1Workflow).obtainEditableInstance();
-        verify(translation1Unpublished).setProperty(eq(JcrDocument.VS_TRANSLATION_FLAG), eq(true));
-        verify(translation1Unpublished).setProperty(eq(JcrDocument.VS_TRANSLATION_DIFF), eq("serializedContent"));
         verify(translation1Workflow).disposeEditableInstance();
 
-        verify(translation2Workflow).obtainEditableInstance();
-        verify(translation2Unpublished).setProperty(eq(JcrDocument.VS_TRANSLATION_FLAG), eq(true));
-        verify(translation2Unpublished).setProperty(eq(JcrDocument.VS_TRANSLATION_DIFF), eq("serializedContent"));
-        verify(translation2Workflow).disposeEditableInstance();
+        verify(editingWorkflow).obtainEditableInstance();
+        verify(editingWorkflow).disposeEditableInstance();
+        verify(translationWorkflow, times(2)).setTranslationFlag(true);
+        verify(translationWorkflow, times(2)).setTranslationDiff("serializedContent");
 
         verify(mockJcrSession).save();
     }

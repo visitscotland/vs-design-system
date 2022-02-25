@@ -5,6 +5,7 @@ import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerat
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.util.List;
+import java.util.Calendar;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Megalinks")
 @Node(jcrType = "visitscotland:Megalinks")
@@ -73,5 +74,10 @@ public class Megalinks extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
     public String getTranslationPriority() {
         return getSingleProperty("visitscotland:translationPriority");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
+    public Calendar getTranslationDeadline() {
+        return getSingleProperty("visitscotland:translationDeadline");
     }
 }

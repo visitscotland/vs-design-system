@@ -43,7 +43,7 @@ public class MegalinkFactory {
     public LinksModule<EnhancedLink> getMegalinkModule(Megalinks doc, Locale locale) {
         if (!Contract.isEmpty(doc.getLayout()) && doc.getLayout().equals(HORIZONTAL_LAYOUT) && doc.getMegalinkItems().size() >= MIN_ITEMS_CAROUSEL) {
             return horizontalListLayout(doc, locale);
-        } else  if (!Contract.isEmpty(doc.getLayout()) && !doc.getLayout().equals(DEFAULT_LAYOUT) || doc.getMegalinkItems().size() > MAX_ITEMS ) {
+        } else if (!Contract.isEmpty(doc.getLayout()) && !doc.getLayout().equals(DEFAULT_LAYOUT) || doc.getMegalinkItems().size() > MAX_ITEMS) {
             return listLayout(doc, locale);
         } else if (doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
@@ -81,9 +81,9 @@ public class MegalinkFactory {
 
     public HorizontalListLinksModule horizontalListLayout(OTYML doc, Locale locale) {
         HorizontalListLinksModule hll = new HorizontalListLinksModule();
-        hll.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("otyml", "otyml.title.default", locale)): doc.getTitle());
+        hll.setTitle(Contract.isEmpty(doc.getTitle()) ? (bundle.getResourceBundle("otyml", "otyml.title.default", locale)) : doc.getTitle());
         hll.setIntroduction(doc.getIntroduction());
-        hll.setLinks(convertOTYMLToEnhancedLinks(hll, doc.getMegalinkItems(), locale,true));
+        hll.setLinks(convertOTYMLToEnhancedLinks(hll, doc.getMegalinkItems(), locale, true));
 
         return hll;
     }
@@ -132,7 +132,7 @@ public class MegalinkFactory {
         fl.setTeaserVisible(doc.getTeaserVisible());
 
         fl.setLinksSize(doc.getMegalinkItems().size());
-        fl.setLinks(convertToEnhancedLinks(fl, doc.getMegalinkItems(), locale,false));
+        fl.setLinks(convertToEnhancedLinks(fl, doc.getMegalinkItems(), locale, false));
 
         if (fl.getLinks().size() == 1) {
             //If the megalinks only have one item, that one is featured
@@ -172,7 +172,7 @@ public class MegalinkFactory {
         target.setIntroduction(doc.getIntroduction());
 
         if (doc.getProductItem() != null) {
-            target.setCta(linkService.createCTALink(target, locale, doc.getProductItem()));
+            target.setCta(linkService.createFindOutMoreLink(target, locale, doc.getProductItem()));
         }
     }
 
@@ -200,7 +200,7 @@ public class MegalinkFactory {
         }
 
         // Remove nulls (if needed)
-        while (links.remove(null));
+        while (links.remove(null)) ;
 
         return links;
     }
@@ -210,23 +210,26 @@ public class MegalinkFactory {
 
         if (item instanceof Linkable) {
             link = linkService.createEnhancedLink((Linkable) item, module, locale, addCategory);
-        } else if (item instanceof VideoLink){
+        } else if (item instanceof VideoLink) {
             link = linkService.createEnhancedLink(((VideoLink) item).getVideoLink(), module, locale, addCategory);
-        } else if (item == null){
-            contentLogger.warn("One of the links seems contain no link");
+        } else {
+            if (item != null) {
+                addError(module, "One of the links cannot be recognized and will not be included in the page.");
+                contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getClass().getSimpleName());
+            } else {
+                contentLogger.warn("One of the links seems contain no link");
+            }
             return null;
         }
 
-
         if (link == null) {
-            addError(module, "One of the Megalink items cannot be recognized and will not be included in the page.");
-            contentLogger.warn("The module {} is pointing to a module of type {} which cannot be rendered as a page", item.getPath(), item.getClass().getSimpleName());
+            contentLogger.warn("The module {} might be linking an unpublished document", item.getPath());
         }
 
         return link;
     }
 
-    private void addError(Module<?> module, String message){
+    private void addError(Module<?> module, String message) {
         if (module != null) {
             module.addErrorMessage(message);
         } else {

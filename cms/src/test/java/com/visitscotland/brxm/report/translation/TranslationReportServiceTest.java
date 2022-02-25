@@ -6,6 +6,7 @@ import com.visitscotland.brxm.translation.SessionFactory;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
 import org.assertj.core.util.Sets;
+import org.codehaus.jackson.map.util.StdDateFormat;
 import org.hamcrest.MatcherAssert;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.junit.jupiter.api.Assertions;
@@ -212,6 +213,26 @@ class TranslationReportServiceTest {
         Assertions.assertEquals(1, models.size());
         DocumentTranslationReportModel document = models.get(0);
         Assertions.assertEquals(expectedModelPriority, document.getTranslationPriority());
+    }
+
+    @DisplayName("Translation deadline model")
+    @Test
+    void translationDeadline() throws Exception {
+        Calendar deadline = Calendar.getInstance();
+        deadline.setTime(new StdDateFormat().parse("2050-10-10T10:20:30Z"));
+        Node englishHandle = new MockNodeBuilder().withProperty("hippotranslation:locale", "en").build();
+        Node englishUnpublishedVariant = new MockNodeBuilder().translatable("visitscotland:Page")
+                .withState("unpublished", "live")
+                .withProperty("visitscotland:translationDeadline", deadline).build();
+        JcrDocument englishJcrDoc = new MockJcrDocumentBuilder().withHandle(englishHandle)
+                .withVariantNode("unpublished", englishUnpublishedVariant).build();
+        doReturn(Collections.singletonList(englishJcrDoc))
+                .when(mockJcrUtilService).getAllUnpublishedDocuments();
+        List<DocumentTranslationReportModel> models = service.getUntranslatedDocuments("fr");
+
+        Assertions.assertEquals(1, models.size());
+        DocumentTranslationReportModel document = models.get(0);
+        Assertions.assertEquals("2050-10-10T10:20Z", document.getTranslationDeadline());
     }
 
     private static Stream<Arguments> translationPrioritySource() {

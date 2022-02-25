@@ -21,7 +21,7 @@ public class ListicleItemMockBuilder {
         return this;
     }
 
-    public ListicleItemMockBuilder sutitle (String subtitle){
+    public ListicleItemMockBuilder subtitle(String subtitle){
         when(listicle.getSubtitle()).thenReturn(subtitle);
         return this;
     }
@@ -33,6 +33,12 @@ public class ListicleItemMockBuilder {
 
     public ListicleItemMockBuilder extraLink(){
         when(listicle.getExtraLinks()).thenReturn(Collections.singletonList(mock(HippoCompound.class)));
+        return this;
+    }
+    public ListicleItemMockBuilder extraSharedLink(String label){
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+        when(cmsLink.getLabel()).thenReturn(label);
+        when(listicle.getExtraLinks()).thenReturn(Collections.singletonList(cmsLink));
         return this;
     }
 
@@ -49,11 +55,31 @@ public class ListicleItemMockBuilder {
 
         return this;
     }
+    public ListicleItemMockBuilder cmsLinkOverrideLabel(){
+        CMSLink cmsLink = mock(CMSLink.class);
+        Page page = mock(Page.class);
+        when(cmsLink.getLink()).thenReturn(page);
+        when( cmsLink.getLabel()).thenReturn("override label");
+        when(listicle.getListicleItem()).thenReturn(cmsLink);
+
+        return this;
+    }
 
     public ListicleItemMockBuilder dmsLink(String id){
         DMSLink dmsLink = mock(DMSLink.class);
         when(dmsLink.getProduct()).thenReturn(id);
         when(listicle.getListicleItem()).thenReturn(dmsLink);
+        return this;
+    }
+
+    public ListicleItemMockBuilder externalLink(){
+        ExternalLink externalLink = mock(ExternalLink.class);
+        when(listicle.getListicleItem()).thenReturn(externalLink);
+        return this;
+    }
+    public ListicleItemMockBuilder productSearchLink(){
+        ProductSearchLink psrLink = mock(ProductSearchLink.class);
+        when(listicle.getListicleItem()).thenReturn(psrLink);
         return this;
     }
 
