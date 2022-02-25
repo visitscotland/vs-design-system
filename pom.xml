@@ -11,7 +11,7 @@
   <name>www.visitscotland.com CMS Pages</name>
   <description>www.visitscotland.com CMS Pages</description>
   <groupId>com.visitscotland</groupId>
-  <artifactId>visitscotland</artifactId>
+  <artifactId>dot-com-brxm</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
   
@@ -41,26 +41,6 @@
   <developers>
     <developer/>
   </developers>
-
-  <repositories>
-    <repository>
-      <id>hippo</id>
-      <name>Hippo maven 2 repository.</name>
-      <url>https://maven.onehippo.com/maven2/</url>
-    </repository>
-    <repository>
-      <id>hippo-forge</id>
-      <name>Hippo Forge Maven 2 repository.</name>
-      <url>https://maven.onehippo.com/maven2-forge/</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <releases>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <layout>default</layout>
-    </repository>
-  </repositories>
 
   <dependencyManagement>
     <dependencies>
