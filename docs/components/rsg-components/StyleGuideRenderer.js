@@ -81,15 +81,7 @@ export function StyleGuideRenderer({
                                     <li className={classes.mainMenuListItem}>
                                         <a
                                             className={classes.headerLink}
-                                            href="https://vue-styleguidist.github.io"
-                                        >
-                                            Docs
-                                        </a>
-                                    </li>
-                                    <li className={classes.mainMenuListItem}>
-                                        <a
-                                            className={classes.headerLink}
-                                            href="https://github.com/vue-styleguidist/vue-styleguidist"
+                                            href="https://github.com/visitscotland"
                                         >
                                             GitHub
                                         </a>
@@ -114,7 +106,7 @@ export function StyleGuideRenderer({
                 </main>
             </div>
             <footer className={classes.footer}>
-                <p className={classes.footerText}>&copy; 2021 VisitScotland. All rights reserved.</p>
+                <p className={classes.footerText}>&copy; 2022 VisitScotland. All rights reserved.</p>
             </footer>
         </div>
     );
