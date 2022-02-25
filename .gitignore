@@ -1,7 +1,15 @@
 .DS_Store
 .eslintcache
 node_modules/
-dist/
+dist/system/main.css
+dist/system/build
+dist/system/fixtures
+dist/system/fonts
+dist/system/images
+dist/system/img
+dist/system/svg
+dist/system/tokens
+dist/system/index.html
 /test/unit/coverage/
 /.tmp
 *.log
@@ -24,5 +32,3 @@ src/assets/tokens/
 .yarn/
 
 build/
-dist/
-node_modules/
