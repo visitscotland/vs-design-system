@@ -82,8 +82,7 @@ export function StyleGuideRenderer({
                                         <a
                                             className={classes.headerLink}
                                             href="https://github.com/visitscotland"
-                                        >
-                                            GitHub
+                                        >GitHub
                                         </a>
                                     </li>
                                 </ul>
