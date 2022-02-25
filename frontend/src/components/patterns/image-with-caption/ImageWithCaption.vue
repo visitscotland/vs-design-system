@@ -303,14 +303,6 @@ export default {
             }
 
             .vs-caption {
-                position: relative;
-
-                &--large {
-                    bottom: auto;
-                }
-            }
-
-            .vs-caption {
                 &__image-caption {
                     margin-bottom: $spacer-2;
                 }
