@@ -158,8 +158,7 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-left: $spacer-3;
-        margin-bottom: $spacer-5;
+        margin: 0 0 $spacer-5 $spacer-3;
 
         @include media-breakpoint-up(md) {
             margin-bottom: 0;
