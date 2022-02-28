@@ -73,6 +73,11 @@
                 <slot name="invalid" />
             </p>
 
+            <VsRecaptcha
+                @verified="onRecaptchaVerify"
+                :site-key="recaptchaKey"
+            />
+
             <button
                 @click.stop="preSubmit"
                 @keydown.stop="preSubmit"
@@ -102,6 +107,7 @@ import { BFormGroup } from 'bootstrap-vue';
 import VsFormInput from '../../elements/form-input/FormInput';
 import VsFormSelect from '../../elements/form-select/FormSelect';
 import VsFormCheckbox from '../../elements/form-checkbox/FormCheckbox';
+import VsRecaptcha from '../../elements/recaptcha/Recaptcha';
 
 const axios = require('axios');
 
@@ -121,6 +127,7 @@ export default {
         VsFormSelect,
         VsFormCheckbox,
         BFormGroup,
+        VsRecaptcha,
     },
     props: {
         /**
@@ -136,6 +143,13 @@ export default {
         requiredText: {
             type: String,
             default: 'required',
+        },
+        /**
+         * recaptcha site key string
+         */
+        recaptchaKey: {
+            type: String,
+            required: true,
         },
     },
     data() {
@@ -249,6 +263,9 @@ export default {
                 return false;
             });
         },
+        onRecaptchaVerify() {
+            console.log('verified by recaptcha');
+        },
     },
 };
 </script>
@@ -270,6 +287,7 @@ export default {
         <VsForm
             requiredText="required"
             dataUrl="http://127.0.0.1:5050/marketoTest.json"
+            recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
         >
             <template slot="invalid">
                 You have invalid fields - please check the form.
