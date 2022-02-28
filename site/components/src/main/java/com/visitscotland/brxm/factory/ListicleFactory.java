@@ -126,6 +126,7 @@ public class ListicleFactory {
             CMSLink cmsLink = (CMSLink) link;
             Optional<EnhancedLink> optionalLink = linksService.createEnhancedLink((Linkable) cmsLink.getLink(), module, locale,false);
             if (!optionalLink.isPresent()) {
+                module.addErrorMessage("Main link: invalid link");
                 contentLogger.error("Failed to add main product link to listicle item {} - check link is valid and published", link.getPath());
                 return null;
             }
