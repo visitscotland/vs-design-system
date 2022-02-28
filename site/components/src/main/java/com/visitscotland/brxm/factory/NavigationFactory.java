@@ -139,11 +139,7 @@ public class NavigationFactory {
                 continue;
             }
             EnhancedLink link = optionalLink.get();
-            if (!Contract.isEmpty(cmsLink.getLabel())){
-                link.setCta(cmsLink.getLabel());
-            } else {
-                contentLogger.warn("A CTA Text has not been provided for the featured Item {}", document.getPath());
-            }
+            link.setCta(bundle.getCtaLabel(cmsLink.getLabel(), locale));
             items.add(link);
         }
 
