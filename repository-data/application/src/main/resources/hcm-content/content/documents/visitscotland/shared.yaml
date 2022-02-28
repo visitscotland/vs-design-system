@@ -23,6 +23,58 @@
       hippostd:foldertype: [new-translated-folder-videos, new-video]
       hippotranslation:id: b45f9b9a-437e-427d-a3f3-db4e70c303c5
       hippotranslation:locale: en
+      /video:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 669918f7-973c-4d44-9ef3-270bdf3182b0
+        /video[1]:
+          jcr:primaryType: visitscotland:Video
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 90a38a2f-793d-4fe9-ae4e-413a3fdb36b1
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-02-28T11:34:18.879Z
+          hippostdpubwf:lastModificationDate: 2022-02-28T11:34:18.880Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: cebd50f4-a24c-4cde-b927-6564910dd956
+          hippotranslation:locale: en
+          visitscotland:label: ''
+          visitscotland:teaser: '1312'
+          visitscotland:title: '12321'
+          visitscotland:translation: ''
+          visitscotland:url: https://www.youtube.com/watch?v=8QaQmt0JhJk
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: dd3e5e22-111b-41f1-aac6-0c8fcf4bc954
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /video[2]:
+          jcr:primaryType: visitscotland:Video
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 2792813f-bd4c-4ffa-8fee-87455be5de48
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-02-28T11:34:18.879Z
+          hippostdpubwf:lastModificationDate: 2022-02-28T11:34:54.068Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: cebd50f4-a24c-4cde-b927-6564910dd956
+          hippotranslation:locale: en
+          visitscotland:label: ''
+          visitscotland:teaser: '1312'
+          visitscotland:title: '12321'
+          visitscotland:translation: ''
+          visitscotland:url: https://www.youtube.com/watch?v=8QaQmt0JhJk
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: dd3e5e22-111b-41f1-aac6-0c8fcf4bc954
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
     /b:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -222,4 +274,11 @@
       hippo:name: Z
       hippostd:foldertype: [new-translated-folder-videos, new-video]
       hippotranslation:id: 9b4c4032-de7b-47fe-8b58-94f9f688347b
+      hippotranslation:locale: en
+    /aa:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: da5ec161-8c10-4de3-8952-cbb8ee194d38
+      hippostd:foldertype: [new-translated-folder-videos, new-video]
+      hippotranslation:id: 5d690346-2736-4bd8-8746-a5e9750d30e9
       hippotranslation:locale: en
