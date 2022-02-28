@@ -3,9 +3,16 @@
     .cludo-c-3, .cludo-c-9{
         flex: 0 0 100%;
         max-width: 100%;
+
+        ul{
+            margin:0; 
+            padding: 0;
+        }
     }
 
     .cludo-c-3{
+        margin-bottom: $spacer-6;
+
         .search-filters{
             background: $color-gray-tint-7;
             padding: $spacer-7 $spacer-7 $spacer-5;
@@ -37,6 +44,48 @@
                         background: $color-pink;
                         color: $color-white;
                     }
+                }
+            }
+        }
+    }
+
+    .cludo-c-9{
+        .search-result-count{
+            font-size: $display3-size;
+
+            b{
+                color: $color-pink;
+            }
+        }
+
+        ul{
+            .search-results-item{
+                list-style: none;
+                border-bottom: 1px solid $color-gray-tint-5;
+                display: flex;
+                flex-direction: row;
+                padding: 0.5rem;
+                border: none;
+                height: 100%;
+                background: transparent;
+                transition: box-shadow .5s;
+
+                .search-result-image{
+                    width: 30%;
+                    max-width: 30%;
+                    align-self: flex-start;
+                    margin-right: 3rem;
+
+                    img{
+                        width: 100%;
+                    }
+                }
+
+                .search-result-data{
+                    background: transparent;
+                    padding: 0;
+                    align-self: flex-start;
+                    width: 70%;
                 }
             }
         }
