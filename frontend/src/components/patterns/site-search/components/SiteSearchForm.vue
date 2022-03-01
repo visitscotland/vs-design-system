@@ -244,10 +244,6 @@ export default {
                 font-size: $icon-size-lg;
             }
         }
-
-        @include media-breakpoint-up(xl) {
-            font-size: $font-size-xxl;
-        }
     }
 
     &__input{
