@@ -60,7 +60,6 @@ pipeline {
     // VS_COMMIT_AUTHOR is required by later stages which will fail if it's not set, default value of jenkins@visitscotland.net
     // turns out if you set it here it will not be overwritten by the load later in the pipeline
     //VS_COMMIT_AUTHOR = 'jenkins@visitscotland.net'
-    VS_RUN_LIGHTHOUSE_TESTS = 'TRUE'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
@@ -82,7 +81,24 @@ pipeline {
   stages {
 
     stage ('Pre-build') {
+
       steps {
+        // Set any defined build property overrides for this work-in-progress branch
+        script {
+
+          // Set any supported build property overrides defined in ci/BRANCH_NAME.buildprops
+          branchBuildScripts = load("./ci/branchBuildScripts.groovy")
+
+          // Set the buildprop environment variables either to their default values or any specified overrides
+          Map buildProps = branchBuildScripts.loadPropOverrides("${env.WORKSPACE}" + "/ci/", branchBuildScripts.getBranchKey())
+          Map buildPropParsers = branchBuildScripts.getPropParsers()
+          buildPropParsers.each {
+            k, v ->
+              String parsedValue = ( buildProps?.containsKey(k) ? v.parser(buildProps[k]) : v.default )
+              env."${k}" = parsedValue
+          }
+        }
+
         sh 'printenv'
       }
     }
@@ -171,6 +187,18 @@ pipeline {
     } //end stage
 
     stage ('vs build feature env') {
+      when {
+        anyOf {
+          // Always build the feature environment for 'develop' builds
+          branch 'develop'
+
+          // Always build the feature environment for pull requests
+          changeRequest()
+
+          // If requested, build feature environment for feature branches prior to PR
+          environment name: 'VS_BUILD_FEATURE_ENVIRONMENT', value: 'true'
+        }
+      }
       steps{
         script{
           //sh 'sh ./infrastructure/scripts/docker.sh'
@@ -227,7 +255,13 @@ pipeline {
 
         stage('Nexus IQ Scan: Site') {
           when {
-            branch 'develop' 
+            anyOf {
+              // Always run Nexus IQ scan for builds on 'develop'
+              branch 'develop' 
+ 
+              // Always run Nexus IQ scan for pull requests
+              changeRequest()
+            }
           }
           steps {
             script{
@@ -247,7 +281,13 @@ pipeline {
 
         stage('Nexus IQ Scan: CMS') {
           when {
-            branch 'develop' 
+            anyOf {
+              // Always run Nexus IQ scan for builds on 'develop'
+              branch 'develop' 
+ 
+              // Always run Nexus IQ scan for pull requests
+              changeRequest()
+            }
           }
           steps {
             script{
@@ -267,7 +307,13 @@ pipeline {
 
         stage('Nexus IQ Scan: SSR') {
           when {
-            branch 'develop' 
+            anyOf {
+              // Always run Nexus IQ scan for builds on 'develop'
+              branch 'develop' 
+ 
+              // Always run Nexus IQ scan for pull requests
+              changeRequest()
+            }
           }
           steps {
             script{
@@ -327,7 +373,20 @@ pipeline {
     stage('Lighthouse Testing'){
       when {
         allOf {
-          expression {return env.VS_RUN_LIGHTHOUSE_TESTS == 'TRUE'}
+          not {
+            // Allow lighthouse to be skipped even if a feature environment was built
+            environment name: 'VS_SKIP_LIGHTHOUSE_TESTS', value: 'true'
+          }
+          anyOf {
+            // Always run the Lighthouse Tests for 'develop' builds
+            branch 'develop' 
+
+            // Always run the Lighthouse Tests for pull requests
+            changeRequest()
+
+            // If the feature environment was forced to be built, run the Lighthouse tests
+            environment name: 'VS_BUILD_FEATURE_ENVIRONMENT', value: 'true'
+          }
         }
       }
       steps{

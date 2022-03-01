@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -219,5 +220,28 @@ class HTMLtoVueTransformerTest {
                 .thenReturn(new FlatLink(null, "https://www.visitscotland.com/es/", LinkType.EXTERNAL));
 
         Assertions.assertTrue(transformer.processLinks(HTML).contains("https://www.visitscotland.com/es/"));
+    }
+
+    @Test
+    @DisplayName("VS-3133 - info alert spans")
+    void infoAlerts() {
+        String html = "<span class=\"info-text\">This guide is only for UK visitors</span>";
+        Assertions.assertTrue( transformer.process(html).contains("<vs-alert>This guide is only for UK visitors</vs-alert>"));
+    }
+
+    @Test
+    @DisplayName("VS-3133 - info alert multiple spans")
+    void infoAlerts_multipleSpans() {
+        String html = "<span class=\"info-text\">This guide is only for UK visitors</span><span class=\"info-text\">Second alert</span>";
+        Assertions.assertTrue( transformer.process(html).contains("<vs-alert>This guide is only for UK visitors</vs-alert><vs-alert>Second alert</vs-alert>"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"<span class=\"info-tex\">This guide is only for UK visitors</span>",
+            "<span>This guide is only for UK visitors</span>",
+            "<notaspan class=\"info-tex\">This guide is only for UK visitors</notaspan>"})
+    @DisplayName("VS-3133 - info alert malformed spans not transformed")
+    void infoAlert_malformedSpans(String html) {
+        Assertions.assertEquals(html, transformer.process(html));
     }
 }
