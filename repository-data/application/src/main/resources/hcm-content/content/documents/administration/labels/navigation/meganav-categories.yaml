@@ -4,7 +4,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 7000c349-ab0c-4cc9-8e46-804ab0f13e23
   hippo:name: Meganav Categories
-  hippo:versionHistory: 49f785e8-c120-4167-9e2e-498676ba89c7
+  hippo:versionHistory: 28364760-fc55-42a0-a213-729ac781071e
   /meganav-categories[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -14,24 +14,24 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: juanluis.hurtado
     hippostdpubwf:creationDate: 2021-08-27T09:24:28.606Z
-    hippostdpubwf:lastModificationDate: 2021-10-14T11:04:31.022Z
+    hippostdpubwf:lastModificationDate: 2022-03-01T16:55:37.517Z
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '', '', '', '']
+    resourcebundle:descriptions: ['', '', '', '', '', '', '']
     resourcebundle:id: navigation.categories
     resourcebundle:keys: [travel-blog, see-do, accommodation, destinations-map, inspiration,
-      travel-planning]
+      travel-planning, footer.visitor-information]
     resourcebundle:messages: [Travel blog, Things to do, Accommodation, Places to
-        go, Inspiration, Travel & planning]
+        go, Inspiration, Travel & planning, Visitor information]
     resourcebundle:messages_de: [Reise-Blog, Aktivitäten, Unterkünfte, Reiseziele,
-      Inspiration, Reisen & Planen]
+      Inspiration, Reisen & Planen, Besucherinformationen]
     resourcebundle:messages_es: [Blog de viajes, Actividades, Alojamiento, Destinos,
-      Inspiración, Viajes y planificación]
+      Inspiración, Viajes y planificación, Información para visitantes]
     resourcebundle:messages_fr: [Blog de voyage, Activités, Hébergements, Destinations,
-      Inspiration, Voyage et préparatifs]
+      Inspiration, Voyage et préparatifs, Infos visiteurs]
     resourcebundle:messages_it: [Blog di viaggio, Cose da fare, Alloggio, Luoghi da
-        visitare, Ispirazione, Viaggi & pianificazione]
+        visitare, Ispirazione, Viaggi & pianificazione, Informazioni per I visitatori]
     resourcebundle:messages_nl: [Reisblog, Activiteiten, Accommodatie, Bestemmingen,
-      Inspiratie, Reizen & planning]
+      Inspiratie, Reizen & planning, Bezoekersinfo]
   /meganav-categories[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -41,24 +41,24 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: juanluis.hurtado
     hippostdpubwf:creationDate: 2021-08-27T09:24:28.606Z
-    hippostdpubwf:lastModificationDate: 2021-10-14T11:03:52.775Z
+    hippostdpubwf:lastModificationDate: 2022-03-01T16:56:50.552Z
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '', '', '', '']
+    resourcebundle:descriptions: ['', '', '', '', '', '', '']
     resourcebundle:id: navigation.categories
     resourcebundle:keys: [travel-blog, see-do, accommodation, destinations-map, inspiration,
-      travel-planning]
+      travel-planning, footer.visitor-information]
     resourcebundle:messages: [Travel blog, Things to do, Accommodation, Places to
-        go, Inspiration, Travel & planning]
+        go, Inspiration, Travel & planning, Visitor information]
     resourcebundle:messages_de: [Reise-Blog, Aktivitäten, Unterkünfte, Reiseziele,
-      Inspiration, Reisen & Planen]
+      Inspiration, Reisen & Planen, Besucherinformationen]
     resourcebundle:messages_es: [Blog de viajes, Actividades, Alojamiento, Destinos,
-      Inspiración, Viajes y planificación]
+      Inspiración, Viajes y planificación, Información para visitantes]
     resourcebundle:messages_fr: [Blog de voyage, Activités, Hébergements, Destinations,
-      Inspiration, Voyage et préparatifs]
+      Inspiration, Voyage et préparatifs, Infos visiteurs]
     resourcebundle:messages_it: [Blog di viaggio, Cose da fare, Alloggio, Luoghi da
-        visitare, Ispirazione, Viaggi & pianificazione]
+        visitare, Ispirazione, Viaggi & pianificazione, Informazioni per I visitatori]
     resourcebundle:messages_nl: [Reisblog, Activiteiten, Accommodatie, Bestemmingen,
-      Inspiratie, Reizen & planning]
+      Inspiratie, Reizen & planning, Bezoekersinfo]
   /meganav-categories[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -68,22 +68,22 @@
     hippostd:state: published
     hippostdpubwf:createdBy: juanluis.hurtado
     hippostdpubwf:creationDate: 2021-08-27T09:24:28.606Z
-    hippostdpubwf:lastModificationDate: 2021-10-14T11:03:52.775Z
+    hippostdpubwf:lastModificationDate: 2022-03-01T16:56:50.552Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2021-10-14T11:04:43.452Z
-    resourcebundle:descriptions: ['', '', '', '', '', '']
+    hippostdpubwf:publicationDate: 2022-03-01T16:56:53.896Z
+    resourcebundle:descriptions: ['', '', '', '', '', '', '']
     resourcebundle:id: navigation.categories
     resourcebundle:keys: [travel-blog, see-do, accommodation, destinations-map, inspiration,
-      travel-planning]
+      travel-planning, footer.visitor-information]
     resourcebundle:messages: [Travel blog, Things to do, Accommodation, Places to
-        go, Inspiration, Travel & planning]
+        go, Inspiration, Travel & planning, Visitor information]
     resourcebundle:messages_de: [Reise-Blog, Aktivitäten, Unterkünfte, Reiseziele,
-      Inspiration, Reisen & Planen]
+      Inspiration, Reisen & Planen, Besucherinformationen]
     resourcebundle:messages_es: [Blog de viajes, Actividades, Alojamiento, Destinos,
-      Inspiración, Viajes y planificación]
+      Inspiración, Viajes y planificación, Información para visitantes]
     resourcebundle:messages_fr: [Blog de voyage, Activités, Hébergements, Destinations,
-      Inspiration, Voyage et préparatifs]
+      Inspiration, Voyage et préparatifs, Infos visiteurs]
     resourcebundle:messages_it: [Blog di viaggio, Cose da fare, Alloggio, Luoghi da
-        visitare, Ispirazione, Viaggi & pianificazione]
+        visitare, Ispirazione, Viaggi & pianificazione, Informazioni per I visitatori]
     resourcebundle:messages_nl: [Reisblog, Activiteiten, Accommodatie, Bestemmingen,
-      Inspiratie, Reizen & planning]
+      Inspiratie, Reizen & planning, Bezoekersinfo]

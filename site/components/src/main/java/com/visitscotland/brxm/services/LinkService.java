@@ -299,22 +299,22 @@ public class LinkService {
             } else if (path.contains("ebooks.visitscotland.com")) {
                 return "eBooks";
             } else if (path.contains("blog")) {
-                return bundle.getResourceBundle("navigation.main", "Travel-Blog", locale);
+                return bundle.getResourceBundle("navigation.categories", "travel-blog", locale);
             } else if (path.contains("see-do") || path.contains("events") || path.contains("tours")) {
-                return bundle.getResourceBundle("navigation.main", "see-do", locale);
-            } else if (path.contains("accommodation")) {
-                return bundle.getResourceBundle("navigation.main", "accommodation", locale);
+                return bundle.getResourceBundle("navigation.categories", "see-do", locale);
+            } else if (path.contains("accommodation")|| path.contains("places-to-stay") ) {
+                return bundle.getResourceBundle("navigation.categories", "accommodation", locale);
             } else if (path.contains("destination") || path.contains("towns-villages")) {
-                return bundle.getResourceBundle("navigation.main", "destinations-map", locale);
+                return bundle.getResourceBundle("navigation.categories", "destinations-map", locale);
             } else if (path.contains("travel") || path.contains("holidays") || path.contains("transport")) {
-                return bundle.getResourceBundle("navigation.main", "travel-planning", locale);
-            } else if (path.contains("brochures")) {
-                return bundle.getResourceBundle("navigation.main", "inspiration", locale);
+                return bundle.getResourceBundle("navigation.categories", "travel-planning", locale);
+            } else if (path.contains("brochures")|| path.contains("inspiration")) {
+                return bundle.getResourceBundle("navigation.categories", "inspiration", locale);
             } else if (path.contains("about") || path.contains("contact") || path.contains("policies") || path.contains("services")) {
-                return bundle.getResourceBundle("navigation.footer", "footer.visitor-information", locale);
+                return bundle.getResourceBundle("navigation.categories", "footer.visitor-information", locale);
             }
 
-            return bundle.getResourceBundle("navigation.main", "see-do", locale);
+            return bundle.getResourceBundle("navigation.categories", "see-do", locale);
 
         } catch (MalformedURLException e) {
             logger.error("The URL " + path + " is not valid", e);
