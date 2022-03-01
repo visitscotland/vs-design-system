@@ -98,9 +98,10 @@ module.exports = {
     styleguideComponents: {
         LogoRenderer: path.join(__dirname, '../docs/components/rsg-components/LogoRenderer'),
         Playground: path.join(__dirname, '../docs/components/rsg-components/Playground'),
-        ReactComponent: path.join(__dirname, '../docs/components/rsg-components/ReactComponent'),
         StyleGuideRenderer: path.join(__dirname, '../docs/components/rsg-components/StyleGuideRenderer'),
         ComponentsRenderer: path.join(__dirname, '../docs/components/rsg-components/ComponentsRenderer'),
+        TabButton: path.join(__dirname, '../docs/components/rsg-components/TabButton'),
+        Usage: path.join(__dirname, '../docs/components/rsg-components/Usage'),
     },
     propsParser(filePath) {
         return vueDocgenApi.parse(filePath, {
