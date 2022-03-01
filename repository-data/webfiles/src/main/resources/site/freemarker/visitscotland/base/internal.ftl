@@ -9,6 +9,11 @@
         <internal-css-header>
             <@headContributions />
             <!-- end include -->
+
+            <#if version == "legacy">
+               <!-- TODO: special headContribution -->
+<#--                <link rel="preload" href="<@hst.webfile fullyQualified=fullyQualifiedURLs path='path/to/the/style.css' />" as="style" />-->
+            </#if>
         </internal-css-header>
     </#compress>
 </head>
