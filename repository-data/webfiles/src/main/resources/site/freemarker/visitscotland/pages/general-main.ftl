@@ -47,7 +47,9 @@
 
     <@socialShare nojs=true/>
 
-    <@searchResults />
+    <#if document.title == "Search Results">
+        <@searchResults />
+    </#if>
 
 	<#if otyml??>
 		<@horizontalList otyml />
