@@ -10,6 +10,7 @@ import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.SignpostModule;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
+import com.visitscotland.brxm.model.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -23,6 +24,7 @@ import java.util.Collection;
 public class PageContentComponent<T extends Page> extends ContentComponent {
 
     private static final Logger logger = LoggerFactory.getLogger(PageContentComponent.class);
+    private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
     public static final String DOCUMENT = "document";
     public static final String EDIT_PATH = "path";
@@ -81,7 +83,15 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
     protected void addOTYML(HstRequest request) {
         Page page = getDocument(request);
         if (page.getOtherThings() != null) {
-            request.setAttribute(OTYML, megalinkFactory.horizontalListLayout(page.getOtherThings(), request.getLocale()));
+            HorizontalListLinksModule otyml = megalinkFactory.horizontalListLayout(page.getOtherThings(), request.getLocale());
+            if (Contract.isEmpty(otyml.getLinks())) {
+                contentLogger.error("OTYML at {} contains 0 published items. Skipping module", page.getOtherThings().getPath());
+                return;
+            }
+            if (otyml.getLinks().size() < MegalinkFactory.MIN_ITEMS_CAROUSEL) {
+                contentLogger.error("OTYML at {} contains only {} published items. Expected a minimum of 5", page.getOtherThings().getPath(), otyml.getLinks().size());
+            }
+            request.setAttribute(OTYML, otyml);
         }
     }
 
