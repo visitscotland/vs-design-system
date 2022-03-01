@@ -216,7 +216,7 @@ export default {
                 return this.outlineColour;
             }
 
-            if (this.variant === 'secondary') {
+            if (this.variant === 'secondary' || this.variant === 'light') {
                 return 'dark';
             }
 
@@ -234,11 +234,7 @@ export default {
         },
         iconClasses() {
             if (!this.iconOnly && this.iconPosition === 'right') {
-                return 'ml-2 align-self-center';
-            }
-
-            if (!this.iconOnly) {
-                return 'mr-2';
+                return 'align-self-center';
             }
 
             return '';
@@ -267,6 +263,7 @@ export default {
 
         .vs-icon {
             margin-top: -.05em;
+            margin-right: $spacer-2;
         }
 
         &:focus {
@@ -370,6 +367,10 @@ export default {
         &.vs-button--icon-only{
             padding: $spacer-1;
             line-height: 1;
+
+            .vs-icon{
+                margin-right: 0;
+            }
         }
 
         &.vs-button--animated {
