@@ -199,7 +199,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .vs-image-with-caption{
+    .vs-image-with-caption {
         position: relative;
 
         &__image-wrapper {
@@ -303,10 +303,20 @@ export default {
             }
 
             .vs-caption {
-                position: relative;
+                &__image-caption {
+                    margin-bottom: $spacer-2;
+                }
 
-                &--large {
-                    bottom: auto;
+                &__caption-info {
+                    padding-left: $spacer-5;
+                }
+
+                .row {
+                    margin: 0;
+                }
+
+                .col {
+                    padding: 0;
                 }
             }
 
