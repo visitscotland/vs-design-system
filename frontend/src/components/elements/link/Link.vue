@@ -8,6 +8,7 @@
         target="_self"
         :download="type === 'download'"
         :disabled="disabled"
+        v-bind="$attrs"
     >
         <slot />
         <VsIcon
