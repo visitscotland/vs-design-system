@@ -8,14 +8,17 @@
             style="display:none"
         />
 
-        <form v-if="!submitted">
+        <form
+            v-if="!submitted"
+            @submit.prevent="preSubmit"
+        >
             <BFormGroup
                 v-for="field in formData.fields"
                 :key="field.name"
             >
                 <label
                     v-if="field.element === 'input'"
-                    for="field.name"
+                    :for="field.name"
                     :key="field.name"
                 >
                     {{ field.label }}
@@ -35,7 +38,7 @@
 
                 <label
                     v-if="field.element === 'select'"
-                    for="field.name"
+                    :for="field.name"
                     :key="field.name"
                 >
                     {{ field.label }}
@@ -76,16 +79,16 @@
             <VsRecaptcha
                 @verified="onRecaptchaVerify"
                 :site-key="recaptchaKey"
+                :invalid="!recaptchaVerified && showErrorMessage"
             />
 
-            <button
-                @click.stop="preSubmit"
-                @keydown.stop="preSubmit"
-                type="button"
+            <input
+                type="submit"
+                value="Submit"
                 class="formSubmit"
+                @click.prevent="preSubmit"
+                @keyup.prevent="preSubmit"
             >
-                Submit
-            </button>
         </form>
 
         <p v-if="submitting">
@@ -112,8 +115,9 @@ import VsRecaptcha from '../../elements/recaptcha/Recaptcha';
 const axios = require('axios');
 
 /**
- * An icon list can be used where there is a list icons with a caption with optional heading.
- * An example use is to create a list of key facilities for a product.
+ * A form that results in a user posting data to Marketo.
+ * The form is created using an external json config file which is
+ * defined in a prop.
  *
  * @displayName Form
  */
@@ -151,6 +155,20 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * submit text
+         */
+        submitText: {
+            type: String,
+            default: 'Submit',
+        },
+        /**
+         * form ID
+         */
+        formId: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
@@ -166,6 +184,7 @@ export default {
             errorFields: [
             ],
             triggerValidate: false,
+            recaptchaVerified: false,
         };
     },
     created() {
@@ -180,7 +199,7 @@ export default {
     },
     mounted() {
         // window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
-        window.MktoForms2.loadForm('//app-lon10.marketo.com', '830-QYE-256', 90);
+        window.MktoForms2.loadForm('//app-lon10.marketo.com', '830-QYE-256', this.formId);
     },
     methods: {
         /**
@@ -221,9 +240,18 @@ export default {
         /**
          * submit form
          */
-        preSubmit() {
+        preSubmit(e) {
+            e.preventDefault();
+            console.log(window.grecaptcha);
+
             function isRequired(value) {
                 return value.validation && value.validation.required;
+            }
+
+            if (window.grecaptcha.getResponse() !== '') {
+                this.recaptchaVerified = true;
+            } else {
+                this.recaptchaVerified = false;
             }
 
             this.triggerValidate = true;
@@ -242,16 +270,23 @@ export default {
 
             this.showErrorMessage = this.formIsInvalid.length > 1;
 
-            if (!this.formIsInvalid) {
-                console.log('submitted');
+            if (!this.formIsInvalid && this.recaptchaVerified) {
                 this.marketoSubmit();
             } else {
                 this.showErrorMessage = true;
             }
         },
         marketoSubmit() {
+            console.log(window.grecaptcha.getResponse());
             const myForm = window.MktoForms2.allForms()[0];
             myForm.addHiddenFields(this.form);
+            myForm.addHiddenFields({
+                lastReCAPTCHAUserFingerprint: window.grecaptcha.getResponse(),
+                lastRecaptchaEnabledFormID: this.formId,
+            });
+
+            console.log(myForm.vals());
+
             myForm.submit(() => {
                 this.submitting = true;
             });
@@ -264,7 +299,11 @@ export default {
             });
         },
         onRecaptchaVerify() {
-            console.log('verified by recaptcha');
+            if (window.grecaptcha.getResponse() !== '') {
+                this.recaptchaVerified = true;
+            } else {
+                this.recaptchaVerified = false;
+            }
         },
     },
 };
@@ -286,8 +325,10 @@ export default {
     ```jsx
         <VsForm
             requiredText="required"
-            dataUrl="http://127.0.0.1:5050/marketoTest.json"
+            dataUrl="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
+            formId="90"
+            submitText="Submit the form"
         >
             <template slot="invalid">
                 You have invalid fields - please check the form.
