@@ -1,10 +1,10 @@
 <template>
     <div>
-        <h1>Recaptcha</h1>
-        this is it:
         <VueRecaptcha
             :sitekey="siteKey"
             @verify="verified"
+            class="vs-recaptcha"
+            :class="invalid ? 'vs-recaptcha--invalid' :''"
         />
     </div>
 </template>
@@ -27,20 +27,36 @@ export default {
         VueRecaptcha,
     },
     props: {
+        /**
+         * recaptcha site key string
+         */
         siteKey: {
             type: String,
             required: true,
         },
+        /**
+         * whether or not the form is invalid - this should
+         * also only be true when an attempt at submission has
+         * been made
+         */
+        invalid: {
+            type: Boolean,
+            default: false,
+        },
     },
     methods: {
         verified(response) {
-            console.log(response);
-
             this.$emit('verified', response);
         },
     },
 };
 </script>
+
+<style type="scss">
+    .vs-recaptcha--invalid {
+        border: red 3px solid !important;
+    }
+</style>
 
 <docs>
 ```jsx
