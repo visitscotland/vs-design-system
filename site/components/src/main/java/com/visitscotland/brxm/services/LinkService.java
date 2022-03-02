@@ -291,6 +291,7 @@ public class LinkService {
      */
     public String getLinkCategory(String path, Locale locale) {
         String navigationCategory = "navigation.categories";
+        String ebookCategory = "eBooks";
         try {
             if (getType(path) == LinkType.EXTERNAL) {
                 java.net.URL url = new URL(path);
@@ -298,7 +299,7 @@ public class LinkService {
                 String category = host.toUpperCase().startsWith("WWW.") ? host.substring(4) : host;
                 return category.toUpperCase();
             } else if (path.contains("ebooks.visitscotland.com")) {
-                return "eBooks";
+                return ebookCategory;
             } else if (path.contains("blog")) {
                 return bundle.getResourceBundle(navigationCategory, "travel-blog", locale);
             } else if (path.contains("see-do") || path.contains("events") || path.contains("tours")) {
