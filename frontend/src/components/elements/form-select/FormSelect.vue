@@ -1,5 +1,5 @@
 <template>
-    <BFormGroup
+    <div
         :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
     >
         <BFormSelect
@@ -13,7 +13,7 @@
             @blur="emitStatus"
             data-test="vs-form-select"
         />
-    </BFormGroup>
+    </div>
 </template>
 
 <script>
@@ -21,7 +21,7 @@ import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 // eslint-disable-next-line
 import { required } from 'vuelidate/lib/validators';
-import { BFormSelect, BFormGroup } from 'bootstrap-vue';
+import { BFormSelect } from 'bootstrap-vue';
 
 Vue.use(Vuelidate);
 
@@ -38,7 +38,6 @@ export default {
     release: '0.0.1',
     components: {
         BFormSelect,
-        BFormGroup,
     },
     props: {
         /**
