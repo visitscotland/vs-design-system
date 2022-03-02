@@ -422,7 +422,7 @@ class LinkServiceTest {
     }
 
     private String getCategory(String url, String bundle, String key, String value){
-        when(resourceBundle.getResourceBundle(bundle, key, Locale.UK )).thenReturn(value);
+        //when(resourceBundle.getResourceBundle(bundle, key, Locale.UK )).thenReturn(value);
         return service.getLinkCategory(url,Locale.UK);
     }
 
