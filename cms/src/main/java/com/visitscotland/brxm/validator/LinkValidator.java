@@ -68,9 +68,14 @@ public class LinkValidator implements Validator<Node> {
             while (!folder.isNodeType("hippostd:folder")) {
                 folder = folder.getParent();
             }
-            Node contentNode = folder.getNode("content");
-            if (contentNode.getIdentifier().equals(linkNodeId)) {
-                return Optional.of(context.createViolation("linkToSelf"));
+            if (folder.hasNode("content")) {
+                Node contentNode =folder.getNode("content");
+
+                if (contentNode.getIdentifier().equals(linkNodeId)) {
+                    return Optional.of(context.createViolation("linkToSelf"));
+                }
+            }else{
+                return Optional.empty();
             }
         } catch (ItemNotFoundException | PathNotFoundException e) {
             logger.info("Failed to find folder or content relative to node {}", document.getPath(), e);
