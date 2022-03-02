@@ -12,7 +12,10 @@
 <#macro embeddedForm>
     <vs-form
         required-text="required"
-        data-url="http://127.0.0.1:5050/marketoTest.json"
+        data-url="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
+        recaptcha-key="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
+        submit-text="Submit the form"
+        form-id="90"
     >
         <template slot="invalid">
             You have invalid fields - please check the form.
