@@ -290,6 +290,7 @@ public class LinkService {
      * @return category
      */
     public String getLinkCategory(String path, Locale locale) {
+        String navigationCategory = "navigation.categories";
         try {
             if (getType(path) == LinkType.EXTERNAL) {
                 java.net.URL url = new URL(path);
@@ -299,22 +300,22 @@ public class LinkService {
             } else if (path.contains("ebooks.visitscotland.com")) {
                 return "eBooks";
             } else if (path.contains("blog")) {
-                return bundle.getResourceBundle("navigation.categories", "travel-blog", locale);
+                return bundle.getResourceBundle(navigationCategory, "travel-blog", locale);
             } else if (path.contains("see-do") || path.contains("events") || path.contains("tours")) {
-                return bundle.getResourceBundle("navigation.categories", "see-do", locale);
+                return bundle.getResourceBundle(navigationCategory, "see-do", locale);
             } else if (path.contains("accommodation")|| path.contains("places-to-stay") ) {
-                return bundle.getResourceBundle("navigation.categories", "accommodation", locale);
+                return bundle.getResourceBundle(navigationCategory, "accommodation", locale);
             } else if (path.contains("destination") || path.contains("towns-villages")) {
-                return bundle.getResourceBundle("navigation.categories", "destinations-map", locale);
+                return bundle.getResourceBundle(navigationCategory, "destinations-map", locale);
             } else if (path.contains("travel") || path.contains("holidays") || path.contains("transport")) {
-                return bundle.getResourceBundle("navigation.categories", "travel-planning", locale);
+                return bundle.getResourceBundle(navigationCategory, "travel-planning", locale);
             } else if (path.contains("brochures")|| path.contains("inspiration")) {
-                return bundle.getResourceBundle("navigation.categories", "inspiration", locale);
+                return bundle.getResourceBundle(navigationCategory, "inspiration", locale);
             } else if (path.contains("about") || path.contains("contact") || path.contains("policies") || path.contains("services")) {
-                return bundle.getResourceBundle("navigation.categories", "footer.visitor-information", locale);
+                return bundle.getResourceBundle(navigationCategory, "footer.visitor-information", locale);
             }
 
-            return bundle.getResourceBundle("navigation.categories", "see-do", locale);
+            return bundle.getResourceBundle(navigationCategory, "see-do", locale);
 
         } catch (MalformedURLException e) {
             logger.error("The URL " + path + " is not valid", e);
