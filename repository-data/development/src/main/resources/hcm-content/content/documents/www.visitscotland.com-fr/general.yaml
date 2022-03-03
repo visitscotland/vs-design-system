@@ -17,7 +17,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 2bfeef10-5854-44ab-b276-be7c90d36c40
       hippo:name: 404 Not Found
-      hippostd:foldertype: []
+      hippostd:foldertype: [new-module]
       hippotranslation:id: 26fdd95e-1859-41ea-8a28-3d9af3d0c840
       hippotranslation:locale: fr
       /content:
@@ -137,7 +137,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
       jcr:uuid: a899c5e0-677d-4aff-8b2f-8ddfaa7c49c4
       hippo:name: 500 Server Error
-      hippostd:foldertype: []
+      hippostd:foldertype: [new-module]
       hippotranslation:id: 3b82c3db-d750-411e-9dc9-675fd117104a
       hippotranslation:locale: fr
       /content:
