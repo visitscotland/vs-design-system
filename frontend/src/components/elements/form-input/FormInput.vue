@@ -1,17 +1,30 @@
 <template>
-    <BFormInput
-        :type="type"
-        class="input"
-        :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
-        v-model="inputVal"
-        @input="emitStatus"
-        @blur="emitStatus"
-        :id="fieldName"
-        :name="fieldName"
-        data-test="vs-input"
-        :required="isRequired"
-        :size="size"
-    />
+    <div>
+        <BFormInput
+            :type="type"
+            class="input"
+            v-model="inputVal"
+            :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
+            @blur="emitStatus"
+            :id="fieldName"
+            :name="fieldName"
+            data-test="vs-input"
+            :required="isRequired"
+            :size="size"
+            :v="inputVal"
+        />
+        <span
+            v-for="error in errors"
+            :key="error"
+            class="error"
+        >
+            <template
+                v-if="$v.inputVal.$anyError || invalid"
+            >
+                {{ validationMessages[error] }}
+            </template>
+        </span>
+    </div>
 </template>
 
 <script>
@@ -19,7 +32,7 @@
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 // eslint-disable-next-line
-import { required, email } from 'vuelidate/lib/validators';
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators';
 import { BFormInput } from 'bootstrap-vue';
 
 Vue.use(Vuelidate);
@@ -92,6 +105,16 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+         * Prop to trigger manual validation
+         */
+        validationMessages: {
+            type: Object,
+            default() {
+                return {
+                };
+            },
+        },
     },
     data() {
         return {
@@ -111,6 +134,8 @@ export default {
 
             // eslint-disable-next-line
             for (const [key, value] of Object.entries(this.validationRules)) {
+                // rules have to be either a function defined by
+                // https://vuelidate-next.netlify.app/validators.html
                 if (key === 'required') {
                     rulesObj = {
                         ...rulesObj,
@@ -121,13 +146,23 @@ export default {
                         ...rulesObj,
                         email,
                     };
-                } else {
-                    rulesObj[key] = value;
+                } else if (key === 'minLength') {
+                    rulesObj = {
+                        ...rulesObj,
+                        minLength: minLength(value),
+                    };
+                } else if (key === 'maxLength') {
+                    rulesObj = {
+                        ...rulesObj,
+                        maxLength: maxLength(value),
+                    };
                 }
             }
 
             if (typeof rulesObj !== 'undefined') {
-                return rulesObj;
+                return {
+                    inputVal: rulesObj,
+                };
             }
 
             return {
@@ -139,6 +174,18 @@ export default {
             }
 
             return false;
+        },
+        errors() {
+            const errorsArray = [];
+            const rulesKeys = Object.keys(this.rules.inputVal);
+
+            rulesKeys.forEach((key) => {
+                if (!this.$v.inputVal[key]) {
+                    errorsArray.push(key);
+                }
+            });
+
+            return errorsArray;
         },
     },
     watch: {
@@ -183,9 +230,7 @@ export default {
         },
     },
     validations() {
-        return {
-            inputVal: this.rules,
-        };
+        return this.rules;
     },
 };
 </script>
