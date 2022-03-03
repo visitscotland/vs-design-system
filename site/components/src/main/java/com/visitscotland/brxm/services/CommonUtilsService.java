@@ -97,7 +97,7 @@ public class CommonUtilsService {
      * Calculates the Size of the External document if the document
      *
      */
-    @Cacheable (value="dmsProducts")
+    @Cacheable (value="externalDocument")
     public String getExternalDocumentSize(String link, Locale locale) {
         DecimalFormatSymbols dfs = new DecimalFormatSymbols(locale);
         DecimalFormat decimalFormat = new DecimalFormat("#.#", dfs);

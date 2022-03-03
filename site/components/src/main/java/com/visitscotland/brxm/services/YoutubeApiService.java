@@ -37,7 +37,7 @@ public class YoutubeApiService {
      * @param youtubeId The video id
      * @return If an error occurs, empty optional is returned
      */
-    @Cacheable(value = "dmsProduct", unless = "#result == null")
+    @Cacheable(value = "youtube", unless = "#result == null")
     public Optional<YoutubeVideo> getVideoInfo(String youtubeId) {
         logger.debug("Retrieving information from YouTube API for video {}", youtubeId);
         String youtubeApiKey = properties.getYoutubeApiKey();
