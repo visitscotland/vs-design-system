@@ -11,6 +11,8 @@ const factoryShallowMount = (propsData) => shallowMount(VsFormInput, {
 
 const factoryMount = (propsData) => mount(VsFormInput, {
     propsData: {
+        fieldName: 'testname',
+        type: 'text',
         ...propsData,
     },
 });
@@ -81,7 +83,7 @@ describe('VsFormInput', () => {
     });
 
     describe(':watchers', () => {
-        it('it should call the `manualValidate` method when `triggerValidation` is emitted', async() => {
+        it('should call the `manualValidate` method when `triggerValidation` is emitted', async() => {
             const mockedMethod = jest.spyOn(wrapper.vm, 'manualValidate');
 
             wrapper.setProps({
