@@ -10,12 +10,13 @@
 </@hst.headContribution> 
 
 <#macro embeddedForm>
+    <!-- data-url="https://static.visitscotland.com/forms/vs-3331/simpleForm.json" -->
     <vs-form
         required-text="required"
-        data-url="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
         recaptcha-key="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
         submit-text="Submit the form"
-        form-id="90"
+        :is-sandbox="true"
+        data-url="http://172.28.74.113:5050/simpleForm.json"
     >
         <template slot="invalid">
             You have invalid fields - please check the form.

@@ -21,7 +21,7 @@
                     :for="field.name"
                     :key="field.name"
                 >
-                    {{ field.label }}
+                    {{ getTranslatedLabel(field.name) }}
                     <span v-if="showRequiredText(field)">
                         ({{ requiredText }})
                     </span>
@@ -31,6 +31,7 @@
                         :field-name="field.name"
                         :type="field.type"
                         :validation-rules="field.validation || {}"
+                        :validation-messages="getTranslatedValidation(field.name) || {}"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                     />
@@ -84,7 +85,7 @@
 
             <input
                 type="submit"
-                value="Submit"
+                :value="submitText"
                 class="formSubmit"
                 @click.prevent="preSubmit"
                 @keyup.prevent="preSubmit"
@@ -163,11 +164,18 @@ export default {
             default: 'Submit',
         },
         /**
-         * form ID
+         * if the form should use sandbox or live Marketo details
          */
-        formId: {
+        isSandbox: {
+            type: Boolean,
+            default: true,
+        },
+        /**
+         * language indicator for content
+         */
+        language: {
             type: String,
-            required: true,
+            default: 'en',
         },
     },
     data() {
@@ -187,31 +195,74 @@ export default {
             recaptchaVerified: false,
         };
     },
+    computed: {
+        formId() {
+            return this.isSandbox ? this.formData.formSandboxId : this.formData.formLiveId;
+        },
+    },
     created() {
         axios.get(this.dataUrl)
             .then((response) => {
                 this.formData = response.data;
+
+                if (window.MktoForms2) {
+                    window.MktoForms2.loadForm('//app-lon10.marketo.com', '830-QYE-256', this.formId);
+                }
+
+                // window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
+                // ('//app-lon10.marketo.com', '830-QYE-256', this.formId);
 
                 response.data.fields.forEach((field) => {
                     this.form[field.name] = '';
                 });
             });
     },
-    mounted() {
-        // window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
-        window.MktoForms2.loadForm('//app-lon10.marketo.com', '830-QYE-256', this.formId);
-    },
     methods: {
+        /**
+         * get translated label if available
+         */
+        getTranslatedLabel(fieldName) {
+            const languageObj = this.formData[this.language];
+
+            if (this.language !== 'en'
+                && typeof languageObj[fieldName] !== 'undefined'
+                && typeof languageObj[fieldName].label !== 'undefined'
+            ) {
+                return languageObj[fieldName].label;
+            }
+
+            return fieldName;
+        },
+        getTranslatedValidation(fieldName) {
+            const languageObj = this.formData[this.language];
+            let validationObj = {
+            };
+
+            if (this.language !== 'en'
+                && typeof languageObj[fieldName] !== 'undefined'
+                && typeof languageObj[fieldName].validationMessages !== 'undefined') {
+                console.log('here');
+                validationObj = languageObj[fieldName].validationMessages;
+            } else {
+                this.formData.fields.forEach((field, index) => {
+                    if (field.name === fieldName) {
+                        validationObj = this.formData.fields[index].validationMessages;
+                    }
+                });
+            }
+
+            return validationObj;
+        },
         /**
          * update field data and error status
          */
         updateFieldData(data) {
             this.form[data.field] = data.value || '';
 
-            if (data.errors.length > 0) {
-                this.formIsInvalid = true;
+            if (Array.isArray(data.errors)) {
+                this.formIsInvalid = data.errors.length > 0;
             } else {
-                this.formIsInvalid = false;
+                this.formIsInvalid = data.errors;
             }
 
             this.manageErrorStatus(data.field, data.errors);
@@ -242,7 +293,6 @@ export default {
          */
         preSubmit(e) {
             e.preventDefault();
-            console.log(window.grecaptcha);
 
             function isRequired(value) {
                 return value.validation && value.validation.required;
@@ -277,7 +327,6 @@ export default {
             }
         },
         marketoSubmit() {
-            console.log(window.grecaptcha.getResponse());
             const myForm = window.MktoForms2.allForms()[0];
             myForm.addHiddenFields(this.form);
             myForm.addHiddenFields({
@@ -285,14 +334,11 @@ export default {
                 lastRecaptchaEnabledFormID: this.formId,
             });
 
-            console.log(myForm.vals());
-
             myForm.submit(() => {
                 this.submitting = true;
             });
             /* eslint-ignore-next-line */
             myForm.onSuccess(() => {
-                console.log('data submitted');
                 this.submitting = false;
                 this.submitted = true;
                 return false;
@@ -325,10 +371,10 @@ export default {
     ```jsx
         <VsForm
             requiredText="required"
-            dataUrl="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
+            dataUrl="http://172.28.74.113:5050/simpleForm.json"
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-            formId="90"
             submitText="Submit the form"
+            language="de"
         >
             <template slot="invalid">
                 You have invalid fields - please check the form.
