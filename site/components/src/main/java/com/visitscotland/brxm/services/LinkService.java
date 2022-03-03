@@ -301,11 +301,11 @@ public class LinkService {
                 return bundle.getResourceBundle(navigationCategory, "ebooks", locale);
             } else if (path.contains("blog")) {
                 return bundle.getResourceBundle(navigationCategory, "travel-blog", locale);
-            } else if (path.contains("see-do") || path.contains("events") || path.contains("tours")) {
+            } else if (path.contains("see-do") || path.contains("events") || path.contains("tours") || path.contains("things-to-do")) {
                 return bundle.getResourceBundle(navigationCategory, "see-do", locale);
             } else if (path.contains("accommodation")|| path.contains("places-to-stay") ) {
                 return bundle.getResourceBundle(navigationCategory, "accommodation", locale);
-            } else if (path.contains("destination") || path.contains("towns-villages")) {
+            } else if (path.contains("destination") || path.contains("towns-villages") || path.contains("places-to-go")) {
                 return bundle.getResourceBundle(navigationCategory, "destinations-map", locale);
             } else if (path.contains("travel") || path.contains("holidays") || path.contains("transport")) {
                 return bundle.getResourceBundle(navigationCategory, "travel-planning", locale);
