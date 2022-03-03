@@ -33,16 +33,18 @@ jest.mock('axios', () => ({
     ),
 }));
 
-const factoryShallowMount = (propsData) => shallowMount(VsForm, {
+const factoryShallowMount = () => shallowMount(VsForm, {
     slots: {
         submitError: 'error text',
         invalid: 'invalid text',
         submitting: 'submitting text',
         submitted: 'submitted text',
     },
-    props: {
+    propsData: {
         dataUrl: 'testUrl',
-        ...propsData,
+        submitText: 'Submit the form',
+        recaptchaKey: 'xyz',
+        formId: '123',
     },
 });
 
@@ -111,6 +113,56 @@ describe('VsForm', () => {
             await wrapper.vm.$nextTick();
 
             expect(wrapper.html()).toContain('invalid text');
+        });
+    });
+
+    describe(':props', () => {
+        it('should render a submit element with a value of the `submitText` slot', async() => {
+            const wrapper = factoryShallowMount();
+
+            const submitBtn = wrapper.find('input[type="submit"]');
+            expect(submitBtn.attributes('value')).toBe('Submit the form');
+        });
+    });
+
+    describe(':methods', () => {
+        it('should mark the form as invalid if input data with an error is supplied', async() => {
+            const wrapper = factoryShallowMount();
+
+            const fieldData = {
+                field: 'firstName',
+                errors: true,
+            };
+
+            wrapper.vm.updateFieldData(fieldData);
+
+            await wrapper.vm.$nextTick();
+
+            expect(wrapper.vm.formIsInvalid).toBeTruthy();
+        });
+
+        it('should give push a field`s name into the errorFields array when it has errors in its data', async() => {
+            const wrapper = factoryShallowMount();
+
+            const fieldData = {
+                field: 'firstName',
+                errors: true,
+            };
+
+            wrapper.vm.updateFieldData(fieldData);
+
+            await wrapper.vm.$nextTick();
+
+            expect(wrapper.vm.errorFields.indexOf('firstName')).toBe(0);
+        });
+
+        it('should show `required` text if the field`s data defines it as required', async() => {
+            const wrapper = factoryShallowMount();
+            await wrapper.vm.$nextTick();
+
+            const firstNameLabel = wrapper.find('label[for="firstName"]');
+
+            expect(firstNameLabel.text()).toContain('required');
         });
     });
 });
