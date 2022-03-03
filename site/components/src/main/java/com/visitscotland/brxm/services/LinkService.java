@@ -83,8 +83,7 @@ public class LinkService {
             if (product == null) {
                 contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), item.getPath());
                 module.addErrorMessage("There is no product with the id " + dmsLink.getProduct());
-
-            } else if (product != null) {
+            } else {
                 return createDmsLink(locale, dmsLink, product);
             }
         } else if (item instanceof ProductSearchLink) {
@@ -93,8 +92,7 @@ public class LinkService {
 
             return new FlatLink(bundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build(), LinkType.INTERNAL);
         } else if (item instanceof ExternalLink) {
-            ExternalLink externalLink = (ExternalLink) item;
-            return createExternalLink(locale, externalLink.getLink(), bundle.getCtaLabel(externalLink.getLabel(), locale));
+            return createExternalLink(locale, ((ExternalLink) item).getLink(), bundle.getCtaLabel(((ExternalLink) item).getLabel(), locale));
         } else if (item instanceof CMSLink) {
             return createCMSLink(module, locale, (CMSLink) item);
         }
@@ -137,7 +135,7 @@ public class LinkService {
     }
 
     /**
-     * Creates a localized FlatLink from a URL. It request
+     * Creates a localized FlatLink from a URL.
      *
      * @param url: URl
      */
@@ -350,7 +348,7 @@ public class LinkService {
             logger.warn("The type {} was not expected and will be skipped", linkable.getClass().getSimpleName());
         }
 
-        if (link == null) {
+        if (link == null || link.getLink() == null){
             return null;
         }
 
