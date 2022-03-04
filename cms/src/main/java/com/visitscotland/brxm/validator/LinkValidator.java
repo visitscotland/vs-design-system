@@ -43,8 +43,7 @@ public class LinkValidator implements Validator<Node> {
                 Node childNode = sessionFactory.getHippoNodeByIdentifier(nodeId);
                 if (childNode.getPath().startsWith("/content/attic/")){
                     return Optional.of(context.createViolation("removedLink"));
-                }
-                else{
+                }else{
                     String childNodeChannel = childNode.getPath().split("/")[3];
                     //VS-2886 Any language can link to english documents but no to any other different language
                     if (!childNodeChannel.equals(ENGLISH_CHANNEL) && !document.getPath().split("/")[3].equals(childNodeChannel)) {
