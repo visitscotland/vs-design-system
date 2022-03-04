@@ -370,46 +370,47 @@ class LinkServiceTest {
         when(properties.getDmsHost()).thenReturn("http://localhost:8080");
         when(properties.getInternalSites()).thenReturn(Arrays.asList("www.visitscotland.com,ebooks.visitscotland.com,blog.visitscotland.com".split(",")));
 
+        when(resourceBundle.getResourceBundle("navigation.categories", "ebooks", Locale.UK )).thenReturn("eBooks");
         assertEquals("eBooks", service.getLinkCategory("https://ebooks.visitscotland.com/whisky-distilleries-guides/",Locale.UK));
 
         String blog = "Travel Blog";
-        when(resourceBundle.getResourceBundle("navigation.main", "Travel-Blog", Locale.UK )).thenReturn(blog);
-        assertEquals(blog, getCategory("https://blog.visitscotland.com/discover-our-best-ebooks", "navigation.main", "Travel-Blog", blog));
-        assertEquals(blog, getCategory("https://www.visitscotland.com/blog/culture/scottish-words-meanings/", "navigation.main", "Travel-Blog", blog));
+        when(resourceBundle.getResourceBundle("navigation.categories", "travel-blog", Locale.UK )).thenReturn(blog);
+        assertEquals(blog, service.getLinkCategory("https://blog.visitscotland.com/discover-our-best-ebooks",Locale.UK));
+        assertEquals(blog, service.getLinkCategory("https://www.visitscotland.com/blog/culture/scottish-words-meanings/",Locale.UK));
 
         String seeDo= "See do";
-        when(resourceBundle.getResourceBundle("navigation.main", "see-do", Locale.UK )).thenReturn(seeDo);
-        assertEquals(seeDo, getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/see-do/", "navigation.main", "see-do", seeDo));
-        assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/events/developing-a-garden-sketchbook-after-hours-p2216101", "navigation.main", "see-do", seeDo));
-        assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/tours/shore-excursion-from-invergordon-battles-loch-ness-whisky-a56a372f", "navigation.main", "see-do", seeDo));
-        assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/see-do/riverside-museum-p995001", "navigation.main", "see-do", seeDo));
-        assertEquals(seeDo, getCategory("https://www.visitscotland.com/site-search-results", "navigation.main", "see-do", seeDo));
+        when(resourceBundle.getResourceBundle("navigation.categories", "see-do", Locale.UK )).thenReturn(seeDo);
+        assertEquals(seeDo, service.getLinkCategory("https://www.visitscotland.com/destinations-maps/edinburgh/see-do/",Locale.UK));
+        assertEquals(seeDo, service.getLinkCategory("https://www.visitscotland.com/info/events/developing-a-garden-sketchbook-after-hours-p2216101",Locale.UK));
+        assertEquals(seeDo, service.getLinkCategory("https://www.visitscotland.com/info/tours/shore-excursion-from-invergordon-battles-loch-ness-whisky-a56a372f",Locale.UK));
+        assertEquals(seeDo, service.getLinkCategory("https://www.visitscotland.com/info/see-do/riverside-museum-p995001",Locale.UK));
+        assertEquals(seeDo, service.getLinkCategory("https://www.visitscotland.com/site-search-results",Locale.UK));
 
-        when(resourceBundle.getResourceBundle("navigation.main", "accommodation", Locale.UK )).thenReturn("Accommodation");
-        assertEquals("Accommodation", getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/accommodation/self-catering/", "navigation.main", "accommodation", "Accommodation"));
+        when(resourceBundle.getResourceBundle("navigation.categories", "accommodation", Locale.UK )).thenReturn("Accommodation");
+        assertEquals("Accommodation", service.getLinkCategory("https://www.visitscotland.com/destinations-maps/edinburgh/accommodation/self-catering/",Locale.UK));
 
         String destination = "Places to go";
-        when(resourceBundle.getResourceBundle("navigation.main", "destinations-map", Locale.UK )).thenReturn(destination);
-        assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/", "navigation.main", "destinations-map", destination));
-        assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/perthshire/short-break-itinerary", "navigation.main", "destinations-map", destination));
-        assertEquals(destination, getCategory("https://www.visitscotland.com/info/towns-villages/ayr-p242821", "navigation.main", "destinations-map", destination));
-        assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/island/orkney", "navigation.main", "destinations-map", destination));
+        when(resourceBundle.getResourceBundle("navigation.categories", "destinations-map", Locale.UK )).thenReturn(destination);
+        assertEquals(destination, service.getLinkCategory("https://www.visitscotland.com/destinations-maps/edinburgh/",Locale.UK));
+        assertEquals(destination, service.getLinkCategory("https://www.visitscotland.com/destinations-maps/perthshire/short-break-itinerary",Locale.UK));
+        assertEquals(destination, service.getLinkCategory("https://www.visitscotland.com/info/towns-villages/ayr-p242821",Locale.UK));
+        assertEquals(destination, service.getLinkCategory("https://www.visitscotland.com/destinations-maps/island/orkney",Locale.UK));
 
         String travel = "Plan your trip";
-        when(resourceBundle.getResourceBundle("navigation.main", "travel-planning", Locale.UK )).thenReturn(travel);
-        assertEquals(travel, getCategory("https://www.visitscotland.com/holidays-breaks/scotland-life/sam-audrey-scottish-road-trip/", "navigation.main", "travel-planning", travel));
-        assertEquals(travel, getCategory("https://www.visitscotland.com/travel/getting-around-scotland/coach/", "navigation.main", "travel-planning", travel));
-        assertEquals(travel, getCategory("https://www.visitscotland.com/info/transport/turner-hire-drive-edinburgh-p1916901", "navigation.main", "travel-planning", travel));
+        when(resourceBundle.getResourceBundle("navigation.categories", "travel-planning", Locale.UK )).thenReturn(travel);
+        assertEquals(travel, service.getLinkCategory("https://www.visitscotland.com/holidays-breaks/scotland-life/sam-audrey-scottish-road-trip/",Locale.UK));
+        assertEquals(travel, service.getLinkCategory("https://www.visitscotland.com/travel/getting-around-scotland/coach/",Locale.UK));
+        assertEquals(travel, service.getLinkCategory("https://www.visitscotland.com/info/transport/turner-hire-drive-edinburgh-p1916901",Locale.UK));
 
-        when(resourceBundle.getResourceBundle("navigation.main", "inspiration", Locale.UK )).thenReturn("Inspiration");
-        assertEquals("Inspiration", getCategory("https://www.visitscotland.com/brochures/", "navigation.main", "inspiration", "Inspiration"));
+        when(resourceBundle.getResourceBundle("navigation.categories", "inspiration", Locale.UK )).thenReturn("Inspiration");
+        assertEquals("Inspiration", service.getLinkCategory("https://www.visitscotland.com/brochures/",Locale.UK));
 
         String information = "Visitor information";
-        when(resourceBundle.getResourceBundle("navigation.footer", "footer.visitor-information", Locale.UK )).thenReturn(information);
-        assertEquals(information, getCategory("https://www.visitscotland.com/about-us/", "navigation.footer", "footer.visitor-information", information));
-        assertEquals(information, getCategory("https://www.visitscotland.com/info/services/fort-william-icentre-p333001", "navigation.footer", "footer.visitor-information", information));
-        assertEquals(information, getCategory("https://www.visitscotland.com/contact-us/", "navigation.footer", "footer.visitor-information", information));
-        assertEquals(information, getCategory("https://www.visitscotland.com/policies/acceptable-use/", "navigation.footer", "footer.visitor-information", information));
+        when(resourceBundle.getResourceBundle("navigation.categories", "footer.visitor-information", Locale.UK )).thenReturn(information);
+        assertEquals(information, service.getLinkCategory("https://www.visitscotland.com/about-us/",Locale.UK));
+        assertEquals(information, service.getLinkCategory("https://www.visitscotland.com/info/services/fort-william-icentre-p333001",Locale.UK));
+        assertEquals(information, service.getLinkCategory("https://www.visitscotland.com/contact-us/",Locale.UK));
+        assertEquals(information, service.getLinkCategory("https://www.visitscotland.com/policies/acceptable-use/",Locale.UK));
 
         assertEquals("visitwales.com".toUpperCase(), service.getLinkCategory("https://www.visitwales.com/brochures",Locale.UK));
 
@@ -419,11 +420,6 @@ class LinkServiceTest {
     @DisplayName("An exception if the URL is mal formed")
     void getLinkCategory_MalformedURLException(){
         assertNull(service.getLinkCategory("http//example.com",Locale.UK));
-    }
-
-    private String getCategory(String url, String bundle, String key, String value){
-        when(resourceBundle.getResourceBundle(bundle, key, Locale.UK )).thenReturn(value);
-        return service.getLinkCategory(url,Locale.UK);
     }
 
     @Test
