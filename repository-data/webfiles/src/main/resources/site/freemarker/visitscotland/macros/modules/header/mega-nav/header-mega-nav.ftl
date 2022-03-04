@@ -21,7 +21,7 @@
         </template>
     </vs-mega-nav>
 
-    <#assign currentLocale=hstRequestContext.resolvedMount.mount.locale>
+    <#assign language = locale?keep_before("-")>
 
     <@hst.headContribution category="htmlBodyEndScripts">
         <script type="text/javascript" src="https://customer.cludo.com/scripts/bundles/search-script.min.js"></script>
@@ -36,7 +36,7 @@
                         customerId: 623,
                         engineId: 8738,
                         searchUrl: 'test/pages/search-results/content',
-                        language: '${currentLocale}',
+                        language: '${language}',
                         searchInputs: ['cludo-search-form'],
                         template: 'InlineBasicImages',
                         focusOnResultsAfterSearch: true,
