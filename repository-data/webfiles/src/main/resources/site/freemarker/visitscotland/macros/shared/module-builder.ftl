@@ -1,5 +1,6 @@
 <#include "../../../include/imports.ftl">
 <#include "../global/cms-errors.ftl">
+<#include "../global/preview-warning.ftl">
 <#include "../modules/megalinks/megalinks.ftl">
 <#include "../modules/article/article.ftl">
 <#include "../modules/long-copy/long-copy.ftl">
@@ -68,6 +69,9 @@
 
         <#elseif module.getType()== "CannedSearchModule">
             <@cannedSearch module themeName/>
+
+        <#else >
+            <@previewWarning editMode module true />
         </#if>
     </div>
 </#macro>

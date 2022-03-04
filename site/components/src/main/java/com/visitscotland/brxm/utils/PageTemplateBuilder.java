@@ -127,6 +127,7 @@ public class PageTemplateBuilder {
             contentLogger.error("The document type LongCopy is not allowed in this page. Path {}", page.getPath());
         }
     }
+
     /**
      * Creates a LinkModule from a Megalinks document
      */
@@ -137,8 +138,13 @@ public class PageTemplateBuilder {
             numLinks += ((MultiImageLinksModule) al).getFeaturedLinks().size();
         }
         if (numLinks == 0) {
+            Module<Megalinks> errorModule = new Module<>();
+            errorModule.setHippoBean(al.getHippoBean());
+            errorModule.setErrorMessages(al.getErrorMessages());
             contentLogger.error("Megalinks module at {} contains no published items", item.getPath());
-        }
+            page.modules.add(errorModule);
+            return;
+        } 
 
         if (al.getType().equalsIgnoreCase(SingleImageLinksModule.class.getSimpleName())) {
             al.setAlignment(alignment[page.alignment++ % alignment.length]);
