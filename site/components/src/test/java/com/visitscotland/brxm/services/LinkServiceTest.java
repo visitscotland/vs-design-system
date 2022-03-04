@@ -431,7 +431,7 @@ class LinkServiceTest {
 
         when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK )).thenReturn("DOWNLOAD");
         when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
-        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument,null, Locale.UK, true);
+        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument,null, Locale.UK, true).get();
 
         assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
         assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
@@ -447,7 +447,7 @@ class LinkServiceTest {
         when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK )).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = service.createEnhancedLink(
                 new SharedLinkMockBuilder().externalDocument("title",url,"see-do").build(), module,
-                Locale.UK, true);
+                Locale.UK, true).get();
 
         assertEquals("title (DOWNLOAD)", enhancedLink.getLabel());
         assertTrue(module.getErrorMessages().contains("The Link to the External document might be broken"));
@@ -460,7 +460,7 @@ class LinkServiceTest {
         when(documentUtilsService.getSiblingDocuments(itinerary,Day.class, "visitscotland:Day")).thenReturn(Arrays.asList(mock(Day.class), mock(Day.class)));
         when(utils.createUrl(itinerary)).thenReturn("URL");
 
-        EnhancedLink enhancedLink = service.createEnhancedLink(itinerary, null, Locale.UK, false);
+        EnhancedLink enhancedLink = service.createEnhancedLink(itinerary, null, Locale.UK, false).get();
 
         assertEquals(2, enhancedLink.getItineraryDays());
         assertEquals("bus",enhancedLink.getItineraryTransport());
@@ -474,7 +474,7 @@ class LinkServiceTest {
 
         when(resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK)).thenReturn("DOWNLOAD");
         when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
-        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument, null, Locale.UK, false);
+        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument, null, Locale.UK, false).get();
 
         assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
         assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
@@ -504,7 +504,7 @@ class LinkServiceTest {
         SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
         when(imageFactory.createImage(node, module)).thenReturn(new FlatImage());
 
-        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false).get();
 
         assertNotNull(link.getImage());
     }
@@ -522,7 +522,7 @@ class LinkServiceTest {
 
         when(properties.getDmsHost()).thenReturn("");
 
-        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false).get();
         assertEquals("/info/fake-product-p0123456798", link.getLink());
         assertEquals(1, module.getErrorMessages().size());
         assertNull(link.getImage());
@@ -649,7 +649,7 @@ class LinkServiceTest {
     void enhancedLink_fromVideo(){
         Video video = new VideoMockBuilder().url("youtu.be?v=1").build();
 
-        EnhancedLink link = service.createEnhancedLink(video, null, null, false);
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false).get();
 
         assertNotNull(link);
         assertEquals("youtu.be?v=1", link.getLink());
@@ -669,9 +669,9 @@ class LinkServiceTest {
     @Test
     @DisplayName(("VS-3065 - Handling of non-published documents"))
     void enhancedLink_empty(){
-        EnhancedLink link = service.createEnhancedLink(null, null, null, false);
+        Optional<EnhancedLink> link = service.createEnhancedLink(null, null, null, false);
 
-        assertNull(link);
+        assertFalse(link.isPresent());
     }
 
     @Test
@@ -683,7 +683,7 @@ class LinkServiceTest {
         yt.setPublishDate(datePublished);
         when(youtubeApiService.getVideoInfo("h9bQwcndGfo")).thenReturn(Optional.of(yt));
 
-        EnhancedLink link = service.createEnhancedLink(video, null, null, false);
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false).get();
 
         assertEquals(datePublished, link.getPublishedDate());
     }
@@ -694,7 +694,7 @@ class LinkServiceTest {
         Video video = new VideoMockBuilder().url("https://www.youtube.com/watch?v=h9bQwcndGfo").build();
         when(youtubeApiService.getVideoInfo("h9bQwcndGfo")).thenReturn(Optional.empty());
 
-        EnhancedLink link = service.createEnhancedLink(video, null, null, false);
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false).get();
 
         assertNotNull(link.getPublishedDate());
     }

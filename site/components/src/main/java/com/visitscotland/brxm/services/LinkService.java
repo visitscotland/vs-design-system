@@ -335,7 +335,7 @@ public class LinkService {
      * @param addCategory
      * @return
      */
-    public EnhancedLink createEnhancedLink(Linkable linkable, Module<?> module, Locale locale, boolean addCategory) {
+    public Optional<EnhancedLink> createEnhancedLink(Linkable linkable, Module<?> module, Locale locale, boolean addCategory) {
         EnhancedLink link = null;
 
         if (linkable instanceof Page) {
@@ -349,7 +349,7 @@ public class LinkService {
         }
 
         if (link == null || link.getLink() == null){
-            return null;
+            return Optional.empty();
         }
 
         if (addCategory && link.getLink() != null && link.getCategory() == null) {
@@ -365,7 +365,7 @@ public class LinkService {
             contentLogger.warn("The link to {} does not have an image but it is expecting one", ((BaseDocument) linkable).getPath());
         }
 
-        return link;
+        return Optional.of(link);
     }
 
     /**
@@ -477,6 +477,9 @@ public class LinkService {
         } else {
             link.setLabel(sharedLink.getTitle());
             link.setType(getType(link.getLink()));
+            if (sharedLink.getLinkType() instanceof DMSLink){
+                link.setCta(bundle.getCtaLabel(((DMSLink)sharedLink.getLinkType()).getLabel(), locale));
+            }
         }
 
         return link;
