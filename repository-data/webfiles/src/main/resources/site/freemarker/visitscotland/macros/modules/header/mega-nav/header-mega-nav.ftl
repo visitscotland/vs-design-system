@@ -21,20 +21,25 @@
         </template>
     </vs-mega-nav>
 
-    <#assign language = locale?keep_before("-")>
-
-    <@hst.headContribution category="htmlBodyEndScripts">
-        <script type="text/javascript" src="https://customer.cludo.com/scripts/bundles/search-script.min.js"></script>
-    </@hst.headContribution>
+    <#assign language = locale?keep_before("-")>    
 
     <@hst.headContribution category="htmlBodyEndScripts">
         <script>
+            var engine = {
+				de: 8740,
+				es: 8741,
+				nl: 8744,
+				fr: 8742,
+				it: 8743,
+				en: 8738,
+			};
+
             document.addEventListener("DOMContentLoaded", function(){
                 var CludoSearch;
                 (function () {
                     var cludoSettings = {
                         customerId: 623,
-                        engineId: 8738,
+                        engineId: engine["${language}"],
                         searchUrl: 'test/pages/search-results/content',
                         language: '${language}',
                         searchInputs: ['cludo-search-form'],
@@ -50,5 +55,9 @@
         <!--[if lte IE 9]>
             <script src="https://api.cludo.com/scripts/xdomain.js" slave="https://api.cludo.com/proxy.html" type="text/javascript"></script>
         <![endif]-->
+    </@hst.headContribution>
+
+    <@hst.headContribution category="htmlBodyEndScripts">
+        <script type="text/javascript" src="https://customer.cludo.com/scripts/bundles/search-script.min.js"></script>
     </@hst.headContribution>
 </#macro>
