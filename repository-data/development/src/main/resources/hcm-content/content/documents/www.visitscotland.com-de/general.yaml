@@ -2,14 +2,14 @@
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
   jcr:uuid: d1a12f8e-ab7b-420e-b54e-bfbd6b6c84c8
-  hippostd:foldertype: []
+  hippostd:foldertype: [new-translated-folder, new-page, new-module]
   hippotranslation:id: 2d5cd6d1-a3eb-425a-86ec-5d976b298997
   hippotranslation:locale: de
   /error:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
     jcr:uuid: d9750b6b-dcec-4593-8490-87b6ed1b8edc
-    hippostd:foldertype: []
+    hippostd:foldertype: [new-translated-folder, new-page, new-module]
     hippotranslation:id: aec7b5f3-afb7-4e6a-8058-099cc94c390c
     hippotranslation:locale: de
     /404-not-found:
@@ -17,7 +17,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
       jcr:uuid: f45ea5d4-b461-4743-8d6f-a643e789587b
       hippo:name: 404 Not Found
-      hippostd:foldertype: [new-module]
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
       hippotranslation:id: 26fdd95e-1859-41ea-8a28-3d9af3d0c840
       hippotranslation:locale: de
       /content:
@@ -137,7 +137,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 3c44487f-7163-4914-98cd-3c7f93b7e92c
       hippo:name: 500 Server Error
-      hippostd:foldertype: [new-module]
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
       hippotranslation:id: 3b82c3db-d750-411e-9dc9-675fd117104a
       hippotranslation:locale: de
       /content:
@@ -250,7 +250,7 @@
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
     jcr:uuid: ccc01361-0359-43ce-a08b-d456d7caf743
-    hippostd:foldertype: []
+    hippostd:foldertype: [new-translated-folder, new-page, new-module]
     hippotranslation:id: 61ea66b4-f874-42ab-bda5-7674884b4a59
     hippotranslation:locale: de
     /widgets:

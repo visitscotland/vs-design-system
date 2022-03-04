@@ -3,7 +3,7 @@
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
   jcr:uuid: 674c67f0-b7cb-4473-824d-63984aaeabd1
-  hippostd:foldertype: []
+  hippostd:foldertype: [new-translated-folder]
   hippotranslation:id: b091be00-dc54-41e0-9354-c4098c03db9e
   hippotranslation:locale: it
   /itinerary-stops:
