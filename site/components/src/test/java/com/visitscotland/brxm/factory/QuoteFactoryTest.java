@@ -54,6 +54,7 @@ class QuoteFactoryTest {
         when(quote.getImage()).thenReturn(image);
         when(quote.getProduct()).thenReturn(cmsLink);
         when(cmsLink.getLink()).thenReturn(link);
+        when(cmsLink.getLabel()).thenReturn("Find out more");
 
         EnhancedLink enhancedLink = new EnhancedLink();
         enhancedLink.setLink("www.google.com");
