@@ -217,7 +217,7 @@ public class ItineraryFactory {
             return;
         }
 
-        module.setCtaLink(linkService.createFindOutMoreLink(module, locale, dmsLink));
+        module.setCtaLink(linkService.createDmsLink(locale,dmsLink, product));
         module.setFacilities(utils.getKeyFacilities(product));
 
         if (module.getImage() == null && product.has(IMAGE)) {
