@@ -144,7 +144,7 @@ class MenuItemProviderTest {
 
         menuItemProvider.constructPageAndModuleMenus(subjectNode, prototypes, config);
 
-        Assertions.assertEquals(1, prototypes.size());
+        Assertions.assertEquals(0, prototypes.size());
         Assertions.assertTrue(prototypes.containsKey("other"));
     }
 
