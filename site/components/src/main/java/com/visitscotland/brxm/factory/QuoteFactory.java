@@ -40,10 +40,14 @@ public class QuoteFactory {
         if (doc.getProduct() != null) {
             if (doc.getProduct().getLink() instanceof Linkable) {
                 EnhancedLink link = linkService.createEnhancedLink((Linkable) doc.getProduct().getLink(), module, locale, false);
-                if (link != null) {
-                    link.setLabel(linkService.createFindOutMoreLink(module, locale, doc.getProduct()).getLabel());
+                if (link != null ) {
+                    link.setLabel(doc.getProduct().getLabel() != null? doc.getProduct().getLabel():link.getCta());
+                    if (link.getLabel() != null) {
+                        link.setLabel(linkService.createFindOutMoreLink(module, locale, doc.getProduct()).getLabel());
+                    }
                     quote.setLink(link);
                 }
+
             }
 
             if (quote.getLink() == null) {

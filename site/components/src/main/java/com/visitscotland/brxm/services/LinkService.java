@@ -464,6 +464,9 @@ public class LinkService {
         } else {
             link.setLabel(sharedLink.getTitle());
             link.setType(getType(link.getLink()));
+            if (sharedLink.getLinkType() instanceof DMSLink){
+                link.setCta(bundle.getCtaLabel(((DMSLink)sharedLink.getLinkType()).getLabel(), locale));
+            }
         }
 
         return link;
