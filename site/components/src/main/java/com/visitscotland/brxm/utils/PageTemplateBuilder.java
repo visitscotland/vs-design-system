@@ -9,6 +9,7 @@ import com.visitscotland.brxm.model.megalinks.MultiImageLinksModule;
 import com.visitscotland.brxm.model.megalinks.SingleImageLinksModule;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -128,6 +129,12 @@ public class PageTemplateBuilder {
         }
     }
 
+    private <T extends HippoBean> Module<T> createErrorModule(Module<T> source){
+        Module<T> errorModule = new Module<>();
+        errorModule.setHippoBean(source.getHippoBean());
+        errorModule.setErrorMessages(source.getErrorMessages());
+        return errorModule;
+    }
     /**
      * Creates a LinkModule from a Megalinks document
      */
@@ -138,11 +145,8 @@ public class PageTemplateBuilder {
             numLinks += ((MultiImageLinksModule) al).getFeaturedLinks().size();
         }
         if (numLinks == 0) {
-            Module<Megalinks> errorModule = new Module<>();
-            errorModule.setHippoBean(al.getHippoBean());
-            errorModule.setErrorMessages(al.getErrorMessages());
-            contentLogger.error("Megalinks module at {} contains no published items", item.getPath());
-            page.modules.add(errorModule);
+            contentLogger.error("Megalinks module at {} contains no valid items", item.getPath());
+            page.modules.add(createErrorModule(al));
             return;
         } 
 

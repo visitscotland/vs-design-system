@@ -99,6 +99,25 @@ class PageTemplateBuilderTest {
     }
 
     /**
+     * Build a page with one Megalinks document associated
+     */
+    @Test
+    @DisplayName("VS-3269 - Megalinks with no links are completely removed. But they still show a preview message")
+    void addMegalinksModule_noLinks() {
+        Megalinks megalinks = new MegalinksMockBuilder().build();
+        LinksModule<?> module = new LinksModuleMockBuilder().build();
+
+        when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(megalinks));
+        doReturn(module).when(linksFactory).getMegalinkModule(megalinks, Locale.UK);
+
+        builder.addModules(request);
+        List items = (List) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
+
+        assertEquals(1, items.size());
+        assertSame(items.get(0).getClass(), Module.class);
+    }
+
+    /**
      * Styles alternate, and the last repeats the first colour
      */
     @Test

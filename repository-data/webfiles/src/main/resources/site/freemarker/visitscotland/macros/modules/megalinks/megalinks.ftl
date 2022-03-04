@@ -3,7 +3,6 @@
 <#include "./multi-image/megalinks-multi-image.ftl">
 <#include "./link-list/megalinks-link-list.ftl">
 <#include "./single-image/megalinks-single-image.ftl">
-<#include "../../global/cms-errors.ftl">
 <#include "../../global/preview-warning.ftl">
 
 <#macro megalinks item type theme="">
