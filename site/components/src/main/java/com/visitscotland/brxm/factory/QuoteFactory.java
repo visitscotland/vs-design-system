@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
+import java.util.Optional;
 
 @Component
 public class QuoteFactory {
@@ -39,8 +40,9 @@ public class QuoteFactory {
 
         if (doc.getProduct() != null) {
             if (doc.getProduct().getLink() instanceof Linkable) {
-                EnhancedLink link = linkService.createEnhancedLink((Linkable) doc.getProduct().getLink(), module, locale, false);
-                if (link != null) {
+                Optional<EnhancedLink> optionalLink = linkService.createEnhancedLink((Linkable) doc.getProduct().getLink(), module, locale, false);
+                if (optionalLink.isPresent()) {
+                    EnhancedLink link = optionalLink.get();
                     link.setLabel(linkService.createFindOutMoreLink(module, locale, doc.getProduct()).getLabel());
                     quote.setLink(link);
                 }
