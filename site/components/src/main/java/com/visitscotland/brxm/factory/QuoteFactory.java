@@ -42,7 +42,7 @@ public class QuoteFactory {
             if (doc.getProduct().getLink() instanceof Linkable) {
                 Optional<EnhancedLink> optionalLink = linkService.createEnhancedLink((Linkable) doc.getProduct().getLink(), module, locale, false);
                 if (optionalLink.isPresent()) {
-                    EnhancedLink link = optionalLink.get( ) ;
+                    EnhancedLink link = optionalLink.get();
                     link.setLabel(doc.getProduct().getLabel() != null? doc.getProduct().getLabel():link.getCta());
                     if (link.getLabel() != null) {
                         link.setLabel(linkService.createFindOutMoreLink(module, locale, doc.getProduct()).getLabel());
