@@ -33,7 +33,7 @@ public class ImageFactory {
     private static final Logger logger = LoggerFactory.getLogger(ImageFactory.class);
     private static final Logger contentLogger = LoggerFactory.getLogger("content");
 
-    private static final String GLOBAL_BUNDLE = "essentials.global";
+    static final String GLOBAL_BUNDLE = "essentials.global";
 
     private final LocationLoader locationLoader;
     private final CommonUtilsService utils;
@@ -50,7 +50,7 @@ public class ImageFactory {
         this.bundle = bundle;
     }
 
-    private FlatImage getPlaceholder(Module<?> module, Locale locale){
+    FlatImage getPlaceholder(Module<?> module, Locale locale){
         String nodePath = "";
         try {
             nodePath = bundle.getResourceBundle(GLOBAL_BUNDLE, "placeholder-image", locale);
@@ -181,16 +181,19 @@ public class ImageFactory {
             logger.error("Error while accessing Instagram", e);
         }
 
-        return null;
+        return getPlaceholder(module, locale);
     }
 
     /**
      * Creates an Image from a DMS product node.
      *
+     * If the product does not contain an image a Placeholder image is returned instead
+     *
      * @param dmsProduct JsonNode with the information of the product.
      * @param module     Module used to log potential issues that can be translated into CMS warning later on
+     * @param locale     Localization for the placeholder image.
      */
-    public FlatImage createImage(JsonNode dmsProduct, Module<?> module) {
+    public FlatImage createImage(JsonNode dmsProduct, Module<?> module, Locale locale) {
 
         if (dmsProduct.has(IMAGE)) {
 
@@ -218,7 +221,7 @@ public class ImageFactory {
             module.addErrorMessage(String.format("The dmsProduct '%s' does not have an image", get(dmsProduct, ID, "unknown")));
         }
 
-        return null;
+        return getPlaceholder(module, locale);
     }
 
     private String get(JsonNode node, String field, String defaultValue) {
