@@ -50,6 +50,7 @@
                         @status-update="updateFieldData"
                         :field-name="field.name"
                         :validation-rules="field.validation || {}"
+                        :validation-messages="getTranslatedValidation(field.name) || {}"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                     />
@@ -66,6 +67,7 @@
                         @status-update="updateFieldData"
                         :field-name="field.name"
                         :validation-rules="field.validation || {}"
+                        :validation-messages="getTranslatedValidation(field.name) || {}"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                         :required-text="requiredText"
@@ -241,7 +243,6 @@ export default {
             if (this.language !== 'en'
                 && typeof languageObj[fieldName] !== 'undefined'
                 && typeof languageObj[fieldName].validationMessages !== 'undefined') {
-                console.log('here');
                 validationObj = languageObj[fieldName].validationMessages;
             } else {
                 this.formData.fields.forEach((field, index) => {
@@ -371,7 +372,7 @@ export default {
     ```jsx
         <VsForm
             requiredText="required"
-            dataUrl="http://172.28.74.113:5050/simpleForm.json"
+            dataUrl="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
             submitText="Submit the form"
             language="de"

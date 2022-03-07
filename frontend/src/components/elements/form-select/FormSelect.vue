@@ -12,7 +12,20 @@
             @change="emitStatus"
             @blur="emitStatus"
             data-test="vs-form-select"
+            class="vs-form-select"
+            :required="isRequired"
         />
+        <span
+            v-for="error in errors"
+            :key="error"
+            class="error"
+        >
+            <template
+                v-if="$v.inputVal.$anyError || invalid"
+            >
+                {{ validationMessages[error] }}
+            </template>
+        </span>
     </div>
 </template>
 
@@ -26,8 +39,7 @@ import { BFormSelect } from 'bootstrap-vue';
 Vue.use(Vuelidate);
 
 /**
- * https://bootstrap-vue.js.org/docs/components/form-input
- * https://getbootstrap.com/docs/4.3/components/forms/
+ * A selecte element to be used in forms
  *
  * @displayName Form Select
  */
@@ -93,6 +105,16 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+         * Validation messages
+         */
+        validationMessages: {
+            type: Object,
+            default() {
+                return {
+                };
+            },
+        },
     },
     data() {
         return {
@@ -123,11 +145,32 @@ export default {
             }
 
             if (typeof rulesObj !== 'undefined') {
-                return rulesObj;
+                return {
+                    inputVal: rulesObj,
+                };
             }
 
             return {
             };
+        },
+        isRequired() {
+            if (typeof required !== 'undefined' && 'required' in this.validationRules) {
+                return true;
+            }
+
+            return false;
+        },
+        errors() {
+            const errorsArray = [];
+            const rulesKeys = Object.keys(this.rules.inputVal);
+
+            rulesKeys.forEach((key) => {
+                if (!this.$v.inputVal[key]) {
+                    errorsArray.push(key);
+                }
+            });
+
+            return errorsArray;
         },
     },
     watch: {
@@ -173,9 +216,7 @@ export default {
         },
     },
     validations() {
-        return {
-            inputVal: this.rules,
-        };
+        return this.rules;
     },
 };
 </script>
