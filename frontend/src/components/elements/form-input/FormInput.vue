@@ -1,14 +1,13 @@
 <template>
-    <div>
+    <div data-test="vs-input">
         <BFormInput
             :type="type"
-            class="input"
+            class="vs-input"
             v-model="inputVal"
             :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
             @blur="emitStatus"
             :id="fieldName"
             :name="fieldName"
-            data-test="vs-input"
             :required="isRequired"
             :size="size"
             :v="inputVal"
@@ -21,6 +20,7 @@
             <template
                 v-if="$v.inputVal.$anyError || invalid"
             >
+                hello
                 {{ validationMessages[error] }}
             </template>
         </span>
@@ -106,7 +106,7 @@ export default {
             default: false,
         },
         /**
-         * Prop to trigger manual validation
+         * Validation messages
          */
         validationMessages: {
             type: Object,
@@ -119,7 +119,6 @@ export default {
     data() {
         return {
             inputVal: this.value,
-            blurred: false,
         };
     },
     computed: {
