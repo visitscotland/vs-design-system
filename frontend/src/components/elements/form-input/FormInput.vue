@@ -20,8 +20,7 @@
             <template
                 v-if="$v.inputVal.$anyError || invalid"
             >
-                hello
-                {{ validationMessages[error] }}
+                {{ returnValidationMsg(error) }}
             </template>
         </span>
     </div>
@@ -109,6 +108,16 @@ export default {
          * Validation messages
          */
         validationMessages: {
+            type: Object,
+            default() {
+                return {
+                };
+            },
+        },
+        /**
+         * Fallback translated validation
+         */
+        genericValidation: {
             type: Object,
             default() {
                 return {
@@ -226,6 +235,20 @@ export default {
                 errors: this.$v.$anyError,
             });
             this.$v.$touch();
+        },
+        /**
+         * Return appropriate translated error message for validation
+         */
+        returnValidationMsg(error) {
+            let message = '';
+
+            if (typeof this.validationMessages[error] !== 'undefined') {
+                message = this.validationMessages[error];
+            } else if (typeof this.genericValidation[error] !== 'undefined') {
+                message = this.genericValidation[error];
+            }
+
+            return message;
         },
     },
     validations() {

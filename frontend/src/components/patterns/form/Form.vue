@@ -34,6 +34,7 @@
                         :validation-messages="getTranslatedValidation(field.name) || {}"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
+                        :generic-validation="messagingData.validation[language]"
                     />
                 </label>
 
@@ -87,7 +88,7 @@
 
             <input
                 type="submit"
-                :value="submitText"
+                :value="submitText || messagingData.submit[language]"
                 class="formSubmit"
                 @click.prevent="preSubmit"
                 @keyup.prevent="preSubmit"
@@ -163,14 +164,28 @@ export default {
          */
         submitText: {
             type: String,
-            default: 'Submit',
+            default: '',
         },
         /**
          * if the form should use sandbox or live Marketo details
          */
-        isSandbox: {
+        isProd: {
             type: Boolean,
-            default: true,
+            default: false,
+        },
+        /**
+         * munchkin ID for the Marketo environment
+         */
+        munchkinId: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Marketo instance URL for the form
+         */
+        marketoInstance: {
+            type: String,
+            required: true,
         },
         /**
          * language indicator for content
@@ -179,6 +194,13 @@ export default {
             type: String,
             default: 'en',
         },
+        /**
+         * URL for generic messaging config
+         */
+        messagingUrl: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
@@ -186,6 +208,8 @@ export default {
             submitting: false,
             submitError: false,
             formData: {
+            },
+            messagingData: {
             },
             form: {
             },
@@ -199,7 +223,7 @@ export default {
     },
     computed: {
         formId() {
-            return this.isSandbox ? this.formData.formSandboxId : this.formData.formLiveId;
+            return this.isProd ? this.formData.formLiveId : this.formData.formSandboxId;
         },
     },
     created() {
@@ -208,7 +232,7 @@ export default {
                 this.formData = response.data;
 
                 if (window.MktoForms2) {
-                    window.MktoForms2.loadForm('//app-lon10.marketo.com', '830-QYE-256', this.formId);
+                    window.MktoForms2.loadForm(this.marketoInstance, this.munchkinId, this.formId);
                 }
 
                 // window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
@@ -217,6 +241,11 @@ export default {
                 response.data.fields.forEach((field) => {
                     this.form[field.name] = '';
                 });
+            });
+
+        axios.get(this.messagingUrl)
+            .then((response) => {
+                this.messagingData = response.data;
             });
     },
     methods: {
@@ -372,10 +401,13 @@ export default {
     ```jsx
         <VsForm
             requiredText="required"
-            dataUrl="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
+            dataUrl="http://172.28.74.113:5050/simpleForm.json"
+            messagingUrl="http://172.28.74.113:5050/messaging.json"
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-            submitText="Submit the form"
-            language="de"
+            language="en"
+            marketo-instance="//app-lon10.marketo.com"
+            munchkin-id="830-QYE-256"
+            :is-prod="true"
         >
             <template slot="invalid">
                 You have invalid fields - please check the form.
