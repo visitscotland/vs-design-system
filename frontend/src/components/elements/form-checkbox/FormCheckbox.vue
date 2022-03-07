@@ -1,23 +1,31 @@
 <template>
-    <BFormCheckbox
-        v-if="fieldName"
-        v-model="inputVal"
-        class="vs-form-checkbox mr-4"
-        :class="errors.length > 0 ? 'vs-form-checkbox__invalid' : ''"
-        :size="size"
-        :name="fieldName"
-        :id="fieldName"
-        :value="value"
-        :unchecked_value="`not_${value}`"
-        v-bind="$attrs"
-        data-test="vs-form-checkbox"
-        @change="emitStatus"
-    >
-        {{ label }}
-        <span v-if="showRequiredText">
-            ({{ requiredText }})
-        </span>
-    </BFormCheckbox>
+    <div>
+        <BFormCheckbox
+            v-if="fieldName"
+            v-model="inputVal"
+            class="vs-form-checkbox mr-4"
+            :class="errors.length > 0 ? 'vs-form-checkbox__invalid' : ''"
+            :size="size"
+            :name="fieldName"
+            :id="fieldName"
+            :value="value"
+            :unchecked_value="`not_${value}`"
+            v-bind="$attrs"
+            data-test="vs-form-checkbox"
+            @change="emitStatus"
+            :required="isRequired"
+        >
+            {{ label }}
+            <span v-if="isRequired">
+                ({{ requiredText }})
+            </span>
+        </BFormCheckbox>
+        <template
+            v-if="errors.length > 0"
+        >
+            {{ validationMessages.required }}
+        </template>
+    </div>
 </template>
 
 <script>
@@ -97,6 +105,16 @@ export default {
             type: String,
             default: 'required',
         },
+        /**
+         * Validation messages
+         */
+        validationMessages: {
+            type: Object,
+            default() {
+                return {
+                };
+            },
+        },
     },
     data() {
         return {
@@ -134,8 +152,8 @@ export default {
             return {
             };
         },
-        showRequiredText() {
-            if (typeof this.validationRules !== 'undefined' && this.validationRules.required) {
+        isRequired() {
+            if (typeof required !== 'undefined' && 'required' in this.validationRules) {
                 return true;
             }
 

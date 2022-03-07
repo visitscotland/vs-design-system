@@ -16,7 +16,7 @@
         recaptcha-key="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
         submit-text="Submit the form"
         :is-sandbox="true"
-        data-url="http://172.28.74.113:5050/simpleForm.json"
+        data-url="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
     >
         <template slot="invalid">
             You have invalid fields - please check the form.
