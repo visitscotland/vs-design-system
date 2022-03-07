@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
 
@@ -123,7 +124,14 @@ public class ListicleFactory {
             }
         } else if (link instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) link;
-            EnhancedLink eLink = linksService.createEnhancedLink((Linkable) cmsLink.getLink(), module, locale,false);
+            Optional<EnhancedLink> optionalLink = linksService.createEnhancedLink((Linkable) cmsLink.getLink(), module, locale,false);
+            if (!optionalLink.isPresent()) {
+                String linkPath = cmsLink.getLink() == null ? "" : cmsLink.getLink().getPath();
+                module.addErrorMessage(String.format("Invalid link at %s", link.getPath()));
+                contentLogger.error("Failed to add main product link to listicle item {} - check link is valid and published", linkPath);
+                return null;
+            }
+            EnhancedLink eLink = optionalLink.get();
             //Override default link label when the module has an override text
             if (!Contract.isEmpty(cmsLink.getLabel())){
                 eLink.setCta(linksService.formatLabel(cmsLink.getLink(), cmsLink.getLabel(), module, locale));
