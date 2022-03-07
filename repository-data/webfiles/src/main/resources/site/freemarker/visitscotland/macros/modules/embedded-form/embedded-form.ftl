@@ -10,13 +10,17 @@
 </@hst.headContribution> 
 
 <#macro embeddedForm>
-    <!-- data-url="https://static.visitscotland.com/forms/vs-3331/simpleForm.json" -->
+    <!-- data-url="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
+    messaging-url="https://static.visitscotland.com/forms/messaging.json" -->
     <vs-form
         required-text="required"
         recaptcha-key="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
         submit-text="Submit the form"
-        :is-sandbox="true"
-        data-url="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
+        :is-prod="false"
+        messaging-url="http://172.28.74.113:5050/messaging.json"
+        data-url="http://172.28.74.113:5050/simpleForm.json"
+        marketo-instance="//app-lon10.marketo.com"
+        munchkin-id="830-QYE-256"
     >
         <template slot="invalid">
             You have invalid fields - please check the form.
