@@ -251,7 +251,7 @@ export default {
           { value: 'd', text: 'This one is disabled', disabled: true }
         ]"
         name="select-example"
-    >
+    />
 </BsWrapper>
 ```
 </docs>
