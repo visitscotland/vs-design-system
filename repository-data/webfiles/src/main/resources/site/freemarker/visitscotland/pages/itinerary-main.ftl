@@ -10,6 +10,7 @@
 <#include "../macros/modules/itineraries/itinerary-map.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/cms-errors.ftl">
+<#include "../macros/global/otyml.ftl">
 <#include "../macros/shared/module-builder.ftl">
 <#include "../macros/modules/horizontal-list/horizontal-list.ftl">
 <#include "../macros/modules/signpost/signpost.ftl">

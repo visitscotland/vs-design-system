@@ -9,11 +9,11 @@
         >
             <vs-alert>
                 <div>
-                    <p class="text-danger pb-2"><strong> ERROR! </strong></p>
+                    <p class="text-danger pb-2"><strong>CMS ERROR! </strong></p>
                     <#if message?? && message != "">
                         <p>${message}</p>
                     <#elseif hidden>
-                        <p>There is a major issue with the document <b>${module.hippoBean.displayName}</b> and It was removed from the page:</p>
+                        <p>There is an issue with the document <strong>${module.hippoBean.displayName}</strong> and It was hidden from the page:</p>
                     <#else>
                         <p>The following issues have been detected in the document ${module.hippoBean.displayName}:</p>
                     </#if>
