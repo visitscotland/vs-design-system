@@ -1,12 +1,12 @@
 /content/gallery/visitscotland/static:
   jcr:primaryType: hippogallery:stdImageGallery
-  hippostd:foldertype: [new-visitscotland-Image-folder]
+  hippostd:foldertype: []
   hippostd:gallerytype: ['visitscotland:Image']
   /modules:
     jcr:primaryType: hippogallery:stdImageGallery
     jcr:mixinTypes: ['mix:versionable']
     jcr:uuid: b6eaaed7-a717-49fe-aaba-a529c5bcdcdb
-    hippostd:foldertype: [new-visitscotland-Image-folder]
+    hippostd:foldertype: []
     hippostd:gallerytype: ['visitscotland:Image']
     /visitscotland-visitor-information-centre.jpg:
       jcr:primaryType: hippo:handle
@@ -19,7 +19,7 @@
         hippogallery:filename: visitscotland-visitor-information-centre.jpg
         visitscotland:altText: VisitScotland iCentre
         visitscotland:credit: VisitScotland / Kenny Lam
-        visitscotland:location: Edinburgh
+        visitscotland:location: ''
         /hippogallery:thumbnail:
           jcr:primaryType: hippogallery:image
           hippo:filename: visitscotland-visitor-information-centre.jpg
