@@ -203,7 +203,7 @@ public class MegalinkFactory {
     }
 
     private EnhancedLink convertToEnhancedLink(Module<?> module, HippoBean item, Locale locale, boolean addCategory) {
-        Optional<EnhancedLink> link = Optional.empty();
+        Optional<EnhancedLink> link;
 
         if (item instanceof Linkable) {
             link = linkService.createEnhancedLink((Linkable) item, module, locale, addCategory);
