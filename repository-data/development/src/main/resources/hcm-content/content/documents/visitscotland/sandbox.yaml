@@ -6169,7 +6169,7 @@
           jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
           jcr:uuid: 00a7484c-8509-42be-8735-f93d68ab331a
           hippo:name: Broken DMS listing 2
-          /broken-dms-listing-2:
+          /broken-dms-listing-2[1]:
             jcr:primaryType: visitscotland:SharedLink
             jcr:mixinTypes: ['mix:versionable']
             jcr:uuid: c4bc8a74-293a-4920-8816-5b5c76520867
@@ -6178,12 +6178,38 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-            hippostdpubwf:lastModificationDate: 2022-03-03T16:38:58.479Z
+            hippostdpubwf:lastModificationDate: 2022-03-08T11:55:39.889Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: c7a39559-54b7-4df3-bed7-b80e8c9b0d52
             hippotranslation:locale: en
-            visitscotland:teaser: This is a broken DMS Listing
-            visitscotland:title: Broken DMS Listing
+            visitscotland:teaser: This is a broken DMS Listing 2
+            visitscotland:title: Broken DMS Listing 2
+            visitscotland:translation: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:linkTypes:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '-1'
+          /broken-dms-listing-2[2]:
+            jcr:primaryType: visitscotland:SharedLink
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: 6e75dbb9-4894-484e-84e1-b5489598b2d5
+            hippo:availability: []
+            hippostd:retainable: false
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
+            hippostdpubwf:lastModificationDate: 2022-03-08T11:55:35.548Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: c7a39559-54b7-4df3-bed7-b80e8c9b0d52
+            hippotranslation:locale: en
+            visitscotland:teaser: This is a broken DMS Listing 2
+            visitscotland:title: Broken DMS Listing 2
             visitscotland:translation: ''
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
@@ -6200,7 +6226,7 @@
           jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
           jcr:uuid: a95538eb-6ea6-404e-8abe-b34551b3b88d
           hippo:name: Broken DMS listing 3
-          /broken-dms-listing-3:
+          /broken-dms-listing-3[1]:
             jcr:primaryType: visitscotland:SharedLink
             jcr:mixinTypes: ['mix:versionable']
             jcr:uuid: 5b9f589a-b434-4e8e-9694-a69e05091249
@@ -6209,12 +6235,38 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-            hippostdpubwf:lastModificationDate: 2022-03-03T16:38:58.479Z
+            hippostdpubwf:lastModificationDate: 2022-03-08T11:55:47.267Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: e0856f4c-f6f5-4dc9-84da-557ba56bda3e
             hippotranslation:locale: en
-            visitscotland:teaser: This is a broken DMS Listing
-            visitscotland:title: Broken DMS Listing
+            visitscotland:teaser: This is a broken DMS Listing 3
+            visitscotland:title: Broken DMS Listing 3
+            visitscotland:translation: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:linkTypes:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '-1'
+          /broken-dms-listing-3[2]:
+            jcr:primaryType: visitscotland:SharedLink
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: cfcdcae0-83ec-4dc8-aaf0-581b316b3fae
+            hippo:availability: []
+            hippostd:retainable: false
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
+            hippostdpubwf:lastModificationDate: 2022-03-08T11:55:43.478Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: e0856f4c-f6f5-4dc9-84da-557ba56bda3e
+            hippotranslation:locale: en
+            visitscotland:teaser: This is a broken DMS Listing 3
+            visitscotland:title: Broken DMS Listing 3
             visitscotland:translation: ''
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
@@ -6231,7 +6283,7 @@
           jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
           jcr:uuid: a4f0eb85-0a11-49e1-bb5b-617ae5ef9042
           hippo:name: Broken DMS listing 4
-          /broken-dms-listing-4:
+          /broken-dms-listing-4[1]:
             jcr:primaryType: visitscotland:SharedLink
             jcr:mixinTypes: ['mix:versionable']
             jcr:uuid: d074f787-1b92-4046-a608-952c28b2b27d
@@ -6240,12 +6292,38 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-            hippostdpubwf:lastModificationDate: 2022-03-03T16:38:58.479Z
+            hippostdpubwf:lastModificationDate: 2022-03-08T11:55:53.445Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 1f6ab0eb-7bd2-4280-ad9b-3f784ec5ceb2
             hippotranslation:locale: en
-            visitscotland:teaser: This is a broken DMS Listing
-            visitscotland:title: Broken DMS Listing
+            visitscotland:teaser: This is a broken DMS Listing 4
+            visitscotland:title: Broken DMS Listing 4
+            visitscotland:translation: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:linkTypes:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '-1'
+          /broken-dms-listing-4[2]:
+            jcr:primaryType: visitscotland:SharedLink
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: 35b90be6-710f-4a42-9ee7-4739e1f44a27
+            hippo:availability: []
+            hippostd:retainable: false
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
+            hippostdpubwf:lastModificationDate: 2022-03-08T11:55:49.957Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 1f6ab0eb-7bd2-4280-ad9b-3f784ec5ceb2
+            hippotranslation:locale: en
+            visitscotland:teaser: This is a broken DMS Listing 4
+            visitscotland:title: Broken DMS Listing 4
             visitscotland:translation: ''
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
@@ -6262,7 +6340,7 @@
           jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
           jcr:uuid: 6a281adb-7492-4bee-b0a9-2a5fc838f556
           hippo:name: Broken DMS listing 5
-          /broken-dms-listing-5:
+          /broken-dms-listing-5[1]:
             jcr:primaryType: visitscotland:SharedLink
             jcr:mixinTypes: ['mix:versionable']
             jcr:uuid: a998da8b-6887-4c61-8914-c64a53683563
@@ -6271,12 +6349,38 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-            hippostdpubwf:lastModificationDate: 2022-03-03T16:38:58.479Z
+            hippostdpubwf:lastModificationDate: 2022-03-08T11:56:02.914Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 812ed87c-7dbb-4d1d-a6d6-2958d045fd63
             hippotranslation:locale: en
-            visitscotland:teaser: This is a broken DMS Listing
-            visitscotland:title: Broken DMS Listing
+            visitscotland:teaser: This is a broken DMS Listing 5
+            visitscotland:title: Broken DMS Listing 5
+            visitscotland:translation: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:linkTypes:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '-1'
+          /broken-dms-listing-5[2]:
+            jcr:primaryType: visitscotland:SharedLink
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: 4c55144c-5985-4953-8147-d8292218db88
+            hippo:availability: []
+            hippostd:retainable: false
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
+            hippostdpubwf:lastModificationDate: 2022-03-08T11:55:55.754Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 812ed87c-7dbb-4d1d-a6d6-2958d045fd63
+            hippotranslation:locale: en
+            visitscotland:teaser: This is a broken DMS Listing 5
+            visitscotland:title: Broken DMS Listing 5
             visitscotland:translation: ''
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
@@ -19559,7 +19663,7 @@
         hippostd:transferable: false
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2022-03-03T16:35:49.826Z
-        hippostdpubwf:lastModificationDate: 2022-03-08T11:21:58.051Z
+        hippostdpubwf:lastModificationDate: 2022-03-08T11:53:53.860Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 9c450f96-210c-4435-8569-635c09c3992d
         hippotranslation:locale: en
@@ -19931,9 +20035,9 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 7d31aef9-4105-40b4-b89b-4b0d87514abc
         hippo:availability: []
-        hippostd:holder: admin
         hippostd:retainable: false
         hippostd:state: draft
+        hippostd:transferable: false
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2022-03-03T16:35:49.826Z
         hippostdpubwf:lastModificationDate: 2022-03-08T11:22:44.723Z

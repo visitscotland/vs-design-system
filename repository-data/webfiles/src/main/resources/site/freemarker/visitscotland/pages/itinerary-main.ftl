@@ -98,13 +98,7 @@
 
     <@socialShare nojs=true/>
 
-    <#if otyml?? >
-        <#if otyml.getType()== "HorizontalListLinksModule" >
-            <@horizontalList otyml />
-        <#else>
-            <@previewWarning editMode otyml true "There is no valid links for the OTYML module and it has been removed from the page:"/>
-        </#if>
-    </#if>
+    <@otymlModule otyml editMode />
 
     <#if newsletterSignpost??>
 		<@signpost module=newsletterSignpost imgSrc="assets/images/illustrations/newsletter.svg"/>

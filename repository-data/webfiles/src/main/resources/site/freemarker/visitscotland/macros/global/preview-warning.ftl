@@ -9,6 +9,7 @@
         >
             <vs-alert>
                 <div>
+                    <p class="text-danger pb-2"><strong> ERROR! </strong></p>
                     <#if message?? && message != "">
                         <p>${message}</p>
                     <#elseif hidden>
