@@ -10,6 +10,7 @@
 
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/cms-errors.ftl">
+<#include "../macros/global/otyml.ftl">
 <#include "../macros/shared/module-builder.ftl">
 <#include "../macros/modules/signpost/signpost.ftl">
 
@@ -46,8 +47,12 @@
 
     <@socialShare nojs=true/>
 
-	<#if otyml??>
-		<@horizontalList otyml />
+	<#if otyml?? >
+		<#if otyml.getType()== "HorizontalListLinksModule" >
+			<@horizontalList otyml />
+		<#else>
+			<@previewWarning editMode otyml true "There is no valid links for the OTYML module and it has been removed from the page:"/>
+		</#if>
 	</#if>
 
 	<#if newsletterSignpost??>
