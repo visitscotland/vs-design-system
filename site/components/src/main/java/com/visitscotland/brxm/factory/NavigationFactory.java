@@ -134,7 +134,6 @@ public class NavigationFactory {
             }
             Optional<EnhancedLink> optionalLink = linkService.createEnhancedLink((Linkable) cmsLink.getLink(), widget, locale, false);
 
-            //TODO check null
             if (!optionalLink.isPresent()) {
                 contentLogger.warn("Failed to create widget: {}. Check link is published & valid", document.getPath());
                 continue;

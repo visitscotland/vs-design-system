@@ -9,7 +9,6 @@ import com.visitscotland.brxm.model.megalinks.MultiImageLinksModule;
 import com.visitscotland.brxm.model.megalinks.SingleImageLinksModule;
 import com.visitscotland.brxm.services.DocumentUtilsService;
 import com.visitscotland.utils.Contract;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,9 +49,13 @@ public class PageTemplateBuilder {
     private final StacklaFactory stacklaFactory;
     private final TravelInformationFactory travelInformationFactory;
     private final CannedSearchFactory cannedSearchFactory;
+    private final PreviewModeFactory previewFactory;
 
     @Autowired
-    public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory, TravelInformationFactory travelInformationFactory, CannedSearchFactory cannedSearchFactory) {
+    public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre,
+               IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory,
+               StacklaFactory stacklaFactory, TravelInformationFactory travelInformationFactory, CannedSearchFactory cannedSearchFactory,
+               PreviewModeFactory previewFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
@@ -63,6 +66,7 @@ public class PageTemplateBuilder {
         this.stacklaFactory = stacklaFactory;
         this.travelInformationFactory = travelInformationFactory;
         this.cannedSearchFactory = cannedSearchFactory;
+        this.previewFactory = previewFactory;
     }
 
     private Page getDocument(HstRequest request) {
@@ -129,12 +133,6 @@ public class PageTemplateBuilder {
         }
     }
 
-    private <T extends HippoBean> Module<T> createErrorModule(Module<T> source){
-        Module<T> errorModule = new Module<>();
-        errorModule.setHippoBean(source.getHippoBean());
-        errorModule.setErrorMessages(source.getErrorMessages());
-        return errorModule;
-    }
     /**
      * Creates a LinkModule from a Megalinks document
      */
@@ -146,7 +144,7 @@ public class PageTemplateBuilder {
         }
         if (numLinks == 0) {
             contentLogger.error("Megalinks module at {} contains no valid items", item.getPath());
-            page.modules.add(createErrorModule(al));
+            page.modules.add(previewFactory.createErrorModule(al));
             return;
         } 
 

@@ -3,6 +3,7 @@ package com.visitscotland.brxm.components.content;
 import com.visitscotland.brxm.config.VsComponentManager;
 import com.visitscotland.brxm.factory.ImageFactory;
 import com.visitscotland.brxm.factory.MegalinkFactory;
+import com.visitscotland.brxm.factory.PreviewModeFactory;
 import com.visitscotland.brxm.factory.SignpostFactory;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.hippobeans.VideoLink;
@@ -38,12 +39,14 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
     private ImageFactory imageFactory;
     private LinkService linksService;
     private final SignpostFactory signpostFactory;
+    private final PreviewModeFactory previewFactory;
 
     public PageContentComponent() {
         megalinkFactory = VsComponentManager.get(MegalinkFactory.class);
         imageFactory = VsComponentManager.get(ImageFactory.class);
         signpostFactory = VsComponentManager.get(SignpostFactory.class);
         linksService = VsComponentManager.get(LinkService.class);
+        previewFactory = VsComponentManager.get(PreviewModeFactory.class);
     }
 
     @Override
@@ -86,6 +89,7 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
             HorizontalListLinksModule otyml = megalinkFactory.horizontalListLayout(page.getOtherThings(), request.getLocale());
             if (Contract.isEmpty(otyml.getLinks())) {
                 contentLogger.error("OTYML at {} contains 0 published items. Skipping module", page.getOtherThings().getPath());
+                request.setAttribute(OTYML, previewFactory.createErrorModule(otyml));
                 return;
             }
             if (otyml.getLinks().size() < MegalinkFactory.MIN_ITEMS_CAROUSEL) {

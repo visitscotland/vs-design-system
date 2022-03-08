@@ -54,6 +54,9 @@ class PageTemplateBuilderTest {
     @Mock
     DocumentUtilsService utils;
 
+    @Mock
+    PreviewModeFactory previewModeFactory;
+
     @Resource
     @InjectMocks
     PageTemplateBuilder builder;
@@ -107,8 +110,10 @@ class PageTemplateBuilderTest {
         Megalinks megalinks = new MegalinksMockBuilder().build();
         LinksModule<?> module = new LinksModuleMockBuilder().build();
 
+
         when(utils.getAllowedDocuments(page)).thenReturn(Collections.singletonList(megalinks));
         doReturn(module).when(linksFactory).getMegalinkModule(megalinks, Locale.UK);
+        when(previewModeFactory.createErrorModule(any())).thenReturn(new Module());
 
         builder.addModules(request);
         List items = (List) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
