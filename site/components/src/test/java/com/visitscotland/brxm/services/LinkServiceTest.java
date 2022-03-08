@@ -498,7 +498,7 @@ class LinkServiceTest {
         Module<?> module = new Module<>();
 
         SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
-        when(imageFactory.createImage(node, module)).thenReturn(new FlatImage());
+        when(imageFactory.createImage(node, module, Locale.UK)).thenReturn(new FlatImage());
 
         EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false).get();
 

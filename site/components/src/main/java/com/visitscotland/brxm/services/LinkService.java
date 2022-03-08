@@ -465,7 +465,7 @@ public class LinkService {
         if (sharedLink.getImage() != null) {
             link.setImage(imageFactory.createImage(sharedLink.getImage(), module, locale));
         } else if (product != null && product.has(DMSConstants.DMSProduct.IMAGE)) {
-            link.setImage(imageFactory.createImage(product, module));
+            link.setImage(imageFactory.createImage(product, module, locale));
         }
 
         if (sharedLink.getLinkType() instanceof ExternalDocument) {

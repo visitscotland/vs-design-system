@@ -119,7 +119,7 @@ public class ListicleFactory {
                 contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), link.getPath());
                 module.addErrorMessage("Main Link: There is no a product with the id " + dmsLink.getProduct());
             }else {
-                processDMSMainProduct(module, dmsLink, product);
+                processDMSMainProduct(locale, module, dmsLink, product);
                 return linksService.createDmsLink(locale, dmsLink, product);
             }
         } else if (link instanceof CMSLink) {
@@ -162,13 +162,13 @@ public class ListicleFactory {
      * Facilities are loaded from the dmsItem. Subtitle, Image and Coordinates are set only when the listicle item has
      * not defined the values
      */
-    private void processDMSMainProduct(ListicleModule item, DMSLink dmsLink, JsonNode product) {
+    private void processDMSMainProduct(Locale locale, ListicleModule item, DMSLink dmsLink, JsonNode product) {
         if (product == null) {
             item.addErrorMessage("The product id does not match in the DMS");
             contentLogger.warn("The product id was not provided or the product was not found (id={}), Listicle = {} - {}",  dmsLink.getProduct(), item.getHippoBean(), item.getHippoBean().getTitle());
         } else {
             if (item.getImage() == null) {
-                item.setImage(imageFactory.createImage(product, item));
+                item.setImage(imageFactory.createImage(product, item, locale));
             } else if (item.getImage().getCoordinates() == null && product.has(LATITUDE)) {
                 Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
                 item.getImage().setCoordinates(coordinates);
