@@ -105,9 +105,6 @@ module.exports = {
 	settings: {
 		"import/resolver": {
 			node: {},
-			webpack: {
-				config: "./build/base.webpack.conf.js",
-			},
 			"import/extensions": [
 				".js",
 				".vue"
