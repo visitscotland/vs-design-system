@@ -250,7 +250,7 @@ export default {
 ```jsx
 <BsWrapper>
     <VsFormCheckbox
-        name="checkbox-example"
+        field-name="checkbox-example"
         value="accepted"
         id="checkbox-example"
         label="I accept the terms and conditions"
