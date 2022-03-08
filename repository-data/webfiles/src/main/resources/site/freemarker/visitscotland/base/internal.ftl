@@ -11,8 +11,8 @@
             <!-- end include -->
 
             <#if version == "legacy">
-               <!-- TODO: special headContribution -->
-<#--                <link rel="preload" href="<@hst.webfile fullyQualified=fullyQualifiedURLs path='path/to/the/style.css' />" as="style" />-->
+                <!-- TODO: special headContribution -->
+                <link rel="preload" href="<@hst.webfile fullyQualified=fullyQualifiedURLs path='frontend/third-party/legacy.css' />" as="style" />
             </#if>
         </internal-css-header>
     </#compress>

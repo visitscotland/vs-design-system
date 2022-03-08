@@ -2,7 +2,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 // const cssnano = require('cssnano');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+// const CopyPlugin = require('copy-webpack-plugin');
 
 // Hard code this to production but can be adapted to accept args to change env.
 const mode = 'production';
@@ -67,11 +67,11 @@ module.exports = {
             filename: '[name].css',
             chunkFilename: '[id].css',
         }),
-        new CopyPlugin([
-            {
-                from: './dist/library/embed/styles/legacy.css',
-                to: '../../../../../repository-data/webfiles/src/main/resources/site/frontend/third-party/',
-            },
-        ]),
+        // new CopyPlugin([
+        //     {
+        //         from: './dist/library/embed/styles/legacy.css',
+        //         to: '../../../../../repository-data/webfiles/src/main/resources/third-party/',
+        //     },
+        // ]),
     ],
 };
