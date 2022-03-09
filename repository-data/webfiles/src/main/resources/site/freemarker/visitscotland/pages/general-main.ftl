@@ -2,6 +2,7 @@
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/modules/page-intro/social-share.ftl">
+<#include "../macros/modules/search-results/search-results.ftl">
 <#include "../../frontend/components/vs-container.ftl">
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
@@ -46,18 +47,9 @@
 
     <@socialShare nojs=true/>
 
-    <div id="cludo-search-results">
-        <div class="cludo-r">
-            <div class="cludo-c-3">
-                <div class="search-filters" role="navigation"></div>
-            </div>
-            <div class="cludo-c-9" role="main">
-                <div class="search-result-count"></div>
-                <div class="search-did-you-mean"></div>
-                <div class="search-results"></div>
-            </div> 
-        </div>
-    </div>
+    <#if document.title == "Search Results">
+        <@searchResults />
+    </#if>
 
 	<#if otyml??>
 		<@horizontalList otyml />
