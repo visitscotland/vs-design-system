@@ -11,6 +11,7 @@
 
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/cms-errors.ftl">
+<#include "../macros/global/otyml.ftl">
 <#include "../macros/shared/module-builder.ftl">
 <#include "../macros/modules/signpost/signpost.ftl">
 
@@ -45,15 +46,13 @@
 
 	</#list>
 
-    <@socialShare nojs=true/>
-
     <#if document.title == "Search Results">
         <@searchResults />
     </#if>
 
-	<#if otyml??>
-		<@horizontalList otyml />
-	</#if>
+    <@socialShare nojs=true/>
+
+	<@otymlModule otyml editMode />
 
 	<#if newsletterSignpost??>
 		<@signpost module=newsletterSignpost imgSrc="assets/images/illustrations/newsletter.svg"/>

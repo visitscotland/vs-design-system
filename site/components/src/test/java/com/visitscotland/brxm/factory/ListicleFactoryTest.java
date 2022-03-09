@@ -293,7 +293,7 @@ class ListicleFactoryTest {
         JsonNode node = mock(JsonNode.class, withSettings().defaultAnswer(Answers.RETURNS_DEEP_STUBS));
 
         when(documentUtils.getAllowedDocuments(page, ListicleItem.class)).thenReturn(Collections.singletonList(item));
-        when(imageFactory.createImage(any(JsonNode.class), any())).thenReturn(dmsImage);
+        when(imageFactory.createImage(any(JsonNode.class), any(), any())).thenReturn(dmsImage);
         when(dmsData.productCard("1234", Locale.UK)).thenReturn(node);
 
         ListicleModule module = factory.generateItems(Locale.UK, page).get(0);
