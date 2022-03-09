@@ -70,13 +70,17 @@ export default {
         padding: $spacer-2;
         height: 45px;
 
+        .vs-icon{
+            margin-right: 0;
+        }
+
         @include media-breakpoint-up(lg) {
             padding: $spacer-3;
             height: 55px;
-        }
 
-        .vs-icon{
-            margin-right: 0;
+            .vs-icon{
+                margin-right: $spacer-2;
+            }
         }
     }
 }

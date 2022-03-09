@@ -14,8 +14,8 @@
         @focusout="hovered = false"
     >
         <VsIcon
-            :class="iconClasses"
             v-if="icon"
+            class="align-self-center"
             :name="icon"
             :size="iconSizeOverride || calcIconSize"
             :padding="0"
@@ -231,13 +231,6 @@ export default {
         },
         outlineColour() {
             return this.variant.replace('outline-', '');
-        },
-        iconClasses() {
-            if (!this.iconOnly && this.iconPosition === 'right') {
-                return 'align-self-center';
-            }
-
-            return '';
         },
     },
     methods: {
