@@ -15,7 +15,7 @@ module.exports = {
         filename: '[name].bundle.js',
         chunkFilename: '[name].[chunkhash].chunk.js',
         // Where the CSS is saved to
-        path: path.resolve(__dirname, '../dist/library/embed/styles'),
+        path: path.resolve(__dirname, '../embed/processed-styles'),
     },
 
     resolve: {
@@ -28,7 +28,7 @@ module.exports = {
 
     entry: {
         // Will create 'legacy.css' in 'css' dir.
-        legacy: './src/assets/embed-styles/import-override.scss',
+        legacy: './embed/import-override.scss',
     },
 
     module: {
@@ -49,9 +49,6 @@ module.exports = {
                     // Add browser prefixes and minify CSS.
                     {
                         loader: 'postcss-loader',
-                        options: {
-                            plugins: [autoprefixer()],
-                        },
                     },
                     // Load the SCSS/SASS
                     {
@@ -67,11 +64,6 @@ module.exports = {
             filename: '[name].css',
             chunkFilename: '[id].css',
         }),
-        // new CopyPlugin([
-        //     {
-        //         from: './dist/library/embed/styles/legacy.css',
-        //         to: '../../../../../repository-data/webfiles/src/main/resources/third-party/',
-        //     },
-        // ]),
+       
     ],
 };
