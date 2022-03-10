@@ -46,8 +46,7 @@
     "pretest:watch": "yarn theo",
     "pretest:coverage": "yarn theo",
     "pretest:debug:chrome": "yarn theo",
-    "pretest:e2e": "yarn theo",
-    "third-party": "webpack --config ./build/thirdparty.webpack.conf.js"
+    "pretest:e2e": "yarn theo"
   },
   "repository": {
     "type": "git",
