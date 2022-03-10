@@ -46,7 +46,7 @@
 
 	</#list>
 
-    <#if document.title == "Search Results">
+    <#if searchResultsPage??>
         <@searchResults />
     </#if>
 
