@@ -31,12 +31,8 @@ import { BButton } from 'bootstrap-vue';
 import VsIcon from '@components/elements/icon/Icon';
 
 /**
- * TODO: Document usage.
- *
- * NOTE: When listening for the @click event you need to use the `native` modifier
- * in order to listen for the underlying `button`s native event. e.g.
- *
- * <vs-button @click.native="handler">Click me</vs-button>
+ * Buttons are used to let users carry out actions on
+ * the page like toggle a modal or submit a form.
  *
  * @displayName Button
  */
@@ -224,6 +220,10 @@ export default {
                 return 'primary';
             }
 
+            if (this.variant === 'light') {
+                return 'dark';
+            }
+
             return 'light';
         },
         isOutline() {
@@ -238,10 +238,10 @@ export default {
             }
 
             if (!this.iconOnly) {
-                return 'mr-2';
+                return 'mr-2 align-self-center';
             }
 
-            return '';
+            return 'align-self-center';
         },
     },
     methods: {
@@ -404,123 +404,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    <h4 class="mb-2">Main Variations</h4>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-        <VsButton variant="primary" class="mr-2 mb-2">Primary (default)</VsButton>
-        <VsButton
-            class="mr-2 mb-2"
-            icon="food"
-            size="md"
-        >
-            Primary with an icon
-        </VsButton>
-        <VsButton variant="outline-primary" class="mr-2 mb-2">Primary Outline</VsButton>
-        <VsButton
-            class="mr-2 mb-2"
-            variant="outline-primary"
-            icon="food"
-            size="md"
-        >
-            Outline with an icon
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="primary" size="md">
-            Disabled primary
-        </VsButton>
-    </BsWrapper>
-    <BsWrapper class="d-flex flex-wrap mb-4 bg-dark p-3">
-        <VsButton variant="secondary" class="mr-2 mb-2">Secondary</VsButton>
-        <VsButton
-            class="mr-2 mb-2"
-            icon="food"
-            size="md"
-            variant="secondary"
-        >
-            Secondary with an icon
-        </VsButton>
-        <VsButton variant="outline-secondary" class="mr-2 mb-2">Secondary Outline</VsButton>
-        <VsButton
-            class="mr-2 mb-2"
-            variant="outline-secondary"
-            icon="food"
-            size="md"
-        >
-            Outline with an icon
-        </VsButton>
-        <VsButton disabled class="mr-2 mb-2" variant="secondary" size="md">
-            Disabled Secondary
-        </VsButton>
-    </BsWrapper>
-
-    <h4 class="mb-2">Other Variations</h4>
-
-    <BsWrapper class="d-flex flex-wrap mb-4">
-      <VsButton variant="transparent" class="mr-2 mb-2">Transparent</VsButton>
-      <VsButton variant="dark" class="mr-2 mb-2">Dark</VsButton>
-      <VsButton variant="light" class="mr-2 mb-2">Light</VsButton>
-    </BsWrapper>
-
-    <h4 class="mb-2">Types</h4>
-
-    <BsWrapper class="d-flex flex-wrap mb-4">
-      <VsButton class="mr-2 mb-2">Button</VsButton>
-      <VsButton :animate=false class="mr-2 mb-2">Button with no animation</VsButton>
-      <VsButton class="mr-2 mb-2" href="https://www.visitscotland.com">Link</VsButton>
-    </BsWrapper>
-
-    <h4 class="mb-2">Icon Sizing</h4>
-
-    <BsWrapper class="d-flex flex-wrap mb-4">
-      <VsButton
-        class="mr-2 mb-2"
-        icon="food"
-        size="sm"
-      >
-        Nearby Places to Eat
-      </VsButton>
-    </BsWrapper>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-      <VsButton
-        class="mr-2 mb-2"
-        icon="map"
-        size="md"
-      >
-        Map View
-      </VsButton>
-    </BsWrapper>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-      <VsButton
-        class="mr-2 mb-2"
-        icon="external-link"
-        size="lg"
-      >
-        Open in a new tab
-      </VsButton>
-    </BsWrapper>
-
-    <h4 class="mb-2">Icon Only</h4>
-    <BsWrapper class="d-flex flex-wrap mb-4">
-      <VsButton
-        class="mr-2 mb-2"
-        icon="external-link"
-        size="sm"
-        icon-only
-      />
-    </BsWrapper>
-
-    <h4 class="mb-2">Outline Color Variants - override transparent background</h4>
-    <BsWrapper class="d-flex flex-wrap mb-4 bg-dark p-3">
-      <VsButton background="white" variant="outline-primary" class="mr-2 mb-2">Primary</VsButton>
-    </BsWrapper>
-
-    <h4 class="mb-2">Sizes</h4>
-    <BsWrapper>
-      <VsButton class="mr-2 mb-2" size="sm">Small</VsButton>
-      <VsButton class="mr-2 mb-2" size="md">Medium</VsButton>
-      <VsButton class="mr-2 mb-2" size="lg">Large</VsButton>
-      <VsButton block class="mr-2 mb-2" size="md">Block</VsButton>
-    </BsWrapper>
-```
-</docs>
