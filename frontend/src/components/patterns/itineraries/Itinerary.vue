@@ -9,7 +9,7 @@
                     class="vs-itinerary__map-toggle-button"
                     @click.native="toggleShowMap()"
                     :icon="showMap ? 'list' : 'map'"
-                    icon-variant-override="reverse-white"
+                    icon-variant-override="color-white"
                     icon-size-override="md"
                 >
                     {{ showMap ? 'List View' : 'Map View' }}

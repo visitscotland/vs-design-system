@@ -5,7 +5,7 @@
         :animate="false"
         size="lg"
         icon="search"
-        :icon-variant-override="isOn ? 'secondary' : 'reverse-white'"
+        :icon-variant-override="isOn ? 'secondary' : 'color-white'"
     >
         <span class="sr-only-xl-down d-xl-flex"><slot /></span>
     </VsButton>
