@@ -12,7 +12,7 @@
         </div>
         <div class="vs-alert__content-wrapper">
             <div class="vs-alert__content">
-                <!-- @slot Holds content for the alert - text expected -->
+                <!-- @slot Default slot for alert text -->
                 <slot />
             </div>
         </div>
@@ -22,7 +22,8 @@
 import VsIcon from '@components/elements/icon';
 
 /**
- * A simple alert component. Displays text in a responsive, highlighted box.
+ * The alert component makes text more prominent to notify
+ * the user of important information.
  *
  * @displayName Alert
  */
