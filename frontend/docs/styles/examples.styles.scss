@@ -99,6 +99,37 @@
         border-radius: 0;
         display: block;
         width: 100%;
+
+        
+        // Component Preview Styles
+
+        //Icon
+        .vs-icon-preview{
+            text-align: center;
+
+            @media (min-width: $docs-breakpoint-sm) {
+                display: flex;
+            }
+
+            &__column{
+                align-items: center;
+                margin: 0 $space-m $space-m 0;
+
+                h4{
+                    margin-bottom: $space-xx-small;
+                }
+
+                p{
+                    font-size: $size-s;
+                }
+
+                @media (min-width: $docs-breakpoint-sm) {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        }
+
     }
 
     article[class^='rsg--root']{
