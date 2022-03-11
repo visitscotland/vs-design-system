@@ -7,7 +7,7 @@ subheadings should follow the hierarchical scale where possible.
 
 Headings should be written in sentence case and be kept short and simple. 
 
-### Standard
+### Default
 ```jsx
     <VsHeading>Scotland is calling (H1)</VsHeading>
     
