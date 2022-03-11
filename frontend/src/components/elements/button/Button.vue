@@ -55,22 +55,15 @@ export default {
         },
         /**
          * Tab index value - this is needed as tabindex attribute is sometimes stripped
-         * from the button on first update with nested components
+         * from the button on first update with nested components.
          */
         tabindex: {
             type: String,
             default: null,
         },
         /**
-         * Style variation to give additional meaning.
-         * `primary, secondary, transparent, dark, light`
-         *
-         * Primary is the main colour style for buttons and should be used in most cases,
-         * secondary is a brighter (yellow) style that should only be used on dark
-         * backgrounds
-         *
-         * Transparent, dark and light are specialised cases that should only be used if
-         * specifically required by the design
+         * Style variation to give additional meaning
+         * `primary, secondary, transparent, dark, light`.
          */
         variant: {
             type: String,
@@ -80,11 +73,8 @@ export default {
             ),
         },
         /**
-         * Background property used primarily for overrides.
-         * Normally we use the above variant properties for applying background color, but
-         * in cases where outline buttons are used and default transparent state needs to be
-         * overridden, this background property can be applied
-         * `white`
+         * Background property used primarily for overrides on transparent variant
+         * `white`.
          */
         background: {
             type: String,
@@ -92,8 +82,8 @@ export default {
             validator: (value) => value.match(/(white)/),
         },
         /**
-         * Style the button size.
-         * `sm, md, lg`
+         * Size of the button
+         * `sm, md, lg`.
          */
         size: {
             type: String,
@@ -102,31 +92,29 @@ export default {
         },
         /**
          * By default, buttons have an animation behaviour on click.
-         * To disable, add an animate=false property
+         * Pass `false` to disable.
          */
         animate: {
             type: Boolean,
             default: true,
         },
         /**
-         * If you need a button with icon
-         * just pass the icon name here.
-         */
-        icon: {
-            type: String,
-            default: '',
-        },
-        /**
-         * By default, button text is uppercase
-         * To disable, add an uppercase=false property
+         * By default, button text is uppercase. Pass `false` to disable.
          */
         uppercase: {
             type: Boolean,
             default: true,
         },
         /**
+         * Pass the name of the icon to add it to the button.
+         */
+        icon: {
+            type: String,
+            default: '',
+        },
+        /**
          * The icon orientation
-         * `up, down, left, right`
+         * `up, down, left, right`.
          */
         iconOrientation: {
             type: String,
@@ -134,28 +122,26 @@ export default {
             validator: (value) => value.match(/(up|down|left|right)/),
         },
         /**
-         * If the button contains an icon and no text
+         * If the button contains an icon only with no text.
          */
         iconOnly: {
             type: Boolean,
             default: false,
         },
         /**
-         * The variant to be used for a contained icon, generally this is
-         * automatically calculated based on the button variant but in a few
-         * unusual cases it is desirable to manually set it
+         * Icon color is automatically set by the Button component, however if
+         * needed for an edge case, this can be overriden here.
          */
         iconVariantOverride: {
             type: String,
             default: null,
             validator: (value) => value.match(
-                /(primary|secondary|light|dark|reverse-white|secondary-teal)/,
+                /(primary|secondary|light|dark|color-white|secondary-teal)/,
             ),
         },
         /**
-         * The size to be used for a contained icon, generally this is
-         * automatically calculated based on the button size but in a few
-         * unusual cases it is desirable to manually set it
+         * Icon size is automatically set by the Button component, however if
+         * needed for an edge case, this can be overriden here.
          */
         iconSizeOverride: {
             type: String,
