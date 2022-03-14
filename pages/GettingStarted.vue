@@ -8,7 +8,7 @@
 <script>
 export default {
   async asyncData ({ $content }) {
-    const page = await $content('home').fetch()
+    const page = await $content('design-system').fetch()
 
     return {
       page

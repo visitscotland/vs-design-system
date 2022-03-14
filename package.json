@@ -13,7 +13,7 @@
     "scripts": {
         "dev": "nuxi dev",
         "build": "nuxi build",
-        "generate": "nuxt generate",
+        "generate": "graphql-codegen --config codegen.yml",
         "start": "nuxi preview"
     },
     "repository": {
@@ -80,6 +80,8 @@
     },
     "devDependencies": {
         "@contentful/rich-text-html-renderer": "^15.11.1",
+        "@graphql-codegen/cli": "2.6.2",
+        "@nuxt3-graphql/codegen": "^0.4.0",
         "@nuxtjs/style-resources": "^1.2.1",
         "@vue/test-utils": "^2.0.0-rc.17",
         "autoprefixer": "^10.4.2",
@@ -116,7 +118,9 @@
         "terser-webpack-plugin": "^5.3.1",
         "turndown": "^7.1.1",
         "turndown-plugin-gfm": "^1.0.2",
-        "vue-jest": "^3.0.7"
+        "vue-jest": "^3.0.7",
+        "@graphql-codegen/urql-introspection": "2.1.1",
+        "@graphql-codegen/introspection": "2.1.1"
     },
     "engines": {
         "node": ">= 12.18.4",

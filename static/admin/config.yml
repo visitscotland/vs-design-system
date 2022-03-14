@@ -1,16 +1,15 @@
 backend:
-  name: github
-  repo: visitscotland/design-system # replace this with your repo info
-  use_graphql: true
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
 
 local_backend: true
 media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'section'
-    label: 'Section'
-    folder: 'content/section'
+  - name: 'design-system'
+    label: 'Design System'
+    folder: 'content/ds'
     format: 'frontmatter'
     create: true
     slug: '{{slug}}'
