@@ -5,7 +5,6 @@
         :class="accordionItemClasses"
         :data-unique-id="getUniqueId"
         :control-id="`vs-mega-nav-accordion-item-${getUniqueId}-${controlId}`"
-        :open-by-default="false"
     >
         <template #title>
             {{ title }}
@@ -13,15 +12,16 @@
 
         <template #icon-open>
             <VsIcon
-                name="minus"
+                name="chevron"
                 variant="secondary"
+                orientation="up"
                 size="xs"
             />
         </template>
         <template #icon-closed>
             <VsIcon
-                name="plus"
-                orientation="right"
+                name="chevron"
+                orientation="down"
                 variant="secondary"
                 size="xs"
             />
