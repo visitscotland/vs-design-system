@@ -12,7 +12,6 @@
  --------------------------------------------- */
 
 $docs-color-text: shade($docs-color-silver, 70%);
-
 $docs-color-blue-dark: shade($docs-color-blue, 30%);
 $docs-color-blue-light: tint($docs-color-blue, 30%);
 $docs-color-purple-dark: shade($docs-color-purple, 30%);
@@ -46,6 +45,10 @@ main section section > div > div[class^='rsg--root'] {
     flex-direction: column;
     margin-bottom: $space-xl;
     border-bottom: 1px solid $docs-color-grey;
+
+    &:last-of-type{
+        border-bottom: 0;
+    }
 }
 
 /* TYPOGRAPHY
@@ -67,7 +70,7 @@ div[class^='rsg--root'] a[class^='rsg--link'], a {
 }
 
 // Main headings
-// (includes h2 as well since in component views that’s the first heading)
+// (includes h2 as well since in component views that’s the first heading) 
 div[class^='rsg--wrapper'] > h1[class^='rsg--heading'],
 div[class^='rsg--wrapper'] > h2[class^='rsg--heading'] {
     display: block;
@@ -96,6 +99,12 @@ div[class^='rsg--wrapper'] > h2[class^='rsg--heading'] {
     }
 }
 
+div[class^='rsg--wrapper'] > h1[class^='rsg--heading']{
+    &.section-h1{
+        border-bottom: 1px solid $docs-color-grey;
+    }
+}
+
 // Heading, level 2
 h2[class^='rsg--heading'] {
     font-size: $size-xxl;
@@ -103,7 +112,7 @@ h2[class^='rsg--heading'] {
     font-weight: $weight-semi-bold;
     letter-spacing: -0.5px;
     width: 100%;
-    margin: $space-base 0 $space-xs;
+    margin: $space-xl / 2 0 $space-s;
 
     @media (max-width: #{$docs-breakpoint}) {
         font-size: $size-xxl / 1.3;
@@ -125,17 +134,18 @@ h3[class^='rsg--heading'] a {
     -moz-osx-font-smoothing: auto;
     margin: $space-base 0 $space-xs;
     font-size: 30px;
+    font-weight: $weight-semi-bold;
     color: $docs-color-text;
 
     @media (max-width: #{$docs-breakpoint}) {
-        font-size: $size-xl / 1.2;
+        font-size: $space-m;
     }
 }
 
 // Heading, level 4
 h4[class^='rsg--heading'],
 h4[class^='rsg--heading'] a {
-    font-weight: $weight-bold;
+    font-weight: $weight-semi-bold;
     letter-spacing: 0;
     margin: $space-base 0 $space-xs;
     font-size: $size-l;
@@ -184,6 +194,22 @@ p[class^='rsg--para'] {
     }
 }
 
+article[class^='rsg--root']{
+    p[class^='rsg--para'] {
+        &:first-of-type{
+            font-weight: 100;
+            font-size: 28px;
+            line-height: initial;
+        }
+    }
+}
+
+div[class^='rsg--spacing']{
+    margin: 0;
+}
+
+
+
 // Type layout adjustments
 div[class^='rsg--docs'],
 p[class^='rsg--para'],
@@ -192,13 +218,7 @@ h4[class^='rsg--heading'] {
     width: 100%;
 
     @media (min-width: $docs-breakpoint-xl) {
-        width: 75%;
-    }
-}
-
-.section-components p[class^='rsg--para']{
-    @media (min-width: $docs-breakpoint-xl) {
-        width: 100%;
+        width: 80%;
     }
 }
 
@@ -311,7 +331,7 @@ div[class^=rsg--mainContent] > header[class^='rsg--header']{
     }
 
     @media (min-width: #{$docs-breakpoint-xxxl}) {
-        width: 75%;
+        width: 60%;
     }
 }
 
@@ -418,12 +438,13 @@ div[class^='rsg--sidebar'] {
             // Sidebar second level link
             a[class*="rsg--link"] {
                 font-size: $size-m;
+                padding: 3px 16px;
                 font-weight: $weight-normal;
                 -webkit-font-smoothing: subpixel-antialiased;
                 -moz-osx-font-smoothing: auto;
 
                 @media (min-width: #{$docs-breakpoint-xl}) {
-                    font-size: $size-base;
+                    font-size: 18px;
                 }
             }
 
@@ -514,25 +535,13 @@ p[class^='rsg--version'] {
     
 }
 
-/* CODE & COMPONENT PREVIEWS
- --------------------------------------------- */
 
-// Previews of the components
-div[class^='rsg--preview'] {
-    padding: $space-l / 1.2;
-    background-color: $docs-color-white;
-    border: 1px solid tint($docs-color-grey, 50%);
-    margin: $space-s 0 0;
-    border-radius: 0;
-    display: block;
-    width: 100%;
-    border-top-left-radius: $radius-default;
-    border-top-right-radius: $radius-default;
-}
+/* Categories
+ --------------------------------------------- */
 
 // If you edit the component categories, you have to edit
 // these to match as well.
-div[data-preview='Elements'],
+div[data-preview='Elements'] ,
 div[data-preview='Patterns'],
 div[data-preview='Templates'] {
     background: transparent;
@@ -546,176 +555,8 @@ div[data-preview='Templates'] {
     }
 }
 
-// Clearfix to take care of floated content inside previews
-div[data-preview]:after {
-    content: '';
-    display: table;
-    clear: both;
-}
-
-// Code tabs and table
-div[class^='rsg--tabs'],
-table[class^='rsg--table'] {
-    margin-bottom: $space-l;
-    overflow-x: auto;
-}
-thead[class^='rsg--tableHead'] {
-    border: 0;
-}
-
-// Codemirror and markdown code blocks
-pre[class^='rsg--pre'],
-.vueds-html.cm-s-base16-light.CodeMirror,
-.react-codemirror2 .CodeMirror.CodeMirror {
-    background: $docs-color-very-light-blue;
-    border-bottom-left-radius: $radius-default;
-    border-bottom-right-radius: $radius-default;
-    box-sizing: border-box;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    height: auto;
-    border: 1px solid $docs-color-light-grey;
-    border-top: 0;
-    font-family: Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: $size-s;
-    margin: 0;
-    min-height: $space-xxl / 1.5;
-    margin-bottom: $space-m;
-    color: $docs-color-grey-dark;
-    padding: $space-m;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    word-break: normal;
-
-    .CodeMirror-scroll,
-    .CodeMirror-vscrollbar {
-        overflow: hidden;
-    }
-
-    code {
-        color: $docs-color-grey-dark;
-    }
-}
-
-// HTML preview needs some padding adjustments to match Styleguidist
-.vueds-html.cm-s-base16-light.CodeMirror {
-    padding-left: $space-m - 4px;
-}
-
-// VUE & HTML Code tabs
-div[class^='rsg--tab'] {
-    position: relative;
-
-    .vueds-tabs {
-        z-index: 5;
-        border-radius: $radius-default;
-        overflow: hidden;
-        position: absolute;
-        top: $space-m;
-        right: $space-m;
-
-        .vueds-tab {
-            border: 0;
-            margin: 0;
-            letter-spacing: $spacing-l;
-            font-size: $size-s;
-            font-weight: $weight-normal;
-            font-family: $font-text;
-            line-height: $line-height-s;
-            @include inset-squish-space($space-s);
-            cursor: pointer;
-            background: $docs-color-purple;
-            color: $docs-color-white;
-            
-            &:active, &--active {
-                background: mix($docs-color-purple, $docs-color-rich-black, 80%);
-            }
-
-            &:focus {
-                outline: none;
-            }
-
-            &--active {
-                box-shadow: inset 0 2px 8px rgba($docs-color-rich-black, 0.2);
-            }
-        }
-    }
-}
-
-// Hidden HTML/VUE code preview
-.vueds-hidden {
-    opacity: 0;
-    visibility: hidden;
-    z-index: -1;
-    top: -10000px;
-    left: 0;
-    position: absolute !important;
-}
-
-// Fixes a few layout bugs with CodeMirror
-.CodeMirror-scroll.CodeMirror-scroll {
-    overflow: hidden !important;
-}
-
-// Code highlighting for both CodeMirror and Markdown files
-.hljs-variable,
-.hljs-selector-class,
-.cm-s-base16-light span.cm-variable,
-.cm-s-base16-light span.cm-variable-2,
-.cm-s-base16-light span.cm-bracket,
-.cm-s-base16-light span.cm-tag,
-.hljs-tag,
-.hljs-name {
-    color: $docs-code-blue!important;
-}
-.hljs-attribute,
-.hljs-keyword,
-.hljs-attr,
-.cm-s-base16-light span.cm-operator,
-.cm-s-base16-light span.cm-number,
-.cm-s-base16-light span.cm-attribute {
-    color:  $docs-code-red!important;
-}
-.cm-s-base16-light span.cm-string,
-.hljs-string {
-    color: $docs-code-pink!important;
-}
-
-// Code highlighting elsewhere
-span[class^='rsg--type'],
-code[class^='rsg--code'],
-code[class^='rsg--name'], 
-code.name{
-    font-size: $size-s;
-}
-
-span[class^='rsg--type'],
-code[class^='rsg--code'] {
-    color: $docs-color-grey-dark;
-}
-
-code[class^='rsg--name'], 
-code.name {
-    color: $docs-code-red;
-}
-
-span[class^='rsg--type']{
-    color: $docs-color-grey-med;
-}
-
-
-span[class^='rsg--type'] code[class^='rsg--code'],
-code.type {
-    background: tint($docs-color-grey, 75%);
-    color: shade($docs-color-silver, 20%);
-    padding: $space-xx-small;
-    border-radius: $radius-default;
-}
-
-
 /* COMPONENT STATUS LABELS
  --------------------------------------------- */
-
 // Here we’re setting a custom order for Styleguidist’s pieces
 header[class^='rsg--header'] {
     margin-bottom: 0;
@@ -775,7 +616,7 @@ div[class^='rsg--root'] div[class^='rsg--tabs'] {
     }
 }
 
-/* TABLES
+/* GLOBAL TABLES
  --------------------------------------------- */
 
 // Global tr setting so that vueds custom components use this as well
@@ -787,10 +628,6 @@ table[class^='rsg--table'] {
 
     @media (max-width: $docs-breakpoint-lg) {
         overflow-x: auto;
-    }
-
-    @media (min-width: $docs-breakpoint-xl) {
-        width: 75%;
     }
 
     thead {
@@ -829,23 +666,42 @@ table[class^='rsg--table'] {
             &[class^='rsg--cell']:last-child{
                 padding-right: 16px;
             }
-            
+
+            // Styles for tables added through CMS 
+            // It automatically puts table content in paragraphs
+            p[class^='rsg--para']{
+                &:first-of-type{
+                    font-weight: $weight-normal;
+                    font-size: $size-base;
+                }
+            }
         }
 
         tr{
             &:nth-of-type(even){
                 background: $docs-color-very-light-blue;
             }
+
+            // Styles for tables added through CMS 
+            // It does not add a thead row
+            &:first-of-type{
+                td{
+                    p[class^='rsg--para']{
+                        &:first-of-type{
+                            font-weight: $weight-semi-bold;
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
 
-
-
 /* CHILD COMPONENT LIST */
 .child-component-list {
-    margin: $space-xx-small 0 $space-l;
+    margin: $space-xx-small 0 0;
+    display: none;
 
     span {
         @extend .status;
@@ -865,8 +721,6 @@ table[class^='rsg--table'] {
 /* HIDDEN STYLEGUIDIST FUNCTIONALITY
  --------------------------------------------- */
 
-div[class^='rsg--tabButtons'],
-div[class^='rsg--controls'],
 div[class^='rsg--pathline'],
 div[class^='rsg--toolbar'] {
     display: none !important;
@@ -899,6 +753,7 @@ ul a[href*='/#/Private Components'] {
     display: none !important;
 }
 
+
 /* SCREENSHOT MODE
 /* While regression tests are running the screen needs to be set up in such
 /* a way that the full screen component occupies the actual html scroll bar
@@ -907,6 +762,7 @@ ul a[href*='/#/Private Components'] {
 .vds-screenshot-mode {
     .vds-example-full-screen {
         position: relative;
+        overflow: hidden;
     }
 
     div[class^='rsg--sidebar'] {
@@ -927,9 +783,5 @@ ul a[href*='/#/Private Components'] {
 
     div[class^='rsg--tabs'] {
         display: none;
-    }
-
-    div.vds-example-full-screen {
-        overflow: hidden;
     }
 }
