@@ -78,6 +78,19 @@ module.exports = {
             },
             {
                 test: /\.svg$/,
+                exclude: [
+                    resolve('src/assets/svg/'),
+                ],
+                loader: 'file-loader',
+                options: {
+                    name: 'img/[name].[hash:7].[ext]',
+                },
+            },
+            {
+                test: /\.svg$/,
+                include: [
+                    resolve('src/assets/svg/'),
+                ],
                 use: [
                     'html-loader',
                     {
