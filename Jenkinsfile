@@ -1,4 +1,3 @@
-def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-products"
 def MAIL_TO = "webops@visitscotland.net"
 
 def thisAgent
@@ -61,7 +60,6 @@ pipeline {
     // VS_COMMIT_AUTHOR is required by later stages which will fail if it's not set, default value of jenkins@visitscotland.net
     // turns out if you set it here it will not be overwritten by the load later in the pipeline
     //VS_COMMIT_AUTHOR = 'jenkins@visitscotland.net'
-    VS_RUN_LIGHTHOUSE_TESTS = 'TRUE'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
@@ -82,20 +80,25 @@ pipeline {
 
   stages {
 
-//  -- "Checkout Design System". This stage now commented out as it's no longer required since VS-1081 - please merge this change as required but leave the block for reference
-//  stage ('Checkout Design System') {
-//    steps {
-//      // -- create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
-//      sh 'mkdir -p design-system'
-//      dir('design-system') {
-//        //git branch: '${DS_BRANCH}', credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43', url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git'
-//        checkout([$class: 'GitSCM', branches: [[name: "*/${DS_BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'dist/']]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43',url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git']]])
-//      }
-//    }
-//  }
-
     stage ('Pre-build') {
+
       steps {
+        // Set any defined build property overrides for this work-in-progress branch
+        script {
+
+          // Set any supported build property overrides defined in ci/BRANCH_NAME.buildprops
+          branchBuildScripts = load("./ci/branchBuildScripts.groovy")
+
+          // Set the buildprop environment variables either to their default values or any specified overrides
+          Map buildProps = branchBuildScripts.loadPropOverrides("${env.WORKSPACE}" + "/ci/", branchBuildScripts.getBranchKey())
+          Map buildPropParsers = branchBuildScripts.getPropParsers()
+          buildPropParsers.each {
+            k, v ->
+              String parsedValue = ( buildProps?.containsKey(k) ? v.parser(buildProps[k]) : v.default )
+              env."${k}" = parsedValue
+          }
+        }
+
         sh 'printenv'
       }
     }
@@ -184,6 +187,18 @@ pipeline {
     } //end stage
 
     stage ('vs build feature env') {
+      when {
+        anyOf {
+          // Always build the feature environment for 'develop' builds
+          branch 'develop'
+
+          // Always build the feature environment for pull requests
+          changeRequest()
+
+          // If requested, build feature environment for feature branches prior to PR
+          environment name: 'VS_BUILD_FEATURE_ENVIRONMENT', value: 'true'
+        }
+      }
       steps{
         script{
           //sh 'sh ./infrastructure/scripts/docker.sh'
@@ -238,6 +253,84 @@ pipeline {
           }
         }
 
+        stage('Nexus IQ Scan: Site') {
+          when {
+            anyOf {
+              // Always run Nexus IQ scan for builds on 'develop'
+              branch 'develop' 
+ 
+              // Always run Nexus IQ scan for pull requests
+              changeRequest()
+            }
+          }
+          steps {
+            script{
+              try {
+                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, enableDebugLogging: true, iqApplication: selectedApplication('visitscotland-site'), iqScanPatterns: [[scanPattern: '**/site.war']], iqStage: 'build', jobCredentialsId: 'nexusiq'
+                echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
+                IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
+              } 
+              catch (error) {
+                def policyEvaluation = error.policyEvaluation
+                echo "Nexus IQ scan vulnerabilities detected', ${policyEvaluation.applicationCompositionReportUrl}"
+                throw error
+              }
+            }
+          }
+        } //end stage
+
+        stage('Nexus IQ Scan: CMS') {
+          when {
+            anyOf {
+              // Always run Nexus IQ scan for builds on 'develop'
+              branch 'develop' 
+ 
+              // Always run Nexus IQ scan for pull requests
+              changeRequest()
+            }
+          }
+          steps {
+            script{
+              try {
+                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, enableDebugLogging: true, iqApplication: selectedApplication('visitscotland-cms'), iqScanPatterns: [[scanPattern: '**/cms.war']], iqStage: 'build', jobCredentialsId: 'nexusiq'
+                echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
+                IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
+              } 
+              catch (error) {
+                def policyEvaluation = error.policyEvaluation
+                echo "Nexus IQ scan vulnerabilities detected', ${policyEvaluation.applicationCompositionReportUrl}"
+                throw error
+              }
+            }
+          }
+        } //end stage
+
+        stage('Nexus IQ Scan: SSR') {
+          when {
+            anyOf {
+              // Always run Nexus IQ scan for builds on 'develop'
+              branch 'develop' 
+ 
+              // Always run Nexus IQ scan for pull requests
+              changeRequest()
+            }
+          }
+          steps {
+            script{
+              try {
+                def policyEvaluation = nexusPolicyEvaluation failBuildOnNetworkError: true, enableDebugLogging: true, iqApplication: selectedApplication('visitscotland-ssr'), iqScanPatterns: [[scanPattern: '**/*ssr*.tar.gz']], iqStage: 'build', jobCredentialsId: 'nexusiq'
+                echo "Nexus IQ scan succeeded: ${policyEvaluation.applicationCompositionReportUrl}"
+                IQ_SCAN_URL = "${policyEvaluation.applicationCompositionReportUrl}"
+              } 
+              catch (error) {
+                def policyEvaluation = error.policyEvaluation
+                echo "Nexus IQ scan vulnerabilities detected', ${policyEvaluation.applicationCompositionReportUrl}"
+                throw error
+              }
+            }
+          }
+        } //end stage
+
         stage ('Snapshot to Nexus'){
               when {
                 allOf {
@@ -280,7 +373,20 @@ pipeline {
     stage('Lighthouse Testing'){
       when {
         allOf {
-          expression {return env.VS_RUN_LIGHTHOUSE_TESTS == 'TRUE'}
+          not {
+            // Allow lighthouse to be skipped even if a feature environment was built
+            environment name: 'VS_SKIP_LIGHTHOUSE_TESTS', value: 'true'
+          }
+          anyOf {
+            // Always run the Lighthouse Tests for 'develop' builds
+            branch 'develop' 
+
+            // Always run the Lighthouse Tests for pull requests
+            changeRequest()
+
+            // If the feature environment was forced to be built, run the Lighthouse tests
+            environment name: 'VS_BUILD_FEATURE_ENVIRONMENT', value: 'true'
+          }
         }
       }
       steps{

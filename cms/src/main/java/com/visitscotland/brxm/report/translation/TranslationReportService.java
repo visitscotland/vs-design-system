@@ -4,10 +4,11 @@ import com.visitscotland.brxm.report.ReportException;
 import com.visitscotland.brxm.translation.SessionFactory;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
+import com.visitscotland.brxm.translation.plugin.TranslationWorkflow;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.repository.api.HippoNode;
-import org.hippoecm.repository.api.WorkflowException;
+import org.hippoecm.repository.api.Workflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -23,10 +24,8 @@ import java.util.stream.Collectors;
 public class TranslationReportService {
 
     private final Logger log = LoggerFactory.getLogger(TranslationReportService.class);
-    private final String VS_TRANSLATION_FLAG = "visitscotland:translationFlag";
     private final String LAST_MODIFIED_BY_PROPERTY = "hippostdpubwf:lastModifiedBy";
     private final String LAST_MODIFIED_DATE_PROPERTY = "hippostdpubwf:lastModificationDate";
-    private final String VS_TRANSLATION_PRIORITY = "visitscotland:translationPriority";
     private final List<String> SUPPORTED_LOCALES = Language.getLocales().stream().map(Locale::getLanguage).collect(Collectors.toList());
     private Set<String> cachedPageTypes;
     private Set<String> cachedModuleTypes;
@@ -45,13 +44,35 @@ public class TranslationReportService {
         try {
             Node jcrNode = sessionFactory.getJcrSession().getNodeByIdentifier(handleId);
             JcrDocument doc = jcrDocumentFactory.createFromNode(jcrNode);
-            jcrUtilService.setTranslationPriority(doc, priority);
+            Workflow workflow = sessionFactory.getUserSession().getWorkflowManager().getWorkflow("translation", doc.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
+            if (workflow instanceof TranslationWorkflow) {
+                TranslationWorkflow translationWorkflow = (TranslationWorkflow) workflow;
+                translationWorkflow.setTranslationPriority(priority);
+            } else {
+                throw new ReportException("Failed to load TranslationWorkflow");
+            }
         } catch (ItemNotFoundException ex) {
             throw new ReportException("Can not find item", ex);
         } catch (RepositoryException | RemoteException ex) {
             throw new ReportException("Failed to update item", ex);
-        } catch (WorkflowException ex) {
-            throw new ReportException("Document being modified by another user", ex);
+        }
+    }
+
+    public void setTranslationDeadline(String handleId, Calendar deadline) {
+        try {
+            Node jcrNode = sessionFactory.getJcrSession().getNodeByIdentifier(handleId);
+            JcrDocument doc = jcrDocumentFactory.createFromNode(jcrNode);
+            Workflow workflow = sessionFactory.getUserSession().getWorkflowManager().getWorkflow("translation", doc.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
+            if (workflow instanceof TranslationWorkflow) {
+                TranslationWorkflow translationWorkflow = (TranslationWorkflow) workflow;
+                translationWorkflow.setTranslationDeadline(deadline);
+            } else {
+                throw new ReportException("Failed to load TranslationWorkflow");
+            }
+        } catch (ItemNotFoundException ex) {
+            throw new ReportException("Can not find item", ex);
+        } catch (RepositoryException | RemoteException ex) {
+            throw new ReportException("Failed to update item", ex);
         }
     }
 
@@ -82,9 +103,10 @@ public class TranslationReportService {
                 String primaryNodeType = unpublished.getProperty("jcr:primaryType").getString().replace("visitscotland:", "");
                 String lastModifiedBy = unpublished.hasProperty(LAST_MODIFIED_BY_PROPERTY) ? unpublished.getProperty(LAST_MODIFIED_BY_PROPERTY).getString() : "";
                 String lastModified = getDateAsIsoString(unpublished, LAST_MODIFIED_DATE_PROPERTY);
+                String translationDeadline = getDateAsIsoString(unpublished, JcrDocument.VS_TRANSLATION_DEADLINE);
                 docModels.add(new DocumentTranslationReportModel(englishDoc.getHandle().getIdentifier(), displayName,
                         infoStatus.toString(), translationPriority, translatedLocales, sendForTranslationLocales,
-                        primaryNodeType, lastModified, lastModifiedBy, getDocumentPublishStatus(englishDoc)));
+                        primaryNodeType, lastModified, lastModifiedBy, getDocumentPublishStatus(englishDoc), translationDeadline));
             }
         } catch (RepositoryException ex) {
             throw new ReportException("Failed to access repository", ex);
@@ -152,8 +174,8 @@ public class TranslationReportService {
 
     private TranslationPriority getNodeTranslationPriority(JcrDocument document) throws RepositoryException {
         Node node = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
-        String priorityString = node.hasProperty(VS_TRANSLATION_PRIORITY) ?
-                node.getProperty(VS_TRANSLATION_PRIORITY).getString() : "";
+        String priorityString = node.hasProperty(JcrDocument.VS_TRANSLATION_PRIORITY) ?
+                node.getProperty(JcrDocument.VS_TRANSLATION_PRIORITY).getString() : "";
         if (Contract.isEmpty(priorityString)) {
             return TranslationPriority.NORMAL;
         }
@@ -161,7 +183,7 @@ public class TranslationReportService {
         try {
             return TranslationPriority.valueOf(priorityString);
         } catch (IllegalArgumentException ex) {
-            log.error("Bad " + VS_TRANSLATION_PRIORITY + " on node " + node.getIdentifier() + " of " + priorityString, ex);
+            log.error("Bad " + JcrDocument.VS_TRANSLATION_PRIORITY + " on node " + node.getIdentifier() + " of " + priorityString, ex);
         }
         return TranslationPriority.NORMAL;
     }
@@ -183,15 +205,15 @@ public class TranslationReportService {
         } else {
             Node translatedClone = englishDoc.getTranslation(locale);
             Node unpublishedTranslatedClone = new JcrDocument(translatedClone).getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
-            if (unpublishedTranslatedClone == null || !unpublishedTranslatedClone.hasProperty(VS_TRANSLATION_FLAG)
-                    || unpublishedTranslatedClone.getProperty(VS_TRANSLATION_FLAG).getString().isEmpty()) {
+            if (unpublishedTranslatedClone == null || !unpublishedTranslatedClone.hasProperty(JcrDocument.VS_TRANSLATION_FLAG)
+                    || unpublishedTranslatedClone.getProperty(JcrDocument.VS_TRANSLATION_FLAG).getString().isEmpty()) {
                 // If the translationFlag does not exist on the document, then it has not been sent
                 return TranslationStatus.NOT_SENT_FOR_TRANSLATION;
             } else {
                 // The translationFlag is only set once the document has been sent for translation
                 // Initially to true to indicate that the document has been sent, and then to false once the Translation
                 // Completed button has been pressed
-                return unpublishedTranslatedClone.getProperty(VS_TRANSLATION_FLAG).getBoolean() ? TranslationStatus.SEND_FOR_TRANSLATION : TranslationStatus.TRANSLATED;
+                return unpublishedTranslatedClone.getProperty(JcrDocument.VS_TRANSLATION_FLAG).getBoolean() ? TranslationStatus.SEND_FOR_TRANSLATION : TranslationStatus.TRANSLATED;
             }
         }
     }

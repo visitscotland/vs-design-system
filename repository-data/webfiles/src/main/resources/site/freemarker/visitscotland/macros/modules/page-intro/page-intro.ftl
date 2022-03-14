@@ -6,6 +6,8 @@
 <#include "../../shared/theme-calculator.ftl">
 <#include "../../../macros/global/cms-errors.ftl">
 <#include "../../global/image-with-caption.ftl">
+<#include "../../../macros/modules/video/video.ftl">
+<#include "../../../macros/modules/modal/modal.ftl">
 
 <#include "../../../../frontend/components/vs-page-intro.ftl">
 <#include "../../../../frontend/components/vs-container.ftl">
@@ -14,6 +16,7 @@
 <#include "../../../../frontend/components/vs-img.ftl">
 <#include "../../../../frontend/components/vs-description-list.ftl">
 <#include "../../../../frontend/components/vs-description-list-item.ftl">
+<#include "../../../../frontend/components/vs-alert.ftl">
 
 <#-- @ftlvariable name="content" type="com.visitscotland.brxm.hippobeans.Page" -->
 <#-- @ftlvariable name="heroDetails" type="com.visitscotland.brxm.model.FlatImage" -->
@@ -30,7 +33,7 @@
     <#if content.heroImage??>
         <@hst.link var="hero" hippobean=content.heroImage.original/>
     </#if>
-    
+
     <div class="has-edit-button">
         <vs-page-intro 
             background="${themeName}" 
@@ -38,18 +41,56 @@
             <#if itinerary?has_content>is-itinerary</#if>
         >
             <#if heroDetails?has_content>
+                <#if (heroVideo.cta)??>
+                    <#assign ctaText = heroVideo.cta>
+                <#else>
+                    <#assign ctaText = "">
+                </#if>
                 <@hst.link var="heroSrc" hippobean=heroImage.cmsImage.original/>
                 <template slot="vsIntroHero">
                     <#if (heroVideo)??>
+                        <@modal
+                            modalId="${heroVideo.youtubeId}"
+                            closeBtnText="${label('essentials.global', 'close')}"
+                            isVideoModal="true"
+                        >
+                            <vs-row>
+                                <vs-col cols="12">
+                                    <@video video=heroVideo />
+                                </vs-col>
+                            </vs-row>
 
-                        <!-- Youtube video Data
-                            youtubeID="${heroVideo.youtubeId}" <
-                            title="${heroVideo.label}"
-                            teaser="${heroVideo.teaser}"
-                            cta="${heroVideo.cta}"
-                        -->
+                            <vs-row class="mt-8">
+                                <vs-col
+                                    cols="10"
+                                    offset="1"
+                                >
+                                    <vs-rich-text-wrapper>
+                                        <p>${heroVideo.teaser}</p>
+                                    </vs-rich-text-wrapper>
+                                </vs-col>
+                        </@modal>
+
+                        <@imageWithCaption 
+                            imageSrc=heroSrc
+                            imageDetails=heroDetails
+                            variant="large"
+                            isHero="true"
+                            isVideo="true"
+                            videoId="${heroVideo.youtubeId}"
+                            videoTitle="${heroVideo.label}"
+                            videoBtn="${ctaText}"
+                            
+                        />
+                    <#else>
+                        <@imageWithCaption 
+                            imageSrc=heroSrc
+                            imageDetails=heroDetails
+                            variant="large"
+                            isHero="true"
+                            isVideo="false"
+                        />
                     </#if>
-                    <@imageWithCaption imageSrc=heroSrc imageDetails=heroDetails variant="large" isHero="true"/>
                 </template>
             </#if>
 

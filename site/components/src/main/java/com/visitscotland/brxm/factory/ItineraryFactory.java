@@ -17,8 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
@@ -36,18 +34,16 @@ public class ItineraryFactory {
     private final ImageFactory imageFactory;
     private final DMSUtils utils;
     private final DocumentUtilsService documentUtils;
-    private final Properties properties;
     private final LinkService linkService;
 
 
     public ItineraryFactory(ResourceBundleService bundle, DMSDataService dmsData, ImageFactory imageFactory,
-                            DMSUtils utils, DocumentUtilsService documentUtils, Properties properties, LinkService linkService) {
+                            DMSUtils utils, DocumentUtilsService documentUtils, LinkService linkService) {
         this.bundle = bundle;
         this.dmsData = dmsData;
         this.imageFactory = imageFactory;
         this.utils = utils;
         this.documentUtils = documentUtils;
-        this.properties = properties;
         this.linkService = linkService;
     }
 
@@ -196,7 +192,7 @@ public class ItineraryFactory {
         }
 
         if (externalLink.getExternalLink() != null) {
-            FlatLink ctaLink = linkService.createCTALink(module, locale, externalLink.getExternalLink());
+            FlatLink ctaLink = linkService.createFindOutMoreLink(module, locale, externalLink.getExternalLink());
             module.setCtaLink(ctaLink);
         }
 
@@ -219,11 +215,11 @@ public class ItineraryFactory {
             return;
         }
 
-        module.setCtaLink(linkService.createCTALink(module, locale, dmsLink));
+        module.setCtaLink(linkService.createDmsLink(locale,dmsLink, product));
         module.setFacilities(utils.getKeyFacilities(product));
 
         if (module.getImage() == null && product.has(IMAGE)) {
-            module.setImage(imageFactory.createImage(product, module));
+            module.setImage(imageFactory.createImage(product, module, locale));
         }
 
         if (product.has(ADDRESS)) {

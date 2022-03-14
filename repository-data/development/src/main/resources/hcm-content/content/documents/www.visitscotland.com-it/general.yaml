@@ -25,7 +25,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: f9499a4e-0e33-4dbe-bd5f-4c7984c5c25e
         hippo:name: 404notfound (IT)
-        hippo:versionHistory: b04f5ea8-8fbd-45cb-9650-4bcac3f0a270
+        hippo:versionHistory: 18efe314-9aef-4f18-9114-952ff4a72a45
         /content[1]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:versionable']
@@ -35,7 +35,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-12-14T12:06:05.666Z
-          hippostdpubwf:lastModificationDate: 2021-12-17T12:03:20.494Z
+          hippostdpubwf:lastModificationDate: 2022-01-20T19:20:45.035Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: c7558344-b1af-47eb-9d4d-62e58c97f961
           hippotranslation:locale: it
@@ -44,9 +44,10 @@
           visitscotland:seoDescription: Page not found
           visitscotland:seoNoIndex: true
           visitscotland:seoTitle: Page not found
-          visitscotland:teaser: Page not found
+          visitscotland:teaser: We can't find the page you're looking for. It may
+            have been moved or deleted
           visitscotland:theme: Simple
-          visitscotland:title: Page not found
+          visitscotland:title: Sorry...
           visitscotland:translation: ''
           visitscotland:translationFlag: false
           /visitscotland:heroImage:
@@ -57,7 +58,8 @@
             hippo:values: []
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>Page not found&nbsp;</p>
+            hippostd:content: <p>We can't find the page you're looking for. It may
+              have been moved or deleted</p>
         /content[2]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable']
@@ -65,24 +67,23 @@
           hippo:availability: []
           hippostd:retainable: false
           hippostd:state: draft
-          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-12-14T12:06:05.666Z
-          hippostdpubwf:lastModificationDate: 2021-12-17T12:06:20.642Z
+          hippostdpubwf:lastModificationDate: 2022-01-20T19:20:35.840Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: c7558344-b1af-47eb-9d4d-62e58c97f961
           hippotranslation:locale: it
           visitscotland:breadcrumb: ''
-          visitscotland:diff: ''
           visitscotland:hideNewsletter: false
           visitscotland:seoDescription: Page not found
           visitscotland:seoNoIndex: true
           visitscotland:seoTitle: Page not found
-          visitscotland:teaser: Page not found
+          visitscotland:teaser: We can't find the page you're looking for. It may
+            have been moved or deleted
           visitscotland:theme: Simple
-          visitscotland:title: Page not found
+          visitscotland:title: Sorry...
           visitscotland:translation: ''
-          visitscotland:translationFlag: true
+          visitscotland:translationFlag: false
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
@@ -91,7 +92,8 @@
             hippo:values: []
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>Page not found&nbsp;</p>
+            hippostd:content: <p>We can't find the page you're looking for. It may
+              have been moved or deleted</p>
         /content[3]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable']
@@ -101,22 +103,22 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-12-14T12:06:05.666Z
-          hippostdpubwf:lastModificationDate: 2021-12-17T12:03:20.494Z
+          hippostdpubwf:lastModificationDate: 2022-01-20T19:20:45.035Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-12-17T12:03:22.330Z
+          hippostdpubwf:publicationDate: 2022-01-20T19:20:46.849Z
           hippotranslation:id: c7558344-b1af-47eb-9d4d-62e58c97f961
           hippotranslation:locale: it
           visitscotland:breadcrumb: ''
-          visitscotland:diff: ''
           visitscotland:hideNewsletter: false
           visitscotland:seoDescription: Page not found
           visitscotland:seoNoIndex: true
           visitscotland:seoTitle: Page not found
-          visitscotland:teaser: Page not found
+          visitscotland:teaser: We can't find the page you're looking for. It may
+            have been moved or deleted
           visitscotland:theme: Simple
-          visitscotland:title: Page not found
+          visitscotland:title: Sorry...
           visitscotland:translation: ''
-          visitscotland:translationFlag: true
+          visitscotland:translationFlag: false
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
@@ -125,7 +127,8 @@
             hippo:values: []
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>Page not found&nbsp;</p>
+            hippostd:content: <p>We can't find the page you're looking for. It may
+              have been moved or deleted</p>
     /500-server-error:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -251,6 +254,13 @@
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
       jcr:uuid: fed3d83e-71f2-4cc2-815e-6fb1437f632d
-      hippostd:foldertype: [new-translated-folder, new-widget]
+      hippostd:foldertype: [new-translated-folder-widget, new-widget]
       hippotranslation:id: 8949d2e9-cb52-44ca-9acf-05e49a85feda
+      hippotranslation:locale: it
+    /banner:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 037fe127-0cd8-49ca-989b-2657b969f6c7
+      hippostd:foldertype: [new-translated-folder-banner, new-banner]
+      hippotranslation:id: a0d02044-a4cf-4d7a-809f-f044f9bd5f36
       hippotranslation:locale: it

@@ -7,7 +7,6 @@
                 lg="3"
             >
                 <VsFooterAccordionItem
-                    :open-by-default="false"
                     title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
@@ -24,7 +23,7 @@
                     <span slot="icon-closed">
                         <VsIcon
                             name="chevron"
-                            orientation="right"
+                            orientation="down"
                             variant="light"
                             size="xs"
                         />
@@ -57,7 +56,6 @@
                 lg="3"
             >
                 <VsFooterAccordionItem
-                    :open-by-default="false"
                     title="Get in touch"
                     variant="dark"
                     control-id="footer_accordion_item_2"
@@ -73,7 +71,7 @@
                     <span slot="icon-closed">
                         <VsIcon
                             name="chevron"
-                            orientation="right"
+                            orientation="down"
                             variant="light"
                             size="xs"
                         />
@@ -106,7 +104,6 @@
                 lg="3"
             >
                 <VsFooterAccordionItem
-                    :open-by-default="false"
                     title="Our other sites"
                     variant="dark"
                     control-id="footer_accordion_item_3"
@@ -123,7 +120,7 @@
                     <span slot="icon-closed">
                         <VsIcon
                             name="chevron"
-                            orientation="right"
+                            orientation="down"
                             variant="light"
                             size="xs"
                         />

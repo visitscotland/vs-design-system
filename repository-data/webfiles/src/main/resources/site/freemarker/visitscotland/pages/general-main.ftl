@@ -13,6 +13,12 @@
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-heading.ftl">
 
+<#include "../macros/modules/page-intro/page-intro.ftl">
+<#include "../macros/global/cms-errors.ftl">
+<#include "../macros/global/otyml.ftl">
+<#include "../macros/shared/module-builder.ftl">
+<#include "../macros/modules/signpost/signpost.ftl">
+
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brxm.hippobeans.General" -->
 
@@ -50,7 +56,7 @@
 	</#if>
 
 	<#if otyml??>
-		<@horizontalList otyml themeName />
+		<@otymlModule otyml editMode />
 	</#if>
 
 	<#if newsletterSignpost??>

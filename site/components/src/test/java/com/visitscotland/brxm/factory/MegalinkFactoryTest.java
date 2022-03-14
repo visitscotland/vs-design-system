@@ -24,6 +24,7 @@ import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 import static org.easymock.EasyMock.anyObject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -121,7 +122,7 @@ public class MegalinkFactoryTest {
     @DisplayName("Allowed items are processed and included to the list")
     void megalinkItem_allowedLinkTypes() {
         List<MegalinkItem> items = new MegalinksMockBuilder().addPageLink().addSharedLink().build().getMegalinkItems();
-        when(linkService.createEnhancedLink(any(),any(), any(), anyBoolean())).thenReturn(new EnhancedLink());
+        when(linkService.createEnhancedLink(any(),any(), any(), anyBoolean())).thenReturn(Optional.of(new EnhancedLink()));
 
         assertEquals(2, factory.convertToEnhancedLinks(null, items, Locale.UK, false).size());
     }
@@ -140,13 +141,28 @@ public class MegalinkFactoryTest {
     }
 
     @Test
+    @DisplayName("VS-3065 -  Non Published Videos are handled correctly")
+    void megalinkItem_nonPublishedVideo() {
+        //Test that not allowed types gets skipped without throwing exception
+        VideoLink unpublishedVideo = mock(VideoLink.class);
+        List<MegalinkItem> items =  new MegalinksMockBuilder().addLink(unpublishedVideo).build().getMegalinkItems();
+        Module<Megalinks> module = new Module<>();
+
+        when(unpublishedVideo.getPath()).thenReturn("path-to-document");
+        when(linkService.createEnhancedLink(null, module, Locale.UK, false)).thenReturn(Optional.empty());
+
+        assertEquals(0, factory.convertToEnhancedLinks(module, items, Locale.UK, false).size());
+    }
+
+
+    @Test
     @DisplayName("CTA is populated when the ProductItem field is populated")
     void multiImageLayout_optionCTA() {
         //Verifies that when the field ProductItem is populated
         ExternalLink mockLink = mock(ExternalLink.class);
         Megalinks mega = mockMultiImage();
         when(mega.getProductItem()).thenReturn(mockLink);
-        when(linkService.createCTALink(any(), any(Locale.class), eq(mockLink))).thenReturn(new FlatLink(null, "cta-link", null));
+        when(linkService.createFindOutMoreLink(any(), any(Locale.class), eq(mockLink))).thenReturn(new FlatLink(null, "cta-link", null));
 
         LinksModule<?> layout = factory.multiImageLayout(mega, Locale.UK);
 
@@ -253,9 +269,11 @@ public class MegalinkFactoryTest {
             max.addPageLink().featured(true);
         }
 
-        when(linkService.createEnhancedLink(any(),any(), any(), anyBoolean())).thenReturn(new EnhancedLink());
+        when(linkService.createEnhancedLink(any(),any(), any(), anyBoolean())).thenReturn(Optional.of(new EnhancedLink()));
 
         Assertions.assertEquals(minItems, ((MultiImageLinksModule) factory.getMegalinkModule(min.build(), Locale.UK)).getFeaturedLinks().size());
         Assertions.assertEquals(maxItems, ((MultiImageLinksModule) factory.getMegalinkModule(max.build(), Locale.UK)).getFeaturedLinks().size());
     }
+
+
 }

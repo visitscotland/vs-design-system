@@ -90,7 +90,7 @@ import VsIcon from '@components/elements/icon/Icon';
  *  The Mega Nav bar component includes main VS logo and slots for
  *  top menu items on desktop and dropdown toggle with menu items for mobile
  *
- * @displayName MegaNav
+ * @displayName Mega Navigation
  */
 export default {
     name: 'VsMegaNav',

@@ -11,7 +11,6 @@
                 <#assign title>${menuItem.title?html}</#assign>
             </#if>
             <vs-footer-accordion-item
-                :open-by-default="false" 
                 title="${title}"
                 variant="dark" 
                 control-id="footer_accordion_item_${menuItem?index}" 
@@ -22,7 +21,7 @@
                 </span>
 
                 <span slot="icon-closed">
-                    <vs-icon name="chevron" orientation="right" variant="light" size="xs"></vs-icon>
+                    <vs-icon name="chevron" orientation="down" variant="light" size="xs"></vs-icon>
                 </span>
 
                 <#if menuItem.childMenuItems?size gt 0>

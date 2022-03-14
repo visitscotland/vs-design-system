@@ -24,7 +24,9 @@ public class DMSConstants {
 
     public static final String CAT_ICENTRE = "vics";
     public static final String AWARD_IKNOW = "qaiknowscotland";
-    public static final String SORT_ALPHA = "alpha";
+
+    //TODO should this be uppercase? check enums ProductSearchBuilder
+    public static final String SORT_ALPHA = "ALPHA";
 
     public static final class MapSearch {
 
@@ -51,7 +53,7 @@ public class DMSConstants {
         public static final String LONGITUDE_PARAM = "lng";
         public static final String PROXIMITY_LOCATION_PARAM = "locprox";
         public static final String PROXIMITY_PIN_PARAM = "areaproxdist";
-        public static final String ORDER_PARAM = "c";
+        public static final String ORDER_PARAM = "order";
         public static final String AVAILABILITY = "avail";
         public static final String OFFERS = "offers";
         public static final String FREE = "maxprice";

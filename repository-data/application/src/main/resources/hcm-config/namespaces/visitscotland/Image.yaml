@@ -105,7 +105,7 @@ definitions:
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:Image
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 73f02a72-2e88-4656-a46f-a84a513a58a7
+          jcr:uuid: 53a1edb8-025d-45f1-bc4b-54afee0a392b
           hippogallery:description: ''
           visitscotland:altText: ''
           visitscotland:credit: ''
@@ -196,7 +196,7 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              valuelistProvider: service.locationlist.psr
+              valuelistProvider: service.locationlist.image
               source: ''
           /credit:
             jcr:primaryType: frontend:plugin

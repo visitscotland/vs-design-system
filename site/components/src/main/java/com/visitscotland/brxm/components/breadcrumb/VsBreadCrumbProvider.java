@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.components.breadcrumb;
 
+import com.visitscotland.brxm.components.content.ContentComponent;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
@@ -108,7 +109,7 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
      * @return HippoBean index document (content) or the folder if the index does not exist
      */
     private HippoBean getValidHippoBean (HippoBean bean){
-        HippoBean content =  bean.getParentBean().getBean("content");
+        HippoBean content =  bean.getParentBean().getBean(ContentComponent.PAGE_PATH);
         if (content == null){
             contentLogger.warn("The document created at {} has not defined the path as content ",  bean.getParentBean().getPath());
             return bean.getParentBean();

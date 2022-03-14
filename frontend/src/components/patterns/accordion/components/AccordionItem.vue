@@ -23,11 +23,26 @@
 
                 <template #icon-open>
                     <!-- @slot Slot for the icon to show when accordion item is open  -->
-                    <slot name="icon-open" />
+                    <slot name="icon-open">
+                        <VsIcon
+                            name="chevron"
+                            variant="dark"
+                            size="sm"
+                            slot="icon-open"
+                        />
+                    </slot>
                 </template>
                 <template #icon-closed>
                     <!-- @slot Slot for the icon to show when accordion item is closed  -->
-                    <slot name="icon-closed" />
+                    <slot name="icon-closed">
+                        <VsIcon
+                            name="chevron"
+                            orientation="down"
+                            variant="dark"
+                            size="sm"
+                            slot="icon-closed"
+                        />
+                    </slot>
                 </template>
             </VsAccordionToggle>
 
@@ -56,6 +71,7 @@
 
 <script>
 import VsAccordionToggle from '@components/patterns/accordion/components/AccordionToggle';
+import VsIcon from '@components/elements/icon/Icon';
 
 import {
     BCard, BCardHeader, BCardBody,
@@ -72,6 +88,7 @@ export default {
     components: {
         VsAccordionToggle,
         BCard,
+        VsIcon,
         BCardHeader,
         BCardBody,
     },
@@ -99,7 +116,7 @@ export default {
          */
         openByDefault: {
             type: Boolean,
-            default: true,
+            default: false,
         },
         /**
          * Variant for which button to show in headers
@@ -170,8 +187,13 @@ export default {
     }
 
     .vs-accordion-item__title {
-        margin: $spacer-3;
-        line-height: 1;
+        line-height: $line-height-lead;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-lg;
+        letter-spacing: normal;
+        padding: $spacer-3;
+        margin-bottom: 0;
+        font-family: $font-family-sans-serif;
     }
 
     .vs-accordion-item__panel.card-body {
@@ -222,7 +244,6 @@ export default {
         </VsAccordionItem>
 
         <VsAccordionItem
-            :open-by-default="false"
             variant="transparent"
             control-id="accordion_item_2"
         >
@@ -253,7 +274,6 @@ export default {
             </div>
         </VsAccordionItem>
         <VsAccordionItem
-            :open-by-default="false"
             variant="transparent"
             control-id="accordion_item_3"
         >
