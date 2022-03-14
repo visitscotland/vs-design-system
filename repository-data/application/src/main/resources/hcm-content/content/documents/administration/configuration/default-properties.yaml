@@ -56,11 +56,12 @@
     jcr:mixinTypes: ['mix:referenceable']
     jcr:uuid: 05a192f3-3cf0-47a9-ad38-b9ab86adf3ab
     hippo:availability: []
+    hippostd:holder: admin
     hippostd:retainable: false
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2022-03-08T09:52:58.124Z
+    hippostdpubwf:lastModificationDate: 2022-03-14T13:28:14.955Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -81,7 +82,7 @@
         \ and Canned Search", '', '', URLs from this environment will be treated as
         internal and will be transformed into Relative URLs when the value of attribute
         'links.use-relative-urls is true., '', '', '', '', Order for hreflang tags,
-      Suffix for all page titles, '', '']
+      Suffix for all page titles, '', '', '']
     resourcebundle:id: default.config
     resourcebundle:keys: [instagram.api, helpdesk-email, instagram.accesstoken, instagram.post-url,
       dms-data.encoding, dms-data.api-key, dms-data.timeout, dms-data.tries, dms-data.sleep-time,
@@ -89,7 +90,7 @@
       links.use-relative-urls, links.cms-base-path.url, links.vs-dms-products.url,
       dms-data.public-url, dms-data.private-url, links.convert-to-relative, banner.path,
       youtube.api-key, og.site-name, og.twitter.site, seo.alternate-link-locale-order,
-      seo.title-suffix, seo.og.site-name, seo.og.twitter.site]
+      seo.title-suffix, seo.og.site-name, seo.og.twitter.site, search.path]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
@@ -97,7 +98,7 @@
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
       www.visitscotland.com, general/navigation/banner/content, $YOUTUBE_API_KEY,
       VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es', '| VisitScotland', VisitScotland,
-      '@VisitScotland']
+      '@VisitScotland', site-search-results]
   /default-properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']

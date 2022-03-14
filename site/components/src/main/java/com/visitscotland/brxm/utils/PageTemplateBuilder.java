@@ -28,7 +28,7 @@ public class PageTemplateBuilder {
     //Static Constant
     static final String INTRO_THEME = "introTheme";
     static final String PAGE_ITEMS = "pageItems";
-    static final String SEARCH_RESULTS = "searchResultsPage";
+
 
     static final String[] alignment = {"right", "left"};
 
@@ -111,10 +111,6 @@ public class PageTemplateBuilder {
         }
 
         setIntroTheme(request, page.modules);
-
-        if (getDocument(request).getPath().contains("site-search-results")){
-            request.setAttribute(SEARCH_RESULTS, true);
-        }
 
         request.setAttribute(PAGE_ITEMS, page.modules);
     }
