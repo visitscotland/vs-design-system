@@ -278,6 +278,11 @@ export default {
 
             &.vs-megalink-multi-image--featured-last {
                 flex-direction: row-reverse;
+
+                .vs-stretched-link-panels {
+                    left: calc(50% + 20px);
+                    right: auto;
+                }
             }
 
             .vs-stretched-link-panels {
@@ -407,6 +412,10 @@ export default {
                         imgAlt="This is the alt text"
                         linkType="internal"
                         linkUrl="www.visitscotland.com"
+                        days="6"
+                        daysLabel="days"
+                        transport="bus"
+                        transportName="bus"
                     >
                         <template slot="vsMultiImageHeading">
                             The Edinburgh International Festival and summer festival</template>
