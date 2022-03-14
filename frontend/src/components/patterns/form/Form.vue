@@ -46,7 +46,7 @@
                     {{ field.label }}
                     ({{ requiredText }})
                     <VsFormSelect
-                        :options="field.options"
+                        :options="getTranslatedOptions(field.name)"
                         :ref="field.name"
                         @status-update="updateFieldData"
                         :field-name="field.name"
@@ -253,7 +253,7 @@ export default {
          * get translated label if available
          */
         getTranslatedLabel(fieldName) {
-            const languageObj = this.formData[this.language];
+            const languageObj = this.formData[this.language] || undefined;
 
             if (this.language !== 'en'
                 && typeof languageObj[fieldName] !== 'undefined'
@@ -265,7 +265,7 @@ export default {
             return fieldName;
         },
         getTranslatedValidation(fieldName) {
-            const languageObj = this.formData[this.language];
+            const languageObj = this.formData[this.language] || undefined;
             let validationObj = {
             };
 
@@ -282,6 +282,25 @@ export default {
             }
 
             return validationObj;
+        },
+        getTranslatedOptions(fieldName) {
+            const languageObj = this.formData[this.language] || undefined;
+            let optionsObj = {
+            };
+
+            if (this.language !== 'en'
+                && typeof languageObj[fieldName] !== 'undefined'
+                && typeof languageObj[fieldName].options !== 'undefined') {
+                optionsObj = languageObj[fieldName].options;
+            } else {
+                this.formData.fields.forEach((field, index) => {
+                    if (field.name === fieldName) {
+                        optionsObj = this.formData.fields[index].options;
+                    }
+                });
+            }
+
+            return optionsObj;
         },
         /**
          * update field data and error status
@@ -401,10 +420,9 @@ export default {
     ```jsx
         <VsForm
             requiredText="required"
-            dataUrl="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
+            dataUrl="http://172.28.74.142:5000/simpleForm.json"
             messagingUrl="https://static.visitscotland.com/forms/messaging.json"
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-            language="en"
             marketo-instance="//app-lon10.marketo.com"
             munchkin-id="830-QYE-256"
             :is-prod="true"
