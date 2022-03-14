@@ -1,0 +1,23 @@
+backend:
+  name: github
+  repo: visitscotland/design-system # replace this with your repo info
+  use_graphql: true
+
+local_backend: true
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: 'section'
+    label: 'Section'
+    folder: 'content/section'
+    format: 'frontmatter'
+    create: true
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
