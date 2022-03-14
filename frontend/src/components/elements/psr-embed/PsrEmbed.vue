@@ -44,6 +44,12 @@ export default {
                 es: {
                     localeUrl: 'es-es',
                 },
+                it: {
+                    localeUrl: 'it-it',
+                },
+                nl: {
+                    localeUrl: 'nl-nl',
+                },
             },
         };
     },
