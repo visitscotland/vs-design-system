@@ -28,7 +28,7 @@
 import VsList from '@components/elements/list/List';
 import {
     VsRow, VsContainer, VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 
 /**
  * The FooterUtilityList is a list of FooterNavListItems
