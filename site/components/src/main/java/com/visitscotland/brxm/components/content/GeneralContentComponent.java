@@ -14,7 +14,6 @@ public class GeneralContentComponent extends PageContentComponent<Destination> {
 
     public static final String SIMPLE = "Simple";
     public static final String STANDARD = "Standard";
-    static final String SEARCH_RESULTS = "searchResultsPage";
 
     private PageTemplateBuilder builder;
 
@@ -26,10 +25,10 @@ public class GeneralContentComponent extends PageContentComponent<Destination> {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-        if (getDocument(request).getPath().contains("site-search-results")){
-            request.setAttribute(SEARCH_RESULTS, true);
-        }
+
         builder.addModules(request);
+
+
     }
 
 }
