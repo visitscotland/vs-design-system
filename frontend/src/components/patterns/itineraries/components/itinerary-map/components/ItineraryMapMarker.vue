@@ -15,7 +15,7 @@
                 name="map-marker-filled"
                 :class="isHighlighted ? 'active' : ''"
                 :variant="isHighlighted ? 'dark' : 'secondary-teal'"
-                :size="isHighlighted ? 'lg' : 'md'"
+                size="xl"
             />
             <span
                 class="vs-itinerary-map-marker__count"
@@ -105,9 +105,14 @@ export default {
         transition: $transition-base;
     }
 
-    svg.active {
-        transform: scale(1.2, 1.2) translateY(-10px);
-        fill: $color-secondary-teal-shade-3 !important;
+    &.active {
+        .vs-map-marker__wrapper {
+            transform: scale(1.2, 1.2) translateY(-10px);
+        }
+
+        svg {
+            fill: $color-secondary-teal-shade-3 !important;
+        }
     }
 }
 
@@ -122,11 +127,6 @@ export default {
     transition: $transition-base;
     text-align: center;
     width: 100%;
-
-    &.active {
-        font-size: 1.5rem;
-        transform: scale(1.2, 1.2) translateY(-5px);
-    }
 }
 </style>
 
