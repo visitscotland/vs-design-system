@@ -105,7 +105,7 @@ import VsHeading from '@components/elements/heading/Heading';
 import VsModuleWrapper from '@components/patterns/module-wrapper/ModuleWrapper';
 import {
     VsRow, VsContainer, VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 import { BPopover } from 'bootstrap-vue';
 
 /**
