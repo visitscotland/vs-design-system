@@ -46,7 +46,7 @@ import {
     VsContainer,
     VsRow,
     VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 import VsButton from '@components/elements/button/Button';
 import VsAccordion from '@components/patterns/accordion/Accordion';
 
