@@ -9,6 +9,7 @@ import org.hippoecm.repository.api.WorkflowException;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import java.rmi.RemoteException;
+import java.util.Calendar;
 
 public interface TranslationWorkflow extends Workflow {
     String VS_TRANSLATABLE = "visitscotland:translatable";
@@ -20,6 +21,12 @@ public interface TranslationWorkflow extends Workflow {
     void setTranslationPriority(TranslationPriority priority) throws RepositoryException, RemoteException;
 
     void clearTranslationFlag() throws RepositoryException, RemoteException;
+
+    void setTranslationDeadline(Calendar deadline) throws RepositoryException, RemoteException;
+
+    void setTranslationFlag(boolean flag) throws RepositoryException, RemoteException;
+
+    void setTranslationDiff(String diff) throws RepositoryException, RemoteException;
 
     void saveSession() throws RepositoryException;
 

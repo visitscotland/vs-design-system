@@ -4,6 +4,7 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import com.visitscotland.brxm.hippobeans.TravelInformationTab;
+import java.util.Calendar;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:TravelInformation")
 @Node(jcrType = "visitscotland:TravelInformation")
@@ -47,5 +48,10 @@ public class TravelInformation extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:gettingTo")
     public TravelInformationTab getGettingTo() {
         return getBean("visitscotland:gettingTo", TravelInformationTab.class);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
+    public Calendar getTranslationDeadline() {
+        return getSingleProperty("visitscotland:translationDeadline");
     }
 }

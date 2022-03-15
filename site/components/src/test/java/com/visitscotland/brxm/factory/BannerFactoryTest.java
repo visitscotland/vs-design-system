@@ -5,8 +5,8 @@ import com.visitscotland.brxm.mock.BannerMockBuilder;
 import com.visitscotland.brxm.model.BannerModule;
 import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.services.LinkService;
+import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
-import com.visitscotland.brxm.utils.Properties;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -17,6 +17,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
+
+import java.util.Locale;
 
 import static org.mockito.Mockito.*;
 
@@ -30,7 +32,7 @@ public class BannerFactoryTest {
     HippoUtilsService hippoUtilsService;
 
     @Mock
-    Properties properties;
+    ResourceBundleService bundleService;
 
     @InjectMocks
     @Resource
@@ -42,9 +44,10 @@ public class BannerFactoryTest {
         HstRequest request = mock(HstRequest.class);
         Banner bannerBean = new BannerMockBuilder().title("title").copy("copy").build();
         FlatLink mockLink = mock(FlatLink.class);
-        when(properties.getBannerContentPath()).thenReturn("banner");
+        when(mockLink.getLink()).thenReturn("link");
+        when(bundleService.getResourceBundle("banner", "path", Locale.UK)).thenReturn("banner");
         when(hippoUtilsService.getDocumentFromContent("banner")).thenReturn(bannerBean);
-        when(linkService.createCTALink(any(), any(), any())).thenReturn(mockLink);
+        when(linkService.createFindOutMoreLink(any(), any(), any())).thenReturn(mockLink);
         BannerModule banner = factory.getBannerModule(request);
 
         Assertions.assertEquals("title", banner.getTitle());
@@ -56,8 +59,23 @@ public class BannerFactoryTest {
     @Test
     public void bannerDoesNotExist() throws Exception {
         HstRequest request = mock(HstRequest.class);
-        when(properties.getBannerContentPath()).thenReturn("banner");
+        when(bundleService.getResourceBundle("banner", "path", Locale.UK)).thenReturn("banner");
         when(hippoUtilsService.getDocumentFromContent("banner")).thenReturn(null);
         Assertions.assertNull(factory.getBannerModule(request));
+    }
+
+    @DisplayName("VS-3221 - If link is not published, then don't create banner")
+    @Test
+    public void linkDoesNotExist() throws Exception {
+        HstRequest request = mock(HstRequest.class);
+        Banner bannerBean = new BannerMockBuilder().build();
+        when(hippoUtilsService.getDocumentFromContent("banner")).thenReturn(bannerBean);
+        when(hippoUtilsService.getDocumentFromContent("banner")).thenReturn(bannerBean);
+        when(bundleService.getResourceBundle("banner", "path", Locale.UK)).thenReturn("banner");
+
+        BannerModule banner = factory.getBannerModule(request);
+
+        Assertions.assertNull(banner);
+        verify(linkService).createFindOutMoreLink(any(), any(), any());
     }
 }

@@ -86,7 +86,9 @@ Ext.extend(Hippo.Reports.PageableHttpProxy, Ext.data.HttpProxy, {
     sortRecords: function(records, params) {
         if (params.sort === undefined) return records;
         let self = this;
-        records = records.sort(function (a, b) {
+        const withValues = records.filter((record) => record.data[params.sort] !== undefined && record.data[params.sort] !== null)
+        const withoutValues = records.filter((record) => record.data[params.sort] === undefined || record.data[params.sort] === null)
+        let withValuesSorted = withValues.sort(function (a, b) {
             a = a.data[params.sort]
             b = b.data[params.sort]
             if (self.sortTransformations[params.sort] !== undefined) {
@@ -95,8 +97,10 @@ Ext.extend(Hippo.Reports.PageableHttpProxy, Ext.data.HttpProxy, {
             }
             return a < b ? -1 : 1;
         })
-
-        return params.dir === "ASC"? records : records.reverse();
+        if (params.dir !== "ASC") {
+            withValuesSorted = withValuesSorted.reverse();
+        }
+        return withValuesSorted.concat(withoutValues)
     },
 
     filterRecords: function (records) {

@@ -1,5 +1,6 @@
 <#include "../../../include/imports.ftl">
 <#include "../global/cms-errors.ftl">
+<#include "../global/preview-warning.ftl">
 <#include "../modules/megalinks/megalinks.ftl">
 <#include "../modules/article/article.ftl">
 <#include "../modules/long-copy/long-copy.ftl">
@@ -34,7 +35,9 @@
         <#assign moduleType = module.getType()>
     </#if>
 
-    <div class="has-edit-button">
+    <div
+        class="has-edit-button vs-module-wrapper__outer--${themeName}"
+    >
         <#if module.hippoBean?? >
             <@hst.manageContent hippobean=module.hippoBean />
         </#if>
@@ -43,7 +46,7 @@
             <@megalinks item=module type=module.getType() theme=themeName />
 
         <#elseif moduleType == "HorizontalListLinksModule">
-            <@horizontalList module themeName />
+            <@horizontalList module themeName "vs-megalinks-carousel" />
 
         <#elseif moduleType == "ICentreModule">
             <@icentre module themeName/>
@@ -68,6 +71,9 @@
 
         <#elseif module.getType()== "CannedSearchModule">
             <@cannedSearch module themeName/>
+
+        <#else >
+            <@previewWarning editMode module true />
         </#if>
     </div>
 </#macro>
