@@ -1,5 +1,5 @@
 ## Usage
-In this grid system, we have 12 columns which each of a gutter to maintain correct spacing. 
+In this grid system, we have 12 columns which each have a gutter to maintain correct spacing. 
 A column component must aways be a direct child of the row component. 
 
   ```jsx
