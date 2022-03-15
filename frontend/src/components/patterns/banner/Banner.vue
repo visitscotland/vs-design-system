@@ -27,12 +27,15 @@
 
                     <VsRichTextWrapper
                         class="vs-banner__text"
-                        v-if="!!this.$slots['bannerText']"
+                        v-if="!!this.$slots['bannerText'] || !!this.$slots['bannerCta']"
                     >
                         <!-- @slot Slot to contain banner text -->
                         <slot name="bannerText" />
 
-                        <span class="vs-banner__cta-link">
+                        <span
+                            class="vs-banner__cta-link"
+                            v-if="!!this.$slots['bannerCta']"
+                        >
                             <!-- @slot Slot to contain CTA link -->
                             <slot name="bannerCta" />
                         </span>
@@ -181,6 +184,24 @@ export default {
                 of characters we could fit on this banner… Is it ok
                 to add two lines? Let's see how it looks on mobile.
             </p>
+        </template>
+
+        <template slot="bannerCta">
+            <VsLink href="#">
+                View Covid-19 Travel Advice
+            </VsLink>
+        </template>
+
+        <template slot="closeBtnText">
+            Close
+        </template>
+    </VsBanner>
+
+    <br />
+
+    <VsBanner>
+        <template slot="bannerTitle">
+            Covid-19 Travel Advice With No Text
         </template>
 
         <template slot="bannerCta">
