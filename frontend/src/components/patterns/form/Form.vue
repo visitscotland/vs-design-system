@@ -420,7 +420,7 @@ export default {
     ```jsx
         <VsForm
             requiredText="required"
-            dataUrl="http://172.28.74.142:5000/simpleForm.json"
+            dataUrl="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
             messagingUrl="https://static.visitscotland.com/forms/messaging.json"
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
             marketo-instance="//app-lon10.marketo.com"
