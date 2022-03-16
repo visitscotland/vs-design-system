@@ -1,0 +1,16 @@
+[
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/awhenderson/Development/design-system/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_cb7c8c32"
+  },
+  {
+    "name": "slug",
+    "path": "/:slug",
+    "component": "/Users/awhenderson/Development/design-system/pages/_slug.vue",
+    "chunkName": "pages/_slug",
+    "_name": "_cee9cec2"
+  }
+]

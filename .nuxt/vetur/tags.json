@@ -1,0 +1,377 @@
+{
+  "SiteSearchToggleButton": {
+    "description": "Auto imported from components/patterns/site-search/components/SiteSearchToggleButton.vue"
+  },
+  "SkipToButton": {
+    "description": "Auto imported from components/patterns/skip-to/components/SkipToButton.vue"
+  },
+  "Address": {
+    "description": "Auto imported from components/elements/address/Address.vue"
+  },
+  "Button": {
+    "description": "Auto imported from components/elements/button/Button.vue"
+  },
+  "FormInput": {
+    "description": "Auto imported from components/elements/form-input/FormInput.vue"
+  },
+  "Heading": {
+    "description": "Auto imported from components/elements/heading/Heading.vue"
+  },
+  "Icon": {
+    "description": "Auto imported from components/elements/icon/Icon.vue"
+  },
+  "Img": {
+    "description": "Auto imported from components/elements/img/Img.vue"
+  },
+  "Col": {
+    "description": "Auto imported from components/elements/layout/Col.vue"
+  },
+  "Container": {
+    "description": "Auto imported from components/elements/layout/Container.vue"
+  },
+  "Row": {
+    "description": "Auto imported from components/elements/layout/Row.vue"
+  },
+  "Link": {
+    "description": "Auto imported from components/elements/link/Link.vue"
+  },
+  "List": {
+    "description": "Auto imported from components/elements/list/List.vue"
+  },
+  "Modal": {
+    "description": "Auto imported from components/elements/modal/Modal.vue"
+  },
+  "Panel": {
+    "description": "Auto imported from components/elements/panel/Panel.vue"
+  },
+  "Prototype": {
+    "description": "Auto imported from components/elements/prototype/Prototype.vue"
+  },
+  "PsrEmbed": {
+    "description": "Auto imported from components/elements/psr-embed/PsrEmbed.vue"
+  },
+  "RichTextWrapper": {
+    "description": "Auto imported from components/elements/rich-text-wrapper/RichTextWrapper.vue"
+  },
+  "Svg": {
+    "description": "Auto imported from components/elements/svg/Svg.vue"
+  },
+  "Tag": {
+    "description": "Auto imported from components/elements/tag/Tag.vue"
+  },
+  "Tooltip": {
+    "description": "Auto imported from components/elements/tooltip/Tooltip.vue"
+  },
+  "Video": {
+    "description": "Auto imported from components/elements/video/Video.vue"
+  },
+  "Accordion": {
+    "description": "Auto imported from components/patterns/accordion/Accordion.vue"
+  },
+  "ComponentsAccordionItem": {
+    "description": "Auto imported from components/patterns/accordion/components/AccordionItem.vue"
+  },
+  "ComponentsAccordionToggle": {
+    "description": "Auto imported from components/patterns/accordion/components/AccordionToggle.vue"
+  },
+  "Article": {
+    "description": "Auto imported from components/patterns/article/Article.vue"
+  },
+  "ComponentsArticleSection": {
+    "description": "Auto imported from components/patterns/article/components/ArticleSection.vue"
+  },
+  "ComponentsArticleSidebar": {
+    "description": "Auto imported from components/patterns/article/components/ArticleSidebar.vue"
+  },
+  "Banner": {
+    "description": "Auto imported from components/patterns/banner/Banner.vue"
+  },
+  "Breadcrumb": {
+    "description": "Auto imported from components/patterns/breadcrumb/Breadcrumb.vue"
+  },
+  "ComponentsBreadcrumbItem": {
+    "description": "Auto imported from components/patterns/breadcrumb/components/BreadcrumbItem.vue"
+  },
+  "CannedSearch": {
+    "description": "Auto imported from components/patterns/canned-search/CannedSearch.vue"
+  },
+  "ComponentsCannedSearchBadges": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchBadges.vue"
+  },
+  "ComponentsCannedSearchCategories": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchCategories.vue"
+  },
+  "ComponentsCannedSearchCuisines": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchCuisines.vue"
+  },
+  "ComponentsCannedSearchDates": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchDates.vue"
+  },
+  "ComponentsCannedSearchDuration": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchDuration.vue"
+  },
+  "ComponentsCannedSearchLogos": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchLogos.vue"
+  },
+  "ComponentsCannedSearchPrice": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchPrice.vue"
+  },
+  "ComponentsCannedSearchProductCard": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchProductCard.vue"
+  },
+  "ComponentsCannedSearchStars": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchStars.vue"
+  },
+  "ComponentsCannedSearchSubHeading": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchSubHeading.vue"
+  },
+  "ComponentsCannedSearchSummaryBox": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchSummaryBox.vue"
+  },
+  "ComponentsCannedSearchTourDeparts": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchTourDeparts.vue"
+  },
+  "ComponentsCannedSearchTourRuns": {
+    "description": "Auto imported from components/patterns/canned-search/components/CannedSearchTourRuns.vue"
+  },
+  "Caption": {
+    "description": "Auto imported from components/patterns/caption/Caption.vue"
+  },
+  "ComponentsCaptionImageMap": {
+    "description": "Auto imported from components/patterns/caption/components/CaptionImageMap.vue"
+  },
+  "Carousel": {
+    "description": "Auto imported from components/patterns/carousel/Carousel.vue"
+  },
+  "ComponentsCarouselSlide": {
+    "description": "Auto imported from components/patterns/carousel/components/CarouselSlide.vue"
+  },
+  "DescriptionList": {
+    "description": "Auto imported from components/patterns/description-list/DescriptionList.vue"
+  },
+  "ComponentsDescriptionListDetail": {
+    "description": "Auto imported from components/patterns/description-list/components/DescriptionListDetail.vue"
+  },
+  "ComponentsDescriptionListItem": {
+    "description": "Auto imported from components/patterns/description-list/components/DescriptionListItem.vue"
+  },
+  "ComponentsDescriptionListTerm": {
+    "description": "Auto imported from components/patterns/description-list/components/DescriptionListTerm.vue"
+  },
+  "Dropdown": {
+    "description": "Auto imported from components/patterns/dropdown/Dropdown.vue"
+  },
+  "ComponentsDropdownItem": {
+    "description": "Auto imported from components/patterns/dropdown/components/DropdownItem.vue"
+  },
+  "EmbedWrapper": {
+    "description": "Auto imported from components/patterns/embed-wrapper/EmbedWrapper.vue"
+  },
+  "FavouritesList": {
+    "description": "Auto imported from components/patterns/favourites/FavouritesList.vue"
+  },
+  "FavouritesStore": {
+    "description": "Auto imported from components/patterns/favourites/favourites.store.js"
+  },
+  "ComponentsFavouritesListToggleButton": {
+    "description": "Auto imported from components/patterns/favourites/components/FavouritesListToggleButton.vue"
+  },
+  "ComponentsFavouritesListViewButton": {
+    "description": "Auto imported from components/patterns/favourites/components/FavouritesListViewButton.vue"
+  },
+  "Footer": {
+    "description": "Auto imported from components/patterns/footer/Footer.vue"
+  },
+  "ExamplesFooterExample": {
+    "description": "Auto imported from components/patterns/footer/__examples__/footer.example.vue"
+  },
+  "ComponentsFooterAccordionItem": {
+    "description": "Auto imported from components/patterns/footer/components/FooterAccordionItem.vue"
+  },
+  "ComponentsFooterCopyright": {
+    "description": "Auto imported from components/patterns/footer/components/FooterCopyright.vue"
+  },
+  "ComponentsFooterNavList": {
+    "description": "Auto imported from components/patterns/footer/components/FooterNavList.vue"
+  },
+  "ComponentsFooterNavListItem": {
+    "description": "Auto imported from components/patterns/footer/components/FooterNavListItem.vue"
+  },
+  "ComponentsFooterSocialItem": {
+    "description": "Auto imported from components/patterns/footer/components/FooterSocialItem.vue"
+  },
+  "ComponentsFooterSocialMenu": {
+    "description": "Auto imported from components/patterns/footer/components/FooterSocialMenu.vue"
+  },
+  "ComponentsFooterUtilityList": {
+    "description": "Auto imported from components/patterns/footer/components/FooterUtilityList.vue"
+  },
+  "Form": {
+    "description": "Auto imported from components/patterns/form/Form.vue"
+  },
+  "GlobalMenu": {
+    "description": "Auto imported from components/patterns/global-menu/GlobalMenu.vue"
+  },
+  "ComponentsGlobalMenuDropdown": {
+    "description": "Auto imported from components/patterns/global-menu/components/GlobalMenuDropdown.vue"
+  },
+  "ComponentsGlobalMenuLanguage": {
+    "description": "Auto imported from components/patterns/global-menu/components/GlobalMenuLanguage.vue"
+  },
+  "ComponentsGlobalMenuLanguageItem": {
+    "description": "Auto imported from components/patterns/global-menu/components/GlobalMenuLanguageItem.vue"
+  },
+  "ComponentsGlobalMenuList": {
+    "description": "Auto imported from components/patterns/global-menu/components/GlobalMenuList.vue"
+  },
+  "Icentre": {
+    "description": "Auto imported from components/patterns/icentre/Icentre.vue"
+  },
+  "IconList": {
+    "description": "Auto imported from components/patterns/icon-list/IconList.vue"
+  },
+  "ComponentsIconListItem": {
+    "description": "Auto imported from components/patterns/icon-list/components/IconListItem.vue"
+  },
+  "ImageWithCaption": {
+    "description": "Auto imported from components/patterns/image-with-caption/ImageWithCaption.vue"
+  },
+  "Itinerary": {
+    "description": "Auto imported from components/patterns/itineraries/Itinerary.vue"
+  },
+  "ItinerariesStore": {
+    "description": "Auto imported from components/patterns/itineraries/itineraries.store.js"
+  },
+  "ComponentsItineraryBorderOverlapWrapper": {
+    "description": "Auto imported from components/patterns/itineraries/components/ItineraryBorderOverlapWrapper.vue"
+  },
+  "ComponentsItineraryDay": {
+    "description": "Auto imported from components/patterns/itineraries/components/ItineraryDay.vue"
+  },
+  "ComponentsItineraryStop": {
+    "description": "Auto imported from components/patterns/itineraries/components/ItineraryStop.vue"
+  },
+  "ComponentsItineraryStopInfo": {
+    "description": "Auto imported from components/patterns/itineraries/components/ItineraryStopInfo.vue"
+  },
+  "ComponentsItineraryTips": {
+    "description": "Auto imported from components/patterns/itineraries/components/ItineraryTips.vue"
+  },
+  "ComponentsItineraryMap": {
+    "description": "Auto imported from components/patterns/itineraries/components/itinerary-map/ItineraryMap.vue"
+  },
+  "ComponentsItineraryMapMarker": {
+    "description": "Auto imported from components/patterns/itineraries/components/itinerary-map/components/ItineraryMapMarker.vue"
+  },
+  "LinkList": {
+    "description": "Auto imported from components/patterns/link-list/LinkList.vue"
+  },
+  "ComponentsLinkListItem": {
+    "description": "Auto imported from components/patterns/link-list/components/LinkListItem.vue"
+  },
+  "ListicleItem": {
+    "description": "Auto imported from components/patterns/listicle/ListicleItem.vue"
+  },
+  "MegaNav": {
+    "description": "Auto imported from components/patterns/mega-nav/MegaNav.vue"
+  },
+  "ExamplesMeganavExample": {
+    "description": "Auto imported from components/patterns/mega-nav/__examples__/meganav.example.vue"
+  },
+  "ComponentsMegaNavAccordionItem": {
+    "description": "Auto imported from components/patterns/mega-nav/components/MegaNavAccordionItem.vue"
+  },
+  "ComponentsMegaNavDropdown": {
+    "description": "Auto imported from components/patterns/mega-nav/components/MegaNavDropdown.vue"
+  },
+  "ComponentsMegaNavFeaturedItem": {
+    "description": "Auto imported from components/patterns/mega-nav/components/MegaNavFeaturedItem.vue"
+  },
+  "ComponentsMegaNavList": {
+    "description": "Auto imported from components/patterns/mega-nav/components/MegaNavList.vue"
+  },
+  "ComponentsMegaNavListItem": {
+    "description": "Auto imported from components/patterns/mega-nav/components/MegaNavListItem.vue"
+  },
+  "ComponentsMegaNavTopMenu": {
+    "description": "Auto imported from components/patterns/mega-nav/components/MegaNavTopMenu.vue"
+  },
+  "ComponentsMegaNavTopMenuItem": {
+    "description": "Auto imported from components/patterns/mega-nav/components/MegaNavTopMenuItem.vue"
+  },
+  "Megalinks": {
+    "description": "Auto imported from components/patterns/megalinks/Megalinks.vue"
+  },
+  "ComponentsMegalinkLinkList": {
+    "description": "Auto imported from components/patterns/megalinks/components/megalink-link-list/MegalinkLinkList.vue"
+  },
+  "ComponentsMegalinkMultiImage": {
+    "description": "Auto imported from components/patterns/megalinks/components/megalink-multi-image/MegalinkMultiImage.vue"
+  },
+  "ComponentsMegalinkSingleImage": {
+    "description": "Auto imported from components/patterns/megalinks/components/megalink-single-image/MegalinkSingleImage.vue"
+  },
+  "ModuleWrapper": {
+    "description": "Auto imported from components/patterns/module-wrapper/ModuleWrapper.vue"
+  },
+  "PageIntro": {
+    "description": "Auto imported from components/patterns/page-intro/PageIntro.vue"
+  },
+  "PsrModule": {
+    "description": "Auto imported from components/patterns/psr-module/PsrModule.vue"
+  },
+  "Quote": {
+    "description": "Auto imported from components/patterns/quote/Quote.vue"
+  },
+  "SiteSearch": {
+    "description": "Auto imported from components/patterns/site-search/SiteSearch.vue"
+  },
+  "SkipTo": {
+    "description": "Auto imported from components/patterns/skip-to/SkipTo.vue"
+  },
+  "SocialCreditLink": {
+    "description": "Auto imported from components/patterns/social-credit-link/SocialCreditLink.vue"
+  },
+  "SocialShare": {
+    "description": "Auto imported from components/patterns/social-share/SocialShare.vue"
+  },
+  "ComponentsSocialShareItem": {
+    "description": "Auto imported from components/patterns/social-share/components/SocialShareItem.vue"
+  },
+  "StretchedLinkCard": {
+    "description": "Auto imported from components/patterns/stretched-link-card/StretchedLinkCard.vue"
+  },
+  "ComponentsStretchedLinkPanels": {
+    "description": "Auto imported from components/patterns/stretched-link-card/components/StretchedLinkPanels.vue"
+  },
+  "SummaryBoxList": {
+    "description": "Auto imported from components/patterns/summary-box/SummaryBoxList.vue"
+  },
+  "ComponentsSummaryBoxDistanceListItem": {
+    "description": "Auto imported from components/patterns/summary-box/components/SummaryBoxDistanceListItem.vue"
+  },
+  "ComponentsSummaryBoxListItem": {
+    "description": "Auto imported from components/patterns/summary-box/components/SummaryBoxListItem.vue"
+  },
+  "Tabs": {
+    "description": "Auto imported from components/patterns/tabs/Tabs.vue"
+  },
+  "ComponentsTabItem": {
+    "description": "Auto imported from components/patterns/tabs/components/TabItem.vue"
+  },
+  "ToggleButton": {
+    "description": "Auto imported from components/patterns/toggle-button/ToggleButton.vue"
+  },
+  "VideoCaption": {
+    "description": "Auto imported from components/patterns/video-caption/VideoCaption.vue"
+  },
+  "DSHeader": {
+    "description": "Auto imported from components/DSHeader.vue"
+  },
+  "DSSidebar": {
+    "description": "Auto imported from components/DSSidebar.vue"
+  },
+  "TemplatesExample": {
+    "description": "Auto imported from components/templates/Example.vue"
+  }
+}
