@@ -1,12 +1,11 @@
 <template>
-    <div>
-        <VueRecaptcha
-            :sitekey="siteKey"
-            @verify="verified"
-            class="vs-recaptcha"
-            :class="invalid ? 'vs-recaptcha--invalid' :''"
-        />
-    </div>
+    <VueRecaptcha
+        :sitekey="siteKey"
+        @verify="verified"
+        class="vs-recaptcha"
+        :class="invalid ? 'vs-recaptcha--invalid' :''"
+        :language="language"
+    />
 </template>
 
 <script>
@@ -43,6 +42,13 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+         * language to show text in
+         */
+        language: {
+            type: String,
+            default: 'en',
+        },
     },
     methods: {
         verified(response) {
@@ -62,6 +68,7 @@ export default {
 ```jsx
     <vs-recaptcha
         sitekey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
+        language="de"
     />
 ```
 </docs>
