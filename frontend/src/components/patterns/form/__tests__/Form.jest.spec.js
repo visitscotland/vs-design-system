@@ -1,37 +1,94 @@
 import { shallowMount } from '@vue/test-utils';
 import VsForm from '../Form';
 
-jest.mock('axios', () => ({
-    get: () => Promise.resolve(
+const formData = {
+    formSandboxId: '90',
+    formLiveId: '91',
+    fields: [
         {
-            data: {
-                fields: [
-                    {
-                        name: 'firstName',
-                        element: 'input',
-                        type: 'text',
-                        label: 'First name',
-                        validation: {
-                            required: true,
-                        },
-                    },
-                    {
-                        name: 'lastName',
-                        element: 'input',
-                        type: 'text',
-                        label: 'Last name',
-                    },
-                    {
-                        name: 'email',
-                        element: 'input',
-                        type: 'email',
-                        label: 'Email address',
-                    },
-                ],
+            name: 'FirstName',
+            element: 'input',
+            type: 'text',
+            label: 'First name',
+            validation: {
+                required: true,
+                minLength: 3,
+            },
+            validationMessages: {
+                required: 'This is required',
+                minLength: 'You must have a minimum of 3 characters',
             },
         },
-    ),
-}));
+        {
+            name: 'LastName',
+            element: 'input',
+            type: 'text',
+            label: 'Last name',
+            validation: {
+                required: true,
+            },
+            validationMessages: {
+                required: 'This field is required',
+            },
+        },
+        {
+            name: 'Email',
+            element: 'input',
+            type: 'email',
+            label: 'Email address',
+            validation: {
+                required: true,
+                email: true,
+            },
+            validationMessages: {
+                required: 'Your email is required',
+                email: 'Please ensure your email is in the correct format',
+            },
+        },
+    ],
+    submit: 'Submit the form',
+    de: {
+        FirstName: {
+            label: 'German for "first name"',
+            validationMessages: {
+                minLength: 'You must have a minimum of 3 characters',
+            },
+        },
+        LastName: {
+            validationMessages: {
+                required: 'This field is required in German',
+            },
+        },
+        Email: {
+            validationMessages: {
+                required: 'Your email is required (de)',
+                email: 'Please ensure your email is in the correct format (de)',
+            },
+        },
+        submit: 'Submit (de)',
+    },
+};
+
+const globalMessaging = {
+    en: {
+        submit: 'submit',
+        validation: {
+            required: 'This field is required',
+            email: 'Please enter a valid email',
+            postcode: 'Please enter a valid postcode',
+        },
+        required: 'required',
+    },
+    de: {
+        submit: 'submit (de)',
+        validation: {
+            required: 'This field is required (de)',
+            email: 'Please enter a valid email (de)',
+            postcode: 'Please enter a valid postcode',
+        },
+        required: 'required (de)',
+    },
+};
 
 const factoryShallowMount = () => shallowMount(VsForm, {
     slots: {
@@ -42,9 +99,17 @@ const factoryShallowMount = () => shallowMount(VsForm, {
     },
     propsData: {
         dataUrl: 'testUrl',
-        submitText: 'Submit the form',
+        marketoInstance: '123',
+        munchkinId: '123',
+        messagingUrl: 'test',
         recaptchaKey: 'xyz',
         formId: '123',
+    },
+    data() {
+        return {
+            formData,
+            messagingData: globalMessaging,
+        };
     },
 });
 
@@ -64,7 +129,8 @@ describe('VsForm', () => {
     it('should render three input fields', async() => {
         const wrapper = factoryShallowMount();
         await wrapper.vm.$nextTick();
-        const allInputs = wrapper.findAll('label');
+
+        const allInputs = wrapper.findAll('bformgroup-stub');
 
         expect(allInputs.length).toBe(3);
     });
@@ -72,9 +138,18 @@ describe('VsForm', () => {
     it('should render `required` on required inputs', async() => {
         const wrapper = factoryShallowMount();
         await wrapper.vm.$nextTick();
-        const allInputs = wrapper.findAll('label');
+        const allInputs = wrapper.findAll('bformgroup-stub');
 
-        expect(allInputs.at(0).text()).toContain('required');
+        expect(allInputs.at(0).attributes('label')).toContain('required');
+    });
+
+    it('should render a submit element with a value of `submit` from the data', async() => {
+        const wrapper = factoryShallowMount();
+
+        const submitBtn = wrapper.find('input[type="submit"]');
+
+        await wrapper.vm.$nextTick();
+        expect(submitBtn.attributes('value')).toBe('Submit the form');
     });
 
     describe(':slots', () => {
@@ -116,15 +191,6 @@ describe('VsForm', () => {
         });
     });
 
-    describe(':props', () => {
-        it('should render a submit element with a value of the `submitText` slot', async() => {
-            const wrapper = factoryShallowMount();
-
-            const submitBtn = wrapper.find('input[type="submit"]');
-            expect(submitBtn.attributes('value')).toBe('Submit the form');
-        });
-    });
-
     describe(':methods', () => {
         it('should mark the form as invalid if input data with an error is supplied', async() => {
             const wrapper = factoryShallowMount();
@@ -160,9 +226,49 @@ describe('VsForm', () => {
             const wrapper = factoryShallowMount();
             await wrapper.vm.$nextTick();
 
-            const firstNameLabel = wrapper.find('label[for="firstName"]');
+            const allInputs = wrapper.findAll('bformgroup-stub');
+            const firstNameLabel = allInputs.at(0);
 
-            expect(firstNameLabel.text()).toContain('required');
+            expect(firstNameLabel.attributes('label')).toContain('required');
+        });
+
+        it('should show translated labels if they exist', async() => {
+            const wrapper = factoryShallowMount();
+
+            wrapper.setProps({
+                language: 'de',
+            });
+            await wrapper.vm.$nextTick();
+
+            const allInputs = wrapper.findAll('bformgroup-stub');
+            const firstNameLabel = allInputs.at(0);
+            expect(firstNameLabel.attributes('label')).toContain('German for "first name"');
+        });
+
+        it('should show the default label if no translation exists', async() => {
+            const wrapper = factoryShallowMount();
+
+            wrapper.setProps({
+                language: 'de',
+            });
+            await wrapper.vm.$nextTick();
+
+            const allInputs = wrapper.findAll('bformgroup-stub');
+            const lastNameLabel = allInputs.at(1);
+
+            expect(lastNameLabel.attributes('label')).toContain('Last name');
+        });
+
+        it('should show the translated submit message', async() => {
+            const wrapper = factoryShallowMount();
+
+            wrapper.setProps({
+                language: 'de',
+            });
+            await wrapper.vm.$nextTick();
+
+            const submitEl = wrapper.find('input[type="submit"]');
+            expect(submitEl.attributes('value')).toBe('Submit (de)');
         });
     });
 });
