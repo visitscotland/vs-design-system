@@ -13,49 +13,36 @@
             @submit.prevent="preSubmit"
         >
             <BFormGroup
-                v-for="field in formData.fields"
+                v-for="(field, index) in formData.fields"
                 :key="field.name"
+                :label="needsLabel(field) ? getTranslatedLabel(field.name, index) : ''"
+                :label-for="needsLabel(field) ? field.name : ''"
             >
-                <label
-                    v-if="field.element === 'input'"
-                    :for="field.name"
-                    :key="field.name"
-                >
-                    {{ getTranslatedLabel(field.name) }}
-                    <span v-if="showRequiredText(field)">
-                        ({{ requiredText }})
-                    </span>
+                <template v-if="field.element === 'input'">
                     <VsFormInput
                         :ref="field.name"
                         @status-update="updateFieldData"
                         :field-name="field.name"
                         :type="field.type"
                         :validation-rules="field.validation || {}"
-                        :validation-messages="getTranslatedValidation(field.name) || {}"
+                        :validation-messages="getTranslatedValidation(field.name, index) || {}"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
-                        :generic-validation="messagingData.validation[language]"
                     />
-                </label>
+                </template>
 
-                <label
-                    v-if="field.element === 'select'"
-                    :for="field.name"
-                    :key="field.name"
-                >
-                    {{ field.label }}
-                    ({{ requiredText }})
+                <template v-if="field.element === 'select'">
                     <VsFormSelect
-                        :options="getTranslatedOptions(field.name)"
+                        :options="getTranslatedOptions(field.name, index)"
                         :ref="field.name"
                         @status-update="updateFieldData"
                         :field-name="field.name"
                         :validation-rules="field.validation || {}"
-                        :validation-messages="getTranslatedValidation(field.name) || {}"
+                        :validation-messages="getTranslatedValidation(field.name, index) || {}"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                     />
-                </label>
+                </template>
 
                 <template v-if="field.element === 'checkbox'">
                     <VsFormCheckbox
@@ -68,10 +55,10 @@
                         @status-update="updateFieldData"
                         :field-name="field.name"
                         :validation-rules="field.validation || {}"
-                        :validation-messages="getTranslatedValidation(field.name) || {}"
+                        :validation-messages="getTranslatedValidation(field.name, index) || {}"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
-                        :required-text="requiredText"
+                        :required-text="getMessagingData('required', language)"
                     />
                 </template>
             </BFormGroup>
@@ -84,11 +71,12 @@
                 @verified="onRecaptchaVerify"
                 :site-key="recaptchaKey"
                 :invalid="!recaptchaVerified && showErrorMessage"
+                :language="language"
             />
 
             <input
                 type="submit"
-                :value="submitText || messagingData.submit[language]"
+                :value="getTranslatedSubmitText"
                 class="formSubmit"
                 @click.prevent="preSubmit"
                 @keyup.prevent="preSubmit"
@@ -146,25 +134,11 @@ export default {
             required: true,
         },
         /**
-         * text for `required`
-         */
-        requiredText: {
-            type: String,
-            default: 'required',
-        },
-        /**
          * recaptcha site key string
          */
         recaptchaKey: {
             type: String,
             required: true,
-        },
-        /**
-         * submit text
-         */
-        submitText: {
-            type: String,
-            default: '',
         },
         /**
          * if the form should use sandbox or live Marketo details
@@ -225,6 +199,40 @@ export default {
         formId() {
             return this.isProd ? this.formData.formLiveId : this.formData.formSandboxId;
         },
+        getTranslatedSubmitText() {
+            let text;
+            const languageObj = this.getLanguageObj();
+
+            if (this.language === 'en') {
+                text = this.formData.submit;
+            } else if (typeof languageObj.submit !== 'undefined') {
+                text = languageObj.submit;
+            } else {
+                text = this.getMessagingData('submit', this.language);
+            }
+
+            // if (Object.keys(this.messagingData).length > 0
+            //     && Object.keys(this.formData).length > 0) {
+            //     if (this.language === 'en') {
+            //         this.formData.fields.forEach((field) => {
+            //             if (field.element === 'submit') {
+            //                 text = field.label;
+            //             }
+            //         });
+
+            //         if (typeof text === 'undefined') {
+            //             text = 'this.messagingData.submit.en';
+            //         }
+            //     } else if (this.formData[this.language] !== 'undefined'
+            //         && this.formData[this.language].submit !== 'undefined') {
+            //         text = this.formData[this.language].submit.label;
+            //     } else {
+            //         text = this.messagingData.submit[this.language];
+            //     }
+            // }
+
+            return text;
+        },
     },
     created() {
         axios.get(this.dataUrl)
@@ -250,57 +258,91 @@ export default {
     },
     methods: {
         /**
+         * get appropriate language object
+         */
+        getLanguageObj() {
+            let languageObj;
+
+            if (typeof this.formData[this.language] !== 'undefined') {
+                languageObj = this.formData[this.language] || undefined;
+            } else {
+                languageObj = {
+                };
+            }
+
+            return languageObj;
+        },
+        /**
          * get translated label if available
          */
-        getTranslatedLabel(fieldName) {
-            const languageObj = this.formData[this.language] || undefined;
+        getTranslatedLabel(fieldName, index) {
+            const languageObj = this.getLanguageObj();
+            let labelText = '';
 
             if (this.language !== 'en'
                 && typeof languageObj[fieldName] !== 'undefined'
                 && typeof languageObj[fieldName].label !== 'undefined'
             ) {
-                return languageObj[fieldName].label;
+                labelText = languageObj[fieldName].label;
+            } else {
+                labelText = this.formData.fields[index].label;
             }
 
-            return fieldName;
+            if (typeof this.formData.fields[index].validation !== 'undefined'
+                && typeof this.formData.fields[index].validation.required !== 'undefined'
+                && this.formData.fields[index].validation.required) {
+                labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
+            }
+
+            return labelText;
         },
         getTranslatedValidation(fieldName) {
-            const languageObj = this.formData[this.language] || undefined;
-            let validationObj = {
-            };
+            const languageObj = this.getLanguageObj();
+
+            let validationObj;
 
             if (this.language !== 'en'
                 && typeof languageObj[fieldName] !== 'undefined'
                 && typeof languageObj[fieldName].validationMessages !== 'undefined') {
                 validationObj = languageObj[fieldName].validationMessages;
-            } else {
-                this.formData.fields.forEach((field, index) => {
-                    if (field.name === fieldName) {
-                        validationObj = this.formData.fields[index].validationMessages;
-                    }
-                });
+            }
+
+            if (typeof validationObj === 'undefined') {
+                validationObj = this.getMessagingData('validation', this.language);
             }
 
             return validationObj;
         },
-        getTranslatedOptions(fieldName) {
-            const languageObj = this.formData[this.language] || undefined;
-            let optionsObj = {
-            };
+        getTranslatedOptions(fieldName, index) {
+            const languageObj = this.getLanguageObj();
+
+            let optionsArr = [];
 
             if (this.language !== 'en'
                 && typeof languageObj[fieldName] !== 'undefined'
                 && typeof languageObj[fieldName].options !== 'undefined') {
-                optionsObj = languageObj[fieldName].options;
+                optionsArr = languageObj[fieldName].options;
             } else {
-                this.formData.fields.forEach((field, index) => {
-                    if (field.name === fieldName) {
-                        optionsObj = this.formData.fields[index].options;
-                    }
-                });
+                optionsArr = this.formData.fields[index].options;
             }
 
-            return optionsObj;
+            return optionsArr;
+        },
+        /**
+         * check messaging data exists and then pass value back
+         */
+        getMessagingData(type, lang) {
+            if (Object.keys(this.messagingData).length > 0) {
+                const dataType = this.messagingData[lang];
+                return dataType[type];
+            }
+
+            if (type === 'validation') {
+                return {
+                };
+            }
+
+            return '';
         },
         /**
          * update field data and error status
@@ -336,6 +378,18 @@ export default {
             }
 
             return false;
+        },
+        /**
+         * whether or not an element should have a label defined (for Bootstrap Vue)
+         */
+        needsLabel(field) {
+            if (field.element === 'checkbox'
+                || field.element === 'radio'
+                || field.element === 'submit') {
+                return false;
+            }
+
+            return true;
         },
         /**
          * submit form
@@ -418,14 +472,15 @@ export default {
 
 <docs>
     ```jsx
+        // https://static.visitscotland.com/forms/vs-3331/simpleForm.json
         <VsForm
-            requiredText="required"
-            dataUrl="https://static.visitscotland.com/forms/vs-3331/simpleForm.json"
-            messagingUrl="https://static.visitscotland.com/forms/messaging.json"
+            dataUrl="http://172.28.74.161:5555/simpleForm.json"
+            messagingUrl="http://172.28.74.161:5555/messaging.json"
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
             marketo-instance="//app-lon10.marketo.com"
             munchkin-id="830-QYE-256"
-            :is-prod="true"
+            language="de"
+            :is-prod="false"
         >
             <template slot="invalid">
                 You have invalid fields - please check the form.
