@@ -1,0 +1,22 @@
+{
+    "fields": [
+        {
+            "name": "firstName",
+            "type": "input",
+            "subtype": "text",
+            "label": "First name"
+        },
+        {
+            "name": "lastName",
+            "type": "input",
+            "subtype": "text",
+            "label": "Last name"
+        },
+        { 
+            "name": "email"
+            "type": "input",
+            "subtype": "email",
+            "label": "Email address"
+        }
+    ]
+}

@@ -3,12 +3,16 @@ import VsFormInput from '../FormInput';
 
 const factoryShallowMount = (propsData) => shallowMount(VsFormInput, {
     propsData: {
+        fieldName: 'testname',
+        type: 'text',
         ...propsData,
     },
 });
 
 const factoryMount = (propsData) => mount(VsFormInput, {
     propsData: {
+        fieldName: 'testname',
+        type: 'text',
         ...propsData,
     },
 });
@@ -20,12 +24,13 @@ beforeEach(() => {
 
 describe('VsFormInput', () => {
     it('should render a bform-input-stub', () => {
-        expect(wrapper.element.tagName).toBe('BFORMINPUT-STUB');
+        expect(wrapper.attributes('data-test')).toBe('vs-input');
     });
 
     describe(':props', () => {
         it('size - should be `md` by default', () => {
-            expect(wrapper.attributes('size')).toBe('md');
+            const modifiedWrapper = factoryMount();
+            expect(modifiedWrapper.find('.vs-input').classes()).toContain('form-control-md');
         });
 
         it('size - should accept and render a `size` property', () => {
@@ -34,7 +39,7 @@ describe('VsFormInput', () => {
                 size: testSize,
             });
 
-            expect(modifiedWrapper.classes()).toContain(`form-control-${testSize}`);
+            expect(modifiedWrapper.find('.vs-input').classes()).toContain(`form-control-${testSize}`);
         });
 
         it('value - should accept and render a `value` property', async() => {
@@ -47,31 +52,65 @@ describe('VsFormInput', () => {
 
             expect(wrapper.vm.inputVal).toBe(testValue);
         });
-    });
 
-    describe(':events', () => {
-        it('it should emit an `input` event when `value` changes', async() => {
-            const testValue = 'Test Value';
-            const modifiedWrapper = factoryMount();
-            modifiedWrapper.setProps({
-                value: testValue,
+        it('value - should accept and render a `fieldName` property', async() => {
+            wrapper.setProps({
+                fieldName: 'testValue',
             });
 
             await wrapper.vm.$nextTick();
 
-            expect(modifiedWrapper.emitted('input')).toBeTruthy();
+            expect(wrapper.find('.vs-input').attributes('name')).toBe('testValue');
         });
 
-        it('it should emit an `input` event with the new value when `value` changes', async() => {
-            const testValue = 'Test Value';
-            const modifiedWrapper = factoryMount();
-            modifiedWrapper.setProps({
-                value: testValue,
+        it('value - should accept and render a `type` property', async() => {
+            expect(wrapper.find('.vs-input').attributes('type')).toBe('text');
+        });
+    });
+
+    describe(':computed', () => {
+        it('should add a required prop when its included in valdiation rules', async() => {
+            wrapper.setProps({
+                validationRules: {
+                    required: true,
+                },
             });
 
             await wrapper.vm.$nextTick();
 
-            expect(modifiedWrapper.emitted('input')[0]).toEqual([testValue]);
+            expect(wrapper.find('.vs-input').attributes('required')).toBe('true');
+        });
+
+        it('should display a validation message if validation fails', async() => {
+            wrapper.setProps({
+                invalid: true,
+                validationRules: {
+                    required: true,
+                },
+                validationMessages: {
+                    required: 'This is required',
+                },
+            });
+
+            wrapper.vm.manualValidate();
+
+            await wrapper.vm.$nextTick();
+
+            expect(wrapper.html()).toContain('This is required');
+        });
+    });
+
+    describe(':watchers', () => {
+        it('should call the `manualValidate` method when `triggerValidation` is emitted', async() => {
+            const mockedMethod = jest.spyOn(wrapper.vm, 'manualValidate');
+
+            wrapper.setProps({
+                triggerValidate: true,
+            });
+
+            await wrapper.vm.$nextTick();
+
+            expect(mockedMethod).toBeCalled();
         });
     });
 });

@@ -1,14 +1,115 @@
 <template>
-    <form
+    <div
         class="vs-form"
-        :id="`mktoForm_${formId}`"
-    />
+        data-test="vs-form"
+    >
+        <!-- element into which the (completely empty) form is embedded invisibly -->
+        <form
+            style="display:none"
+        />
+
+        <form
+            v-if="!submitted"
+            @submit.prevent="preSubmit"
+        >
+            <BFormGroup
+                v-for="(field, index) in formData.fields"
+                :key="field.name"
+                :label="needsLabel(field) ? getTranslatedLabel(field.name, index) : ''"
+                :label-for="needsLabel(field) ? field.name : ''"
+            >
+                <template v-if="field.element === 'input'">
+                    <VsFormInput
+                        :ref="field.name"
+                        @status-update="updateFieldData"
+                        :field-name="field.name"
+                        :type="field.type"
+                        :validation-rules="field.validation || {}"
+                        :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                        :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                        :trigger-validate="triggerValidate"
+                    />
+                </template>
+
+                <template v-if="field.element === 'select'">
+                    <VsFormSelect
+                        :options="getTranslatedOptions(field.name, index)"
+                        :ref="field.name"
+                        @status-update="updateFieldData"
+                        :field-name="field.name"
+                        :validation-rules="field.validation || {}"
+                        :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                        :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                        :trigger-validate="triggerValidate"
+                    />
+                </template>
+
+                <template v-if="field.element === 'checkbox'">
+                    <VsFormCheckbox
+                        :key="field.name"
+                        :ref="field.name"
+                        :name="field.name"
+                        :value="field.value"
+                        :id="field.name"
+                        :label="field.label"
+                        @status-update="updateFieldData"
+                        :field-name="field.name"
+                        :validation-rules="field.validation || {}"
+                        :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                        :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                        :trigger-validate="triggerValidate"
+                        :required-text="getMessagingData('required', language)"
+                    />
+                </template>
+            </BFormGroup>
+
+            <p v-if="showErrorMessage && errorFields.length > 0">
+                <slot name="invalid" />
+            </p>
+
+            <VsRecaptcha
+                @verified="onRecaptchaVerify"
+                :site-key="recaptchaKey"
+                :invalid="!recaptchaVerified && showErrorMessage"
+                :language="language"
+            />
+
+            <input
+                type="submit"
+                :value="getTranslatedSubmitText"
+                class="formSubmit"
+                @click.prevent="preSubmit"
+                @keyup.prevent="preSubmit"
+            >
+        </form>
+
+        <p v-if="submitting">
+            <slot name="submitting" />
+        </p>
+
+        <p v-if="submitted">
+            <slot name="submitted" />
+        </p>
+
+        <p v-if="submitError">
+            <slot name="submitError" />
+        </p>
+    </div>
 </template>
 
 <script>
+import { BFormGroup } from 'bootstrap-vue';
+import VsFormInput from '../../elements/form-input/FormInput';
+import VsFormSelect from '../../elements/form-select/FormSelect';
+import VsFormCheckbox from '../../elements/form-checkbox/FormCheckbox';
+import VsRecaptcha from '../../elements/recaptcha/Recaptcha';
+
+const axios = require('axios');
+
 /**
- * An icon list can be used where there is a list icons with a caption with optional heading.
- * An example use is to create a list of key facilities for a product.
+ * A form that results in a user posting data to Marketo.
+ * The form is created using an external json config file which is
+ * defined in a prop.
  *
  * @displayName Form
  */
@@ -17,50 +118,343 @@ export default {
     name: 'VsForm',
     status: 'prototype',
     release: '0.0.1',
+    components: {
+        VsFormInput,
+        VsFormSelect,
+        VsFormCheckbox,
+        BFormGroup,
+        VsRecaptcha,
+    },
     props: {
-        formId: {
-            type: Number,
+        /**
+         * the url for the form data file
+         */
+        dataUrl: {
+            type: String,
+            required: true,
+        },
+        /**
+         * recaptcha site key string
+         */
+        recaptchaKey: {
+            type: String,
+            required: true,
+        },
+        /**
+         * if the form should use sandbox or live Marketo details
+         */
+        isProd: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+         * munchkin ID for the Marketo environment
+         */
+        munchkinId: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Marketo instance URL for the form
+         */
+        marketoInstance: {
+            type: String,
+            required: true,
+        },
+        /**
+         * language indicator for content
+         */
+        language: {
+            type: String,
+            default: 'en',
+        },
+        /**
+         * URL for generic messaging config
+         */
+        messagingUrl: {
+            type: String,
             required: true,
         },
     },
-    mounted() {
-        window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
-        window.MktoForms2.whenRendered((form) => {
-            this.destyleMktoForm(form);
-        });
+    data() {
+        return {
+            submitted: false,
+            submitting: false,
+            submitError: false,
+            formData: {
+            },
+            messagingData: {
+            },
+            form: {
+            },
+            formIsInvalid: false,
+            showErrorMessage: false,
+            errorFields: [
+            ],
+            triggerValidate: false,
+            recaptchaVerified: false,
+        };
+    },
+    computed: {
+        formId() {
+            return this.isProd ? this.formData.formLiveId : this.formData.formSandboxId;
+        },
+        getTranslatedSubmitText() {
+            let text;
+            const languageObj = this.getLanguageObj();
+
+            if (this.language === 'en') {
+                text = this.formData.submit;
+            } else if (typeof languageObj.submit !== 'undefined') {
+                text = languageObj.submit;
+            } else {
+                text = this.getMessagingData('submit', this.language);
+            }
+
+            // if (Object.keys(this.messagingData).length > 0
+            //     && Object.keys(this.formData).length > 0) {
+            //     if (this.language === 'en') {
+            //         this.formData.fields.forEach((field) => {
+            //             if (field.element === 'submit') {
+            //                 text = field.label;
+            //             }
+            //         });
+
+            //         if (typeof text === 'undefined') {
+            //             text = 'this.messagingData.submit.en';
+            //         }
+            //     } else if (this.formData[this.language] !== 'undefined'
+            //         && this.formData[this.language].submit !== 'undefined') {
+            //         text = this.formData[this.language].submit.label;
+            //     } else {
+            //         text = this.messagingData.submit[this.language];
+            //     }
+            // }
+
+            return text;
+        },
+    },
+    created() {
+        axios.get(this.dataUrl)
+            .then((response) => {
+                this.formData = response.data;
+
+                if (window.MktoForms2) {
+                    window.MktoForms2.loadForm(this.marketoInstance, this.munchkinId, this.formId);
+                }
+
+                // window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
+                // ('//app-lon10.marketo.com', '830-QYE-256', this.formId);
+
+                response.data.fields.forEach((field) => {
+                    this.form[field.name] = '';
+                });
+            });
+
+        axios.get(this.messagingUrl)
+            .then((response) => {
+                this.messagingData = response.data;
+            });
     },
     methods: {
-        destyleMktoForm: (mktoForm, moreStyles) => {
-            /*
-            * @author Sanford Whiteman
-            * @version v1.104
-            * @license MIT License: This license must appear with all
-            * reproductions of this software.
-            *
-            * Create a completely barebones, user-styles-only Marketo form
-            * by removing inline STYLE attributes and disabling STYLE and LINK elements
-            */
-            const formEl = mktoForm.getFormElem()[0];
-            const arrayify = getSelection.call.bind([].slice);
+        /**
+         * get appropriate language object
+         */
+        getLanguageObj() {
+            let languageObj;
 
-            const styledEls = arrayify(formEl.querySelectorAll('[style]')).concat(formEl);
-            styledEls.forEach((el) => {
-                el.removeAttribute('style');
-            });
-            const styleSheets = arrayify(document.styleSheets);
-            styleSheets.forEach((ss) => {
-                if ([window.mktoForms2BaseStyle, window.mktoForms2ThemeStyle]
-                    .indexOf(ss.ownerNode) !== -1 || formEl.contains(ss.ownerNode)) {
-                    ss.disabled = true; // eslint-disable-line no-param-reassign
+            if (typeof this.formData[this.language] !== 'undefined') {
+                languageObj = this.formData[this.language] || undefined;
+            } else {
+                languageObj = {
+                };
+            }
+
+            return languageObj;
+        },
+        /**
+         * get translated label if available
+         */
+        getTranslatedLabel(fieldName, index) {
+            const languageObj = this.getLanguageObj();
+            let labelText = '';
+
+            if (this.language !== 'en'
+                && typeof languageObj[fieldName] !== 'undefined'
+                && typeof languageObj[fieldName].label !== 'undefined'
+            ) {
+                labelText = languageObj[fieldName].label;
+            } else {
+                labelText = this.formData.fields[index].label;
+            }
+
+            if (typeof this.formData.fields[index].validation !== 'undefined'
+                && typeof this.formData.fields[index].validation.required !== 'undefined'
+                && this.formData.fields[index].validation.required) {
+                labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
+            }
+
+            return labelText;
+        },
+        getTranslatedValidation(fieldName) {
+            const languageObj = this.getLanguageObj();
+
+            let validationObj;
+
+            if (this.language !== 'en'
+                && typeof languageObj[fieldName] !== 'undefined'
+                && typeof languageObj[fieldName].validationMessages !== 'undefined') {
+                validationObj = languageObj[fieldName].validationMessages;
+            }
+
+            if (typeof validationObj === 'undefined') {
+                validationObj = this.getMessagingData('validation', this.language);
+            }
+
+            return validationObj;
+        },
+        getTranslatedOptions(fieldName, index) {
+            const languageObj = this.getLanguageObj();
+
+            let optionsArr = [];
+
+            if (this.language !== 'en'
+                && typeof languageObj[fieldName] !== 'undefined'
+                && typeof languageObj[fieldName].options !== 'undefined') {
+                optionsArr = languageObj[fieldName].options;
+            } else {
+                optionsArr = this.formData.fields[index].options;
+            }
+
+            return optionsArr;
+        },
+        /**
+         * check messaging data exists and then pass value back
+         */
+        getMessagingData(type, lang) {
+            if (Object.keys(this.messagingData).length > 0) {
+                const dataType = this.messagingData[lang];
+                return dataType[type];
+            }
+
+            if (type === 'validation') {
+                return {
+                };
+            }
+
+            return '';
+        },
+        /**
+         * update field data and error status
+         */
+        updateFieldData(data) {
+            this.form[data.field] = data.value || '';
+
+            if (Array.isArray(data.errors)) {
+                this.formIsInvalid = data.errors.length > 0;
+            } else {
+                this.formIsInvalid = data.errors;
+            }
+
+            this.manageErrorStatus(data.field, data.errors);
+        },
+        /**
+         * update error status of fields for validation feedback
+         */
+        manageErrorStatus(field, errors) {
+            const index = this.errorFields.indexOf(field);
+
+            if (index !== -1) {
+                if (!errors || errors.length < 1) {
+                    this.errorFields.splice(index, 1);
                 }
+            } else if (errors) {
+                this.errorFields.push(field);
+            }
+        },
+        showRequiredText(field) {
+            if (typeof field.validation !== 'undefined' && field.validation.required) {
+                return true;
+            }
+
+            return false;
+        },
+        /**
+         * whether or not an element should have a label defined (for Bootstrap Vue)
+         */
+        needsLabel(field) {
+            if (field.element === 'checkbox'
+                || field.element === 'radio'
+                || field.element === 'submit') {
+                return false;
+            }
+
+            return true;
+        },
+        /**
+         * submit form
+         */
+        preSubmit(e) {
+            e.preventDefault();
+
+            function isRequired(value) {
+                return value.validation && value.validation.required;
+            }
+
+            if (window.grecaptcha.getResponse() !== '') {
+                this.recaptchaVerified = true;
+            } else {
+                this.recaptchaVerified = false;
+            }
+
+            this.triggerValidate = true;
+
+            const fieldIsRequired = this.formData.fields.filter(isRequired);
+
+            if (fieldIsRequired.length === 0) {
+                this.formIsInvalid = false;
+            } else {
+                fieldIsRequired.forEach((field) => {
+                    if (this.form[field.name] === '') {
+                        this.formIsInvalid = true;
+                    }
+                });
+            }
+
+            this.showErrorMessage = this.formIsInvalid.length > 1;
+
+            if (!this.formIsInvalid && this.recaptchaVerified) {
+                this.marketoSubmit();
+            } else {
+                this.showErrorMessage = true;
+            }
+        },
+        marketoSubmit() {
+            const myForm = window.MktoForms2.allForms()[0];
+            myForm.addHiddenFields(this.form);
+            myForm.addHiddenFields({
+                lastReCAPTCHAUserFingerprint: window.grecaptcha.getResponse(),
+                lastRecaptchaEnabledFormID: this.formId,
             });
 
-            if (!moreStyles) {
-                formEl.setAttribute('data-styles-ready', 'true');
+            myForm.submit(() => {
+                this.submitting = true;
+            });
+            /* eslint-ignore-next-line */
+            myForm.onSuccess(() => {
+                this.submitting = false;
+                this.submitted = true;
+                return false;
+            });
+        },
+        onRecaptchaVerify() {
+            if (window.grecaptcha.getResponse() !== '') {
+                this.recaptchaVerified = true;
+            } else {
+                this.recaptchaVerified = false;
             }
         },
     },
-
 };
 </script>
 
@@ -75,3 +469,34 @@ export default {
         }
     }
 </style>
+
+<docs>
+    ```jsx
+        // https://static.visitscotland.com/forms/vs-3331/simpleForm.json
+        <VsForm
+            dataUrl="http://172.28.74.161:5555/simpleForm.json"
+            messagingUrl="http://172.28.74.161:5555/messaging.json"
+            recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
+            marketo-instance="//app-lon10.marketo.com"
+            munchkin-id="830-QYE-256"
+            language="de"
+            :is-prod="false"
+        >
+            <template slot="invalid">
+                You have invalid fields - please check the form.
+            </template>
+
+            <template slot="submitError">
+                We're sorry there's been a problem, please try again later.
+            </template>
+
+            <template slot="submitting">
+                We're just submitting your form
+            </template>
+
+            <template slot="submitted">
+                Thank you for your details, your form has been submitted
+            </template>
+        </VsForm>
+    ```
+</docs>
