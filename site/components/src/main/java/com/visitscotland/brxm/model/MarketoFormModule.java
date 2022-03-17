@@ -6,7 +6,7 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 public class MarketoFormModule extends Module<MarketoForm> {
 
     private String title;
-    private String configuration;
+    private String jsonUrl;
     private String noJavaScriptMessage;
     private HippoHtml copy;
 
@@ -18,12 +18,12 @@ public class MarketoFormModule extends Module<MarketoForm> {
         this.title = title;
     }
 
-    public String getConfiguration() {
-        return configuration;
+    public String getJsonUrl() {
+        return jsonUrl;
     }
 
-    public void setConfiguration(String configuration) {
-        this.configuration = configuration;
+    public void setJsonUrl(String jsonUrl) {
+        this.jsonUrl = jsonUrl;
     }
 
     public String getNoJavaScriptMessage() {

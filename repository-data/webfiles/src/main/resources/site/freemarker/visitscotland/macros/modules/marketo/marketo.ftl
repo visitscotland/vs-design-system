@@ -5,5 +5,5 @@
     <h1>${form.title}</h1>
     <@hst.html hippohtml=form.copy/>
     <p>${form.noJavaScriptMessage}</p>
-    <p>${form.configuration}</p>
+    <p>${form.jsonUrl}</p>
 </#macro>

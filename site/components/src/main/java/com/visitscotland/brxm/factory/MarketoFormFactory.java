@@ -10,7 +10,7 @@ public class MarketoFormFactory {
     public MarketoFormModule getModule(MarketoForm document) {
         MarketoFormModule module = new MarketoFormModule();
         module.setTitle(document.getTitle());
-        module.setConfiguration(document.getConfiguration());
+        module.setJsonUrl(document.getJsonUrl());
         module.setNoJavaScriptMessage(document.getNonJavaScriptMessage());
         module.setCopy(document.getCopy());
         return module;

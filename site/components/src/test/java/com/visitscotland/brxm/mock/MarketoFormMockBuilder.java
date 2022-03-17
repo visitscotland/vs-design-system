@@ -28,7 +28,7 @@ public class MarketoFormMockBuilder {
     }
 
     public MarketoFormMockBuilder configuration(String config) {
-        when(mock.getConfiguration()).thenReturn(config);
+        when(mock.getJsonUrl()).thenReturn(config);
         return this;
     }
 

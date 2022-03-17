@@ -19,14 +19,14 @@ public class MarketoFactoryTest {
     MarketoFormFactory marketoFormFactory;
 
     @Test
-    @DisplayName("Marketo form")
+    @DisplayName("VS-3358 - Marketo form")
     void marketoForm() {
         MarketoForm form = new MarketoFormMockBuilder().title("title")
                 .configuration("config").noJavascriptMessage("nojs").copy("copy").build();
         MarketoFormModule module = marketoFormFactory.getModule(form);
 
         assertEquals("title", module.getTitle());
-        assertEquals("config", module.getConfiguration());
+        assertEquals("config", module.getJsonUrl());
         assertEquals("nojs", module.getNoJavaScriptMessage());
         assertEquals("copy", module.getCopy().getContent());
     }
