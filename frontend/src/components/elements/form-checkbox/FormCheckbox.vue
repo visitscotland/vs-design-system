@@ -20,11 +20,17 @@
                 ({{ requiredText }})
             </span>
         </BFormCheckbox>
-        <template
-            v-if="errors.length > 0"
+        <span
+            v-for="error in errors"
+            :key="error"
+            class="error"
         >
-            {{ validationMessages.required }}
-        </template>
+            <template
+                v-if="$v.inputVal.$anyError || invalid"
+            >
+                {{ validationMessages[error] }}
+            </template>
+        </span>
     </div>
 </template>
 
@@ -114,6 +120,13 @@ export default {
                 return {
                 };
             },
+        },
+        /**
+         * Prop to define invalid from parent
+         */
+        invalid: {
+            type: Boolean,
+            default: false,
         },
     },
     data() {
