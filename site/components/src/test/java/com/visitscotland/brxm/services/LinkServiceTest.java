@@ -164,15 +164,11 @@ class LinkServiceTest {
     void cmsPageLink_linkNull() {
         Page pageLink = mock(Page.class);
         Module m = new Module();
-        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
         CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
 
         when(cmsLink.getLabel()).thenReturn("");
         when(pageLink.getTitle()).thenReturn("Edinburgh");
-        when(externalLink.getLink()).thenReturn("http://cms-url");
         when(cmsLink.getLink()).thenReturn(pageLink);
-        when(resourceBundle.getCtaLabel(any(), any())).thenReturn("Find out more");
-
 
         FlatLink link = service.createFindOutMoreLink(m, Locale.UK, cmsLink);
 
@@ -502,7 +498,7 @@ class LinkServiceTest {
         Module<?> module = new Module<>();
 
         SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
-        when(imageFactory.createImage(node, module)).thenReturn(new FlatImage());
+        when(imageFactory.createImage(node, module, Locale.UK)).thenReturn(new FlatImage());
 
         EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false).get();
 

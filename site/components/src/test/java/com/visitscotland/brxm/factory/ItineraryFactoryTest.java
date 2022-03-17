@@ -193,7 +193,7 @@ class ItineraryFactoryTest {
         assertEquals("https://mock.visitscotland.com/info/fake-product-p123", module.getCtaLink().getLink());
         assertEquals("Find out more", module.getCtaLink().getLabel());
         assertEquals("Edinburgh", module.getSubTitle());
-        verify(imageFactory).createImage(any(), any());
+        verify(imageFactory).createImage(any(JsonNode.class), any(), any());
     }
 
     @Test

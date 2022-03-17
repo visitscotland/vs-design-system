@@ -49,9 +49,13 @@ public class PageTemplateBuilder {
     private final StacklaFactory stacklaFactory;
     private final TravelInformationFactory travelInformationFactory;
     private final CannedSearchFactory cannedSearchFactory;
+    private final PreviewModeFactory previewFactory;
 
     @Autowired
-    public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory, StacklaFactory stacklaFactory, TravelInformationFactory travelInformationFactory, CannedSearchFactory cannedSearchFactory) {
+    public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre,
+               IKnowFactory iKnow, ArticleFactory article, LongCopyFactory longcopy, IKnowCommunityFactory iKnowCommunityFactory,
+               StacklaFactory stacklaFactory, TravelInformationFactory travelInformationFactory, CannedSearchFactory cannedSearchFactory,
+               PreviewModeFactory previewFactory) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
@@ -62,6 +66,7 @@ public class PageTemplateBuilder {
         this.stacklaFactory = stacklaFactory;
         this.travelInformationFactory = travelInformationFactory;
         this.cannedSearchFactory = cannedSearchFactory;
+        this.previewFactory = previewFactory;
     }
 
     private Page getDocument(HstRequest request) {
@@ -127,6 +132,7 @@ public class PageTemplateBuilder {
             contentLogger.error("The document type LongCopy is not allowed in this page. Path {}", page.getPath());
         }
     }
+
     /**
      * Creates a LinkModule from a Megalinks document
      */
@@ -137,8 +143,10 @@ public class PageTemplateBuilder {
             numLinks += ((MultiImageLinksModule) al).getFeaturedLinks().size();
         }
         if (numLinks == 0) {
-            contentLogger.error("Megalinks module at {} contains no published items", item.getPath());
-        }
+            contentLogger.error("Megalinks module at {} contains no valid items", item.getPath());
+            page.modules.add(previewFactory.createErrorModule(al));
+            return;
+        } 
 
         if (al.getType().equalsIgnoreCase(SingleImageLinksModule.class.getSimpleName())) {
             al.setAlignment(alignment[page.alignment++ % alignment.length]);
