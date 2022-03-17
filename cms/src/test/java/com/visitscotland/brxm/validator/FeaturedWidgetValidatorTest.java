@@ -30,7 +30,7 @@ public class FeaturedWidgetValidatorTest {
     ValidationContext context;
 
     @Test
-    @DisplayName("When two featured items, validation passes")
+    @DisplayName("VS-3057 When two featured items, validation passes")
     public void whenTwoFeaturedItems_validationPasses() throws RepositoryException {
         Node featureItem1 = new MockNodeBuilder().withPrimaryNodeType("visitscotland:CMSLink").build();
         Node featureItem2 = new MockNodeBuilder().withPrimaryNodeType("visitscotland:CMSLink").build();
@@ -44,7 +44,7 @@ public class FeaturedWidgetValidatorTest {
     }
 
     @Test
-    @DisplayName("When product search a event search, validation passes")
+    @DisplayName("VS-3057 When product search a event search, validation passes")
     public void productSearchNotEvents_valdiationPasses() throws RepositoryException {
         Node productSearch = new MockNodeBuilder()
                 .withPrimaryNodeType("visitscotland:ProductSearch")
@@ -59,7 +59,7 @@ public class FeaturedWidgetValidatorTest {
     }
 
     @Test
-    @DisplayName("When product search a event search, validation fails")
+    @DisplayName("VS-3057 When product search a event search, validation fails")
     public void productSearchNotEvents_valdiationFails() throws RepositoryException {
         Node productSearch = new MockNodeBuilder()
                 .withPrimaryNodeType("visitscotland:ProductSearch")
@@ -79,7 +79,7 @@ public class FeaturedWidgetValidatorTest {
             "visitscotland:ProductSearch,visitscotland:CMSLink",
             "visitscotland:ProductSearch,visitscotland:ProductSearch"})
     @ParameterizedTest
-    @DisplayName("Two featured items not cms links, then validation fails")
+    @DisplayName("VS-3057 Two featured items not cms links, then validation fails")
     public void whenTwoFeaturedItemsNotBothCmsLink_validationFails(String firstType, String secondType) throws RepositoryException {
         Node featureItem1 = new MockNodeBuilder().withPrimaryNodeType(firstType).build();
         Node featureItem2 = new MockNodeBuilder().withPrimaryNodeType(secondType).build();
