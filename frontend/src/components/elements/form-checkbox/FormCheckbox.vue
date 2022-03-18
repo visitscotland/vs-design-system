@@ -14,6 +14,7 @@
             data-test="vs-form-checkbox"
             @change="emitStatus"
             :required="isRequired"
+            :aria-invalid="$v.inputVal.$anyError || invalid"
         >
             {{ label }}
             <span v-if="isRequired">
@@ -246,17 +247,17 @@ export default {
 </script>
 
 <style lang="scss">
-    .vs-form-checkbox {
-        input[type="checkbox"] {
-            width: 15px;
-            height: 15px;
-            margin-right: $spacer-4;
-        }
+    // .vs-form-checkbox {
+    //     input[type="checkbox"] {
+    //         width: 15px;
+    //         height: 15px;
+    //         margin-right: $spacer-4;
+    //     }
 
-        &__invalid {
-            border: red 2px solid;
-        }
-    }
+    //     &__invalid {
+    //         border: red 2px solid;
+    //     }
+    // }
 </style>
 
 <docs>
