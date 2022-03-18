@@ -28,6 +28,7 @@
                         :validation-messages="getTranslatedValidation(field.name, index) || {}"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
+                        :hint-text="getTranslatedHint(field.name, index)"
                     />
                 </template>
 
@@ -41,6 +42,7 @@
                         :validation-messages="getTranslatedValidation(field.name, index) || {}"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
+                        :hint-text="getTranslatedHint(field.name, index)"
                     />
                 </template>
 
@@ -59,6 +61,7 @@
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                         :required-text="getMessagingData('required', language)"
+                        :hint-text="getTranslatedHint(field.name, index)"
                     />
                 </template>
             </BFormGroup>
@@ -211,26 +214,6 @@ export default {
                 text = this.getMessagingData('submit', this.language);
             }
 
-            // if (Object.keys(this.messagingData).length > 0
-            //     && Object.keys(this.formData).length > 0) {
-            //     if (this.language === 'en') {
-            //         this.formData.fields.forEach((field) => {
-            //             if (field.element === 'submit') {
-            //                 text = field.label;
-            //             }
-            //         });
-
-            //         if (typeof text === 'undefined') {
-            //             text = 'this.messagingData.submit.en';
-            //         }
-            //     } else if (this.formData[this.language] !== 'undefined'
-            //         && this.formData[this.language].submit !== 'undefined') {
-            //         text = this.formData[this.language].submit.label;
-            //     } else {
-            //         text = this.messagingData.submit[this.language];
-            //     }
-            // }
-
             return text;
         },
     },
@@ -296,13 +279,15 @@ export default {
 
             return labelText;
         },
-        getTranslatedValidation(fieldName) {
+        getTranslatedValidation(fieldName, index) {
             const languageObj = this.getLanguageObj();
 
             let validationObj;
 
-            if (this.language !== 'en'
-                && typeof languageObj[fieldName] !== 'undefined'
+            if (this.language === 'en'
+                && typeof this.formData.fields[index].validationMessages !== 'undefined') {
+                validationObj = this.formData.fields[index].validationMessages;
+            } else if (typeof languageObj[fieldName] !== 'undefined'
                 && typeof languageObj[fieldName].validationMessages !== 'undefined') {
                 validationObj = languageObj[fieldName].validationMessages;
             }
@@ -327,6 +312,20 @@ export default {
             }
 
             return optionsArr;
+        },
+        getTranslatedHint(fieldName, index) {
+            const languageObj = this.getLanguageObj();
+            let hintText = '';
+
+            if (this.language === 'en') {
+                hintText = this.formData.fields[index].hint;
+            } else if (typeof languageObj.submit !== 'undefined') {
+                hintText = languageObj.hint;
+            } else {
+                hintText = '';
+            }
+
+            return hintText;
         },
         /**
          * check messaging data exists and then pass value back
@@ -460,12 +459,20 @@ export default {
 
 <style lang='scss'>
     .vs-form {
-        input {
-            border: 2px solid $color-theme-primary;
+        label {
+            font-weight: $font-weight-semi-bold;
+            margin-bottom: 0;
         }
 
-        .mktoAsterix {
-            display: none;
+        .error {
+            font-size: $body-font-size;
+            color: $color-theme-danger;
+        }
+
+        .hint-text {
+            font-size: $body-font-size;
+            color: $color-gray-shade-1;
+            margin-bottom: 0;
         }
     }
 </style>
@@ -479,7 +486,7 @@ export default {
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
             marketo-instance="//app-lon10.marketo.com"
             munchkin-id="830-QYE-256"
-            language="de"
+            language="en"
             :is-prod="false"
         >
             <template slot="invalid">
