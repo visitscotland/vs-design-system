@@ -1,28 +1,37 @@
 <template>
-    <div data-test="vs-input">
+    <div
+        data-test="vs-input"
+    >
+        <p
+            class="hint-text"
+            :id="`hint-${fieldName}`"
+        >
+            {{ hintText }}
+        </p>
+        <template
+            v-if="$v.inputVal.$anyError || invalid"
+        >
+            <span
+                v-for="error in errors"
+                :key="error"
+                class="error"
+            >
+                {{ validationMessages[error] }}
+            </span>
+        </template>
         <BFormInput
             :type="type"
-            class="vs-input"
+            class="vs-form-input"
             v-model="inputVal"
-            :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
+            :class="$v.inputVal.$anyError || invalid ? 'vs-form-input--error' : ''"
             @blur="emitStatus"
             :id="fieldName"
             :name="fieldName"
             :required="isRequired"
             :size="size"
             :v="inputVal"
+            :aria-invalid="$v.inputVal.$anyError || invalid"
         />
-        <span
-            v-for="error in errors"
-            :key="error"
-            class="error"
-        >
-            <template
-                v-if="$v.inputVal.$anyError || invalid"
-            >
-                {{ validationMessages[error] }}
-            </template>
-        </span>
     </div>
 </template>
 
@@ -123,6 +132,13 @@ export default {
                 return {
                 };
             },
+        },
+        /**
+         * Content for hint text
+         */
+        hintText: {
+            type: String,
+            default: '',
         },
     },
     data() {
@@ -245,24 +261,28 @@ export default {
 
 <style lang="scss">
 .vs-form-input {
-    &.form-control {
-        border-color: $color-gray-tint-1;
-        transition: box-shadow $duration-base;
+    border: $color-gray-shade-3 1px solid;
+    margin-top: $spacer-2;
+    // transition: box-shadow $duration-base;
 
-        &:focus {
-        border-color: $color-gray-tint-1;
-        box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-        }
+    &:focus {
+        // border-color: $color-gray-tint-1;
+        // box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5);
+        border: $color-pink 4px solid;
+        outline: none;
+        box-shadow: none;
 
-        &[type="search"] {
+    }
+
+    &--error {
+        border: 2px solid $color-theme-danger;
+    }
+
+    &[type="search"] {
         @extend %reset-clear;
-        }
     }
 }
 
-.hasError {
-    border: red 3px solid !important;
-}
 </style>
 
 <docs>
