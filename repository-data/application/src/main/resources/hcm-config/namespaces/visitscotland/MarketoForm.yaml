@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 277b000d-75b9-4e73-bd23-cd07df8b7642
+          jcr:uuid: 6afd917d-bd17-4f1c-b7d5-0717c7102e6d
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -45,7 +45,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:configuration
+            hipposysedit:path: visitscotland:jsonUrl
             hipposysedit:primary: false
             hipposysedit:type: String
             hipposysedit:validators: [required, url]
@@ -69,12 +69,12 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 2b57dd87-2e98-40ca-a15d-62c0322e821d
+          jcr:uuid: 527c652d-c0b6-4146-98d2-9b3006bf54a2
           hippostdpubwf:lastModificationDate: 2021-05-14T11:09:19.663+01:00
           hippostdpubwf:creationDate: 2021-05-14T11:09:19.664+01:00
           visitscotland:translation: ''
-          visitscotland:configuration: ''
           visitscotland:nonJavaScriptMessage: ''
+          visitscotland:jsonUrl: ''
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -112,7 +112,7 @@ definitions:
                 {countSpacesAsChars: true, showCharCount: true, maxCharCount: 375}}'
               ckeditor.config.overlayed.json: '{toolbarGroups: [{name:''links''},{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}
                 ] , removeButtons: ''PickImage,Youtube,Table''}'
-          /configuration:
+          /jsonUrl:
             jcr:primaryType: frontend:plugin
             caption: Configuration JSON URL
             field: configuration
