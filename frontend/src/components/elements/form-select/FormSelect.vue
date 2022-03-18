@@ -14,6 +14,7 @@
             data-test="vs-form-select"
             class="vs-form-select"
             :required="isRequired"
+            :aria-invalid="$v.inputVal.$anyError || invalid"
         />
         <span
             v-for="error in errors"
@@ -222,21 +223,21 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-form-input {
-  &.form-control {
-    border-color: $color-gray-tint-1;
-    transition: box-shadow $duration-base;
+// .vs-form-input {
+//   &.form-control {
+//     border-color: $color-gray-tint-1;
+//     transition: box-shadow $duration-base;
 
-    &:focus {
-      border-color: $color-gray-tint-1;
-      box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-    }
+//     &:focus {
+//       border-color: $color-gray-tint-1;
+//       box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
+//     }
 
-    &[type="search"] {
-      @extend %reset-clear;
-    }
-  }
-}
+//     &[type="search"] {
+//       @extend %reset-clear;
+//     }
+//   }
+// }
 </style>
 
 <docs>
