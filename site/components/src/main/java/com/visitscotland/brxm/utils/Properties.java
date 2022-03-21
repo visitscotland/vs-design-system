@@ -32,6 +32,7 @@ public class Properties {
     static final String IKNOW_COMMUNITY_TAGGED_DISCUSSION = "iknow-community.tagged-discussion";
     static final String YOUTUBE_API_KEY = "youtube.api-key";
     static final String CHANNEL_ORDER = "seo.alternate-link-locale-order";
+    static final String GLOBAL_SEARCH_PATH = "search.path";
 
     //Environment
     static final String USE_RELATIVE_URLS = "links.use-relative-urls";
@@ -65,6 +66,10 @@ public class Properties {
 
     public String getInstagramURL() {
         return readString(INSTAGRAM_URL);
+    }
+
+    public String getGlobalSearchURL() {
+        return readString(GLOBAL_SEARCH_PATH);
     }
 
     public String getInstagramToken() {

@@ -2,6 +2,7 @@
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/modules/page-intro/social-share.ftl">
+<#include "../macros/modules/search-results/search-results.ftl">
 <#include "../../frontend/components/vs-container.ftl">
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
@@ -44,6 +45,10 @@
 		</#if>
 
 	</#list>
+
+    <#if searchResultsPage??>
+        <@searchResults />
+    </#if>
 
     <@socialShare nojs=true/>
 

@@ -62,6 +62,7 @@
     jcr:mixinTypes: ['mix:referenceable']
     jcr:uuid: 05a192f3-3cf0-47a9-ad38-b9ab86adf3ab
     hippo:availability: []
+    hippostd:holder: admin
     hippostd:retainable: false
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
@@ -92,7 +93,7 @@
         \ the environment would use a test container with query parameters", '', Container
         ID from Google Tag Manager, "GTM Query Parameter for the environment. \r\n\
         \r\nTypically production wouldn't have any query parameters while rest of\
-        \ the environment would use a test container with query parameters"]
+        \ the environment would use a test container with query parameters",'']
     resourcebundle:id: default.config
     resourcebundle:keys: [instagram.api, helpdesk-email, instagram.accesstoken, instagram.post-url,
       dms-data.encoding, dms-data.api-key, dms-data.timeout, dms-data.tries, dms-data.sleep-time,
@@ -101,7 +102,7 @@
       dms-data.public-url, dms-data.private-url, links.convert-to-relative, youtube.api-key,
       og.site-name, og.twitter.site, seo.alternate-link-locale-order, seo.title-suffix,
       seo.og.site-name, seo.og.twitter.site, gtm.queryParam, gtm.is-production, gtm.container-id,
-      gtm.preview-query-string]
+      gtm.preview-query-string, search.path]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
@@ -109,7 +110,7 @@
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
       www.visitscotland.com, $YOUTUBE_API_KEY, VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es',
       '| VisitScotland', VisitScotland, '@VisitScotland', '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
-      'false', GTM-WWKWV5K, '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x']
+      'false', GTM-WWKWV5K, '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x', site-search-results]
   /default-properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
