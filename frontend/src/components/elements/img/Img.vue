@@ -6,6 +6,7 @@
         :fluid="fluid"
         :fluid-grow="fluidGrow"
     >
+        <!-- @slot Default slot for image content -->
         <slot />
     </BImg>
 </template>
