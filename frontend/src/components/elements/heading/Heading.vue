@@ -14,6 +14,7 @@
             class="vs-heading__sub-heading"
             v-if="!!this.$slots['sub-heading']"
         >
+            <!-- @slot Slot for sub-heading content -->
             <slot name="sub-heading" />
         </span>
     </Component>
