@@ -98,7 +98,7 @@
 <script>
 import {
     VsCol, VsRow, VsContainer,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 import VsSvgLink from '@components/elements/svg-link/SvgLink';
 import VsMegaNavDropdown from '@components/patterns/mega-nav/components/MegaNavDropdown';
 import VsMegaNavTopMenu from '@components/patterns/mega-nav/components/MegaNavTopMenu';

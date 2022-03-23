@@ -59,7 +59,7 @@ import {
     VsContainer,
     VsRow,
     VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 
 /**
  * Megalinks wrapper used with Megalinks components.
