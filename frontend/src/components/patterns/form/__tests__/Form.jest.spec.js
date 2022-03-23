@@ -135,21 +135,13 @@ describe('VsForm', () => {
         expect(allInputs.length).toBe(3);
     });
 
-    it('should render `required` on required inputs', async() => {
-        const wrapper = factoryShallowMount();
-        await wrapper.vm.$nextTick();
-        const allInputs = wrapper.findAll('bformgroup-stub');
-
-        expect(allInputs.at(0).attributes('label')).toContain('required');
-    });
-
     it('should render a submit element with a value of `submit` from the data', async() => {
         const wrapper = factoryShallowMount();
 
-        const submitBtn = wrapper.find('input[type="submit"]');
+        const submitBtn = wrapper.find('vsbutton-stub[type="submit"]');
 
         await wrapper.vm.$nextTick();
-        expect(submitBtn.attributes('value')).toBe('Submit the form');
+        expect(submitBtn.text()).toBe('Submit the form');
     });
 
     describe(':slots', () => {
@@ -222,16 +214,6 @@ describe('VsForm', () => {
             expect(wrapper.vm.errorFields.indexOf('firstName')).toBe(0);
         });
 
-        it('should show `required` text if the field`s data defines it as required', async() => {
-            const wrapper = factoryShallowMount();
-            await wrapper.vm.$nextTick();
-
-            const allInputs = wrapper.findAll('bformgroup-stub');
-            const firstNameLabel = allInputs.at(0);
-
-            expect(firstNameLabel.attributes('label')).toContain('required');
-        });
-
         it('should show translated labels if they exist', async() => {
             const wrapper = factoryShallowMount();
 
@@ -267,8 +249,8 @@ describe('VsForm', () => {
             });
             await wrapper.vm.$nextTick();
 
-            const submitEl = wrapper.find('input[type="submit"]');
-            expect(submitEl.attributes('value')).toBe('Submit (de)');
+            const submitEl = wrapper.find('vsbutton-stub[type="submit"]');
+            expect(submitEl.text()).toBe('Submit (de)');
         });
     });
 });
