@@ -2,6 +2,7 @@
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#include "../macros/modules/page-intro/social-share.ftl">
+<#include "../macros/modules/search-results/search-results.ftl">
 <#include "../../frontend/components/vs-container.ftl">
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
@@ -10,6 +11,7 @@
 
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/cms-errors.ftl">
+<#include "../macros/global/otyml.ftl">
 <#include "../macros/shared/module-builder.ftl">
 <#include "../macros/modules/signpost/signpost.ftl">
 
@@ -44,11 +46,13 @@
 
 	</#list>
 
+    <#if searchResultsPage??>
+        <@searchResults />
+    </#if>
+
     <@socialShare nojs=true/>
 
-	<#if otyml??>
-		<@horizontalList otyml />
-	</#if>
+	<@otymlModule otyml editMode />
 
 	<#if newsletterSignpost??>
 		<@signpost module=newsletterSignpost imgSrc="assets/images/illustrations/newsletter.svg"/>
