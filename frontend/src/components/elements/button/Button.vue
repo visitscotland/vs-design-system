@@ -14,8 +14,8 @@
         @focusout="hovered = false"
     >
         <VsIcon
-            :class="{ 'mr-2': !iconOnly }"
             v-if="icon"
+            class="align-self-center"
             :name="icon"
             :size="iconSizeOverride || calcIconSize"
             :padding="0"
@@ -166,6 +166,14 @@ export default {
             default: null,
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
+        /**
+         * The position of the icon - left or right of the text
+         */
+        iconPosition: {
+            type: String,
+            default: 'left',
+            validator: (value) => value.match(/(left|right)/),
+        },
     },
     data() {
         return {
@@ -180,6 +188,8 @@ export default {
                     'vs-button--animated': this.animate,
                     'vs-button--is-animating': this.isAnimating,
                     'vs-button--icon-only': this.iconOnly,
+                    'd-flex': this.icon,
+                    'flex-row-reverse': this.iconPosition === 'right',
                 },
                 this.background ? [`btn-bg-${this.background}`] : '',
                 this.uppercase ? 'text-uppercase' : '',
@@ -206,7 +216,7 @@ export default {
                 return this.outlineColour;
             }
 
-            if (this.variant === 'secondary') {
+            if (this.variant === 'secondary' || this.variant === 'light') {
                 return 'dark';
             }
 
@@ -246,6 +256,7 @@ export default {
 
         .vs-icon {
             margin-top: -.05em;
+            margin-right: $spacer-2;
         }
 
         &:focus {
@@ -349,6 +360,10 @@ export default {
         &.vs-button--icon-only{
             padding: $spacer-1;
             line-height: 1;
+
+            .vs-icon{
+                margin-right: 0;
+            }
         }
 
         &.vs-button--animated {

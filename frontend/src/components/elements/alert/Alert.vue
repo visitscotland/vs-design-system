@@ -46,7 +46,7 @@ export default {
         background-color: $color-pink-shade-1;
         display: inline-flex;
         justify-content: center;
-        align-items: start;
+        align-items: flex-start;
         padding: $spacer-4 $spacer-0;
         width: 2.5rem;
         min-height: 2.5rem;
