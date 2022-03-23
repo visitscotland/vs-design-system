@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="vs-recaptcha">
         <span
             v-if="invalid"
             class="error"
@@ -9,8 +9,8 @@
         <VueRecaptcha
             :sitekey="siteKey"
             @verify="verified"
-            class="vs-recaptcha"
-            :class="invalid ? 'vs-recaptcha--error' :''"
+            class="vs-recaptcha__embed"
+            :class="invalid ? 'vs-recaptcha__embed--error' :''"
             :language="language"
         />
     </div>
@@ -77,9 +77,12 @@ export default {
     .vs-recaptcha {
         margin-top: $spacer-9;
 
-        &--error {
-            & > div {
-                outline: 2px solid $color-theme-danger;
+        &__embed {
+            &--error {
+                & > div {
+                    outline: 2px solid $color-theme-danger;
+                    margin-top: $spacer-2;
+                }
             }
         }
     }
