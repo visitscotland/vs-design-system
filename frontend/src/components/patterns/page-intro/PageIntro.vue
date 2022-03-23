@@ -84,7 +84,7 @@ import {
     VsContainer,
     VsRow,
     VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 
 /**
 * Component for the page hero and introduction.
