@@ -274,7 +274,6 @@ export default {
         border: $color-pink 4px solid;
         outline: none;
         box-shadow: none;
-
     }
 
     &--error {
