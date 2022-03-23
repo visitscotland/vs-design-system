@@ -66,10 +66,6 @@
                 </template>
             </BFormGroup>
 
-            <p v-if="showErrorMessage && errorFields.length > 0">
-                <slot name="invalid" />
-            </p>
-
             <VsRecaptcha
                 @verified="onRecaptchaVerify"
                 :site-key="recaptchaKey"
@@ -489,30 +485,36 @@ export default {
 <docs>
     ```jsx
         // https://static.visitscotland.com/forms/vs-3331/simpleForm.json
-        <VsForm
-            dataUrl="http://172.28.74.107:5555/simpleForm.json"
-            messagingUrl="http://172.28.74.107:5555/messaging.json"
-            recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-            marketo-instance="//app-lon10.marketo.com"
-            munchkin-id="830-QYE-256"
-            language="en"
-            :is-prod="false"
-        >
-            <template slot="invalid">
-                You have invalid fields - please check the form.
-            </template>
+        <VsContainer>
+            <VsRow>
+                <VsCol>
+                    <VsForm
+                        dataUrl="http://172.28.74.107:5555/simpleForm.json"
+                        messagingUrl="http://172.28.74.107:5555/messaging.json"
+                        recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
+                        marketo-instance="//app-lon10.marketo.com"
+                        munchkin-id="830-QYE-256"
+                        language="en"
+                        :is-prod="false"
+                    >
+                        <template slot="invalid">
+                            You have invalid fields - please check the form.
+                        </template>
 
-            <template slot="submitError">
-                We're sorry there's been a problem, please try again later.
-            </template>
+                        <template slot="submitError">
+                            We're sorry there's been a problem, please try again later.
+                        </template>
 
-            <template slot="submitting">
-                We're just submitting your form
-            </template>
+                        <template slot="submitting">
+                            We're just submitting your form
+                        </template>
 
-            <template slot="submitted">
-                Thank you for your details, your form has been submitted
-            </template>
-        </VsForm>
+                        <template slot="submitted">
+                            Thank you for your details, your form has been submitted
+                        </template>
+                    </VsForm>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
     ```
 </docs>
