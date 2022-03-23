@@ -54,7 +54,7 @@ import {
     VsCol,
     VsRow,
     VsContainer,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 import { BDropdown } from 'bootstrap-vue';
 import VsButton from '@components/elements/button/Button';
 
