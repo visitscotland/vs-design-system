@@ -1,26 +1,5 @@
 <template>
     <div>
-        <BFormCheckbox
-            v-if="fieldName"
-            v-model="inputVal"
-            class="vs-form-checkbox mr-4"
-            :class="errors.length > 0 ? 'vs-form-checkbox__invalid' : ''"
-            :size="size"
-            :name="fieldName"
-            :id="fieldName"
-            :value="value"
-            :unchecked_value="`not_${value}`"
-            v-bind="$attrs"
-            data-test="vs-form-checkbox"
-            @change="emitStatus"
-            :required="isRequired"
-            :aria-invalid="$v.inputVal.$anyError || invalid"
-        >
-            {{ label }}
-            <span v-if="isRequired">
-                ({{ requiredText }})
-            </span>
-        </BFormCheckbox>
         <span
             v-for="error in errors"
             :key="error"
@@ -32,6 +11,24 @@
                 {{ validationMessages[error] }}
             </template>
         </span>
+        <BFormCheckbox
+            v-if="fieldName"
+            v-model="inputVal"
+            class="vs-form-checkbox mr-4"
+            :class="errors.length > 0 ? 'vs-form-checkbox--error' : ''"
+            :size="size"
+            :name="fieldName"
+            :id="fieldName"
+            :value="value"
+            :unchecked_value="`not_${value}`"
+            v-bind="$attrs"
+            data-test="vs-form-checkbox"
+            @change="emitStatus"
+            :required="isRequired"
+            :aria-invalid="$v.inputVal.$anyError || invalid"
+        >
+            <span class="vs-form-checkbox__label">{{ label }}</span>
+        </BFormCheckbox>
     </div>
 </template>
 
@@ -247,17 +244,57 @@ export default {
 </script>
 
 <style lang="scss">
-    // .vs-form-checkbox {
-    //     input[type="checkbox"] {
-    //         width: 15px;
-    //         height: 15px;
-    //         margin-right: $spacer-4;
-    //     }
+    .vs-form-checkbox {
+        display: flex;
+        align-items: center;
 
-    //     &__invalid {
-    //         border: red 2px solid;
-    //     }
-    // }
+        input[type="checkbox"] {
+            border: $color-gray-shade-3 1px solid;
+            width: 40px;
+            height: 40px;
+            margin: $spacer-2 $spacer-4 0 0;
+            align-self: flex-start;
+            position: relative;
+
+            &:after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+            &:focus {
+                outline: none;
+
+                &:after {
+                    border: $color-pink 4px solid;
+                }
+            }
+        }
+
+        label {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        &--error {
+            input[type="checkbox"] {
+                &:after {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    border: 2px solid $color-theme-danger;
+                }
+            }
+        }
+
+        &__label {
+            display: inline-block;
+            font-size: $body-font-size;
+            font-weight: $font-weight-normal;
+        }
+    }
 </style>
 
 <docs>

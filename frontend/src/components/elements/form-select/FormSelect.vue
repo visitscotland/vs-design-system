@@ -1,21 +1,14 @@
 <template>
     <div
+        class="vs-form-select"
         :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
     >
-        <BFormSelect
-            v-model="inputVal"
-            :size="size"
-            v-bind="$attrs"
-            :options="options"
-            :name="fieldName"
-            :id="fieldName"
-            @change="emitStatus"
-            @blur="emitStatus"
-            data-test="vs-form-select"
-            class="vs-form-select"
-            :required="isRequired"
-            :aria-invalid="$v.inputVal.$anyError || invalid"
-        />
+        <p
+            class="hint-text"
+            :id="`hint-${fieldName}`"
+        >
+            {{ hintText }}
+        </p>
         <span
             v-for="error in errors"
             :key="error"
@@ -27,6 +20,24 @@
                 {{ validationMessages[error] }}
             </template>
         </span>
+        <div class="vs-form-select__container">
+            <BFormSelect
+                v-model="inputVal"
+                :size="size"
+                v-bind="$attrs"
+                :options="options"
+                :name="fieldName"
+                :id="fieldName"
+                @change="emitStatus"
+                @blur="emitStatus"
+                data-test="vs-form-select"
+                class="vs-form-select__element"
+                :required="isRequired"
+                :aria-invalid="$v.inputVal.$anyError || invalid"
+                :aria-describedby="`hint-${fieldName}`"
+            />
+            <span class="vs-form-select__focus" />
+        </div>
     </div>
 </template>
 
@@ -115,6 +126,13 @@ export default {
                 return {
                 };
             },
+        },
+        /**
+         * Content for hint text
+         */
+        hintText: {
+            type: String,
+            default: '',
         },
     },
     data() {
@@ -223,21 +241,55 @@ export default {
 </script>
 
 <style lang="scss">
-// .vs-form-input {
-//   &.form-control {
-//     border-color: $color-gray-tint-1;
-//     transition: box-shadow $duration-base;
+    .vs-form-select {
+        &__container {
+            position: relative;
+            width: 100%;
+            border: $color-gray-shade-3 1px solid;
+            cursor: pointer;
+            height: 50px;
+            border-radius: 0;
+            margin-top: $spacer-2;
 
-//     &:focus {
-//       border-color: $color-gray-tint-1;
-//       box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-//     }
+            // &::after {
+            //     content: "";
+            //     width: 0.8em;
+            //     height: 0.5em;
+            //     background-image: url(../../../assets/svg/icons/chevron.svg);
+            //     display: block;
+            // }
+        }
 
-//     &[type="search"] {
-//       @extend %reset-clear;
-//     }
-//   }
-// }
+        &__element {
+            // A reset of styles, including removing the default dropdown arrow
+            appearance: none;
+            // Additional resets for further consistency
+            background-color: transparent;
+            border: none;
+            padding: 0 $spacer-4 0;
+            margin: 0;
+            width: 100%;
+            font-family: inherit;
+            font-size: inherit;
+            cursor: inherit;
+            line-height: inherit;
+            height: 50px;
+
+            &:focus {
+                outline: none;
+                box-shadow: none;
+
+                & + .vs-form-select__focus {
+                    position: absolute;
+                    top: -1px;
+                    left: -1px;
+                    right: -1px;
+                    bottom: -1px;
+                    border: $color-pink 4px solid;
+                }
+            }
+        }
+    }
 </style>
 
 <docs>

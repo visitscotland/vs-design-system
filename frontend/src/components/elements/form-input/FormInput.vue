@@ -1,6 +1,6 @@
 <template>
     <div
-        data-test="vs-input"
+        data-test="vs-form-input"
     >
         <p
             class="hint-text"
@@ -15,6 +15,7 @@
                 v-for="error in errors"
                 :key="error"
                 class="error"
+                :id="`error-${fieldName}`"
             >
                 {{ validationMessages[error] }}
             </span>
@@ -31,6 +32,7 @@
             :size="size"
             :v="inputVal"
             :aria-invalid="$v.inputVal.$anyError || invalid"
+            :aria-describedby="$v.inputVal.$anyError || invalid ? `error-${fieldName}` : ''"
         />
     </div>
 </template>
@@ -263,6 +265,7 @@ export default {
 .vs-form-input {
     border: $color-gray-shade-3 1px solid;
     margin-top: $spacer-2;
+    height: 50px;
     // transition: box-shadow $duration-base;
 
     &:focus {
