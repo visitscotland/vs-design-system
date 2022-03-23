@@ -42,19 +42,6 @@ describe('VsFormCheckbox', () => {
             expect(checkboxStub.attributes('value')).toBe('accepted');
         });
 
-        it('should add the requiredText prop to the label if needed', async() => {
-            wrapper.setProps({
-                validationRules: {
-                    required: true,
-                },
-                requiredText: 'required',
-            });
-
-            await wrapper.vm.$nextTick();
-
-            expect(wrapper.text()).toContain('required');
-        });
-
         it('should display a validation message if validation fails', async() => {
             wrapper.setProps({
                 invalid: true,
@@ -82,7 +69,7 @@ describe('VsFormCheckbox', () => {
 
             await wrapper.vm.$nextTick();
 
-            expect(wrapper.find('[data-test="vs-form-checkbox"]').classes()).toContain('vs-form-checkbox__invalid');
+            expect(wrapper.find('[data-test="vs-form-checkbox"]').classes()).toContain('vs-form-checkbox--error');
         });
     });
 
