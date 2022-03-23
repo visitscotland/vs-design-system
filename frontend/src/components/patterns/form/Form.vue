@@ -53,7 +53,7 @@
                         :name="field.name"
                         :value="field.value"
                         :id="field.name"
-                        :label="field.label"
+                        :label="field.descriptor"
                         @status-update="updateFieldData"
                         :field-name="field.name"
                         :validation-rules="field.validation || {}"
@@ -75,15 +75,18 @@
                 :site-key="recaptchaKey"
                 :invalid="!recaptchaVerified && showErrorMessage"
                 :language="language"
+                :error-msg="getMessagingData('recaptchaError', language)"
             />
 
-            <input
+            <VsButton
+                variant="primary"
                 type="submit"
-                :value="getTranslatedSubmitText"
-                class="formSubmit"
-                @click.prevent="preSubmit"
-                @keyup.prevent="preSubmit"
+                class="vs-form__submit mt-9"
+                @click.native="preSubmit"
+                @keyup.native="preSubmit"
             >
+                {{ getTranslatedSubmitText }}
+            </VsButton>
         </form>
 
         <p v-if="submitting">
@@ -106,6 +109,7 @@ import VsFormInput from '../../elements/form-input/FormInput';
 import VsFormSelect from '../../elements/form-select/FormSelect';
 import VsFormCheckbox from '../../elements/form-checkbox/FormCheckbox';
 import VsRecaptcha from '../../elements/recaptcha/Recaptcha';
+import VsButton from '../../elements/button/Button';
 
 const axios = require('axios');
 
@@ -127,6 +131,7 @@ export default {
         VsFormCheckbox,
         BFormGroup,
         VsRecaptcha,
+        VsButton,
     },
     props: {
         /**
@@ -271,11 +276,12 @@ export default {
                 labelText = this.formData.fields[index].label;
             }
 
-            if (typeof this.formData.fields[index].validation !== 'undefined'
-                && typeof this.formData.fields[index].validation.required !== 'undefined'
-                && this.formData.fields[index].validation.required) {
-                labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
-            }
+            // to add if required text needed
+            // if (typeof this.formData.fields[index].validation !== 'undefined'
+            //     && typeof this.formData.fields[index].validation.required !== 'undefined'
+            //     && this.formData.fields[index].validation.required) {
+            //     labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
+            // }
 
             return labelText;
         },
@@ -382,8 +388,7 @@ export default {
          * whether or not an element should have a label defined (for Bootstrap Vue)
          */
         needsLabel(field) {
-            if (field.element === 'checkbox'
-                || field.element === 'radio'
+            if (field.element === 'radio'
                 || field.element === 'submit') {
                 return false;
             }
@@ -474,6 +479,10 @@ export default {
             color: $color-gray-shade-1;
             margin-bottom: 0;
         }
+
+        .form-group {
+            margin-bottom: $spacer-6;
+        }
     }
 </style>
 
@@ -481,8 +490,8 @@ export default {
     ```jsx
         // https://static.visitscotland.com/forms/vs-3331/simpleForm.json
         <VsForm
-            dataUrl="http://172.28.74.161:5555/simpleForm.json"
-            messagingUrl="http://172.28.74.161:5555/messaging.json"
+            dataUrl="http://172.28.74.107:5555/simpleForm.json"
+            messagingUrl="http://172.28.74.107:5555/messaging.json"
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
             marketo-instance="//app-lon10.marketo.com"
             munchkin-id="830-QYE-256"
