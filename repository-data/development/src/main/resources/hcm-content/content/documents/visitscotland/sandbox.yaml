@@ -18336,6 +18336,94 @@
           /visitscotland:link:
             jcr:primaryType: hippo:mirror
             hippo:docbase: ab8d2643-1517-4a6a-aa86-f5a9c8b5e2c3
+    /things-to-do---feature-event:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: eeefe0e7-1cb2-43a4-8744-b9aa072a1c61
+      hippo:name: Things to do - Feature event
+      hippo:versionHistory: 5c675d6b-463b-4ad2-a587-27121cc4187d
+      /things-to-do---feature-event[1]:
+        jcr:primaryType: visitscotland:FeaturedWidget
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: ecaf8203-74c6-4f2f-b57e-bd654c259582
+        hippo:availability: []
+        hippostd:retainable: false
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2022-03-23T14:25:52.287Z
+        hippostdpubwf:lastModificationDate: 2022-03-23T14:25:52.287Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 9d3e0b81-987b-42d4-9846-12ab04adc86a
+        hippotranslation:locale: en
+        visitscotland:translation: ''
+        /visitscotland:items:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 10.0
+          visitscotland:dmsAwards: []
+          visitscotland:dmsCategories: []
+          visitscotland:dmsFacilities: []
+          visitscotland:free: false
+          visitscotland:goodToGo: false
+          visitscotland:location: Scotland
+          visitscotland:offers: false
+          visitscotland:officialrating: []
+          visitscotland:productType: even
+          visitscotland:safeTravels: false
+      /things-to-do---feature-event[2]:
+        jcr:primaryType: visitscotland:FeaturedWidget
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 31c81e3a-a583-462e-9a32-992d705b88f0
+        hippo:availability: [preview]
+        hippostd:retainable: false
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2022-03-23T14:25:52.287Z
+        hippostdpubwf:lastModificationDate: 2022-03-23T14:26:09.042Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 9d3e0b81-987b-42d4-9846-12ab04adc86a
+        hippotranslation:locale: en
+        visitscotland:translation: ''
+        /visitscotland:items:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 10.0
+          visitscotland:dmsAwards: []
+          visitscotland:dmsCategories: []
+          visitscotland:dmsFacilities: []
+          visitscotland:free: false
+          visitscotland:goodToGo: false
+          visitscotland:location: Scotland
+          visitscotland:offers: false
+          visitscotland:officialrating: []
+          visitscotland:productType: even
+          visitscotland:safeTravels: false
+      /things-to-do---feature-event[3]:
+        jcr:primaryType: visitscotland:FeaturedWidget
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: fab567b1-2509-4323-b69e-bb05acb84e69
+        hippo:availability: [live]
+        hippostd:retainable: false
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2022-03-23T14:25:52.287Z
+        hippostdpubwf:lastModificationDate: 2022-03-23T14:26:09.042Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2022-03-23T14:26:12.386Z
+        hippotranslation:id: 9d3e0b81-987b-42d4-9846-12ab04adc86a
+        hippotranslation:locale: en
+        visitscotland:translation: ''
+        /visitscotland:items:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 10.0
+          visitscotland:dmsAwards: []
+          visitscotland:dmsCategories: []
+          visitscotland:dmsFacilities: []
+          visitscotland:free: false
+          visitscotland:goodToGo: false
+          visitscotland:location: Scotland
+          visitscotland:offers: false
+          visitscotland:officialrating: []
+          visitscotland:productType: even
+          visitscotland:safeTravels: false
   /white-module-spacing:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']

@@ -9,7 +9,9 @@
             </#list>
             <#break>
         <#case "FeaturedEvent">
-            FeaturedEvent = ${menu.apiUrl}
+            <template slot="navFeaturedItem">
+                <p>FeaturedEvent = ${menu.apiUrl}</p>
+            </template>
             <#break>
         <#default>
     </#switch>
