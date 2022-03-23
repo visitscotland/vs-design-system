@@ -12,7 +12,7 @@
 
             <#if version == "legacy">
                 <!-- TODO: special headContribution -->
-                <link rel="preload" href="<@hst.webfile fullyQualified=fullyQualifiedURLs path='frontend/third-party/legacy.css' />" as="style" />
+                <link rel="preload" href="<@hst.webfile fullyQualified=fullyQualifiedURLs path='static/third-party/legacy.css' />" as="style" />
             </#if>
         </internal-css-header>
     </#compress>
