@@ -74,9 +74,9 @@
 </template>
 
 <script>
-import VsContainer from '@components/elements/layout/Container';
-import VsRow from '@components/elements/layout/Row';
-import VsCol from '@components/elements/layout/Col';
+import {
+    VsContainer, VsRow, VsCol,
+} from '@components/elements/grid';
 import VsLink from '@components/elements/link/Link';
 
 /**
