@@ -6,24 +6,29 @@ const factoryShallowMount = () => shallowMount(VsRecaptcha, {
     propsData: {
         siteKey: '123124',
         invalid: true,
+        errorMsg: 'Please complete the recaptcha',
     },
-});
-
-let wrapper;
-beforeEach(() => {
-    wrapper = factoryShallowMount();
 });
 
 describe('VsRecaptcha', () => {
     it('should render a div with the class `vs-recaptcha`', () => {
-        wrapper = factoryShallowMount();
+        const wrapper = factoryShallowMount();
+        const recaptchaStub = wrapper.find('vuerecaptcha-stub');
 
-        expect(wrapper.classes('vs-recaptcha')).toBe(true);
+        expect(recaptchaStub.classes('vs-recaptcha')).toBe(true);
     });
 
     describe(':props', () => {
         it('should render an invalid class if the invalid prop is true', () => {
-            expect(wrapper.classes('vs-recaptcha--invalid')).toBe(true);
+            const wrapper = factoryShallowMount();
+            const recaptchaStub = wrapper.find('vuerecaptcha-stub');
+
+            expect(recaptchaStub.classes('vs-recaptcha--error')).toBe(true);
+        });
+
+        it('should render a validation message invalid prop is true', () => {
+            const wrapper = factoryShallowMount();
+            expect(wrapper.html()).toContain('Please complete the recaptcha');
         });
     });
 });

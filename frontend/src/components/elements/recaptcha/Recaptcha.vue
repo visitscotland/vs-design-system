@@ -62,7 +62,7 @@ export default {
          */
         errorMsg: {
             type: String,
-            required: true,
+            default: '',
         },
     },
     methods: {
