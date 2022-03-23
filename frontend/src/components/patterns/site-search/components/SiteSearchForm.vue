@@ -98,7 +98,7 @@ import VsFormInput from '@components/elements/form-input/FormInput';
 import VsButton from '@components/elements/button/Button';
 import {
     VsCol, VsRow, VsContainer,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 
 import { BForm } from 'bootstrap-vue';
 

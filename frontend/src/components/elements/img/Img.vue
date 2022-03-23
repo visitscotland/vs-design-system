@@ -13,11 +13,10 @@
 <script>
 import { BImg } from 'bootstrap-vue';
 /**
- * This image component is used to render images in the site. It utilises
- * <a href="https://bootstrap-vue.js.org/docs/components/image">the Bootstrap
- * Vue b-img component</a>.
+ * This image component is used to render images in our products
+ * to help support and clarify content.
  *
- * @displayName Img
+ * @displayName Image
  */
 
 export default {
@@ -62,42 +61,3 @@ export default {
     },
 };
 </script>
-
-<docs>
-  ```jsx
-
-  <div>
-    <VsContainer>
-      <VsRow>
-        <VsCol>
-          <VsImg
-            src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-            alt="Claire standing stones"
-          />
-        </VsCol>
-      </VsRow>
-      <VsRow class="mt-5">
-        <VsCol>
-          <VsImg
-            src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-            alt="Claire standing stones"
-            fluid
-          />
-        </VsCol>
-      </VsRow>
-      <VsRow class="mt-5">
-        <VsCol>
-          <VsImg
-            src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-            alt="Claire standing stones"
-            fluid-grow
-          />
-        </VsCol>
-      </VsRow>
-    </VsContainer>
-    <br />
-
-  </div>
-
-  ```
-</docs>
