@@ -57,6 +57,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  *  Mega nav top level menu items with a slots for toggle button and dropdown content
  *
@@ -66,10 +70,13 @@ export default {
     name: 'VsMegaNavTopMenuItem',
     status: 'prototype',
     release: '0.1.0',
+<<<<<<< HEAD
     components: {
         VsMegaNavDropdown,
         VsLink,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The URL for the top level CTA link

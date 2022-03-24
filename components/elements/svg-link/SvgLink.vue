@@ -20,6 +20,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+import VsSvg from '@components/elements/svg/Svg';
+import VsLink from '@components/elements/link/Link';
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
 /**
  * A component for an SVG wrapped in a link with accessible sr-only text

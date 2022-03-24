@@ -74,6 +74,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 import { BForm, BFormInvalidFeedback } from 'bootstrap-vue';
 
 /**
@@ -86,9 +90,13 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
+<<<<<<< HEAD
         VsIcon,
         BForm,
         VsFormInput,
+=======
+        BForm,
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         BFormInvalidFeedback,
     },
     props: {

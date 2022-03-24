@@ -63,6 +63,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+import cookieMixin from '../../../mixins/cookieMixin';
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * A banner used globally at the top of a page to display
  * important information.
@@ -74,6 +79,7 @@ export default {
     name: 'VsBanner',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsButton,
         VsContainer,
@@ -83,6 +89,8 @@ export default {
         VsRichTextWrapper,
         VsIcon,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     mixins: [
         cookieMixin,
     ],

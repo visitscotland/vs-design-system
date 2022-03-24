@@ -14,6 +14,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * An icon list item is a child component used within icon list components.
  * The component takes in an icon name and label that should be displayed under the icon as props.
@@ -26,9 +30,12 @@ export default {
     name: 'VsIconListItem',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsIcon,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Label displayed under the icon

@@ -32,6 +32,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * The VsFooterCopyright holds an image and copyright notices for the footer.
  *
@@ -40,12 +44,15 @@
 
 export default {
     name: 'VsFooterCopyright',
+<<<<<<< HEAD
     components: {
         VsSvgLink,
         VsRow,
         VsContainer,
         VsCol,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Accessiblity alt text for the logo button
@@ -90,7 +97,11 @@ export default {
     }
 
     .vs-footer-copyright__text {
+<<<<<<< HEAD
         color: #fff;
+=======
+        color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         margin: 0;
         font-size: $font-size-sm;
 

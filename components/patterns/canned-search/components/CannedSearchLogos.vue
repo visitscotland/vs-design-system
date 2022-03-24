@@ -61,6 +61,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Component that displays a set of badges and awards for certain kinds of product card
 * within canned search
@@ -72,10 +76,13 @@ export default {
     name: 'VsCannedSearchLogos',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsTooltip,
         VsImg,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * If set, the good to go logo appears. Should contain a unique `id` (String), a `name`
@@ -137,6 +144,7 @@ export default {
         }
     }
 </style>
+<<<<<<< HEAD
 
 <docs>
 ```jsx
@@ -149,3 +157,5 @@ export default {
     />
 ```
 </docs>
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

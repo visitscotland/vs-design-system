@@ -72,6 +72,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Component that displays a grey summary box for product cards within canned
 * search. Contains a series of summary items
@@ -83,11 +87,14 @@ export default {
     name: 'VsCannedSearchSummaryBox',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsContainer,
         VsRow,
         VsCol,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 };
 
 </script>
@@ -123,6 +130,7 @@ export default {
         }
     }
 </style>
+<<<<<<< HEAD
 
 <docs>
 ```jsx
@@ -198,3 +206,5 @@ export default {
     </div>
 ```
 </docs>
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

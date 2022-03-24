@@ -38,7 +38,10 @@ if (!global.fetch) { global.fetch = fetch }
 let _lastPaths = []
 let app
 let router
+<<<<<<< HEAD
 let store
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
 // Try to rehydrate SSR data from window
 const NUXT = window.__NUXT__ || {}
@@ -728,7 +731,10 @@ async function mountApp (__app) {
   // Set global variables
   app = __app.app
   router = __app.router
+<<<<<<< HEAD
   store = __app.store
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
   // Create Vue instance
   const _app = new Vue(app)

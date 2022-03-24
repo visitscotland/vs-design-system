@@ -10,6 +10,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Shows a formatted sub-heading for a canned search product card,
 * usually contains an address or list of themes
@@ -21,9 +25,12 @@ export default {
     name: 'VsCannedSearchSubHeading',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsHeading,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * The string to display
@@ -74,6 +81,7 @@ export default {
         }
     }
 </style>
+<<<<<<< HEAD
 
 <docs>
 ```jsx
@@ -89,3 +97,5 @@ export default {
     />
 ```
 </docs>
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

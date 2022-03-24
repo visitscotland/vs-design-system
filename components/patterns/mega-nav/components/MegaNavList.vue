@@ -42,7 +42,11 @@ ul.vs-mega-nav-list {
 .vs-list.vs-list--unstyled {
     .vs-mega-nav-list {
         @include media-breakpoint-up(lg) {
+<<<<<<< HEAD
             color: #fff;
+=======
+            color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             margin: 0 $spacer-6 $spacer-4 0;
             width: 23%;
         }

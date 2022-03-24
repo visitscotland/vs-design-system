@@ -47,11 +47,14 @@ export default {
     name: 'VsArticleSection',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsCol,
         VsRow,
         VsRichTextWrapper,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * This sets the alignment of the sidebar left or right of the section
@@ -121,7 +124,11 @@ export default {
             :altText="item.altText"
             :closedDefaultCaption="item.isSmall"
             :image-src="item.imageSrc"
+<<<<<<< HEAD
             :key="`fullwidth1-${index}`"
+=======
+            :key="\`fullwidth1-${index}\`"
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         >
             <VsCaption
                 slot="img-caption"

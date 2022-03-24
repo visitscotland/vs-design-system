@@ -122,12 +122,15 @@ export default {
     name: 'VsCarousel',
     status: 'protolink-type',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsContainer,
         VsRow,
         VsCol,
         VsIcon,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * Accessible text for previous
@@ -410,7 +413,11 @@ export default {
             }
 
             &-label {
+<<<<<<< HEAD
                 color: #fff;
+=======
+                color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 white-space: nowrap;
                 text-transform: uppercase;
                 font-weight: $font-weight-light;

@@ -75,6 +75,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * The Stretched Link Card is a block that stretches its nested link across its whole area
  * meaning that the whole block is clickable
@@ -85,11 +89,14 @@ export default {
     name: 'VsStretchedLinkCard',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsHeading,
         VsLink,
         VsImg,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * The link that the component will use

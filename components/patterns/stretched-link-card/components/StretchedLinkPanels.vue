@@ -35,9 +35,12 @@ export default {
     name: 'VsStretchedLinkPanels',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsIcon,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * Optional prop for number of days
@@ -85,7 +88,11 @@ export default {
             height: 55px;
             background: $color-black;
             margin-left: $spacer-2;
+<<<<<<< HEAD
             color: #fff;
+=======
+            color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             display: flex;
             flex-direction: column;
             align-items: center;

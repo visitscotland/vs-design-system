@@ -40,9 +40,12 @@ export default {
     name: 'VsListFavouritesViewButton',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsIcon,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
     },
     // store,
@@ -59,7 +62,11 @@ export default {
 
 <style lang="scss">
 .vs-favourites-view-button-count {
+<<<<<<< HEAD
     color: #fff;
+=======
+    color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     display: block;
     font-size: 0.75rem;
     width: 100%;
@@ -68,9 +75,12 @@ export default {
     transform: translateY(-50%);
 }
 </style>
+<<<<<<< HEAD
 
 <docs>
   ```jsx
     <VsListFavouritesViewButton />
   ```
 </docs>
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

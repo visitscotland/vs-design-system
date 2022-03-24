@@ -78,6 +78,10 @@
 
 // eslint-disable-next-line no-unused-vars
 import { lazysizes } from 'lazysizes';
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * Image with toggle to open a caption and image location map
  *
@@ -87,11 +91,14 @@ export default {
     name: 'VsImageWithCaption',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsImg,
         VsToggleButton,
         VsVideoCaption,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The image alt text for screen readers
@@ -539,7 +546,11 @@ export default {
             v-for="(item, index) in imageWithCaption.imageExamples.large"
             :altText="item.altText"
             :image-src="item.imageSrc"
+<<<<<<< HEAD
             :key="`large-${index}`"
+=======
+            :key="\`large-${index}\`"
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             class="mb-11"
         >
             <VsCaption
@@ -564,7 +575,11 @@ export default {
             :altText="item.altText"
             :closedDefaultCaption="item.isSmall"
             :image-src="item.imageSrc"
+<<<<<<< HEAD
             :key="`fullwidth1-${index}`"
+=======
+            :key="\`fullwidth1-${index}\`"
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         >
             <VsCaption
                 slot="img-caption"
@@ -585,7 +600,11 @@ export default {
             :altText="item.altText"
             :closedDefaultCaption="item.isSmall"
             :image-src="item.imageSrc"
+<<<<<<< HEAD
             :key="`fullwidth2-${index}`"
+=======
+            :key="\`fullwidth2-${index}\`"
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             style="max-width:300px"
         >
             <VsImg
@@ -615,7 +634,11 @@ export default {
             v-for="(item, index) in imageWithCaption.imageExamples.social"
             :altText="item.altText"
             :image-src="item.imageSrc"
+<<<<<<< HEAD
             :key="`social-${index}`"
+=======
+            :key="\`social-${index}\`"
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         >
             <VsImg
                 class="lazyload"

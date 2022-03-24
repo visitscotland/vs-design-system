@@ -33,6 +33,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Megalink link list cards to be used in the megalinks component
 * There is a standard and featured variant.
@@ -44,10 +48,13 @@ export default {
     name: 'VsMegalinkLinkList',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsStretchedLinkCard,
         VsRichTextWrapper,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * The source of the image used in the component
@@ -170,7 +177,11 @@ export default {
         &--dark {
             .vs-megalink-link-list__wrapper.card {
                 .vs-megalink-link-list__title {
+<<<<<<< HEAD
                     color: #fff;
+=======
+                    color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 }
             }
         }

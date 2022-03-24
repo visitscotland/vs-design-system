@@ -40,9 +40,12 @@ export default {
     name: 'VsGlobalMenuList',
     status: 'prototype',
     release: '0.1.0',
+<<<<<<< HEAD
     components: {
         VsList,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Determines the active website
@@ -97,7 +100,11 @@ export default {
 
         &--active {
             a {
+<<<<<<< HEAD
                 background: #fff;
+=======
+                background: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 color: $color-purple-shade-2;
 
                 &:hover {

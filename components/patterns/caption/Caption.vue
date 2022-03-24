@@ -51,7 +51,12 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import designTokens from '@/assets/tokens/tokens.json';
+=======
+import { get } from 'lodash';
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * TODO: Document usage
  *
@@ -59,11 +64,14 @@ import designTokens from '@/assets/tokens/tokens.json';
  */
 export default {
     name: 'VsCaption',
+<<<<<<< HEAD
     components: {
         VsRow,
         VsCol,
         VsCaptionImageMap,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Option to choose which variant to show
@@ -100,9 +108,19 @@ export default {
             validator: (value) => value.match(/(left|right)/),
         },
     },
+<<<<<<< HEAD
     data() {
         return {
             tokens: designTokens,
+=======
+    async fetch({ $content }) {
+        this.tokens = await $content('tokens').fetch();
+        return get(this.tokens, `props.icon_size_${this.size}.value`, '40px');
+    },
+    data() {
+        return {
+            tokens: [],
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         };
     },
     computed: {
@@ -128,7 +146,11 @@ export default {
 <style lang="scss">
 .vs-caption {
     background-color: $color-gray-shade-6;
+<<<<<<< HEAD
     color: #fff;
+=======
+    color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
     &--large,
     &--fullwidth {

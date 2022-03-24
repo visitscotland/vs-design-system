@@ -25,7 +25,10 @@
 
 <script>
 import { get } from 'lodash';
+<<<<<<< HEAD
 import designTokens from '@/assets/tokens/tokens.raw.json';
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
 /**
  * Icons are used to visually communicate core parts of the product and
@@ -221,13 +224,23 @@ export default {
             ],
         };
     },
+<<<<<<< HEAD
+=======
+    async dimension({ $content }) {
+        const tokens = await $content('tokens').fetch();
+        return get(tokens, `props.icon_size_${this.size}.value`, '40px');
+    },
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     computed: {
         icon() {
             return this.formattedName;
         },
+<<<<<<< HEAD
         dimension() {
             return get(designTokens, `props.icon_size_${this.size}.value`, '40px');
         },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         formattedName() {
             /*
              * To facilitate more readable icon names and
@@ -271,7 +284,11 @@ $variants: (
     secondary: $color-theme-secondary,
     light: $color-theme-light,
     dark: $color-theme-dark,
+<<<<<<< HEAD
     reverse-white: #fff,
+=======
+    reverse-white: $color-white,
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     secondary-teal: $color-theme-secondary-teal,
 );
 
@@ -312,7 +329,11 @@ $variants: (
             color: map-get($variants, $variant);
 
              &.icon--reverse {
+<<<<<<< HEAD
                 color: #fff;
+=======
+                color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 background: map-get($variants, $variant);
             }
         }

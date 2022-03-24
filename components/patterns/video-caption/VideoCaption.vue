@@ -53,6 +53,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+import videoStore from '../../../stores/video.store';
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * Caption to be used for opening a video
  *
@@ -62,11 +67,14 @@ export default {
     name: 'VsVideoCaption',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsButton,
         VsIcon,
         VsToggleButton,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Text for the play video button
@@ -125,7 +133,11 @@ export default {
 
         &__details {
             background-color: $color-gray-shade-6;
+<<<<<<< HEAD
             color: #fff;
+=======
+            color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             padding: $spacer-4 $spacer-3 $spacer-3;
         }
 

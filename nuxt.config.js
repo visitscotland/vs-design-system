@@ -1,13 +1,21 @@
-import { resolve } from 'path'
+import { resolve } from 'path';
 
 export default {
-    //...
+    modules: [
+        '@nuxt/content',
+    ],
+    buildModules: ['@nuxtjs/style-resources'],
+    styleResources: {
+        scss: [
+            './assets/styles/resources.scss',
+            './assets/styles/forms/*.scss',
+            './assets/styles/mixins/resources.scss',
+            '~bootstrap/scss/navbar',
+        ],
+    },
     components: {
         dirs: [
-            '~/utils',
             '~/components',
-            '~/components/elements/',
-            '~/components/patterns',
             '~/components/elements/address',
             '~/components/elements/button',
             '~/components/elements/form-input',
@@ -28,7 +36,6 @@ export default {
             '~/components/elements/tooltip',
             '~/components/elements/video',
             '~/components/patterns/accordion',
-            '~/components/patterns/accordion/components',
             '~/components/patterns/article',
             '~/components/patterns/banner',
             '~/components/patterns/breadcrumb',
@@ -55,7 +62,9 @@ export default {
             '~/components/patterns/psr-module',
             '~/components/patterns/quote',
             '~/components/patterns/site-search',
+            '~/components/patterns/site-search/components',
             '~/components/patterns/skip-to',
+            '~/components/patterns/skip-to/components',
             '~/components/patterns/social-credit-link',
             '~/components/patterns/social-share',
             '~/components/patterns/stretched-link-card',
@@ -63,18 +72,13 @@ export default {
             '~/components/patterns/tabs',
             '~/components/patterns/toggle-button',
             '~/components/patterns/video-caption',
-            '~/components/patterns/canned-search',
-            '~/components/patterns/video-caption',
-        ]
-    },
-    modules: [
-        '@nuxtjs/style-resources',
-        '@nuxt/content'
-    ],
-    styleResources: {
-        scss: ['~assets/styles/core.styles.scss']
+        ],
+        pattern: '**/*.{vue}',
     },
     content: {
-        // Options
-    }
-}
+    // Options
+    },
+    alias: {
+        components: resolve(__dirname, './components'),
+    },
+};

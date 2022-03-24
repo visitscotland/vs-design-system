@@ -27,6 +27,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Megalink cards to be used in the megalinks component
 * There is a standard and featured variant.
@@ -38,10 +42,13 @@ export default {
     name: 'VsMegalinkMultiImage',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsStretchedLinkCard,
         VsRichTextWrapper,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * If the component should be the featured variant
@@ -179,7 +186,11 @@ export default {
     .vs-megalink-multi-image--dark.card {
         .vs-stretched-link-card__title {
             .stretched-link {
+<<<<<<< HEAD
                 color: #fff;
+=======
+                color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             }
         }
 

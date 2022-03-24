@@ -123,12 +123,20 @@ export default {
             font-size: $small-font-size;
 
             &--teal {
+<<<<<<< HEAD
                 color: #fff;
+=======
+                color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 background-color: $color-secondary-teal-shade-2;
             }
 
             &--pink {
+<<<<<<< HEAD
                 color: #fff;
+=======
+                color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 background-color: $color_pink;
             }
 
@@ -173,6 +181,7 @@ export default {
         }
     }
 
+<<<<<<< HEAD
 </style>
 
 <docs>
@@ -197,3 +206,6 @@ export default {
     </div>
 ```
 </docs>
+=======
+</style>
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

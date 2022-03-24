@@ -12,6 +12,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * This component is an item appearing in a list of links.
  *
@@ -22,9 +26,12 @@ export default {
     name: 'VsLinkListItem',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsLink,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The URL the link will point to

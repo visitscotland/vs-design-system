@@ -20,9 +20,12 @@ export default {
     name: 'VsTag',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsLink,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The URL the tag will link to
@@ -46,7 +49,11 @@ export default {
 
         &:hover {
             background-color: $color-pink;
+<<<<<<< HEAD
             color: #fff;
+=======
+            color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         }
     }
 </style>

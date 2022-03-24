@@ -1,15 +1,18 @@
+site_url: https://visitscotland-design-system.netlify.app/
+publish_mode: editorial_workflow
+local_backend: true
+
 backend:
   name: git-gateway
-  branch: main # Branch to update (optional; defaults to master)
+  branch: nuxt-ds-netlify # Branch to update (optional; defaults to master)
 
-local_backend: true
 media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'design-system'
-    label: 'Design System'
-    folder: 'content/ds'
+  - name: 'designsystem'
+    label: 'Section'
+    folder: 'content/sections'
     format: 'frontmatter'
     create: true
     slug: '{{slug}}'

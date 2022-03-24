@@ -11,7 +11,10 @@
 import {
     isFunction, get, isNumber,
 } from 'lodash';
+<<<<<<< HEAD
 import VsSkipToButton from './components/SkipToButton';
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
 /**
  * The SkipTo component provides users of assistive
@@ -24,9 +27,12 @@ export default {
     name: 'VsSkipTo',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsSkipToButton,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The tabindex attribute for this element. For some reason
@@ -67,6 +73,7 @@ export default {
 };
 </script>
 
+<<<<<<< HEAD
 <style lang="scss"></style>
 
 <docs>
@@ -127,3 +134,6 @@ export default {
 
   ```
 </docs>
+=======
+<style lang="scss"></style>
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

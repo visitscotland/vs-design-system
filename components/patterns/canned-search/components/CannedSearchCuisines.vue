@@ -52,6 +52,7 @@ export default {
         }
     }
 </style>
+<<<<<<< HEAD
 
 <docs>
 ```jsx
@@ -61,3 +62,5 @@ export default {
         :cuisines="sampleFood.cuisines"
     />
 </docs>
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

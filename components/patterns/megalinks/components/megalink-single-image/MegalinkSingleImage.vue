@@ -53,6 +53,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * This component is a variant of the megalinks component with a large image
  * and an overlaid panel containing content.
@@ -64,6 +68,7 @@ export default {
     name: 'VsMegalinkSingleImage',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsHeading,
         VsRichTextWrapper,
@@ -72,6 +77,8 @@ export default {
         VsCol,
         VsLinkList,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * Alternate layout with image and text switched sides
@@ -126,7 +133,11 @@ export default {
         .vs-megalink-single-image__content {
             position: relative;
             z-index: 10;
+<<<<<<< HEAD
             background: #fff;
+=======
+            background: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             margin: $spacer-0 $spacer-3;
             padding: $spacer-8 $spacer-6;
             clear: both;
@@ -168,7 +179,11 @@ export default {
 
             .vs-megalink-single-image__title,
             p {
+<<<<<<< HEAD
                 color: #fff;
+=======
+                color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             }
         }
 
@@ -199,7 +214,11 @@ export default {
             .vs-megalink-single-image__content {
                 padding: $spacer-9 $spacer-9 $spacer-9 $spacer-9;
                 margin: 0;
+<<<<<<< HEAD
                 background: #fff;
+=======
+                background: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             }
 
             .vs-image-with-caption {
@@ -220,7 +239,11 @@ export default {
 
             &--dark {
                 .vs-megalink-single-image__title {
+<<<<<<< HEAD
                     color: #fff;
+=======
+                    color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 }
 
                 .vs-megalink-single-image__content {

@@ -185,6 +185,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 const axios = require('axios');
 
 /**
@@ -198,6 +202,7 @@ export default {
     name: 'VsCannedSearch',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsCannedSearchProductCard,
         VsCannedSearchStars,
@@ -219,6 +224,8 @@ export default {
         VsLink,
         VsModuleWrapper,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * The url that products should be retrieved from for display

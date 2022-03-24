@@ -40,6 +40,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * This component is the main Global Nav Wrapper for the top of the page.
  * It holds the Our Websites and slots for Login and Language Change functionalities.
@@ -51,6 +55,7 @@ export default {
     name: 'VsGlobalMenu',
     status: 'prototype',
     release: '0.1.0',
+<<<<<<< HEAD
     components: {
         VsContainer,
         VsRow,
@@ -58,6 +63,8 @@ export default {
         VsGlobalMenuDropdown,
         VsGlobalMenuList,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Determines the active website

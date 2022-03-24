@@ -27,7 +27,10 @@ export default {
     name: 'VsTabItem',
     components: {
         BTab,
+<<<<<<< HEAD
         VsHeading,
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     },
     props: {
         /**
@@ -52,7 +55,11 @@ export default {
             background-color: $color-secondary-gray-tint-6;
             color: $color-base-text;
             font-weight: $font-weight-bold;
+<<<<<<< HEAD
             border-color: $color-secondary-gray-tint-6 $color-secondary-gray-tint-6 #fff;
+=======
+            border-color: $color-secondary-gray-tint-6 $color-secondary-gray-tint-6 $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             padding: $spacer-3;
             font-size: $font-size-lg;
 
@@ -69,7 +76,11 @@ export default {
             &.active{
                 position: relative;
                 z-index: 2;
+<<<<<<< HEAD
                 background-color: #fff;
+=======
+                background-color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 padding: $spacer-5 $spacer-3;
 
                 @include media-breakpoint-up(sm) {
@@ -79,7 +90,11 @@ export default {
         }
 
         .vs-tab__item{
+<<<<<<< HEAD
             background-color: #fff;
+=======
+            background-color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             color: $color-base-text;
             text-align: left;
 
@@ -105,7 +120,11 @@ export default {
             &__heading{
                 display: block;
                 margin: 0;
+<<<<<<< HEAD
                 background-color: #fff;
+=======
+                background-color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 padding: $spacer-7 $spacer-5;
                 font-family: $font-family-sans-serif;
                 color: $color-base-text;

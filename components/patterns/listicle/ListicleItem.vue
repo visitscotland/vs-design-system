@@ -51,6 +51,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * TODO: Document usage
  *
@@ -60,11 +64,14 @@ export default {
     name: 'VsListicleItem',
     status: 'prototype',
     release: '0.0.1',
+<<<<<<< HEAD
     components: {
         VsHeading,
         VsRow,
         VsCol,
     },
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The index value for the listicle item to be shown on the header
@@ -105,7 +112,11 @@ export default {
     }
 
     .count {
+<<<<<<< HEAD
         color: #fff;
+=======
+        color: $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         font-family: $headings-font-family;
         font-size: $display1-size;
         line-height: $line-height-xs;
@@ -115,7 +126,11 @@ export default {
 
         &:after {
             content: "";
+<<<<<<< HEAD
             border-bottom: 1px solid #fff;
+=======
+            border-bottom: 1px solid $color-white;
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             display: block;
             margin: $spacer-1 $spacer-6 0;
             margin-top: $spacer-1;

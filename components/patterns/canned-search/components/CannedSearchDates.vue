@@ -68,6 +68,7 @@ export default {
         font-weight: bold;
     }
 </style>
+<<<<<<< HEAD
 
 <docs>
 ```jsx
@@ -79,3 +80,5 @@ export default {
     />
 ```
 </docs>
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

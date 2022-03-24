@@ -8,6 +8,10 @@
 
 <script>
 import Vue from 'vue';
+<<<<<<< HEAD
+=======
+import itinerariesStore from '../../itineraries.store';
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
 let mapboxgl = null;
 let geojsonExtent = null;
@@ -265,8 +269,11 @@ export default {
 </script>
 
 <style lang="scss">
+<<<<<<< HEAD
 @import "mapbox-gl/dist/mapbox-gl.css";
 
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 @import "https://labs.os.uk/public/os-api-branding/v0.2.0/os-api-branding.css";
 
 .os-api-branding.logo {

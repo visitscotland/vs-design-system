@@ -82,7 +82,11 @@ export default async (ssrContext) => {
   // Used for beforeNuxtRender({ Components, nuxtState })
   ssrContext.beforeRenderFns = []
   // Nuxt object (window.{{globals.context}}, defaults to window.__NUXT__)
+<<<<<<< HEAD
   ssrContext.nuxt = { layout: 'default', data: [], fetch: {}, error: null, state: null, serverRendered: true, routePath: '' }
+=======
+  ssrContext.nuxt = { layout: 'default', data: [], fetch: {}, error: null, serverRendered: true, routePath: '' }
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
     ssrContext.fetchCounters = {}
 
@@ -94,7 +98,11 @@ export default async (ssrContext) => {
     __webpack_public_path__ = joinURL(ssrContext.nuxt.config._app.cdnURL, ssrContext.nuxt.config._app.assetsPath)
   }
   // Create the app definition and the instance (created for each request)
+<<<<<<< HEAD
   const { app, router, store } = await createApp(ssrContext, ssrContext.runtimeConfig.private)
+=======
+  const { app, router } = await createApp(ssrContext, ssrContext.runtimeConfig.private)
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
   const _app = new Vue(app)
   // Add ssr route path to nuxt context so we can account for page navigation between ssr and csr
   ssrContext.nuxt.routePath = app.context.route.path
@@ -108,11 +116,14 @@ export default async (ssrContext) => {
   const beforeRender = async () => {
     // Call beforeNuxtRender() methods
     await Promise.all(ssrContext.beforeRenderFns.map(fn => promisify(fn, { Components, nuxtState: ssrContext.nuxt })))
+<<<<<<< HEAD
 
     ssrContext.rendered = () => {
       // Add the state from the vuex store
       ssrContext.nuxt.state = store.state
     }
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
   }
 
   const renderErrorPage = async () => {
@@ -142,6 +153,7 @@ export default async (ssrContext) => {
   const Components = getMatchedComponents(app.context.route)
 
   /*
+<<<<<<< HEAD
   ** Dispatch store nuxtServerInit
   */
   if (store._actions && store._actions.nuxtServerInit) {
@@ -161,6 +173,8 @@ export default async (ssrContext) => {
   }
 
   /*
+=======
+>>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
   ** Call global middleware (nuxt.config.js)
   */
   let midd = []
