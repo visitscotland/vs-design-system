@@ -13,9 +13,8 @@ const factoryShallowMount = () => shallowMount(VsRecaptcha, {
 describe('VsRecaptcha', () => {
     it('should render a div with the class `vs-recaptcha`', () => {
         const wrapper = factoryShallowMount();
-        const recaptchaStub = wrapper.find('vuerecaptcha-stub');
 
-        expect(recaptchaStub.classes('vs-recaptcha')).toBe(true);
+        expect(wrapper.classes('vs-recaptcha')).toBe(true);
     });
 
     describe(':props', () => {
@@ -23,7 +22,7 @@ describe('VsRecaptcha', () => {
             const wrapper = factoryShallowMount();
             const recaptchaStub = wrapper.find('vuerecaptcha-stub');
 
-            expect(recaptchaStub.classes('vs-recaptcha--error')).toBe(true);
+            expect(recaptchaStub.classes('vs-recaptcha__embed--error')).toBe(true);
         });
 
         it('should render a validation message invalid prop is true', () => {
