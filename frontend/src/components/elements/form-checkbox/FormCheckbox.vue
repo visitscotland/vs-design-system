@@ -249,12 +249,23 @@ export default {
         align-items: center;
 
         input[type="checkbox"] {
-            border: $color-gray-shade-3 1px solid;
-            width: 40px;
-            height: 40px;
+            outline: $color-gray-shade-3 1px solid;
+            border: none;
+            width: 38px;
+            height: 38px;
             margin: $spacer-2 $spacer-4 0 0;
             align-self: flex-start;
             position: relative;
+
+             &:before {
+                content: '';
+                width: 100%;
+                height: 100%;
+                background-color: $color-white;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
 
             &:after {
                 content: '';
@@ -270,6 +281,15 @@ export default {
                     border: $color-pink 4px solid;
                 }
             }
+
+            &:checked {
+                &:before {
+                    background-image: url('~@/assets/svg/icons/tick.svg');
+                    background-size: 60% 60%;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                }
+            }
         }
 
         label {
@@ -279,6 +299,8 @@ export default {
 
         &--error {
             input[type="checkbox"] {
+                outline: none;
+
                 &:after {
                     content: '';
                     position: absolute;
