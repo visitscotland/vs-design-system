@@ -5,6 +5,7 @@
         <p
             class="hint-text"
             :id="`hint-${fieldName}`"
+            v-if="hintText"
         >
             {{ hintText }}
         </p>
@@ -264,8 +265,11 @@ export default {
 .vs-form-input {
     border: $color-gray-shade-3 1px solid;
     margin-top: $spacer-2;
-    height: 50px;
     // transition: box-shadow $duration-base;
+
+    &.form-control-md {
+        height: 50px;
+    }
 
     &:focus {
         // border-color: $color-gray-tint-1;
@@ -291,7 +295,11 @@ export default {
 <BsWrapper>
     <label for="small">Small</label>
     <VsFormInput
-        id="small" placeholder="Enter your name" class="mb-5" size="sm" field-name="input1"
+        id="small"
+        placeholder="Enter your name"
+        class="mb-5"
+        size="sm"
+        field-name="input1"
     />
     <label for="medium">Medium (default)</label>
     <VsFormInput
@@ -301,18 +309,13 @@ export default {
     <VsFormInput
         id="large" placeholder="Enter your name" class="mb-5" size="lg" field-name="input3"
     />
-
-    <label for="input-none">No State</label>
-    <VsFormInput
-        id="input-none" :state="null" placeholder="No validation" class="mb-5" field-name="input4"
-    />
-    <label for="input-valid">Valid state</label>
-    <VsFormInput
-        id="input-valid" :state="true" placeholder="Valid" class="mb-5" field-name="input5"
-    />
     <label for="input-invalid">Invalid state</label>
     <VsFormInput
-        id="input-invalid" :state="false" placeholder="Invalid" class="mb-5" field-name="input5"
+        id="input-invalid"
+        invalid="true"
+        placeholder="Invalid"
+        class="mb-5"
+        field-name="input5"
     />
 </BsWrapper>
 ```
