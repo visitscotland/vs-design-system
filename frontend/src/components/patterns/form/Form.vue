@@ -385,7 +385,8 @@ export default {
          */
         needsLabel(field) {
             if (field.element === 'radio'
-                || field.element === 'submit') {
+                || field.element === 'submit'
+                || field.element === 'checkbox-group') {
                 return false;
             }
 

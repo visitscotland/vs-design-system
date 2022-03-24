@@ -48,10 +48,9 @@ import { BFormInput } from 'bootstrap-vue';
 Vue.use(Vuelidate);
 
 /**
- * https://bootstrap-vue.js.org/docs/components/form-input
- * https://getbootstrap.com/docs/4.3/components/forms/
+ * An input field for text, email, number etc
  *
- * @displayName Form Input
+ * @displayName Input
  */
 
 export default {
