@@ -36,6 +36,7 @@
                     <template v-if="field.element === 'select'">
                         <VsFormSelect
                             :options="getTranslatedOptions(field.name, index)"
+                            :countries="field.countries"
                             :ref="field.name"
                             @status-update="updateFieldData"
                             :field-name="field.name"
@@ -43,6 +44,7 @@
                             :validation-messages="getTranslatedValidation(field.name, index) || {}"
                             :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                             :trigger-validate="triggerValidate"
+                            :country-list-url="countryListUrl"
                         />
                     </template>
 
@@ -175,6 +177,13 @@ export default {
          * URL for generic messaging config
          */
         messagingUrl: {
+            type: String,
+            required: true,
+        },
+        /**
+         * URL for generic messaging config
+         */
+        countryListUrl: {
             type: String,
             required: true,
         },
@@ -321,6 +330,9 @@ export default {
 
             return validationObj;
         },
+        /**
+         * get language appriopriate options for a select element
+         */
         getTranslatedOptions(fieldName, index) {
             const languageObj = this.getLanguageObj();
 
@@ -332,6 +344,10 @@ export default {
                 optionsArr = languageObj[fieldName].options;
             } else {
                 optionsArr = this.formData.fields[index].options;
+            }
+
+            if (typeof optionsArr === 'undefined') {
+                optionsArr = [];
             }
 
             return optionsArr;
@@ -499,12 +515,13 @@ export default {
     ```jsx
         // https://static.visitscotland.com/forms/vs-3331/simpleForm.json
         <VsForm
-            dataUrl="http://172.28.74.108:5555/simpleForm.json"
+            dataUrl="http://172.28.74.108:5555/newsletter.json"
             messagingUrl="http://172.28.74.108:5555/messaging.json"
+            countryListUrl="http://172.28.74.108:5555/countries.json"
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
             marketo-instance="//app-lon10.marketo.com"
             munchkin-id="830-QYE-256"
-            language="de"
+            language="en"
             :is-prod="false"
         >
             <template slot="invalid">
