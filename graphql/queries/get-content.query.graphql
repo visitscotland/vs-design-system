@@ -1,0 +1,10 @@
+query getContent {
+    post(id: 1) {
+        id
+        title
+        author {
+            id
+            firstName
+        }
+    }
+}

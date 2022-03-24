@@ -1,6 +1,7 @@
 <template>
   <div>
-    <BaseHeader/>
+    <Header/>
+    <Sidebar/>
     <slot />
   </div>
 </template>

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "GettingStarted",
+    "path": "/GettingStarted",
+    "component": "/home/awhenderson/workspace/design-system/pages/GettingStarted.vue",
+    "chunkName": "pages/GettingStarted",
+    "_name": "_62c00dd5"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/awhenderson/workspace/design-system/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_6d4f696a"
+  }
+]

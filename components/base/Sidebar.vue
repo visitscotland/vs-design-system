@@ -1,18 +1,18 @@
 <template>
-  <div>
-    <li v-for="post of sections" :key="section.slug">
-      <NuxtLink :to="post.slug">{{ post.title }}</NuxtLink>
+  <ul>
+    <li v-for="section of sections" :key="section.slug">
+      <NuxtLink :to="section.slug">{{ section.title }}</NuxtLink>
     </li>
-  </div>
+  </ul>
 </template>
 
 <script>
 export default {
    async asyncData({ $content }) {
-    const posts = await $content("blog").fetch();
+    const sections = await $content("design-system").fetch();
 
     return {
-      posts,
+      sections,
     };
   },
 };
