@@ -1,8 +1,5 @@
 <template>
-    <div
-        class="vs-form-select"
-        :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
-    >
+    <div class="vs-form-select">
         <p
             class="hint-text"
             :id="`hint-${fieldName}`"
@@ -35,6 +32,7 @@
                 :required="isRequired"
                 :aria-invalid="$v.inputVal.$anyError || invalid"
                 :aria-describedby="`hint-${fieldName}`"
+                :class="$v.inputVal.$anyError || invalid ? 'vs-form-select__element--error' : ''"
             />
             <span class="vs-form-select__focus" />
         </div>
@@ -245,7 +243,6 @@ export default {
         &__container {
             position: relative;
             width: 100%;
-            border: $color-gray-shade-3 1px solid;
             cursor: pointer;
             height: 50px;
             border-radius: 0;
@@ -273,7 +270,6 @@ export default {
         &__element {
             // A reset of styles, including removing the default dropdown arrow
             appearance: none;
-            // Additional resets for further consistency
             background-color: transparent;
             border: none;
             padding: 0 $spacer-4 0;
@@ -284,6 +280,11 @@ export default {
             cursor: inherit;
             line-height: inherit;
             height: 50px;
+            border: $color-gray-shade-3 1px solid;
+
+            &--error {
+                border: 2px solid $color-theme-danger;
+            }
 
             &:focus {
                 outline: none;
