@@ -49,9 +49,9 @@ import { BFormSelect } from 'bootstrap-vue';
 Vue.use(Vuelidate);
 
 /**
- * A selecte element to be used in forms
+ * A select element
  *
- * @displayName Form Select
+ * @displayName Select
  */
 
 export default {

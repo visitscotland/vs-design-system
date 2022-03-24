@@ -42,10 +42,9 @@ import { BFormCheckbox } from 'bootstrap-vue';
 Vue.use(Vuelidate);
 
 /**
- * https://bootstrap-vue.js.org/docs/components/form-input
- * https://getbootstrap.com/docs/4.3/components/forms/
+ * A checkbox input
  *
- * @displayName Form Checkbox
+ * @displayName Checkbox
  */
 
 export default {
@@ -322,12 +321,26 @@ export default {
 <docs>
 ```jsx
 <BsWrapper>
-    <VsFormCheckbox
-        field-name="checkbox-example"
-        value="accepted"
-        id="checkbox-example"
-        label="I accept the terms and conditions"
-    />
+    <BFormGroup>
+        <VsFormCheckbox
+            field-name="checkbox-example"
+            value="accepted"
+            id="checkbox-example"
+            label="I accept the terms and conditions"
+            class="mb-6"
+        />
+    </BFormGroup>
+    <BFormGroup>
+        <VsFormCheckbox
+            field-name="checkbox-example-2"
+            value="second"
+            id="checkbox-example-2"
+            label="By ticking this box you are indicating your consent for VisitScotland
+            to use your email address to send you our e-newsletter on a regular basis.
+            You can unsubscribe at any time via the link in the email. We will process
+            your details in accordance with our privacy policy"
+        />
+    </BFormGroup>
 </BsWrapper>
 ```
 </docs>
