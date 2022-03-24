@@ -15,51 +15,54 @@
             <BFormGroup
                 v-for="(field, index) in formData.fields"
                 :key="field.name"
-                :label="needsLabel(field) ? getTranslatedLabel(field.name, index) : ''"
+                :label="needsLabel(field) && hiddenFields.indexOf(field.name) < 0
+                    ? getTranslatedLabel(field.name, index) : ''"
                 :label-for="needsLabel(field) ? field.name : ''"
             >
-                <template v-if="field.element === 'input'">
-                    <VsFormInput
-                        :ref="field.name"
-                        @status-update="updateFieldData"
-                        :field-name="field.name"
-                        :type="field.type"
-                        :validation-rules="field.validation || {}"
-                        :validation-messages="getTranslatedValidation(field.name, index) || {}"
-                        :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
-                        :trigger-validate="triggerValidate"
-                    />
-                </template>
+                <template v-if="hiddenFields.indexOf(field.name) < 0">
+                    <template v-if="field.element === 'input'">
+                        <VsFormInput
+                            :ref="field.name"
+                            @status-update="updateFieldData"
+                            :field-name="field.name"
+                            :type="field.type"
+                            :validation-rules="field.validation || {}"
+                            :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                            :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                            :trigger-validate="triggerValidate"
+                        />
+                    </template>
 
-                <template v-if="field.element === 'select'">
-                    <VsFormSelect
-                        :options="getTranslatedOptions(field.name, index)"
-                        :ref="field.name"
-                        @status-update="updateFieldData"
-                        :field-name="field.name"
-                        :validation-rules="field.validation || {}"
-                        :validation-messages="getTranslatedValidation(field.name, index) || {}"
-                        :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
-                        :trigger-validate="triggerValidate"
-                    />
-                </template>
+                    <template v-if="field.element === 'select'">
+                        <VsFormSelect
+                            :options="getTranslatedOptions(field.name, index)"
+                            :ref="field.name"
+                            @status-update="updateFieldData"
+                            :field-name="field.name"
+                            :validation-rules="field.validation || {}"
+                            :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                            :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                            :trigger-validate="triggerValidate"
+                        />
+                    </template>
 
-                <template v-if="field.element === 'checkbox'">
-                    <VsFormCheckbox
-                        :key="field.name"
-                        :ref="field.name"
-                        :name="field.name"
-                        :value="field.value"
-                        :id="field.name"
-                        :label="field.label"
-                        @status-update="updateFieldData"
-                        :field-name="field.name"
-                        :validation-rules="field.validation || {}"
-                        :validation-messages="getTranslatedValidation(field.name, index) || {}"
-                        :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
-                        :trigger-validate="triggerValidate"
-                        :required-text="getMessagingData('required', language)"
-                    />
+                    <template v-if="field.element === 'checkbox'">
+                        <VsFormCheckbox
+                            :key="field.name"
+                            :ref="field.name"
+                            :name="field.name"
+                            :value="field.value"
+                            :id="field.name"
+                            :label="field.label"
+                            @status-update="updateFieldData"
+                            :field-name="field.name"
+                            :validation-rules="field.validation || {}"
+                            :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                            :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                            :trigger-validate="triggerValidate"
+                            :required-text="getMessagingData('required', language)"
+                        />
+                    </template>
                 </template>
             </BFormGroup>
 
@@ -193,6 +196,7 @@ export default {
             ],
             triggerValidate: false,
             recaptchaVerified: false,
+            hiddenFields: [],
         };
     },
     computed: {
@@ -248,6 +252,10 @@ export default {
 
                 response.data.fields.forEach((field) => {
                     this.form[field.name] = '';
+
+                    if (field.conditional) {
+                        this.hiddenFields.push(field.name);
+                    }
                 });
             });
 
@@ -357,6 +365,7 @@ export default {
             }
 
             this.manageErrorStatus(data.field, data.errors);
+            this.checkConditionalFields();
         },
         /**
          * update error status of fields for validation feedback
@@ -454,6 +463,22 @@ export default {
                 this.recaptchaVerified = false;
             }
         },
+        checkConditionalFields() {
+            this.hiddenFields.forEach((field) => {
+                const conditionalField = this.formData.fields.find((o) => o.name === field);
+                let showField = true;
+
+                Object.keys(conditionalField.conditional).forEach((rule) => {
+                    if (this.form[rule] !== conditionalField.conditional[rule]) {
+                        showField = false;
+                    }
+                });
+
+                if (showField) {
+                    this.hiddenFields.pop(field);
+                }
+            });
+        },
     },
 };
 </script>
@@ -474,8 +499,8 @@ export default {
     ```jsx
         // https://static.visitscotland.com/forms/vs-3331/simpleForm.json
         <VsForm
-            dataUrl="http://172.28.74.161:5555/simpleForm.json"
-            messagingUrl="http://172.28.74.161:5555/messaging.json"
+            dataUrl="http://172.28.74.108:5555/simpleForm.json"
+            messagingUrl="http://172.28.74.108:5555/messaging.json"
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
             marketo-instance="//app-lon10.marketo.com"
             munchkin-id="830-QYE-256"
