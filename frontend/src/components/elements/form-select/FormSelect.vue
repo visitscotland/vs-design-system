@@ -32,7 +32,6 @@
 <script>
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
-// eslint-disable-next-line
 import { required } from 'vuelidate/lib/validators';
 import { BFormSelect } from 'bootstrap-vue';
 
