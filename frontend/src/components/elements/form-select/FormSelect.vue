@@ -251,13 +251,23 @@ export default {
             border-radius: 0;
             margin-top: $spacer-2;
 
-            // &::after {
-            //     content: "";
-            //     width: 0.8em;
-            //     height: 0.5em;
-            //     background-image: url(../../../assets/svg/icons/chevron.svg);
-            //     display: block;
-            // }
+            &::after {
+                content: "";
+                width: 1.5rem;
+                height: 1.5rem;
+                border: 1px solid $color-black;
+                border-radius: 1000px;
+                background-image: url('~@/assets/svg/icons/chevron.svg');
+                display: block;
+                position: absolute;
+                top: calc(50% - 0.75rem);
+                right: $spacer-4;
+                background-repeat: no-repeat;
+                background-size: 60% 60%;
+                background-position: center center;
+                transform: rotate(180deg);
+                pointer-events: none;
+            }
         }
 
         &__element {
