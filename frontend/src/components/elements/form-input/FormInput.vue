@@ -27,11 +27,14 @@
 </template>
 
 <script>
-// eslint-disable-next-line
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
-// eslint-disable-next-line
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators';
+import {
+    required,
+    email,
+    minLength,
+    maxLength,
+} from 'vuelidate/lib/validators';
 import { BFormInput } from 'bootstrap-vue';
 
 Vue.use(Vuelidate);
