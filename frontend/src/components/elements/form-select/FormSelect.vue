@@ -6,7 +6,7 @@
             v-model="inputVal"
             :size="size"
             v-bind="$attrs"
-            :options="options"
+            :options="countries ? countryList : options"
             :name="fieldName"
             :id="fieldName"
             @change="emitStatus"
@@ -37,6 +37,8 @@ import { required } from 'vuelidate/lib/validators';
 import { BFormSelect } from 'bootstrap-vue';
 
 Vue.use(Vuelidate);
+
+const axios = require('axios');
 
 /**
  * A selecte element to be used in forms
@@ -115,11 +117,26 @@ export default {
                 };
             },
         },
+        /**
+         * URL for list of countries file
+         */
+        countryListUrl: {
+            type: String,
+            default: '',
+        },
+        /**
+         * whether the options should be a countries list
+         */
+        countries: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
             inputVal: this.value,
             touched: false,
+            countryList: [],
         };
     },
     computed: {
@@ -190,6 +207,17 @@ export default {
         triggerValidate() {
             this.manualValidate();
         },
+    },
+    beforeMount() {
+        /**
+         * import country list
+         */
+        if (this.countries) {
+            axios.get(this.countryListUrl)
+                .then((response) => {
+                    this.countryList = response.data.countries;
+                });
+        }
     },
     methods: {
         /**
