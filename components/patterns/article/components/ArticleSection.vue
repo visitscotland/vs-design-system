@@ -116,11 +116,7 @@ export default {
             :altText="item.altText"
             :closedDefaultCaption="item.isSmall"
             :image-src="item.imageSrc"
-<<<<<<< HEAD
-            :key="`fullwidth1-${index}`"
-=======
             :key="\`fullwidth1-${index}\`"
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         >
             <VsCaption
                 slot="img-caption"

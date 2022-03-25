@@ -1,130 +1,130 @@
-export { default as SiteSearchToggleButton } from '../../components/patterns/site-search/components/SiteSearchToggleButton.vue'
-export { default as SkipToButton } from '../../components/patterns/skip-to/components/SkipToButton.vue'
-export { default as Address } from '../../components/elements/address/Address.vue'
-export { default as Button } from '../../components/elements/button/Button.vue'
-export { default as FormInput } from '../../components/elements/form-input/FormInput.vue'
-export { default as Heading } from '../../components/elements/heading/Heading.vue'
-export { default as Icon } from '../../components/elements/icon/Icon.vue'
-export { default as Img } from '../../components/elements/img/Img.vue'
-export { default as Col } from '../../components/elements/layout/Col.vue'
-export { default as Container } from '../../components/elements/layout/Container.vue'
-export { default as Row } from '../../components/elements/layout/Row.vue'
-export { default as Link } from '../../components/elements/link/Link.vue'
-export { default as List } from '../../components/elements/list/List.vue'
-export { default as Modal } from '../../components/elements/modal/Modal.vue'
-export { default as Panel } from '../../components/elements/panel/Panel.vue'
-export { default as Prototype } from '../../components/elements/prototype/Prototype.vue'
-export { default as PsrEmbed } from '../../components/elements/psr-embed/PsrEmbed.vue'
-export { default as RichTextWrapper } from '../../components/elements/rich-text-wrapper/RichTextWrapper.vue'
-export { default as Svg } from '../../components/elements/svg/Svg.vue'
-export { default as Tag } from '../../components/elements/tag/Tag.vue'
-export { default as Tooltip } from '../../components/elements/tooltip/Tooltip.vue'
-export { default as Video } from '../../components/elements/video/Video.vue'
-export { default as Accordion } from '../../components/patterns/accordion/Accordion.vue'
-export { default as ComponentsAccordionItem } from '../../components/patterns/accordion/components/AccordionItem.vue'
-export { default as ComponentsAccordionToggle } from '../../components/patterns/accordion/components/AccordionToggle.vue'
-export { default as Article } from '../../components/patterns/article/Article.vue'
-export { default as ComponentsArticleSection } from '../../components/patterns/article/components/ArticleSection.vue'
-export { default as ComponentsArticleSidebar } from '../../components/patterns/article/components/ArticleSidebar.vue'
-export { default as Banner } from '../../components/patterns/banner/Banner.vue'
-export { default as Breadcrumb } from '../../components/patterns/breadcrumb/Breadcrumb.vue'
-export { default as ComponentsBreadcrumbItem } from '../../components/patterns/breadcrumb/components/BreadcrumbItem.vue'
-export { default as CannedSearch } from '../../components/patterns/canned-search/CannedSearch.vue'
-export { default as ComponentsCannedSearchBadges } from '../../components/patterns/canned-search/components/CannedSearchBadges.vue'
-export { default as ComponentsCannedSearchCategories } from '../../components/patterns/canned-search/components/CannedSearchCategories.vue'
-export { default as ComponentsCannedSearchCuisines } from '../../components/patterns/canned-search/components/CannedSearchCuisines.vue'
-export { default as ComponentsCannedSearchDates } from '../../components/patterns/canned-search/components/CannedSearchDates.vue'
-export { default as ComponentsCannedSearchDuration } from '../../components/patterns/canned-search/components/CannedSearchDuration.vue'
-export { default as ComponentsCannedSearchLogos } from '../../components/patterns/canned-search/components/CannedSearchLogos.vue'
-export { default as ComponentsCannedSearchPrice } from '../../components/patterns/canned-search/components/CannedSearchPrice.vue'
-export { default as ComponentsCannedSearchProductCard } from '../../components/patterns/canned-search/components/CannedSearchProductCard.vue'
-export { default as ComponentsCannedSearchStars } from '../../components/patterns/canned-search/components/CannedSearchStars.vue'
-export { default as ComponentsCannedSearchSubHeading } from '../../components/patterns/canned-search/components/CannedSearchSubHeading.vue'
-export { default as ComponentsCannedSearchSummaryBox } from '../../components/patterns/canned-search/components/CannedSearchSummaryBox.vue'
-export { default as ComponentsCannedSearchTourDeparts } from '../../components/patterns/canned-search/components/CannedSearchTourDeparts.vue'
-export { default as ComponentsCannedSearchTourRuns } from '../../components/patterns/canned-search/components/CannedSearchTourRuns.vue'
-export { default as Caption } from '../../components/patterns/caption/Caption.vue'
-export { default as ComponentsCaptionImageMap } from '../../components/patterns/caption/components/CaptionImageMap.vue'
-export { default as Carousel } from '../../components/patterns/carousel/Carousel.vue'
-export { default as ComponentsCarouselSlide } from '../../components/patterns/carousel/components/CarouselSlide.vue'
-export { default as DescriptionList } from '../../components/patterns/description-list/DescriptionList.vue'
-export { default as ComponentsDescriptionListDetail } from '../../components/patterns/description-list/components/DescriptionListDetail.vue'
-export { default as ComponentsDescriptionListItem } from '../../components/patterns/description-list/components/DescriptionListItem.vue'
-export { default as ComponentsDescriptionListTerm } from '../../components/patterns/description-list/components/DescriptionListTerm.vue'
-export { default as Dropdown } from '../../components/patterns/dropdown/Dropdown.vue'
-export { default as ComponentsDropdownItem } from '../../components/patterns/dropdown/components/DropdownItem.vue'
-export { default as EmbedWrapper } from '../../components/patterns/embed-wrapper/EmbedWrapper.vue'
-export { default as FavouritesList } from '../../components/patterns/favourites/FavouritesList.vue'
-export { default as FavouritesStore } from '../../components/patterns/favourites/favourites.store.js'
-export { default as ComponentsFavouritesListToggleButton } from '../../components/patterns/favourites/components/FavouritesListToggleButton.vue'
-export { default as ComponentsFavouritesListViewButton } from '../../components/patterns/favourites/components/FavouritesListViewButton.vue'
-export { default as Footer } from '../../components/patterns/footer/Footer.vue'
-export { default as ExamplesFooterExample } from '../../components/patterns/footer/__examples__/footer.example.vue'
-export { default as ComponentsFooterAccordionItem } from '../../components/patterns/footer/components/FooterAccordionItem.vue'
-export { default as ComponentsFooterCopyright } from '../../components/patterns/footer/components/FooterCopyright.vue'
-export { default as ComponentsFooterNavList } from '../../components/patterns/footer/components/FooterNavList.vue'
-export { default as ComponentsFooterNavListItem } from '../../components/patterns/footer/components/FooterNavListItem.vue'
-export { default as ComponentsFooterSocialItem } from '../../components/patterns/footer/components/FooterSocialItem.vue'
-export { default as ComponentsFooterSocialMenu } from '../../components/patterns/footer/components/FooterSocialMenu.vue'
-export { default as ComponentsFooterUtilityList } from '../../components/patterns/footer/components/FooterUtilityList.vue'
-export { default as Form } from '../../components/patterns/form/Form.vue'
-export { default as GlobalMenu } from '../../components/patterns/global-menu/GlobalMenu.vue'
-export { default as ComponentsGlobalMenuDropdown } from '../../components/patterns/global-menu/components/GlobalMenuDropdown.vue'
-export { default as ComponentsGlobalMenuLanguage } from '../../components/patterns/global-menu/components/GlobalMenuLanguage.vue'
-export { default as ComponentsGlobalMenuLanguageItem } from '../../components/patterns/global-menu/components/GlobalMenuLanguageItem.vue'
-export { default as ComponentsGlobalMenuList } from '../../components/patterns/global-menu/components/GlobalMenuList.vue'
-export { default as Icentre } from '../../components/patterns/icentre/Icentre.vue'
-export { default as IconList } from '../../components/patterns/icon-list/IconList.vue'
-export { default as ComponentsIconListItem } from '../../components/patterns/icon-list/components/IconListItem.vue'
-export { default as ImageWithCaption } from '../../components/patterns/image-with-caption/ImageWithCaption.vue'
-export { default as Itinerary } from '../../components/patterns/itineraries/Itinerary.vue'
-export { default as ItinerariesStore } from '../../components/patterns/itineraries/itineraries.store.js'
-export { default as ComponentsItineraryBorderOverlapWrapper } from '../../components/patterns/itineraries/components/ItineraryBorderOverlapWrapper.vue'
-export { default as ComponentsItineraryDay } from '../../components/patterns/itineraries/components/ItineraryDay.vue'
-export { default as ComponentsItineraryStop } from '../../components/patterns/itineraries/components/ItineraryStop.vue'
-export { default as ComponentsItineraryStopInfo } from '../../components/patterns/itineraries/components/ItineraryStopInfo.vue'
-export { default as ComponentsItineraryTips } from '../../components/patterns/itineraries/components/ItineraryTips.vue'
-export { default as ComponentsItineraryMap } from '../../components/patterns/itineraries/components/itinerary-map/ItineraryMap.vue'
-export { default as ComponentsItineraryMapMarker } from '../../components/patterns/itineraries/components/itinerary-map/components/ItineraryMapMarker.vue'
-export { default as LinkList } from '../../components/patterns/link-list/LinkList.vue'
-export { default as ComponentsLinkListItem } from '../../components/patterns/link-list/components/LinkListItem.vue'
-export { default as ListicleItem } from '../../components/patterns/listicle/ListicleItem.vue'
-export { default as MegaNav } from '../../components/patterns/mega-nav/MegaNav.vue'
-export { default as ExamplesMeganavExample } from '../../components/patterns/mega-nav/__examples__/meganav.example.vue'
-export { default as ComponentsMegaNavAccordionItem } from '../../components/patterns/mega-nav/components/MegaNavAccordionItem.vue'
-export { default as ComponentsMegaNavDropdown } from '../../components/patterns/mega-nav/components/MegaNavDropdown.vue'
-export { default as ComponentsMegaNavFeaturedItem } from '../../components/patterns/mega-nav/components/MegaNavFeaturedItem.vue'
-export { default as ComponentsMegaNavList } from '../../components/patterns/mega-nav/components/MegaNavList.vue'
-export { default as ComponentsMegaNavListItem } from '../../components/patterns/mega-nav/components/MegaNavListItem.vue'
-export { default as ComponentsMegaNavTopMenu } from '../../components/patterns/mega-nav/components/MegaNavTopMenu.vue'
-export { default as ComponentsMegaNavTopMenuItem } from '../../components/patterns/mega-nav/components/MegaNavTopMenuItem.vue'
-export { default as Megalinks } from '../../components/patterns/megalinks/Megalinks.vue'
-export { default as ComponentsMegalinkLinkList } from '../../components/patterns/megalinks/components/megalink-link-list/MegalinkLinkList.vue'
-export { default as ComponentsMegalinkMultiImage } from '../../components/patterns/megalinks/components/megalink-multi-image/MegalinkMultiImage.vue'
-export { default as ComponentsMegalinkSingleImage } from '../../components/patterns/megalinks/components/megalink-single-image/MegalinkSingleImage.vue'
-export { default as ModuleWrapper } from '../../components/patterns/module-wrapper/ModuleWrapper.vue'
-export { default as PageIntro } from '../../components/patterns/page-intro/PageIntro.vue'
-export { default as PsrModule } from '../../components/patterns/psr-module/PsrModule.vue'
-export { default as Quote } from '../../components/patterns/quote/Quote.vue'
-export { default as SiteSearch } from '../../components/patterns/site-search/SiteSearch.vue'
-export { default as SkipTo } from '../../components/patterns/skip-to/SkipTo.vue'
-export { default as SocialCreditLink } from '../../components/patterns/social-credit-link/SocialCreditLink.vue'
-export { default as SocialShare } from '../../components/patterns/social-share/SocialShare.vue'
-export { default as ComponentsSocialShareItem } from '../../components/patterns/social-share/components/SocialShareItem.vue'
-export { default as StretchedLinkCard } from '../../components/patterns/stretched-link-card/StretchedLinkCard.vue'
-export { default as ComponentsStretchedLinkPanels } from '../../components/patterns/stretched-link-card/components/StretchedLinkPanels.vue'
-export { default as SummaryBoxList } from '../../components/patterns/summary-box/SummaryBoxList.vue'
-export { default as ComponentsSummaryBoxDistanceListItem } from '../../components/patterns/summary-box/components/SummaryBoxDistanceListItem.vue'
-export { default as ComponentsSummaryBoxListItem } from '../../components/patterns/summary-box/components/SummaryBoxListItem.vue'
-export { default as Tabs } from '../../components/patterns/tabs/Tabs.vue'
-export { default as ComponentsTabItem } from '../../components/patterns/tabs/components/TabItem.vue'
-export { default as ToggleButton } from '../../components/patterns/toggle-button/ToggleButton.vue'
-export { default as VideoCaption } from '../../components/patterns/video-caption/VideoCaption.vue'
-export { default as DSHeader } from '../../components/DSHeader.vue'
-export { default as DSSidebar } from '../../components/DSSidebar.vue'
-export { default as BaseHeader } from '../../components/base/Header.vue'
-export { default as BaseSidebar } from '../../components/base/Sidebar.vue'
-export { default as TemplatesExample } from '../../components/templates/Example.vue'
+export const SiteSearchToggleButton = () => import('../../components/patterns/site-search/components/SiteSearchToggleButton.vue' /* webpackChunkName: "components/site-search-toggle-button" */).then(c => wrapFunctional(c.default || c))
+export const SkipToButton = () => import('../../components/patterns/skip-to/components/SkipToButton.vue' /* webpackChunkName: "components/skip-to-button" */).then(c => wrapFunctional(c.default || c))
+export const Address = () => import('../../components/elements/address/Address.vue' /* webpackChunkName: "components/address" */).then(c => wrapFunctional(c.default || c))
+export const Button = () => import('../../components/elements/button/Button.vue' /* webpackChunkName: "components/button" */).then(c => wrapFunctional(c.default || c))
+export const FormInput = () => import('../../components/elements/form-input/FormInput.vue' /* webpackChunkName: "components/form-input" */).then(c => wrapFunctional(c.default || c))
+export const Heading = () => import('../../components/elements/heading/Heading.vue' /* webpackChunkName: "components/heading" */).then(c => wrapFunctional(c.default || c))
+export const Icon = () => import('../../components/elements/icon/Icon.vue' /* webpackChunkName: "components/icon" */).then(c => wrapFunctional(c.default || c))
+export const Img = () => import('../../components/elements/img/Img.vue' /* webpackChunkName: "components/img" */).then(c => wrapFunctional(c.default || c))
+export const Col = () => import('../../components/elements/layout/Col.vue' /* webpackChunkName: "components/col" */).then(c => wrapFunctional(c.default || c))
+export const Container = () => import('../../components/elements/layout/Container.vue' /* webpackChunkName: "components/container" */).then(c => wrapFunctional(c.default || c))
+export const Row = () => import('../../components/elements/layout/Row.vue' /* webpackChunkName: "components/row" */).then(c => wrapFunctional(c.default || c))
+export const Link = () => import('../../components/elements/link/Link.vue' /* webpackChunkName: "components/link" */).then(c => wrapFunctional(c.default || c))
+export const List = () => import('../../components/elements/list/List.vue' /* webpackChunkName: "components/list" */).then(c => wrapFunctional(c.default || c))
+export const Modal = () => import('../../components/elements/modal/Modal.vue' /* webpackChunkName: "components/modal" */).then(c => wrapFunctional(c.default || c))
+export const Panel = () => import('../../components/elements/panel/Panel.vue' /* webpackChunkName: "components/panel" */).then(c => wrapFunctional(c.default || c))
+export const Prototype = () => import('../../components/elements/prototype/Prototype.vue' /* webpackChunkName: "components/prototype" */).then(c => wrapFunctional(c.default || c))
+export const PsrEmbed = () => import('../../components/elements/psr-embed/PsrEmbed.vue' /* webpackChunkName: "components/psr-embed" */).then(c => wrapFunctional(c.default || c))
+export const RichTextWrapper = () => import('../../components/elements/rich-text-wrapper/RichTextWrapper.vue' /* webpackChunkName: "components/rich-text-wrapper" */).then(c => wrapFunctional(c.default || c))
+export const Svg = () => import('../../components/elements/svg/Svg.vue' /* webpackChunkName: "components/svg" */).then(c => wrapFunctional(c.default || c))
+export const Tag = () => import('../../components/elements/tag/Tag.vue' /* webpackChunkName: "components/tag" */).then(c => wrapFunctional(c.default || c))
+export const Tooltip = () => import('../../components/elements/tooltip/Tooltip.vue' /* webpackChunkName: "components/tooltip" */).then(c => wrapFunctional(c.default || c))
+export const Video = () => import('../../components/elements/video/Video.vue' /* webpackChunkName: "components/video" */).then(c => wrapFunctional(c.default || c))
+export const Accordion = () => import('../../components/patterns/accordion/Accordion.vue' /* webpackChunkName: "components/accordion" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsAccordionItem = () => import('../../components/patterns/accordion/components/AccordionItem.vue' /* webpackChunkName: "components/components-accordion-item" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsAccordionToggle = () => import('../../components/patterns/accordion/components/AccordionToggle.vue' /* webpackChunkName: "components/components-accordion-toggle" */).then(c => wrapFunctional(c.default || c))
+export const Article = () => import('../../components/patterns/article/Article.vue' /* webpackChunkName: "components/article" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsArticleSection = () => import('../../components/patterns/article/components/ArticleSection.vue' /* webpackChunkName: "components/components-article-section" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsArticleSidebar = () => import('../../components/patterns/article/components/ArticleSidebar.vue' /* webpackChunkName: "components/components-article-sidebar" */).then(c => wrapFunctional(c.default || c))
+export const Banner = () => import('../../components/patterns/banner/Banner.vue' /* webpackChunkName: "components/banner" */).then(c => wrapFunctional(c.default || c))
+export const Breadcrumb = () => import('../../components/patterns/breadcrumb/Breadcrumb.vue' /* webpackChunkName: "components/breadcrumb" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsBreadcrumbItem = () => import('../../components/patterns/breadcrumb/components/BreadcrumbItem.vue' /* webpackChunkName: "components/components-breadcrumb-item" */).then(c => wrapFunctional(c.default || c))
+export const CannedSearch = () => import('../../components/patterns/canned-search/CannedSearch.vue' /* webpackChunkName: "components/canned-search" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchBadges = () => import('../../components/patterns/canned-search/components/CannedSearchBadges.vue' /* webpackChunkName: "components/components-canned-search-badges" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchCategories = () => import('../../components/patterns/canned-search/components/CannedSearchCategories.vue' /* webpackChunkName: "components/components-canned-search-categories" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchCuisines = () => import('../../components/patterns/canned-search/components/CannedSearchCuisines.vue' /* webpackChunkName: "components/components-canned-search-cuisines" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchDates = () => import('../../components/patterns/canned-search/components/CannedSearchDates.vue' /* webpackChunkName: "components/components-canned-search-dates" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchDuration = () => import('../../components/patterns/canned-search/components/CannedSearchDuration.vue' /* webpackChunkName: "components/components-canned-search-duration" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchLogos = () => import('../../components/patterns/canned-search/components/CannedSearchLogos.vue' /* webpackChunkName: "components/components-canned-search-logos" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchPrice = () => import('../../components/patterns/canned-search/components/CannedSearchPrice.vue' /* webpackChunkName: "components/components-canned-search-price" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchProductCard = () => import('../../components/patterns/canned-search/components/CannedSearchProductCard.vue' /* webpackChunkName: "components/components-canned-search-product-card" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchStars = () => import('../../components/patterns/canned-search/components/CannedSearchStars.vue' /* webpackChunkName: "components/components-canned-search-stars" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchSubHeading = () => import('../../components/patterns/canned-search/components/CannedSearchSubHeading.vue' /* webpackChunkName: "components/components-canned-search-sub-heading" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchSummaryBox = () => import('../../components/patterns/canned-search/components/CannedSearchSummaryBox.vue' /* webpackChunkName: "components/components-canned-search-summary-box" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchTourDeparts = () => import('../../components/patterns/canned-search/components/CannedSearchTourDeparts.vue' /* webpackChunkName: "components/components-canned-search-tour-departs" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCannedSearchTourRuns = () => import('../../components/patterns/canned-search/components/CannedSearchTourRuns.vue' /* webpackChunkName: "components/components-canned-search-tour-runs" */).then(c => wrapFunctional(c.default || c))
+export const Caption = () => import('../../components/patterns/caption/Caption.vue' /* webpackChunkName: "components/caption" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCaptionImageMap = () => import('../../components/patterns/caption/components/CaptionImageMap.vue' /* webpackChunkName: "components/components-caption-image-map" */).then(c => wrapFunctional(c.default || c))
+export const Carousel = () => import('../../components/patterns/carousel/Carousel.vue' /* webpackChunkName: "components/carousel" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsCarouselSlide = () => import('../../components/patterns/carousel/components/CarouselSlide.vue' /* webpackChunkName: "components/components-carousel-slide" */).then(c => wrapFunctional(c.default || c))
+export const DescriptionList = () => import('../../components/patterns/description-list/DescriptionList.vue' /* webpackChunkName: "components/description-list" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsDescriptionListDetail = () => import('../../components/patterns/description-list/components/DescriptionListDetail.vue' /* webpackChunkName: "components/components-description-list-detail" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsDescriptionListItem = () => import('../../components/patterns/description-list/components/DescriptionListItem.vue' /* webpackChunkName: "components/components-description-list-item" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsDescriptionListTerm = () => import('../../components/patterns/description-list/components/DescriptionListTerm.vue' /* webpackChunkName: "components/components-description-list-term" */).then(c => wrapFunctional(c.default || c))
+export const Dropdown = () => import('../../components/patterns/dropdown/Dropdown.vue' /* webpackChunkName: "components/dropdown" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsDropdownItem = () => import('../../components/patterns/dropdown/components/DropdownItem.vue' /* webpackChunkName: "components/components-dropdown-item" */).then(c => wrapFunctional(c.default || c))
+export const EmbedWrapper = () => import('../../components/patterns/embed-wrapper/EmbedWrapper.vue' /* webpackChunkName: "components/embed-wrapper" */).then(c => wrapFunctional(c.default || c))
+export const FavouritesList = () => import('../../components/patterns/favourites/FavouritesList.vue' /* webpackChunkName: "components/favourites-list" */).then(c => wrapFunctional(c.default || c))
+export const FavouritesStore = () => import('../../components/patterns/favourites/favourites.store.js' /* webpackChunkName: "components/favourites-store" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsFavouritesListToggleButton = () => import('../../components/patterns/favourites/components/FavouritesListToggleButton.vue' /* webpackChunkName: "components/components-favourites-list-toggle-button" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsFavouritesListViewButton = () => import('../../components/patterns/favourites/components/FavouritesListViewButton.vue' /* webpackChunkName: "components/components-favourites-list-view-button" */).then(c => wrapFunctional(c.default || c))
+export const Footer = () => import('../../components/patterns/footer/Footer.vue' /* webpackChunkName: "components/footer" */).then(c => wrapFunctional(c.default || c))
+export const ExamplesFooterExample = () => import('../../components/patterns/footer/__examples__/footer.example.vue' /* webpackChunkName: "components/examples-footer-example" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsFooterAccordionItem = () => import('../../components/patterns/footer/components/FooterAccordionItem.vue' /* webpackChunkName: "components/components-footer-accordion-item" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsFooterCopyright = () => import('../../components/patterns/footer/components/FooterCopyright.vue' /* webpackChunkName: "components/components-footer-copyright" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsFooterNavList = () => import('../../components/patterns/footer/components/FooterNavList.vue' /* webpackChunkName: "components/components-footer-nav-list" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsFooterNavListItem = () => import('../../components/patterns/footer/components/FooterNavListItem.vue' /* webpackChunkName: "components/components-footer-nav-list-item" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsFooterSocialItem = () => import('../../components/patterns/footer/components/FooterSocialItem.vue' /* webpackChunkName: "components/components-footer-social-item" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsFooterSocialMenu = () => import('../../components/patterns/footer/components/FooterSocialMenu.vue' /* webpackChunkName: "components/components-footer-social-menu" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsFooterUtilityList = () => import('../../components/patterns/footer/components/FooterUtilityList.vue' /* webpackChunkName: "components/components-footer-utility-list" */).then(c => wrapFunctional(c.default || c))
+export const Form = () => import('../../components/patterns/form/Form.vue' /* webpackChunkName: "components/form" */).then(c => wrapFunctional(c.default || c))
+export const GlobalMenu = () => import('../../components/patterns/global-menu/GlobalMenu.vue' /* webpackChunkName: "components/global-menu" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsGlobalMenuDropdown = () => import('../../components/patterns/global-menu/components/GlobalMenuDropdown.vue' /* webpackChunkName: "components/components-global-menu-dropdown" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsGlobalMenuLanguage = () => import('../../components/patterns/global-menu/components/GlobalMenuLanguage.vue' /* webpackChunkName: "components/components-global-menu-language" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsGlobalMenuLanguageItem = () => import('../../components/patterns/global-menu/components/GlobalMenuLanguageItem.vue' /* webpackChunkName: "components/components-global-menu-language-item" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsGlobalMenuList = () => import('../../components/patterns/global-menu/components/GlobalMenuList.vue' /* webpackChunkName: "components/components-global-menu-list" */).then(c => wrapFunctional(c.default || c))
+export const Icentre = () => import('../../components/patterns/icentre/Icentre.vue' /* webpackChunkName: "components/icentre" */).then(c => wrapFunctional(c.default || c))
+export const IconList = () => import('../../components/patterns/icon-list/IconList.vue' /* webpackChunkName: "components/icon-list" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsIconListItem = () => import('../../components/patterns/icon-list/components/IconListItem.vue' /* webpackChunkName: "components/components-icon-list-item" */).then(c => wrapFunctional(c.default || c))
+export const ImageWithCaption = () => import('../../components/patterns/image-with-caption/ImageWithCaption.vue' /* webpackChunkName: "components/image-with-caption" */).then(c => wrapFunctional(c.default || c))
+export const Itinerary = () => import('../../components/patterns/itineraries/Itinerary.vue' /* webpackChunkName: "components/itinerary" */).then(c => wrapFunctional(c.default || c))
+export const ItinerariesStore = () => import('../../components/patterns/itineraries/itineraries.store.js' /* webpackChunkName: "components/itineraries-store" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsItineraryBorderOverlapWrapper = () => import('../../components/patterns/itineraries/components/ItineraryBorderOverlapWrapper.vue' /* webpackChunkName: "components/components-itinerary-border-overlap-wrapper" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsItineraryDay = () => import('../../components/patterns/itineraries/components/ItineraryDay.vue' /* webpackChunkName: "components/components-itinerary-day" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsItineraryStop = () => import('../../components/patterns/itineraries/components/ItineraryStop.vue' /* webpackChunkName: "components/components-itinerary-stop" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsItineraryStopInfo = () => import('../../components/patterns/itineraries/components/ItineraryStopInfo.vue' /* webpackChunkName: "components/components-itinerary-stop-info" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsItineraryTips = () => import('../../components/patterns/itineraries/components/ItineraryTips.vue' /* webpackChunkName: "components/components-itinerary-tips" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsItineraryMap = () => import('../../components/patterns/itineraries/components/itinerary-map/ItineraryMap.vue' /* webpackChunkName: "components/components-itinerary-map" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsItineraryMapMarker = () => import('../../components/patterns/itineraries/components/itinerary-map/components/ItineraryMapMarker.vue' /* webpackChunkName: "components/components-itinerary-map-marker" */).then(c => wrapFunctional(c.default || c))
+export const LinkList = () => import('../../components/patterns/link-list/LinkList.vue' /* webpackChunkName: "components/link-list" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsLinkListItem = () => import('../../components/patterns/link-list/components/LinkListItem.vue' /* webpackChunkName: "components/components-link-list-item" */).then(c => wrapFunctional(c.default || c))
+export const ListicleItem = () => import('../../components/patterns/listicle/ListicleItem.vue' /* webpackChunkName: "components/listicle-item" */).then(c => wrapFunctional(c.default || c))
+export const MegaNav = () => import('../../components/patterns/mega-nav/MegaNav.vue' /* webpackChunkName: "components/mega-nav" */).then(c => wrapFunctional(c.default || c))
+export const ExamplesMeganavExample = () => import('../../components/patterns/mega-nav/__examples__/meganav.example.vue' /* webpackChunkName: "components/examples-meganav-example" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsMegaNavAccordionItem = () => import('../../components/patterns/mega-nav/components/MegaNavAccordionItem.vue' /* webpackChunkName: "components/components-mega-nav-accordion-item" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsMegaNavDropdown = () => import('../../components/patterns/mega-nav/components/MegaNavDropdown.vue' /* webpackChunkName: "components/components-mega-nav-dropdown" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsMegaNavFeaturedItem = () => import('../../components/patterns/mega-nav/components/MegaNavFeaturedItem.vue' /* webpackChunkName: "components/components-mega-nav-featured-item" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsMegaNavList = () => import('../../components/patterns/mega-nav/components/MegaNavList.vue' /* webpackChunkName: "components/components-mega-nav-list" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsMegaNavListItem = () => import('../../components/patterns/mega-nav/components/MegaNavListItem.vue' /* webpackChunkName: "components/components-mega-nav-list-item" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsMegaNavTopMenu = () => import('../../components/patterns/mega-nav/components/MegaNavTopMenu.vue' /* webpackChunkName: "components/components-mega-nav-top-menu" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsMegaNavTopMenuItem = () => import('../../components/patterns/mega-nav/components/MegaNavTopMenuItem.vue' /* webpackChunkName: "components/components-mega-nav-top-menu-item" */).then(c => wrapFunctional(c.default || c))
+export const Megalinks = () => import('../../components/patterns/megalinks/Megalinks.vue' /* webpackChunkName: "components/megalinks" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsMegalinkLinkList = () => import('../../components/patterns/megalinks/components/megalink-link-list/MegalinkLinkList.vue' /* webpackChunkName: "components/components-megalink-link-list" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsMegalinkMultiImage = () => import('../../components/patterns/megalinks/components/megalink-multi-image/MegalinkMultiImage.vue' /* webpackChunkName: "components/components-megalink-multi-image" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsMegalinkSingleImage = () => import('../../components/patterns/megalinks/components/megalink-single-image/MegalinkSingleImage.vue' /* webpackChunkName: "components/components-megalink-single-image" */).then(c => wrapFunctional(c.default || c))
+export const ModuleWrapper = () => import('../../components/patterns/module-wrapper/ModuleWrapper.vue' /* webpackChunkName: "components/module-wrapper" */).then(c => wrapFunctional(c.default || c))
+export const PageIntro = () => import('../../components/patterns/page-intro/PageIntro.vue' /* webpackChunkName: "components/page-intro" */).then(c => wrapFunctional(c.default || c))
+export const PsrModule = () => import('../../components/patterns/psr-module/PsrModule.vue' /* webpackChunkName: "components/psr-module" */).then(c => wrapFunctional(c.default || c))
+export const Quote = () => import('../../components/patterns/quote/Quote.vue' /* webpackChunkName: "components/quote" */).then(c => wrapFunctional(c.default || c))
+export const SiteSearch = () => import('../../components/patterns/site-search/SiteSearch.vue' /* webpackChunkName: "components/site-search" */).then(c => wrapFunctional(c.default || c))
+export const SkipTo = () => import('../../components/patterns/skip-to/SkipTo.vue' /* webpackChunkName: "components/skip-to" */).then(c => wrapFunctional(c.default || c))
+export const SocialCreditLink = () => import('../../components/patterns/social-credit-link/SocialCreditLink.vue' /* webpackChunkName: "components/social-credit-link" */).then(c => wrapFunctional(c.default || c))
+export const SocialShare = () => import('../../components/patterns/social-share/SocialShare.vue' /* webpackChunkName: "components/social-share" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsSocialShareItem = () => import('../../components/patterns/social-share/components/SocialShareItem.vue' /* webpackChunkName: "components/components-social-share-item" */).then(c => wrapFunctional(c.default || c))
+export const StretchedLinkCard = () => import('../../components/patterns/stretched-link-card/StretchedLinkCard.vue' /* webpackChunkName: "components/stretched-link-card" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsStretchedLinkPanels = () => import('../../components/patterns/stretched-link-card/components/StretchedLinkPanels.vue' /* webpackChunkName: "components/components-stretched-link-panels" */).then(c => wrapFunctional(c.default || c))
+export const SummaryBoxList = () => import('../../components/patterns/summary-box/SummaryBoxList.vue' /* webpackChunkName: "components/summary-box-list" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsSummaryBoxDistanceListItem = () => import('../../components/patterns/summary-box/components/SummaryBoxDistanceListItem.vue' /* webpackChunkName: "components/components-summary-box-distance-list-item" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsSummaryBoxListItem = () => import('../../components/patterns/summary-box/components/SummaryBoxListItem.vue' /* webpackChunkName: "components/components-summary-box-list-item" */).then(c => wrapFunctional(c.default || c))
+export const Tabs = () => import('../../components/patterns/tabs/Tabs.vue' /* webpackChunkName: "components/tabs" */).then(c => wrapFunctional(c.default || c))
+export const ComponentsTabItem = () => import('../../components/patterns/tabs/components/TabItem.vue' /* webpackChunkName: "components/components-tab-item" */).then(c => wrapFunctional(c.default || c))
+export const ToggleButton = () => import('../../components/patterns/toggle-button/ToggleButton.vue' /* webpackChunkName: "components/toggle-button" */).then(c => wrapFunctional(c.default || c))
+export const VideoCaption = () => import('../../components/patterns/video-caption/VideoCaption.vue' /* webpackChunkName: "components/video-caption" */).then(c => wrapFunctional(c.default || c))
+export const DSHeader = () => import('../../components/DSHeader.vue' /* webpackChunkName: "components/d-s-header" */).then(c => wrapFunctional(c.default || c))
+export const DSSidebar = () => import('../../components/DSSidebar.vue' /* webpackChunkName: "components/d-s-sidebar" */).then(c => wrapFunctional(c.default || c))
+export const BaseHeader = () => import('../../components/base/Header.vue' /* webpackChunkName: "components/base-header" */).then(c => wrapFunctional(c.default || c))
+export const BaseSidebar = () => import('../../components/base/Sidebar.vue' /* webpackChunkName: "components/base-sidebar" */).then(c => wrapFunctional(c.default || c))
+export const TemplatesExample = () => import('../../components/templates/Example.vue' /* webpackChunkName: "components/templates-example" */).then(c => wrapFunctional(c.default || c))
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

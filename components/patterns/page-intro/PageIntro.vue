@@ -509,11 +509,7 @@ const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-iti
                     <VsDescriptionListItem title>Highlights</VsDescriptionListItem>
                     <VsDescriptionListItem
                         v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
-<<<<<<< HEAD
-                        :key="`itinerary-${index}`"
-=======
                         :key="\`itinerary-${index}\`"
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                     >
                         {{highlight}}
                     </VsDescriptionListItem>
