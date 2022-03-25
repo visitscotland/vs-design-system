@@ -29,7 +29,7 @@
             <template
                 v-if="$v.inputVal.$anyError || invalid"
             >
-                {{ validationMessages[error] }}
+                {{ validationMessages[error] || genericValidation[error] }}
             </template>
         </span>
     </div>
@@ -130,6 +130,16 @@ export default {
         invalid: {
             type: Boolean,
             default: false,
+        },
+        /**
+         * Fallback translated validation
+         */
+        genericValidation: {
+            type: Object,
+            default() {
+                return {
+                };
+            },
         },
     },
     data() {
