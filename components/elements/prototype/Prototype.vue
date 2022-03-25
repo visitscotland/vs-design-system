@@ -38,29 +38,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-```jsx
-    <h4>Originals</h4>
-    <BsWrapper class="d-flex mb-4">
-        <VsButton class="mr-2 mb-2">Button</VsButton>
-    </BsWrapper>
-
-    <BsWrapper class="d-flex mb-4">
-        <VsIcon name="search" />
-    </BsWrapper>
-
-    <h4 class="mt-8">Prototypes</h4>
-    <BsWrapper class="d-flex mb-4">
-        <VsPrototype>
-            <VsButton class="mr-2 mb-2">Button</VsButton>
-        </VsPrototype>
-    </BsWrapper>
-
-    <BsWrapper class="d-flex mb-4">
-        <VsPrototype>
-            <VsIcon name="search" />
-        </VsPrototype>
-    </BsWrapper>
-```
-</docs>

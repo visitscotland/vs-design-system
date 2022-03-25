@@ -115,9 +115,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsGlobalMenuLanguageItem language-name="English" languageLink="site/"/>
-  ```
-</docs>

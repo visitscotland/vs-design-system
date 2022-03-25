@@ -63,13 +63,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```js
-  <VsDropdown text="Dropdown">
-    <VsDropdownItem href="https://www.google.com">Google</VsDropdownItem>
-    <VsDropdownItem>bbbb</VsDropdownItem>
-    <VsDropdownItem>feeeeee</VsDropdownItem>
-  </VsDropdown>
-  ```
-</docs>

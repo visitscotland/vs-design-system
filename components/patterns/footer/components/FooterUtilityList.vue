@@ -112,30 +112,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```js
-    <VsFooter>
-        <VsFooterUtilityList>
-            <VsFooterNavListItem
-                href="#"
-                link-text="Brochures"
-            ></VsFooterNavListItem>
-            <VsFooterNavListItem
-                href="#"
-                link-text="VisitScotland iCentres"
-            ></VsFooterNavListItem>
-            <VsFooterNavListItem
-                href="#"
-                link-text="iKnow Scotland Community"
-            ></VsFooterNavListItem>
-            <VsFooterNavListItem
-                href="#"
-                link-text="VisitScotland Awards"
-            ></VsFooterNavListItem>
-
-        </VsFooterUtilityList>
-    </VsFooter>
-
-  ```
-</docs>

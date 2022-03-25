@@ -216,16 +216,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsGlobalMenuLanguage>
-        <VsGlobalMenuLanguageItem language-name="English" language="en_EN" />
-        <VsGlobalMenuLanguageItem language-name="Deutsch" language="de_DE" />
-        <VsGlobalMenuLanguageItem language-name="Español" language="es_ES" />
-        <VsGlobalMenuLanguageItem language-name="Français" language="fr_FR" />
-        <VsGlobalMenuLanguageItem language-name="Italiano" language="it_IT" />
-        <VsGlobalMenuLanguageItem language-name="Nederlands" language="nl_NL" />
-    </VsGlobalMenuLanguage>
-  ```
-</docs>

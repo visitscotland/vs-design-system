@@ -406,28 +406,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    <VsItineraryStopInfo
-        :openingHours='itineraries.sampleItinerary.openingHours'
-        openingTimesLink="https://www.visitscotland.com"
-        closedText="Closed"
-        closingSoonText="Closing soon"
-        openText="Open"
-        usualText="Usually"
-        provisionalText="Provisionally"
-        temporarilyClosedText="Temporarily closed"
-        toText="to"
-        andText="and"
-    >
-        <template slot="stop-link-text">
-            Check opening times
-        </template>
-
-        <template slot="stop-charge-text">
-            Admission charge
-        </template>
-    </VsItineraryStopInfo>
-```
-</docs>

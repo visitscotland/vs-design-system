@@ -256,28 +256,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    <VsContainer>
-        <VsRow>
-            <VsPsrModule
-                :configArr="[
-                    {'subSearchType': 'acco'},
-                    {'locplace': '4161'},
-                    {'lang':'en'},
-                ]"
-            >
-                <template slot="vsModuleHeading">
-                    Find places to stay & things to do
-                </template>
-
-                <template slot="vsModuleIntro">
-                    Search through a fantastic range of things to do, places to stay,
-                    local events and tours
-                </template>
-            </VsPsrModule>
-        </VsRow>
-    </VsContainer>
-```
-</docs>

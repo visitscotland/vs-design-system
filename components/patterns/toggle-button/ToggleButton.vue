@@ -81,9 +81,3 @@ export default {
     },
 };
 </script>
-
-<docs>
-    ```jsx
-    <VsToggleButton />
-    ```
-</docs>

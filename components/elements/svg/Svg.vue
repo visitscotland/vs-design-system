@@ -9,21 +9,6 @@
 </template>
 
 <script>
-import {
-    first,
-    split,
-    map,
-    partial,
-    fromPairs,
-    replace,
-    mapValues,
-    extend,
-    has,
-    ary,
-    join,
-    toPairs,
-    nth,
-} from 'lodash';
 
 /**
  * SVGs are used to display vector images
@@ -128,28 +113,3 @@ export default {
 </script>
 
 <style lang="scss"></style>
-
-<docs>
-  ```jsx
-  <div>
-    <pre>&lt;vs-svg path="svg/visitscotland" /&gt; </pre>
-    <VsSvg path="visitscotland" />
-
-    <br /><hr /><br />
-
-    <pre>height="50"</pre>
-    <VsSvg path="visitscotland" height="50" />
-
-    <br /><hr /><br />
-
-    <pre>width="110"</pre>
-    <VsSvg path="visitscotland" width="110" />
-
-    <br /><hr /><br />
-
-    <pre>fill="red"</pre>
-    <VsSvg path="visitscotland" fill="red" />
-
-  </div>
-  ```
-</docs>

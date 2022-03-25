@@ -79,33 +79,3 @@ export default {
     letter-spacing: $letter-spacing-l;
 }
 </style>
-
-<docs>
-  ```jsx
-
-  <div style="position: relative; height: 600px;">
-    Test Add Favourite Item 1
-    <VsFavouritesListToggleButton
-      :href="favourite.href"
-      :title="favourite.title"
-    >
-    </VsFavouritesListToggleButton>
-    Test Add Favourite Item 2
-     <VsFavouritesListToggleButton
-      href="http:www.visitscotland.org"
-      title="VisitScotland Corporate Website"
-    >
-    </VsFavouritesListToggleButton>
-    Test Add Favourite Item 3
-     <VsFavouritesListToggleButton
-      href="https://www.visitscotland.com/destinations-maps/st-andrews/"
-      title="St Andrews"
-    >
-    </VsFavouritesListToggleButton>
-    Favourites Count
-    <VsListFavouritesViewButton>
-    </VsListFavouritesViewButton>
-    <VsFavouritesList/>
-  </div>
-  ```
-</docs>

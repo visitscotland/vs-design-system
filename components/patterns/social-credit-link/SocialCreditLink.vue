@@ -88,15 +88,3 @@ export default {
     }
 }
 </style>
-<docs>
-  ```js
-
-    <BsWrapper style="background: black;" class="p-4">
-        <VsSocialCreditLink
-            credit="VisitScotland"
-            socialPostUrl="http://www.visitscotland.com"
-            source="instagram"
-        ></VsSocialCreditLink>
-    </BsWrapper>
-  ```
-</docs>

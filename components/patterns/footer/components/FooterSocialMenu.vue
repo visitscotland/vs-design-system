@@ -58,36 +58,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```js
-    <VsFooter>
-        <VsFooterNavList>
-            <VsCol cols="12" md="6">
-                <VsFooterSocialMenu>
-                    <span slot="title">
-                        Find us on
-                    </span>
-
-                    <VsFooterSocialItem
-                        href="#"
-                        icon="facebook"
-                    ></VsFooterSocialItem>
-                    <VsFooterSocialItem
-                        href="#"
-                        icon="twitter"
-                    ></VsFooterSocialItem>
-                    <VsFooterSocialItem
-                        href="#"
-                        icon="youtube"
-                    ></VsFooterSocialItem>
-                    <VsFooterSocialItem
-                        href="#"
-                        icon="instagram"
-                    ></VsFooterSocialItem>
-                </VsFooterSocialMenu>
-            </VsCol>
-        </VsFooterNavList>
-    </VsFooter>
-  ```
-</docs>

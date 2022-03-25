@@ -149,32 +149,3 @@ export default {
 }
 
 </style>
-
-<docs>
-  ```jsx
-    <VsBanner>
-        <template slot="vsBannerTitle">
-            Covid-19 Travel Advice
-        </template>
-
-        <template slot="vsBannerText">
-            <p>
-                Find the latest information on travel, and Good to Go (Covid-safe)
-                businesses. This is a test to check what would be the maximum number
-                of characters we could fit on this banner… Is it ok
-                to add two lines? Let's see how it looks on mobile.
-            </p>
-        </template>
-
-        <template slot="vsBannerCta">
-            <VsLink href="#">
-                View Covid-19 Travel Advice
-            </VsLink>
-        </template>
-
-        <template slot="closeBtnText">
-            Close
-        </template>
-    </VsBanner>
-  ```
-</docs>

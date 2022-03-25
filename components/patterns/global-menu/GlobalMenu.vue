@@ -147,29 +147,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsGlobalMenu
-        dropdown-label="Our websites"
-        active-site="https://www.visitscotland.com/"
-    >
-        <template slot="third-menu-item">
-            <VsGlobalMenuLanguage>
-                <VsGlobalMenuLanguageItem languageName="English">
-                </VsGlobalMenuLanguageItem>
-                <VsGlobalMenuLanguageItem languageName="Deutsch">
-                </VsGlobalMenuLanguageItem>
-                <VsGlobalMenuLanguageItem languageName="Español">
-                </VsGlobalMenuLanguageItem>
-                <VsGlobalMenuLanguageItem languageName="Français">
-                </VsGlobalMenuLanguageItem>
-                <VsGlobalMenuLanguageItem languageName="Italiano">
-                </VsGlobalMenuLanguageItem>
-                <VsGlobalMenuLanguageItem languageName="Nederlands">
-                </VsGlobalMenuLanguageItem>
-            </VsGlobalMenuLanguage>
-        </template>
-    </VsGlobalMenu>
-  ```
-</docs>

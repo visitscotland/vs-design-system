@@ -68,16 +68,3 @@ export default {
     },
 };
 </script>
-
-<docs>
-```jsx
-    <BsWrapper style="width: 200px;">
-        <VsSvgLink
-            link-alt-text="VisitScotland Home"
-            href="/"
-            svg-fill="#700e57"
-            svg-path="visitscotland"
-        />
-    </BsWrapper>
-```
-</docs>

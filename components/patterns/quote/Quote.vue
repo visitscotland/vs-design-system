@@ -169,34 +169,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-```jsx
-    <VsQuote>
-        <VsImg
-            src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-            alt="This is the alt text"
-            data-sizes="auto"
-            class="lazyload"
-            slot="quoteImage">
-        </VsImg>
-        <p slot="quoteContent">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-            ac urna non metus tempor accumsan ut non risus. In turpis est,
-            imperdiet eu sagittis ac, sodales quis nunc. Ut sagittis vulputate
-            lacinia. Vivamus faucibus lorem leo, nec laoreet ligula auctor a.
-            Donec id eros a ipsum facilisis lacinia nec ac nunc.
-        </p>
-        <span slot="quoteAuthorName">Penny</span>
-        <span slot="quoteAuthorTitle">
-            Visitor Services Advisor at Edinburgh iCentre
-        </span>
-        <VsButton
-            href="#"
-            slot="quoteLink"
-        >
-            Signet Library
-        </VsButton>
-    </VsQuote>
-```
-</docs>

@@ -39,15 +39,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsContainer>
-      <VsRow>
-        <VsCol>
-          This is a row with a single column
-        </VsCol>
-      </VsRow>
-    </VsContainer>
-  ```
-</docs>

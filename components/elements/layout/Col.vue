@@ -27,25 +27,3 @@ export default {
     },
 };
 </script>
-
-<docs>
-  ```jsx
-    <div class="style-cols">
-        <VsContainer>
-            <VsRow>
-                <VsCol cols="6" sm="12">
-                    <pre>cols="6" sm="12"</pre>
-                </VsCol>
-            </VsRow>
-            <VsRow>
-                <VsCol cols="8" lg="3">
-                    <pre>cols="8" lg="3"</pre>
-                </VsCol>
-                <VsCol>
-                    <pre>no cols props</pre>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-    </div>
-  ```
-</docs>

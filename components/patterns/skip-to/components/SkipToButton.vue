@@ -62,10 +62,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <h4 tabindex="1000">Click here then press tab to focus the button and make it visible</h4>
-    <VsSkipToButton tabindex="1001">Skip to content</VsSkipToButton>
-  ```
-</docs>

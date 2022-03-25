@@ -70,19 +70,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-```jsx
-    <VsPanel>
-        <VsHeading thin level="4" slot="vs-panel-title">A Title Would Go Here</VsHeading>
-
-        <VsRichTextWrapper variant="lead">
-             <!-- eslint-disable-next-line max-len -->
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras maximus est congue nunc fermentum, eu hendrerit odio fringilla. Donec porta eleifend ipsum Praesent in magna fringilla.</p>
-
-             <!-- eslint-disable-next-line max-len -->
-            <p>Morbi faucibus risus in varius sollicitudin. Aenean eget leo ullamcorper, scelerisque urna eu, imperdiet nibh. Duis sit amet nibh tortor. Donec ac ante eros. Praesent in magna fringilla, consectetur eros id, fermentum nibh. Duis luctus ante sapien, scelerisque fermentum massa tincidunt eu. Nullam sed arcu a justo auctor consectetur.</p>
-        </VsRichTextWrapper>
-    </VsPanel>
-```
-</docs>

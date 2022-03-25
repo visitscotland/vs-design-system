@@ -188,11 +188,3 @@ export default {
     top: 5px;
 }
 </style>
-
-<docs>
-  ```jsx
-  <div>
-    <VsSiteSearch />
-  </div>
-  ```
-</docs>

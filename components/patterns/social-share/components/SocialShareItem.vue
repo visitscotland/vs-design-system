@@ -202,14 +202,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-```jsx
-    <BsWrapper class="d-flex my-3 mx-3">
-        <VsSocialShareItem
-            name="twitter"
-            link-text="Twitter"
-        />
-    </BsWrapper>
-```
-</docs>

@@ -163,23 +163,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <div class="position-relative" style="height: 200px;">
-        <VsSummaryBoxList>
-            <VsSummaryBoxListItem
-                :text=itineraries.sampleItinerary.totalDays
-                label="Days"
-            >
-            </VsSummaryBoxListItem>
-            <VsSummaryBoxListItem
-                :icon=itineraries.sampleItinerary.transport.key
-                :iconLabel=itineraries.sampleItinerary.transport.value
-                label="Transport"
-            >
-            </VsSummaryBoxListItem>
-        </VsSummaryBoxList>
-    </div>
-  ```
-</docs>

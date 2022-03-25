@@ -98,16 +98,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```js
-    <VsFooter>
-        <VsFooterCopyright link-alt-text="VisitScotland Home" href="/">
-            <span slot="copyright">
-               VisitScotland. All rights reserved.
-            </span>
-        </VsFooterCopyright>
-    </VsFooter>
-
-  ```
-</docs>

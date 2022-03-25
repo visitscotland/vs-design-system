@@ -26,27 +26,3 @@ export default {
         margin-bottom: $spacer-7;
     }
 </style>
-
-<docs>
-    ```js
-        <VsLinkList>
-            <VsLinkListItem
-                href="www.visitscotland.com"
-                type="external"
-            >
-                This is a link
-            </VsLinkListItem>
-            <VsLinkListItem
-                href="www.visitscotland.com"
-                type="download"
-            >
-                This is another link
-            </VsLinkListItem>
-            <VsLinkListItem
-                href="www.visitscotland.com"
-            >
-                This is a third link
-            </VsLinkListItem>
-        </VsLinkList>
-    ```
-</docs>

@@ -53,9 +53,3 @@ export default {
   }
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsSiteSearchToggleButton>Search</VsSiteSearchToggleButton>
-  ```
-</docs>

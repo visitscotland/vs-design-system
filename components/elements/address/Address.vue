@@ -46,18 +46,3 @@ export default {
         vertical-align: top;
     }
 </style>
-
-<docs>
-  ```js
-
-    <h3>Basic Address</h3>
-    <VsAddress>
-        <span>Edinburgh Castle,</span>
-        <span>Castle Hill,</span>
-        <span>Edinburgh,</span>
-        <span>City of Edinburgh,</span>
-        <span>EH1 2NG</span>
-    </VsAddress>
-
-  ```
-</docs>

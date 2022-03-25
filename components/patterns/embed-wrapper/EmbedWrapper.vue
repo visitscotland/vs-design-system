@@ -127,33 +127,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    <VsModuleWrapper>
-        <template slot="vsModuleWrapperHeading">
-            Your Pictures Of Scottish Castles
-        </template>
-
-        <VsEmbedWrapper>
-            <template slot="embedIntroCopy">
-                Share your snaps with us by using #ScottishCastle or #VisitScotland
-            </template>
-
-            <template slot="embedIntroCopyNoJs">
-                <p>JavaScript needs to be enabled to see social media images for this place.
-You can turn this on in your browser settings.</p>
-            </template>
-
-            <template slot="embedIntroCopyNoCookies">
-                <p>Cookies are needed to see social media images from this place.</p>
-                <p><a target="_blank" href="#">Update my cookie settings</a></p>
-            </template>
-
-            <template slot="embedWidget">
-                Embed Tag Goes Here
-            </template>
-        </VsEmbedWrapper>
-    </VsModuleWrapper>
-```
-</docs>

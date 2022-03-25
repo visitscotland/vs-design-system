@@ -35,18 +35,3 @@ export default {
 </script>
 
 <style lang="scss"></style>
-
-<docs>
-  ```jsx
-    <VsTooltip
-        title="This is a bus icon"
-        href="#"
-        icon="bus"
-        size="lg"
-        icon-only
-        icon-variant-override="dark"
-        class="p-0"
-        variant="transparent"
-    />
-  ```
-</docs>

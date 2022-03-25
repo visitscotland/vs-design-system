@@ -31,18 +31,3 @@ export default {
     },
 };
 </script>
-
-<docs>
-  ```jsx
-  <VsBreadcrumb>
-    <VsBreadcrumbItem
-      v-for="(item, index) in breadcrumb.breadcrumb"
-      :key="index"
-      :href="item.href"
-      :active="item.active"
-      :text="item.name"
-      >
-    </VsBreadcrumbItem>
-  </VsBreadcrumb>
-  ```
-</docs>

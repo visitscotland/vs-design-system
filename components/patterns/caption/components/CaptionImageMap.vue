@@ -508,22 +508,3 @@ export default {
     height: 100%;
 }
 </style>
-
-<docs>
-  ```jsx
-  <VsRow>
-    <VsCol cols="6" sm="4" lg="3" v-for="(image, index) in hero.captionImageMapExamples">
-      <div class="mb-3 p-3 text-center">
-        <p>{{image.title}}</p>
-          <VsCaptionImageMap
-            :latitude="image.latitude"
-            :longitude="image.longitude"
-            map-outline-color="#191919"
-            map-marker-color="#109DA3"
-          >
-          </VsCaptionImageMap>
-      </div>
-    </VsCol>
-  </VsRow>
-  ```
-</docs>

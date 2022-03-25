@@ -47,23 +47,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    <VsTag
-        href="https://visitscotland.com"
-    >
-        Activities
-    </VsTag>
-    <VsTag
-        href="#"
-    >
-        Castles
-    </VsTag>
-    <VsTag
-        href="#"
-    >
-        Things to do
-    </VsTag>
-```
-</docs>

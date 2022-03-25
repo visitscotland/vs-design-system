@@ -1,6 +1,16 @@
 import { resolve } from 'path';
+import webpack from 'webpack';
 
 export default {
+  build: {
+    plugins: [
+      new webpack.ProvidePlugin({
+        // global modules
+        _: 'lodash'
+      })
+    ]
+  },
+    target: 'static',
     modules: [
         '@nuxt/content',
     ],

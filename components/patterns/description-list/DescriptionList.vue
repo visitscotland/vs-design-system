@@ -52,33 +52,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsDescriptionList class="mb-6">
-        <VsDescriptionListItem title>Highlights</VsDescriptionListItem>
-        <VsDescriptionListItem
-            v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
-        >
-            {{highlight}}
-        </VsDescriptionListItem>
-    </VsDescriptionList>
-
-    <VsDescriptionList class="mb-8">
-        <VsDescriptionListItem title>Areas Covered</VsDescriptionListItem>
-        <VsDescriptionListItem
-            v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
-            key="index"
-        >
-            {{areaCovered}}
-        </VsDescriptionListItem>
-    </VsDescriptionList>
-
-    <VsDescriptionList inline>
-        <VsDescriptionListItem title>Transport</VsDescriptionListItem>
-        <VsDescriptionListItem>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit mollis neque quis sem facilisis.
-        </VsDescriptionListItem>
-    </VsDescriptionList>
-  ```
-</docs>

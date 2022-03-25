@@ -83,9 +83,3 @@ export default {
 }
 
 </style>
-
-<docs>
-  ```js
-
-  ```
-</docs>

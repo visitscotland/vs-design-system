@@ -83,8 +83,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```[import](./__examples__/footer.example.vue)
-  ```
-</docs>

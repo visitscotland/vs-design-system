@@ -59,37 +59,3 @@ export default {
 }
 
 </style>
-
-<docs>
-```jsx
-    <BsWrapper class="mb-9">
-        <h3>Normal Variant</h3>
-        <VsRichTextWrapper>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-             <VsLink href="#foo">eget</VsLink> ante urna.<br/> Pellentesque aliquam faucibus
-             enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
-            Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.</p>
-        </VsRichTextWrapper>
-    </BsWrapper>
-
-    <BsWrapper class="mb-4">
-        <h3>Lead Variant</h3>
-        <VsRichTextWrapper variant="lead">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-             <VsLink href="#foo">eget</VsLink> ante urna.<br/> Pellentesque aliquam faucibus
-              enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
-            Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.</p>
-        </VsRichTextWrapper>
-    </BsWrapper>
-
-    <VsRichTextWrapper>
-        <VsHeading level="3">
-            How do I climb Ben Nevis safely?
-        </VsHeading>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-            <VsLink href="#foo">eget</VsLink> ante urna.<br/> Pellentesque aliquam faucibus
-            enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
-        Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
-    </VsRichTextWrapper>
-```
-</docs>

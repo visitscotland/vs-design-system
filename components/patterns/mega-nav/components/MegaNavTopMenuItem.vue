@@ -225,8 +225,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-    ```[import](../__examples__/meganav.example.vue)
-    ```
-</docs>

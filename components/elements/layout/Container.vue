@@ -28,26 +28,3 @@ export default {
     },
 };
 </script>
-
-<docs>
-  ```jsx
-        <VsContainer fluid style="background:#eeeeee; padding: 12px"  class="mb-6">
-            <VsRow>
-                <VsCol>This is a fluid container</VsCol>
-            </VsRow>
-        </VsContainer>
-
-        <VsContainer style="background:#eeeeee; padding: 12px">
-            <VsRow>
-                <VsCol cols="12">
-                    This is a fixed-width container
-                </VsCol>
-                <VsCol cols="12">
-                    <p class="mt-6" style="font-size: 1rem;">
-                        Note: Enter full width view to see the difference between both containers.
-                    </p>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-  ```
-</docs>
