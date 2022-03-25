@@ -168,14 +168,36 @@ export default {
         }
 
         &[type="search"] {
-        @extend %reset-clear;
+            @extend %reset-clear;
         }
+    }
+
+    &::placeholder {
+            color: $color-secondary-gray;
+        }
+
+    &:focus {
+        border-color: $color-gray-tint-1;
+        box-shadow: $shadow-form-input;
+    }
+
+    &[type='search'] {
+        @extend %reset-clear;
+    }
+
+    &.is-valid{
+        border-color: $color-theme-success!important;
+    }
+
+    &.is-invalid{
+        border-color: $color-theme-danger!important;
     }
 }
 
 .hasError {
     border: red 3px solid !important;
 }
+
 </style>
 
 <docs>
