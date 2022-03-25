@@ -12,15 +12,16 @@
             :size="size"
             :v="inputVal"
         />
+
         <span
-            v-for="error in errors"
+            v-for="error in errorsList"
             :key="error"
             class="error"
         >
             <template
                 v-if="$v.inputVal.$anyError || invalid"
             >
-                {{ validationMessages[error] }}
+                {{ validationMessages[error] || genericValidation[error] }}
             </template>
         </span>
     </div>
@@ -29,13 +30,8 @@
 <script>
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
-import {
-    required,
-    email,
-    minLength,
-    maxLength,
-} from 'vuelidate/lib/validators';
 import { BFormInput } from 'bootstrap-vue';
+import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 
 Vue.use(Vuelidate);
 
@@ -53,6 +49,9 @@ export default {
     components: {
         BFormInput,
     },
+    mixins: [
+        validateFormElementMixin,
+    ],
     props: {
         /**
          * Set the form field size.
@@ -128,77 +127,6 @@ export default {
             },
         },
     },
-    data() {
-        return {
-            inputVal: this.value,
-        };
-    },
-    computed: {
-        /**
-         * set rules object for validation
-         * needed because `required`, `email` and other values
-         * can't be key value pairs
-         */
-        rules() {
-            let rulesObj = {
-            };
-
-            // eslint-disable-next-line
-            for (const [key, value] of Object.entries(this.validationRules)) {
-                // rules have to be either a function defined by
-                // https://vuelidate-next.netlify.app/validators.html
-                if (key === 'required') {
-                    rulesObj = {
-                        ...rulesObj,
-                        required,
-                    };
-                } else if (key === 'email') {
-                    rulesObj = {
-                        ...rulesObj,
-                        email,
-                    };
-                } else if (key === 'minLength') {
-                    rulesObj = {
-                        ...rulesObj,
-                        minLength: minLength(value),
-                    };
-                } else if (key === 'maxLength') {
-                    rulesObj = {
-                        ...rulesObj,
-                        maxLength: maxLength(value),
-                    };
-                }
-            }
-
-            if (typeof rulesObj !== 'undefined') {
-                return {
-                    inputVal: rulesObj,
-                };
-            }
-
-            return {
-            };
-        },
-        isRequired() {
-            if (typeof required !== 'undefined' && 'required' in this.validationRules) {
-                return true;
-            }
-
-            return false;
-        },
-        errors() {
-            const errorsArray = [];
-            const rulesKeys = Object.keys(this.rules.inputVal);
-
-            rulesKeys.forEach((key) => {
-                if (!this.$v.inputVal[key]) {
-                    errorsArray.push(key);
-                }
-            });
-
-            return errorsArray;
-        },
-    },
     watch: {
         /**
          * Watch for prop changing to allow parent
@@ -215,29 +143,6 @@ export default {
         },
         value(newValue) {
             this.inputVal = newValue;
-        },
-    },
-    methods: {
-        /**
-         * manually run validation and emit to parent
-         */
-        manualValidate() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$invalid,
-            });
-        },
-        /**
-         * Emit status of input - for automatic updating
-         */
-        emitStatus() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$anyError,
-            });
-            this.$v.$touch();
         },
     },
     validations() {
