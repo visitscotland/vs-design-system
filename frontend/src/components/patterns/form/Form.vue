@@ -26,6 +26,7 @@
                         :type="field.type"
                         :validation-rules="field.validation || {}"
                         :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                        :generic-validation="getMessagingData('validation', language)"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                     />
@@ -39,6 +40,7 @@
                         :field-name="field.name"
                         :validation-rules="field.validation || {}"
                         :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                        :generic-validation="getMessagingData('validation', language)"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                     />
@@ -56,6 +58,7 @@
                         :field-name="field.name"
                         :validation-rules="field.validation || {}"
                         :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                        :generic-validation="getMessagingData('validation', language)"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                         :required-text="getMessagingData('required', language)"
@@ -276,7 +279,7 @@ export default {
         /**
          * get translated validation messages
          */
-        getTranslatedValidation(fieldName) {
+        getTranslatedValidation(fieldName, index) {
             const languageObj = this.getLanguageObj();
 
             let validationObj;
@@ -285,10 +288,8 @@ export default {
                 && !this.isUndefined(languageObj[fieldName])
                 && !this.isUndefined(languageObj[fieldName].validationMessages)) {
                 validationObj = languageObj[fieldName].validationMessages;
-            }
-
-            if (this.isUndefined(validationObj)) {
-                validationObj = this.getMessagingData('validation', this.language);
+            } else if (this.language === 'en') {
+                validationObj = this.formData.fields[index].validationMessages;
             }
 
             return validationObj;
@@ -361,7 +362,7 @@ export default {
                 if (!errors || errors.length < 1) {
                     this.errorFields.splice(index, 1);
                 }
-            } else if (errors) {
+            } else if (errors && errors.length > 0) {
                 this.errorFields.push(field);
             }
         },
