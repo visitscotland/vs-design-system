@@ -8,6 +8,11 @@
                 <@headerFeaturedItem link link?index accordion />
             </#list>
             <#break>
+        <#case "FeaturedEvent">
+            <template slot="navFeaturedItem">
+                <p>FeaturedEvent = ${menu.apiUrl}</p>
+            </template>
+            <#break>
         <#default>
     </#switch>
 </#macro>
