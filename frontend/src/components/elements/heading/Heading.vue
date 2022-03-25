@@ -35,7 +35,7 @@ export default {
     props: {
         /**
          * The heading level used for the heading.
-         * `1, 2, 3, 4, 5, 6`
+         * `1|2|3|4|5|6`
          */
         level: {
             type: [String, Number],

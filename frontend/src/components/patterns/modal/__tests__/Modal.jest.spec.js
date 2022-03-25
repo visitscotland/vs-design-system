@@ -22,7 +22,7 @@ describe('VsModal', () => {
         expect(wrapper.element.tagName).toBe('BMODAL-STUB');
     });
 
-    it('should emit `video-controls` when the modal is shown', async() => {
+    it('should emit `videoControls` when the modal is shown', async() => {
         const wrapper = factoryShallowMount({
             isVideoModal: true,
         });
@@ -30,7 +30,7 @@ describe('VsModal', () => {
         const rootWrapper = createWrapper(wrapper.vm.$root);
         rootWrapper.vm.$emit('bv::modal::shown');
 
-        expect(rootWrapper.emitted('video-controls')).toBeTruthy();
+        expect(rootWrapper.emitted('videoControls')).toBeTruthy();
     });
 
     describe(':props', () => {

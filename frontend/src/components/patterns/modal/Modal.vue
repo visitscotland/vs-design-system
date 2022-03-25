@@ -96,7 +96,13 @@ export default {
     mounted() {
         if (this.isVideoModal) {
             this.$root.$on('bv::modal::shown', (bvEvent, modalId) => {
-                this.$root.$emit('video-controls', 'play', modalId, 'modal');
+                /**
+                 * @event videoControls
+                 * @property {string} action - play/pause
+                 * @property {string} id - the video ID
+                 * @property {string} type - where the video is being played e.g modal
+                */
+                this.root.$emit('videoControls', 'play', modalId, 'modal');
             });
         }
     },
