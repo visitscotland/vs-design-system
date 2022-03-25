@@ -211,26 +211,6 @@ export default {
                 text = this.getMessagingData('submit', this.language);
             }
 
-            // if (Object.keys(this.messagingData).length > 0
-            //     && Object.keys(this.formData).length > 0) {
-            //     if (this.language === 'en') {
-            //         this.formData.fields.forEach((field) => {
-            //             if (field.element === 'submit') {
-            //                 text = field.label;
-            //             }
-            //         });
-
-            //         if (typeof text === 'undefined') {
-            //             text = 'this.messagingData.submit.en';
-            //         }
-            //     } else if (this.formData[this.language] !== 'undefined'
-            //         && this.formData[this.language].submit !== 'undefined') {
-            //         text = this.formData[this.language].submit.label;
-            //     } else {
-            //         text = this.messagingData.submit[this.language];
-            //     }
-            // }
-
             return text;
         },
     },
@@ -296,6 +276,9 @@ export default {
 
             return labelText;
         },
+        /**
+         * get translated validation messages
+         */
         getTranslatedValidation(fieldName) {
             const languageObj = this.getLanguageObj();
 
@@ -313,6 +296,9 @@ export default {
 
             return validationObj;
         },
+        /**
+         * get translated options for select elements
+         */
         getTranslatedOptions(fieldName, index) {
             const languageObj = this.getLanguageObj();
 
@@ -392,7 +378,8 @@ export default {
             return true;
         },
         /**
-         * submit form
+         * before submitting validate fields and recaptcha
+         * if successful run the Marketo submit method
          */
         preSubmit(e) {
             e.preventDefault();
@@ -401,11 +388,7 @@ export default {
                 return value.validation && value.validation.required;
             }
 
-            if (window.grecaptcha.getResponse() !== '') {
-                this.recaptchaVerified = true;
-            } else {
-                this.recaptchaVerified = false;
-            }
+            this.onRecaptchaVerify();
 
             this.triggerValidate = true;
 
@@ -429,6 +412,9 @@ export default {
                 this.showErrorMessage = true;
             }
         },
+        /**
+         * adds form data to Marketo payload and sets submitted status
+         */
         marketoSubmit() {
             const myForm = window.MktoForms2.allForms()[0];
             myForm.addHiddenFields(this.form);
@@ -447,6 +433,10 @@ export default {
                 return false;
             });
         },
+        /**
+         * listens to recaptcha response to check if it's verified
+         */
+
         onRecaptchaVerify() {
             if (window.grecaptcha.getResponse() !== '') {
                 this.recaptchaVerified = true;
@@ -474,8 +464,8 @@ export default {
     ```jsx
         // https://static.visitscotland.com/forms/vs-3331/simpleForm.json
         <VsForm
-            dataUrl="http://172.28.74.161:5555/simpleForm.json"
-            messagingUrl="http://172.28.74.161:5555/messaging.json"
+            dataUrl="http://172.28.74.108:5555/simpleForm.json"
+            messagingUrl="http://172.28.74.108:5555/messaging.json"
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
             marketo-instance="//app-lon10.marketo.com"
             munchkin-id="830-QYE-256"
