@@ -218,25 +218,37 @@ export default {
         },
     },
     created() {
-        axios.get(this.dataUrl)
-            .then((response) => {
-                this.formData = response.data;
-
-                if (window.MktoForms2) {
-                    window.MktoForms2.loadForm(this.marketoInstance, this.munchkinId, this.formId);
-                }
-
-                response.data.fields.forEach((field) => {
-                    this.form[field.name] = '';
-                });
-            });
-
-        axios.get(this.messagingUrl)
-            .then((response) => {
-                this.messagingData = response.data;
-            });
+        this.getFormData();
+        this.getGlobalMessaging();
     },
     methods: {
+        /**
+         * Axios call to retrieve form data
+         */
+        getFormData() {
+            axios.get(this.dataUrl)
+                .then((response) => {
+                    this.formData = response.data;
+
+                    if (window.MktoForms2) {
+                        window.MktoForms2
+                            .loadForm(this.marketoInstance, this.munchkinId, this.formId);
+                    }
+
+                    response.data.fields.forEach((field) => {
+                        this.form[field.name] = '';
+                    });
+                });
+        },
+        /**
+         * Axios call to retrieve global messaging data
+         */
+        getGlobalMessaging() {
+            axios.get(this.messagingUrl)
+                .then((response) => {
+                    this.messagingData = response.data;
+                });
+        },
         /**
          * get appropriate language object
          */

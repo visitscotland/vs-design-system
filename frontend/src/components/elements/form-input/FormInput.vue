@@ -4,7 +4,7 @@
             :type="type"
             class="vs-input"
             v-model="inputVal"
-            :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
+            :class="errorClass"
             @blur="emitStatus"
             :id="fieldName"
             :name="fieldName"
@@ -125,6 +125,11 @@ export default {
                 return {
                 };
             },
+        },
+    },
+    computed: {
+        errorClass() {
+            return this.$v.inputVal.$anyError || this.invalid ? 'hasError' : '';
         },
     },
     watch: {
