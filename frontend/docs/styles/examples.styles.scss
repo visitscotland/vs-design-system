@@ -257,6 +257,14 @@
                             font-weight: $weight-normal;
                             font-size: $size-m;
                         }
+                        
+                        // style event arguments in the table
+                        div[class^='rsg--headingWrapper'] ~ span:nth-of-type(3n+4){
+                            &:before{
+                                content: "\A";
+                                white-space: pre;
+                            }
+                        }
                     }
                 }
             }
