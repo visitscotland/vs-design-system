@@ -4,8 +4,7 @@
             v-if="fieldName"
             v-model="inputVal"
             class="vs-form-checkbox mr-4"
-            :class="(errorsList.length > 0 && $v.inputVal.$anyDirty) || invalid
-                ? 'vs-form-checkbox__invalid' : ''"
+            :class="errorClass"
             :size="size"
             :name="fieldName"
             :id="fieldName"
@@ -147,6 +146,12 @@ export default {
             inputVal: '',
             errors: [],
         };
+    },
+    computed: {
+        errorClass() {
+            return (this.errorsList.length > 0 && this.$v.inputVal.$anyDirty) || this.invalid
+                ? 'vs-form-checkbox__invalid' : '';
+        },
     },
     watch: {
         inputVal(newValue) {
