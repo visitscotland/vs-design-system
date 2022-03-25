@@ -223,9 +223,6 @@ export default {
                     window.MktoForms2.loadForm(this.marketoInstance, this.munchkinId, this.formId);
                 }
 
-                // window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
-                // ('//app-lon10.marketo.com', '830-QYE-256', this.formId);
-
                 response.data.fields.forEach((field) => {
                     this.form[field.name] = '';
                 });
