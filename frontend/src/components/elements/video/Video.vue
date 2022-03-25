@@ -126,7 +126,7 @@ export default {
          * Sets up listener for play/pause events
          * from $root
          */
-        this.$root.$on('videoControls', (action, id, type) => {
+        this.$root.$on('video-controls', (action, id, type) => {
             if (id === this.videoId) {
                 if (action === 'play' && type === 'modal') {
                     // timeout allows for video in modal to appear
