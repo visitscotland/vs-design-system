@@ -16,7 +16,6 @@ definitions:
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          hipposysedit:validators: ['visitscotland:megalinks-unique-link-validator']
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -55,7 +54,7 @@ definitions:
             hipposysedit:ordered: true
             hipposysedit:path: visitscotland:megalinkItems
             hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator, required]
+            hipposysedit:validators: [contentblocks-validator, required, 'visitscotland:megalinks-unique-link-validator']
           /products:
             jcr:primaryType: hipposysedit:field
             hipposysedit:multiple: true
