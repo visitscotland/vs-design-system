@@ -105,23 +105,7 @@ const validateFormElementMixin = {
          */
         emitStatus() {
             setTimeout(() => {
-                if ('required' in this.rules.inputVal && !this.inputVal) {
-                    if (this.errorsList.indexOf('required') === -1) {
-                        this.errorsList.push('required');
-                    }
-                } else {
-                    this.errorsList.forEach((error, index) => {
-                        if (error === 'required') {
-                            this.errorsList.splice(index, 1);
-                        }
-                    });
-                }
-
-                this.$emit('status-update', {
-                    field: this.fieldName,
-                    value: this.inputVal,
-                    errors: this.errorsList,
-                });
+                this.manualValidate();
                 this.touched = true;
                 this.$v.$touch();
             }, 50);
