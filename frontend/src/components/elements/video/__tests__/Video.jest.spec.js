@@ -153,7 +153,7 @@ describe('VsVideo', () => {
             const mockPlayMethod = jest.fn();
             wrapper.vm.playVideo = mockPlayMethod;
 
-            wrapper.vm.$root.$emit('video-controls', 'play', videoId, 'modal');
+            wrapper.vm.$root.$emit('videoControls', 'play', videoId, 'modal');
 
             // wait for setTimeout to run
             jest.advanceTimersByTime(1500);
@@ -166,7 +166,7 @@ describe('VsVideo', () => {
             const mockPauseMethod = jest.fn();
             wrapper.vm.pauseVideo = mockPauseMethod;
 
-            wrapper.vm.$root.$emit('video-controls', 'pause', videoId);
+            wrapper.vm.$root.$emit('videoControls', 'pause', videoId);
 
             expect(mockPauseMethod).toHaveBeenCalled();
         });

@@ -51,7 +51,7 @@ export default {
         },
         /**
          * Option to choose a type which gives the link an icon
-         * `default, external, internal, download`
+         * `default|external|internal|download`
          */
         type: {
             type: String,
@@ -60,7 +60,7 @@ export default {
         },
         /**
          * Option to choose a pre-defined style variant
-         * `primary, dark`
+         * `primary|dark`
          */
         variant: {
             type: String,
@@ -68,8 +68,8 @@ export default {
             validator: (value) => value.match(/(primary|dark)/),
         },
         /**
-        * Size of icon - defaults to 'xs'
-        * `xxs, xs, sm, md, lg, xl`)
+        * Size of icon
+        * `xxs|xs|sm|md|lg|xl`
         */
         iconSize: {
             type: String,
