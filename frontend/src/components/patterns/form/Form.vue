@@ -5,7 +5,7 @@
     >
         <!-- element into which the (completely empty) form is embedded invisibly -->
         <form
-            style="display:none"
+            class="d-none"
         />
 
         <form
