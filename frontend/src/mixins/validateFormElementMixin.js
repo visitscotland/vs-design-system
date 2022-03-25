@@ -87,11 +87,11 @@ const validateFormElementMixin = {
                     this.errorsList.push('required');
                 }
             } else {
-                for (let i = 0; i < this.errorsList.length; i++) {
-                    if (this.errorsList[i] === 'required') {
-                        this.errorsList.splice(i, 1);
+                this.errorsList.forEach((error, index) => {
+                    if (error === 'required') {
+                        this.errorsList.splice(index, 1);
                     }
-                }
+                });
             }
 
             this.$emit('status-update', {
@@ -110,11 +110,11 @@ const validateFormElementMixin = {
                         this.errorsList.push('required');
                     }
                 } else {
-                    for (let i = 0; i < this.errorsList.length; i++) {
-                        if (this.errorsList[i] === 'required') {
-                            this.errorsList.splice(i, 1);
+                    this.errorsList.forEach((error, index) => {
+                        if (error === 'required') {
+                            this.errorsList.splice(index, 1);
                         }
-                    }
+                    });
                 }
 
                 this.$emit('status-update', {
