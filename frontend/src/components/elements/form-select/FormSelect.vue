@@ -16,7 +16,7 @@
             :required="isRequired"
         />
         <span
-            v-for="error in errors"
+            v-for="error in errorsList"
             :key="error"
             class="error"
         >
@@ -32,8 +32,8 @@
 <script>
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
-import { required } from 'vuelidate/lib/validators';
 import { BFormSelect } from 'bootstrap-vue';
+import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 
 Vue.use(Vuelidate);
 
@@ -50,6 +50,9 @@ export default {
     components: {
         BFormSelect,
     },
+    mixins: [
+        validateFormElementMixin,
+    ],
     props: {
         /**
          * Set the form field size.
@@ -115,63 +118,6 @@ export default {
             },
         },
     },
-    data() {
-        return {
-            inputVal: this.value,
-            touched: false,
-        };
-    },
-    computed: {
-        /**
-         * set rules object for validation
-         * needed because `required`, `email` and other values
-         * can't be key value pairs
-         */
-        rules() {
-            let rulesObj = {
-            };
-
-            // eslint-disable-next-line
-            for (const [key, value] of Object.entries(this.validationRules)) {
-                if (key === 'required') {
-                    rulesObj = {
-                        ...rulesObj,
-                        required,
-                    };
-                } else {
-                    rulesObj[key] = value;
-                }
-            }
-
-            if (typeof rulesObj !== 'undefined') {
-                return {
-                    inputVal: rulesObj,
-                };
-            }
-
-            return {
-            };
-        },
-        isRequired() {
-            if (typeof required !== 'undefined' && 'required' in this.validationRules) {
-                return true;
-            }
-
-            return false;
-        },
-        errors() {
-            const errorsArray = [];
-            const rulesKeys = Object.keys(this.rules.inputVal);
-
-            rulesKeys.forEach((key) => {
-                if (!this.$v.inputVal[key]) {
-                    errorsArray.push(key);
-                }
-            });
-
-            return errorsArray;
-        },
-    },
     watch: {
         inputVal(newValue) {
             this.$emit('updated', {
@@ -188,30 +134,6 @@ export default {
          */
         triggerValidate() {
             this.manualValidate();
-        },
-    },
-    methods: {
-        /**
-         * manually run validation and emit to parent
-         */
-        manualValidate() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$invalid,
-            });
-        },
-        /**
-         * Emit status of input - for automatic updating
-         */
-        emitStatus() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$anyError,
-            });
-            this.touched = true;
-            this.$v.$touch();
         },
     },
     validations() {
