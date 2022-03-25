@@ -13,7 +13,7 @@ Include a YouTube `video-id` so the component knows which video to load.
   ```
 
 ### Events
-The player can also be controlled by other components by emitting a `videoControls` 
+The player can also be controlled by other components by emitting a `video-controls` 
 event which can be used to play or pause the video.
 
   ```jsx
@@ -23,14 +23,14 @@ event which can be used to play or pause the video.
     />
 
     <VsButton
-        @click.native="$root.$emit('videoControls', 'play', 'c05sg3G4oA4')"
+        @click.native="$root.$emit('video-controls', 'play', 'c05sg3G4oA4')"
         class="mr-4"
     >
         Play
     </VsButton>
 
     <VsButton
-        @click.native="$root.$emit('videoControls', 'pause', 'c05sg3G4oA4')"
+        @click.native="$root.$emit('video-controls', 'pause', 'c05sg3G4oA4')"
     >
         Pause
     </VsButton>
