@@ -243,7 +243,7 @@ export default {
         getLanguageObj() {
             let languageObj;
 
-            if (typeof this.formData[this.language] !== 'undefined') {
+            if (!this.isUndefined(this.formData[this.language])) {
                 languageObj = this.formData[this.language] || undefined;
             } else {
                 languageObj = {
@@ -260,16 +260,16 @@ export default {
             let labelText = '';
 
             if (this.language !== 'en'
-                && typeof languageObj[fieldName] !== 'undefined'
-                && typeof languageObj[fieldName].label !== 'undefined'
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined(languageObj[fieldName].label)
             ) {
                 labelText = languageObj[fieldName].label;
             } else {
                 labelText = this.formData.fields[index].label;
             }
 
-            if (typeof this.formData.fields[index].validation !== 'undefined'
-                && typeof this.formData.fields[index].validation.required !== 'undefined'
+            if (!this.isUndefined(this.formData.fields[index].validation)
+                && !this.isUndefined(this.formData.fields[index].validation.required)
                 && this.formData.fields[index].validation.required) {
                 labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
             }
@@ -285,12 +285,12 @@ export default {
             let validationObj;
 
             if (this.language !== 'en'
-                && typeof languageObj[fieldName] !== 'undefined'
-                && typeof languageObj[fieldName].validationMessages !== 'undefined') {
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined(languageObj[fieldName].validationMessages)) {
                 validationObj = languageObj[fieldName].validationMessages;
             }
 
-            if (typeof validationObj === 'undefined') {
+            if (this.isUndefined(validationObj)) {
                 validationObj = this.getMessagingData('validation', this.language);
             }
 
@@ -305,8 +305,8 @@ export default {
             let optionsArr = [];
 
             if (this.language !== 'en'
-                && typeof languageObj[fieldName] !== 'undefined'
-                && typeof languageObj[fieldName].options !== 'undefined') {
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined([fieldName].options)) {
                 optionsArr = languageObj[fieldName].options;
             } else {
                 optionsArr = this.formData.fields[index].options;
@@ -329,6 +329,16 @@ export default {
             }
 
             return '';
+        },
+        /**
+         * check if value is undefined
+         */
+        isUndefined(value) {
+            if (typeof value === 'undefined') {
+                return true;
+            }
+
+            return false;
         },
         /**
          * update field data and error status
@@ -469,7 +479,7 @@ export default {
             recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
             marketo-instance="//app-lon10.marketo.com"
             munchkin-id="830-QYE-256"
-            language="de"
+            language="en"
             :is-prod="false"
         >
             <template slot="invalid">
