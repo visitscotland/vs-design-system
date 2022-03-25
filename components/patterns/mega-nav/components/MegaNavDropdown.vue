@@ -64,13 +64,6 @@ export default {
     release: '0.1.0',
     components: {
         BDropdown,
-<<<<<<< HEAD
-        VsCol,
-        VsContainer,
-        VsRow,
-        VsButton,
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     },
     props: {
         /**

@@ -123,20 +123,12 @@ export default {
             font-size: $small-font-size;
 
             &--teal {
-<<<<<<< HEAD
-                color: #fff;
-=======
                 color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 background-color: $color-secondary-teal-shade-2;
             }
 
             &--pink {
-<<<<<<< HEAD
-                color: #fff;
-=======
                 color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 background-color: $color_pink;
             }
 
@@ -181,31 +173,4 @@ export default {
         }
     }
 
-<<<<<<< HEAD
 </style>
-
-<docs>
-```jsx
-    <div
-        style="position: relative; height: 15em; width: 23em; display: inline-block;"
-    >
-        <VsCannedSearchBadges
-            badgeOne="one"
-            badgeTwo="two"
-            badgeThree="three"
-        />
-    </div>
-    <div
-        style="position: relative; height: 15em; width: 23em; display: inline-block;"
-    >
-        <VsCannedSearchBadges
-            :multiBadgeOne="['Boat Tour','Walking Tour','Small Coach Tour']"
-            badgeTwo="two"
-            badgeThree="three"
-        />
-    </div>
-```
-</docs>
-=======
-</style>
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

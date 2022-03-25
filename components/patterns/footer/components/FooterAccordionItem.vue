@@ -37,12 +37,6 @@
 
 export default {
     name: 'VsFooterAccordionItem',
-<<<<<<< HEAD
-    components: {
-        VsAccordionItem,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The aria control ID used for panel ID to match button aria control
@@ -107,11 +101,7 @@ export default {
     .vs-accordion-item__title {
         margin: $spacer-3 0;
         background-color: $color-gray-shade-7;
-<<<<<<< HEAD
-        color: #fff;
-=======
         color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         font-weight: $font-weight-semi-bold;
         font-size: $h4-font-size;
         line-height: $line-height-xs;
@@ -120,11 +110,7 @@ export default {
 
      .vs-accordion-item__panel.card-body {
         background-color: $color-gray-shade-6;
-<<<<<<< HEAD
-        color: #fff;
-=======
         color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         border-top: 1px solid $color-gray-shade-2;
     }
 

@@ -25,10 +25,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * The FooterUtilityList is a list of FooterNavListItems
  * that hold general utility links for the footer.
@@ -38,15 +34,6 @@
 
 export default {
     name: 'VsFooterUtilityList',
-<<<<<<< HEAD
-    components: {
-        VsList,
-        VsRow,
-        VsContainer,
-        VsCol,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 };
 </script>
 

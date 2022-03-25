@@ -40,10 +40,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-// import { get } from 'lodash'
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
 /**
  * A wrapper component that wraps the itinerary map and list.
@@ -56,16 +52,6 @@ export default {
     name: 'VsItinerary',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsContainer,
-        VsRow,
-        VsCol,
-        VsAccordion,
-        VsButton,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     data() {
         return {
             showMap: false,
@@ -118,11 +104,7 @@ export default {
 
 <style lang="scss">
 .vs-itinerary {
-<<<<<<< HEAD
-    background-color: #fff;
-=======
     background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
     .vs-itinerary__outer-container {
         @include media-breakpoint-down(sm) {

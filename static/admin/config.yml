@@ -15,7 +15,7 @@ collections:
     folder: 'content/sections'
     format: 'frontmatter'
     create: true
-    slug: '{{slug}}'
+    slug: '{{title}}'
     editor:
       preview: false
     fields:

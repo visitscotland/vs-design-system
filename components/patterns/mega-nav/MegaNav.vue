@@ -78,10 +78,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  *  The Mega Nav bar component includes main VS logo and slots for
  *  top menu items on desktop and dropdown toggle with menu items for mobile
@@ -92,18 +88,6 @@ export default {
     name: 'VsMegaNav',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
-    components: {
-        VsCol,
-        VsRow,
-        VsContainer,
-        VsSvgLink,
-        VsMegaNavDropdown,
-        VsMegaNavTopMenu,
-        VsIcon,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The URL for the VS logo link
@@ -138,10 +122,6 @@ export default {
 </script>
 
 <style lang="scss">
-<<<<<<< HEAD
-@import '~bootstrap/scss/navbar';
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
 .vs-mega-nav {
     position: relative;

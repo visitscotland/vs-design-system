@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <Header/>
-    <Sidebar/>
-    <slot />
+<div>
+    <DSHeader/>
+  <div class="container">
+    <DSSidebar/>
+    <div class="content">
+      <Nuxt />
+    </div>
   </div>
+</div>
 </template>
 <style lang="scss">
 
@@ -12,6 +16,11 @@ body {
     margin:0;
     padding:0;
 }
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
 .content {
   display: flex;
 }

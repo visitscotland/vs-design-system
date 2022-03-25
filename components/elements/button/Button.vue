@@ -46,10 +46,6 @@ export default {
     release: '0.0.1',
     components: {
         BButton,
-<<<<<<< HEAD
-        VsIcon,
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     },
     props: {
         /**
@@ -296,11 +292,7 @@ export default {
         }
 
         &.btn-bg-white:not(:hover) {
-<<<<<<< HEAD
-            background-color: #fff;
-=======
             background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         }
 
         // This is to match bootstrap specificity, otherwise it forces
@@ -312,11 +304,7 @@ export default {
 
         &:disabled {
             background-color: $color-secondary-gray-tint-4;
-<<<<<<< HEAD
-            color: #fff;
-=======
             color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             opacity: $opacity-100;
             border-width: 0;
         }

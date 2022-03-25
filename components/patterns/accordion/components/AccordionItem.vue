@@ -70,10 +70,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 import {
     BCard, BCardHeader, BCardBody,
 } from 'bootstrap-vue';
@@ -87,13 +83,7 @@ import {
 export default {
     name: 'VsAccordionItem',
     components: {
-<<<<<<< HEAD
-        VsAccordionToggle,
         BCard,
-        VsIcon,
-=======
-        BCard,
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         BCardHeader,
         BCardBody,
     },

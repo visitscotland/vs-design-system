@@ -56,14 +56,6 @@ export default {
     name: 'VsCarouselSlide',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsStretchedLinkCard,
-        VsStretchedLinkPanels,
-        VsCol,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * The image to use in the component

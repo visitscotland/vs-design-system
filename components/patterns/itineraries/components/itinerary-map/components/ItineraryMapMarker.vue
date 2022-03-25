@@ -28,11 +28,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
 import itinerariesStore from '../../../itineraries.store';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * TODO: Document usage
  *
@@ -43,12 +40,6 @@ export default {
     name: 'VsItineraryMapMarker',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsIcon,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         feature: {
             type: Object,
@@ -117,11 +108,7 @@ export default {
 }
 
 .vs-itinerary-map-marker__count {
-<<<<<<< HEAD
-    color: #fff;
-=======
     color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     display: block;
     font-size: 1rem;
     font-family: $headings-font-family;

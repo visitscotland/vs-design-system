@@ -77,10 +77,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Component for the page hero and introduction.
 * Designed to be flexible so multiple designs of page intro
@@ -93,16 +89,6 @@ export default {
     name: 'VsPageIntro',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsHeading,
-        VsRichTextWrapper,
-        VsContainer,
-        VsRow,
-        VsCol,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * Background theme
@@ -163,11 +149,7 @@ export default {
 .vs-page-intro {
     &__wrapper {
         position: relative;
-<<<<<<< HEAD
-        background: #fff;
-=======
         background: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
         @include media-breakpoint-up(lg) {
             background: transparent;
@@ -186,11 +168,7 @@ export default {
         }
 
         > .container {
-<<<<<<< HEAD
-            background: #fff;
-=======
             background: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             padding-bottom: $spacer-8;
 
             @include media-breakpoint-up(lg) {

@@ -55,11 +55,7 @@ export default {
             margin: 0.1rem 0 0 0.4rem;
             vertical-align: 0.155em;
             content: "";
-<<<<<<< HEAD
-            border: solid #fff;
-=======
             border: solid $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             border-width: 0 1px 1px 0;
             padding: 0.25rem;
             transform: rotate(45deg);

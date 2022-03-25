@@ -26,10 +26,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * This component is the dropdown used inside the Global Menu component.
  * It holds the list of websites to be shown on smaller devices.
@@ -41,13 +37,6 @@ export default {
     name: 'VsGlobalMenuDropdown',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
-    components: {
-        VsDropdown,
-        VsDropdownItem,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Determines the active website
@@ -144,11 +133,7 @@ export default {
 
             a {
                 padding: $spacer-3;
-<<<<<<< HEAD
-                color: #fff;
-=======
                 color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 text-decoration: none;
                 font-size: $font-size-sm;
                 line-height: $line-height-s;

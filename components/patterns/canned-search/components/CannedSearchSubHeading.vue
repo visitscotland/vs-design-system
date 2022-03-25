@@ -10,10 +10,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Shows a formatted sub-heading for a canned search product card,
 * usually contains an address or list of themes
@@ -25,12 +21,6 @@ export default {
     name: 'VsCannedSearchSubHeading',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsHeading,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * The string to display
@@ -81,21 +71,3 @@ export default {
         }
     }
 </style>
-<<<<<<< HEAD
-
-<docs>
-```jsx
-    <VsCannedSearchSubHeading
-        style="max-width: 25rem"
-        sub-heading="Callander, Loch Lomond, The Trossachs, Stirling & Forth Valley"
-    />
-    <VsCannedSearchSubHeading
-        style="max-width: 25rem"
-        sub-heading="A very very long list of themes, it's so long it should overflow onto a second
-        row but it has a line limit"
-        :line-limit="1"
-    />
-```
-</docs>
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

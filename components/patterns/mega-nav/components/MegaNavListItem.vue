@@ -16,10 +16,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  *  Meganav list items with link and slot for link content
  *
@@ -29,12 +25,6 @@ export default {
     name: 'VsMegaNavListItem',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
-    components: {
-        VsLink,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The URL for the nav list link
@@ -80,11 +70,7 @@ export default {
 
     @include media-breakpoint-up(lg) {
         border-top: 0;
-<<<<<<< HEAD
-        background-color: #fff;
-=======
         background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     }
 
     .vs-link--variant-primary{
@@ -96,21 +82,13 @@ export default {
         font-size: $h4-font-size;
 
         @include media-breakpoint-up(lg) {
-<<<<<<< HEAD
-            border: 2px solid #fff;
-=======
             border: 2px solid $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             line-height: $line-height-s;
             padding: 0.125rem $spacer-4;
         }
 
         &:hover{
-<<<<<<< HEAD
-            border: 2px solid #fff;
-=======
             border: 2px solid $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         }
 
         &:focus{
@@ -140,11 +118,7 @@ export default {
             }
 
             &:hover{
-<<<<<<< HEAD
-                background-color: #fff;
-=======
                 background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 color: $color-pink;
 
                 @include media-breakpoint-up(lg) {
@@ -187,11 +161,7 @@ export default {
 
     &__cta-link{
         .vs-link--variant-primary{
-<<<<<<< HEAD
-            background-color: #fff;
-=======
             background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             color: $color-pink;
             font-size: $h3-font-size;
             line-height: $line-height-s;
@@ -210,11 +180,7 @@ export default {
 
             &:focus, &:active, &:active:focus {
                 border: 0;
-<<<<<<< HEAD
-                background-color: #fff;
-=======
                 background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 box-shadow: 0 0 0 0.1rem $color-pink inset;
             }
         }
@@ -227,11 +193,7 @@ export default {
         border: 0;
 
         .vs-link--variant-primary{
-<<<<<<< HEAD
-            border: 2px solid #fff;
-=======
             border: 2px solid $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             line-height: $line-height-s;
             padding: $spacer-1 $spacer-5;
 

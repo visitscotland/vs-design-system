@@ -10,10 +10,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  *  Mega nav top level menu list with a slot for top level menu items
  *
@@ -23,12 +19,6 @@ export default {
     name: 'VsMegaNavTopMenu',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
-    components: {
-        VsList,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 };
 </script>
 

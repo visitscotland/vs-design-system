@@ -80,15 +80,6 @@ export default {
     name: 'VsIcentre',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsSvg,
-        VsContainer,
-        VsRow,
-        VsCol,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 };
 </script>
 

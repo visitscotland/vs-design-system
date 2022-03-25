@@ -68,17 +68,3 @@ export default {
         font-weight: bold;
     }
 </style>
-<<<<<<< HEAD
-
-<docs>
-```jsx
-    const sampleEvent = require("../../../../assets/fixtures/canned-search/sample-event.json");
-
-    <VsCannedSearchDates
-        :period="sampleEvent.opening.period"
-        :label="sampleEvent.opening.label"
-    />
-```
-</docs>
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

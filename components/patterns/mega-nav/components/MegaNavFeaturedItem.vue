@@ -25,10 +25,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  *  This component is used to show a featured item in the meganav
  *
@@ -39,12 +35,6 @@ export default {
     name: 'VsMegaNavFeaturedItem',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
-    components: {
-        VsStretchedLinkCard,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * Link URL for the featured item
@@ -95,11 +85,7 @@ export default {
             width: 80%;
             bottom: 0;
             left: 0;
-<<<<<<< HEAD
-            background: #fff;
-=======
             background: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             padding: $spacer-5 $spacer-3;
         }
 

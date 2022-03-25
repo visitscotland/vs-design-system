@@ -1,19 +1,12 @@
 [
   {
-<<<<<<< HEAD
     "name": "GettingStarted",
     "path": "/GettingStarted",
-    "component": "/home/awhenderson/workspace/design-system/pages/GettingStarted.vue",
+    "component": "/Users/awhenderson/Development/design-system/pages/GettingStarted.vue",
     "chunkName": "pages/GettingStarted",
-    "_name": "_62c00dd5"
+    "_name": "_3d780c10"
   },
   {
-    "name": "index",
-    "path": "/",
-    "component": "/home/awhenderson/workspace/design-system/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_6d4f696a"
-=======
     "name": "index",
     "path": "/",
     "component": "/Users/awhenderson/Development/design-system/pages/index.vue",
@@ -26,6 +19,5 @@
     "component": "/Users/awhenderson/Development/design-system/pages/_slug.vue",
     "chunkName": "pages/_slug",
     "_name": "_cee9cec2"
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
   }
 ]

@@ -66,10 +66,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * Itinerary Day list items.
  *
@@ -80,17 +76,6 @@ export default {
     name: 'VsItineraryDay',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsContainer,
-        VsRow,
-        VsCol,
-        VsHeading,
-        VsIcon,
-        VsAccordionItem,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Logic to collapse certain Day list items on mobile by default

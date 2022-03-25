@@ -20,10 +20,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * The FooterSocialItem is used inside the FooterSocialMenu to
  * show a button for a social media link.
@@ -35,13 +31,6 @@ export default {
     name: 'VsFooterSocialItem',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsLink,
-        VsIcon,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The URL the link will point to
@@ -123,11 +112,7 @@ export default {
                 &.vs-icon--size-md {
                     height: 100%;
                     margin: 0 auto;
-<<<<<<< HEAD
-                    fill: #fff;
-=======
                     fill: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                     display: block;
                 }
 

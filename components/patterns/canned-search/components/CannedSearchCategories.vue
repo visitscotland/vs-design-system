@@ -58,15 +58,3 @@ export default {
         margin-bottom: $spacer-1;
     }
 </style>
-<<<<<<< HEAD
-
-<docs>
-```jsx
-    const sampleAccom = require("../../../../assets/fixtures/canned-search/sample-accom.json");
-
-    <VsCannedSearchCategories
-        :categories="sampleAccom.locations"
-    />
-</docs>
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

@@ -50,10 +50,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Header intro and button wrapper for module content
 *
@@ -63,16 +59,6 @@ export default {
     name: 'VsModuleWrapper',
     status: 'protolink-type',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsHeading,
-        VsRichTextWrapper,
-        VsContainer,
-        VsRow,
-        VsCol,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * Theme of module wrapper to use
@@ -116,11 +102,7 @@ export default {
 
         &--dark {
             background-color: $theme-dark;
-<<<<<<< HEAD
-            color: #fff;
-=======
             color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
             .vs-module-wrapper__heading.vs-heading {
                 color: $color-yellow;

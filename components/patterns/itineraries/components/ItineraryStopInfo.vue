@@ -49,10 +49,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * Itinerary stop information. Dynamically shows whether a stop is open,
  * closed or closing soon, depending on the current UK time. Also shows
@@ -65,13 +61,6 @@ export default {
     name: 'VsItineraryStopInfo',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsIcon,
-        VsLink,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * JSON object of opening hour details

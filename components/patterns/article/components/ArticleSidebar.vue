@@ -65,17 +65,10 @@ export default {
 
 <style lang="scss">
 .vs-article-sidebar {
-<<<<<<< HEAD
-    background: #fff;
-
-    &__quote-wrapper{
-        background: #fff;
-=======
     background: $color-white;
 
     &__quote-wrapper{
         background: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         margin-left: -1px;
         padding: $spacer-8 $spacer-6;
 

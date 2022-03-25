@@ -1,8 +1,6 @@
 import { shallowMount, createWrapper } from '@vue/test-utils';
 import VsVideoCaption from '../VideoCaption';
 
-jest.mock('../../../../stores/video.store.js');
-
 const videoTitleSlot = 'Video title';
 const videoDurationSlot = '3 minute video';
 const alertMsgSlot = 'This is a no-js alert';

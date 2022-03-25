@@ -120,10 +120,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Generic product card for canned search
 *
@@ -133,15 +129,6 @@ export default {
     name: 'VsCannedSearchProductCard',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsImg,
-        VsHeading,
-        VsLink,
-        VsCol,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * The type of product being searched for by the canned search

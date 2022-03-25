@@ -33,10 +33,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  *  This component is used in the mobile menu for groups of links
  *
@@ -46,13 +42,6 @@ export default {
     name: 'VsMegaNavAccordionItem',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
-    components: {
-        VsAccordionItem,
-        VsIcon,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The aria control ID used for panel ID to match button aria control
@@ -136,11 +125,7 @@ export default {
     &--level-1{
         > .vs-accordion-item__card-header{
             .vs-accordion-toggle.btn-primary{
-<<<<<<< HEAD
-                background-color: #fff;
-=======
                 background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 color: $color-base-text;
                 font-size: $h2-font-size;
                 padding-left: $spacer-5;
@@ -157,11 +142,7 @@ export default {
     &--level-2{
         > .vs-accordion-item__card-header{
             .vs-accordion-toggle.btn-primary{
-<<<<<<< HEAD
-                background-color: #fff;
-=======
                 background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 color: $color-secondary-gray-shade-3;
                 font-size: $h3-font-size;
                 line-height: $line-height-s;
@@ -174,11 +155,7 @@ export default {
                 }
 
                 &:focus, &:active, &:active:focus {
-<<<<<<< HEAD
-                    background-color: #fff;
-=======
                     background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                     color: $color-secondary-gray-shade-3;
                 }
             }

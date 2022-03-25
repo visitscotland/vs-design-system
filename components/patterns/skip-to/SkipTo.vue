@@ -11,10 +11,6 @@
 import {
     isFunction, get, isNumber,
 } from 'lodash';
-<<<<<<< HEAD
-import VsSkipToButton from './components/SkipToButton';
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
 /**
  * The SkipTo component provides users of assistive
@@ -27,12 +23,6 @@ export default {
     name: 'VsSkipTo',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsSkipToButton,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The tabindex attribute for this element. For some reason
@@ -73,67 +63,4 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
 <style lang="scss"></style>
-
-<docs>
-  ```js
-
-  new Vue({
-    template: `
-      <BsWrapper class="d-flex flex-row">
-        <BsWrapper class="card mr-2" style="width:10rem" tabindex="10000">
-          <BsWrapper class="card-body">
-            Click here then press tab to navigate
-          </BsWrapper>
-        </BsWrapper>
-
-        <VsSkipTo :target="ref" @activated="activated('ref')" tabindex="10001">
-          Skip to Vue ref target
-        </VsSkipTo>
-
-        <VsSkipTo :target="element" @activated="activated('HTML element')" tabindex="10002">
-          Skip to HTML Element target
-        </VsSkipTo>
-
-        <BsWrapper class="card mr-2" style="width:10rem" tabindex="10003">
-          <BsWrapper class="card-body">
-            Thing to skip
-          </BsWrapper>
-        </BsWrapper>
-
-        <BsWrapper ref="refTarget" class="card mr-2" style="width:10rem" tabindex="10004">
-          <BsWrapper class="card-body">
-            This target was passed as a Vue ref
-          </BsWrapper>
-        </BsWrapper>
-
-        <BsWrapper id="element-target" class="card" style="width:10rem" tabindex="10005">
-          <BsWrapper class="card-body">
-            This target was passed as an HTML Element
-          </BsWrapper>
-        </BsWrapper>
-      </BsWrapper>
-    `,
-    data() {
-      return {
-        element: null,
-        ref: null
-      }
-    },
-    methods: {
-      activated(target) {
-        alert("Skip to with \"" + target + "\" target was clicked on")
-      }
-    },
-    mounted: function() {
-      this.element = document.getElementById("element-target")
-      this.ref = this.$refs.refTarget
-    },
-  })
-
-  ```
-</docs>
-=======
-<style lang="scss"></style>
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

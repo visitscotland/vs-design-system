@@ -33,6 +33,7 @@ export default {
 .sidebar {
   width:25%;
   padding-right: 64px;
+  height: 100vh;
 
   ul li a {
     font-size: 24px;

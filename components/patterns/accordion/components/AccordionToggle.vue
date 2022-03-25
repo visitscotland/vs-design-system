@@ -28,10 +28,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * Accordion toggle button used with AccordionItem
  * It emits an event to the parent to toggle the Accordion panel.
@@ -40,12 +36,6 @@
  */
 export default {
     name: 'VsAccordionToggle',
-<<<<<<< HEAD
-    components: {
-        VsButton,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Variant for which button to show in headers
