@@ -9,19 +9,6 @@
         >
             {{ hintText }}
         </p>
-        <BFormSelect
-            v-model="inputVal"
-            :size="size"
-            v-bind="$attrs"
-            :options="options"
-            :name="fieldName"
-            :id="fieldName"
-            @change="emitStatus"
-            @blur="emitStatus"
-            data-test="vs-form-select"
-            class="vs-form-select"
-            :required="isRequired"
-        />
         <span
             v-for="error in errorsList"
             :key="error"
@@ -48,7 +35,7 @@
                 :required="isRequired"
                 :aria-invalid="$v.inputVal.$anyError || invalid"
                 :aria-describedby="`hint-${fieldName}`"
-                :class="$v.inputVal.$anyError || invalid ? 'vs-form-select__element--error' : ''"
+                :class="errorClass"
             />
             <span class="vs-form-select__focus" />
         </div>
