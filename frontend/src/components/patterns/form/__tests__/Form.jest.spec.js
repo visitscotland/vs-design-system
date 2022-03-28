@@ -45,6 +45,15 @@ const formData = {
                 email: 'Please ensure your email is in the correct format',
             },
         },
+        {
+            name: 'conditionalField',
+            element: 'input',
+            type: 'text',
+            label: 'This is a conditional field',
+            conditional: {
+                selectexample: 'first',
+            },
+        },
     ],
     submit: 'Submit the form',
     de: {
@@ -132,7 +141,7 @@ describe('VsForm', () => {
 
         const allInputs = wrapper.findAll('bformgroup-stub');
 
-        expect(allInputs.length).toBe(3);
+        expect(allInputs.length).toBe(4);
     });
 
     it('should render a submit element with a value of `submit` from the data', async() => {
@@ -142,6 +151,24 @@ describe('VsForm', () => {
 
         await wrapper.vm.$nextTick();
         expect(submitBtn.text()).toBe('Submit the form');
+    });
+
+    it('should not render a conditional field by default', () => {
+        const wrapper = factoryShallowMount();
+        const conditionalField = wrapper.find('vsforminput-stub [fieldname="conditionalField"]');
+
+        expect(conditionalField.exists()).toBe(false);
+    });
+
+    it('should render a conditional field when the FirstName element has a value of "test"', async() => {
+        const wrapper = factoryShallowMount();
+        const firstName = wrapper.find('vsforminput-stub[fieldname="FirstName"]');
+        firstName.setValue('test');
+        await wrapper.vm.$nextTick();
+
+        const conditionalField = wrapper.find('vsforminput-stub[fieldname="conditionalField"]');
+
+        expect(conditionalField.exists()).toBe(true);
     });
 
     describe(':slots', () => {
