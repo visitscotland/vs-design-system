@@ -195,9 +195,9 @@ import VsCannedSearchTourRuns from '@components/patterns/canned-search/component
 import VsCannedSearchTourDeparts from '@components/patterns/canned-search/components/CannedSearchTourDeparts';
 import VsCarousel from '@components/patterns/carousel/Carousel';
 import VsModuleWrapper from '@components/patterns/module-wrapper/ModuleWrapper';
-import VsContainer from '@components/elements/layout/Container';
-import VsRow from '@components/elements/layout/Row';
-import VsCol from '@components/elements/layout/Col';
+import {
+    VsContainer, VsRow, VsCol,
+} from '@components/elements/grid';
 
 const axios = require('axios');
 
