@@ -30,4 +30,13 @@ describe('VsRecaptcha', () => {
             expect(wrapper.html()).toContain('Please complete the recaptcha');
         });
     });
+
+    describe(':methods', () => {
+        it('should emit a `verified` event when response method is called', () => {
+            wrapper = factoryShallowMount();
+            wrapper.vm.verified('response');
+
+            expect(wrapper.emitted('verified')).toBeTruthy();
+        });
+    });
 });
