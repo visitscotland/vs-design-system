@@ -13,12 +13,12 @@
             v-if="$v.inputVal.$anyError || invalid"
         >
             <span
-                v-for="error in errors"
+                v-for="error in errorsList"
                 :key="error"
                 class="error"
                 :id="`error-${fieldName}`"
             >
-                {{ validationMessages[error] }}
+                {{ validationMessages[error] || genericValidation[error] }}
             </span>
         </template>
         <BFormInput

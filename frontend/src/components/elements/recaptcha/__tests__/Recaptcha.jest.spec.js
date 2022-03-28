@@ -33,7 +33,7 @@ describe('VsRecaptcha', () => {
 
     describe(':methods', () => {
         it('should emit a `verified` event when response method is called', () => {
-            wrapper = factoryShallowMount();
+            const wrapper = factoryShallowMount();
             wrapper.vm.verified('response');
 
             expect(wrapper.emitted('verified')).toBeTruthy();

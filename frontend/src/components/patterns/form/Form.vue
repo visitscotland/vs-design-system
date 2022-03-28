@@ -288,11 +288,14 @@ export default {
                 labelText = this.formData.fields[index].label;
             }
 
-            if (!this.isUndefined(this.formData.fields[index].validation)
-                && !this.isUndefined(this.formData.fields[index].validation.required)
-                && this.formData.fields[index].validation.required) {
-                labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
-            }
+            // To be added if 'required' needs to be added to label
+            // I will check this and remove if not needed - JH
+
+            // if (!this.isUndefined(this.formData.fields[index].validation)
+            //     && !this.isUndefined(this.formData.fields[index].validation.required)
+            //     && this.formData.fields[index].validation.required) {
+            //     labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
+            // }
 
             return labelText;
         },
@@ -305,7 +308,7 @@ export default {
             let validationObj;
 
             if (this.language === 'en'
-                && !this.isUndefined(this.formData.fields[index].validationMessages) {
+                && !this.isUndefined(this.formData.fields[index].validationMessages)) {
                 validationObj = this.formData.fields[index].validationMessages;
             } else if (!this.isUndefined(languageObj[fieldName])
                 && !this.isUndefined(languageObj[fieldName].validationMessages)) {
@@ -523,8 +526,8 @@ export default {
             <VsRow>
                 <VsCol>
                     <VsForm
-                        dataUrl="http://172.28.74.108:5555/simpleForm.json"
-                        messagingUrl="http://172.28.74.108:5555/messaging.json"
+                        dataUrl="http://172.28.74.120:5555/simpleForm.json"
+                        messagingUrl="http://172.28.74.120:5555/messaging.json"
                         recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
                         marketo-instance="//app-lon10.marketo.com"
                         munchkin-id="830-QYE-256"
