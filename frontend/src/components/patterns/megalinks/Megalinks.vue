@@ -59,7 +59,7 @@ import {
     VsContainer,
     VsRow,
     VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 
 /**
  * Megalinks wrapper used with Megalinks components.
@@ -430,6 +430,10 @@ export default {
                             imgAlt="This is the alt text"
                             linkType="internal"
                             linkUrl="https://www.visitscotland.com"
+                            days="6"
+                            daysLabel="days"
+                            transport="bus"
+                            transportName="bus"
                         >
                             <template slot="vsMultiImageHeading">
                                 The Edinburgh International Festival
@@ -547,6 +551,10 @@ export default {
                             linkType="external"
                             theme="dark"
                             linkUrl="https://www.visitscotland.com"
+                            days="6"
+                            daysLabel="days"
+                            transport="bus"
+                            transportName="bus"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest
