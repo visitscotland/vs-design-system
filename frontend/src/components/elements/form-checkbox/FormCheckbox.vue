@@ -15,7 +15,7 @@
             v-if="fieldName"
             v-model="inputVal"
             class="vs-form-checkbox mr-4"
-            :class="errors.length > 0 ? 'vs-form-checkbox--error' : ''"
+            :class="errorClass"
             :size="size"
             :name="fieldName"
             :id="fieldName"
@@ -35,9 +35,8 @@
 <script>
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
-// eslint-disable-next-line
-import { required, sameAs } from 'vuelidate/lib/validators';
 import { BFormCheckbox } from 'bootstrap-vue';
+import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 
 Vue.use(Vuelidate);
 
@@ -54,6 +53,9 @@ export default {
     components: {
         BFormCheckbox,
     },
+    mixins: [
+        validateFormElementMixin,
+    ],
     props: {
         /**
          * Set the form field size.
@@ -125,6 +127,16 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+         * Fallback translated validation
+         */
+        genericValidation: {
+            type: Object,
+            default() {
+                return {
+                };
+            },
+        },
     },
     data() {
         return {
@@ -133,41 +145,9 @@ export default {
         };
     },
     computed: {
-        /**
-         * set rules object for validation
-         * needed because `required`, `email` and other values
-         * can't be key value pairs
-         */
-        rules() {
-            let rulesObj = {
-            };
-
-            // eslint-disable-next-line
-            for (const [key, value] of Object.entries(this.validationRules)) {
-                if (key === 'required') {
-                    rulesObj = {
-                        ...rulesObj,
-                        required,
-                        sameAs: sameAs(() => true),
-                    };
-                } else {
-                    rulesObj[key] = value;
-                }
-            }
-
-            if (typeof rulesObj !== 'undefined') {
-                return rulesObj;
-            }
-
-            return {
-            };
-        },
-        isRequired() {
-            if (typeof required !== 'undefined' && 'required' in this.validationRules) {
-                return true;
-            }
-
-            return false;
+        errorClass() {
+            return (this.errorsList.length > 0 && this.$v.inputVal.$anyDirty) || this.invalid
+                ? 'vs-form-checkbox__invalid' : '';
         },
     },
     watch: {
@@ -186,52 +166,6 @@ export default {
          */
         triggerValidate() {
             this.manualValidate();
-        },
-    },
-    methods: {
-        /**
-         * manually run validation and emit to parent
-         */
-        manualValidate() {
-            if (this.rules.required && !this.inputVal) {
-                this.errors.push('required');
-            } else {
-                for (let i = 0; i < this.errors.length; i++) {
-                    if (this.errors[i] === 'required') {
-                        this.errors.splice(i, 1);
-                    }
-                }
-            }
-
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.errors,
-            });
-        },
-        /**
-         * Emit status of input - for automatic updating
-         */
-        emitStatus() {
-            setTimeout(() => {
-                if (this.rules.required && !this.inputVal) {
-                    this.errors.push('required');
-                } else {
-                    for (let i = 0; i < this.errors.length; i++) {
-                        if (this.errors[i] === 'required') {
-                            this.errors.splice(i, 1);
-                        }
-                    }
-                }
-
-                this.$emit('status-update', {
-                    field: this.fieldName,
-                    value: this.inputVal,
-                    errors: this.errors,
-                });
-                this.touched = true;
-                this.$v.$touch();
-            }, 50);
         },
     },
     validations() {

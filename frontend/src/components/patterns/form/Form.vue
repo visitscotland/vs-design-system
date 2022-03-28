@@ -5,7 +5,7 @@
     >
         <!-- element into which the (completely empty) form is embedded invisibly -->
         <form
-            style="display:none"
+            class="d-none"
         />
 
         <form
@@ -26,6 +26,7 @@
                         :type="field.type"
                         :validation-rules="field.validation || {}"
                         :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                        :generic-validation="getMessagingData('validation', language)"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                         :hint-text="getTranslatedHint(field.name, index)"
@@ -40,6 +41,7 @@
                         :field-name="field.name"
                         :validation-rules="field.validation || {}"
                         :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                        :generic-validation="getMessagingData('validation', language)"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                         :hint-text="getTranslatedHint(field.name, index)"
@@ -58,6 +60,7 @@
                         :field-name="field.name"
                         :validation-rules="field.validation || {}"
                         :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                        :generic-validation="getMessagingData('validation', language)"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                         :required-text="getMessagingData('required', language)"
@@ -223,35 +226,44 @@ export default {
         },
     },
     created() {
-        axios.get(this.dataUrl)
-            .then((response) => {
-                this.formData = response.data;
-
-                if (window.MktoForms2) {
-                    window.MktoForms2.loadForm(this.marketoInstance, this.munchkinId, this.formId);
-                }
-
-                // window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
-                // ('//app-lon10.marketo.com', '830-QYE-256', this.formId);
-
-                response.data.fields.forEach((field) => {
-                    this.form[field.name] = '';
-                });
-            });
-
-        axios.get(this.messagingUrl)
-            .then((response) => {
-                this.messagingData = response.data;
-            });
+        this.getFormData();
+        this.getGlobalMessaging();
     },
     methods: {
+        /**
+         * Axios call to retrieve form data
+         */
+        getFormData() {
+            axios.get(this.dataUrl)
+                .then((response) => {
+                    this.formData = response.data;
+
+                    if (window.MktoForms2) {
+                        window.MktoForms2
+                            .loadForm(this.marketoInstance, this.munchkinId, this.formId);
+                    }
+
+                    response.data.fields.forEach((field) => {
+                        this.form[field.name] = '';
+                    });
+                });
+        },
+        /**
+         * Axios call to retrieve global messaging data
+         */
+        getGlobalMessaging() {
+            axios.get(this.messagingUrl)
+                .then((response) => {
+                    this.messagingData = response.data;
+                });
+        },
         /**
          * get appropriate language object
          */
         getLanguageObj() {
             let languageObj;
 
-            if (typeof this.formData[this.language] !== 'undefined') {
+            if (!this.isUndefined(this.formData[this.language])) {
                 languageObj = this.formData[this.language] || undefined;
             } else {
                 languageObj = {
@@ -268,50 +280,53 @@ export default {
             let labelText = '';
 
             if (this.language !== 'en'
-                && typeof languageObj[fieldName] !== 'undefined'
-                && typeof languageObj[fieldName].label !== 'undefined'
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined(languageObj[fieldName].label)
             ) {
                 labelText = languageObj[fieldName].label;
             } else {
                 labelText = this.formData.fields[index].label;
             }
 
-            // to add if required text needed
-            // if (typeof this.formData.fields[index].validation !== 'undefined'
-            //     && typeof this.formData.fields[index].validation.required !== 'undefined'
-            //     && this.formData.fields[index].validation.required) {
-            //     labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
-            // }
+            if (!this.isUndefined(this.formData.fields[index].validation)
+                && !this.isUndefined(this.formData.fields[index].validation.required)
+                && this.formData.fields[index].validation.required) {
+                labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
+            }
 
             return labelText;
         },
+        /**
+         * get translated validation messages
+         */
         getTranslatedValidation(fieldName, index) {
             const languageObj = this.getLanguageObj();
 
             let validationObj;
 
             if (this.language === 'en'
-                && typeof this.formData.fields[index].validationMessages !== 'undefined') {
+                && !this.isUndefined(this.formData.fields[index].validationMessages) {
                 validationObj = this.formData.fields[index].validationMessages;
-            } else if (typeof languageObj[fieldName] !== 'undefined'
-                && typeof languageObj[fieldName].validationMessages !== 'undefined') {
+            } else if (!this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined(languageObj[fieldName].validationMessages)) {
                 validationObj = languageObj[fieldName].validationMessages;
-            }
-
-            if (typeof validationObj === 'undefined') {
-                validationObj = this.getMessagingData('validation', this.language);
+            } else if (this.language === 'en') {
+                validationObj = this.formData.fields[index].validationMessages;
             }
 
             return validationObj;
         },
+        /**
+         * get translated options for select elements
+         */
         getTranslatedOptions(fieldName, index) {
             const languageObj = this.getLanguageObj();
 
             let optionsArr = [];
 
             if (this.language !== 'en'
-                && typeof languageObj[fieldName] !== 'undefined'
-                && typeof languageObj[fieldName].options !== 'undefined') {
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined([fieldName].options)) {
                 optionsArr = languageObj[fieldName].options;
             } else {
                 optionsArr = this.formData.fields[index].options;
@@ -350,6 +365,16 @@ export default {
             return '';
         },
         /**
+         * check if value is undefined
+         */
+        isUndefined(value) {
+            if (typeof value === 'undefined') {
+                return true;
+            }
+
+            return false;
+        },
+        /**
          * update field data and error status
          */
         updateFieldData(data) {
@@ -373,7 +398,7 @@ export default {
                 if (!errors || errors.length < 1) {
                     this.errorFields.splice(index, 1);
                 }
-            } else if (errors) {
+            } else if (errors && errors.length > 0) {
                 this.errorFields.push(field);
             }
         },
@@ -397,7 +422,8 @@ export default {
             return true;
         },
         /**
-         * submit form
+         * before submitting validate fields and recaptcha
+         * if successful run the Marketo submit method
          */
         preSubmit(e) {
             e.preventDefault();
@@ -406,11 +432,7 @@ export default {
                 return value.validation && value.validation.required;
             }
 
-            if (window.grecaptcha.getResponse() !== '') {
-                this.recaptchaVerified = true;
-            } else {
-                this.recaptchaVerified = false;
-            }
+            this.onRecaptchaVerify();
 
             this.triggerValidate = true;
 
@@ -434,6 +456,9 @@ export default {
                 this.showErrorMessage = true;
             }
         },
+        /**
+         * adds form data to Marketo payload and sets submitted status
+         */
         marketoSubmit() {
             const myForm = window.MktoForms2.allForms()[0];
             myForm.addHiddenFields(this.form);
@@ -452,6 +477,10 @@ export default {
                 return false;
             });
         },
+        /**
+         * listens to recaptcha response to check if it's verified
+         */
+
         onRecaptchaVerify() {
             if (window.grecaptcha.getResponse() !== '') {
                 this.recaptchaVerified = true;
