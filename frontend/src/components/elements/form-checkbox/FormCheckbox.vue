@@ -1,14 +1,14 @@
 <template>
     <div>
         <span
-            v-for="error in errors"
+            v-for="error in errorsList"
             :key="error"
             class="error"
         >
             <template
                 v-if="$v.inputVal.$anyError || invalid"
             >
-                {{ validationMessages[error] }}
+                {{ validationMessages[error] || genericValidation[error] }}
             </template>
         </span>
         <BFormCheckbox
@@ -147,7 +147,7 @@ export default {
     computed: {
         errorClass() {
             return (this.errorsList.length > 0 && this.$v.inputVal.$anyDirty) || this.invalid
-                ? 'vs-form-checkbox__invalid' : '';
+                ? 'vs-form-checkbox--error' : '';
         },
     },
     watch: {
