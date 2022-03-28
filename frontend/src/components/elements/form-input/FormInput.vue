@@ -25,7 +25,7 @@
             :type="type"
             class="vs-form-input"
             v-model="inputVal"
-            :class="$v.inputVal.$anyError || invalid ? 'vs-form-input--error' : ''"
+            :class="errorClass"
             @blur="emitStatus"
             :id="fieldName"
             :name="fieldName"
@@ -39,12 +39,10 @@
 </template>
 
 <script>
-// eslint-disable-next-line
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
-// eslint-disable-next-line
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators';
 import { BFormInput } from 'bootstrap-vue';
+import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 
 Vue.use(Vuelidate);
 
@@ -61,6 +59,9 @@ export default {
     components: {
         BFormInput,
     },
+    mixins: [
+        validateFormElementMixin,
+    ],
     props: {
         /**
          * Set the form field size.
@@ -143,75 +144,9 @@ export default {
             default: '',
         },
     },
-    data() {
-        return {
-            inputVal: this.value,
-        };
-    },
     computed: {
-        /**
-         * set rules object for validation
-         * needed because `required`, `email` and other values
-         * can't be key value pairs
-         */
-        rules() {
-            let rulesObj = {
-            };
-
-            // eslint-disable-next-line
-            for (const [key, value] of Object.entries(this.validationRules)) {
-                // rules have to be either a function defined by
-                // https://vuelidate-next.netlify.app/validators.html
-                if (key === 'required') {
-                    rulesObj = {
-                        ...rulesObj,
-                        required,
-                    };
-                } else if (key === 'email') {
-                    rulesObj = {
-                        ...rulesObj,
-                        email,
-                    };
-                } else if (key === 'minLength') {
-                    rulesObj = {
-                        ...rulesObj,
-                        minLength: minLength(value),
-                    };
-                } else if (key === 'maxLength') {
-                    rulesObj = {
-                        ...rulesObj,
-                        maxLength: maxLength(value),
-                    };
-                }
-            }
-
-            if (typeof rulesObj !== 'undefined') {
-                return {
-                    inputVal: rulesObj,
-                };
-            }
-
-            return {
-            };
-        },
-        isRequired() {
-            if (typeof required !== 'undefined' && 'required' in this.validationRules) {
-                return true;
-            }
-
-            return false;
-        },
-        errors() {
-            const errorsArray = [];
-            const rulesKeys = Object.keys(this.rules.inputVal);
-
-            rulesKeys.forEach((key) => {
-                if (!this.$v.inputVal[key]) {
-                    errorsArray.push(key);
-                }
-            });
-
-            return errorsArray;
+        errorClass() {
+            return this.$v.inputVal.$anyError || this.invalid ? 'hasError' : '';
         },
     },
     watch: {
@@ -230,29 +165,6 @@ export default {
         },
         value(newValue) {
             this.inputVal = newValue;
-        },
-    },
-    methods: {
-        /**
-         * manually run validation and emit to parent
-         */
-        manualValidate() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$invalid,
-            });
-        },
-        /**
-         * Emit status of input - for automatic updating
-         */
-        emitStatus() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$anyError,
-            });
-            this.$v.$touch();
         },
     },
     validations() {
@@ -287,6 +199,42 @@ export default {
         @extend %reset-clear;
     }
 }
+
+//     &.form-control {
+//         border-color: $color-gray-tint-1;
+//         transition: box-shadow $duration-base;
+
+//         &:focus {
+//         border-color: $color-gray-tint-1;
+//         box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
+//         }
+
+//         &[type="search"] {
+//             @extend %reset-clear;
+//         }
+//     }
+
+//     &::placeholder {
+//             color: $color-secondary-gray;
+//         }
+
+//     &:focus {
+//         border-color: $color-gray-tint-1;
+//         box-shadow: $shadow-form-input;
+//     }
+
+//     &[type='search'] {
+//         @extend %reset-clear;
+//     }
+
+//     &.is-valid{
+//         border-color: $color-theme-success!important;
+//     }
+
+//     &.is-invalid{
+//         border-color: $color-theme-danger!important;
+//     }
+// }
 
 </style>
 
