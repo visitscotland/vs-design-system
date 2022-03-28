@@ -143,7 +143,7 @@ export default {
         width: 26px;
         font-size: 0;
         right: $spacer-3;
-        top: -31px;
+        top: -36px;
 
         &:hover {
             .vs-icon{

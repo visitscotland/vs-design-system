@@ -5,8 +5,13 @@
             aria-label="main nav"
             data-test="vs-mega-nav"
         >
-            <VsContainer fluid="lg">
-                <VsRow class="align-items-center">
+            <VsContainer
+                fluid="lg"
+                class="h-100"
+            >
+                <VsRow
+                    class="align-items-center h-100"
+                >
                     <!-- Logo Link -->
                     <VsCol
                         cols="8"
@@ -41,7 +46,7 @@
                         cols="4"
                         md="8"
                         lg="2"
-                        class="justify-content-end position-static d-flex"
+                        class="justify-content-end position-static d-flex h-100"
                     >
                         <!-- <VsSiteSearch
                             @toggleAction="toggleSearch"
@@ -214,7 +219,13 @@ export default {
 
     &__logo svg {
         width: 184px;
-        height: 20px;
+        height: 16px;
+        vertical-align: top;
+        margin-top: $spacer-1;
+
+        @include media-breakpoint-up(lg) {
+            margin-top: $spacer-2;
+        }
     }
 
     .vs-mega-nav__menu {
