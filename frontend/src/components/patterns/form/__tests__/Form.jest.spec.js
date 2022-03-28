@@ -160,17 +160,6 @@ describe('VsForm', () => {
         expect(conditionalField.exists()).toBe(false);
     });
 
-    it('should render a conditional field when the FirstName element has a value of "test"', async() => {
-        const wrapper = factoryShallowMount();
-        const firstName = wrapper.find('vsforminput-stub[fieldname="FirstName"]');
-        firstName.setValue('test');
-        await wrapper.vm.$nextTick();
-
-        const conditionalField = wrapper.find('vsforminput-stub[fieldname="conditionalField"]');
-
-        expect(conditionalField.exists()).toBe(true);
-    });
-
     describe(':slots', () => {
         it('should render the `submitting` slot', async() => {
             const wrapper = factoryShallowMount();
@@ -226,19 +215,14 @@ describe('VsForm', () => {
             expect(wrapper.vm.formIsInvalid).toBeTruthy();
         });
 
-        it('should give push a field`s name into the errorFields array when it has errors in its data', async() => {
+        it('should push a field`s name into the errorFields array when it has errors in its data', async() => {
             const wrapper = factoryShallowMount();
 
-            const fieldData = {
-                field: 'firstName',
-                errors: true,
-            };
-
-            wrapper.vm.updateFieldData(fieldData);
+            wrapper.vm.manageErrorStatus('FirstName', ['required']);
 
             await wrapper.vm.$nextTick();
 
-            expect(wrapper.vm.errorFields.indexOf('firstName')).toBe(0);
+            expect(wrapper.vm.errorFields.indexOf('FirstName')).toBe(0);
         });
 
         it('should show translated labels if they exist', async() => {
