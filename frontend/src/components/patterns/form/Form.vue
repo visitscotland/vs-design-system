@@ -74,6 +74,10 @@
                 :error-msg="getMessagingData('recaptchaError', language)"
             />
 
+            <p v-if="errorFields.length > 0">
+                <slot name="invalid" />
+            </p>
+
             <VsButton
                 variant="primary"
                 type="submit"
