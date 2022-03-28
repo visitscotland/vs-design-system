@@ -61,18 +61,6 @@ describe('VsFormCheckbox', () => {
         });
     });
 
-    describe(':data', () => {
-        it('should show the error class if the errors array contains items', async() => {
-            wrapper.setData({
-                errors: ['required'],
-            });
-
-            await wrapper.vm.$nextTick();
-
-            expect(wrapper.find('[data-test="vs-form-checkbox"]').classes()).toContain('vs-form-checkbox--error');
-        });
-    });
-
     describe(':watchers', () => {
         it('should call the `manualValidate` method when `triggerValidation` is emitted', async() => {
             const mockedMethod = jest.spyOn(wrapper.vm, 'manualValidate');
