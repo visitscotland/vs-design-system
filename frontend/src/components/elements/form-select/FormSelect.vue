@@ -1,6 +1,6 @@
 <template>
     <div
-        :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
+        :class="errorClass"
     >
         <BFormSelect
             v-model="inputVal"
@@ -16,14 +16,14 @@
             :required="isRequired"
         />
         <span
-            v-for="error in errors"
+            v-for="error in errorsList"
             :key="error"
             class="error"
         >
             <template
                 v-if="$v.inputVal.$anyError || invalid"
             >
-                {{ validationMessages[error] }}
+                {{ validationMessages[error] || genericValidation[error] }}
             </template>
         </span>
     </div>
@@ -32,9 +32,8 @@
 <script>
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
-// eslint-disable-next-line
-import { required } from 'vuelidate/lib/validators';
 import { BFormSelect } from 'bootstrap-vue';
+import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 
 Vue.use(Vuelidate);
 
@@ -51,6 +50,9 @@ export default {
     components: {
         BFormSelect,
     },
+    mixins: [
+        validateFormElementMixin,
+    ],
     props: {
         /**
          * Set the form field size.
@@ -115,62 +117,20 @@ export default {
                 };
             },
         },
-    },
-    data() {
-        return {
-            inputVal: this.value,
-            touched: false,
-        };
+        /**
+         * Fallback translated validation
+         */
+        genericValidation: {
+            type: Object,
+            default() {
+                return {
+                };
+            },
+        },
     },
     computed: {
-        /**
-         * set rules object for validation
-         * needed because `required`, `email` and other values
-         * can't be key value pairs
-         */
-        rules() {
-            let rulesObj = {
-            };
-
-            // eslint-disable-next-line
-            for (const [key, value] of Object.entries(this.validationRules)) {
-                if (key === 'required') {
-                    rulesObj = {
-                        ...rulesObj,
-                        required,
-                    };
-                } else {
-                    rulesObj[key] = value;
-                }
-            }
-
-            if (typeof rulesObj !== 'undefined') {
-                return {
-                    inputVal: rulesObj,
-                };
-            }
-
-            return {
-            };
-        },
-        isRequired() {
-            if (typeof required !== 'undefined' && 'required' in this.validationRules) {
-                return true;
-            }
-
-            return false;
-        },
-        errors() {
-            const errorsArray = [];
-            const rulesKeys = Object.keys(this.rules.inputVal);
-
-            rulesKeys.forEach((key) => {
-                if (!this.$v.inputVal[key]) {
-                    errorsArray.push(key);
-                }
-            });
-
-            return errorsArray;
+        errorClass() {
+            return this.$v.inputVal.$anyError || this.invalid ? 'hasError' : '';
         },
     },
     watch: {
@@ -191,30 +151,6 @@ export default {
             this.manualValidate();
         },
     },
-    methods: {
-        /**
-         * manually run validation and emit to parent
-         */
-        manualValidate() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$invalid,
-            });
-        },
-        /**
-         * Emit status of input - for automatic updating
-         */
-        emitStatus() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$anyError,
-            });
-            this.touched = true;
-            this.$v.$touch();
-        },
-    },
     validations() {
         return this.rules;
     },
@@ -222,21 +158,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-form-input {
-  &.form-control {
-    border-color: $color-gray-tint-1;
-    transition: box-shadow $duration-base;
 
-    &:focus {
-      border-color: $color-gray-tint-1;
-      box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-    }
-
-    &[type="search"] {
-      @extend %reset-clear;
-    }
-  }
-}
 </style>
 
 <docs>
