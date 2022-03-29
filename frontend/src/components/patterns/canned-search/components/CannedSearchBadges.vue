@@ -117,7 +117,7 @@ export default {
             max-height: 1.5em;
             text-align: right;
             text-overflow: ellipsis;
-            max-width: calc(100% - $spacer-4);
+            max-width: calc(100% - #{$spacer-4});
             overflow: hidden;
             white-space: nowrap;
             font-size: $font-size-3;
@@ -158,7 +158,7 @@ export default {
         &__multi-badge-holder {
             position: absolute;
             text-align: right;
-            max-width: calc(100% - $spacer-4);
+            max-width: calc(100% - #{$spacer-4});
             width: 100%;
             max-height: 1.5em;
             overflow: hidden;
