@@ -52,7 +52,7 @@
 
 <script>
 import VsHeading from '@components/elements/heading/Heading';
-import { VsRow, VsCol } from '@components/elements/layout';
+import { VsRow, VsCol } from '@components/elements/grid';
 
 /**
  * TODO: Document usage
