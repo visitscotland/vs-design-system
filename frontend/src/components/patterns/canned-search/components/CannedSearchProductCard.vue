@@ -124,7 +124,7 @@
 import VsImg from '@components/elements/img/Img';
 import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
-import VsCol from '@components/elements/layout/Col';
+import VsCol from '@components/elements/grid/Col';
 
 /**
 * Generic product card for canned search
