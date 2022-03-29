@@ -100,7 +100,7 @@ export default {
                 margin-bottom: 0;
                 text-align: center;
                 line-height: $line_height_xs;
-                font-size: $xs-font-size;
+                font-size: $font-size-xs;
             }
         }
 

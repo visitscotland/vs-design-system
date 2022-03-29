@@ -93,10 +93,6 @@ export default {
             letter-spacing: normal;
         }
 
-        &__intro {
-            font-size: $body-font-size-md;
-        }
-
         &__col--left {
             background: $color-gray-shade-5;
             font-family: $font-family-sans-serif;

@@ -207,7 +207,7 @@ export default {
             color: $color-white;
             padding: $spacer-3;
             line-height: $line-height-s;
-            font-size: $h4-font-size;
+            font-size: $font-size-base;
             margin: 0 auto;
 
             @include media-breakpoint-up(md) {

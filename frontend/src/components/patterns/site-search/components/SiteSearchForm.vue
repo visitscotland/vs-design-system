@@ -248,7 +248,7 @@ export default {
 
     &__input{
         &.vs-form-input.form-control {
-            font-size: $body-font-size;
+            font-size: $font-size-base;
             height: auto;
             padding: $spacer-3 $spacer-7 $spacer-3 $spacer-6;
             border-color: $color-white;
@@ -260,7 +260,7 @@ export default {
 
             @include media-breakpoint-up(lg) {
                 padding: $spacer-4 $spacer-10 $spacer-4 $spacer-12;
-                font-size: $display1-size;
+                font-size: $font-size-xl;
             }
 
             @include media-breakpoint-up(xl) {

@@ -87,7 +87,7 @@ export default {
 
         @include media-breakpoint-up(md) {
             margin-bottom: $spacer-1;
-            font-size: $display4-size;
+            font-size: $font-size-md;
         }
     }
 
@@ -96,7 +96,7 @@ export default {
 
         @include media-breakpoint-up(md) {
             line-height: $line-height-s;
-            font-size: $display4-size;
+            font-size: $font-size-md;
             margin-bottom: $spacer-7;
         }
     }
