@@ -44,7 +44,7 @@ export default {
     text-align: center;
 
     .vs-icon-list__title {
-        font-size: $font-size-base;
+        font-size: $font-size-4;
         font-weight: $font-weight-normal;
         margin-bottom: $spacer-5;
     }
