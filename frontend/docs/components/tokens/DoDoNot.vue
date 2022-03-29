@@ -53,7 +53,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .vs-do-do-not {
         text-align: left;
         max-width: 80%;
