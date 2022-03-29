@@ -9,7 +9,6 @@
         <internal-css-header>
             <@headContributions />
 
-
             <#if version == "legacy">
                 <!-- TODO: special headContribution -->
                 <link rel="stylesheet" href="<@hst.link fullyQualified=fullyQualifiedURLs path='/webfiles/static/third-party/legacy-1.0.css' />" />
