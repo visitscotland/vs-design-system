@@ -159,7 +159,7 @@ export default {
         }
 
         &__title {
-            font-size: $h4-font-size;
+            font-size: $font-size-base;
             font-weight: $font-weight-bold;
             margin-bottom: $spacer-2;
         }
@@ -211,7 +211,7 @@ export default {
             }
 
             &__title {
-                font-size: $lead-font-size;
+                font-size: $font-size-lead;
                 margin-right: $spacer-4;
                 margin-bottom: 0;
             }

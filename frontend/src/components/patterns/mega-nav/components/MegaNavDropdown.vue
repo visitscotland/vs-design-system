@@ -254,7 +254,7 @@ export default {
             padding: $spacer-3 $spacer-2;
             height: auto;
             width: auto;
-            font-size: $h4-font-size;
+            font-size: $font-size-base;
             margin-bottom: $spacer-2;
 
             @include media-breakpoint-up(lg) {
