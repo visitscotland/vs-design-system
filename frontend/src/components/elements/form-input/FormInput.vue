@@ -1,11 +1,11 @@
 <template>
     <div data-test="vs-input">
         <BFormInput
+            ref="input"
             :type="type"
             class="vs-input"
             v-model="inputVal"
             :class="errorClass"
-            @blur="emitStatus"
             :id="fieldName"
             :name="fieldName"
             :required="isRequired"
@@ -24,6 +24,20 @@
                 {{ validationMessages[error] || genericValidation[error] }}
             </template>
         </span>
+        <VsButton
+            v-if="showClearButton"
+            class="vs-site-search-form__clear-button d-none d-lg-block"
+            variant="transparent"
+            icon-variant-override="secondary"
+            icon="close"
+            size="md"
+            icon-only
+            @click.native.prevent="clearInputAndFocus()"
+        >
+            <span class="sr-only">
+                {{ clearButtonText }}
+            </span>
+        </VsButton>
     </div>
 </template>
 
@@ -126,10 +140,33 @@ export default {
                 };
             },
         },
+        /**
+         * Content for hint text
+         */
+        hintText: {
+            type: String,
+            default: '',
+        },
+        /**
+         * text for the 'clear' button
+         * the existence of this will defined whether the button
+         * also exists
+         */
+        clearButtonText: {
+            type: String,
+            default: '',
+        },
     },
     computed: {
         errorClass() {
             return this.$v.inputVal.$anyError || this.invalid ? 'hasError' : '';
+        },
+        showClearButton() {
+            if (this.inputVal.length && this.clearButtonText !== '') {
+                return true;
+            }
+
+            return false;
         },
     },
     watch: {
@@ -173,8 +210,8 @@ export default {
     }
 
     &::placeholder {
-            color: $color-secondary-gray;
-        }
+        color: $color-secondary-gray;
+    }
 
     &:focus {
         border-color: $color-gray-tint-1;
@@ -188,11 +225,20 @@ export default {
     &.is-valid{
         border-color: $color-theme-success!important;
     }
-
-    &.is-invalid{
-        border-color: $color-theme-danger!important;
-    }
 }
+
+//     &:focus {
+//         border-color: $color-gray-tint-1;
+//         box-shadow: $shadow-form-input;
+//     }
+
+//     &[type='search'] {
+//         @extend %reset-clear;
+//     }
+
+    // &.is-invalid{
+    //     border-color: $color-theme-danger!important;
+    // }
 
 .hasError {
     border: red 3px solid !important;
