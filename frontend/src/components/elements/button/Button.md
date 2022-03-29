@@ -131,8 +131,8 @@ if it is clear to the user why the button is disabled.
 ```
 
 ## Accessibility
-Ensure `space` and `enter` keyboard keys activate the button.
+- Ensure `space` and `enter` keyboard keys activate the button.
 
-Ensure the button has an accessible label that describes the action of the button.
+- Ensure the button has an accessible label that describes the action of the button.
 
-Use the correct ARIA labels for your intended purpose, see <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#button">W3C WAI-ARIA Authoring Practices - Button</a>.
+- Use the correct ARIA labels for your intended purpose, see <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#button">W3C WAI-ARIA Authoring Practices - Button</a>.
