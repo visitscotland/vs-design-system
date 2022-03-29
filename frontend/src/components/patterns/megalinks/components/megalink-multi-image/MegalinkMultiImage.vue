@@ -252,7 +252,7 @@ export default {
             justify-content: flex-start;
 
             .vs-megalink-multi-image__title {
-                font-size: $font-size-h3;
+                font-size: $font-size-5;
                 letter-spacing: $letter-spacing-xxl;
             }
 

@@ -275,7 +275,7 @@ export default {
             }
 
             &__days {
-                font-size: $font-size-h3;
+                font-size: $font-size-5;
                 margin-bottom: 0;
             }
 
