@@ -84,7 +84,7 @@ export default {
         padding: $spacer-3 $spacer-9;
         border: 2px solid $color-gray-tint-7;
         line-height: 1.4;
-        font-size: $h4-font-size;
+        font-size: $font-size-base;
 
         @include media-breakpoint-up(lg) {
             border: 2px solid $color-white;
