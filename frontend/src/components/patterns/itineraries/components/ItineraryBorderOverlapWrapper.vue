@@ -40,9 +40,9 @@ export default {
     .btn {
         margin-left: -2.5rem;
         @include media-breakpoint-up(sm) {
-            margin-left: -$spacer-4;
+            margin-left: -#{$spacer-4};
             &:first-of-type {
-                margin-top: -$spacer-4;
+                margin-top: -#{$spacer-4};
             }
         }
     }

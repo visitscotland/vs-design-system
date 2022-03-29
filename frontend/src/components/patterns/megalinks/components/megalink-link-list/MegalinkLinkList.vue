@@ -258,7 +258,7 @@ export default {
         }
 
         .vs-stretched-link-panels {
-            width: calc(33% - $spacer-2);
+            width: calc(33% - #{$spacer-2});
             right: auto;
             left: $spacer-2;
             justify-content: flex-end;
