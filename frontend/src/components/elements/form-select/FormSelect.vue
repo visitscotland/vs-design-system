@@ -1,8 +1,5 @@
 <template>
-    <div
-        class="vs-form-select"
-        :class="errorClass"
-    >
+    <div class="vs-form-select">
         <p
             class="hint-text"
             :id="`hint-${fieldName}`"
@@ -137,6 +134,16 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * Fallback translated validation
+         */
+        genericValidation: {
+            type: Object,
+            default() {
+                return {
+                };
+            },
+        },
     },
     data() {
         return {
@@ -146,7 +153,7 @@ export default {
     },
     computed: {
         errorClass() {
-            return this.$v.inputVal.$anyError || this.invalid ? 'hasError' : '';
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-select__element--error' : '';
         },
     },
     watch: {

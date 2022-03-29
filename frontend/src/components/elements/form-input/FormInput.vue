@@ -146,7 +146,7 @@ export default {
     },
     computed: {
         errorClass() {
-            return this.$v.inputVal.$anyError || this.invalid ? 'hasError' : '';
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-input--error' : '';
         },
     },
     watch: {
