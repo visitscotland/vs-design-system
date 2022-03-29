@@ -2,19 +2,6 @@
     <div
         :class="errorClass"
     >
-        <BFormSelect
-            v-model="inputVal"
-            :size="size"
-            v-bind="$attrs"
-            :options="options"
-            :name="fieldName"
-            :id="fieldName"
-            @change="emitStatus"
-            @blur="emitStatus"
-            data-test="vs-form-select"
-            class="vs-form-select"
-            :required="isRequired"
-        />
         <span
             v-for="error in errorsList"
             :key="error"
@@ -26,6 +13,25 @@
                 {{ validationMessages[error] || genericValidation[error] }}
             </template>
         </span>
+        <div class="vs-form-select__container">
+            <BFormSelect
+                v-model="inputVal"
+                :size="size"
+                v-bind="$attrs"
+                :options="options"
+                :name="fieldName"
+                :id="fieldName"
+                @change="onChange"
+                @blur="emitStatus"
+                data-test="vs-form-select"
+                class="vs-form-select__element"
+                :required="isRequired"
+                :aria-invalid="$v.inputVal.$anyError || invalid"
+                :aria-describedby="`hint-${fieldName}`"
+                :class="errorClass"
+            />
+            <span class="vs-form-select__focus" />
+        </div>
     </div>
 </template>
 
