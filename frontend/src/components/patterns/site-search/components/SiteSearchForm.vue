@@ -40,26 +40,14 @@
                                 :placeholder="labelText"
                                 autocomplete="off"
                                 v-model="searchTerm"
-                                :state="validated"
                                 ref="searchInput"
                                 id="search-input"
                                 @input.native="onInput"
+                                :clear-button-text="clearButtonText"
+                                required="true"
+                                :validation-rules="validation"
+                                :trigger-validate="triggerValidate"
                             />
-
-                            <VsButton
-                                v-if="searchTerm.length"
-                                class="vs-site-search-form__clear-button d-none d-lg-block"
-                                variant="transparent"
-                                icon-variant-override="secondary"
-                                icon="close"
-                                size="md"
-                                icon-only
-                                @click.native.prevent="clearSearchFieldAndFocus()"
-                            >
-                                <span class="sr-only">
-                                    {{ clearButtonText }}
-                                </span>
-                            </VsButton>
                         </div>
 
                         <VsButton
@@ -155,23 +143,13 @@ export default {
             searchTerm: '',
             validated: null,
             showSearchForm: true,
+            validation: {
+                required: true,
+            },
+            triggerValidate: false,
         };
     },
-    computed: {
-        /**
-         * Checks if anything has been entered into the search form
-         */
-        isValid() {
-            return this.searchTerm.length > 0;
-        },
-    },
     methods: {
-        /**
-         * Clear any text entered in the search input
-         */
-        clearSearchField() {
-            this.searchTerm = '';
-        },
         /**
          * Focus on the input
          */
@@ -179,17 +157,11 @@ export default {
             this.$refs.searchInput.$el.focus();
         },
         /**
-         * Clears the search input on button click
-         * and adds focus back to the input
-         */
-        clearSearchFieldAndFocus() {
-            this.clearSearchField();
-            this.focusOnInput();
-        },
-        /**
          * Validates the form and submits if true
          */
         onSubmit($event) {
+            this.triggerValidate = true;
+
             if (!this.isValid) {
                 $event.preventDefault();
                 this.validated = false;
@@ -218,7 +190,7 @@ export default {
 
 <style lang="scss">
 
-.vs-site-search-form{
+.vs-site-search-form {
     background-color: rgba(239, 239, 239, 0.5);
     backdrop-filter: blur(30px);
     padding: $spacer-7 0;
@@ -229,7 +201,7 @@ export default {
         padding: $spacer-9 0;
     }
 
-    &__label{
+    &__label {
         position: absolute;
         left: $spacer-2;
         top: 50%;
@@ -246,14 +218,15 @@ export default {
         }
     }
 
-    &__input{
-        &.vs-form-input.form-control {
+    &__input {
+        .form-control {
             font-size: $body-font-size;
-            height: auto;
+            height: 50px;
             padding: $spacer-3 $spacer-7 $spacer-3 $spacer-6;
-            border-color: $color-white;
+            border: 1px $color-white solid;
+            margin: 0;
 
-            &:focus{
+            &:focus {
                 box-shadow: $shadow-form-input inset;
                 border-color: $color-pink;
             }
@@ -261,15 +234,17 @@ export default {
             @include media-breakpoint-up(lg) {
                 padding: $spacer-4 $spacer-10 $spacer-4 $spacer-12;
                 font-size: $display1-size;
+                height: 79px;
             }
 
             @include media-breakpoint-up(xl) {
                 font-size: $font-size-xxl;
+                height: 94px;
             }
         }
     }
 
-    &__search-button{
+    &__search-button {
         height: 50px;
         padding: $spacer-3 $spacer-2;
         font-size: $small-font-size;

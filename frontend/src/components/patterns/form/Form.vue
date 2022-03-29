@@ -22,6 +22,7 @@
                     <VsFormInput
                         :ref="field.name"
                         @status-update="updateFieldData"
+                        @v-model="inputVal"
                         :field-name="field.name"
                         :type="field.type"
                         :validation-rules="field.validation || {}"
@@ -196,6 +197,7 @@ export default {
             ],
             triggerValidate: false,
             recaptchaVerified: false,
+            inputVal: '',
         };
     },
     computed: {

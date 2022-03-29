@@ -110,6 +110,29 @@ const validateFormElementMixin = {
                 this.$v.$touch();
             }, 50);
         },
+        /**
+         * Clear any text entered in the search input
+         */
+        clearInput() {
+            this.inputVal = '';
+        },
+        /**
+         * Focus on the input
+         */
+        focusOnInput() {
+            this.$nextTick(() => {
+                console.log(this.$refs);
+                this.$refs.input.$el.focus();
+            });
+        },
+        /**
+         * Clears the search input on button click
+         * and adds focus back to the input
+         */
+        clearInputAndFocus() {
+            this.clearInput();
+            this.focusOnInput();
+        },
     },
 };
 
