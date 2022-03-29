@@ -190,7 +190,7 @@ export default {
             padding: $spacer-3 $spacer-2;
             height: auto;
             width: auto;
-            font-size: 1rem;
+            font-size: $font-size-4;
 
             &::after {
                 content: '';
@@ -254,7 +254,7 @@ export default {
             padding: $spacer-3 $spacer-2;
             height: auto;
             width: auto;
-            font-size: $font-size-base;
+            font-size: $font-size-4;
             margin-bottom: $spacer-2;
 
             @include media-breakpoint-up(lg) {

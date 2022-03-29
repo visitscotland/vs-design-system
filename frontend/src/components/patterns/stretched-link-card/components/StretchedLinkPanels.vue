@@ -100,12 +100,12 @@ export default {
                 margin-bottom: 0;
                 text-align: center;
                 line-height: $line_height_xs;
-                font-size: $font-size-xs;
+                font-size: $font-size-1;
             }
         }
 
         &__days {
-            font-size: $font-size-lg;
+            font-size: $font-size-6;
             font-family: "Source Sans Pro";
             font-weight: $font-weight-bold;
             display: block;

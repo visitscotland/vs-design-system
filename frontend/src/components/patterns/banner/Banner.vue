@@ -155,7 +155,7 @@ export default {
 
     &__text.vs-rich-text-wrapper--variant-normal,
     &__cta-link{
-        font-size: $font-size-base;
+        font-size: $font-size-4;
         line-height: $line-height-s;
     }
 

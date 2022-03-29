@@ -173,7 +173,7 @@ export default {
 
             .c-search__in,
             .c-search__for {
-                font-size: $font-size-base;
+                font-size: $font-size-4;
             }
 
             .c-search__date-reset,
@@ -190,21 +190,21 @@ export default {
                     color: $color-gray-shade-5;
                     font-weight: $font-weight-bold;
                     line-height: 1;
-                    font-size: $h5-font-size;
+                    font-size: $font-size-h5;
                 }
 
                 .DayPicker_weekHeader_ul {
                     color: $color-gray-shade-7;
 
                     small {
-                        font-size: $h6-font-size;
+                        font-size: $font-size-h6;
                     }
                 }
 
                 .CalendarDay {
                     border: none;
                     color: $color-gray-shade-7;
-                    font-size: $h6-font-size;
+                    font-size: $font-size-h6;
 
                     &:focus {
                         outline: 2px solid $color-secondary-teal-shade-2;

@@ -159,13 +159,13 @@ export default {
         }
 
         &__title {
-            font-size: $font-size-base;
+            font-size: $font-size-4;
             font-weight: $font-weight-bold;
             margin-bottom: $spacer-2;
         }
 
         &__duration {
-            font-size: $font-size-base;
+            font-size: $font-size-4;
             font-weight: $font-weight-light;
             margin: 0;
         }
@@ -178,7 +178,7 @@ export default {
             }
 
             p {
-                font-size: $font-size-base;
+                font-size: $font-size-4;
                 line-height: 2;
                 margin: -10px 0 0;
             }
