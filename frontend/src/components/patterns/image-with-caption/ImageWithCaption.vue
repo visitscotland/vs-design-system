@@ -47,8 +47,8 @@
                     :video-id="videoId"
                 >
                     <!-- @slot Slot for the video alert message -->
-                    <template slot="video-alert">
-                        <slot name="video-alert" />
+                    <template slot="video-no-js-alert">
+                        <slot name="video-no-js-alert" />
                     </template>
                     <!-- @slot Slot for the video title text -->
                     <template slot="video-title">
