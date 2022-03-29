@@ -3,31 +3,31 @@
 # Use these tokens to set padding, margin and position coordinates.
 #
 props:
-  spacer_0:
+  - name: spacer-0
     value: "0"
-  spacer_1:
-    value: "0.25rem"
-  spacer_2:
-    value: "0.5rem"
-  spacer_3:
+  - name: spacer-1
+    value: "0.25rem" 
+  - name: spacer-2
+    value: "0.5rem" 
+  - name: spacer-3
     value: "0.75rem"
-  spacer_4:
+  - name: spacer-4
     value: "1rem"
-  spacer_5:
+  - name: spacer-5
     value: "1.25rem"
-  spacer_6:
+  - name: spacer-6
     value: "1.5rem"
-  spacer_7:
+  - name: spacer-7
     value: "1.75rem"
-  spacer_8:
+  - name: spacer-8
     value: "2rem"
-  spacer_9:
+  - name: spacer-9
     value: "3rem"
-  spacer_10:
+  - name: spacer-10
     value: "4rem"
-  spacer_11:
+  - name: spacer-11
     value: "5rem"
-  spacer_12:
+  - name: spacer-12
     value: "6rem"
 global:
   type: number
