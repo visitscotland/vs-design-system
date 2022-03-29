@@ -63,7 +63,7 @@ export default {
             color: $color-pink;
             padding-right: 0.7rem;
             margin-left: -$spacer-6;
-            font-size: $h2-font-size;
+            font-size: $font-size-h2;
             line-height: $line-height-xs;
         }
 
@@ -79,7 +79,7 @@ export default {
                 &::before {
                     content: "– ";
                     padding-right: 0.6rem;
-                    font-size: $h3-font-size;
+                    font-size: $font-size-h3;
                 }
             }
         }
@@ -128,7 +128,7 @@ export default {
                     &::before {
                         content: "– ";
                         padding-right: 0.6rem;
-                        font-size: $h3-font-size;
+                        font-size: $font-size-h3;
                     }
                 }
             }

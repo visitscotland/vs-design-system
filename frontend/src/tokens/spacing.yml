@@ -2,35 +2,33 @@
 # SPACING TOKENS
 # Use these tokens to set padding, margin and position coordinates.
 #
-aliases:
-  spacing_base: 1rem
 props:
   spacer_0:
     value: "0"
   spacer_1:
-    value: "{!spacing_base} * .25"
+    value: "0.25rem"
   spacer_2:
-    value: "{!spacing_base} * .5"
+    value: "0.5rem"
   spacer_3:
-    value: "{!spacing_base} * .75"
+    value: "0.75rem"
   spacer_4:
-    value: "{!spacing_base}"
+    value: "1rem"
   spacer_5:
-    value: "{!spacing_base} * 1.25"
+    value: "1.25rem"
   spacer_6:
-    value: "{!spacing_base} * 1.5"
+    value: "1.5rem"
   spacer_7:
-    value: "{!spacing_base} * 1.75"
+    value: "1.75rem"
   spacer_8:
-    value: "{!spacing_base} * 2"
+    value: "2rem"
   spacer_9:
-    value: "{!spacing_base} * 3"
+    value: "3rem"
   spacer_10:
-    value: "{!spacing_base} * 4"
+    value: "4rem"
   spacer_11:
-    value: "{!spacing_base} * 5"
+    value: "5rem"
   spacer_12:
-    value: "{!spacing_base} * 6"
+    value: "6rem"
 global:
   type: number
   category: space
