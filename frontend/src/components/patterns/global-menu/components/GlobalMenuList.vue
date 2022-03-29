@@ -79,7 +79,7 @@ export default {
 
     &_item {
         a {
-            padding: 0 $spacer_5;
+            padding: 0 $spacer-5;
             line-height: 35px;
             height: 35px;
             display: inline-block;
