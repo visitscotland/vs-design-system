@@ -140,7 +140,7 @@ export default {
     }
 
     @include media-breakpoint-up(lg) {
-        font-size: $font-size-xl;
+        font-size: $font-size-xxl;
     }
 }
 

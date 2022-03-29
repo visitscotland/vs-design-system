@@ -221,7 +221,7 @@ export default {
         .vs-stretched-link-card__content {
             margin-top: $spacer-2;
             line-height: $line-height-s;
-            font-size: $teaser-font-size;
+            font-size: $font-size-teaser;
 
             p:last-of-type {
                 margin-bottom: 0;

@@ -83,7 +83,7 @@ $md-font-sizes: (
     1: $h1-font-size-md,
     2: $h2-font-size-md,
     3: $h3-font-size-md,
-    4: $h4-font-size-md,
+    4: $h4-font-size,
     5: $h5-font-size-md,
     6: $h6-font-size-md,
 );
