@@ -88,7 +88,7 @@ export default {
         }
 
         &__heading.vs-heading {
-            font-size: 1.75rem;
+            font-size: $font-size-9;
             font-weight: $font-weight-light;
             letter-spacing: normal;
         }
@@ -190,21 +190,21 @@ export default {
                     color: $color-gray-shade-5;
                     font-weight: $font-weight-bold;
                     line-height: 1;
-                    font-size: $font-size-h5;
+                    font-size: $font-size-6;
                 }
 
                 .DayPicker_weekHeader_ul {
                     color: $color-gray-shade-7;
 
                     small {
-                        font-size: $font-size-h6;
+                        font-size: $font-size-5;
                     }
                 }
 
                 .CalendarDay {
                     border: none;
                     color: $color-gray-shade-7;
-                    font-size: $font-size-h6;
+                    font-size: $font-size-5;
 
                     &:focus {
                         outline: 2px solid $color-secondary-teal-shade-2;
@@ -250,7 +250,7 @@ export default {
             }
 
             &__heading.vs-heading {
-                font-size: 2.5rem;
+                font-size: $font-size-10;
             }
 
             &__col {
