@@ -8,12 +8,13 @@
     <#compress>
         <internal-css-header>
             <@headContributions />
-            <!-- end include -->
+
 
             <#if version == "legacy">
                 <!-- TODO: special headContribution -->
-                <link rel="preload" href="<@hst.webfile fullyQualified=fullyQualifiedURLs path='static/third-party/legacy.css' />" as="style" />
+                <link rel="stylesheet" href="<@hst.link fullyQualified=fullyQualifiedURLs path='/webfiles/static/third-party/legacy-1.0.css' />" />
             </#if>
+            <!-- end include -->
         </internal-css-header>
     </#compress>
 </head>
