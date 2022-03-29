@@ -1,5 +1,6 @@
 <#include "../../../../../include/imports.ftl">
 <#include "header-featured-item.ftl">
+<#include "../../../../../frontend/components/vs-mega-nav-featured-event.ftl">
 
 <#macro headerWidget menu accordion=false>
     <#switch menu.type>
@@ -9,8 +10,15 @@
             </#list>
             <#break>
         <#case "FeaturedEvent">
-            <template slot="navFeaturedItem">
-                <p>FeaturedEvent = ${menu.apiUrl}</p>
+            <#if accordion=true>
+                <template>
+            <#else>
+                <template slot="navFeaturedEvent">
+            </#if>
+                <vs-mega-nav-featured-event
+                    source-url="${menu.apiUrl}"
+                >
+                </vs-mega-nav-featured-event>
             </template>
             <#break>
         <#default>
