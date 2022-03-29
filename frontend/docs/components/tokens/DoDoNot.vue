@@ -2,64 +2,61 @@
     <div
         class="vs-do-do-not"
     >
-        <VsContainer>
-            <VsRow>
-                <VsCol
-                    cols="12"
-                    md="6"
+        <VsRow>
+            <VsCol
+                cols="12"
+                md="6"
+            >
+                <BCard
+                    header-bg-variant="success"
+                    header-text-variant="white"
+                    header="Do"
                 >
-                    <b-card
-                        header-bg-variant="success"
-                        header-text-variant="white"
-                        header="Do"
-                    >
-                        <!-- @slot Holds the positive suggestion (html expected) -->
-                        <slot name="thingToDo" />
-                    </b-card>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    md="6"
+                    <!-- @slot Holds the positive suggestion (html expected) -->
+                    <slot name="thingToDo" />
+                </BCard>
+            </VsCol>
+            <VsCol
+                cols="12"
+                md="6"
+            >
+                <BCard
+                    header-bg-variant="danger"
+                    header-text-variant="white"
+                    header="Don't"
                 >
-                    <b-card
-                        header-bg-variant="danger"
-                        header-text-variant="white"
-                        header="Don't"
-                    >
-                        <!-- @slot Holds the negative suggestion (html expected) -->
-                        <slot name="thingToNotDo" />
-                    </b-card>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
+                    <!-- @slot Holds the negative suggestion (html expected) -->
+                    <slot name="thingToNotDo" />
+                </BCard>
+            </VsCol>
+        </VsRow>
     </div>
 </template>
 
 <script>
-import VsContainer from '@components/elements/layout/Container';
-import VsRow from '@components/elements/layout/Row';
-import VsCol from '@components/elements/layout/Col';
+import VsRow from '@components/elements/grid/Row';
+import VsCol from '@components/elements/grid/Col';
 import { BCard } from 'bootstrap-vue';
 
 /**
  *
  */
 export default {
-    name: "DoDoNot",
+    name: 'DoDoNot',
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsContainer,
         VsRow,
         VsCol,
-        BCard
+        BCard,
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
     .vs-do-do-not {
         text-align: left;
+        max-width: 80%;
 
         .card-body img {
             max-width: 100%;
