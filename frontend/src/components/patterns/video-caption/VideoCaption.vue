@@ -4,7 +4,10 @@
         data-test="video-caption"
         v-if="videoLoaded"
     >
-        <div class="vs-video-caption__buttons-container">
+        <div
+            v-if="videoBtnText"
+            class="vs-video-caption__buttons-container"
+        >
             <div class="container">
                 <VsButton
                     class="vs-video-caption__button"
@@ -50,7 +53,7 @@
 
                 <p>
                     <!-- @slot Slot for no-js alert message -->
-                    <slot name="video-alert" />
+                    <slot name="video-no-js-alert" />
                 </p>
             </div>
         </div>
@@ -83,7 +86,7 @@ export default {
          */
         videoBtnText: {
             type: String,
-            default: 'Play video',
+            default: '',
         },
         /**
          * If the video button should include a toggle button
@@ -294,10 +297,7 @@ export default {
         <template slot="video-title">
             This is the video title
         </template>
-        <template slot="video-duration">
-            Video duration 3 minutes
-        </template>
-        <template slot="video-alert">
+        <template slot="video-no-js-alert">
             JavaScript needs to be enabled to watch this video.
             You can turn this on in your browser settings.
         </template>
@@ -312,10 +312,7 @@ export default {
         <template slot="video-title">
             This video caption has a toggle button
         </template>
-        <template slot="video-duration">
-            Video duration 5 minutes
-        </template>
-        <template slot="video-alert">
+        <template slot="video-no-js-alert">
             JavaScript needs to be enabled to watch this video.
             You can turn this on in your browser settings.
         </template>
@@ -331,10 +328,7 @@ export default {
             <template slot="video-title">
                 This is the video title
             </template>
-            <template slot="video-duration">
-                This is the video length
-            </template>
-            <template slot="video-alert">
+            <template slot="video-no-js-alert">
                 This is display when JS is turned off.<br />
                 JavaScript needs to be enabled to watch this video.
                 You can turn this on in your browser settings.

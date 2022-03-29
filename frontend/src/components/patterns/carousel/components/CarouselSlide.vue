@@ -47,7 +47,7 @@
 <script>
 import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
 import VsStretchedLinkPanels from '@components/patterns/stretched-link-card/components/StretchedLinkPanels';
-import { VsCol } from '@components/elements/layout';
+import { VsCol } from '@components/elements/grid';
 
 /**
 * Slide for carousel

@@ -42,7 +42,7 @@
 <script>
 import {
     VsContainer, VsRow, VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 import VsGlobalMenuDropdown from './components/GlobalMenuDropdown';
 import VsGlobalMenuList from './components/GlobalMenuList';
 

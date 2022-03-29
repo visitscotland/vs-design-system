@@ -38,7 +38,7 @@ import {
     VsContainer,
     VsRow,
     VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 import VsHeading from '@components/elements/heading/Heading';
 import VsPsrEmbed from '@components/elements/psr-embed/PsrEmbed';
 
