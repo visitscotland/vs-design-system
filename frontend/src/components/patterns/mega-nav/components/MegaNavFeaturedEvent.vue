@@ -89,7 +89,7 @@ export default {
 <style lang="scss">
     .card.vs-mega-nav-featured-event {
         border-top: 1px solid #e0e0e0;
-        margin-bottom: -$spacer-2;
+        margin-bottom: -#{$spacer-2};
 
         @include media-breakpoint-up(lg) {
             margin-bottom: $spacer-0;
