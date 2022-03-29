@@ -134,7 +134,7 @@ export default {
             .vs-accordion-toggle.btn-primary{
                 background-color: $color-white;
                 color: $color-base-text;
-                font-size: $h2-font-size;
+                font-size: $font-size-h2;
                 padding-left: $spacer-5;
                 padding-right: $spacer-5;
 
@@ -151,7 +151,7 @@ export default {
             .vs-accordion-toggle.btn-primary{
                 background-color: $color-white;
                 color: $color-secondary-gray-shade-3;
-                font-size: $h3-font-size;
+                font-size: $font-size-h3;
                 line-height: $line-height-s;
                 padding-left: $spacer-8;
                 padding-right: $spacer-5;
