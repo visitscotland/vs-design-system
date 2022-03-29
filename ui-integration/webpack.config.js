@@ -25,8 +25,8 @@ module.exports = function(env, argv) {
     plugins: [
         new CopyPlugin([
             {
-                from: './embed/processed-styles/legacy.css',
-                to: './third-party/',
+                from: './embed/processed-styles/*.css',
+                to: '../static/third-party/',
             },
         ]),
         new CopyPlugin([
