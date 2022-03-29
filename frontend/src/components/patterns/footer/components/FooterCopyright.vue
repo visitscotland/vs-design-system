@@ -36,7 +36,7 @@ import VsSvgLink from '@components/elements/svg-link/SvgLink';
 
 import {
     VsRow, VsContainer, VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 
 /**
  * The VsFooterCopyright holds an image and copyright notices for the footer.

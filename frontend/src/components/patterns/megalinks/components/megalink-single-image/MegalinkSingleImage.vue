@@ -57,7 +57,7 @@ import VsHeading from '@components/elements/heading/Heading';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 import VsButton from '@components/elements/button/Button';
 import VsLinkList from '@components/patterns/link-list/LinkList';
-import { VsRow, VsCol } from '@components/elements/layout';
+import { VsRow, VsCol } from '@components/elements/grid';
 
 /**
  * This component is a variant of the megalinks component with a large image

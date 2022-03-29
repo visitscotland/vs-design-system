@@ -52,7 +52,7 @@
 
 <script>
 import designTokens from '@/assets/tokens/tokens.json';
-import { VsRow, VsCol } from '@components/elements/layout';
+import { VsRow, VsCol } from '@components/elements/grid';
 import VsCaptionImageMap from './components/CaptionImageMap';
 
 /**
