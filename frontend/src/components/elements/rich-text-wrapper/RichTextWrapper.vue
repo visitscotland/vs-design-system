@@ -42,19 +42,19 @@ export default {
 .vs-rich-text-wrapper {
     &--variant-normal{
         font-family: $font-family-base;
-        font-size: $body-font-size;
+        font-size: $font-size-body;
 
         @include media-breakpoint-up(md) {
-            font-size: $body-font-size-md;
+            font-size: $font-size-body-md;
         }
     }
 
     &--variant-lead {
         line-height: $line-height-lead;
-        font-size: $lead-font-size;
+        font-size: $font-size-lead;
 
         @include media-breakpoint-up(md) {
-            font-size: $lead-font-size-md;
+            font-size: $font-size-lead-md;
         }
     }
 }
