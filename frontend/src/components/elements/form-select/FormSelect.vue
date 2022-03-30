@@ -199,7 +199,7 @@ export default {
                 background-image: url('~@/assets/svg/icons/chevron.svg');
                 display: block;
                 position: absolute;
-                top: calc(50% - 0.75rem);
+                top: calc(50% - #{$spacer-3});
                 right: $spacer-4;
                 background-repeat: no-repeat;
                 background-size: 60% 60%;
