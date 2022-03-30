@@ -5,9 +5,10 @@
             :type="type"
             class="vs-input"
             v-model="inputVal"
-            :class="errorClass"
+            :class="elementClass"
             :id="fieldName"
             :name="fieldName"
+            :placeholder="placeholder"
             :required="isRequired"
             :size="size"
             :v="inputVal"
@@ -27,7 +28,7 @@
         <VsButton
             data-test="input-clear-button"
             v-if="showClearButton"
-            class="vs-site-search-form__clear-button d-none d-lg-block"
+            class="vs-input__clear-button d-none d-lg-block"
             variant="transparent"
             icon-variant-override="secondary"
             icon="close"
@@ -157,10 +158,23 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * Element placeholder text
+         */
+        placeholder: {
+            type: String,
+            default: '',
+        },
     },
     computed: {
-        errorClass() {
-            return this.$v.inputVal.$anyError || this.invalid ? 'vs-input--error' : '';
+        /**
+         * element type class plus error classes
+         */
+        elementClass() {
+            const errorClass = this.$v.inputVal.$anyError || this.invalid ? 'vs-input--error' : '';
+            const nameClass = `vs-input--${this.fieldName}`;
+
+            return `${errorClass} ${nameClass}`;
         },
         showClearButton() {
             if (this.inputVal.length && this.clearButtonText !== '') {
@@ -188,6 +202,31 @@ export default {
             this.inputVal = newValue;
         },
     },
+    methods: {
+        /**
+         * Clear any text entered in the search input
+         */
+        clearInput() {
+            this.inputVal = '';
+            this.$emit('cleared');
+        },
+        /**
+         * Focus on the input
+         */
+        focusOnInput() {
+            this.$nextTick(() => {
+                this.$refs.input.$el.focus();
+            });
+        },
+        /**
+         * Clears the search input on button click
+         * and adds focus back to the input
+         */
+        clearInputAndFocus() {
+            this.clearInput();
+            this.focusOnInput();
+        },
+    },
     validations() {
         return this.rules;
     },
@@ -196,14 +235,11 @@ export default {
 
 <style lang="scss">
 .vs-input {
-    &.form-control {
-        border-color: $color-gray-tint-1;
-        transition: box-shadow $duration-base;
+    border-color: $color-gray-tint-1;
+    transition: box-shadow $duration-base;
 
-        &:focus {
-        border-color: $color-gray-tint-1;
-        box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-        }
+    &--error {
+        border-color: red;
     }
 
     &::placeholder {
@@ -221,6 +257,33 @@ export default {
 
     &.is-valid{
         border-color: $color-theme-success!important;
+    }
+
+    &--site-search.form-control {
+        font-size: $body-font-size;
+        height: 50px;
+        padding: $spacer-3 $spacer-7 $spacer-3 $spacer-6;
+        margin: 0;
+        border-color: $color-white;
+
+        @include media-breakpoint-up(lg) {
+            padding: $spacer-4 $spacer-10 $spacer-4 $spacer-12;
+            font-size: $display1-size;
+            height: 79px;
+        }
+
+        @include media-breakpoint-up(xl) {
+            font-size: $font-size-xxl;
+            height: 94px;
+        }
+    }
+
+    &__clear-button.vs-button.btn {
+        position: absolute;
+        right: $spacer-5;
+        top: 50%;
+        transform: translate(0, -50%);
+        padding: $spacer-1;
     }
 }
 </style>
