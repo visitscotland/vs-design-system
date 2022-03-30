@@ -72,27 +72,27 @@ export default {
 @import "../../../assets/fonts/fonts.css";
 
 $font-sizes: (
-    1: $h1-font-size,
-    2: $h2-font-size,
-    3: $h3-font-size,
-    4: $h4-font-size,
-    5: $h5-font-size,
-    6: $h6-font-size,
+    1: $font-size-h1,
+    2: $font-size-h2,
+    3: $font-size-h3,
+    4: $font-size-h4,
+    5: $font-size-h5,
+    6: $font-size-h6,
 );
 
 $md-font-sizes: (
-    1: $h1-font-size-md,
-    2: $h2-font-size-md,
-    3: $h3-font-size-md,
-    4: $h4-font-size-md,
-    5: $h5-font-size-md,
-    6: $h6-font-size-md,
+    1: $font-size-h1-md,
+    2: $font-size-h2-md,
+    3: $font-size-h3-md,
+    4: $font-size-h4,
+    5: $font-size-h5-md,
+    6: $font-size-h6-md,
 );
 
 /* Update font sizes */
 $sub-font-sizes: (
-    2: $h2-sub-font-size,
-    3: $h3-sub-font-size,
+    2: $font-size-h2-sub,
+    3: $font-size-h3-sub,
 );
 
 .vs-heading {
