@@ -39,14 +39,14 @@
                                 aria-label="Search"
                                 :placeholder="labelText"
                                 autocomplete="off"
-                                v-model="searchTerm"
                                 ref="searchInput"
                                 id="search-input"
                                 @input.native="onInput"
+                                @updated="updateFieldData"
                                 :clear-button-text="clearButtonText"
                                 required="true"
-                                :validation-rules="validation"
-                                :trigger-validate="triggerValidate"
+                                field-name="site-search"
+                                :invalid="!isValid && touched === true ? true : false"
                             />
                         </div>
 
@@ -143,11 +143,18 @@ export default {
             searchTerm: '',
             validated: null,
             showSearchForm: true,
-            validation: {
-                required: true,
-            },
             triggerValidate: false,
+            touched: false,
         };
+    },
+    computed: {
+        isValid() {
+            if (this.searchTerm !== '' && this.touched) {
+                return true;
+            }
+
+            return false;
+        },
     },
     methods: {
         /**
@@ -156,20 +163,26 @@ export default {
         focusOnInput() {
             this.$refs.searchInput.$el.focus();
         },
+        updateFieldData(data) {
+            this.searchTerm = data.value;
+            console.log(this.searchTerm);
+
+            this.touched = true;
+        },
         /**
          * Validates the form and submits if true
          */
         onSubmit($event) {
+            console.log(this.searchTerm);
+            this.touched = true;
             this.triggerValidate = true;
 
             if (!this.isValid) {
                 $event.preventDefault();
                 this.validated = false;
-            } else {
-                return true;
             }
 
-            return false;
+            return true;
         },
         /**
          * Validates the form on input
