@@ -14,6 +14,7 @@
             class="vs-heading__sub-heading"
             v-if="!!this.$slots['sub-heading']"
         >
+            <!-- @slot Slot for sub-heading content -->
             <slot name="sub-heading" />
         </span>
     </Component>
@@ -34,7 +35,7 @@ export default {
     props: {
         /**
          * The heading level used for the heading.
-         * `1, 2, 3, 4, 5, 6`
+         * `1|2|3|4|5|6`
          */
         level: {
             type: [String, Number],
