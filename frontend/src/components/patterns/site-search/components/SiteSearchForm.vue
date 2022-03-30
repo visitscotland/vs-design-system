@@ -43,6 +43,7 @@
                                 id="search-input"
                                 @input.native="onInput"
                                 @updated="updateFieldData"
+                                @v-model="inputVal"
                                 :clear-button-text="clearButtonText"
                                 required="true"
                                 field-name="site-search"
@@ -145,6 +146,7 @@ export default {
             showSearchForm: true,
             triggerValidate: false,
             touched: false,
+            inputVal: '',
         };
     },
     computed: {
@@ -168,6 +170,11 @@ export default {
          */
         updateFieldData(data) {
             this.searchTerm = data.value;
+            if (this.searchTerm !== '') {
+                this.isValid = true;
+            } else {
+                this.isValid = false;
+            }
             this.touched = true;
         },
         /**
@@ -179,6 +186,7 @@ export default {
 
             if (!this.isValid) {
                 $event.preventDefault();
+                this.touched = false;
                 this.validated = false;
             }
 
