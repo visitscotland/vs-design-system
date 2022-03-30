@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: a8a8926f-e625-4162-98b4-29f3c3b819b8
   hippo:name: Default Properties
-  hippo:versionHistory: 3432952b-22a5-4c39-b819-9223ba205d55
+  hippo:versionHistory: 453fdd72-d213-488f-aae7-aa6c3c39a481
   /default-properties[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -13,7 +13,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2022-03-01T16:40:28.666Z
+    hippostdpubwf:lastModificationDate: 2022-03-21T17:20:10.268Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -33,8 +33,11 @@
       "UI for vs-dms-products.\r\n\r\nThis value will be used to compose urls to vs-dms-products\
         \ and Canned Search", '', '', URLs from this environment will be treated as
         internal and will be transformed into Relative URLs when the value of attribute
-        'links.use-relative-urls is true., '', '', '', '', Order for hreflang tags,
-      Suffix for all page titles, '', '', "Default DMS version served by Hippo.\r\n\
+        'links.use-relative-urls is true., '', '', '', Order for hreflang tags, Suffix
+        for all page titles, '', '', '', Container ID from Google Tag Manager, "GTM\
+        \ Query Parameter for the environment. \r\n\r\nTypically production wouldn't\
+        \ have any query parameters while rest of the environment would use a test\
+        \ container with query parameters", '', "Default DMS version served by Hippo.\r\n\
         \r\nCurrent allowed values:\r\n - \"legacy\": For legacy applications based\
         \ on 10 pixels base line\r\n - \"\": Standard version for newly developed\
         \ applications.\r\n\r\nValues that are not in this list are going to be interpreted\
@@ -45,17 +48,18 @@
       dms-data.encoding, dms-data.api-key, dms-data.timeout, dms-data.tries, dms-data.sleep-time,
       iknow-community.url, iknow-community.tagged-discussion, instagram.app-id, links.internal-sites,
       links.use-relative-urls, links.cms-base-path.url, links.vs-dms-products.url,
-      dms-data.public-url, dms-data.private-url, links.convert-to-relative, banner.path,
-      youtube.api-key, og.site-name, og.twitter.site, seo.alternate-link-locale-order,
-      seo.title-suffix, seo.og.site-name, seo.og.twitter.site, data-internal.default-css-version]
+      dms-data.public-url, dms-data.private-url, links.convert-to-relative, youtube.api-key,
+      og.site-name, og.twitter.site, seo.alternate-link-locale-order, seo.title-suffix,
+      seo.og.site-name, seo.og.twitter.site, gtm.is-production, gtm.container-id,
+      gtm.preview-query-string, search.path, data-internal.default-css-version]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,beta.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
-      www.visitscotland.com, general/navigation/banner/content, $YOUTUBE_API_KEY,
-      VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es', '| VisitScotland', VisitScotland,
-      '@VisitScotland', legacy]
+      www.visitscotland.com, $YOUTUBE_API_KEY, VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es',
+      '| VisitScotland', VisitScotland, '@VisitScotland', 'false', GTM-WWKWV5K, '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
+      site-search-results, legacy]
   /default-properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -65,7 +69,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2022-03-01T16:26:57.756Z
+    hippostdpubwf:lastModificationDate: 2022-03-21T17:54:22.065Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -85,8 +89,11 @@
       "UI for vs-dms-products.\r\n\r\nThis value will be used to compose urls to vs-dms-products\
         \ and Canned Search", '', '', URLs from this environment will be treated as
         internal and will be transformed into Relative URLs when the value of attribute
-        'links.use-relative-urls is true., '', '', '', '', Order for hreflang tags,
-      Suffix for all page titles, '', '', "Default DMS version served by Hippo.\r\n\
+        'links.use-relative-urls is true., '', '', '', Order for hreflang tags, Suffix
+        for all page titles, '', '', '', Container ID from Google Tag Manager, "GTM\
+        \ Query Parameter for the environment. \r\n\r\nTypically production wouldn't\
+        \ have any query parameters while rest of the environment would use a test\
+        \ container with query parameters", '', "Default DMS version served by Hippo.\r\n\
         \r\nCurrent allowed values:\r\n - \"legacy\": For legacy applications based\
         \ on 10 pixels base line\r\n - \"\": Standard version for newly developed\
         \ applications.\r\n\r\nValues that are not in this list are going to be interpreted\
@@ -97,17 +104,18 @@
       dms-data.encoding, dms-data.api-key, dms-data.timeout, dms-data.tries, dms-data.sleep-time,
       iknow-community.url, iknow-community.tagged-discussion, instagram.app-id, links.internal-sites,
       links.use-relative-urls, links.cms-base-path.url, links.vs-dms-products.url,
-      dms-data.public-url, dms-data.private-url, links.convert-to-relative, banner.path,
-      youtube.api-key, og.site-name, og.twitter.site, seo.alternate-link-locale-order,
-      seo.title-suffix, seo.og.site-name, seo.og.twitter.site, data-internal.default-css-version]
+      dms-data.public-url, dms-data.private-url, links.convert-to-relative, youtube.api-key,
+      og.site-name, og.twitter.site, seo.alternate-link-locale-order, seo.title-suffix,
+      seo.og.site-name, seo.og.twitter.site, gtm.is-production, gtm.container-id,
+      gtm.preview-query-string, search.path, data-internal.default-css-version]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,beta.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
-      www.visitscotland.com, general/navigation/banner/content, $YOUTUBE_API_KEY,
-      VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es', '| VisitScotland', VisitScotland,
-      '@VisitScotland', legacy]
+      www.visitscotland.com, $YOUTUBE_API_KEY, VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es',
+      '| VisitScotland', VisitScotland, '@VisitScotland', 'false', GTM-WWKWV5K, '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
+      site-search-results, legacy]
   /default-properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -117,9 +125,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2022-03-01T16:40:28.666Z
+    hippostdpubwf:lastModificationDate: 2022-03-21T17:20:10.268Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2022-03-01T16:40:32.029Z
+    hippostdpubwf:publicationDate: 2022-03-21T17:54:14.769Z
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
       "Token that identifies calls made to vs-dms-products as internal calls giving\
@@ -138,8 +146,11 @@
       "UI for vs-dms-products.\r\n\r\nThis value will be used to compose urls to vs-dms-products\
         \ and Canned Search", '', '', URLs from this environment will be treated as
         internal and will be transformed into Relative URLs when the value of attribute
-        'links.use-relative-urls is true., '', '', '', '', Order for hreflang tags,
-      Suffix for all page titles, '', '', "Default DMS version served by Hippo.\r\n\
+        'links.use-relative-urls is true., '', '', '', Order for hreflang tags, Suffix
+        for all page titles, '', '', '', Container ID from Google Tag Manager, "GTM\
+        \ Query Parameter for the environment. \r\n\r\nTypically production wouldn't\
+        \ have any query parameters while rest of the environment would use a test\
+        \ container with query parameters", '', "Default DMS version served by Hippo.\r\n\
         \r\nCurrent allowed values:\r\n - \"legacy\": For legacy applications based\
         \ on 10 pixels base line\r\n - \"\": Standard version for newly developed\
         \ applications.\r\n\r\nValues that are not in this list are going to be interpreted\
@@ -150,14 +161,15 @@
       dms-data.encoding, dms-data.api-key, dms-data.timeout, dms-data.tries, dms-data.sleep-time,
       iknow-community.url, iknow-community.tagged-discussion, instagram.app-id, links.internal-sites,
       links.use-relative-urls, links.cms-base-path.url, links.vs-dms-products.url,
-      dms-data.public-url, dms-data.private-url, links.convert-to-relative, banner.path,
-      youtube.api-key, og.site-name, og.twitter.site, seo.alternate-link-locale-order,
-      seo.title-suffix, seo.og.site-name, seo.og.twitter.site, data-internal.default-css-version]
+      dms-data.public-url, dms-data.private-url, links.convert-to-relative, youtube.api-key,
+      og.site-name, og.twitter.site, seo.alternate-link-locale-order, seo.title-suffix,
+      seo.og.site-name, seo.og.twitter.site, gtm.is-production, gtm.container-id,
+      gtm.preview-query-string, search.path, data-internal.default-css-version]
     resourcebundle:messages: ['https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/',
       helpdesk@visitscotland.com, 0d41c47eaf42b43fe20de05201c798ec, 'https://www.instagram.com/p/',
       UTF-8, $VS_API_KEY, '2000', '3', '60000', 'https://community.visitscotland.com/',
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,beta.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
-      www.visitscotland.com, general/navigation/banner/content, $YOUTUBE_API_KEY,
-      VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es', '| VisitScotland', VisitScotland,
-      '@VisitScotland', legacy]
+      www.visitscotland.com, $YOUTUBE_API_KEY, VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es',
+      '| VisitScotland', VisitScotland, '@VisitScotland', 'false', GTM-WWKWV5K, '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
+      site-search-results, legacy]
