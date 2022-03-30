@@ -121,7 +121,6 @@ const validateFormElementMixin = {
          */
         focusOnInput() {
             this.$nextTick(() => {
-                console.log(this.$refs);
                 this.$refs.input.$el.focus();
             });
         },

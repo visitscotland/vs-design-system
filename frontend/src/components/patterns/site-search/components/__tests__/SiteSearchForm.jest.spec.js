@@ -40,25 +40,9 @@ describe('VsSiteSearchForm', () => {
 
             expect(clearBtn.text()).toContain('Clear form');
         });
-
-        it('should display `closeButtonText` (sr-only) within close button', () => {
-            const wrapper = factoryShallowMount();
-            const closeBtn = wrapper.find('.vs-site-search-form__close-button');
-            expect(closeBtn.text()).toContain('Close search form');
-        });
     });
 
     describe(':methods', () => {
-        it('clears search form value when clear button clicked', async() => {
-            const wrapper = factoryMount();
-            const searchInput = wrapper.find('input[type="search"]');
-            await searchInput.setValue('Test');
-            expect(searchInput.element.value).toBe('Test');
-
-            const clearBtn = wrapper.find('.vs-site-search-form__clear-button');
-            await clearBtn.trigger('click');
-            expect(searchInput.element.value).toBe('');
-        });
         it('invalidates search form on button click when nothing has been entered', async() => {
             const wrapper = factoryMount();
             const submitBtn = wrapper.find('.vs-site-search-form__search-button');
