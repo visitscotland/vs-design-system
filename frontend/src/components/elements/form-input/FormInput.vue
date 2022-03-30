@@ -25,6 +25,7 @@
             </template>
         </span>
         <VsButton
+            data-test="input-clear-button"
             v-if="showClearButton"
             class="vs-site-search-form__clear-button d-none d-lg-block"
             variant="transparent"
@@ -233,7 +234,10 @@ export default {
     />
     <label for="medium">Medium (default)</label>
     <VsFormInput
-        id="medium" placeholder="Enter your name" class="mb-5" size="md" field-name="input2"
+        ref="searchInput"
+        @v-model="inputVal"
+        field-name="site-search"
+        type="search"
     />
     <label for="large">Large</label>
     <VsFormInput
