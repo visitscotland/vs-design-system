@@ -54,7 +54,7 @@ import {
     VsCol,
     VsRow,
     VsContainer,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 import { BDropdown } from 'bootstrap-vue';
 import VsButton from '@components/elements/button/Button';
 
@@ -117,7 +117,11 @@ export default {
 <style lang="scss">
 
 .vs-mega-nav-dropdown {
-    padding: 0;
+    padding: $spacer-2 0 0 $spacer-2;
+
+    @include media-breakpoint-up(lg) {
+        padding: 0;
+    }
 
     .dropdown {
         position: static;
@@ -224,11 +228,12 @@ export default {
         border: 0;
         box-shadow: 0px 9px 5px -7px rgba(0,0,0,0.1),
         inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
-        transform: translate3d(0px, 55px, 0px) !important;
+        transform: translate3d(0px, 45px, 0px) !important;
 
         @include media-breakpoint-up(lg) {
             padding: $spacer-5 0 $spacer-8;
             max-height: 595px;
+            transform: translate3d(0px, 55px, 0px) !important;
         }
 
         .vs-mega-nav-accordion-item--level-1:first-child{
