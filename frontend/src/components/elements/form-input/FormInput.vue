@@ -159,7 +159,7 @@ export default {
     },
     computed: {
         errorClass() {
-            return this.$v.inputVal.$anyError || this.invalid ? 'hasError' : '';
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-input--error' : '';
         },
         showClearButton() {
             if (this.inputVal.length && this.clearButtonText !== '') {
@@ -194,7 +194,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-form-input {
+.vs-input {
     &.form-control {
         border-color: $color-gray-tint-1;
         transition: box-shadow $duration-base;
@@ -202,10 +202,6 @@ export default {
         &:focus {
         border-color: $color-gray-tint-1;
         box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-        }
-
-        &[type="search"] {
-            @extend %reset-clear;
         }
     }
 
@@ -226,24 +222,6 @@ export default {
         border-color: $color-theme-success!important;
     }
 }
-
-//     &:focus {
-//         border-color: $color-gray-tint-1;
-//         box-shadow: $shadow-form-input;
-//     }
-
-//     &[type='search'] {
-//         @extend %reset-clear;
-//     }
-
-    // &.is-invalid{
-    //     border-color: $color-theme-danger!important;
-    // }
-
-.hasError {
-    border: red 3px solid !important;
-}
-
 </style>
 
 <docs>
