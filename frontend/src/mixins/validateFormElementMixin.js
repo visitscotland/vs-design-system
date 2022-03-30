@@ -12,6 +12,9 @@ const validateFormElementMixin = {
         };
     },
     computed: {
+        /**
+         * calculate whether element is required
+         */
         isRequired() {
             if (typeof required !== 'undefined' && 'required' in this.validationRules) {
                 return true;
@@ -109,28 +112,6 @@ const validateFormElementMixin = {
                 this.touched = true;
                 this.$v.$touch();
             }, 50);
-        },
-        /**
-         * Clear any text entered in the search input
-         */
-        clearInput() {
-            this.inputVal = '';
-        },
-        /**
-         * Focus on the input
-         */
-        focusOnInput() {
-            this.$nextTick(() => {
-                this.$refs.input.$el.focus();
-            });
-        },
-        /**
-         * Clears the search input on button click
-         * and adds focus back to the input
-         */
-        clearInputAndFocus() {
-            this.clearInput();
-            this.focusOnInput();
         },
     },
 };
