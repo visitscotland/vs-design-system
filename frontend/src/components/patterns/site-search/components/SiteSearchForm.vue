@@ -163,17 +163,17 @@ export default {
         focusOnInput() {
             this.$refs.searchInput.$el.focus();
         },
+        /**
+         * Updates the data value for the field
+         */
         updateFieldData(data) {
             this.searchTerm = data.value;
-            console.log(this.searchTerm);
-
             this.touched = true;
         },
         /**
          * Validates the form and submits if true
          */
         onSubmit($event) {
-            console.log(this.searchTerm);
             this.touched = true;
             this.triggerValidate = true;
 
