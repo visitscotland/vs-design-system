@@ -43,7 +43,7 @@ describe('VsFormSelect', () => {
 
             await wrapper.vm.$nextTick();
 
-            expect(wrapper.find('.vs-form-select').attributes('name')).toBe('testValue');
+            expect(wrapper.find('.vs-form-select__element').attributes('name')).toBe('testValue');
         });
 
         it('value - should accept and render a `value` property', async() => {
@@ -68,7 +68,7 @@ describe('VsFormSelect', () => {
 
             await wrapper.vm.$nextTick();
 
-            expect(wrapper.find('.vs-form-select').attributes('required')).toBe('true');
+            expect(wrapper.find('.vs-form-select__element').attributes('required')).toBe('true');
         });
 
         it('should display a validation message if validation fails', async() => {

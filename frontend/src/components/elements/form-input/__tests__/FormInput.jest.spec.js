@@ -66,6 +66,19 @@ describe('VsFormInput', () => {
         it('value - should accept and render a `type` property', async() => {
             expect(wrapper.find('.vs-input').attributes('type')).toBe('text');
         });
+
+        it('should show the clear button when there is a value if the `closeButtonText` prop is defined', async() => {
+            wrapper.setProps({
+                clearButtonText: 'clear text',
+            });
+
+            wrapper.setData({
+                inputVal: 'test',
+            });
+            await wrapper.vm.$nextTick();
+
+            expect(wrapper.find('[data-test="input-clear-button"]').text()).toBe('clear text');
+        });
     });
 
     describe(':computed', () => {
@@ -97,6 +110,27 @@ describe('VsFormInput', () => {
             await wrapper.vm.$nextTick();
 
             expect(wrapper.html()).toContain('This is required');
+        });
+    });
+
+    describe(':methods', () => {
+        it('clears search form value when clear button clicked', async() => {
+            wrapper.setProps({
+                clearButtonText: 'clear text',
+            });
+
+            wrapper.setData({
+                inputVal: 'test',
+            });
+            await wrapper.vm.$nextTick();
+
+            const clearBtn = wrapper.find('[data-test="input-clear-button"]');
+
+            clearBtn.trigger('click');
+
+            await wrapper.vm.$nextTick();
+
+            expect(wrapper.vm.inputVal).toBe('');
         });
     });
 
