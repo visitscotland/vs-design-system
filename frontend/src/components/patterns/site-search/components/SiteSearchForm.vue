@@ -2,6 +2,7 @@
     <div
         class="vs-site-search-form"
         data-test="vs-site-search-form"
+        v-if="showSearchForm"
     >
         <VsContainer fluid="lg">
             <VsRow>
@@ -35,19 +36,15 @@
 
                             <VsFormInput
                                 type="search"
-                                class="vs-site-search-form__input search-input"
                                 aria-label="Search"
                                 :placeholder="labelText"
                                 autocomplete="off"
                                 ref="searchInput"
                                 id="search-input"
-                                @input.native="onInput"
-                                @updated="updateFieldData"
-                                @v-model="inputVal"
+                                @updated="updateVal"
                                 :clear-button-text="clearButtonText"
                                 required="true"
                                 field-name="site-search"
-                                :invalid="!isValid && touched === true ? true : false"
                             />
                         </div>
 
@@ -142,61 +139,23 @@ export default {
     data() {
         return {
             searchTerm: '',
-            validated: null,
             showSearchForm: true,
-            triggerValidate: false,
-            touched: false,
-            inputVal: '',
         };
-    },
-    computed: {
-        isValid() {
-            if (this.searchTerm !== '' && this.touched) {
-                return true;
-            }
-
-            return false;
-        },
     },
     methods: {
         /**
-         * Focus on the input
+         * Update searchTerm value with returned data
          */
-        focusOnInput() {
-            this.$refs.searchInput.$el.focus();
-        },
-        /**
-         * Updates the data value for the field
-         */
-        updateFieldData(data) {
+        updateVal(data) {
             this.searchTerm = data.value;
-            if (this.searchTerm !== '') {
-                this.isValid = true;
-            } else {
-                this.isValid = false;
-            }
-            this.touched = true;
         },
         /**
-         * Validates the form and submits if true
+         * Only submit if the field has a vale
          */
-        onSubmit($event) {
-            this.touched = true;
-            this.triggerValidate = true;
-
-            if (!this.isValid) {
-                $event.preventDefault();
-                this.touched = false;
-                this.validated = false;
+        onSubmit(e) {
+            if (this.searchTerm === '') {
+                e.preventDefault();
             }
-
-            return true;
-        },
-        /**
-         * Validates the form on input
-         */
-        onInput() {
-            this.validated = this.isValid ? null : false;
         },
         /**
          * Closes the search form popover
@@ -239,32 +198,6 @@ export default {
         }
     }
 
-    &__input {
-        .form-control {
-            font-size: $body-font-size;
-            height: 50px;
-            padding: $spacer-3 $spacer-7 $spacer-3 $spacer-6;
-            border: 1px $color-white solid;
-            margin: 0;
-
-            &:focus {
-                box-shadow: $shadow-form-input inset;
-                border-color: $color-pink;
-            }
-
-            @include media-breakpoint-up(lg) {
-                padding: $spacer-4 $spacer-10 $spacer-4 $spacer-12;
-                font-size: $display1-size;
-                height: 79px;
-            }
-
-            @include media-breakpoint-up(xl) {
-                font-size: $font-size-xxl;
-                height: 94px;
-            }
-        }
-    }
-
     &__search-button {
         height: 50px;
         padding: $spacer-3 $spacer-2;
@@ -279,14 +212,6 @@ export default {
         @include media-breakpoint-up(xl) {
             height: 94px;
         }
-    }
-
-    &__clear-button.vs-button.btn {
-        position: absolute;
-        right: $spacer-5;
-        top: 50%;
-        transform: translate(0, -50%);
-        padding: $spacer-1;
     }
 
     &__close-button.vs-button.btn {
