@@ -31,6 +31,7 @@
                     <vs-button
                         href="${module.cta.link}"
                         class="px-4"
+                        :reduced-spacing="true"
                     >
                         ${module.cta.label}
                     </vs-button>
