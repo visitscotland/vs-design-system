@@ -1,5 +1,16 @@
 <template>
     <div>
+        <span
+            v-for="error in errorsList"
+            :key="error"
+            class="error"
+        >
+            <template
+                v-if="$v.inputVal.$anyError || invalid"
+            >
+                {{ validationMessages[error] || genericValidation[error] }}
+            </template>
+        </span>
         <BFormCheckbox
             v-if="fieldName"
             v-model="inputVal"
@@ -14,23 +25,10 @@
             data-test="vs-form-checkbox"
             @change="emitStatus"
             :required="isRequired"
+            :aria-invalid="$v.inputVal.$anyError || invalid"
         >
-            {{ label }}
-            <span v-if="isRequired">
-                ({{ requiredText }})
-            </span>
+            <span class="vs-form-checkbox__label">{{ label }}</span>
         </BFormCheckbox>
-        <span
-            v-for="error in errorsList"
-            :key="error"
-            class="error"
-        >
-            <template
-                v-if="$v.inputVal.$anyError || invalid"
-            >
-                {{ validationMessages[error] || genericValidation[error] }}
-            </template>
-        </span>
     </div>
 </template>
 
@@ -43,10 +41,9 @@ import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 Vue.use(Vuelidate);
 
 /**
- * https://bootstrap-vue.js.org/docs/components/form-input
- * https://getbootstrap.com/docs/4.3/components/forms/
+ * A checkbox input
  *
- * @displayName Form Checkbox
+ * @displayName Checkbox
  */
 
 export default {
@@ -150,7 +147,7 @@ export default {
     computed: {
         errorClass() {
             return (this.errorsList.length > 0 && this.$v.inputVal.$anyDirty) || this.invalid
-                ? 'vs-form-checkbox__invalid' : '';
+                ? 'vs-form-checkbox--error' : '';
         },
     },
     watch: {
@@ -181,14 +178,76 @@ export default {
 
 <style lang="scss">
     .vs-form-checkbox {
+        display: flex;
+        align-items: center;
+
         input[type="checkbox"] {
-            width: 15px;
-            height: 15px;
-            margin-right: $spacer-4;
+            outline: $color-gray-shade-3 1px solid;
+            border: none;
+            width: 38px;
+            height: 38px;
+            margin: $spacer-2 $spacer-4 0 0;
+            align-self: flex-start;
+            position: relative;
+
+             &:before {
+                content: '';
+                width: 100%;
+                height: 100%;
+                background-color: $color-white;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+            &:focus {
+                outline: none;
+
+                &:after {
+                    border: $color-pink 4px solid;
+                }
+            }
+
+            &:checked {
+                &:before {
+                    background-image: url('~@/assets/svg/checkbox-check.svg');
+                    background-size: 60% 60%;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                }
+            }
         }
 
-        &__invalid {
-            border: red 2px solid;
+        label {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        &--error {
+            input[type="checkbox"] {
+                outline: none;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    border: 2px solid $color-theme-danger;
+                }
+            }
+        }
+
+        &__label {
+            display: inline-block;
+            font-size: $body-font-size;
+            font-weight: $font-weight-normal;
         }
     }
 </style>
@@ -196,12 +255,26 @@ export default {
 <docs>
 ```jsx
 <BsWrapper>
-    <VsFormCheckbox
-        field-name="checkbox-example"
-        value="accepted"
-        id="checkbox-example"
-        label="I accept the terms and conditions"
-    />
+    <BFormGroup>
+        <VsFormCheckbox
+            field-name="checkbox-example"
+            value="accepted"
+            id="checkbox-example"
+            label="I accept the terms and conditions"
+            class="mb-6"
+        />
+    </BFormGroup>
+    <BFormGroup>
+        <VsFormCheckbox
+            field-name="checkbox-example-2"
+            value="second"
+            id="checkbox-example-2"
+            label="By ticking this box you are indicating your consent for VisitScotland
+            to use your email address to send you our e-newsletter on a regular basis.
+            You can unsubscribe at any time via the link in the email. We will process
+            your details in accordance with our privacy policy"
+        />
+    </BFormGroup>
 </BsWrapper>
 ```
 </docs>

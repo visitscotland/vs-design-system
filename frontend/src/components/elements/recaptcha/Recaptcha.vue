@@ -1,11 +1,19 @@
 <template>
-    <VueRecaptcha
-        :sitekey="siteKey"
-        @verify="verified"
-        class="vs-recaptcha"
-        :class="invalid ? 'vs-recaptcha--invalid' :''"
-        :language="language"
-    />
+    <div class="vs-recaptcha">
+        <span
+            v-if="invalid"
+            class="error"
+        >
+            {{ errorMsg }}
+        </span>
+        <VueRecaptcha
+            :sitekey="siteKey"
+            @verify="verified"
+            class="vs-recaptcha__embed"
+            :class="invalid ? 'vs-recaptcha__embed--error' :''"
+            :language="language"
+        />
+    </div>
 </template>
 
 <script>
@@ -49,6 +57,13 @@ export default {
             type: String,
             default: 'en',
         },
+        /**
+         * validation message if the recaptcha isn't completed
+         */
+        errorMsg: {
+            type: String,
+            default: '',
+        },
     },
     methods: {
         verified(response) {
@@ -58,9 +73,18 @@ export default {
 };
 </script>
 
-<style type="scss">
-    .vs-recaptcha--invalid {
-        border: red 3px solid !important;
+<style lang="scss">
+    .vs-recaptcha {
+        margin-top: $spacer-9;
+
+        &__embed {
+            &--error {
+                & > div {
+                    outline: 2px solid $color-theme-danger;
+                    margin-top: $spacer-2;
+                }
+            }
+        }
     }
 </style>
 

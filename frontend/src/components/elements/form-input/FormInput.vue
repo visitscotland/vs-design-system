@@ -1,8 +1,29 @@
 <template>
-    <div data-test="vs-input">
+    <div
+        data-test="vs-form-input"
+    >
+        <p
+            class="hint-text"
+            :id="`hint-${fieldName}`"
+            v-if="hintText"
+        >
+            {{ hintText }}
+        </p>
+        <template
+            v-if="$v.inputVal.$anyError || invalid"
+        >
+            <span
+                v-for="error in errorsList"
+                :key="error"
+                class="error"
+                :id="`error-${fieldName}`"
+            >
+                {{ validationMessages[error] || genericValidation[error] }}
+            </span>
+        </template>
         <BFormInput
             :type="type"
-            class="vs-input"
+            class="vs-form-input"
             v-model="inputVal"
             :class="errorClass"
             @blur="emitStatus"
@@ -11,19 +32,9 @@
             :required="isRequired"
             :size="size"
             :v="inputVal"
+            :aria-invalid="$v.inputVal.$anyError || invalid"
+            :aria-describedby="$v.inputVal.$anyError || invalid ? `error-${fieldName}` : ''"
         />
-
-        <span
-            v-for="error in errorsList"
-            :key="error"
-            class="error"
-        >
-            <template
-                v-if="$v.inputVal.$anyError || invalid"
-            >
-                {{ validationMessages[error] || genericValidation[error] }}
-            </template>
-        </span>
     </div>
 </template>
 
@@ -36,10 +47,9 @@ import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 Vue.use(Vuelidate);
 
 /**
- * https://bootstrap-vue.js.org/docs/components/form-input
- * https://getbootstrap.com/docs/4.3/components/forms/
+ * An input field for text, email, number etc
  *
- * @displayName Form Input
+ * @displayName Input
  */
 
 export default {
@@ -126,10 +136,17 @@ export default {
                 };
             },
         },
+        /**
+         * Content for hint text
+         */
+        hintText: {
+            type: String,
+            default: '',
+        },
     },
     computed: {
         errorClass() {
-            return this.$v.inputVal.$anyError || this.invalid ? 'hasError' : '';
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-input--error' : '';
         },
     },
     watch: {
@@ -158,45 +175,66 @@ export default {
 
 <style lang="scss">
 .vs-form-input {
-    &.form-control {
-        border-color: $color-gray-tint-1;
-        transition: box-shadow $duration-base;
+    border: $color-gray-shade-3 1px solid;
+    margin-top: $spacer-2;
+    // transition: box-shadow $duration-base;
 
-        &:focus {
-        border-color: $color-gray-tint-1;
-        box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-        }
-
-        &[type="search"] {
-            @extend %reset-clear;
-        }
+    &.form-control-md {
+        height: 50px;
     }
-
-    &::placeholder {
-            color: $color-secondary-gray;
-        }
 
     &:focus {
-        border-color: $color-gray-tint-1;
-        box-shadow: $shadow-form-input;
+        // border-color: $color-gray-tint-1;
+        // box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5);
+        border: $color-pink 4px solid;
+        outline: none;
+        box-shadow: none;
     }
 
-    &[type='search'] {
+    &--error {
+        border: 2px solid $color-theme-danger;
+    }
+
+    &[type="search"] {
         @extend %reset-clear;
     }
-
-    &.is-valid{
-        border-color: $color-theme-success!important;
-    }
-
-    &.is-invalid{
-        border-color: $color-theme-danger!important;
-    }
 }
 
-.hasError {
-    border: red 3px solid !important;
-}
+//     &.form-control {
+//         border-color: $color-gray-tint-1;
+//         transition: box-shadow $duration-base;
+
+//         &:focus {
+//         border-color: $color-gray-tint-1;
+//         box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
+//         }
+
+//         &[type="search"] {
+//             @extend %reset-clear;
+//         }
+//     }
+
+//     &::placeholder {
+//             color: $color-secondary-gray;
+//         }
+
+//     &:focus {
+//         border-color: $color-gray-tint-1;
+//         box-shadow: $shadow-form-input;
+//     }
+
+//     &[type='search'] {
+//         @extend %reset-clear;
+//     }
+
+//     &.is-valid{
+//         border-color: $color-theme-success!important;
+//     }
+
+//     &.is-invalid{
+//         border-color: $color-theme-danger!important;
+//     }
+// }
 
 </style>
 
@@ -205,7 +243,11 @@ export default {
 <BsWrapper>
     <label for="small">Small</label>
     <VsFormInput
-        id="small" placeholder="Enter your name" class="mb-5" size="sm" field-name="input1"
+        id="small"
+        placeholder="Enter your name"
+        class="mb-5"
+        size="sm"
+        field-name="input1"
     />
     <label for="medium">Medium (default)</label>
     <VsFormInput
@@ -215,18 +257,13 @@ export default {
     <VsFormInput
         id="large" placeholder="Enter your name" class="mb-5" size="lg" field-name="input3"
     />
-
-    <label for="input-none">No State</label>
-    <VsFormInput
-        id="input-none" :state="null" placeholder="No validation" class="mb-5" field-name="input4"
-    />
-    <label for="input-valid">Valid state</label>
-    <VsFormInput
-        id="input-valid" :state="true" placeholder="Valid" class="mb-5" field-name="input5"
-    />
     <label for="input-invalid">Invalid state</label>
     <VsFormInput
-        id="input-invalid" :state="false" placeholder="Invalid" class="mb-5" field-name="input5"
+        id="input-invalid"
+        invalid="true"
+        placeholder="Invalid"
+        class="mb-5"
+        field-name="input5"
     />
 </BsWrapper>
 ```

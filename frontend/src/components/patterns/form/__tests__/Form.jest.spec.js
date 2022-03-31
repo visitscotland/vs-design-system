@@ -45,6 +45,15 @@ const formData = {
                 email: 'Please ensure your email is in the correct format',
             },
         },
+        {
+            name: 'conditionalField',
+            element: 'input',
+            type: 'text',
+            label: 'This is a conditional field',
+            conditional: {
+                selectexample: 'first',
+            },
+        },
     ],
     submit: 'Submit the form',
     de: {
@@ -132,24 +141,23 @@ describe('VsForm', () => {
 
         const allInputs = wrapper.findAll('bformgroup-stub');
 
-        expect(allInputs.length).toBe(3);
-    });
-
-    it('should render `required` on required inputs', async() => {
-        const wrapper = factoryShallowMount();
-        await wrapper.vm.$nextTick();
-        const allInputs = wrapper.findAll('bformgroup-stub');
-
-        expect(allInputs.at(0).attributes('label')).toContain('required');
+        expect(allInputs.length).toBe(4);
     });
 
     it('should render a submit element with a value of `submit` from the data', async() => {
         const wrapper = factoryShallowMount();
 
-        const submitBtn = wrapper.find('input[type="submit"]');
+        const submitBtn = wrapper.find('vsbutton-stub[type="submit"]');
 
         await wrapper.vm.$nextTick();
-        expect(submitBtn.attributes('value')).toBe('Submit the form');
+        expect(submitBtn.text()).toBe('Submit the form');
+    });
+
+    it('should not render a conditional field by default', () => {
+        const wrapper = factoryShallowMount();
+        const conditionalField = wrapper.find('vsforminput-stub [fieldname="conditionalField"]');
+
+        expect(conditionalField.exists()).toBe(false);
     });
 
     describe(':slots', () => {
@@ -207,29 +215,14 @@ describe('VsForm', () => {
             expect(wrapper.vm.formIsInvalid).toBeTruthy();
         });
 
-        it('should give push a field`s name into the errorFields array when it has errors in its data', async() => {
+        it('should push a field`s name into the errorFields array when it has errors in its data', async() => {
             const wrapper = factoryShallowMount();
 
-            const fieldData = {
-                field: 'firstName',
-                errors: true,
-            };
-
-            wrapper.vm.updateFieldData(fieldData);
+            wrapper.vm.manageErrorStatus('FirstName', ['required']);
 
             await wrapper.vm.$nextTick();
 
-            expect(wrapper.vm.errorFields.indexOf('firstName')).toBe(0);
-        });
-
-        it('should show `required` text if the field`s data defines it as required', async() => {
-            const wrapper = factoryShallowMount();
-            await wrapper.vm.$nextTick();
-
-            const allInputs = wrapper.findAll('bformgroup-stub');
-            const firstNameLabel = allInputs.at(0);
-
-            expect(firstNameLabel.attributes('label')).toContain('required');
+            expect(wrapper.vm.errorFields.indexOf('FirstName')).toBe(0);
         });
 
         it('should show translated labels if they exist', async() => {
@@ -267,8 +260,8 @@ describe('VsForm', () => {
             });
             await wrapper.vm.$nextTick();
 
-            const submitEl = wrapper.find('input[type="submit"]');
-            expect(submitEl.attributes('value')).toBe('Submit (de)');
+            const submitEl = wrapper.find('vsbutton-stub[type="submit"]');
+            expect(submitEl.text()).toBe('Submit (de)');
         });
     });
 });
