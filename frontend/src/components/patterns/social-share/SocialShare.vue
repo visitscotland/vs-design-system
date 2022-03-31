@@ -48,6 +48,7 @@
                         tabindex="0"
                         readonly
                         ref="hiddenAnchor"
+                        @keydown.tab="tabBackFromHidden($event)"
                     >
                 </label>
 
@@ -60,6 +61,8 @@
                 variant="transparent"
                 @click.native="onClose"
                 aria-label="Close"
+                @keydown.tab.native="tabFromClose($event)"
+                ref="closeButton"
             >
                 <span class="sr-only">
                     {{ closeAltText }}
@@ -222,6 +225,28 @@ export default {
                     ;(ref.$el || ref).focus();
                 });
             });
+        },
+        /**
+         * When tabbing forward from the close button, trap focus within the modal
+         * and loop back to the start
+         */
+        tabFromClose(event) {
+            // Only loop round if tabbing forwards
+            if (!event.shiftKey) {
+                event.preventDefault();
+                this.focusRef(this.$refs.hiddenAnchor);
+            }
+        },
+        /**
+         * When tabbing backwards from the hidden anchor, trap focus within the modal
+         * and loop back to the close button
+         */
+        tabBackFromHidden(event) {
+            // Only loop round if tabbing backwards
+            if (event.shiftKey) {
+                event.preventDefault();
+                this.focusRef(this.$refs.closeButton);
+            }
         },
     },
     /**
