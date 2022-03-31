@@ -73,7 +73,7 @@ import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWr
 import VsIcon from '@components/elements/icon/';
 import {
     VsContainer, VsRow, VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 import cookieMixin from '../../../mixins/cookieMixin';
 
 /**
@@ -155,7 +155,7 @@ export default {
 
     &__text.vs-rich-text-wrapper--variant-normal,
     &__cta-link{
-        font-size: $body-font-size;
+        font-size: $font-size-4;
         line-height: $line-height-s;
     }
 

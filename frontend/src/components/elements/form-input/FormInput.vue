@@ -1,46 +1,55 @@
 <template>
-    <div data-test="vs-input">
+    <div
+        data-test="vs-form-input"
+    >
+        <p
+            class="hint-text"
+            :id="`hint-${fieldName}`"
+            v-if="hintText"
+        >
+            {{ hintText }}
+        </p>
+        <template
+            v-if="$v.inputVal.$anyError || invalid"
+        >
+            <span
+                v-for="error in errorsList"
+                :key="error"
+                class="error"
+                :id="`error-${fieldName}`"
+            >
+                {{ validationMessages[error] || genericValidation[error] }}
+            </span>
+        </template>
         <BFormInput
             :type="type"
-            class="vs-input"
+            class="vs-form-input"
             v-model="inputVal"
-            :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
+            :class="errorClass"
             @blur="emitStatus"
             :id="fieldName"
             :name="fieldName"
             :required="isRequired"
             :size="size"
             :v="inputVal"
+            :aria-invalid="$v.inputVal.$anyError || invalid"
+            :aria-describedby="$v.inputVal.$anyError || invalid ? `error-${fieldName}` : ''"
         />
-        <span
-            v-for="error in errors"
-            :key="error"
-            class="error"
-        >
-            <template
-                v-if="$v.inputVal.$anyError || invalid"
-            >
-                {{ validationMessages[error] }}
-            </template>
-        </span>
     </div>
 </template>
 
 <script>
-// eslint-disable-next-line
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
-// eslint-disable-next-line
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators';
 import { BFormInput } from 'bootstrap-vue';
+import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 
 Vue.use(Vuelidate);
 
 /**
- * https://bootstrap-vue.js.org/docs/components/form-input
- * https://getbootstrap.com/docs/4.3/components/forms/
+ * An input field for text, email, number etc
  *
- * @displayName Form Input
+ * @displayName Input
  */
 
 export default {
@@ -50,10 +59,13 @@ export default {
     components: {
         BFormInput,
     },
+    mixins: [
+        validateFormElementMixin,
+    ],
     props: {
         /**
          * Set the form field size.
-         * `sm, md, lg`
+         * `sm|md|lg`
          */
         size: {
             default: 'md',
@@ -124,76 +136,17 @@ export default {
                 };
             },
         },
-    },
-    data() {
-        return {
-            inputVal: this.value,
-        };
+        /**
+         * Content for hint text
+         */
+        hintText: {
+            type: String,
+            default: '',
+        },
     },
     computed: {
-        /**
-         * set rules object for validation
-         * needed because `required`, `email` and other values
-         * can't be key value pairs
-         */
-        rules() {
-            let rulesObj = {
-            };
-
-            // eslint-disable-next-line
-            for (const [key, value] of Object.entries(this.validationRules)) {
-                // rules have to be either a function defined by
-                // https://vuelidate-next.netlify.app/validators.html
-                if (key === 'required') {
-                    rulesObj = {
-                        ...rulesObj,
-                        required,
-                    };
-                } else if (key === 'email') {
-                    rulesObj = {
-                        ...rulesObj,
-                        email,
-                    };
-                } else if (key === 'minLength') {
-                    rulesObj = {
-                        ...rulesObj,
-                        minLength: minLength(value),
-                    };
-                } else if (key === 'maxLength') {
-                    rulesObj = {
-                        ...rulesObj,
-                        maxLength: maxLength(value),
-                    };
-                }
-            }
-
-            if (typeof rulesObj !== 'undefined') {
-                return {
-                    inputVal: rulesObj,
-                };
-            }
-
-            return {
-            };
-        },
-        isRequired() {
-            if (typeof required !== 'undefined' && 'required' in this.validationRules) {
-                return true;
-            }
-
-            return false;
-        },
-        errors() {
-            const errorsArray = [];
-            const rulesKeys = Object.keys(this.rules.inputVal);
-
-            rulesKeys.forEach((key) => {
-                if (!this.$v.inputVal[key]) {
-                    errorsArray.push(key);
-                }
-            });
-
-            return errorsArray;
+        errorClass() {
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-input--error' : '';
         },
     },
     watch: {
@@ -214,29 +167,6 @@ export default {
             this.inputVal = newValue;
         },
     },
-    methods: {
-        /**
-         * manually run validation and emit to parent
-         */
-        manualValidate() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$invalid,
-            });
-        },
-        /**
-         * Emit status of input - for automatic updating
-         */
-        emitStatus() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$anyError,
-            });
-            this.$v.$touch();
-        },
-    },
     validations() {
         return this.rules;
     },
@@ -245,24 +175,67 @@ export default {
 
 <style lang="scss">
 .vs-form-input {
-    &.form-control {
-        border-color: $color-gray-tint-1;
-        transition: box-shadow $duration-base;
+    border: $color-gray-shade-3 1px solid;
+    margin-top: $spacer-2;
+    // transition: box-shadow $duration-base;
 
-        &:focus {
-        border-color: $color-gray-tint-1;
-        box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-        }
+    &.form-control-md {
+        height: 50px;
+    }
 
-        &[type="search"] {
+    &:focus {
+        // border-color: $color-gray-tint-1;
+        // box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5);
+        border: $color-pink 4px solid;
+        outline: none;
+        box-shadow: none;
+    }
+
+    &--error {
+        border: 2px solid $color-theme-danger;
+    }
+
+    &[type="search"] {
         @extend %reset-clear;
-        }
     }
 }
 
-.hasError {
-    border: red 3px solid !important;
-}
+//     &.form-control {
+//         border-color: $color-gray-tint-1;
+//         transition: box-shadow $duration-base;
+
+//         &:focus {
+//         border-color: $color-gray-tint-1;
+//         box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
+//         }
+
+//         &[type="search"] {
+//             @extend %reset-clear;
+//         }
+//     }
+
+//     &::placeholder {
+//             color: $color-secondary-gray;
+//         }
+
+//     &:focus {
+//         border-color: $color-gray-tint-1;
+//         box-shadow: $shadow-form-input;
+//     }
+
+//     &[type='search'] {
+//         @extend %reset-clear;
+//     }
+
+//     &.is-valid{
+//         border-color: $color-theme-success!important;
+//     }
+
+//     &.is-invalid{
+//         border-color: $color-theme-danger!important;
+//     }
+// }
+
 </style>
 
 <docs>
@@ -270,7 +243,11 @@ export default {
 <BsWrapper>
     <label for="small">Small</label>
     <VsFormInput
-        id="small" placeholder="Enter your name" class="mb-5" size="sm" field-name="input1"
+        id="small"
+        placeholder="Enter your name"
+        class="mb-5"
+        size="sm"
+        field-name="input1"
     />
     <label for="medium">Medium (default)</label>
     <VsFormInput
@@ -280,18 +257,13 @@ export default {
     <VsFormInput
         id="large" placeholder="Enter your name" class="mb-5" size="lg" field-name="input3"
     />
-
-    <label for="input-none">No State</label>
-    <VsFormInput
-        id="input-none" :state="null" placeholder="No validation" class="mb-5" field-name="input4"
-    />
-    <label for="input-valid">Valid state</label>
-    <VsFormInput
-        id="input-valid" :state="true" placeholder="Valid" class="mb-5" field-name="input5"
-    />
     <label for="input-invalid">Invalid state</label>
     <VsFormInput
-        id="input-invalid" :state="false" placeholder="Invalid" class="mb-5" field-name="input5"
+        id="input-invalid"
+        invalid="true"
+        placeholder="Invalid"
+        class="mb-5"
+        field-name="input5"
     />
 </BsWrapper>
 ```
