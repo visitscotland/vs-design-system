@@ -247,6 +247,8 @@ export default {
 </script>
 
 <style lang="scss">
+@include forms-common;
+
 .vs-input {
     border: $color-gray-shade-3 1px solid;
     margin-top: $spacer-2;
@@ -262,7 +264,7 @@ export default {
     }
 
     &--error {
-        border: 2px solid $color-theme-danger;
+        @include error-state;
     }
 
     &--site-search.form-control {
@@ -313,6 +315,7 @@ export default {
         class="mb-5"
         size="md"
         field-name="input1"
+        hint-text="This is some hint text"
     />
     <label for="large">Large</label>
     <VsFormInput
