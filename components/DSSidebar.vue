@@ -2,11 +2,8 @@
     <div class="sidebar">
         <nav>
             <ul>
-                <li
-                    v-for="section of sections"
-                    :key="section.slug"
-                >
-                    <NuxtLink :to="section.slug">
+                <li v-for="section of sections" :key="section.path">
+                    <NuxtLink :to="section.path">
                         {{ section.title }}
                     </NuxtLink>
                 </li>
@@ -17,29 +14,34 @@
 <script>
 
 export default {
-    name: 'DSSidebar',
-    async fetch() {
-        this.sections = await this.$content('sections').fetch();
-    },
-    data() {
-        return {
-            sections: [],
-        };
-    },
-    status: 'prototype',
+  name: 'DSSidebar',
+  async asyncData({ $content, params }) {
+    const sections = await $content({deep: true})
+      .only(['title', 'description', 'img', 'slug', 'author'])
+      .sortBy('createdAt', 'desc')
+      .fetch()
+
+      return {
+        sections
+      }
+  },
+  data() {
+    return {
+      sections: []
+    }
+  },
 };
 </script>
 <style scoped lang="scss">
 .sidebar {
-  width:25%;
-  padding-right: 64px;
-  height: 100vh;
+    width: 25%;
+    padding-right: 64px;
+    height: 100vh;
 
-  ul li a {
-    font-size: 24px;
-    text-decoration: none;
-    padding: 4px 16px;
-  }
-
+    ul li a {
+        font-size: 24px;
+        text-decoration: none;
+        padding: 4px 16px;
+    }
 }
 </style>

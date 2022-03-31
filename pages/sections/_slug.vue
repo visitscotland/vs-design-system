@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>{{ section.title }}</h2>
-        <NuxtContent :document="section" />
+        <nuxt-content :document="section" />
     </div>
 </template>
 

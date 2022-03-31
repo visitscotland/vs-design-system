@@ -10,11 +10,15 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'designsystem'
-    label: 'Section'
+  - name: pages
+    label: Pages
+    label_singular: 'Page'
     folder: 'content/sections'
     format: 'frontmatter'
     create: true
+    nested:
+      depth: 100 # max depth to show in the collection tree
+      summary: '{{title}}' # optional summary for a tree node, defaults to the inferred title field
     slug: '{{title}}'
     editor:
       preview: false
@@ -22,4 +26,6 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+    meta: { path: { widget: string, label: 'Path', index_file: 'index' } }

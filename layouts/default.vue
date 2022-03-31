@@ -1,12 +1,8 @@
 <template>
 <div>
     <DSHeader/>
-  <div class="container">
-    <DSSidebar/>
-    <div class="content">
+    <DSSidebar :links=sections />
       <Nuxt />
-    </div>
-  </div>
 </div>
 </template>
 <style lang="scss">
@@ -42,7 +38,21 @@ h1, h2 {
 }
 </style>
 <script>
-
 export default {
+  async asyncData({ $content, params }) {
+    const sections = await $content({deep: true})
+      .only(['title', 'description', 'img', 'slug', 'author'])
+      .sortBy('createdAt', 'desc')
+      .fetch()
+
+    return {
+      sections
+    }
+  },
+  data() {
+    return {
+      sections: []
+    }
+  },
 };
 </script>
