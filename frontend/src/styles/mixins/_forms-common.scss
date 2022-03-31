@@ -1,0 +1,21 @@
+@mixin forms-common {
+    label {
+        font-weight: $font-weight-semi-bold;
+        margin-bottom: 0;
+    }
+
+    .error {
+        font-size: $body-font-size;
+        color: $color-theme-danger;
+    }
+
+    .hint-text {
+        font-size: $body-font-size;
+        color: $color-gray-shade-1;
+        margin-bottom: 0;
+    }
+}
+
+@mixin error-state {
+    border: 2px solid $color-theme-danger;
+}

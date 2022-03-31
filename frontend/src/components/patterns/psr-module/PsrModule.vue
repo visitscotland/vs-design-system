@@ -74,8 +74,6 @@ export default {
 </script>
 
 <style lang="scss">
-    @import '../../../styles/forms/_text-input.scss';
-
     .vs-psr-module {
         width: 100%;
         background: $color-gray-shade-5;
@@ -114,6 +112,12 @@ export default {
         // id needed for specificity
         #inline-search-container {
             font-family: $font-family-base;
+
+            input[type='text'],
+            input[type='search'],
+            input[type='email'] {
+                height: 50px;
+            }
 
             .Select--single > .Select-control .Select-value {
                 position: relative;
