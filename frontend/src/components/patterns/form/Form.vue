@@ -505,8 +505,19 @@ export default {
             border: 2px solid $color-theme-primary;
         }
 
-        .mktoAsterix {
-            display: none;
+        .error {
+            font-size: $font-size-body;
+            color: $color-theme-danger;
+        }
+
+        .hint-text {
+            font-size: $font-size-body;
+            color: $color-gray-shade-1;
+            margin-bottom: 0;
+        }
+
+        .form-group {
+            margin-bottom: $spacer-6;
         }
     }
 </style>
