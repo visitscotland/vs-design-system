@@ -16,6 +16,16 @@
     }
 }
 
-@mixin error-state {
+@mixin form-element-styles {
+    border: $color-gray-shade-3 1px solid;
+}
+
+@mixin form-error-state {
     border: 2px solid $color-theme-danger;
+}
+
+@mixin form-focus-state {
+    border: $color-pink 4px solid;
+    outline: none;
+    box-shadow: none;
 }

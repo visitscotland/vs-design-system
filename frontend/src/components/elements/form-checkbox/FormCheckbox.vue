@@ -226,7 +226,7 @@ export default {
                 outline: none;
 
                 &:after {
-                    border: $color-pink 4px solid;
+                    @include form-focus-state
                 }
             }
 
@@ -254,7 +254,7 @@ export default {
                     position: absolute;
                     width: 100%;
                     height: 100%;
-                    @include error-state;
+                    @include form-error-state;
                 }
             }
         }
