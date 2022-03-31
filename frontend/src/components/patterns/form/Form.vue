@@ -30,6 +30,7 @@
                         :generic-validation="getMessagingData('validation', language)"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
+                        :hint-text="getTranslatedHint(field.name, index)"
                     />
                 </template>
 
@@ -44,6 +45,7 @@
                         :generic-validation="getMessagingData('validation', language)"
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
+                        :hint-text="getTranslatedHint(field.name, index)"
                     />
                 </template>
 
@@ -54,7 +56,7 @@
                         :name="field.name"
                         :value="field.value"
                         :id="field.name"
-                        :label="field.label"
+                        :label="field.descriptor"
                         @status-update="updateFieldData"
                         :field-name="field.name"
                         :validation-rules="field.validation || {}"
@@ -63,28 +65,32 @@
                         :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                         :trigger-validate="triggerValidate"
                         :required-text="getMessagingData('required', language)"
+                        :hint-text="getTranslatedHint(field.name, index)"
                     />
                 </template>
             </BFormGroup>
-
-            <p v-if="showErrorMessage && errorFields.length > 0">
-                <slot name="invalid" />
-            </p>
 
             <VsRecaptcha
                 @verified="onRecaptchaVerify"
                 :site-key="recaptchaKey"
                 :invalid="!recaptchaVerified && showErrorMessage"
                 :language="language"
+                :error-msg="getMessagingData('recaptchaError', language)"
             />
 
-            <input
+            <p v-if="errorFields.length > 0">
+                <slot name="invalid" />
+            </p>
+
+            <VsButton
+                variant="primary"
                 type="submit"
-                :value="getTranslatedSubmitText"
-                class="formSubmit"
-                @click.prevent="preSubmit"
-                @keyup.prevent="preSubmit"
+                class="vs-form__submit mt-9"
+                @click.native="preSubmit"
+                @keyup.native="preSubmit"
             >
+                {{ getTranslatedSubmitText }}
+            </VsButton>
         </form>
 
         <p v-if="submitting">
@@ -107,6 +113,7 @@ import VsFormInput from '../../elements/form-input/FormInput';
 import VsFormSelect from '../../elements/form-select/FormSelect';
 import VsFormCheckbox from '../../elements/form-checkbox/FormCheckbox';
 import VsRecaptcha from '../../elements/recaptcha/Recaptcha';
+import VsButton from '../../elements/button/Button';
 
 const axios = require('axios');
 
@@ -128,6 +135,7 @@ export default {
         VsFormCheckbox,
         BFormGroup,
         VsRecaptcha,
+        VsButton,
     },
     props: {
         /**
@@ -282,11 +290,14 @@ export default {
                 labelText = this.formData.fields[index].label;
             }
 
-            if (!this.isUndefined(this.formData.fields[index].validation)
-                && !this.isUndefined(this.formData.fields[index].validation.required)
-                && this.formData.fields[index].validation.required) {
-                labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
-            }
+            // To be added if 'required' needs to be added to label
+            // I will check this and remove if not needed - JH
+
+            // if (!this.isUndefined(this.formData.fields[index].validation)
+            //     && !this.isUndefined(this.formData.fields[index].validation.required)
+            //     && this.formData.fields[index].validation.required) {
+            //     labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
+            // }
 
             return labelText;
         },
@@ -298,8 +309,10 @@ export default {
 
             let validationObj;
 
-            if (this.language !== 'en'
-                && !this.isUndefined(languageObj[fieldName])
+            if (this.language === 'en'
+                && !this.isUndefined(this.formData.fields[index].validationMessages)) {
+                validationObj = this.formData.fields[index].validationMessages;
+            } else if (!this.isUndefined(languageObj[fieldName])
                 && !this.isUndefined(languageObj[fieldName].validationMessages)) {
                 validationObj = languageObj[fieldName].validationMessages;
             } else if (this.language === 'en') {
@@ -325,6 +338,20 @@ export default {
             }
 
             return optionsArr;
+        },
+        getTranslatedHint(fieldName, index) {
+            const languageObj = this.getLanguageObj();
+            let hintText = '';
+
+            if (this.language === 'en') {
+                hintText = this.formData.fields[index].hint;
+            } else if (typeof languageObj.submit !== 'undefined') {
+                hintText = languageObj.hint;
+            } else {
+                hintText = '';
+            }
+
+            return hintText;
         },
         /**
          * check messaging data exists and then pass value back
@@ -391,9 +418,9 @@ export default {
          * whether or not an element should have a label defined (for Bootstrap Vue)
          */
         needsLabel(field) {
-            if (field.element === 'checkbox'
-                || field.element === 'radio'
-                || field.element === 'submit') {
+            if (field.element === 'radio'
+                || field.element === 'submit'
+                || field.element === 'checkbox-group') {
                 return false;
             }
 
@@ -472,12 +499,24 @@ export default {
 
 <style lang='scss'>
     .vs-form {
-        input {
-            border: 2px solid $color-theme-primary;
+        label {
+            font-weight: $font-weight-semi-bold;
+            margin-bottom: 0;
         }
 
-        .mktoAsterix {
-            display: none;
+        .error {
+            font-size: $body-font-size;
+            color: $color-theme-danger;
+        }
+
+        .hint-text {
+            font-size: $body-font-size;
+            color: $color-gray-shade-1;
+            margin-bottom: 0;
+        }
+
+        .form-group {
+            margin-bottom: $spacer-6;
         }
     }
 </style>
@@ -485,30 +524,36 @@ export default {
 <docs>
     ```jsx
         // https://static.visitscotland.com/forms/vs-3331/simpleForm.json
-        <VsForm
-            dataUrl="http://172.28.74.130:5555/simpleForm.json"
-            messagingUrl="http://172.28.74.130:5555/messaging.json"
-            recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-            marketo-instance="//app-lon10.marketo.com"
-            munchkin-id="830-QYE-256"
-            language="en"
-            :is-prod="false"
-        >
-            <template slot="invalid">
-                You have invalid fields - please check the form.
-            </template>
+        <VsContainer>
+            <VsRow>
+                <VsCol>
+                    <VsForm
+                        dataUrl="http://172.28.74.120:5555/simpleForm.json"
+                        messagingUrl="http://172.28.74.120:5555/messaging.json"
+                        recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
+                        marketo-instance="//app-lon10.marketo.com"
+                        munchkin-id="830-QYE-256"
+                        language="en"
+                        :is-prod="false"
+                    >
+                        <template slot="invalid">
+                            You have invalid fields - please check the form.
+                        </template>
 
-            <template slot="submitError">
-                We're sorry there's been a problem, please try again later.
-            </template>
+                        <template slot="submitError">
+                            We're sorry there's been a problem, please try again later.
+                        </template>
 
-            <template slot="submitting">
-                We're just submitting your form
-            </template>
+                        <template slot="submitting">
+                            We're just submitting your form
+                        </template>
 
-            <template slot="submitted">
-                Thank you for your details, your form has been submitted
-            </template>
-        </VsForm>
+                        <template slot="submitted">
+                            Thank you for your details, your form has been submitted
+                        </template>
+                    </VsForm>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
     ```
 </docs>
