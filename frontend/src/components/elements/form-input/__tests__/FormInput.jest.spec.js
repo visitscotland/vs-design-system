@@ -114,21 +114,14 @@ describe('VsFormInput', () => {
     });
 
     describe(':methods', () => {
-        it('clears search form value when clear button clicked', async() => {
-            wrapper.setProps({
-                clearButtonText: 'clear text',
-            });
-
+        it('clears the `inputVal` data when the `clearInput` method is triggered', async() => {
             wrapper.setData({
                 inputVal: 'test',
             });
-            await wrapper.vm.$nextTick();
-
-            const clearBtn = wrapper.find('[data-test="input-clear-button"]');
-
-            clearBtn.trigger('click');
 
             await wrapper.vm.$nextTick();
+
+            wrapper.vm.clearInput();
 
             expect(wrapper.vm.inputVal).toBe('');
         });
