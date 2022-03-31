@@ -8,6 +8,7 @@
             class="vs-address__map-marker mr-2"
         />
         <address class="vs-address__address-box">
+            <!-- @slot Default slot for address items -->
             <slot />
         </address>
     </div>

@@ -198,7 +198,7 @@ export default {
 
     &__image-caption,
     &__image-credit {
-        font-size: $small-font-size;
+        font-size: $font-size-3;
         line-height: $line-height-standard;
     }
 
