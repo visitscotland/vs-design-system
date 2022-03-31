@@ -20,7 +20,7 @@
         <BFormCheckbox
             v-if="fieldName"
             v-model="inputVal"
-            class="vs-form-checkbox mr-4"
+            class="vs-checkbox mr-4"
             :class="errorClass"
             :size="size"
             :name="fieldName"
@@ -28,12 +28,12 @@
             :value="value"
             :unchecked_value="`not_${value}`"
             v-bind="$attrs"
-            data-test="vs-form-checkbox"
+            data-test="vs-checkbox"
             @change="emitStatus"
             :required="isRequired"
             :aria-invalid="$v.inputVal.$anyError || invalid"
         >
-            <span class="vs-form-checkbox__label">{{ label }}</span>
+            <span class="vs-checkbox__label">{{ label }}</span>
         </BFormCheckbox>
     </div>
 </template>
@@ -160,7 +160,7 @@ export default {
     computed: {
         errorClass() {
             return (this.errorsList.length > 0 && this.$v.inputVal.$anyDirty) || this.invalid
-                ? 'vs-form-checkbox--error' : '';
+                ? 'vs-checkbox--error' : '';
         },
     },
     watch: {
@@ -192,7 +192,7 @@ export default {
 <style lang="scss">
     @include forms-common;
 
-    .vs-form-checkbox {
+    .vs-checkbox {
         display: flex;
         align-items: center;
 

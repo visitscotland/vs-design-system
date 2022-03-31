@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-form-select">
+    <div class="vs-select">
         <p
             class="hint-text"
             :id="`hint-${fieldName}`"
@@ -17,7 +17,7 @@
                 {{ validationMessages[error] || genericValidation[error] }}
             </template>
         </span>
-        <div class="vs-form-select__container  mt-2">
+        <div class="vs-select__container  mt-2">
             <BFormSelect
                 v-model="inputVal"
                 :size="size"
@@ -27,14 +27,14 @@
                 :id="fieldName"
                 @change="emitStatus"
                 @blur="emitStatus"
-                data-test="vs-form-select"
-                class="vs-form-select__element"
+                data-test="vs-select"
+                class="vs-select__element"
                 :required="isRequired"
                 :aria-invalid="$v.inputVal.$anyError || invalid"
                 :aria-describedby="`hint-${fieldName}`"
                 :class="errorClass"
             />
-            <span class="vs-form-select__focus" />
+            <span class="vs-select__focus" />
         </div>
     </div>
 </template>
@@ -153,7 +153,7 @@ export default {
     },
     computed: {
         errorClass() {
-            return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-select__element--error' : '';
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-select__element--error' : '';
         },
     },
     watch: {
@@ -183,7 +183,7 @@ export default {
 <style lang="scss">
     @include forms-common;
 
-    .vs-form-select {
+    .vs-select {
         &__container {
             position: relative;
             width: 100%;
@@ -233,7 +233,7 @@ export default {
                 outline: none;
                 box-shadow: none;
 
-                & + .vs-form-select__focus {
+                & + .vs-select__focus {
                     position: absolute;
                     top: -1px;
                     left: -1px;
