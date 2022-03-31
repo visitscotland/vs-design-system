@@ -24,13 +24,13 @@ beforeEach(() => {
 
 describe('VsFormInput', () => {
     it('should render a bform-input-stub', () => {
-        expect(wrapper.attributes('data-test')).toBe('vs-input');
+        expect(wrapper.attributes('data-test')).toBe('vs-form-input');
     });
 
     describe(':props', () => {
         it('size - should be `md` by default', () => {
             const modifiedWrapper = factoryMount();
-            expect(modifiedWrapper.find('.vs-input').classes()).toContain('form-control-md');
+            expect(modifiedWrapper.find('.vs-form-input').classes()).toContain('form-control-md');
         });
 
         it('size - should accept and render a `size` property', () => {
@@ -39,7 +39,7 @@ describe('VsFormInput', () => {
                 size: testSize,
             });
 
-            expect(modifiedWrapper.find('.vs-input').classes()).toContain(`form-control-${testSize}`);
+            expect(modifiedWrapper.find('.vs-form-input').classes()).toContain(`form-control-${testSize}`);
         });
 
         it('value - should accept and render a `value` property', async() => {
@@ -60,11 +60,11 @@ describe('VsFormInput', () => {
 
             await wrapper.vm.$nextTick();
 
-            expect(wrapper.find('.vs-input').attributes('name')).toBe('testValue');
+            expect(wrapper.find('.vs-form-input').attributes('name')).toBe('testValue');
         });
 
         it('value - should accept and render a `type` property', async() => {
-            expect(wrapper.find('.vs-input').attributes('type')).toBe('text');
+            expect(wrapper.find('.vs-form-input').attributes('type')).toBe('text');
         });
     });
 
@@ -78,7 +78,7 @@ describe('VsFormInput', () => {
 
             await wrapper.vm.$nextTick();
 
-            expect(wrapper.find('.vs-input').attributes('required')).toBe('true');
+            expect(wrapper.find('.vs-form-input').attributes('required')).toBe('true');
         });
 
         it('should display a validation message if validation fails', async() => {
