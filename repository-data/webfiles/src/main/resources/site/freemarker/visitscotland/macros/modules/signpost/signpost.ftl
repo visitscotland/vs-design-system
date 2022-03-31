@@ -24,7 +24,7 @@
                     offset-lg="1"
                     class="text-center text-sm-left col-xxl-4"
                 >   
-                    <vs-rich-text-wrapper variant="lead" class="mb-9 mb-lg-10">
+                    <vs-rich-text-wrapper variant="lead" class="mb-9 mb-lg-10 font-weight-normal">
                         <p>
                             <@hst.html hippohtml=module.copy/>
                         </p>
