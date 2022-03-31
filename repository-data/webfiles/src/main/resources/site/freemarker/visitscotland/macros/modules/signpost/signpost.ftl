@@ -18,7 +18,8 @@
             <vs-row>
                 <vs-col
                     cols="12"
-                    sm="6"
+                    sm="7"
+                    md="6"
                     lg="5"
                     offset-lg="1"
                     class="text-center text-sm-left col-xxl-4"
@@ -40,9 +41,8 @@
                     cols="10"
                     offset="1"
                     sm="5"
-                    offset-sm="1"
+                    offset-sm="0"
                     md="6"
-                    offset-md="0"
                     lg="5"
                     xl="5"
                     class="text-center text-lg-left col-xxl-5 offset-xxl-1"
