@@ -313,7 +313,6 @@ export default {
         class="mb-5"
         size="md"
         field-name="input1"
-        hint-text="This is some hint text"
     />
     <label for="large">Large</label>
     <VsFormInput
