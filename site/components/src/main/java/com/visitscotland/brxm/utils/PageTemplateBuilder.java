@@ -28,6 +28,8 @@ public class PageTemplateBuilder {
     //Static Constant
     static final String INTRO_THEME = "introTheme";
     static final String PAGE_ITEMS = "pageItems";
+    static final String SEARCH_RESULTS = "searchResultsPage";
+
 
     static final String[] alignment = {"right", "left"};
 
@@ -51,6 +53,7 @@ public class PageTemplateBuilder {
     private final CannedSearchFactory cannedSearchFactory;
     private final PreviewModeFactory previewFactory;
     private final MarketoFormFactory marketoFormFactory;
+
 
     @Autowired
     public PageTemplateBuilder(DocumentUtilsService documentUtils, MegalinkFactory linksFactory, ICentreFactory iCentre,
@@ -114,6 +117,10 @@ public class PageTemplateBuilder {
         }
 
         setIntroTheme(request, page.modules);
+        //TODO try to move this to GeneralContentComponent
+        if (getDocument(request).getPath().contains("/site-search-results")){
+            request.setAttribute(SEARCH_RESULTS, true);
+        }
 
         request.setAttribute(PAGE_ITEMS, page.modules);
     }

@@ -1,49 +1,58 @@
 <template>
-    <div
-        :class="$v.inputVal.$anyError || invalid ? 'hasError' : ''"
-    >
-        <BFormSelect
-            v-model="inputVal"
-            :size="size"
-            v-bind="$attrs"
-            :options="countries ? countryList : options"
-            :name="fieldName"
-            :id="fieldName"
-            @change="emitStatus"
-            @blur="emitStatus"
-            data-test="vs-form-select"
-            class="vs-form-select"
-            :required="isRequired"
-        />
+    <div class="vs-form-select">
+        <p
+            class="hint-text"
+            :id="`hint-${fieldName}`"
+        >
+            {{ hintText }}
+        </p>
         <span
-            v-for="error in errors"
+            v-for="error in errorsList"
             :key="error"
             class="error"
         >
             <template
                 v-if="$v.inputVal.$anyError || invalid"
             >
-                {{ validationMessages[error] }}
+                {{ validationMessages[error] || genericValidation[error] }}
             </template>
         </span>
+        <div class="vs-form-select__container">
+            <BFormSelect
+                v-model="inputVal"
+                :size="size"
+                v-bind="$attrs"
+                :options="options"
+                :name="fieldName"
+                :id="fieldName"
+                @change="emitStatus"
+                @blur="emitStatus"
+                data-test="vs-form-select"
+                class="vs-form-select__element"
+                :required="isRequired"
+                :aria-invalid="$v.inputVal.$anyError || invalid"
+                :aria-describedby="`hint-${fieldName}`"
+                :class="errorClass"
+            />
+            <span class="vs-form-select__focus" />
+        </div>
     </div>
 </template>
 
 <script>
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
-// eslint-disable-next-line
-import { required } from 'vuelidate/lib/validators';
 import { BFormSelect } from 'bootstrap-vue';
+import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 
 Vue.use(Vuelidate);
 
 const axios = require('axios');
 
 /**
- * A selecte element to be used in forms
+ * A select element
  *
- * @displayName Form Select
+ * @displayName Select
  */
 
 export default {
@@ -53,6 +62,9 @@ export default {
     components: {
         BFormSelect,
     },
+    mixins: [
+        validateFormElementMixin,
+    ],
     props: {
         /**
          * Set the form field size.
@@ -124,12 +136,29 @@ export default {
             type: String,
             default: '',
         },
+        /*
+         * Content for hint text
+         */
+        hintText: {
+            type: String,
+            default: '',
+        },
         /**
          * whether the options should be a countries list
          */
         countries: {
             type: Boolean,
             default: false,
+        },
+        /*
+         * Fallback translated validation
+         */
+        genericValidation: {
+            type: Object,
+            default() {
+                return {
+                };
+            },
         },
     },
     data() {
@@ -140,54 +169,8 @@ export default {
         };
     },
     computed: {
-        /**
-         * set rules object for validation
-         * needed because `required`, `email` and other values
-         * can't be key value pairs
-         */
-        rules() {
-            let rulesObj = {
-            };
-
-            // eslint-disable-next-line
-            for (const [key, value] of Object.entries(this.validationRules)) {
-                if (key === 'required') {
-                    rulesObj = {
-                        ...rulesObj,
-                        required,
-                    };
-                } else {
-                    rulesObj[key] = value;
-                }
-            }
-
-            if (typeof rulesObj !== 'undefined') {
-                return {
-                    inputVal: rulesObj,
-                };
-            }
-
-            return {
-            };
-        },
-        isRequired() {
-            if (typeof required !== 'undefined' && 'required' in this.validationRules) {
-                return true;
-            }
-
-            return false;
-        },
-        errors() {
-            const errorsArray = [];
-            const rulesKeys = Object.keys(this.rules.inputVal);
-
-            rulesKeys.forEach((key) => {
-                if (!this.$v.inputVal[key]) {
-                    errorsArray.push(key);
-                }
-            });
-
-            return errorsArray;
+        errorClass() {
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-select__element--error' : '';
         },
     },
     watch: {
@@ -250,21 +233,68 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-form-input {
-  &.form-control {
-    border-color: $color-gray-tint-1;
-    transition: box-shadow $duration-base;
+    .vs-form-select {
+        &__container {
+            position: relative;
+            width: 100%;
+            cursor: pointer;
+            height: 50px;
+            border-radius: 0;
+            margin-top: $spacer-2;
 
-    &:focus {
-      border-color: $color-gray-tint-1;
-      box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-    }
+            &::after {
+                content: "";
+                width: 1.5rem;
+                height: 1.5rem;
+                border: 1px solid $color-black;
+                border-radius: 1000px;
+                background-image: url('~@/assets/svg/icons/chevron.svg');
+                display: block;
+                position: absolute;
+                top: calc(50% - #{$spacer-3});
+                right: $spacer-4;
+                background-repeat: no-repeat;
+                background-size: 60% 60%;
+                background-position: center center;
+                transform: rotate(180deg);
+                pointer-events: none;
+            }
+        }
 
-    &[type="search"] {
-      @extend %reset-clear;
+        &__element {
+            // A reset of styles, including removing the default dropdown arrow
+            appearance: none;
+            background-color: transparent;
+            border: none;
+            padding: 0 $spacer-4 0;
+            margin: 0;
+            width: 100%;
+            font-family: inherit;
+            font-size: inherit;
+            cursor: inherit;
+            line-height: inherit;
+            height: 50px;
+            border: $color-gray-shade-3 1px solid;
+
+            &--error {
+                border: 2px solid $color-theme-danger;
+            }
+
+            &:focus {
+                outline: none;
+                box-shadow: none;
+
+                & + .vs-form-select__focus {
+                    position: absolute;
+                    top: -1px;
+                    left: -1px;
+                    right: -1px;
+                    bottom: -1px;
+                    border: $color-pink 4px solid;
+                }
+            }
+        }
     }
-  }
-}
 </style>
 
 <docs>
