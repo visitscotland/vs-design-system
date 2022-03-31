@@ -17,7 +17,7 @@
                 {{ validationMessages[error] || genericValidation[error] }}
             </template>
         </span>
-        <div class="vs-form-select__container">
+        <div class="vs-form-select__container  mt-2">
             <BFormSelect
                 v-model="inputVal"
                 :size="size"
@@ -190,7 +190,6 @@ export default {
             cursor: pointer;
             height: 50px;
             border-radius: 0;
-            margin-top: $spacer-2;
 
             &::after {
                 content: "";
@@ -224,10 +223,10 @@ export default {
             cursor: inherit;
             line-height: inherit;
             height: 50px;
-            border: $color-gray-shade-3 1px solid;
+            @include form-element-styles;
 
             &--error {
-                @include error-state;
+                @include form-error-state;
             }
 
             &:focus {
@@ -240,7 +239,7 @@ export default {
                     left: -1px;
                     right: -1px;
                     bottom: -1px;
-                    border: $color-pink 4px solid;
+                    @include form-focus-state;
                 }
             }
         }
