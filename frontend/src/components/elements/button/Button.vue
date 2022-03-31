@@ -63,7 +63,7 @@ export default {
         },
         /**
          * Style variation to give additional meaning
-         * `primary, secondary, transparent, dark, light`.
+         * `primary|secondary|transparent|dark|light`.
          */
         variant: {
             type: String,
@@ -83,7 +83,7 @@ export default {
         },
         /**
          * Size of the button
-         * `sm, md, lg`.
+         * `sm|md|lg`.
          */
         size: {
             type: String,
@@ -114,7 +114,7 @@ export default {
         },
         /**
          * The icon orientation
-         * `up, down, left, right`.
+         * `up|down|left|right`.
          */
         iconOrientation: {
             type: String,
@@ -131,6 +131,7 @@ export default {
         /**
          * Icon color is automatically set by the Button component, however if
          * needed for an edge case, this can be overriden here.
+         * `primary|secondary|light|dark|color-white|secondary-teal`
          */
         iconVariantOverride: {
             type: String,
@@ -142,6 +143,7 @@ export default {
         /**
          * Icon size is automatically set by the Button component, however if
          * needed for an edge case, this can be overriden here.
+         * `xxs|xs|sm|md|lg|xl`
          */
         iconSizeOverride: {
             type: String,
@@ -149,7 +151,8 @@ export default {
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
         /**
-         * The position of the icon - left or right of the text
+         * The position of the icon
+         * `left|right`
          */
         iconPosition: {
             type: String,
@@ -170,7 +173,7 @@ export default {
                     'vs-button--animated': this.animate,
                     'vs-button--is-animating': this.isAnimating,
                     'vs-button--icon-only': this.iconOnly,
-                    'd-flex': this.icon,
+                    'd-flex': this.icon && !this.iconOnly,
                     'flex-row-reverse': this.iconPosition === 'right',
                 },
                 this.background ? [`btn-bg-${this.background}`] : '',
