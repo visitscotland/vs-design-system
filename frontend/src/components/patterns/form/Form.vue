@@ -5,7 +5,7 @@
     >
         <!-- element into which the (completely empty) form is embedded invisibly -->
         <form
-            style="display:none"
+            class="d-none"
         />
 
         <form
@@ -28,23 +28,26 @@
                             :type="field.type"
                             :validation-rules="field.validation || {}"
                             :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                            :generic-validation="getMessagingData('validation', language)"
                             :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                             :trigger-validate="triggerValidate"
+                            :hint-text="getTranslatedHint(field.name, index)"
                         />
                     </template>
 
                     <template v-if="field.element === 'select'">
                         <VsFormSelect
                             :options="getTranslatedOptions(field.name, index)"
-                            :countries="field.countries"
                             :ref="field.name"
                             @status-update="updateFieldData"
                             :field-name="field.name"
                             :validation-rules="field.validation || {}"
                             :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                            :generic-validation="getMessagingData('validation', language)"
                             :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                             :trigger-validate="triggerValidate"
                             :country-list-url="countryListUrl"
+                            :hint-text="getTranslatedHint(field.name, index)"
                         />
                     </template>
 
@@ -55,37 +58,42 @@
                             :name="field.name"
                             :value="field.value"
                             :id="field.name"
-                            :label="field.label"
+                            :label="field.descriptor"
                             @status-update="updateFieldData"
                             :field-name="field.name"
                             :validation-rules="field.validation || {}"
                             :validation-messages="getTranslatedValidation(field.name, index) || {}"
+                            :generic-validation="getMessagingData('validation', language)"
                             :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                             :trigger-validate="triggerValidate"
                             :required-text="getMessagingData('required', language)"
+                            :hint-text="getTranslatedHint(field.name, index)"
                         />
                     </template>
                 </template>
             </BFormGroup>
-
-            <p v-if="showErrorMessage && errorFields.length > 0">
-                <slot name="invalid" />
-            </p>
 
             <VsRecaptcha
                 @verified="onRecaptchaVerify"
                 :site-key="recaptchaKey"
                 :invalid="!recaptchaVerified && showErrorMessage"
                 :language="language"
+                :error-msg="getMessagingData('recaptchaError', language)"
             />
 
-            <input
+            <p v-if="errorFields.length > 0">
+                <slot name="invalid" />
+            </p>
+
+            <VsButton
+                variant="primary"
                 type="submit"
-                :value="getTranslatedSubmitText"
-                class="formSubmit"
-                @click.prevent="preSubmit"
-                @keyup.prevent="preSubmit"
+                class="vs-form__submit mt-9"
+                @click.native="preSubmit"
+                @keyup.native="preSubmit"
             >
+                {{ getTranslatedSubmitText }}
+            </VsButton>
         </form>
 
         <p v-if="submitting">
@@ -108,6 +116,7 @@ import VsFormInput from '../../elements/form-input/FormInput';
 import VsFormSelect from '../../elements/form-select/FormSelect';
 import VsFormCheckbox from '../../elements/form-checkbox/FormCheckbox';
 import VsRecaptcha from '../../elements/recaptcha/Recaptcha';
+import VsButton from '../../elements/button/Button';
 
 const axios = require('axios');
 
@@ -129,6 +138,7 @@ export default {
         VsFormCheckbox,
         BFormGroup,
         VsRecaptcha,
+        VsButton,
     },
     props: {
         /**
@@ -224,63 +234,48 @@ export default {
                 text = this.getMessagingData('submit', this.language);
             }
 
-            // if (Object.keys(this.messagingData).length > 0
-            //     && Object.keys(this.formData).length > 0) {
-            //     if (this.language === 'en') {
-            //         this.formData.fields.forEach((field) => {
-            //             if (field.element === 'submit') {
-            //                 text = field.label;
-            //             }
-            //         });
-
-            //         if (typeof text === 'undefined') {
-            //             text = 'this.messagingData.submit.en';
-            //         }
-            //     } else if (this.formData[this.language] !== 'undefined'
-            //         && this.formData[this.language].submit !== 'undefined') {
-            //         text = this.formData[this.language].submit.label;
-            //     } else {
-            //         text = this.messagingData.submit[this.language];
-            //     }
-            // }
-
             return text;
         },
     },
     created() {
-        axios.get(this.dataUrl)
-            .then((response) => {
-                this.formData = response.data;
-
-                if (window.MktoForms2) {
-                    window.MktoForms2.loadForm(this.marketoInstance, this.munchkinId, this.formId);
-                }
-
-                // window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
-                // ('//app-lon10.marketo.com', '830-QYE-256', this.formId);
-
-                response.data.fields.forEach((field) => {
-                    this.form[field.name] = '';
-
-                    if (field.conditional) {
-                        this.hiddenFields.push(field.name);
-                    }
-                });
-            });
-
-        axios.get(this.messagingUrl)
-            .then((response) => {
-                this.messagingData = response.data;
-            });
+        this.getFormData();
+        this.getGlobalMessaging();
     },
     methods: {
+        /**
+         * Axios call to retrieve form data
+         */
+        getFormData() {
+            axios.get(this.dataUrl)
+                .then((response) => {
+                    this.formData = response.data;
+
+                    if (window.MktoForms2) {
+                        window.MktoForms2
+                            .loadForm(this.marketoInstance, this.munchkinId, this.formId);
+                    }
+
+                    response.data.fields.forEach((field) => {
+                        this.form[field.name] = '';
+                    });
+                });
+        },
+        /**
+         * Axios call to retrieve global messaging data
+         */
+        getGlobalMessaging() {
+            axios.get(this.messagingUrl)
+                .then((response) => {
+                    this.messagingData = response.data;
+                });
+        },
         /**
          * get appropriate language object
          */
         getLanguageObj() {
             let languageObj;
 
-            if (typeof this.formData[this.language] !== 'undefined') {
+            if (!this.isUndefined(this.formData[this.language])) {
                 languageObj = this.formData[this.language] || undefined;
             } else {
                 languageObj = {
@@ -297,35 +292,41 @@ export default {
             let labelText = '';
 
             if (this.language !== 'en'
-                && typeof languageObj[fieldName] !== 'undefined'
-                && typeof languageObj[fieldName].label !== 'undefined'
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined(languageObj[fieldName].label)
             ) {
                 labelText = languageObj[fieldName].label;
             } else {
                 labelText = this.formData.fields[index].label;
             }
 
-            if (typeof this.formData.fields[index].validation !== 'undefined'
-                && typeof this.formData.fields[index].validation.required !== 'undefined'
-                && this.formData.fields[index].validation.required) {
-                labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
-            }
+            // To be added if 'required' needs to be added to label
+            // I will check this and remove if not needed - JH
+
+            // if (!this.isUndefined(this.formData.fields[index].validation)
+            //     && !this.isUndefined(this.formData.fields[index].validation.required)
+            //     && this.formData.fields[index].validation.required) {
+            //     labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
+            // }
 
             return labelText;
         },
-        getTranslatedValidation(fieldName) {
+        /**
+         * get translated validation messages
+         */
+        getTranslatedValidation(fieldName, index) {
             const languageObj = this.getLanguageObj();
 
             let validationObj;
 
-            if (this.language !== 'en'
-                && typeof languageObj[fieldName] !== 'undefined'
-                && typeof languageObj[fieldName].validationMessages !== 'undefined') {
+            if (this.language === 'en'
+                && !this.isUndefined(this.formData.fields[index].validationMessages)) {
+                validationObj = this.formData.fields[index].validationMessages;
+            } else if (!this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined(languageObj[fieldName].validationMessages)) {
                 validationObj = languageObj[fieldName].validationMessages;
-            }
-
-            if (typeof validationObj === 'undefined') {
-                validationObj = this.getMessagingData('validation', this.language);
+            } else if (this.language === 'en') {
+                validationObj = this.formData.fields[index].validationMessages;
             }
 
             return validationObj;
@@ -339,8 +340,8 @@ export default {
             let optionsArr = [];
 
             if (this.language !== 'en'
-                && typeof languageObj[fieldName] !== 'undefined'
-                && typeof languageObj[fieldName].options !== 'undefined') {
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined([fieldName].options)) {
                 optionsArr = languageObj[fieldName].options;
             } else {
                 optionsArr = this.formData.fields[index].options;
@@ -351,6 +352,20 @@ export default {
             }
 
             return optionsArr;
+        },
+        getTranslatedHint(fieldName, index) {
+            const languageObj = this.getLanguageObj();
+            let hintText = '';
+
+            if (this.language === 'en') {
+                hintText = this.formData.fields[index].hint;
+            } else if (typeof languageObj.submit !== 'undefined') {
+                hintText = languageObj.hint;
+            } else {
+                hintText = '';
+            }
+
+            return hintText;
         },
         /**
          * check messaging data exists and then pass value back
@@ -367,6 +382,16 @@ export default {
             }
 
             return '';
+        },
+        /**
+         * check if value is undefined
+         */
+        isUndefined(value) {
+            if (typeof value === 'undefined') {
+                return true;
+            }
+
+            return false;
         },
         /**
          * update field data and error status
@@ -393,7 +418,7 @@ export default {
                 if (!errors || errors.length < 1) {
                     this.errorFields.splice(index, 1);
                 }
-            } else if (errors) {
+            } else if (errors && errors.length > 0) {
                 this.errorFields.push(field);
             }
         },
@@ -408,16 +433,17 @@ export default {
          * whether or not an element should have a label defined (for Bootstrap Vue)
          */
         needsLabel(field) {
-            if (field.element === 'checkbox'
-                || field.element === 'radio'
-                || field.element === 'submit') {
+            if (field.element === 'radio'
+                || field.element === 'submit'
+                || field.element === 'checkbox-group') {
                 return false;
             }
 
             return true;
         },
         /**
-         * submit form
+         * before submitting validate fields and recaptcha
+         * if successful run the Marketo submit method
          */
         preSubmit(e) {
             e.preventDefault();
@@ -426,11 +452,7 @@ export default {
                 return value.validation && value.validation.required;
             }
 
-            if (window.grecaptcha.getResponse() !== '') {
-                this.recaptchaVerified = true;
-            } else {
-                this.recaptchaVerified = false;
-            }
+            this.onRecaptchaVerify();
 
             this.triggerValidate = true;
 
@@ -454,6 +476,9 @@ export default {
                 this.showErrorMessage = true;
             }
         },
+        /**
+         * adds form data to Marketo payload and sets submitted status
+         */
         marketoSubmit() {
             const myForm = window.MktoForms2.allForms()[0];
             myForm.addHiddenFields(this.form);
@@ -472,6 +497,10 @@ export default {
                 return false;
             });
         },
+        /**
+         * listens to recaptcha response to check if it's verified
+         */
+
         onRecaptchaVerify() {
             if (window.grecaptcha.getResponse() !== '') {
                 this.recaptchaVerified = true;
@@ -501,17 +530,18 @@ export default {
 
 <style lang='scss'>
     .vs-form {
-        input {
-            border: 2px solid $color-theme-primary;
+        label {
+            font-weight: $font-weight-semi-bold;
+            margin-bottom: 0;
         }
 
         .error {
-            font-size: $font-size-body;
+            font-size: $body-font-size;
             color: $color-theme-danger;
         }
 
         .hint-text {
-            font-size: $font-size-body;
+            font-size: $body-font-size;
             color: $color-gray-shade-1;
             margin-bottom: 0;
         }
@@ -525,31 +555,36 @@ export default {
 <docs>
     ```jsx
         // https://static.visitscotland.com/forms/vs-3331/simpleForm.json
-        <VsForm
-            dataUrl="http://172.28.74.108:5555/newsletter.json"
-            messagingUrl="http://172.28.74.108:5555/messaging.json"
-            countryListUrl="http://172.28.74.108:5555/countries.json"
-            recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-            marketo-instance="//app-lon10.marketo.com"
-            munchkin-id="830-QYE-256"
-            language="en"
-            :is-prod="false"
-        >
-            <template slot="invalid">
-                You have invalid fields - please check the form.
-            </template>
+        <VsContainer>
+            <VsRow>
+                <VsCol>
+                    <VsForm
+                        dataUrl="http://172.28.74.120:5555/simpleForm.json"
+                        messagingUrl="http://172.28.74.120:5555/messaging.json"
+                        recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
+                        marketo-instance="//app-lon10.marketo.com"
+                        munchkin-id="830-QYE-256"
+                        language="en"
+                        :is-prod="false"
+                    >
+                        <template slot="invalid">
+                            You have invalid fields - please check the form.
+                        </template>
 
-            <template slot="submitError">
-                We're sorry there's been a problem, please try again later.
-            </template>
+                        <template slot="submitError">
+                            We're sorry there's been a problem, please try again later.
+                        </template>
 
-            <template slot="submitting">
-                We're just submitting your form
-            </template>
+                        <template slot="submitting">
+                            We're just submitting your form
+                        </template>
 
-            <template slot="submitted">
-                Thank you for your details, your form has been submitted
-            </template>
-        </VsForm>
+                        <template slot="submitted">
+                            Thank you for your details, your form has been submitted
+                        </template>
+                    </VsForm>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
     ```
 </docs>
