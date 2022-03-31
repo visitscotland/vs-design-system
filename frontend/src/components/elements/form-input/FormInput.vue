@@ -1,6 +1,6 @@
 <template>
     <div
-        data-test="vs-form-input"
+        data-test="vs-input"
     >
         <p
             class="hint-text"
@@ -194,7 +194,7 @@ export default {
             return false;
         },
         errorClass() {
-            return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-input--error' : '';
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-input--error' : '';
         },
     },
     watch: {
