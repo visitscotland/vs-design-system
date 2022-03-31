@@ -24,7 +24,7 @@
         <BFormInput
             ref="input"
             :type="type"
-            class="vs-input"
+            class="vs-input mt-2"
             v-model="inputVal"
             :class="elementClass"
             :id="fieldName"
@@ -250,21 +250,18 @@ export default {
 @include forms-common;
 
 .vs-input {
-    border: $color-gray-shade-3 1px solid;
-    margin-top: $spacer-2;
+    @include form-element-styles;
 
     &.form-control-md {
         height: 50px;
     }
 
     &:focus {
-        border: $color-pink 4px solid;
-        outline: none;
-        box-shadow: none;
+        @include form-focus-state;
     }
 
     &--error {
-        @include error-state;
+        @include form-error-state;
     }
 
     &--site-search.form-control {
