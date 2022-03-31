@@ -21,7 +21,7 @@
                     sm="6"
                     lg="5"
                     offset-lg="1"
-                    class="text-center text-lg-left col-xxl-4"
+                    class="text-center text-sm-left col-xxl-4"
                 >   
                     <vs-rich-text-wrapper variant="lead" class="mb-9 mb-lg-10">
                         <p>
@@ -44,11 +44,11 @@
                     offset-md="0"
                     lg="5"
                     xl="5"
-                    class="text-center text-lg-left col-xxl-4 offset-xxl-1"
+                    class="text-center text-lg-left col-xxl-5 offset-xxl-1"
                 >
                     <vs-img 
                         src="<@hst.webfile path='${imgSrc}'/>" 
-                        class="mt-10 mt-sm-0 w-100">
+                        class="mt-10 mt-sm-2 w-100">
                     </vs-img>
                 </vs-col>
             </vs-row>
