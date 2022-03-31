@@ -1,7 +1,11 @@
 <template>
-    <div
-        :class="errorClass"
-    >
+    <div class="vs-form-select">
+        <p
+            class="hint-text"
+            :id="`hint-${fieldName}`"
+        >
+            {{ hintText }}
+        </p>
         <span
             v-for="error in errorsList"
             :key="error"
@@ -21,7 +25,7 @@
                 :options="options"
                 :name="fieldName"
                 :id="fieldName"
-                @change="onChange"
+                @change="emitStatus"
                 @blur="emitStatus"
                 data-test="vs-form-select"
                 class="vs-form-select__element"
@@ -44,9 +48,9 @@ import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 Vue.use(Vuelidate);
 
 /**
- * A selecte element to be used in forms
+ * A select element
  *
- * @displayName Form Select
+ * @displayName Select
  */
 
 export default {
@@ -124,6 +128,13 @@ export default {
             },
         },
         /**
+         * Content for hint text
+         */
+        hintText: {
+            type: String,
+            default: '',
+        },
+        /**
          * Fallback translated validation
          */
         genericValidation: {
@@ -134,9 +145,15 @@ export default {
             },
         },
     },
+    data() {
+        return {
+            inputVal: this.value,
+            touched: false,
+        };
+    },
     computed: {
         errorClass() {
-            return this.$v.inputVal.$anyError || this.invalid ? 'hasError' : '';
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-select__element--error' : '';
         },
     },
     watch: {
@@ -164,7 +181,68 @@ export default {
 </script>
 
 <style lang="scss">
+    .vs-form-select {
+        &__container {
+            position: relative;
+            width: 100%;
+            cursor: pointer;
+            height: 50px;
+            border-radius: 0;
+            margin-top: $spacer-2;
 
+            &::after {
+                content: "";
+                width: 1.5rem;
+                height: 1.5rem;
+                border: 1px solid $color-black;
+                border-radius: 1000px;
+                background-image: url('~@/assets/svg/icons/chevron.svg');
+                display: block;
+                position: absolute;
+                top: calc(50% - #{$spacer-3});
+                right: $spacer-4;
+                background-repeat: no-repeat;
+                background-size: 60% 60%;
+                background-position: center center;
+                transform: rotate(180deg);
+                pointer-events: none;
+            }
+        }
+
+        &__element {
+            // A reset of styles, including removing the default dropdown arrow
+            appearance: none;
+            background-color: transparent;
+            border: none;
+            padding: 0 $spacer-4 0;
+            margin: 0;
+            width: 100%;
+            font-family: inherit;
+            font-size: inherit;
+            cursor: inherit;
+            line-height: inherit;
+            height: 50px;
+            border: $color-gray-shade-3 1px solid;
+
+            &--error {
+                border: 2px solid $color-theme-danger;
+            }
+
+            &:focus {
+                outline: none;
+                box-shadow: none;
+
+                & + .vs-form-select__focus {
+                    position: absolute;
+                    top: -1px;
+                    left: -1px;
+                    right: -1px;
+                    bottom: -1px;
+                    border: $color-pink 4px solid;
+                }
+            }
+        }
+    }
 </style>
 
 <docs>
