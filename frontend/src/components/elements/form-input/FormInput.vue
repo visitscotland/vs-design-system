@@ -1,5 +1,26 @@
 <template>
-    <div data-test="vs-input">
+    <div
+        data-test="vs-form-input"
+    >
+        <p
+            class="hint-text"
+            :id="`hint-${fieldName}`"
+            v-if="hintText"
+        >
+            {{ hintText }}
+        </p>
+        <template
+            v-if="$v.inputVal.$anyError || invalid"
+        >
+            <span
+                v-for="error in errorsList"
+                :key="error"
+                class="error"
+                :id="`error-${fieldName}`"
+            >
+                {{ validationMessages[error] || genericValidation[error] }}
+            </span>
+        </template>
         <BFormInput
             ref="input"
             :type="type"
@@ -12,19 +33,9 @@
             :required="isRequired"
             :size="size"
             :v="inputVal"
+            :aria-invalid="$v.inputVal.$anyError || invalid"
+            :aria-describedby="$v.inputVal.$anyError || invalid ? `error-${fieldName}` : ''"
         />
-
-        <span
-            v-for="error in errorsList"
-            :key="error"
-            class="error"
-        >
-            <template
-                v-if="$v.inputVal.$anyError || invalid"
-            >
-                {{ validationMessages[error] || genericValidation[error] }}
-            </template>
-        </span>
         <VsButton
             data-test="input-clear-button"
             v-if="showClearButton"
@@ -52,10 +63,9 @@ import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 Vue.use(Vuelidate);
 
 /**
- * https://bootstrap-vue.js.org/docs/components/form-input
- * https://getbootstrap.com/docs/4.3/components/forms/
+ * An input field for text, email, number etc
  *
- * @displayName Form Input
+ * @displayName Input
  */
 
 export default {
@@ -96,7 +106,7 @@ export default {
          */
         type: {
             type: String,
-            required: true,
+            default: 'text',
         },
         /**
          * Rules for Vuelidate plugin
@@ -183,6 +193,9 @@ export default {
 
             return false;
         },
+        errorClass() {
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-input--error' : '';
+        },
     },
     watch: {
         /**
@@ -235,31 +248,25 @@ export default {
 
 <style lang="scss">
 .vs-input {
-    border-color: $color-gray-tint-1;
-    transition: box-shadow $duration-base;
+    border: $color-gray-shade-3 1px solid;
+    margin-top: $spacer-2;
 
-    &--error {
-        border-color: red;
-    }
-
-    &::placeholder {
-        color: $color-secondary-gray;
+    &.form-control-md {
+        height: 50px;
     }
 
     &:focus {
-        border-color: $color-gray-tint-1;
-        box-shadow: $shadow-form-input;
+        border: $color-pink 4px solid;
+        outline: none;
+        box-shadow: none;
     }
 
-    &[type='search'] {
-        @extend %reset-clear;
-    }
-
-    &.is-valid{
-        border-color: $color-theme-success!important;
+    &--error {
+        border: 2px solid $color-theme-danger;
     }
 
     &--site-search.form-control {
+        @extend %reset-clear;
         font-size: $body-font-size;
         height: 50px;
         padding: $spacer-3 $spacer-7 $spacer-3 $spacer-6;
@@ -293,31 +300,32 @@ export default {
 <BsWrapper>
     <label for="small">Small</label>
     <VsFormInput
-        id="small" placeholder="Enter your name" class="mb-5" size="sm" field-name="input1"
+        id="small"
+        placeholder="Enter your name"
+        class="mb-5"
+        size="sm"
+        field-name="input1"
     />
     <label for="medium">Medium (default)</label>
     <VsFormInput
-        ref="searchInput"
-        @v-model="inputVal"
-        field-name="site-search"
-        type="search"
+        id="medium"
+        placeholder="Enter your name"
+        class="mb-5"
+        size="md"
+        field-name="input1"
+        hint-text="This is some hint text"
     />
     <label for="large">Large</label>
     <VsFormInput
         id="large" placeholder="Enter your name" class="mb-5" size="lg" field-name="input3"
     />
-
-    <label for="input-none">No State</label>
-    <VsFormInput
-        id="input-none" :state="null" placeholder="No validation" class="mb-5" field-name="input4"
-    />
-    <label for="input-valid">Valid state</label>
-    <VsFormInput
-        id="input-valid" :state="true" placeholder="Valid" class="mb-5" field-name="input5"
-    />
     <label for="input-invalid">Invalid state</label>
     <VsFormInput
-        id="input-invalid" :state="false" placeholder="Invalid" class="mb-5" field-name="input5"
+        id="input-invalid"
+        :invalid="true"
+        placeholder="Invalid"
+        class="mb-5"
+        field-name="input5"
     />
 </BsWrapper>
 ```
