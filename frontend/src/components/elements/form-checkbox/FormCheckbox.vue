@@ -253,8 +253,10 @@ export default {
             margin-right: $spacer-4;
         }
 
-        &__invalid {
-            border: red 2px solid;
+        &__label {
+            display: inline-block;
+            font-size: $font-size-body;
+            font-weight: $font-weight-normal;
         }
     }
 </style>
