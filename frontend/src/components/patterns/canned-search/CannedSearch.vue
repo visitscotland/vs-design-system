@@ -435,7 +435,7 @@ export default {
 
     .vs-canned-search__credit-container {
         text-align: right;
-        font-size: $font-size-sm;
+        font-size: $font-size-2;
     }
 </style>
 
