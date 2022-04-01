@@ -155,7 +155,7 @@ export default {
         letter-spacing: initial;
         text-decoration: underline;
         font-weight: $font-weight-normal;
-        font-size: $small-font-size;
+        font-size: $font-size-3;
         line-height: $line_height_l;
         color: $color-white;
 

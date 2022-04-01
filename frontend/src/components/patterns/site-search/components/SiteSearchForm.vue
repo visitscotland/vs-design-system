@@ -198,15 +198,38 @@ export default {
         }
     }
 
-    &__search-button {
+    &__input{
+        &.vs-form-input.form-control {
+            font-size: $font-size-4;
+            height: auto;
+            padding: $spacer-3 $spacer-7 $spacer-3 $spacer-6;
+            border-color: $color-white;
+
+            &:focus{
+                box-shadow: $shadow-form-input inset;
+                border-color: $color-pink;
+            }
+
+            @include media-breakpoint-up(lg) {
+                padding: $spacer-4 $spacer-10 $spacer-4 $spacer-12;
+                font-size: $font-size-9;
+            }
+
+            @include media-breakpoint-up(xl) {
+                font-size: $font-size-10;
+            }
+        }
+    }
+
+    &__search-button{
         height: 50px;
         padding: $spacer-3 $spacer-2;
-        font-size: $small-font-size;
+        font-size: $font-size-3;
 
         @include media-breakpoint-up(lg) {
             height: 79px;
             padding: $spacer-3 $spacer-8;
-            font-size: $font-size-lg;
+            font-size: $font-size-6;
         }
 
         @include media-breakpoint-up(xl) {

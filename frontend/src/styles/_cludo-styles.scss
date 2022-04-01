@@ -20,7 +20,7 @@
 
         .search-result-count{
             padding: $spacer-7 $spacer-7 0;
-            font-size: $display3-size;
+            font-size: $font-size-7;
 
             b{
                 color: $color-pink;
@@ -41,7 +41,7 @@
                     padding: $spacer-2 $spacer-3;
                     display: block;
                     border-radius: $border-radius-lg;
-                    font-size: $font-size-lg;
+                    font-size: $font-size-6;
                     text-decoration: none;
                     color: $color-base-text;
                     transition: all .2s;

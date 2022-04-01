@@ -46,8 +46,7 @@ export default {
         },
         /**
          * The fill color of the SVG icon.
-         * `primary, secondary, light, dark,
-         * color-white, secondary-teal`
+         * `primary|secondary|light|dark|color-white|secondary-teal`
          */
         variant: {
             type: String,
@@ -68,7 +67,7 @@ export default {
         },
         /**
         * The orientation of the icon
-        * `up, left, right, down`
+        * `up|down|left|right`
         */
         orientation: {
             type: String,
@@ -79,7 +78,7 @@ export default {
         },
         /**
         * Size of icon
-        * `xxs, xs, sm, md, lg, xl`
+        * `xxs|xs|sm|md|lg|xl`
         */
         size: {
             type: String,
@@ -88,7 +87,7 @@ export default {
         },
         /**
         * Changes the size of the icon at sm and xs viewports
-        * `xxs, xs, sm, md, lg, xl`
+        * `xxs|xs|sm|md|lg|xl`
         */
         smallSize: {
             type: String,
