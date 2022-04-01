@@ -15,11 +15,16 @@
             <BFormGroup
                 v-for="(field, index) in formData.fields"
                 :key="field.name"
-                :label="needsLabel(field) && hiddenFields.indexOf(field.name) < 0
+                :label="needsLabel(field) &&
+                    (conditionalFields[field.name] === true
+                        || typeof conditionalFields[field.name] === 'undefined')
                     ? getTranslatedLabel(field.name, index) : ''"
                 :label-for="needsLabel(field) ? field.name : ''"
             >
-                <template v-if="hiddenFields.indexOf(field.name) < 0">
+                <template
+                    v-if="conditionalFields[field.name] === true
+                        || typeof conditionalFields[field.name] === 'undefined'"
+                >
                     <template v-if="field.element === 'input'">
                         <VsFormInput
                             :ref="field.name"
@@ -112,6 +117,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import { BFormGroup } from 'bootstrap-vue';
 import VsFormInput from '../../elements/form-input/FormInput';
 import VsFormSelect from '../../elements/form-select/FormSelect';
@@ -216,7 +222,8 @@ export default {
             ],
             triggerValidate: false,
             recaptchaVerified: false,
-            hiddenFields: [],
+            conditionalFields: {
+            },
         };
     },
     computed: {
@@ -257,7 +264,15 @@ export default {
                     }
 
                     response.data.fields.forEach((field) => {
+                        // create a data entry for each field
                         this.form[field.name] = '';
+
+                        // ensure that hidden fields don't show on load
+                        if (field.conditional) {
+                            // Vue.set needed here to ensure reactivity of
+                            // elements added to the object.
+                            Vue.set(this.conditionalFields, field.name, false);
+                        }
                     });
                 });
         },
@@ -482,8 +497,8 @@ export default {
          */
         marketoSubmit() {
             const myForm = window.MktoForms2.allForms()[0];
-            myForm.addHiddenFields(this.form);
-            myForm.addHiddenFields({
+            myForm.addconditionalFields(this.form);
+            myForm.addconditionalFields({
                 lastReCAPTCHAUserFingerprint: window.grecaptcha.getResponse(),
                 lastRecaptchaEnabledFormID: this.formId,
             });
@@ -501,7 +516,6 @@ export default {
         /**
          * listens to recaptcha response to check if it's verified
          */
-
         onRecaptchaVerify() {
             if (window.grecaptcha.getResponse() !== '') {
                 this.recaptchaVerified = true;
@@ -509,20 +523,36 @@ export default {
                 this.recaptchaVerified = false;
             }
         },
+        /**
+         * checks whether conditional fields meet the rules to show them
+         */
         checkConditionalFields() {
-            this.hiddenFields.forEach((field) => {
-                const conditionalField = this.formData.fields.find((o) => o.name === field);
+            Object.keys(this.conditionalFields).forEach((field) => {
+                // match the field to the form data
+                const fieldData = this.formData.fields.find((o) => o.name === field);
                 let showField = true;
 
-                Object.keys(conditionalField.conditional).forEach((rule) => {
-                    if (this.form[rule] !== conditionalField.conditional[rule]) {
+                // iterate through rules in object
+                Object.keys(fieldData.conditional).forEach((rule) => {
+                    const conditions = fieldData.conditional[rule];
+                    if (Array.isArray(conditions)) {
+                        // if the rule is an array of values
+                        // set the value to false if the field value isn't in the array
+                        if (conditions.indexOf(this.form[rule]) === -1) {
+                            showField = false;
+                        }
+                    } else if (this.form[rule] !== conditions) {
+                        // if the rule is a string just check the field value
+                        // against the string
                         showField = false;
                     }
-                });
 
-                if (showField) {
-                    this.hiddenFields.pop(field);
-                }
+                    if (showField) {
+                        this.conditionalFields[field] = true;
+                    } else {
+                        this.conditionalFields[field] = false;
+                    }
+                });
             });
         },
     },
