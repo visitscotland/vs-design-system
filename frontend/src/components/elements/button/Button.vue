@@ -106,14 +106,6 @@ export default {
             default: true,
         },
         /**
-         * Letter spacing is 2px by default, pass `true` to reduce to 0.8px for
-         * buttons with long text
-         */
-        reducedSpacing: {
-            type: Boolean,
-            default: false,
-        },
-        /**
          * Pass the name of the icon to add it to the button.
          */
         icon: {
@@ -183,7 +175,6 @@ export default {
                     'vs-button--icon-only': this.iconOnly,
                     'd-flex': this.icon && !this.iconOnly,
                     'flex-row-reverse': this.iconPosition === 'right',
-                    'vs-button--reduced-spacing': this.reducedSpacing,
                 },
                 this.background ? [`btn-bg-${this.background}`] : '',
                 this.uppercase ? 'text-uppercase' : '',
@@ -248,7 +239,7 @@ export default {
         font-weight: $font-weight-light;
         transition: $transition-base;
         text-decoration: none;
-        letter-spacing: $letter-spacing-xxl;
+        letter-spacing: $letter-spacing-m;
         position: relative;
         overflow: hidden;
 
@@ -362,10 +353,6 @@ export default {
             .vs-icon{
                 margin-right: 0;
             }
-        }
-
-        &.vs-button--reduced-spacing {
-            letter-spacing: $letter_spacing_m;
         }
 
         &.vs-button--animated {
