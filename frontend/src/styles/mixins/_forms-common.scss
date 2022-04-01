@@ -5,12 +5,12 @@
     }
 
     .error {
-        font-size: $body-font-size;
+        font-size: $font-size-body;
         color: $color-theme-danger;
     }
 
     .hint-text {
-        font-size: $body-font-size;
+        font-size: $font-size-body;
         color: $color-gray-shade-1;
         margin-bottom: 0;
     }

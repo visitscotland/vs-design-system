@@ -266,7 +266,7 @@ export default {
 
     &--site-search.form-control {
         @extend %reset-clear;
-        font-size: $body-font-size;
+        font-size: $font-size-body;
         height: 50px;
         padding: $spacer-3 $spacer-7 $spacer-3 $spacer-6;
         margin: 0;
