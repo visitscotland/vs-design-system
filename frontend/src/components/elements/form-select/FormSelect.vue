@@ -195,7 +195,6 @@ export default {
         },
     },
     beforeMount() {
-        console.log(this.countries);
         /**
          * import country list
          */
@@ -205,30 +204,6 @@ export default {
                     this.countryList = response.data.countries;
                 });
         }
-    },
-    methods: {
-        /**
-         * manually run validation and emit to parent
-         */
-        manualValidate() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$invalid,
-            });
-        },
-        /**
-         * Emit status of input - for automatic updating
-         */
-        emitStatus() {
-            this.$emit('status-update', {
-                field: this.fieldName,
-                value: this.inputVal,
-                errors: this.$v.$anyError,
-            });
-            this.touched = true;
-            this.$v.$touch();
-        },
     },
     validations() {
         return this.rules;
