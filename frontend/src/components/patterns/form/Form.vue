@@ -47,6 +47,7 @@
                             :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                             :trigger-validate="triggerValidate"
                             :country-list-url="countryListUrl"
+                            :countries="field.countries"
                             :hint-text="getTranslatedHint(field.name, index)"
                         />
                     </template>
@@ -536,12 +537,12 @@ export default {
         }
 
         .error {
-            font-size: $body-font-size;
+            font-size: $font-size-body;
             color: $color-theme-danger;
         }
 
         .hint-text {
-            font-size: $body-font-size;
+            font-size: $font-size-body;
             color: $color-gray-shade-1;
             margin-bottom: 0;
         }
@@ -559,8 +560,9 @@ export default {
             <VsRow>
                 <VsCol>
                     <VsForm
-                        dataUrl="http://172.28.74.120:5555/simpleForm.json"
-                        messagingUrl="http://172.28.74.120:5555/messaging.json"
+                        dataUrl="http://172.28.74.123:5555/newsletterSignUp.json"
+                        messagingUrl="http://172.28.74.123:5555/messaging.json"
+                        countryListUrl="http://172.28.74.123:5555/countries.json"
                         recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
                         marketo-instance="//app-lon10.marketo.com"
                         munchkin-id="830-QYE-256"
