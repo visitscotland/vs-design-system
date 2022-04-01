@@ -22,7 +22,7 @@
                 v-model="inputVal"
                 :size="size"
                 v-bind="$attrs"
-                :options="options"
+                :options="fieldOptions"
                 :name="fieldName"
                 :id="fieldName"
                 @change="emitStatus"
@@ -172,6 +172,9 @@ export default {
         errorClass() {
             return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-select__element--error' : '';
         },
+        fieldOptions() {
+            return this.countries ? this.countryList : this.options;
+        },
     },
     watch: {
         inputVal(newValue) {
@@ -192,6 +195,7 @@ export default {
         },
     },
     beforeMount() {
+        console.log(this.countries);
         /**
          * import country list
          */
