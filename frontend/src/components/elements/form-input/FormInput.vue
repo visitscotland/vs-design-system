@@ -217,7 +217,7 @@ export default {
     },
     methods: {
         /**
-         * Clear any text entered in the search input
+         * Clear any text entered in the input
          */
         clearInput() {
             this.inputVal = '';
@@ -232,7 +232,7 @@ export default {
             });
         },
         /**
-         * Clears the search input on button click
+         * Clears the input on button click
          * and adds focus back to the input
          */
         clearInputAndFocus() {
