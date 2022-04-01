@@ -261,7 +261,7 @@ export default {
 
         &__label {
             display: inline-block;
-            font-size: $body-font-size;
+            font-size: $font-size-body;
             font-weight: $font-weight-normal;
         }
     }
