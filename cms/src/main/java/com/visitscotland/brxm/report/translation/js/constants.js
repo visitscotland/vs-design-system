@@ -10,4 +10,3 @@ const FILTER_SIDEBAR_ID = "filterSidebar"
 const PAGE_SIZE = 13
 const SIDEBAR_LABEL_STYLE = "display: block; margin-top: 20px";
 const GET_UNTRANSLATED_FILES_ENDPOINT = "/cms/translation/untranslated"
-const INITIAL_LOCALE = "all";

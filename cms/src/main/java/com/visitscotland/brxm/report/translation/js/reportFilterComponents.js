@@ -10,7 +10,7 @@ Hippo.Reports.languageComboConfig = {
     remoteSort: true,
     lazyRender:true,
     mode: 'local',
-    value: INITIAL_LOCALE,
+    value: "all",
     store: new Ext.data.ArrayStore({
         id: 0,
         fields: [

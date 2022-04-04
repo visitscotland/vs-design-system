@@ -20,7 +20,7 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             root: "data",
             totalProperty: "total",
             method: "GET",
-            proxy: new Hippo.Reports.PageableHttpProxy({url: GET_UNTRANSLATED_FILES_ENDPOINT, api: {}}, {locale: INITIAL_LOCALE}),
+            proxy: new Hippo.Reports.PageableHttpProxy({url: GET_UNTRANSLATED_FILES_ENDPOINT, api: {}}),
             fields: ["displayName", "translatedLocales", "sentForTranslationLocales", "path", "translationStatus",
                 "translationPriority", "handleId", "lastModified", "lastModifiedBy", "publishStatus", "type", "clonedLocales", {name: "translationDeadline", type: "date"}]
         })
