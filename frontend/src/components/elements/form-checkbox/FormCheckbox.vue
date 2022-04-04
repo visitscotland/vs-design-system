@@ -1,5 +1,11 @@
 <template>
     <div>
+        <p
+            class="hint-text"
+            :id="`hint-${fieldName}`"
+        >
+            {{ hintText }}
+        </p>
         <span
             v-for="error in errorsList"
             :key="error"
@@ -14,7 +20,7 @@
         <BFormCheckbox
             v-if="fieldName"
             v-model="inputVal"
-            class="vs-form-checkbox mr-4"
+            class="vs-checkbox mr-4"
             :class="errorClass"
             :size="size"
             :name="fieldName"
@@ -22,12 +28,12 @@
             :value="value"
             :unchecked_value="`not_${value}`"
             v-bind="$attrs"
-            data-test="vs-form-checkbox"
+            data-test="vs-checkbox"
             @change="emitStatus"
             :required="isRequired"
             :aria-invalid="$v.inputVal.$anyError || invalid"
         >
-            <span class="vs-form-checkbox__label">{{ label }}</span>
+            <span class="vs-checkbox__label">{{ label }}</span>
         </BFormCheckbox>
     </div>
 </template>
@@ -137,6 +143,13 @@ export default {
                 };
             },
         },
+        /**
+         * Content for hint text
+         */
+        hintText: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
@@ -147,7 +160,7 @@ export default {
     computed: {
         errorClass() {
             return (this.errorsList.length > 0 && this.$v.inputVal.$anyDirty) || this.invalid
-                ? 'vs-form-checkbox--error' : '';
+                ? 'vs-checkbox--error' : '';
         },
     },
     watch: {
@@ -177,7 +190,9 @@ export default {
 </script>
 
 <style lang="scss">
-    .vs-form-checkbox {
+    @include forms-common;
+
+    .vs-checkbox {
         display: flex;
         align-items: center;
 
@@ -211,7 +226,7 @@ export default {
                 outline: none;
 
                 &:after {
-                    border: $color-pink 4px solid;
+                    @include form-focus-state
                 }
             }
 
@@ -239,14 +254,14 @@ export default {
                     position: absolute;
                     width: 100%;
                     height: 100%;
-                    border: 2px solid $color-theme-danger;
+                    @include form-error-state;
                 }
             }
         }
 
         &__label {
             display: inline-block;
-            font-size: $body-font-size;
+            font-size: $font-size-body;
             font-weight: $font-weight-normal;
         }
     }
@@ -255,26 +270,40 @@ export default {
 <docs>
 ```jsx
 <BsWrapper>
-    <BFormGroup>
-        <VsFormCheckbox
-            field-name="checkbox-example"
-            value="accepted"
-            id="checkbox-example"
-            label="I accept the terms and conditions"
+    <label for="checkbox-example">
+        Checkbox label
+    </label>
+    <VsFormCheckbox
+        field-name="checkbox-example"
+        value="accepted"
+        id="checkbox-example"
+        label="I accept the terms and conditions"
+        hint-text="Checkbox hint text"
+        class="mb-6"
+    />
+    <label for="checkbox-example-2">
+        A checkbox with longer text
+    </label>
+    <VsFormCheckbox
+        field-name="checkbox-example-2"
+        value="second"
+        id="checkbox-example-2"
+        label="By ticking this box you are indicating your consent for VisitScotland
+        to use your email address to send you our e-newsletter on a regular basis.
+        You can unsubscribe at any time via the link in the email. We will process
+        your details in accordance with our privacy policy"
             class="mb-6"
-        />
-    </BFormGroup>
-    <BFormGroup>
-        <VsFormCheckbox
-            field-name="checkbox-example-2"
-            value="second"
-            id="checkbox-example-2"
-            label="By ticking this box you are indicating your consent for VisitScotland
-            to use your email address to send you our e-newsletter on a regular basis.
-            You can unsubscribe at any time via the link in the email. We will process
-            your details in accordance with our privacy policy"
-        />
-    </BFormGroup>
+    />
+    <label for="checkbox-invalid-example">
+        An invalid checkbox
+    </label>
+    <VsFormCheckbox
+        field-name="checkbox-example"
+        value="accepted"
+        id="checkbox-invalid-example"
+        label="I accept the terms and conditions"
+        :invalid="true"
+    />
 </BsWrapper>
 ```
 </docs>
