@@ -17,11 +17,13 @@
                 :key="field.name"
                 :label="needsLabel(field) ? getTranslatedLabel(field.name, index) : ''"
                 :label-for="needsLabel(field) ? field.name : ''"
+                class="mb-6"
             >
                 <template v-if="field.element === 'input'">
                     <VsFormInput
                         :ref="field.name"
                         @status-update="updateFieldData"
+                        @v-model="inputVal"
                         :field-name="field.name"
                         :type="field.type"
                         :validation-rules="field.validation || {}"
@@ -204,6 +206,7 @@ export default {
             ],
             triggerValidate: false,
             recaptchaVerified: false,
+            inputVal: '',
         };
     },
     computed: {
@@ -496,27 +499,6 @@ export default {
 </script>
 
 <style lang='scss'>
-    .vs-form {
-        label {
-            font-weight: $font-weight-semi-bold;
-            margin-bottom: 0;
-        }
-
-        .error {
-            font-size: $body-font-size;
-            color: $color-theme-danger;
-        }
-
-        .hint-text {
-            font-size: $body-font-size;
-            color: $color-gray-shade-1;
-            margin-bottom: 0;
-        }
-
-        .form-group {
-            margin-bottom: $spacer-6;
-        }
-    }
 </style>
 
 <docs>
@@ -526,8 +508,8 @@ export default {
             <VsRow>
                 <VsCol>
                     <VsForm
-                        dataUrl="http://172.28.74.120:5555/simpleForm.json"
-                        messagingUrl="http://172.28.74.120:5555/messaging.json"
+                        dataUrl="http://172.28.74.123:5555/simpleForm.json"
+                        messagingUrl="http://172.28.74.123:5555/messaging.json"
                         recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
                         marketo-instance="//app-lon10.marketo.com"
                         munchkin-id="830-QYE-256"
