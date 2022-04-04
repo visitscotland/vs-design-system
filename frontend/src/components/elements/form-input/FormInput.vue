@@ -24,7 +24,7 @@
         <BFormInput
             ref="input"
             :type="type"
-            class="vs-input mt-2"
+            class="vs-input"
             v-model="inputVal"
             :class="elementClass"
             :id="fieldName"
@@ -262,26 +262,6 @@ export default {
 
     &--error {
         @include form-error-state;
-    }
-
-    &--site-search.form-control {
-        @extend %reset-clear;
-        font-size: $font-size-body;
-        height: 50px;
-        padding: $spacer-3 $spacer-7 $spacer-3 $spacer-6;
-        margin: 0;
-        border-color: $color-white;
-
-        @include media-breakpoint-up(lg) {
-            padding: $spacer-4 $spacer-10 $spacer-4 $spacer-12;
-            font-size: $display1-size;
-            height: 79px;
-        }
-
-        @include media-breakpoint-up(xl) {
-            font-size: $font-size-xxl;
-            height: 94px;
-        }
     }
 
     &__clear-button.vs-button.btn {

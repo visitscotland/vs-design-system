@@ -14,8 +14,6 @@
                         action
                         method="get"
                         :novalidate="true"
-                        :validated="validated"
-                        @focus="focusOnInput"
                         @submit="onSubmit"
                         tabindex="-1"
                     >
@@ -218,6 +216,26 @@ export default {
             @include media-breakpoint-up(xl) {
                 font-size: $font-size-10;
             }
+        }
+    }
+
+    .vs-input--site-search.form-control {
+        @extend %reset-clear;
+        font-size: $font-size-body;
+        height: 50px;
+        padding: $spacer-3 $spacer-7 $spacer-3 $spacer-6;
+        margin: 0;
+        border-color: $color-white;
+
+        @include media-breakpoint-up(lg) {
+            padding: $spacer-4 $spacer-10 $spacer-4 $spacer-12;
+            font-size: $display1-size;
+            height: 79px;
+        }
+
+        @include media-breakpoint-up(xl) {
+            font-size: $font-size-10;
+            height: 94px;
         }
     }
 
