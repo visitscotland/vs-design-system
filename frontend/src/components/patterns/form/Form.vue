@@ -8,107 +8,121 @@
             class="d-none"
         />
 
-        <form
-            v-if="!submitted"
-            @submit.prevent="preSubmit"
-        >
-            <BFormGroup
-                v-for="(field, index) in formData.fields"
-                :key="field.name"
-                :label="needsLabel(field) &&
-                    (conditionalFields[field.name] === true
-                        || typeof conditionalFields[field.name] === 'undefined')
-                    ? getTranslatedLabel(field.name, index) : ''"
-                :label-for="needsLabel(field) ? field.name : ''"
+        <template v-if="!submitted">
+            <VsHeading
+                v-if="showFormHeading"
+                level="3"
             >
-                <template
-                    v-if="conditionalFields[field.name] === true
-                        || typeof conditionalFields[field.name] === 'undefined'"
+                {{ getTranslatedContent.heading }}
+            </VsHeading>
+
+            <form @submit.prevent="preSubmit">
+                <BFormGroup
+                    v-for="(field, index) in formData.fields"
+                    :key="field.name"
+                    :label="needsLabel(field) &&
+                        (conditionalFields[field.name] === true
+                            || typeof conditionalFields[field.name] === 'undefined')
+                        ? getTranslatedLabel(field.name, index) : ''"
+                    :label-for="needsLabel(field) ? field.name : ''"
                 >
-                    <template v-if="field.element === 'input'">
-                        <VsFormInput
-                            :ref="field.name"
-                            @status-update="updateFieldData"
-                            :field-name="field.name"
-                            :type="field.type"
-                            :validation-rules="field.validation || {}"
-                            :validation-messages="getTranslatedValidation(field.name, index) || {}"
-                            :generic-validation="getMessagingData('validation', language)"
-                            :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
-                            :trigger-validate="triggerValidate"
-                            :hint-text="getTranslatedHint(field.name, index)"
-                        />
+                    <template
+                        v-if="conditionalFields[field.name] === true
+                            || typeof conditionalFields[field.name] === 'undefined'"
+                    >
+                        <template v-if="field.element === 'input'">
+                            <VsFormInput
+                                :ref="field.name"
+                                @status-update="updateFieldData"
+                                :field-name="field.name"
+                                :type="field.type"
+                                :validation-rules="field.validation || {}"
+                                :validation-messages="getTranslatedValidation(field.name, index)
+                                    || {}"
+                                :generic-validation="getMessagingData('validation', language)"
+                                :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                                :trigger-validate="triggerValidate"
+                                :hint-text="getTranslatedHint(field.name, index)"
+                            />
+                        </template>
+
+                        <template v-if="field.element === 'select'">
+                            <VsFormSelect
+                                :options="getTranslatedOptions(field.name, index)"
+                                :ref="field.name"
+                                @status-update="updateFieldData"
+                                :field-name="field.name"
+                                :validation-rules="field.validation || {}"
+                                :validation-messages="getTranslatedValidation(field.name, index)
+                                    || {}"
+                                :generic-validation="getMessagingData('validation', language)"
+                                :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                                :trigger-validate="triggerValidate"
+                                :country-list-url="countryListUrl"
+                                :countries="field.countries"
+                                :hint-text="getTranslatedHint(field.name, index)"
+                            />
+                        </template>
+
+                        <template v-if="field.element === 'checkbox'">
+                            <VsFormCheckbox
+                                :key="field.name"
+                                :ref="field.name"
+                                :name="field.name"
+                                :value="field.value"
+                                :id="field.name"
+                                :label="field.descriptor"
+                                @status-update="updateFieldData"
+                                :field-name="field.name"
+                                :validation-rules="field.validation || {}"
+                                :validation-messages="getTranslatedValidation(field.name, index)
+                                    || {}"
+                                :generic-validation="getMessagingData('validation', language)"
+                                :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
+                                :trigger-validate="triggerValidate"
+                                :required-text="getMessagingData('required', language)"
+                                :hint-text="getTranslatedHint(field.name, index)"
+                            />
+                        </template>
                     </template>
+                </BFormGroup>
 
-                    <template v-if="field.element === 'select'">
-                        <VsFormSelect
-                            :options="getTranslatedOptions(field.name, index)"
-                            :ref="field.name"
-                            @status-update="updateFieldData"
-                            :field-name="field.name"
-                            :validation-rules="field.validation || {}"
-                            :validation-messages="getTranslatedValidation(field.name, index) || {}"
-                            :generic-validation="getMessagingData('validation', language)"
-                            :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
-                            :trigger-validate="triggerValidate"
-                            :country-list-url="countryListUrl"
-                            :countries="field.countries"
-                            :hint-text="getTranslatedHint(field.name, index)"
-                        />
-                    </template>
+                <VsRecaptcha
+                    @verified="onRecaptchaVerify"
+                    :site-key="recaptchaKey"
+                    :invalid="!recaptchaVerified && showErrorMessage"
+                    :language="language"
+                    :error-msg="getMessagingData('recaptchaError', language)"
+                />
 
-                    <template v-if="field.element === 'checkbox'">
-                        <VsFormCheckbox
-                            :key="field.name"
-                            :ref="field.name"
-                            :name="field.name"
-                            :value="field.value"
-                            :id="field.name"
-                            :label="field.descriptor"
-                            @status-update="updateFieldData"
-                            :field-name="field.name"
-                            :validation-rules="field.validation || {}"
-                            :validation-messages="getTranslatedValidation(field.name, index) || {}"
-                            :generic-validation="getMessagingData('validation', language)"
-                            :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
-                            :trigger-validate="triggerValidate"
-                            :required-text="getMessagingData('required', language)"
-                            :hint-text="getTranslatedHint(field.name, index)"
-                        />
-                    </template>
-                </template>
-            </BFormGroup>
-
-            <VsRecaptcha
-                @verified="onRecaptchaVerify"
-                :site-key="recaptchaKey"
-                :invalid="!recaptchaVerified && showErrorMessage"
-                :language="language"
-                :error-msg="getMessagingData('recaptchaError', language)"
-            />
-
-            <p v-if="errorFields.length > 0">
-                <slot name="invalid" />
-            </p>
-
-            <VsButton
-                variant="primary"
-                type="submit"
-                class="vs-form__submit mt-9"
-                @click.native="preSubmit"
-                @keyup.native="preSubmit"
-            >
-                {{ getTranslatedSubmitText }}
-            </VsButton>
-        </form>
+                <VsButton
+                    variant="primary"
+                    type="submit"
+                    class="vs-form__submit mt-9"
+                    @click.native="preSubmit"
+                    @keyup.native="preSubmit"
+                >
+                    {{ getTranslatedSubmitText }}
+                </VsButton>
+            </form>
+        </template>
 
         <p v-if="submitting">
             <slot name="submitting" />
         </p>
 
-        <p v-if="submitted">
-            <slot name="submitted" />
-        </p>
+        <template v-if="submitted">
+            <VsHeading
+                v-if="getTranslatedContent.successHeading"
+                level="3"
+            >
+                {{ getTranslatedContent.successHeading }}
+            </VsHeading>
+
+            <p class="vs-form__content">
+                {{ getTranslatedContent.successContent }}
+            </p>
+        </template>
 
         <p v-if="submitError">
             <slot name="submitError" />
@@ -124,6 +138,7 @@ import VsFormSelect from '../../elements/form-select/FormSelect';
 import VsFormCheckbox from '../../elements/form-checkbox/FormCheckbox';
 import VsRecaptcha from '../../elements/recaptcha/Recaptcha';
 import VsButton from '../../elements/button/Button';
+import VsHeading from '../../elements/heading/Heading';
 
 const axios = require('axios');
 
@@ -146,6 +161,7 @@ export default {
         BFormGroup,
         VsRecaptcha,
         VsButton,
+        VsHeading,
     },
     props: {
         /**
@@ -236,13 +252,34 @@ export default {
 
             if (this.language === 'en') {
                 text = this.formData.submit;
-            } else if (typeof languageObj.submit !== 'undefined') {
+            } else if (!this.isUndefined(languageObj.submit)) {
                 text = languageObj.submit;
             } else {
                 text = this.getMessagingData('submit', this.language);
             }
 
             return text;
+        },
+        getTranslatedContent() {
+            let content = {
+            };
+            const languageObj = this.getLanguageObj();
+
+            if (this.language === 'en') {
+                content = this.formData.content;
+            } else if (!this.isUndefined(languageObj.content)) {
+                content = languageObj.content;
+            }
+
+            return content;
+        },
+        showFormHeading() {
+            if (!this.isUndefined(this.getTranslatedContent)
+                && !this.isUndefined(this.getTranslatedContent.heading)) {
+                return true;
+            }
+
+            return false;
         },
     },
     created() {
@@ -561,6 +598,9 @@ export default {
 
 <style lang='scss'>
     .vs-form {
+        &__content {
+            font-size: $font-size-6;
+        }
         label {
             font-weight: $font-weight-semi-bold;
             margin-bottom: 0;
@@ -590,9 +630,9 @@ export default {
             <VsRow>
                 <VsCol>
                     <VsForm
-                        dataUrl="http://172.28.74.123:5555/newsletterSignUp.json"
-                        messagingUrl="http://172.28.74.123:5555/messaging.json"
-                        countryListUrl="http://172.28.74.123:5555/countries.json"
+                        dataUrl="http://172.28.74.124:5555/newsletterSignUp.json"
+                        messagingUrl="http://172.28.74.124:5555/messaging.json"
+                        countryListUrl="http://172.28.74.124:5555/countries.json"
                         recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
                         marketo-instance="//app-lon10.marketo.com"
                         munchkin-id="830-QYE-256"
