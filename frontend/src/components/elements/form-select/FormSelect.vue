@@ -22,7 +22,7 @@
                 v-model="inputVal"
                 :size="size"
                 v-bind="$attrs"
-                :options="options"
+                :options="fieldOptions"
                 :name="fieldName"
                 :id="fieldName"
                 @change="emitStatus"
@@ -46,6 +46,8 @@ import { BFormSelect } from 'bootstrap-vue';
 import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 
 Vue.use(Vuelidate);
+
+const axios = require('axios');
 
 /**
  * A select element
@@ -128,6 +130,13 @@ export default {
             },
         },
         /**
+         * URL for list of countries file
+         */
+        countryListUrl: {
+            type: String,
+            default: '',
+        },
+        /*
          * Content for hint text
          */
         hintText: {
@@ -135,6 +144,13 @@ export default {
             default: '',
         },
         /**
+         * whether the options should be a countries list
+         */
+        countries: {
+            type: Boolean,
+            default: false,
+        },
+        /*
          * Fallback translated validation
          */
         genericValidation: {
@@ -149,11 +165,15 @@ export default {
         return {
             inputVal: this.value,
             touched: false,
+            countryList: [],
         };
     },
     computed: {
         errorClass() {
             return this.$v.inputVal.$anyError || this.invalid ? 'vs-select__element--error' : '';
+        },
+        fieldOptions() {
+            return this.countries ? this.countryList : this.options;
         },
     },
     watch: {
@@ -173,6 +193,17 @@ export default {
         triggerValidate() {
             this.manualValidate();
         },
+    },
+    beforeMount() {
+        /**
+         * import country list
+         */
+        if (this.countries) {
+            axios.get(this.countryListUrl)
+                .then((response) => {
+                    this.countryList = response.data.countries;
+                });
+        }
     },
     validations() {
         return this.rules;

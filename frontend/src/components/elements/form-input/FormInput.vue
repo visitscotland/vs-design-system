@@ -251,6 +251,7 @@ export default {
 
 .vs-input {
     @include form-element-styles;
+    margin-top: $spacer-2;
 
     &.form-control-md {
         height: 50px;
