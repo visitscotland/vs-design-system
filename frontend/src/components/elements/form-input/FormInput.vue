@@ -1,6 +1,6 @@
 <template>
     <div
-        data-test="vs-form-input"
+        data-test="vs-input"
     >
         <p
             class="hint-text"
@@ -22,19 +22,35 @@
             </span>
         </template>
         <BFormInput
+            ref="input"
             :type="type"
-            class="vs-form-input"
+            class="vs-input"
             v-model="inputVal"
-            :class="errorClass"
-            @blur="emitStatus"
+            :class="elementClass"
             :id="fieldName"
             :name="fieldName"
+            :placeholder="placeholder"
             :required="isRequired"
             :size="size"
             :v="inputVal"
             :aria-invalid="$v.inputVal.$anyError || invalid"
             :aria-describedby="$v.inputVal.$anyError || invalid ? `error-${fieldName}` : ''"
         />
+        <VsButton
+            data-test="input-clear-button"
+            v-if="showClearButton"
+            class="vs-input__clear-button d-none d-lg-block"
+            variant="transparent"
+            icon-variant-override="secondary"
+            icon="close"
+            size="md"
+            icon-only
+            @click.native.prevent="clearInputAndFocus()"
+        >
+            <span class="sr-only">
+                {{ clearButtonText }}
+            </span>
+        </VsButton>
     </div>
 </template>
 
@@ -90,7 +106,7 @@ export default {
          */
         type: {
             type: String,
-            required: true,
+            default: 'text',
         },
         /**
          * Rules for Vuelidate plugin
@@ -143,10 +159,42 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * text for the 'clear' button
+         * the existence of this will defined whether the button
+         * also exists
+         */
+        clearButtonText: {
+            type: String,
+            default: '',
+        },
+        /**
+         * Element placeholder text
+         */
+        placeholder: {
+            type: String,
+            default: '',
+        },
     },
     computed: {
+        /**
+         * element type class plus error classes
+         */
+        elementClass() {
+            const errorClass = this.$v.inputVal.$anyError || this.invalid ? 'vs-input--error' : '';
+            const nameClass = `vs-input--${this.fieldName}`;
+
+            return `${errorClass} ${nameClass}`;
+        },
+        showClearButton() {
+            if (this.inputVal.length && this.clearButtonText !== '') {
+                return true;
+            }
+
+            return false;
+        },
         errorClass() {
-            return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-input--error' : '';
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-input--error' : '';
         },
     },
     watch: {
@@ -167,6 +215,31 @@ export default {
             this.inputVal = newValue;
         },
     },
+    methods: {
+        /**
+         * Clear any text entered in the input
+         */
+        clearInput() {
+            this.inputVal = '';
+            this.$emit('cleared');
+        },
+        /**
+         * Focus on the input
+         */
+        focusOnInput() {
+            this.$nextTick(() => {
+                this.$refs.input.$el.focus();
+            });
+        },
+        /**
+         * Clears the input on button click
+         * and adds focus back to the input
+         */
+        clearInputAndFocus() {
+            this.clearInput();
+            this.focusOnInput();
+        },
+    },
     validations() {
         return this.rules;
     },
@@ -174,68 +247,32 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-form-input {
-    border: $color-gray-shade-3 1px solid;
+@include forms-common;
+
+.vs-input {
+    @include form-element-styles;
     margin-top: $spacer-2;
-    // transition: box-shadow $duration-base;
 
     &.form-control-md {
         height: 50px;
     }
 
     &:focus {
-        // border-color: $color-gray-tint-1;
-        // box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5);
-        border: $color-pink 4px solid;
-        outline: none;
-        box-shadow: none;
+        @include form-focus-state;
     }
 
     &--error {
-        border: 2px solid $color-theme-danger;
+        @include form-error-state;
     }
 
-    &[type="search"] {
-        @extend %reset-clear;
+    &__clear-button.vs-button.btn {
+        position: absolute;
+        right: $spacer-5;
+        top: 50%;
+        transform: translate(0, -50%);
+        padding: $spacer-1;
     }
 }
-
-//     &.form-control {
-//         border-color: $color-gray-tint-1;
-//         transition: box-shadow $duration-base;
-
-//         &:focus {
-//         border-color: $color-gray-tint-1;
-//         box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-//         }
-
-//         &[type="search"] {
-//             @extend %reset-clear;
-//         }
-//     }
-
-//     &::placeholder {
-//             color: $color-secondary-gray;
-//         }
-
-//     &:focus {
-//         border-color: $color-gray-tint-1;
-//         box-shadow: $shadow-form-input;
-//     }
-
-//     &[type='search'] {
-//         @extend %reset-clear;
-//     }
-
-//     &.is-valid{
-//         border-color: $color-theme-success!important;
-//     }
-
-//     &.is-invalid{
-//         border-color: $color-theme-danger!important;
-//     }
-// }
-
 </style>
 
 <docs>
@@ -251,7 +288,12 @@ export default {
     />
     <label for="medium">Medium (default)</label>
     <VsFormInput
-        id="medium" placeholder="Enter your name" class="mb-5" size="md" field-name="input2"
+        id="medium"
+        placeholder="Enter your name"
+        class="mb-5"
+        size="md"
+        field-name="input1"
+        hint-text="This is some hint text"
     />
     <label for="large">Large</label>
     <VsFormInput
@@ -260,7 +302,7 @@ export default {
     <label for="input-invalid">Invalid state</label>
     <VsFormInput
         id="input-invalid"
-        invalid="true"
+        :invalid="true"
         placeholder="Invalid"
         class="mb-5"
         field-name="input5"

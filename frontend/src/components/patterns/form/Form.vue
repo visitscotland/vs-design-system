@@ -240,6 +240,7 @@ export default {
             recaptchaVerified: false,
             conditionalFields: {
             },
+            inputVal: '',
         };
     },
     computed: {
