@@ -17,7 +17,7 @@ Hippo.Reports.languageComboConfig = {
             'locale',
             'displayText'
         ],
-        data: [["fr", "French"], ["de", "German"], ["nl", "Dutch"], ["it", "Italian"], ["es", "Spanish"]]
+        data: [["all", "All"], ["fr", "French"], ["de", "German"], ["nl", "Dutch"], ["it", "Italian"], ["es", "Spanish"]]
     }),
     valueField: 'locale',
     displayField: 'displayText',
@@ -25,7 +25,16 @@ Hippo.Reports.languageComboConfig = {
         select: function (combo, record, index) {
             const locale = record["id"]
             const gridStore = Ext.getCmp(GRID_ID).getStore()
-            gridStore.proxy.setParams({locale: locale});
+            const panel = Ext.getCmp(PANEL_ID);
+
+            // If locale=all, then don't filter by translated locale
+            if (locale !== "all") {
+                gridStore.proxy.setParams({locale: locale});
+                panel.addTranslationStatusFilter();
+            } else {
+                gridStore.proxy.setParams({})
+                panel.removeTranslationStatusFilter();
+            }
             gridStore.load();
         }
     }
