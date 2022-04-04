@@ -4,6 +4,11 @@ import VsForm from '../Form';
 const formData = {
     formSandboxId: '90',
     formLiveId: '91',
+    content: {
+        heading: 'What are your details?',
+        successHeading: 'submitted text',
+        successContent: 'Since you’ve just joined us, we’ll send you a couple of extra emails to introduce ourselves properly. After this Scottish hello, you’ll receive the newsletter twice a month, packed with lots of exciting information and news about Scotland to help you plan your trip.',
+    },
     fields: [
         {
             name: 'FirstName',
@@ -135,6 +140,13 @@ describe('VsForm', () => {
         expect(wrapper.find('[data-test="vs-form"]').exists()).toBe(true);
     });
 
+    it('should render a header from the data supplied', () => {
+        const wrapper = factoryShallowMount();
+        const conditionalField = wrapper.find('vsheading-stub');
+
+        expect(conditionalField.exists()).toBe(true);
+    });
+
     it('should render three input fields', async() => {
         const wrapper = factoryShallowMount();
         await wrapper.vm.$nextTick();
@@ -170,7 +182,7 @@ describe('VsForm', () => {
             expect(wrapper.html()).toContain('submitting text');
         });
 
-        it('should render the `submitted` slot', async() => {
+        it('should render the `submitted` test from data when the data attribute is true', async() => {
             const wrapper = factoryShallowMount();
             wrapper.vm.submitted = true;
 
@@ -186,16 +198,6 @@ describe('VsForm', () => {
             await wrapper.vm.$nextTick();
 
             expect(wrapper.html()).toContain('error text');
-        });
-
-        it('should render the `invalid` slot', async() => {
-            const wrapper = factoryShallowMount();
-            wrapper.vm.showErrorMessage = true;
-            wrapper.vm.errorFields = ['firstname'];
-
-            await wrapper.vm.$nextTick();
-
-            expect(wrapper.html()).toContain('invalid text');
         });
     });
 
