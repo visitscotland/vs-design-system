@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-form-select">
+    <div class="vs-select">
         <p
             class="hint-text"
             :id="`hint-${fieldName}`"
@@ -17,7 +17,7 @@
                 {{ validationMessages[error] || genericValidation[error] }}
             </template>
         </span>
-        <div class="vs-form-select__container">
+        <div class="vs-select__container  mt-2">
             <BFormSelect
                 v-model="inputVal"
                 :size="size"
@@ -27,14 +27,14 @@
                 :id="fieldName"
                 @change="emitStatus"
                 @blur="emitStatus"
-                data-test="vs-form-select"
-                class="vs-form-select__element"
+                data-test="vs-select"
+                class="vs-select__element"
                 :required="isRequired"
                 :aria-invalid="$v.inputVal.$anyError || invalid"
                 :aria-describedby="`hint-${fieldName}`"
                 :class="errorClass"
             />
-            <span class="vs-form-select__focus" />
+            <span class="vs-select__focus" />
         </div>
     </div>
 </template>
@@ -170,7 +170,7 @@ export default {
     },
     computed: {
         errorClass() {
-            return this.$v.inputVal.$anyError || this.invalid ? 'vs-form-select__element--error' : '';
+            return this.$v.inputVal.$anyError || this.invalid ? 'vs-select__element--error' : '';
         },
         fieldOptions() {
             return this.countries ? this.countryList : this.options;
@@ -212,14 +212,15 @@ export default {
 </script>
 
 <style lang="scss">
-    .vs-form-select {
+    @include forms-common;
+
+    .vs-select {
         &__container {
             position: relative;
             width: 100%;
             cursor: pointer;
             height: 50px;
             border-radius: 0;
-            margin-top: $spacer-2;
 
             &::after {
                 content: "";
@@ -253,23 +254,23 @@ export default {
             cursor: inherit;
             line-height: inherit;
             height: 50px;
-            border: $color-gray-shade-3 1px solid;
+            @include form-element-styles;
 
             &--error {
-                border: 2px solid $color-theme-danger;
+                @include form-error-state;
             }
 
             &:focus {
                 outline: none;
                 box-shadow: none;
 
-                & + .vs-form-select__focus {
+                & + .vs-select__focus {
                     position: absolute;
                     top: -1px;
                     left: -1px;
                     right: -1px;
                     bottom: -1px;
-                    border: $color-pink 4px solid;
+                    @include form-focus-state;
                 }
             }
         }
@@ -279,6 +280,7 @@ export default {
 <docs>
 ```jsx
 <BsWrapper>
+    <label for="select-example">A select element</label>
     <VsFormSelect
         :options="[
           { value: null, text: 'Please select an option', selected: 'true' },
@@ -288,6 +290,21 @@ export default {
           { value: 'd', text: 'This one is disabled', disabled: true }
         ]"
         name="select-example"
+        hint-text="Select hint text"
+        class="mb-6"
+    />
+
+    <label for="select-example">An invalid select element</label>
+    <VsFormSelect
+        :options="[
+          { value: null, text: 'Please select an option', selected: 'true' },
+          { value: 'a', text: 'This is First option' },
+          { value: 'b', text: 'Selected Option' },
+          { value: { C: '3PO' }, text: 'This is an option with object value' },
+          { value: 'd', text: 'This one is disabled', disabled: true }
+        ]"
+        name="select-example-2"
+        :invalid="true"
     />
 </BsWrapper>
 ```

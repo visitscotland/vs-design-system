@@ -12,6 +12,9 @@ const validateFormElementMixin = {
         };
     },
     computed: {
+        /**
+         * calculate whether element is required
+         */
         isRequired() {
             if (typeof required !== 'undefined' && 'required' in this.validationRules) {
                 return true;
