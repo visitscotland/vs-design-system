@@ -11,9 +11,12 @@
                     header-bg-variant="success"
                     header-text-variant="white"
                     header="Do"
+                    ref="thingToDo"
                 >
                     <!-- @slot Holds the positive suggestion (html expected) -->
-                    <slot name="thingToDo" />
+                    <slot
+                        name="thingToDo"
+                    />
                 </BCard>
             </VsCol>
             <VsCol
@@ -24,9 +27,12 @@
                     header-bg-variant="danger"
                     header-text-variant="white"
                     header="Don't"
+                    ref="thingToNotDo"
                 >
                     <!-- @slot Holds the negative suggestion (html expected) -->
-                    <slot name="thingToNotDo" />
+                    <slot
+                        name="thingToNotDo"
+                    />
                 </BCard>
             </VsCol>
         </VsRow>
@@ -50,6 +56,36 @@ export default {
         VsCol,
         BCard,
     },
+    mounted() {
+        if (!!this.$slots.thingToDo) {
+            this.setImages(this.$refs.thingToDo);
+        }
+
+        if (!!this.$slots.thingToNotDo) {
+            this.setImages(this.$refs.thingToNotDo);
+        }
+    },
+    methods: {
+        /**
+         * Retrieve images from preformatted markup and convert them into img
+         * tags
+         *
+         * Images are returned as `![](url)`
+         */
+        setImages (node) {
+            const regexp = /!\[]\((?<url>.*)\)/g;
+            const imgs = node.innerHTML.matchAll(regexp);
+
+            for (let img of imgs) {
+                const { url } = img.groups;
+
+                node.innerHTML = node.innerHTML.replace(
+                    img[0],
+                    '<img src="' + url + '"/>'
+                )
+            }
+        },
+    }
 };
 </script>
 
