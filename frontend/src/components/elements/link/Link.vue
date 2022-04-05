@@ -11,8 +11,7 @@
         v-bind="$attrs"
     >
         <!-- @slot Default slot for link content -->
-        <slot />
-        <VsIcon
+        <slot /><VsIcon
             v-if="type !== 'default'"
             :name="`${type}-link`"
             variant="primary"
@@ -94,8 +93,6 @@ export default {
 
 <style lang="scss">
 .vs-link {
-    display: inline-block;
-
     &.vs-link--variant-primary {
         color: $color_pink;
 
