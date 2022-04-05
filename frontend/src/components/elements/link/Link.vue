@@ -94,6 +94,8 @@ export default {
 
 <style lang="scss">
 .vs-link {
+    display: inline-block;
+
     &.vs-link--variant-primary {
         color: $color_pink;
 
