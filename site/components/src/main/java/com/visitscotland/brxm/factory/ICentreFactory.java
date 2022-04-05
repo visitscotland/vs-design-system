@@ -113,7 +113,6 @@ public class ICentreFactory {
         if (!Contract.isEmpty(location)) {
             return getVicList(location, locale);
         } else {
-            //TODO: Create labels
             String url = bundle.getResourceBundle(BUNDLE_ID, "icentre.description.link", locale);
             String text = bundle.getResourceBundle(BUNDLE_ID, "icentre.description.link.text", locale);
 
