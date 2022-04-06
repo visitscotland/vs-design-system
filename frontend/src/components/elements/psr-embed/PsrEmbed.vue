@@ -8,8 +8,8 @@
 
 <script>
 /**
- * The PSR widget is embedded from an external source.
- * It can be customised with data attributes.
+ * The PSR embed component is a wrapper for the the product
+ * search widget which comes from an external source.
  *
  * @displayName PSR Embed
  */
@@ -123,19 +123,4 @@ export default {
         display: none;
     }
 }
-
 </style>
-
-<docs>
-```jsx
-    <VsContainer>
-        <VsRow>
-            <VsCol md="6">
-                <vs-psr-embed
-                    :config="[{'lang': 'fr'},{'subSearchType': 'acco'},{'locplace': '4161'},{'domain':'http://172.28.81.65:8089'}]"
-                />
-            </VsCol>
-        </VsRow>
-    </VsContainer>
-```
-</docs>
