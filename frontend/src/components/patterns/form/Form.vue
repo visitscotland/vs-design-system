@@ -88,9 +88,24 @@
                 @click.native="preSubmit"
                 @keyup.native="preSubmit"
             >
-                {{ getTranslatedSubmitText }}
+                {{ getTranslatedContent('submit') }}
             </VsButton>
         </form>
+
+        <!-- eslint-disable vue/no-v-html -->
+        <div
+            class="vs-form__no-js"
+            data-test="vs-form-no-js"
+        >
+            <VsIcon
+                name="review"
+                variant="primary"
+                size="xl"
+                class="mb-5"
+            />
+            <div v-html="getTranslatedContent('noJs')" />
+        </div>
+        <!-- eslint-enable vue/no-v-html -->
 
         <p v-if="submitting">
             <slot name="submitting" />
@@ -108,6 +123,7 @@
 
 <script>
 import { BFormGroup } from 'bootstrap-vue';
+import VsIcon from '../../elements/icon/Icon';
 import VsFormInput from '../../elements/form-input/FormInput';
 import VsFormSelect from '../../elements/form-select/FormSelect';
 import VsFormCheckbox from '../../elements/form-checkbox/FormCheckbox';
@@ -135,6 +151,7 @@ export default {
         BFormGroup,
         VsRecaptcha,
         VsButton,
+        VsIcon,
     },
     props: {
         /**
@@ -209,20 +226,6 @@ export default {
     computed: {
         formId() {
             return this.isProd ? this.formData.formLiveId : this.formData.formSandboxId;
-        },
-        getTranslatedSubmitText() {
-            let text;
-            const languageObj = this.getLanguageObj();
-
-            if (this.language === 'en') {
-                text = this.formData.submit;
-            } else if (typeof languageObj.submit !== 'undefined') {
-                text = languageObj.submit;
-            } else {
-                text = this.getMessagingData('submit', this.language);
-            }
-
-            return text;
         },
     },
     created() {
@@ -350,6 +353,24 @@ export default {
             }
 
             return hintText;
+        },
+        getTranslatedContent(type) {
+            let text;
+            const languageObj = this.getLanguageObj();
+
+            if (this.language === 'en'
+                && !this.isUndefined(this.formData.content)
+                && !this.isUndefined(this.formData.content[type])
+            ) {
+                text = this.formData.content[type];
+            } else if (!this.isUndefined(languageObj.content)
+                && !this.isUndefined(languageObj.content[type])) {
+                text = languageObj.content[type];
+            } else {
+                text = this.getMessagingData(type, this.language);
+            }
+
+            return text;
         },
         /**
          * check messaging data exists and then pass value back
@@ -503,18 +524,35 @@ export default {
         }
 
         .error {
-            font-size: $body-font-size;
+            font-size: $font-size-body;
             color: $color-theme-danger;
         }
 
         .hint-text {
-            font-size: $body-font-size;
+            font-size: $font-size-body;
             color: $color-gray-shade-1;
             margin-bottom: 0;
         }
 
         .form-group {
             margin-bottom: $spacer-6;
+        }
+
+        &__no-js {
+            display: none;
+        }
+    }
+
+    @include no-js {
+        .vs-form {
+
+            & > form {
+                display: none;
+            }
+
+            &__no-js {
+                display: block;
+            }
         }
     }
 </style>
@@ -526,12 +564,13 @@ export default {
             <VsRow>
                 <VsCol>
                     <VsForm
-                        dataUrl="http://172.28.74.120:5555/simpleForm.json"
-                        messagingUrl="http://172.28.74.120:5555/messaging.json"
+                        dataUrl="http://172.28.74.166:5555/newsletter-sign-up.json"
+                        messagingUrl="http://172.28.74.166:5555/messaging.json"
+                        countries="http://172.28.74.166:5555/countries.json"
                         recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
                         marketo-instance="//app-lon10.marketo.com"
                         munchkin-id="830-QYE-256"
-                        language="en"
+                        language="de"
                         :is-prod="false"
                     >
                         <template slot="invalid">
