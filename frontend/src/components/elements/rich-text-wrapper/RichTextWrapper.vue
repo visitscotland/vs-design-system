@@ -3,9 +3,6 @@
         class="vs-rich-text-wrapper"
         :class="[
             `vs-rich-text-wrapper--variant-${variant}`,
-            {
-                lead: variant === 'lead',
-            },
         ]"
     >
         <!-- @slot Default slot for rich text content -->
