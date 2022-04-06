@@ -270,6 +270,7 @@ export default {
                     left: -1px;
                     right: -1px;
                     bottom: -1px;
+                    pointer-events: none;
                     @include form-focus-state;
                 }
             }
