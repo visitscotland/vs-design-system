@@ -19,7 +19,6 @@ public class DMSConstants {
 
     public static final String AWARD_IKNOW = "qaiknowscotland";
 
-    //TODO should this be uppercase? check enums ProductSearchBuilder
     public static final String SORT_ALPHA = "ALPHA";
 
     public static final class MapSearch {
