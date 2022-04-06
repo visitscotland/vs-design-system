@@ -20,7 +20,8 @@
 
                 <vs-form
                     data-url="${form.jsonUrl}"
-                    messaging-url="http://172.28.74.124:5556/messaging.json"
+                    messaging-url="http://127.0.0.1:5555/messaging.json"
+                    country-list-url="http://127.0.0.1:5555/countries.json"
                     recaptcha-key="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
                     marketo-instance="//app-lon10.marketo.com"
                     munchkin-id="830-QYE-256"
