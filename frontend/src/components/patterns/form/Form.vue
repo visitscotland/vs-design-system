@@ -631,29 +631,21 @@ export default {
             <VsRow>
                 <VsCol>
                     <VsForm
-                        dataUrl="http://172.28.74.124:5555/newsletterSignUp.json"
-                        messagingUrl="http://172.28.74.124:5555/messaging.json"
-                        countryListUrl="http://172.28.74.124:5555/countries.json"
+                        dataUrl="http://172.28.74.166:5555/newsletter-sign-up.json"
+                        messagingUrl="http://172.28.74.166:5555/messaging.json"
+                        countryListUrl="http://172.28.74.166:5555/countries.json"
                         recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
                         marketo-instance="//app-lon10.marketo.com"
                         munchkin-id="830-QYE-256"
                         language="en"
                         :is-prod="false"
                     >
-                        <template slot="invalid">
-                            You have invalid fields - please check the form.
-                        </template>
-
                         <template slot="submitError">
                             We're sorry there's been a problem, please try again later.
                         </template>
 
                         <template slot="submitting">
                             We're just submitting your form
-                        </template>
-
-                        <template slot="submitted">
-                            Thank you for your details, your form has been submitted
                         </template>
                     </VsForm>
                 </VsCol>
