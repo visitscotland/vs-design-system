@@ -73,7 +73,7 @@
             <@cannedSearch module themeName/>
 
         <#else >
-            <@previewWarning editMode module true />
+            <@previewWarning editMode module module.errorMessages true />
         </#if>
     </div>
 </#macro>

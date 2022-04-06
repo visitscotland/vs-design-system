@@ -26,7 +26,7 @@
 
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document/>
-    <@cmsErrors errors=alerts!"" editMode=editMode />
+	<@previewWarning editMode document alerts />
 
     <#if standardTemplate>
         <@pageIntro content=document heroDetails=heroImage />
