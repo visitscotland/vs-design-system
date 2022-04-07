@@ -29,10 +29,13 @@
                 size="md"
                 ref="videoShow"
                 @click.native="emitShowModal"
-                v-if="videoId"
-                v-show="videoLoaded"
+                v-if="videoId && videoLoaded"
             >
-                <span v-if="videoLoaded">{{ videoBtnText }} |&nbsp;</span>
+                <span
+                    class="vs-stretched-link-card__video-btn-text"
+                >
+                    {{ videoBtnText }} |&nbsp;
+                </span>
                 {{ formattedVideoDuration }}
             </VsButton>
 
@@ -85,6 +88,20 @@
                 <slot name="stretchedCardLink" />
             </VsLink>
         </div>
+        <VsModal
+            :modalId="videoId"
+            :closeBtnText="videoModalCloseText"
+            :isVideoModal="true"
+        >
+            <VsRow>
+                <VsCol cols="12">
+                    <VsVideo
+                        :videoId="videoId"
+                        class="mb-8"
+                    />
+                </VsCol>
+            </VsRow>
+        </VsModal>
     </div>
 </template>
 
@@ -93,6 +110,7 @@ import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
 import VsImg from '@components/elements/img/Img';
 import VsButton from '@components/elements/button/Button';
+import VsModal from '@components/patterns/modal/Modal';
 import videoStore from '../../../stores/video.store';
 
 /**
@@ -110,6 +128,7 @@ export default {
         VsLink,
         VsImg,
         VsButton,
+        VsModal,
     },
     props: {
         /**
@@ -172,6 +191,13 @@ export default {
         videoBtnText: {
             type: String,
             default: 'Play Video',
+        },
+        /**
+         * A label for the close button on the video label, if present
+         */
+        videoModalCloseText: {
+            type: String,
+            default: 'Close',
         },
     },
     computed: {
@@ -388,6 +414,7 @@ export default {
                     imgAlt="This is the alt text"
                     videoId="PSoOFn3wQV4"
                     videoBtnText="Play Video"
+                    videoModalCloseText="Close"
                 >
                     <template slot="stretchedCardCategory">
                         A category header
@@ -414,20 +441,5 @@ export default {
             </VsCol>
         </VsRow>
     </VsContainer>
-
-    <VsModal
-        modalId="PSoOFn3wQV4"
-        closeBtnText="Close"
-        :isVideoModal="true"
-    >
-        <VsRow>
-            <VsCol cols="12">
-                <VsVideo
-                    video-id="PSoOFn3wQV4"
-                    class="mb-8"
-                />
-            </VsCol>
-        </VsRow>
-    </VsModal>
   ```
 </docs>
