@@ -21,9 +21,9 @@
             <slot name="stretchedCardPanels" />
         </template>
 
-        <div class="card-body">
+        <div class="card-body position-relative">
             <VsButton
-                class="vs-video-caption__button"
+                class="vs-stretched-link-card__video-button"
                 icon="play"
                 icon-position="left"
                 size="md"
@@ -298,6 +298,12 @@ export default {
             margin: $spacer-4 $spacer-0 $spacer-0;
             color: $color-pink;
             text-decoration: underline;
+        }
+
+        .vs-stretched-link-card__video-button {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
         }
 
         @include media-breakpoint-up(sm) {
