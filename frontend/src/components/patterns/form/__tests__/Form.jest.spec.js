@@ -7,7 +7,7 @@ const formData = {
     content: {
         heading: 'What are your details?',
         successHeading: 'What happens next?',
-        successContent: 'Since you’ve just joined us, we’ll send you a couple of extra emails to introduce ourselves properly. After this Scottish hello, you’ll receive the newsletter twice a month, packed with lots of exciting information and news about Scotland to help you plan your trip.',
+        successContent: 'submitted text',
         submit: 'Subscribe',
         noJs: 'no js content',
     },
