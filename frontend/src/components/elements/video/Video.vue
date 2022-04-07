@@ -210,6 +210,7 @@ export default {
                 id: this.videoId,
                 durationMsg: this.duration.roundedMinutes,
                 duration: (this.duration.minutes * 60) + this.duration.seconds,
+                fullDuration: this.duration,
             });
         },
     },
