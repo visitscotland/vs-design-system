@@ -24,13 +24,13 @@ beforeEach(() => {
 
 describe('VsFormInput', () => {
     it('should render a bform-input-stub', () => {
-        expect(wrapper.attributes('data-test')).toBe('vs-form-input');
+        expect(wrapper.attributes('data-test')).toBe('vs-input');
     });
 
     describe(':props', () => {
         it('size - should be `md` by default', () => {
             const modifiedWrapper = factoryMount();
-            expect(modifiedWrapper.find('.vs-form-input').classes()).toContain('form-control-md');
+            expect(modifiedWrapper.find('.vs-input').classes()).toContain('form-control-md');
         });
 
         it('size - should accept and render a `size` property', () => {
@@ -39,7 +39,7 @@ describe('VsFormInput', () => {
                 size: testSize,
             });
 
-            expect(modifiedWrapper.find('.vs-form-input').classes()).toContain(`form-control-${testSize}`);
+            expect(modifiedWrapper.find('.vs-input').classes()).toContain(`form-control-${testSize}`);
         });
 
         it('value - should accept and render a `value` property', async() => {
@@ -60,11 +60,24 @@ describe('VsFormInput', () => {
 
             await wrapper.vm.$nextTick();
 
-            expect(wrapper.find('.vs-form-input').attributes('name')).toBe('testValue');
+            expect(wrapper.find('.vs-input').attributes('name')).toBe('testValue');
         });
 
         it('value - should accept and render a `type` property', async() => {
-            expect(wrapper.find('.vs-form-input').attributes('type')).toBe('text');
+            expect(wrapper.find('.vs-input').attributes('type')).toBe('text');
+        });
+
+        it('should show the clear button when there is a value if the `closeButtonText` prop is defined', async() => {
+            wrapper.setProps({
+                clearButtonText: 'clear text',
+            });
+
+            wrapper.setData({
+                inputVal: 'test',
+            });
+            await wrapper.vm.$nextTick();
+
+            expect(wrapper.find('[data-test="input-clear-button"]').text()).toBe('clear text');
         });
     });
 
@@ -78,7 +91,7 @@ describe('VsFormInput', () => {
 
             await wrapper.vm.$nextTick();
 
-            expect(wrapper.find('.vs-form-input').attributes('required')).toBe('true');
+            expect(wrapper.find('.vs-input').attributes('required')).toBe('true');
         });
 
         it('should display a validation message if validation fails', async() => {
@@ -97,6 +110,20 @@ describe('VsFormInput', () => {
             await wrapper.vm.$nextTick();
 
             expect(wrapper.html()).toContain('This is required');
+        });
+    });
+
+    describe(':methods', () => {
+        it('clears the `inputVal` data when the `clearInput` method is triggered', async() => {
+            wrapper.setData({
+                inputVal: 'test',
+            });
+
+            await wrapper.vm.$nextTick();
+
+            wrapper.vm.clearInput();
+
+            expect(wrapper.vm.inputVal).toBe('');
         });
     });
 
