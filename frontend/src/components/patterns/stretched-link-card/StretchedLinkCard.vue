@@ -22,6 +22,20 @@
         </template>
 
         <div class="card-body">
+
+            <VsButton
+                class="vs-video-caption__button"
+                icon="play"
+                icon-position="left"
+                size="md"
+                ref="videoShow"
+                @click.native="emitShowModal"
+                v-if="videoId"
+                v-show="videoLoaded"
+            >
+                {{ videoBtnText }}
+            </VsButton>
+
             <span
                 class="vs-stretched-link-card__category"
                 v-if="!!this.$slots['stretchedCardCategory']"
@@ -78,6 +92,8 @@
 import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
 import VsImg from '@components/elements/img/Img';
+import VsButton from '@components/elements/button/Button';
+import videoStore from '../../../stores/video.store';
 
 /**
  * The Stretched Link Card is a block that stretches its nested link across its whole area
@@ -93,6 +109,7 @@ export default {
         VsHeading,
         VsLink,
         VsImg,
+        VsButton,
     },
     props: {
         /**
@@ -140,6 +157,31 @@ export default {
         disabled: {
             type: Boolean,
             default: false,
+        },
+        videoId: {
+            type: String,
+            default: '',
+        },
+        videoBtnText: {
+            type: String,
+            default: '',
+        },
+    },
+    computed: {
+        videoDetails() {
+            return videoStore.getters.getVideoDetails(this.videoId);
+        },
+        videoLoaded() {
+            if (typeof this.videoDetails !== 'undefined' && this.videoDetails.videoDuration > 0) {
+                return true;
+            }
+
+            return false;
+        },
+    },
+    methods: {
+        emitShowModal() {
+            this.$root.$emit('bv::show::modal', this.videoId, '#videoShow');
         },
     },
 };
@@ -315,7 +357,55 @@ export default {
                     </VsRichTextWrapper>
                 </VsStretchedLinkCard>
             </VsCol>
+
+            <VsCol cols="12" md="6">
+                <VsStretchedLinkCard
+                    link="https://visitscotland.com"
+                    type="external"
+                    imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                    imgAlt="This is the alt text"
+                    videoId="xeg2KD8csgM"
+                    videoBtnText="Play Video"
+                >
+                    <template slot="stretchedCardCategory">
+                        A category header
+                    </template>
+                    <template slot="stretchedCardPanels">
+                        <VsStretchedLinkPanels
+                            days="14"
+                            transport="car"
+                            transportName="Car"
+                            daysLabel="days"
+                        />
+                    </template>
+
+                    <template slot="stretchedCardHeader">
+                        A Title Would Go Here
+                    </template>
+
+                    <VsRichTextWrapper slot="stretchedCardContent">
+                        <p>The content for the card goes here</p>
+
+                        <p>A second line of content</p>
+                    </VsRichTextWrapper>
+                </VsStretchedLinkCard>
+            </VsCol>
         </VsRow>
     </VsContainer>
+
+    <VsModal
+        modalId="xeg2KD8csgM"
+        closeBtnText="Close"
+        :isVideoModal="true"
+    >
+        <VsRow>
+            <VsCol cols="12">
+                <VsVideo
+                    video-id="xeg2KD8csgM"
+                    class="mb-8"
+                />
+            </VsCol>
+        </VsRow>
+    </VsModal>
   ```
 </docs>
