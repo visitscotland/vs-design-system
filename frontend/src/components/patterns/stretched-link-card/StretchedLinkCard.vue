@@ -22,7 +22,6 @@
         </template>
 
         <div class="card-body">
-
             <VsButton
                 class="vs-video-caption__button"
                 icon="play"
@@ -33,7 +32,8 @@
                 v-if="videoId"
                 v-show="videoLoaded"
             >
-                {{ videoBtnText }}
+                <span v-if="videoLoaded">{{ videoBtnText }} |&nbsp;</span>
+                {{ formattedVideoDuration }}
             </VsButton>
 
             <span
@@ -158,16 +158,32 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+         * An optional YouTube video ID
+         */
         videoId: {
             type: String,
             default: '',
         },
+        /**
+         * A label to add to the youtube play button if one is present.
+         * Only appears in certain page layouts.
+         */
         videoBtnText: {
             type: String,
-            default: '',
+            default: 'Play Video',
         },
     },
     computed: {
+        formattedVideoDuration() {
+            let seconds = `${this.videoDetails.videoFullDuration.seconds}`;
+
+            if (seconds.length === 1) {
+                seconds = `0${seconds}`;
+            }
+
+            return `${this.videoDetails.videoFullDuration.minutes}:${seconds}`;
+        },
         videoDetails() {
             return videoStore.getters.getVideoDetails(this.videoId);
         },
@@ -364,7 +380,7 @@ export default {
                     type="external"
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
-                    videoId="xeg2KD8csgM"
+                    videoId="PSoOFn3wQV4"
                     videoBtnText="Play Video"
                 >
                     <template slot="stretchedCardCategory">
@@ -394,14 +410,14 @@ export default {
     </VsContainer>
 
     <VsModal
-        modalId="xeg2KD8csgM"
+        modalId="PSoOFn3wQV4"
         closeBtnText="Close"
         :isVideoModal="true"
     >
         <VsRow>
             <VsCol cols="12">
                 <VsVideo
-                    video-id="xeg2KD8csgM"
+                    video-id="PSoOFn3wQV4"
                     class="mb-8"
                 />
             </VsCol>
