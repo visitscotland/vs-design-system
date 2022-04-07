@@ -121,7 +121,8 @@ public class ImageFactory {
 
         image.setCredit(cmsImage.getCredit());
         if (Contract.isEmpty(image.getAltText())) {
-            String message = "The image "+ image.getCmsImage().getFileName() + " does not have an Alternative Text for the language " + locale;
+            String message = "The image "+ image.getCmsImage().getFileName() + " does not have an Alternative Text for the language " + locale.getCountry()
+                    +"  Please review at " + image.getCmsImage().getPath();
             if (module != null){
                 module.addErrorMessage(message);
             }
@@ -130,7 +131,8 @@ public class ImageFactory {
         }
 
         if (Contract.isEmpty(image.getDescription())) {
-            String message = "The image "+ image.getCmsImage().getFileName() + " does not have a description for the locale " + locale;
+            String message = "The image "+ image.getCmsImage().getFileName() + " does not have a Description for the locale " + locale.getLanguage()
+                    +"  Please review at " + image.getCmsImage().getPath();
             if (module != null) {
                 module.addErrorMessage(message);
             }
