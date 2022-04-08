@@ -8,6 +8,9 @@
         :img-alt="imgAlt"
         :data-test="featured ? 'megalink-multi-image-featured' : 'megalink-multi-image-card'"
         :theme="theme"
+        :video-id="videoId"
+        :video-btn-text="videoBtnText"
+        :video-modal-close-text="videoModalCloseText"
     >
         <VsStretchedLinkPanels
             v-if="days && transport"
@@ -141,6 +144,28 @@ export default {
         transportName: {
             type: String,
             default: '',
+        },
+        /**
+         * An optional YouTube video ID
+         */
+        videoId: {
+            type: String,
+            default: '',
+        },
+        /**
+         * A label to add to the youtube play button if one is present.
+         * Only appears in certain page layouts.
+         */
+        videoBtnText: {
+            type: String,
+            default: 'Play Video',
+        },
+        /**
+         * A label for the close button on the video label, if present
+         */
+        videoModalCloseText: {
+            type: String,
+            default: 'Close',
         },
     },
     computed: {
