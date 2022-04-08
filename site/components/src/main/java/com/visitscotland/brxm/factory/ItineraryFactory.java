@@ -204,11 +204,11 @@ public class ItineraryFactory {
     /**
      * Extracts all relevant information from the Product Card in order to enhance the Stop
      */
-    public void processDMSStop(Locale locale,  ItineraryStopModule module, DMSLink dmsLink) {
+    public void processDMSStop(Locale locale, ItineraryStopModule module, DMSLink dmsLink) {
         JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
 
         if (product == null) {
-            String message = String.format("The DMS product added to '%s' was not found,  please review the DMS id in the document %s at: %s ", module.getTitle(), dmsLink.getDisplayName(), dmsLink.getPath());
+            String message = String.format("The DMS product added to '%s' was not found,  please review the DMS ID at: %s ", module.getTitle(), dmsLink.getPath());
             module.addErrorMessage(message);
             if (logger.isWarnEnabled()) {
                 contentLogger.warn(message);

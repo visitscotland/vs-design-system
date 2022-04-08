@@ -104,7 +104,7 @@ public class CannedSearchFactory {
         module.setCannedSearchEndpoint(tmsCannedSearchUrl);
 
         if(!dmsData.cannedSearchHasResults(tmsCannedSearchUrl + "&limit=1")){
-            String message =String.format( "The Canned search tours module '%s' does not return any results, please review your search criteria for '%s' at: %s", document.getTitle(), document.getDisplayName(), document.getPath());
+            String message = String.format( "The Canned search tours module '%s' does not return any results, please review your search criteria for '%s' at: %s", document.getTitle(), document.getDisplayName(), document.getPath());
             module.addErrorMessage(message);
             contentLog.error(message);
         }
