@@ -372,7 +372,24 @@ export default {
         }
     }
 
-    @mixin rectangular-video-button {
+    @mixin small-rectangle-video-button {
+        .vs-stretched-link-card__video-button {
+            padding: $spacer-3 $spacer-4;
+            flex-direction: row;
+
+            .vs-icon {
+                margin-right: $spacer-2;
+                margin-top: -.05em;
+                margin-bottom: $spacer-0;
+            }
+        }
+
+        .vs-stretched-link-card__video-btn-text {
+            display: none;
+        }
+    }
+
+    @mixin full-rectangle-video-button {
         .vs-stretched-link-card__video-button {
             padding: $spacer-3 calc(#{$spacer-8} + #{$spacer-2});
             flex-direction: row;
@@ -385,7 +402,7 @@ export default {
         }
 
         .vs-stretched-link-card__video-btn-text {
-            display: block;;
+            display: block;
         }
     }
 
@@ -409,7 +426,7 @@ export default {
                     left: $spacer-0;
                 }
 
-                @include rectangular-video-button();
+                @include full-rectangle-video-button();
             }
         }
 
@@ -426,6 +443,20 @@ export default {
                 }
             }
         }
+    }
+
+    .vs-megalink-link-list .vs-stretched-link-card {
+        .card-body {
+            position: initial;
+        }
+
+        .vs-stretched-link-card__video-button {
+            bottom: $spacer-2;
+            left: $spacer-2;
+            z-index: 2;
+        }
+
+        @include small-rectangle-video-button();
     }
 </style>
 
