@@ -147,7 +147,7 @@ export default {
     }
 
     .vs-canned-search-summary-box__summary-item {
-        font-size: $font-size-base;
+        font-size: $font-size-4;
         line-height: $line-height-s;
         text-align: center;
 
