@@ -289,6 +289,7 @@ export default {
                             imgAlt="This is the alt text"
                             linkType="internal"
                             linkUrl="https://www.visitscotland.com"
+                            videoId="PSoOFn3wQV4"
                         >
                             <template slot="vsMultiImageHeading">
                                 The Edinburgh International Festival
@@ -331,6 +332,7 @@ export default {
                             imgAlt="This is the alt text 2"
                             linkType="external"
                             linkUrl="https://www.visitscotland.com"
+                            videoId="KJbsw_rliL8"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest

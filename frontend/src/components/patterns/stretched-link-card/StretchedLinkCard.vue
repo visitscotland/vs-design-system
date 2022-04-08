@@ -21,7 +21,7 @@
             <slot name="stretchedCardPanels" />
         </template>
 
-        <div class="card-body position-relative">
+        <div class="card-body">
             <VsButton
                 class="vs-stretched-link-card__video-button"
                 icon="play"
@@ -89,14 +89,14 @@
             </VsLink>
         </div>
         <VsModal
-            :modalId="videoId"
-            :closeBtnText="videoModalCloseText"
-            :isVideoModal="true"
+            :modal-id="videoId"
+            :close-btn-text="videoModalCloseText"
+            :is-video-modal="true"
         >
             <VsRow>
                 <VsCol cols="12">
                     <VsVideo
-                        :videoId="videoId"
+                        :video-id="videoId"
                         class="mb-8"
                     />
                 </VsCol>
@@ -320,6 +320,10 @@ export default {
             flex-direction: row;
         }
 
+        .card-body {
+            position: relative;
+        }
+
         .vs-stretched-link-card__link {
             margin: $spacer-4 $spacer-0 $spacer-0;
             color: $color-pink;
@@ -347,6 +351,79 @@ export default {
 
              .card-body {
                 padding-bottom: $spacer-5;
+            }
+        }
+    }
+
+    @mixin square-video-button {
+        .vs-stretched-link-card__video-button {
+            padding: $spacer-3 $spacer-4 $spacer-2;
+            flex-direction: column;
+
+            .vs-icon {
+                margin-right: $spacer-0;
+                margin-top: $spacer-0;
+                margin-bottom: $spacer-1;
+            }
+        }
+
+        .vs-stretched-link-card__video-btn-text {
+            display: none;
+        }
+    }
+
+    @mixin rectangular-video-button {
+        .vs-stretched-link-card__video-button {
+            padding: $spacer-3 calc(#{$spacer-8} + #{$spacer-2});
+            flex-direction: row;
+
+            .vs-icon {
+                margin-right: $spacer-2;
+                margin-top: -.05em;
+                margin-bottom: $spacer-0;
+            }
+        }
+
+        .vs-stretched-link-card__video-btn-text {
+            display: block;;
+        }
+    }
+
+    .vs-stretched-link-card.vs-megalink-multi-image {
+        .card-body {
+            position: relative;
+        }
+
+        .vs-stretched-link-card__video-button {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+        }
+
+        @include square-video-button();
+
+        @include media-breakpoint-up(lg) {
+            &.vs-megalink-multi-image--featured {
+                .vs-stretched-link-card__video-button {
+                    bottom: 100%;
+                    left: $spacer-0;
+                }
+
+                @include rectangular-video-button();
+            }
+        }
+
+        @include media-breakpoint-up(xl) {
+            &.vs-megalink-multi-image--featured {
+                .card-body {
+                    position: initial;
+                }
+
+                .vs-stretched-link-card__video-button {
+                    bottom: $spacer-2;
+                    left: $spacer-2;
+                    z-index: 2;
+                }
             }
         }
     }
