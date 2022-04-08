@@ -37,7 +37,6 @@
 </#compress>
 <div class="has-edit-button">
     <@hst.manageContent hippobean=document/>
-    <@previewWarning editMode document alerts />
 
     <@pageIntro content=document heroDetails=heroImage itinerary=itinerary />
 
