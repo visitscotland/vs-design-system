@@ -6,10 +6,9 @@
 <#include "../../../../frontend/components/vs-img.ftl">
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
 
-<#include "../../global/cms-errors.ftl">
 
 <#macro iknow module themeName="">
-    <@cmsErrors errors=module.errorMessages!"" editMode=editMode />
+    <@previewWarning editMode module module.errorMessages />
 
     <vs-module-wrapper theme="<#if themeName?has_content>${themeName}<#else>light</#if>">
         <span slot="vsModuleWrapperHeading">
