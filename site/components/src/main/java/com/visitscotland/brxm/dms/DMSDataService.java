@@ -72,6 +72,7 @@ public class DMSDataService {
      *
      * @return
      */
+    @Cacheable (value="dmsProduct")
     public JsonNode legacyMapSearch(ProductSearchBuilder psb){
 
         String responseString = null;
