@@ -62,9 +62,8 @@ public class CannedSearchFactory {
 
         module.setCannedSearchEndpoint(productSearch().fromHippoBean(document.getCriteria().getSearch()).locale(locale).buildCannedSearch());
 
-        JsonNode node = dmsData.legacyMapSearch(productSearch().fromHippoBean(document.getCriteria().getSearch()));
-        if(node.isEmpty()){
-           String message = "The Canned search module '" + document.getTitle() + "' does not return any results, please review your search criteria at: " + document.getPath();
+        if(!dmsData.cannedSearchHasResults(module.getCannedSearchEndpoint() + "&size=1")){
+           String message =String.format( "The module '%s' does not return any results, please review your search criteria at: %s", document.getDisplayName(), document.getPath());
            module.addErrorMessage(message);
            contentLog.error(message);
         }
@@ -103,6 +102,12 @@ public class CannedSearchFactory {
                 .build().toString();
 
         module.setCannedSearchEndpoint(tmsCannedSearchUrl);
+
+        if(!dmsData.cannedSearchHasResults(tmsCannedSearchUrl + "&limit=1")){
+            String message =String.format( "The module '%s' does not return any results, please review your search criteria at: %s", document.getDisplayName(), document.getPath());
+            module.addErrorMessage(message);
+            contentLog.error(message);
+        }
 
         FlatLink viewAllCta = linkService.createExternalLink(document.getToursSearch());
         if (!Contract.isEmpty(document.getViewAll())) {

@@ -172,9 +172,9 @@ public class ImageFactory {
                 return image;
             } else {
                 if (module != null) {
-                    module.addErrorMessage("The Instagram id is no longer valid");
+                    module.addErrorMessage("The Instagram post '" + properties.getInstagramURL() + document.getId() +"' is no longer valid, please change the Instagram id at: " + document.getPath());
                 }
-                contentLogger.warn("The Instagram id {} is no longer, Listicle = {}", document.getId(), document.getPath());
+                contentLogger.warn("The Instagram post {} is no longer, please review the Instagram id at {}", properties.getInstagramURL() + document.getId(), document.getPath());
             }
         } catch (Exception e) {
             if (module != null) {

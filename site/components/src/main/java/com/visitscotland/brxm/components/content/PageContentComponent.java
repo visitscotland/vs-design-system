@@ -72,6 +72,9 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
         Module<T> introModule = new Module<>();
 
         FlatImage heroImage = imageFactory.createImage(getDocument(request).getHeroImage(), introModule, request.getLocale());
+        if (getDocument(request).getHeroImage() == null){
+            introModule.addErrorMessage("The image selected for '"+ getDocument(request).getTitle()+"' is not available. Please select a valid image at: " + getDocument(request).getPath());
+        }
         request.setAttribute(HERO_IMAGE, heroImage);
 
         VideoLink videoDocument = getDocument(request).getHeroVideo();
@@ -136,7 +139,7 @@ public class PageContentComponent<T extends Page> extends ContentComponent {
         }
     }
 
-    protected void setErrorMessages(HstRequest request, Collection<String> errorMessages) {
+    public static void setErrorMessages(HstRequest request, Collection<String> errorMessages) {
         if (request.getAttribute(PREVIEW_ALERTS) != null){
             Collection<String> requestMessages = (Collection<String>) request.getAttribute(PREVIEW_ALERTS);
             requestMessages.addAll(errorMessages);
