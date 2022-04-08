@@ -208,7 +208,7 @@ public class ItineraryFactory {
         JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
 
         if (product == null) {
-            String message = String.format("The DMS product added to '%s' was not found,  please review the DMS ID at: %s ", module.getTitle(), dmsLink.getPath());
+            String message = String.format("The DMS product added to '%s' was not found,  please review the DMS Product id field at: %s ", module.getTitle(), dmsLink.getPath());
             module.addErrorMessage(message);
             if (logger.isWarnEnabled()) {
                 contentLogger.warn(message);
