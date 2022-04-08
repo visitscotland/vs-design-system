@@ -26,7 +26,7 @@
     >
         <div slot="hippo-details" class="has-edit-button">
             <@hst.manageContent hippobean=item.hippoBean/>
-            <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
+            <@previewWarning editMode item item.errorMessages />
         </div>
 
         <#if item.image?? && item.image?has_content>

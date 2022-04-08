@@ -9,7 +9,7 @@
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.LongCopyModule" -->
 
 <#macro longCopy module>
-    <@cmsErrors errors=module.errorMessages!"" editMode=editMode />
+    <@previewWarning editMode module module.errorMessages />
     <vs-container class="mb-10">
         <vs-row>
             <vs-col
