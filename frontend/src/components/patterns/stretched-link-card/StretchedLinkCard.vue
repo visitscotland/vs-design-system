@@ -520,7 +520,7 @@ export default {
                     type="external"
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
-                    videoId="PSoOFn3wQV4"
+                    videoId="FlG6tbYaA88"
                     videoBtnText="Play Video"
                     videoModalCloseText="Close"
                 >
