@@ -116,8 +116,9 @@ public class ListicleFactory {
             DMSLink dmsLink = (DMSLink) link;
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
             if (product == null) {
-                contentLogger.warn("There is no product with the id '{}', ({}) ", dmsLink.getProduct(), link.getPath());
-                module.addErrorMessage("Main Link: There is no a product with the id " + dmsLink.getProduct());
+                String message = String.format("The DMS product added to '%s' was not found, please review the DMS id in the document %s at: %s ", module.getTitle(), dmsLink.getDisplayName(), dmsLink.getPath());
+                contentLogger.warn(message);
+                module.addErrorMessage(message);
             }else {
                 processDMSMainProduct(locale, module, dmsLink, product);
                 return linksService.createDmsLink(locale, dmsLink, product);
@@ -164,8 +165,9 @@ public class ListicleFactory {
      */
     private void processDMSMainProduct(Locale locale, ListicleModule item, DMSLink dmsLink, JsonNode product) {
         if (product == null) {
-            item.addErrorMessage("The product id does not match in the DMS");
-            contentLogger.warn("The product id was not provided or the product was not found (id={}), Listicle = {} - {}",  dmsLink.getProduct(), item.getHippoBean(), item.getHippoBean().getTitle());
+            String message = String.format("The DMS product added to '%s' was not found,  please review the DMS id in the document %s at: %s ", item.getTitle(), dmsLink.getDisplayName(), dmsLink.getPath());
+            item.addErrorMessage(message);
+            contentLogger.warn(message);
         } else {
             if (item.getImage() == null) {
                 item.setImage(imageFactory.createImage(product, item, locale));

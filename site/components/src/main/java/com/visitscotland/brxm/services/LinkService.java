@@ -358,8 +358,9 @@ public class LinkService {
         }
 
         if (link.getImage() == null) {
+
             if (module != null) {
-                module.addErrorMessage("The link to '" + link.getLabel() + "' does not contain an image, please review at: " + ((BaseDocument) linkable).getPath());
+                module.addErrorMessage(String.format("The Link to '%s' does not contain an image, please review the document %s at: %s", link.getLabel(), ((BaseDocument) linkable).getDisplayName(), ((BaseDocument) linkable).getPath()));
             } else {
                 logger.error("The error message cannot be displayed in preview");
             }
@@ -516,7 +517,7 @@ public class LinkService {
     /**
      * Formats label and includes additional information when needed
      *
-     * @param linkable
+     * @param linkable link to external document
      * @param locale   Language for the label
      * @param module   Module to feed with any possible issue found while creating the page.
      * @return Formatted label
@@ -553,7 +554,7 @@ public class LinkService {
      * @param video  Video Document
      * @param module Module that will log all issues for the modules.
      * @param locale Locale for the localization
-     * @return
+     * @return enhancedLink for the video
      */
     public EnhancedLink createVideo(Video video, Module<?> module, Locale locale) {
         EnhancedLink videoLink = new EnhancedLink();

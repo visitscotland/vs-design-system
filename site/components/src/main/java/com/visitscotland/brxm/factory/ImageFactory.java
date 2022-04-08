@@ -171,10 +171,12 @@ public class ImageFactory {
 
                 return image;
             } else {
+                String message = String.format("The Instagram post %s added  is not accessible, please review the document %s at: %s ", properties.getInstagramURL() + document.getId(), document.getDisplayName(), document.getPath());
+
                 if (module != null) {
-                    module.addErrorMessage("The Instagram post '" + properties.getInstagramURL() + document.getId() +"' is no longer valid, please change the Instagram id at: " + document.getPath());
+                     module.addErrorMessage(message);
                 }
-                contentLogger.warn("The Instagram post {} is no longer, please review the Instagram id at {}", properties.getInstagramURL() + document.getId(), document.getPath());
+                contentLogger.warn(message);
             }
         } catch (Exception e) {
             if (module != null) {
