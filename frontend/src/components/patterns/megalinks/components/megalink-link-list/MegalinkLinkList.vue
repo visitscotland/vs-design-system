@@ -197,14 +197,23 @@ export default {
                 background: transparent;
                 padding: 0;
                 align-self: flex-start;
-                width: 66%;
+                width: 50%;
+
+                @include media-breakpoint-up(sm) {
+                    width: 66%;
+                }
             }
 
             .vs-stretched-link-card__img {
-                width: 33%;
-                max-width: 33%;
+                width: 50%;
+                max-width: 50%;
                 align-self: flex-start;
                 margin-right: $spacer-4;
+
+                @include media-breakpoint-up(sm) {
+                    width: 33%;
+                    max-width: 33%;
+                }
             }
 
             .vs-megalink-link-list__title {
