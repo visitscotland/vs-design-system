@@ -47,7 +47,7 @@ import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 Vue.use(Vuelidate);
 
 /**
- * A checkbox input
+ * A checkbox element
  *
  * @displayName Checkbox
  */
