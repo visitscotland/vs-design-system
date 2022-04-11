@@ -11,7 +11,7 @@
                     class="col-xxl-10 offset-xxl-1"
                 >
                     <div class="vs-article__wrapper mb-9 mb-md-11">
-                        <!-- @slot Slot to contain the header image for this article -->
+                        <!-- @slot Slot to contain the cover image for this article -->
                         <slot name="vsArticleImg" />
 
                         <VsRow>
@@ -33,14 +33,15 @@
                                         variant="lead"
                                         class="text-center mb-9 mb-lg-10"
                                     >
-                                        <!-- @slot Slot to contain the intro for this article -->
+                                        <!-- @slot Slot to contain the introduction
+                                        for this article -->
                                         <slot name="vsArticleIntro" />
                                     </VsRichTextWrapper>
                                 </div>
 
                                 <div class="vs-article__content">
-                                    <!-- @slot Default slot to contain the main
-                                    content for this article -->
+                                    <!-- @slot Default slot to contain ArticleSections
+                                    for this article -->
                                     <slot />
                                 </div>
                             </VsCol>
@@ -61,7 +62,7 @@ import VsHeading from '@components/elements/heading/Heading';
 
 /**
  * The article component is used for in-depth editorial style
- * content on pages about a topic.
+ * content.
  *
  * @displayName Article
  */
