@@ -4,8 +4,6 @@ a user. Optional validation rules and messages are supplied via objects in the p
 options are passed in using a required object.
 
 ### Default
-Include 'fieldName' to identify the element and tie it to a label. The 'options' props is also
-required to provide a list of options for the element.
 
 ```jsx
     <label for="select-example">A select element</label>
@@ -18,7 +16,6 @@ required to provide a list of options for the element.
           { value: 'd', text: 'This one is disabled', disabled: true }
         ]"
         field-name="select-example"
-        hint-text="Select hint text"
         class="mb-6"
     />
 ```
