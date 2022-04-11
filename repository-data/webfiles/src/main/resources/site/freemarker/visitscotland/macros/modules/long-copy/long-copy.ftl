@@ -4,8 +4,6 @@
 <#include "../../../../frontend/components/vs-row.ftl">
 <#include "../../../../frontend/components/vs-col.ftl">
 
-<#include "../../global/cms-errors.ftl">
-
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.LongCopyModule" -->
 
 <#macro longCopy module>

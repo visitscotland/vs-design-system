@@ -4,7 +4,6 @@
 
 <#include "../../global/key-facilities.ftl">
 <#include "../../global/image-with-caption.ftl">
-<#include "../../global/cms-errors.ftl">
 
 <#macro listicleItem item>
 <#-- @ftlvariable name="listItem" type="com.visitscotland.brxm.hippobeans.ListicleItem" -->
