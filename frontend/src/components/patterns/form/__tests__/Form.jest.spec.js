@@ -167,7 +167,7 @@ describe('VsForm', () => {
 
     it('should not render a conditional field by default', () => {
         const wrapper = factoryShallowMount();
-        const conditionalField = wrapper.find('vsforminput-stub [fieldname="conditionalField"]');
+        const conditionalField = wrapper.find('vsinput-stub [fieldname="conditionalField"]');
 
         expect(conditionalField.exists()).toBe(false);
     });
