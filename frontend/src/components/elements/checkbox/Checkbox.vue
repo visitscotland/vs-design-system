@@ -22,7 +22,6 @@
             v-model="inputVal"
             class="vs-checkbox mr-4"
             :class="errorClass"
-            :size="size"
             :name="fieldName"
             :id="fieldName"
             :value="value"
@@ -33,7 +32,7 @@
             :required="isRequired"
             :aria-invalid="$v.inputVal.$anyError || invalid"
         >
-            <span class="vs-checkbox__label">{{ label }}</span>
+            {{ label }}
         </BFormCheckbox>
     </div>
 </template>
@@ -47,7 +46,8 @@ import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 Vue.use(Vuelidate);
 
 /**
- * A checkbox element
+ * Checkboxes allow a user to select multiple options from in a
+ * list or mark an individual item as selected.
  *
  * @displayName Checkbox
  */
@@ -63,14 +63,6 @@ export default {
         validateFormElementMixin,
     ],
     props: {
-        /**
-         * Set the form field size.
-         * `sm, md, lg`
-         */
-        size: {
-            default: 'md',
-            validator: (value) => value.match(/(sm|md|lg)/),
-        },
         /**
          * Name of the input
          */
@@ -103,21 +95,17 @@ export default {
             },
         },
         /**
-         * Prop to trigger manual validation
+         * Prop to trigger manual validation. Used by a parent
+         * component to trigger validation eg. when the submit
+         * button is clicked.
          */
         triggerValidate: {
             type: Boolean,
             default: false,
         },
         /**
-         * text for `required`
-         */
-        requiredText: {
-            type: String,
-            default: 'required',
-        },
-        /**
-         * Validation messages
+         * Specific validation messages for different
+         * types of validation
          */
         validationMessages: {
             type: Object,
@@ -134,7 +122,9 @@ export default {
             default: false,
         },
         /**
-         * Fallback translated validation
+         * Fallback translated validation - this is a set of
+         * validation messages to be used when no specific
+         * validation message is needed, eg. "This field is required"
          */
         genericValidation: {
             type: Object,
@@ -165,6 +155,12 @@ export default {
     },
     watch: {
         inputVal(newValue) {
+            /**
+             * Emit watchable data when the field is changed
+             * @type {object}
+             * @property {string} field the name of the field
+             * @property {string} value the current value of the field
+             */
             this.$emit('updated', {
                 field: this.name,
                 value: newValue,

@@ -97,6 +97,14 @@ const validateFormElementMixin = {
                 });
             }
 
+            /**
+             * Emit watchable data when a field's validation
+             * status is changed
+             * @type {object}
+             * @property {string} field the name of the field
+             * @property {string} value the current value of the field
+             * @property {array} errors a list of errors that the field has
+             */
             this.$emit('status-update', {
                 field: this.fieldName,
                 value: this.inputVal,
