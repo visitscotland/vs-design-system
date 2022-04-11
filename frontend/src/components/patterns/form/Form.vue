@@ -13,7 +13,7 @@
                 v-if="showFormHeading"
                 level="3"
             >
-                {{ getTranslatedContent.heading }}
+                {{ getTranslatedContent('heading') }}
             </VsHeading>
 
             <form @submit.prevent="preSubmit">
@@ -103,10 +103,25 @@
                     @click.native="preSubmit"
                     @keyup.native="preSubmit"
                 >
-                    {{ getTranslatedSubmitText }}
+                    {{ getTranslatedContent('submit') }}
                 </VsButton>
             </form>
         </template>
+
+        <!-- eslint-disable vue/no-v-html -->
+        <div
+            class="vs-form__no-js"
+            data-test="vs-form-no-js"
+        >
+            <VsIcon
+                name="review"
+                variant="primary"
+                size="xl"
+                class="mb-5"
+            />
+            <div v-html="getTranslatedContent('noJs')" />
+        </div>
+        <!-- eslint-enable vue/no-v-html -->
 
         <p v-if="submitting">
             <slot name="submitting" />
@@ -114,14 +129,14 @@
 
         <template v-if="submitted">
             <VsHeading
-                v-if="getTranslatedContent.successHeading"
+                v-if="getTranslatedContent('successHeading')"
                 level="3"
             >
-                {{ getTranslatedContent.successHeading }}
+                {{ getTranslatedContent('successHeading') }}
             </VsHeading>
 
             <p class="vs-form__content">
-                {{ getTranslatedContent.successContent }}
+                {{ getTranslatedContent('successContent') }}
             </p>
         </template>
 
@@ -137,6 +152,7 @@ import { BFormGroup } from 'bootstrap-vue';
 import VsInput from '../../elements/input/Input';
 import VsSelect from '../../elements/select/Select';
 import VsCheckbox from '../../elements/checkbox/Checkbox';
+import VsIcon from '../../elements/icon/Icon';
 import VsRecaptcha from '../../elements/recaptcha/Recaptcha';
 import VsButton from '../../elements/button/Button';
 import VsHeading from '../../elements/heading/Heading';
@@ -162,6 +178,7 @@ export default {
         BFormGroup,
         VsRecaptcha,
         VsButton,
+        VsIcon,
         VsHeading,
     },
     props: {
@@ -248,36 +265,9 @@ export default {
         formId() {
             return this.isProd ? this.formData.formLiveId : this.formData.formSandboxId;
         },
-        getTranslatedSubmitText() {
-            let text;
-            const languageObj = this.getLanguageObj();
-
-            if (this.language === 'en') {
-                text = this.formData.submit;
-            } else if (!this.isUndefined(languageObj.submit)) {
-                text = languageObj.submit;
-            } else {
-                text = this.getMessagingData('submit', this.language);
-            }
-
-            return text;
-        },
-        getTranslatedContent() {
-            let content = {
-            };
-            const languageObj = this.getLanguageObj();
-
-            if (this.language === 'en') {
-                content = this.formData.content;
-            } else if (!this.isUndefined(languageObj.content)) {
-                content = languageObj.content;
-            }
-
-            return content;
-        },
         showFormHeading() {
             if (!this.isUndefined(this.getTranslatedContent)
-                && !this.isUndefined(this.getTranslatedContent.heading)) {
+                && !this.isUndefined(this.getTranslatedContent('heading'))) {
                 return true;
             }
 
@@ -421,6 +411,24 @@ export default {
             }
 
             return hintText;
+        },
+        getTranslatedContent(type) {
+            let text;
+            const languageObj = this.getLanguageObj();
+
+            if (this.language === 'en'
+                && !this.isUndefined(this.formData.content)
+                && !this.isUndefined(this.formData.content[type])
+            ) {
+                text = this.formData.content[type];
+            } else if (!this.isUndefined(languageObj.content)
+                && !this.isUndefined(languageObj.content[type])) {
+                text = languageObj.content[type];
+            } else {
+                text = this.getMessagingData(type, this.language);
+            }
+
+            return text;
         },
         /**
          * check messaging data exists and then pass value back
@@ -621,6 +629,23 @@ export default {
 
         .form-group {
             margin-bottom: $spacer-6;
+        }
+
+        &__no-js {
+            display: none;
+        }
+    }
+
+    @include no-js {
+        .vs-form {
+
+            & > form {
+                display: none;
+            }
+
+            &__no-js {
+                display: block;
+            }
         }
     }
 </style>
