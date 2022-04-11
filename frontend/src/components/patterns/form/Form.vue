@@ -31,7 +31,7 @@
                             || typeof conditionalFields[field.name] === 'undefined'"
                     >
                         <template v-if="field.element === 'input'">
-                            <VsFormInput
+                            <VsInput
                                 :ref="field.name"
                                 @status-update="updateFieldData"
                                 :field-name="field.name"
@@ -47,7 +47,7 @@
                         </template>
 
                         <template v-if="field.element === 'select'">
-                            <VsFormSelect
+                            <VsSelect
                                 :options="getTranslatedOptions(field.name, index)"
                                 :ref="field.name"
                                 @status-update="updateFieldData"
@@ -65,7 +65,7 @@
                         </template>
 
                         <template v-if="field.element === 'checkbox'">
-                            <VsFormCheckbox
+                            <VsCheckbox
                                 :key="field.name"
                                 :ref="field.name"
                                 :name="field.name"
@@ -93,6 +93,7 @@
                     :invalid="!recaptchaVerified && showErrorMessage"
                     :language="language"
                     :error-msg="getMessagingData('recaptchaError', language)"
+                    class="mt-9"
                 />
 
                 <VsButton
@@ -133,9 +134,9 @@
 <script>
 import Vue from 'vue';
 import { BFormGroup } from 'bootstrap-vue';
-import VsFormInput from '../../elements/form-input/FormInput';
-import VsFormSelect from '../../elements/form-select/FormSelect';
-import VsFormCheckbox from '../../elements/form-checkbox/FormCheckbox';
+import VsInput from '../../elements/input/Input';
+import VsSelect from '../../elements/select/Select';
+import VsCheckbox from '../../elements/checkbox/Checkbox';
 import VsRecaptcha from '../../elements/recaptcha/Recaptcha';
 import VsButton from '../../elements/button/Button';
 import VsHeading from '../../elements/heading/Heading';
@@ -155,9 +156,9 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsFormInput,
-        VsFormSelect,
-        VsFormCheckbox,
+        VsInput,
+        VsSelect,
+        VsCheckbox,
         BFormGroup,
         VsRecaptcha,
         VsButton,
@@ -218,7 +219,7 @@ export default {
          */
         countryListUrl: {
             type: String,
-            required: true,
+            default: '',
         },
     },
     data() {
@@ -623,41 +624,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-    ```jsx
-        // https://static.visitscotland.com/forms/vs-3331/simpleForm.json
-        <VsContainer>
-            <VsRow>
-                <VsCol>
-                    <VsForm
-                        dataUrl="http://172.28.74.124:5555/newsletterSignUp.json"
-                        messagingUrl="http://172.28.74.124:5555/messaging.json"
-                        countryListUrl="http://172.28.74.124:5555/countries.json"
-                        recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-                        marketo-instance="//app-lon10.marketo.com"
-                        munchkin-id="830-QYE-256"
-                        language="en"
-                        :is-prod="false"
-                    >
-                        <template slot="invalid">
-                            You have invalid fields - please check the form.
-                        </template>
-
-                        <template slot="submitError">
-                            We're sorry there's been a problem, please try again later.
-                        </template>
-
-                        <template slot="submitting">
-                            We're just submitting your form
-                        </template>
-
-                        <template slot="submitted">
-                            Thank you for your details, your form has been submitted
-                        </template>
-                    </VsForm>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-    ```
-</docs>

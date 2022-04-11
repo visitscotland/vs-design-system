@@ -58,6 +58,7 @@
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import { BFormInput } from 'bootstrap-vue';
+import VsButton from '../button/Button';
 import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 
 Vue.use(Vuelidate);
@@ -69,11 +70,12 @@ Vue.use(Vuelidate);
  */
 
 export default {
-    name: 'VsFormInput',
+    name: 'VsInput',
     status: 'prototype',
     release: '0.0.1',
     components: {
         BFormInput,
+        VsButton,
     },
     mixins: [
         validateFormElementMixin,
@@ -274,39 +276,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-```jsx
-<BsWrapper>
-    <label for="small">Small</label>
-    <VsFormInput
-        id="small"
-        placeholder="Enter your name"
-        class="mb-5"
-        size="sm"
-        field-name="input1"
-    />
-    <label for="medium">Medium (default)</label>
-    <VsFormInput
-        id="medium"
-        placeholder="Enter your name"
-        class="mb-5"
-        size="md"
-        field-name="input1"
-        hint-text="This is some hint text"
-    />
-    <label for="large">Large</label>
-    <VsFormInput
-        id="large" placeholder="Enter your name" class="mb-5" size="lg" field-name="input3"
-    />
-    <label for="input-invalid">Invalid state</label>
-    <VsFormInput
-        id="input-invalid"
-        :invalid="true"
-        placeholder="Invalid"
-        class="mb-5"
-        field-name="input5"
-    />
-</BsWrapper>
-```
-</docs>
