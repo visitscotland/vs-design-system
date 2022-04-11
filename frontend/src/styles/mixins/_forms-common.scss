@@ -1,7 +1,12 @@
 @mixin forms-common {
-    label {
+    label,
+    legend {
         font-weight: $font-weight-semi-bold;
         margin-bottom: 0;
+    }
+
+    legend {
+        font-size: $font-size-body;
     }
 
     .error {

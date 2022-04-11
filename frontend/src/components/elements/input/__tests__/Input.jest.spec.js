@@ -1,7 +1,7 @@
 import { mount, shallowMount } from '@vue/test-utils';
-import VsFormInput from '../FormInput';
+import VsInput from '../Input';
 
-const factoryShallowMount = (propsData) => shallowMount(VsFormInput, {
+const factoryShallowMount = (propsData) => shallowMount(VsInput, {
     propsData: {
         fieldName: 'testname',
         type: 'text',
@@ -9,7 +9,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsFormInput, {
     },
 });
 
-const factoryMount = (propsData) => mount(VsFormInput, {
+const factoryMount = (propsData) => mount(VsInput, {
     propsData: {
         fieldName: 'testname',
         type: 'text',
@@ -22,7 +22,7 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('VsFormInput', () => {
+describe('VsInput', () => {
     it('should render a bform-input-stub', () => {
         expect(wrapper.attributes('data-test')).toBe('vs-input');
     });

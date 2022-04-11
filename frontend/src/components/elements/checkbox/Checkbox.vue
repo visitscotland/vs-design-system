@@ -53,7 +53,7 @@ Vue.use(Vuelidate);
  */
 
 export default {
-    name: 'VsFormCheckbox',
+    name: 'VsCheckbox',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -266,44 +266,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-<BsWrapper>
-    <label for="checkbox-example">
-        Checkbox label
-    </label>
-    <VsFormCheckbox
-        field-name="checkbox-example"
-        value="accepted"
-        id="checkbox-example"
-        label="I accept the terms and conditions"
-        hint-text="Checkbox hint text"
-        class="mb-6"
-    />
-    <label for="checkbox-example-2">
-        A checkbox with longer text
-    </label>
-    <VsFormCheckbox
-        field-name="checkbox-example-2"
-        value="second"
-        id="checkbox-example-2"
-        label="By ticking this box you are indicating your consent for VisitScotland
-        to use your email address to send you our e-newsletter on a regular basis.
-        You can unsubscribe at any time via the link in the email. We will process
-        your details in accordance with our privacy policy"
-            class="mb-6"
-    />
-    <label for="checkbox-invalid-example">
-        An invalid checkbox
-    </label>
-    <VsFormCheckbox
-        field-name="checkbox-example"
-        value="accepted"
-        id="checkbox-invalid-example"
-        label="I accept the terms and conditions"
-        :invalid="true"
-    />
-</BsWrapper>
-```
-</docs>
