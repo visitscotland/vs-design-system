@@ -214,6 +214,14 @@ export default {
                     width: 33%;
                     max-width: 33%;
                 }
+
+                @include media-breakpoint-up(md) {
+                    padding-bottom: calc(#{$spacer-8} + #{$spacer-7});
+                }
+
+                @include media-breakpoint-up(xl) {
+                    padding-bottom: $spacer-0;
+                }
             }
 
             .vs-megalink-link-list__title {
@@ -253,8 +261,8 @@ export default {
         }
 
         @include media-breakpoint-up(sm) {
-            .megalink-link-list__wrapper.card {
-                .megalink-link-list__content {
+            .vs-megalink-link-list__wrapper.card {
+                .vs-megalink-link-list__content {
                     display: block;
                 }
             }
