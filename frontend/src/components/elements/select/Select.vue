@@ -56,7 +56,7 @@ const axios = require('axios');
  */
 
 export default {
-    name: 'VsFormSelect',
+    name: 'VsSelect',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -276,36 +276,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-<BsWrapper>
-    <label for="select-example">A select element</label>
-    <VsFormSelect
-        :options="[
-          { value: null, text: 'Please select an option', selected: 'true' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option' },
-          { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
-        ]"
-        name="select-example"
-        hint-text="Select hint text"
-        class="mb-6"
-    />
-
-    <label for="select-example">An invalid select element</label>
-    <VsFormSelect
-        :options="[
-          { value: null, text: 'Please select an option', selected: 'true' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option' },
-          { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
-        ]"
-        name="select-example-2"
-        :invalid="true"
-    />
-</BsWrapper>
-```
-</docs>

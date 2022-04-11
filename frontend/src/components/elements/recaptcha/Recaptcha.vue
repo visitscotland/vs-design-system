@@ -75,8 +75,6 @@ export default {
 
 <style lang="scss">
     .vs-recaptcha {
-        margin-top: $spacer-9;
-
         &__embed {
             &--error {
                 & > div {
@@ -87,12 +85,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    <vs-recaptcha
-        sitekey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-        language="de"
-    />
-```
-</docs>
