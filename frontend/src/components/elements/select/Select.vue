@@ -20,7 +20,6 @@
         <div class="vs-select__container  mt-2">
             <BFormSelect
                 v-model="inputVal"
-                :size="size"
                 v-bind="$attrs"
                 :options="fieldOptions"
                 :name="fieldName"
@@ -50,7 +49,7 @@ Vue.use(Vuelidate);
 const axios = require('axios');
 
 /**
- * A field for users to pick a value from a list
+ * A select element allows users to pick a value from a list
  *
  * @displayName Select
  */
@@ -66,14 +65,6 @@ export default {
         validateFormElementMixin,
     ],
     props: {
-        /**
-         * Set the form field size.
-         * `sm, md, lg`
-         */
-        size: {
-            default: 'md',
-            validator: (value) => value.match(/(sm|md|lg)/),
-        },
         /**
          * Options for select element
          */
@@ -130,7 +121,8 @@ export default {
             },
         },
         /**
-         * URL for list of countries file
+         * URL for list of countries file - this will be used
+         * if the 'country' prop is set to true
          */
         countryListUrl: {
             type: String,
@@ -178,6 +170,12 @@ export default {
     },
     watch: {
         inputVal(newValue) {
+            /**
+             * Emit watchable data when the field is changed
+             * @type {object}
+             * @property {string} field the name of the field
+             * @property {string} value the current value of the field
+             */
             this.$emit('updated', {
                 field: this.name,
                 value: newValue,
