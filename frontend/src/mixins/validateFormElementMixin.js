@@ -55,6 +55,14 @@ const validateFormElementMixin = {
                         ...rulesObj,
                         maxLength: maxLength(value),
                     };
+                } else if (key === 'invalidVal') {
+                    const noInvalid = (val) => val
+                        .indexOf(this.validationRules.invalidVal) === -1;
+
+                    rulesObj = {
+                        ...rulesObj,
+                        noInvalid,
+                    };
                 }
             }
 
