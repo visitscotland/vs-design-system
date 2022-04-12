@@ -97,6 +97,9 @@ const validateFormElementMixin = {
                 });
             }
 
+            this.touched = true;
+            this.$v.$touch();
+
             /**
              * Emit watchable data when a field's validation
              * status is changed
