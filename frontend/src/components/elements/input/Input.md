@@ -21,7 +21,6 @@ Avoid placing hint text inside the label text.
 ```jsx
     <label for="default">Email address</label>
     <VsInput
-        id="hint-text-example"
         class="mb-5"
         type="email"
         field-name="hint-text-example"
@@ -34,7 +33,6 @@ Placeholder text can be used to provide an example of the type of data that is e
 ```jsx
     <label for="placeholder-example">Email address</label>
     <VsInput
-        id="placeholder-example"
         placeholder="eg: john.smith@gmail.com"
         class="mb-5"
         type="email"
@@ -49,7 +47,6 @@ appended with '(optional)' in their label.
 ```jsx
     <label for="optional-example">Last name (optional)</label>
     <VsInput
-        id="optional-example"
         class="mb-5"
         field-name="optional-example"
     />
@@ -67,7 +64,6 @@ without meeting validation rules.
         This field is required
     </span>
     <VsInput
-        id="invalid-example"
         class="mb-5"
         field-name="invalid-example"
         :invalid="true"
@@ -88,7 +84,6 @@ the element has been interacted with, after which it is triggered on a change in
 ```jsx
     <label for="validation-example">Please enter your name</label>
     <VsInput
-        id="validation-example"
         class="mb-5"
         field-name="validation-example"
         :validation-rules="{'required': true, 'minLength': 3}"
