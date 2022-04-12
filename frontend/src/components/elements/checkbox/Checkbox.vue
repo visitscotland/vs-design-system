@@ -32,7 +32,7 @@
             :required="isRequired"
             :aria-invalid="$v.inputVal.$anyError || invalid"
         >
-            {{ label }}
+            <span class="vs-checkbox__label">{{ label }}</span>
         </BFormCheckbox>
     </div>
 </template>
@@ -154,18 +154,6 @@ export default {
         },
     },
     watch: {
-        inputVal(newValue) {
-            /**
-             * Emit watchable data when the field is changed
-             * @type {object}
-             * @property {string} field the name of the field
-             * @property {string} value the current value of the field
-             */
-            this.$emit('updated', {
-                field: this.name,
-                value: newValue,
-            });
-        },
         value(newValue) {
             this.inputVal = newValue;
         },
