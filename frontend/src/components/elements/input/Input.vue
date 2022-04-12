@@ -31,10 +31,10 @@
             :name="fieldName"
             :placeholder="placeholder"
             :required="isRequired"
-            :size="size"
             :v="inputVal"
             :aria-invalid="$v.inputVal.$anyError || invalid"
             :aria-describedby="$v.inputVal.$anyError || invalid ? `error-${fieldName}` : ''"
+            @blur="manualValidate"
         />
         <VsButton
             data-test="input-clear-button"
@@ -64,7 +64,7 @@ import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 Vue.use(Vuelidate);
 
 /**
- * An input field for text, email, number etc
+ * An field for users to type a value into
  *
  * @displayName Input
  */
@@ -81,14 +81,6 @@ export default {
         validateFormElementMixin,
     ],
     props: {
-        /**
-         * Set the form field size.
-         * `sm|md|lg`
-         */
-        size: {
-            default: 'md',
-            validator: (value) => value.match(/(sm|md|lg)/),
-        },
         /**
          * Default value of the field
          */
@@ -128,14 +120,17 @@ export default {
             default: false,
         },
         /**
-         * Prop to trigger manual validation
+         * Prop to trigger manual validation. Used by a parent
+         * component to trigger validation eg. when the submit
+         * button is clicked.
          */
         triggerValidate: {
             type: Boolean,
             default: false,
         },
         /**
-         * Validation messages
+         * Specific validation messages for different
+         * types of validation
          */
         validationMessages: {
             type: Object,
@@ -145,7 +140,9 @@ export default {
             },
         },
         /**
-         * Fallback translated validation
+         * Fallback translated validation - this is a set of
+         * validation messages to be used when no specific
+         * validation message is needed, eg. "This field is required"
          */
         genericValidation: {
             type: Object,
@@ -208,6 +205,12 @@ export default {
             this.manualValidate();
         },
         inputVal(newValue) {
+            /**
+             * Emit watchable data when the field is changed
+             * @type {object}
+             * @property {string} field the name of the field
+             * @property {string} value the current value of the field
+             */
             this.$emit('updated', {
                 field: this.name,
                 value: newValue,
@@ -223,7 +226,6 @@ export default {
          */
         clearInput() {
             this.inputVal = '';
-            this.$emit('cleared');
         },
         /**
          * Focus on the input
