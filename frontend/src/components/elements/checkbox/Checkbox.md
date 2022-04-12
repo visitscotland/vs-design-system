@@ -20,27 +20,30 @@ If only one item needs to be selected from a list, use a radio button.
 ### Checkbox group
 
 ```jsx
-    <VsCheckbox
-        field-name="checkbox-example-2"
-        value="example-2"
-        id="checkbox-2"
-        label="I accept the terms and conditions"
-        class="mb-6"
-    />
+    <fieldset>
+        <legend>Privacy notice</legend>
+        <VsCheckbox
+            field-name="checkbox-example-2"
+            value="example-2"
+            id="checkbox-2"
+            label="I accept the terms and conditions"
+            class="mb-6"
+        />
 
-    <VsCheckbox
-        field-name="checkbox-example-3"
-        value="example-3"
-        id="checkbox-3"
-        label="By ticking this box you are indicating your consent for VisitScotland
-        to use your email address to send you our e-newsletter on a regular basis.
-        You can unsubscribe at any time via the link in the email. We will process
-        your details in accordance with our privacy policy"
-        class="mb-6"
-    />
+        <VsCheckbox
+            field-name="checkbox-example-3"
+            value="example-3"
+            id="checkbox-3"
+            label="By ticking this box you are indicating your consent for VisitScotland
+            to use your email address to send you our e-newsletter on a regular basis.
+            You can unsubscribe at any time via the link in the email. We will process
+            your details in accordance with our privacy policy."
+            class="mb-6"
+        />
+    </fieldset>
 ```
 ### Hint text
-Hint text should only be used if a legend is also used.
+Users may need some help understanding how many options can be selected so we can add hint text to explain. Avoid adding hint text to the label itself.
 
 ```jsx
     <fieldset>
@@ -72,3 +75,9 @@ Hint text should only be used if a legend is also used.
         :invalid="true"
     />
 ```
+
+## Accessibility
+
+- Clear labels related to input
+- Keyboard functionality – native browser keyboard navigation – navigate using tab and select using space
+- Uses custom styles to ensure has a clear focus style and larger select area for touch devices.
