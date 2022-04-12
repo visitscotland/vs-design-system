@@ -161,7 +161,7 @@ const axios = require('axios');
  */
 
 export default {
-    name: 'VsForm',
+    name: 'VsMarketoForm',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -176,28 +176,28 @@ export default {
     },
     props: {
         /**
-         * the url for the form data file
+         * The URL for the form data file
          */
         dataUrl: {
             type: String,
             required: true,
         },
         /**
-         * recaptcha site key string
+         * Recaptcha site key string
          */
         recaptchaKey: {
             type: String,
             required: true,
         },
         /**
-         * if the form should use sandbox or live Marketo details
+         * If the form should use sandbox or live Marketo details
          */
         isProd: {
             type: Boolean,
             default: false,
         },
         /**
-         * munchkin ID for the Marketo environment
+         * Munchkin ID for the Marketo environment
          */
         munchkinId: {
             type: String,
@@ -211,7 +211,7 @@ export default {
             required: true,
         },
         /**
-         * language indicator for content
+         * Language indicator for content
          */
         language: {
             type: String,
@@ -338,8 +338,9 @@ export default {
                 labelText = this.formData.fields[index].label;
             }
 
-            if (this.showOptionalText(this.formData.fields[index])) {
-                labelText = `${labelText} (optional)`; // (${this.getMessagingData('optional', this.language)})`;
+            if (this.showOptionalText(this.formData.fields[index])
+                && !this.isUndefined(this.getMessagingData('optional', this.language))) {
+                labelText = `${labelText} (${this.getMessagingData('optional', this.language)})`;
             }
 
             return labelText;
@@ -474,7 +475,6 @@ export default {
             }
         },
         showOptionalText(field) {
-            console.log(field);
             if (this.isUndefined(field.validation) || this.isUndefined(field.validation.required)) {
                 return true;
             }
