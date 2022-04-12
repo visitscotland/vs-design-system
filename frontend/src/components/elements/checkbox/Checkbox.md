@@ -13,7 +13,6 @@ If only one item needs to be selected from a list, use a radio button.
         value="accepted"
         id="checkbox-example"
         label="I accept the terms and conditions"
-        class="mb-6"
     />
 ```
 
@@ -38,7 +37,6 @@ If only one item needs to be selected from a list, use a radio button.
             to use your email address to send you our e-newsletter on a regular basis.
             You can unsubscribe at any time via the link in the email. We will process
             your details in accordance with our privacy policy."
-            class="mb-6"
         />
     </fieldset>
 ```
@@ -54,7 +52,6 @@ Users may need some help understanding how many options can be selected so we ca
             id="checkbox-4"
             label="I accept the terms and conditions"
             hint-text="Checkbox hint text"
-            class="mb-6"
         />
     </fieldset>
 ```
