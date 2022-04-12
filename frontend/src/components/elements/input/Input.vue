@@ -64,7 +64,7 @@ import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 Vue.use(Vuelidate);
 
 /**
- * An field for users to type a value into
+ * An input allows a user to enter short amount of text.
  *
  * @displayName Input
  */
@@ -159,7 +159,7 @@ export default {
             default: '',
         },
         /**
-         * text for the 'clear' button
+         * Text for the 'clear' button
          * the existence of this will defined whether the button
          * also exists
          */
