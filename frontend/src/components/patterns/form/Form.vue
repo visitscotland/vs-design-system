@@ -4,9 +4,7 @@
         data-test="vs-form"
     >
         <!-- element into which the (completely empty) form is embedded invisibly -->
-        <form
-            class="d-none"
-        />
+        <form class="d-none" />
 
         <template v-if="!submitted">
             <VsHeading
@@ -20,16 +18,11 @@
                 <BFormGroup
                     v-for="(field, index) in formData.fields"
                     :key="field.name"
-                    :label="needsLabel(field) &&
-                        (conditionalFields[field.name] === true
-                            || typeof conditionalFields[field.name] === 'undefined')
-                        ? getTranslatedLabel(field.name, index) : ''"
+                    :label="needsLabel(field) ? getTranslatedLabel(field.name, index) : ''"
                     :label-for="needsLabel(field) ? field.name : ''"
+                    :class="conditionalElementClass(field.name)"
                 >
-                    <template
-                        v-if="conditionalFields[field.name] === true
-                            || typeof conditionalFields[field.name] === 'undefined'"
-                    >
+                    <div :class="conditionalElementClass(field.name)">
                         <template v-if="field.element === 'input'">
                             <VsInput
                                 :ref="field.name"
@@ -80,11 +73,11 @@
                                 :generic-validation="getMessagingData('validation', language)"
                                 :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                                 :trigger-validate="triggerValidate"
-                                :required-text="getMessagingData('required', language)"
+                                :optional-text="getMessagingData('optional', language)"
                                 :hint-text="getTranslatedHint(field.name, index)"
                             />
                         </template>
-                    </template>
+                    </div>
                 </BFormGroup>
 
                 <VsRecaptcha
@@ -345,14 +338,9 @@ export default {
                 labelText = this.formData.fields[index].label;
             }
 
-            // To be added if 'required' needs to be added to label
-            // I will check this and remove if not needed - JH
-
-            // if (!this.isUndefined(this.formData.fields[index].validation)
-            //     && !this.isUndefined(this.formData.fields[index].validation.required)
-            //     && this.formData.fields[index].validation.required) {
-            //     labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
-            // }
+            if (this.showOptionalText(this.formData.fields[index])) {
+                labelText = `${labelText} (optional)`; // (${this.getMessagingData('optional', this.language)})`;
+            }
 
             return labelText;
         },
@@ -485,8 +473,9 @@ export default {
                 this.errorFields.push(field);
             }
         },
-        showRequiredText(field) {
-            if (typeof field.validation !== 'undefined' && field.validation.required) {
+        showOptionalText(field) {
+            console.log(field);
+            if (this.isUndefined(field.validation) || this.isUndefined(field.validation.required)) {
                 return true;
             }
 
@@ -601,6 +590,15 @@ export default {
                     }
                 });
             });
+        },
+        /**
+         * return the correct class to show or hide
+         * conditional elements
+         */
+        conditionalElementClass(fieldName) {
+            return this.conditionalFields[fieldName] === true
+                || typeof this.conditionalFields[fieldName] === 'undefined'
+                ? '' : 'd-none';
         },
     },
 };
