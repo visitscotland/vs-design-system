@@ -9,21 +9,16 @@ A standard article with a cover image, title, introduction text and one section 
 <VsArticle>
     <template slot="vsArticleImg">
         <VsImageWithCaption
-            v-for="(item, index) in imageWithCaption.imageExamples.fullwidth"
-            :altText="item.altText"
-            :image-src="item.imageSrc"
-            :key="`fullwidth1-${index}`"
+            altText="Ben Nevis"
+            image-src="../../../fixtures/article/images/nevis.jpg"
         >
-            <VsCaption
-                slot="img-caption"
-                variant="fullwidth"
-            >
-                <span slot="caption" v-if="item.caption">
-                    {{ item.caption }}
+            <VsCaption slot="img-caption">
+                <span slot="caption">
+                    Ben Nevis
                 </span>
 
-                <span slot="credit" v-if="item.credit">
-                    {{ item.credit }}
+                <span slot="credit">
+                    © John McSporran
                 </span>
             </VsCaption>
         </VsImageWithCaption>
@@ -45,18 +40,16 @@ A standard article with a cover image, title, introduction text and one section 
             <VsArticleSidebar sidebar-align="left">
                 <template slot="vsArticleSidebarImg">
                     <VsImageWithCaption
-                        altText="An image"
-                        image-src="fixtures\image-with-caption\images\city-country-breaks.jpg"
+                        altText="Mountain stream"
+                        image-src="../../../fixtures/article/images/mountain-stream.jpg"
                     >
-                        <VsCaption
-                            slot="img-caption"
-                        >
+                        <VsCaption slot="img-caption">
                             <span slot="caption">
-                                A nice image
+                                Mountain stream
                             </span>
 
                             <span slot="credit">
-                                &copy; VisitScotland
+                                © CutMedia / Chris Rowland
                             </span>
                         </VsCaption>
                     </VsImageWithCaption>
@@ -67,7 +60,9 @@ A standard article with a cover image, title, introduction text and one section 
                             Scotland’s largest mountain was once a massive active volcano which exploded 
                             and collapsed inwards on itself millions of years ago.
                         </p>
-                        <span slot="quoteAuthorName">Penny</span>
+                        <span slot="quoteAuthorName">
+                            Penny
+                        </span>
                         <span slot="quoteAuthorTitle">
                             Visitor Services Advisor at Fort William iCentre
                         </span>
@@ -175,18 +170,16 @@ On smaller devices, the sidebar is displayed above the related content in its se
             <VsArticleSidebar sidebar-align="left">
                 <template slot="vsArticleSidebarImg">
                     <VsImageWithCaption
-                        altText="An image"
-                        image-src="fixtures\image-with-caption\images\city-country-breaks.jpg"
+                        altText="Nevis ridge"
+                        image-src="../../../fixtures/article/images/nevis-ridge.jpg"
                     >
-                        <VsCaption
-                            slot="img-caption"
-                        >
+                        <VsCaption slot="img-caption">
                             <span slot="caption">
-                                A nice image
+                                Nevis ridge
                             </span>
 
                             <span slot="credit">
-                                &copy; VisitScotland
+                                © iStockphoto.com / fotoVoyager
                             </span>
                         </VsCaption>
                     </VsImageWithCaption>
@@ -252,18 +245,16 @@ On smaller devices, the sidebar is displayed above the related content in its se
             <VsArticleSidebar sidebar-align="right">
                 <template slot="vsArticleSidebarImg">
                     <VsImageWithCaption
-                        altText="An image"
-                        image-src="fixtures\image-with-caption\images\city-country-breaks.jpg"
+                        altText="Rock climbing"
+                        image-src="../../../fixtures/article/images/rock-climbing.jpg"
                     >
-                        <VsCaption
-                            slot="img-caption"
-                        >
+                        <VsCaption slot="img-caption">
                             <span slot="caption">
-                                A nice image
+                                Rock climbing
                             </span>
 
                             <span slot="credit">
-                                &copy; VisitScotland
+                                © Sportscotland / Glenmore Lodge
                             </span>
                         </VsCaption>
                     </VsImageWithCaption>
