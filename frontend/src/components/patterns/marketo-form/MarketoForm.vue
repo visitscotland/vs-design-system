@@ -36,6 +36,7 @@
                                 :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                                 :trigger-validate="triggerValidate"
                                 :hint-text="getTranslatedHint(field.name, index)"
+                                :placeholder="field.placeholder || ''"
                             />
                         </template>
 
@@ -157,7 +158,7 @@ const axios = require('axios');
  * The form is created using an external json config file which is
  * defined in a prop.
  *
- * @displayName Form
+ * @displayName Marketo Form
  */
 
 export default {
@@ -494,8 +495,8 @@ export default {
             return true;
         },
         /**
-         * before submitting validate fields and recaptcha
-         * if successful run the Marketo submit method
+         * before submitting validate fields and recaptcha.
+         * If successful run the Marketo submit method
          */
         preSubmit(e) {
             e.preventDefault();
@@ -522,6 +523,15 @@ export default {
 
             this.showErrorMessage = this.formIsInvalid.length > 1;
 
+            // check conditional fields - if they're not shown
+            // then clear any value they may have
+            Object.entries(this.conditionalFields).forEach(([key, value]) => {
+                if (!value) {
+                    this.form[key] = '';
+                    console.log(this.form);
+                }
+            });
+
             if (!this.formIsInvalid && this.recaptchaVerified) {
                 this.marketoSubmit();
             } else {
@@ -529,7 +539,7 @@ export default {
             }
         },
         /**
-         * adds form data to Marketo payload and sets submitted status
+         * submits form data to Marketo payload and sets submitted status
          */
         marketoSubmit() {
             const myForm = window.MktoForms2.allForms()[0];
