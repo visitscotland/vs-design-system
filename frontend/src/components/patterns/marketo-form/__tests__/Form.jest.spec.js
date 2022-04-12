@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import VsForm from '../Form';
+import VsMarketoForm from '../MarketoForm';
 
 const formData = {
     formSandboxId: '90',
@@ -110,7 +110,7 @@ const globalMessaging = {
     },
 };
 
-const factoryShallowMount = () => shallowMount(VsForm, {
+const factoryShallowMount = () => shallowMount(VsMarketoForm, {
     slots: {
         submitError: 'error text',
         invalid: 'invalid text',
@@ -139,7 +139,7 @@ beforeEach(() => {
     };
 });
 
-describe('VsForm', () => {
+describe('VsMarketoForm', () => {
     it('should render a component with the data-test attribute `vs-form`', () => {
         const wrapper = factoryShallowMount();
 
