@@ -22,6 +22,9 @@
                     :label-for="needsLabel(field) ? field.name : ''"
                     :class="conditionalElementClass(field.name)"
                 >
+                    <legend v-if="!isUndefined(field.descriptor)">
+                        {{ getTranslatedLegend(field.name, index) }}
+                    </legend>
                     <div :class="conditionalElementClass(field.name)">
                         <template v-if="field.element === 'input'">
                             <VsInput
@@ -65,7 +68,7 @@
                                 :name="field.name"
                                 :value="field.value"
                                 :id="field.name"
-                                :label="field.descriptor"
+                                :label="getTranslatedLabel(field.name, index)"
                                 @status-update="updateFieldData"
                                 :field-name="field.name"
                                 :validation-rules="field.validation || {}"
@@ -347,6 +350,24 @@ export default {
             return labelText;
         },
         /**
+         * get translated label if available
+         */
+        getTranslatedLegend(fieldName, index) {
+            const languageObj = this.getLanguageObj();
+            let legendText = '';
+
+            if (this.language !== 'en'
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined(languageObj[fieldName].descriptor)
+            ) {
+                legendText = languageObj[fieldName].descriptor;
+            } else {
+                legendText = this.formData.fields[index].descriptor;
+            }
+
+            return legendText;
+        },
+        /**
          * get translated validation messages
          */
         getTranslatedValidation(fieldName, index) {
@@ -488,7 +509,7 @@ export default {
         needsLabel(field) {
             if (field.element === 'radio'
                 || field.element === 'submit'
-                || field.element === 'checkbox-group') {
+                || field.element === 'checkbox') {
                 return false;
             }
 
@@ -528,7 +549,6 @@ export default {
             Object.entries(this.conditionalFields).forEach(([key, value]) => {
                 if (!value) {
                     this.form[key] = '';
-                    console.log(this.form);
                 }
             });
 

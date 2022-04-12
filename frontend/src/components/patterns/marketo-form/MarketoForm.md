@@ -9,7 +9,7 @@ where the form should be submitted to.
 
 ```jsx
 <VsMarketoForm
-    dataUrl="https://static.visitscotland.com/forms/newsletter-sign-up/newsletter-sign-up.json"
+    dataUrl="../../../fixtures/marketo-forms/form-example.json"
     messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
     countryListUrl="https://static.visitscotland.com/forms/common/countries.json"
     recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
@@ -36,7 +36,7 @@ the form can request translated content from the form data JSON and the messagin
 
 ```jsx
 <VsMarketoForm
-    dataUrl="https://static.visitscotland.com/forms/newsletter-sign-up/newsletter-sign-up.json"
+    dataUrl="../../../fixtures/marketo-forms/form-example.json"
     messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
     countryListUrl="https://static.visitscotland.com/forms/common/countries.json"
     recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
