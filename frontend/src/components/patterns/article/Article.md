@@ -151,7 +151,7 @@ The cover image and introduction are optional for an article item.
 ### Sidebar
 Each `ArticleSection` can have an `ArticleSidebar` that can include one image, one quote or one of each. 
 
-The alignment should alternate between left and right by setting the alignment prop on both the section and the sidebar components. If a section has no image or quote, the text should be left aligned.  
+The alignment of the sidebar should alternate between right and left by setting the `sidebarAlign` prop on both the section and sidebar components. If a section has no image or quote, the text should be left aligned.  
 
 On smaller devices, the sidebar is displayed above the related content in its section. 
 
