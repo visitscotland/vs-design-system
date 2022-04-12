@@ -6,6 +6,7 @@
 
 <#include "../../global/image-with-caption.ftl">
 <#include "../../global/quote.ftl">
+<#include "../../global/preview-warning.ftl">
 
 <#macro icentre module themeName="">
     <@previewWarning editMode module module.errorMessages />

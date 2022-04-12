@@ -5,6 +5,7 @@
 <#include "../../../../frontend/components/vs-link.ftl">
 <#include "../../../../frontend/components/vs-img.ftl">
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
+<#include "../../global/preview-warning.ftl">
 
 
 <#macro iknow module themeName="">
