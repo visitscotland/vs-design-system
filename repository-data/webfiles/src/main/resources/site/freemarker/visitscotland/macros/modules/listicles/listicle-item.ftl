@@ -3,6 +3,7 @@
 <#include "../../../../frontend/components/vs-link.ftl">
 
 <#include "../../global/key-facilities.ftl">
+<#include "../../global/preview-warning.ftl">
 <#include "../../global/image-with-caption.ftl">
 
 <#macro listicleItem item>

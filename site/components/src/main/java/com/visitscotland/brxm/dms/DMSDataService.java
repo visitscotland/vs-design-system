@@ -99,11 +99,11 @@ public class DMSDataService {
     }
 
     /**
-     * This method invokes the canned search tour endpoint from a ProductSearchBuilder
+     * This method invokes the canned search endpoint to check if there are results coming
      *
      * @param toursUrl tours search url
      *
-     * @return JsonNode with tours results
+     * @return boolean to indicate if the search returns products
      */
     @Cacheable (value="dmsProductSearch")
     public boolean cannedSearchHasResults(String toursUrl){

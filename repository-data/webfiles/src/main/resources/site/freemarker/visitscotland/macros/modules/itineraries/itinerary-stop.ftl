@@ -12,6 +12,7 @@
 
 <#include "../../global/key-facilities.ftl">
 <#include "../../global/image-with-caption.ftl">
+<#include "../../global/preview-warning.ftl">
 
 <#macro itineraryStop stop isLastStop>
 <#-- @ftlvariable name="stop" type="com.visitscotland.brxm.model.ItineraryStopModule" -->

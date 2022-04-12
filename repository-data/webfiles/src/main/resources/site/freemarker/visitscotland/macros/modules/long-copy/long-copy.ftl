@@ -3,6 +3,7 @@
 <#include "../../../../frontend/components/vs-container.ftl">
 <#include "../../../../frontend/components/vs-row.ftl">
 <#include "../../../../frontend/components/vs-col.ftl">
+<#include "../../global/preview-warning.ftl">
 
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.LongCopyModule" -->
 
