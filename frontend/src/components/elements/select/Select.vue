@@ -49,7 +49,7 @@ Vue.use(Vuelidate);
 const axios = require('axios');
 
 /**
- * A select element allows users to pick a value from a list
+ * A select element allows a user to choose a value from a list of options.
  *
  * @displayName Select
  */
