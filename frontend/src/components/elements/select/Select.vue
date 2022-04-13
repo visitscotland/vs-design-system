@@ -136,7 +136,7 @@ export default {
             default: '',
         },
         /**
-         * whether the options should be a countries list
+         * Whether the options should be a countries list
          */
         countries: {
             type: Boolean,
