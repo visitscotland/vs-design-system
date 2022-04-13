@@ -1,15 +1,7 @@
-import { mount, shallowMount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import VsInput from '../Input';
 
 const factoryShallowMount = (propsData) => shallowMount(VsInput, {
-    propsData: {
-        fieldName: 'testname',
-        type: 'text',
-        ...propsData,
-    },
-});
-
-const factoryMount = (propsData) => mount(VsInput, {
     propsData: {
         fieldName: 'testname',
         type: 'text',
@@ -28,20 +20,6 @@ describe('VsInput', () => {
     });
 
     describe(':props', () => {
-        it('size - should be `md` by default', () => {
-            const modifiedWrapper = factoryMount();
-            expect(modifiedWrapper.find('.vs-input').classes()).toContain('form-control-md');
-        });
-
-        it('size - should accept and render a `size` property', () => {
-            const testSize = 'lg';
-            const modifiedWrapper = factoryMount({
-                size: testSize,
-            });
-
-            expect(modifiedWrapper.find('.vs-input').classes()).toContain(`form-control-${testSize}`);
-        });
-
         it('value - should accept and render a `value` property', async() => {
             const testValue = 'Test Value';
             wrapper.setProps({
