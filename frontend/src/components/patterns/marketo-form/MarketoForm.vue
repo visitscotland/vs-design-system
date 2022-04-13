@@ -155,8 +155,6 @@ const axios = require('axios');
 
 /**
  * A form that results in a user posting data to Marketo.
- * The form is created using an external json config file which is
- * defined in a prop.
  *
  * @displayName Marketo Form
  */
