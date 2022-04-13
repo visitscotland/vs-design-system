@@ -28,32 +28,6 @@ where the form should be submitted to.
 </VsMarketoForm>
 ```
 
-### Language
-The Marketo Form is designed to support multiple languages. By using the `language` prop
-the form can request translated content from the form data JSON and the messaging data JSON.
-
-*Please note that due to the Recaptcha already being used in English on this page, a translated version isn't shown below. This will be automatically translated into the language when used in isolation.*
-
-```jsx
-<VsMarketoForm
-    dataUrl="../../../fixtures/marketo-forms/form-example.json"
-    messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
-    countryListUrl="https://static.visitscotland.com/forms/common/countries.json"
-    recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-    marketo-instance="marketo-instance-code"
-    munchkin-id="munchkin-id-code"
-    language="de"
-    :is-prod="false"
->
-    <template slot="submitError">
-        We're sorry there's been a problem, please try again later. You can also ask to subscribe by sending an email to <a href='mailto:info@visitscotland.com'>info@visitscotland.com</a>.
-    </template>
-
-    <template slot="submitting">
-        We're just submitting your form
-    </template>
-</VsMarketoForm>
-```
 
 ### Optional Inputs
 It's good accessibility practice to highlight that a form element is an optional field (rather that required). The
