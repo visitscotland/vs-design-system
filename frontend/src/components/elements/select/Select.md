@@ -1,10 +1,14 @@
 ## Usage
-Use a select element to shows drop down list of options on interaction. One option can be chosen by the user.
+Use the select component in a form to let a user choose a single option from a list. 
+If the list has fewer than 4 options, use a radio button instead. 
 
-A select element requires a `fieldName` prop value to identify the element and tie it to a label, and an `options` object
-containing the values of the list of options.
+All select components must have a short, clear label and unique field name.
 
 ### Default
+A `fieldName` prop is required to ensure that the label and the input element are linked and accessible. Always
+use a label with same `for` attribute as the `fieldName` prop. 
+
+Include an `options` object containing the values and diplay text for the list of options.
 
 ```jsx
     <label for="select-example">Please choose a country</label>
@@ -20,7 +24,7 @@ containing the values of the list of options.
 ```
 
 ### Hint Text
-Hint text should be used to give a user extra information about the input's purpose.
+Hint text should be used to give a user extra information about the select input's purpose.
 Avoid placing hint text inside the label text.
 
 ```jsx
@@ -56,11 +60,8 @@ appended with '(optional)' in their label.
 
 
 ### Invalid State
-Invalid state is visible when a user changes the field or attempts to submit a form
-without meeting validation rules.
-
-The checkbox is given a red border and a red validation message is shown to give a visual clue
-of the error.
+Invalid state is visible when a user attempts to submit a form without meeting validation rules. 
+The select element is given a red border to give a visual clue of the error and a clear validation message is shown.
 
 ```jsx
 <label for="invalid-example">Please choose a country</label>
@@ -87,7 +88,7 @@ when there isn't a specific corresponding validation message provided to the `va
 This is to allow a single set of default messaging to be used for a form, removing the need for repeating
 the same message and potentially having to provide translations each time.
 
-Validation uses the Vuelidate plugin. [For a full list of validation rules see the Vuelidate documentation](https://vuelidate.js.org/#validators).
+Validation uses the Vuelidate plugin. For a full list of validation rules see the [Vuelidate documentation](https://vuelidate.js.org/#validators).
 
 The example below shows a `validationMessages` prop overriding a `genericValidation` prop when 'Rest of the world' is selected.
 
@@ -108,8 +109,8 @@ The example below shows a `validationMessages` prop overriding a `genericValidat
     />
 ```
 
-Whereas this example shows a validation message defined by the `genericValidation` prop when 'Rest of the world' is selected,
-as a `validationMessages` prop is not supplied
+This example shows a validation message defined by the `genericValidation` prop when 'Rest of the world' is selected,
+as a `validationMessages` prop is not supplied.
 
 ```jsx
     <label for="validation-example">Please enter your name</label>
@@ -129,10 +130,9 @@ as a `validationMessages` prop is not supplied
 
 ### Countries List
 If the `countries` prop is set to `true`, the `countryListUrl` prop will be used to get
-data for populating the options of the element.
+data for populating the options of the select element.
 
-This is to ensure that a standard list of countries will be always be used when need, as
-well as translations where appropriate.
+This is to ensure that a standard list of countries will always be used when needed, as well as translations where appropriate.
 
 In this case, any data provided by the `options` prop will be ignored.
 
@@ -147,9 +147,10 @@ In this case, any data provided by the `options` prop will be ignored.
 
 
 ## Accessibility
-- Use a label to explain exactly what data is required. Use hint text to provide further information.
-- A `fieldName` prop is required to ensure that the element is connected to a label.
-- Append label text with "(optional)" if it isn't required to notify users.
+- Select labels should clearly describe what data is required. Use hint text to provide further information.
+
 - Ensure that validation messages are descriptive enough so users know how to enter a correct value.
-- Uses `aria-describedby` to ensure that validation messages are linked to the element they refer to.
-- Has a clear focus state when the element is in focus.
+
+- Select elements are styled with a clear focus state when the element is in focus.
+
+- We use `aria-describedby` to ensure that validation messages are linked to the element they refer to.
