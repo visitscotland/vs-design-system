@@ -64,7 +64,7 @@ import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 Vue.use(Vuelidate);
 
 /**
- * An input allows a user to enter short amount of text.
+ * An input allows a user to enter a short amount of text.
  *
  * @displayName Input
  */
