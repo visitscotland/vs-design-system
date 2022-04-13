@@ -6,14 +6,13 @@ A user can remove the banner from a page using the close button and if the user 
 Only one banner should ever be displayed at one time.
 
 ### Standard
-The banner must contain a title and call to action link to more information. It may also include extra text content for better description.  
+The banner must contain a title and call to action link to more information. It may also include extra text content for a better description.  
 
 ```jsx
-    <VsBanner>
-        <template slot="bannerTitle">
-            Covid-19 Travel Advice
-        </template>
-
+    <VsBanner
+        close-btn-text="Close"
+        title="Covid-19 Travel Advice"
+    >
         <template slot="bannerText">
             <p>
                 Find the latest information on travel, and Good to Go (Covid-safe)
@@ -25,10 +24,6 @@ The banner must contain a title and call to action link to more information. It 
             <VsLink href="#">
                 View Covid-19 Travel Advice
             </VsLink>
-        </template>
-
-        <template slot="closeBtnText">
-            Close
         </template>
     </VsBanner>
   ```
