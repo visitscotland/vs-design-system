@@ -67,6 +67,12 @@ export default {
     },
     methods: {
         verified(response) {
+            /**
+             * Emit Google response to recaptcha submission
+             * @type {string}
+             * @property {object} field the object provided by Google
+             * in response to the recaptcha being submitted
+             */
             this.$emit('verified', response);
         },
     },

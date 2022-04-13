@@ -23,7 +23,7 @@ For the form to work, there are several required props that must be included mor
     :is-prod="false"
 >
     <template slot="submitError">
-        We're sorry there's been a problem, please try again later. You can also ask to subscribe by sending an email to <a href='mailto:info@visitscotland.com'>info@visitscotland.com</a>.
+        We're sorry there's been a problem, please try again later. You can also ask to subscribe by sending an email to <vs-link href='mailto:info@visitscotland.com'>info@visitscotland.com</vs-link>.
     </template>
 
     <template slot="submitting">
@@ -47,8 +47,8 @@ Note that due to the Recaptcha already being used in English on this page, a tra
 ```jsx
 <VsMarketoForm
     dataUrl="https://static.visitscotland.com/forms/newsletter-sign-up/newsletter-sign-up.json"
-    messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
     countryListUrl="https://static.visitscotland.com/forms/common/countries.json"
+    messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
     recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
     marketo-instance="marketo-instance-code"
     munchkin-id="munchkin-id-code"
@@ -56,7 +56,7 @@ Note that due to the Recaptcha already being used in English on this page, a tra
     :is-prod="false"
 >
     <template slot="submitError">
-        We're sorry there's been a problem, please try again later. You can also ask to subscribe by sending an email to <a href='mailto:info@visitscotland.com'>info@visitscotland.com</a>.
+        We're sorry there's been a problem, please try again later. You can also ask to subscribe by sending an email to <vs-link href='mailto:info@visitscotland.com'>info@visitscotland.com</vs-link>.
     </template>
 
     <template slot="submitting">
@@ -76,7 +76,6 @@ In the example below, the 'Last name' field is not defined as required.
 <VsMarketoForm
     dataUrl="../../../fixtures/marketo-forms/optional-field.json"
     messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
-    countryListUrl="https://static.visitscotland.com/forms/common/countries.json"
     recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
     marketo-instance="marketo-instance-code"
     munchkin-id="munchkin-id-code"
@@ -84,7 +83,7 @@ In the example below, the 'Last name' field is not defined as required.
     :is-prod="false"
 >
     <template slot="submitError">
-        We're sorry there's been a problem, please try again later. You can also ask to subscribe by sending an email to <a href='mailto:info@visitscotland.com'>info@visitscotland.com</a>.
+        We're sorry there's been a problem, please try again later. You can also ask to subscribe by sending an email to <vs-link href='mailto:info@visitscotland.com'>info@visitscotland.com</vs-link>.
     </template>
 
     <template slot="submitting">
@@ -105,7 +104,6 @@ In the example below the conditional field will only shown if 'Yes' is chosen in
 <VsMarketoForm
     dataUrl="../../../fixtures/marketo-forms/conditional-field.json"
     messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
-    countryListUrl="https://static.visitscotland.com/forms/common/countries.json"
     recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
     marketo-instance="marketo-instance-code"
     munchkin-id="munchkin-id-code"
@@ -113,7 +111,7 @@ In the example below the conditional field will only shown if 'Yes' is chosen in
     :is-prod="false"
 >
     <template slot="submitError">
-        We're sorry there's been a problem, please try again later. You can also ask to subscribe by sending an email to <a href='mailto:info@visitscotland.com'>info@visitscotland.com</a>.
+        We're sorry there's been a problem, please try again later. You can also ask to subscribe by sending an email to <vs-link href='mailto:info@visitscotland.com'>info@visitscotland.com</vs-link>.
     </template>
 
     <template slot="submitting">
@@ -133,7 +131,6 @@ functionality another way so a no-javascript message should be defined in the fo
     <VsMarketoForm
         dataUrl="../../../fixtures/marketo-forms/conditional-field.json"
         messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
-        countryListUrl="https://static.visitscotland.com/forms/common/countries.json"
         recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
         marketo-instance="marketo-instance-code"
         munchkin-id="munchkin-id-code"
