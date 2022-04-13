@@ -1,6 +1,5 @@
 ## Usage
-
-A checkbox list should be used when a user needs to select one or multiple options from a list or toggle a single option on and off.
+The checkbox component should be used when a user needs to select one or multiple options from a list or toggle a single option on and off.
 
 Checkboxes should work independently from each other and each must have a label and unique field name provided.
 
@@ -18,8 +17,7 @@ A `fieldName` prop is required to ensure that the label and the checkbox element
 ```
 
 ### Checkbox Group
-When a group of linked checkboxes are needed, always use a `<fieldset>` element to contain the elements. This
-should be title with a `<legend>` element to explain the grouping.
+Use a `<fieldset>` element to contain a group of related checkboxes and include a `<legend>` to add a heading explaining the grouping. 
 
 ```jsx
     <fieldset>
@@ -76,9 +74,21 @@ Users may need some help understanding how many options can be selected so we ca
     </fieldset>
 ```
 
+### Optional Inputs
+Inputs in a form that aren't defined as required in the validation rules should be automatically
+appended with '(optional)' in their label.
+
+```jsx
+    <VsCheckbox
+        field-name="checkbox-example-optional"
+        value="example-6"
+        label="Sign me up to the newsletter (optional)"
+    />        
+```
+
 ### Invalid State
-An invalid state is shown when there is an error in the user's inputted value. The checkbox
-is given a red border and a red validation message is shown to give a visual clue of the error.
+Invalid state is visible when a user attempts to submit a form without meeting validation rules. 
+The checkbox is given a red border to give a visual clue of the error and a clear validation message is shown.
 
 ```jsx
     <span
@@ -94,26 +104,14 @@ is given a red border and a red validation message is shown to give a visual clu
     />
 ```
 
-### Optional inputs
-Inputs in a form that aren't defined as required in the validation rules should be automatically
-appended with '(optional)' in their label.
-
-```jsx
-    <VsCheckbox
-        field-name="checkbox-example-optional"
-        value="example-6"
-        label="Sign me up to the newsletter (optional)"
-    />        
-```
-
 ## Accessibility
+- Checkbox labels should clearly describe the function of the checkbox. Use hint text to provide further information.
 
-- Labels should clearly describe the function of the checkbox.
-- `<fieldset>` and `<legend>` elements should always be used with a group of checkboxes.
-- Uses required `fieldName` prop to relate the label to the input element programatically.
-- Append label text with "(optional)" if it isn't required to notify users
-- Ensures keyboard functionality using native browser keyboard navigation. Users can navigate using tab
-and select the checkbox using the spacebar.
-- Has a clear focus state when the element is in focus
-- Uses custom styles to ensure has a clear focus style and larger select area for touch devices.
-- Uses `aria-describedby` to ensure that validation messages are linked to the element they refer to.
+- Ensure that validation messages are descriptive enough so users know how to enter a correct value.
+
+- Ensures keyboard functionality using native browser keyboard navigation. Users can navigate using `tab`
+and `space` to select the checkbox.
+
+- Checkboxes have custom styles to ensure there is a clear focus style and larger select area for touch devices.
+
+- We use `aria-describedby` to ensure that validation messages are linked to the element they refer to.
