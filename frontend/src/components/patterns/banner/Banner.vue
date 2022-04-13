@@ -21,8 +21,7 @@
                             custom-colour="#700E57"
                         />
 
-                        <!-- @slot Slot to contain banner title -->
-                        <slot name="bannerTitle" />
+                        {{ title }}
                     </VsHeading>
 
                     <VsRichTextWrapper
@@ -55,9 +54,8 @@
                         icon-only
                         @click.native="hideBanner"
                     >
-                        <!-- @slot Default slot to contain screenreader-only text for button-->
                         <span class="sr-only">
-                            <slot name="closeBtnText" />
+                            {{ closeBtnText }}
                         </span>
                     </VsButton>
                 </VsCol>
@@ -99,6 +97,22 @@ export default {
     mixins: [
         cookieMixin,
     ],
+    props: {
+        /**
+         * Accessible text for close button
+         */
+        closeBtnText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Title for the banner
+         */
+        title: {
+            type: String,
+            required: true,
+        },
+    },
     data() {
         return {
             showBanner: true,
