@@ -24,9 +24,6 @@
     <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppInit,seo,opengraph" xhtml=true/>
     <!-- END HEAD CONTRIBUTIONS: general -->
 
-    <script>
-        VS.window.api = $lable
-    </script>
     <style>
         body {
             visibility: hidden;

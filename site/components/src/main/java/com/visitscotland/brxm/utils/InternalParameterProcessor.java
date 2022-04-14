@@ -21,11 +21,13 @@ public class InternalParameterProcessor {
     private static final Logger logger = LoggerFactory.getLogger(InternalParameterProcessor.class);
 
     private ResourceBundleService bundle;
+    private Properties properties;
     private HippoUtilsService utils;
 
-    public InternalParameterProcessor(ResourceBundleService bundle, HippoUtilsService utils) {
+    public InternalParameterProcessor(ResourceBundleService bundle, HippoUtilsService utils, Properties properties) {
         this.bundle = bundle;
         this.utils = utils;
+        this.properties = properties;
     }
 
     public static final String PARAM_SSO = "sso";
@@ -36,7 +38,7 @@ public class InternalParameterProcessor {
 
     public static final String FULLY_QUALIFIED_URLS = "fullyQualified";
     public static final String LOGINREDIRECT_PARAMETERS = "loginredirectParameters";
-    public static final String VERSION = "version";
+    public static final String TYPE = "type";
     public static final String GLOBAL_MENU_URLS = "placeholerLocalizedURLs";
 
     public void processParameters(HstRequest request) {
@@ -44,7 +46,7 @@ public class InternalParameterProcessor {
         String external = utils.getParameterFromUrl(request, PARAM_EXTERNAL);
         String authority = getAuthority(request);
         String sso = utils.getParameterFromUrl(request, PARAM_SSO);
-        String version = utils.getParameterFromUrl(request, VERSION);
+        String type = utils.getParameterFromUrl(request, TYPE);
 
         if (authority != null) {
             returnUrl.append(authority).append("/").append(PATH_PLACEHOLDER);
@@ -60,9 +62,11 @@ public class InternalParameterProcessor {
             returnUrl.append("&id=").append(sso);
         }
 
-        if (!Contract.isEmpty(version)) {
-            request.setModel(VERSION, version);
-            logger.debug("The '{}' version of an internal endpoint was requested ", version);
+        if (!Contract.isEmpty(type)) {
+            request.setModel(TYPE, type);
+            logger.debug("The '{}' version of an internal endpoint was requested ", type);
+        } else {
+            request.setModel(TYPE, properties.getDefaultCssVersion());
         }
 
         request.setModel(LOGINREDIRECT_PARAMETERS, returnUrl.toString());

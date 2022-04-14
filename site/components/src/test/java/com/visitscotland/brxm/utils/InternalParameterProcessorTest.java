@@ -33,6 +33,9 @@ class InternalParameterProcessorTest {
     @Mock
     ResourceBundleService bundle;
 
+    @Mock
+    Properties properties;
+
     /**
      * Note: We usually prefer to use the out-of-the-box class MockRequest, however, in this class we need to mock
      * the request context with is not possible to do with MockRequest
@@ -42,7 +45,7 @@ class InternalParameterProcessorTest {
 
     @BeforeEach
     void init() {
-        component = new InternalParameterProcessor(bundle, utils);
+        component = new InternalParameterProcessor(bundle, utils, properties);
     }
 
     @Test
