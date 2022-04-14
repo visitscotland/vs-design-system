@@ -65,7 +65,7 @@ public class ItineraryFactory {
         for (Day day : page.getDays()) {
             for (Stop stop : day.getStops()) {
                 if (page.getStops() != null && page.getStops().containsKey(stop.getIdentifier())) {
-                    String message = String.format("Duplicate stop '%s' found on itinerary '%s' , please review the document %s at: %s ", stop.getTitle(), itinerary.getTitle(), itinerary.getDisplayName(), itinerary.getPath());
+                    String message = String.format("Duplicate stop '%s' found on itinerary '%s', please review the document %s at: %s ", stop.getTitle(), itinerary.getTitle(), itinerary.getDisplayName(), itinerary.getPath());
                     contentLogger.error(message);
                     page.addErrorMessage(message);
                     continue;
@@ -208,7 +208,7 @@ public class ItineraryFactory {
         JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
 
         if (product == null) {
-            String message = String.format("The DMS product added to '%s' was not found,  please review the DMS Product id field at: %s ", module.getTitle(), dmsLink.getPath());
+            String message = String.format("The DMS product added to '%s' was not found, please review the DMS Product id field at: %s ", module.getTitle(), dmsLink.getPath());
             module.addErrorMessage(message);
             if (logger.isWarnEnabled()) {
                 contentLogger.warn(message);
@@ -216,7 +216,7 @@ public class ItineraryFactory {
             return;
         }
 
-        module.setCtaLink(linkService.createDmsLink(locale,dmsLink, product));
+        module.setCtaLink(linkService.createDmsLink(locale, dmsLink, product));
         module.setFacilities(utils.getKeyFacilities(product));
 
         if (module.getImage() == null && product.has(IMAGE)) {
