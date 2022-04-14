@@ -191,8 +191,8 @@ public class PageTemplateBuilder {
 
     /**
      * Sets the theme for the intro of the page based on the list of modules.
-     * @param request
-     * @param modules
+     * @param request HstRequest request
+     * @param modules List Modules
      */
     private void setIntroTheme(HstRequest request, List<Module<?>> modules){
         if(!modules.isEmpty() && modules.get(0) instanceof LinksModule){
