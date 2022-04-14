@@ -24,7 +24,7 @@
         </header>
         <@hst.cmseditmenu menu=menu />
     </div>
-<#elseif integration??>
+<#else>
     ${log("The main navigation menu is not available")}
 </#if>
 
