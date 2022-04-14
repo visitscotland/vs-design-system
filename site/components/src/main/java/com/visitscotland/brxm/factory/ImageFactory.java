@@ -131,7 +131,7 @@ public class ImageFactory {
         }
 
         if (Contract.isEmpty(image.getDescription())) {
-            String message = "The image "+ image.getCmsImage().getFileName() + " does not have a Description for the locale " + locale.getLanguage()
+            String message = "The image "+ image.getCmsImage().getFileName() + " does not have a Description for the language " + locale.getLanguage()
                     +"  Please review at " + image.getCmsImage().getPath();
             if (module != null) {
                 module.addErrorMessage(message);
