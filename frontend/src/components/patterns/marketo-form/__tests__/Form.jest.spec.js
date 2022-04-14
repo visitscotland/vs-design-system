@@ -1,13 +1,15 @@
 import { shallowMount } from '@vue/test-utils';
-import VsForm from '../Form';
+import VsMarketoForm from '../MarketoForm';
 
 const formData = {
     formSandboxId: '90',
     formLiveId: '91',
     content: {
         heading: 'What are your details?',
-        successHeading: 'submitted text',
-        successContent: 'Since you’ve just joined us, we’ll send you a couple of extra emails to introduce ourselves properly. After this Scottish hello, you’ll receive the newsletter twice a month, packed with lots of exciting information and news about Scotland to help you plan your trip.',
+        successHeading: 'What happens next?',
+        successContent: 'submitted text',
+        submit: 'Subscribe',
+        noJs: 'no js content',
     },
     fields: [
         {
@@ -60,7 +62,6 @@ const formData = {
             },
         },
     ],
-    submit: 'Submit the form',
     de: {
         FirstName: {
             label: 'German for "first name"',
@@ -79,7 +80,12 @@ const formData = {
                 email: 'Please ensure your email is in the correct format (de)',
             },
         },
-        submit: 'Submit (de)',
+        content: {
+            heading: 'What are your details? (de)',
+            successHeading: 'What happens next? (de)',
+            successContent: 'Since you’ve just joined us, we’ll send you a couple of extra emails to introduce ourselves properly. (de)',
+            submit: 'Subscribe (de)',
+        },
     },
 };
 
@@ -104,7 +110,7 @@ const globalMessaging = {
     },
 };
 
-const factoryShallowMount = () => shallowMount(VsForm, {
+const factoryShallowMount = () => shallowMount(VsMarketoForm, {
     slots: {
         submitError: 'error text',
         invalid: 'invalid text',
@@ -133,7 +139,7 @@ beforeEach(() => {
     };
 });
 
-describe('VsForm', () => {
+describe('VsMarketoForm', () => {
     it('should render a component with the data-test attribute `vs-form`', () => {
         const wrapper = factoryShallowMount();
 
@@ -162,14 +168,21 @@ describe('VsForm', () => {
         const submitBtn = wrapper.find('vsbutton-stub[type="submit"]');
 
         await wrapper.vm.$nextTick();
-        expect(submitBtn.text()).toBe('Submit the form');
+        expect(submitBtn.text()).toBe('Subscribe');
     });
 
     it('should not render a conditional field by default', () => {
         const wrapper = factoryShallowMount();
-        const conditionalField = wrapper.find('vsforminput-stub [fieldname="conditionalField"]');
+        const conditionalField = wrapper.find('vsinput-stub [fieldname="conditionalField"]');
 
         expect(conditionalField.exists()).toBe(false);
+    });
+
+    it('should render a no-js message', () => {
+        const wrapper = factoryShallowMount();
+        const noJsWrapper = wrapper.find('[data-test="vs-form-no-js"]');
+
+        expect(noJsWrapper.html()).toContain('no js content');
     });
 
     describe(':slots', () => {
@@ -263,7 +276,7 @@ describe('VsForm', () => {
             await wrapper.vm.$nextTick();
 
             const submitEl = wrapper.find('vsbutton-stub[type="submit"]');
-            expect(submitEl.text()).toBe('Submit (de)');
+            expect(submitEl.text()).toBe('Subscribe (de)');
         });
     });
 });
