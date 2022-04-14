@@ -1,8 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VsFormCheckbox from '../FormCheckbox';
+import VsCheckbox from '../Checkbox';
 
-const factoryShallowMount = (propsData) => shallowMount(VsFormCheckbox, {
+const factoryShallowMount = (propsData) => shallowMount(VsCheckbox, {
     propsData: {
         value: 'accepted',
         label: 'Test label',
@@ -16,7 +16,7 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('VsFormCheckbox', () => {
+describe('VsCheckbox', () => {
     it('should render a BFormCheckbox-stub', () => {
         const checkboxStub = wrapper.findAll('BFORMCHECKBOX-STUB');
 
