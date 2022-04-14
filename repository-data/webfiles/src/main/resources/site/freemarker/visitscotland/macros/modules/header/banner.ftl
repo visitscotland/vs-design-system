@@ -8,11 +8,10 @@
 <#macro emergencyBanner module>
     <@previewWarning editMode module module.errorMessages/>
     <#if module.ctaLink??>
-    <vs-banner>
-        <template slot="bannerTitle">
-            ${module.title} 
-        </template>
-
+    <vs-banner
+        close-btn-text="${label('essentials.global', 'close')}"
+        title="${module.title}"
+    >
         <template slot="bannerText">
             <@hst.html hippohtml=module.copy />
         </template>
@@ -24,10 +23,6 @@
             >
                 ${module.ctaLink.label}
             </vs-link>
-        </template>
-
-        <template slot="closeBtnText">
-            ${label("essentials.global", "close")}
         </template>
     </vs-banner>
     </#if>
