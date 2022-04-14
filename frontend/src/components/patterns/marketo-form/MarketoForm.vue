@@ -4,9 +4,7 @@
         data-test="vs-form"
     >
         <!-- element into which the (completely empty) form is embedded invisibly -->
-        <form
-            class="d-none"
-        />
+        <form class="d-none" />
 
         <template v-if="!submitted">
             <VsHeading
@@ -20,18 +18,16 @@
                 <BFormGroup
                     v-for="(field, index) in formData.fields"
                     :key="field.name"
-                    :label="needsLabel(field) &&
-                        (conditionalFields[field.name] === true
-                            || typeof conditionalFields[field.name] === 'undefined')
-                        ? getTranslatedLabel(field.name, index) : ''"
+                    :label="needsLabel(field) ? getTranslatedLabel(field.name, index) : ''"
                     :label-for="needsLabel(field) ? field.name : ''"
+                    :class="conditionalElementClass(field.name)"
                 >
-                    <template
-                        v-if="conditionalFields[field.name] === true
-                            || typeof conditionalFields[field.name] === 'undefined'"
-                    >
+                    <legend v-if="!isUndefined(field.descriptor)">
+                        {{ getTranslatedLegend(field.name, index) }}
+                    </legend>
+                    <div :class="conditionalElementClass(field.name)">
                         <template v-if="field.element === 'input'">
-                            <VsFormInput
+                            <VsInput
                                 :ref="field.name"
                                 @status-update="updateFieldData"
                                 :field-name="field.name"
@@ -43,11 +39,12 @@
                                 :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                                 :trigger-validate="triggerValidate"
                                 :hint-text="getTranslatedHint(field.name, index)"
+                                :placeholder="field.placeholder || ''"
                             />
                         </template>
 
                         <template v-if="field.element === 'select'">
-                            <VsFormSelect
+                            <VsSelect
                                 :options="getTranslatedOptions(field.name, index)"
                                 :ref="field.name"
                                 @status-update="updateFieldData"
@@ -65,13 +62,13 @@
                         </template>
 
                         <template v-if="field.element === 'checkbox'">
-                            <VsFormCheckbox
+                            <VsCheckbox
                                 :key="field.name"
                                 :ref="field.name"
                                 :name="field.name"
                                 :value="field.value"
                                 :id="field.name"
-                                :label="field.descriptor"
+                                :label="getTranslatedLabel(field.name, index)"
                                 @status-update="updateFieldData"
                                 :field-name="field.name"
                                 :validation-rules="field.validation || {}"
@@ -80,11 +77,11 @@
                                 :generic-validation="getMessagingData('validation', language)"
                                 :invalid="errorFields.indexOf(field.name) > -1 ? true : false"
                                 :trigger-validate="triggerValidate"
-                                :required-text="getMessagingData('required', language)"
+                                :optional-text="getMessagingData('optional', language)"
                                 :hint-text="getTranslatedHint(field.name, index)"
                             />
                         </template>
-                    </template>
+                    </div>
                 </BFormGroup>
 
                 <VsRecaptcha
@@ -93,6 +90,7 @@
                     :invalid="!recaptchaVerified && showErrorMessage"
                     :language="language"
                     :error-msg="getMessagingData('recaptchaError', language)"
+                    class="mt-9"
                 />
 
                 <VsButton
@@ -148,10 +146,10 @@
 <script>
 import Vue from 'vue';
 import { BFormGroup } from 'bootstrap-vue';
+import VsInput from '../../elements/input/Input';
+import VsSelect from '../../elements/select/Select';
+import VsCheckbox from '../../elements/checkbox/Checkbox';
 import VsIcon from '../../elements/icon/Icon';
-import VsFormInput from '../../elements/form-input/FormInput';
-import VsFormSelect from '../../elements/form-select/FormSelect';
-import VsFormCheckbox from '../../elements/form-checkbox/FormCheckbox';
 import VsRecaptcha from '../../elements/recaptcha/Recaptcha';
 import VsButton from '../../elements/button/Button';
 import VsHeading from '../../elements/heading/Heading';
@@ -160,20 +158,18 @@ const axios = require('axios');
 
 /**
  * A form that results in a user posting data to Marketo.
- * The form is created using an external json config file which is
- * defined in a prop.
  *
- * @displayName Form
+ * @displayName Marketo Form
  */
 
 export default {
-    name: 'VsForm',
+    name: 'VsMarketoForm',
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsFormInput,
-        VsFormSelect,
-        VsFormCheckbox,
+        VsInput,
+        VsSelect,
+        VsCheckbox,
         BFormGroup,
         VsRecaptcha,
         VsButton,
@@ -182,28 +178,28 @@ export default {
     },
     props: {
         /**
-         * the url for the form data file
+         * The URL for the form data file
          */
         dataUrl: {
             type: String,
             required: true,
         },
         /**
-         * recaptcha site key string
+         * Recaptcha site key string
          */
         recaptchaKey: {
             type: String,
             required: true,
         },
         /**
-         * if the form should use sandbox or live Marketo details
+         * If the form should use sandbox or live Marketo details
          */
         isProd: {
             type: Boolean,
             default: false,
         },
         /**
-         * munchkin ID for the Marketo environment
+         * Munchkin ID for the Marketo environment
          */
         munchkinId: {
             type: String,
@@ -217,7 +213,7 @@ export default {
             required: true,
         },
         /**
-         * language indicator for content
+         * Language indicator for content
          */
         language: {
             type: String,
@@ -235,7 +231,7 @@ export default {
          */
         countryListUrl: {
             type: String,
-            required: true,
+            default: '',
         },
     },
     data() {
@@ -344,16 +340,30 @@ export default {
                 labelText = this.formData.fields[index].label;
             }
 
-            // To be added if 'required' needs to be added to label
-            // I will check this and remove if not needed - JH
-
-            // if (!this.isUndefined(this.formData.fields[index].validation)
-            //     && !this.isUndefined(this.formData.fields[index].validation.required)
-            //     && this.formData.fields[index].validation.required) {
-            //     labelText = `${labelText} (${this.getMessagingData('required', this.language)})`;
-            // }
+            if (this.showOptionalText(this.formData.fields[index])
+                && !this.isUndefined(this.getMessagingData('optional', this.language))) {
+                labelText = `${labelText} (${this.getMessagingData('optional', this.language)})`;
+            }
 
             return labelText;
+        },
+        /**
+         * get translated label if available
+         */
+        getTranslatedLegend(fieldName, index) {
+            const languageObj = this.getLanguageObj();
+            let legendText = '';
+
+            if (this.language !== 'en'
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined(languageObj[fieldName].descriptor)
+            ) {
+                legendText = languageObj[fieldName].descriptor;
+            } else {
+                legendText = this.formData.fields[index].descriptor;
+            }
+
+            return legendText;
         },
         /**
          * get translated validation messages
@@ -484,8 +494,8 @@ export default {
                 this.errorFields.push(field);
             }
         },
-        showRequiredText(field) {
-            if (typeof field.validation !== 'undefined' && field.validation.required) {
+        showOptionalText(field) {
+            if (this.isUndefined(field.validation) || this.isUndefined(field.validation.required)) {
                 return true;
             }
 
@@ -497,15 +507,15 @@ export default {
         needsLabel(field) {
             if (field.element === 'radio'
                 || field.element === 'submit'
-                || field.element === 'checkbox-group') {
+                || field.element === 'checkbox') {
                 return false;
             }
 
             return true;
         },
         /**
-         * before submitting validate fields and recaptcha
-         * if successful run the Marketo submit method
+         * before submitting validate fields and recaptcha.
+         * If successful run the Marketo submit method
          */
         preSubmit(e) {
             e.preventDefault();
@@ -532,6 +542,14 @@ export default {
 
             this.showErrorMessage = this.formIsInvalid.length > 1;
 
+            // check conditional fields - if they're not shown
+            // then clear any value they may have
+            Object.entries(this.conditionalFields).forEach(([key, value]) => {
+                if (!value) {
+                    this.form[key] = '';
+                }
+            });
+
             if (!this.formIsInvalid && this.recaptchaVerified) {
                 this.marketoSubmit();
             } else {
@@ -539,7 +557,7 @@ export default {
             }
         },
         /**
-         * adds form data to Marketo payload and sets submitted status
+         * submits form data to Marketo payload and sets submitted status
          */
         marketoSubmit() {
             const myForm = window.MktoForms2.allForms()[0];
@@ -601,6 +619,15 @@ export default {
                 });
             });
         },
+        /**
+         * return the correct class to show or hide
+         * conditional elements
+         */
+        conditionalElementClass(fieldName) {
+            return this.conditionalFields[fieldName] === true
+                || typeof this.conditionalFields[fieldName] === 'undefined'
+                ? '' : 'd-none';
+        },
     },
 };
 </script>
@@ -648,41 +675,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-    ```jsx
-        // https://static.visitscotland.com/forms/vs-3331/simpleForm.json
-        <VsContainer>
-            <VsRow>
-                <VsCol>
-                    <VsForm
-                        dataUrl="http://172.28.74.166:5555/newsletter-sign-up.json"
-                        messagingUrl="http://172.28.74.166:5555/messaging.json"
-                        countryListUrl="http://172.28.74.166:5555/countries.json"
-                        recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-                        marketo-instance="//app-lon10.marketo.com"
-                        munchkin-id="830-QYE-256"
-                        language="de"
-                        :is-prod="false"
-                    >
-                        <template slot="invalid">
-                            You have invalid fields - please check the form.
-                        </template>
-
-                        <template slot="submitError">
-                            We're sorry there's been a problem, please try again later.
-                        </template>
-
-                        <template slot="submitting">
-                            We're just submitting your form
-                        </template>
-
-                        <template slot="submitted">
-                            Thank you for your details, your form has been submitted
-                        </template>
-                    </VsForm>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-    ```
-</docs>

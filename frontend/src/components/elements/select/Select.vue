@@ -20,7 +20,6 @@
         <div class="vs-select__container  mt-2">
             <BFormSelect
                 v-model="inputVal"
-                :size="size"
                 v-bind="$attrs"
                 :options="fieldOptions"
                 :name="fieldName"
@@ -50,13 +49,13 @@ Vue.use(Vuelidate);
 const axios = require('axios');
 
 /**
- * A select element
+ * A select element allows a user to choose a value from a list of options.
  *
  * @displayName Select
  */
 
 export default {
-    name: 'VsFormSelect',
+    name: 'VsSelect',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -66,14 +65,6 @@ export default {
         validateFormElementMixin,
     ],
     props: {
-        /**
-         * Set the form field size.
-         * `sm, md, lg`
-         */
-        size: {
-            default: 'md',
-            validator: (value) => value.match(/(sm|md|lg)/),
-        },
         /**
          * Options for select element
          */
@@ -130,7 +121,8 @@ export default {
             },
         },
         /**
-         * URL for list of countries file
+         * URL for list of countries file - this will be used
+         * if the 'country' prop is set to true
          */
         countryListUrl: {
             type: String,
@@ -144,7 +136,7 @@ export default {
             default: '',
         },
         /**
-         * whether the options should be a countries list
+         * Whether the options should be a countries list
          */
         countries: {
             type: Boolean,
@@ -178,6 +170,12 @@ export default {
     },
     watch: {
         inputVal(newValue) {
+            /**
+             * Emit watchable data when the field is changed
+             * @type {object}
+             * @property {string} field the name of the field
+             * @property {string} value the current value of the field
+             */
             this.$emit('updated', {
                 field: this.name,
                 value: newValue,
@@ -276,36 +274,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-<BsWrapper>
-    <label for="select-example">A select element</label>
-    <VsFormSelect
-        :options="[
-          { value: null, text: 'Please select an option', selected: 'true' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option' },
-          { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
-        ]"
-        name="select-example"
-        hint-text="Select hint text"
-        class="mb-6"
-    />
-
-    <label for="select-example">An invalid select element</label>
-    <VsFormSelect
-        :options="[
-          { value: null, text: 'Please select an option', selected: 'true' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option' },
-          { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
-        ]"
-        name="select-example-2"
-        :invalid="true"
-    />
-</BsWrapper>
-```
-</docs>
