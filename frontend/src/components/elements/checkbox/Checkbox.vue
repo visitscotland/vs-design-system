@@ -22,7 +22,6 @@
             v-model="inputVal"
             class="vs-checkbox mr-4"
             :class="errorClass"
-            :size="size"
             :name="fieldName"
             :id="fieldName"
             :value="value"
@@ -47,13 +46,14 @@ import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 Vue.use(Vuelidate);
 
 /**
- * A checkbox input
+ * Checkboxes allow a user to select multiple options from in a
+ * list or mark an individual item as selected.
  *
  * @displayName Checkbox
  */
 
 export default {
-    name: 'VsFormCheckbox',
+    name: 'VsCheckbox',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -63,14 +63,6 @@ export default {
         validateFormElementMixin,
     ],
     props: {
-        /**
-         * Set the form field size.
-         * `sm, md, lg`
-         */
-        size: {
-            default: 'md',
-            validator: (value) => value.match(/(sm|md|lg)/),
-        },
         /**
          * Name of the input
          */
@@ -103,21 +95,17 @@ export default {
             },
         },
         /**
-         * Prop to trigger manual validation
+         * Prop to trigger manual validation. Used by a parent
+         * component to trigger validation eg. when the submit
+         * button is clicked.
          */
         triggerValidate: {
             type: Boolean,
             default: false,
         },
         /**
-         * text for `required`
-         */
-        requiredText: {
-            type: String,
-            default: 'required',
-        },
-        /**
-         * Validation messages
+         * Specific validation messages for different
+         * types of validation
          */
         validationMessages: {
             type: Object,
@@ -134,7 +122,9 @@ export default {
             default: false,
         },
         /**
-         * Fallback translated validation
+         * Fallback translated validation - this is a set of
+         * validation messages to be used when no specific
+         * validation message is needed, eg. "This field is required"
          */
         genericValidation: {
             type: Object,
@@ -164,12 +154,6 @@ export default {
         },
     },
     watch: {
-        inputVal(newValue) {
-            this.$emit('updated', {
-                field: this.name,
-                value: newValue,
-            });
-        },
         value(newValue) {
             this.inputVal = newValue;
         },
@@ -266,44 +250,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-<BsWrapper>
-    <label for="checkbox-example">
-        Checkbox label
-    </label>
-    <VsFormCheckbox
-        field-name="checkbox-example"
-        value="accepted"
-        id="checkbox-example"
-        label="I accept the terms and conditions"
-        hint-text="Checkbox hint text"
-        class="mb-6"
-    />
-    <label for="checkbox-example-2">
-        A checkbox with longer text
-    </label>
-    <VsFormCheckbox
-        field-name="checkbox-example-2"
-        value="second"
-        id="checkbox-example-2"
-        label="By ticking this box you are indicating your consent for VisitScotland
-        to use your email address to send you our e-newsletter on a regular basis.
-        You can unsubscribe at any time via the link in the email. We will process
-        your details in accordance with our privacy policy"
-            class="mb-6"
-    />
-    <label for="checkbox-invalid-example">
-        An invalid checkbox
-    </label>
-    <VsFormCheckbox
-        field-name="checkbox-example"
-        value="accepted"
-        id="checkbox-invalid-example"
-        label="I accept the terms and conditions"
-        :invalid="true"
-    />
-</BsWrapper>
-```
-</docs>

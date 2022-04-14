@@ -5,6 +5,7 @@
         :alt="alt"
         :fluid="fluid"
         :fluid-grow="fluidGrow"
+        loading="lazy"
     >
         <!-- @slot Default slot for image content -->
         <slot />

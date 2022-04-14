@@ -20,8 +20,8 @@
 import { VueRecaptcha } from 'vue-recaptcha';
 
 /**
- * Google Recaptcha widget. Returns a response to be verified
- * by back end.
+ * The reCaptcha component allows us to tell human and
+ * automated bots apart when submitting data.
  *
  * @displayName Recaptcha
  */
@@ -35,14 +35,14 @@ export default {
     },
     props: {
         /**
-         * recaptcha site key string
+         * Recaptcha site key string
          */
         siteKey: {
             type: String,
             required: true,
         },
         /**
-         * whether or not the form is invalid - this should
+         * Whether or not the form is invalid - this should
          * also only be true when an attempt at submission has
          * been made
          */
@@ -51,14 +51,14 @@ export default {
             default: false,
         },
         /**
-         * language to show text in
+         * Language to show text in
          */
         language: {
             type: String,
             default: 'en',
         },
         /**
-         * validation message if the recaptcha isn't completed
+         * Validation message if the recaptcha isn't completed
          */
         errorMsg: {
             type: String,
@@ -67,6 +67,12 @@ export default {
     },
     methods: {
         verified(response) {
+            /**
+             * Emit Google response to recaptcha submission
+             * @type {string}
+             * @property {object} field the object returned by Google
+             * in response to the recaptcha being submitted
+             */
             this.$emit('verified', response);
         },
     },
@@ -75,8 +81,6 @@ export default {
 
 <style lang="scss">
     .vs-recaptcha {
-        margin-top: $spacer-9;
-
         &__embed {
             &--error {
                 & > div {
@@ -87,12 +91,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    <vs-recaptcha
-        sitekey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-        language="de"
-    />
-```
-</docs>

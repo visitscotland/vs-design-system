@@ -32,7 +32,7 @@
                                 />
                             </label>
 
-                            <VsFormInput
+                            <VsInput
                                 type="search"
                                 aria-label="Search"
                                 :placeholder="labelText"
@@ -78,7 +78,7 @@
 
 <script>
 import VsIcon from '@components/elements/icon/Icon';
-import VsFormInput from '@components/elements/form-input/FormInput';
+import VsInput from '@components/elements/input/Input';
 import VsButton from '@components/elements/button/Button';
 import {
     VsCol, VsRow, VsContainer,
@@ -98,7 +98,7 @@ export default {
     components: {
         VsIcon,
         BForm,
-        VsFormInput,
+        VsInput,
         VsButton,
         VsCol,
         VsRow,
