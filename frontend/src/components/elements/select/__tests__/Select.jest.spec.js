@@ -1,8 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VsFormSelect from '../FormSelect';
+import VsSelect from '../Select';
 
-const factoryShallowMount = (propsData) => shallowMount(VsFormSelect, {
+const factoryShallowMount = (propsData) => shallowMount(VsSelect, {
     propsData: {
         fieldName: 'testselect',
         options: [
@@ -24,7 +24,7 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('VsFormSelect', () => {
+describe('VsSelect', () => {
     it('should render a BFormSelect-stub', () => {
         const selectStub = wrapper.findAll('BFORMSELECT-STUB');
 

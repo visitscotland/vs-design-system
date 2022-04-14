@@ -55,6 +55,14 @@ const validateFormElementMixin = {
                         ...rulesObj,
                         maxLength: maxLength(value),
                     };
+                } else if (key === 'invalidVal') {
+                    const noInvalid = (val) => val
+                        .indexOf(this.validationRules.invalidVal) === -1;
+
+                    rulesObj = {
+                        ...rulesObj,
+                        noInvalid,
+                    };
                 }
             }
 
@@ -97,6 +105,17 @@ const validateFormElementMixin = {
                 });
             }
 
+            this.touched = true;
+            this.$v.$touch();
+
+            /**
+             * Emit watchable data when a field's validation
+             * status is changed
+             * @type {object}
+             * @property {string} field the name of the field
+             * @property {string} value the current value of the field
+             * @property {array} errors a list of errors that the field has
+             */
             this.$emit('status-update', {
                 field: this.fieldName,
                 value: this.inputVal,

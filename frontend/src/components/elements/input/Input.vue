@@ -31,10 +31,10 @@
             :name="fieldName"
             :placeholder="placeholder"
             :required="isRequired"
-            :size="size"
             :v="inputVal"
             :aria-invalid="$v.inputVal.$anyError || invalid"
             :aria-describedby="$v.inputVal.$anyError || invalid ? `error-${fieldName}` : ''"
+            @blur="manualValidate"
         />
         <VsButton
             data-test="input-clear-button"
@@ -58,35 +58,29 @@
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import { BFormInput } from 'bootstrap-vue';
+import VsButton from '../button/Button';
 import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
 
 Vue.use(Vuelidate);
 
 /**
- * An input field for text, email, number etc
+ * An input allows a user to enter a short amount of text.
  *
  * @displayName Input
  */
 
 export default {
-    name: 'VsFormInput',
+    name: 'VsInput',
     status: 'prototype',
     release: '0.0.1',
     components: {
         BFormInput,
+        VsButton,
     },
     mixins: [
         validateFormElementMixin,
     ],
     props: {
-        /**
-         * Set the form field size.
-         * `sm|md|lg`
-         */
-        size: {
-            default: 'md',
-            validator: (value) => value.match(/(sm|md|lg)/),
-        },
         /**
          * Default value of the field
          */
@@ -126,14 +120,17 @@ export default {
             default: false,
         },
         /**
-         * Prop to trigger manual validation
+         * Prop to trigger manual validation. Used by a parent
+         * component to trigger validation eg. when the submit
+         * button is clicked.
          */
         triggerValidate: {
             type: Boolean,
             default: false,
         },
         /**
-         * Validation messages
+         * Specific validation messages for different
+         * types of validation
          */
         validationMessages: {
             type: Object,
@@ -143,7 +140,9 @@ export default {
             },
         },
         /**
-         * Fallback translated validation
+         * Fallback translated validation - this is a set of
+         * validation messages to be used when no specific
+         * validation message is needed, eg. "This field is required"
          */
         genericValidation: {
             type: Object,
@@ -160,7 +159,7 @@ export default {
             default: '',
         },
         /**
-         * text for the 'clear' button
+         * Text for the 'clear' button
          * the existence of this will defined whether the button
          * also exists
          */
@@ -206,6 +205,12 @@ export default {
             this.manualValidate();
         },
         inputVal(newValue) {
+            /**
+             * Emit watchable data when the field is changed
+             * @type {object}
+             * @property {string} field the name of the field
+             * @property {string} value the current value of the field
+             */
             this.$emit('updated', {
                 field: this.name,
                 value: newValue,
@@ -221,7 +226,6 @@ export default {
          */
         clearInput() {
             this.inputVal = '';
-            this.$emit('cleared');
         },
         /**
          * Focus on the input
@@ -274,39 +278,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-```jsx
-<BsWrapper>
-    <label for="small">Small</label>
-    <VsFormInput
-        id="small"
-        placeholder="Enter your name"
-        class="mb-5"
-        size="sm"
-        field-name="input1"
-    />
-    <label for="medium">Medium (default)</label>
-    <VsFormInput
-        id="medium"
-        placeholder="Enter your name"
-        class="mb-5"
-        size="md"
-        field-name="input1"
-        hint-text="This is some hint text"
-    />
-    <label for="large">Large</label>
-    <VsFormInput
-        id="large" placeholder="Enter your name" class="mb-5" size="lg" field-name="input3"
-    />
-    <label for="input-invalid">Invalid state</label>
-    <VsFormInput
-        id="input-invalid"
-        :invalid="true"
-        placeholder="Invalid"
-        class="mb-5"
-        field-name="input5"
-    />
-</BsWrapper>
-```
-</docs>
