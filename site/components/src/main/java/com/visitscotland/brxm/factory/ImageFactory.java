@@ -121,8 +121,7 @@ public class ImageFactory {
 
         image.setCredit(cmsImage.getCredit());
         if (Contract.isEmpty(image.getAltText())) {
-            String message = "The image "+ image.getCmsImage().getFileName() + " does not have an Alternative Text for the language " + locale.getCountry()
-                    +"  Please review at " + image.getCmsImage().getPath();
+            String message = "The image "+ image.getCmsImage().getFileName() + " does not have an Alternative Text for the language " + locale;
             if (module != null){
                 module.addErrorMessage(message);
             }
@@ -131,8 +130,7 @@ public class ImageFactory {
         }
 
         if (Contract.isEmpty(image.getDescription())) {
-            String message = "The image "+ image.getCmsImage().getFileName() + " does not have a Description for the language " + locale.getLanguage()
-                    +"  Please review at " + image.getCmsImage().getPath();
+            String message = "The image "+ image.getCmsImage().getFileName() + " does not have a Description for the language " + locale;
             if (module != null) {
                 module.addErrorMessage(message);
             }
@@ -171,12 +169,10 @@ public class ImageFactory {
 
                 return image;
             } else {
-                String message = String.format("The Instagram post %s added  is not accessible, please review the document %s at: %s ", properties.getInstagramURL() + document.getId(), document.getDisplayName(), document.getPath());
-
                 if (module != null) {
-                     module.addErrorMessage(message);
+                    module.addErrorMessage("The Instagram id is no longer valid");
                 }
-                contentLogger.warn(message);
+                contentLogger.warn("The Instagram id {} is no longer, Listicle = {}", document.getId(), document.getPath());
             }
         } catch (Exception e) {
             if (module != null) {
