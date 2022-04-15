@@ -446,6 +446,21 @@ class ProductSearchBuilderTest {
     }
 
     @Test
+    @DisplayName("Keywords - Show results with keywords")
+    void keywords() {
+        mockLocationLoader("Edinburgh");
+        String url = createBuilder().productTypes(DEFAULT_TYPE)
+                .location("Edinburgh").keywords("castle")
+                .proximity(null)
+                .build();
+
+        validateUrl(url);
+        assertTrue(url.contains("name=castle"),
+                String.format("The Generated URL is expected to have no order (%s) ", url)
+        );
+    }
+
+    @Test
     @DisplayName("Safe Travels - Show results with Covid Safe Travels ")
     void safeTravels() {
         mockLocationLoader("Edinburgh");
