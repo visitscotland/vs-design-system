@@ -19,7 +19,7 @@ The standard breadcrumb shows a list of separated links.
 ```
 
 ### Short
-On mobile, the breadcrumb is shortened to avoid wrapping to multiple lines. We show the current page and previous page so the user has the option to go back a level. 
+On mobile, the breadcrumb is shortened to avoid wrapping to multiple lines. We show the current page and previous page so the user has the option to go back a level. Note: resize the browser to see this working. 
 
 ```jsx
     const breadcrumbSmall = require("../../../assets/fixtures/breadcrumb/breadcrumb-mobile.json");
