@@ -446,21 +446,6 @@ class ProductSearchBuilderTest {
     }
 
     @Test
-    @DisplayName("Good to go - Show results with Covid Good to go")
-    void goodToGo() {
-        mockLocationLoader("Edinburgh");
-        String url = createBuilder().productTypes(DEFAULT_TYPE)
-                .location("Edinburgh").goodToGo(true)
-                .proximity(null)
-                .build();
-
-        validateUrl(url);
-        assertTrue(url.contains("fac_id=goodtogo"),
-                String.format("The Generated URL is expected to have no order (%s) ", url)
-        );
-    }
-
-    @Test
     @DisplayName("Safe Travels - Show results with Covid Safe Travels ")
     void safeTravels() {
         mockLocationLoader("Edinburgh");
