@@ -39,7 +39,7 @@ public class Properties {
     static final String INTERNAL_SITES = "links.internal-sites";
     static final String CMS_BASE_PATH = "links.cms-base-path.url";
     static final String CONVERT_TO_RELATIVE = "links.convert-to-relative";
-    static final String DEFAULT_CSS_VERSION = "data-internal.default-css-version";
+    static final String SERVE_LECAGY_CSS = "data-internal.serve-legacy-css";
 
     // DMS Properties
     public static final String DMS_DATA_HOST = "dms-data.private-url";
@@ -172,8 +172,8 @@ public class Properties {
      * @deprecated This property should be removed once all legacy applications are sending the query parameter {@<code>version="legacy"</code>}
      */
     @Deprecated
-    public String getDefaultCssVersion() {
-        return readString(DEFAULT_CSS_VERSION);
+    public Boolean isServeLegacyCss() {
+        return readBoolean(SERVE_LECAGY_CSS);
     }
 
     public List<String> getInternalSites() {
