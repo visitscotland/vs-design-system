@@ -2,7 +2,6 @@ import { shallowMount } from '@vue/test-utils';
 import VsImageWithCaption from '../ImageWithCaption';
 
 const defaultSlotText = 'Image';
-const toggleIconSlot = 'Toggle icon';
 const alertSlot = 'Video alert message';
 const videoTitleSlot = 'Video title';
 const videoDurationSlot = 'Video duration';
@@ -19,7 +18,6 @@ const factoryShallowMount = (propsData) => shallowMount(VsImageWithCaption, {
         ...propsData,
     },
     slots: {
-        'toggle-icon': toggleIconSlot,
         'img-caption': captionSlot,
         'video-no-js-alert': alertSlot,
         'video-title': videoTitleSlot,
