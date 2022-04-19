@@ -53,7 +53,7 @@ export default {
 <style lang="scss">
     h4.vs-canned-search-sub-heading {
         font-family: $font-family-base;
-        font-size: $font-size-base;
+        font-size: $font-size-4;
         color: $color-secondary-teal-shade-2;
         letter-spacing: normal;
         margin: $spacer-0;
@@ -68,18 +68,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    <VsCannedSearchSubHeading
-        style="max-width: 25rem"
-        sub-heading="Callander, Loch Lomond, The Trossachs, Stirling & Forth Valley"
-    />
-    <VsCannedSearchSubHeading
-        style="max-width: 25rem"
-        sub-heading="A very very long list of themes, it's so long it should overflow onto a second
-        row but it has a line limit"
-        :line-limit="1"
-    />
-```
-</docs>

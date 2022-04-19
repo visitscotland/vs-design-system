@@ -4,8 +4,8 @@
 <#include "./summary-box.ftl">
 <#include "./social-share.ftl">
 <#include "../../shared/theme-calculator.ftl">
-<#include "../../../macros/global/cms-errors.ftl">
 <#include "../../global/image-with-caption.ftl">
+<#include "../../global/preview-warning.ftl">
 <#include "../../../macros/modules/video/video.ftl">
 <#include "../../../macros/modules/modal/modal.ftl">
 
@@ -21,12 +21,14 @@
 <#-- @ftlvariable name="content" type="com.visitscotland.brxm.hippobeans.Page" -->
 <#-- @ftlvariable name="heroDetails" type="com.visitscotland.brxm.model.FlatImage" -->
 <#-- @ftlvariable name="itinerary" type="com.visitscotland.brxm.model.ItineraryPage" -->
+<#-- @ftlvariable name="introTheme" type="int" -->
 
-<#macro pageIntro content heroDetails="" itinerary="" simplePage="" >
-    <#if simplePage?has_content>
-        <#assign themeName = themeCalculator(1, "", [])>
+<#macro pageIntro content heroDetails="" itinerary="" lightBackground=false >
+    <@previewWarning editMode content alerts />
+    <#if lightBackground>
+        <#assign themeName = themeCalculator(1)>
     <#else>
-        <#assign themeName = themeCalculator(introTheme, "", [])>
+        <#assign themeName = themeCalculator(introTheme)>
     </#if>
 
     <#if content.heroImage??>

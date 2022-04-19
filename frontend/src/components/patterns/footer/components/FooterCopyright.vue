@@ -98,14 +98,14 @@ export default {
     .vs-footer-copyright__text {
         color: $color-white;
         margin: 0;
-        font-size: $font-size-sm;
+        font-size: $font-size-2;
 
         @include media-breakpoint-up(lg) {
-            font-size: $small-font-size;
+            font-size: $font-size-3;
         }
 
         @include media-breakpoint-up(xl) {
-            font-size: $font-size-base;
+            font-size: $font-size-4;
         }
     }
 }

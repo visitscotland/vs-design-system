@@ -5,7 +5,9 @@
         :alt="alt"
         :fluid="fluid"
         :fluid-grow="fluidGrow"
+        loading="lazy"
     >
+        <!-- @slot Default slot for image content -->
         <slot />
     </BImg>
 </template>
@@ -16,7 +18,7 @@ import { BImg } from 'bootstrap-vue';
  * This image component is used to render images in our products
  * to help support and clarify content.
  *
- * @displayName Image
+ * @displayName Img
  */
 
 export default {

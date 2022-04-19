@@ -114,7 +114,7 @@ export default {
     background: $color-purple;
     color: white;
     position: relative;
-    font-size: $font-size-sm;
+    font-size: $font-size-2;
     height: 28px;
     display: flex;
     align-items: center;
