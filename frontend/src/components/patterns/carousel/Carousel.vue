@@ -562,7 +562,7 @@ export default {
             background: $color-gray-tint-7;
             padding: $spacer-1 $spacer-2;
             color: $color-black;
-            font-size: $font-size-sm;
+            font-size: $font-size-2;
             font-weight: bold;
             margin: 0;
         }
