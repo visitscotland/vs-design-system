@@ -89,6 +89,11 @@ export default {
 <style lang="scss">
     .card.vs-mega-nav-featured-event {
         border-top: 1px solid #e0e0e0;
+        margin-bottom: -#{$spacer-2};
+
+        @include media-breakpoint-up(lg) {
+            margin-bottom: $spacer-0;
+        }
 
         &:hover {
             box-shadow: -7px 12px 27px -13px rgba(0, 0, 0, 0.4);
@@ -111,7 +116,16 @@ export default {
             bottom: 0;
             left: 0;
             background: $color-white;
-            padding: $spacer-0;
+            padding: $spacer-0 $spacer-0 $spacer-4;
+            border-left: $spacer-1 solid $color-pink;
+
+            @include media-breakpoint-up(md) {
+                padding: $spacer-0;
+            }
+
+            @include media-breakpoint-up(lg) {
+                border-left-width: $spacer-0;
+            }
         }
 
         .card-title {
@@ -120,11 +134,19 @@ export default {
 
         .vs-stretched-link-card__content {
             padding: $spacer-0 $spacer-5;
-            border-left: $spacer-1 solid $color-pink;
+
+            @include media-breakpoint-up(lg) {
+                border-left: $spacer-1 solid $color-pink;
+            }
         }
 
         .vs-stretched-link-card__link {
             font-size: $small-font-size;
+            margin-left: $spacer-5;
+
+            @include media-breakpoint-up(lg) {
+                margin-left: $spacer-0;
+            }
         }
 
         .vs-mega-nav-featured-event__date-range {
