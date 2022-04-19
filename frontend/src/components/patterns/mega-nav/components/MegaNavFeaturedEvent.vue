@@ -116,8 +116,12 @@ export default {
             bottom: 0;
             left: 0;
             background: $color-white;
-            padding: $spacer-0;
+            padding: $spacer-0 $spacer-0 $spacer-4;
             border-left: $spacer-1 solid $color-pink;
+
+            @include media-breakpoint-up(md) {
+                padding: $spacer-0;
+            }
 
             @include media-breakpoint-up(lg) {
                 border-left-width: $spacer-0;
