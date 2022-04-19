@@ -4,7 +4,7 @@
 <#include "../macros/modules/page-intro/social-share.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/modules/signpost/signpost.ftl">
-<#include "../macros/modules/product-search/psr-module.ftl">
+<#include "../macros/modules/product-search/product-search.ftl">
 <#include "../macros/shared/module-builder.ftl">
 
 

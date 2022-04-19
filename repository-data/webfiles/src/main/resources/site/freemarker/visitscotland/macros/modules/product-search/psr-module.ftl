@@ -1,6 +1,6 @@
 <#include "../../../../include/imports.ftl">
 
-<#include "../../../../frontend/components/vs-psr-module.ftl">
+<#include "../../../../frontend/components/vs-product-search.ftl">
 
 <#include "../../shared/theme-calculator.ftl">
 
@@ -12,7 +12,7 @@
 
         
 
-        <vs-psr-module
+        <vs-product-search
             :config-arr="[
                 {'subSearchType': '${module.category.productTypes}'},
                 <#if module.location??>
@@ -37,6 +37,6 @@
             <template slot="vsModuleIntro">
                 ${module.description}
             </template>
-        </vs-psr-module>
+        </vs-product-search>
     </#if>
 </#macro>

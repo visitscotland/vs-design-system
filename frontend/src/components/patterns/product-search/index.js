@@ -1,7 +1,7 @@
-import VsPsrModule from './PsrModule';
-import VsPsrEmbed from './components/PsrEmbed';
+import VsProductSearch from './ProductSearch';
+import VsProductSearchEmbed from './components/ProductSearchEmbed';
 
 export default {
-    VsPsrModule,
-    VsPsrEmbed,
+    VsProductSearch,
+    VsProductSearchEmbed,
 };
