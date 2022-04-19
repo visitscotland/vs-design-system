@@ -65,15 +65,3 @@ export default {
         font-weight: $font-weight-bold;
     }
 </style>
-
-<docs>
-```jsx
-    const sampleTour = require("../../../../assets/fixtures/canned-search/sample-tour.json");
-
-    <VsCannedSearchTourRuns
-        :label="sampleTour.opening.period.label"
-        :startDay="sampleTour.opening.period.startDay"
-        :endDay="sampleTour.opening.period.endDay"
-    />
-```
-</docs>
