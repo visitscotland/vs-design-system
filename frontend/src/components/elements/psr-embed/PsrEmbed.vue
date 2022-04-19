@@ -8,8 +8,8 @@
 
 <script>
 /**
- * The PSR widget is embedded from an external source.
- * It can be customised with data attributes.
+ * The PSR embed component is a wrapper for the the product
+ * search widget which comes from an external source.
  *
  * @displayName PSR Embed
  */
@@ -43,6 +43,12 @@ export default {
                 },
                 es: {
                     localeUrl: 'es-es',
+                },
+                it: {
+                    localeUrl: 'it-it',
+                },
+                nl: {
+                    localeUrl: 'nl-nl',
                 },
             },
         };
@@ -78,7 +84,9 @@ export default {
         },
         /* returns the environment variable to include various files from */
         getEnvironment() {
-            if (window.location.hostname.includes('develop') || window.location.hostname.includes('localhost')) {
+            if (window.location.hostname.includes('develop')
+                || window.location.hostname.includes('localhost')
+                || window.location.hostname.includes('feature')) {
                 return 'develop';
             }
             return 'www';
@@ -98,7 +106,7 @@ export default {
 
         const psrScriptEl = document.createElement('script');
         psrScriptEl.async = false;
-        psrScriptEl.setAttribute('src', `https://${this.getEnvironment}.visitscotland.com/api/dev/ui/product-search/static/js/bundle.js`);
+        psrScriptEl.setAttribute('src', '/api/dev/ui/product-search/static/js/bundle.js');
         // psrScriptEl.setAttribute('src', 'http://localhost:9999/static/js/bundle.js');
         document.head.appendChild(psrScriptEl);
     },
@@ -107,7 +115,7 @@ export default {
 
 <style lang="scss">
 
-@import "https://develop.visitscotland.com/api/dev/ui/product-search/css/main.css";
+@import "https://api.visitscotland.com/dev/ui/product-search/css/main.css";
 // @import "http://localhost:9999/css/main.css";
 
 .no-js {
@@ -115,19 +123,4 @@ export default {
         display: none;
     }
 }
-
 </style>
-
-<docs>
-```jsx
-    <VsContainer>
-        <VsRow>
-            <VsCol md="6">
-                <vs-psr-embed
-                    :config="[{'lang': 'fr'},{'subSearchType': 'acco'},{'locplace': '4161'}]"
-                />
-            </VsCol>
-        </VsRow>
-    </VsContainer>
-```
-</docs>

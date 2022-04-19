@@ -110,7 +110,7 @@ export default {
     .count {
         color: $color-white;
         font-family: $headings-font-family;
-        font-size: $display1-size;
+        font-size: $font-size-9;
         line-height: $line-height-xs;
         display: block;
         text-align: center;

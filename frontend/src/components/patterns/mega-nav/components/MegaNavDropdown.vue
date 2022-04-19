@@ -142,8 +142,8 @@ export default {
         height: 26px;
         width: 26px;
         font-size: 0;
-        right: 20px;
-        top: -40px;
+        right: $spacer-3;
+        top: -36px;
 
         &:hover {
             .vs-icon{
@@ -151,11 +151,8 @@ export default {
             }
         }
 
-        @include media-breakpoint-up(sm) {
-            right: 36px;
-        }
         @include media-breakpoint-up(lg) {
-            right: 4px;
+            right: $spacer-1;
             top: -10px;
         }
     }
@@ -174,6 +171,7 @@ export default {
 
         &:focus, &:active, &:active:focus {
             box-shadow: $shadow-button-focus;
+            z-index: 1001;
         }
 
         &:hover, &:focus {
@@ -190,7 +188,7 @@ export default {
             padding: $spacer-3 $spacer-2;
             height: auto;
             width: auto;
-            font-size: 1rem;
+            font-size: $font-size-4;
 
             &::after {
                 content: '';
@@ -254,7 +252,7 @@ export default {
             padding: $spacer-3 $spacer-2;
             height: auto;
             width: auto;
-            font-size: $h4-font-size;
+            font-size: $font-size-4;
             margin-bottom: $spacer-2;
 
             @include media-breakpoint-up(lg) {

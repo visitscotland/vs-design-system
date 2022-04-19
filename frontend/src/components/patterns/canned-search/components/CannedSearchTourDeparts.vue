@@ -58,7 +58,7 @@ export default {
 
 <style lang="scss">
     .vs-canned-search-tour-departs {
-        font-size: $font-size-base;
+        font-size: $font-size-4;
         line-height: $line-height-s;
         margin-bottom: $spacer-1;
 
@@ -69,13 +69,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    const sampleTour = require("../../../../assets/fixtures/canned-search/sample-tour.json");
-
-    <VsCannedSearchTourDeparts
-        :label="sampleTour.tourOrigin.label"
-        :origins="sampleTour.tourOrigin.tourOrigin"
-    />
-</docs>
