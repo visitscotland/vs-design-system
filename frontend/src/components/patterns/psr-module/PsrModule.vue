@@ -40,7 +40,7 @@ import {
     VsCol,
 } from '@components/elements/grid';
 import VsHeading from '@components/elements/heading/Heading';
-import VsPsrEmbed from '@components/elements/psr-embed/PsrEmbed';
+import VsPsrEmbed from './components/PsrEmbed';
 
 /**
  * A module housing the PSR widget, a title and optional text
