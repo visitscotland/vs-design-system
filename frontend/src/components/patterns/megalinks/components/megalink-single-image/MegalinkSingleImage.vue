@@ -32,7 +32,7 @@
                         <slot name="vsSingleImageContent" />
                     </VsRichTextWrapper>
 
-                    <VsLinkList class="lead">
+                    <VsLinkList>
                         <!-- @slot Slot for links list -->
                         <slot name="vsSingleImageLinks" />
                     </VsLinkList>
@@ -151,7 +151,7 @@ export default {
 
         .vs-megalink-single-image__link-list-item {
             margin-top: $spacer-4;
-            font-size: $font-size-md;
+            font-size: $font-size-5;
 
             &:first-of-type {
                 margin-bottom: $spacer-0;

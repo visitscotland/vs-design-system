@@ -27,7 +27,7 @@ export default {
     props: {
         /**
          * Set the form field size.
-         * `sm, md, lg`
+         * `sm|md|lg`
          */
         size: {
             default: 'md',
