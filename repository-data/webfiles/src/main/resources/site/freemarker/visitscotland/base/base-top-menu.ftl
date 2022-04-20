@@ -7,6 +7,8 @@
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="banner" type="com.visitscotland.brxm.model.BannerModule" -->
+<#-- @ftlvariable name="navigationWidget" type="com.visitscotland.brxm.model.navigation.FeaturedItem" -->
+<#-- @ftlvariable name="navigationWidget2" type="com.visitscotland.brxm.model.navigation.FeaturedItem" -->
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsMenuItem" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
@@ -24,8 +26,20 @@
         </header>
         <@hst.cmseditmenu menu=menu />
     </div>
+    <#if navigationWidget??>
+        <@previewWarning editMode navigationWidget navigationWidget.errorMessages/>
+    </#if>
+    <#if navigationWidget2??>
+        <@previewWarning editMode navigationWidget2 navigationWidget2.errorMessages/>
+    </#if>
 </#if>
+
+
+
 
 <#if banner??>
     <@emergencyBanner module=banner/>
 </#if>
+
+
+
