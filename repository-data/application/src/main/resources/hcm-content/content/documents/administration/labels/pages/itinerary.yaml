@@ -250,7 +250,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 97e64157-de1c-4f91-93db-5062825421b4
     hippo:name: Itinerary Page
-    hippo:versionHistory: 24797a13-0909-4cf3-a989-3437e35e6bd1
+    hippo:versionHistory: 726e411b-22d8-40e4-aafc-d3e3ce3726c1
     /itineraries[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -260,7 +260,7 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2022-04-19T16:05:11.628+01:00
+      hippostdpubwf:lastModificationDate: 2022-04-21T15:36:57.061+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
@@ -272,12 +272,12 @@
         stop.time-to-explore, theme, stop.opening, stop.hour, stop.hours, stop.usually,
         stop.provisionally, stop.today, stop.to, stop.open, stop.closed, stop.close.soon,
         stop.temporarily-closed, stop.and, end-itinerary]
-      resourcebundle:messages: [Nearby places to stay, Nearby places to eat, 'Find
-          out more:', Stop, Start / Finish, Days, Distance, Main themes, mi, km, Transport,
-        Day, Miles, Kilometres, Highlights, Areas covered, The stop doesn't have any
-          product linked to the stop, Time to explore, Main theme, Check opening times,
-        hour, hours, Usually, Provisionally, today, to, Open, Closed, Closing soon,
-        Temporarily closed, and, End of itinerary]
+      resourcebundle:messages: [Nearby places to stay, Nearby places to eat, Find
+          out more about, Stop, Start / Finish, Days, Distance, Main themes, mi, km,
+        Transport, Day, Miles, Kilometres, Highlights, Areas covered, The stop doesn't
+          have any product linked to the stop, Time to explore, Main theme, Check
+          opening times, hour, hours, Usually, Provisionally, today, to, Open, Closed,
+        Closing soon, Temporarily closed, and, End of itinerary]
       resourcebundle:messages_de: [Unterkünfte in der Nähe, Restaurants in der Nähe,
         'Mehr erfahren:', Haltepunkt, Start / Ziel, Tage, Entfernung, Hauptthemen,
         mi, km, Verkehrsmittel, Tag, Meilen, Kilometer, Highlights, Abgedeckte Regionen,
@@ -322,7 +322,7 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2022-04-19T16:05:46.915+01:00
+      hippostdpubwf:lastModificationDate: 2022-04-21T15:37:11.964+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
@@ -334,12 +334,12 @@
         stop.time-to-explore, theme, stop.opening, stop.hour, stop.hours, stop.usually,
         stop.provisionally, stop.today, stop.to, stop.open, stop.closed, stop.close.soon,
         stop.temporarily-closed, stop.and, end-itinerary]
-      resourcebundle:messages: [Nearby places to stay, Nearby places to eat, 'Find
-          out more:', Stop, Start / Finish, Days, Distance, Main themes, mi, km, Transport,
-        Day, Miles, Kilometres, Highlights, Areas covered, The stop doesn't have any
-          product linked to the stop, Time to explore, Main theme, Check opening times,
-        hour, hours, Usually, Provisionally, today, to, Open, Closed, Closing soon,
-        Temporarily closed, and, End of itinerary]
+      resourcebundle:messages: [Nearby places to stay, Nearby places to eat, Find
+          out more about, Stop, Start / Finish, Days, Distance, Main themes, mi, km,
+        Transport, Day, Miles, Kilometres, Highlights, Areas covered, The stop doesn't
+          have any product linked to the stop, Time to explore, Main theme, Check
+          opening times, hour, hours, Usually, Provisionally, today, to, Open, Closed,
+        Closing soon, Temporarily closed, and, End of itinerary]
       resourcebundle:messages_de: [Unterkünfte in der Nähe, Restaurants in der Nähe,
         'Mehr erfahren:', Haltepunkt, Start / Ziel, Tage, Entfernung, Hauptthemen,
         mi, km, Verkehrsmittel, Tag, Meilen, Kilometer, Highlights, Abgedeckte Regionen,
@@ -384,9 +384,9 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2022-04-19T16:05:46.915+01:00
+      hippostdpubwf:lastModificationDate: 2022-04-21T15:37:11.964+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2022-04-19T16:05:49.293+01:00
+      hippostdpubwf:publicationDate: 2022-04-21T15:37:14.039+01:00
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
           a range of time like: 9:00am to 13:00pm', '', '', '', '', '', '']
@@ -397,12 +397,12 @@
         stop.time-to-explore, theme, stop.opening, stop.hour, stop.hours, stop.usually,
         stop.provisionally, stop.today, stop.to, stop.open, stop.closed, stop.close.soon,
         stop.temporarily-closed, stop.and, end-itinerary]
-      resourcebundle:messages: [Nearby places to stay, Nearby places to eat, 'Find
-          out more:', Stop, Start / Finish, Days, Distance, Main themes, mi, km, Transport,
-        Day, Miles, Kilometres, Highlights, Areas covered, The stop doesn't have any
-          product linked to the stop, Time to explore, Main theme, Check opening times,
-        hour, hours, Usually, Provisionally, today, to, Open, Closed, Closing soon,
-        Temporarily closed, and, End of itinerary]
+      resourcebundle:messages: [Nearby places to stay, Nearby places to eat, Find
+          out more about, Stop, Start / Finish, Days, Distance, Main themes, mi, km,
+        Transport, Day, Miles, Kilometres, Highlights, Areas covered, The stop doesn't
+          have any product linked to the stop, Time to explore, Main theme, Check
+          opening times, hour, hours, Usually, Provisionally, today, to, Open, Closed,
+        Closing soon, Temporarily closed, and, End of itinerary]
       resourcebundle:messages_de: [Unterkünfte in der Nähe, Restaurants in der Nähe,
         'Mehr erfahren:', Haltepunkt, Start / Ziel, Tage, Entfernung, Hauptthemen,
         mi, km, Verkehrsmittel, Tag, Meilen, Kilometer, Highlights, Abgedeckte Regionen,
