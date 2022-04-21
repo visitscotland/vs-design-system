@@ -36,6 +36,7 @@ public class NavigationFactory {
     static final String STATIC = "navigation.static";
     static final String CTA_SUFFIX = ".cta";
     static final String NAVIGATION_PREFIX = "navigation.";
+    static final String WIDGET_LIST = "widgetList";
 
     private ResourceBundleService bundle;
     private HippoUtilsService utils;
@@ -167,11 +168,17 @@ public class NavigationFactory {
         }
         widget.setHippoBean(document);
         widget.setLinks(enhancedLinks);
-        if (request.getModel("navigationWidget") == null){
-            request.setModel("navigationWidget", widget);
-        }else{
-            request.setModel("navigationWidget2", widget);
-        }
+
+       if (widget.getErrorMessages() != null ) {
+           List<FeaturedItem> listWidget;
+           if (request.getModel(WIDGET_LIST) == null) {
+               listWidget = new ArrayList<>();
+           } else {
+               listWidget = request.getModel(WIDGET_LIST);
+           }
+           listWidget.add(widget);
+           request.setModel(WIDGET_LIST, listWidget);
+       }
         return widget;
     }
 
