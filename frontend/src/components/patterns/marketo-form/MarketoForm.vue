@@ -98,7 +98,6 @@
                     type="submit"
                     class="vs-form__submit mt-9"
                     @click.native="preSubmit"
-                    @keyup.native="preSubmit"
                 >
                     {{ getTranslatedContent('submit') }}
                 </VsButton>
@@ -281,6 +280,8 @@ export default {
             axios.get(this.dataUrl)
                 .then((response) => {
                     this.formData = response.data;
+
+                    console.log(this.marketoInstance, this.munchkinId, this.formId);
 
                     if (window.MktoForms2) {
                         window.MktoForms2
@@ -561,8 +562,8 @@ export default {
          */
         marketoSubmit() {
             const myForm = window.MktoForms2.allForms()[0];
-            myForm.addconditionalFields(this.form);
-            myForm.addconditionalFields({
+            myForm.addHiddenFields(this.form);
+            myForm.addHiddenFields({
                 lastReCAPTCHAUserFingerprint: window.grecaptcha.getResponse(),
                 lastRecaptchaEnabledFormID: this.formId,
             });
