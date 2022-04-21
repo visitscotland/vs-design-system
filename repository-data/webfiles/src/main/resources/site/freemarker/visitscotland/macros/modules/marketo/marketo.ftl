@@ -1,8 +1,13 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../frontend/components/vs-form.ftl">
+<#include "../../../../frontend/components/vs-marketo-form.ftl">
 <#include "../../../../frontend/components/vs-container.ftl">
 <#include "../../../../frontend/components/vs-row.ftl">
 <#include "../../../../frontend/components/vs-col.ftl">
+
+<#-- Reference: https://developers.marketo.com/javascript-api/forms/ -->
+<@hst.headContribution category="htmlBodyEndScripts">
+    <script src="//e.visitscotland.com/js/forms2/js/forms2.min.js"></script>
+</@hst.headContribution>
 
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.MarketoFormModule" -->
 <#macro marketo form>
@@ -15,22 +20,34 @@
                 xl="7"
                 class="col-xxl-6"
             >
-                <#--  <h1>${form.title}</h1>  -->
-                <#--  <@hst.html hippohtml=form.copy/>  -->
+                <#assign language = locale?keep_before("-")>  
+                
+                <#if property("gtm.is-production") = 'false'>
+                    <#assign munchkinId = "${label('forms', 'form.munchkin-sandbox')}">
+                    <#assign marketoInstance = "${label('forms', 'form.marketo-instance-sandbox')}">
+                <#else>
+                    <#assign munchkinId = "${label('forms', 'form.munchkin-prod')}">
+                    <#assign marketoInstance = "${label('forms', 'form.marketo-instance-prod')}">
+                </#if>
 
-                <vs-form
+                <vs-marketo-form
                     data-url="${form.jsonUrl}"
-                    messaging-url="http://127.0.0.1:5555/messaging.json"
-                    country-list-url="http://127.0.0.1:5555/countries.json"
-                    recaptcha-key="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-                    marketo-instance="//app-lon10.marketo.com"
-                    munchkin-id="830-QYE-256"
-                    language="en"
-                    :is-prod="false"
-                />
-                <#--  
-                <p>${form.noJavaScriptMessage}</p>
-                <p>${form.jsonUrl}</p>  -->
+                    messaging-url="${label('forms', 'form.messaging-url')}"
+                    country-list-url="${label('forms', 'form.country-url')}"
+                    recaptcha-key="${label('forms', 'form.recaptcha-key')}"
+                    marketo-instance="${marketoInstance}"
+                    munchkin-id="${munchkinId}"
+                    language="${language}"
+                    :is-prod="${property('gtm.is-production')}"
+                >
+                    <template slot="submitError">
+                        ${label('forms', 'form.error')}
+                    </template>
+
+                    <template slot="submitting">
+                        ${label('forms', 'form.submitting')}
+                    </template>
+                </vs-marketo-form>
             </vs-col>
         </vs-row>
     </vs-container>

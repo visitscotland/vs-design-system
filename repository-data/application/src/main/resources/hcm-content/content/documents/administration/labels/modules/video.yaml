@@ -1,4 +1,5 @@
 /content/documents/administration/labels/modules/video:
+  .meta:order-before: forms
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 13e2d0f4-9ae5-412d-bde8-059b1c0494d7

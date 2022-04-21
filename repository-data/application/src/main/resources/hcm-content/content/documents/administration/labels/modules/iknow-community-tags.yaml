@@ -1,4 +1,5 @@
 /content/documents/administration/labels/modules/iknow-community-tags:
+  .meta:order-before: forms
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 1db63d8c-5663-4194-a594-990b1a52103b
