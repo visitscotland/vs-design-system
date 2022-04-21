@@ -143,7 +143,7 @@ public class LinkService {
         return createExternalLink(utils.getRequestLocale(), url, null);
     }
 
-    FlatLink createExternalLink(final Locale locale, final String url, final String label) {
+   public FlatLink createExternalLink(final Locale locale, final String url, final String label) {
         LinkType linkType = getType(url);
         String localizedUrl = processURL(locale, url);
 
@@ -195,6 +195,11 @@ public class LinkService {
         } else {
             return site + languagePath + path;
         }
+    }
+
+    public FlatLink createDmsLink(Locale locale, DMSLink dmsLink, JsonNode dmsProductJson, String defaultCta) {
+        String cta = Contract.isEmpty(dmsLink.getLabel()) ? defaultCta : dmsLink.getLabel();
+        return new FlatLink(cta, getPlainLink(locale, dmsLink, dmsProductJson), LinkType.INTERNAL);
     }
 
     public FlatLink createDmsLink(Locale locale, DMSLink dmsLink, JsonNode dmsProductJson) {
