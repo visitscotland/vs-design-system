@@ -260,7 +260,7 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2022-04-21T15:36:57.061+01:00
+      hippostdpubwf:lastModificationDate: 2022-04-21T16:24:12.334+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
@@ -286,28 +286,28 @@
         bis, Geöffnet, Geschlossen, Schließt bald, Vorübergehend geschlossen, und,
         Ende des Reisevorschlags]
       resourcebundle:messages_es: [Alojamiento en los alrededores, Restaurantes en
-          los alrededores, 'Más información:', Parada, Inicio / Fin, Días, Distancia,
+          los alrededores, 'Descubre más sobre:', Parada, Inicio / Fin, Días, Distancia,
         Temas principales, mi, km, Transporte, Día, Millas, Kilómetros, Destacado,
         Áreas recorridas, Esta parada no tiene ningún producto asociado, Tiempo para
           explorar, Tema principal, Consulta los horarios de apertura, hora, horas,
         Normalmente, Temporalmente, hoy, a, Abierto, Cerrado, Cierra pronto, Cerrado
           temporalmente, y, Fin del itinerario]
       resourcebundle:messages_fr: [Hébergements à proximité, Établissements de restauration
-          à proximité, 'En savoir plus:', Arrêt, Départ / Arrivée, Jours, Distance,
+          à proximité, Découvrez-en plus sur, Arrêt, Départ / Arrivée, Jours, Distance,
         Thèmes principaux, mi, km, Moyen de transport, Jour, Miles, Kilomètres, Lieux
           d’intérêt, Région(s) couvertes(s), Aucun produit n’est associé à cet arrêt,
         '', Thème principal, Vérifier les horaires d’ouverture, heure, heures, Habituellement,
         Provisoirement, aujourd’hui, à, Ouvert, Fermé, Ferme bientôt, Temporairement
           fermé, et, Fin de l’itinéraire]
       resourcebundle:messages_it: [Posti vicini dove alloggiare, Posti vicini dove
-          mangiare, 'Per saperne di più:', Fermata, Inizio / Fine, Giorni, Distanza,
+          mangiare, 'Scopri di più su:', Fermata, Inizio / Fine, Giorni, Distanza,
         Temi principali, mi, km, Transporto, Giorno, Miglia, Chilometri, Attrazioni,
         Aree coperte, L'arresto non ha alcun prodotto collegato all'arresto, '', Tema
           principale, Controlla gli orari di apertura, ora, ore, Solitamente, Provvisoriamente,
         oggi, a, Aperto, Chiuso, Chiusura a breve, Temporaneamente chiuso, e, Fine
           dell’itinerario]
       resourcebundle:messages_nl: [Overnachtingen in de buurt, Eetgelegenheden in
-          de buurt, 'Meer info:', Stop, Begin / Eind, Dagen, Afstand, Hoofdthema's,
+          de buurt, Meer info over, Stop, Begin / Eind, Dagen, Afstand, Hoofdthema's,
         mijl, km, Reismiddel, Dag, Mijlen, Kilometers, Hoogtepunten, Bestreken gebieden,
         Deze stop heeft geen specifieke bezienswaardigheid, Vrije tijd, Hoofdthema,
         Bekijk de openingstijden, uur, uur, Gewoonlijk, Onder voorbehoud, vandaag,
@@ -322,7 +322,7 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2022-04-21T15:37:11.964+01:00
+      hippostdpubwf:lastModificationDate: 2022-04-21T16:27:01.622+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
@@ -348,28 +348,28 @@
         bis, Geöffnet, Geschlossen, Schließt bald, Vorübergehend geschlossen, und,
         Ende des Reisevorschlags]
       resourcebundle:messages_es: [Alojamiento en los alrededores, Restaurantes en
-          los alrededores, 'Más información:', Parada, Inicio / Fin, Días, Distancia,
+          los alrededores, 'Descubre más sobre:', Parada, Inicio / Fin, Días, Distancia,
         Temas principales, mi, km, Transporte, Día, Millas, Kilómetros, Destacado,
         Áreas recorridas, Esta parada no tiene ningún producto asociado, Tiempo para
           explorar, Tema principal, Consulta los horarios de apertura, hora, horas,
         Normalmente, Temporalmente, hoy, a, Abierto, Cerrado, Cierra pronto, Cerrado
           temporalmente, y, Fin del itinerario]
       resourcebundle:messages_fr: [Hébergements à proximité, Établissements de restauration
-          à proximité, 'En savoir plus:', Arrêt, Départ / Arrivée, Jours, Distance,
+          à proximité, Découvrez-en plus sur, Arrêt, Départ / Arrivée, Jours, Distance,
         Thèmes principaux, mi, km, Moyen de transport, Jour, Miles, Kilomètres, Lieux
           d’intérêt, Région(s) couvertes(s), Aucun produit n’est associé à cet arrêt,
         '', Thème principal, Vérifier les horaires d’ouverture, heure, heures, Habituellement,
         Provisoirement, aujourd’hui, à, Ouvert, Fermé, Ferme bientôt, Temporairement
           fermé, et, Fin de l’itinéraire]
       resourcebundle:messages_it: [Posti vicini dove alloggiare, Posti vicini dove
-          mangiare, 'Per saperne di più:', Fermata, Inizio / Fine, Giorni, Distanza,
+          mangiare, 'Scopri di più su:', Fermata, Inizio / Fine, Giorni, Distanza,
         Temi principali, mi, km, Transporto, Giorno, Miglia, Chilometri, Attrazioni,
         Aree coperte, L'arresto non ha alcun prodotto collegato all'arresto, '', Tema
           principale, Controlla gli orari di apertura, ora, ore, Solitamente, Provvisoriamente,
         oggi, a, Aperto, Chiuso, Chiusura a breve, Temporaneamente chiuso, e, Fine
           dell’itinerario]
       resourcebundle:messages_nl: [Overnachtingen in de buurt, Eetgelegenheden in
-          de buurt, 'Meer info:', Stop, Begin / Eind, Dagen, Afstand, Hoofdthema's,
+          de buurt, Meer info over, Stop, Begin / Eind, Dagen, Afstand, Hoofdthema's,
         mijl, km, Reismiddel, Dag, Mijlen, Kilometers, Hoogtepunten, Bestreken gebieden,
         Deze stop heeft geen specifieke bezienswaardigheid, Vrije tijd, Hoofdthema,
         Bekijk de openingstijden, uur, uur, Gewoonlijk, Onder voorbehoud, vandaag,
@@ -384,9 +384,9 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2022-04-21T15:37:11.964+01:00
+      hippostdpubwf:lastModificationDate: 2022-04-21T16:27:01.622+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2022-04-21T15:37:14.039+01:00
+      hippostdpubwf:publicationDate: 2022-04-21T16:27:03.510+01:00
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
           a range of time like: 9:00am to 13:00pm', '', '', '', '', '', '']
@@ -411,28 +411,28 @@
         bis, Geöffnet, Geschlossen, Schließt bald, Vorübergehend geschlossen, und,
         Ende des Reisevorschlags]
       resourcebundle:messages_es: [Alojamiento en los alrededores, Restaurantes en
-          los alrededores, 'Más información:', Parada, Inicio / Fin, Días, Distancia,
+          los alrededores, 'Descubre más sobre:', Parada, Inicio / Fin, Días, Distancia,
         Temas principales, mi, km, Transporte, Día, Millas, Kilómetros, Destacado,
         Áreas recorridas, Esta parada no tiene ningún producto asociado, Tiempo para
           explorar, Tema principal, Consulta los horarios de apertura, hora, horas,
         Normalmente, Temporalmente, hoy, a, Abierto, Cerrado, Cierra pronto, Cerrado
           temporalmente, y, Fin del itinerario]
       resourcebundle:messages_fr: [Hébergements à proximité, Établissements de restauration
-          à proximité, 'En savoir plus:', Arrêt, Départ / Arrivée, Jours, Distance,
+          à proximité, Découvrez-en plus sur, Arrêt, Départ / Arrivée, Jours, Distance,
         Thèmes principaux, mi, km, Moyen de transport, Jour, Miles, Kilomètres, Lieux
           d’intérêt, Région(s) couvertes(s), Aucun produit n’est associé à cet arrêt,
         '', Thème principal, Vérifier les horaires d’ouverture, heure, heures, Habituellement,
         Provisoirement, aujourd’hui, à, Ouvert, Fermé, Ferme bientôt, Temporairement
           fermé, et, Fin de l’itinéraire]
       resourcebundle:messages_it: [Posti vicini dove alloggiare, Posti vicini dove
-          mangiare, 'Per saperne di più:', Fermata, Inizio / Fine, Giorni, Distanza,
+          mangiare, 'Scopri di più su:', Fermata, Inizio / Fine, Giorni, Distanza,
         Temi principali, mi, km, Transporto, Giorno, Miglia, Chilometri, Attrazioni,
         Aree coperte, L'arresto non ha alcun prodotto collegato all'arresto, '', Tema
           principale, Controlla gli orari di apertura, ora, ore, Solitamente, Provvisoriamente,
         oggi, a, Aperto, Chiuso, Chiusura a breve, Temporaneamente chiuso, e, Fine
           dell’itinerario]
       resourcebundle:messages_nl: [Overnachtingen in de buurt, Eetgelegenheden in
-          de buurt, 'Meer info:', Stop, Begin / Eind, Dagen, Afstand, Hoofdthema's,
+          de buurt, Meer info over, Stop, Begin / Eind, Dagen, Afstand, Hoofdthema's,
         mijl, km, Reismiddel, Dag, Mijlen, Kilometers, Hoogtepunten, Bestreken gebieden,
         Deze stop heeft geen specifieke bezienswaardigheid, Vrije tijd, Hoofdthema,
         Bekijk de openingstijden, uur, uur, Gewoonlijk, Onder voorbehoud, vandaag,
