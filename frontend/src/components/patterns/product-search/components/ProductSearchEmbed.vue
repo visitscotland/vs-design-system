@@ -1,6 +1,6 @@
 <template>
     <div
-        class="vs-psr-embed"
+        class="vs-product-search-embed"
         id="inline-search-container"
         v-bind="prefilAttrs"
     />
@@ -8,14 +8,14 @@
 
 <script>
 /**
- * The PSR embed component is a wrapper for the the product
+ * The Product Search embed component is a wrapper for the the product
  * search widget which comes from an external source.
  *
- * @displayName PSR Embed
+ * @displayName Product Search embed
  */
 
 export default {
-    name: 'VsPsrEmbed',
+    name: 'VsProductSearchEmbed',
     status: 'prototype',
     release: '0.0.1',
     props: {
@@ -106,7 +106,7 @@ export default {
 
         const psrScriptEl = document.createElement('script');
         psrScriptEl.async = false;
-        psrScriptEl.setAttribute('src', '/api/dev/ui/product-search/static/js/bundle.js');
+        psrScriptEl.setAttribute('src', 'https://api.visitscotland.com/dev/ui/product-search/static/js/bundle.js');
         // psrScriptEl.setAttribute('src', 'http://localhost:9999/static/js/bundle.js');
         document.head.appendChild(psrScriptEl);
     },
@@ -119,7 +119,7 @@ export default {
 // @import "http://localhost:9999/css/main.css";
 
 .no-js {
-    .vs-psr-embed {
+    .vs-product-search-embed {
         display: none;
     }
 }
