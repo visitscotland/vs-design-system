@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
-import VsPsrModule from '../PsrModule';
+import VsProductSearch from '../ProductSearch';
 
-const factoryShallowMount = (slotData) => shallowMount(VsPsrModule, {
+const factoryShallowMount = (slotData) => shallowMount(VsProductSearch, {
     propsData: {
         configArr: [
             {
@@ -12,26 +12,26 @@ const factoryShallowMount = (slotData) => shallowMount(VsPsrModule, {
     ...slotData,
 });
 
-describe('VsPsrModule', () => {
+describe('VsProductSearch', () => {
     describe(':slots', () => {
         it('should render heading slot content', () => {
             const wrapper = factoryShallowMount({
                 slots: {
-                    vsModuleHeading: 'This is the PSR module heading',
+                    vsModuleHeading: 'This is the Product Search heading',
                 },
             });
 
-            expect(wrapper.html()).toContain('This is the PSR module heading');
+            expect(wrapper.html()).toContain('This is the Product Search heading');
         });
 
         it('should render intro slot content', () => {
             const wrapper = factoryShallowMount({
                 slots: {
-                    vsModuleIntro: 'This is the PSR module intro',
+                    vsModuleIntro: 'This is the Product Search intro',
                 },
             });
 
-            expect(wrapper.html()).toContain('This is the PSR module intro');
+            expect(wrapper.html()).toContain('This is the Product Search intro');
         });
     });
 
@@ -39,7 +39,7 @@ describe('VsPsrModule', () => {
         it('should pass props to the child component', () => {
             const wrapper = factoryShallowMount();
 
-            const embedStub = wrapper.find('vspsrembed-stub');
+            const embedStub = wrapper.find('vsProductSearchEmbed-stub');
             expect(embedStub.attributes('config')).toBe('[object Object]');
         });
     });

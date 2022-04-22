@@ -1,30 +1,30 @@
 <template>
-    <div class="vs-psr-module pt-9">
+    <div class="vs-product-search pt-9">
         <VsContainer>
             <VsRow>
                 <VsCol
-                    class="vs-psr-module__col vs-psr-module__col--left"
+                    class="vs-product-search__col vs-product-search__col--left"
                     xl="7"
                 >
                     <VsHeading
                         level="2"
                         alternative
-                        class="vs-psr-module__heading mt-0"
+                        class="vs-product-search__heading mt-0"
                     >
                         <!-- @slot Text for the module heading -->
                         <slot name="vsModuleHeading" />
                     </VsHeading>
 
-                    <div class="vs-psr-module__intro">
+                    <div class="vs-product-search__intro">
                         <!-- @slot Text for the module intro -->
                         <slot name="vsModuleIntro" />
                     </div>
                 </VsCol>
                 <VsCol
-                    class="vs-psr-module__col vs-psr-module__col--right"
+                    class="vs-product-search__col vs-product-search__col--right"
                     xl="5"
                 >
-                    <VsPsrEmbed
+                    <VsProductSearchEmbed
                         :config="configArr"
                     />
                 </VsCol>
@@ -40,23 +40,23 @@ import {
     VsCol,
 } from '@components/elements/grid';
 import VsHeading from '@components/elements/heading/Heading';
-import VsPsrEmbed from '@components/elements/psr-embed/PsrEmbed';
+import VsProductSearchEmbed from './components/ProductSearchEmbed';
 
 /**
  * A module housing the PSR widget, a title and optional text
  *
- * @displayName PSR Module
+ * @displayName Product Search
  */
 
 export default {
-    name: 'VsPsrModule',
+    name: 'VsProductSearch',
     status: 'prototype',
     release: '0.0.1',
     components: {
         VsContainer,
         VsRow,
         VsCol,
-        VsPsrEmbed,
+        VsProductSearchEmbed,
         VsHeading,
     },
     props: {
@@ -76,7 +76,7 @@ export default {
 <style lang="scss">
     @import '../../../styles/forms/_text-input.scss';
 
-    .vs-psr-module {
+    .vs-product-search {
         width: 100%;
         background: $color-gray-shade-5;
         padding: 0 6px $spacer-9;
@@ -309,7 +309,7 @@ export default {
 ```jsx
     <VsContainer>
         <VsRow>
-            <VsPsrModule
+            <VsProductSearch
                 :configArr="[
                     {'subSearchType': 'acco'},
                     {'locplace': '4161'},
@@ -325,7 +325,7 @@ export default {
                     Search through a fantastic range of things to do, places to stay,
                     local events and tours
                 </template>
-            </VsPsrModule>
+            </VsProductSearch>
         </VsRow>
     </VsContainer>
 ```
