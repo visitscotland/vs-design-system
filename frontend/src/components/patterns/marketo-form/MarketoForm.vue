@@ -281,8 +281,6 @@ export default {
                 .then((response) => {
                     this.formData = response.data;
 
-                    console.log(this.marketoInstance, this.munchkinId, this.formId);
-
                     if (window.MktoForms2) {
                         window.MktoForms2
                             .loadForm(this.marketoInstance, this.munchkinId, this.formId);
