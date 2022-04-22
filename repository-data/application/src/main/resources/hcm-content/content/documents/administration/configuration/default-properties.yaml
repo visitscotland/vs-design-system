@@ -58,7 +58,7 @@
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,beta.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
       www.visitscotland.com, $YOUTUBE_API_KEY, VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es',
-      '| VisitScotland', VisitScotland, '@VisitScotland', 'false', GTM-WWKWV5K, '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
+      '| VisitScotland', VisitScotland, '@VisitScotland', 'false', '', '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
       site-search-results, legacy]
   /default-properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -114,7 +114,7 @@
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,beta.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
       www.visitscotland.com, $YOUTUBE_API_KEY, VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es',
-      '| VisitScotland', VisitScotland, '@VisitScotland', 'false', GTM-WWKWV5K, '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
+      '| VisitScotland', VisitScotland, '@VisitScotland', 'false', '', '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
       site-search-results, legacy]
   /default-properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -171,5 +171,5 @@
       discussions/tagged/, '1293271387429443', 'localhost,www.visitscotland.com,beta.visitscotland.com,blog.visitscotland.com',
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
       www.visitscotland.com, $YOUTUBE_API_KEY, VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es',
-      '| VisitScotland', VisitScotland, '@VisitScotland', 'false', GTM-WWKWV5K, '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
+      '| VisitScotland', VisitScotland, '@VisitScotland', 'false', '', '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
       site-search-results, legacy]
