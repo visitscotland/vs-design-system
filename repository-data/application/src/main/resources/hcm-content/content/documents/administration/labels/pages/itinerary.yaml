@@ -250,7 +250,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 97e64157-de1c-4f91-93db-5062825421b4
     hippo:name: Itinerary Page
-    hippo:versionHistory: 726e411b-22d8-40e4-aafc-d3e3ce3726c1
+    hippo:versionHistory: 09098c5a-bf83-49f1-984b-44157119ff1a
     /itineraries[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -260,7 +260,7 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2022-04-21T16:24:12.334+01:00
+      hippostdpubwf:lastModificationDate: 2022-04-28T16:05:13.515+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
@@ -279,7 +279,7 @@
           opening times, hour, hours, Usually, Provisionally, today, to, Open, Closed,
         Closing soon, Temporarily closed, and, End of itinerary]
       resourcebundle:messages_de: [Unterkünfte in der Nähe, Restaurants in der Nähe,
-        'Mehr erfahren:', Haltepunkt, Start / Ziel, Tage, Entfernung, Hauptthemen,
+        Erfahren Sie mehr über, Haltepunkt, Start / Ziel, Tage, Entfernung, Hauptthemen,
         mi, km, Verkehrsmittel, Tag, Meilen, Kilometer, Highlights, Abgedeckte Regionen,
         Es ist kein Produkt mit diesem Haltepunkt verknüpft, Zeit zum Erkunden, Hauptthema,
         Öffnungszeiten überprüfen, Stunde, Stunden, Üblicherweise, Vorläufig, heute,
@@ -322,7 +322,7 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2022-04-21T16:27:01.622+01:00
+      hippostdpubwf:lastModificationDate: 2022-04-28T16:06:47.207+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
@@ -341,7 +341,7 @@
           opening times, hour, hours, Usually, Provisionally, today, to, Open, Closed,
         Closing soon, Temporarily closed, and, End of itinerary]
       resourcebundle:messages_de: [Unterkünfte in der Nähe, Restaurants in der Nähe,
-        'Mehr erfahren:', Haltepunkt, Start / Ziel, Tage, Entfernung, Hauptthemen,
+        Erfahren Sie mehr über, Haltepunkt, Start / Ziel, Tage, Entfernung, Hauptthemen,
         mi, km, Verkehrsmittel, Tag, Meilen, Kilometer, Highlights, Abgedeckte Regionen,
         Es ist kein Produkt mit diesem Haltepunkt verknüpft, Zeit zum Erkunden, Hauptthema,
         Öffnungszeiten überprüfen, Stunde, Stunden, Üblicherweise, Vorläufig, heute,
@@ -384,9 +384,9 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2022-04-21T16:27:01.622+01:00
+      hippostdpubwf:lastModificationDate: 2022-04-28T16:06:47.207+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2022-04-21T16:27:03.510+01:00
+      hippostdpubwf:publicationDate: 2022-04-28T16:06:51.804+01:00
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', '', '', 'This field is to define
           a range of time like: 9:00am to 13:00pm', '', '', '', '', '', '']
@@ -404,7 +404,7 @@
           opening times, hour, hours, Usually, Provisionally, today, to, Open, Closed,
         Closing soon, Temporarily closed, and, End of itinerary]
       resourcebundle:messages_de: [Unterkünfte in der Nähe, Restaurants in der Nähe,
-        'Mehr erfahren:', Haltepunkt, Start / Ziel, Tage, Entfernung, Hauptthemen,
+        Erfahren Sie mehr über, Haltepunkt, Start / Ziel, Tage, Entfernung, Hauptthemen,
         mi, km, Verkehrsmittel, Tag, Meilen, Kilometer, Highlights, Abgedeckte Regionen,
         Es ist kein Produkt mit diesem Haltepunkt verknüpft, Zeit zum Erkunden, Hauptthema,
         Öffnungszeiten überprüfen, Stunde, Stunden, Üblicherweise, Vorläufig, heute,
