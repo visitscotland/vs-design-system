@@ -3,7 +3,10 @@ import {
     email,
     minLength,
     maxLength,
+    helpers,
 } from 'vuelidate/lib/validators';
+
+const postcode = helpers.regex('postcode', /^([A-Z][A-HJ-Y]?\d[A-Z\d]? ?\d[A-Z]{2}|GIR ?0A{2})$/);
 
 const validateFormElementMixin = {
     data() {
@@ -62,6 +65,11 @@ const validateFormElementMixin = {
                     rulesObj = {
                         ...rulesObj,
                         noInvalid,
+                    };
+                } else if (key === 'postcode') {
+                    rulesObj = {
+                        ...rulesObj,
+                        postcode,
                     };
                 }
             }
