@@ -44,6 +44,12 @@
                     "United Kingdom (Wales)",
                     "United Kingdom (Northern Ireland)"
                 ]
+            },
+            "validation": {
+                "postcode": true
+            },
+            "validationMessages": {
+                "postcode": "Please use a correct UK postcode"
             }
         },
         {
