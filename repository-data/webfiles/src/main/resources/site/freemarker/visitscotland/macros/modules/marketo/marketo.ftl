@@ -40,6 +40,11 @@
                     language="${language}"
                     :is-prod="${property('gtm.is-production')}"
                 >
+
+                    <template slot="no-js">
+                        ${form.noJavaScriptMessage}
+                    </template>
+
                     <template slot="submitError">
                         ${label('forms', 'form.error')}
                     </template>
