@@ -6,6 +6,7 @@
         :fluid="fluid"
         :fluid-grow="fluidGrow"
         loading="lazy"
+        :style="`background-image: url('${lowResImage}');`"
         class="low-res-img"
     >
         <!-- @slot Default slot for image content -->
@@ -36,6 +37,14 @@ export default {
         src: {
             type: String,
             required: true,
+        },
+
+        /**
+         * Provide low res image to be initially loaded
+         */
+        lowResImage: {
+            type: String,
+            default: '',
         },
 
         /**
