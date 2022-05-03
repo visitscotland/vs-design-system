@@ -8,7 +8,6 @@ import com.visitscotland.brxm.hippobeans.FeaturedWidget;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.hippobeans.ProductsSearch;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
-import com.visitscotland.brxm.model.FlatLink;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
 import com.visitscotland.brxm.model.navigation.FeaturedEvent;
 import com.visitscotland.brxm.model.navigation.FeaturedItem;
@@ -37,6 +36,7 @@ public class NavigationFactory {
     static final String STATIC = "navigation.static";
     static final String CTA_SUFFIX = ".cta";
     static final String NAVIGATION_PREFIX = "navigation.";
+    static final String WIDGET_LIST = "widgetList";
 
     private ResourceBundleService bundle;
     private HippoUtilsService utils;
@@ -118,7 +118,7 @@ public class NavigationFactory {
      */
     private NavigationWidget createWidget(HstRequest request, HippoBean bean) {
         if (bean instanceof FeaturedWidget) {
-           return addFeatureItem((FeaturedWidget) bean, request.getLocale());
+           return addFeatureItem((FeaturedWidget) bean, request);
         } else {
             contentLogger.warn("Skipping Unexpected document type: {}", bean.getClass().getSimpleName());
         }
@@ -129,7 +129,7 @@ public class NavigationFactory {
     /**
      * Adds a Featured Navigation Widget
      */
-    private NavigationWidget addFeatureItem(FeaturedWidget document, Locale locale) {
+    private NavigationWidget addFeatureItem(FeaturedWidget document, HstRequest request) {
         NavigationWidget widget;
         if (document.getItems().size() == 1 && document.getItems().get(0) instanceof ProductsSearch) {
             widget = addFeatureEvent((ProductsSearch) document.getItems().get(0), document);
@@ -142,12 +142,12 @@ public class NavigationFactory {
                 }
                 cmsLinks.add((CMSLink) item);
             }
-            return addFeatureItem(cmsLinks, document, locale);
+            return addFeatureItem(cmsLinks, document, request);
         }
         return widget;
     }
 
-    private FeaturedItem addFeatureItem(List<CMSLink> cmsLinks, FeaturedWidget document, Locale locale) {
+    private FeaturedItem addFeatureItem(List<CMSLink> cmsLinks, FeaturedWidget document, HstRequest request) {
         FeaturedItem widget = new FeaturedItem();
 
         List<EnhancedLink> enhancedLinks = new ArrayList<>();
@@ -156,19 +156,29 @@ public class NavigationFactory {
                     contentLogger.warn("An incorrect Type of link has been set in a featured item: {}", document.getPath());
                     continue;
                 }
-                Optional<EnhancedLink> optionalLink = linkService.createEnhancedLink((Linkable) cmsLink.getLink(), widget, locale, false);
+                Optional<EnhancedLink> optionalLink = linkService.createEnhancedLink((Linkable) cmsLink.getLink(), widget, request.getLocale(), false);
 
                 if (!optionalLink.isPresent()) {
-                    String errorMessage = String.format("Failed to create the  navigation widget '%s', please review the document attached at: %s", cmsLink.getDisplayName(), document.getPath());
-                widget.addErrorMessage(errorMessage);contentLogger.warn("Failed to create widget: {}. Check link is published & valid", document.getPath());
+                    contentLogger.warn("Failed to create widget: {}. Check link is published & valid", document.getPath());
                     continue;
                 }
                 EnhancedLink link = optionalLink.get();
-                link.setCta(bundle.getCtaLabel(cmsLink.getLabel(), locale));
+                link.setCta(bundle.getCtaLabel(cmsLink.getLabel(), request.getLocale()));
                 enhancedLinks.add(link);
         }
         widget.setHippoBean(document);
         widget.setLinks(enhancedLinks);
+
+       if (widget.getErrorMessages() != null ) {
+           List<FeaturedItem> listWidget;
+           if (request.getModel(WIDGET_LIST) == null) {
+               listWidget = new ArrayList<>();
+           } else {
+               listWidget = request.getModel(WIDGET_LIST);
+           }
+           listWidget.add(widget);
+           request.setModel(WIDGET_LIST, listWidget);
+       }
         return widget;
     }
 
