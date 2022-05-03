@@ -6,6 +6,7 @@
         :fluid="fluid"
         :fluid-grow="fluidGrow"
         loading="lazy"
+        class="low-res-img"
     >
         <!-- @slot Default slot for image content -->
         <slot />
@@ -63,3 +64,10 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+    .low-res-img {
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
