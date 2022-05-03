@@ -11,6 +11,7 @@
             <vs-img
                 alt="${(imageQuote)!'${label("essentials.global", "default.alt-text")}'}"
                 src="${imageQuote}"
+                low-res-image="${imageQuote}?size=xxs"
                 slot="quoteImage">
             </vs-img>
         </#if>

@@ -16,7 +16,7 @@
                     :alt="altText"
                     :srcset="srcset"
                     :sizes="sizes"
-                    :style="`background-image: url('${lowResImage}');`"
+                    :low-res-img="lowResImage"
                 />
             </slot>
 
@@ -159,7 +159,7 @@ export default {
         },
 
         /**
-         * Provide low res image to be loaded first
+         * Provide low res image to be initially loaded
          */
         lowResImage: {
             type: String,
