@@ -115,7 +115,7 @@
                 size="xl"
                 class="mb-5"
             />
-            <div v-html="getTranslatedContent('noJs')" />
+            <slot name="no-js" />
         </div>
         <!-- eslint-enable vue/no-v-html -->
 
