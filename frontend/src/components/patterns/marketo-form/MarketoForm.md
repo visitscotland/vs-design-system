@@ -129,7 +129,7 @@ functionality another way so a no-javascript message should be defined in the fo
 ```jsx
 <div class="no-js">
     <VsMarketoForm
-        dataUrl="../../../fixtures/marketo-forms/conditional-field.json"
+        dataUrl="https://static.visitscotland.com/forms/newsletter-sign-up/newsletter-sign-up.json"
         messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
         recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
         marketo-instance="marketo-instance-code"
@@ -137,6 +137,11 @@ functionality another way so a no-javascript message should be defined in the fo
         language="en"
         :is-prod="false"
     >
+        <template slot="no-js">
+            <p>You need JavaScript enabled to be able to display our newsletter subscription form. You can enable this in your browser settings.</p>
+        </template></p>
+        </template>
+
         <template slot="submitError">
             We're sorry there's been a problem, please try again later.
         </template>
