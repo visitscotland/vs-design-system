@@ -7,6 +7,7 @@
     <vs-image-with-caption
         alt-text="${(imageDetails.altText)!'${label("essentials.global", "default.alt-text")}'}"
         image-src="${imageSrc}"
+        low-res-image="${imageSrc}?size=xxs"
         latitude="<#if variant != 'fullwidth'>${(imageDetails.coordinates.latitude)!''}</#if>"
         longitude="<#if variant != 'fullwidth'>${(imageDetails.coordinates.longitude)!''}</#if>"
         variant="${variant}"
