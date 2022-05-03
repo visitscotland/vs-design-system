@@ -115,7 +115,9 @@
                 size="xl"
                 class="mb-5"
             />
-            <slot name="no-js" />
+            <div>
+                <slot name="submitting" />
+            </div>
         </div>
         <!-- eslint-enable vue/no-v-html -->
 
