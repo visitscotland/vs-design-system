@@ -88,20 +88,6 @@
                 <slot name="stretchedCardLink" />
             </VsLink>
         </div>
-        <VsModal
-            :modal-id="videoId"
-            :close-btn-text="videoModalCloseText"
-            :is-video-modal="true"
-        >
-            <VsRow>
-                <VsCol cols="12">
-                    <VsVideo
-                        :video-id="videoId"
-                        class="mb-8"
-                    />
-                </VsCol>
-            </VsRow>
-        </VsModal>
     </div>
 </template>
 
@@ -110,7 +96,6 @@ import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
 import VsImg from '@components/elements/img/Img';
 import VsButton from '@components/elements/button/Button';
-import VsModal from '@components/patterns/modal/Modal';
 import videoStore from '../../../stores/video.store';
 
 /**
@@ -128,7 +113,6 @@ export default {
         VsLink,
         VsImg,
         VsButton,
-        VsModal,
     },
     props: {
         /**
@@ -191,13 +175,6 @@ export default {
         videoBtnText: {
             type: String,
             default: 'Play Video',
-        },
-        /**
-         * A label for the close button on the video label, if present
-         */
-        videoModalCloseText: {
-            type: String,
-            default: 'Close',
         },
     },
     computed: {
@@ -529,7 +506,6 @@ export default {
                     imgAlt="This is the alt text"
                     videoId="FlG6tbYaA88"
                     videoBtnText="Play Video"
-                    videoModalCloseText="Close"
                 >
                     <template slot="stretchedCardCategory">
                         A category header
@@ -556,5 +532,20 @@ export default {
             </VsCol>
         </VsRow>
     </VsContainer>
+
+    <VsModal
+        modalId="FlG6tbYaA88"
+        closeBtnText="Close"
+        :isVideoModal="true"
+    >
+        <VsRow>
+            <VsCol cols="12">
+                <VsVideo
+                    videoId="FlG6tbYaA88"
+                    class="mb-8"
+                />
+            </VsCol>
+        </VsRow>
+    </VsModal>
   ```
 </docs>
