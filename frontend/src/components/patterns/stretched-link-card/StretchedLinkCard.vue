@@ -34,7 +34,7 @@
                 <span
                     class="vs-stretched-link-card__video-btn-text"
                 >
-                    {{ videoBtnText }} |&nbsp;
+                    {{ formattedVideoBtnText }}
                 </span>
                 {{ formattedVideoDuration }}
             </VsButton>
@@ -201,6 +201,9 @@ export default {
         },
     },
     computed: {
+        formattedVideoBtnText() {
+            return `${this.videoBtnText} | `;
+        },
         formattedVideoDuration() {
             let seconds = `${this.videoDetails.videoFullDuration.seconds}`;
 
@@ -334,6 +337,10 @@ export default {
             position: absolute;
             bottom: 100%;
             left: 0;
+        }
+
+        .vs-stretched-link-card__video-btn-text {
+            padding-right: .4em;
         }
 
         @include media-breakpoint-up(sm) {
