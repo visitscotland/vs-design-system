@@ -300,6 +300,20 @@ export default {
                                 from local markets to renowned restaurants.</p>
                             </template>
                         </VsMegalinkMultiImage>
+                        <VsModal
+                            modalId="g-Fhvj7vW-E"
+                            closeBtnText="Close"
+                            :isVideoModal="true"
+                        >
+                            <VsRow>
+                                <VsCol cols="12">
+                                    <VsVideo
+                                        videoId="g-Fhvj7vW-E"
+                                        class="mb-8"
+                                    />
+                                </VsCol>
+                            </VsRow>
+                        </VsModal>
                     </VsCol>
                     <VsCol
                         cols="12"
@@ -352,6 +366,20 @@ export default {
                                 some recomm…</p>
                             </template>
                         </VsMegalinkMultiImage>
+                        <VsModal
+                            modalId="N3r5rCN9iaE"
+                            closeBtnText="Close"
+                            :isVideoModal="true"
+                        >
+                            <VsRow>
+                                <VsCol cols="12">
+                                    <VsVideo
+                                        videoId="N3r5rCN9iaE"
+                                        class="mb-8"
+                                    />
+                                </VsCol>
+                            </VsRow>
+                        </VsModal>
                     </VsCol>
                     <VsCol
                         cols="12"
@@ -593,6 +621,20 @@ export default {
                     restaurants.</p>
                 </template>
             </vs-megalink-link-list>
+            <VsModal
+                modalId="tfk7J6XZju4"
+                closeBtnText="Close"
+                :isVideoModal="true"
+            >
+                <VsRow>
+                    <VsCol cols="12">
+                        <VsVideo
+                            videoId="tfk7J6XZju4"
+                            class="mb-8"
+                        />
+                    </VsCol>
+                </VsRow>
+            </VsModal>
         </VsCol>
         <VsCol
             cols="12"
@@ -635,6 +677,20 @@ export default {
                     Here are some recomm…</p>
                 </template>
             </vs-megalink-link-list>
+            <VsModal
+                modalId="zZCUFjSiWpE"
+                closeBtnText="Close"
+                :isVideoModal="true"
+            >
+                <VsRow>
+                    <VsCol cols="12">
+                        <VsVideo
+                            videoId="zZCUFjSiWpE"
+                            class="mb-8"
+                        />
+                    </VsCol>
+                </VsRow>
+            </VsModal>
         </VsCol>
         <VsCol
             cols="12"
