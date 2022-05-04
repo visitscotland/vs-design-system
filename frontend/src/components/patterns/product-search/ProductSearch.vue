@@ -1,30 +1,30 @@
 <template>
-    <div class="vs-psr-module">
+    <div class="vs-product-search pt-9">
         <VsContainer>
             <VsRow>
                 <VsCol
-                    class="vs-psr-module__col vs-psr-module__col--left"
+                    class="vs-product-search__col vs-product-search__col--left"
                     xl="7"
                 >
                     <VsHeading
                         level="2"
                         alternative
-                        class="vs-psr-module__heading"
+                        class="vs-product-search__heading mt-0"
                     >
                         <!-- @slot Text for the module heading -->
                         <slot name="vsModuleHeading" />
                     </VsHeading>
 
-                    <div class="vs-psr-module__intro">
+                    <div class="vs-product-search__intro">
                         <!-- @slot Text for the module intro -->
                         <slot name="vsModuleIntro" />
                     </div>
                 </VsCol>
                 <VsCol
-                    class="vs-psr-module__col vs-psr-module__col--right"
+                    class="vs-product-search__col vs-product-search__col--right"
                     xl="5"
                 >
-                    <VsPsrEmbed
+                    <VsProductSearchEmbed
                         :config="configArr"
                     />
                 </VsCol>
@@ -40,23 +40,23 @@ import {
     VsCol,
 } from '@components/elements/grid';
 import VsHeading from '@components/elements/heading/Heading';
-import VsPsrEmbed from '@components/elements/psr-embed/PsrEmbed';
+import VsProductSearchEmbed from './components/ProductSearchEmbed';
 
 /**
  * A module housing the PSR widget, a title and optional text
  *
- * @displayName PSR Module
+ * @displayName Product Search
  */
 
 export default {
-    name: 'VsPsrModule',
+    name: 'VsProductSearch',
     status: 'prototype',
     release: '0.0.1',
     components: {
         VsContainer,
         VsRow,
         VsCol,
-        VsPsrEmbed,
+        VsProductSearchEmbed,
         VsHeading,
     },
     props: {
@@ -76,7 +76,7 @@ export default {
 <style lang="scss">
     @import '../../../styles/forms/_text-input.scss';
 
-    .vs-psr-module {
+    .vs-product-search {
         width: 100%;
         background: $color-gray-shade-5;
         padding: 0 6px $spacer-9;
@@ -121,7 +121,6 @@ export default {
             .Select.form-control {
                 font-family: $font-family-base;
                 font-size: $font_size_base;
-                line-height: 1;
                 margin-top: $spacer-1;
             }
 
@@ -130,13 +129,16 @@ export default {
             .Select.form-control,
             .Select-multi-value-wrapper,
             .Select-placeholder {
-                height: 50px;
+                min-height: 50px;
                 font-style: normal;
                 font-weight: $font-weight-normal;
                 color: $color-gray-shade-7;
                 font-size: $font_size_base;
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
+                padding-top: 0;
+                padding-bottom: 0;
 
                 &:focus {
                     border: $color-pink 4px solid;
@@ -179,6 +181,32 @@ export default {
             .c-search__date-reset,
             .c-search__rooms-guests-picker__label {
                 color: $color-gray-shade-5;
+            }
+
+            .c-search__rooms-guests-picker__button {
+                position: relative;
+
+                &:focus {
+                   border: 1px solid $color-pink;
+                   background-color: $color-white;
+                   color: $color-pink;
+                   outline: none;
+
+                    &::before {
+                        content: '';
+                        border: 3px solid  $color-secondary-teal;
+                        position: absolute;
+                        top: -4px;
+                        left: -4px;
+                        width: calc(100% + 8px);
+                        height: calc(100% + 8px);
+
+                    }
+                }
+            }
+
+            .c-search__date-reset:focus {
+                outline: 3px solid $color-secondary-teal;
             }
 
             .c-search__date-summary .DateRangePickerInput div:nth-child(3) {
@@ -231,6 +259,14 @@ export default {
                     }
                 }
             }
+
+            .button-row {
+                & > a {
+                    &:focus {
+                        outline: 3px solid $color-secondary-teal;
+                    }
+                }
+            }
         }
 
         @include media-breakpoint-up(sm) {
@@ -273,11 +309,12 @@ export default {
 ```jsx
     <VsContainer>
         <VsRow>
-            <VsPsrModule
+            <VsProductSearch
                 :configArr="[
                     {'subSearchType': 'acco'},
                     {'locplace': '4161'},
                     {'lang':'en'},
+                    {'domain':'http://172.28.81.65:8089'},
                 ]"
             >
                 <template slot="vsModuleHeading">
@@ -288,7 +325,7 @@ export default {
                     Search through a fantastic range of things to do, places to stay,
                     local events and tours
                 </template>
-            </VsPsrModule>
+            </VsProductSearch>
         </VsRow>
     </VsContainer>
 ```
