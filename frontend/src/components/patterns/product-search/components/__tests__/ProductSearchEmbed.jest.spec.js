@@ -1,8 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VsPsrEmbed from '../PsrEmbed';
+import VsProductSearchEmbed from '../ProductSearchEmbed';
 
-const factoryShallowMount = () => shallowMount(VsPsrEmbed, {
+const factoryShallowMount = () => shallowMount(VsProductSearchEmbed, {
     propsData: {
         config: [{
             loc: 'Edinburgh',
@@ -15,12 +15,12 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('VsPsrEmbed', () => {
-    it('should render a div with the class `vs-psr-embed`', () => {
+describe('VsProductSearchEmbed', () => {
+    it('should render a div with the class `vs-product-search-embed`', () => {
         wrapper = factoryShallowMount();
 
         expect(wrapper.element.tagName).toBe('DIV');
-        expect(wrapper.classes('vs-psr-embed')).toBe(true);
+        expect(wrapper.classes('vs-product-search-embed')).toBe(true);
     });
 
     describe(':props', () => {
