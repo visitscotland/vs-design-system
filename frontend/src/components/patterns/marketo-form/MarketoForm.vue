@@ -104,7 +104,6 @@
             </form>
         </template>
 
-        <!-- eslint-disable vue/no-v-html -->
         <div
             class="vs-form__no-js"
             data-test="vs-form-no-js"
@@ -116,10 +115,9 @@
                 class="mb-5"
             />
             <div>
-                <slot name="submitting" />
+                <slot name="no-js" />
             </div>
         </div>
-        <!-- eslint-enable vue/no-v-html -->
 
         <p v-if="submitting">
             <slot name="submitting" />
@@ -133,9 +131,12 @@
                 {{ getTranslatedContent('successHeading') }}
             </VsHeading>
 
-            <p class="vs-form__content">
-                {{ getTranslatedContent('successContent') }}
-            </p>
+            <!-- eslint-disable vue/no-v-html -->
+            <p
+                class="vs-form__content"
+                v-html="getTranslatedContent('successContent')"
+            />
+            <!-- eslint-enable vue/no-v-html -->
         </template>
 
         <p v-if="submitError">
