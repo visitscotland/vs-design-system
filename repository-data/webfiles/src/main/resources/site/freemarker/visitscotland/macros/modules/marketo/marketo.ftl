@@ -6,7 +6,7 @@
 
 <#-- Reference: https://developers.marketo.com/javascript-api/forms/ -->
 <@hst.headContribution category="htmlBodyEndScripts">
-    <script src="//e.visitscotland.com/js/forms2/js/forms2.min.js"></script>
+    <script src="${label('forms', 'form.script-url')}"></script>
 </@hst.headContribution>
 
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.MarketoFormModule" -->
@@ -17,12 +17,11 @@
                 cols="12"
                 md="10"
                 lg="7"
-                xl="7"
                 class="col-xxl-6"
             >
                 <#assign language = locale?keep_before("-")>  
                 
-                <#if property("gtm.is-production") = 'false'>
+                <#if property("form.is-production") = 'false'>
                     <#assign munchkinId = "${label('forms', 'form.munchkin-sandbox')}">
                     <#assign marketoInstance = "${label('forms', 'form.marketo-instance-sandbox')}">
                 <#else>
@@ -38,7 +37,7 @@
                     marketo-instance="${marketoInstance}"
                     munchkin-id="${munchkinId}"
                     language="${language}"
-                    :is-prod="${property('gtm.is-production')}"
+                    :is-prod="${property('form.is-production')}"
                 >
 
                     <template slot="no-js">
