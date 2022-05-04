@@ -5,18 +5,24 @@ import com.visitscotland.brxm.utils.NonTestable;
 @NonTestable()
 public class DMSConstants {
 
-    static final String PATH_SEE_DO = "see-do";
-    static final String PATH_ACCOMMODATION = "accommodation";
-    static final String PATH_FOOD_DRINK = "food-drink";
-    static final String PATH_EVENTS = "events";
+    public static final String PATH_SEE_DO = "see-do";
+    public static final String PATH_ACCOMMODATION = "accommodation";
+    public static final String PATH_FOOD_DRINK = "food-drink";
+    public static final String PATH_EVENTS = "events";
+    public static final String PATH_TOURS = "tours";
+
+    public static final String TYPE_SEE_DO = "acti,attr,reta";
+    public static final String TYPE_ACCOMMODATION = "acco";
+    public static final String TYPE_FOOD_DRINK = "cate";
+    public static final String TYPE_EVENTS = "even";
+    public static final String TYPE_TOURS = "tour";
+
+    public static final String TYPE_IKNOW = "cate,acti,attr,reta";
+    public static final String TYPE_SERVICES = "serv";
 
     private DMSConstants(){}
 
-    public static final String TYPE_SERVICES = "serv";
-    public static final String TYPE_SEE_DO = "cate,acti,attr,reta";
-
     public static final String CAT_ICENTRE = "vics";
-
     public static final String AWARD_IKNOW = "qaiknowscotland";
 
     public static final String SORT_ALPHA = "ALPHA";
@@ -51,6 +57,7 @@ public class DMSConstants {
         public static final String OFFERS = "offers";
         public static final String FREE = "maxprice";
         public static final String LOCALE = "locale";
+        public static final String KEYWORDS = "name";
     }
 
     public static final class DMSProduct {
