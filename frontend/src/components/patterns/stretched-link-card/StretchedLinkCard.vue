@@ -203,6 +203,16 @@ export default {
     },
     methods: {
         emitShowModal() {
+            /**
+             * Triggers when the video button is clicked, requests that the appropriate
+             * video modal becomes visible
+             *
+             * @event bv::show::modal
+             *
+             * @property {string} videoId the id of the video to show, acts as a key for the modal
+             * @property {string} triggerRef the #ref of the button that triggered the event,
+             * focus is returned here after the modal closes
+             */
             this.$root.$emit('bv::show::modal', this.videoId, '#videoShow');
         },
     },
