@@ -26,6 +26,7 @@
                             ${imgSrc}?size=md 1200w,
                             ${imgSrc}?size=lg 2048w`"
                             sizes="(min-width: 768px) 50vw, 100vw"
+                            low-res-img="${imgSrc}?size=xxs"
                             class="vs-product-card__img"
                             data-test="vs-product-card__img"
                         />
