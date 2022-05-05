@@ -9,6 +9,11 @@
             <VsImg
                 :src="imgSrc"
                 :alt="imgAlt"
+                :srcset="`${imgSrc}?size=xs 300w,
+                    ${imgSrc}?size=sm 600w,
+                    ${imgSrc}?size=md 1200w,
+                    ${imgSrc}?size=lg 2048w`"
+                sizes="(min-width: 768px) 50vw, 100vw"
                 class="vs-stretched-link-card__img"
                 data-test="vs-stretched-link-card__img"
             />
