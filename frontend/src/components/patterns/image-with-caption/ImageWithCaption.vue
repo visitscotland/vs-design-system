@@ -14,9 +14,6 @@
                     v-if="imageSrc"
                     :src="imageSrc"
                     :alt="altText"
-                    :srcset="srcset"
-                    :sizes="sizes"
-                    :low-res-img="lowResImage"
                 />
             </slot>
 
@@ -140,30 +137,6 @@ export default {
         mobileOverlap: {
             type: Boolean,
             default: false,
-        },
-
-        /**
-         * Define image set for responsive images
-         */
-        srcset: {
-            type: String,
-            default: '',
-        },
-
-        /**
-         * Define media conditions for responsive images
-         */
-        sizes: {
-            type: String,
-            default: '',
-        },
-
-        /**
-         * Provide low res image to be initially loaded
-         */
-        lowResImage: {
-            type: String,
-            default: '',
         },
 
         /**
@@ -567,11 +540,6 @@ export default {
             :altText="item.altText"
             :image-src="item.imageSrc"
             :key="`large-${index}`"
-            :srcset="`${item.imageSrc}  360w, ${item.imageSrc}  720w, ${item.imageSrc}  1280w,`"
-            sizes="(max-width: 360px) 360px,
-                (max-width: 720px) 720px,
-                (max-width: 1280px) 1280px"
-            lowResImage="../../../fixtures/related-content/images/low-res.svg"
             class="mb-11"
         >
             <VsCaption
