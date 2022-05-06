@@ -24,6 +24,7 @@
         <div class="card-body">
             <VsButton
                 class="vs-stretched-link-card__video-button"
+                data-test="vs-stretched-link-card__video-button"
                 icon="play"
                 icon-position="left"
                 size="md"
