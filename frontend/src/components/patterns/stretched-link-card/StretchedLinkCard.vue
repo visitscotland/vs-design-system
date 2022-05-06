@@ -34,6 +34,7 @@
             >
                 <span
                     class="vs-stretched-link-card__video-btn-text"
+                    v-if="videoBtnText"
                 >
                     {{ formattedVideoBtnText }}
                 </span>
