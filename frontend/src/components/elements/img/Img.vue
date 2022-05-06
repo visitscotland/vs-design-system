@@ -6,6 +6,8 @@
         :fluid="fluid"
         :fluid-grow="fluidGrow"
         loading="lazy"
+        :style="`background-image: url('${lowResImage}');`"
+        class="low-res-img"
     >
         <!-- @slot Default slot for image content -->
         <slot />
@@ -38,6 +40,14 @@ export default {
         },
 
         /**
+         * Provide low res image to be initially loaded
+         */
+        lowResImage: {
+            type: String,
+            default: '',
+        },
+
+        /**
          * The alt text for accessibility
          */
         alt: {
@@ -63,3 +73,10 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+    .low-res-img {
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
