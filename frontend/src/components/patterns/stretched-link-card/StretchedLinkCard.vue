@@ -329,7 +329,7 @@ export default {
         }
 
         .vs-stretched-link-card__video-btn-text {
-            padding-right: .4em;
+            padding-right: $spacer-1;
         }
 
         @include media-breakpoint-up(sm) {
