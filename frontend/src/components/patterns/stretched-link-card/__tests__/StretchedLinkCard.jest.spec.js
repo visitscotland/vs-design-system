@@ -64,6 +64,36 @@ describe('VsStretchedLinkCard', () => {
 
             await expect(wrapper.find('[data-test="vs-stretched-link-card__video-button"]').exists()).toBe(true);
         });
+
+        it('should render `videoBtnText` set and a videoId is present', async() => {
+            const videoBtnText = 'PlayVideo';
+
+            const wrapper = shallowMount(VsStretchedLinkCard, {
+                propsData: {
+                    link: 'https://www.visitscotland.com/',
+                    type: 'external',
+                    imgSrc: imgUrl,
+                    imgAlt: 'Image alt',
+                    videoId: '12345',
+                    videoBtnText,
+                },
+                computed: {
+                    videoLoaded() {
+                        return true;
+                    },
+                    videoDetails() {
+                        return {
+                            videoFullDuration: {
+                                minutes: 1,
+                                seconds: 13,
+                            },
+                        };
+                    },
+                },
+            });
+
+            await expect(wrapper.html()).toContain(videoBtnText);
+        });
     });
 
     describe(':slots', () => {
