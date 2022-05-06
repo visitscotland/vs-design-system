@@ -192,7 +192,7 @@ public class ItineraryFactory {
         }
 
         if (externalLink.getExternalLink() != null) {
-            FlatLink ctaLink = linkService.createExternalLink(locale, externalLink.getExternalLink().getLink(), getDefaultCta(locale, module));
+            FlatLink ctaLink = linkService.createExternalLink(locale, externalLink.getExternalLink().getLink(), bundle.getFindOutMoreAboutCta(module.getTitle(), locale));
             module.setCtaLink(ctaLink);
         }
 
@@ -216,7 +216,7 @@ public class ItineraryFactory {
             return;
         }
 
-        module.setCtaLink(linkService.createDmsLink(locale, dmsLink, product, getDefaultCta(locale, module)));
+        module.setCtaLink(linkService.createDmsLink(locale, dmsLink, product, bundle.getFindOutMoreAboutCta(module.getTitle(), locale)));
         module.setFacilities(utils.getKeyFacilities(product));
 
         if (module.getImage() == null && product.has(IMAGE)) {
@@ -249,9 +249,4 @@ public class ItineraryFactory {
             module.setOpenLink(new FlatLink(bundle.getResourceBundle(BUNDLE_FILE, "stop.opening", locale),
                      module.getCtaLink().getLink() + "#opening", null));        }
     }
-
-    private String getDefaultCta(Locale locale, ItineraryStopModule module) {
-        return String.format("%s %s", bundle.getResourceBundle(BUNDLE_FILE, "stop.cta", locale), module.getTitle());
-    }
-
 }

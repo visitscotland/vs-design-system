@@ -236,7 +236,6 @@ class ItineraryFactoryTest {
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
         when(bundle.getResourceBundle(ItineraryFactory.BUNDLE_FILE, bundleKey, Locale.UK)).thenReturn("hour(s)");
-        when(bundle.getResourceBundle(ItineraryFactory.BUNDLE_FILE, "stop.cta", Locale.UK)).thenReturn("ctop.cta");
 
         ItineraryPage iti = factory.buildItinerary(itinerary, Locale.UK);
         assertTrue(getSingleStop(iti).getTimeToExplore().contains(value));
@@ -272,7 +271,6 @@ class ItineraryFactoryTest {
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
         when(bundle.getResourceBundle(ItineraryFactory.BUNDLE_FILE, "stop.opening", Locale.UK)).thenReturn("show times");
-        when(bundle.getResourceBundle(ItineraryFactory.BUNDLE_FILE, "stop.cta", Locale.UK)).thenReturn("stop.cta");
 //        when(properties.getDmsHost()).thenReturn("https://mock.visitscotland.com");
         when(linkService.createDmsLink(eq(Locale.UK), any(), any(), any())).thenReturn(
                 new FlatLink(null, "https://mock.visitscotland.com/info/fake-product-p123", LinkType.INTERNAL));
@@ -372,23 +370,23 @@ class ItineraryFactoryTest {
         List<Day> days = new ItineraryDayMockBuilder().addDmsStop("123").title("module title").buildAsList();
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
         when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
-        when(bundle.getResourceBundle(ItineraryFactory.BUNDLE_FILE, "stop.cta", Locale.UK)).thenReturn("Find out more:");
+        when(bundle.getFindOutMoreAboutCta("module title", Locale.UK)).thenReturn("Find out more about module title");
 
         factory.buildItinerary(itinerary, Locale.UK);
 
-        verify(linkService).createDmsLink(Locale.UK, (DMSLink) days.get(0).getStops().get(0).getStopItem(), node, "Find out more: module title");
+        verify(linkService).createDmsLink(Locale.UK, (DMSLink) days.get(0).getStops().get(0).getStopItem(), node, "Find out more about module title");
     }
 
     @Test
     @DisplayName("When no cta provided for external link, default cta is set")
     void externalCtaSet() throws Exception {
-        List<Day> days = new ItineraryDayMockBuilder().addExternalStop("https://example.com").title("module title").buildAsList();
+        List<Day> days = new ItineraryDayMockBuilder().addExternalStop("https://example.com").title("title").buildAsList();
         when(documentUtils.getAllowedDocuments(itinerary, Day.class)).thenReturn(days);
-        when(bundle.getResourceBundle(ItineraryFactory.BUNDLE_FILE, "stop.cta", Locale.UK)).thenReturn("Find out more:");
+        when(bundle.getFindOutMoreAboutCta("title", Locale.UK)).thenReturn("Find out more about title");
 
         factory.buildItinerary(itinerary, Locale.UK);
 
-        verify(linkService).createExternalLink(Locale.UK, "https://example.com", "Find out more: module title");
+        verify(linkService).createExternalLink(Locale.UK, "https://example.com", "Find out more about title");
     }
 
 
