@@ -392,7 +392,7 @@ export default {
 
             .vs-icon {
                 margin-right: $spacer-2;
-                margin-top: -.05em;
+                margin-top: -.05rem;
                 margin-bottom: $spacer-0;
             }
         }
