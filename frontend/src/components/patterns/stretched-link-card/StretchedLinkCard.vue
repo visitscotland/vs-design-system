@@ -176,7 +176,7 @@ export default {
          */
         videoBtnText: {
             type: String,
-            default: 'Play Video',
+            default: '',
         },
     },
     computed: {
