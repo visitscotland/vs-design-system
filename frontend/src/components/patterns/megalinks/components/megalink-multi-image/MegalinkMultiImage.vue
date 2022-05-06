@@ -10,7 +10,6 @@
         :theme="theme"
         :video-id="videoId"
         :video-btn-text="videoBtnText"
-        :video-modal-close-text="videoModalCloseText"
     >
         <VsStretchedLinkPanels
             v-if="days && transport"
@@ -159,13 +158,6 @@ export default {
         videoBtnText: {
             type: String,
             default: 'Play Video',
-        },
-        /**
-         * A label for the close button on the video label, if present
-         */
-        videoModalCloseText: {
-            type: String,
-            default: 'Close',
         },
     },
     computed: {
