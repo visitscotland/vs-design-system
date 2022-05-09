@@ -182,8 +182,6 @@ public class LinkService {
 
         if (path.startsWith(languagePath)) {
             return site + path;
-        } else if (isDms && path.startsWith(Language.getLanguageForLocale(locale).getCMSPathVariable())) {
-            return site + languagePath + path.substring(path.indexOf("/", 1));
         } else {
             return site + languagePath + path;
         }
