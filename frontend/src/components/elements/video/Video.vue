@@ -3,20 +3,39 @@
         class="vs-video"
         data-test="vs-video"
     >
-        <div class="vs-video__iframe-wrapper">
-            <!-- eslint-disable-next-line vue/component-name-in-template-casing -->
-            <youtube
-                :video-id="videoId"
-                :player-vars="playerVars"
-                ref="youtube"
-            />
+        <div
+            class="vs-video__iframe-wrapper"
+        >
+            <div v-if="requiredCookiesExist">
+                <!-- eslint-disable-next-line vue/component-name-in-template-casing -->
+                <youtube
+                    :video-id="videoId"
+                    :player-vars="playerVars"
+                    ref="youtube"
+                />
+            </div>
+
+            <div
+                class="vs-video__fallback-wrapper"
+                v-if="!requiredCookiesExist && cookiesSetStatus"
+                key="fallback"
+            >
+                <CookiesFallback />
+            </div>
         </div>
+
+        <button id="ot-sdk-btn" class="ot-sdk-show-settings">
+            Cookie Settings
+        </button>
+
+        <CookiesChecker />
     </div>
 </template>
 
 <style lang="scss">
     .vs-video {
-        &__iframe-wrapper {
+        &__iframe-wrapper,
+        &__fallback-wrapper {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
@@ -37,7 +56,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import VueYoutube from 'vue-youtube';
 import Vue from 'vue';
+import CookiesFallback from '@components/elements/cookies/CookiesFallback';
+import CookiesChecker from '../../renderless/cookiesChecker';
 import videoStore from '../../../stores/video.store';
+import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
 
 Vue.use(VueYoutube, {
     global: false,
@@ -54,6 +76,13 @@ export default {
     name: 'VsVideo',
     status: 'prototype',
     release: '0.0.1',
+    components: {
+        CookiesChecker,
+        CookiesFallback,
+    },
+    mixins: [
+        verifyCookiesMixin,
+    ],
     props: {
         /**
         * The YouTube ID for the video
@@ -102,6 +131,7 @@ export default {
             playerVars: {
                 hl: this.language,
             },
+            requiredCookies: ['C0004'],
         };
     },
     computed: {
@@ -109,7 +139,11 @@ export default {
          * Return the player instance
          */
         player() {
-            return this.$refs.youtube.player;
+            if (typeof this.$refs.youtube !== 'undefined') {
+                return this.$refs.youtube.player;
+            }
+
+            return null;
         },
     },
     mounted() {
@@ -117,10 +151,12 @@ export default {
          * Upon promise resolution, if the video ID returns
          * a YouTube video, process the time into the desired format.
          */
-        this.player.getDuration().then((response) => {
-            this.formatTime(response);
-            this.storeVideoDetails();
-        });
+        if (this.player) {
+            this.player.getDuration().then((response) => {
+                this.formatTime(response);
+                this.storeVideoDetails();
+            });
+        }
 
         /**
          * Sets up listener for play/pause events
