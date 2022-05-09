@@ -1,4 +1,4 @@
- /* eslint-disable */
+/* eslint-disable */
 export default class EventBus {
     /**
      * Initialize a new event bus instance.
