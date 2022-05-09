@@ -3,8 +3,10 @@
 <#include "./multi-image/megalinks-multi-image.ftl">
 <#include "./link-list/megalinks-link-list.ftl">
 <#include "./single-image/megalinks-single-image.ftl">
+<#include "../../global/preview-warning.ftl">
 
 <#macro megalinks item type theme="">
+
 
     <#if type=="MultiImageLinksModule">
         <#assign variant = "multi-image">
@@ -18,12 +20,14 @@
         <#assign showTeaser = item.teaserVisible?string('true', 'false') />
     </#if>
 
+    <@previewWarning editMode item item.errorMessages/>
     <vs-megalinks 
         variant="${variant}"
         title="${item.title}"
         theme="${theme}"
         <#if item.cta?? && type != "SingleImageLinksModule">button-link="${item.cta.link}"</#if>
     >
+
         <template slot="vsMegalinksHeading">
             ${item.title}
         </template>

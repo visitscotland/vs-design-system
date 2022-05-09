@@ -133,7 +133,7 @@ definitions:
             hint: 'Recommended length: 750 characters'
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+              ckeditor.config.overlayed.json: '{disallowedContent: ''p[align]'', toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
               ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
@@ -141,7 +141,7 @@ definitions:
           /media:
             jcr:primaryType: frontend:plugin
             caption: Media
-            compoundList: hippogallerypicker:imagelink,visitscotland:VideoLink
+            compoundList: hippogallerypicker:imagelink
             contentPickerType: links
             field: media
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin

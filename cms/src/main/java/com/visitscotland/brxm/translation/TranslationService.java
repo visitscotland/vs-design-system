@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.translation.plugin.JcrDocumentFactory;
+import com.visitscotland.brxm.translation.plugin.TranslationWorkflow;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.api.WorkflowException;
@@ -98,30 +99,16 @@ public class TranslationService {
             throw new WorkflowException("Document being edited");
         }
 
-        Session jcrSession = sessionFactory.getJcrSession();
-
         Node unpublishedNode = jcrDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
         Property localeProperty = unpublishedNode.getProperty(HippoTranslationNodeType.LOCALE);
         if (Locale.ENGLISH.getLanguage().equals(localeProperty.getString())) {
             throw new IllegalArgumentException("Unable to clear translation flag for English document");
         }
 
-        Workflow editing = sessionFactory.getUserSession().getWorkflowManager().getWorkflow("editing", jcrDocument.getHandle());
-        if (editing instanceof EditableWorkflow) {
-            EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
-            editableWorkflow.obtainEditableInstance();
-            try {
-                unpublishedNode.setProperty(JcrDocument.VS_TRANSLATION_FLAG, false);
-                if (unpublishedNode.hasProperty(JcrDocument.VS_TRANSLATION_DIFF)) {
-                    Property diffProperty = unpublishedNode.getProperty(JcrDocument.VS_TRANSLATION_DIFF);
-                    diffProperty.remove();
-                }
-            } finally {
-                editableWorkflow.disposeEditableInstance();
-            }
-
-            jcrSession.save();
-            jcrSession.refresh(true);
+        Workflow workflow = sessionFactory.getUserSession().getWorkflowManager().getWorkflow("translation", unpublishedNode);
+        if (workflow instanceof TranslationWorkflow) {
+            TranslationWorkflow translationWorkflow = (TranslationWorkflow) workflow;
+            translationWorkflow.clearTranslationFlag();
         } else {
             throw new IllegalStateException("Unable to get EditableWorkflow");
         }
@@ -187,8 +174,14 @@ public class TranslationService {
                     for (HashMap.Entry<Node, Node> editableNodeEntry : editableNodes.entrySet()) {
                         try {
                             Node editableUnpublishedVariant = editableNodeEntry.getValue();
-                            editableUnpublishedVariant.setProperty("visitscotland:translationFlag", true);
-                            editableUnpublishedVariant.setProperty("visitscotland:diff", objectMapper.writeValueAsString(translationContent));
+                            Workflow workflow = sessionFactory.getUserSession().getWorkflowManager().getWorkflow("translation", editableUnpublishedVariant);
+                            if (workflow instanceof TranslationWorkflow) {
+                                TranslationWorkflow translationWorkflow = (TranslationWorkflow) workflow;
+                                translationWorkflow.setTranslationFlag(true);
+                                translationWorkflow.setTranslationDiff(objectMapper.writeValueAsString(translationContent));
+                            } else {
+                                throw new IllegalStateException("Unable to get TranslationWorkflow");
+                            }
                         } catch(JsonProcessingException ex) {
                             // just log the error, should never happen.
                             log.error("Unable to serailise the translation.", ex);

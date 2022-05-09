@@ -42,9 +42,9 @@
 <script>
 import {
     VsContainer, VsRow, VsCol,
-} from '@components/elements/layout';
-import VsGlobalMenuDropdown from './GlobalMenuDropdown';
-import VsGlobalMenuList from './GlobalMenuList';
+} from '@components/elements/grid';
+import VsGlobalMenuDropdown from './components/GlobalMenuDropdown';
+import VsGlobalMenuList from './components/GlobalMenuList';
 
 /**
  * This component is the main Global Nav Wrapper for the top of the page.
@@ -114,7 +114,7 @@ export default {
     background: $color-purple;
     color: white;
     position: relative;
-    font-size: $font-size-sm;
+    font-size: $font-size-2;
     height: 28px;
     display: flex;
     align-items: center;

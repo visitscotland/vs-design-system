@@ -34,6 +34,8 @@ public class JcrDocument {
     public static final String VS_TRANSLATION_DIFF = "visitscotland:diff";
     public static final String VS_TRANSLATION_FLAG = "visitscotland:translationFlag";
     public static final String VS_TRANSLATABLE_TYPE = "visitscotland:translatable";
+    public static final String VS_TRANSLATION_DEADLINE = "visitscotland:translationDeadline";
+    public static final String VS_TRANSLATION_PRIORITY = "visitscotland:translationPriority";
 
     private Node handle;
     // Do not access directly, will be lazy loaded, use getter
@@ -185,6 +187,10 @@ public class JcrDocument {
             }
         }
         return translationDocuments;
+    }
+
+    public boolean isDeleted() throws RepositoryException {
+        return handle.getPath() == null || handle.getPath().startsWith("/content/attic/");
     }
 
     public Set<String> getTranslationLocaleNames() throws RepositoryException {

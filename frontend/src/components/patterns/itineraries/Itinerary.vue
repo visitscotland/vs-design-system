@@ -1,5 +1,5 @@
 <template>
-    <section class="vs-itinerary position-sticky">
+    <section class="vs-itinerary">
         <div
             class="fixed-bottom"
             v-show="!isDesktop && withinItineraryMain"
@@ -9,7 +9,7 @@
                     class="vs-itinerary__map-toggle-button"
                     @click.native="toggleShowMap()"
                     :icon="showMap ? 'list' : 'map'"
-                    icon-variant-override="reverse-white"
+                    icon-variant-override="color-white"
                     icon-size-override="md"
                 >
                     {{ showMap ? 'List View' : 'Map View' }}
@@ -46,7 +46,7 @@ import {
     VsContainer,
     VsRow,
     VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 import VsButton from '@components/elements/button/Button';
 import VsAccordion from '@components/patterns/accordion/Accordion';
 
@@ -132,6 +132,13 @@ export default {
             width: calc(100% + #{$spacer-6});
             margin-left: -#{$spacer-3};
         }
+
+        @include media-breakpoint-up(lg) {
+            > .row {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
     }
 
     .vs-itinerary__map-container {
@@ -146,16 +153,18 @@ export default {
             left: 0;
             right: 0;
         }
+
         @include media-breakpoint-up(lg) {
             float: right;
-            margin-left: 6.25rem;
             position: -webkit-sticky;
             position: sticky;
             width: 45vw;
         }
+    }
 
-         @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-            position: relative;
+    .vs-itinerary__accordion-container {
+        @include media-breakpoint-up(lg) {
+            max-width: calc(100% - 6.25rem);
         }
     }
 
@@ -165,22 +174,6 @@ export default {
 
         svg {
             margin-right: $spacer-3;
-        }
-    }
-
-    // layout styles for safari
-    @media not all and (min-resolution:.001dpcm) {
-        @supports (-webkit-appearance:none) {
-            @include media-breakpoint-up(lg) {
-                .vs-itinerary__map-container {
-                    height: 0;
-                    position: relative;
-                }
-
-                .vs-itinerary__accordion-container {
-                    max-width: 50%;
-                }
-            }
         }
     }
 }

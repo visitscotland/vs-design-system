@@ -13,6 +13,7 @@
   - visitscotland:translationFlag (boolean)
   - visitscotland:diff (string)
   - visitscotland:translationPriority (string)
+  - visitscotland:translationDeadline (date)
 
 [visitscotland:Article] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable

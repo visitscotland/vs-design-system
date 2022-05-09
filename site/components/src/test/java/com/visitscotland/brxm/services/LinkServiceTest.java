@@ -16,6 +16,7 @@ import com.visitscotland.brxm.dms.DMSDataService;
 import com.visitscotland.brxm.dms.ProductSearchBuilder;
 import com.visitscotland.brxm.model.Module;
 import com.visitscotland.brxm.model.megalinks.EnhancedLink;
+import com.visitscotland.brxm.model.YoutubeVideo;
 import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.Properties;
 import com.visitscotland.brxm.dms.DMSConstants;
@@ -33,9 +34,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Locale;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -68,11 +69,14 @@ class LinkServiceTest {
     @Mock
     private ImageFactory imageFactory;
 
+    @Mock
+    private YoutubeApiService youtubeApiService;
+
     @Resource
     @InjectMocks
     LinkService service;
 
-    private void initProductSearchBuilder(){
+    private void initProductSearchBuilder() {
         ComponentManager context = mock(ComponentManager.class, withSettings().lenient());
         when(context.getComponent(ProductSearchBuilder.class)).thenReturn(builder);
         VsComponentManager.setComponentManager(context);
@@ -89,7 +93,7 @@ class LinkServiceTest {
         when(properties.getDmsHost()).thenReturn("http://localhost:8080");
         when(resourceBundle.getCtaLabel(eq(""), any())).thenReturn("Find out more");
 
-        FlatLink link = service.createCTALink(null, Locale.UK, externalLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, externalLink);
 
         assertEquals("http://fake.link", link.getLink());
         assertEquals("Find out more", link.getLabel());
@@ -119,19 +123,80 @@ class LinkServiceTest {
         assertEquals("https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf", link);
     }
 
-
     @Test
-    @DisplayName("Create a link from an CMSLink Compound")
-    void cmsLink() {
+    @DisplayName("Create a link from an CMSLink Compound to a page")
+    void cmsPageLink() {
         CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
         when(cmsLink.getLink()).thenReturn(mock(Page.class));
 
         when(utils.createUrl(any(Page.class))).thenReturn("http://cms-url");
 
-        FlatLink link = service.createCTALink(null, Locale.UK, cmsLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, cmsLink);
 
         assertEquals("http://cms-url", link.getLink());
         assertEquals(LinkType.INTERNAL, link.getType());
+    }
+
+    @Test
+    @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, default label")
+    void cmsSharedLink_findOutMore() {
+        SharedLink sharedLink = mock(SharedLink.class);
+        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+
+        when(sharedLink.getLinkType()).thenReturn(externalLink);
+        when(cmsLink.getLabel()).thenReturn("");
+        when(externalLink.getLink()).thenReturn("http://cms-url");
+        when(cmsLink.getLink()).thenReturn(sharedLink);
+        when(resourceBundle.getCtaLabel(any(), any())).thenReturn("Find out more");
+
+
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, cmsLink);
+
+        assertEquals("http://cms-url", link.getLink());
+        assertEquals("Find out more", link.getLabel());
+        assertEquals(LinkType.EXTERNAL, link.getType());
+
+    }
+
+    @Test
+    @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, default label")
+    void cmsPageLink_linkNull() {
+        Page pageLink = mock(Page.class);
+        Module m = new Module();
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+
+        when(cmsLink.getLabel()).thenReturn("");
+        when(pageLink.getTitle()).thenReturn("Edinburgh");
+        when(cmsLink.getLink()).thenReturn(pageLink);
+
+        FlatLink link = service.createFindOutMoreLink(m, Locale.UK, cmsLink);
+
+        assertNull(link);
+        assertTrue(m.getErrorMessages().size()>0);
+
+    }
+
+    @Test
+    @DisplayName("VS-3206 Create a link from an CMSLink Compound to a shared link, override label")
+    void cmsSharedLink_overrideFindOutMore() {
+        SharedLink sharedLink = mock(SharedLink.class);
+        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+
+        when(sharedLink.getLinkType()).thenReturn(externalLink);
+        when(cmsLink.getLabel()).thenReturn("CTA override");
+        when(externalLink.getLink()).thenReturn("http://cms-url");
+        when(cmsLink.getLink()).thenReturn(sharedLink);
+        when(resourceBundle.getCtaLabel(any(), any())).thenReturn("Find out more");
+
+
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, cmsLink);
+
+        assertEquals("http://cms-url", link.getLink());
+        assertEquals("CTA override", link.getLabel());
+        assertEquals(LinkType.EXTERNAL, link.getType());
+
     }
 
     @Test
@@ -145,9 +210,9 @@ class LinkServiceTest {
         when(dmsData.productCard("123", Locale.UK)).thenReturn(null);
 
 
-        FlatLink link = service.createCTALink(m, Locale.UK, dmsLink);
+        FlatLink link = service.createFindOutMoreLink(m, Locale.UK, dmsLink);
 
-        assertEquals(1, m.getErrorMessages().size());
+        assertTrue(m.getErrorMessages().size() > 1);
         assertNull(link);
     }
 
@@ -165,7 +230,7 @@ class LinkServiceTest {
         when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK)).thenReturn(url);
         when(url.asText()).thenReturn("/dms-page");
 
-        FlatLink link = service.createCTALink(null, Locale.UK, dmsLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, dmsLink);
 
         assertTrue(link.getLink().endsWith("/dms-page"));
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -182,7 +247,7 @@ class LinkServiceTest {
         ProductsSearch ps = mock(ProductsSearch.class);
         when(productSearchLink.getSearch()).thenReturn(ps);
 
-        FlatLink link = service.createCTALink(null, Locale.UK, productSearchLink);
+        FlatLink link = service.createFindOutMoreLink(null, Locale.UK, productSearchLink);
 
         verify(builder, times(1)).build();
         assertEquals(LinkType.INTERNAL, link.getType());
@@ -301,46 +366,47 @@ class LinkServiceTest {
         when(properties.getDmsHost()).thenReturn("http://localhost:8080");
         when(properties.getInternalSites()).thenReturn(Arrays.asList("www.visitscotland.com,ebooks.visitscotland.com,blog.visitscotland.com".split(",")));
 
+        when(resourceBundle.getResourceBundle("navigation.categories", "ebooks", Locale.UK )).thenReturn("eBooks");
         assertEquals("eBooks", service.getLinkCategory("https://ebooks.visitscotland.com/whisky-distilleries-guides/",Locale.UK));
 
         String blog = "Travel Blog";
-        when(resourceBundle.getResourceBundle("navigation.main", "Travel-Blog", Locale.UK )).thenReturn(blog);
-        assertEquals(blog, getCategory("https://blog.visitscotland.com/discover-our-best-ebooks", "navigation.main", "Travel-Blog", blog));
-        assertEquals(blog, getCategory("https://www.visitscotland.com/blog/culture/scottish-words-meanings/", "navigation.main", "Travel-Blog", blog));
+        when(resourceBundle.getResourceBundle("navigation.categories", "travel-blog", Locale.UK )).thenReturn(blog);
+        assertEquals(blog, service.getLinkCategory("https://blog.visitscotland.com/discover-our-best-ebooks",Locale.UK));
+        assertEquals(blog, service.getLinkCategory("https://www.visitscotland.com/blog/culture/scottish-words-meanings/",Locale.UK));
 
         String seeDo= "See do";
-        when(resourceBundle.getResourceBundle("navigation.main", "see-do", Locale.UK )).thenReturn(seeDo);
-        assertEquals(seeDo, getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/see-do/", "navigation.main", "see-do", seeDo));
-        assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/events/developing-a-garden-sketchbook-after-hours-p2216101", "navigation.main", "see-do", seeDo));
-        assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/tours/shore-excursion-from-invergordon-battles-loch-ness-whisky-a56a372f", "navigation.main", "see-do", seeDo));
-        assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/see-do/riverside-museum-p995001", "navigation.main", "see-do", seeDo));
-        assertEquals(seeDo, getCategory("https://www.visitscotland.com/site-search-results", "navigation.main", "see-do", seeDo));
+        when(resourceBundle.getResourceBundle("navigation.categories", "see-do", Locale.UK )).thenReturn(seeDo);
+        assertEquals(seeDo, service.getLinkCategory("https://www.visitscotland.com/destinations-maps/edinburgh/see-do/",Locale.UK));
+        assertEquals(seeDo, service.getLinkCategory("https://www.visitscotland.com/info/events/developing-a-garden-sketchbook-after-hours-p2216101",Locale.UK));
+        assertEquals(seeDo, service.getLinkCategory("https://www.visitscotland.com/info/tours/shore-excursion-from-invergordon-battles-loch-ness-whisky-a56a372f",Locale.UK));
+        assertEquals(seeDo, service.getLinkCategory("https://www.visitscotland.com/info/see-do/riverside-museum-p995001",Locale.UK));
+        assertEquals(seeDo, service.getLinkCategory("https://www.visitscotland.com/site-search-results",Locale.UK));
 
-        when(resourceBundle.getResourceBundle("navigation.main", "accommodation", Locale.UK )).thenReturn("Accommodation");
-        assertEquals("Accommodation", getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/accommodation/self-catering/", "navigation.main", "accommodation", "Accommodation"));
+        when(resourceBundle.getResourceBundle("navigation.categories", "accommodation", Locale.UK )).thenReturn("Accommodation");
+        assertEquals("Accommodation", service.getLinkCategory("https://www.visitscotland.com/destinations-maps/edinburgh/accommodation/self-catering/",Locale.UK));
 
         String destination = "Places to go";
-        when(resourceBundle.getResourceBundle("navigation.main", "destinations-map", Locale.UK )).thenReturn(destination);
-        assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/", "navigation.main", "destinations-map", destination));
-        assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/perthshire/short-break-itinerary", "navigation.main", "destinations-map", destination));
-        assertEquals(destination, getCategory("https://www.visitscotland.com/info/towns-villages/ayr-p242821", "navigation.main", "destinations-map", destination));
-        assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/island/orkney", "navigation.main", "destinations-map", destination));
+        when(resourceBundle.getResourceBundle("navigation.categories", "destinations-map", Locale.UK )).thenReturn(destination);
+        assertEquals(destination, service.getLinkCategory("https://www.visitscotland.com/destinations-maps/edinburgh/",Locale.UK));
+        assertEquals(destination, service.getLinkCategory("https://www.visitscotland.com/destinations-maps/perthshire/short-break-itinerary",Locale.UK));
+        assertEquals(destination, service.getLinkCategory("https://www.visitscotland.com/info/towns-villages/ayr-p242821",Locale.UK));
+        assertEquals(destination, service.getLinkCategory("https://www.visitscotland.com/destinations-maps/island/orkney",Locale.UK));
 
         String travel = "Plan your trip";
-        when(resourceBundle.getResourceBundle("navigation.main", "travel-planning", Locale.UK )).thenReturn(travel);
-        assertEquals(travel, getCategory("https://www.visitscotland.com/holidays-breaks/scotland-life/sam-audrey-scottish-road-trip/", "navigation.main", "travel-planning", travel));
-        assertEquals(travel, getCategory("https://www.visitscotland.com/travel/getting-around-scotland/coach/", "navigation.main", "travel-planning", travel));
-        assertEquals(travel, getCategory("https://www.visitscotland.com/info/transport/turner-hire-drive-edinburgh-p1916901", "navigation.main", "travel-planning", travel));
+        when(resourceBundle.getResourceBundle("navigation.categories", "travel-planning", Locale.UK )).thenReturn(travel);
+        assertEquals(travel, service.getLinkCategory("https://www.visitscotland.com/holidays-breaks/scotland-life/sam-audrey-scottish-road-trip/",Locale.UK));
+        assertEquals(travel, service.getLinkCategory("https://www.visitscotland.com/travel/getting-around-scotland/coach/",Locale.UK));
+        assertEquals(travel, service.getLinkCategory("https://www.visitscotland.com/info/transport/turner-hire-drive-edinburgh-p1916901",Locale.UK));
 
-        when(resourceBundle.getResourceBundle("navigation.main", "inspiration", Locale.UK )).thenReturn("Inspiration");
-        assertEquals("Inspiration", getCategory("https://www.visitscotland.com/brochures/", "navigation.main", "inspiration", "Inspiration"));
+        when(resourceBundle.getResourceBundle("navigation.categories", "inspiration", Locale.UK )).thenReturn("Inspiration");
+        assertEquals("Inspiration", service.getLinkCategory("https://www.visitscotland.com/brochures/",Locale.UK));
 
         String information = "Visitor information";
-        when(resourceBundle.getResourceBundle("navigation.footer", "footer.visitor-information", Locale.UK )).thenReturn(information);
-        assertEquals(information, getCategory("https://www.visitscotland.com/about-us/", "navigation.footer", "footer.visitor-information", information));
-        assertEquals(information, getCategory("https://www.visitscotland.com/info/services/fort-william-icentre-p333001", "navigation.footer", "footer.visitor-information", information));
-        assertEquals(information, getCategory("https://www.visitscotland.com/contact-us/", "navigation.footer", "footer.visitor-information", information));
-        assertEquals(information, getCategory("https://www.visitscotland.com/policies/acceptable-use/", "navigation.footer", "footer.visitor-information", information));
+        when(resourceBundle.getResourceBundle("navigation.categories", "footer.visitor-information", Locale.UK )).thenReturn(information);
+        assertEquals(information, service.getLinkCategory("https://www.visitscotland.com/about-us/",Locale.UK));
+        assertEquals(information, service.getLinkCategory("https://www.visitscotland.com/info/services/fort-william-icentre-p333001",Locale.UK));
+        assertEquals(information, service.getLinkCategory("https://www.visitscotland.com/contact-us/",Locale.UK));
+        assertEquals(information, service.getLinkCategory("https://www.visitscotland.com/policies/acceptable-use/",Locale.UK));
 
         assertEquals("visitwales.com".toUpperCase(), service.getLinkCategory("https://www.visitwales.com/brochures",Locale.UK));
 
@@ -352,11 +418,6 @@ class LinkServiceTest {
         assertNull(service.getLinkCategory("http//example.com",Locale.UK));
     }
 
-    private String getCategory(String url, String bundle, String key, String value){
-        when(resourceBundle.getResourceBundle(bundle, key, Locale.UK )).thenReturn(value);
-        return service.getLinkCategory(url,Locale.UK);
-    }
-
     @Test
     @DisplayName("VS-2308 External document definition with category")
     void createEnhancedLink_externalDocument_category() {
@@ -364,11 +425,10 @@ class LinkServiceTest {
         final String category= "see-do";
         SharedLink externalDocument = new SharedLinkMockBuilder().externalDocument("title",url,category).build();
 
-        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK )).thenReturn("DOWNLOAD");
         when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
-        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument,null, Locale.UK, true);
+        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument,null, Locale.UK, true).get();
 
-        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals("title | PDF 15.5MB", enhancedLink.getLabel());
         assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
         assertEquals(category, enhancedLink.getCategory());
     }
@@ -379,12 +439,11 @@ class LinkServiceTest {
         final String url = "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
         final Module<?> module = new Module<>();
 
-        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK )).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = service.createEnhancedLink(
                 new SharedLinkMockBuilder().externalDocument("title",url,"see-do").build(), module,
-                Locale.UK, true);
+                Locale.UK, true).get();
 
-        assertEquals("title (DOWNLOAD)", enhancedLink.getLabel());
+        assertEquals("title", enhancedLink.getLabel());
         assertTrue(module.getErrorMessages().contains("The Link to the External document might be broken"));
     }
 
@@ -393,8 +452,9 @@ class LinkServiceTest {
     void createEnhancedLink_itinerary() {
         Itinerary itinerary = new MegalinksMockBuilder().getItinerary("bus");
         when(documentUtilsService.getSiblingDocuments(itinerary,Day.class, "visitscotland:Day")).thenReturn(Arrays.asList(mock(Day.class), mock(Day.class)));
+        when(utils.createUrl(itinerary)).thenReturn("URL");
 
-        EnhancedLink enhancedLink = service.createEnhancedLink(itinerary, null, Locale.UK, false);
+        EnhancedLink enhancedLink = service.createEnhancedLink(itinerary, null, Locale.UK, false).get();
 
         assertEquals(2, enhancedLink.getItineraryDays());
         assertEquals("bus",enhancedLink.getItineraryTransport());
@@ -406,11 +466,10 @@ class LinkServiceTest {
         final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
         SharedLink externalDocument = new SharedLinkMockBuilder().externalDocument("title",url,  null).build();
 
-        when(resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.UK)).thenReturn("DOWNLOAD");
         when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
-        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument, null, Locale.UK, false);
+        EnhancedLink enhancedLink = service.createEnhancedLink(externalDocument, null, Locale.UK, false).get();
 
-        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals("title | PDF 15.5MB", enhancedLink.getLabel());
         assertEquals(com.visitscotland.brxm.model.LinkType.DOWNLOAD, enhancedLink.getType());
         Mockito.verify((ExternalDocument)externalDocument.getLinkType(),Mockito.never()).getCategory();
     }
@@ -419,12 +478,14 @@ class LinkServiceTest {
     @DisplayName("DMSLink - DMS Id is not valid")
     void DMS_enhanced_notValidId(){
         Module<?> module = new Module<>();
+        JsonNode node = mock(JsonNode.class, RETURNS_DEEP_STUBS);
+        SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
 
-        SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, null).build();
+        when(node.get(DMSConstants.DMSProduct.URL).get(DMSConstants.DMSProduct.URL_LINK).asText()).thenReturn("mock-url");
 
-        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+        service.createEnhancedLink(dmsLink, module,Locale.UK,false);
 
-        assertEquals(1, module.getErrorMessages().size());
+        assertTrue( module.getErrorMessages().size() > 0);
     }
 
     @Test
@@ -434,9 +495,9 @@ class LinkServiceTest {
         Module<?> module = new Module<>();
 
         SharedLink dmsLink = new SharedLinkMockBuilder().dmsLink(dmsData, node).build();
-        when(imageFactory.createImage(node, module)).thenReturn(new FlatImage());
+        when(imageFactory.createImage(node, module, Locale.UK)).thenReturn(new FlatImage());
 
-        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false).get();
 
         assertNotNull(link.getImage());
     }
@@ -454,9 +515,9 @@ class LinkServiceTest {
 
         when(properties.getDmsHost()).thenReturn("");
 
-        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false);
+        EnhancedLink link = service.createEnhancedLink(dmsLink, module,Locale.UK,false).get();
         assertEquals("/info/fake-product-p0123456798", link.getLink());
-        assertEquals(1, module.getErrorMessages().size());
+        assertTrue( module.getErrorMessages().size() > 0);
         assertNull(link.getImage());
     }
 
@@ -464,11 +525,10 @@ class LinkServiceTest {
     @DisplayName("getDownloadText returns the label with the size")
     void getDownloadText() {
 
-        when (resourceBundle.getResourceBundle("essentials.global", "label.download", Locale.CANADA )).thenReturn("DOWNLOAD");
         when(commonUtils.getExternalDocumentSize(any(), any())).thenReturn("PDF 15.5MB");
         when(utils.getRequestLocale()).thenReturn(Locale.CANADA);
 
-        assertEquals(" (DOWNLOAD PDF 15.5MB)", service.getDownloadText("http://www.visitscotlan.com/pdf"));
+        assertEquals(" | PDF 15.5MB", service.getDownloadText("http://www.visitscotlan.com/pdf"));
     }
 
     @Test
@@ -580,7 +640,7 @@ class LinkServiceTest {
     void enhancedLink_fromVideo(){
         Video video = new VideoMockBuilder().url("youtu.be?v=1").build();
 
-        EnhancedLink link = service.createEnhancedLink(video, null, null, false);
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false).get();
 
         assertNotNull(link);
         assertEquals("youtu.be?v=1", link.getLink());
@@ -596,4 +656,38 @@ class LinkServiceTest {
         assertEquals("https://www.youtube.com/watch?v=h9bQwcndGfo", service.getPlainLink(Locale.UK, video,null));
         assertEquals("https://www.youtube.com/watch?v=h9bQwcndGfo", service.getPlainLink(Locale.FRANCE, video,null));
     }
+
+    @Test
+    @DisplayName(("VS-3065 - Handling of non-published documents"))
+    void enhancedLink_empty(){
+        Optional<EnhancedLink> link = service.createEnhancedLink(null, null, null, false);
+
+        assertFalse(link.isPresent());
+    }
+
+    @Test
+    @DisplayName("VS-1419  - YouTube video published date obtained from api")
+    void enhancedLink_fromVideoWithPublishedDate() throws ParseException {
+        Video video = new VideoMockBuilder().url("https://www.youtube.com/watch?v=h9bQwcndGfo").build();
+        Date datePublished = new SimpleDateFormat("yyyy-MM-dd").parse("2020-10-10");
+        YoutubeVideo yt = new YoutubeVideo();
+        yt.setPublishDate(datePublished);
+        when(youtubeApiService.getVideoInfo("h9bQwcndGfo")).thenReturn(Optional.of(yt));
+
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false).get();
+
+        assertEquals(datePublished, link.getPublishedDate());
+    }
+
+    @Test
+    @DisplayName("VS-1419 Published date is never null, even when YouTube API is unavailable")
+    void enhancedLink_youtubeDateNotAvailable() {
+        Video video = new VideoMockBuilder().url("https://www.youtube.com/watch?v=h9bQwcndGfo").build();
+        when(youtubeApiService.getVideoInfo("h9bQwcndGfo")).thenReturn(Optional.empty());
+
+        EnhancedLink link = service.createEnhancedLink(video, null, null, false).get();
+
+        assertNotNull(link.getPublishedDate());
+    }
+
 }

@@ -20,9 +20,9 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
             root: "data",
             totalProperty: "total",
             method: "GET",
-            proxy: new Hippo.Reports.PageableHttpProxy({url: GET_UNTRANSLATED_FILES_ENDPOINT, api: {}}, {locale: INITIAL_LOCALE}),
+            proxy: new Hippo.Reports.PageableHttpProxy({url: GET_UNTRANSLATED_FILES_ENDPOINT, api: {}}),
             fields: ["displayName", "translatedLocales", "sentForTranslationLocales", "path", "translationStatus",
-                "translationPriority", "handleId", "lastModified", "lastModifiedBy", "publishStatus", "type", "clonedLocales"]
+                "translationPriority", "handleId", "lastModified", "lastModifiedBy", "publishStatus", "type", "clonedLocales", {name: "translationDeadline", type: "date"}]
         })
 
         var self = this;
@@ -75,13 +75,15 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                 },
                 columns: [
                     {name: "publishStatus", dataIndex: "publishStatus", header: "", sortable: true, renderer: this.renderPublishStatus, width: 5},
-                    {name: "name", dataIndex: "displayName", header: "Document", sortable: true, width: 25},
-                    {name: "type", dataIndex: "type", header: "Type", sortable: true, width: 10},
+                    {name: "name", dataIndex: "displayName", header: "Document", sortable: true, width: 28},
+                    {name: "type", dataIndex: "type", header: "Type", sortable: true, width: 9},
                     {name: "lastModified", dataIndex: "lastModified", header: "Last modified", sortable: true, renderer: {fn: this.renderDateTime, scope: self}, width: 5},
                     {name: "lastModifiedBy", dataIndex: "lastModifiedBy", header: "Modified by", sortable: true, width: 5},
-                    {name: "translatedLocales", dataIndex: "translatedLocales", header: "Translated", renderer: this.renderFlags, width: 10},
-                    {name: "sentForTranslationLocales", dataIndex: "sentForTranslationLocales", header: "Sent for translation", renderer: this.renderFlags, width: 10},
+                    {name: "translatedLocales", dataIndex: "translatedLocales", header: "Translated", renderer: this.renderFlags, width: 9},
+                    {name: "sentForTranslationLocales", dataIndex: "sentForTranslationLocales", header: "Sent for translation", renderer: this.renderFlags, width: 9},
                     {name: "translationPriority", dataIndex: "translationPriority", header: "Priority", sortable: true, editor: priorityComboConfig, renderer: {fn: this.renderTranslationPriority, scope: self}, width: 15},
+                    {name: "translationDeadline", dataIndex: "translationDeadline", header: "Deadline", sortable: true, type: "date", width: 5, renderer: Ext.util.Format.dateRenderer("d/M/y"),
+                        editor: {xtype: "datefield", format: "d/M/Y", minValue: new Date()}},
                 ]
             }),
             loadMask: false,
@@ -118,22 +120,39 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                 },
 
                 afteredit: (e) =>  {
-                    if (e.originalValue === e.value) return;
-                    if (e.field !== "translationPriority") return;
                     console.log("afterEdit", e.record.id, e.record.json.handleId, e.originalValue, e.value, e)
-
-                    self.updatePriority(e.record.json.handleId, e.value)
-                        .then(() => {
-                            console.log("Success!");
-                            this.store.proxy.invalidateCache();
-                            this.store.reload();
-                        }).catch(err =>  {
+                    if (e.originalValue === e.value) return;
+                    if (e.field === "translationPriority") {
+                        self.updatePriority(e.record.json.handleId, e.value)
+                            .then(() => {
+                                this.store.proxy.invalidateCache();
+                                this.store.reload();
+                            }).catch(err =>  {
                             console.error("Failure to update priority. Restoring previous priority to " + e.originalValue, err);
                             // Restore previous value
                             e.record.reject()
                         })
+                    }
+                    if (e.field === "translationDeadline") {
+                        self.updateDeadline(e.record.json.handleId, e.value)
+                            .then(() => {
+                                this.store.proxy.invalidateCache();
+                                this.store.reload();
+                            }).catch(err =>  {
+                            console.error("Failure to update deadline. Restoring previous priority to " + e.originalValue, err);
+                            e.record.reject()
+                        })
+                    }
                 }
             }
+        }
+
+
+        this.statusLabel = {
+            xtype: "label",
+            text: "Status",
+            id: STATUS_LABEL_ID,
+            style: SIDEBAR_LABEL_STYLE
         }
 
         this.moduleLabel = {
@@ -188,12 +207,6 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                         Hippo.Reports.priorityFilterComboConfig,
                         {
                             xtype: "label",
-                            text: "Status",
-                            style: SIDEBAR_LABEL_STYLE
-                        },
-                        Hippo.Reports.typeFilterComboConfig,
-                        {
-                            xtype: "label",
                             text: "Document type",
                             style: SIDEBAR_LABEL_STYLE
                         },
@@ -214,6 +227,24 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
         });
 
         Hippo.Reports.TranslationListPanel.superclass.constructor.call(this, config);
+    },
+
+    addTranslationStatusFilter() {
+        console.log("adding translation status filter");
+        const cmp = Ext.getCmp(FILTER_SIDEBAR_ID);
+        if (cmp.get(STATUS_FILTER_ID) === undefined) {
+            cmp.insert(2, this.statusLabel);
+            cmp.insert(3, Hippo.Reports.typeFilterComboConfig);
+            cmp.doLayout();
+        }
+    },
+
+    removeTranslationStatusFilter() {
+        console.log("removing translation filter");
+        const cmp = Ext.getCmp(FILTER_SIDEBAR_ID);
+        cmp.remove(STATUS_FILTER_ID);
+        cmp.remove(STATUS_LABEL_ID);
+        cmp.doLayout();
     },
 
     removePageSubtypeFilters() {
@@ -307,6 +338,9 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
     },
 
     renderDateTime: function(iso) {
+        if (iso === undefined || iso === null || iso === "") {
+            return "";
+        }
         const onHover = new Date(iso).toLocaleString()
         return '<p title="' + onHover + '">' + this.isoDateTimeToDayMonthYear(iso) + '</p>'
     },
@@ -378,6 +412,15 @@ Hippo.Reports.TranslationListPanel = Ext.extend(Hippo.Reports.Portlet, {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({priority: priority})
+        });
+    },
+    updateDeadline: function(handleId, deadline) {
+        return fetch("/cms/translation/" + handleId + "/deadline", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({deadline: deadline.toISOString()})
         });
     },
 

@@ -6,7 +6,6 @@
 
 <#macro stackla module>
     <@hst.headContribution category="htmlBodyEnd">
-
         <script type="text/javascript">
             (function (d, id) {
                 var t, el = d.scripts[d.scripts.length - 1].previousElementSibling;
@@ -18,8 +17,9 @@
                 (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(t);
             }(document, 'stackla-widget-js'));
         </script>
-
     </@hst.headContribution>
+
+    <@previewWarning editMode module module.errorMessages />
 
     <vs-module-wrapper theme="<#if themeName?has_content>${themeName}<#else>light</#if>">
         <template slot="vsModuleWrapperHeading">

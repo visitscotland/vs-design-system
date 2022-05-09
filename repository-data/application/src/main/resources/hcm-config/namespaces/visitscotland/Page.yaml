@@ -24,7 +24,7 @@ definitions:
             hipposysedit:path: visitscotland:heroImage
             hipposysedit:primary: false
             hipposysedit:type: hippogallerypicker:imagelink
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:image-validator']
           /seoTitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -266,7 +266,7 @@ definitions:
             hint: Max length suggestion is 500.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+              ckeditor.config.overlayed.json: '{disallowedContent: ''p[align]'', toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
               ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\

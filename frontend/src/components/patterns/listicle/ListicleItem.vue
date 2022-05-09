@@ -52,7 +52,7 @@
 
 <script>
 import VsHeading from '@components/elements/heading/Heading';
-import { VsRow, VsCol } from '@components/elements/layout';
+import { VsRow, VsCol } from '@components/elements/grid';
 
 /**
  * TODO: Document usage
@@ -110,7 +110,7 @@ export default {
     .count {
         color: $color-white;
         font-family: $headings-font-family;
-        font-size: $display1-size;
+        font-size: $font-size-9;
         line-height: $line-height-xs;
         display: block;
         text-align: center;
@@ -158,8 +158,7 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-left: $spacer-3;
-        margin-bottom: $spacer-5;
+        margin: 0 0 $spacer-5 $spacer-3;
 
         @include media-breakpoint-up(md) {
             margin-bottom: 0;

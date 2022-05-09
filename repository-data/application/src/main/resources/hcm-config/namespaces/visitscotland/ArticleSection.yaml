@@ -71,14 +71,14 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.appended.json: '{extraPlugins: ''wordcount'',   wordcount:
                 {countSpacesAsChars: true, showCharCount: true, maxCharCount: 4000}}'
-              ckeditor.config.overlayed.json: '{ stylesSet: ''article:./vs_styles.js'',  toolbarGroups:
+              ckeditor.config.overlayed.json: '{disallowedContent: ''p[align]'',  stylesSet: ''article:./vs_styles.js'',  toolbarGroups:
                 [ {name: ''styles''},{name:''listindentalign'',groups:[''list'']},
                 {name:''links''},{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}
                 ] , removeButtons: ''PickImage,Youtube,Table''}'
           /media:
             jcr:primaryType: frontend:plugin
             caption: Media
-            compoundList: hippogallerypicker:imagelink,visitscotland:InstagramImage,visitscotland:VideoLink
+            compoundList: hippogallerypicker:imagelink
             contentPickerType: links
             field: media
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin

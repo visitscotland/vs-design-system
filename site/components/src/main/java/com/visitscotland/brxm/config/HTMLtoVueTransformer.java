@@ -24,6 +24,7 @@ public class HTMLtoVueTransformer {
         String output = processHeadings(html);
         output = processLinks(output);
         output = processLists(output);
+        output = processInfoAlert(output);
 
         return output;
     }
@@ -71,10 +72,10 @@ public class HTMLtoVueTransformer {
          * 2. The value of the attribute href
          * 3. Closing tag: "</a>"
          */
-        final Pattern aTag = Pattern.compile("(<a\\s)(\\S*+\\s)?href\\s?=\\s?\"(.*?)\".*?(</a>)");
+        final Pattern aTag = Pattern.compile("(<a\\s)(?:.+\\s)?href\\s?=\\s?\"(.*?)\".*?(</a>)");
         final int OPEN = 1;
-        final int HREF = 3;
-        final int CLOSE = 4;
+        final int HREF = 2;
+        final int CLOSE = 3;
 
         Matcher matcher = aTag.matcher(html);
         String output = html;
@@ -96,6 +97,23 @@ public class HTMLtoVueTransformer {
             output = output.replace(a, vsLink);
         }
 
+        return output;
+    }
+
+    /**
+     * Process info alerts
+     *
+     * These are warnings that can appear in a General page introduction. They are inserted by the CKEditor as
+     * <span class="info-alert">...</span>, and must be converted into <vs-alert>...</vs-alert>
+     */
+    public String processInfoAlert(final String html) {
+        String output = html;
+        final Pattern infoSpanRegex = Pattern.compile("<span\\s+class=\\\"info-text\\\">(.*?)</span>");
+        Matcher matcher = infoSpanRegex.matcher(html);
+        while (matcher.find()) {
+            String alertHtml = "<vs-alert>" + matcher.group(1) + "</vs-alert>";
+            output = output.replace(matcher.group(0), alertHtml);
+        }
         return output;
     }
 

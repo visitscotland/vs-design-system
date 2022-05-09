@@ -5,7 +5,6 @@
         :class="accordionItemClasses"
         :data-unique-id="getUniqueId"
         :control-id="`vs-mega-nav-accordion-item-${getUniqueId}-${controlId}`"
-        :open-by-default="false"
     >
         <template #title>
             {{ title }}
@@ -13,15 +12,16 @@
 
         <template #icon-open>
             <VsIcon
-                name="minus"
+                name="chevron"
                 variant="secondary"
+                orientation="up"
                 size="xs"
             />
         </template>
         <template #icon-closed>
             <VsIcon
-                name="plus"
-                orientation="right"
+                name="chevron"
+                orientation="down"
                 variant="secondary"
                 size="xs"
             />
@@ -134,7 +134,7 @@ export default {
             .vs-accordion-toggle.btn-primary{
                 background-color: $color-white;
                 color: $color-base-text;
-                font-size: $h2-font-size;
+                font-size: $font-size-6;
                 padding-left: $spacer-5;
                 padding-right: $spacer-5;
 
@@ -151,7 +151,7 @@ export default {
             .vs-accordion-toggle.btn-primary{
                 background-color: $color-white;
                 color: $color-secondary-gray-shade-3;
-                font-size: $h3-font-size;
+                font-size: $font-size-5;
                 line-height: $line-height-s;
                 padding-left: $spacer-8;
                 padding-right: $spacer-5;
@@ -211,6 +211,13 @@ export default {
                 </VsMegaNavList>
             </VsMegaNavAccordionItem>
             <div class="featured-items">
+                <template
+                    v-if="item.title === 'Things to do'"
+                >
+                    <MegaNavFeaturedEvent
+                        source-url="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=&loc=Scotland&size=1"
+                    />
+                </template>
                 <template
                     v-if="item.title === 'Accommodation' || item.title === 'Inspiration'"
                 >

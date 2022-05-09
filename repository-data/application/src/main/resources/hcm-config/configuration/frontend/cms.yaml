@@ -38,6 +38,7 @@ definitions:
       valuelist.provider: service.locationlist.destination
       location.levels: [REGION, DESTINATION]
     /hippo:configuration/hippo:frontend/cms/cms-services/DmsProductSearchLocationListProvider:
+      .meta:order-before: DmsImageLocationListProvider
       jcr:primaryType: frontend:plugin
       location.levels: []
       plugin.class: com.visitscotland.brxm.components.DmsLocationListProvider
@@ -73,3 +74,12 @@ definitions:
       width: '1'
     /hippo:configuration/hippo:frontend/cms/cms-tree-views/documents/addfolderPlugin:
       hipposys:userrole: xm.content.admin
+    /hippo:configuration/hippo:frontend/cms/cms-services/DmsImageLocationListProvider:
+      jcr:primaryType: frontend:plugin
+      location.levels: [REGION, DESTINATION, DISTRICT]
+      plugin.class: com.visitscotland.brxm.components.DmsLocationListProvider
+      valuelist.provider: service.locationlist.image
+    /hippo:configuration/hippo:frontend/cms/cms-folder-views/hippostd:folder/root/filters/showFolderType:
+      display: false
+    /hippo:configuration/hippo:frontend/cms/cms-folder-views/hippostd:folder/root:
+      plugin.class: com.visitscotland.brxm.menu.UnsortableFolderViewPlugin

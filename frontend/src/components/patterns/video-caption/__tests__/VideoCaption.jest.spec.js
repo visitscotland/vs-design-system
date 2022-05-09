@@ -8,11 +8,11 @@ const videoDurationSlot = '3 minute video';
 const alertMsgSlot = 'This is a no-js alert';
 const buttonText = 'Button text';
 
-const factoryShallowMount = (propsData, computedData) => shallowMount(VsVideoCaption, {
+const factoryShallowMount = (propsData) => shallowMount(VsVideoCaption, {
     slots: {
         'video-title': videoTitleSlot,
         'video-duration': videoDurationSlot,
-        'video-alert': alertMsgSlot,
+        'video-no-js-alert': alertMsgSlot,
     },
     propsData: {
         videoBtnText: buttonText,
@@ -20,8 +20,20 @@ const factoryShallowMount = (propsData, computedData) => shallowMount(VsVideoCap
         videoId: '123456',
         ...propsData,
     },
+    data() {
+        return {
+            videoExists: true,
+        };
+    },
     computed: {
-        ...computedData,
+        videoLoaded: {
+            get() {
+                return this.videoExists;
+            },
+            set(val) {
+                this.videoExists = val;
+            },
+        },
     },
 });
 
@@ -39,10 +51,13 @@ describe('VsVideoCaption', () => {
             expect(wrapper.html()).toContain(videoTitleSlot);
         });
 
-        it('should render the video alert message slot content', () => {
+        it('should render the video alert message slot content', async() => {
             const wrapper = factoryShallowMount();
+            wrapper.vm.videoLoaded = false;
+            await wrapper.vm.$nextTick();
+            const nojsMsg = wrapper.find('[data-test="video-caption-nojs"]');
 
-            expect(wrapper.html()).toContain(alertMsgSlot);
+            expect(nojsMsg.html()).toContain(alertMsgSlot);
         });
     });
 
@@ -78,14 +93,14 @@ describe('VsVideoCaption', () => {
             expect(wrapper.find('.vs-video-caption').exists()).toBe(true);
         });
 
-        it('should not show the content if a video has not been loaded', () => {
-            const wrapper = factoryShallowMount(null, {
-                videoLoaded() {
-                    return false;
-                },
-            });
+        it('should not show the content if a video has not been loaded', async() => {
+            const wrapper = factoryShallowMount();
 
-            expect(wrapper.find('.vs-video-caption').exists()).toBe(false);
+            wrapper.vm.videoLoaded = false;
+
+            await wrapper.vm.$nextTick();
+
+            expect(wrapper.find('.vs-video-caption__title').exists()).toBe(false);
         });
     });
 

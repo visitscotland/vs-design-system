@@ -71,7 +71,7 @@ export default {
             background: $color-gray-shade-1;
             box-shadow: 0 0 0 2px $color-gray-shade-1;
             border: 1px solid $color-gray-shade-1;
-            border-radius: 0.5rem;
+            border-radius: $border-radius-xl;
             display: block;
             height: 42px;
             width: 42px;
@@ -111,10 +111,15 @@ export default {
             }
 
             &:focus {
+                box-shadow: $shadow-button-focus;
+                background-color: $color-white;
+                color: $color-gray-shade-1;
                 outline: none;
-                border: 1px solid $color-pink;
-                box-shadow: 0 0 0 2px $color-pink-tint-5;
-            }
+
+                .vs-icon {
+                    fill: $color-gray-shade-1 !important;
+                }
+        }
 
             .vs-icon {
                 &.vs-icon--size-md {

@@ -2,11 +2,15 @@
 <#include "../../../../frontend/components/vs-icentre.ftl">
 <#include "../../../../frontend/components/vs-quote.ftl">
 <#include "../../../../frontend/components/vs-img.ftl">
-<#include "../../global/image-with-caption.ftl">
-<#include "../../global/quote.ftl">
 <#include "../../../../frontend/components/vs-module-wrapper.ftl">
 
+<#include "../../global/image-with-caption.ftl">
+<#include "../../global/quote.ftl">
+<#include "../../global/preview-warning.ftl">
+
 <#macro icentre module themeName="">
+    <@previewWarning editMode module module.errorMessages />
+
     <#if module.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=module.image.cmsImage.original/>

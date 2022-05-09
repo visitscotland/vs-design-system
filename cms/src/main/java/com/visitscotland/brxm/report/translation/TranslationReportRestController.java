@@ -1,12 +1,14 @@
 package com.visitscotland.brxm.report.translation;
 
 import com.visitscotland.brxm.report.ReportException;
+import org.codehaus.jackson.map.util.StdDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,8 +25,8 @@ public class TranslationReportRestController {
     }
 
     @GetMapping("/translation/untranslated")
-    public RestListContainer<DocumentTranslationReportModel> untranslatedFiles(@RequestParam String locale) {
-        if (!translationReportService.isLocaleSupported(locale)) {
+    public RestListContainer<DocumentTranslationReportModel> untranslatedFiles(@RequestParam(required = false) String locale) {
+        if (locale != null && !translationReportService.isLocaleSupported(locale)) {
             return new RestListContainer<>(Collections.emptyList());
         }
         return new RestListContainer<>(translationReportService.getUntranslatedDocuments(locale));
@@ -42,6 +44,21 @@ public class TranslationReportRestController {
             }
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No priority provided");
+        }
+    }
+
+    @PostMapping("/translation/{handleId}/deadline")
+    public void setTranslationDeadline(@PathVariable String handleId, @RequestBody Map<String, Object> requestBody) {
+        Object deadlineString = requestBody.get("deadline");
+        if (!(deadlineString instanceof String)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No deadline provided");
+        }
+        try {
+            Calendar deadline = Calendar.getInstance();
+            deadline.setTime(new StdDateFormat().parse((String)deadlineString));
+            translationReportService.setTranslationDeadline(handleId, deadline);
+        } catch (ParseException ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid deadline");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.menu;
 
+import com.visitscotland.brxm.components.content.ContentComponent;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.brxm.translation.plugin.JcrDocument;
 import com.visitscotland.brxm.utils.HippoUtilsService;
@@ -18,10 +19,9 @@ import java.util.*;
 @Component
 public class MenuItemProvider {
 
-    private static final String PAGE_PATH = "content";
     private static final String NEW_PAGE_MENU = "new-page";
     private static final String NEW_MODULE_MENU = "new-module";
-    private static final String NEW_FOLDER_MENU = "new-translated-folder";
+
     private static final String LOCALE_PROPERTY_PATH = "hippotranslation:locale";
 
     private static final Logger logger = LoggerFactory.getLogger(MenuItemProvider.class);
@@ -36,9 +36,7 @@ public class MenuItemProvider {
             Object createDocumentOnTranslationObject = workflowConfiguration.get("visitscotland:create-documents-on-translations");
             boolean createDocumentOnTranslation = createDocumentOnTranslationObject instanceof Boolean ? (Boolean) createDocumentOnTranslationObject : true;
             if (!isEnglishFolder(subjectNode) && !createDocumentOnTranslation) {
-                prototypes.remove(NEW_PAGE_MENU);
-                prototypes.remove(NEW_MODULE_MENU);
-                prototypes.remove(NEW_FOLDER_MENU);
+                prototypes.clear();
             } else if (prototypes.containsKey(NEW_PAGE_MENU) && prototypes.containsKey(NEW_MODULE_MENU)) {
                 Optional<Page> optionalPage = getPageContentBean(subjectNode);
                 if (optionalPage.isPresent()) {
@@ -61,11 +59,11 @@ public class MenuItemProvider {
     }
 
     private Optional<Page> getPageContentBean(Node subjectNode) throws RepositoryException, ObjectBeanManagerException, QueryException {
-        if (!subjectNode.hasNode(PAGE_PATH) || !subjectNode.getNode(PAGE_PATH).isNodeType(JcrDocument.HIPPO_HANDLE)) {
+        if (!subjectNode.hasNode(ContentComponent.PAGE_PATH) || !subjectNode.getNode(ContentComponent.PAGE_PATH).isNodeType(JcrDocument.HIPPO_HANDLE)) {
             return Optional.empty();
         }
 
-        HippoBean subjectBean = hippoUtilsService.getDocumentFromNode(subjectNode.getNode(PAGE_PATH), true);
+        HippoBean subjectBean = hippoUtilsService.getDocumentFromNode(subjectNode.getNode(ContentComponent.PAGE_PATH), true);
         if (!(subjectBean instanceof Page)) {
             return Optional.empty();
         }

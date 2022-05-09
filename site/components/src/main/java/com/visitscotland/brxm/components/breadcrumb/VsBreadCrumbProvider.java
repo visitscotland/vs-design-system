@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.components.breadcrumb;
 
+import com.visitscotland.brxm.components.content.ContentComponent;
 import com.visitscotland.brxm.hippobeans.Page;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
@@ -10,10 +11,12 @@ import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 import org.onehippo.forge.breadcrumb.components.BreadcrumbProvider;
+import org.onehippo.forge.breadcrumb.om.Breadcrumb;
 import org.onehippo.forge.breadcrumb.om.BreadcrumbItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -33,6 +36,15 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
 
     public VsBreadCrumbProvider(BaseHstComponent component) {
         super(component);
+    }
+
+    @Override
+    public Breadcrumb getBreadcrumb(HstRequest request) {
+        Breadcrumb breadcrumb = super.getBreadcrumb(request);
+        if (breadcrumb.getItems().isEmpty() && request.getRequestContext().getContentBean() != null) {
+            return new Breadcrumb(Collections.singletonList(getBreadcrumbItem(request, request.getRequestContext().getContentBean())), breadcrumb.getSeparator(), null);
+        }
+        return breadcrumb;
     }
 
     /**
@@ -108,7 +120,7 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
      * @return HippoBean index document (content) or the folder if the index does not exist
      */
     private HippoBean getValidHippoBean (HippoBean bean){
-        HippoBean content =  bean.getParentBean().getBean("content");
+        HippoBean content =  bean.getParentBean().getBean(ContentComponent.PAGE_PATH);
         if (content == null){
             contentLogger.warn("The document created at {} has not defined the path as content ",  bean.getParentBean().getPath());
             return bean.getParentBean();

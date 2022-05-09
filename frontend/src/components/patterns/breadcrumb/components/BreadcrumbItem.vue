@@ -62,10 +62,11 @@ export default {
 <style lang="scss">
 .vs-breadcrumb-item {
     color: $color-base-text;
-    font-size: $font-size-base;
+    font-size: $font-size-4;
     font-weight: $font-weight-normal;
     white-space: nowrap;
     overflow: hidden;
+    padding: 1px; // Prevents breadcrumb link focus state from being clipped
 
     &:last-child {
         color: $color-base-text;
@@ -73,7 +74,7 @@ export default {
     }
 
     @include media-breakpoint-down(md) {
-        font-size: $font-size-sm;
+        font-size: $font-size-2;
     }
 
     @include media-breakpoint-down(sm) {

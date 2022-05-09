@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
 
@@ -49,7 +50,7 @@ public class ListicleFactory {
      * @param locale Set the language for the labels
      * @param listicleItem CMS document with the data
      * @param index Index of the item
-     * @return
+     * @return Listicle Module created
      */
     public ListicleModule getListicleItem(Locale locale, ListicleItem listicleItem, Integer index) {
         logger.info("Creating ListicleItem module for {}", listicleItem.getPath());
@@ -79,12 +80,21 @@ public class ListicleFactory {
         //Set Extra Links
         //Original designs used to had more that one link, so the logic is prepared to be opened to several links
         for (HippoCompound compound : listicleItem.getExtraLinks()) {
-            link = linksService.createCTALink(module, locale, compound);
-
-            if (link != null) {
-                links.add(link);
+            if (compound instanceof CMSLink) {
+                CMSLink cmsLink = (CMSLink) compound;
+                link = linksService.createSimpleLink((Linkable) cmsLink.getLink(),module, locale);
+                if(!Contract.isEmpty(cmsLink.getLabel())){
+                    link.setLabel(cmsLink.getLabel());
+                }
+            }else{
+                link = linksService.createFindOutMoreLink(module, locale, compound);
             }
+
+
+        if (link != null) {
+            links.add(link);
         }
+    }
 
         if (Contract.isEmpty(module.getSubtitle()) && module.getImage() != null) {
             module.setSubtitle(module.getImage().getLocation());
@@ -105,11 +115,23 @@ public class ListicleFactory {
         } else if (link instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) link;
             JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
-            processDMSMainProduct(module, dmsLink, product);
-            return linksService.createDmsLink(locale, dmsLink, product);
+            if (product == null) {
+                String message = String.format("The DMS product added to '%s' was not found, please review the DMS Product id field in the document %s at: %s ", module.getTitle(), dmsLink.getDisplayName(), dmsLink.getPath());
+                contentLogger.warn(message);
+                module.addErrorMessage(message);
+            }else {
+                processDMSMainProduct(locale, module, dmsLink, product);
+                return linksService.createDmsLink(locale, dmsLink, product);
+            }
         } else if (link instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) link;
-            EnhancedLink eLink = linksService.createEnhancedLink((Linkable) cmsLink.getLink(), module, locale,false);
+            Optional<EnhancedLink> optionalLink = linksService.createEnhancedLink((Linkable) cmsLink.getLink(), module, locale,false);
+            if (!optionalLink.isPresent()) {
+                String linkPath = cmsLink.getLink() == null ? "" : cmsLink.getLink().getPath();
+                contentLogger.error("Failed to add main product link to listicle item {} - check link is valid and published", linkPath);
+                return null;
+            }
+            EnhancedLink eLink = optionalLink.get();
             //Override default link label when the module has an override text
             if (!Contract.isEmpty(cmsLink.getLabel())){
                 eLink.setCta(linksService.formatLabel(cmsLink.getLink(), cmsLink.getLabel(), module, locale));
@@ -119,8 +141,14 @@ public class ListicleFactory {
             if (module.getImage() == null) {
                 module.setImage(eLink.getImage());
             }
-
+            if (eLink.getLink() == null){
+                contentLogger.warn("There is no product with the id '{}', ({}) ", cmsLink.getLink(), cmsLink.getLink().getPath());
+                module.addErrorMessage("Main Link: The DMS id is not valid, please review the document at: " + cmsLink.getLink().getPath());
+                return null;
+            }
             return  eLink;
+        }  else if (link instanceof ExternalLink || link instanceof ProductSearchLink ) {
+                return linksService.createFindOutMoreLink(module, locale,link);
         } else {
             contentLogger.warn("The ListicleItem {} is pointing to a document that is not a page ", module.getHippoBean().getPath());
         }
@@ -129,18 +157,19 @@ public class ListicleFactory {
     }
 
     /**
-     * Loads as much information as it can from the DMS Prodcut data:
+     * Loads as much information as it can from the DMS Product data:
      *
      * Facilities are loaded from the dmsItem. Subtitle, Image and Coordinates are set only when the listicle item has
      * not defined the values
      */
-    private void processDMSMainProduct(ListicleModule item, DMSLink dmsLink, JsonNode product) {
+    private void processDMSMainProduct(Locale locale, ListicleModule item, DMSLink dmsLink, JsonNode product) {
         if (product == null) {
-            item.addErrorMessage("The product id does not match in the DMS");
-            contentLogger.warn("The product id was not provided or the product was not found (id={}), Listicle = {} - {}",  dmsLink.getProduct(), item.getHippoBean(), item.getHippoBean().getTitle());
+            String message = String.format("The DMS product added to '%s' was not found, please review the DMS Product id field in the document %s at: %s ", item.getTitle(), dmsLink.getDisplayName(), dmsLink.getPath());
+            item.addErrorMessage(message);
+            contentLogger.warn(message);
         } else {
             if (item.getImage() == null) {
-                item.setImage(imageFactory.createImage(product, item));
+                item.setImage(imageFactory.createImage(product, item, locale));
             } else if (item.getImage().getCoordinates() == null && product.has(LATITUDE)) {
                 Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
                 item.getImage().setCoordinates(coordinates);
