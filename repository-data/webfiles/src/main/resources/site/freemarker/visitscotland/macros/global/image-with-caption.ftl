@@ -34,7 +34,7 @@
                     ${imageSrc}?size=md 1200w, 
                     ${imageSrc}?size=lg 2048w"
             sizes="(min-width: 768px) 75vw, 100vw"
-            low-res-img="${imageSrc}?size=xxs"
+            low-res-image="${imageSrc}?size=xxs"
         >
         </vs-img>
 
