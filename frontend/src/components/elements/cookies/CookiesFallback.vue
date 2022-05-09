@@ -1,8 +1,5 @@
 <template>
-    <div
-        class="cookie-fallback no-cookie-container-instagram"
-        style="display: block"
-    >
+    <div class="cookies-fallback">
         <img
             class="warning-icon"
             style="margin: 0 auto; height: 60px; margin-bottom: 2rem"
@@ -57,3 +54,36 @@ export default {
     },
 };
 </script>
+<style lang="scss">
+.cookies-fallback {
+    background-color: #e2e2e2;
+    padding-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    padding-bottom: 5px;
+    width: 100%;
+
+    img.warning-icon {
+        height: 60px;
+        margin-bottom: 15px;
+        padding-left: 10px;
+    }
+}
+
+@media (max-width: 575px) {
+    .cookies-fallback {
+        width: 100%;
+        padding: 15px;
+
+        img {
+            padding-left: 0 !important;
+            height: 50px !important;
+        }
+
+        .fallback-text {
+            padding-left: 20px;
+        }
+    }
+}
+</style>
