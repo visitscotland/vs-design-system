@@ -70,6 +70,7 @@
                     :variant="theme === 'dark' ? 'dark' : 'primary'"
                     data-test="vs-stretched-link"
                     :disabled="disabled"
+                    :tabindex="videoId ? '-1' : '0'"
                 >
                     <!-- @slot Contains header content for the card  -->
                     <slot name="stretchedCardHeader" />
