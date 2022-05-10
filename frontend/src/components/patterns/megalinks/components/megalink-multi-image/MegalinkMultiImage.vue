@@ -93,12 +93,12 @@ export default {
         },
         /**
         * The type of link. This will set the icon.
-        * `external, internal, download`
+        * `external, internal, download, video`
         */
         linkType: {
             type: String,
             required: true,
-            validator: (value) => value.match(/(default|external|internal|download)/),
+            validator: (value) => value.match(/(default|external|internal|download|video)/),
         },
         /**
         * The link destination

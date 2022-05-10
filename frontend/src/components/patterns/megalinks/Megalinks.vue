@@ -287,8 +287,8 @@ export default {
                             featured
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text"
-                            linkType="internal"
-                            linkUrl="https://www.visitscotland.com"
+                            linkType="video"
+                            linkUrl="#"
                             videoId="g-Fhvj7vW-E"
                             videoBtnText="Play Video"
                         >
@@ -345,8 +345,8 @@ export default {
                         <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text 2"
-                            linkType="external"
-                            linkUrl="https://www.visitscotland.com"
+                            linkType="video"
+                            linkUrl="#"
                             videoId="N3r5rCN9iaE"
                             videoBtnText="Play Video"
                         >
@@ -610,8 +610,8 @@ export default {
             <vs-megalink-link-list
                 imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 imgAlt="This is the alt text"
-                linkType="internal"
-                linkUrl="https://www.visitscotland.com"
+                linkType="video"
+                linkUrl="#"
                 videoId="tfk7J6XZju4"
                 videoBtnText="Play Video"
             >
@@ -666,8 +666,8 @@ export default {
             <vs-megalink-link-list
                 imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 imgAlt="This is the alt text 2"
-                linkType="external"
-                linkUrl="https://www.visitscotland.com"
+                linkType="video"
+                linkUrl="#"
                 videoId="zZCUFjSiWpE"
                 videoBtnText="Play Video"
             >
