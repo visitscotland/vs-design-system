@@ -21,7 +21,10 @@
             <slot name="stretchedCardPanels" />
         </template>
 
-        <div class="card-body">
+        <div
+            class="card-body"
+            :class="videoId ? 'position-relative' : ''"
+        >
             <VsButton
                 class="vs-stretched-link-card__video-button"
                 data-test="vs-stretched-link-card__video-button"
@@ -312,10 +315,6 @@ export default {
             flex-direction: row;
         }
 
-        .card-body {
-            position: relative;
-        }
-
         .vs-stretched-link-card__link {
             margin: $spacer-4 $spacer-0 $spacer-0;
             color: $color-pink;
@@ -403,10 +402,6 @@ export default {
     }
 
     .vs-stretched-link-card.vs-megalink-multi-image {
-        .card-body {
-            position: relative;
-        }
-
         .vs-stretched-link-card__video-button {
             position: absolute;
             bottom: 100%;
@@ -429,7 +424,7 @@ export default {
         @include media-breakpoint-up(xl) {
             &.vs-megalink-multi-image--featured {
                 .card-body {
-                    position: initial;
+                    position: initial !important;
                 }
 
                 .vs-stretched-link-card__video-button {
@@ -443,7 +438,7 @@ export default {
 
     .vs-megalink-link-list .vs-stretched-link-card {
         .card-body {
-            position: initial;
+            position: initial !important;
         }
 
         .vs-stretched-link-card__video-button {
