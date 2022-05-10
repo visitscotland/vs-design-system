@@ -61,6 +61,10 @@
                     <slot name="stretchedCardHeader" />
                 </template>
 
+                <template v-else-if="type === 'video'">
+                    <slot name="stretchedCardHeader" />
+                </template>
+
                 <VsLink
                     v-else
                     :href="link"
@@ -131,12 +135,12 @@ export default {
         },
         /**
         * The type of link. This will set the icon.
-        * `external, internal, download`
+        * `external, internal, download, video`
         */
         type: {
             type: String,
             required: true,
-            validator: (value) => value.match(/(default|external|internal|download)/),
+            validator: (value) => value.match(/(default|external|internal|download|video)/),
         },
         /**
         * The component color theme
@@ -196,6 +200,19 @@ export default {
 
             return `${this.videoDetails.videoFullDuration.minutes}:${seconds}`;
         },
+        stretchedLinkCardClasses() {
+            let outputClasses = '';
+
+            if (this.disabled) {
+                outputClasses += 'vs-stretched-link-card--disabled';
+            }
+
+            if (this.type === 'video') {
+                outputClasses += 'vs-stretched-link-card--video';
+            }
+
+            return outputClasses;
+        },
         videoDetails() {
             return videoStore.getters.getVideoDetails(this.videoId);
         },
@@ -248,6 +265,10 @@ export default {
             .megalink-link-list__title {
                 text-decoration: none;
             }
+        }
+
+        &--video {
+            cursor: pointer;
         }
 
         .stretched-link {
@@ -508,8 +529,8 @@ export default {
 
             <VsCol cols="12" md="6">
                 <VsStretchedLinkCard
-                    link="https://visitscotland.com"
-                    type="external"
+                    link="#"
+                    type="video"
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
                     videoId="FlG6tbYaA88"
