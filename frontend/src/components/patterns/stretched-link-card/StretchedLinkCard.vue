@@ -1,7 +1,9 @@
 <template>
     <div
         class="card vs-stretched-link-card"
-        :class="disabled ? 'vs-stretched-link-card--disabled': ''"
+        :class="stretchedLinkCardClasses"
+        @click="emitShowModal"
+        @keypress="emitShowModal"
     >
         <template
             v-if="imgSrc"
@@ -226,6 +228,10 @@ export default {
     },
     methods: {
         emitShowModal() {
+            if (!this.videoId) {
+                return;
+            }
+
             /**
              * Triggers when the video button is clicked, requests that the appropriate
              * video modal becomes visible
