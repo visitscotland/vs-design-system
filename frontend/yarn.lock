@@ -17212,7 +17212,7 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-recaptcha@^2.0.2:
+vue-recaptcha@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/vue-recaptcha/-/vue-recaptcha-2.0.2.tgz#22f323089ff15f4eacde26215ca61ac4806d009a"
   integrity sha512-bE5WMz9jyiiY1PlaBOSUvsgTZ/ONoRV7Oq4Fn4JVz//ul+DJ0LHIJERfoF0NNEIDWXv6GjhwGLveGhoq0sEerg==
