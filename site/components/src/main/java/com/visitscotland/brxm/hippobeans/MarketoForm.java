@@ -44,11 +44,6 @@ public class MarketoForm extends BaseDocument {
         return getSingleProperty("visitscotland:translationPriority");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:guide")
-    public HippoHtml getGuide() {
-        return getHippoHtml("visitscotland:guide");
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
     public Calendar getTranslationDeadline() {
         return getSingleProperty("visitscotland:translationDeadline");
