@@ -163,7 +163,7 @@ definitions:
           /megalinkItems:
             jcr:primaryType: frontend:plugin
             caption: Links
-            compoundList: visitscotland:MegalinkItem,visitscotland:VideoLink
+            compoundList: visitscotland:MegalinkItem
             contentPickerType: links
             field: megalinkItems
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
