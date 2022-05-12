@@ -23,7 +23,7 @@ import cookieStore from '../../stores/cookies.store';
 
 export default {
     render() {
-        return []
+        return () => null;
     },
     data() {
         return {
