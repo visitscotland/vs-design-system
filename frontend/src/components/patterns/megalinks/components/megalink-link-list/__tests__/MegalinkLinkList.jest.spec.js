@@ -11,7 +11,7 @@ const factoryShallowMount = () => shallowMount(VsMegalinkLinkList, {
         linkType: 'external',
         theme: 'dark',
         linkUrl: 'www.visitscotland.com',
-        days: 3,
+        days: '3',
         daysLabel: 'days',
         transport: 'bus',
         transportName: 'Bus',
