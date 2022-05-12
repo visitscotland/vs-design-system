@@ -27,6 +27,9 @@
         <template slot="video-title">
             ${videoTitle}
         </template>
+        <template slot="video-no-cookies-alert">
+            ${label('video', 'video.no-cookies')}
+        </template>
 
         <vs-caption
             slot="img-caption"

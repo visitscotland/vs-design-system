@@ -11,6 +11,7 @@
                 <youtube
                     :video-id="videoId"
                     :player-vars="playerVars"
+                    @ready="ready"
                     ref="youtube"
                 />
             </div>
@@ -23,10 +24,6 @@
                 <CookiesFallback />
             </div>
         </div>
-
-        <button id="ot-sdk-btn" class="ot-sdk-show-settings">
-            Cookie Settings
-        </button>
 
         <CookiesChecker />
     </div>
@@ -60,6 +57,9 @@ import CookiesFallback from '@components/elements/cookies/CookiesFallback';
 import CookiesChecker from '../../renderless/cookiesChecker';
 import videoStore from '../../../stores/video.store';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
+import requiredCookiesData from '../../../utils/requiredCookiesData';
+
+const cookieValues = requiredCookiesData.youtube;
 
 Vue.use(VueYoutube, {
     global: false,
@@ -131,32 +131,12 @@ export default {
             playerVars: {
                 hl: this.language,
             },
-            requiredCookies: ['C0004'],
+            requiredCookies: cookieValues,
+            playerRef: null,
         };
     },
-    computed: {
-        /**
-         * Return the player instance
-         */
-        player() {
-            if (typeof this.$refs.youtube !== 'undefined') {
-                return this.$refs.youtube.player;
-            }
-
-            return null;
-        },
-    },
     mounted() {
-        /**
-         * Upon promise resolution, if the video ID returns
-         * a YouTube video, process the time into the desired format.
-         */
-        if (this.player) {
-            this.player.getDuration().then((response) => {
-                this.formatTime(response);
-                this.storeVideoDetails();
-            });
-        }
+        this.getPlayerDetails();
 
         /**
          * Sets up listener for play/pause events
@@ -178,17 +158,33 @@ export default {
         });
     },
     methods: {
+        ready() {
+            this.playerRef = this.$refs.youtube.player;
+            this.getPlayerDetails();
+        },
         /**
          * Plays the video
          */
         playVideo() {
-            this.player.playVideo();
+            this.playerRef.playVideo();
         },
         /**
          * Pauses the video
          */
         pauseVideo() {
-            this.player.pauseVideo();
+            this.playerRef.pauseVideo();
+        },
+        getPlayerDetails() {
+            /**
+             * Upon promise resolution, if the video ID returns
+             * a YouTube video, process the time into the desired format.
+             */
+            if (this.playerRef) {
+                this.playerRef.getDuration().then((response) => {
+                    this.formatTime(response);
+                    this.storeVideoDetails();
+                });
+            }
         },
         /**
          * Converts time in seconds to minutes and seconds,

@@ -4,6 +4,7 @@
         data-test="vs-image-with-caption"
         :class="imageWithCaptionClasses"
     >
+        <CookiesChecker />
         <div
             class="vs-image-with-caption__image-wrapper"
             :class="mobileOverlap ? 'vs-image-with-caption--overlapped' : ''"
@@ -56,6 +57,9 @@
                     <template slot="video-duration">
                         <slot name="video-duration" />
                     </template>
+                    <template slot="video-no-cookies-alert">
+                        <slot name="video-no-cookies-alert" />
+                    </template>
                 </VsVideoCaption>
             </div>
 
@@ -76,6 +80,11 @@
 import VsImg from '@components/elements/img/Img';
 import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
 import VsVideoCaption from '@components/patterns/video-caption/VideoCaption';
+import CookiesChecker from '../../renderless/cookiesChecker';
+import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
+import requiredCookiesData from '../../../utils/requiredCookiesData';
+
+const cookieValues = requiredCookiesData.youtube;
 
 /**
  * Image with toggle to open a caption and image location map
@@ -90,7 +99,11 @@ export default {
         VsImg,
         VsToggleButton,
         VsVideoCaption,
+        CookiesChecker,
     },
+    mixins: [
+        verifyCookiesMixin,
+    ],
     props: {
         /**
          * The image alt text for screen readers
@@ -167,6 +180,7 @@ export default {
     data() {
         return {
             showCaption: false,
+            requiredCookies: cookieValues,
         };
     },
     computed: {
@@ -174,6 +188,7 @@ export default {
             return {
                 'vs-image-with-caption--closed-default': this.closedDefaultCaption,
                 'vs-image-with-caption--hero': this.isHeroImage,
+                'vs-image-with-caption--show-caption': !this.requiredCookiesExist && this.cookiesSetStatus,
                 'vs-image-with-caption--video': this.isVideo,
             };
         },
@@ -282,9 +297,11 @@ export default {
                 }
             }
 
-            .vs-image-with-caption__caption-wrapper {
-                display: none;
-                justify-content: flex-end;
+            .vs-image-with-caption {
+                &__caption-wrapper {
+                    display: none;
+                    justify-content: flex-end;
+                }
             }
 
             .vs-image-with-caption__video-caption-wrapper {
@@ -328,6 +345,13 @@ export default {
                         position: relative;
                         bottom: auto;
                         right: auto;
+                    }
+                }
+
+                &.vs-image-with-caption--show-caption {
+                    .vs-image-with-caption__caption-wrapper {
+                        display: flex;
+                        margin-top: $spacer-2;
                     }
                 }
             }
@@ -475,7 +499,7 @@ export default {
     }
 
     @include no-js {
-        .vs-image-with-caption{
+        .vs-image-with-caption {
             &__image-wrapper {
                 .vs-toggle-btn {
                     display: none;
