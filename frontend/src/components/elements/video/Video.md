@@ -55,8 +55,7 @@ the time is automatically added using these video prop values.
         <template slot="video-title">
             Scotch Whisky: Explained
         </template>
-    </VsVideoCaption>
-    
+    </VsVideoCaption>    
   ```
 
   ## Accessibility
