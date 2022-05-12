@@ -1,0 +1,23 @@
+/content/gallery/maxresdefault-1.jpg/maxresdefault-1.jpg:
+  jcr:primaryType: visitscotland:Image
+  hippo:availability: [live, preview]
+  hippogallery:filename: maxresdefault (1).jpg
+  /hippogallery:thumbnail:
+    jcr:primaryType: hippogallery:image
+    hippo:filename: maxresdefault (1).jpg
+    hippogallery:height: 33
+    hippogallery:width: 60
+    jcr:data:
+      type: binary
+      resource: /content/gallery/maxresdefault-1.jpg/maxresdefault-1.jpg/thumbnail/thumbnail.jpg
+    jcr:lastModified: 2022-05-11T16:38:55.950+01:00
+    jcr:mimeType: image/jpeg
+  /hippogallery:original:
+    jcr:primaryType: hippogallery:image
+    hippogallery:height: 720
+    hippogallery:width: 1280
+    jcr:data:
+      type: binary
+      resource: /content/gallery/maxresdefault-1.jpg/maxresdefault-1.jpg/original/original.jpg
+    jcr:lastModified: 2022-05-11T16:38:55.950+01:00
+    jcr:mimeType: image/jpeg

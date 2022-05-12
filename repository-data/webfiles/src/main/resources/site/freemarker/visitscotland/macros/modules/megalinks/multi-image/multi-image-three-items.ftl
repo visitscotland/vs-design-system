@@ -18,9 +18,7 @@
     >
         <vs-megalink-multi-image
             img-src="${image}"
-            link-type="${megalink.type}"
             theme="${theme}"
-            link-url="${megalink.link}"
             <#if megalink.itineraryTransport??>
                 transport="${megalink.itineraryTransport}"
                 transport-name="${label('transports', megalink.itineraryTransport)}"
@@ -35,6 +33,15 @@
             <#else>
                 days-label="${label('itinerary', 'day')}"
             </#if>
+            <#if megalink.youtubeId??>
+                link-type="video"
+                link-url="#"
+                video-id="${megalink.youtubeId}"
+                video-btn-text="Play Video"
+            <#else>
+                link-type="${megalink.type}"
+                link-url="${megalink.link}"
+            </#if>   
         >
             <template slot="vsMultiImageHeading">
                 ${megalink.label}</template>

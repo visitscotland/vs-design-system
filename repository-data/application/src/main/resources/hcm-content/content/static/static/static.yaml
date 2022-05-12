@@ -59,6 +59,33 @@
           jcr:primaryType: visitscotland:ImageData
           visitscotland:altText: iCentre di VisitScotland
           visitscotland:caption: Centro informazione di VisitScotland
+    /maxresdefault.jpg:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: 2dcc55b5-6b36-491b-9985-2c496d769f1c
+      /maxresdefault.jpg:
+        jcr:primaryType: visitscotland:Image
+        hippo:availability: [live, preview]
+        hippogallery:filename: maxresdefault.jpg
+        /hippogallery:thumbnail:
+          jcr:primaryType: hippogallery:image
+          hippo:filename: maxresdefault.jpg
+          hippogallery:height: 33
+          hippogallery:width: 60
+          jcr:data:
+            type: binary
+            resource: /content/gallery/visitscotland/static/modules/maxresdefault.jpg/maxresdefault.jpg/thumbnail/thumbnail.jpg
+          jcr:lastModified: 2022-05-10T13:14:32.482+01:00
+          jcr:mimeType: image/jpeg
+        /hippogallery:original:
+          jcr:primaryType: hippogallery:image
+          hippogallery:height: 720
+          hippogallery:width: 1280
+          jcr:data:
+            type: binary
+            resource: /content/gallery/visitscotland/static/modules/maxresdefault.jpg/maxresdefault.jpg/original/original.jpg
+          jcr:lastModified: 2022-05-10T13:14:32.482+01:00
+          jcr:mimeType: image/jpeg
   /placeholder_highlandcow.jpg:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['mix:referenceable']

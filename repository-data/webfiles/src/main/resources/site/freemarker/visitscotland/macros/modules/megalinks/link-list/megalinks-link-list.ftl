@@ -1,5 +1,6 @@
 <#include "../../../../../include/imports.ftl">
 <#include "../../../../../frontend/components/vs-megalink-link-list.ftl">
+<#include "../../video/megalink-video.ftl">
 
 <#macro linkList item showTeaser theme>
     <vs-row>
@@ -26,9 +27,7 @@
                     >
                         <vs-megalink-link-list
                             img-src="${image}"
-                            link-type="${listItem.type}"
                             theme="${theme}"
-                            link-url="${listItem.link}"
                             <#if listItem.itineraryTransport??>
                                 transport="${listItem.itineraryTransport}"
                                 transport-name="${label('transports', listItem.itineraryTransport)}"
@@ -43,6 +42,15 @@
                             <#else>
                                 days-label="${label('itinerary', 'day')}"
                             </#if>
+                            <#if listItem.youtubeId??>
+                                link-type="video"
+                                link-url="#"
+                                video-id="${listItem.youtubeId}"
+                                video-btn-text="Play Video"
+                            <#else>
+                                link-type="${listItem.type}"
+                                link-url="${listItem.link}"
+                            </#if>   
                         >
                             <template slot="vsLinkListHeading">
                                 ${listItem.label}
@@ -54,6 +62,10 @@
                             </#if>
                         </vs-megalink-link-list>
                     </vs-col>
+                
+                    <#if listItem.youtubeId??>
+                        <@megalinkVideo videoId=listItem.youtubeId />
+                    </#if>
                 </#list>
             </vs-row>
         </vs-col>

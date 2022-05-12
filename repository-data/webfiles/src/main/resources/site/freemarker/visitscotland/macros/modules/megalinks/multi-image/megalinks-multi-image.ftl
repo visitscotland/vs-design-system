@@ -3,6 +3,7 @@
 <#include "./multi-image-featured.ftl">
 <#include "./multi-image-two-items.ftl">
 <#include "./multi-image-three-items.ftl">
+<#include "../../video/megalink-video.ftl">
 
 <#macro multiImage item showTeaser theme>
     <vs-col
@@ -13,6 +14,10 @@
             <#-- if there's at least one featured link -->
             <#if item.featuredLinks?size gt 0>
                 <@multiImageFeatured lastFeatured='false' feature=item.featuredLinks[0] theme=theme />
+                
+                <#if item.featuredLinks[0].youtubeId??>
+                    <@megalinkVideo videoId=item.featuredLinks[0].youtubeId />
+                </#if>              
             </#if>
 
             <#list item.links as megalink>
@@ -31,6 +36,10 @@
                     <#else>
                         <@multiImageTwoItems megalink=megalink showTeaser=showTeaser theme=theme/>
                     </#if>
+                </#if>
+                
+                <#if megalink.youtubeId??>
+                    <@megalinkVideo videoId=megalink.youtubeId />
                 </#if>
             </#list>
 
