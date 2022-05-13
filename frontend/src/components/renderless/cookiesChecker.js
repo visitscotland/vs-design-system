@@ -2,8 +2,8 @@
 
 // import Vue from 'vue/dist/vue.js';
 // import CookieFallback from './CookiesFallback.vue';
-import EventBus from '../../utils/EventBus';
-import OneTrustVS from '../../utils/OneTrust';
+import EventBus from '../../utils/event-bus';
+import OneTrustVS from '../../utils/one-trust';
 import cookieStore from '../../stores/cookies.store';
 
 /**
