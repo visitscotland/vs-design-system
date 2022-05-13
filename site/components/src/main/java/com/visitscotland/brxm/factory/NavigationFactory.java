@@ -132,7 +132,7 @@ public class NavigationFactory {
     private NavigationWidget addFeatureItem(FeaturedWidget document, HstRequest request) {
         NavigationWidget widget;
         if (document.getItems().size() == 1 && document.getItems().get(0) instanceof ProductsSearch) {
-            widget = addFeatureEvent((ProductsSearch) document.getItems().get(0), document, locale);
+            widget = addFeatureEvent((ProductsSearch) document.getItems().get(0), document, request.getLocale());
         } else {
             List<CMSLink> cmsLinks = new ArrayList<>();
             for (HippoBean item : document.getItems()) {
