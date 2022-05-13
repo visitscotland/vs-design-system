@@ -5,7 +5,7 @@
  * Module that can be called from UI modules to enable correct handling of cookies
  * August 2020 Gallery Module Updates
  **/
-import hashCode from './HashCode';
+import hashCode from './hash-code';
 
 export default class OneTrustVS {
     constructor() {
