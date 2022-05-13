@@ -57,7 +57,7 @@ import CookiesFallback from '@components/elements/cookies/CookiesFallback';
 import CookiesChecker from '../../renderless/cookiesChecker';
 import videoStore from '../../../stores/video.store';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
-import requiredCookiesData from '../../../utils/requiredCookiesData';
+import requiredCookiesData from '../../../utils/required-cookies-data';
 
 const cookieValues = requiredCookiesData.youtube;
 
