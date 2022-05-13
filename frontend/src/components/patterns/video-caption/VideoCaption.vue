@@ -95,7 +95,7 @@ import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
 import CookiesChecker from '../../renderless/cookiesChecker';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
 import videoStore from '../../../stores/video.store';
-import requiredCookiesData from '../../../utils/requiredCookiesData';
+import requiredCookiesData from '../../../utils/required-cookies-data';
 
 const cookieValues = requiredCookiesData.youtube;
 
