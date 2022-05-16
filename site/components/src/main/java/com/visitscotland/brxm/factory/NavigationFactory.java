@@ -132,7 +132,7 @@ public class NavigationFactory {
     private NavigationWidget addFeatureItem(FeaturedWidget document, HstRequest request) {
         NavigationWidget widget;
         if (document.getItems().size() == 1 && document.getItems().get(0) instanceof ProductsSearch) {
-            widget = addFeatureEvent((ProductsSearch) document.getItems().get(0), document);
+            widget = addFeatureEvent((ProductsSearch) document.getItems().get(0), document, request.getLocale());
         } else {
             List<CMSLink> cmsLinks = new ArrayList<>();
             for (HippoBean item : document.getItems()) {
@@ -182,8 +182,8 @@ public class NavigationFactory {
         return widget;
     }
 
-    private FeaturedEvent addFeatureEvent(ProductsSearch productsSearch, FeaturedWidget document) {
-        String productSearchApi = productSearchBuilder.fromHippoBean(productsSearch).buildCannedSearch() + "&size=1";
+    private FeaturedEvent addFeatureEvent(ProductsSearch productsSearch, FeaturedWidget document, Locale locale) {
+        String productSearchApi = productSearchBuilder.fromHippoBean(productsSearch).size(1).locale(locale).buildCannedSearch();
         FeaturedEvent featuredEvent = new FeaturedEvent();
         featuredEvent.setApiUrl(productSearchApi);
         featuredEvent.setHippoBean(document);
