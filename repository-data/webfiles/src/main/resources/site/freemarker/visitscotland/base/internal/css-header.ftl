@@ -10,5 +10,10 @@
     </#if>
 
     <@headContributions />
+    <style>
+        .imported-footer-hide {
+            display: none;
+        }
+    </style>
     <!-- end include -->
 </#compress>

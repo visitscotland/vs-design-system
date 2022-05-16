@@ -1,8 +1,9 @@
 <#compress>
     <#include "../../../include/imports.ftl">
+    <#--    The main tag is opened in the header -->
+        <div data-js-footer-dest>
 
-            <@hst.include ref="footer"/>
-        </main>
-    </div>
+        </div>
+    </main>
     <!-- end include -->
 </#compress>
