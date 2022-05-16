@@ -79,6 +79,7 @@
                                 :trigger-validate="triggerValidate"
                                 :optional-text="getMessagingData('optional', language)"
                                 :hint-text="getTranslatedHint(field.name, index)"
+                                :info-text="getTranslatedInfo(field.name, index)"
                             />
                         </template>
                     </div>
@@ -367,6 +368,24 @@ export default {
 
             return legendText;
         },
+        /*
+         * get translated info content if available
+         */
+        getTranslatedInfo(fieldName, index) {
+            const languageObj = this.getLanguageObj();
+            let infoText = '';
+
+            if (this.language !== 'en'
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined(languageObj[fieldName].info)
+            ) {
+                infoText = languageObj[fieldName].info;
+            } else {
+                infoText = this.formData.fields[index].info;
+            }
+
+            return infoText;
+        },
         /**
          * get translated validation messages
          */
@@ -413,10 +432,12 @@ export default {
             const languageObj = this.getLanguageObj();
             let hintText = '';
 
-            if (this.language === 'en') {
+            if (this.language !== 'en'
+                && !this.isUndefined(languageObj[fieldName])
+                && !this.isUndefined(languageObj[fieldName].hint)) {
+                hintText = languageObj[fieldName].hint;
+            } else if (!this.isUndefined(this.formData.fields[index].hint)) {
                 hintText = this.formData.fields[index].hint;
-            } else if (typeof languageObj.submit !== 'undefined') {
-                hintText = languageObj.hint;
             } else {
                 hintText = '';
             }

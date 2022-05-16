@@ -13,13 +13,13 @@ For the form to work, there are several required props that must be included mor
 
 ```jsx
 <VsMarketoForm
-    dataUrl="../../../fixtures/marketo-forms/form-example.json"
-    messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
+   dataUrl="http://172.28.74.155:5555/newsletter-sign-up/newsletter-sign-up.json"
+    messagingUrl="http://172.28.74.155:5555/common/messaging.json"
     countryListUrl="https://static.visitscotland.com/forms/common/countries.json"
     recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
     marketo-instance="marketo-instance-code"
     munchkin-id="munchkin-id-code"
-    language="en"
+    language="it"
     :is-prod="false"
 >
     <template slot="submitError">
