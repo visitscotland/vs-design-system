@@ -112,6 +112,13 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * Set to false to let the banner show again on page refresh
+         */
+        dontShowAgain: {
+            type: Boolean,
+            required: true,
+        },
     },
     data() {
         return {
@@ -129,7 +136,10 @@ export default {
          */
         hideBanner() {
             this.showBanner = !this.showBanner;
-            this.setHiddenCookie();
+
+            if (this.dontShowAgain) {
+                this.setHiddenCookie();
+            }
         },
         /**
          * Sets cookie to hide the banner for the user's session
@@ -183,40 +193,3 @@ export default {
 }
 
 </style>
-
-<docs>
-  ```jsx
-    <VsBanner
-        close-btn-text="Close"
-        title="Covid-19 Travel Advice"
-    >
-        <template slot="bannerText">
-            <p>
-                Find the latest information on travel, and Good to Go (Covid-safe)
-                businesses. This is a test to check what would be the maximum number
-                of characters we could fit on this banner… Is it ok
-                to add two lines? Let's see how it looks on mobile.
-            </p>
-        </template>
-
-        <template slot="bannerCta">
-            <VsLink href="#">
-                View Covid-19 Travel Advice
-            </VsLink>
-        </template>
-    </VsBanner>
-
-    <br />
-
-    <VsBanner
-        close-btn-text="Close"
-        title="Covid-19 Travel Advice"
-    >
-        <template slot="bannerCta">
-            <VsLink href="#">
-                View Covid-19 Travel Advice
-            </VsLink>
-        </template>
-    </VsBanner>
-  ```
-</docs>
