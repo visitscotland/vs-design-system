@@ -6,6 +6,11 @@
         >
             {{ hintText }}
         </p>
+
+        <!-- eslint-disable vue/no-v-html -->
+        <div v-html="infoText" />
+        <!-- eslint-enable-vue/no-v-html -->
+
         <span
             v-for="error in errorsList"
             :key="error"
@@ -137,6 +142,13 @@ export default {
          * Content for hint text
          */
         hintText: {
+            type: String,
+            default: '',
+        },
+        /**
+         * Content for info text
+         */
+        infoText: {
             type: String,
             default: '',
         },
