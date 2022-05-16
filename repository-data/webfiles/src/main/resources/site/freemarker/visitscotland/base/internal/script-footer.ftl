@@ -17,8 +17,6 @@
             footerDest.innerHTML = footerSrc.innerHTML;
             footerSrc.innerHTML = '';
 
-            debugger;
-
             const accordionPanels = footerDest.getElementsByClassName('vs-accordion-item__panel');
 
             for (let i = 0; i < accordionPanels.length; i++) {
