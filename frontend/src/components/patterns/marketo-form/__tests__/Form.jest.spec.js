@@ -178,13 +178,6 @@ describe('VsMarketoForm', () => {
         expect(conditionalField.exists()).toBe(false);
     });
 
-    it('should render a no-js message', () => {
-        const wrapper = factoryShallowMount();
-        const noJsWrapper = wrapper.find('[data-test="vs-form-no-js"]');
-
-        expect(noJsWrapper.html()).toContain('no js content');
-    });
-
     describe(':slots', () => {
         it('should render the `submitting` slot', async() => {
             const wrapper = factoryShallowMount();
