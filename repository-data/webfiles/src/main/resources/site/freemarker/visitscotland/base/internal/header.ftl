@@ -6,6 +6,11 @@
         <@hst.include ref="top"/>
         <@hst.include ref="menu"/>
 
-        <main id="main">
+        <div data-js-footer-source>
+            <@hst.include ref="footer"/>
+        </div>
+        <@footerContributions />
+    </div>
+    <main id="main">
 <!-- end include -->
 </#compress>

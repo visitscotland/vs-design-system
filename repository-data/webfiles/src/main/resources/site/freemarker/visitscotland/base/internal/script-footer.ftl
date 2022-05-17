@@ -8,5 +8,23 @@
     <#assign integration=true>
 
     <@footerContributions />
+
+    <script type="text/javascript">
+        (function() {
+            const footerSrc = document.querySelector('[data-js-footer-source]');
+            const footerDest = document.querySelector('[data-js-footer-dest]');
+
+            footerDest.innerHTML = footerSrc.innerHTML;
+            footerSrc.innerHTML = '';
+
+            const accordionPanels = footerDest.getElementsByClassName('vs-accordion-item__panel');
+
+            for (let i = 0; i < accordionPanels.length; i++) {
+                accordionPanels[i].classList.remove('d-md-block');
+                accordionPanels[i].classList.add('d-block');
+            }
+
+        })();
+    </script>
     <!-- end include -->
 </#compress>
