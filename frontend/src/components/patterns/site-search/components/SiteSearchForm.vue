@@ -35,14 +35,17 @@
 
                             <VsFormInput
                                 type="search"
-                                class="vs-site-search-form__input search-input"
+                                name="searchrequest"
+                                class="vs-site-search-form__input cludo-input-form__input"
                                 aria-label="Search"
                                 :placeholder="labelText"
                                 autocomplete="off"
+                                aria-autocomplete="list"
+                                aria-haspopup="true"
                                 v-model="searchTerm"
                                 :state="validated"
                                 ref="searchInput"
-                                id="search-input"
+                                id="cludo-search-input"
                                 @input.native="onInput"
                             />
 
