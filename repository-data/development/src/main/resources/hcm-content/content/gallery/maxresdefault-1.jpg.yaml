@@ -1,5 +1,0 @@
-/content/gallery/maxresdefault-1.jpg:
-  jcr:primaryType: hippo:handle
-  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-  jcr:uuid: d52013bd-dd24-42f6-b21c-d3921cb84a3b
-  hippo:name: maxresdefault (1).jpg
