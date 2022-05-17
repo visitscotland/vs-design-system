@@ -7,6 +7,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsCheckbox, {
         value: 'accepted',
         label: 'Test label',
         fieldName: 'testname',
+        infoText: 'This is the info text',
         ...propsData,
     },
 });
@@ -40,6 +41,10 @@ describe('VsCheckbox', () => {
             const checkboxStub = wrapper.find('BFORMCHECKBOX-STUB');
 
             expect(checkboxStub.attributes('value')).toBe('accepted');
+        });
+
+        it('should add the info text from the `infoText` prop', () => {
+            expect(wrapper.html()).toContain('This is the info text');
         });
 
         it('should display a validation message if validation fails', async() => {
