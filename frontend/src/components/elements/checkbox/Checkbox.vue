@@ -8,7 +8,10 @@
         </p>
 
         <!-- eslint-disable vue/no-v-html -->
-        <div v-html="infoText" />
+        <div
+            v-if="infoText !== ''"
+            v-html="infoText"
+        />
         <!-- eslint-enable-vue/no-v-html -->
 
         <span
