@@ -146,11 +146,12 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 208eb9bc-c0b7-4136-957a-af7e59ce370c
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2022-05-11T16:38:04.967+01:00
-          hippostdpubwf:lastModificationDate: 2022-05-11T16:38:04.967+01:00
+          hippostdpubwf:lastModificationDate: 2022-05-17T09:40:11.044+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 8a865d39-b8d2-4f7a-baa8-4347b8a23a14
           hippotranslation:locale: en
