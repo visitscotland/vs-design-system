@@ -36,7 +36,7 @@
                 link-type="video"
                 link-url="#"
                 video-id="${megalink.youtubeId}"
-                video-btn-text="Play Video"
+                video-btn-text="${label('video', 'video.play-btn')}"
             <#else>
                 link-type="${megalink.type}"
                 link-url="${megalink.link}"

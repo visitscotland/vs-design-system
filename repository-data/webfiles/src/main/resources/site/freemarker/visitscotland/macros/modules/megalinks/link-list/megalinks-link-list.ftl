@@ -46,7 +46,7 @@
                                 link-type="video"
                                 link-url="#"
                                 video-id="${listItem.youtubeId}"
-                                video-btn-text="Play Video"
+                                video-btn-text="${label('video', 'video.play-btn')}"
                             <#else>
                                 link-type="${listItem.type}"
                                 link-url="${listItem.link}"
