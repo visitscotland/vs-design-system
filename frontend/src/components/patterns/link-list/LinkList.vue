@@ -49,6 +49,7 @@ export default {
             </VsLinkListItem>
             <VsLinkListItem
                 videoId="g-Fhvj7vW-E"
+                videoDescriptor="Video"
                 type="video"
                 href="#"
             >
