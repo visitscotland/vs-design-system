@@ -3,6 +3,7 @@
 <#include "../../../../../frontend/components/vs-link.ftl">
 <#include "../../../../../frontend/components/vs-link-list-item.ftl">
 <#include "../../../global/image-with-caption.ftl">
+<#include "../../video/megalink-video.ftl">
 
 <#macro singleImage item theme>
     <#if item.image.cmsImage??>
@@ -40,9 +41,14 @@
                         href="${listItem.link}"
                         <#if listItem.type != "internal">type="${listItem.type}"</#if>
                         variant="${linkVariant}"
+                        video-descriptor="${label('video', 'video.video-descriptor')}"
                     >
                         ${listItem.label}
                     </vs-link-list-item>
+
+                    <#if listItem.youtubeId??>
+                        <@megalinkVideo videoId=listItem.youtubeId />
+                    </#if>
                 </#list>
             </template>
             
