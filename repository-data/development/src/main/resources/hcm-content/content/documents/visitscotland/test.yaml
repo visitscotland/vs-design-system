@@ -4142,7 +4142,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2021-05-20T14:12:54.006+01:00
-            hippostdpubwf:lastModificationDate: 2022-05-17T10:21:12.824+01:00
+            hippostdpubwf:lastModificationDate: 2022-05-18T11:38:41.953+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: ddb290ff-95af-4836-9788-d6e51acaff71
             hippotranslation:locale: en
@@ -4158,7 +4158,7 @@
                 pick from the country’s variety of incredible att</p>
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
+              visitscotland:feature: false
               /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 7746679b-6821-4a09-9173-664653dad7dd
@@ -4176,7 +4176,7 @@
                 hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
             /visitscotland:megalinkItems[4]:
               jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
+              visitscotland:feature: true
               /visitscotland:links:
                 jcr:primaryType: visitscotland:VideoLink
                 /visitscotland:videoLink:
@@ -4203,7 +4203,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2021-05-20T14:12:54.006+01:00
-            hippostdpubwf:lastModificationDate: 2022-05-17T10:23:23.332+01:00
+            hippostdpubwf:lastModificationDate: 2022-05-18T11:38:54.629+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: ddb290ff-95af-4836-9788-d6e51acaff71
             hippotranslation:locale: en
@@ -4219,7 +4219,7 @@
                 pick from the country’s variety of incredible att</p>
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
+              visitscotland:feature: false
               /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 7746679b-6821-4a09-9173-664653dad7dd
@@ -4237,7 +4237,7 @@
                 hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
             /visitscotland:megalinkItems[4]:
               jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
+              visitscotland:feature: true
               /visitscotland:links:
                 jcr:primaryType: visitscotland:VideoLink
                 /visitscotland:videoLink:
@@ -4264,9 +4264,9 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2021-05-20T14:12:54.006+01:00
-            hippostdpubwf:lastModificationDate: 2022-05-17T10:23:23.332+01:00
+            hippostdpubwf:lastModificationDate: 2022-05-18T11:38:54.629+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2022-05-17T10:23:26.685+01:00
+            hippostdpubwf:publicationDate: 2022-05-18T11:38:57.053+01:00
             hippotranslation:id: ddb290ff-95af-4836-9788-d6e51acaff71
             hippotranslation:locale: en
             visitscotland:layout: Default
@@ -4281,7 +4281,7 @@
                 pick from the country’s variety of incredible att</p>
             /visitscotland:megalinkItems[1]:
               jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
+              visitscotland:feature: false
               /visitscotland:links:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 7746679b-6821-4a09-9173-664653dad7dd
@@ -4299,7 +4299,7 @@
                 hippo:docbase: 23d70711-bab2-4981-a696-c24599ad3f29
             /visitscotland:megalinkItems[4]:
               jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
+              visitscotland:feature: true
               /visitscotland:links:
                 jcr:primaryType: visitscotland:VideoLink
                 /visitscotland:videoLink:
