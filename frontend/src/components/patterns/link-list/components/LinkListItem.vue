@@ -8,6 +8,11 @@
         >
             <!-- @slot Slot for link list item text -->
             <slot />
+            <template
+                v-if="type == 'video' && videoLoaded"
+            >
+                | {{ videoDescriptor }} {{ formattedVideoDuration }}
+            </template>
         </VsLink>
     </li>
 </template>
@@ -59,6 +64,13 @@ export default {
          * The video id that a video type link should open
          */
         videoId: {
+            type: String,
+            default: null,
+        },
+        /**
+         * The localised word for video, gets attached to the link label for video type links
+         */
+        videoDescriptor: {
             type: String,
             default: null,
         },
