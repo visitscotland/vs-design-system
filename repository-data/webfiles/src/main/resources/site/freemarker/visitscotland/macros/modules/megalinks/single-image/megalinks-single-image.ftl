@@ -38,10 +38,19 @@
             <template slot="vsSingleImageLinks">
                 <#list item.links as listItem>
                     <vs-link-list-item
-                        href="${listItem.link}"
-                        <#if listItem.type != "internal">type="${listItem.type}"</#if>
                         variant="${linkVariant}"
-                        video-descriptor="${label('video', 'video.video-descriptor')}"
+
+                        <#if listItem.youtubeId??>
+                            type="video"
+                            href="#"
+                            video-id="${listItem.youtubeId}"
+                            video-descriptor="${label('video', 'video.video-descriptor')}"
+                        <#else>
+                            href="${listItem.link}"
+                            link-type="${feature.type}"
+
+                            <#if listItem.type != "internal">type="${listItem.type}"</#if>
+                        </#if>
                     >
                         ${listItem.label}
                     </vs-link-list-item>
