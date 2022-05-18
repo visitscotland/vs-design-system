@@ -89,5 +89,6 @@ export default {
     .low-res-img {
         background-repeat: no-repeat;
         background-size: cover;
+        display: block;
     }
 </style>
