@@ -65,7 +65,7 @@ describe('VsStretchedLinkCard', () => {
             await expect(wrapper.find('[data-test="vs-stretched-link-card__video-button"]').exists()).toBe(true);
         });
 
-        it('should render `videoBtnText` set and a videoId is present', async() => {
+        it('should render `videoBtnText` if set and a videoId is present', async() => {
             const videoBtnText = 'PlayVideo';
 
             const wrapper = shallowMount(VsStretchedLinkCard, {
