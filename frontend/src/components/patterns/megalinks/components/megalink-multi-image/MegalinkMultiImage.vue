@@ -8,8 +8,8 @@
         :img-alt="imgAlt"
         :data-test="featured ? 'megalink-multi-image-featured' : 'megalink-multi-image-card'"
         :theme="theme"
-        :video-id="videoId"
-        :video-btn-text="videoBtnText"
+        :video-id="disableVideo ? '' : videoId"
+        :video-btn-text="disableVideo ? '' : videoBtnText"
     >
         <VsStretchedLinkPanels
             v-if="days && transport"
@@ -35,6 +35,15 @@
             <!-- @slot Slot to contain content -->
             <slot name="vsMultiImageContent" />
         </VsRichTextWrapper>
+
+        <VsNoJsNoCookies
+            v-if="jsDisabled"
+            slot="strechedCardDisabledContainer"
+            :js-disabled="jsDisabled"
+            :no-js-message="noJsMessage"
+            :no-cookies-message="noCookiesMessage"
+            :no-cookies-link="noCookiesLink"
+        />
     </VsStretchedLinkCard>
 </template>
 
@@ -42,6 +51,7 @@
 import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
 import VsStretchedLinkPanels from '@components/patterns/stretched-link-card/components/StretchedLinkPanels';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
+import VsNoJsNoCookies from '@components/patterns/no-js-no-cookies/NoJsNoCookies';
 
 /**
 * Megalink cards to be used in the megalinks component
@@ -58,6 +68,7 @@ export default {
         VsStretchedLinkCard,
         VsRichTextWrapper,
         VsStretchedLinkPanels,
+        VsNoJsNoCookies,
     },
     props: {
         /**
@@ -159,6 +170,38 @@ export default {
             type: String,
             default: 'Play Video',
         },
+        /**
+        * Set to true if JavaScript is disabled and the module cannot function, to pass to
+        * the no js/cookies placeholder
+        */
+        jsDisabled: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+        * A message explaining why the component has been disabled js is disabled, to pass to
+        * the no js/cookies placeholder
+        */
+        noJsMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * A message explaining why the component has been disabled with disabled cookies, to
+        * pass to the no js/cookies placeholder
+        */
+        noCookiesMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * An object containing a link to the cookie settings page, should contain a `url`
+        * field and a `label` field, to pass to the no js/cookies placeholder
+        */
+        noCookiesLink: {
+            type: Object,
+            default: null,
+        },
     },
     computed: {
         multiImageClasses() {
@@ -169,6 +212,11 @@ export default {
                     'vs-megalink-multi-image--featured-last': this.lastFeatured,
                 },
             ];
+        },
+        // Checks whether js is disabled or appropriate cookies have been rejected
+        disableVideo() {
+            // TODO: Add cookie functionality once checker integrated
+            return this.jsDisabled;
         },
     },
 };
