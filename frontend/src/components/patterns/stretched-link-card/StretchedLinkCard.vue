@@ -23,6 +23,14 @@
             <slot name="stretchedCardPanels" />
         </template>
 
+        <template
+            v-if="!!this.$slots['strechedCardDisabledContainer']"
+        >
+            <!-- @slot Contains optional content to indicate that a component has
+            been disabled. Expects a VsNoJsNoCookies component -->
+            <slot name="strechedCardDisabledContainer" />
+        </template>
+
         <div
             class="card-body"
             :class="videoId ? 'position-relative' : ''"

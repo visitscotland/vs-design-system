@@ -2,6 +2,7 @@
     <section
         class="vs-no-js-cookies"
         data-test="vs-no-js-cookies"
+        v-if="jsDisabled || cookiesMissing"
     >
         <div
             class="vs-no-js-cookies__inner"
