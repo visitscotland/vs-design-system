@@ -8,18 +8,27 @@
             data-test="vs-no-js-cookies__no-js"
             v-if="jsDisabled"
         >
-            <p>{{ noJsMessage }}</p>
+            <p
+                class="vs-no-js-cookies__message"
+            >
+                {{ noJsMessage }}
+            </p>
         </div>
         <div
             class="vs-no-js-cookies__inner"
             data-test="vs-no-js-cookies__no-cookies"
             v-if="cookiesMissing && !jsDisabled"
         >
-            <p>{{ noCookiesMessage }}</p>
+            <p
+                class="vs-no-js-cookies__message"
+            >
+                {{ noCookiesMessage }}
+            </p>
             <VsLink
                 v-if="noCookiesLink && noCookiesLink.url"
                 data-test="vs-no-js-cookies__no-cookies-link"
                 :href="noCookiesLink.url"
+                variant="dark"
             >
                 {{ noCookiesLink.label }}
             </VsLink>
@@ -32,7 +41,8 @@ import VsLink from '@components/elements/link/Link';
 
 /**
 * A placeholder component to display in place of a component disabled by no-js or by
-* a missing mandatory cookie
+* a missing mandatory cookie. Sizing and positioning should be handled within the
+* containing component
 *
 * @displayName No Js / No Cookie Placeholder
 */
@@ -87,7 +97,18 @@ export default {
 </script>
 
 <style lang="scss">
+    .vs-no-js-cookies {
+        background-color: rgba($color-black, 0.8);
+        padding: $spacer-4;
+        color: $color-white;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
 
+    .vs-no-js-cookies__message {
+        margin-bottom: $spacer-0;
+    }
 </style>
 
 <docs>
@@ -96,6 +117,7 @@ export default {
             jsDisabled="true"
             noJsMessage="JavaScript is needed to watch this video."
         />
+        <br />
         <VsNoJsNoCookies
             cookiesMissing="true"
             noCookiesMessage="Cookies are needed to watch this video."
@@ -104,6 +126,7 @@ export default {
                 label: 'Update my cookie settings'
             }"
         />
+        <br />
         <VsNoJsNoCookies
             jsDisabled="true"
             cookiesMissing="true"
