@@ -1,9 +1,25 @@
 <template>
     <section
-        class="vs-no-js-no-cookies"
-        data-test="vs-no-js-no-cookies"
+        class="vs-no-js-cookies"
+        data-test="vs-no-js-cookies"
     >
-        NO JS NO COOKIES
+        <div
+            class="vs-no-js-cookies__inner"
+            v-if="jsDisabled"
+        >
+            <p>{{ noJsMessage }}</p>
+        </div>
+        <div
+            class="vs-no-js-cookies__inner"
+            v-if="cookiesMissing && !jsDisabled"
+        >
+            <p>{{ noCookiesMessage }}</p>
+            <a
+                :href="noCookiesLink.url"
+            >
+                {{ noCookiesLink.label }}
+            </a>
+        </div>
     </section>
 </template>
 
@@ -22,6 +38,44 @@ export default {
     components: {
     },
     props: {
+        /**
+        * Set to true if JavaScript is disabled and the module cannot function, takes
+        * priority over missing cookies
+        */
+        jsDisabled: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+        * Set to true if a cookie that is required for the module to function is not
+        * accepted by the user
+        */
+        cookiesMissing: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+        * A message explaining why the component has been disabled with no js
+        */
+        noJsMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * A message explaining why the component has been disabled with disabled cookies
+        */
+        noCookiesMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * An object containing a link to the cookie settings page, should contain a `url`
+        * field and a `label` field
+        */
+        noCookiesLink: {
+            type: Object,
+            default: null,
+        },
     },
 };
 </script>
@@ -32,6 +86,27 @@ export default {
 
 <docs>
     ```
-        <VsNoJsNoCookies />
+        <VsNoJsNoCookies
+            jsDisabled="true"
+            noJsMessage="JavaScript is needed to watch this video."
+        />
+        <VsNoJsNoCookies
+            cookiesMissing="true"
+            noCookiesMessage="Cookies are needed to watch this video."
+            :noCookiesLink="{
+                url: 'https://google.com',
+                label: 'Update my cookie settings'
+            }"
+        />
+        <VsNoJsNoCookies
+            jsDisabled="true"
+            cookiesMissing="true"
+            noJsMessage="JavaScript is needed to watch this video."
+            noCookiesMessage="Cookies are needed to watch this video."
+            :noCookiesLink="{
+                url: 'https://google.com',
+                label: 'Update my cookie settings'
+            }"
+        />
     ```
 </docs>
