@@ -5,25 +5,30 @@
     >
         <div
             class="vs-no-js-cookies__inner"
+            data-test="vs-no-js-cookies__no-js"
             v-if="jsDisabled"
         >
             <p>{{ noJsMessage }}</p>
         </div>
         <div
             class="vs-no-js-cookies__inner"
+            data-test="vs-no-js-cookies__no-cookies"
             v-if="cookiesMissing && !jsDisabled"
         >
             <p>{{ noCookiesMessage }}</p>
-            <a
+            <VsLink
+                v-if="noCookiesLink && noCookiesLink.url"
+                data-test="vs-no-js-cookies__no-cookies-link"
                 :href="noCookiesLink.url"
             >
                 {{ noCookiesLink.label }}
-            </a>
+            </VsLink>
         </div>
     </section>
 </template>
 
 <script>
+import VsLink from '@components/elements/link/Link';
 
 /**
 * A placeholder component to display in place of a component disabled by no-js or by
@@ -36,6 +41,7 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
+        VsLink,
     },
     props: {
         /**
