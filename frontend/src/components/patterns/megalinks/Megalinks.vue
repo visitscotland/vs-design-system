@@ -529,9 +529,18 @@ export default {
                         <vs-megalink-multi-image
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text 1"
-                            linkType="external"
+                            linkType="video"
                             theme="dark"
                             linkUrl="https://www.visitscotland.com"
+                            videoId="N3r5rCN9iaE"
+                            videoBtnText="Play Video"
+                            :jsDisabled="true"
+                            noJsMessage="JavaScript is needed to watch this video."
+                            noCookiesMessage="Cookies are needed to watch this video."
+                            :noCookiesLink="{
+                                url: 'https://google.com',
+                                label: 'Update my cookie settings'
+                            }"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest
@@ -542,6 +551,21 @@ export default {
                                 restaurants. Here are some recomm…</p>
                             </template>
                         </vs-megalink-multi-image>
+
+                        <VsModal
+                            modalId="N3r5rCN9iaE"
+                            closeBtnText="Close"
+                            :isVideoModal="true"
+                        >
+                            <VsRow>
+                                <VsCol cols="12">
+                                    <VsVideo
+                                        videoId="N3r5rCN9iaE"
+                                        class="mb-8"
+                                    />
+                                </VsCol>
+                            </VsRow>
+                        </VsModal>
                     </VsCol>
                     <VsCol
                         cols="12"
