@@ -66,15 +66,6 @@
 </template>
 
 <script>
-import {
-    VsContainer,
-    VsRow,
-    VsCol,
-} from '@components/elements/grid';
-import VsIcon from '@components/elements/icon/Icon';
-import VsHeading from '@components/elements/heading/Heading';
-import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
-
 /**
  * Itinerary Day list items.
  *
@@ -85,14 +76,6 @@ export default {
     name: 'VsItineraryDay',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsContainer,
-        VsRow,
-        VsCol,
-        VsHeading,
-        VsIcon,
-        VsAccordionItem,
-    },
     props: {
         /**
          * Logic to collapse certain Day list items on mobile by default
@@ -206,46 +189,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-```jsx
-        <VsItineraryDay
-            v-for="(day, index) in itineraries.sampleItinerary.days"
-            :defaultShow="(day.dayCount < 3) ? true : false"
-            :key="index"
-            :dayNumber="day.dayCount"
-            dayLabel="Day"
-            slot="list"
-            :dayTitle="day.title"
-        >
-            <VsDescriptionList
-                v-if="day.transport.length"
-                class="text-center justify-content-center align-items-center"
-                slot="day-transport"
-            >
-                <dt class="list-inline-item">Transport:</dt>
-                <dd
-                    class="list-inline-item"
-                    v-for="(transportType, transportTypeIndex) in day.transport"
-                >
-                    <VsTooltip
-                        :title="transportType.value"
-                        href="#"
-                        :icon="transportType.key"
-                        size="lg"
-                        icon-only
-                        icon-variant-override="dark"
-                        class="p-0"
-                        variant="transparent"
-                    >
-                        <span class="sr-only">
-                            {{transportType.value}}
-                        </span>
-                    </VsTooltip>
-                </dd>
-            </VsDescriptionList>
-
-            <div slot="day-introduction" v-html="day.introduction"></div>
-        </VsItineraryDay>
-```
-</docs>
