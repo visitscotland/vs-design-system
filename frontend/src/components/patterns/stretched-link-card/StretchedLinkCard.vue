@@ -14,7 +14,7 @@
                     ${imgSrc}?size=md 1200w,
                     ${imgSrc}?size=lg 2048w`"
                 sizes="(min-width: 768px) 50vw, 100vw"
-                low-res-img="${imgSrc}?size=xxs"
+                :low-res-image="`${imgSrc}?size=xxs`"
                 class="vs-stretched-link-card__img"
                 data-test="vs-stretched-link-card__img"
             />
