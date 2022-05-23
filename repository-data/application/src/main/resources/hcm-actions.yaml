@@ -16,3 +16,5 @@ action-lists:
     /content/documents/administration/labels/global/facilities: reload
     /content/documents/administration/labels/global/pagination: reload
     /content/documents/administration/labels/global/social-share: reload
+- 1.0.4:
+    /content/documents/administration/configuration/default-properties: reload
