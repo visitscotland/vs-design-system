@@ -2,12 +2,10 @@
     <section
         class="vs-no-js-cookies"
         data-test="vs-no-js-cookies"
-        v-if="jsDisabled || cookiesMissing"
     >
         <div
-            class="vs-no-js-cookies__inner"
+            class="vs-no-js-cookies__inner vs-no-js-cookies__js"
             data-test="vs-no-js-cookies__no-js"
-            v-if="jsDisabled"
         >
             <p
                 class="vs-no-js-cookies__message"
@@ -16,9 +14,9 @@
             </p>
         </div>
         <div
-            class="vs-no-js-cookies__inner"
+            class="vs-no-js-cookies__inner vs-no-js-cookies__cookies"
             data-test="vs-no-js-cookies__no-cookies"
-            v-if="cookiesMissing && !jsDisabled"
+            v-if="cookiesMissing"
         >
             <p
                 class="vs-no-js-cookies__message"
@@ -56,14 +54,6 @@ export default {
     },
     props: {
         /**
-        * Set to true if JavaScript is disabled and the module cannot function, takes
-        * priority over missing cookies
-        */
-        jsDisabled: {
-            type: Boolean,
-            default: false,
-        },
-        /**
         * Set to true if a cookie that is required for the module to function is not
         * accepted by the user
         */
@@ -99,13 +89,8 @@ export default {
 
 <style lang="scss">
     .vs-no-js-cookies {
-        background-color: rgba($color-black, 0.8);
-        padding: $spacer-4;
         color: $color-white;
         text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         position: absolute;
         top: 0;
         left: 0;
@@ -113,19 +98,46 @@ export default {
         right: 0;
     }
 
+    .vs-no-js-cookies__inner {
+        padding: $spacer-4;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($color-black, 0.8);
+    }
+
     .vs-no-js-cookies__message {
         margin-bottom: $spacer-0;
+    }
+
+    .vs-no-js-cookies__js {
+        display: none;
+    }
+
+    .vs-no-js-cookies__cookies {
+        display: flex;
+    }
+
+    @include no-js {
+        .vs-no-js-cookies__js {
+            display: flex;
+        }
+
+        .vs-no-js-cookies__cookies {
+            display: none;
+        }
     }
 </style>
 
 <docs>
     ```
         <div
-            class="position-relative"
+            class="position-relative no-js"
             style="width: 12em; height: 12em;"
         >
             <VsNoJsNoCookies
-                jsDisabled="true"
                 noJsMessage="JavaScript is needed to watch this video."
             />
         </div>
@@ -145,11 +157,10 @@ export default {
         </div>
         <br />
         <div
-            class="position-relative"
+            class="position-relative no-js"
             style="width: 15em; height: 18em;"
         >
             <VsNoJsNoCookies
-                jsDisabled="true"
                 cookiesMissing="true"
                 noJsMessage="JavaScript is needed to watch this video."
                 noCookiesMessage="Cookies are needed to watch this video."
