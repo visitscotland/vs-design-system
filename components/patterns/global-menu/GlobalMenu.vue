@@ -40,10 +40,12 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import {
+    VsContainer, VsRow, VsCol,
+} from '@components/elements/grid';
+import VsGlobalMenuDropdown from './components/GlobalMenuDropdown';
+import VsGlobalMenuList from './components/GlobalMenuList';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * This component is the main Global Nav Wrapper for the top of the page.
  * It holds the Our Websites and slots for Login and Language Change functionalities.
@@ -55,7 +57,6 @@ export default {
     name: 'VsGlobalMenu',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
     components: {
         VsContainer,
         VsRow,
@@ -63,8 +64,6 @@ export default {
         VsGlobalMenuDropdown,
         VsGlobalMenuList,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Determines the active website
@@ -115,7 +114,7 @@ export default {
     background: $color-purple;
     color: white;
     position: relative;
-    font-size: $font-size-sm;
+    font-size: $font-size-2;
     height: 28px;
     display: flex;
     align-items: center;

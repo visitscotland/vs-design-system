@@ -25,10 +25,11 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsList from '@components/elements/list/List';
+import {
+    VsRow, VsContainer, VsCol,
+} from '@components/elements/grid';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * The FooterUtilityList is a list of FooterNavListItems
  * that hold general utility links for the footer.
@@ -38,15 +39,12 @@
 
 export default {
     name: 'VsFooterUtilityList',
-<<<<<<< HEAD
     components: {
         VsList,
         VsRow,
         VsContainer,
         VsCol,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 };
 </script>
 
@@ -95,7 +93,7 @@ export default {
 
         .vs-footer-nav-list-item {
             display: inline-block;
-            font-size: $font-size-sm;
+            font-size: $font-size-2;
             padding: $spacer-3;
             flex: 1 0 50%;
 
@@ -119,7 +117,7 @@ export default {
                 flex: none;
             }
             @include media-breakpoint-up(xl) {
-                font-size: $font-size-base;
+                font-size: $font-size-4;
             }
         }
     }

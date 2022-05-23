@@ -44,10 +44,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
 import { BModal } from 'bootstrap-vue';
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
 /**
  * The modal is used as a dialog prompt for users
@@ -59,14 +56,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-<<<<<<< HEAD
-        VsCol,
-        VsRow,
-        VsContainer,
-        VsButton,
-        VsIcon,
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         BModal,
     },
     props: {
@@ -147,11 +136,7 @@ export default {
         background-color: $color-black;
 
         p{
-<<<<<<< HEAD
-            color: #fff;
-=======
             color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         }
     }
 
@@ -162,11 +147,7 @@ export default {
         font-weight: $font-weight-normal;
         font-size: $small-font-size;
         line-height: $line_height_l;
-<<<<<<< HEAD
-        color: #fff;
-=======
         color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
         svg {
             display: block;

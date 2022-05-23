@@ -25,10 +25,10 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsLink from '@components/elements/link/Link';
+import VsIcon from '@components/elements/icon/Icon';
+import { VsCol } from '@components/elements/grid';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * This component displays an icon and link to a social sharing channel
  *
@@ -38,14 +38,11 @@ export default {
     name: 'VsSocialShareItem',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsCol,
         VsLink,
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * Type of link and icon to display

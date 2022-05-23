@@ -59,6 +59,11 @@
 </template>
 
 <script>
+import {
+    VsContainer, VsRow, VsCol,
+} from '../elements/grid';
+import VsHeading from '../elements/heading/Heading';
+import VsArticle from '../patterns/article/Article';
 
 /**
  * An example page template.
@@ -74,6 +79,13 @@ export default {
         htmlAttrs: {
             lang: 'en',
         },
+    },
+    components: {
+        VsContainer,
+        VsRow,
+        VsCol,
+        VsHeading,
+        VsArticle,
     },
 };
 </script>

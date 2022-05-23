@@ -19,10 +19,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsList from '@components/elements/list/List';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * The FooterSocialMenu is used inside the FooterNavList.
  * It's a wrapper for social media links in the footer.
@@ -32,12 +30,9 @@
 
 export default {
     name: 'VsFooterSocialMenu',
-<<<<<<< HEAD
     components: {
         VsList,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 };
 </script>
 
@@ -48,11 +43,7 @@ export default {
 
     &__title{
         background: $color-gray-shade-7;
-<<<<<<< HEAD
-        color: #fff;
-=======
         color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         line-height: $line-height-xs;
         font-weight: $font-weight-semi-bold;
         font-family: $font-family-sans-serif;

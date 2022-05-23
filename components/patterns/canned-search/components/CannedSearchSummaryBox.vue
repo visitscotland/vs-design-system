@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-canned-search-summary-box">
+    <div
+        class="vs-canned-search-summary-box"
+        :disabled="!slideVisible() ? true : false"
+    >
         <VsContainer>
             <VsRow
                 v-if="!!this.$slots['vsCannedSearchSummaryTop']"
@@ -54,17 +57,16 @@
                 </VsCol>
                 <VsCol
                     class="vs-canned-search-summary-box__summary-item"
-                    v-if="!!this.$slots['vsCannedSearchSummaryRight']"
+                    v-if="linkHref"
                 >
-                    <!--
-                        @slot Holds the content for the third optional item in the grey
-                        summary box  at the bottom of the card, usually a link
-
-                        Expects html
-                    -->
-                    <slot
-                        name="vsCannedSearchSummaryRight"
-                    />
+                    <VsLink
+                        data-test="vs-canned-search-summary-box__link"
+                        :href="linkHref"
+                        :type="linkType.toLowerCase()"
+                        :disabled="!slideVisible()"
+                    >
+                        {{ linkLabel }}
+                    </VsLink>
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -72,10 +74,11 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import {
+    VsContainer, VsRow, VsCol,
+} from '@components/elements/grid';
+import VsLink from '@components/elements/link/Link';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Component that displays a grey summary box for product cards within canned
 * search. Contains a series of summary items
@@ -87,14 +90,37 @@ export default {
     name: 'VsCannedSearchSummaryBox',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsContainer,
         VsRow,
         VsCol,
+        VsLink,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
+    props: {
+        /**
+        * The href of a product link, should match the website on the
+        * parent product card
+        */
+        linkHref: {
+            type: String,
+            default: '',
+        },
+        /**
+        * The label of the product link, usually "View Details"
+        */
+        linkLabel: {
+            type: String,
+            default: '',
+        },
+        /**
+        * The link type for the product link, usually "external"
+        */
+        linkType: {
+            type: String,
+            default: '',
+        },
+    },
+    inject: ['slideVisible'],
 };
 
 </script>
@@ -121,7 +147,7 @@ export default {
     }
 
     .vs-canned-search-summary-box__summary-item {
-        font-size: $font-size-base;
+        font-size: $font-size-4;
         line-height: $line-height-s;
         text-align: center;
 
@@ -130,81 +156,3 @@ export default {
         }
     }
 </style>
-<<<<<<< HEAD
-
-<docs>
-```jsx
-    const sampleAccom = require("../../../../assets/fixtures/canned-search/sample-accom.json");
-    const sampleEvent = require("../../../../assets/fixtures/canned-search/sample-event.json");
-
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-4">
-            <VsCannedSearchSummaryBox>
-                <VsCannedSearchPrice
-                    v-if="sampleAccom.price"
-                    slot="vsCannedSearchSummaryLeft"
-                    :priceIntro="sampleAccom.price.priceLabel"
-                    :price="sampleAccom.price.price"
-                    :priceOutro="sampleAccom.price.priceBasis"
-                />
-                <VsLink
-                    :href="sampleAccom.website.link"
-                    type="external"
-                    slot="vsCannedSearchSummaryRight"
-                >
-                    Visit Website
-                </VsLink>
-            </VsCannedSearchSummaryBox>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4">
-            <VsCannedSearchSummaryBox>
-                <VsCannedSearchDates
-                    v-if="sampleEvent.opening"
-                    slot="vsCannedSearchSummaryTop"
-                    :period="sampleEvent.opening.period"
-                    :label="sampleEvent.opening.label"
-                />
-                <VsCannedSearchPrice
-                    v-if="sampleEvent.price"
-                    slot="vsCannedSearchSummaryLeft"
-                    :priceIntro="sampleEvent.price.priceLabel"
-                    :price="sampleEvent.price.price"
-                    :priceOutro="sampleEvent.price.priceBasis"
-                />
-                <VsLink
-                    :href="sampleEvent.website.link"
-                    :type="sampleEvent.website.type.toLowerCase()"
-                    slot="vsCannedSearchSummaryRight"
-                >
-                    {{ sampleEvent.dmsLink.label }}
-                </VsLink>
-            </VsCannedSearchSummaryBox>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4">
-            <VsCannedSearchSummaryBox>
-                <VsCannedSearchPrice
-                    v-if="sampleAccom.price"
-                    slot="vsCannedSearchSummaryLeft"
-                    :priceIntro="sampleAccom.price.priceLabel"
-                    :price="sampleAccom.price.price"
-                    priceOutro="per Adult"
-                />
-                <VsCannedSearchDuration
-                    slot="vsCannedSearchSummaryCentre"
-                    durationIntro="Length"
-                    duration="2 hours"
-                />
-                <VsLink
-                    :href="sampleAccom.website.link"
-                    type="external"
-                    slot="vsCannedSearchSummaryRight"
-                >
-                    Visit Website
-                </VsLink>
-            </VsCannedSearchSummaryBox>
-        </div>
-    </div>
-```
-</docs>
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

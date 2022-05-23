@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import VsIcon from '@components/elements/icon/Icon';
 import store from '../favourites.store';
 
 /**
@@ -41,12 +42,9 @@ export default {
     name: 'VsFavouritesListToggleButton',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         title: {
             type: String,
@@ -97,7 +95,6 @@ export default {
     margin: 0 0 $spacer-2 $spacer-2;
 }
 </style>
-<<<<<<< HEAD
 
 <docs>
   ```jsx
@@ -108,5 +105,3 @@ export default {
     />
   ```
 </docs>
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

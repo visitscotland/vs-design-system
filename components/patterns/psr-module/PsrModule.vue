@@ -34,10 +34,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * A module housing the PSR widget, a title and optional text
  *
@@ -48,16 +44,6 @@ export default {
     name: 'VsPsrModule',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
-    components: {
-        VsContainer,
-        VsRow,
-        VsCol,
-        VsPsrEmbed,
-        VsHeading,
-    },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Config for prefilled fields and language
@@ -73,10 +59,6 @@ export default {
 </script>
 
 <style lang="scss">
-<<<<<<< HEAD
-    @import '../../../styles/forms/_text-input.scss';
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
     .vs-psr-module {
         width: 100%;
@@ -86,11 +68,7 @@ export default {
 
         &__heading,
         &__intro {
-<<<<<<< HEAD
-            color: #fff;
-=======
             color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         }
 
         &__heading.vs-heading {
@@ -232,11 +210,7 @@ export default {
 
                     &__selected {
                         background-color: $color-secondary-teal-shade-2;
-<<<<<<< HEAD
-                        color: #fff;
-=======
                         color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
                     }
 
@@ -258,11 +232,7 @@ export default {
 
             &__heading,
             &__intro {
-<<<<<<< HEAD
-                color: #fff;
-=======
                 color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 margin-left: $spacer-10;
                 max-width: 70%;
             }

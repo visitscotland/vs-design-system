@@ -13,25 +13,16 @@
                     offset-sm="0"
                 >
                     <div class="slider">
-                        <VsRow
-                            class="vs-carousel__track"
-                            :style="{ 'transform': `translateX(${trackOffset})` }"
-                        >
-                            <!-- @slot default slot to contain slides -->
-                            <slot />
-                        </VsRow>
-                        <button
+                        <VsButton
                             v-if="!prevDisabled"
                             class="vs-carousel__control vs-carousel__control--prev"
-                            @click.prevent="sliderNavigate('prev')"
-                            @keypress.prevent="sliderNavigate('prev')"
+                            @click.native="sliderNavigate('prev')"
+                            @keypress.native="sliderNavigate('prev', true)"
+                            icon="internal-link"
+                            icon-orientation="down"
+                            icon-size-override="xs"
+                            ref="prevButton"
                         >
-                            <VsIcon
-                                name="internal-link"
-                                size="xs"
-                                orientation="down"
-                                variant="light"
-                            />
                             <div class="vs-carousel__control-label-container">
                                 <span
                                     class="vs-carousel__control-label
@@ -40,12 +31,24 @@
                                     {{ prevText }}
                                 </span>
                             </div>
-                        </button>
-                        <button
+                            <span class="sr-only">{{ prevText }}</span>
+                        </VsButton>
+                        <VsRow
+                            class="vs-carousel__track"
+                            :style="{ 'transform': `translateX(${trackOffset})` }"
+                        >
+                            <!-- @slot default slot to contain slides -->
+                            <slot />
+                        </VsRow>
+                        <VsButton
                             v-if="!nextDisabled"
                             class="vs-carousel__control vs-carousel__control--next"
-                            @keypress.prevent="sliderNavigate('next')"
-                            @click.prevent="sliderNavigate('next')"
+                            @keypress.native="sliderNavigate('next', true)"
+                            @click.native="sliderNavigate('next')"
+                            icon="internal-link"
+                            icon-position="right"
+                            icon-size-override="xs"
+                            ref="nextButton"
                         >
                             <div class="vs-carousel__control-label-container">
                                 <span
@@ -55,13 +58,8 @@
                                     {{ nextText }}
                                 </span>
                             </div>
-                            <VsIcon
-                                name="internal-link"
-                                size="xs"
-                                variant="light"
-                            />
                             <span class="sr-only">{{ nextText }}</span>
-                        </button>
+                        </VsButton>
 
                         <ul
                             v-if="totalSlides > slidesPerPage[currentWidth]"
@@ -76,7 +74,7 @@
                                     :class="index === currentPage + 1 ?
                                         'vs-carousel__navigation-item--active' : ''"
                                     @click.prevent="sliderNavigate(index - 1)"
-                                    @keypress.prevent="sliderNavigate(index - 1)"
+                                    @keypress.prevent="sliderNavigate(index - 1, true)"
                                     tabindex="0"
                                     :data-test="`vs-carousel__nav-${index}`"
                                 >
@@ -110,6 +108,12 @@
 </template>
 
 <script>
+import VsButton from '@components/elements/button';
+import {
+    VsContainer,
+    VsRow,
+    VsCol,
+} from '@components/elements/grid';
 
 /**
 * Multi purpose carousel component to use
@@ -122,15 +126,12 @@ export default {
     name: 'VsCarousel',
     status: 'protolink-type',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsContainer,
         VsRow,
         VsCol,
-        VsIcon,
+        VsButton,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * Accessible text for previous
@@ -191,6 +192,7 @@ export default {
             currentWidth: 'lg',
             activeSlides: [],
             remainderOffset: 0,
+            navigating: false,
         };
     },
     computed: {
@@ -321,7 +323,13 @@ export default {
             // the same position they were at before the resize
             this.sliderNavigate(this.currentPage);
         },
-        sliderNavigate(direction) {
+        sliderNavigate(direction, keypressNavigation) {
+            if (this.navigating) {
+                return;
+            }
+
+            this.navigating = true;
+
             if (direction === 'next') {
                 this.currentPage += 1;
             } else if (direction === 'prev') {
@@ -346,6 +354,18 @@ export default {
             }
 
             this.defineActiveSlides(finalSlideRemainder);
+
+            setTimeout(() => {
+                this.navigating = false;
+
+                if (keypressNavigation) {
+                    if (direction === 'next') {
+                        this.$refs.prevButton.$el.focus();
+                    } else if (direction === 'prev') {
+                        this.$refs.nextButton.$el.focus();
+                    }
+                }
+            }, 250);
         },
         initNavigation() {
             // method to enable/disable arrow controls for carousel
@@ -392,10 +412,8 @@ export default {
         }
 
         &__control {
-            position: absolute;
+            position: absolute !important;
             top: 25%;
-            border: none;
-            background: $color-theme-primary;
             z-index: 20;
             min-width: 35px;
             height: 35px;
@@ -403,32 +421,42 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: $spacer-3;
 
             &--next {
                 right: 0;
+
+                &:focus {
+                    right: .3125rem;
+                }
             }
 
             &--prev {
                 left: 0;
+
+                &:focus {
+                    left: .3125rem;
+                }
             }
 
             &-label {
-<<<<<<< HEAD
-                color: #fff;
-=======
                 color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 white-space: nowrap;
                 text-transform: uppercase;
                 font-weight: $font-weight-light;
 
                 &--next {
-                    padding-right: $spacer-4;
+                    padding-right: $spacer-2;
                 }
 
                 &--prev {
-                    padding-left: $spacer-4;
+                    padding-left: $spacer-2;
                 }
+            }
+
+            .vs-icon {
+                margin-left: $spacer-0 !important;
+                margin-right: $spacer-0 !important
             }
 
             .vs-carousel__control-label-container {
@@ -437,13 +465,21 @@ export default {
                 overflow: hidden;
             }
 
-            &:focus {
-                border: 2px solid $color-secondary-teal-tint-3;
-                outline: none;
+            &:active {
+                .vs-carousel__control-label {
+                    color: $color-white;
+                }
             }
 
-            &:hover {
+            &:focus:not(:active) {
+                .vs-carousel__control-label {
+                    color: $color-theme-primary;
+                }
+            }
+
+            &:hover, &:focus {
                 outline: none;
+                background-color: $color-theme-primary;
 
                 .vs-carousel__control-label-container {
                     max-width: 15rem;
@@ -526,7 +562,7 @@ export default {
             background: $color-gray-tint-7;
             padding: $spacer-1 $spacer-2;
             color: $color-black;
-            font-size: $font-size-sm;
+            font-size: $font-size-2;
             font-weight: bold;
             margin: 0;
         }

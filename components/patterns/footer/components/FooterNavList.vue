@@ -15,10 +15,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsAccordion from '@components/patterns/accordion/Accordion';
+import { VsRow, VsContainer } from '@components/elements/grid';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * The FooterNavList is a set of menu items used for
  * separate list of links in the footer.
@@ -28,14 +27,11 @@
 
 export default {
     name: 'VsFooterNavList',
-<<<<<<< HEAD
     components: {
         VsAccordion,
         VsRow,
         VsContainer,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * If this is provided, the accordion expands above

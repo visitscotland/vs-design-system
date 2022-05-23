@@ -40,10 +40,11 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsFooterNavList from '@components/patterns/footer/components/FooterNavList';
+import {
+    VsContainer, VsRow, VsCol,
+} from '@components/elements/grid';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * This component is the main Footer wrapper for the bottom of the page.
  *
@@ -53,15 +54,12 @@ export default {
     name: 'VsFooter',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
     components: {
         VsFooterNavList,
         VsCol,
         VsContainer,
         VsRow,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 };
 </script>
 

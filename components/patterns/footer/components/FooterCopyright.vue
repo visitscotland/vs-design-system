@@ -32,10 +32,12 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsSvgLink from '@components/elements/svg-link/SvgLink';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
+import {
+    VsRow, VsContainer, VsCol,
+} from '@components/elements/grid';
+
 /**
  * The VsFooterCopyright holds an image and copyright notices for the footer.
  *
@@ -44,15 +46,12 @@
 
 export default {
     name: 'VsFooterCopyright',
-<<<<<<< HEAD
     components: {
         VsSvgLink,
         VsRow,
         VsContainer,
         VsCol,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Accessiblity alt text for the logo button
@@ -97,20 +96,16 @@ export default {
     }
 
     .vs-footer-copyright__text {
-<<<<<<< HEAD
-        color: #fff;
-=======
         color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         margin: 0;
-        font-size: $font-size-sm;
+        font-size: $font-size-2;
 
         @include media-breakpoint-up(lg) {
-            font-size: $small-font-size;
+            font-size: $font-size-3;
         }
 
         @include media-breakpoint-up(xl) {
-            font-size: $font-size-base;
+            font-size: $font-size-4;
         }
     }
 }

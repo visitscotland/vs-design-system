@@ -2,7 +2,7 @@
     <VsHeading
         level="4"
         class="vs-canned-search-sub-heading"
-        :class="lineLimit ? 'text-truncate text-truncate--' + lineLimit : ''"
+        :class="lineLimit ? 'vs-canned-search-sub-heading--lines-' + lineLimit : ''"
         data-test="vs-canned-search-sub-heading"
     >
         {{ subHeading }}
@@ -10,10 +10,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsHeading from '@components/elements/heading/Heading';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Shows a formatted sub-heading for a canned search product card,
 * usually contains an address or list of themes
@@ -25,12 +23,9 @@ export default {
     name: 'VsCannedSearchSubHeading',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsHeading,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * The string to display
@@ -58,44 +53,18 @@ export default {
 <style lang="scss">
     h4.vs-canned-search-sub-heading {
         font-family: $font-family-base;
-        font-size: $font-size-base;
+        font-size: $font-size-4;
         color: $color-secondary-teal-shade-2;
         letter-spacing: normal;
         margin: $spacer-0;
         margin-bottom: $spacer-3;
-    }
 
-    .text-truncate {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        display: -webkit-box !important;
-        -webkit-box-orient: vertical;
-        white-space: normal;
-
-        &--1 {
-            -webkit-line-clamp: 1;
+        &--lines-1 {
+            @include truncate-text(1);
         }
 
-        &--2 {
-            -webkit-line-clamp: 2;
+        &--lines-2 {
+            @include truncate-text(2);
         }
     }
 </style>
-<<<<<<< HEAD
-
-<docs>
-```jsx
-    <VsCannedSearchSubHeading
-        style="max-width: 25rem"
-        sub-heading="Callander, Loch Lomond, The Trossachs, Stirling & Forth Valley"
-    />
-    <VsCannedSearchSubHeading
-        style="max-width: 25rem"
-        sub-heading="A very very long list of themes, it's so long it should overflow onto a second
-        row but it has a line limit"
-        :line-limit="1"
-    />
-```
-</docs>
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

@@ -17,6 +17,8 @@
 </template>
 
 <script>
+
+import VsHeading from '@components/elements/heading/Heading';
 import { BTab } from 'bootstrap-vue';
 /**
  * Tab item for use within the Tabs component.
@@ -27,10 +29,7 @@ export default {
     name: 'VsTabItem',
     components: {
         BTab,
-<<<<<<< HEAD
         VsHeading,
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     },
     props: {
         /**
@@ -55,17 +54,13 @@ export default {
             background-color: $color-secondary-gray-tint-6;
             color: $color-base-text;
             font-weight: $font-weight-bold;
-<<<<<<< HEAD
-            border-color: $color-secondary-gray-tint-6 $color-secondary-gray-tint-6 #fff;
-=======
             border-color: $color-secondary-gray-tint-6 $color-secondary-gray-tint-6 $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             padding: $spacer-3;
-            font-size: $font-size-lg;
+            font-size: $font-size-6;
 
             @include media-breakpoint-up(sm) {
                 padding: $spacer-5;
-                font-size: $display3-size;
+                font-size: $font-size-7;
             }
 
             &:focus-visible{
@@ -76,11 +71,7 @@ export default {
             &.active{
                 position: relative;
                 z-index: 2;
-<<<<<<< HEAD
-                background-color: #fff;
-=======
                 background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 padding: $spacer-5 $spacer-3;
 
                 @include media-breakpoint-up(sm) {
@@ -90,11 +81,7 @@ export default {
         }
 
         .vs-tab__item{
-<<<<<<< HEAD
-            background-color: #fff;
-=======
             background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             color: $color-base-text;
             text-align: left;
 
@@ -120,15 +107,11 @@ export default {
             &__heading{
                 display: block;
                 margin: 0;
-<<<<<<< HEAD
-                background-color: #fff;
-=======
                 background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 padding: $spacer-7 $spacer-5;
                 font-family: $font-family-sans-serif;
                 color: $color-base-text;
-                font-size: $display3-size;
+                font-size: $font-size-7;
                 font-weight: $font-weight-bold;
                 text-align: center;
                 letter-spacing: normal;

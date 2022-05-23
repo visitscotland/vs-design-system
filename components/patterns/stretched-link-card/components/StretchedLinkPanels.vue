@@ -15,7 +15,7 @@
         >
             <VsIcon
                 :name="transport"
-                variant="reverse-white"
+                variant="color-white"
                 class="vs-stretched-link-panels__icon"
             />
             <p data-test="vs-stretched-link-panel__icon">
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import VsIcon from '@components/elements/icon/Icon';
 /**
  * Panels to show information in the stretched link component
  *
@@ -35,12 +36,9 @@ export default {
     name: 'VsStretchedLinkPanels',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * Optional prop for number of days
@@ -88,30 +86,26 @@ export default {
             height: 55px;
             background: $color-black;
             margin-left: $spacer-2;
-<<<<<<< HEAD
-            color: #fff;
-=======
             color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
 
             &--days {
-                background: $color-secondary-teal-shade-2;
+                background: $color-secondary-teal-shade-3;
             }
 
             p {
                 margin-bottom: 0;
                 text-align: center;
                 line-height: $line_height_xs;
-                font-size: $xs-font-size;
+                font-size: $font-size-1;
             }
         }
 
         &__days {
-            font-size: $font-size-lg;
+            font-size: $font-size-6;
             font-family: "Source Sans Pro";
             font-weight: $font-weight-bold;
             display: block;

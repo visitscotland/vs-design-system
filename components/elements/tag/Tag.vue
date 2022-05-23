@@ -4,15 +4,17 @@
         data-test="vs-tag"
         :href="href"
     >
-        <!-- @slot Holds the tag text (text expected) -->
+        <!-- @slot Holds the tag text content-->
         <slot />
     </VsLink>
 </template>
 
 <script>
+import VsLink from '@components/elements/link/Link';
 
 /**
- * A styled tag with a link
+ * A tag link is used to label items to
+ * help categorize them for quick navigation.
  *
  * @displayName Tag
  */
@@ -20,12 +22,9 @@ export default {
     name: 'VsTag',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsLink,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The URL the tag will link to
@@ -49,31 +48,7 @@ export default {
 
         &:hover {
             background-color: $color-pink;
-<<<<<<< HEAD
-            color: #fff;
-=======
             color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         }
     }
 </style>
-
-<docs>
-```jsx
-    <VsTag
-        href="https://visitscotland.com"
-    >
-        Activities
-    </VsTag>
-    <VsTag
-        href="#"
-    >
-        Castles
-    </VsTag>
-    <VsTag
-        href="#"
-    >
-        Things to do
-    </VsTag>
-```
-</docs>

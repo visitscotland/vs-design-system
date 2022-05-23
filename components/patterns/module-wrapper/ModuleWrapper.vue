@@ -36,6 +36,7 @@
                         class="vs-module-wrapper__intro"
                         v-if="!!this.$slots['vsModuleWrapperIntro']"
                         data-test="vs-module-wrapper__intro"
+                        lead
                     >
                         <!-- @slot Slot to contain intro text -->
                         <slot name="vsModuleWrapperIntro" />
@@ -50,10 +51,12 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsHeading from '@components/elements/heading/Heading';
+import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
+import {
+    VsContainer, VsRow, VsCol,
+} from '@components/elements/grid';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Header intro and button wrapper for module content
 *
@@ -63,7 +66,6 @@ export default {
     name: 'VsModuleWrapper',
     status: 'protolink-type',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsHeading,
         VsRichTextWrapper,
@@ -71,8 +73,6 @@ export default {
         VsRow,
         VsCol,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * Theme of module wrapper to use
@@ -106,7 +106,7 @@ export default {
         }
 
         @include media-breakpoint-up(sm) {
-            padding-top: $spacer-10 + $spacer-3;
+            padding-top: $spacer-10 + $spacer-2;
             padding-bottom: $spacer-12;
         }
 
@@ -116,15 +116,36 @@ export default {
 
         &--dark {
             background-color: $theme-dark;
-<<<<<<< HEAD
-            color: #fff;
-=======
             color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
             .vs-module-wrapper__heading.vs-heading {
                 color: $color-yellow;
             }
+        }
+    }
+
+    .vs-module-wrapper__outer--light + .vs-module-wrapper__outer--light {
+        .vs-module-wrapper {
+            padding-top: $spacer-4;
+
+            @include media-breakpoint-up(sm) {
+                padding-top: $spacer-2;
+            }
+        }
+    }
+
+    // The fixed modules at the bottom of each page (no-js social share, newsletter
+    // and otyml) don't use the module-wrapper__outer normally and need these special
+    // cases. Reassess as and when those get refactored whether these can be removed.
+
+    .vs-module-wrapper__outer--light + .vs-module-wrapper__outer--hidden +
+        .vs-module-wrapper--light,
+    .vs-module-wrapper__outer--light + .vs-module-wrapper--light,
+    .vs-module-wrapper--light + .vs-module-wrapper--light {
+        padding-top: $spacer-4;
+
+        @include media-breakpoint-up(sm) {
+            padding-top: $spacer-2;
         }
     }
 </style>

@@ -26,10 +26,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsDropdown from '@components/patterns/dropdown/Dropdown';
+import VsDropdownItem from '@components/patterns/dropdown/components/DropdownItem';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * This component is the dropdown used inside the Global Menu component.
  * It holds the list of websites to be shown on smaller devices.
@@ -41,13 +40,10 @@ export default {
     name: 'VsGlobalMenuDropdown',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
     components: {
         VsDropdown,
         VsDropdownItem,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Determines the active website
@@ -97,7 +93,7 @@ export default {
 
     .btn-primary.dropdown-toggle {
         padding: 0.3rem $spacer-3;
-        font-size: $font-size-sm;
+        font-size: $font-size-2;
         align-items: center;
 
         &:not(:disabled):not(.disabled):active {
@@ -144,13 +140,9 @@ export default {
 
             a {
                 padding: $spacer-3;
-<<<<<<< HEAD
-                color: #fff;
-=======
                 color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 text-decoration: none;
-                font-size: $font-size-sm;
+                font-size: $font-size-2;
                 line-height: $line-height-s;
 
                 &:hover, &:focus {

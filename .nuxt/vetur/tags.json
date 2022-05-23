@@ -1,17 +1,9 @@
 {
-<<<<<<< HEAD
-  "AccordionItem": {
-    "description": "Auto imported from components/patterns/accordion/components/AccordionItem.vue"
-  },
-  "AccordionToggle": {
-    "description": "Auto imported from components/patterns/accordion/components/AccordionToggle.vue"
-=======
   "SiteSearchToggleButton": {
     "description": "Auto imported from components/patterns/site-search/components/SiteSearchToggleButton.vue"
   },
   "SkipToButton": {
     "description": "Auto imported from components/patterns/skip-to/components/SkipToButton.vue"
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
   },
   "Address": {
     "description": "Auto imported from components/elements/address/Address.vue"
@@ -76,15 +68,12 @@
   "Accordion": {
     "description": "Auto imported from components/patterns/accordion/Accordion.vue"
   },
-<<<<<<< HEAD
-=======
   "ComponentsAccordionItem": {
     "description": "Auto imported from components/patterns/accordion/components/AccordionItem.vue"
   },
   "ComponentsAccordionToggle": {
     "description": "Auto imported from components/patterns/accordion/components/AccordionToggle.vue"
   },
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
   "Article": {
     "description": "Auto imported from components/patterns/article/Article.vue"
   },
@@ -337,21 +326,9 @@
   "SiteSearch": {
     "description": "Auto imported from components/patterns/site-search/SiteSearch.vue"
   },
-<<<<<<< HEAD
-  "ComponentsSiteSearchToggleButton": {
-    "description": "Auto imported from components/patterns/site-search/components/SiteSearchToggleButton.vue"
-  },
   "SkipTo": {
     "description": "Auto imported from components/patterns/skip-to/SkipTo.vue"
   },
-  "ComponentsSkipToButton": {
-    "description": "Auto imported from components/patterns/skip-to/components/SkipToButton.vue"
-  },
-=======
-  "SkipTo": {
-    "description": "Auto imported from components/patterns/skip-to/SkipTo.vue"
-  },
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
   "SocialCreditLink": {
     "description": "Auto imported from components/patterns/social-credit-link/SocialCreditLink.vue"
   },
@@ -388,24 +365,31 @@
   "VideoCaption": {
     "description": "Auto imported from components/patterns/video-caption/VideoCaption.vue"
   },
-<<<<<<< HEAD
-  "OsBranding": {
-    "description": "Auto imported from utils/os-branding.js"
-  },
-  "BaseHeader": {
-    "description": "Auto imported from components/base/Header.vue"
-  },
-  "BaseSidebar": {
-    "description": "Auto imported from components/base/Sidebar.vue"
-=======
   "DSHeader": {
     "description": "Auto imported from components/DSHeader.vue"
   },
   "DSSidebar": {
     "description": "Auto imported from components/DSSidebar.vue"
   },
+  "BaseHeader": {
+    "description": "Auto imported from components/base/Header.vue"
+  },
+  "BaseSidebar": {
+    "description": "Auto imported from components/base/Sidebar.vue"
+  },
   "TemplatesExample": {
     "description": "Auto imported from components/templates/Example.vue"
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
+  },
+  "ElementsCheckbox": {
+    "description": "Auto imported from components/elements/checkbox/Checkbox.vue"
+  },
+  "ElementsInput": {
+    "description": "Auto imported from components/elements/input/Input.vue"
+  },
+  "ElementsRecaptcha": {
+    "description": "Auto imported from components/elements/recaptcha/Recaptcha.vue"
+  },
+  "ElementsSelect": {
+    "description": "Auto imported from components/elements/select/Select.vue"
   }
 }

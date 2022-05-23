@@ -14,7 +14,6 @@
         >
             <!--
                 @slot Holds optional introduction copy
-                Expects html
             -->
             <slot name="vsCannedSearchIntro" />
         </template>
@@ -33,7 +32,7 @@
                         offset-lg="3"
                         class="vs-canned-search__buttons"
                     >
-                        <!-- @slot Holds one or more navigation buttons  -->
+                        <!-- @slot Holds one or more call to action buttons  -->
                         <slot
                             name="vsCannedSearchButtons"
                         />
@@ -120,6 +119,9 @@
                     />
                     <VsCannedSearchSummaryBox
                         slot="vsCannedSearchSummary"
+                        :link-href="prod.website.link"
+                        :link-type="prod.website.type"
+                        :link-label="prod.website.label"
                     >
                         <VsCannedSearchDates
                             v-if="prod.opening && searchType !== 'tour'"
@@ -146,21 +148,11 @@
                             slot="vsCannedSearchSummaryLeft"
                             :cuisines="prod.cuisines"
                         />
-                        <VsLink
-                            v-if="prod.website"
-                            :href="prod.website.link"
-                            :type="prod.website.type.toLowerCase()"
-                            slot="vsCannedSearchSummaryRight"
-                        >
-                            {{ prod.website.label }}
-                        </VsLink>
                     </VsCannedSearchSummaryBox>
                 </VsCannedSearchProductCard>
                 <template slot="vsCarouselOf">
                     <!--
-                        @slot Holds the translation for `of` and passes it to the carousel
-
-                        Expects html
+                        @slot Holds the translation for `of` in the carousel pagination
                     -->
                     <slot
                         name="vsCannedSearchOf"
@@ -172,10 +164,8 @@
                 class="vs-canned-search__credit-container"
             >
                 <!--
-                @slot Holds credit info for search data from third parties
-
-                Expects html
-            -->
+                    @slot Holds credit information for search data from third parties
+                -->
                 <slot
                     name="vsCannedSearchCredit"
                 />
@@ -185,15 +175,30 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsCannedSearchProductCard from '@components/patterns/canned-search/components/CannedSearchProductCard';
+import VsCannedSearchStars from '@components/patterns/canned-search/components/CannedSearchStars';
+import VsCannedSearchLogos from '@components/patterns/canned-search/components/CannedSearchLogos';
+import VsCannedSearchCategories from '@components/patterns/canned-search/components/CannedSearchCategories';
+import VsCannedSearchPrice from '@components/patterns/canned-search/components/CannedSearchPrice';
+import VsCannedSearchDuration from '@components/patterns/canned-search/components/CannedSearchDuration';
+import VsCannedSearchSummaryBox from '@components/patterns/canned-search/components/CannedSearchSummaryBox';
+import VsCannedSearchDates from '@components/patterns/canned-search/components/CannedSearchDates';
+import VsCannedSearchBadges from '@components/patterns/canned-search/components/CannedSearchBadges';
+import VsCannedSearchCuisines from '@components/patterns/canned-search/components/CannedSearchCuisines';
+import VsCannedSearchSubHeading from '@components/patterns/canned-search/components/CannedSearchSubHeading';
+import VsCannedSearchTourRuns from '@components/patterns/canned-search/components/CannedSearchTourRuns';
+import VsCannedSearchTourDeparts from '@components/patterns/canned-search/components/CannedSearchTourDeparts';
+import VsCarousel from '@components/patterns/carousel/Carousel';
+import VsModuleWrapper from '@components/patterns/module-wrapper/ModuleWrapper';
+import {
+    VsContainer, VsRow, VsCol,
+} from '@components/elements/grid';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 const axios = require('axios');
 
 /**
-* Wrapper for canned search, invokes api call to provided endpoint and
-* creates cards for products
+* The canned search component displays a selection of
+* relevant products to a user based on defined search terms.
 *
 * @displayName Canned Search
 */
@@ -202,7 +207,6 @@ export default {
     name: 'VsCannedSearch',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsCannedSearchProductCard,
         VsCannedSearchStars,
@@ -221,11 +225,8 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
-        VsLink,
         VsModuleWrapper,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * The url that products should be retrieved from for display
@@ -235,12 +236,8 @@ export default {
             default: '',
         },
         /**
-        * The type of product that is being search for, determines how product
-        * card addresses are displayed.
-        *
-        * Any arbitrary search type could be added in the future and should just
-        * work without any specific handling, but at time of development this
-        * could be:
+        * The type of product that is being search for via our API - this determines how the product
+        * cards are displayed. Currently these are:
         *
         * `even` - events
         * `acco` - accomodation
@@ -325,6 +322,7 @@ export default {
             if (this.searchType === 'tour') {
                 return this.fetchCategoryStrings(product);
             }
+
             return this.fetchAddress(product);
         },
         /**
@@ -334,6 +332,7 @@ export default {
             if (product.category && product.category.length) {
                 return product.category.map((item) => item.name).join(', ');
             }
+
             return '';
         },
         /**
@@ -350,6 +349,7 @@ export default {
             if (!product.address) {
                 return '';
             }
+
             if (this.searchType === 'even') {
                 return `${product.eventVenue}, ${product.address.city}`;
             }
@@ -365,9 +365,11 @@ export default {
                     if (product.category[0]) {
                         return product.category[0].name;
                     }
+
                     return null;
                 }
             }
+
             return null;
         },
         /**
@@ -380,6 +382,7 @@ export default {
                     return product.tourVehicles.map((item) => item.name);
                 }
             }
+
             return null;
         },
         /**
@@ -423,105 +426,6 @@ export default {
 
     .vs-canned-search__credit-container {
         text-align: right;
-        font-size: $font-size-sm;
+        font-size: $font-size-2;
     }
 </style>
-
-<docs>
-```jsx
-
-        <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4751&locprox=10.0&loc=Glasgow&fac_id=accessguide"
-        heading="B&Bs, guesthouses and hostels in Loch Lomond and The Trossachs national park"
-        >
-        <template slot="vsCannedSearchIntro">
-            <p>Find your perfect place to stay</p>
-        </template>
-            <template slot="vsCannedSearchButtons">
-                <VsButton
-                    href="https://www.visitscotland.com"
-                >
-                    View All B&Bs
-                </VsButton>
-            </template>
-
-            <template slot="vsCannedSearchOf">
-                Of
-            </template>
-        </VsCannedSearch>
-
-        <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=10.0&loc=Scotland"
-            searchType="even"
-        heading="An events search example"
-        >
-            <template slot="vsCannedSearchButtons">
-                <VsButton
-                    href="https://www.visitscotland.com"
-                >
-                    View All Events
-                </VsButton>
-            </template>
-
-        <template slot="vsCannedSearchCredit">
-            These are some credits for a third party search
-        </template>
-
-            <template slot="vsCannedSearchOf">
-                Of
-            </template>
-        </VsCannedSearch>
-
-        <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=cate&locpoly=821&locprox=10.0&loc=Royal+Mile"
-            searchType="cate"
-        heading="A food & drink search example"
-        >
-            <template slot="vsCannedSearchButtons">
-                <VsButton
-                    href="https://www.visitscotland.com"
-                >
-                    View All Food & Drink
-                </VsButton>
-            </template>
-
-            <template slot="vsCannedSearchOf">
-                Of
-            </template>
-        </VsCannedSearch>
-
-        <VsCannedSearch
-            apiUrl="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acti%2Cattr%2Creta&locplace=4751&locprox=10.0&loc=Glasgow"
-            searchType="acti"
-        heading="A things to do example"
-        >
-            <template slot="vsCannedSearchButtons">
-                <VsButton
-                    href="https://www.visitscotland.com"
-                >
-                    View All
-                </VsButton>
-            </template>
-
-            <template slot="vsCannedSearchOf">
-                Of
-            </template>
-        </VsCannedSearch>
-    <VsCannedSearch
-        apiUrl="http://172.28.81.65:8089/data/component/cannedsearchtours?find%5B%5D=attractions%7Caberdeen%7CAberdeen&locale=en-GB"
-        searchType="tour"
-        heading="A tours example"
-    >
-        <template slot="vsCannedSearchButtons">
-            <VsButton
-                href="https://www.visitscotland.com"
-            >
-                View All
-            </VsButton>
-        </template>
-        <template slot="vsCannedSearchOf">
-            Of
-        </template>
-    </VsCannedSearch>
-```
-</docs>

@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import VsIcon from '@components/elements/icon/Icon';
+import VsDropdown from '@components/patterns/dropdown/Dropdown';
 import cookieMixin from '../../../../mixins/cookieMixin';
 
 /**
@@ -47,13 +49,10 @@ export default {
     name: 'VsGlobalMenuLanguage',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
     components: {
         VsDropdown,
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     mixins: [
         cookieMixin,
     ],
@@ -94,7 +93,7 @@ export default {
     .dropdown-menu {
         width: 100%;
         background: $color-purple;
-        font-size: $font-size-sm;
+        font-size: $font-size-2;
         margin: 0;
         max-height: 0;
         overflow: hidden;
@@ -122,7 +121,7 @@ export default {
 
     .btn-primary.dropdown-toggle {
         padding: 0.3rem $spacer-4;
-        font-size: $font-size-sm;
+        font-size: $font-size-2;
         background: $color-purple;
         border: none;
 
@@ -193,11 +192,7 @@ export default {
             transform: translate3d(0px, 0px, 0px) !important;
             text-align: center;
             max-height: none;
-<<<<<<< HEAD
-            border-top: 1px solid #fff;
-=======
             border-top: 1px solid $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             padding: $spacer-3 0;
 
             @include media-breakpoint-up(md) {
@@ -209,14 +204,10 @@ export default {
 
         &__label {
             display: inline;
-<<<<<<< HEAD
-            color: #fff;
-=======
             color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             padding: $spacer-3;
             line-height: $line-height-s;
-            font-size: $h4-font-size;
+            font-size: $font-size-4;
             margin: 0 auto;
 
             @include media-breakpoint-up(md) {

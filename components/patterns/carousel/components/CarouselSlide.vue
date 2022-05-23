@@ -45,6 +45,9 @@
 </template>
 
 <script>
+import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
+import VsStretchedLinkPanels from '@components/patterns/stretched-link-card/components/StretchedLinkPanels';
+import { VsCol } from '@components/elements/grid';
 
 /**
 * Slide for carousel
@@ -56,14 +59,11 @@ export default {
     name: 'VsCarouselSlide',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsStretchedLinkCard,
         VsStretchedLinkPanels,
         VsCol,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * The image to use in the component
@@ -248,7 +248,7 @@ export default {
                 }
 
                 &__title {
-                    font-size: $font-size-sm;
+                    font-size: $font-size-2;
                     letter-spacing: $letter-spacing-l;
                     line-height: $line-height-m;
                     color: $color-base-text;
@@ -296,7 +296,7 @@ export default {
                     }
 
                     &__days {
-                        font-size: $font-size-base;
+                        font-size: $font-size-4;
                         margin-bottom: 0;
                     }
                 }
@@ -315,7 +315,7 @@ export default {
             .vs-carousel-slide {
                 .vs-stretched-link-card {
                     &__title {
-                        font-size: $small-font-size;
+                        font-size: $font-size-3;
                     }
 
                     &__content {

@@ -33,10 +33,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
+import VsIcon from '@components/elements/icon/Icon';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  *  This component is used in the mobile menu for groups of links
  *
@@ -46,13 +45,10 @@ export default {
     name: 'VsMegaNavAccordionItem',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
     components: {
         VsAccordionItem,
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The aria control ID used for panel ID to match button aria control
@@ -136,13 +132,9 @@ export default {
     &--level-1{
         > .vs-accordion-item__card-header{
             .vs-accordion-toggle.btn-primary{
-<<<<<<< HEAD
-                background-color: #fff;
-=======
                 background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 color: $color-base-text;
-                font-size: $h2-font-size;
+                font-size: $font-size-6;
                 padding-left: $spacer-5;
                 padding-right: $spacer-5;
 
@@ -157,13 +149,9 @@ export default {
     &--level-2{
         > .vs-accordion-item__card-header{
             .vs-accordion-toggle.btn-primary{
-<<<<<<< HEAD
-                background-color: #fff;
-=======
                 background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 color: $color-secondary-gray-shade-3;
-                font-size: $h3-font-size;
+                font-size: $font-size-5;
                 line-height: $line-height-s;
                 padding-left: $spacer-8;
                 padding-right: $spacer-5;
@@ -174,11 +162,7 @@ export default {
                 }
 
                 &:focus, &:active, &:active:focus {
-<<<<<<< HEAD
-                    background-color: #fff;
-=======
                     background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                     color: $color-secondary-gray-shade-3;
                 }
             }
@@ -227,6 +211,13 @@ export default {
                 </VsMegaNavList>
             </VsMegaNavAccordionItem>
             <div class="featured-items">
+                <template
+                    v-if="item.title === 'Things to do'"
+                >
+                    <MegaNavFeaturedEvent
+                        source-url="http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=&locprox=&loc=Scotland&size=1"
+                    />
+                </template>
                 <template
                     v-if="item.title === 'Accommodation' || item.title === 'Inspiration'"
                 >

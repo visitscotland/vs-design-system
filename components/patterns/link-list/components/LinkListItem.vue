@@ -12,10 +12,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsLink from '@components/elements/link/Link';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * This component is an item appearing in a list of links.
  *
@@ -26,12 +24,9 @@ export default {
     name: 'VsLinkListItem',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsLink,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The URL the link will point to
@@ -65,7 +60,7 @@ export default {
 <style lang="scss">
     .link-list-item {
         margin-top: $spacer-4;
-        font-size: $font-size-md;
+        font-size: $font-size-5;
 
         &:first-of-type {
             margin-bottom: $spacer-0;

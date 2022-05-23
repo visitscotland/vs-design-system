@@ -67,10 +67,12 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import {
+    VsContainer, VsRow, VsCol,
+} from '@components/elements/grid';
+import VsSvg from '@components/elements/svg/Svg';
+import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * This component acts as a wrapper for an embedded javascript widget and provides
  * no-js and no-cookies functionality for that widget
@@ -81,7 +83,6 @@ export default {
     name: 'VsEmbedWrapper',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsContainer,
         VsRow,
@@ -89,8 +90,6 @@ export default {
         VsSvg,
         VsRichTextWrapper,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 };
 </script>
 

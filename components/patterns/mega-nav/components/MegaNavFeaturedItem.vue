@@ -25,10 +25,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  *  This component is used to show a featured item in the meganav
  *
@@ -39,12 +37,9 @@ export default {
     name: 'VsMegaNavFeaturedItem',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
     components: {
         VsStretchedLinkCard,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * Link URL for the featured item
@@ -95,17 +90,13 @@ export default {
             width: 80%;
             bottom: 0;
             left: 0;
-<<<<<<< HEAD
-            background: #fff;
-=======
             background: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             padding: $spacer-5 $spacer-3;
         }
 
         .card-title {
             margin-top: $spacer-0;
-            font-size: $font-size-sm;
+            font-size: $font-size-2;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
@@ -120,7 +111,7 @@ export default {
         }
 
         .vs-stretched-link-card__link {
-            font-size: $small-font-size;
+            font-size: $font-size-3;
         }
 
         @include media-breakpoint-up(sm) {
@@ -128,7 +119,7 @@ export default {
             flex-direction: row-reverse;
 
             .card-title {
-                font-size: $font-size-base;
+                font-size: $font-size-4;
             }
 
             .card-body {
@@ -167,14 +158,14 @@ export default {
             }
 
             .card-title {
-                font-size: $font-size-sm;
+                font-size: $font-size-2;
             }
 
             .vs-stretched-link-card__content {
                 display: -webkit-box;
                 margin: $spacer-0;
                 color: $color-base-text;
-                font-size: $small-font-size;
+                font-size: $font-size-3;
             }
 
             .vs-stretched-link-card__link {
@@ -201,7 +192,7 @@ export default {
                 }
 
                 .card-title {
-                    font-size: $font-size-sm;
+                    font-size: $font-size-2;
                     margin-bottom: 0;
                 }
             }

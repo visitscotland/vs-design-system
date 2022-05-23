@@ -1,8 +1,8 @@
 <template>
     <VsButton
         v-bind="$attrs"
-        v-b-tooltip.hover
-        class="vs-tooltip d-inline-block position-relative"
+        v-b-tooltip="{ placement: position }"
+        class="vs-tooltip position-relative"
         :title="title"
     >
         <slot />
@@ -11,9 +11,10 @@
 
 <script>
 import { VBTooltip } from 'bootstrap-vue';
+import VsButton from '@components/elements/button/Button';
 /**
- * A button that renders a tooltip on hover or focus
- * of the element
+ * A tooltip is a short, informative message that appears
+ * when a user interacts with an element.
  *
  * @displayName Tooltip
  */
@@ -22,37 +23,29 @@ export default {
     name: 'VsTooltip',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsButton,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     directives: {
         'b-tooltip': VBTooltip,
     },
     props: {
+        /**
+         * The text to display in the tooltip
+         */
         title: {
             type: String,
             default: '',
         },
+        /**
+         * The position of the tooltip
+         * `top|right|left|bottom`
+         */
+        position: {
+            type: String,
+            default: 'top',
+            validator: (value) => value.match(/(top|right|left|bottom)/),
+        },
     },
 };
 </script>
-
-<style lang="scss"></style>
-
-<docs>
-  ```jsx
-    <VsTooltip
-        title="This is a bus icon"
-        href="#"
-        icon="bus"
-        size="lg"
-        icon-only
-        icon-variant-override="dark"
-        class="p-0"
-        variant="transparent"
-    />
-  ```
-</docs>

@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import VsDropdownItem from '@components/patterns/dropdown/components/DropdownItem';
 import cookieMixin from '../../../../mixins/cookieMixin';
 
 /**
@@ -20,12 +21,9 @@ export default {
     name: 'VsGlobalMenuLanguageItem',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
     components: {
         VsDropdownItem,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     mixins: [
         cookieMixin,
     ],
@@ -101,13 +99,9 @@ export default {
         }
 
         .dropdown-item {
-<<<<<<< HEAD
-            color: #fff;
-=======
             color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             text-decoration: underline;
-            font-size: $h4-font-size;
+            font-size: $font-size-4;
 
             &:hover {
                 background:transparent;

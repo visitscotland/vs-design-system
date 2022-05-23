@@ -6,13 +6,8 @@ You can directly use them in pages and other components without the need to impo
 
 **Tip:** If a component is conditionally rendered with `v-if` and is big, it is better to use `Lazy` or `lazy-` prefix to lazy load.
 
-<<<<<<< HEAD
-- `<AccordionItem>` | `<accordion-item>` (components/patterns/accordion/components/AccordionItem.vue)
-- `<AccordionToggle>` | `<accordion-toggle>` (components/patterns/accordion/components/AccordionToggle.vue)
-=======
 - `<SiteSearchToggleButton>` | `<site-search-toggle-button>` (components/patterns/site-search/components/SiteSearchToggleButton.vue)
 - `<SkipToButton>` | `<skip-to-button>` (components/patterns/skip-to/components/SkipToButton.vue)
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 - `<Address>` | `<address>` (components/elements/address/Address.vue)
 - `<Button>` | `<button>` (components/elements/button/Button.vue)
 - `<FormInput>` | `<form-input>` (components/elements/form-input/FormInput.vue)
@@ -34,11 +29,8 @@ You can directly use them in pages and other components without the need to impo
 - `<Tooltip>` | `<tooltip>` (components/elements/tooltip/Tooltip.vue)
 - `<Video>` | `<video>` (components/elements/video/Video.vue)
 - `<Accordion>` | `<accordion>` (components/patterns/accordion/Accordion.vue)
-<<<<<<< HEAD
-=======
 - `<ComponentsAccordionItem>` | `<components-accordion-item>` (components/patterns/accordion/components/AccordionItem.vue)
 - `<ComponentsAccordionToggle>` | `<components-accordion-toggle>` (components/patterns/accordion/components/AccordionToggle.vue)
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 - `<Article>` | `<article>` (components/patterns/article/Article.vue)
 - `<ComponentsArticleSection>` | `<components-article-section>` (components/patterns/article/components/ArticleSection.vue)
 - `<ComponentsArticleSidebar>` | `<components-article-sidebar>` (components/patterns/article/components/ArticleSidebar.vue)
@@ -123,13 +115,7 @@ You can directly use them in pages and other components without the need to impo
 - `<PsrModule>` | `<psr-module>` (components/patterns/psr-module/PsrModule.vue)
 - `<Quote>` | `<quote>` (components/patterns/quote/Quote.vue)
 - `<SiteSearch>` | `<site-search>` (components/patterns/site-search/SiteSearch.vue)
-<<<<<<< HEAD
-- `<ComponentsSiteSearchToggleButton>` | `<components-site-search-toggle-button>` (components/patterns/site-search/components/SiteSearchToggleButton.vue)
 - `<SkipTo>` | `<skip-to>` (components/patterns/skip-to/SkipTo.vue)
-- `<ComponentsSkipToButton>` | `<components-skip-to-button>` (components/patterns/skip-to/components/SkipToButton.vue)
-=======
-- `<SkipTo>` | `<skip-to>` (components/patterns/skip-to/SkipTo.vue)
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 - `<SocialCreditLink>` | `<social-credit-link>` (components/patterns/social-credit-link/SocialCreditLink.vue)
 - `<SocialShare>` | `<social-share>` (components/patterns/social-share/SocialShare.vue)
 - `<ComponentsSocialShareItem>` | `<components-social-share-item>` (components/patterns/social-share/components/SocialShareItem.vue)
@@ -142,12 +128,12 @@ You can directly use them in pages and other components without the need to impo
 - `<ComponentsTabItem>` | `<components-tab-item>` (components/patterns/tabs/components/TabItem.vue)
 - `<ToggleButton>` | `<toggle-button>` (components/patterns/toggle-button/ToggleButton.vue)
 - `<VideoCaption>` | `<video-caption>` (components/patterns/video-caption/VideoCaption.vue)
-<<<<<<< HEAD
-- `<OsBranding>` | `<os-branding>` (utils/os-branding.js)
-- `<BaseHeader>` | `<base-header>` (components/base/Header.vue)
-- `<BaseSidebar>` | `<base-sidebar>` (components/base/Sidebar.vue)
-=======
 - `<DSHeader>` | `<d-s-header>` (components/DSHeader.vue)
 - `<DSSidebar>` | `<d-s-sidebar>` (components/DSSidebar.vue)
+- `<BaseHeader>` | `<base-header>` (components/base/Header.vue)
+- `<BaseSidebar>` | `<base-sidebar>` (components/base/Sidebar.vue)
 - `<TemplatesExample>` | `<templates-example>` (components/templates/Example.vue)
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
+- `<ElementsCheckbox>` | `<elements-checkbox>` (components/elements/checkbox/Checkbox.vue)
+- `<ElementsInput>` | `<elements-input>` (components/elements/input/Input.vue)
+- `<ElementsRecaptcha>` | `<elements-recaptcha>` (components/elements/recaptcha/Recaptcha.vue)
+- `<ElementsSelect>` | `<elements-select>` (components/elements/select/Select.vue)

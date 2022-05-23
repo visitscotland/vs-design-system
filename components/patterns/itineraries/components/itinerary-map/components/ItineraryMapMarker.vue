@@ -15,7 +15,7 @@
                 name="map-marker-filled"
                 :class="isHighlighted ? 'active' : ''"
                 :variant="isHighlighted ? 'dark' : 'secondary-teal'"
-                :size="isHighlighted ? 'lg' : 'md'"
+                size="xl"
             />
             <span
                 class="vs-itinerary-map-marker__count"
@@ -28,11 +28,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
-import itinerariesStore from '../../../itineraries.store';
+import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
+import VsIcon from '@components/elements/icon/Icon';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * TODO: Document usage
  *
@@ -43,12 +41,9 @@ export default {
     name: 'VsItineraryMapMarker',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         feature: {
             type: Object,
@@ -110,20 +105,21 @@ export default {
         transition: $transition-base;
     }
 
-    svg.active {
-        transform: scale(1.2, 1.2) translateY(-10px);
-        fill: $color-secondary-teal-shade-3 !important;
+    &.active {
+        .vs-map-marker__wrapper {
+            transform: scale(1.2, 1.2) translateY(-10px);
+        }
+
+        svg {
+            fill: $color-secondary-teal-shade-3 !important;
+        }
     }
 }
 
 .vs-itinerary-map-marker__count {
-<<<<<<< HEAD
-    color: #fff;
-=======
     color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     display: block;
-    font-size: 1rem;
+    font-size: $font-size-4;
     font-family: $headings-font-family;
     position: absolute;
     top: 4px;
@@ -131,11 +127,6 @@ export default {
     transition: $transition-base;
     text-align: center;
     width: 100%;
-
-    &.active {
-        font-size: 1.5rem;
-        transform: scale(1.2, 1.2) translateY(-5px);
-    }
 }
 </style>
 

@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { VsRow } from '@components/elements/grid';
 /**
  * A description list can be used where there is a list of terms and descriptions.
  *
@@ -23,12 +24,9 @@ export default {
     name: 'VsDescriptionList',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsRow,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Option to create inline list

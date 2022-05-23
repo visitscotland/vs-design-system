@@ -20,10 +20,10 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
+import VsLink from '@components/elements/link/Link';
+import VsIcon from '@components/elements/icon/Icon';
+
 /**
  * The FooterSocialItem is used inside the FooterSocialMenu to
  * show a button for a social media link.
@@ -35,13 +35,10 @@ export default {
     name: 'VsFooterSocialItem',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsLink,
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The URL the link will point to
@@ -74,7 +71,7 @@ export default {
             background: $color-gray-shade-1;
             box-shadow: 0 0 0 2px $color-gray-shade-1;
             border: 1px solid $color-gray-shade-1;
-            border-radius: 0.5rem;
+            border-radius: $border-radius-xl;
             display: block;
             height: 42px;
             width: 42px;
@@ -114,20 +111,21 @@ export default {
             }
 
             &:focus {
+                box-shadow: $shadow-button-focus;
+                background-color: $color-white;
+                color: $color-gray-shade-1;
                 outline: none;
-                border: 1px solid $color-pink;
-                box-shadow: 0 0 0 2px $color-pink-tint-5;
-            }
+
+                .vs-icon {
+                    fill: $color-gray-shade-1 !important;
+                }
+        }
 
             .vs-icon {
                 &.vs-icon--size-md {
                     height: 100%;
                     margin: 0 auto;
-<<<<<<< HEAD
-                    fill: #fff;
-=======
                     fill: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                     display: block;
                 }
 

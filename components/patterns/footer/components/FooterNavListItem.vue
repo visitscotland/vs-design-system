@@ -16,10 +16,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsLink from '@components/elements/link/Link';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * The FooterNavListItems is used inside the FooterNavList to
  * show an indivudal footer link.
@@ -29,12 +27,9 @@
 
 export default {
     name: 'VsFooterNavListItem',
-<<<<<<< HEAD
     components: {
         VsLink,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The URL the link will point to
@@ -66,17 +61,13 @@ export default {
 <style lang="scss">
 .vs-footer-nav-list-item {
     list-style: none;
-    font-size: $small-font-size;
+    font-size: $font-size-3;
     line-height: $line-height-s;
     padding: $spacer-3 $spacer-8;
 
     .vs-link {
         &--variant-dark {
-<<<<<<< HEAD
-            color: #fff;
-=======
             color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
             text-decoration: none;
         }
 
@@ -85,11 +76,7 @@ export default {
         }
 
         .vs-icon {
-<<<<<<< HEAD
-            fill: #fff;
-=======
             fill: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         }
     }
 

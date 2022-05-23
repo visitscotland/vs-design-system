@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-export { default as AccordionItem } from '../../components/patterns/accordion/components/AccordionItem.vue'
-export { default as AccordionToggle } from '../../components/patterns/accordion/components/AccordionToggle.vue'
-=======
 export { default as SiteSearchToggleButton } from '../../components/patterns/site-search/components/SiteSearchToggleButton.vue'
 export { default as SkipToButton } from '../../components/patterns/skip-to/components/SkipToButton.vue'
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 export { default as Address } from '../../components/elements/address/Address.vue'
 export { default as Button } from '../../components/elements/button/Button.vue'
 export { default as FormInput } from '../../components/elements/form-input/FormInput.vue'
@@ -26,11 +21,8 @@ export { default as Tag } from '../../components/elements/tag/Tag.vue'
 export { default as Tooltip } from '../../components/elements/tooltip/Tooltip.vue'
 export { default as Video } from '../../components/elements/video/Video.vue'
 export { default as Accordion } from '../../components/patterns/accordion/Accordion.vue'
-<<<<<<< HEAD
-=======
 export { default as ComponentsAccordionItem } from '../../components/patterns/accordion/components/AccordionItem.vue'
 export { default as ComponentsAccordionToggle } from '../../components/patterns/accordion/components/AccordionToggle.vue'
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 export { default as Article } from '../../components/patterns/article/Article.vue'
 export { default as ComponentsArticleSection } from '../../components/patterns/article/components/ArticleSection.vue'
 export { default as ComponentsArticleSidebar } from '../../components/patterns/article/components/ArticleSidebar.vue'
@@ -115,13 +107,7 @@ export { default as PageIntro } from '../../components/patterns/page-intro/PageI
 export { default as PsrModule } from '../../components/patterns/psr-module/PsrModule.vue'
 export { default as Quote } from '../../components/patterns/quote/Quote.vue'
 export { default as SiteSearch } from '../../components/patterns/site-search/SiteSearch.vue'
-<<<<<<< HEAD
-export { default as ComponentsSiteSearchToggleButton } from '../../components/patterns/site-search/components/SiteSearchToggleButton.vue'
 export { default as SkipTo } from '../../components/patterns/skip-to/SkipTo.vue'
-export { default as ComponentsSkipToButton } from '../../components/patterns/skip-to/components/SkipToButton.vue'
-=======
-export { default as SkipTo } from '../../components/patterns/skip-to/SkipTo.vue'
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 export { default as SocialCreditLink } from '../../components/patterns/social-credit-link/SocialCreditLink.vue'
 export { default as SocialShare } from '../../components/patterns/social-share/SocialShare.vue'
 export { default as ComponentsSocialShareItem } from '../../components/patterns/social-share/components/SocialShareItem.vue'
@@ -134,15 +120,15 @@ export { default as Tabs } from '../../components/patterns/tabs/Tabs.vue'
 export { default as ComponentsTabItem } from '../../components/patterns/tabs/components/TabItem.vue'
 export { default as ToggleButton } from '../../components/patterns/toggle-button/ToggleButton.vue'
 export { default as VideoCaption } from '../../components/patterns/video-caption/VideoCaption.vue'
-<<<<<<< HEAD
-export { default as OsBranding } from '../../utils/os-branding.js'
-export { default as BaseHeader } from '../../components/base/Header.vue'
-export { default as BaseSidebar } from '../../components/base/Sidebar.vue'
-=======
 export { default as DSHeader } from '../../components/DSHeader.vue'
 export { default as DSSidebar } from '../../components/DSSidebar.vue'
+export { default as BaseHeader } from '../../components/base/Header.vue'
+export { default as BaseSidebar } from '../../components/base/Sidebar.vue'
 export { default as TemplatesExample } from '../../components/templates/Example.vue'
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
+export { default as ElementsCheckbox } from '../../components/elements/checkbox/Checkbox.vue'
+export { default as ElementsInput } from '../../components/elements/input/Input.vue'
+export { default as ElementsRecaptcha } from '../../components/elements/recaptcha/Recaptcha.vue'
+export { default as ElementsSelect } from '../../components/elements/select/Select.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

@@ -75,10 +75,10 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsHeading from '@components/elements/heading/Heading';
+import VsLink from '@components/elements/link/Link';
+import VsImg from '@components/elements/img/Img';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * The Stretched Link Card is a block that stretches its nested link across its whole area
  * meaning that the whole block is clickable
@@ -89,14 +89,11 @@ export default {
     name: 'VsStretchedLinkCard',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsHeading,
         VsLink,
         VsImg,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * The link that the component will use
@@ -201,7 +198,7 @@ export default {
         }
 
         .vs-stretched-link-card__title {
-            font-size: $small-font-size;
+            font-size: $font-size-3;
             line-height: $line-height-s;
             letter-spacing: $letter-spacing-l;
             color: $color-base-text;
@@ -214,7 +211,7 @@ export default {
 
         .vs-stretched-link-card__category {
             font-family: $font-family-base;
-            font-size: $small-font-size;
+            font-size: $font-size-3;
             line-height: $line-height-xs;
             color: $color-secondary-teal-shade-2;
             letter-spacing: normal;
@@ -224,7 +221,7 @@ export default {
         .vs-stretched-link-card__content {
             margin-top: $spacer-2;
             line-height: $line-height-s;
-            font-size: $teaser-font-size;
+            font-size: $font-size-teaser;
 
             p:last-of-type {
                 margin-bottom: 0;
@@ -254,7 +251,7 @@ export default {
 
         @include media-breakpoint-up(xl) {
             .vs-stretched-link-card__title {
-                font-size: $small-font-size;
+                font-size: $font-size-3;
                 line-height: $line-height-s;
             }
 

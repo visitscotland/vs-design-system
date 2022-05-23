@@ -7,6 +7,7 @@
             class="p-0"
             variant="transparent"
             data-test="vs-canned-search-logos__good-to-go"
+            :disabled="!slideVisible()"
         >
             <VsImg
                 :alt="goodToGoLogo.name"
@@ -21,6 +22,7 @@
             class="p-0"
             variant="transparent"
             data-test="vs-canned-search-logos__safe-travels"
+            :disabled="!slideVisible()"
         >
             <VsImg
                 :alt="safeTravelsLogo.name"
@@ -35,6 +37,7 @@
             href="#"
             class="p-0"
             variant="transparent"
+            :disabled="!slideVisible()"
         >
             <VsImg
                 :src="award.image"
@@ -50,6 +53,7 @@
             variant="transparent"
             class="vs-canned-search-logos__access p-0"
             data-test="vs-canned-search-logos__access-guide"
+            :disabled="!slideVisible()"
         >
             <VsImg
                 :src="accessGuide.image"
@@ -61,10 +65,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsTooltip from '@components/elements/tooltip/Tooltip';
+import VsImg from '@components/elements/img/Img';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
 * Component that displays a set of badges and awards for certain kinds of product card
 * within canned search
@@ -76,13 +79,10 @@ export default {
     name: 'VsCannedSearchLogos',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsTooltip,
         VsImg,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
         * If set, the good to go logo appears. Should contain a unique `id` (String), a `name`
@@ -117,6 +117,7 @@ export default {
             default: null,
         },
     },
+    inject: ['slideVisible'],
 };
 
 </script>
@@ -144,18 +145,3 @@ export default {
         }
     }
 </style>
-<<<<<<< HEAD
-
-<docs>
-```jsx
-    const sampleFood = require("../../../../assets/fixtures/canned-search/sample-food.json");
-
-    <VsCannedSearchLogos
-        :goodToGoLogo="sampleFood.covidInformation.goodToGo"
-        :safeTravelsLogo="sampleFood.covidInformation.safeTravels"
-        :awards="sampleFood.awards"
-    />
-```
-</docs>
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

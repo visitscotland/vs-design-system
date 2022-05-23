@@ -67,10 +67,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsIcon from '@components/elements/icon/Icon';
+import VsHeading from '@components/elements/heading/Heading';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * Itinerary Day list items.
  *
@@ -81,13 +80,10 @@ export default {
     name: 'VsItineraryStop',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsHeading,
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Label used for the word 'Stop'
@@ -129,11 +125,7 @@ export default {
 
     .border {
         position: relative;
-<<<<<<< HEAD
-        background-color: #fff;
-=======
         background-color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         border: 1px solid $color-gray-tint-5;
         padding: $spacer-4;
     }
@@ -145,13 +137,9 @@ export default {
         }
     }
     .map-marker__count {
-<<<<<<< HEAD
-        color: #fff;
-=======
         color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         font-family: $headings-font-family;
-        font-size: 1rem;
+        font-size: $font-size-4;
         display: block;
         position: absolute;
         top: 4px;

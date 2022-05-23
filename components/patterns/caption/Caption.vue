@@ -26,9 +26,6 @@
                         <!-- @slot Slot to display credit  -->
                         <slot name="credit" />
                     </p>
-
-                    <!-- @slot Slot to display social media credit link  -->
-                    <slot name="socialLink" />
                 </div>
             </VsCol>
             <VsCol
@@ -51,27 +48,22 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import designTokens from '@/assets/tokens/tokens.json';
-=======
-import { get } from 'lodash';
+import { VsRow, VsCol } from '@components/elements/grid';
+import VsCaptionImageMap from './components/CaptionImageMap';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
- * TODO: Document usage
+ * Captions are used to briefly describe an image or other media such as a video.
  *
  * @displayName Caption
  */
 export default {
     name: 'VsCaption',
-<<<<<<< HEAD
     components: {
         VsRow,
         VsCol,
         VsCaptionImageMap,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * Option to choose which variant to show
@@ -108,19 +100,9 @@ export default {
             validator: (value) => value.match(/(left|right)/),
         },
     },
-<<<<<<< HEAD
     data() {
         return {
             tokens: designTokens,
-=======
-    async fetch({ $content }) {
-        this.tokens = await $content('tokens').fetch();
-        return get(this.tokens, `props.icon_size_${this.size}.value`, '40px');
-    },
-    data() {
-        return {
-            tokens: [],
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         };
     },
     computed: {
@@ -146,11 +128,7 @@ export default {
 <style lang="scss">
 .vs-caption {
     background-color: $color-gray-shade-6;
-<<<<<<< HEAD
-    color: #fff;
-=======
     color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 
     &--large,
     &--fullwidth {
@@ -217,7 +195,7 @@ export default {
 
     &__image-caption,
     &__image-credit {
-        font-size: $small-font-size;
+        font-size: $font-size-3;
         line-height: $line-height-standard;
     }
 
@@ -296,62 +274,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```js
-
-    <BsWrapper style="max-width: 500px">
-        <h3>Fullwidth Caption</h3>
-        <VsCaption>
-            <span slot="caption">
-                A Scottish Castle
-            </span>
-
-            <span slot="credit">
-                VisitScotland
-            </span>
-        </VsCaption>
-
-        <h3 style="margin-top: 3rem;">Fullwidth Caption (Right)</h3>
-        <VsCaption text-align="right">
-            <span slot="caption">
-                A Scottish Castle
-            </span>
-
-            <span slot="credit">
-                VisitScotland
-            </span>
-        </VsCaption>
-
-        <h3 style="margin-top: 3rem;">Fullwidth Social Image</h3>
-        <VsCaption>
-            <span slot="caption">
-                A Scottish Castle
-            </span>
-
-            <VsSocialCreditLink
-                slot="socialLink"
-                credit="VisitScotland"
-                socialPostUrl="http://www.visitscotland.com"
-                source="instagram"
-            >
-            </VsSocialCreditLink>
-        </VsCaption>
-
-        <h3 style="margin-top: 3rem;">Large Caption Style</h3>
-        <VsCaption
-            latitude="55.9485947"
-            longitude="-3.2021022"
-            variant="large"
-        >
-            <span slot="caption">
-                A Scottish Castle
-            </span>
-
-            <span slot="credit">
-                VisitScotland
-            </span>
-        </VsCaption>
-    </BsWrapper>
-  ```
-</docs>

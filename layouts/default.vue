@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header/>
-    <Sidebar/>
+    <DSHeader/>
+    <DSSidebar/>
     <slot />
   </div>
 </template>

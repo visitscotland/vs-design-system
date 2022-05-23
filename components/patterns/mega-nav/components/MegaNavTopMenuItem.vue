@@ -50,6 +50,14 @@
                     >
                         <slot name="navFeaturedItem" />
                     </div>
+
+                    <div
+                        class="vs-mega-nav-top-menu-item__featured-event"
+                        data-test="vs-mega-nav-top-menu-item__featured-event"
+                        v-if="hasFeaturedEvent"
+                    >
+                        <slot name="navFeaturedEvent" />
+                    </div>
                 </div>
             </template>
         </VsMegaNavDropdown>
@@ -57,10 +65,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsMegaNavDropdown from '@components/patterns/mega-nav/components/MegaNavDropdown';
+import VsLink from '@components/elements/link/Link';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  *  Mega nav top level menu items with a slots for toggle button and dropdown content
  *
@@ -70,13 +77,10 @@ export default {
     name: 'VsMegaNavTopMenuItem',
     status: 'prototype',
     release: '0.1.0',
-<<<<<<< HEAD
     components: {
         VsMegaNavDropdown,
         VsLink,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The URL for the top level CTA link
@@ -107,6 +111,9 @@ export default {
         },
         hasFeaturedItemLeft() {
             return !!this.$slots.navFeaturedItemLeft;
+        },
+        hasFeaturedEvent() {
+            return !!this.$slots.navFeaturedEvent;
         },
         alignmentClass() {
             return this.align === 'bottom'
@@ -168,6 +175,20 @@ export default {
                         background: $color-gray-tint-6;
                     }
                 }
+            }
+        }
+
+        &__featured-event {
+            @include media-breakpoint-up(lg) {
+                width: 23%;
+            }
+
+            @include media-breakpoint-up(xl) {
+                width: 21.8%;
+            }
+
+            @include media-breakpoint-up(xxl) {
+                width: 21.3%;
             }
         }
 

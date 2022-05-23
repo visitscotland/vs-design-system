@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import VsIcon from '@components/elements/icon/Icon';
 import favouritesStore from './favourites.store';
 
 /**
@@ -40,12 +41,9 @@ export default {
     name: 'VsFavouritesList',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         listHeader: {
             type: String,
@@ -75,12 +73,12 @@ export default {
 
 <style lang="scss">
 .vs-favourites-list__link {
-    font-size: 1.5rem;
+    font-size: $font-size-8;
 }
 
 .vs-favourites-list__header {
     color: $color-gray-shade-2;
-    font-size: 2rem;
+    font-size: $font-size-9;
     font-weight: $font-weight-light;
     letter-spacing: $letter-spacing-l;
 }

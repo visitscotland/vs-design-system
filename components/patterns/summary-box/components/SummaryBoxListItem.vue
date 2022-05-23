@@ -41,10 +41,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsIcon from '@components/elements/icon/Icon';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * Summary Box List Item
  *
@@ -54,12 +52,9 @@ export default {
     name: 'VsSummaryBoxListItem',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The highlighted, large text in the centre of the list item
@@ -125,19 +120,19 @@ export default {
 
     .vs-summary-box-item__label-inner {
         display: block;
-        font-size: $small-font-size;
+        font-size: $font-size-3;
         line-height: $line_height_standard;
         font-weight: $font-weight-bold;
 
         @include media-breakpoint-up(lg) {
-            font-size: $font-size-md
+            font-size: $font-size-5
         }
     }
 }
 
 .vs-summary-box-item__display {
     font-family: $headings-font-family;
-    font-size: $h1-font-size-md;
+    font-size: $font-size-9;
     bottom: 35%;
 
     .divider {
@@ -145,7 +140,7 @@ export default {
     }
 
     @include media-breakpoint-up(lg) {
-        font-size: $font-size-xl;
+        font-size: $font-size-10;
     }
 }
 
@@ -160,7 +155,7 @@ export default {
     }
 
     .text-wrapper {
-        font-size: $small-font-size;
+        font-size: $font-size-3;
         line-height: $line_height_xs;
         max-width: 90%;
         word-wrap: break-word;

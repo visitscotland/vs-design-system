@@ -11,16 +11,15 @@
             name="chevron"
             orientation="down"
             size="xs"
-            variant="reverse-white"
+            variant="color-white"
         />
     </VsButton>
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsIcon from '@components/elements/icon/Icon';
+import VsButton from '@components/elements/button';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * The SkipToButton component is a button with specific style and
  * is not visible until focused on, for use as an accessibility
@@ -32,13 +31,10 @@ export default {
     name: 'VsSkipToButton',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsIcon,
         VsButton,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The tabindex attribute for this element. For some reason

@@ -16,6 +16,7 @@
  *
  * @displayName Accordion
  */
+
 export default {
     name: 'VsAccordion',
     props: {

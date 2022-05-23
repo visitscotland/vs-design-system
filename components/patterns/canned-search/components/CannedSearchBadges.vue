@@ -117,26 +117,18 @@ export default {
             max-height: 1.5em;
             text-align: right;
             text-overflow: ellipsis;
-            max-width: calc(100% - 1rem);
+            max-width: calc(100% - #{$spacer-4});
             overflow: hidden;
             white-space: nowrap;
-            font-size: $small-font-size;
+            font-size: $font-size-3;
 
             &--teal {
-<<<<<<< HEAD
-                color: #fff;
-=======
                 color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 background-color: $color-secondary-teal-shade-2;
             }
 
             &--pink {
-<<<<<<< HEAD
-                color: #fff;
-=======
                 color: $color-white;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
                 background-color: $color_pink;
             }
 
@@ -166,7 +158,7 @@ export default {
         &__multi-badge-holder {
             position: absolute;
             text-align: right;
-            max-width: calc(100% - 1rem);
+            max-width: calc(100% - #{$spacer-4});
             width: 100%;
             max-height: 1.5em;
             overflow: hidden;
@@ -181,31 +173,4 @@ export default {
         }
     }
 
-<<<<<<< HEAD
 </style>
-
-<docs>
-```jsx
-    <div
-        style="position: relative; height: 15em; width: 23em; display: inline-block;"
-    >
-        <VsCannedSearchBadges
-            badgeOne="one"
-            badgeTwo="two"
-            badgeThree="three"
-        />
-    </div>
-    <div
-        style="position: relative; height: 15em; width: 23em; display: inline-block;"
-    >
-        <VsCannedSearchBadges
-            :multiBadgeOne="['Boat Tour','Walking Tour','Small Coach Tour']"
-            badgeTwo="two"
-            badgeThree="three"
-        />
-    </div>
-```
-</docs>
-=======
-</style>
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

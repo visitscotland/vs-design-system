@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss">
     .vs-canned-search-cuisines {
-        font-size: $font-size-base;
+        font-size: $font-size-4;
         line-height: $line-height-s;
         font-weight: $font-weight-semi-bold;
         margin-bottom: $spacer-1;
@@ -52,15 +52,3 @@ export default {
         }
     }
 </style>
-<<<<<<< HEAD
-
-<docs>
-```jsx
-    const sampleFood = require("../../../../assets/fixtures/canned-search/sample-food.json");
-
-    <VsCannedSearchCuisines
-        :cuisines="sampleFood.cuisines"
-    />
-</docs>
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709

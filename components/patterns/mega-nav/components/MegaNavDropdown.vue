@@ -50,7 +50,13 @@
 </template>
 
 <script>
+import {
+    VsCol,
+    VsRow,
+    VsContainer,
+} from '@components/elements/grid';
 import { BDropdown } from 'bootstrap-vue';
+import VsButton from '@components/elements/button/Button';
 
 /**
  *  This component includes a slot for toggle button content
@@ -64,13 +70,10 @@ export default {
     release: '0.1.0',
     components: {
         BDropdown,
-<<<<<<< HEAD
         VsCol,
         VsContainer,
         VsRow,
         VsButton,
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     },
     props: {
         /**
@@ -114,7 +117,11 @@ export default {
 <style lang="scss">
 
 .vs-mega-nav-dropdown {
-    padding: 0;
+    padding: $spacer-2 0 0 $spacer-2;
+
+    @include media-breakpoint-up(lg) {
+        padding: 0;
+    }
 
     .dropdown {
         position: static;
@@ -135,8 +142,8 @@ export default {
         height: 26px;
         width: 26px;
         font-size: 0;
-        right: 20px;
-        top: -40px;
+        right: $spacer-3;
+        top: -36px;
 
         &:hover {
             .vs-icon{
@@ -144,11 +151,8 @@ export default {
             }
         }
 
-        @include media-breakpoint-up(sm) {
-            right: 36px;
-        }
         @include media-breakpoint-up(lg) {
-            right: 4px;
+            right: $spacer-1;
             top: -10px;
         }
     }
@@ -160,17 +164,18 @@ export default {
         line-height: $line-height-standard;
         border-radius: 0;
         border: 0;
-        height: 32px;
-        width: 32px;
+        height: $spacer-7;
+        width: $spacer-7;
         font-size: 0;
-        padding: $spacer-1;
+        padding: .125rem;
 
         &:focus, &:active, &:active:focus {
-            box-shadow: $shadow-button-focus inset;
+            box-shadow: $shadow-button-focus;
+            z-index: 1001;
         }
 
-        &:hover {
-            .icon.icon-dark[data-v-196177e7] {
+        &:hover, &:focus {
+            .vs-icon {
                 fill: $color-pink;
             }
         }
@@ -183,7 +188,7 @@ export default {
             padding: $spacer-3 $spacer-2;
             height: auto;
             width: auto;
-            font-size: 1rem;
+            font-size: $font-size-4;
 
             &::after {
                 content: '';
@@ -221,11 +226,12 @@ export default {
         border: 0;
         box-shadow: 0px 9px 5px -7px rgba(0,0,0,0.1),
         inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
-        transform: translate3d(0px, 55px, 0px) !important;
+        transform: translate3d(0px, 45px, 0px) !important;
 
         @include media-breakpoint-up(lg) {
             padding: $spacer-5 0 $spacer-8;
             max-height: 595px;
+            transform: translate3d(0px, 55px, 0px) !important;
         }
 
         .vs-mega-nav-accordion-item--level-1:first-child{
@@ -246,7 +252,7 @@ export default {
             padding: $spacer-3 $spacer-2;
             height: auto;
             width: auto;
-            font-size: $h4-font-size;
+            font-size: $font-size-4;
             margin-bottom: $spacer-2;
 
             @include media-breakpoint-up(lg) {

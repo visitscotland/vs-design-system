@@ -3,6 +3,7 @@
         v-if="showBanner"
         class="vs-banner"
         data-test="vs-banner"
+        role="banner"
     >
         <VsContainer>
             <VsRow>
@@ -20,20 +21,22 @@
                             custom-colour="#700E57"
                         />
 
-                        <!-- @slot Slot to contain banner title -->
-                        <slot name="vsBannerTitle" />
+                        {{ title }}
                     </VsHeading>
 
                     <VsRichTextWrapper
                         class="vs-banner__text"
-                        v-if="!!this.$slots['vsBannerText']"
+                        v-if="!!this.$slots['bannerText'] || !!this.$slots['bannerCta']"
                     >
                         <!-- @slot Slot to contain banner text -->
-                        <slot name="vsBannerText" />
+                        <slot name="bannerText" />
 
-                        <span class="vs-banner__cta-link">
+                        <span
+                            class="vs-banner__cta-link"
+                            v-if="!!this.$slots['bannerCta']"
+                        >
                             <!-- @slot Slot to contain CTA link -->
-                            <slot name="vsBannerCta" />
+                            <slot name="bannerCta" />
                         </span>
                     </VsRichTextWrapper>
                 </VsCol>
@@ -51,9 +54,8 @@
                         icon-only
                         @click.native="hideBanner"
                     >
-                        <!-- @slot Default slot to contain screenreader-only text for button-->
                         <span class="sr-only">
-                            <slot name="closeBtnText" />
+                            {{ closeBtnText }}
                         </span>
                     </VsButton>
                 </VsCol>
@@ -63,11 +65,15 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsButton from '@components/elements/button/Button';
+import VsHeading from '@components/elements/heading/Heading';
+import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
+import VsIcon from '@components/elements/icon/';
+import {
+    VsContainer, VsRow, VsCol,
+} from '@components/elements/grid';
 import cookieMixin from '../../../mixins/cookieMixin';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * A banner used globally at the top of a page to display
  * important information.
@@ -79,7 +85,6 @@ export default {
     name: 'VsBanner',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsButton,
         VsContainer,
@@ -89,11 +94,32 @@ export default {
         VsRichTextWrapper,
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     mixins: [
         cookieMixin,
     ],
+    props: {
+        /**
+         * Accessible text for close button
+         */
+        closeBtnText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Title for the banner
+         */
+        title: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Set to false to let the banner show again on page refresh
+         */
+        dontShowAgain: {
+            type: Boolean,
+            required: true,
+        },
+    },
     data() {
         return {
             showBanner: true,
@@ -110,7 +136,10 @@ export default {
          */
         hideBanner() {
             this.showBanner = !this.showBanner;
-            this.setHiddenCookie();
+
+            if (this.dontShowAgain) {
+                this.setHiddenCookie();
+            }
         },
         /**
          * Sets cookie to hide the banner for the user's session
@@ -138,7 +167,7 @@ export default {
         }
     }
 
-    &__text.vs-rich-text-wrapper--variant-normal{
+    &__text.vs-rich-text-wrapper--normal{
         p{
             display: inline;
 
@@ -148,9 +177,9 @@ export default {
         }
     }
 
-    &__text.vs-rich-text-wrapper--variant-normal,
+    &__text.vs-rich-text-wrapper--normal,
     &__cta-link{
-        font-size: $body-font-size;
+        font-size: $font-size-4;
         line-height: $line-height-s;
     }
 
@@ -164,32 +193,3 @@ export default {
 }
 
 </style>
-
-<docs>
-  ```jsx
-    <VsBanner>
-        <template slot="vsBannerTitle">
-            Covid-19 Travel Advice
-        </template>
-
-        <template slot="vsBannerText">
-            <p>
-                Find the latest information on travel, and Good to Go (Covid-safe)
-                businesses. This is a test to check what would be the maximum number
-                of characters we could fit on this banner… Is it ok
-                to add two lines? Let's see how it looks on mobile.
-            </p>
-        </template>
-
-        <template slot="vsBannerCta">
-            <VsLink href="#">
-                View Covid-19 Travel Advice
-            </VsLink>
-        </template>
-
-        <template slot="closeBtnText">
-            Close
-        </template>
-    </VsBanner>
-  ```
-</docs>

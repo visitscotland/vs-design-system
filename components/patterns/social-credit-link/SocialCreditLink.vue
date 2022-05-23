@@ -22,10 +22,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-=======
+import VsLink from '@components/elements/link/Link';
+import VsIcon from '@components/elements/icon/Icon';
 
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
 /**
  * TODO: Document Usage
  *
@@ -35,13 +34,10 @@ export default {
     name: 'VsSocialCreditLink',
     status: 'prototype',
     release: '0.0.1',
-<<<<<<< HEAD
     components: {
         VsLink,
         VsIcon,
     },
-=======
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
     props: {
         /**
          * The social credit
@@ -77,13 +73,9 @@ export default {
     line-height: $line_height_xs;
 
     .social-credit__link {
-<<<<<<< HEAD
-        color: #fff !important;
-=======
         color: $color-white !important;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         font-weight: $font-weight-light;
-        font-size: $small-font-size;
+        font-size: $font-size-3;
         line-height: $line-height-standard;
         margin-bottom: $spacer-0;
 
@@ -98,11 +90,7 @@ export default {
         }
 
         svg.vs-icon {
-<<<<<<< HEAD
-            fill: #fff !important;
-=======
             fill: $color-white !important;
->>>>>>> d528b0ebf615aaee3e3cd0c677defd6c34d85709
         }
     }
 }
