@@ -50,7 +50,9 @@
                             <#else>
                                 link-type="${listItem.type}"
                                 link-url="${listItem.link}"
-                            </#if>   
+                            </#if>
+                            no-js-message="${label('video', 'video.no-js-message')}"
+                            no-cookies-message="${label('video', 'video.missing-cookies-message')}"
                         >
                             <template slot="vsLinkListHeading">
                                 ${listItem.label}
