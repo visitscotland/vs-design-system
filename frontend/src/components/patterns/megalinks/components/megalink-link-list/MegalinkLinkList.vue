@@ -196,7 +196,7 @@ export default {
                 }
             }
 
-            .vs-stretched-link-card__img {
+            .vs-stretched-link-card__img-container {
                 width: 50%;
                 max-width: 50%;
                 align-self: flex-start;
