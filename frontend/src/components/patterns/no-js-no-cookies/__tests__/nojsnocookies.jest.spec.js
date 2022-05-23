@@ -1,11 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import VsNoJsNoCookies from '../NoJsNoCookies';
 
-const factoryShallowMount = () => shallowMount(VsNoJsNoCookies, {
-    propsData: {
-        jsDisabled: true,
-    },
-});
+const factoryShallowMount = () => shallowMount(VsNoJsNoCookies);
 
 describe('VsNoJsNoCookies', () => {
     it('should render a component with the data-test attribute `vs-no-js-cookies`', () => {
@@ -15,13 +11,13 @@ describe('VsNoJsNoCookies', () => {
     });
 
     describe(':props', () => {
-        it('should render a wrapper with the test attr `vs-no-js-cookies__no-js` if `jsDisabled` is set to true', () => {
+        it('should render an element with the test attr `vs-no-js-cookies__no-js', () => {
             const wrapper = factoryShallowMount();
 
             expect(wrapper.find('[data-test="vs-no-js-cookies__no-js"]').exists()).toBe(true);
         });
 
-        it('should render a wrapper with the test attr `vs-no-js-cookies__no-cookies` if `cookiesMissing` is set to true', async() => {
+        it('should render an element with the test attr `vs-no-js-cookies__no-cookies` if `cookiesMissing` is set to true', async() => {
             const wrapper = factoryShallowMount();
 
             await wrapper.setProps({
@@ -32,25 +28,12 @@ describe('VsNoJsNoCookies', () => {
             expect(wrapper.find('[data-test="vs-no-js-cookies__no-cookies"]').exists()).toBe(true);
         });
 
-        it('should render the no-js wrapper and not the no-cookies wrapper if both `jsDisabled` and `cookiesMissing` are set to true', async() => {
-            const wrapper = factoryShallowMount();
-
-            await wrapper.setProps({
-                jsDisabled: true,
-                cookiesMissing: true,
-            });
-
-            expect(wrapper.find('[data-test="vs-no-js-cookies__no-js"]').exists()).toBe(true);
-            expect(wrapper.find('[data-test="vs-no-js-cookies__no-cookies"]').exists()).toBe(false);
-        });
-
-        it('should render the `noJsMessage` prop if `jsDisabled` is set to true', async() => {
+        it('should render the contents of the `noJsMessage` prop', async() => {
             const wrapper = factoryShallowMount();
 
             const noJsMessage = 'There is no javascript';
 
             await wrapper.setProps({
-                jsDisabled: true,
                 noJsMessage,
             });
 
@@ -63,7 +46,6 @@ describe('VsNoJsNoCookies', () => {
             const noCookiesMessage = 'There are missing cookies';
 
             await wrapper.setProps({
-                jsDisabled: false,
                 cookiesMissing: true,
                 noCookiesMessage,
             });
@@ -80,7 +62,6 @@ describe('VsNoJsNoCookies', () => {
             };
 
             await wrapper.setProps({
-                jsDisabled: false,
                 cookiesMissing: true,
                 noCookiesLink,
             });
@@ -97,7 +78,6 @@ describe('VsNoJsNoCookies', () => {
             };
 
             await wrapper.setProps({
-                jsDisabled: false,
                 cookiesMissing: true,
                 noCookiesLink,
             });
@@ -114,7 +94,6 @@ describe('VsNoJsNoCookies', () => {
             };
 
             await wrapper.setProps({
-                jsDisabled: false,
                 cookiesMissing: true,
                 noCookiesLink,
             });
