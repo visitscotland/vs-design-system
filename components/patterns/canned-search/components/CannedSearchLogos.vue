@@ -65,9 +65,6 @@
 </template>
 
 <script>
-import VsTooltip from '@components/elements/tooltip/Tooltip';
-import VsImg from '@components/elements/img/Img';
-
 /**
 * Component that displays a set of badges and awards for certain kinds of product card
 * within canned search
@@ -79,10 +76,6 @@ export default {
     name: 'VsCannedSearchLogos',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsTooltip,
-        VsImg,
-    },
     props: {
         /**
         * If set, the good to go logo appears. Should contain a unique `id` (String), a `name`

@@ -26,9 +26,6 @@
 </template>
 
 <script>
-import VsDropdown from '@components/patterns/dropdown/Dropdown';
-import VsDropdownItem from '@components/patterns/dropdown/components/DropdownItem';
-
 /**
  * This component is the dropdown used inside the Global Menu component.
  * It holds the list of websites to be shown on smaller devices.
@@ -40,10 +37,6 @@ export default {
     name: 'VsGlobalMenuDropdown',
     status: 'prototype',
     release: '0.1.0',
-    components: {
-        VsDropdown,
-        VsDropdownItem,
-    },
     props: {
         /**
          * Determines the active website
@@ -170,19 +163,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsGlobalMenu
-        dropdown-label="Our websites"
-        active-site="https://www.visitscotland.com/"
-    >
-        <template
-            slot="third-menu-item"
-            style="min-width: 50px;"
-        >
-            EN
-        </template>
-    </VsGlobalMenu>
-  ```
-</docs>

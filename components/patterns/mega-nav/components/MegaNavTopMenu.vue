@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import VsList from '@components/elements/list/List';
-
 /**
  *  Mega nav top level menu list with a slot for top level menu items
  *
@@ -21,9 +19,6 @@ export default {
     name: 'VsMegaNavTopMenu',
     status: 'prototype',
     release: '0.1.0',
-    components: {
-        VsList,
-    },
 };
 </script>
 
@@ -46,8 +41,3 @@ export default {
 }
 
 </style>
-
-<docs>
-    ```[import](../__examples__/meganav.example.vue)
-    ```
-</docs>

@@ -61,10 +61,6 @@
 </template>
 
 <script>
-import VsButton from '@components/elements/button/Button';
-import VsIcon from '@components/elements/icon/Icon';
-import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
-import videoStore from '../../../stores/video.store';
 
 /**
  * Caption to be used for opening a video
@@ -75,11 +71,6 @@ export default {
     name: 'VsVideoCaption',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsButton,
-        VsIcon,
-        VsToggleButton,
-    },
     props: {
         /**
          * Text for the play video button
@@ -286,84 +277,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-    ``` jsx
-    <VsVideoCaption
-        class="mt-5 mb-5"
-        videoBtnText="Play video this is a longer caption"
-        videoId="c05sg3G4oA4"
-    >
-        <template slot="video-title">
-            This is the video title
-        </template>
-        <template slot="video-no-js-alert">
-            JavaScript needs to be enabled to watch this video.
-            You can turn this on in your browser settings.
-        </template>
-    </VsVideoCaption>
-
-    <VsVideoCaption
-        withToggleBtn
-        class="mb-5 mt-12"
-        videoBtnText="Play video"
-        videoId="FlG6tbYaA88"
-    >
-        <template slot="video-title">
-            This video caption has a toggle button
-        </template>
-        <template slot="video-no-js-alert">
-            JavaScript needs to be enabled to watch this video.
-            You can turn this on in your browser settings.
-        </template>
-    </VsVideoCaption>
-
-    <div class="no-js">
-        <VsVideoCaption
-            withToggleBtn
-            videoBtnText="Play video"
-            videoId="FlG6tbYaA88"
-            class="mt-12"
-        >
-            <template slot="video-title">
-                This is the video title
-            </template>
-            <template slot="video-no-js-alert">
-                This is display when JS is turned off.<br />
-                JavaScript needs to be enabled to watch this video.
-                You can turn this on in your browser settings.
-            </template>
-        </VsVideoCaption>
-    </div>
-
-    <VsModal
-        modalId="c05sg3G4oA4"
-        closeBtnText="Close"
-        :isVideoModal="true"
-    >
-        <VsRow>
-            <VsCol cols="12">
-                <VsVideo
-                    video-id="c05sg3G4oA4"
-                    class="mb-8"
-                />
-            </VsCol>
-        </VsRow>
-    </VsModal>
-
-    <VsModal
-        modalId="FlG6tbYaA88"
-        closeBtnText="Close"
-        :isVideoModal="true"
-    >
-        <VsRow>
-            <VsCol cols="12">
-                <VsVideo
-                    video-id="FlG6tbYaA88"
-                    class="mb-8"
-                />
-            </VsCol>
-        </VsRow>
-    </VsModal>
-    ```
-</docs>

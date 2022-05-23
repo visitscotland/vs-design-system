@@ -17,9 +17,6 @@
 </template>
 
 <script>
-import VsIcon from '@components/elements/icon/Icon';
-import VsButton from '@components/elements/button';
-
 /**
  * The SkipToButton component is a button with specific style and
  * is not visible until focused on, for use as an accessibility
@@ -31,10 +28,6 @@ export default {
     name: 'VsSkipToButton',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsIcon,
-        VsButton,
-    },
     props: {
         /**
          * The tabindex attribute for this element. For some reason
@@ -69,10 +62,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <h4 tabindex="1000">Click here then press tab to focus the button and make it visible</h4>
-    <VsSkipToButton tabindex="1001">Skip to content</VsSkipToButton>
-  ```
-</docs>

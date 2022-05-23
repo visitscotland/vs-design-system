@@ -28,8 +28,7 @@
 </template>
 
 <script>
-import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
-import VsIcon from '@components/elements/icon/Icon';
+import itinerariesStore from '../../../itineraries.store';
 
 /**
  * TODO: Document usage
@@ -41,9 +40,6 @@ export default {
     name: 'VsItineraryMapMarker',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsIcon,
-    },
     props: {
         feature: {
             type: Object,
@@ -129,23 +125,3 @@ export default {
     width: 100%;
 }
 </style>
-
-<docs>
-  ```jsx
-    const sampleGeojsonData = require(
-        "../../../../../../assets/fixtures/itineraries/sample-itinerary-geojson.json"
-    )
-
-    <vs-row class="py-5">
-      <vs-col>
-        <vs-itinerary-map-marker :feature="sampleGeojsonData.features[0]" />
-      </vs-col>
-      <vs-col>
-        <vs-itinerary-map-marker :feature="sampleGeojsonData.features[1]" />
-      </vs-col>
-      <vs-col>
-        <vs-itinerary-map-marker :feature="sampleGeojsonData.features[2]" />
-      </vs-col>
-    </vs-row>
-  ```
-</docs>

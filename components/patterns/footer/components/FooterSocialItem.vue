@@ -20,10 +20,6 @@
 </template>
 
 <script>
-
-import VsLink from '@components/elements/link/Link';
-import VsIcon from '@components/elements/icon/Icon';
-
 /**
  * The FooterSocialItem is used inside the FooterSocialMenu to
  * show a button for a social media link.
@@ -35,10 +31,6 @@ export default {
     name: 'VsFooterSocialItem',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsLink,
-        VsIcon,
-    },
     props: {
         /**
          * The URL the link will point to
@@ -137,36 +129,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```js
-    <VsFooter>
-        <VsFooterNavList>
-            <VsCol cols="12" md="6">
-                <VsFooterSocialMenu>
-                    <span slot="title">
-                        Find us on
-                    </span>
-
-                    <VsFooterSocialItem
-                        href="#"
-                        icon="facebook"
-                    ></VsFooterSocialItem>
-                    <VsFooterSocialItem
-                        href="#"
-                        icon="twitter"
-                    ></VsFooterSocialItem>
-                    <VsFooterSocialItem
-                        href="#"
-                        icon="youtube"
-                    ></VsFooterSocialItem>
-                    <VsFooterSocialItem
-                        href="#"
-                        icon="instagram"
-                    ></VsFooterSocialItem>
-                </VsFooterSocialMenu>
-            </VsCol>
-        </VsFooterNavList>
-    </VsFooter>
-  ```
-</docs>

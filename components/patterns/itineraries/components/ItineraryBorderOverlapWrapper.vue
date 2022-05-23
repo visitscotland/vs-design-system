@@ -48,28 +48,3 @@ export default {
     }
 }
 </style>
-<docs>
-
-  ```jsx
-    <VsItineraryBorderOverlapWrapper>
-        <VsButton
-            class="mb-3"
-            background="white"
-            button-size="md"
-            variant="outline-primary"
-            href="#"
-            icon="food"
-        >
-            Nearby places to eat
-        </VsButton>
-        <VsButton
-            background="white"
-            variant="outline-primary"
-            href="#"
-            icon="product-accommodation"
-        >
-            Nearby places to stay
-        </VsButton>
-    </VsItineraryBorderOverlapWrapper>
-  ```
-</docs>

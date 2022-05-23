@@ -110,10 +110,3 @@ export default {
 }
 
 </style>
-
-<docs>
-  ```jsx
-  <VsBreadcrumbItem href="#" text="Inactive"></VsBreadcrumbItem>
-  <VsBreadcrumbItem active href="#" text="Active"></VsBreadcrumbItem>
-  ```
-</docs>

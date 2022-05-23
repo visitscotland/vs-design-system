@@ -25,11 +25,6 @@
 </template>
 
 <script>
-import VsList from '@components/elements/list/List';
-import {
-    VsRow, VsContainer, VsCol,
-} from '@components/elements/grid';
-
 /**
  * The FooterUtilityList is a list of FooterNavListItems
  * that hold general utility links for the footer.
@@ -39,12 +34,6 @@ import {
 
 export default {
     name: 'VsFooterUtilityList',
-    components: {
-        VsList,
-        VsRow,
-        VsContainer,
-        VsCol,
-    },
 };
 </script>
 
@@ -123,30 +112,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```js
-    <VsFooter>
-        <VsFooterUtilityList>
-            <VsFooterNavListItem
-                href="#"
-                link-text="Brochures"
-            ></VsFooterNavListItem>
-            <VsFooterNavListItem
-                href="#"
-                link-text="VisitScotland iCentres"
-            ></VsFooterNavListItem>
-            <VsFooterNavListItem
-                href="#"
-                link-text="iKnow Scotland Community"
-            ></VsFooterNavListItem>
-            <VsFooterNavListItem
-                href="#"
-                link-text="VisitScotland Awards"
-            ></VsFooterNavListItem>
-
-        </VsFooterUtilityList>
-    </VsFooter>
-
-  ```
-</docs>

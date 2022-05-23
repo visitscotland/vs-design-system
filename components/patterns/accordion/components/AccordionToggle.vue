@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import VsButton from '@components/elements/button/Button';
-
 /**
  * Accordion toggle button used with AccordionItem
  * It emits an event to the parent to toggle the Accordion panel.
@@ -38,9 +36,6 @@ import VsButton from '@components/elements/button/Button';
  */
 export default {
     name: 'VsAccordionToggle',
-    components: {
-        VsButton,
-    },
     props: {
         /**
          * Variant for which button to show in headers

@@ -22,9 +22,6 @@ export default {
     name: 'VsTag',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsLink,
-    },
     props: {
         /**
          * The URL the tag will link to

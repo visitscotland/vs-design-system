@@ -14,8 +14,6 @@
 </template>
 
 <script>
-import VsIcon from '@components/elements/icon/Icon';
-
 /**
  * An icon list item is a child component used within icon list components.
  * The component takes in an icon name and label that should be displayed under the icon as props.
@@ -28,9 +26,6 @@ export default {
     name: 'VsIconListItem',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsIcon,
-    },
     props: {
         /**
          * Label displayed under the icon

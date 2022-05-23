@@ -70,9 +70,6 @@
 </template>
 
 <script>
-import VsAccordionToggle from '@components/patterns/accordion/components/AccordionToggle';
-import VsIcon from '@components/elements/icon/Icon';
-
 import {
     BCard, BCardHeader, BCardBody,
 } from 'bootstrap-vue';
@@ -86,9 +83,7 @@ import {
 export default {
     name: 'VsAccordionItem',
     components: {
-        VsAccordionToggle,
         BCard,
-        VsIcon,
         BCardHeader,
         BCardBody,
     },

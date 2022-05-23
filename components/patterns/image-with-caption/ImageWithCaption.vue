@@ -73,10 +73,8 @@
 
 <script>
 
-import VsImg from '@components/elements/img/Img';
-import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
-import VsVideoCaption from '@components/patterns/video-caption/VideoCaption';
-
+// eslint-disable-next-line no-unused-vars
+import { lazysizes } from 'lazysizes';
 /**
  * Image with toggle to open a caption and image location map
  *
@@ -86,11 +84,6 @@ export default {
     name: 'VsImageWithCaption',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsImg,
-        VsToggleButton,
-        VsVideoCaption,
-    },
     props: {
         /**
          * The image alt text for screen readers
@@ -530,119 +523,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-
-  ```jsx
-    <BsWrapper style="max-width:700px">
-        <h3>Large Caption Style</h3>
-        <VsImageWithCaption
-            v-for="(item, index) in imageWithCaption.imageExamples.large"
-            :altText="item.altText"
-            :image-src="item.imageSrc"
-            :key="`large-${index}`"
-            class="mb-11"
-        >
-            <VsCaption
-                slot="img-caption"
-                :latitude="item.latitude"
-                :longitude="item.longitude"
-                variant="large"
-            >
-                <span slot="caption" v-if="item.caption">
-                    {{ item.caption }}
-                </span>
-
-                <span slot="credit" v-if="item.credit">
-                    {{ item.credit }}
-                </span>
-            </VsCaption>
-        </VsImageWithCaption>
-
-        <h3 style="margin-top: 7rem;">Fullwidth Caption Style</h3>
-        <VsImageWithCaption
-            v-for="(item, index) in imageWithCaption.imageExamples.fullwidth"
-            :altText="item.altText"
-            :closedDefaultCaption="item.isSmall"
-            :image-src="item.imageSrc"
-            :key="`fullwidth1-${index}`"
-        >
-            <VsCaption
-                slot="img-caption"
-                variant="fullwidth"
-            >
-                <span slot="caption" v-if="item.caption">
-                    {{ item.caption }}
-                </span>
-
-                <span slot="credit" v-if="item.credit">
-                    {{ item.credit }}
-                </span>
-            </VsCaption>
-        </VsImageWithCaption>
-
-        <VsImageWithCaption
-            v-for="(item, index) in imageWithCaption.imageExamples.small"
-            :altText="item.altText"
-            :closedDefaultCaption="item.isSmall"
-            :image-src="item.imageSrc"
-            :key="`fullwidth2-${index}`"
-            style="max-width:300px"
-        >
-            <VsImg
-                :src="item.imageSrc"
-                :alt="item.altText"
-                data-sizes="auto">
-            </VsImg>
-
-            <VsCaption
-                slot="img-caption"
-                variant="fullwidth"
-            >
-                <span slot="caption" v-if="item.caption">
-                    {{ item.caption }}
-                </span>
-
-                <span slot="credit" v-if="item.credit">
-                    {{ item.credit }}
-                </span>
-            </VsCaption>
-        </VsImageWithCaption>
-
-        <h3 style="margin-top: 5rem;">Social images</h3>
-        <VsImageWithCaption
-            v-for="(item, index) in imageWithCaption.imageExamples.social"
-            :altText="item.altText"
-            :image-src="item.imageSrc"
-            :key="`social-${index}`"
-        >
-            <VsImg
-                :src="item.imageSrc"
-                :alt="item.altText"
-                data-sizes="auto">
-            </VsImg>
-
-            <VsSvg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
-
-            <VsCaption
-                slot="img-caption"
-                :latitude="item.latitude"
-                :longitude="item.longitude"
-                :variant="item.variant"
-            >
-                <span slot="caption" v-if="item.caption">
-                    {{ item.caption }}
-                </span>
-
-                <VsSocialCreditLink
-                    slot="credit"
-                    :credit="item.credit"
-                    :socialPostUrl="item.socialPostUrl"
-                    :source="item.source"
-                >
-                </VsSocialCreditLink>
-            </VsCaption>
-        </VsImageWithCaption>
-    </BsWrapper>
-  ```
-</docs>

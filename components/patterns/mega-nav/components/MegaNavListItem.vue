@@ -16,8 +16,6 @@
 </template>
 
 <script>
-import VsLink from '@components/elements/link/Link';
-
 /**
  *  Meganav list items with link and slot for link content
  *
@@ -27,9 +25,6 @@ export default {
     name: 'VsMegaNavListItem',
     status: 'prototype',
     release: '0.1.0',
-    components: {
-        VsLink,
-    },
     props: {
         /**
          * The URL for the nav list link
@@ -247,41 +242,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsMegaNavList style="background-color: white;">
-        <VsMegaNavListItem slot="navListHeading">
-            Attractions
-        </VsMegaNavListItem>
-
-        <VsMegaNavListItem slot="navListItems" href="http://visitscotland.com">
-            20 Top Attractions
-        </VsMegaNavListItem>
-
-        <VsMegaNavListItem slot="navListItems" href="http://visitscotland.com">
-            Arts & Culture
-        </VsMegaNavListItem>
-
-        <VsMegaNavListItem slot="navListItems" href="http://visitscotland.com">
-            Castles
-        </VsMegaNavListItem>
-
-        <VsMegaNavListItem slot="navListItems" href="http://visitscotland.com">
-            Gardens & Parks
-        </VsMegaNavListItem>
-
-        <VsMegaNavListItem slot="navListItems" href="http://visitscotland.com">
-            Museums
-        </VsMegaNavListItem>
-
-        <VsMegaNavListItem
-            href="http://visitscotland.com"
-            subheading-link
-            slot="navHeadingCtaLink"
-        >
-            All Attractions
-        </VsMegaNavListItem>
-    </VsMegaNavList>
-  ```
-</docs>

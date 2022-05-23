@@ -41,9 +41,6 @@ export default {
     name: 'VsListFavouritesViewButton',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsIcon,
-    },
     props: {
     },
     // store,
@@ -69,9 +66,3 @@ export default {
     transform: translateY(-50%);
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsListFavouritesViewButton />
-  ```
-</docs>

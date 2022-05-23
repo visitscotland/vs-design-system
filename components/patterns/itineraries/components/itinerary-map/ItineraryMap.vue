@@ -10,7 +10,11 @@
 import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
 import VsItineraryMapMarker from '@components/patterns/itineraries/components/itinerary-map/components/ItineraryMapMarker';
 import Vue from 'vue';
+<<<<<<< HEAD
 import osBranding from '@/utils/os-branding';
+=======
+import itinerariesStore from '../../itineraries.store';
+>>>>>>> 7f05af34819bfa8b12276be5a2758127f418c297
 
 let mapboxgl = null;
 let geojsonExtent = null;
@@ -268,8 +272,11 @@ export default {
 </script>
 
 <style lang="scss">
+<<<<<<< HEAD
 @import "mapbox-gl/dist/mapbox-gl.css";
 
+=======
+>>>>>>> 7f05af34819bfa8b12276be5a2758127f418c297
 @import "https://labs.os.uk/public/os-api-branding/v0.2.0/os-api-branding.css";
 
 .os-api-branding.logo {
@@ -307,43 +314,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-
-    const sampleItinerary = require(
-        "../../../../../assets/fixtures/itineraries/sample-itinerary.json"
-    )
-    const stops = [];
-
-    sampleItinerary.days.map(day => {
-        day.stops.map(stop => {
-            return stops.push({
-                title: stop.title,
-                latitude: stop.latitude,
-                longitude: stop.longitude,
-                stopCount: stop.stopCount,
-                imageSrc: stop.image.imageSrc,
-                altText: stop.image.altText
-            });
-        })
-    })
-
-    <vs-itinerary-map
-        overview-map-longitude="57.81"
-        overview-map-latitude="-4.13"
-        overview-map-zoom="5"
-        :stops="stops"
-        :labels='{
-            "stopLabel": "Stop",
-            "mapControlsFullscreenOpen": "Show fullscreen",
-            "mapControlsFullscreenClose": "Exit fullscreen",
-            "mapControlsCompass": "Reset angle",
-            "mapControlsZoomIn": "Zoom in",
-            "mapControlsZoomOut": "Zoom out",
-
-        }'
-    >
-    </vs-itinerary-map>
-  ```
-</docs>

@@ -21,9 +21,6 @@ export default {
     name: 'VsGlobalMenuLanguageItem',
     status: 'prototype',
     release: '0.1.0',
-    components: {
-        VsDropdownItem,
-    },
     mixins: [
         cookieMixin,
     ],
@@ -119,9 +116,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsGlobalMenuLanguageItem language-name="English" languageLink="site/"/>
-  ```
-</docs>

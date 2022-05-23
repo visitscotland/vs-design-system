@@ -101,16 +101,6 @@
 </template>
 
 <script>
-import {
-    VsCol, VsRow, VsContainer,
-} from '@components/elements/grid';
-import VsSvgLink from '@components/elements/svg-link/SvgLink';
-import VsMegaNavDropdown from '@components/patterns/mega-nav/components/MegaNavDropdown';
-import VsMegaNavTopMenu from '@components/patterns/mega-nav/components/MegaNavTopMenu';
-import VsIcon from '@components/elements/icon/Icon';
-// import VsSiteSearch from '@components/patterns/site-search/SiteSearch';
-import VsSiteSearchForm from '@components/patterns/site-search/components/SiteSearchForm';
-
 /**
  *  The Mega Nav bar component includes main VS logo and slots for
  *  top menu items on desktop and dropdown toggle with menu items for mobile
@@ -121,17 +111,6 @@ export default {
     name: 'VsMegaNav',
     status: 'prototype',
     release: '0.1.0',
-    components: {
-        VsCol,
-        VsRow,
-        VsContainer,
-        VsSvgLink,
-        VsMegaNavDropdown,
-        VsMegaNavTopMenu,
-        VsIcon,
-        // VsSiteSearch,
-        VsSiteSearchForm,
-    },
     props: {
         /**
          * The URL for the VS logo link
@@ -252,8 +231,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-    ```[import](./__examples__/meganav.example.vue)
-    ```
-</docs>

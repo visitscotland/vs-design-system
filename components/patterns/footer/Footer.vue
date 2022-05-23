@@ -40,11 +40,6 @@
 </template>
 
 <script>
-import VsFooterNavList from '@components/patterns/footer/components/FooterNavList';
-import {
-    VsContainer, VsRow, VsCol,
-} from '@components/elements/grid';
-
 /**
  * This component is the main Footer wrapper for the bottom of the page.
  *
@@ -54,12 +49,6 @@ export default {
     name: 'VsFooter',
     status: 'prototype',
     release: '0.1.0',
-    components: {
-        VsFooterNavList,
-        VsCol,
-        VsContainer,
-        VsRow,
-    },
 };
 </script>
 
@@ -94,8 +83,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```[import](./__examples__/footer.example.vue)
-  ```
-</docs>

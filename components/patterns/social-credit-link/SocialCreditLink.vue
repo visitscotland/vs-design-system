@@ -22,9 +22,6 @@
 </template>
 
 <script>
-import VsLink from '@components/elements/link/Link';
-import VsIcon from '@components/elements/icon/Icon';
-
 /**
  * TODO: Document Usage
  *
@@ -34,10 +31,6 @@ export default {
     name: 'VsSocialCreditLink',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsLink,
-        VsIcon,
-    },
     props: {
         /**
          * The social credit
@@ -95,15 +88,3 @@ export default {
     }
 }
 </style>
-<docs>
-  ```js
-
-    <BsWrapper style="background: black;" class="p-4">
-        <VsSocialCreditLink
-            credit="VisitScotland"
-            socialPostUrl="http://www.visitscotland.com"
-            source="instagram"
-        ></VsSocialCreditLink>
-    </BsWrapper>
-  ```
-</docs>

@@ -23,9 +23,6 @@ export default {
     name: 'VsTooltip',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsButton,
-    },
     directives: {
         'b-tooltip': VBTooltip,
     },

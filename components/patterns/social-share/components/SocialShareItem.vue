@@ -25,10 +25,6 @@
 </template>
 
 <script>
-import VsLink from '@components/elements/link/Link';
-import VsIcon from '@components/elements/icon/Icon';
-import { VsCol } from '@components/elements/grid';
-
 /**
  * This component displays an icon and link to a social sharing channel
  *
@@ -38,11 +34,6 @@ export default {
     name: 'VsSocialShareItem',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsCol,
-        VsLink,
-        VsIcon,
-    },
     props: {
         /**
         * Type of link and icon to display
@@ -211,14 +202,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-```jsx
-    <BsWrapper class="d-flex my-3 mx-3">
-        <VsSocialShareItem
-            name="twitter"
-            link-text="Twitter"
-        />
-    </BsWrapper>
-```
-</docs>

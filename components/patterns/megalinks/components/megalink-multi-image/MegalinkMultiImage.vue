@@ -37,10 +37,6 @@
 </template>
 
 <script>
-import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
-import VsStretchedLinkPanels from '@components/patterns/stretched-link-card/components/StretchedLinkPanels';
-import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
-
 /**
 * Megalink cards to be used in the megalinks component
 * There is a standard and featured variant.
@@ -52,11 +48,6 @@ export default {
     name: 'VsMegalinkMultiImage',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsStretchedLinkCard,
-        VsRichTextWrapper,
-        VsStretchedLinkPanels,
-    },
     props: {
         /**
         * If the component should be the featured variant
@@ -300,134 +291,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-    ```js
-    <VsMegalinks variant="multi-image">
-        <VsContainer>
-            <VsRow>
-                <VsCol
-                    cols="12"
-                    lg="6"
-                    xl="12"
-                >
-                    <VsMegalinkMultiImage
-                        featured
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        imgAlt="This is the alt text"
-                        linkType="internal"
-                        linkUrl="www.visitscotland.com"
-                        days="2"
-                        daysLabel="days"
-                        transport="bus"
-                        transportName="bus"
-                    >
-                        <template slot="vsMultiImageHeading">
-                            The Edinburgh International Festival and summer festival</template>
-                        <template slot="vsMultiImageContent">
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink from local markets to renowned
-                            restaurants.</p>
-                        </template>
-                    </VsMegalinkMultiImage>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    xl="4"
-                >
-                    <VsMegalinkMultiImage
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        imgAlt="This is the alt text 1"
-                        linkType="external"
-                        linkUrl="www.visitscotland.com"
-                    >
-                        <template slot="vsMultiImageHeading">
-                            Count 7,000 shining stars in the iconic
-                            galloway forest</template>
-                        <template slot="vsMultiImageContent">
-                            <p>Right across the country, you’ll find amazing
-                            places to eat and drink from local markets to renowned
-                            restaurants. Here are some recomm…</p>
-                        </template>
-                    </VsMegalinkMultiImage>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    xl="4"
-                >
-                    <VsMegalinkMultiImage
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        imgAlt="This is the alt text 2"
-                        linkType="external"
-                        linkUrl="www.visitscotland.com"
-                    >
-                        <template slot="vsMultiImageHeading">
-                            Count 7,000 shining stars in the iconic galloway forest</template>
-                        <template slot="vsMultiImageContent">
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink
-                            from local markets to renowned restaurants.
-                            Here are some recomm…</p>
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink
-                            from local markets to renowned restaurants.
-                            Here are some recomm…</p>
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink
-                            from local markets to renowned restaurants.
-                            Here are some recomm…</p>
-                        </template>
-                    </VsMegalinkMultiImage>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    xl="4"
-                >
-                    <VsMegalinkMultiImage
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        linkType="download"
-                        linkUrl="www.visitscotland.com"
-                    >
-                        <template slot="vsMultiImageHeading">
-                            Soar through the air on a boat of Falkirk Wheel (PDF 3MB)</template>
-                        <template slot="vsMultiImageContent">
-                            <p>Right across the country, you’ll find amazing
-                            places to eat and drink from local markets to renowned
-                            restaurants. Here are some recomm…</p>
-                        </template>
-                    </VsMegalinkMultiImage>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    lg="6"
-                    xl="12"
-                >
-                    <vs-megalink-multi-image
-                        featured
-                        lastFeatured
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        imgAlt="This is the alt text"
-                        linkType="internal"
-                        linkUrl="www.visitscotland.com"
-                        days="6"
-                        daysLabel="days"
-                        transport="bus"
-                        transportName="bus"
-                    >
-                        <template slot="vsMultiImageHeading">
-                            The Edinburgh International Festival and summer festival</template>
-                        <template slot="vsMultiImageContent">
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink from local markets to renowned
-                            restaurants.</p>
-                        </template>
-                    </vs-megalink-multi-image>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-    </VsMegalinks>
-    ```
-</docs>

@@ -51,12 +51,6 @@
 </template>
 
 <script>
-import VsHeading from '@components/elements/heading/Heading';
-import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
-import {
-    VsContainer, VsRow, VsCol,
-} from '@components/elements/grid';
-
 /**
 * Header intro and button wrapper for module content
 *
@@ -66,13 +60,6 @@ export default {
     name: 'VsModuleWrapper',
     status: 'protolink-type',
     release: '0.0.1',
-    components: {
-        VsHeading,
-        VsRichTextWrapper,
-        VsContainer,
-        VsRow,
-        VsCol,
-    },
     props: {
         /**
         * Theme of module wrapper to use
@@ -149,58 +136,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-    ```
-        <VsModuleWrapper>
-            <template slot="vsModuleWrapperHeading">
-                Proin interdum quam non semper consequat
-            </template>
-
-            <template slot="vsModuleWrapperIntro">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam condimentum eu ligula sed tristique.
-                Maecenas et sem non libero gravida vulputate vel sit amet diam.
-                Pellentesque cursus ex aliquam aliquam dignissim.
-                Nullam dui risus, pulvinar sit amet nibh a, ultrices tempor purus.</p>
-                <p>Facilisi. In porttitor congue massa, id porttitor sem mattis sit amet.</p>
-            </template>
-
-            <h1>Main content would start here</h1>
-        </VsModuleWrapper>
-
-        <VsModuleWrapper theme="dark">
-            <template slot="vsModuleWrapperHeading">
-                Proin interdum quam non semper consequat
-            </template>
-
-            <template slot="vsModuleWrapperIntro">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam condimentum eu ligula sed tristique.
-                Maecenas et sem non libero gravida vulputate vel sit amet diam.
-                Pellentesque cursus ex aliquam aliquam dignissim.
-                Nullam dui risus, pulvinar sit amet nibh a, ultrices tempor purus.</p>
-                <p>Facilisi. In porttitor congue massa, id porttitor sem mattis sit amet.</p>
-            </template>
-
-            <h1>Main content would start here</h1>
-        </VsModuleWrapper>
-
-        <VsModuleWrapper theme="grey">
-            <template slot="vsModuleWrapperHeading">
-                Proin interdum quam non semper consequat
-            </template>
-
-            <template slot="vsModuleWrapperIntro">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam condimentum eu ligula sed tristique.
-                Maecenas et sem non libero gravida vulputate vel sit amet diam.
-                Pellentesque cursus ex aliquam aliquam dignissim.
-                Nullam dui risus, pulvinar sit amet nibh a, ultrices tempor purus.</p>
-                <p>Facilisi. In porttitor congue massa, id porttitor sem mattis sit amet.</p>
-            </template>
-
-            <h1>Main content would start here</h1>
-        </VsModuleWrapper>
-    ```
-</docs>

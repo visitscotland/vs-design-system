@@ -39,9 +39,6 @@ import VsAccordionItem from '@components/patterns/accordion/components/Accordion
 
 export default {
     name: 'VsFooterAccordionItem',
-    components: {
-        VsAccordionItem,
-    },
     props: {
         /**
          * The aria control ID used for panel ID to match button aria control
@@ -167,47 +164,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```js
-    <VsFooter>
-        <VsFooterNavList break-point="md">
-            <VsCol cols="12" md="6">
-                <VsFooterAccordionItem
-                    title="Visitor information"
-                    variant="dark"
-                    control-id="footer_accordion_item_1"
-                    class="border-left-0"
-                >
-                    <span slot="icon-open">
-                        <VsIcon name="chevron" variant="light" size="xs" />
-                    </span>
-
-                    <span slot="icon-closed">
-                        <VsIcon name="chevron" orientation="down" variant="light" size="xs" />
-                    </span>
-
-                    <VsList unstyled>
-                        <VsFooterNavListItem
-                            href="#"
-                            link-text="Brochures"
-                        ></VsFooterNavListItem>
-                        <VsFooterNavListItem
-                            href="#"
-                            link-text="VisitScotland iCentres"
-                        ></VsFooterNavListItem>
-                        <VsFooterNavListItem
-                            href="#"
-                            link-text="iKnow Scotland Community"
-                        ></VsFooterNavListItem>
-                        <VsFooterNavListItem
-                            href="#"
-                            link-text="VisitScotland Awards"
-                        ></VsFooterNavListItem>
-                    </VsList>
-                </VsFooterAccordionItem>
-            </VsCol>
-        </VsFooterNavList>
-    </VsFooter>
-  ```
-</docs>

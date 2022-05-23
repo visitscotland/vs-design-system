@@ -32,12 +32,6 @@
 </template>
 
 <script>
-import VsSvgLink from '@components/elements/svg-link/SvgLink';
-
-import {
-    VsRow, VsContainer, VsCol,
-} from '@components/elements/grid';
-
 /**
  * The VsFooterCopyright holds an image and copyright notices for the footer.
  *
@@ -46,12 +40,6 @@ import {
 
 export default {
     name: 'VsFooterCopyright',
-    components: {
-        VsSvgLink,
-        VsRow,
-        VsContainer,
-        VsCol,
-    },
     props: {
         /**
          * Accessiblity alt text for the logo button
@@ -110,16 +98,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```js
-    <VsFooter>
-        <VsFooterCopyright link-alt-text="VisitScotland Home" href="/">
-            <span slot="copyright">
-               VisitScotland. All rights reserved.
-            </span>
-        </VsFooterCopyright>
-    </VsFooter>
-
-  ```
-</docs>

@@ -37,7 +37,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import VueYoutube from 'vue-youtube';
 import Vue from 'vue';
-import videoStore from '../../../stores/video.store';
 
 Vue.use(VueYoutube, {
     global: false,

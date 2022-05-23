@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import VsButton from '@components/elements/button/Button';
+
 /**
  * Site search lets users find relevant information using
  * a word or phrase to find content.
@@ -26,9 +26,6 @@ import VsButton from '@components/elements/button/Button';
 
 export default {
     name: 'VsSiteSearch',
-    components: {
-        VsButton,
-    },
     props: {
         /**
          * Used to know if the search form has been closed

@@ -175,25 +175,6 @@
 </template>
 
 <script>
-import VsCannedSearchProductCard from '@components/patterns/canned-search/components/CannedSearchProductCard';
-import VsCannedSearchStars from '@components/patterns/canned-search/components/CannedSearchStars';
-import VsCannedSearchLogos from '@components/patterns/canned-search/components/CannedSearchLogos';
-import VsCannedSearchCategories from '@components/patterns/canned-search/components/CannedSearchCategories';
-import VsCannedSearchPrice from '@components/patterns/canned-search/components/CannedSearchPrice';
-import VsCannedSearchDuration from '@components/patterns/canned-search/components/CannedSearchDuration';
-import VsCannedSearchSummaryBox from '@components/patterns/canned-search/components/CannedSearchSummaryBox';
-import VsCannedSearchDates from '@components/patterns/canned-search/components/CannedSearchDates';
-import VsCannedSearchBadges from '@components/patterns/canned-search/components/CannedSearchBadges';
-import VsCannedSearchCuisines from '@components/patterns/canned-search/components/CannedSearchCuisines';
-import VsCannedSearchSubHeading from '@components/patterns/canned-search/components/CannedSearchSubHeading';
-import VsCannedSearchTourRuns from '@components/patterns/canned-search/components/CannedSearchTourRuns';
-import VsCannedSearchTourDeparts from '@components/patterns/canned-search/components/CannedSearchTourDeparts';
-import VsCarousel from '@components/patterns/carousel/Carousel';
-import VsModuleWrapper from '@components/patterns/module-wrapper/ModuleWrapper';
-import {
-    VsContainer, VsRow, VsCol,
-} from '@components/elements/grid';
-
 const axios = require('axios');
 
 /**
@@ -207,26 +188,6 @@ export default {
     name: 'VsCannedSearch',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsCannedSearchProductCard,
-        VsCannedSearchStars,
-        VsCannedSearchLogos,
-        VsCannedSearchCategories,
-        VsCannedSearchPrice,
-        VsCannedSearchDuration,
-        VsCannedSearchSummaryBox,
-        VsCannedSearchDates,
-        VsCannedSearchBadges,
-        VsCannedSearchCuisines,
-        VsCannedSearchSubHeading,
-        VsCannedSearchTourRuns,
-        VsCannedSearchTourDeparts,
-        VsCarousel,
-        VsContainer,
-        VsRow,
-        VsCol,
-        VsModuleWrapper,
-    },
     props: {
         /**
         * The url that products should be retrieved from for display

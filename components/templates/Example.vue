@@ -89,9 +89,3 @@ export default {
     },
 };
 </script>
-
-<docs>
-  ```jsx
-  <VsExampleTemplate />
-  ```
-</docs>

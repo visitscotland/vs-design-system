@@ -34,14 +34,6 @@
 </template>
 
 <script>
-import {
-    VsContainer,
-    VsRow,
-    VsCol,
-} from '@components/elements/grid';
-import VsHeading from '@components/elements/heading/Heading';
-import VsProductSearchEmbed from './components/ProductSearchEmbed';
-
 /**
  * A module housing the PSR widget, a title and optional text
  *
@@ -52,13 +44,6 @@ export default {
     name: 'VsProductSearch',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsContainer,
-        VsRow,
-        VsCol,
-        VsProductSearchEmbed,
-        VsHeading,
-    },
     props: {
         /**
          * Config for prefilled fields and language
@@ -308,29 +293,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    <VsContainer>
-        <VsRow>
-            <VsProductSearch
-                :configArr="[
-                    {'subSearchType': 'acco'},
-                    {'locplace': '4161'},
-                    {'lang':'en'},
-                    {'domain':'http://172.28.81.65:8089'},
-                ]"
-            >
-                <template slot="vsModuleHeading">
-                    Find places to stay & things to do
-                </template>
-
-                <template slot="vsModuleIntro">
-                    Search through a fantastic range of things to do, places to stay,
-                    local events and tours
-                </template>
-            </VsProductSearch>
-        </VsRow>
-    </VsContainer>
-```
-</docs>

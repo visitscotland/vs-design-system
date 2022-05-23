@@ -121,11 +121,6 @@
 </template>
 
 <script>
-import VsImg from '@components/elements/img/Img';
-import VsHeading from '@components/elements/heading/Heading';
-import VsLink from '@components/elements/link/Link';
-import VsCol from '@components/elements/grid/Col';
-
 /**
 * Generic product card for canned search
 *
@@ -135,12 +130,6 @@ export default {
     name: 'VsCannedSearchProductCard',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsImg,
-        VsHeading,
-        VsLink,
-        VsCol,
-    },
     props: {
         /**
         * The type of product being searched for by the canned search

@@ -179,28 +179,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <div class="position-relative" style="height: 200px;">
-        <VsSummaryBoxList>
-            <VsSummaryBoxDistanceListItem
-                :miles=itineraries.sampleItinerary.totalMiles
-                :kilometres=itineraries.sampleItinerary.totalKM
-                distance-label="Distance"
-                miles-label="Miles"
-                kilometres-label="km"
-            >
-            </VsSummaryBoxDistanceListItem>
-            <VsSummaryBoxDistanceListItem
-                :miles=itineraries.sampleItinerary.totalMiles
-                :kilometres=itineraries.sampleItinerary.totalKM
-                distance-label="Distance"
-                miles-label="Miles"
-                kilometres-label="km"
-            >
-            </VsSummaryBoxDistanceListItem>
-        </VsSummaryBoxList>
-    </div>
-  ```
-</docs>

@@ -49,10 +49,6 @@
 </template>
 
 <script>
-
-import VsIcon from '@components/elements/icon/Icon';
-import VsLink from '@components/elements/link/Link';
-
 /**
  * Itinerary stop information. Dynamically shows whether a stop is open,
  * closed or closing soon, depending on the current UK time. Also shows
@@ -65,10 +61,6 @@ export default {
     name: 'VsItineraryStopInfo',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsIcon,
-        VsLink,
-    },
     props: {
         /**
         * JSON object of opening hour details
@@ -414,28 +406,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-```jsx
-    <VsItineraryStopInfo
-        :openingHours='itineraries.sampleItinerary.openingHours'
-        openingTimesLink="https://www.visitscotland.com"
-        closedText="Closed"
-        closingSoonText="Closing soon"
-        openText="Open"
-        usualText="Usually"
-        provisionalText="Provisionally"
-        temporarilyClosedText="Temporarily closed"
-        toText="to"
-        andText="and"
-    >
-        <template slot="stop-link-text">
-            Check opening times
-        </template>
-
-        <template slot="stop-charge-text">
-            Admission charge
-        </template>
-    </VsItineraryStopInfo>
-```
-</docs>

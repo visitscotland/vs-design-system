@@ -26,9 +26,6 @@ export default {
     name: 'VsDescriptionListItem',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsCol,
-    },
     /**
      * Injects inline prop provided by DescriptionList
      */

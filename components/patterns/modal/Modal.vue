@@ -44,12 +44,7 @@
 </template>
 
 <script>
-import {
-    VsCol, VsRow, VsContainer,
-} from '@components/elements/grid';
 import { BModal } from 'bootstrap-vue';
-import VsButton from '@components/elements/button';
-import VsIcon from '@components/elements/icon';
 
 /**
  * The modal is used as a dialog prompt for users
@@ -61,11 +56,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsCol,
-        VsRow,
-        VsContainer,
-        VsButton,
-        VsIcon,
         BModal,
     },
     props: {
@@ -170,43 +160,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-```jsx
-    <VsButton
-        id="toggle-btn"
-        class="mb-4"
-        ref="btnShow"
-        @click.native="$root.$emit('bv::show::modal', 'c05sg3G4oA4', '#btnShow')"
-    >
-        Play Video
-    </VsButton>
-
-    <VsModal
-        modalId="c05sg3G4oA4"
-        closeBtnText="Close"
-    >
-        <VsRow>
-            <VsCol cols="12">
-                <VsVideo
-                    video-id="c05sg3G4oA4"
-                    class="mb-8"
-                />
-            </VsCol>
-
-            <VsCol
-                cols="10"
-                offset="1"
-            >
-                <VsRichTextWrapper>
-                    <p>
-                        Discover our incredible castles from a new perspective.
-                        This incredible drone footage shows castles from Dumfries &
-                        Galloway to Wick on the north coastline.
-                    </p>
-                </VsRichTextWrapper>
-            </VsCol>
-        </VsRow>
-    </VsModal>
-```
-</docs>

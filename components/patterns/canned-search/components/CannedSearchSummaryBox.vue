@@ -74,11 +74,6 @@
 </template>
 
 <script>
-import {
-    VsContainer, VsRow, VsCol,
-} from '@components/elements/grid';
-import VsLink from '@components/elements/link/Link';
-
 /**
 * Component that displays a grey summary box for product cards within canned
 * search. Contains a series of summary items
@@ -90,37 +85,6 @@ export default {
     name: 'VsCannedSearchSummaryBox',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsContainer,
-        VsRow,
-        VsCol,
-        VsLink,
-    },
-    props: {
-        /**
-        * The href of a product link, should match the website on the
-        * parent product card
-        */
-        linkHref: {
-            type: String,
-            default: '',
-        },
-        /**
-        * The label of the product link, usually "View Details"
-        */
-        linkLabel: {
-            type: String,
-            default: '',
-        },
-        /**
-        * The link type for the product link, usually "external"
-        */
-        linkType: {
-            type: String,
-            default: '',
-        },
-    },
-    inject: ['slideVisible'],
 };
 
 </script>

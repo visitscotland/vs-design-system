@@ -42,17 +42,3 @@ export default {
     bottom: -5px;
 }
 </style>
-
-<docs>
-  ```jsx
-    <VsItineraryTips>
-      <div slot="text">
-        <strong>Don't miss:</strong>
-        <p>Make sure you visit one of the many lovely cafés and restaurants that
-        the city has to offer, or venture out to experience Edinburgh’s lively nightlife
-        in the many bars, clubs and restaurants across the city.</p>
-      </div>
-      <VsSvg slot="svg" path="highland-cow" />
-    </VsItineraryTips>
-  ```
-</docs>

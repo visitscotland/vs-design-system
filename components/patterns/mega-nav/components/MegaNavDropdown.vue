@@ -70,10 +70,6 @@ export default {
     release: '0.1.0',
     components: {
         BDropdown,
-        VsCol,
-        VsContainer,
-        VsRow,
-        VsButton,
     },
     props: {
         /**
@@ -310,8 +306,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-   ```[import](../__examples__/meganav.example.vue)
-    ```
-</docs>

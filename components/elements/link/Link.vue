@@ -38,7 +38,6 @@ export default {
     release: '0.0.2',
     components: {
         BLink,
-        VsIcon,
     },
     props: {
         /**
@@ -115,20 +114,6 @@ export default {
 
     .vs-link__icon {
         vertical-align: baseline;
-    }
-}
-
-@include themed-text-editor("dark") {
-    .vs-link {
-        color: $color_yellow;
-
-        .vs-icon {
-            fill: $color_yellow;
-        }
-
-        &:focus {
-            outline: 2px solid $color_yellow;
-        }
     }
 }
 </style>

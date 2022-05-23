@@ -49,11 +49,6 @@ export default {
     name: 'VsArticleSection',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsCol,
-        VsRow,
-        VsRichTextWrapper,
-    },
     props: {
         /**
          * This sets the alignment of the sidebar left or right of the section

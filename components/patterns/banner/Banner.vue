@@ -65,13 +65,6 @@
 </template>
 
 <script>
-import VsButton from '@components/elements/button/Button';
-import VsHeading from '@components/elements/heading/Heading';
-import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
-import VsIcon from '@components/elements/icon/';
-import {
-    VsContainer, VsRow, VsCol,
-} from '@components/elements/grid';
 import cookieMixin from '../../../mixins/cookieMixin';
 
 /**
@@ -85,15 +78,6 @@ export default {
     name: 'VsBanner',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsButton,
-        VsContainer,
-        VsRow,
-        VsCol,
-        VsHeading,
-        VsRichTextWrapper,
-        VsIcon,
-    },
     mixins: [
         cookieMixin,
     ],

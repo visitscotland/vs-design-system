@@ -71,13 +71,6 @@ export default {
     name: 'VsArticle',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsCol,
-        VsRow,
-        VsContainer,
-        VsRichTextWrapper,
-        VsHeading,
-    },
     props: {
         /**
          * Title of the article

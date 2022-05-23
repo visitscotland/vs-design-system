@@ -26,9 +26,6 @@ export default {
     name: 'VsAddress',
     status: 'prototype',
     release: '0.1.0',
-    components: {
-        VsIcon,
-    },
 };
 </script>
 

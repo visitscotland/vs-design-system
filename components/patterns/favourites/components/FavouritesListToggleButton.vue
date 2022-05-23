@@ -42,9 +42,6 @@ export default {
     name: 'VsFavouritesListToggleButton',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsIcon,
-    },
     props: {
         title: {
             type: String,
@@ -95,13 +92,3 @@ export default {
     margin: 0 0 $spacer-2 $spacer-2;
 }
 </style>
-
-<docs>
-  ```jsx
-
-    <VsFavouritesListToggleButton
-      :href="favourite.href"
-      :title="favourite.title"
-    />
-  ```
-</docs>

@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import VsHeading from '@components/elements/heading/Heading';
-
 /**
 * Shows a formatted sub-heading for a canned search product card,
 * usually contains an address or list of themes
@@ -23,9 +21,6 @@ export default {
     name: 'VsCannedSearchSubHeading',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsHeading,
-    },
     props: {
         /**
         * The string to display

@@ -48,9 +48,6 @@
 </template>
 
 <script>
-import designTokens from '@/assets/tokens/tokens.json';
-import { VsRow, VsCol } from '@components/elements/grid';
-import VsCaptionImageMap from './components/CaptionImageMap';
 
 /**
  * Captions are used to briefly describe an image or other media such as a video.
@@ -59,11 +56,6 @@ import VsCaptionImageMap from './components/CaptionImageMap';
  */
 export default {
     name: 'VsCaption',
-    components: {
-        VsRow,
-        VsCol,
-        VsCaptionImageMap,
-    },
     props: {
         /**
          * Option to choose which variant to show

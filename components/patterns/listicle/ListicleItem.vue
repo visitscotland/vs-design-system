@@ -51,9 +51,6 @@
 </template>
 
 <script>
-import VsHeading from '@components/elements/heading/Heading';
-import { VsRow, VsCol } from '@components/elements/grid';
-
 /**
  * TODO: Document usage
  *
@@ -63,11 +60,6 @@ export default {
     name: 'VsListicleItem',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsHeading,
-        VsRow,
-        VsCol,
-    },
     props: {
         /**
          * The index value for the listicle item to be shown on the header
@@ -217,79 +209,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-```jsx
-
-    <ul style="list-style-type: none; padding: 0;">
-        <VsListicleItem
-            v-for="(item, index) in listicles.sampleListicle"
-            key="index"
-            index="1"
-            :title="item.title"
-            :subTitle="item.subTitle"
-            ctaLink=""
-            :ctaLabel="item.ctaLabel"
-        >
-            <div slot="image-slot">
-                <VsImageWithCaption
-                    :altText="item.image.altText"
-                    :image-src="item.image.imageSrc"
-                >
-                    <VsCaption
-                        slot="img-caption"
-                        :latitude="item.image.latitude"
-                        :longitude="item.image.longitude"
-                        variant="large"
-                    >
-                        <span slot="caption">
-                            {{ item.image.caption }}
-                        </span>
-
-                        <span slot="credit">
-                            &copy; {{ item.image.credit }}
-                        </span>
-                    </VsCaption>
-                </VsImageWithCaption>
-            </div>
-
-            <div slot="description-slot">
-                <p data-v-0abaabb3="">The&nbsp;<strong data-v-0abaabb3="">National Museum of Scotland</strong>&nbsp;in&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh" target="_blank">Edinburgh</a>, Scotland, was formed in 2006 with the merger of the new&nbsp;<strong data-v-0abaabb3="">Museum of Scotland</strong>, with collections relating to Scottish&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities" target="_blank">antiquities</a>,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture of Scotland" target="_blank">culture</a>&nbsp;and&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/History_of_Scotland" title="History of Scotland" target="_blank">history</a>, and the adjacent&nbsp;<strong data-v-0abaabb3="">Royal Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections covering science and technology,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Natural_history" title="Natural history" target="_blank">natural history</a>, and world cultures. The two connected buildings stand beside each other on&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)" title="Chambers Street (Edinburgh)" target="_blank">Chambers Street</a>, by the intersection with the&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/George_IV_Bridge" title="George IV Bridge" target="_blank">George IV Bridge</a>, in central Edinburgh. The museum is part of&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/National_Museums_Scotland" title="National Museums Scotland" target="_blank">National Museums Scotland</a>. Admission is free.</p>
-            </div>
-
-            <div slot="facilities-slot">
-                <VsIconList title="Key Facilities">
-                    <VsIconListItem
-                        icon="facility-petswelcom"
-                        label="Pets Welcome">
-                    </VsIconListItem>
-                    <VsIconListItem
-                        icon="facility-dsblaccess"
-                        label="Wheelchair Access">
-                    </VsIconListItem>
-                    <VsIconListItem
-                        icon="facility-audioloop"
-                        label="Hearing Loop">
-                    </VsIconListItem>
-                    <VsIconListItem
-                        icon="facility-wifi"
-                        label="WiFi">
-                    </VsIconListItem>
-                    <VsIconListItem
-                        icon="publictlt"
-                        label="Public Toilets">
-                    </VsIconListItem>
-                    <VsIconListItem
-                        icon="giftshop"
-                        label="Gift Shop">
-                    </VsIconListItem>
-                    <VsIconListItem
-                        icon="facility-accessparkdrop"
-                        label="Accessible Parking or Drop-off Point">
-                    </VsIconListItem>
-                </VsIconList>
-            </div>
-        </VsListicleItem>
-    </ul>
-```
-</docs>

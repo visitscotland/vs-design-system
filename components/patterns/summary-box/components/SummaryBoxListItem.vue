@@ -41,8 +41,6 @@
 </template>
 
 <script>
-import VsIcon from '@components/elements/icon/Icon';
-
 /**
  * Summary Box List Item
  *
@@ -52,9 +50,6 @@ export default {
     name: 'VsSummaryBoxListItem',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsIcon,
-    },
     props: {
         /**
          * The highlighted, large text in the centre of the list item
@@ -168,23 +163,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-  ```jsx
-    <div class="position-relative" style="height: 200px;">
-        <VsSummaryBoxList>
-            <VsSummaryBoxListItem
-                :text=itineraries.sampleItinerary.totalDays
-                label="Days"
-            >
-            </VsSummaryBoxListItem>
-            <VsSummaryBoxListItem
-                :icon=itineraries.sampleItinerary.transport.key
-                :iconLabel=itineraries.sampleItinerary.transport.value
-                label="Transport"
-            >
-            </VsSummaryBoxListItem>
-        </VsSummaryBoxList>
-    </div>
-  ```
-</docs>

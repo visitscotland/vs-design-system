@@ -54,10 +54,6 @@
 </style>
 
 <script>
-import VsButton from '@components/elements/button/Button';
-import VsSvg from '@components/elements/svg/Svg';
-import VsIcon from '@components/elements/icon/Icon';
-
 /**
  * Toggle button to toggle elements in other components.
  * The component emits an event on click that can be listened
@@ -69,11 +65,6 @@ export default {
     name: 'VsToggleButton',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsButton,
-        VsSvg,
-        VsIcon,
-    },
     props: {
         /**
          * ID for the toggled element
@@ -96,9 +87,3 @@ export default {
     },
 };
 </script>
-
-<docs>
-    ```jsx
-    <VsToggleButton />
-    ```
-</docs>

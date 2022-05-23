@@ -43,7 +43,6 @@ export default {
     release: '0.0.1',
     components: {
         BButton,
-        VsIcon,
     },
     props: {
         /**

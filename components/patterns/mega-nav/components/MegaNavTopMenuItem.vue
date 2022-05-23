@@ -65,9 +65,6 @@
 </template>
 
 <script>
-import VsMegaNavDropdown from '@components/patterns/mega-nav/components/MegaNavDropdown';
-import VsLink from '@components/elements/link/Link';
-
 /**
  *  Mega nav top level menu items with a slots for toggle button and dropdown content
  *
@@ -77,10 +74,6 @@ export default {
     name: 'VsMegaNavTopMenuItem',
     status: 'prototype',
     release: '0.1.0',
-    components: {
-        VsMegaNavDropdown,
-        VsLink,
-    },
     props: {
         /**
          * The URL for the top level CTA link
@@ -257,8 +250,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-    ```[import](../__examples__/meganav.example.vue)
-    ```
-</docs>

@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import VsLink from '@components/elements/link/Link';
-
 /**
  * This component is an item appearing in a list of links.
  *
@@ -24,9 +22,6 @@ export default {
     name: 'VsLinkListItem',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsLink,
-    },
     props: {
         /**
          * The URL the link will point to
@@ -67,27 +62,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-    ```js
-        <VsLinkList>
-            <VsLinkListItem
-                href="www.visitscotland.com"
-                type="external"
-            >
-                This is a link
-            </VsLinkListItem>
-            <VsLinkListItem
-                href="www.visitscotland.com"
-                type="download"
-            >
-                This is another link
-            </VsLinkListItem>
-            <VsLinkListItem
-                href="www.visitscotland.com"
-            >
-                This is a third link
-            </VsLinkListItem>
-        </VsLinkList>
-    ```
-</docs>
