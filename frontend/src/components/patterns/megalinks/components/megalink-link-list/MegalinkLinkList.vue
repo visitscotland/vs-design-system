@@ -10,8 +10,8 @@
             :img-src="imgSrc"
             :img-alt="imgAlt"
             :theme="theme"
-            :video-id="videoId"
-            :video-btn-text="videoBtnText"
+            :video-id="disableVideo ? '' : videoId"
+            :video-btn-text="disableVideo ? '' : videoBtnText"
         >
             <VsStretchedLinkPanels
                 v-if="days && transport"
@@ -39,6 +39,15 @@
                 <!-- @slot Slot to contain content -->
                 <slot name="vsLinkListContent" />
             </VsRichTextWrapper>
+
+            <VsNoJsNoCookies
+                v-if="jsDisabled"
+                slot="strechedCardDisabledContainer"
+                :js-disabled="jsDisabled"
+                :no-js-message="noJsMessage"
+                :no-cookies-message="noCookiesMessage"
+                :no-cookies-link="noCookiesLink"
+            />
         </VsStretchedLinkCard>
     </div>
 </template>
@@ -147,6 +156,45 @@ export default {
         videoBtnText: {
             type: String,
             default: 'Play Video',
+        },
+        /**
+        * Set to true if JavaScript is disabled and the module cannot function, to pass to
+        * the no js/cookies placeholder
+        */
+        jsDisabled: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+        * A message explaining why the component has been disabled js is disabled, to pass to
+        * the no js/cookies placeholder
+        */
+        noJsMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * A message explaining why the component has been disabled with disabled cookies, to
+        * pass to the no js/cookies placeholder
+        */
+        noCookiesMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * An object containing a link to the cookie settings page, should contain a `url`
+        * field and a `label` field, to pass to the no js/cookies placeholder
+        */
+        noCookiesLink: {
+            type: Object,
+            default: null,
+        },
+    },
+    computed: {
+        // Checks whether js is disabled or appropriate cookies have been rejected
+        disableVideo() {
+            // TODO: Add cookie functionality once checker integrated
+            return this.jsDisabled;
         },
     },
 };

@@ -696,6 +696,13 @@ export default {
                 linkUrl="#"
                 videoId="zZCUFjSiWpE"
                 videoBtnText="Play Video"
+                :jsDisabled="true"
+                noJsMessage="JavaScript is needed to watch this video."
+                noCookiesMessage="Cookies are needed to watch this video."
+                :noCookiesLink="{
+                    url: 'https://google.com',
+                    label: 'Update my cookie settings'
+                }"
             >
                 <template slot="vsLinkListHeading">
                     Count 7,000 shining stars in the iconic galloway forest
