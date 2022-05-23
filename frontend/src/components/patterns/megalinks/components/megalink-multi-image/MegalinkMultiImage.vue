@@ -8,8 +8,8 @@
         :img-alt="imgAlt"
         :data-test="featured ? 'megalink-multi-image-featured' : 'megalink-multi-image-card'"
         :theme="theme"
-        :video-id="disableVideo ? '' : videoId"
-        :video-btn-text="disableVideo ? '' : videoBtnText"
+        :video-id="cookiesMissing ? '' : videoId"
+        :video-btn-text="cookiesMissing ? '' : videoBtnText"
     >
         <VsStretchedLinkPanels
             v-if="days && transport"
@@ -37,9 +37,8 @@
         </VsRichTextWrapper>
 
         <VsNoJsNoCookies
-            v-if="jsDisabled"
             slot="strechedCardDisabledContainer"
-            :js-disabled="jsDisabled"
+            :cookies-missing="cookiesMissing"
             :no-js-message="noJsMessage"
             :no-cookies-message="noCookiesMessage"
             :no-cookies-link="noCookiesLink"
@@ -171,14 +170,6 @@ export default {
             default: 'Play Video',
         },
         /**
-        * Set to true if JavaScript is disabled and the module cannot function, to pass to
-        * the no js/cookies placeholder
-        */
-        jsDisabled: {
-            type: Boolean,
-            default: false,
-        },
-        /**
         * A message explaining why the component has been disabled js is disabled, to pass to
         * the no js/cookies placeholder
         */
@@ -213,10 +204,15 @@ export default {
                 },
             ];
         },
-        // Checks whether js is disabled or appropriate cookies have been rejected
-        disableVideo() {
+        // Checks whether appropriate cookies have been rejected to prevent initialising the
+        // video. Javascript being disabled prevents the video from initialising automatically.
+        cookiesMissing() {
+            if (!this.videoId) {
+                return false;
+            }
+
             // TODO: Add cookie functionality once checker integrated
-            return this.jsDisabled;
+            return false;
         },
     },
 };
