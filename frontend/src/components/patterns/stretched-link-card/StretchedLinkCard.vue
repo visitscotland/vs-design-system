@@ -5,30 +5,32 @@
         @click="emitShowModal"
         @keypress="emitShowModal"
     >
-        <template
-            v-if="imgSrc"
-        >
-            <VsImg
-                :src="imgSrc"
-                :alt="imgAlt"
-                class="vs-stretched-link-card__img"
-                data-test="vs-stretched-link-card__img"
-            />
-        </template>
+        <div class="vs-stretched-link-card__img-container">
+            <template
+                v-if="imgSrc"
+            >
+                <VsImg
+                    :src="imgSrc"
+                    :alt="imgAlt"
+                    class="vs-stretched-link-card__img"
+                    data-test="vs-stretched-link-card__img"
+                />
+            </template>
+
+            <template
+                v-if="!!this.$slots['strechedCardDisabledContainer']"
+            >
+                <!-- @slot Contains optional content to indicate that a component has
+                been disabled. Expects a VsNoJsNoCookies component -->
+                <slot name="strechedCardDisabledContainer" />
+            </template>
+        </div>
 
         <template
             v-if="!!this.$slots['stretchedCardPanels']"
         >
             <!-- @slot Contains optional content for overlaid panels  -->
             <slot name="stretchedCardPanels" />
-        </template>
-
-        <template
-            v-if="!!this.$slots['strechedCardDisabledContainer']"
-        >
-            <!-- @slot Contains optional content to indicate that a component has
-            been disabled. Expects a VsNoJsNoCookies component -->
-            <slot name="strechedCardDisabledContainer" />
         </template>
 
         <div
@@ -305,11 +307,16 @@ export default {
             width: 12px;
         }
 
-        .vs-stretched-link-card__img {
+        .vs-stretched-link-card__img-container {
             width: 100%;
             max-width: 100%;
             align-self: flex-start;
             flex-shrink: 0; // IE11 fix, prevents image vertical stretching
+            position: relative;
+        }
+
+        .vs-stretched-link-card__img {
+            width: 100%;
         }
 
         .vs-stretched-link-card__title {

@@ -42,8 +42,8 @@ import VsLink from '@components/elements/link/Link';
 
 /**
 * A placeholder component to display in place of a component disabled by no-js or by
-* a missing mandatory cookie. Sizing and positioning should be handled within the
-* containing component
+* a missing mandatory cookie. It should be placed within a position: relative container
+* and will fill the space, partially obscuring the component underneath.
 *
 * @displayName No Js / No Cookie Placeholder
 */
@@ -103,8 +103,14 @@ export default {
         padding: $spacer-4;
         color: $color-white;
         text-align: center;
+        display: flex;
         align-items: center;
         justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
     }
 
     .vs-no-js-cookies__message {
@@ -114,29 +120,44 @@ export default {
 
 <docs>
     ```
-        <VsNoJsNoCookies
-            jsDisabled="true"
-            noJsMessage="JavaScript is needed to watch this video."
-        />
+        <div
+            class="position-relative"
+            style="width: 12em; height: 12em;"
+        >
+            <VsNoJsNoCookies
+                jsDisabled="true"
+                noJsMessage="JavaScript is needed to watch this video."
+            />
+        </div>
         <br />
-        <VsNoJsNoCookies
-            cookiesMissing="true"
-            noCookiesMessage="Cookies are needed to watch this video."
-            :noCookiesLink="{
-                url: 'https://google.com',
-                label: 'Update my cookie settings'
-            }"
-        />
+        <div
+            class="position-relative"
+            style="width: 25em; height: 10em;"
+        >
+            <VsNoJsNoCookies
+                cookiesMissing="true"
+                noCookiesMessage="Cookies are needed to watch this video."
+                :noCookiesLink="{
+                    url: 'https://google.com',
+                    label: 'Update my cookie settings'
+                }"
+            />
+        </div>
         <br />
-        <VsNoJsNoCookies
-            jsDisabled="true"
-            cookiesMissing="true"
-            noJsMessage="JavaScript is needed to watch this video."
-            noCookiesMessage="Cookies are needed to watch this video."
-            :noCookiesLink="{
-                url: 'https://google.com',
-                label: 'Update my cookie settings'
-            }"
-        />
+        <div
+            class="position-relative"
+            style="width: 15em; height: 18em;"
+        >
+            <VsNoJsNoCookies
+                jsDisabled="true"
+                cookiesMissing="true"
+                noJsMessage="JavaScript is needed to watch this video."
+                noCookiesMessage="Cookies are needed to watch this video."
+                :noCookiesLink="{
+                    url: 'https://google.com',
+                    label: 'Update my cookie settings'
+                }"
+            />
+        </div>
     ```
 </docs>

@@ -328,7 +328,7 @@ export default {
                 width: 16px;
             }
 
-            .vs-stretched-link-card__img {
+            .vs-stretched-link-card__img-container {
                 width: calc(50% - 20px);
             }
 
