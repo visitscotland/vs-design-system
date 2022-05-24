@@ -37,7 +37,7 @@
         </VsRichTextWrapper>
 
         <VsNoJsNoCookies
-            slot="strechedCardDisabledContainer"
+            slot="stretchedCardDisabledContainer"
             :cookies-missing="cookiesMissing"
             :no-js-message="noJsMessage"
             :no-cookies-message="noCookiesMessage"
