@@ -29,7 +29,8 @@ import VsIcon from '@components/elements/icon';
 import VsLink from '@components/elements/link';
 
 /**
- * Test
+ * A generic warning component that expands to cover whatever component
+ * contains it
  *
  * @displayName Warning
  */
