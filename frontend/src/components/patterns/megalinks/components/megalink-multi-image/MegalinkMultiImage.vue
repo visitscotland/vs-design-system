@@ -37,6 +37,7 @@
         </VsRichTextWrapper>
 
         <VsNoJsNoCookies
+            v-if="videoId"
             slot="stretchedCardDisabledContainer"
             :cookies-missing="cookiesMissing"
             :no-js-message="noJsMessage"
