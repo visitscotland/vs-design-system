@@ -147,6 +147,7 @@ export default {
             style="width: 25em; height: 10em;"
         >
             <VsNoJsNoCookies
+                noJsMessage="JavaScript is needed to watch this video."
                 cookiesMissing="true"
                 noCookiesMessage="Cookies are needed to watch this video."
                 :noCookiesLink="{

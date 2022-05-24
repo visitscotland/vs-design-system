@@ -44,6 +44,12 @@
                 link-type="${feature.type}"
                 link-url="${feature.link}"
             </#if>
+            no-js-message="${label('video', 'video.no-js-message')}"
+            no-cookies-message="${label('video', 'video.missing-cookies-message')}"
+            :no-cookies-link="{
+                url: '${label('video', 'video.cookie-setting-link-url')}',
+                label: '${label('video', 'video.cookie-setting-link-message')}'
+            }"
         >
             <template slot="vsMultiImageHeading">
                 ${feature.label}</template>
