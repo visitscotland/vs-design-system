@@ -3,40 +3,23 @@
         class="vs-no-js-cookies"
         data-test="vs-no-js-cookies"
     >
-        <div
-            class="vs-no-js-cookies__inner vs-no-js-cookies__js"
+        <VsWarning
+            class="vs-no-js-cookies__js"
             data-test="vs-no-js-cookies__no-js"
-        >
-            <p
-                class="vs-no-js-cookies__message"
-            >
-                {{ noJsMessage }}
-            </p>
-        </div>
-        <div
-            class="vs-no-js-cookies__inner vs-no-js-cookies__cookies"
+            :warning-message="noJsMessage"
+        />
+        <VsWarning
+            class="vs-no-js-cookies__cookies"
             data-test="vs-no-js-cookies__no-cookies"
             v-if="cookiesMissing"
-        >
-            <p
-                class="vs-no-js-cookies__message"
-            >
-                {{ noCookiesMessage }}
-            </p>
-            <VsLink
-                v-if="noCookiesLink && noCookiesLink.url"
-                data-test="vs-no-js-cookies__no-cookies-link"
-                :href="noCookiesLink.url"
-                variant="dark"
-            >
-                {{ noCookiesLink.label }}
-            </VsLink>
-        </div>
+            :warning-message="noCookiesMessage"
+            :warning-link="noCookiesLink"
+        />
     </section>
 </template>
 
 <script>
-import VsLink from '@components/elements/link/Link';
+import VsWarning from '@components/elements/warning/Warning';
 
 /**
 * A placeholder component to display in place of a component disabled by no-js or by
@@ -50,7 +33,7 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsLink,
+        VsWarning,
     },
     props: {
         /**
@@ -89,27 +72,11 @@ export default {
 
 <style lang="scss">
     .vs-no-js-cookies {
-        color: $color-white;
-        text-align: center;
         position: absolute;
         top: 0;
         left: 0;
         bottom: 0;
         right: 0;
-    }
-
-    .vs-no-js-cookies__inner {
-        padding: $spacer-4;
-        width: 100%;
-        height: 100%;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba($color-black, 0.8);
-    }
-
-    .vs-no-js-cookies__message {
-        margin-bottom: $spacer-0;
     }
 
     .vs-no-js-cookies__js {
