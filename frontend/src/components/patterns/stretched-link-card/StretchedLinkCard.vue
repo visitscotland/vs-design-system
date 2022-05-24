@@ -18,11 +18,11 @@
             </template>
 
             <template
-                v-if="!!this.$slots['strechedCardDisabledContainer']"
+                v-if="!!this.$slots['stretchedCardDisabledContainer']"
             >
                 <!-- @slot Contains optional content to indicate that a component has
                 been disabled. Expects a VsNoJsNoCookies component -->
-                <slot name="strechedCardDisabledContainer" />
+                <slot name="stretchedCardDisabledContainer" />
             </template>
         </div>
 
