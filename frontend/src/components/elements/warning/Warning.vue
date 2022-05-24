@@ -78,7 +78,7 @@ export default {
     .vs-warning__icon {
         width: 4rem !important;
         height: 4rem !important;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
 
     .vs-warning__message {
