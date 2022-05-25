@@ -77,7 +77,6 @@
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
     "get-port": "^5.1.1",
-    "graphql": "^16.3.0",
     "husky": "^4.3.6",
     "image-webpack-loader": "^7.0.1",
     "js-beautify": "^1.11.0",
