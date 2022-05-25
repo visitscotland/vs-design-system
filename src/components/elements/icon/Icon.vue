@@ -97,6 +97,10 @@ export default {
     },
     data() {
         return {
+            /*
+                *  Some DMS feed categories are different
+                    from the name of the icon file.  This lookup marries up discrepencies
+                */
             iconLookup: [
                 {
                     key: 'accesstoliet',
@@ -232,17 +236,22 @@ export default {
         },
     },
     mounted() {
-        /*
-        * To use the font awesome icons correctly we need to inject the Font Kit for .com
-        */
-        if (!window.fontAwesomeRequested) {
-            window.fontAwesomeRequested = true;
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = `https://kit.fontawesome.com/${process.env.ICON_KIT_TOKEN}.js`;
-            script.crossOrigin = 'anonymous';
-            document.head.appendChild(script);
-        }
+        this.loadFontAwesomeScript();
+    },
+    methods: {
+        loadFontAwesomeScript() {
+            /*
+            * To use the font awesome icons correctly we need to inject the Font Kit for .com
+            */
+            if (!window.fontAwesomeRequested) {
+                window.fontAwesomeRequested = true;
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = `https://kit.fontawesome.com/${process.env.ICON_KIT_TOKEN}.js`;
+                script.crossOrigin = 'anonymous';
+                document.head.appendChild(script);
+            }
+        },
     },
 };
 </script>
