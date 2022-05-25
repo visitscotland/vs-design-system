@@ -261,6 +261,27 @@ export default {
             .megalink-link-list__title {
                 text-decoration: underline;
             }
+
+            .vs-stretched-link-card__video-button {
+                background-color: darken($color-theme-primary, 10%);
+                border-color: darken($color-theme-primary, 12%);
+            }
+        }
+
+        &:active {
+            .vs-stretched-link-card__video-button {
+                .vs-icon {
+                    fill: $color-theme-primary;
+                }
+            }
+        }
+
+        &:focus {
+            .vs-stretched-link-card__video-button {
+                background-color: $color-white;
+                border-color: $color-theme-primary;
+                color: $color-theme-primary;
+            }
         }
 
         &--disabled {
