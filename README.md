@@ -1,18 +1,16 @@
 ![VisitScotland](https://sttc.visitscotland.com/static/img/logos/scotland-alba-logo-500.png)
 
-# VisitScotland.com Frontend Package
+# VisitScotland.com Design System
 
-This is the repository for the **VisitScotland.com Frontend**, which encodes frontend Vue components and styles for use on the visitscotland.com site.
+This is the repository for the **VisitScotland.com Design System**, which encodes frontend Vue components and styles primarily for use on the visitscotland.com site.
 
 The package utilises the [Vue Styleguidist](https://vue-styleguidist.github.io/) package for its design system builds. The starting point for the package was [Vue Design System](https://vueds.com) and has since been enhanced and modified significantly compared to that library in several areas, including:
 
 - The included components have been changed to suit VisitScotland's needs and have been moved into subdirectories in the `src/components` folder.
-- The design system build has been enhanced so it can include content from a remote API (Bloomreach Hippo CMS or Contentful).
+- The design system build has been enhanced so it can include content from a remote API.
 - The Color component has been enhanced with categories and accessibility checks.
 - The main production build has been converted to a library build for more efficient asset loading on the client.
 - NPM has been replaced with Yarn package manager.
-- A Bloomreach Hippo CMS app has been added in the folder `hippo`, which acts as the source code for the CMS site to provide content to the design system build.
-- An SSR app and set of builds has been added to enable the frontend assets to be server-side rendered.
 
 ## Getting started
 
@@ -20,10 +18,7 @@ Install the package:
 
 ```sh
 # Clone the repo
-git clone https://username@bitbucket.visitscotland.com/scm/vscom/design-system.git
-
-# Navigate to frontend dir
-cd frontend
+git clone git@github.com:visitscotland/design-system.git
 
 # Install the package
 yarn install
