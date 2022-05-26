@@ -1,8 +1,8 @@
 const path = require('path');
 
+const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
-
 const buildMode = require('./base.build-mode');
 
 function resolve(dir) {
@@ -125,6 +125,7 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin('style.css'),
+        new Dotenv(),
     ],
     node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
