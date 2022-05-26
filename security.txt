@@ -1,0 +1,7 @@
+# Our security address
+Contact: mailto:helpdesk@visitscotland.com
+
+# Our security policy in line with Scottish Government
+Policy:  https://www.gov.scot/publications/vulnerability-disclosure-policy/
+
+https://github.com/scottishgovernment/designsystem.gov.scot/blob/master/security.txt
