@@ -1,26 +1,23 @@
 <template>
-    <VsSvg
-        :path="path"
+    <i
         :class="{
+            'fak': true,
+            [`fa-${icon}`]:true,
             'vs-icon': true,
             [`vs-icon--size-${size}`]: true,
             [`vs-icon--sm-size-${smallSize}`]: smallSize,
             [`vs-icon--${formattedName}`]: true,
-            [`vs-icon--variant-${variant}`]: variant,
             ['icon--' + orientation]: orientation,
+            [`vs-icon--variant-${variant}`]: variant,
         }"
-        :style="[customColour ? {fill: customColour} : {}]"
+        :style="[customColour ? {color: customColour} : {}]"
         v-bind="$attrs"
         data-test="vs-icon"
     />
 </template>
-
 <script>
 import { get } from 'lodash';
 import designTokens from '@/assets/tokens/tokens.raw.json';
-import VsSvg from '../svg';
-
-const iconPath = 'icons/';
 
 /**
  * Icons are used to visually communicate core parts of the product and
@@ -36,9 +33,6 @@ export default {
     name: 'VsIcon',
     status: 'prototype',
     release: '0.1.0',
-    components: {
-        VsSvg,
-    },
     props: {
         /**
          * The name of the icon to display, which will be the name of the icon file
@@ -103,6 +97,10 @@ export default {
     },
     data() {
         return {
+            /*
+                *  Some DMS feed categories are different
+                    from the name of the icon file.  This lookup marries up discrepencies
+                */
             iconLookup: [
                 {
                     key: 'accesstoliet',
@@ -205,6 +203,10 @@ export default {
                     value: 'walk',
                 },
                 {
+                    key: 'boat',
+                    value: 'boat',
+                },
+                {
                     key: 'transport',
                     value: 'transport',
                 },
@@ -216,8 +218,8 @@ export default {
         };
     },
     computed: {
-        path() {
-            return iconPath + this.formattedName;
+        icon() {
+            return this.formattedName;
         },
         dimension() {
             return get(designTokens, `props.icon_size_${this.size}.value`, '40px');
@@ -231,6 +233,24 @@ export default {
             const formattedNameLookup = this.iconLookup.find(({ key }) => key === this.name);
 
             return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name;
+        },
+    },
+    mounted() {
+        this.loadFontAwesomeScript();
+    },
+    methods: {
+        loadFontAwesomeScript() {
+            /*
+            * To use the font awesome icons correctly we need to inject the Font Kit for .com
+            */
+            if (!window.fontAwesomeRequested) {
+                window.fontAwesomeRequested = true;
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = `https://kit.fontawesome.com/${process.env.ICON_KIT_TOKEN}.js`;
+                script.crossOrigin = 'anonymous';
+                document.head.appendChild(script);
+            }
         },
     },
 };
@@ -290,10 +310,10 @@ $variants: (
 
     @each $variant in map-keys($variants) {
         &.vs-icon--variant-#{$variant} {
-            fill: map-get($variants, $variant);
+            color: map-get($variants, $variant);
 
              &.icon--reverse {
-                fill: $color-white;
+                color: $color-white;
                 background: map-get($variants, $variant);
             }
         }
@@ -321,7 +341,7 @@ $variants: (
     <VsIcon name="search" />
 
     <h3 class="mt-8">Variant</h3>
-    <VsIcon name="user" variant="primary" />
+    <VsIcon name="boat" variant="primary" />
     <VsIcon name="user" variant="secondary" />
     <VsIcon name="user" variant="light" />
     <VsIcon name="user" variant="dark" />
@@ -337,7 +357,7 @@ $variants: (
     <div class="d-flex">
         <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xxs</h4>
-            <VsIcon name="favourite" size="xxs" />
+            <VsIcon name="boat" size="xxs" />
             </div>
 
             <div class="d-flex flex-column mr-3 align-items-center">

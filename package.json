@@ -133,6 +133,7 @@
     "css-loader": "^1.0.1",
     "cypress": "^3.8.3",
     "cypress-vue-unit-test": "^1.11.7",
+    "dotenv-webpack": "^7.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-import-resolver-webpack": "^0.12.2",
