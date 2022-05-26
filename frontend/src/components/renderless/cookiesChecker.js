@@ -28,8 +28,6 @@ export default {
     data() {
         return {
             oneTrust: new OneTrustVS(),
-            containers: {
-            },
             activeGroups: '',
         };
     },
@@ -46,6 +44,7 @@ export default {
         },
     },
     created() {
+        // KEEP UNTIL INSTAGRAM FUNCTIONALITY IS FIXED
         //   Add eventbus to check for events related to OneTrust and cookies
         if (!(typeof window.OneTrustEventBus === 'function')) {
             window.OneTrustEventBus = new EventBus();
@@ -81,7 +80,7 @@ export default {
         document.head.appendChild(oneTrustScript);
 
         // eslint-disable-next-line
-        function OptanonWrapper() {}
+        function OptanonWrapper() {};
 
         this.oneTrust.checkThirdPartyLibrary('OneTrust', () => {
             window.OneTrust.OnConsentChanged(() => {
