@@ -17,6 +17,17 @@ describe('VsWarning', () => {
     });
 
     describe(':props', () => {
+        it(':variant - should accept and render variants as props', async() => {
+            const wrapper = factoryShallowMount();
+            const variant = 'small';
+
+            await wrapper.setProps({
+                variant,
+            });
+
+            expect(wrapper.classes()).toContain(`vs-warning--${variant}`);
+        });
+
         it('should render the contents of the `warningMessage` prop', async() => {
             const wrapper = factoryShallowMount();
 
