@@ -22,9 +22,8 @@
 import VsWarning from '@components/elements/warning/Warning';
 
 /**
-* A placeholder component to display in place of a component disabled by no-js or by
-* a missing mandatory cookie. It should be placed within a position: relative container
-* and will fill the space, partially obscuring the component underneath.
+* A wrapper for vs-warning that handles checking if a componen is missing mandatory
+* cookies, or if javascript is disabled
 *
 * @displayName No Js / No Cookie Placeholder
 */
@@ -97,46 +96,3 @@ export default {
         }
     }
 </style>
-
-<docs>
-    ```
-        <div
-            class="position-relative no-js"
-            style="width: 12em; height: 12em;"
-        >
-            <VsNoJsNoCookies
-                noJsMessage="JavaScript is needed to watch this video."
-            />
-        </div>
-        <br />
-        <div
-            class="position-relative"
-            style="width: 25em; height: 10em;"
-        >
-            <VsNoJsNoCookies
-                noJsMessage="JavaScript is needed to watch this video."
-                cookiesMissing="true"
-                noCookiesMessage="Cookies are needed to watch this video."
-                :noCookiesLink="{
-                    url: 'https://google.com',
-                    label: 'Update my cookie settings'
-                }"
-            />
-        </div>
-        <br />
-        <div
-            class="position-relative no-js"
-            style="width: 15em; height: 18em;"
-        >
-            <VsNoJsNoCookies
-                cookiesMissing="true"
-                noJsMessage="JavaScript is needed to watch this video."
-                noCookiesMessage="Cookies are needed to watch this video."
-                :noCookiesLink="{
-                    url: 'https://google.com',
-                    label: 'Update my cookie settings'
-                }"
-            />
-        </div>
-    ```
-</docs>
