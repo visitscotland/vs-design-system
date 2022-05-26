@@ -1,6 +1,9 @@
 <template>
     <div
         class="vs-warning"
+        :class="{
+            [`vs-warning--${variant}`]: true
+        }"
         data-test="vs-warning"
     >
         <VsIcon
@@ -58,15 +61,25 @@ export default {
             type: Object,
             default: null,
         },
+        variant: {
+            type: String,
+            default: 'normal',
+            validator: (value) => value.match(
+                /(small|normal)/,
+            ),
+        },
     },
 };
 </script>
 
 <style lang="scss">
     .vs-warning {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
         padding: $spacer-4;
-        width: 100%;
-        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -80,6 +93,14 @@ export default {
         width: 4rem !important;
         height: 4rem !important;
         margin-bottom: 2rem;
+    }
+
+    .vs-warning--small {
+        .vs-warning__icon {
+            width: 3rem !important;
+            height: 3rem !important;
+            margin-bottom: 1rem;
+        }
     }
 
     .vs-warning__message {

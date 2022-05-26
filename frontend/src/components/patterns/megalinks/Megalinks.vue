@@ -293,6 +293,12 @@ export default {
                             linkUrl="#"
                             videoId="g-Fhvj7vW-E"
                             videoBtnText="Play Video"
+                            noJsMessage="JavaScript is needed to watch this video."
+                            noCookiesMessage="Cookies are needed to watch this video."
+                            :noCookiesLink="{
+                                url: 'https://google.com',
+                                label: 'Update my cookie settings'
+                            }"
                         >
                             <template slot="vsMultiImageHeading">
                                 The Edinburgh International Festival
@@ -351,6 +357,12 @@ export default {
                             linkUrl="#"
                             videoId="N3r5rCN9iaE"
                             videoBtnText="Play Video"
+                            noJsMessage="JavaScript is needed to watch this video."
+                            noCookiesMessage="Cookies are needed to watch this video."
+                            :noCookiesLink="{
+                                url: 'https://google.com',
+                                label: 'Update my cookie settings'
+                            }"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest
@@ -534,7 +546,6 @@ export default {
                             linkUrl="https://www.visitscotland.com"
                             videoId="N3r5rCN9iaE"
                             videoBtnText="Play Video"
-                            :jsDisabled="true"
                             noJsMessage="JavaScript is needed to watch this video."
                             noCookiesMessage="Cookies are needed to watch this video."
                             :noCookiesLink="{
@@ -640,6 +651,12 @@ export default {
                 linkUrl="#"
                 videoId="tfk7J6XZju4"
                 videoBtnText="Play Video"
+                noJsMessage="JavaScript is needed to watch this video."
+                noCookiesMessage="Cookies are needed to watch this video."
+                :noCookiesLink="{
+                    url: 'https://google.com',
+                    label: 'Update my cookie settings'
+                }"
             >
                 <template slot="vsLinkListHeading">
                     The Edinburgh International Festival and summer festival
@@ -696,7 +713,6 @@ export default {
                 linkUrl="#"
                 videoId="zZCUFjSiWpE"
                 videoBtnText="Play Video"
-                :jsDisabled="true"
                 noJsMessage="JavaScript is needed to watch this video."
                 noCookiesMessage="Cookies are needed to watch this video."
                 :noCookiesLink="{

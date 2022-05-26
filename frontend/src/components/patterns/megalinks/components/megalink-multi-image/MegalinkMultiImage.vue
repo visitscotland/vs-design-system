@@ -8,8 +8,8 @@
         :img-alt="imgAlt"
         :data-test="featured ? 'megalink-multi-image-featured' : 'megalink-multi-image-card'"
         :theme="theme"
-        :video-id="cookiesMissing ? '' : videoId"
-        :video-btn-text="cookiesMissing ? '' : videoBtnText"
+        :video-id="disableVideo ? '' : videoId"
+        :video-btn-text="disableVideo ? '' : videoBtnText"
     >
         <VsStretchedLinkPanels
             v-if="days && transport"
@@ -36,13 +36,17 @@
             <slot name="vsMultiImageContent" />
         </VsRichTextWrapper>
 
-        <VsNoJsNoCookies
-            v-if="videoId"
+        <VsWarning
+            v-if="videoId && jsDisabled"
             slot="stretchedCardDisabledContainer"
-            :cookies-missing="cookiesMissing"
-            :no-js-message="noJsMessage"
-            :no-cookies-message="noCookiesMessage"
-            :no-cookies-link="noCookiesLink"
+            :warning-message="noJsMessage"
+        />
+
+        <VsWarning
+            v-if="videoId && !jsDisabled && cookiesMissing"
+            slot="stretchedCardDisabledContainer"
+            :warning-message="noCookiesMessage"
+            :warning-link="noCookiesLink"
         />
     </VsStretchedLinkCard>
 </template>
@@ -51,7 +55,8 @@
 import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
 import VsStretchedLinkPanels from '@components/patterns/stretched-link-card/components/StretchedLinkPanels';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
-import VsNoJsNoCookies from '@components/patterns/no-js-no-cookies/NoJsNoCookies';
+import VsWarning from '@components/elements/warning/Warning';
+import jsIsDisabled from '@/utils/js-is-disabled';
 
 /**
 * Megalink cards to be used in the megalinks component
@@ -68,7 +73,7 @@ export default {
         VsStretchedLinkCard,
         VsRichTextWrapper,
         VsStretchedLinkPanels,
-        VsNoJsNoCookies,
+        VsWarning,
     },
     props: {
         /**
@@ -205,15 +210,20 @@ export default {
                 },
             ];
         },
-        // Checks whether appropriate cookies have been rejected to prevent initialising the
-        // video. Javascript being disabled prevents the video from initialising automatically.
+        // Checks whether appropriate cookies have been rejected for the video on this megalink,
+        // to display an appropriate warning to the user
         cookiesMissing() {
-            if (!this.videoId) {
-                return false;
-            }
-
             // TODO: Add cookie functionality once checker integrated
             return false;
+        },
+        // Checks whether js is disabled, to display an appropriate warning to the user
+        jsDisabled() {
+            return jsIsDisabled();
+        },
+        // Checks both cookiesMissing and jsDisabled to determine whether the video should be
+        // prevented from initialising
+        disableVideo() {
+            return (this.cookiesMissing || this.jsDisabled);
         },
     },
 };
