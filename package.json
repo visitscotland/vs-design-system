@@ -64,7 +64,7 @@
     "@babel/runtime": "^7.15.4",
     "@mapbox/geojson-extent": "^1.0.1",
     "add": "^2.0.6",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "babel-plugin-macros": "^2.8.0",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.16.0",
