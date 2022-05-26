@@ -6,7 +6,8 @@
 
 <#macro stackla module>
     <@hst.headContribution category="htmlBodyEnd">
-        <script type="text/javascript">
+        <script type="text/plain" class="optanon-category-C0004">
+            console.log('script run');
             (function (d, id) {
                 var t, el = d.scripts[d.scripts.length - 1].previousElementSibling;
                 if (el) el.dataset.initTimestamp = (new Date()).getTime();
@@ -15,6 +16,8 @@
                 t.src = '//assetscdn.stackla.com/media/js/widget/fluid-embed.js';
                 t.id = id;
                 (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(t);
+
+                Stackla.WidgetManager.sync();
             }(document, 'stackla-widget-js'));
         </script>
     </@hst.headContribution>
