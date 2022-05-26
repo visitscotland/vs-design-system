@@ -5,7 +5,7 @@ const cookieCheckerMixin = {
         cookiesSet() {
             return cookieStore.getters.getCookieValues;
         },
-        OnetrustActiveGroups() {
+        onetrustActiveGroups() {
             return window.OnetrustActiveGroups;
         },
         requiredCookiesExist() {

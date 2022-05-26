@@ -24,8 +24,6 @@
                 <CookiesFallback />
             </div>
         </div>
-
-        <CookiesChecker />
     </div>
 </template>
 
@@ -54,7 +52,6 @@
 import VueYoutube from 'vue-youtube';
 import Vue from 'vue';
 import CookiesFallback from '@components/elements/cookies/CookiesFallback';
-import CookiesChecker from '../../renderless/cookiesChecker';
 import videoStore from '../../../stores/video.store';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
 import requiredCookiesData from '../../../utils/required-cookies-data';
@@ -77,7 +74,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        CookiesChecker,
         CookiesFallback,
     },
     mixins: [
