@@ -17,13 +17,16 @@
                 />
             </template>
 
-            <template
-                v-if="!!this.$slots['stretchedCardDisabledContainer']"
-            >
-                <!-- @slot Contains optional content to indicate that a component has
-                been disabled. Expects a VsNoJsNoCookies component -->
-                <slot name="stretchedCardDisabledContainer" />
-            </template>
+            <VsWarning
+                v-if="videoId && jsDisabled"
+                :warning-message="noJsMessage"
+            />
+
+            <VsWarning
+                v-if="videoId && !jsDisabled && cookiesMissing"
+                :warning-message="noCookiesMessage"
+                :warning-link="noCookiesLink"
+            />
         </div>
 
         <template
@@ -118,6 +121,7 @@ import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
 import VsImg from '@components/elements/img/Img';
 import VsButton from '@components/elements/button/Button';
+import jsIsDisabled from '@/utils/js-is-disabled';
 import videoStore from '../../../stores/video.store';
 
 /**
@@ -198,6 +202,35 @@ export default {
             type: String,
             default: '',
         },
+        /**
+        * A message explaining why the component has been disabled js is disabled, to pass to
+        * a conditional warning
+        */
+        noJsMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * A message explaining why the component has been disabled with disabled cookies, to
+        * pass to a conditional warning
+        */
+        noCookiesMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * An object containing a link to the cookie settings page, should contain a `url`
+        * field and a `label` field, to pass to a conditional warning
+        */
+        noCookiesLink: {
+            type: Object,
+            default: null,
+        },
+    },
+    data() {
+        return {
+            jsDisabled: false,
+        };
     },
     computed: {
         formattedVideoBtnText() {
@@ -235,6 +268,21 @@ export default {
 
             return false;
         },
+        // Checks whether appropriate cookies have been rejected for the video on this megalink,
+        // to display an appropriate warning to the user
+        cookiesMissing() {
+            // TODO: Add cookie functionality once checker integrated
+            return false;
+        },
+        // Checks both cookiesMissing and jsDisabled to determine whether the video should be
+        // prevented from initialising
+        disableVideo() {
+            return (this.cookiesMissing || this.jsDisabled);
+        },
+    },
+    mounted() {
+        // Checks whether js is disabled, to display an appropriate warning to the user
+        this.jsDisabled = jsIsDisabled();
     },
     methods: {
         emitShowModal() {
