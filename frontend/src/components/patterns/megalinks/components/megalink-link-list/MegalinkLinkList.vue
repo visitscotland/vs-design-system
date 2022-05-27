@@ -10,8 +10,11 @@
             :img-src="imgSrc"
             :img-alt="imgAlt"
             :theme="theme"
-            :video-id="disableVideo ? '' : videoId"
-            :video-btn-text="disableVideo ? '' : videoBtnText"
+            :video-id="videoId"
+            :video-btn-text="videoBtnText"
+            :no-js-message="noJsMessage"
+            :no-cookies-message="noCookiesMessage"
+            :no-cookies-link="noCookiesLink"
         >
             <VsStretchedLinkPanels
                 v-if="days && transport"
@@ -39,21 +42,6 @@
                 <!-- @slot Slot to contain content -->
                 <slot name="vsLinkListContent" />
             </VsRichTextWrapper>
-
-            <VsWarning
-                v-if="videoId && jsDisabled"
-                slot="stretchedCardDisabledContainer"
-                :warning-message="noJsMessage"
-                variant="small"
-            />
-
-            <VsWarning
-                v-if="videoId && !jsDisabled && cookiesMissing"
-                slot="stretchedCardDisabledContainer"
-                :warning-message="noCookiesMessage"
-                :warning-link="noCookiesLink"
-                variant="small"
-            />
         </VsStretchedLinkCard>
     </div>
 </template>
@@ -62,8 +50,6 @@
 import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
 import VsStretchedLinkPanels from '@components/patterns/stretched-link-card/components/StretchedLinkPanels';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
-import VsWarning from '@components/elements/warning/Warning';
-import jsIsDisabled from '@/utils/js-is-disabled';
 
 /**
 * Megalink link list cards to be used in the megalinks component
@@ -80,7 +66,6 @@ export default {
         VsStretchedLinkCard,
         VsRichTextWrapper,
         VsStretchedLinkPanels,
-        VsWarning,
     },
     props: {
         /**
@@ -168,7 +153,7 @@ export default {
         },
         /**
         * A message explaining why the component has been disabled js is disabled, to pass to
-        * the no js/cookies placeholder
+        * the stretched link card
         */
         noJsMessage: {
             type: String,
@@ -176,7 +161,7 @@ export default {
         },
         /**
         * A message explaining why the component has been disabled with disabled cookies, to
-        * pass to the no js/cookies placeholder
+        * pass to the stretched link card
         */
         noCookiesMessage: {
             type: String,
@@ -184,28 +169,11 @@ export default {
         },
         /**
         * An object containing a link to the cookie settings page, should contain a `url`
-        * field and a `label` field, to pass to the no js/cookies placeholder
+        * field and a `label` field, to pass to the stretched link card
         */
         noCookiesLink: {
             type: Object,
             default: null,
-        },
-    },
-    computed: {
-        // Checks whether appropriate cookies have been rejected for the video on this megalink,
-        // to display an appropriate warning to the user
-        cookiesMissing() {
-            // TODO: Add cookie functionality once checker integrated
-            return false;
-        },
-        // Checks whether js is disabled, to display an appropriate warning to the user
-        jsDisabled() {
-            return jsIsDisabled();
-        },
-        // Checks both cookiesMissing and jsDisabled to determine whether the video should be
-        // prevented from initialising
-        disableVideo() {
-            return (this.cookiesMissing || this.jsDisabled);
         },
     },
 };
