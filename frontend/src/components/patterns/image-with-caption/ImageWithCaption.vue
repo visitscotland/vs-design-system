@@ -4,7 +4,6 @@
         data-test="vs-image-with-caption"
         :class="imageWithCaptionClasses"
     >
-        <CookiesChecker />
         <div
             class="vs-image-with-caption__image-wrapper"
             :class="mobileOverlap ? 'vs-image-with-caption--overlapped' : ''"
@@ -80,7 +79,6 @@
 import VsImg from '@components/elements/img/Img';
 import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
 import VsVideoCaption from '@components/patterns/video-caption/VideoCaption';
-import CookiesChecker from '../../renderless/cookiesChecker';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
 import requiredCookiesData from '../../../utils/required-cookies-data';
 
@@ -99,7 +97,6 @@ export default {
         VsImg,
         VsToggleButton,
         VsVideoCaption,
-        CookiesChecker,
     },
     mixins: [
         verifyCookiesMixin,
