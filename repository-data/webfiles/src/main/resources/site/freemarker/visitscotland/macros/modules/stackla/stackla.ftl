@@ -6,7 +6,7 @@
 
 <#macro stackla module>
     <@hst.headContribution category="htmlBodyEnd">
-        <script type="text/plain" class="optanon-category-C0004">
+        <script type="text/plain" class="optanon-category-C0001-C0002-C0003-C0004">
             console.log('script run');
             (function (d, id) {
                 var t, el = d.scripts[d.scripts.length - 1].previousElementSibling;
@@ -37,6 +37,9 @@
             </template>
             <template slot="embedIntroCopyNoCookies">
                 ${module.noCookiesMessage}
+                <button id="ot-sdk-btn" class="ot-sdk-show-settings">
+                    Cookie Settings
+                </button>
             </template>
             <template slot="embedWidget">
                 <div class="stackla-widget" data-ct="" data-hash="${module.dataHash}"

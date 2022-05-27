@@ -3,6 +3,7 @@
 <#include "../macros/global/gtm.ftl">
 <#include "headerContributions.ftl">
 <#include "footerContributions.ftl">
+<#include "../../frontend/components/vs-cookie-checker.ftl">
 
 <html data-version="${version}" lang="en">
     <head>
@@ -38,6 +39,7 @@
                 <@hst.include ref="main"/>
             </main>
 
+            <vs-cookie-checker></vs-cookie-checker>
             <@hst.include ref="footer"/>
         </div>
 
