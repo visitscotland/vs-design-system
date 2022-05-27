@@ -274,6 +274,7 @@ export default {
         // to display an appropriate warning to the user
         cookiesMissing() {
             // TODO: Add cookie functionality once checker integrated
+            // See VS-3606
             return false;
         },
         // Checks both cookiesMissing and jsDisabled to determine whether the video should be
