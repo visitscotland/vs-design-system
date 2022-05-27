@@ -116,6 +116,7 @@ export default {
         // initialisation if so
         cookiesMissing() {
             // TODO: Add cookie functionality once checker integrated
+            // See VS-3606
             return false;
         },
     },
