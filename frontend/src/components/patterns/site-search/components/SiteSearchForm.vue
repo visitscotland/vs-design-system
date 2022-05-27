@@ -9,7 +9,6 @@
                 <VsCol cols="12">
                     <BForm
                         role="search"
-                        id="cludo-search-form"
                         class="d-flex align-items-start"
                         action
                         method="get"
@@ -17,7 +16,9 @@
                         @submit="onSubmit"
                         tabindex="-1"
                     >
-                        <div class="d-flex flex-column flex-grow-1 position-relative">
+                        <div
+                            class="d-flex flex-column flex-grow-1 position-relative"
+                        >
                             <label
                                 for="search-input"
                                 class="vs-site-search-form__label"
@@ -34,18 +35,13 @@
 
                             <VsInput
                                 type="search"
-                                aria-label="Search"
-                                class="vs-site-search-form__input cludo-input-form__input" 
-                                name="searchrequest"
-                                aria-autocomplete="list"
-                                aria-haspopup="true"
+                                class="vs-site-search-form__input cludo-input-form__input"
                                 :placeholder="labelText"
-                                autocomplete="off"
+                                :auto-complete="false"
                                 ref="searchInput"
-                                id="search-input"
+                                id="cludo-search-input"
                                 @updated="updateVal"
                                 :clear-button-text="clearButtonText"
-                                required="true"
                                 field-name="site-search"
                             />
                         </div>
