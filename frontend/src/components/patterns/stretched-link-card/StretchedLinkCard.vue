@@ -121,7 +121,7 @@ import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
 import VsImg from '@components/elements/img/Img';
 import VsButton from '@components/elements/button/Button';
-import VsWarning from '@components/elements/warning/Warning';
+import VsWarning from '@components/patterns/warning/Warning';
 import jsIsDisabled from '@/utils/js-is-disabled';
 import videoStore from '../../../stores/video.store';
 
@@ -204,31 +204,12 @@ export default {
             type: String,
             default: '',
         },
-        /**
-        * A message explaining why the component has been disabled js is disabled, to pass to
-        * a conditional warning
-        */
-        noJsMessage: {
-            type: String,
-            default: '',
-        },
-        /**
-        * A message explaining why the component has been disabled with disabled cookies, to
-        * pass to a conditional warning
-        */
-        noCookiesMessage: {
-            type: String,
-            default: '',
-        },
-        /**
-        * An object containing a link to the cookie settings page, should contain a `url`
-        * field and a `label` field, to pass to a conditional warning
-        */
-        noCookiesLink: {
-            type: Object,
-            default: null,
-        },
     },
+    inject: [
+        'noJsMessage',
+        'noCookiesMessage',
+        'noCookiesLink',
+    ],
     data() {
         return {
             jsDisabled: false,

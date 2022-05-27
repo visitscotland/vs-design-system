@@ -12,9 +12,6 @@
             :theme="theme"
             :video-id="videoId"
             :video-btn-text="videoBtnText"
-            :no-js-message="noJsMessage"
-            :no-cookies-message="noCookiesMessage"
-            :no-cookies-link="noCookiesLink"
         >
             <VsStretchedLinkPanels
                 v-if="days && transport"
@@ -150,30 +147,6 @@ export default {
         videoBtnText: {
             type: String,
             default: 'Play Video',
-        },
-        /**
-        * A message explaining why the component has been disabled js is disabled, to pass to
-        * the stretched link card
-        */
-        noJsMessage: {
-            type: String,
-            default: '',
-        },
-        /**
-        * A message explaining why the component has been disabled with disabled cookies, to
-        * pass to the stretched link card
-        */
-        noCookiesMessage: {
-            type: String,
-            default: '',
-        },
-        /**
-        * An object containing a link to the cookie settings page, should contain a `url`
-        * field and a `label` field, to pass to the stretched link card
-        */
-        noCookiesLink: {
-            type: Object,
-            default: null,
         },
     },
 };
