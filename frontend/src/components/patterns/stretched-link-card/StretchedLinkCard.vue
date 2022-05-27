@@ -48,7 +48,7 @@
                 size="md"
                 ref="videoShow"
                 @click.native="emitShowModal"
-                v-if="videoId && videoLoaded"
+                v-if="videoId && videoLoaded && !disableVideo"
             >
                 <span
                     class="vs-stretched-link-card__video-btn-text"
@@ -121,6 +121,7 @@ import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
 import VsImg from '@components/elements/img/Img';
 import VsButton from '@components/elements/button/Button';
+import VsWarning from '@components/elements/warning/Warning';
 import jsIsDisabled from '@/utils/js-is-disabled';
 import videoStore from '../../../stores/video.store';
 
@@ -139,6 +140,7 @@ export default {
         VsLink,
         VsImg,
         VsButton,
+        VsWarning,
     },
     props: {
         /**
