@@ -218,7 +218,7 @@ export default {
     },
     data() {
         return {
-            jsDisabled: false,
+            jsDisabled: true,
         };
     },
     computed: {
