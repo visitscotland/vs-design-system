@@ -205,11 +205,17 @@ export default {
             default: '',
         },
     },
-    inject: [
-        'noJsMessage',
-        'noCookiesMessage',
-        'noCookiesLink',
-    ],
+    inject: {
+        noJsMessage: {
+            default: '',
+        },
+        noCookiesMessage: {
+            default: '',
+        },
+        noCookiesLink: {
+            default: null,
+        },
+    },
     data() {
         return {
             jsDisabled: false,
