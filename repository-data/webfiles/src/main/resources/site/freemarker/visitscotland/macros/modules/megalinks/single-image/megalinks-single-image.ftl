@@ -3,7 +3,7 @@
 <#include "../../../../../frontend/components/vs-link.ftl">
 <#include "../../../../../frontend/components/vs-link-list-item.ftl">
 <#include "../../../global/image-with-caption.ftl">
-<#include "../../video/megalink-video.ftl">
+<#include "../../video/video-modal.ftl">
 
 <#macro singleImage item theme>
     <#if item.image.cmsImage??>
@@ -56,7 +56,7 @@
                     </vs-link-list-item>
 
                     <#if listItem.youtubeId??>
-                        <@megalinkVideo videoId=listItem.youtubeId />
+                        <@videoModal videoId=listItem.youtubeId />
                     </#if>
                 </#list>
             </template>

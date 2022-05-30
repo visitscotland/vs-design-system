@@ -1,6 +1,6 @@
 <#include "../../../../../include/imports.ftl">
 <#include "../../../../../frontend/components/vs-megalink-link-list.ftl">
-<#include "../../video/megalink-video.ftl">
+<#include "../../video/video-modal.ftl">
 
 <#macro linkList item showTeaser theme>
     <vs-row>
@@ -64,7 +64,7 @@
                     </vs-col>
                 
                     <#if listItem.youtubeId??>
-                        <@megalinkVideo videoId=listItem.youtubeId />
+                        <@videoModal videoId=listItem.youtubeId />
                     </#if>
                 </#list>
             </vs-row>

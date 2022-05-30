@@ -3,7 +3,7 @@
 <#include "./multi-image-featured.ftl">
 <#include "./multi-image-two-items.ftl">
 <#include "./multi-image-three-items.ftl">
-<#include "../../video/megalink-video.ftl">
+<#include "../../video/video-modal.ftl">
 
 <#macro multiImage item showTeaser theme>
     <vs-col
@@ -16,7 +16,7 @@
                 <@multiImageFeatured lastFeatured='false' feature=item.featuredLinks[0] theme=theme />
                 
                 <#if item.featuredLinks[0].youtubeId??>
-                    <@megalinkVideo videoId=item.featuredLinks[0].youtubeId />
+                    <@videoModal videoId=item.featuredLinks[0].youtubeId />
                 </#if>              
             </#if>
 
@@ -39,7 +39,7 @@
                 </#if>
                 
                 <#if megalink.youtubeId??>
-                    <@megalinkVideo videoId=megalink.youtubeId />
+                    <@videoModal videoId=megalink.youtubeId />
                 </#if>
             </#list>
 
@@ -48,7 +48,7 @@
                 <@multiImageFeatured  lastFeatured='true' feature=item.featuredLinks[1] theme=theme />
                 
                 <#if item.featuredLinks[1].youtubeId??>
-                    <@megalinkVideo videoId=item.featuredLinks[1].youtubeId />
+                    <@videoModal videoId=item.featuredLinks[1].youtubeId />
                 </#if>
             </#if>
         </vs-row>
