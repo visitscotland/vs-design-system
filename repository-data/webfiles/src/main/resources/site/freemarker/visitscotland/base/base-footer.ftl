@@ -30,3 +30,4 @@
 
     <@footerCopyright />
 </vs-footer>
+<vs-cookie-checker></vs-cookie-checker>

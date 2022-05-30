@@ -39,7 +39,6 @@
                 <@hst.include ref="main"/>
             </main>
 
-            <vs-cookie-checker></vs-cookie-checker>
             <@hst.include ref="footer"/>
         </div>
 
