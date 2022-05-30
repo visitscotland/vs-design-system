@@ -4,6 +4,7 @@
             :href="href"
             :type="type == 'video' ? 'default' : type"
             :variant="variant"
+            :role="type == 'video' ? 'button' : 'link'"
             @click.native="emitShowModal"
         >
             <!-- @slot Slot for link list item text -->
