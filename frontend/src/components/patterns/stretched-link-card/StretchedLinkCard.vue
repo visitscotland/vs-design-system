@@ -219,7 +219,7 @@ export default {
             font-family: $font-family-base;
             font-size: $font-size-3;
             line-height: $line-height-xs;
-            color: $color-secondary-teal-shade-2;
+            color: $color-secondary-teal-shade-3;
             letter-spacing: normal;
             margin-bottom: $spacer-4;
         }
