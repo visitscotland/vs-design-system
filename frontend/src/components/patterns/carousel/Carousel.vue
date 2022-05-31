@@ -37,7 +37,6 @@
                         <VsRow
                             class="vs-carousel__track"
                             :style="{ 'transform': `translateX(${trackOffset})` }"
-                            @last-link-blurred="sliderNavigate('next', true)"
                         >
                             <!-- @slot default slot to contain slides -->
                             <slot />
@@ -352,10 +351,12 @@ export default {
             this.navigating = true;
 
             if (direction === 'next') {
+                // increase the current page if not already at the max pages amount
                 if (this.currentPage + 1 < this.maxPages) {
                     this.currentPage += 1;
                 }
             } else if (direction === 'prev') {
+                // decrease the current page if not already at zero
                 if (this.currentPage > 0) {
                     this.currentPage -= 1;
                 }
@@ -385,10 +386,14 @@ export default {
 
                 if (keypressNavigation) {
                     if (direction === 'next' && this.totalSlides - 1 > oldSlide) {
+                        // if 'next' movement has happened via keypress automatically focus
+                        // on the next slide link
                         const firstActiveSlide = document.querySelectorAll('[data-test="vs-carousel-slide"]')[oldSlide + 1];
                         const firstLink = firstActiveSlide.getElementsByClassName('stretched-link')[0];
                         firstLink.focus();
                     } else if (direction === 'prev' && this.currentPage >= 0) {
+                        // if 'previous' movement has happened via keypress automatically focus
+                        // on the previous slide link
                         const lastActiveSlide = document.querySelectorAll('[data-test="vs-carousel-slide"]')[oldSlide - 1];
                         const lastLink = lastActiveSlide.getElementsByClassName('stretched-link')[0];
                         lastLink.focus();
