@@ -33,6 +33,7 @@ public class InternalParameterProcessor {
     public static final String PARAM_SSO = "sso";
     public static final String PARAM_ROOT_PATH = "root-path";
     public static final String PARAM_EXTERNAL = "external";
+    public static final String PARAM_LOCALE ="vs-locale-ctx";
 
     public static final String PATH_PLACEHOLDER = "[PATH-PLACEHOLDER]";
 

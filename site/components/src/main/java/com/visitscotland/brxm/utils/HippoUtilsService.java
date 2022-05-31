@@ -35,15 +35,7 @@ import java.util.Optional;
 @Component
 public class HippoUtilsService {
 
-    /**
-     * Dummy HstCompoment used to access stateless methods on the ComponentClass
-     */
-    final BaseHstComponent hstComponent;
     private static final Logger logger = LoggerFactory.getLogger(HippoUtilsService.class);
-
-    public HippoUtilsService(){
-        hstComponent = new BaseHstComponent();
-    }
 
     /**
      * Convert and HstLink or a HippoBean into a URL String
@@ -139,8 +131,42 @@ public class HippoUtilsService {
     }
 
     @NonTestable(NonTestable.Cause.BRIDGE)
-    public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem) {
-        return hstComponent.getBeanForResolvedSiteMapItem(request, sitemapItem);
+    public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem, String mount) {
+        Optional<HippoBean> bean = getBeanForSiteMapItem(request, sitemapItem, mount);
+        return bean.orElse(null);
+    }
+
+    /**
+     * TODO: To be reused by getContentBeanWithTranslationFallback()
+     *
+     * @param request
+     * @param resolvedSiteMapItem
+     * @param mount
+     * @return
+     *
+     * @see org.hippoecm.hst.component.support.bean.BaseHstComponent#getBeanForResolvedSiteMapItem(HstRequest, ResolvedSiteMapItem)
+     */
+    @NonTestable(NonTestable.Cause.BRIDGE)
+    private Optional<HippoBean> getBeanForSiteMapItem(HstRequest request, ResolvedSiteMapItem resolvedSiteMapItem, String mount){
+        HstRequestContext requestContext = request.getRequestContext();
+        ResolvedVirtualHost resolvedVirtualHost = (ResolvedVirtualHost) request.getAttribute(ContainerConstants.VIRTUALHOSTS_REQUEST_ATTR);
+        if (resolvedVirtualHost != null) {
+            ResolvedMount resolvedMount = resolvedVirtualHost.matchMount(mount);
+            if (resolvedMount != null && resolvedSiteMapItem != null && requestContext.getObjectBeanManager() != null && resolvedMount.getMount() != null) {
+                String contentPath = resolvedMount.getMount().getContentPath();
+                String content = "/" + PathUtils.normalizePath(contentPath) + "/" +
+                        PathUtils.normalizePath(resolvedSiteMapItem.getRelativeContentPath());
+                try {
+                    Object bean = requestContext.getObjectBeanManager().getObject(content);
+                    return (bean instanceof HippoBean) ? Optional.of((HippoBean) bean) : Optional.empty();
+                } catch (ObjectBeanManagerException e) {
+                    logger.info("Failed to get hippo bean at {}", content, e);
+                }
+            }
+        } else {
+            logger.error("Failed to get ResolvedVirtualHost from request servlet");
+        }
+        return Optional.empty();
     }
 
     /**

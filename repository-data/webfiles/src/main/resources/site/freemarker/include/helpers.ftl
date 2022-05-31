@@ -9,12 +9,7 @@
 <#--  Usage: ${label("essentials.global", "footer.signup")} -->
 <#function label bundle key>
     <#if ResourceBundle??>
-        <#-- TODO: DO NOT COMMIT -->
-        <#if bundle == "search">
-            <#return "">
-        <#else>
-            <#return ResourceBundle.getResourceBundle(bundle, key, locale, false)>
-        </#if>
+        <#return ResourceBundle.getResourceBundle(bundle, key, vsLocale???then(vsLocale,locale), false)>
     <#else>
         <#return labelFallback(bundle, key)>
     </#if>
@@ -24,7 +19,7 @@
 <#--  Usage: ${label("essentials.global", "footer.signup")} -->
 <#function optionalLabel bundle key>
     <#if ResourceBundle??>
-        <#return ResourceBundle.getResourceBundle(bundle, key, locale, true)>
+        <#return ResourceBundle.getResourceBundle(bundle, key, vsLocale???then(vsLocale,locale), true)>
     <#else>
         <#return labelFallback(bundle, key)>
     </#if >

@@ -15,6 +15,7 @@ import com.visitscotland.brxm.model.navigation.NavigationWidget;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
+import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -51,9 +52,9 @@ public class NavigationFactory {
     }
 
     /**
-     * Builds a VisitScotland enhanced menu from the out of the box menu
+     * Builds a VisitScotland enhanced menu from the out-of-the-box menu
      */
-    public RootMenuItem buildMenu(HstRequest request, HstSiteMenu hstSiteMenu) {
+    public RootMenuItem buildMenu(HstRequest request, HstSiteMenu hstSiteMenu, Language language) {
         List<HstSiteMenuItem> enhancedMenu = new ArrayList<>();
         RootMenuItem root = new RootMenuItem(hstSiteMenu);
 
@@ -62,7 +63,7 @@ public class NavigationFactory {
             String resourceBundle = NAVIGATION_PREFIX + hstSiteMenu.getName();
 
             for (HstSiteMenuItem hstItem : hstSiteMenu.getSiteMenuItems()) {
-                Object menuItem = getMenuItem(request, hstItem, resourceBundle);
+                Object menuItem = getMenuItem(request, hstItem, resourceBundle, language);
                 if (menuItem instanceof MenuItem) {
                     enhancedMenu.add((MenuItem) menuItem);
                 }
@@ -79,18 +80,18 @@ public class NavigationFactory {
      *
      * If the item happens to be a widget the  MenuItem is descarded and a Navigation Widget is returned instead
      */
-    private Object getMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle) {
+    private Object getMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle, Language language) {
         MenuItem menuItem = new MenuItem(hstItem);
 
         //By default, the name would be populated by the resourceBundle
-        menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), request.getLocale(), true));
+        menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), language.getLocale(), true));
 
         //if document base page or widget, we enhance the document
         if (isDocumentBased(hstItem.getHstLink()) && hstItem.resolveToSiteMapItem() != null) {
-            HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, hstItem.resolveToSiteMapItem());
+            HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, hstItem.resolveToSiteMapItem(), language.getCmsMount());
             //if the document does not exist or is not published
             if (bean instanceof Page) {
-                createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, request.getLocale());
+                createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, language.getLocale());
             } else if (bean != null) {
                 return createWidget(request, bean);
             }
@@ -99,7 +100,7 @@ public class NavigationFactory {
         if (menuItem.getTitle() != null) {
             //Process all children
             for (HstSiteMenuItem hstChild : hstItem.getChildMenuItems()) {
-                Object childItem = getMenuItem(request, hstChild, resourceBundle);
+                Object childItem = getMenuItem(request, hstChild, resourceBundle, language);
                 if (childItem instanceof MenuItem) {
                     menuItem.addChild((MenuItem)childItem);
                 } else if (childItem instanceof  NavigationWidget) {
@@ -152,19 +153,19 @@ public class NavigationFactory {
 
         List<EnhancedLink> enhancedLinks = new ArrayList<>();
         for (CMSLink cmsLink : cmsLinks) {
-                if (!(cmsLink.getLink() instanceof Linkable)){
-                    contentLogger.warn("An incorrect Type of link has been set in a featured item: {}", document.getPath());
-                    continue;
-                }
-                Optional<EnhancedLink> optionalLink = linkService.createEnhancedLink((Linkable) cmsLink.getLink(), widget, request.getLocale(), false);
+            if (!(cmsLink.getLink() instanceof Linkable)){
+                contentLogger.warn("An incorrect Type of link has been set in a featured item: {}", document.getPath());
+                continue;
+            }
+            Optional<EnhancedLink> optionalLink = linkService.createEnhancedLink((Linkable) cmsLink.getLink(), widget, request.getLocale(), false);
 
-                if (!optionalLink.isPresent()) {
-                    contentLogger.warn("Failed to create widget: {}. Check link is published & valid", document.getPath());
-                    continue;
-                }
+            if (optionalLink.isPresent()) {
                 EnhancedLink link = optionalLink.get();
                 link.setCta(bundle.getCtaLabel(cmsLink.getLabel(), request.getLocale()));
                 enhancedLinks.add(link);
+            } else {
+                contentLogger.warn("Failed to create widget: {}. Check link is published & valid", document.getPath());
+            }
         }
         widget.setHippoBean(document);
         widget.setLinks(enhancedLinks);
