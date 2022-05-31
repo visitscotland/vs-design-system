@@ -177,10 +177,10 @@ export default {
 
             return false;
         },
-        handleTab(payload, slideNum) {
-            if (this.isLastSlide(slideNum) && !payload) {
+        handleTab(shiftTabPressed, slideNum) {
+            if (this.isLastSlide(slideNum) && !shiftTabPressed) {
                 carouselEventsStore.commit('TRIGGER_NEXT');
-            } else if (this.isFirstSlide(slideNum) && payload) {
+            } else if (this.isFirstSlide(slideNum) && shiftTabPressed) {
                 carouselEventsStore.commit('TRIGGER_PREV');
             }
         },
