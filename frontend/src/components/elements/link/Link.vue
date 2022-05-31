@@ -9,6 +9,7 @@
         :download="type === 'download'"
         :disabled="disabled"
         v-bind="$attrs"
+        @keydown.tab="handleTab($event)"
     >
         <!-- @slot Default slot for link content -->
         <slot /><VsIcon
@@ -82,10 +83,24 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+        * Emit event on tab out
+        */
+        emitTab: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         variantClass() {
             return `vs-link--variant-${this.variant}`;
+        },
+    },
+    methods: {
+        handleTab(event) {
+            if (this.emitTab) {
+                this.$emit('tabbed', event.shiftKey);
+            }
         },
     },
 };
