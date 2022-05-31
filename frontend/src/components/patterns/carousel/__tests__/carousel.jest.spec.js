@@ -1,9 +1,5 @@
-import Vuex from 'vuex';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import VsCarousel from '../Carousel';
-
-const localVue = createLocalVue();
-localVue.use(Vuex);
 
 const factoryShallowMount = (slotsData) => shallowMount(VsCarousel, {
     data() {
