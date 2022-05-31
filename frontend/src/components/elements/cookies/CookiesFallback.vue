@@ -41,13 +41,14 @@ export default {
         },
     },
     mounted() {
-        const oneTrustScript = document.createElement('script');
-        oneTrustScript.setAttribute('src', 'https://cdn-ukwest.onetrust.com/scripttemplates/otSDKStub.js');
-        oneTrustScript.setAttribute('data-document-language', 'true');
-        oneTrustScript.setAttribute('type', 'text/javascript');
-        oneTrustScript.setAttribute('charset', 'UTF-8');
-        oneTrustScript.setAttribute('data-domain-script', '99780805-2fce-47e4-85cc-f679fb814c21-test');
-        document.head.appendChild(oneTrustScript);
+        // const oneTrustScript = document.createElement('script');
+        // oneTrustScript.setAttribute('src', 'https://cdn-ukwest.onetrust.com/scripttemplates/otSDKStub.js');
+        // oneTrustScript.setAttribute('data-document-language', 'true');
+        // oneTrustScript.setAttribute('type', 'text/javascript');
+        // oneTrustScript.setAttribute('charset', 'UTF-8');
+        // oneTrustScript.setAttribute('data-domain-script',
+        // '99780805-2fce-47e4-85cc-f679fb814c21-test');
+        // document.head.appendChild(oneTrustScript);
 
         // eslint-disable-next-line
         // function OptanonWrapper() { }

@@ -1,6 +1,5 @@
 <template>
     <div>
-        <CookiesChecker />
         <div
             class="vs-video-caption"
             data-test="video-caption"

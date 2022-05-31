@@ -81,7 +81,7 @@ export default {
         // }
 
         // eslint-disable-next-line
-        function OptanonWrapper() {};
+        // function OptanonWrapper() {};
 
         if (window) {
             this.oneTrust.checkThirdPartyLibrary('OneTrust', () => {
