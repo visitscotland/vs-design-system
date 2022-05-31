@@ -39,7 +39,7 @@
 
             var cludo_engineId = engine["${language}"]; //Engine ID
             var cludo_language = '${language}'; //Language
-            var cludo_searchUrl = 'site-search-results/content'; //Search URL
+            var cludo_searchUrl = 'site-search-results'; //Search URL
         </script>
     </@hst.headContribution>
     <@hst.headContribution category="htmlBodyEndScripts"> 
