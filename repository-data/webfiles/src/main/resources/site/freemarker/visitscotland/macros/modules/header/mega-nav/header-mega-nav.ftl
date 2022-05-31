@@ -23,10 +23,10 @@
 
     <#assign language = locale?keep_before("-")>
 
-    <@hst.headContribution category="htmlBodyEndScripts"> 
+    <@hst.headContribution category="htmlBodyEndScriptsLast"> 
         <script type="text/javascript" src="https://customer.cludo.com/scripts/bundles/search-script.js"></script>
     </@hst.headContribution>
-    <@hst.headContribution category="htmlBodyEndScripts"> 
+    <@hst.headContribution category="htmlBodyEndScriptsLast"> 
         <script>
             var engine = {
 				de: 8740,
@@ -42,7 +42,7 @@
             var cludo_searchUrl = 'site-search-results'; //Search URL
         </script>
     </@hst.headContribution>
-    <@hst.headContribution category="htmlBodyEndScripts"> 
+    <@hst.headContribution category="htmlBodyEndScriptsLast"> 
         <script type="text/javascript" src="https://customer.cludo.com/assets/623/12809/cludo-search.js"></script>
     </@hst.headContribution>
 </#macro>

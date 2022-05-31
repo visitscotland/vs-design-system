@@ -23,7 +23,7 @@
     <!-- END HEAD CONTRIBUTIONS: htmlHeadStyles -->
 
     <!-- BEGIN HEAD CONTRIBUTIONS: general -->
-    <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppInit,seo,opengraph" xhtml=true/>
+    <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppInit,htmlBodyEndScriptsLast,seo,opengraph" xhtml=true/>
     <!-- END HEAD CONTRIBUTIONS: general -->
 
     <style>
