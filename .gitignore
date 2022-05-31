@@ -1,11 +1,13 @@
 .DS_Store
 .eslintcache
+*.log*
+.nitro
+.cache
 node_modules/
 .nuxt/
 dist/
 /test/unit/coverage/
 /.tmp
-*.log
 .env
 .lighthouseci
 .history/
@@ -25,3 +27,4 @@ src/assets/tokens/
 .yarn/
 
 build/
+
