@@ -17,6 +17,12 @@
                         <div class="cludo-search-results__results-wrapper">
                             <div class="cludo-search-results__did-you-mean search-did-you-mean" role="Complementary"></div>
                             <div class="cludo-search-results__results search-results" role="region" id="search-results" aria-live="polite"></div>
+                            <div class="cludo-hidden" id="cludo-load-more">
+                                <a type="button">Show more</a>
+                            </div>
+                            <div class="cludo-hidden" id="cludo-back-to-top">
+                                <button type="button">Back to top</button>
+                            </div>
                         </div>
                     </div>
                 </div>
