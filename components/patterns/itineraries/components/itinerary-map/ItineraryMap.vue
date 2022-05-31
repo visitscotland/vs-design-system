@@ -10,11 +10,6 @@
 import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
 import VsItineraryMapMarker from '@components/patterns/itineraries/components/itinerary-map/components/ItineraryMapMarker';
 import Vue from 'vue';
-<<<<<<< HEAD
-import osBranding from '@/utils/os-branding';
-=======
-import itinerariesStore from '../../itineraries.store';
->>>>>>> 7f05af34819bfa8b12276be5a2758127f418c297
 
 let mapboxgl = null;
 let geojsonExtent = null;
@@ -272,11 +267,6 @@ export default {
 </script>
 
 <style lang="scss">
-<<<<<<< HEAD
-@import "mapbox-gl/dist/mapbox-gl.css";
-
-=======
->>>>>>> 7f05af34819bfa8b12276be5a2758127f418c297
 @import "https://labs.os.uk/public/os-api-branding/v0.2.0/os-api-branding.css";
 
 .os-api-branding.logo {

@@ -2,16 +2,19 @@
     "name": "vs-dotcom-frontend",
     "version": "0.1.0",
     "description": "visitscotland.com Frontend",
-    "author": "lukenofurther",
+    "author": "visitscotland",
     "main": "dist/library/manifest.json",
     "files": [
-        "dist/library"
+        "dist"
     ],
+    "bin": {
+      "nuxi": "./bin/nuxt.mjs"
+    },
     "homepage": "",
     "private": true,
     "license": "MIT",
     "scripts": {
-        "dev": "nuxi dev",
+        "dev": "nuxt dev",
         "dev:content": "npx netlify-cms-proxy-server",
         "build": "nuxi build",
         "start": "nuxi start",
@@ -30,6 +33,7 @@
         "system"
     ],
     "dependencies": {
+        "@nuxt/kit": "npm:@nuxt/kit-edge@latest",
         "@mapbox/geojson-extent": "^1.0.1",
         "add": "^2.0.6",
         "axios": "^0.26.1",
@@ -57,10 +61,12 @@
         "smoothscroll-polyfill": "^0.4.4",
         "theo": "^8.1.5",
         "tinycolor2": "^1.4.2",
+        "vite": "^2.9.4",
+        "vite-plugin-vue2": "^2.0.1",
+        "vue-bundle-renderer": "^0.3.5",
         "vue": "^2.6.14",
         "vue-lodash": "^2.1.2",
         "vue-meta": "^2.4.0",
-        "vue-router": "^3.5.3",
         "vue-server-renderer": "^2.6.14",
         "vue-template-compiler": "^2.6.14",
         "vue-youtube": "^1.4.0",
@@ -71,6 +77,10 @@
     },
     "devDependencies": {
         "@nuxt/bridge": "^0.10.1",
+        "@nuxt/test-utils": "npm:@nuxt/test-utils-edge@latest",
+        "@nuxt/types": "^2.15.8",
+        "@nuxtjs/eslint-config": "^10.0.0",
+        "@nuxtjs/eslint-config-typescript": "^10.0.0",
         "@nuxt/content": "^2.0.0",
         "@nuxtjs/style-resources": "^1.2.1",
         "@vue/test-utils": "^1.3.0",
@@ -87,6 +97,7 @@
         "jest-silent-reporter": "^0.5.0",
         "node-notifier": "^10.0.1",
         "npm-run-all": "^4.1.5",
+        "nuxt": "^2",
         "onchange": "^7.1.0",
         "ora": "^6.1.0",
         "portfinder": "^1.0.28",
@@ -100,7 +111,10 @@
         "shelljs": "^0.8.5",
         "turndown": "^7.1.1",
         "turndown-plugin-gfm": "^1.0.2",
-        "vue-jest": "^3.0.7"
+        "vue-jest": "^3.0.7",
+        "vitest": "^0.9.3",
+        "vue": "^2",
+        "vue-router": "^3"
     },
     "engines": {
         "node": ">= 12.18.4",

@@ -1,15 +1,76 @@
-import { resolve } from 'path';
-import webpack from 'webpack';
+import { defineNuxtConfig } from '@nuxt/bridge'
 
-import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
-  modules: [
-    '@nuxt/content'
-  ],
-  content: {
-    // https://content.nuxtjs.org/api/configuration
-  }
-})
+  vite: {
+    modules: ['@nuxt/content'],
+    content: {
+        // https://content.nuxtjs.org/api/configuration
+    },
+    components: {
+        dirs: [
+            '~/components',
+            '~/components/elements/address',
+            '~/components/elements/button',
+            '~/components/elements/form-input',
+            '~/components/elements/heading',
+            '~/components/elements/icon',
+            '~/components/elements/img',
+            '~/components/elements/layout',
+            '~/components/elements/link',
+            '~/components/elements/list',
+            '~/components/elements/modal',
+            '~/components/elements/panel',
+            '~/components/elements/prototype',
+            '~/components/elements/psr-embed',
+            '~/components/elements/rich-text-wrapper',
+            '~/components/elements/svg',
+            '~/components/elements/svg-link',
+            '~/components/elements/tag',
+            '~/components/elements/tooltip',
+            '~/components/elements/video',
+            '~/components/patterns/accordion',
+            '~/components/patterns/article',
+            '~/components/patterns/banner',
+            '~/components/patterns/breadcrumb',
+            '~/components/patterns/canned-search',
+            '~/components/patterns/caption',
+            '~/components/patterns/carousel',
+            '~/components/patterns/description-list',
+            '~/components/patterns/dropdown',
+            '~/components/patterns/embed-wrapper',
+            '~/components/patterns/favourites',
+            '~/components/patterns/footer',
+            '~/components/patterns/form',
+            '~/components/patterns/global-menu',
+            '~/components/patterns/icentre',
+            '~/components/patterns/icon-list',
+            '~/components/patterns/image-with-caption',
+            '~/components/patterns/itineraries',
+            '~/components/patterns/link-list',
+            '~/components/patterns/listicle',
+            '~/components/patterns/mega-nav',
+            '~/components/patterns/megalinks',
+            '~/components/patterns/megalinks/components',
+            '~/components/patterns/module-wrapper',
+            '~/components/patterns/page-intro',
+            '~/components/patterns/psr-module',
+            '~/components/patterns/quote',
+            '~/components/patterns/site-search',
+            '~/components/patterns/site-search/components',
+            '~/components/patterns/skip-to',
+            '~/components/patterns/skip-to/components',
+            '~/components/patterns/social-credit-link',
+            '~/components/patterns/social-share',
+            '~/components/patterns/stretched-link-card',
+            '~/components/patterns/summary-box',
+            '~/components/patterns/tabs',
+            '~/components/patterns/toggle-button',
+            '~/components/patterns/video-caption',
+        ],
+        pattern: '**/*.{vue}',
+    },
+  },
+});
 
 // export default {
 //   build: {
