@@ -1,5 +1,9 @@
-import { shallowMount } from '@vue/test-utils';
+import Vuex from 'vuex';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import VsCarousel from '../Carousel';
+
+const localVue = createLocalVue();
+localVue.use(Vuex);
 
 const factoryShallowMount = (slotsData) => shallowMount(VsCarousel, {
     data() {
@@ -65,20 +69,20 @@ describe('VsCarousel', () => {
     });
 
     describe(':methods', () => {
-        it('sets the correct active page on arrow click', async() => {
+        it('sets the correct active page when method is run', async() => {
             const wrapper = factoryShallowMount();
 
             await wrapper.setData({
-                currentPage: 1,
                 totalSlides: 10,
                 currentWidth: 'lg',
+                maxPages: 3,
             });
 
             await wrapper.vm.initNavigation();
 
             await wrapper.find('.vs-carousel__control--next').trigger('click');
 
-            expect(wrapper.vm.currentPage).toBe(2);
+            expect(wrapper.vm.currentPage).toBe(1);
         });
 
         it('throttles page navigation to not work within a 250ms period of a previous nav event', async() => {
@@ -90,6 +94,7 @@ describe('VsCarousel', () => {
                 currentPage: 1,
                 totalSlides: 10,
                 currentWidth: 'lg',
+                maxPages: 3,
             });
 
             await wrapper.vm.initNavigation();
