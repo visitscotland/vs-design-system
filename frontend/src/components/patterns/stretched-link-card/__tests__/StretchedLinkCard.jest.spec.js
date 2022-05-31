@@ -36,6 +36,29 @@ describe('VsStretchedLinkCard', () => {
 
             await expect(wrapper.find('[data-test="vs-stretched-link__img"]').exists()).toBe(false);
         });
+
+        it(':emitTab - should emit a `tabbed` event if emitTab is set to true', () => {
+            const wrapper = factoryShallowMount({
+                propsData: {
+                    emitTab: true,
+                },
+            });
+
+            wrapper.vm.handleTab({
+                shiftKey: false,
+            });
+
+            expect(wrapper.emitted('tabbed', false)).toBeTruthy();
+        });
+
+        it(':emitTab - should not emit a `tabbed` event by default', () => {
+            const wrapper = factoryShallowMount();
+            wrapper.vm.handleTab({
+                shiftKey: false,
+            });
+
+            expect(wrapper.emitted('tabbed', false)).toBeFalsy();
+        });
     });
 
     describe(':slots', () => {
