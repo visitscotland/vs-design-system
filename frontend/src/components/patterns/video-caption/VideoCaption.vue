@@ -92,7 +92,6 @@
 import VsButton from '@components/elements/button/Button';
 import VsIcon from '@components/elements/icon/Icon';
 import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
-import CookiesChecker from '../../renderless/cookiesChecker';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
 import videoStore from '../../../stores/video.store';
 import requiredCookiesData from '../../../utils/required-cookies-data';
@@ -112,7 +111,6 @@ export default {
         VsButton,
         VsIcon,
         VsToggleButton,
-        CookiesChecker,
     },
     mixins: [
         verifyCookiesMixin,
