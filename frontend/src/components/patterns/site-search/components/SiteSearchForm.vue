@@ -7,14 +7,10 @@
         <VsContainer fluid="lg">
             <VsRow>
                 <VsCol cols="12">
-                    <BForm
+                    <div
+                        class="cludo-input-form d-flex align-items-start"
                         role="search"
-                        class="d-flex align-items-start"
-                        action
-                        method="get"
-                        :novalidate="true"
-                        @submit="onSubmit"
-                        tabindex="-1"
+                        id="cludo-search-input"
                     >
                         <div
                             class="d-flex flex-column flex-grow-1 position-relative"
@@ -32,10 +28,10 @@
                                     variant="secondary"
                                 />
                             </label>
-
                             <VsInput
-                                type="search"
                                 class="vs-site-search-form__input cludo-input-form__input"
+                                name="searchrequest"
+                                type="search"
                                 :placeholder="labelText"
                                 :auto-complete="false"
                                 ref="searchInput"
@@ -45,17 +41,16 @@
                                 field-name="site-search"
                             />
                         </div>
-
                         <VsButton
                             type="submit"
-                            class="vs-site-search-form__search-button search-button"
+                            class="vs-site-search-form__search-button
+                            cludo-input-form__search-button"
                             variant="primary"
                             size="lg"
-                            id="search-button"
                         >
                             {{ submitButtonText }}
                         </VsButton>
-                    </BForm>
+                    </div>
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -84,8 +79,6 @@ import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/grid';
 
-import { BForm } from 'bootstrap-vue';
-
 /**
  * Search form used for the global site search.
  *
@@ -97,7 +90,6 @@ export default {
     release: '0.0.1',
     components: {
         VsIcon,
-        BForm,
         VsInput,
         VsButton,
         VsCol,
