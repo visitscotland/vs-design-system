@@ -293,3 +293,36 @@
     }
 }
 
+// correct clashes with code outside of header/footer
+.c-results__grid.row {
+    display: block;
+}
+
+.c-results__product__card > a {
+    text-decoration: none;
+}
+
+.c-search__button--submit {
+    bottom: 0 !important;
+    background: #af006e !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: #fff !important;
+    padding: 5px 20px 6px !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    max-width: 164px !important;
+}
+
+@media (min-width: 500px) {
+    .c-results__filters__list-title,
+    .c-results__pagination__li {
+        font-size: 1.8rem !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .c-search__button--submit {
+        padding: 5px 30px 6px !important;
+    }
+}
