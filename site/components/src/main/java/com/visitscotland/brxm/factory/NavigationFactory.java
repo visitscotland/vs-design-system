@@ -93,7 +93,7 @@ public class NavigationFactory {
             if (bean instanceof Page) {
                 createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, language.getLocale());
             } else if (bean != null) {
-                return createWidget(request, bean);
+                return createWidget(request, bean, language);
             }
         }
 
@@ -117,9 +117,9 @@ public class NavigationFactory {
     /**
      * Identifies the type of document linked and populated the data on the menu item accordingly
      */
-    private NavigationWidget createWidget(HstRequest request, HippoBean bean) {
+    private NavigationWidget createWidget(HstRequest request, HippoBean bean, Language language) {
         if (bean instanceof FeaturedWidget) {
-           return addFeatureItem((FeaturedWidget) bean, request);
+           return addFeatureItem((FeaturedWidget) bean, request, language);
         } else {
             contentLogger.warn("Skipping Unexpected document type: {}", bean.getClass().getSimpleName());
         }
@@ -130,10 +130,10 @@ public class NavigationFactory {
     /**
      * Adds a Featured Navigation Widget
      */
-    private NavigationWidget addFeatureItem(FeaturedWidget document, HstRequest request) {
+    private NavigationWidget addFeatureItem(FeaturedWidget document, HstRequest request, Language language) {
         NavigationWidget widget;
         if (document.getItems().size() == 1 && document.getItems().get(0) instanceof ProductsSearch) {
-            widget = addFeatureEvent((ProductsSearch) document.getItems().get(0), document, request.getLocale());
+            widget = addFeatureEvent((ProductsSearch) document.getItems().get(0), document, language.getLocale());
         } else {
             List<CMSLink> cmsLinks = new ArrayList<>();
             for (HippoBean item : document.getItems()) {

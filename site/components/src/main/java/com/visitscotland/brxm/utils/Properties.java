@@ -268,7 +268,7 @@ public class Properties {
 
     public String getProperty(String key){
         String bundleId = getEnvironmentProperties();
-        String value = bundle.getResourceBundle(bundleId, key, Locale.UK);
+        String value = bundle.getResourceBundle(bundleId, key, Locale.UK, true);
 
         if (Contract.isEmpty(value)) {
             value = bundle.getResourceBundle(DEFAULT_CONFIG, key, Locale.UK);

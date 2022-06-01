@@ -40,7 +40,7 @@ public class InternalParameterProcessor {
     public static final String FULLY_QUALIFIED_URLS = "fullyQualified";
     public static final String LOGINREDIRECT_PARAMETERS = "loginredirectParameters";
     public static final String LEGACY = "legacy";
-    public static final String GLOBAL_MENU_URLS = "placeholerLocalizedURLs";
+    public static final String GLOBAL_MENU_URLS = "placeholderLocalizedURLs";
 
     public void processParameters(HstRequest request) {
         final StringBuilder returnUrl = new StringBuilder("returnurl=");
