@@ -54,13 +54,13 @@ public class DMSProxy {
     }
 
     public boolean canMakeRequest(){
-        return lastRegisteredFailure + properties.getDmsWaitTime() < new Date().getTime();
+        return lastRegisteredFailure == null || lastRegisteredFailure + properties.getDmsWaitTime() < new Date().getTime();
     }
 
     public synchronized String request(String path, Locale locale) {
         String languageParam = "";
         // Checks if there is a lock and if has to be released
-        if (lastRegisteredFailure != null && canMakeRequest()){
+        if (lastRegisteredFailure != null && lastRegisteredFailure + properties.getDmsWaitTime() < new Date().getTime()){
             lastRegisteredFailure = null;
         }
 
