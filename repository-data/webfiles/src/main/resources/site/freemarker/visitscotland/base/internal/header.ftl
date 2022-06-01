@@ -1,5 +1,6 @@
 <#compress>
     <#include "../../../include/imports.ftl">
+    <#include "../footerContributions.ftl">
 
     <div class="no-js" data-vue-app-init>
         <!-- <a href="https://www.visitscotland.com/user/loginredirect?returnurl=${loginredirectParameters}">(Not You?)</a> -->
