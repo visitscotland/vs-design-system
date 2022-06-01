@@ -62,21 +62,28 @@ export default {
         // }
     },
     mounted() {
-        if (window) {
-            this.oneTrust.checkThirdPartyLibrary('OneTrust', () => {
-                window.OneTrust.OnConsentChanged(() => {
-                    this.oneTrust.checkThirdPartyLibrary('OnetrustActiveGroups', () => {
-                        // Check what cookies were accepted
-                        this.activeGroups = window.OnetrustActiveGroups;
+        this.checkOneTrust();
+        this.checkActiveGroups();
+    },
+    methods: {
+        checkOneTrust() {
+            if (window) {
+                this.oneTrust.checkThirdPartyLibrary('OneTrust', () => {
+                    window.OneTrust.OnConsentChanged(() => {
+                        this.oneTrust.checkThirdPartyLibrary('OnetrustActiveGroups', () => {
+                            // Check what cookies were accepted
+                            this.activeGroups = window.OnetrustActiveGroups;
+                        });
                     });
                 });
-            });
-
+            }
+        },
+        checkActiveGroups() {
             this.oneTrust.checkThirdPartyLibrary('OnetrustActiveGroups', () => {
                 // Check what cookies were accepted
                 this.activeGroups = window.OnetrustActiveGroups;
             });
-        }
+        },
     },
 };
 </script>
