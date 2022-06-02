@@ -117,6 +117,30 @@ export default {
             default: 'light',
             validator: (value) => value.match(/(light|dark)/),
         },
+        /**
+        * A message explaining why the component has been disabled js is disabled, is provided
+        * for descendent components to inject
+        */
+        noJsMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * A message explaining why the component has been disabled with disabled cookies, is
+        * provided for descendent components to inject
+        */
+        noCookiesMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * An object containing a link to the cookie settings page, should contain a `url`
+        * field and a `label` field, is provided for descendent components to inject
+        */
+        noCookiesLink: {
+            type: Object,
+            default: null,
+        },
     },
     computed: {
         megalinksClasses() {
@@ -125,6 +149,13 @@ export default {
                 `vs-megalinks--${this.theme}`,
             ];
         },
+    },
+    provide() {
+        return {
+            noJsMessage: this.noJsMessage,
+            noCookiesMessage: this.noCookiesMessage,
+            noCookiesLink: this.noCookiesLink,
+        };
     },
 };
 </script>
@@ -265,6 +296,12 @@ export default {
         title="A megalinks multi image component"
         class="vs-megalinks--multi-image"
         buttonLink="http://www.visitscotland.com"
+        noJsMessage="JavaScript is needed to watch this video."
+        noCookiesMessage="Cookies are needed to watch this video."
+        :noCookiesLink="{
+            url: 'https://google.com',
+            label: 'Update my cookie settings'
+        }"
     >
         <template slot="vsMegalinksIntro">
             <p>Sed at mauris a est dictum luctus. Nullam viverra
@@ -529,9 +566,11 @@ export default {
                         <vs-megalink-multi-image
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text 1"
-                            linkType="external"
+                            linkType="video"
                             theme="dark"
                             linkUrl="https://www.visitscotland.com"
+                            videoId="N3r5rCN9iaE"
+                            videoBtnText="Play Video"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest
@@ -542,6 +581,21 @@ export default {
                                 restaurants. Here are some recomm…</p>
                             </template>
                         </vs-megalink-multi-image>
+
+                        <VsModal
+                            modalId="N3r5rCN9iaE"
+                            closeBtnText="Close"
+                            :isVideoModal="true"
+                        >
+                            <VsRow>
+                                <VsCol cols="12">
+                                    <VsVideo
+                                        videoId="N3r5rCN9iaE"
+                                        class="mb-8"
+                                    />
+                                </VsCol>
+                            </VsRow>
+                        </VsModal>
                     </VsCol>
                     <VsCol
                         cols="12"
