@@ -20,8 +20,6 @@
             featured
             <#if lastFeatured == 'true'>last-featured</#if>
             img-src="${image}"
-            link-type="${feature.type}"
-            link-url="${feature.link}"
             theme="${theme}"
             <#if feature.itineraryTransport??>
                 transport="${feature.itineraryTransport}"
@@ -36,6 +34,15 @@
                 days="${feature.itineraryDays}"
             <#else>
                 days-label="${label('itinerary', 'day')}"
+            </#if>
+            <#if feature.youtubeId??>
+                link-type="video"
+                link-url="#"
+                video-id="${feature.youtubeId}"
+                video-btn-text="${label('video', 'video.play-btn')}"
+            <#else>
+                link-type="${feature.type}"
+                link-url="${feature.link}"
             </#if>
         >
             <template slot="vsMultiImageHeading">
