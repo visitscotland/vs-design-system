@@ -239,6 +239,8 @@ export default {
 
     .vs-megalink-multi-image--dark.card {
         .vs-stretched-link-card__title {
+            color: $color-white;
+
             .stretched-link {
                 color: $color-white;
             }
