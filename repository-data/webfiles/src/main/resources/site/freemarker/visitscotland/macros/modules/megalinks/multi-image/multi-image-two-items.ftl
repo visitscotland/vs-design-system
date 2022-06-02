@@ -40,7 +40,7 @@
             <#else>
                 link-type="${megalink.type}"
                 link-url="${megalink.link}"
-            </#if>            
+            </#if>
         >
             <template slot="vsMultiImageHeading">
                 ${megalink.label}</template>

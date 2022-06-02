@@ -50,7 +50,7 @@
                             <#else>
                                 link-type="${listItem.type}"
                                 link-url="${listItem.link}"
-                            </#if>   
+                            </#if>
                         >
                             <template slot="vsLinkListHeading">
                                 ${listItem.label}

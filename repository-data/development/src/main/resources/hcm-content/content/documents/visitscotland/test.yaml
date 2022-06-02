@@ -5191,12 +5191,12 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 06d74559-281c-4e33-997e-55708f912386
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:retainable: false
           hippostd:state: draft
-          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-07-07T12:14:38.200+01:00
-          hippostdpubwf:lastModificationDate: 2021-09-09T16:42:51.081+01:00
+          hippostdpubwf:lastModificationDate: 2022-05-23T14:27:19.593+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 9a5f6065-6367-4d23-a305-bc6f02b6d021
           hippotranslation:locale: en
