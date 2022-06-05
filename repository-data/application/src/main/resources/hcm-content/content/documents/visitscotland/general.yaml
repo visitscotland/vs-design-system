@@ -255,3 +255,81 @@
       hippostd:foldertype: [new-translated-folder-banner, new-banner]
       hippotranslation:id: a0d02044-a4cf-4d7a-809f-f044f9bd5f36
       hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: cfbca713-414a-4f34-b596-2df74ba8c314
+        hippo:versionHistory: 6175538e-f01e-4cde-9ebe-879567f8dd7c
+        /content[1]:
+          jcr:primaryType: visitscotland:Banner
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e3ab5a2a-bc65-402e-a8d6-179f7ac3a5d0
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-06-02T13:57:30.364+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-02T13:57:30.364+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: c3c3a45e-dd14-4e59-9a72-e3f1892c56cf
+          hippotranslation:locale: en
+          visitscotland:title: test
+          visitscotland:translation: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>test</p>
+          /visitscotland:ctaLink:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: c0e6cfc5-53fa-4a5f-89dd-9b23624d08a4
+        /content[2]:
+          jcr:primaryType: visitscotland:Banner
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 854d8e2a-507a-4f9d-a92b-1693212a9d51
+          hippo:availability: [preview]
+          hippostd:retainable: false
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-06-02T13:57:30.364+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-02T13:57:51.247+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: c3c3a45e-dd14-4e59-9a72-e3f1892c56cf
+          hippotranslation:locale: en
+          visitscotland:title: test
+          visitscotland:translation: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>test</p>
+          /visitscotland:ctaLink:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: c0e6cfc5-53fa-4a5f-89dd-9b23624d08a4
+        /content[3]:
+          jcr:primaryType: visitscotland:Banner
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: b2acd79d-7e9b-4b26-94ad-9d74bded16c3
+          hippo:availability: [live]
+          hippostd:retainable: false
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-06-02T13:57:30.364+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-02T13:57:51.247+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2022-06-02T13:57:57.672+01:00
+          hippotranslation:id: c3c3a45e-dd14-4e59-9a72-e3f1892c56cf
+          hippotranslation:locale: en
+          visitscotland:title: test
+          visitscotland:translation: ''
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>test</p>
+          /visitscotland:ctaLink:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: c0e6cfc5-53fa-4a5f-89dd-9b23624d08a4

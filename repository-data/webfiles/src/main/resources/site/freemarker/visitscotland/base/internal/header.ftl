@@ -1,6 +1,5 @@
 <#compress>
     <#include "../../../include/imports.ftl">
-    <#include "../footerContributions.ftl">
 
     <div class="no-js" data-vue-app-init>
         <!-- <a href="https://www.visitscotland.com/user/loginredirect?returnurl=${loginredirectParameters}">(Not You?)</a> -->
@@ -10,7 +9,6 @@
         <div data-js-footer-source>
             <@hst.include ref="footer"/>
         </div>
-        <@footerContributions />
     </div>
     <main id="main">
 <!-- end include -->
