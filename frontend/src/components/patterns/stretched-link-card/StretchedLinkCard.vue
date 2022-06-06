@@ -12,6 +12,12 @@
                 <VsImg
                     :src="imgSrc"
                     :alt="imgAlt"
+                    :srcset="`${imgSrc}?size=xs 300w,
+                        ${imgSrc}?size=sm 600w,
+                        ${imgSrc}?size=md 1200w,
+                        ${imgSrc}?size=lg 2048w`"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    :low-res-image="`${imgSrc}?size=xxs`"
                     class="vs-stretched-link-card__img"
                     data-test="vs-stretched-link-card__img"
                 />
@@ -394,7 +400,7 @@ export default {
             font-family: $font-family-base;
             font-size: $font-size-3;
             line-height: $line-height-xs;
-            color: $color-secondary-teal-shade-2;
+            color: $color-secondary-teal-shade-3;
             letter-spacing: normal;
             margin-bottom: $spacer-4;
         }
