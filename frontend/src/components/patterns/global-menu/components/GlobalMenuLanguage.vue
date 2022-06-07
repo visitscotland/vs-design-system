@@ -39,6 +39,10 @@
 import VsIcon from '@components/elements/icon/Icon';
 import VsDropdown from '@components/patterns/dropdown/Dropdown';
 import cookieMixin from '../../../../mixins/cookieMixin';
+import verifyCookiesMixin from '../../../../mixins/verifyCookiesMixin';
+import requiredCookiesData from '../../../../utils/required-cookies-data';
+
+const cookieValues = requiredCookiesData.languageSelector;
 
 /**
  * TODO: Document usage
@@ -55,6 +59,7 @@ export default {
     },
     mixins: [
         cookieMixin,
+        verifyCookiesMixin,
     ],
     props: {
         /**
@@ -74,14 +79,21 @@ export default {
             default: 'en',
         },
     },
+    data() {
+        return {
+            requiredCookies: cookieValues,
+        };
+    },
     mounted() {
-        if (!this.cookieExists('vs_locale')) {
-            this.setCookie('vs_locale', this.localeCookie, true);
-        };
+        if (this.requiredCookiesExist) {
+            if (!this.cookieExists('vs_locale')) {
+                this.setCookie('vs_locale', this.localeCookie, true);
+            };
 
-        if (!this.cookieExists('googtrans')) {
-            this.setCookie('googtrans', this.translationCookie, true);
-        };
+            if (!this.cookieExists('googtrans')) {
+                this.setCookie('googtrans', this.translationCookie, true);
+            };
+        }
     },
 };
 </script>
