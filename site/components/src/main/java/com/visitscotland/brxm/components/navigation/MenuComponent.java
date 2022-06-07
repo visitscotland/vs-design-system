@@ -10,8 +10,10 @@ import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.brxm.utils.InternalParameterProcessor;
 import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.brxm.utils.Properties;
+import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.internal.HstMutableRequestContext;
 import org.hippoecm.hst.core.parameters.ParametersInfo;
 import org.onehippo.cms7.essentials.components.EssentialsMenuComponent;
 
@@ -52,10 +54,13 @@ public class MenuComponent extends EssentialsMenuComponent {
             String vsLocale = utils.getParameterFromUrl(request, InternalParameterProcessor.PARAM_LOCALE);
             if (vsLocale != null) {
                 language = Language.getLanguageForLocale(Locale.forLanguageTag(vsLocale));
+                HstMutableRequestContext requestContext = (HstMutableRequestContext) RequestContextProvider.get();
+                requestContext.setResolvedMount(utils.getMount(request, language.getCmsMount()));
+                requestContext.setPreferredLocale(language.getLocale());
                 request.setModel(VS_LOCALE, language.getLocale());
             }
         }
 
-        request.setModel(MENU, factory.buildMenu(request, request.getModel(MENU), language));
+        request.setModel(MENU, factory.buildMenu(request, request.getModel(MENU)));
     }
 }

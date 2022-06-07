@@ -15,7 +15,6 @@ import com.visitscotland.brxm.model.navigation.NavigationWidget;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
-import com.visitscotland.brxm.utils.Language;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -52,9 +51,9 @@ public class NavigationFactory {
     }
 
     /**
-     * Builds a VisitScotland enhanced menu from the out-of-the-box menu
+     * Builds a VisitScotland enhanced menu from the out of the box menu
      */
-    public RootMenuItem buildMenu(HstRequest request, HstSiteMenu hstSiteMenu, Language language) {
+    public RootMenuItem buildMenu(HstRequest request, HstSiteMenu hstSiteMenu) {
         List<HstSiteMenuItem> enhancedMenu = new ArrayList<>();
         RootMenuItem root = new RootMenuItem(hstSiteMenu);
 
@@ -63,7 +62,7 @@ public class NavigationFactory {
             String resourceBundle = NAVIGATION_PREFIX + hstSiteMenu.getName();
 
             for (HstSiteMenuItem hstItem : hstSiteMenu.getSiteMenuItems()) {
-                Object menuItem = getMenuItem(request, hstItem, resourceBundle, language);
+                Object menuItem = getMenuItem(request, hstItem, resourceBundle);
                 if (menuItem instanceof MenuItem) {
                     enhancedMenu.add((MenuItem) menuItem);
                 }
@@ -80,27 +79,27 @@ public class NavigationFactory {
      *
      * If the item happens to be a widget the  MenuItem is descarded and a Navigation Widget is returned instead
      */
-    private Object getMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle, Language language) {
+    private Object getMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle) {
         MenuItem menuItem = new MenuItem(hstItem);
 
         //By default, the name would be populated by the resourceBundle
-        menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), language.getLocale(), true));
+        menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), request.getLocale(), true));
 
         //if document base page or widget, we enhance the document
         if (isDocumentBased(hstItem.getHstLink()) && hstItem.resolveToSiteMapItem() != null) {
-            HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, hstItem.resolveToSiteMapItem(), language.getCmsMount());
+            HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, hstItem.resolveToSiteMapItem());
             //if the document does not exist or is not published
             if (bean instanceof Page) {
-                createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, language.getLocale());
+                createMenuItemFromPage(menuItem, (Page) bean, resourceBundle, request.getLocale());
             } else if (bean != null) {
-                return createWidget(request, bean, language);
+                return createWidget(request, bean);
             }
         }
 
         if (menuItem.getTitle() != null) {
             //Process all children
             for (HstSiteMenuItem hstChild : hstItem.getChildMenuItems()) {
-                Object childItem = getMenuItem(request, hstChild, resourceBundle, language);
+                Object childItem = getMenuItem(request, hstChild, resourceBundle);
                 if (childItem instanceof MenuItem) {
                     menuItem.addChild((MenuItem)childItem);
                 } else if (childItem instanceof  NavigationWidget) {
@@ -117,9 +116,9 @@ public class NavigationFactory {
     /**
      * Identifies the type of document linked and populated the data on the menu item accordingly
      */
-    private NavigationWidget createWidget(HstRequest request, HippoBean bean, Language language) {
+    private NavigationWidget createWidget(HstRequest request, HippoBean bean) {
         if (bean instanceof FeaturedWidget) {
-           return addFeatureItem((FeaturedWidget) bean, request, language);
+            return addFeatureItem((FeaturedWidget) bean, request);
         } else {
             contentLogger.warn("Skipping Unexpected document type: {}", bean.getClass().getSimpleName());
         }
@@ -130,10 +129,10 @@ public class NavigationFactory {
     /**
      * Adds a Featured Navigation Widget
      */
-    private NavigationWidget addFeatureItem(FeaturedWidget document, HstRequest request, Language language) {
+    private NavigationWidget addFeatureItem(FeaturedWidget document, HstRequest request) {
         NavigationWidget widget;
         if (document.getItems().size() == 1 && document.getItems().get(0) instanceof ProductsSearch) {
-            widget = addFeatureEvent((ProductsSearch) document.getItems().get(0), document, language.getLocale());
+            widget = addFeatureEvent((ProductsSearch) document.getItems().get(0), document, request.getLocale());
         } else {
             List<CMSLink> cmsLinks = new ArrayList<>();
             for (HippoBean item : document.getItems()) {
@@ -159,27 +158,27 @@ public class NavigationFactory {
             }
             Optional<EnhancedLink> optionalLink = linkService.createEnhancedLink((Linkable) cmsLink.getLink(), widget, request.getLocale(), false);
 
-            if (optionalLink.isPresent()) {
-                EnhancedLink link = optionalLink.get();
-                link.setCta(bundle.getCtaLabel(cmsLink.getLabel(), request.getLocale()));
-                enhancedLinks.add(link);
-            } else {
+            if (!optionalLink.isPresent()) {
                 contentLogger.warn("Failed to create widget: {}. Check link is published & valid", document.getPath());
+                continue;
             }
+            EnhancedLink link = optionalLink.get();
+            link.setCta(bundle.getCtaLabel(cmsLink.getLabel(), request.getLocale()));
+            enhancedLinks.add(link);
         }
         widget.setHippoBean(document);
         widget.setLinks(enhancedLinks);
 
-       if (widget.getErrorMessages() != null ) {
-           List<FeaturedItem> listWidget;
-           if (request.getModel(WIDGET_LIST) == null) {
-               listWidget = new ArrayList<>();
-           } else {
-               listWidget = request.getModel(WIDGET_LIST);
-           }
-           listWidget.add(widget);
-           request.setModel(WIDGET_LIST, listWidget);
-       }
+        if (widget.getErrorMessages() != null ) {
+            List<FeaturedItem> listWidget;
+            if (request.getModel(WIDGET_LIST) == null) {
+                listWidget = new ArrayList<>();
+            } else {
+                listWidget = request.getModel(WIDGET_LIST);
+            }
+            listWidget.add(widget);
+            request.setModel(WIDGET_LIST, listWidget);
+        }
         return widget;
     }
 
@@ -200,6 +199,8 @@ public class NavigationFactory {
      * @param locale   Request Locale
      */
     private void createMenuItemFromPage(MenuItem menuItem, Page document, String bundleId, Locale locale) {
+        menuItem.setPage(document);
+
         //If the menu hasn't been set we use the title coming from the document.
         if (Contract.isEmpty(menuItem.getTitle())) {
             if (!Contract.isEmpty(document.getBreadcrumb())) {

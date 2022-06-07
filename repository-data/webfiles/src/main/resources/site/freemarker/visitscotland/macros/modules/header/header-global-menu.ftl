@@ -18,7 +18,7 @@
     >
         <template slot="third-menu-item">
             <vs-global-menu-language 
-                language="${currentLocale}"
+                language="${locale}"
                 language-label="${label('navigation.static', 'universal.language')}"
             >
                 <#list localizedURLs as language>

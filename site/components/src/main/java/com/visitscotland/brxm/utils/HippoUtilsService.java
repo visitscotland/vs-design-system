@@ -131,8 +131,8 @@ public class HippoUtilsService {
     }
 
     @NonTestable(NonTestable.Cause.BRIDGE)
-    public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem, String mount) {
-        Optional<HippoBean> bean = getBeanForSiteMapItem(request, sitemapItem, mount);
+    public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem) {
+        Optional<HippoBean> bean = getBeanForSiteMapItem(request, sitemapItem, request.getRequestContext().getResolvedMount());
         return bean.orElse(null);
     }
 
@@ -141,32 +141,47 @@ public class HippoUtilsService {
      *
      * @param request
      * @param resolvedSiteMapItem
-     * @param mount
+     * @param resolvedMount
      * @return
      *
      * @see org.hippoecm.hst.component.support.bean.BaseHstComponent#getBeanForResolvedSiteMapItem(HstRequest, ResolvedSiteMapItem)
      */
     @NonTestable(NonTestable.Cause.BRIDGE)
-    private Optional<HippoBean> getBeanForSiteMapItem(HstRequest request, ResolvedSiteMapItem resolvedSiteMapItem, String mount){
+    private Optional<HippoBean> getBeanForSiteMapItem(HstRequest request, ResolvedSiteMapItem resolvedSiteMapItem, ResolvedMount resolvedMount){
         HstRequestContext requestContext = request.getRequestContext();
+
+        if (resolvedMount != null && resolvedSiteMapItem != null && requestContext.getObjectBeanManager() != null && resolvedMount.getMount() != null) {
+            String contentPath = resolvedMount.getMount().getContentPath();
+            String content = "/" + PathUtils.normalizePath(contentPath) + "/" +
+                    PathUtils.normalizePath(resolvedSiteMapItem.getRelativeContentPath());
+            try {
+                Object bean = requestContext.getObjectBeanManager().getObject(content);
+                return (bean instanceof HippoBean) ? Optional.of((HippoBean) bean) : Optional.empty();
+            } catch (ObjectBeanManagerException e) {
+                logger.info("Failed to get hippo bean at {}", content, e);
+            }
+        }
+
+        return Optional.empty();
+    }
+
+    /**
+     * TODO Comment
+     * @param request
+     * @param mount
+     * @return
+     */
+    public ResolvedMount getMount(HstRequest request, String mount) {
         ResolvedVirtualHost resolvedVirtualHost = (ResolvedVirtualHost) request.getAttribute(ContainerConstants.VIRTUALHOSTS_REQUEST_ATTR);
         if (resolvedVirtualHost != null) {
             ResolvedMount resolvedMount = resolvedVirtualHost.matchMount(mount);
-            if (resolvedMount != null && resolvedSiteMapItem != null && requestContext.getObjectBeanManager() != null && resolvedMount.getMount() != null) {
-                String contentPath = resolvedMount.getMount().getContentPath();
-                String content = "/" + PathUtils.normalizePath(contentPath) + "/" +
-                        PathUtils.normalizePath(resolvedSiteMapItem.getRelativeContentPath());
-                try {
-                    Object bean = requestContext.getObjectBeanManager().getObject(content);
-                    return (bean instanceof HippoBean) ? Optional.of((HippoBean) bean) : Optional.empty();
-                } catch (ObjectBeanManagerException e) {
-                    logger.info("Failed to get hippo bean at {}", content, e);
-                }
+            if (resolvedMount != null){
+                return resolvedMount;
             }
-        } else {
-            logger.error("Failed to get ResolvedVirtualHost from request servlet");
         }
-        return Optional.empty();
+
+        logger.warn("The mount {} could not be resolver for the following request", mount, request.getRequestURI());
+        return request.getRequestContext().getResolvedMount();
     }
 
     /**

@@ -5,7 +5,6 @@ import com.visitscotland.brxm.hippobeans.TourismInformation;
 import com.visitscotland.brxm.hippobeans.capabilities.Linkable;
 import com.visitscotland.brxm.services.ResourceBundleService;
 import com.visitscotland.brxm.utils.HippoUtilsService;
-import com.visitscotland.brxm.utils.Language;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.linking.HstLink;
@@ -16,7 +15,6 @@ import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -30,13 +28,11 @@ public class NavigationMockBuilder {
     HippoUtilsService utils;
     ResourceBundleService bundle;
     HstRequest request;
-    Language language;
 
-    public NavigationMockBuilder(HstRequest request, HippoUtilsService utils, ResourceBundleService bundle, Language language) {
+    public NavigationMockBuilder(HstRequest request, HippoUtilsService utils, ResourceBundleService bundle) {
         this.utils = utils;
         this.bundle = bundle;
         this.request = request;
-        this.language = language;
         mock = Mockito.mock(HstSiteMenuItem.class);
     }
 
@@ -77,7 +73,7 @@ public class NavigationMockBuilder {
         when(mock.getHstLink()).thenReturn(link);
         when(mock.resolveToSiteMapItem()).thenReturn(rsi);
 
-        when(utils.getBeanForResolvedSiteMapItem(request, rsi, language.getCmsMount())).thenReturn(linkable);
+        when(utils.getBeanForResolvedSiteMapItem(request, rsi)).thenReturn(linkable);
 
         return this;
     }
