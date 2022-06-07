@@ -84,16 +84,18 @@ export default {
             requiredCookies: cookieValues,
         };
     },
-    mounted() {
-        if (this.requiredCookiesExist) {
-            if (!this.cookieExists('vs_locale')) {
-                this.setCookie('vs_locale', this.localeCookie, true);
-            };
+    watch: {
+        cookiesSet(newValue) {
+            if (newValue.length !== 0 && this.requiredCookiesExist) {
+                if (!this.cookieExists('vs_locale')) {
+                    this.setCookie('vs_locale', this.localeCookie, true);
+                };
 
-            if (!this.cookieExists('googtrans')) {
-                this.setCookie('googtrans', this.translationCookie, true);
-            };
-        }
+                if (!this.cookieExists('googtrans')) {
+                    this.setCookie('googtrans', this.translationCookie, true);
+                };
+            }
+        },
     },
 };
 </script>
