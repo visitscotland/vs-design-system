@@ -11,6 +11,10 @@
 <script>
 import VsDropdownItem from '@components/patterns/dropdown/components/DropdownItem';
 import cookieMixin from '../../../../mixins/cookieMixin';
+import verifyCookiesMixin from '../../../../mixins/verifyCookiesMixin';
+import requiredCookiesData from '../../../../utils/required-cookies-data';
+
+const cookieValues = requiredCookiesData.languageSelector;
 
 /**
  * TODO: Document usage
@@ -26,6 +30,7 @@ export default {
     },
     mixins: [
         cookieMixin,
+        verifyCookiesMixin,
     ],
     props: {
         /**
@@ -52,13 +57,21 @@ export default {
             default: null,
         },
     },
+    data() {
+        return {
+            requiredCookies: cookieValues,
+        };
+    },
     methods: {
         setLanguage() {
             const localeExists = this.cookieExists('vs_locale');
             const googleExists = this.cookieExists('googtrans');
 
-            this.setCookie('vs_locale', this.localeCookie, !localeExists);
-            this.setCookie('googtrans', this.translationCookie, !googleExists);
+            if (this.requiredCookiesExist) {
+                console.log('language cookies set');
+                this.setCookie('vs_locale', this.localeCookie, !localeExists);
+                this.setCookie('googtrans', this.translationCookie, !googleExists);
+            }
         },
     },
 };
