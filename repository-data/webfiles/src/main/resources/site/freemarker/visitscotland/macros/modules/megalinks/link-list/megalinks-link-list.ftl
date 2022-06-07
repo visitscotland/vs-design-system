@@ -28,6 +28,8 @@
                         <vs-megalink-link-list
                             img-src="${image}"
                             theme="${theme}"
+                            link-type="${listItem.type}"
+                            link-url="${listItem.link}"
                             <#if listItem.itineraryTransport??>
                                 transport="${listItem.itineraryTransport}"
                                 transport-name="${label('transports', listItem.itineraryTransport)}"
@@ -43,13 +45,8 @@
                                 days-label="${label('itinerary', 'day')}"
                             </#if>
                             <#if listItem.youtubeId??>
-                                link-type="video"
-                                link-url="#"
                                 video-id="${listItem.youtubeId}"
                                 video-btn-text="${label('video', 'video.play-btn')}"
-                            <#else>
-                                link-type="${listItem.type}"
-                                link-url="${listItem.link}"
                             </#if>
                         >
                             <template slot="vsLinkListHeading">
