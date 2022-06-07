@@ -68,7 +68,6 @@ export default {
             const googleExists = this.cookieExists('googtrans');
 
             if (this.requiredCookiesExist) {
-                console.log('language cookies set');
                 this.setCookie('vs_locale', this.localeCookie, !localeExists);
                 this.setCookie('googtrans', this.translationCookie, !googleExists);
             }
