@@ -109,6 +109,7 @@
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.11.1",
+    "@babel/eslint-parser": "^7.18.2",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
@@ -121,7 +122,6 @@
     "@vue/test-utils": "^1.0.3",
     "autoprefixer": "^9.8.6",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.1.0",
     "chalk": "^2.4.1",
