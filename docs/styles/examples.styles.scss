@@ -15,7 +15,7 @@
 .vds-example {
     position: relative;
     margin-bottom: $space-l;
-    margin-top: $space-xl / 2;
+    margin-top: calc($space-xl / 2);
     div[class^='rsg--root']{
         margin-bottom: 0;
     }
@@ -25,10 +25,10 @@
     }
 }
 .section-components {
-    .vds-example {        
+    .vds-example {
         // Only show example & view code
         // buttons on component pages
-        .vds-example-toggle, 
+        .vds-example-toggle,
         div[class^='rsg--controls'] {
             display: block;
         }
@@ -128,7 +128,7 @@
             border-top: 0;
             font-weight: 700;
             &:hover {
-                color: $docs-color-pink; 
+                color: $docs-color-pink;
             }
             &:focus {
                 outline: 0;
@@ -150,7 +150,7 @@
             &:after{
                 transform: rotate(-180deg);
             }
-        }    
+        }
     }
     div[class^='rsg--tabs']{
         div[class^='rsg--tabButtons']{
@@ -167,10 +167,10 @@
                 color: $docs-color-heading;
                 cursor: auto;
                 @media (max-width: #{$docs-breakpoint}) {
-                    font-size: $size-xl / 1.2;
+                    font-size: calc($size-xl / 1.2);
                 }
                 &:hover {
-                    color: $docs-color-heading; 
+                    color: $docs-color-heading;
                 }
             }
         }
@@ -187,7 +187,7 @@
                         color: $docs-color-heading;
                         padding: .5rem;
                     }
-                } 
+                }
                 tbody{
                     tr{
                         border-bottom: 1px #e8e8e8 solid;
@@ -237,7 +237,7 @@ pre[class^='rsg--pre'],
     font-family: Consolas, 'Liberation Mono', Menlo, monospace;
     font-size: $size-s;
     margin: 0;
-    min-height: $space-xxl / 1.5;
+    min-height: calc($space-xxl / 1.5);
     color: $docs-color-grey-dark;
     padding: $space-m;
     word-wrap: break-word;
@@ -332,7 +332,7 @@ div[class^='rsg--tab'] {
 // Code highlighting elsewhere
 span[class^='rsg--type'],
 code[class^='rsg--code'],
-code[class^='rsg--name'], 
+code[class^='rsg--name'],
 code.name{
     font-size: $size-s;
 }
@@ -340,7 +340,7 @@ span[class^='rsg--type'],
 code[class^='rsg--code'] {
     color: $docs-color-grey-dark;
 }
-code[class^='rsg--name'], 
+code[class^='rsg--name'],
 code.name {
     color: $docs-code-red;
 }
