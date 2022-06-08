@@ -6,6 +6,7 @@
 
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.BannerModule"-->
 <#macro emergencyBanner module>
+    <@previewWarning editMode item item.errorMessages />
     <#if module.ctaLink??>
     <vs-banner
         close-btn-text="${label('essentials.global', 'close')}"

@@ -25,7 +25,6 @@ import java.util.Locale;
 public class MenuComponent extends EssentialsMenuComponent {
 
     public static final String MENU = "menu";
-    public static final String VS_LOCALE = "vsLocale";
     public static final String LOCALIZED_URLS = "localizedURLs";
 
     private NavigationFactory factory;
@@ -48,16 +47,14 @@ public class MenuComponent extends EssentialsMenuComponent {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-        Language language = Language.getLanguageForLocale(request.getLocale());
 
         if (request.getRequestURI().startsWith(properties.getDmsInternalPath())) {
             String vsLocale = utils.getParameterFromUrl(request, InternalParameterProcessor.PARAM_LOCALE);
             if (vsLocale != null) {
-                language = Language.getLanguageForLocale(Locale.forLanguageTag(vsLocale));
+                Language language = Language.getLanguageForLocale(Locale.forLanguageTag(vsLocale));
                 HstMutableRequestContext requestContext = (HstMutableRequestContext) RequestContextProvider.get();
                 requestContext.setResolvedMount(utils.getMount(request, language.getCmsMount()));
                 requestContext.setPreferredLocale(language.getLocale());
-                request.setModel(VS_LOCALE, language.getLocale());
             }
         }
 
