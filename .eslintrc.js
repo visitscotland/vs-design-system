@@ -9,7 +9,7 @@ module.exports = {
 		"cypress/globals": true ,
 	},
 	parserOptions: {
-		parser: "babel-eslint",
+		parser: "@babel/eslint-parser",
 		// specifying a module sourcetype prevent eslint from marking import statements as errors
 		sourceType: "module",
 	},
