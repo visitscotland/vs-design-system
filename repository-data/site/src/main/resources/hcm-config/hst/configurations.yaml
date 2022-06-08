@@ -504,7 +504,7 @@ definitions:
             hst:componentconfigurationid: hst:pages/pagenotfound
             /internal:
               jcr:primaryType: hst:sitemapitem
-              hst:componentconfigurationid: hst:pages/internal
+              hst:componentconfigurationid: hst:pages/pagenotfound
               hst:pagetitle: Fragmented Page
               /css-header:
                 jcr:primaryType: hst:sitemapitem
