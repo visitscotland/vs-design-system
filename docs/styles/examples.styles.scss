@@ -1,4 +1,3 @@
-@use "sass:math";
 @import './docs.tokens.scss';
 
 *[class*='rsg--preview'] {
@@ -16,7 +15,7 @@
 .vds-example {
     position: relative;
     margin-bottom: $space-l;
-    margin-top: math.div($space-xl, 2);
+    margin-top: calc($space-xl / 2);
     div[class^='rsg--root']{
         margin-bottom: 0;
     }
@@ -168,7 +167,7 @@
                 color: $docs-color-heading;
                 cursor: auto;
                 @media (max-width: #{$docs-breakpoint}) {
-                    font-size: math.div($size-xl, 1.2);
+                    font-size: calc($size-xl / 1.2);
                 }
                 &:hover {
                     color: $docs-color-heading;
@@ -238,7 +237,7 @@ pre[class^='rsg--pre'],
     font-family: Consolas, 'Liberation Mono', Menlo, monospace;
     font-size: $size-s;
     margin: 0;
-    min-height: math.div($space-xxl, 1.5);
+    min-height: calc($space-xxl / 1.5);
     color: $docs-color-grey-dark;
     padding: $space-m;
     word-wrap: break-word;

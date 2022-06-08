@@ -1,4 +1,3 @@
-@use "sass:math";
 /* GLOBAL MIXINS
 --------------------------------------------- */
 
@@ -97,7 +96,7 @@ $spacing-ratio: 1.7;
 //
 // @param  {Number} inset-squish-space to set
 @mixin inset-squish-space($value) {
-  padding: round(math.div($value, $spacing-ratio) - 1px) $value round(math.div($value, $spacing-ratio));
+  padding: round(calc($value / $spacing-ratio) - 1px) $value round(calc($value / $spacing-ratio));
 }
 
 // Create stack-space
