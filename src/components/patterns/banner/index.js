@@ -1,1 +1,3 @@
-export { default } from './Banner';
+import VsBanner from './Banner';
+
+export default VsBanner;

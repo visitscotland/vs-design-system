@@ -1,5 +1,3 @@
 import VsAddress from './Address';
 
-export default {
-    VsAddress,
-};
+export default VsAddress;

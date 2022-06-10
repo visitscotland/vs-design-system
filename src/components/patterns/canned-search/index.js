@@ -11,7 +11,7 @@ import VsCannedSearchDates from './components/CannedSearchDates';
 import VsCannedSearchDuration from './components/CannedSearchDuration';
 import VsCannedSearchSubHeading from './components/CannedSearchSubHeading';
 
-export default {
+export {
     VsCannedSearch,
     VsCannedSearchProductCard,
     VsCannedSearchStars,
