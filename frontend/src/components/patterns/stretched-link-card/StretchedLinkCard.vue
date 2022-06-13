@@ -54,8 +54,6 @@
                     :variant="theme === 'dark' ? 'dark' : 'primary'"
                     data-test="vs-stretched-link"
                     :disabled="disabled"
-                    :emit-tab="emitTab"
-                    @tabbed="handleTab($event)"
                 >
                     <!-- @slot Contains header content for the card  -->
                     <slot name="stretchedCardHeader" />
@@ -148,21 +146,6 @@ export default {
         disabled: {
             type: Boolean,
             default: false,
-        },
-        /**
-        *  If the card should emit an event on tab
-        */
-        emitTab: {
-            type: Boolean,
-            default: false,
-        },
-    },
-    methods: {
-        handleTab(event) {
-            // if 'emitTab' is true, emit the tabbed event
-            if (this.emitTab) {
-                this.$emit('tabbed', event);
-            }
         },
     },
 };
