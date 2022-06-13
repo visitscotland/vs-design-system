@@ -83,26 +83,5 @@ describe('VsLink', () => {
             });
             expect(wrapper.attributes()).not.toContain('download');
         });
-
-        it(':emitTab - should emit a `tabbed` event if emitTab is set to true', () => {
-            const wrapper = factoryShallowMount({
-                emitTab: true,
-            });
-
-            wrapper.vm.handleTab({
-                shiftKey: false,
-            });
-
-            expect(wrapper.emitted('tabbed', false)).toBeTruthy();
-        });
-
-        it(':emitTab - should not emit a `tabbed` event if emitTab is set to false', () => {
-            const wrapper = factoryShallowMount();
-            wrapper.vm.handleTab({
-                shiftKey: false,
-            });
-
-            expect(wrapper.emitted('tabbed', false)).toBeFalsy();
-        });
     });
 });
