@@ -18,7 +18,6 @@
                             class="vs-carousel__control vs-carousel__control--prev"
                             @click.native="sliderNavigate('prev')"
                             @keypress.native="sliderNavigate('prev', true)"
-                            @focus="controlFocus"
                             @btnFocus="controlFocus($event, 'prev')"
                             icon="internal-link"
                             icon-orientation="down"
@@ -117,10 +116,6 @@ import {
     VsRow,
     VsCol,
 } from '@components/elements/grid';
-
-import carouselEventsStore from '../../../stores/carousel-events.store';
-
-const carouselEvents = carouselEventsStore;
 
 /**
 * Multi purpose carousel component to use
@@ -223,21 +218,7 @@ export default {
 
             return `-${((this.currentPage) * 100)}%`;
         },
-        carouselTriggerNext() {
-            return carouselEvents.state.triggerNext;
-        },
-        carouselTriggerPrev() {
-            return carouselEvents.state.triggerPrev;
-        },
     },
-    // watch: {
-    //     carouselTriggerNext() {
-    //         this.sliderNavigate('next', true, this.activeSlides.at(-1));
-    //     },
-    //     carouselTriggerPrev() {
-    //         this.sliderNavigate('prev', true, this.activeSlides.at(0));
-    //     },
-    // },
     provide() {
         const slideCols = {
         };
