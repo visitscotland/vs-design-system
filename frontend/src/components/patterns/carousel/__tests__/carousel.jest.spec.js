@@ -101,14 +101,14 @@ describe('VsCarousel', () => {
 
             await wrapper.find('.vs-carousel__control--prev').trigger('click');
 
-            expect(wrapper.vm.currentPage).toBe(2);
+            expect(wrapper.vm.currentPage).toBe(1);
 
             // Fast-forward throttle timer on sliderNavigate
             jest.runAllTimers();
 
             await wrapper.find('.vs-carousel__control--prev').trigger('click');
 
-            expect(wrapper.vm.currentPage).toBe(1);
+            expect(wrapper.vm.currentPage).toBe(0);
         });
 
         it('sets the correct active page on clicking navigation item', async() => {
