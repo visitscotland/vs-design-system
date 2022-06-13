@@ -18,11 +18,12 @@
                             class="vs-carousel__control vs-carousel__control--prev"
                             @click.native="sliderNavigate('prev')"
                             @keypress.native="sliderNavigate('prev', true)"
+                            @focus="controlFocus"
+                            @btnFocus="controlFocus($event, 'prev')"
                             icon="internal-link"
                             icon-orientation="down"
                             icon-size-override="xs"
                             ref="prevButton"
-                            tabindex="-1"
                         >
                             <div class="vs-carousel__control-label-container">
                                 <span
@@ -46,11 +47,11 @@
                             class="vs-carousel__control vs-carousel__control--next"
                             @keypress.native="sliderNavigate('next', true)"
                             @click.native="sliderNavigate('next')"
+                            @btnFocus="controlFocus($event, 'next')"
                             icon="internal-link"
                             icon-position="right"
                             icon-size-override="xs"
                             ref="nextButton"
-                            tabindex="-1"
                         >
                             <div class="vs-carousel__control-label-container">
                                 <span
@@ -229,14 +230,14 @@ export default {
             return carouselEvents.state.triggerPrev;
         },
     },
-    watch: {
-        carouselTriggerNext() {
-            this.sliderNavigate('next', true, this.activeSlides.at(-1));
-        },
-        carouselTriggerPrev() {
-            this.sliderNavigate('prev', true, this.activeSlides.at(0));
-        },
-    },
+    // watch: {
+    //     carouselTriggerNext() {
+    //         this.sliderNavigate('next', true, this.activeSlides.at(-1));
+    //     },
+    //     carouselTriggerPrev() {
+    //         this.sliderNavigate('prev', true, this.activeSlides.at(0));
+    //     },
+    // },
     provide() {
         const slideCols = {
         };
@@ -263,6 +264,13 @@ export default {
         this.initNavigation();
     },
     methods: {
+        controlFocus(event, direction) {
+            if (direction === 'next' && !event.shiftKey) {
+                this.sliderNavigate('next', true, this.activeSlides.at(-1));
+            } else if (direction === 'prev' && event.shiftKey) {
+                this.sliderNavigate('prev', true, this.activeSlides.at(0));
+            }
+        },
         defineActiveSlides(remainder) {
             this.calcViewport();
             this.activeSlides.length = 0;
@@ -381,25 +389,23 @@ export default {
 
             this.defineActiveSlides(finalSlideRemainder);
 
-            setTimeout(() => {
-                this.navigating = false;
+            this.navigating = false;
 
-                if (keypressNavigation) {
-                    if (direction === 'next' && this.totalSlides - 1 > oldSlide) {
-                        // if 'next' movement has happened via keypress automatically focus
-                        // on the next slide link
-                        const firstActiveSlide = document.querySelectorAll('[data-test="vs-carousel-slide"]')[oldSlide + 1];
-                        const firstLink = firstActiveSlide.getElementsByClassName('stretched-link')[0];
-                        firstLink.focus();
-                    } else if (direction === 'prev' && this.currentPage >= 0) {
-                        // if 'previous' movement has happened via keypress automatically focus
-                        // on the previous slide link
-                        const lastActiveSlide = document.querySelectorAll('[data-test="vs-carousel-slide"]')[oldSlide - 1];
-                        const lastLink = lastActiveSlide.getElementsByClassName('stretched-link')[0];
-                        lastLink.focus();
-                    }
+            if (keypressNavigation) {
+                if (direction === 'next' && this.totalSlides - 1 > oldSlide) {
+                    // if 'next' movement has happened via keypress automatically focus
+                    // on the next slide link
+                    const firstActiveSlide = document.querySelectorAll('.card')[oldSlide + 1];
+                    const firstLink = firstActiveSlide.querySelectorAll('a')[0];
+                    firstLink.focus();
+                } else if (direction === 'prev' && this.currentPage >= 0) {
+                    // if 'previous' movement has happened via keypress automatically focus
+                    // on the previous slide link
+                    const lastActiveSlide = document.querySelectorAll('.card')[oldSlide - 1];
+                    const lastLink = lastActiveSlide.querySelectorAll('a')[0];
+                    lastLink.focus();
                 }
-            }, 250);
+            }
         },
         initNavigation() {
             // method to enable/disable arrow controls for carousel
