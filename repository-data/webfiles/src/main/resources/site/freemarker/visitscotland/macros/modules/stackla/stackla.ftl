@@ -6,8 +6,7 @@
 
 <#macro stackla module>
     <@hst.headContribution category="htmlBodyEnd">
-        <script type="text/plain" class="optanon-category-C0001-C0002-C0003-C0004">
-            console.log('script run');
+        <script type="text/plain" class="optanon-category-C0001-C0003-C0004">
             (function (d, id) {
                 var t, el = d.scripts[d.scripts.length - 1].previousElementSibling;
                 if (el) el.dataset.initTimestamp = (new Date()).getTime();
