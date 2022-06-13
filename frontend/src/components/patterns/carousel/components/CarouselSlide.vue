@@ -13,12 +13,10 @@
                 :type="linkType"
                 :img-src="imgSrc"
                 :img-alt="imgAlt"
-                :emit-tab="isFirstSlide(slideIndex) || isLastSlide(slideIndex)"
                 :class="isVisible(slideIndex) ? 'vs-carousel-slide__card--active' : ''"
                 class="vs-carousel-slide__card"
                 :disabled="!isVisible(slideIndex)"
                 data-test="vs-carousel-card"
-                @tabbed="handleTab($event, slideIndex)"
             >
                 <VsStretchedLinkPanels
                     v-if="days && transport"
@@ -50,8 +48,6 @@
 import VsStretchedLinkCard from '@components/patterns/stretched-link-card/StretchedLinkCard';
 import VsStretchedLinkPanels from '@components/patterns/stretched-link-card/components/StretchedLinkPanels';
 import { VsCol } from '@components/elements/grid';
-
-import carouselEventsStore from '../../../../stores/carousel-events.store';
 
 /**
 * Slide for carousel
@@ -159,30 +155,6 @@ export default {
             }
 
             return false;
-        },
-        isLastSlide(slideNum) {
-            const slideInt = parseInt(slideNum, 10);
-            // returns true if the slide is the last slide of the current view
-            if (slideInt === this.visibleSlides[this.visibleSlides.length - 1]) {
-                return true;
-            }
-
-            return false;
-        },
-        isFirstSlide(slideNum) {
-            const slideInt = parseInt(slideNum, 10);
-            if (slideInt === this.visibleSlides[0]) {
-                return true;
-            }
-
-            return false;
-        },
-        handleTab(shiftTabPressed, slideNum) {
-            if (this.isLastSlide(slideNum) && !shiftTabPressed) {
-                carouselEventsStore.commit('TRIGGER_NEXT');
-            } else if (this.isFirstSlide(slideNum) && shiftTabPressed) {
-                carouselEventsStore.commit('TRIGGER_PREV');
-            }
         },
     },
     inject: ['slideCols', 'visibleSlides'],
