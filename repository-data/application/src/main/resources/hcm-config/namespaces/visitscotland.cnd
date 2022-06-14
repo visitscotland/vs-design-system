@@ -101,7 +101,7 @@
 [visitscotland:MapCategory] > hippo:compound, hippostd:relaxed
   orderable
 
-[visitscotland:MapModule] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+[visitscotland:MapModule] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
 [visitscotland:MarketoForm] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
