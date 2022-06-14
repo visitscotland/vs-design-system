@@ -376,15 +376,19 @@ export default {
                 if (direction === 'next' && this.totalSlides - 1 > oldSlide) {
                     // if 'next' movement has happened via keypress automatically focus
                     // on the next slide link
-                    const firstActiveSlide = document.querySelectorAll('.card')[oldSlide + 1];
+                    const firstActiveSlide = this.$refs.carousel.querySelectorAll('.card')[oldSlide + 1];
                     const firstLink = firstActiveSlide.querySelectorAll('a')[0];
-                    firstLink.focus();
+                    setTimeout(() => {
+                        firstLink.focus();
+                    }, 250);
                 } else if (direction === 'prev' && this.currentPage >= 0) {
                     // if 'previous' movement has happened via keypress automatically focus
                     // on the previous slide link
-                    const lastActiveSlide = document.querySelectorAll('.card')[oldSlide - 1];
+                    const lastActiveSlide = this.$refs.carousel.querySelectorAll('.card')[oldSlide - 1];
                     const lastLink = lastActiveSlide.querySelectorAll('a')[0];
-                    lastLink.focus();
+                    setTimeout(() => {
+                        lastLink.focus();
+                    }, 250);
                 }
             }
         },
