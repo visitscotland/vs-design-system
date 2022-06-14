@@ -14,8 +14,8 @@ public class Destination extends Page {
 
     @Override
     public String[] getChildJcrTypes() {
-        return new String[] { "visitscotland:Megalinks", "visitscotland:Stackla",
-                "visitscotland:TourismInformation",
+        return new String[] { "visitscotland:Megalinks",
+                "visitscotland:Stackla", "visitscotland:TourismInformation",
                 "visitscotland:TravelInformation",
                 "visitscotland:CannedSearchTours", "visitscotland:CannedSearch" };
     }
@@ -33,5 +33,10 @@ public class Destination extends Page {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationDeadline")
     public Calendar getTranslationDeadline() {
         return getSingleProperty("visitscotland:translationDeadline");
+    }
+
+    @HippoEssentialsGenerated(internalName = "hippotaxonomy:keys")
+    public String[] getKeys() {
+        return getMultipleProperty("hippotaxonomy:keys");
     }
 }
