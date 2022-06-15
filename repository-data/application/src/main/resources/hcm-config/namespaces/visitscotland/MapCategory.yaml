@@ -11,10 +11,9 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 6bf53bcb-163b-46de-bda1-d1b766ef4813
+          jcr:uuid: 734c8c34-0d5c-433f-b835-ab1489b6dc30
           hipposysedit:node: true
-          hipposysedit:supertype: ['hippotaxonomy:classifiable', 'hippo:compound',
-            'hippostd:relaxed']
+          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
           /title:
             jcr:primaryType: hipposysedit:field
@@ -31,13 +30,15 @@ definitions:
             hipposysedit:ordered: true
             hipposysedit:path: visitscotland:mapPins
             hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
+            hipposysedit:validators: [contentblocks-validator, required]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:MapCategory
           visitscotland:title: ''
-          jcr:mixinTypes: ['hippotaxonomy:classifiable']
+          /visitscotland:mapPins:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -58,16 +59,6 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /classifiable:
-            jcr:primaryType: frontend:plugin
-            essentials-taxonomy-name: Visitsctoland-categories
-            mixin: hippotaxonomy:classifiable
-            plugin.class: org.hippoecm.frontend.editor.plugins.mixin.MixinLoaderPlugin
-            wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              taxonomy.name: Visitsctoland-categories
-              caption: Category
           /mapPins:
             jcr:primaryType: frontend:plugin
             caption: Map Pins
