@@ -42,6 +42,8 @@ export default {
         },
     },
     created() {
+        this.checkOneTrust();
+        this.checkActiveGroups();
         // KEEP UNTIL INSTAGRAM FUNCTIONALITY IS FIXED
         //   Add eventbus to check for events related to OneTrust and cookies
         // if (!(typeof window.OneTrustEventBus === 'function')) {
@@ -61,10 +63,8 @@ export default {
         //     });
         // }
     },
-    mounted() {
-        this.checkOneTrust();
-        this.checkActiveGroups();
-    },
+    // mounted() {
+    // },
     methods: {
         checkOneTrust() {
             if (window) {
