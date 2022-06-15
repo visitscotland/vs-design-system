@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 32a71d7d-2f95-43b6-8e0c-d13304ce493b
+          jcr:uuid: 6bf53bcb-163b-46de-bda1-d1b766ef4813
           hipposysedit:node: true
           hipposysedit:supertype: ['hippotaxonomy:classifiable', 'hippo:compound',
             'hippostd:relaxed']
@@ -31,16 +31,13 @@ definitions:
             hipposysedit:ordered: true
             hipposysedit:path: visitscotland:mapPins
             hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator, required]
+            hipposysedit:validators: [contentblocks-validator]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:MapCategory
           visitscotland:title: ''
           jcr:mixinTypes: ['hippotaxonomy:classifiable']
-          /visitscotland:mapPins:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
