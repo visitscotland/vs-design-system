@@ -247,9 +247,9 @@ export default {
     methods: {
         controlFocus(event, direction) {
             if (direction === 'next' && !event.shiftKey) {
-                this.sliderNavigate('next', true, this.activeSlides.at(-1));
+                this.sliderNavigate('next', true, this.activeSlides[this.activeSlides.length - 1]);
             } else if (direction === 'prev' && event.shiftKey) {
-                this.sliderNavigate('prev', true, this.activeSlides.at(0));
+                this.sliderNavigate('prev', true, this.activeSlides[0]);
             }
         },
         defineActiveSlides(remainder) {
