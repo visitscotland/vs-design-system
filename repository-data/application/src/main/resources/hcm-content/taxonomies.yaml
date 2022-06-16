@@ -3,7 +3,7 @@
   /Visitsctoland-categories:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:versionInfo']
-    hippo:versionHistory: c13d140b-4b39-4a80-b603-7ade51186a0b
+    hippo:versionHistory: ed92f3e3-5f0e-49f6-ad40-8d2179c3fe57
     /Visitsctoland-categories[1]:
       jcr:primaryType: hippotaxonomy:taxonomy
       jcr:mixinTypes: ['hippostd:publishableSummary', 'mix:versionable']
@@ -14,9 +14,9 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2022-06-10T13:52:12.043+01:00
-      hippostdpubwf:lastModificationDate: 2022-06-10T15:18:01.184+01:00
+      hippostdpubwf:lastModificationDate: 2022-06-16T08:48:35.908+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2022-06-10T15:18:30.125+01:00
+      hippostdpubwf:publicationDate: 2022-06-16T12:39:11.997+01:00
       hippotaxonomy:locales: [en, fr, de, es, it, nl]
       /destinations:
         jcr:primaryType: hippotaxonomy:category
@@ -64,14 +64,6 @@
             /en:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Regions
-        /featured:
-          jcr:primaryType: hippotaxonomy:category
-          hippotaxonomy:key: featured
-          /hippotaxonomy:categoryinfos:
-            jcr:primaryType: hippotaxonomy:categoryinfos
-            /en:
-              jcr:primaryType: hippotaxonomy:categoryinfo
-              hippotaxonomy:name: Featured
       /outlander:
         jcr:primaryType: hippotaxonomy:category
         hippotaxonomy:key: outlander

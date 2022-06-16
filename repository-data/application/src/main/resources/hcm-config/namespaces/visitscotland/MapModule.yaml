@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 8e63f0de-c4ff-4705-8727-4209307a17ab
+          jcr:uuid: 12407e28-048b-4320-a0f5-648a891f1941
           hipposysedit:node: true
           hipposysedit:supertype: ['hippotranslation:translated', 'hippotaxonomy:classifiable',
             'visitscotland:basedocument', 'hippostd:relaxed']
@@ -63,7 +63,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable', 'hippotaxonomy:classifiable']
           visitscotland:title: ''
           visitscotland:tabTitle: ''
-          jcr:uuid: 983764ea-5fde-4abb-a1ea-8e3e15165a58
+          jcr:uuid: 7ce99a2c-8208-4ea0-8906-1ebed163cb9d
           hippostdpubwf:lastModificationDate: 2022-06-10T13:36:38.111+01:00
           hippostdpubwf:creationDate: 2022-06-10T13:36:38.111+01:00
       /editor:templates:
@@ -132,6 +132,7 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              maxitems: 1
           /classifiable:
             jcr:primaryType: frontend:plugin
             essentials-taxonomy-name: Visitsctoland-categories
