@@ -289,11 +289,12 @@
       jcr:mixinTypes: ['hippostd:publishableSummary', 'mix:referenceable']
       jcr:uuid: 6270c674-cc98-4416-843b-31ebcee006c3
       hippo:availability: []
+      hippostd:holder: admin
       hippostd:retainable: false
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2022-06-10T13:52:12.043+01:00
-      hippostdpubwf:lastModificationDate: 2022-06-10T15:18:01.572+01:00
+      hippostdpubwf:lastModificationDate: 2022-06-16T08:31:27.030+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotaxonomy:locales: [en, fr, de, es, it, nl]
       /destinations:
@@ -342,14 +343,6 @@
             /en:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Regions
-        /featured:
-          jcr:primaryType: hippotaxonomy:category
-          hippotaxonomy:key: featured
-          /hippotaxonomy:categoryinfos:
-            jcr:primaryType: hippotaxonomy:categoryinfos
-            /en:
-              jcr:primaryType: hippotaxonomy:categoryinfo
-              hippotaxonomy:name: Featured
       /outlander:
         jcr:primaryType: hippotaxonomy:category
         hippotaxonomy:key: outlander

@@ -40,7 +40,7 @@
             jcr:uuid: 532d17b0-c156-4af6-8590-29e73f9673ac
             /Stop 1a (FR):
               jcr:primaryType: visitscotland:Stop
-              jcr:mixinTypes: ['mix:versionable']
+              jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:versionable']
               jcr:uuid: 9f337af8-0ba9-4d25-984b-0349a9903597
               hippo:availability: [preview]
               hippostd:state: unpublished
@@ -75,7 +75,7 @@
             jcr:uuid: 13dcaec5-ed78-407b-a8f5-a0777cbc91ac
             /Stop 1b (FR):
               jcr:primaryType: visitscotland:Stop
-              jcr:mixinTypes: ['mix:versionable']
+              jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:versionable']
               jcr:uuid: b0c8c6fd-7586-463c-b40f-63c2407f0b01
               hippo:availability: [preview]
               hippostd:state: unpublished
@@ -110,7 +110,7 @@
             jcr:uuid: eaf2c32f-883e-406b-a566-2fde477e0146
             /Stop 2a (FR):
               jcr:primaryType: visitscotland:Stop
-              jcr:mixinTypes: ['mix:versionable']
+              jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:versionable']
               jcr:uuid: 08cf96a8-bc87-4763-a36c-ccc8e68b41f4
               hippo:availability: [preview]
               hippostd:state: unpublished
@@ -145,7 +145,7 @@
             jcr:uuid: 6027270a-8df2-4b51-85ba-0d412e23cced
             /Stop 2b (FR):
               jcr:primaryType: visitscotland:Stop
-              jcr:mixinTypes: ['mix:versionable']
+              jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:versionable']
               jcr:uuid: 469fd832-e66f-4259-b04e-2990bb5b8917
               hippo:availability: [preview]
               hippostd:state: unpublished
@@ -288,7 +288,7 @@
             jcr:uuid: 80400e58-c1e1-4fca-b6a2-b64bb808473e
             /Stop 1a (FR):
               jcr:primaryType: visitscotland:Stop
-              jcr:mixinTypes: ['mix:versionable']
+              jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:versionable']
               jcr:uuid: e0bc6554-7f78-453d-a108-59bdb760fc3f
               hippo:availability: [preview]
               hippostd:state: unpublished
@@ -323,7 +323,7 @@
             jcr:uuid: 0e915a55-3408-48c3-9429-77016f5804d8
             /Stop 2a (FR):
               jcr:primaryType: visitscotland:Stop
-              jcr:mixinTypes: ['mix:versionable']
+              jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:versionable']
               jcr:uuid: 40ff8627-63b2-4c4e-80ea-db3e8542337c
               hippo:availability: [preview]
               hippostd:state: unpublished
@@ -412,7 +412,7 @@
             jcr:uuid: 6634c5bf-207e-456e-ad3e-37a4cdc6d97f
             /Stop 1a (FR):
               jcr:primaryType: visitscotland:Stop
-              jcr:mixinTypes: ['mix:versionable']
+              jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:versionable']
               jcr:uuid: 14d1f17f-463f-4757-9a39-d26fa612c8e0
               hippo:availability: [preview]
               hippostd:state: unpublished
@@ -447,7 +447,7 @@
             jcr:uuid: 6babf76a-3894-4a40-98d8-03a9c61a3daf
             /Stop 2a (FR):
               jcr:primaryType: visitscotland:Stop
-              jcr:mixinTypes: ['mix:versionable']
+              jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:versionable']
               jcr:uuid: d5f1cea2-85cd-4818-b2a6-389d4756d86c
               hippo:availability: [preview]
               hippostd:state: unpublished
@@ -482,7 +482,7 @@
             jcr:uuid: 36dcf6c3-3716-4b24-bbb7-a760adfa4e29
             /Stop 2b (FR):
               jcr:primaryType: visitscotland:Stop
-              jcr:mixinTypes: ['mix:versionable']
+              jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:versionable']
               jcr:uuid: e6752009-246a-4432-9c25-4e6c115fdaf6
               hippo:availability: [preview]
               hippostd:state: unpublished
@@ -518,7 +518,7 @@
             hippo:name: Stop 1b
             /stop-1b[1]:
               jcr:primaryType: visitscotland:Stop
-              jcr:mixinTypes: ['mix:referenceable']
+              jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:referenceable']
               jcr:uuid: cf915ea6-2327-4192-a01f-0a768b66ec52
               hippo:availability: []
               hippostd:state: draft
@@ -549,7 +549,8 @@
                 hippo:values: []
             /stop-1b[2]:
               jcr:primaryType: visitscotland:Stop
-              jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+              jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:referenceable',
+                'mix:versionable']
               jcr:uuid: fcaa4b03-53d4-45dd-ba9a-e4433b6c310a
               hippo:availability: [preview]
               hippostd:state: unpublished

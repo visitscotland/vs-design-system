@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 1ba7b3fc-1665-43ee-adea-5f2327c9594d
+          jcr:uuid: 8e63f0de-c4ff-4705-8727-4209307a17ab
           hipposysedit:node: true
           hipposysedit:supertype: ['hippotranslation:translated', 'hippotaxonomy:classifiable',
             'visitscotland:basedocument', 'hippostd:relaxed']
@@ -62,7 +62,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable', 'hippotaxonomy:classifiable']
           visitscotland:title: ''
           visitscotland:tabTitle: ''
-          jcr:uuid: 76bf1a8a-649f-46e7-99fd-ae8fd0a04dcf
+          jcr:uuid: 983764ea-5fde-4abb-a1ea-8e3e15165a58
           hippostdpubwf:lastModificationDate: 2022-06-10T13:36:38.111+01:00
           hippostdpubwf:creationDate: 2022-06-10T13:36:38.111+01:00
       /editor:templates:

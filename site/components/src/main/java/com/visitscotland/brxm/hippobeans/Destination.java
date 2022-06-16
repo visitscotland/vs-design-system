@@ -17,7 +17,7 @@ public class Destination extends Page {
         return new String[] { "visitscotland:Megalinks",
                 "visitscotland:Stackla", "visitscotland:TourismInformation",
                 "visitscotland:TravelInformation",
-                "visitscotland:CannedSearchTours", "visitscotland:CannedSearch" };
+                "visitscotland:CannedSearchTours", "visitscotland:CannedSearch" , "visitscotland:MapModule"};
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
