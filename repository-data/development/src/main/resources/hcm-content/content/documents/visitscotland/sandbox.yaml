@@ -10309,11 +10309,12 @@
           jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:referenceable']
           jcr:uuid: 76bab125-f189-4ab2-ae52-8d216ed96af5
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:retainable: false
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2022-06-16T09:41:58+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T16:56:49.027+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotaxonomy:keys: [cities]
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
@@ -10641,7 +10642,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 1073ee1d-3527-4a16-8486-3a339f829dfc
         hippo:name: edinburgh map
-        hippo:versionHistory: 364ffcba-05c0-4276-825f-da3673f6f6f1
+        hippo:versionHistory: e5dcccd1-8844-4e19-b4ef-97480acbdc00
         /edinburgh-map[1]:
           jcr:primaryType: visitscotland:MapModule
           jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:referenceable']
@@ -10649,18 +10650,16 @@
           hippo:availability: []
           hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2022-06-15T11:39:32.156+01:00
-          hippostdpubwf:lastModificationDate: 2022-06-16T09:39:39.089+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T16:31:55.810+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotaxonomy:keys: []
           hippotranslation:id: 3cc78bbf-6007-4623-80b3-19097c916111
           hippotranslation:locale: en
           visitscotland:tabTitle: Map filters
           visitscotland:title: Map of Edinburgh
-          /visitscotland:copy:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>adadas</p>
           /visitscotland:categories:
             jcr:primaryType: visitscotland:MapCategory
             jcr:mixinTypes: ['hippotaxonomy:classifiable']
@@ -10680,16 +10679,13 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2022-06-15T11:39:32.156+01:00
-          hippostdpubwf:lastModificationDate: 2022-06-16T09:39:38.971+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T16:29:39.512+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotaxonomy:keys: []
           hippotranslation:id: 3cc78bbf-6007-4623-80b3-19097c916111
           hippotranslation:locale: en
           visitscotland:tabTitle: Map filters
           visitscotland:title: Map of Edinburgh
-          /visitscotland:copy:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>adadas</p>
           /visitscotland:categories:
             jcr:primaryType: visitscotland:MapCategory
             jcr:mixinTypes: ['hippotaxonomy:classifiable']
@@ -10709,17 +10705,14 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2022-06-15T11:39:32.156+01:00
-          hippostdpubwf:lastModificationDate: 2022-06-16T09:39:38.971+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T16:29:39.512+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2022-06-16T09:39:41.905+01:00
+          hippostdpubwf:publicationDate: 2022-06-16T16:29:42.281+01:00
           hippotaxonomy:keys: []
           hippotranslation:id: 3cc78bbf-6007-4623-80b3-19097c916111
           hippotranslation:locale: en
           visitscotland:tabTitle: Map filters
           visitscotland:title: Map of Edinburgh
-          /visitscotland:copy:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>adadas</p>
           /visitscotland:categories:
             jcr:primaryType: visitscotland:MapCategory
             jcr:mixinTypes: ['hippotaxonomy:classifiable']
@@ -13845,11 +13838,12 @@
         hippo:availability: []
         hippostd:retainable: false
         hippostd:state: draft
+        hippostd:transferable: false
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2022-06-16T09:40:19.973+01:00
-        hippostdpubwf:lastModificationDate: 2022-06-16T12:51:16.757+01:00
+        hippostdpubwf:lastModificationDate: 2022-06-16T16:27:42.853+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippotaxonomy:keys: [destinations]
+        hippotaxonomy:keys: [cities, towns, islands, regions]
         hippotranslation:id: 5c1c7d42-9e51-44f3-8c7e-8c78fe05ca34
         hippotranslation:locale: en
         visitscotland:tabTitle: Explore places to go
@@ -13872,9 +13866,9 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2022-06-16T09:40:19.973+01:00
-        hippostdpubwf:lastModificationDate: 2022-06-16T12:57:26.790+01:00
+        hippostdpubwf:lastModificationDate: 2022-06-16T16:27:37.024+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippotaxonomy:keys: [destinations]
+        hippotaxonomy:keys: [cities, towns, islands, regions]
         hippotranslation:id: 5c1c7d42-9e51-44f3-8c7e-8c78fe05ca34
         hippotranslation:locale: en
         visitscotland:tabTitle: Explore places to go
@@ -13897,10 +13891,10 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2022-06-16T09:40:19.973+01:00
-        hippostdpubwf:lastModificationDate: 2022-06-16T12:57:26.790+01:00
+        hippostdpubwf:lastModificationDate: 2022-06-16T16:27:37.024+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2022-06-16T14:32:01.826+01:00
-        hippotaxonomy:keys: [destinations]
+        hippostdpubwf:publicationDate: 2022-06-16T16:27:41.093+01:00
+        hippotaxonomy:keys: [cities, towns, islands, regions]
         hippotranslation:id: 5c1c7d42-9e51-44f3-8c7e-8c78fe05ca34
         hippotranslation:locale: en
         visitscotland:tabTitle: Explore places to go

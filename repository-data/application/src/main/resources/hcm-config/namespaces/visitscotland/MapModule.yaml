@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 12407e28-048b-4320-a0f5-648a891f1941
+          jcr:uuid: 07c7cf3a-2d23-40bf-8c04-f3bab762c4e9
           hipposysedit:node: true
           hipposysedit:supertype: ['hippotranslation:translated', 'hippotaxonomy:classifiable',
             'visitscotland:basedocument', 'hippostd:relaxed']
@@ -63,7 +63,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable', 'hippotaxonomy:classifiable']
           visitscotland:title: ''
           visitscotland:tabTitle: ''
-          jcr:uuid: 7ce99a2c-8208-4ea0-8906-1ebed163cb9d
+          jcr:uuid: 25990a96-bb98-4497-a8d9-124eb574fe1c
           hippostdpubwf:lastModificationDate: 2022-06-10T13:36:38.111+01:00
           hippostdpubwf:creationDate: 2022-06-10T13:36:38.111+01:00
       /editor:templates:
@@ -115,7 +115,7 @@ definitions:
                 , removeButtons: ''PickImage,Youtube,Table,Bold,Underline,Strike,Subscript,Superscript''}'
           /tabTitle:
             jcr:primaryType: frontend:plugin
-            caption: Map tab title (H4)
+            caption: Tab Title (H4)
             field: tabTitle
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
@@ -124,12 +124,13 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /categories:
             jcr:primaryType: frontend:plugin
-            caption: Categories
+            caption: Add Tab
             compoundList: visitscotland:MapCategory
             contentPickerType: links
             field: categories
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
             wicket.id: ${cluster.id}.left.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1
@@ -142,4 +143,4 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               taxonomy.name: Visitsctoland-categories
-              caption: Categories
+              caption: Map Categories
