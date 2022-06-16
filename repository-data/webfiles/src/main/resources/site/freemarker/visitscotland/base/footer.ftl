@@ -13,9 +13,8 @@
 <#-- @ftlvariable name="menu" type="com.visitscotland.brxm.components.navigation.RootMenuItem" -->
 <#-- @ftlvariable name="item" type="com.visitscotland.brxm.components.navigation.MenuItem" -->
 </#compress>
-
-<#if menu??>
-    <vs-footer class="has-edit-button">
+<vs-footer class="has-edit-button">
+    <#if menu??>
         <template slot="accordion-items">
             <@footerAccordionItem footerMenuItems=menu.siteMenuItems />
         </template>
@@ -27,9 +26,7 @@
         <@hst.cmseditmenu menu=menu/>
 
         <@hst.include ref="utility"/>
+    </#if>
 
-        <@footerCopyright />
-    </vs-footer>
-<#elseif integration??>
-    ${log("The footer menu is not available")}
-</#if>
+    <@footerCopyright />
+</vs-footer>
