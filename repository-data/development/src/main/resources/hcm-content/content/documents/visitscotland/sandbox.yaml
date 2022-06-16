@@ -927,7 +927,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: e8202d3f-3d3e-43e2-8075-3cf9b212df05
         hippo:name: Crathes Castle
-        hippo:versionHistory: 00c17848-ee2b-4faf-873e-b5591e0e771c
+        hippo:versionHistory: fce8f3f6-e865-47ff-b5e0-b20ac72094ee
         /crathes-castle[1]:
           jcr:primaryType: visitscotland:Stop
           jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:referenceable']
@@ -937,9 +937,9 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:55:05.069Z
-          hippostdpubwf:lastModificationDate: 2022-06-16T09:41:49.671+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T15:49:34.762+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotaxonomy:keys: [castle]
+          hippotaxonomy:keys: []
           hippotranslation:id: 2d502027-288c-49ee-ac6b-53c4c7c7182c
           hippotranslation:locale: en
           visitscotland:subtitle: ''
@@ -977,9 +977,9 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:55:05.069Z
-          hippostdpubwf:lastModificationDate: 2022-06-16T09:41:49.567+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T15:49:34.690+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotaxonomy:keys: [castle]
+          hippotaxonomy:keys: []
           hippotranslation:id: 2d502027-288c-49ee-ac6b-53c4c7c7182c
           hippotranslation:locale: en
           visitscotland:subtitle: ''
@@ -1017,10 +1017,10 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:55:05.069Z
-          hippostdpubwf:lastModificationDate: 2022-06-16T09:41:49.567+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T15:49:34.690+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2022-06-16T09:41:53.635+01:00
-          hippotaxonomy:keys: [castle]
+          hippostdpubwf:publicationDate: 2022-06-16T15:49:38.049+01:00
+          hippotaxonomy:keys: []
           hippotranslation:id: 2d502027-288c-49ee-ac6b-53c4c7c7182c
           hippotranslation:locale: en
           visitscotland:subtitle: ''
@@ -1668,7 +1668,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: f7501bf0-04e4-40bc-8f39-8234d43ea690
         hippo:name: St Magnus Cathedral
-        hippo:versionHistory: d6a50a91-e262-4d75-b2fa-15d1fbaa1d7a
+        hippo:versionHistory: 0205ca0c-c425-409f-a4f6-a1e6d0c03f43
         /st-magnus-cathedral[1]:
           jcr:primaryType: visitscotland:Stop
           jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:referenceable']
@@ -1678,9 +1678,9 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T10:04:03.923Z
-          hippostdpubwf:lastModificationDate: 2022-06-16T09:46:12.656+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T15:48:27.927+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotaxonomy:keys: [church]
+          hippotaxonomy:keys: []
           hippotranslation:id: 852bde44-c29c-4603-8fe9-3c27a487eb6a
           hippotranslation:locale: en
           visitscotland:subtitle: Kirkwall
@@ -1736,9 +1736,9 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T10:04:03.923Z
-          hippostdpubwf:lastModificationDate: 2022-06-16T09:46:12.575+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T15:48:33.767+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotaxonomy:keys: [church]
+          hippotaxonomy:keys: []
           hippotranslation:id: 852bde44-c29c-4603-8fe9-3c27a487eb6a
           hippotranslation:locale: en
           visitscotland:subtitle: Kirkwall
@@ -1794,10 +1794,10 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T10:04:03.923Z
-          hippostdpubwf:lastModificationDate: 2022-06-16T09:46:12.575+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T15:48:33.767+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2022-06-16T09:46:14.985+01:00
-          hippotaxonomy:keys: [church]
+          hippostdpubwf:publicationDate: 2022-06-16T15:48:37.448+01:00
+          hippotaxonomy:keys: []
           hippotranslation:id: 852bde44-c29c-4603-8fe9-3c27a487eb6a
           hippotranslation:locale: en
           visitscotland:subtitle: Kirkwall

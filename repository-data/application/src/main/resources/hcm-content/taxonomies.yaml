@@ -14,9 +14,9 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2022-06-10T13:52:12.043+01:00
-      hippostdpubwf:lastModificationDate: 2022-06-16T08:48:35.908+01:00
+      hippostdpubwf:lastModificationDate: 2022-06-16T15:51:20.052+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2022-06-16T12:39:11.997+01:00
+      hippostdpubwf:publicationDate: 2022-06-16T15:51:24.475+01:00
       hippotaxonomy:locales: [en, fr, de, es, it, nl]
       /destinations:
         jcr:primaryType: hippotaxonomy:category
@@ -27,6 +27,18 @@
             jcr:primaryType: hippotaxonomy:categoryinfo
             hippotaxonomy:name: Destinations
           /es:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
+          /nl:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
+          /fr:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
+          /de:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
+          /it:
             jcr:primaryType: hippotaxonomy:categoryinfo
             hippotaxonomy:name: destinations
         /ciudades:
@@ -40,6 +52,18 @@
             /es:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Ciudades
+            /fr:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
+            /de:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
+            /it:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
+            /nl:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
         /towns:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: towns
@@ -48,6 +72,21 @@
             /en:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Towns
+            /nl:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /fr:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /de:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /es:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /it:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
         /islands:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: islands
@@ -56,6 +95,18 @@
             /en:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Islands
+            /nl:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
+            /fr:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
+            /de:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
+            /es:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
         /regions:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: regions
@@ -81,22 +132,6 @@
             /en:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Categories
-          /castle:
-            jcr:primaryType: hippotaxonomy:category
-            hippotaxonomy:key: castle
-            /hippotaxonomy:categoryinfos:
-              jcr:primaryType: hippotaxonomy:categoryinfos
-              /en:
-                jcr:primaryType: hippotaxonomy:categoryinfo
-                hippotaxonomy:name: Castle
-          /church:
-            jcr:primaryType: hippotaxonomy:category
-            hippotaxonomy:key: church
-            /hippotaxonomy:categoryinfos:
-              jcr:primaryType: hippotaxonomy:categoryinfos
-              /en:
-                jcr:primaryType: hippotaxonomy:categoryinfo
-                hippotaxonomy:name: Church
         /seasons:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: seasons
@@ -121,22 +156,6 @@
               /en:
                 jcr:primaryType: hippotaxonomy:categoryinfo
                 hippotaxonomy:name: Season2
-      /whisky:
-        jcr:primaryType: hippotaxonomy:category
-        hippotaxonomy:key: whisky
-        /hippotaxonomy:categoryinfos:
-          jcr:primaryType: hippotaxonomy:categoryinfos
-          /en:
-            jcr:primaryType: hippotaxonomy:categoryinfo
-            hippotaxonomy:name: Whisky
-        /whisky-distillery:
-          jcr:primaryType: hippotaxonomy:category
-          hippotaxonomy:key: whisky-distillery
-          /hippotaxonomy:categoryinfos:
-            jcr:primaryType: hippotaxonomy:categoryinfos
-            /en:
-              jcr:primaryType: hippotaxonomy:categoryinfo
-              hippotaxonomy:name: Whisky-distillery
     /Visitsctoland-categories[2]:
       jcr:primaryType: hippotaxonomy:taxonomy
       jcr:mixinTypes: ['hippostd:publishableSummary', 'mix:referenceable', 'mix:versionable']
@@ -146,7 +165,7 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2022-06-10T13:52:12.043+01:00
-      hippostdpubwf:lastModificationDate: 2022-06-16T08:48:35.908+01:00
+      hippostdpubwf:lastModificationDate: 2022-06-16T15:51:20.052+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotaxonomy:locales: [en, fr, de, es, it, nl]
       /destinations:
@@ -160,6 +179,18 @@
           /es:
             jcr:primaryType: hippotaxonomy:categoryinfo
             hippotaxonomy:name: destinations
+          /nl:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
+          /fr:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
+          /de:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
+          /it:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
         /ciudades:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: cities
@@ -171,6 +202,18 @@
             /es:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Ciudades
+            /fr:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
+            /de:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
+            /it:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
+            /nl:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
         /towns:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: towns
@@ -179,6 +222,21 @@
             /en:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Towns
+            /nl:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /fr:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /de:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /es:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /it:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
         /islands:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: islands
@@ -187,6 +245,18 @@
             /en:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Islands
+            /nl:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
+            /fr:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
+            /de:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
+            /es:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
         /regions:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: regions
@@ -212,22 +282,6 @@
             /en:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Categories
-          /castle:
-            jcr:primaryType: hippotaxonomy:category
-            hippotaxonomy:key: castle
-            /hippotaxonomy:categoryinfos:
-              jcr:primaryType: hippotaxonomy:categoryinfos
-              /en:
-                jcr:primaryType: hippotaxonomy:categoryinfo
-                hippotaxonomy:name: Castle
-          /church:
-            jcr:primaryType: hippotaxonomy:category
-            hippotaxonomy:key: church
-            /hippotaxonomy:categoryinfos:
-              jcr:primaryType: hippotaxonomy:categoryinfos
-              /en:
-                jcr:primaryType: hippotaxonomy:categoryinfo
-                hippotaxonomy:name: Church
         /seasons:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: seasons
@@ -252,22 +306,6 @@
               /en:
                 jcr:primaryType: hippotaxonomy:categoryinfo
                 hippotaxonomy:name: Season2
-      /whisky:
-        jcr:primaryType: hippotaxonomy:category
-        hippotaxonomy:key: whisky
-        /hippotaxonomy:categoryinfos:
-          jcr:primaryType: hippotaxonomy:categoryinfos
-          /en:
-            jcr:primaryType: hippotaxonomy:categoryinfo
-            hippotaxonomy:name: Whisky
-        /whisky-distillery:
-          jcr:primaryType: hippotaxonomy:category
-          hippotaxonomy:key: whisky-distillery
-          /hippotaxonomy:categoryinfos:
-            jcr:primaryType: hippotaxonomy:categoryinfos
-            /en:
-              jcr:primaryType: hippotaxonomy:categoryinfo
-              hippotaxonomy:name: Whisky-distillery
     /Visitsctoland-categories[3]:
       jcr:primaryType: hippotaxonomy:taxonomy
       jcr:mixinTypes: ['hippostd:publishableSummary', 'mix:referenceable']
@@ -277,7 +315,7 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2022-06-10T13:52:12.043+01:00
-      hippostdpubwf:lastModificationDate: 2022-06-16T08:31:27.030+01:00
+      hippostdpubwf:lastModificationDate: 2022-06-16T15:51:07.511+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotaxonomy:locales: [en, fr, de, es, it, nl]
       /destinations:
@@ -291,6 +329,18 @@
           /es:
             jcr:primaryType: hippotaxonomy:categoryinfo
             hippotaxonomy:name: destinations
+          /nl:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
+          /fr:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
+          /de:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
+          /it:
+            jcr:primaryType: hippotaxonomy:categoryinfo
+            hippotaxonomy:name: destinations
         /ciudades:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: cities
@@ -302,6 +352,18 @@
             /es:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Ciudades
+            /fr:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
+            /de:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
+            /it:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
+            /nl:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: Cities
         /towns:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: towns
@@ -310,6 +372,21 @@
             /en:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Towns
+            /nl:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /fr:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /de:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /es:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
+            /it:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: towns
         /islands:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: islands
@@ -318,6 +395,18 @@
             /en:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Islands
+            /nl:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
+            /fr:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
+            /de:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
+            /es:
+              jcr:primaryType: hippotaxonomy:categoryinfo
+              hippotaxonomy:name: islands
         /regions:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: regions
@@ -343,22 +432,6 @@
             /en:
               jcr:primaryType: hippotaxonomy:categoryinfo
               hippotaxonomy:name: Categories
-          /castle:
-            jcr:primaryType: hippotaxonomy:category
-            hippotaxonomy:key: castle
-            /hippotaxonomy:categoryinfos:
-              jcr:primaryType: hippotaxonomy:categoryinfos
-              /en:
-                jcr:primaryType: hippotaxonomy:categoryinfo
-                hippotaxonomy:name: Castle
-          /church:
-            jcr:primaryType: hippotaxonomy:category
-            hippotaxonomy:key: church
-            /hippotaxonomy:categoryinfos:
-              jcr:primaryType: hippotaxonomy:categoryinfos
-              /en:
-                jcr:primaryType: hippotaxonomy:categoryinfo
-                hippotaxonomy:name: Church
         /seasons:
           jcr:primaryType: hippotaxonomy:category
           hippotaxonomy:key: seasons
@@ -383,19 +456,3 @@
               /en:
                 jcr:primaryType: hippotaxonomy:categoryinfo
                 hippotaxonomy:name: Season2
-      /whisky:
-        jcr:primaryType: hippotaxonomy:category
-        hippotaxonomy:key: whisky
-        /hippotaxonomy:categoryinfos:
-          jcr:primaryType: hippotaxonomy:categoryinfos
-          /en:
-            jcr:primaryType: hippotaxonomy:categoryinfo
-            hippotaxonomy:name: Whisky
-        /whisky-distillery:
-          jcr:primaryType: hippotaxonomy:category
-          hippotaxonomy:key: whisky-distillery
-          /hippotaxonomy:categoryinfos:
-            jcr:primaryType: hippotaxonomy:categoryinfos
-            /en:
-              jcr:primaryType: hippotaxonomy:categoryinfo
-              hippotaxonomy:name: Whisky-distillery

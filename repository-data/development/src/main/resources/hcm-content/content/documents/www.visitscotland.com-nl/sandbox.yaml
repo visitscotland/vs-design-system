@@ -404,9 +404,9 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2022-06-16T15:12:26.227+01:00
-          hippostdpubwf:lastModificationDate: 2022-06-16T15:12:26.179+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T15:49:51.514+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotaxonomy:keys: [castle]
+          hippotaxonomy:keys: []
           hippotranslation:id: 2d502027-288c-49ee-ac6b-53c4c7c7182c
           hippotranslation:locale: nl
           visitscotland:diff: ''
@@ -446,10 +446,52 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2022-06-16T15:12:26.227+01:00
-          hippostdpubwf:lastModificationDate: 2022-06-16T15:12:26.179+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T15:49:51.514+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2022-06-16T15:28:18.007+01:00
-          hippotaxonomy:keys: [castle]
+          hippostdpubwf:publicationDate: 2022-06-16T15:49:54.587+01:00
+          hippotaxonomy:keys: []
+          hippotranslation:id: 2d502027-288c-49ee-ac6b-53c4c7c7182c
+          hippotranslation:locale: nl
+          visitscotland:diff: ''
+          visitscotland:subtitle: ''
+          visitscotland:tipsTitle: ''
+          visitscotland:title: Crathes Castle
+          visitscotland:translation: ''
+          visitscotland:translationFlag: true
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Pick up the trail again and head on a five minute
+              drive to the spooky Crathes Castle, a favourite place of Queen Victoria
+              and one where she often stayed. Explore the wonderland grounds and marvel
+              at the ornate gargoyles and fairytale turrets. On your tour of the castle
+              you'll learn about the castle's intriguing history along with the story
+              of its resident ghosts, the Green Lady and her infant child. It is even
+              said that Queen Victoria witnessed the ghostly pair herself.</p>
+          /visitscotland:tips:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '254191'
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 8146bf76-128d-410d-ab6d-c68e3fe389e1
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+        /crathes-castle[3]:
+          jcr:primaryType: visitscotland:Stop
+          jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:referenceable']
+          jcr:uuid: 93b0de82-95ee-46d2-ba86-b759651257b0
+          hippo:availability: []
+          hippostd:retainable: false
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2022-06-16T15:12:26.227+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-16T15:49:47.736+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotaxonomy:keys: []
           hippotranslation:id: 2d502027-288c-49ee-ac6b-53c4c7c7182c
           hippotranslation:locale: nl
           visitscotland:diff: ''
