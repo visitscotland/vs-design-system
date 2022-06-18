@@ -328,6 +328,6 @@
 }
 
 // fix spacing at top for old floating header
-html body > #wrapper {
+html body main > #wrapper {
     padding-top: 0 !important;
 }
