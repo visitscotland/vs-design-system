@@ -8,7 +8,7 @@ Include a YouTube `video-id` so the component knows which video to load.
 
  ```jsx
     <VsVideo 
-        video-id="c05sg3G4oA4" 
+        video-id="h9bQwcndGfo" 
     />
   ```
 
@@ -18,7 +18,7 @@ event which can be used to play or pause the video.
 
   ```jsx
     <VsVideo
-        video-id="c05sg3G4oA4"
+        videoId="c05sg3G4oA4"
         class="mb-6"
     />
 
