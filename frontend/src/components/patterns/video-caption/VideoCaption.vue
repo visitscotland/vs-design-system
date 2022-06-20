@@ -1,8 +1,7 @@
 <template>
-    <div>
+    <div data-test="video-caption">
         <div
             class="vs-video-caption"
-            data-test="video-caption"
             v-if="videoLoaded && requiredCookiesExist"
             key="video-caption"
         >

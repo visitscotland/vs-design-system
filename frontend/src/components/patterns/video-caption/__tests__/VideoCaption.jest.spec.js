@@ -34,12 +34,17 @@ const factoryShallowMount = (propsData) => shallowMount(VsVideoCaption, {
                 this.videoExists = val;
             },
         },
+        requiredCookiesExist() {
+            return true;
+        },
     },
 });
 
 describe('VsVideoCaption', () => {
-    it('should render a component with the data-test attribute `video-caption`', () => {
+    it('should render a component with the data-test attribute `video-caption`', async() => {
         const wrapper = factoryShallowMount();
+        wrapper.vm.requiredCookiesExist = true;
+        await wrapper.vm.$nextTick();
 
         expect(wrapper.attributes('data-test')).toBe('video-caption');
     });
