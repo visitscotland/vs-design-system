@@ -131,6 +131,14 @@ export default {
             playerRef: null,
         };
     },
+    computed: {
+        /**
+         * Return the player instance
+         */
+        player() {
+            return this.$refs.youtube.player;
+        },
+    },
     mounted() {
         this.getPlayerDetails();
 
@@ -238,6 +246,7 @@ export default {
                 id: this.videoId,
                 durationMsg: this.duration.roundedMinutes,
                 duration: (this.duration.minutes * 60) + this.duration.seconds,
+                fullDuration: this.duration,
             });
         },
     },
