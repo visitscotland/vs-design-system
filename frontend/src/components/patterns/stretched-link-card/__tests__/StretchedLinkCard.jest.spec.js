@@ -62,8 +62,6 @@ describe('VsStretchedLinkCard', () => {
                 },
             });
 
-            await wrapper.vm.$nextTick();
-
             await expect(wrapper.find('[data-test="vs-stretched-link-card__video-button"]').exists()).toBe(true);
         });
 
@@ -91,13 +89,8 @@ describe('VsStretchedLinkCard', () => {
                             },
                         };
                     },
-                    requiredCookiesExist() {
-                        return true;
-                    },
                 },
             });
-
-            await wrapper.vm.$nextTick();
 
             await expect(wrapper.html()).toContain(videoBtnText);
         });
