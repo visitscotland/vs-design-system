@@ -24,6 +24,9 @@ const factoryShallowMount = (propsData, compData) => shallowMount(VsVideo, {
                 },
             };
         },
+        requiredCookiesExist() {
+            return true;
+        },
         ...compData,
     },
 });
@@ -62,9 +65,7 @@ describe('VsVideo', () => {
                 },
             });
 
-            await wrapper.setData({
-                showDuration: true,
-            });
+            await wrapper.vm.$nextTick();
 
             expect(wrapper.vm.duration.roundedMinutes).toContain('1');
         });
@@ -81,9 +82,7 @@ describe('VsVideo', () => {
                 },
             });
 
-            await wrapper.setData({
-                showDuration: true,
-            });
+            await wrapper.vm.$nextTick();
 
             expect(wrapper.vm.duration.roundedMinutes).toContain('1');
         });
@@ -100,9 +99,7 @@ describe('VsVideo', () => {
                 },
             });
 
-            await wrapper.setData({
-                showDuration: true,
-            });
+            await wrapper.vm.$nextTick();
 
             expect(wrapper.vm.duration.roundedMinutes).toContain('2');
         });
@@ -119,9 +116,7 @@ describe('VsVideo', () => {
                 },
             });
 
-            await wrapper.setData({
-                showDuration: true,
-            });
+            await wrapper.vm.$nextTick();
 
             expect(wrapper.vm.duration.roundedMinutes).toBe(singleMinuteDescriptor.replace('%s', '1'));
         });
@@ -138,9 +133,7 @@ describe('VsVideo', () => {
                 },
             });
 
-            await wrapper.setData({
-                showDuration: true,
-            });
+            await wrapper.vm.$nextTick();
 
             expect(wrapper.vm.duration.roundedMinutes).toBe(pluralMinuteDescriptor.replace('%s', '4'));
         });
@@ -174,6 +167,8 @@ describe('VsVideo', () => {
         it('should return the formatted time in minutes and seconds', async() => {
             const wrapper = factoryShallowMount();
             await wrapper.vm.player.getDuration();
+
+            await wrapper.vm.$nextTick();
 
             expect(wrapper.vm.duration.minutes).toBe(3);
             expect(wrapper.vm.duration.seconds).toBe(30);
