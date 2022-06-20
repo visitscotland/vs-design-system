@@ -183,8 +183,8 @@ export default {
              * Upon promise resolution, if the video ID returns
              * a YouTube video, process the time into the desired format.
              */
-            if (this.playerRef) {
-                this.playerRef.getDuration().then((response) => {
+            if (this.player) {
+                this.player.getDuration().then((response) => {
                     this.formatTime(response);
                     this.storeVideoDetails();
                 });
