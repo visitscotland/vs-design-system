@@ -29,7 +29,7 @@
             />
 
             <VsWarning
-                v-if="videoId && !jsDisabled && !requiredCookiesExist"
+                v-if="videoId && !jsDisabled && !requiredCookiesExist && cookiesSetStatus"
                 :warning-message="noCookiesMessage"
                 :warning-link="noCookiesLink"
             />
