@@ -18,7 +18,7 @@ event which can be used to play or pause the video.
 
   ```jsx
     <VsVideo
-        videoId="c05sg3G4oA4"
+        video-id="c05sg3G4oA4"
         class="mb-6"
     />
 
