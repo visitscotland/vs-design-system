@@ -136,7 +136,11 @@ export default {
          * Return the player instance
          */
         player() {
-            return this.$refs.youtube.player;
+            if (typeof this.$refs.youtube !== 'undefined') {
+                return this.$refs.youtube.player;
+            }
+
+            return null;
         },
     },
     mounted() {
