@@ -211,7 +211,7 @@ export default {
             .vs-image-with-caption {
                 width: 66%;
                 align-self: flex-end;
-                margin: 0 0 -200px;
+                margin: 0 0 calc(-25% - 2rem);
             }
 
             &--alternate {
