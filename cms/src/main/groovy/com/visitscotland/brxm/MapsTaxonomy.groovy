@@ -39,8 +39,7 @@ class MapsTaxonomy extends BaseNodeUpdateVisitor {
             Node n = it.next()
             log.debug n.getPath()
 
-            n.setProperty("hippotaxonomy:classifiable", true)
-            n.setProperty("hippotaxonomy:keys",cities)
+            n.addMixin("hippotaxonomy:classifiable")
 
         }
     }

@@ -24,11 +24,11 @@ definitions:
         \ {\r\n        NodeIterator it = query(session,\"//content/documents//element(*,\
         \ visitscotland:${targetDocument})\")\r\n\r\n        while (it.hasNext()){\r\
         \n            Node n = it.next()\r\n            log.debug n.getPath()\r\n\r\
-        \n            n.setProperty(\"hippotaxonomy:classifiable\", true)\r\n\r\n\
-        \        }\r\n    }\r\n\r\n    /**\r\n     * Executes a query and log when\
-        \ no results are returned\r\n     * @param session\r\n     * @param queryim\r\
-        \n     * @return\r\n     */\r\n    NodeIterator query(def session, def query){\r\
-        \n        QueryResult results = ((HippoWorkspace) session.getWorkspace()).getQueryManager().createQuery(query,\
+        \n            n.addMixin(\"hippotaxonomy:classifiable\")\r\n\r\n        }\r\
+        \n    }\r\n\r\n    /**\r\n     * Executes a query and log when no results\
+        \ are returned\r\n     * @param session\r\n     * @param query\r\n     * @return\r\
+        \n     */\r\n    NodeIterator query(def session, def query){\r\n        QueryResult\
+        \ results = ((HippoWorkspace) session.getWorkspace()).getQueryManager().createQuery(query,\
         \ Query.XPATH).execute();\r\n        if (!results.getNodes().hasNext()){\r\
         \n            log.warn \"No query results for ${query}\"\r\n        } else\
         \ {\r\n            // Note that the method size. Moves the pointer for the\
