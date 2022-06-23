@@ -1,6 +1,6 @@
 definitions:
   config:
-    /hippo:configuration/hippo:update/hippo:registry/v0.0.1 - Maps Taxonomies:
+    /hippo:configuration/hippo:update/hippo:registry/v1.0.6 - Maps Taxonomies:
       jcr:primaryType: hipposys:updaterinfo
       hipposys:batchsize: 10
       hipposys:description: ''

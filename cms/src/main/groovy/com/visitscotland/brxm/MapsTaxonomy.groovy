@@ -19,7 +19,7 @@ import javax.jcr.query.QueryResult
  *
  * @author jhurtado
  * @since June 2022
- * @version 0.0.1
+ * @version 1.0.6
  */
 class MapsTaxonomy extends BaseNodeUpdateVisitor {
 
