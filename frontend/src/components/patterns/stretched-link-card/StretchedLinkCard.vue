@@ -130,10 +130,6 @@ import VsButton from '@components/elements/button/Button';
 import VsWarning from '@components/patterns/warning/Warning';
 import jsIsDisabled from '@/utils/js-is-disabled';
 import videoStore from '../../../stores/video.store';
-import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
-import requiredCookiesData from '../../../utils/required-cookies-data';
-
-const cookieValues = requiredCookiesData.youtube;
 
 /**
  * The Stretched Link Card is a block that stretches its nested link across its whole area
@@ -152,9 +148,6 @@ export default {
         VsButton,
         VsWarning,
     },
-    mixins: [
-        verifyCookiesMixin,
-    ],
     props: {
         /**
         * The link that the component will use
@@ -232,7 +225,6 @@ export default {
     data() {
         return {
             jsDisabled: true,
-            requiredCookies: cookieValues,
         };
     },
     computed: {
@@ -290,7 +282,7 @@ export default {
     },
     methods: {
         emitShowModal() {
-            if (!this.videoId || !this.requiredCookiesExist) {
+            if (!this.videoId) {
                 return;
             }
 
