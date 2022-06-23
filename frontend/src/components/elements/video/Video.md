@@ -8,7 +8,7 @@ Include a YouTube `video-id` so the component knows which video to load.
 
  ```jsx
     <VsVideo 
-        video-id="h9bQwcndGfo" 
+        video-id="c05sg3G4oA4" 
     />
   ```
 
