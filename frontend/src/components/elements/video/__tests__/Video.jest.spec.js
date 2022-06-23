@@ -24,9 +24,6 @@ const factoryShallowMount = (propsData, compData) => shallowMount(VsVideo, {
                 },
             };
         },
-        requiredCookiesExist() {
-            return true;
-        },
         ...compData,
     },
 });
@@ -59,7 +56,9 @@ describe('VsVideo', () => {
             // a 25 second video, which should round to 1 minute
             wrapper.vm.formatTime(25);
 
-            await wrapper.vm.$nextTick();
+            await wrapper.setData({
+                showDuration: true,
+            });
 
             expect(wrapper.vm.duration.roundedMinutes).toContain('1');
         });
@@ -70,7 +69,9 @@ describe('VsVideo', () => {
             // a 1 minute 20 second video, which should round down to 1 minute
             wrapper.vm.formatTime(80);
 
-            await wrapper.vm.$nextTick();
+            await wrapper.setData({
+                showDuration: true,
+            });
 
             expect(wrapper.vm.duration.roundedMinutes).toContain('1');
         });
@@ -81,7 +82,9 @@ describe('VsVideo', () => {
 
             wrapper.vm.formatTime(90);
 
-            await wrapper.vm.$nextTick();
+            await wrapper.setData({
+                showDuration: true,
+            });
 
             expect(wrapper.vm.duration.roundedMinutes).toContain('2');
         });
@@ -92,7 +95,9 @@ describe('VsVideo', () => {
 
             wrapper.vm.formatTime(80);
 
-            await wrapper.vm.$nextTick();
+            await wrapper.setData({
+                showDuration: true,
+            });
 
             expect(wrapper.vm.duration.roundedMinutes).toBe(singleMinuteDescriptor.replace('%s', '1'));
         });
@@ -103,7 +108,9 @@ describe('VsVideo', () => {
             // a 3 minute 40 second video, which should round up to 4 minute
             wrapper.vm.formatTime(220);
 
-            await wrapper.vm.$nextTick();
+            await wrapper.setData({
+                showDuration: true,
+            });
 
             expect(wrapper.vm.duration.roundedMinutes).toBe(pluralMinuteDescriptor.replace('%s', '4'));
         });
@@ -137,8 +144,6 @@ describe('VsVideo', () => {
         it('should return the formatted time in minutes and seconds', async() => {
             const wrapper = factoryShallowMount();
             wrapper.vm.formatTime(210);
-
-            await wrapper.vm.$nextTick();
 
             expect(wrapper.vm.duration.minutes).toBe(3);
             expect(wrapper.vm.duration.seconds).toBe(30);
