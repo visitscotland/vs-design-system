@@ -3,9 +3,14 @@
         class="vs-megalink-single-image"
         :class="singleImageClasses"
         data-test="megalink-single-image"
+        :style="cssVars"
     >
-        <!-- @slot Slot for main image -->
-        <slot name="vsSingleImage" />
+        <div class="vs-megalink-single-image__image-container">
+            <!-- @slot Slot for main image -->
+            <slot
+                name="vsSingleImage"
+            />
+        </div>
 
         <VsRow>
             <VsCol
@@ -109,6 +114,11 @@ export default {
             validator: (value) => value.match(/(light|dark)/),
         },
     },
+    data() {
+        return {
+            offsetDistance: '200px',
+        };
+    },
     computed: {
         singleImageClasses() {
             return [
@@ -116,12 +126,33 @@ export default {
                 this.alternate ? 'vs-megalink-single-image--alternate' : '',
             ];
         },
+        cssVars() {
+            return {
+                // How much negative vertical margin to add to the image with
+                // caption. Defaults to 200px.
+                '--offset-distance': `-${this.offsetDistance}`,
+            };
+        },
+    },
+    // Once the image has loaded (accounting for lazy load), calculate its aspect
+    // ratio and what percent of the element width to offset the caption by to
+    // place it half way up the image
+    mounted() {
+        const imgWithCaption = this.$el.querySelector('.vs-image-with-caption');
+        const img = imgWithCaption.querySelector('img');
+
+        img.addEventListener('load', () => {
+            const offsetPercentToMiddle = img.clientHeight / 2 / img.clientWidth;
+            this.offsetDistance = `${offsetPercentToMiddle * 100}%`;
+        });
     },
 };
 </script>
 
 <style lang="scss">
     .vs-megalink-single-image {
+        --offset-distance: -200px;
+
         min-width: 100%;
 
         .vs-megalink-single-image__title {
@@ -208,14 +239,18 @@ export default {
                 background: $color-white;
             }
 
-            .vs-image-with-caption {
+            .vs-megalink-single-image__image-container {
                 width: 66%;
                 align-self: flex-end;
-                margin: 0 0 calc(-25% - 2rem);
+            }
+
+            .vs-image-with-caption {
+                width: 100%;
+                margin: 0 0 calc(var(--offset-distance) - 4rem);
             }
 
             &--alternate {
-                .vs-image-with-caption {
+                .vs-megalink-single-image__image-container {
                     align-self: flex-start;
                 }
 
