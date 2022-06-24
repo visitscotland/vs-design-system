@@ -5,7 +5,10 @@
         @click="emitShowModal"
         @keypress="emitShowModal"
     >
-        <div class="vs-stretched-link-card__img-container">
+        <div
+            class="vs-stretched-link-card__img-container"
+            :class="warningClass"
+        >
             <template
                 v-if="imgSrc"
             >
@@ -31,7 +34,7 @@
             <VsWarning
                 v-if="videoId && !jsDisabled && cookiesMissing"
                 :warning-message="noCookiesMessage"
-                :warning-link="noCookiesLink"
+                :warning-link-text="noCookiesLinkText"
             />
         </div>
 
@@ -275,6 +278,14 @@ export default {
         disableVideo() {
             return (this.cookiesMissing || this.jsDisabled);
         },
+        // Calculates if warning is showing and gives class for appropriate styles
+        warningClass() {
+            if (this.videoId && (this.jsDisabled || this.cookiesMissing)) {
+                return 'vs-stretched-link-card__img-container--warning';
+            }
+
+            return '';
+        },
     },
     mounted() {
         // Checks whether js is disabled, to display an appropriate warning to the user
@@ -378,6 +389,10 @@ export default {
             align-self: flex-start;
             flex-shrink: 0; // IE11 fix, prevents image vertical stretching
             position: relative;
+
+            &--warning {
+                background-color: rgba($color-black, 0.8);
+            }
         }
 
         .vs-stretched-link-card__img {
