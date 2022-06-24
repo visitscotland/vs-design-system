@@ -7052,7 +7052,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 806448db-18e1-4a25-81c3-777a76f530d2
         hippo:name: Edinburgh
-        hippo:versionHistory: b67bbad5-b574-41bc-82dd-c6134c461380
+        hippo:versionHistory: bb8671b0-3e28-4679-86c9-2f124781a594
         /edinburgh[1]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:versionable']
@@ -7062,7 +7062,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2022-05-31T17:04:34.110+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:26:54.849+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
@@ -7071,8 +7071,16 @@
           visitscotland:transports: [car, public, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p><em>Module map</em> (will be added to general pages
-              or Destinations, having different behaviour</p>
+            hippostd:content: <p>It was in Scotland's capital city that JK Rowling
+              started to plot the adventures of Harry and his friends. With cobbled
+              streets, winding alleys and medieval architecture, the city certainly
+              has a few things in common with the settings from the books and films.
+              She wrote the early chapters in various cafés around the city's Old
+              Town, before coming back to finish off the series from a peaceful suite
+              in The Balmoral Hotel. It is also said that Hogwarts School was styled
+              on Edinburgh’s Fettes College, a private school on the outskirts of
+              Edinburgh’s west end new town. You could also try the Wizarding World
+              of Edinburgh tour.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
@@ -7094,9 +7102,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2021-06-24T13:53:11.734+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:26:54.849+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-06-24T13:53:13.628+01:00
+          hippostdpubwf:publicationDate: 2022-06-24T09:27:01.994+01:00
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
           visitscotland:title: Explore Edinburgh
@@ -7135,7 +7143,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2022-05-31T17:04:34.284+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:26:55.613+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
@@ -7144,8 +7152,16 @@
           visitscotland:transports: [car, public, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p><em>Module map</em> (will be added to general pages
-              or Destinations, having different behaviour</p>
+            hippostd:content: <p>It was in Scotland's capital city that JK Rowling
+              started to plot the adventures of Harry and his friends. With cobbled
+              streets, winding alleys and medieval architecture, the city certainly
+              has a few things in common with the settings from the books and films.
+              She wrote the early chapters in various cafés around the city's Old
+              Town, before coming back to finish off the series from a peaceful suite
+              in The Balmoral Hotel. It is also said that Hogwarts School was styled
+              on Edinburgh’s Fettes College, a private school on the outskirts of
+              Edinburgh’s west end new town. You could also try the Wizarding World
+              of Edinburgh tour.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
