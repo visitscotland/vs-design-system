@@ -21,7 +21,7 @@
                 v-if="!requiredCookiesExist && cookiesSetStatus"
                 key="fallback"
             >
-                <CookiesFallback />
+                <VsWarning />
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import VueYoutube from 'vue-youtube';
 import Vue from 'vue';
-import CookiesFallback from '@components/elements/cookies/CookiesFallback';
+import VsWarning from '@components/patterns/warning/Warning';
 import videoStore from '../../../stores/video.store';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
 import requiredCookiesData from '../../../utils/required-cookies-data';
@@ -74,7 +74,7 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        CookiesFallback,
+        VsWarning,
     },
     mixins: [
         verifyCookiesMixin,
@@ -136,7 +136,11 @@ export default {
          * Return the player instance
          */
         player() {
-            return this.$refs.youtube.player;
+            if (this.$refs.youtube) {
+                return this.$refs.youtube.player;
+            }
+
+            return null;
         },
     },
     mounted() {
@@ -163,28 +167,30 @@ export default {
     },
     methods: {
         ready() {
-            this.playerRef = this.$refs.youtube.player;
-            this.getPlayerDetails();
+            if (this.player) {
+                this.playerRef = this.$refs.youtube.player;
+                this.getPlayerDetails();
+            }
         },
         /**
          * Plays the video
          */
         playVideo() {
-            this.playerRef.playVideo();
+            this.player.playVideo();
         },
         /**
          * Pauses the video
          */
         pauseVideo() {
-            this.playerRef.pauseVideo();
+            this.player.pauseVideo();
         },
         getPlayerDetails() {
             /**
              * Upon promise resolution, if the video ID returns
              * a YouTube video, process the time into the desired format.
              */
-            if (this.playerRef) {
-                this.playerRef.getDuration().then((response) => {
+            if (this.player) {
+                this.player.getDuration().then((response) => {
                     this.formatTime(response);
                     this.storeVideoDetails();
                 });

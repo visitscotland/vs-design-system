@@ -137,9 +137,9 @@ export default {
         * An object containing a link to the cookie settings page, should contain a `url`
         * field and a `label` field, is provided for descendent components to inject
         */
-        noCookiesLink: {
-            type: Object,
-            default: null,
+        noCookiesLinkText: {
+            type: String,
+            default: '',
         },
     },
     computed: {
