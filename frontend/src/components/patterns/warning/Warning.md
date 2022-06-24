@@ -22,10 +22,18 @@ covering or replacing an existing element
     >
         <VsWarning
             warningMessage="Cookies are needed to watch this video."
-            :warningLink="{
-                url: 'https://google.com',
-                label: 'Update my cookie settings'
-            }"
+            warningLinkText="Update my cookie settings"
+        />
+    </div>
+    <br />
+    <div
+        class="position-relative"
+        style="width: 25em;"
+    >
+        <VsWarning
+            warningMessage="Cookies are needed to watch this video."
+            variant="row"
+           warningLinkText="Update my cookie settings"
         />
     </div>
 

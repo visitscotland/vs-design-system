@@ -43,10 +43,6 @@
                     @toggleAction="toggleCaption"
                     :video-id="videoId"
                 >
-                    <!-- @slot Slot for the video alert message -->
-                    <template slot="video-no-js-alert">
-                        <slot name="video-no-js-alert" />
-                    </template>
                     <!-- @slot Slot for the video title text -->
                     <template slot="video-title">
                         <slot name="video-title" />
@@ -54,9 +50,6 @@
                     <!-- @slot Slot for the video duration text -->
                     <template slot="video-duration">
                         <slot name="video-duration" />
-                    </template>
-                    <template slot="video-no-cookies-alert">
-                        <slot name="video-no-cookies-alert" />
                     </template>
                 </VsVideoCaption>
             </div>
@@ -172,6 +165,30 @@ export default {
             type: String,
             default: '',
         },
+        /**
+        * A message explaining why the component has been disabled with disabled cookies, is
+        * provided for descendent components to inject
+        */
+        noCookiesMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Text used for the link which opens the cookie preference centre, is
+        * provided for descendent components to inject
+        */
+        cookieLinkText: {
+            type: String,
+            default: '',
+        },
+        /**
+        * A message explaining why the component has been disabled js is disabled, is provided
+        * for descendent components to inject
+        */
+        noJsMessage: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
@@ -201,6 +218,11 @@ export default {
         toggleCaption() {
             this.showCaption = !this.showCaption;
         },
+    },
+    provide() {
+        return {
+            noCookiesMessage: this.noCookiesMessage,
+        };
     },
 };
 </script>

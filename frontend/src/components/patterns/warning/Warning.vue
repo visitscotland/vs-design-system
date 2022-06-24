@@ -10,20 +10,24 @@
             class="vs-warning__icon"
             name="review"
             custom-colour="#FCCA1B"
+            :size="iconSize"
         />
-        <p
-            class="vs-warning__message"
-        >
-            {{ warningMessage }}
-        </p>
-        <VsLink
-            v-if="warningLink && warningLink.url"
-            data-test="vs-warning__link"
-            :href="warningLink.url"
-            variant="dark"
-        >
-            {{ warningLink.label }}
-        </VsLink>
+        <div>
+            <p
+                class="vs-warning__message"
+            >
+                {{ warningMessage }}
+            </p>
+            <VsLink
+                v-if="warningLinkText"
+                data-test="vs-warning__link"
+                href=""
+                variant="dark"
+                class="ot-sdk-show-settings"
+            >
+                {{ warningLinkText }}
+            </VsLink>
+        </div>
     </div>
 </template>
 <script>
@@ -57,16 +61,21 @@ export default {
         * An optional link to a page that the user can go to to try and
         * correct the issue
         */
-        warningLink: {
-            type: Object,
-            default: null,
+        warningLinkText: {
+            type: String,
+            default: 'Manage cookie settings',
         },
         variant: {
             type: String,
             default: 'normal',
             validator: (value) => value.match(
-                /(small|normal)/,
+                /(small|normal|row)/,
             ),
+        },
+    },
+    computed: {
+        iconSize() {
+            return this.variant === 'row' ? 'xl' : 'md';
         },
     },
 };
@@ -85,25 +94,39 @@ export default {
         align-items: center;
         text-align: center;
         justify-content: center;
-        background-color: rgba($color-black, 0.8);
         color: $color-white;
-    }
 
-    .vs-warning__icon {
-        width: 4rem !important;
-        height: 4rem !important;
-        margin-bottom: 2rem;
-    }
-
-    .vs-warning--small {
-        .vs-warning__icon {
-            width: 3rem !important;
-            height: 3rem !important;
-            margin-bottom: 1rem;
+        &--normal {
+            .vs-warning__icon {
+                width: 4rem !important;
+                height: 4rem !important;
+                margin-bottom: 2rem;
+            }
         }
-    }
 
-    .vs-warning__message {
-        margin-bottom: $spacer-0;
+        &--small {
+            .vs-warning__icon {
+                width: 3rem !important;
+                height: 3rem !important;
+                margin-bottom: 1rem;
+            }
+        }
+
+        &--row {
+            position: relative;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
+            text-align: left;
+            padding: $spacer-5;
+
+            .vs-warning__icon {
+                margin: 0 $spacer-5 0 0;
+            }
+        }
+
+        &__message {
+            margin-bottom: $spacer-0;
+        }
     }
 </style>
