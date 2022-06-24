@@ -14,9 +14,4 @@ public class MapCategory extends HippoCompound {
     public String getTitle() {
         return getSingleProperty("visitscotland:title");
     }
-
-    @HippoEssentialsGenerated(internalName = "hippotaxonomy:keys")
-    public String[] getKeys() {
-        return getMultipleProperty("hippotaxonomy:keys");
-    }
 }

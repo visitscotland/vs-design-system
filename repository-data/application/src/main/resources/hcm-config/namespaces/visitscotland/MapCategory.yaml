@@ -61,7 +61,7 @@ definitions:
           /mapPins:
             jcr:primaryType: frontend:plugin
             caption: Map Items
-            compoundList: hippo:mirror
+            compoundList: hippo:mirror,visitscotland:SpecialLinkCoordinates
             contentPickerType: links
             field: mapPins
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
