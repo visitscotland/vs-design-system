@@ -7052,7 +7052,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 806448db-18e1-4a25-81c3-777a76f530d2
         hippo:name: Edinburgh
-        hippo:versionHistory: b67bbad5-b574-41bc-82dd-c6134c461380
+        hippo:versionHistory: bb8671b0-3e28-4679-86c9-2f124781a594
         /edinburgh[1]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:versionable']
@@ -7062,7 +7062,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2022-05-31T17:04:34.110+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:26:54.849+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
@@ -7071,8 +7071,16 @@
           visitscotland:transports: [car, public, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p><em>Module map</em> (will be added to general pages
-              or Destinations, having different behaviour</p>
+            hippostd:content: <p>It was in Scotland's capital city that JK Rowling
+              started to plot the adventures of Harry and his friends. With cobbled
+              streets, winding alleys and medieval architecture, the city certainly
+              has a few things in common with the settings from the books and films.
+              She wrote the early chapters in various cafés around the city's Old
+              Town, before coming back to finish off the series from a peaceful suite
+              in The Balmoral Hotel. It is also said that Hogwarts School was styled
+              on Edinburgh’s Fettes College, a private school on the outskirts of
+              Edinburgh’s west end new town. You could also try the Wizarding World
+              of Edinburgh tour.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
@@ -7094,9 +7102,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2021-06-24T13:53:11.734+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:26:54.849+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-06-24T13:53:13.628+01:00
+          hippostdpubwf:publicationDate: 2022-06-24T09:27:01.994+01:00
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
           visitscotland:title: Explore Edinburgh
@@ -7135,7 +7143,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2022-05-31T17:04:34.284+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:26:55.613+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
@@ -7144,8 +7152,16 @@
           visitscotland:transports: [car, public, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p><em>Module map</em> (will be added to general pages
-              or Destinations, having different behaviour</p>
+            hippostd:content: <p>It was in Scotland's capital city that JK Rowling
+              started to plot the adventures of Harry and his friends. With cobbled
+              streets, winding alleys and medieval architecture, the city certainly
+              has a few things in common with the settings from the books and films.
+              She wrote the early chapters in various cafés around the city's Old
+              Town, before coming back to finish off the series from a peaceful suite
+              in The Balmoral Hotel. It is also said that Hogwarts School was styled
+              on Edinburgh’s Fettes College, a private school on the outskirts of
+              Edinburgh’s west end new town. You could also try the Wizarding World
+              of Edinburgh tour.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
@@ -10969,7 +10985,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 6033a92f-4d87-419b-a18f-0c85eb0a41e4
         hippo:name: iCentre
-        hippo:versionHistory: 9c6b7308-0240-4d0a-8a35-63edc5300a8b
+        hippo:versionHistory: db60821d-583c-4f73-a93b-e95b932d9514
         /icentre[1]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
@@ -10980,7 +10996,7 @@
           hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2022-05-31T17:39:32.356+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:15:50.846+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
@@ -11036,9 +11052,6 @@
                 hippostd:content: <p>This is a city of shifting light, of changing
                   skies, of sudden vistas. A city so beautiful it breaks the heart
                   again and again.</p>
-              /visitscotland:product:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: be4580f8-d75e-4271-b7cc-8b51bf06ee15
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''
@@ -11057,7 +11070,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2021-06-25T10:06:41.280+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:14:53.129+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
@@ -11113,9 +11126,6 @@
                 hippostd:content: <p>This is a city of shifting light, of changing
                   skies, of sudden vistas. A city so beautiful it breaks the heart
                   again and again.</p>
-              /visitscotland:product:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: be4580f8-d75e-4271-b7cc-8b51bf06ee15
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''
@@ -11134,9 +11144,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2021-06-25T10:06:41.280+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:14:53.129+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-06-25T10:06:43.030+01:00
+          hippostdpubwf:publicationDate: 2022-06-24T09:15:02.762+01:00
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
           visitscotland:translation: ''
@@ -11191,9 +11201,6 @@
                 hippostd:content: <p>This is a city of shifting light, of changing
                   skies, of sudden vistas. A city so beautiful it breaks the heart
                   again and again.</p>
-              /visitscotland:product:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: be4580f8-d75e-4271-b7cc-8b51bf06ee15
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''
@@ -12316,7 +12323,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 19ecb53d-0b02-4e78-8a58-f57139b1654c
         hippo:name: iCentre
-        hippo:versionHistory: 09cfccc0-2593-49e2-b444-2e61a3309e1a
+        hippo:versionHistory: 0b7bde66-73d9-4d84-8ca7-2652af383a32
         /icentre[1]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
@@ -12326,7 +12333,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-05T13:57:51.253+01:00
-          hippostdpubwf:lastModificationDate: 2021-06-24T14:33:24.391+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:16:05.420+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 1774d53c-f5f1-4edd-98f7-8c0c1f4ef4b2
           hippotranslation:locale: en
@@ -12362,9 +12369,6 @@
             jcr:primaryType: visitscotland:IKnow
             visitscotland:description: ''
             visitscotland:title: ''
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
         /icentre[2]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -12374,7 +12378,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-05T13:57:51.253+01:00
-          hippostdpubwf:lastModificationDate: 2021-06-24T14:34:24.140+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:16:11.969+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 1774d53c-f5f1-4edd-98f7-8c0c1f4ef4b2
           hippotranslation:locale: en
@@ -12410,9 +12414,6 @@
             jcr:primaryType: visitscotland:IKnow
             visitscotland:description: ''
             visitscotland:title: ''
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
         /icentre[3]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
@@ -12422,9 +12423,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-05-05T13:57:51.253+01:00
-          hippostdpubwf:lastModificationDate: 2021-06-24T14:34:24.140+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:16:11.969+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-06-24T14:34:27.280+01:00
+          hippostdpubwf:publicationDate: 2022-06-24T09:16:14.676+01:00
           hippotranslation:id: 1774d53c-f5f1-4edd-98f7-8c0c1f4ef4b2
           hippotranslation:locale: en
           visitscotland:translation: ''
@@ -12459,9 +12460,6 @@
             jcr:primaryType: visitscotland:IKnow
             visitscotland:description: ''
             visitscotland:title: ''
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
       /things-to-do-in-outer-hebrides:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -13317,7 +13315,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 9f0defbf-365c-4aa8-8aff-25a3e8503a20
         hippo:name: iCentre
-        hippo:versionHistory: 91649df7-0429-4d6f-a03a-5fee781218e6
+        hippo:versionHistory: 32724a10-96fa-4a0a-ba58-cb95de78675a
         /icentre[1]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
@@ -13327,7 +13325,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-06-04T08:13:16.929+01:00
-          hippostdpubwf:lastModificationDate: 2021-06-04T08:13:16.929+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:15:42.145+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 793805ff-560c-4947-b9a1-c7886fa99510
           hippotranslation:locale: en
@@ -13346,9 +13344,6 @@
             jcr:primaryType: visitscotland:IKnow
             visitscotland:description: ''
             visitscotland:title: ''
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
         /icentre[2]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -13358,7 +13353,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-06-04T08:13:16.929+01:00
-          hippostdpubwf:lastModificationDate: 2021-06-04T08:13:43.942+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:15:42.096+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 793805ff-560c-4947-b9a1-c7886fa99510
           hippotranslation:locale: en
@@ -13377,9 +13372,6 @@
             jcr:primaryType: visitscotland:IKnow
             visitscotland:description: ''
             visitscotland:title: ''
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
         /icentre[3]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
@@ -13389,9 +13381,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-06-04T08:13:16.929+01:00
-          hippostdpubwf:lastModificationDate: 2021-06-04T08:13:43.942+01:00
+          hippostdpubwf:lastModificationDate: 2022-06-24T09:15:42.096+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-06-04T08:13:48.834+01:00
+          hippostdpubwf:publicationDate: 2022-06-24T09:15:46.691+01:00
           hippotranslation:id: 793805ff-560c-4947-b9a1-c7886fa99510
           hippotranslation:locale: en
           visitscotland:translation: ''
@@ -13409,9 +13401,6 @@
             jcr:primaryType: visitscotland:IKnow
             visitscotland:description: ''
             visitscotland:title: ''
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
       /megalinks-2:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -13830,7 +13819,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8422f473-6a53-4d9e-bd22-a3efa115d1f8
       hippo:name: Main map
-      hippo:versionHistory: c7f1852a-f680-435e-be99-125af10da223
+      hippo:versionHistory: 9cf74114-e47a-491a-af4c-2c7e1db4eec7
       /main-map[1]:
         jcr:primaryType: visitscotland:MapModule
         jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:referenceable']
@@ -13838,10 +13827,9 @@
         hippo:availability: []
         hippostd:retainable: false
         hippostd:state: draft
-        hippostd:transferable: false
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2022-06-16T09:40:19.973+01:00
-        hippostdpubwf:lastModificationDate: 2022-06-16T16:27:42.853+01:00
+        hippostdpubwf:lastModificationDate: 2022-06-24T09:19:49.061+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotaxonomy:keys: [cities, towns, islands, regions]
         hippotranslation:id: 5c1c7d42-9e51-44f3-8c7e-8c78fe05ca34
@@ -13853,10 +13841,19 @@
           visitscotland:title: ''
           /visitscotland:mapPins[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: e8942047-604c-4524-ad7f-540d74f1cc49
+            hippo:docbase: af7bc15d-bc33-4b84-ad01-e77eb5acde61
           /visitscotland:mapPins[2]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 178cc6ee-9b6a-4095-80b2-9026263d173e
+          /visitscotland:mapPins[3]:
+            jcr:primaryType: visitscotland:SpecialLinkCoordinates
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 7d2653e5-8068-49d1-9c1e-8aad6d951985
+            /visitscotland:coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 56.797394
+              visitscotland:longitude: -5.003361
       /main-map[2]:
         jcr:primaryType: visitscotland:MapModule
         jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:referenceable', 'mix:versionable']
@@ -13866,7 +13863,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2022-06-16T09:40:19.973+01:00
-        hippostdpubwf:lastModificationDate: 2022-06-16T16:27:37.024+01:00
+        hippostdpubwf:lastModificationDate: 2022-06-24T09:19:49.030+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotaxonomy:keys: [cities, towns, islands, regions]
         hippotranslation:id: 5c1c7d42-9e51-44f3-8c7e-8c78fe05ca34
@@ -13878,10 +13875,19 @@
           visitscotland:title: ''
           /visitscotland:mapPins[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: e8942047-604c-4524-ad7f-540d74f1cc49
+            hippo:docbase: af7bc15d-bc33-4b84-ad01-e77eb5acde61
           /visitscotland:mapPins[2]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 178cc6ee-9b6a-4095-80b2-9026263d173e
+          /visitscotland:mapPins[3]:
+            jcr:primaryType: visitscotland:SpecialLinkCoordinates
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 7d2653e5-8068-49d1-9c1e-8aad6d951985
+            /visitscotland:coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 56.797394
+              visitscotland:longitude: -5.003361
       /main-map[3]:
         jcr:primaryType: visitscotland:MapModule
         jcr:mixinTypes: ['hippotaxonomy:classifiable', 'mix:referenceable']
@@ -13891,9 +13897,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2022-06-16T09:40:19.973+01:00
-        hippostdpubwf:lastModificationDate: 2022-06-16T16:27:37.024+01:00
+        hippostdpubwf:lastModificationDate: 2022-06-24T09:19:49.030+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2022-06-16T16:27:41.093+01:00
+        hippostdpubwf:publicationDate: 2022-06-24T09:19:53.260+01:00
         hippotaxonomy:keys: [cities, towns, islands, regions]
         hippotranslation:id: 5c1c7d42-9e51-44f3-8c7e-8c78fe05ca34
         hippotranslation:locale: en
@@ -13904,10 +13910,19 @@
           visitscotland:title: ''
           /visitscotland:mapPins[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: e8942047-604c-4524-ad7f-540d74f1cc49
+            hippo:docbase: af7bc15d-bc33-4b84-ad01-e77eb5acde61
           /visitscotland:mapPins[2]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 178cc6ee-9b6a-4095-80b2-9026263d173e
+          /visitscotland:mapPins[3]:
+            jcr:primaryType: visitscotland:SpecialLinkCoordinates
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 7d2653e5-8068-49d1-9c1e-8aad6d951985
+            /visitscotland:coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 56.797394
+              visitscotland:longitude: -5.003361
   /general-pages:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -15258,8 +15273,8 @@
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 7d2653e5-8068-49d1-9c1e-8aad6d951985
-      hippo:name: Article page
-      hippo:versionHistory: be78ae0a-636e-4fe6-82f6-6ccc6c939b93
+      hippo:name: Ben Nevis
+      hippo:versionHistory: 426d3a50-f631-4eb9-8aff-f277090af2e9
       /content[1]:
         jcr:primaryType: visitscotland:General
         jcr:mixinTypes: ['mix:referenceable']
@@ -15346,7 +15361,7 @@
         hippostdpubwf:creationDate: 2020-11-27T12:36:37.172Z
         hippostdpubwf:lastModificationDate: 2022-01-20T18:29:59.473Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2022-01-20T18:30:05.035Z
+        hippostdpubwf:publicationDate: 2022-06-24T09:17:22.501+01:00
         hippotranslation:id: 2652febc-9606-4736-ab2c-03d6aa3852a3
         hippotranslation:locale: en
         visitscotland:breadcrumb: ''
