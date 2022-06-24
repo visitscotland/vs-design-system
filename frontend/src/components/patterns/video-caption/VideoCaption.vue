@@ -46,27 +46,18 @@
 
         <div
             v-else-if="!requiredCookiesExist && cookiesSetStatus"
-            class="vs-video-caption vs-video-caption"
+            class="vs-video-caption vs-video-caption--warning"
         >
-            <div class="vs-video-caption__details container">
-                <div class="vs-video-caption__alert">
-                    <VsIcon
-                        name="review"
-                        custom-colour="gold"
-                        size="lg"
-                    />
-
-                    <p>
-                        <!-- @slot Slot for no cookies alert message -->
-                        <slot name="video-no-cookies-alert" />
-                    </p>
-                </div>
-            </div>
+            <VsWarning
+                :warning-message="noCookiesMessage"
+                :warning-link-text="cookieLinkText"
+                variant="row"
+            />
         </div>
 
         <div
             v-else
-            class="vs-video-caption vs-video-caption--no-js"
+            class="vs-video-caption vs-video-caption--no-js vs-video-caption--warning"
             data-test="video-caption-nojs"
         >
             <div class="vs-video-caption__details container">
@@ -91,6 +82,7 @@
 import VsButton from '@components/elements/button/Button';
 import VsIcon from '@components/elements/icon/Icon';
 import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
+import VsWarning from '@components/patterns/warning/Warning';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
 import videoStore from '../../../stores/video.store';
 import requiredCookiesData from '../../../utils/required-cookies-data';
@@ -110,6 +102,7 @@ export default {
         VsButton,
         VsIcon,
         VsToggleButton,
+        VsWarning,
     },
     mixins: [
         verifyCookiesMixin,
@@ -136,6 +129,17 @@ export default {
         videoId: {
             type: String,
             required: true,
+        },
+    },
+    inject: {
+        noJsMessage: {
+            default: '',
+        },
+        noCookiesMessage: {
+            default: '',
+        },
+        noCookiesLinkText: {
+            default: 'Manage cookie settings',
         },
     },
     data() {
@@ -173,6 +177,10 @@ export default {
 
         &--no-js {
             display: none;
+        }
+
+        &--warning {
+            background-color: $color-gray-shade-6;
         }
 
         &__details {
