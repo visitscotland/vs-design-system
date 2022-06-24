@@ -2,7 +2,7 @@
 
 <#macro headContributions>
     <#if integration??>
-        <@gtm />
+        <#--  <@gtm />  -->
         <!-- BEGIN HEAD CONTRIBUTIONS: seo -->
         <@hst.headContributions categoryIncludes="seo" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: seo -->
