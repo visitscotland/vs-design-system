@@ -14,16 +14,14 @@
         :is-video="${isVideo}"
         video-id="${videoId}"
         no-cookies-message="${label('video', 'video.no-cookies')}"
-        cookie-link-text="${label('video', 'video.cookie-setting-link-message')}"
+        no-cookies-link-text="${label('video', 'video.cookie-setting-link-message')}"
+        no-js-message="${label('video', 'video.no-js')}"
         <#if videoBtn?? && videoBtn != "">
             play-button-text="${videoBtn}"
         <#else>
             play-button-text="${label('video', 'video.play-btn')}"
         </#if>
     >
-        <template slot="video-no-js-alert">
-            ${label('video', 'video.no-js')}
-        </template>
         <template slot="video-title">
             ${videoTitle}
         </template>
