@@ -21,7 +21,10 @@
                 v-if="!requiredCookiesExist && cookiesSetStatus"
                 key="fallback"
             >
-                <VsWarning />
+                <VsWarning
+                    :warning-message="noCookiesMessage"
+                    :warning-link-text="cookieLinkText"
+                />
             </div>
         </div>
     </div>
@@ -116,6 +119,30 @@ export default {
             type: String,
             default: '%s minute video',
         },
+        /**
+        * A message explaining why the component has been disabled with disabled cookies, is
+        * provided for descendent components to inject
+        */
+        noCookiesMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Text used for the link which opens the cookie preference centre, is
+        * provided for descendent components to inject
+        */
+        cookieLinkText: {
+            type: String,
+            default: '',
+        },
+        /**
+        * A message explaining why the component has been disabled when js is disabled,
+        * is provided for descendent components to inject
+        */
+        noJsMessage: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
@@ -136,16 +163,10 @@ export default {
          * Return the player instance
          */
         player() {
-            if (this.$refs.youtube) {
-                return this.$refs.youtube.player;
-            }
-
-            return null;
+            return this.$refs.youtube.player;
         },
     },
     mounted() {
-        this.getPlayerDetails();
-
         /**
          * Sets up listener for play/pause events
          * from $root
@@ -167,29 +188,27 @@ export default {
     },
     methods: {
         ready() {
-            if (this.player) {
-                this.playerRef = this.$refs.youtube.player;
-                this.getPlayerDetails();
-            }
+            this.playerRef = this.$refs.youtube.player;
+            this.getPlayerDetails();
         },
         /**
          * Plays the video
          */
         playVideo() {
-            this.player.playVideo();
+            this.playerRef.playVideo();
         },
         /**
          * Pauses the video
          */
         pauseVideo() {
-            this.player.pauseVideo();
+            this.playerRef.pauseVideo();
         },
         getPlayerDetails() {
             /**
              * Upon promise resolution, if the video ID returns
              * a YouTube video, process the time into the desired format.
              */
-            if (this.player) {
+            if (typeof this.player !== 'undefined') {
                 this.player.getDuration().then((response) => {
                     this.formatTime(response);
                     this.storeVideoDetails();
