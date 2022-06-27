@@ -9,28 +9,28 @@
     jcr:mixinTypes: ['mix:referenceable']
     jcr:uuid: 94c16270-7794-4153-b69c-7e413309dae5
     hippo:availability: []
+    hippostd:holder: admin
     hippostd:retainable: false
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-12-06T14:16:20.241Z
-    hippostdpubwf:lastModificationDate: 2022-06-23T12:13:05.478+01:00
+    hippostdpubwf:lastModificationDate: 2022-06-27T09:24:58.056+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '']
     resourcebundle:id: video
     resourcebundle:keys: [video.play-btn, video.no-js, video.minute-text, video.minutes-text,
-      video.video-descriptor, video.no-js-message, video.missing-cookies-message,
-      video.cookie-setting-link-message, video.cookie-setting-link-url, video.no-cookies]
+      video.video-descriptor, video.no-js-message, video.cookie-setting-link-message,
+      video.no-cookies]
     resourcebundle:messages: [Play video, JavaScript needs to be enabled to watch
         this video. You can turn this on in your browser settings., '%s minute video',
       '%s minute video', Video, JavaScript needs to be enabled to watch this video.
-        You can turn this on in your browser settings., Cookies are needed to watch
-        this video., Update my cookie settings, 'https://www.visitscotland.com/policies/privacy/cookies/',
-      You need cookies enabled to see this video]
-    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '']
+        You can turn this on in your browser settings., Update my cookie settings,
+      Cookies are needed to watch this video.]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '']
   /video[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
