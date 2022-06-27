@@ -151,7 +151,6 @@ export default {
          * Closes the search form popover
          */
         closeSearchForm() {
-            this.showSearchForm = !this.showSearchForm;
             this.$emit('toggleAction', this.showSearchForm);
         },
     },
@@ -163,12 +162,23 @@ export default {
 .vs-site-search-form {
     background-color: rgba(239, 239, 239, 0.5);
     backdrop-filter: blur(30px);
-    padding: $spacer-7 0;
+    padding: $spacer-5 0;
     position: absolute;
     width: 100%;
 
-    @include media-breakpoint-up(xl) {
-        padding: $spacer-9 0;
+    @include media-breakpoint-up(lg) {
+        padding: $spacer-8 0;
+    }
+
+    .cludo-input-form{
+        margin: 0;
+
+        @include media-breakpoint-up(lg) {
+            margin: $spacer-2 0;
+        }
+        @include media-breakpoint-up(xl) {
+            margin: $spacer-4 0;
+        }
     }
 
     &__label {
@@ -192,7 +202,7 @@ export default {
         &.vs-form-input.form-control {
             font-size: $font-size-4;
             height: auto;
-            padding: $spacer-3 $spacer-7 $spacer-3 $spacer-6;
+            padding: $spacer-3 $spacer-3 $spacer-3 $spacer-7;
             border-color: $color-white;
 
             &:focus{
@@ -201,7 +211,7 @@ export default {
             }
 
             @include media-breakpoint-up(lg) {
-                padding: $spacer-4 $spacer-10 $spacer-4 $spacer-12;
+                padding: $spacer-4 $spacer-10 $spacer-4 $spacer-11;
                 font-size: $font-size-9;
             }
 
@@ -221,7 +231,7 @@ export default {
 
         @include media-breakpoint-up(lg) {
             padding: $spacer-4 $spacer-10 $spacer-4 $spacer-12;
-            font-size: $display1-size;
+            font-size: $font-size-9;
             height: 79px;
         }
 
@@ -249,12 +259,12 @@ export default {
 
     &__close-button.vs-button.btn {
         position: absolute;
-        right: $spacer-2;
-        top: $spacer-2;
+        right: 8px;
+        top: 6px;
 
         @include media-breakpoint-up(xl) {
             right: $spacer-4;
-            top: $spacer-4;
+            top: $spacer-2;
         }
     }
 }
