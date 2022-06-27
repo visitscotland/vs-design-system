@@ -29,7 +29,7 @@
             />
 
             <VsWarning
-                v-if="videoId && !jsDisabled && cookiesMissing"
+                v-if="showCookieWarning"
                 :warning-message="noCookiesMessage"
                 :warning-link="noCookiesLink"
             />
@@ -130,6 +130,10 @@ import VsButton from '@components/elements/button/Button';
 import VsWarning from '@components/patterns/warning/Warning';
 import jsIsDisabled from '@/utils/js-is-disabled';
 import videoStore from '../../../stores/video.store';
+import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
+import requiredCookiesData from '../../../utils/required-cookies-data';
+
+const cookieValues = requiredCookiesData.youtube;
 
 /**
  * The Stretched Link Card is a block that stretches its nested link across its whole area
@@ -148,6 +152,9 @@ export default {
         VsButton,
         VsWarning,
     },
+    mixins: [
+        verifyCookiesMixin,
+    ],
     props: {
         /**
         * The link that the component will use
@@ -225,6 +232,7 @@ export default {
     data() {
         return {
             jsDisabled: true,
+            requiredCookies: cookieValues,
         };
     },
     computed: {
@@ -274,6 +282,14 @@ export default {
         // prevented from initialising
         disableVideo() {
             return (this.cookiesMissing || this.jsDisabled);
+        },
+        showCookieWarning() {
+            if (this.videoId && !this.jsDisabled
+                && !this.requiredCookiesExist && this.cookiesSetStatus) {
+                return true;
+            }
+
+            return false;
         },
     },
     mounted() {

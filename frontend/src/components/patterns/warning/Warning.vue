@@ -17,12 +17,12 @@
             {{ warningMessage }}
         </p>
         <VsLink
-            v-if="warningLink && warningLink.url"
             data-test="vs-warning__link"
-            :href="warningLink.url"
+            href=""
             variant="dark"
+            class="ot-sdk-show-settings"
         >
-            {{ warningLink.label }}
+            Cookie Settings
         </VsLink>
     </div>
 </template>
