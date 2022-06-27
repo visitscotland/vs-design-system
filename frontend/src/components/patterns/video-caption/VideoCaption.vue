@@ -1,8 +1,7 @@
 <template>
-    <div>
+    <div data-test="video-caption">
         <div
             class="vs-video-caption"
-            data-test="video-caption"
             v-if="videoLoaded && requiredCookiesExist"
             key="video-caption"
         >
@@ -50,7 +49,7 @@
         >
             <VsWarning
                 :warning-message="noCookiesMessage"
-                :warning-link-text="cookieLinkText"
+                :warning-link-text="noCookiesLinkText"
                 variant="row"
             />
         </div>
@@ -60,27 +59,16 @@
             class="vs-video-caption vs-video-caption--no-js vs-video-caption--warning"
             data-test="video-caption-nojs"
         >
-            <div class="vs-video-caption__details container">
-                <div class="vs-video-caption__alert">
-                    <VsIcon
-                        name="review"
-                        custom-colour="gold"
-                        size="lg"
-                    />
-
-                    <p>
-                        <!-- @slot Slot for no-js alert message -->
-                        <slot name="video-no-js-alert" />
-                    </p>
-                </div>
-            </div>
+            <VsWarning
+                :warning-message="noJsMessage"
+                variant="row"
+            />
         </div>
     </div>
 </template>
 
 <script>
 import VsButton from '@components/elements/button/Button';
-import VsIcon from '@components/elements/icon/Icon';
 import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
 import VsWarning from '@components/patterns/warning/Warning';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
@@ -100,7 +88,6 @@ export default {
     release: '0.0.1',
     components: {
         VsButton,
-        VsIcon,
         VsToggleButton,
         VsWarning,
     },

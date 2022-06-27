@@ -29,10 +29,11 @@
             <VsWarning
                 v-if="videoId && jsDisabled"
                 :warning-message="noJsMessage"
+                class=""
             />
 
             <VsWarning
-                v-if="videoId && !jsDisabled && cookiesMissing"
+                v-if="videoId && !jsDisabled && !requiredCookiesExist && cookiesSet"
                 :warning-message="noCookiesMessage"
                 :warning-link-text="noCookiesLinkText"
             />
@@ -57,7 +58,7 @@
                 size="md"
                 ref="videoShow"
                 @click.native="emitShowModal"
-                v-if="videoId && videoLoaded && !disableVideo"
+                v-if="videoId && videoLoaded && requiredCookiesExist"
             >
                 <span
                     class="vs-stretched-link-card__video-btn-text"
@@ -133,6 +134,10 @@ import VsButton from '@components/elements/button/Button';
 import VsWarning from '@components/patterns/warning/Warning';
 import jsIsDisabled from '@/utils/js-is-disabled';
 import videoStore from '../../../stores/video.store';
+import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
+import requiredCookiesData from '../../../utils/required-cookies-data';
+
+const cookieValues = requiredCookiesData.youtube;
 
 /**
  * The Stretched Link Card is a block that stretches its nested link across its whole area
@@ -151,6 +156,9 @@ export default {
         VsButton,
         VsWarning,
     },
+    mixins: [
+        verifyCookiesMixin,
+    ],
     props: {
         /**
         * The link that the component will use
@@ -221,13 +229,14 @@ export default {
         noCookiesMessage: {
             default: '',
         },
-        noCookiesLink: {
-            default: null,
+        noCookiesLinkText: {
+            default: 'Manage cookie settings',
         },
     },
     data() {
         return {
             jsDisabled: true,
+            requiredCookies: cookieValues,
         };
     },
     computed: {
@@ -266,21 +275,9 @@ export default {
 
             return false;
         },
-        // Checks whether appropriate cookies have been rejected for the video on this megalink,
-        // to display an appropriate warning to the user
-        cookiesMissing() {
-            // TODO: Add cookie functionality once checker integrated
-            // See VS-3606
-            return false;
-        },
-        // Checks both cookiesMissing and jsDisabled to determine whether the video should be
-        // prevented from initialising
-        disableVideo() {
-            return (this.cookiesMissing || this.jsDisabled);
-        },
         // Calculates if warning is showing and gives class for appropriate styles
         warningClass() {
-            if (this.videoId && (this.jsDisabled || this.cookiesMissing)) {
+            if (this.videoId && (this.jsDisabled || !this.requiredCookiesExist)) {
                 return 'vs-stretched-link-card__img-container--warning';
             }
 
@@ -293,7 +290,7 @@ export default {
     },
     methods: {
         emitShowModal() {
-            if (!this.videoId) {
+            if (!this.videoId || !this.requiredCookiesExist) {
                 return;
             }
 
@@ -391,7 +388,15 @@ export default {
             position: relative;
 
             &--warning {
-                background-color: rgba($color-black, 0.8);
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba($color-black, 0.8);
+                }
             }
         }
 

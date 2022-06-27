@@ -13,9 +13,7 @@
             :size="iconSize"
         />
         <div>
-            <p
-                class="vs-warning__message"
-            >
+            <p class="vs-warning__message">
                 {{ warningMessage }}
             </p>
             <VsLink
@@ -55,6 +53,7 @@ export default {
         */
         warningMessage: {
             type: String,
+            default: 'Manage cookie settings',
             required: true,
         },
         /**
@@ -75,7 +74,7 @@ export default {
     },
     computed: {
         iconSize() {
-            return this.variant === 'row' ? 'xl' : 'md';
+            return this.variant === 'row' ? 'lg' : 'md';
         },
     },
 };
@@ -118,15 +117,29 @@ export default {
             align-items: flex-start;
             justify-content: flex-start;
             text-align: left;
-            padding: $spacer-5;
+            padding: $spacer-6;
 
             .vs-warning__icon {
-                margin: 0 $spacer-5 0 0;
+                margin: 0 $spacer-8 0 0;
             }
         }
 
         &__message {
             margin-bottom: $spacer-0;
+        }
+
+        @include media-breakpoint-up(sm) {
+            &--row {
+                padding: $spacer-5;
+            }
+        }
+
+        @include media-breakpoint-up(md) {
+            &--row {
+                .vs-warning__icon {
+                    margin: 0 $spacer-5 0 0;
+                }
+            }
         }
     }
 </style>

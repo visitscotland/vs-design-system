@@ -182,8 +182,8 @@ export default {
             default: '',
         },
         /**
-        * A message explaining why the component has been disabled js is disabled, is provided
-        * for descendent components to inject
+        * A message explaining why the component has been disabled when js is disabled,
+        * is provided for descendent components to inject
         */
         noJsMessage: {
             type: String,
@@ -221,6 +221,7 @@ export default {
     },
     provide() {
         return {
+            noJsMessage: this.noJsMessage,
             noCookiesMessage: this.noCookiesMessage,
         };
     },

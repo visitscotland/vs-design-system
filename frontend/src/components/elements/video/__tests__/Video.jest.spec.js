@@ -36,9 +36,14 @@ describe('VsVideo', () => {
     });
 
     describe(':props', () => {
-        it('should pass a videoId prop to the youtube component', () => {
+        it('should pass a videoId prop to the youtube component', async() => {
             const wrapper = factoryShallowMount();
 
+            wrapper.setData({
+                requiredCookies: [],
+            });
+
+            await wrapper.vm.$nextTick();
             expect(wrapper.find('youtube-stub').attributes('videoid')).toBe(videoId);
         });
 
@@ -62,9 +67,15 @@ describe('VsVideo', () => {
                 },
             });
 
-            await wrapper.setData({
+            wrapper.setData({
                 showDuration: true,
             });
+
+            wrapper.setData({
+                requiredCookies: [],
+            });
+
+            await wrapper.vm.$nextTick();
 
             expect(wrapper.vm.duration.roundedMinutes).toContain('1');
         });
