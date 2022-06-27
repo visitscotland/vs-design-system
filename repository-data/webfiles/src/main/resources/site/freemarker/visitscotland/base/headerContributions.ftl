@@ -1,8 +1,8 @@
 <#include "../macros/global/gtm.ftl">
 
 <#macro headContributions>
+    <@gtm />
     <#if integration??>
-        <#--  <@gtm />  -->
         <!-- BEGIN HEAD CONTRIBUTIONS: seo -->
         <@hst.headContributions categoryIncludes="seo" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: seo -->
