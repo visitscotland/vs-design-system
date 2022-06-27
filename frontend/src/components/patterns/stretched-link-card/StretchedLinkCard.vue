@@ -29,7 +29,7 @@
             />
 
             <VsWarning
-                v-if="videoId && !jsDisabled && !requiredCookiesExist && cookiesSetStatus"
+                v-if="showCookieWarning"
                 :warning-message="noCookiesMessage"
                 :warning-link="noCookiesLink"
             />
@@ -282,6 +282,14 @@ export default {
         // prevented from initialising
         disableVideo() {
             return (this.cookiesMissing || this.jsDisabled);
+        },
+        showCookieWarning() {
+            if (this.videoId && !this.jsDisabled
+                && !this.requiredCookiesExist && this.cookiesSetStatus) {
+                return true;
+            }
+
+            return false;
         },
     },
     mounted() {
