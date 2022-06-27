@@ -33,7 +33,7 @@
             />
 
             <VsWarning
-                v-if="videoId && !jsDisabled && !requiredCookiesExist && cookiesSet"
+                v-if="showCookieWarning"
                 :warning-message="noCookiesMessage"
                 :warning-link-text="noCookiesLinkText"
             />
@@ -282,6 +282,14 @@ export default {
             }
 
             return '';
+        },
+        showCookieWarning() {
+            if (this.videoId && !this.jsDisabled
+                && !this.requiredCookiesExist && this.cookiesSetStatus) {
+                return true;
+            }
+
+            return false;
         },
     },
     mounted() {
