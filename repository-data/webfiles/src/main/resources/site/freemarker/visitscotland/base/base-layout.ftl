@@ -11,8 +11,8 @@
         </#if>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="<@hst.webfile path="/assets/dist/images/icons/32x32.png"/>" sizes="32x32">
-        <link rel="icon" type="image/png" href="<@hst.webfile path="/assets/dist/images/icons/96x96.png"/>" sizes="96x96">
+        <link rel="icon" type="image/png" href="<@hst.webfile path="/assets/images/32x32.png"/>" sizes="32x32">
+        <link rel="icon" type="image/png" href="<@hst.webfile path="/assets/images/96x96.png"/>" sizes="96x96">
 
         <@headContributions />
     </head>
