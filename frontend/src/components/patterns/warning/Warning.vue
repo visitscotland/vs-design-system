@@ -53,7 +53,7 @@ export default {
         */
         warningMessage: {
             type: String,
-            default: 'Manage cookie settings',
+            default: 'Cookies are required for this content',
             required: true,
         },
         /**
@@ -62,7 +62,7 @@ export default {
         */
         warningLinkText: {
             type: String,
-            default: 'Manage cookie settings',
+            default: '',
         },
         variant: {
             type: String,
