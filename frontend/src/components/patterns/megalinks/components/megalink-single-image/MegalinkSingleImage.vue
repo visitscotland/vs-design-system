@@ -116,7 +116,7 @@ export default {
     },
     data() {
         return {
-            offsetDistance: '200px',
+            negativeMargin: '200px',
         };
     },
     computed: {
@@ -130,7 +130,7 @@ export default {
             return {
                 // How much negative vertical margin to add to the image with
                 // caption. Defaults to 200px.
-                '--offset-distance': `-${this.offsetDistance}`,
+                '--negative-margin': `-${this.negativeMargin}`,
             };
         },
     },
@@ -143,7 +143,7 @@ export default {
 
         img.addEventListener('load', () => {
             const offsetPercentToMiddle = img.clientHeight / 2 / img.clientWidth;
-            this.offsetDistance = `${offsetPercentToMiddle * 100}%`;
+            this.negativeMargin = `${offsetPercentToMiddle * 100}%`;
         });
     },
 };
@@ -151,7 +151,7 @@ export default {
 
 <style lang="scss">
     .vs-megalink-single-image {
-        --offset-distance: -200px;
+        --negative-margin: -200px;
 
         min-width: 100%;
 
@@ -246,7 +246,7 @@ export default {
 
             .vs-image-with-caption {
                 width: 100%;
-                margin: 0 0 calc(var(--offset-distance) - 4rem);
+                margin: 0 0 calc(var(--negative-margin) - 4rem);
             }
 
             &--alternate {
