@@ -12,7 +12,9 @@
             />
         </div>
 
-        <VsRow>
+        <VsRow
+            class="vs-megalink-single-image__text-container"
+        >
             <VsCol
                 cols="12"
                 sm="10"
@@ -246,7 +248,7 @@ export default {
 
             .vs-image-with-caption {
                 width: 100%;
-                margin: 0 0 calc(var(--negative-margin) - 4rem);
+                margin: 0 0 calc(var(--negative-margin) - #{$spacer-10});
             }
 
             &--alternate {
@@ -267,6 +269,10 @@ export default {
                 .vs-megalink-single-image__content {
                     background: $color-gray-shade-7;
                 }
+            }
+
+            .vs-megalink-single-image__text-container {
+                min-height: calc(50% + #{$spacer-10});
             }
         }
 
