@@ -35,7 +35,6 @@
             <VsWarning
                 v-if="showCookieWarning"
                 :warning-message="noCookiesMessage"
-                :warning-link-text="noCookiesLinkText"
             />
         </div>
 
@@ -228,9 +227,6 @@ export default {
         },
         noCookiesMessage: {
             default: '',
-        },
-        noCookiesLinkText: {
-            default: 'Manage cookie settings',
         },
     },
     data() {

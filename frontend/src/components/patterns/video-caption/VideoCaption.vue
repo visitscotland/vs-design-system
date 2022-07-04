@@ -44,12 +44,12 @@
         </div>
 
         <div
-            v-else-if="!requiredCookiesExist && cookiesSetStatus"
+            v-else-if="showCookieMessage"
             class="vs-video-caption vs-video-caption--warning"
         >
             <VsWarning
                 :warning-message="noCookiesMessage"
-                :warning-link-text="noCookiesLinkText"
+                :show-cookie-link="true"
                 variant="row"
             />
         </div>
@@ -125,9 +125,6 @@ export default {
         noCookiesMessage: {
             default: '',
         },
-        noCookiesLinkText: {
-            default: 'Manage cookie settings',
-        },
     },
     data() {
         return {
@@ -140,6 +137,13 @@ export default {
         },
         videoLoaded() {
             if (typeof this.videoDetails !== 'undefined' && this.videoDetails.videoDuration > 0) {
+                return true;
+            }
+
+            return false;
+        },
+        showCookieMessage() {
+            if (!this.requiredCookiesExist && this.cookiesSetStatus && this.noCookiesMessage) {
                 return true;
             }
 

@@ -16,22 +16,16 @@
             <p class="vs-warning__message">
                 {{ warningMessage }}
             </p>
-            <VsLink
-                v-if="warningLinkText"
-                data-test="vs-warning__link"
-                href=""
-                variant="dark"
-                class="ot-sdk-show-settings"
-            >
-                {{ warningLinkText }}
-            </VsLink>
+            <button
+                class="ot-sdk-show-settings vs-warning__cookie-trigger"
+                id="ot-sdk-btn"
+            />
         </div>
     </div>
 </template>
 <script>
 
 import VsIcon from '@components/elements/icon';
-import VsLink from '@components/elements/link';
 
 /**
  * A generic warning component that expands to cover whatever component
@@ -45,7 +39,6 @@ export default {
     release: '0.1.0',
     components: {
         VsIcon,
-        VsLink,
     },
     props: {
         /**
@@ -53,16 +46,14 @@ export default {
         */
         warningMessage: {
             type: String,
-            default: 'Cookies are required for this content',
             required: true,
         },
         /**
-        * An optional link to a page that the user can go to to try and
-        * correct the issue
+        * The warning message to display to the user
         */
-        warningLinkText: {
-            type: String,
-            default: '',
+        showCookieLink: {
+            type: Boolean,
+            default: false,
         },
         variant: {
             type: String,
@@ -126,6 +117,16 @@ export default {
 
         &__message {
             margin-bottom: $spacer-0;
+        }
+
+        /** override OneTrust styles **/
+        &__cookie-trigger {
+            color: $color-yellow !important;
+            font-weight: $font-weight-normal !important;
+
+            &:focus {
+                outline: 2px solid $color_yellow;
+            }
         }
 
         @include media-breakpoint-up(sm) {
