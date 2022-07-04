@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 766a22ea-0b28-44cf-9937-953443a6fb02
   hippo:name: Global
-  hippo:versionHistory: 4c2ccfd0-5a19-4cc2-8284-1b0b3f83f72b
+  hippo:versionHistory: ceecc7da-6e42-4864-9663-91dc0d887c45
   /common-label[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,9 +13,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-    hippostdpubwf:lastModificationDate: 2022-05-18T10:50:34.397+01:00
+    hippostdpubwf:lastModificationDate: 2022-07-04T11:18:21.832+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2022-05-18T10:50:39.213+01:00
+    hippostdpubwf:publicationDate: 2022-07-04T11:18:23.205+01:00
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: essentials.global
     resourcebundle:keys: [button.find-out-more, default.alt-text, label.download,
@@ -49,7 +49,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-    hippostdpubwf:lastModificationDate: 2022-05-18T10:50:34.397+01:00
+    hippostdpubwf:lastModificationDate: 2022-07-04T11:18:21.832+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: essentials.global
@@ -84,7 +84,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-    hippostdpubwf:lastModificationDate: 2022-05-18T10:50:13.472+01:00
+    hippostdpubwf:lastModificationDate: 2022-07-04T11:18:14.369+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: essentials.global

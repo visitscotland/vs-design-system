@@ -14,7 +14,6 @@
         :is-video="${isVideo}"
         video-id="${videoId}"
         no-cookies-message="${label('video', 'video.no-cookies')}"
-        no-cookies-link-text="${label('video', 'video.cookie-setting-link-message')}"
         no-js-message="${label('video', 'video.no-js')}"
         <#if videoBtn?? && videoBtn != "">
             play-button-text="${videoBtn}"
