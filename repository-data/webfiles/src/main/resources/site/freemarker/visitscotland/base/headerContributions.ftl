@@ -24,6 +24,8 @@
     <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppInit,htmlBodyEndScriptsLast,seo,opengraph" xhtml=true/>
     <!-- END HEAD CONTRIBUTIONS: general -->
 
+    <link rel="icon" type="image/png" href="<@hst.webfile path="/assets/images/32x32.png"/>" sizes="32x32">
+
     <style>
         body {
             visibility: hidden;
