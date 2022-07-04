@@ -119,6 +119,7 @@ export default {
     data() {
         return {
             negativeMargin: '200px',
+            imageHeight: '400px',
         };
     },
     computed: {
@@ -133,6 +134,7 @@ export default {
                 // How much negative vertical margin to add to the image with
                 // caption. Defaults to 200px.
                 '--negative-margin': `-${this.negativeMargin}`,
+                '--image-height': `${this.imageHeight}`,
             };
         },
     },
@@ -146,6 +148,7 @@ export default {
         img.addEventListener('load', () => {
             const offsetPercentToMiddle = img.clientHeight / 2 / img.clientWidth;
             this.negativeMargin = `${offsetPercentToMiddle * 100}%`;
+            this.imageHeight = `${img.clientHeight}px`;
         });
     },
 };
@@ -154,6 +157,7 @@ export default {
 <style lang="scss">
     .vs-megalink-single-image {
         --negative-margin: -200px;
+        --image-height: 400px;
 
         min-width: 100%;
 
@@ -235,7 +239,12 @@ export default {
             display: flex;
             flex-direction: column;
 
+            .vs-megalink-single-image__text-container {
+                min-height: calc((var(--image-height) / 2) + 4rem);
+            }
+
             .vs-megalink-single-image__content {
+                min-height: 100%;
                 padding: $spacer-9 $spacer-9 $spacer-9 $spacer-9;
                 margin: 0;
                 background: $color-white;
@@ -269,10 +278,6 @@ export default {
                 .vs-megalink-single-image__content {
                     background: $color-gray-shade-7;
                 }
-            }
-
-            .vs-megalink-single-image__text-container {
-                min-height: calc(50% + #{$spacer-10});
             }
         }
 
