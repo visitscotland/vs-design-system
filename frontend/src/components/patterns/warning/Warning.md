@@ -22,7 +22,7 @@ covering or replacing an existing element
     >
         <VsWarning
             warningMessage="Cookies are needed to watch this video."
-            warningLinkText="Update my cookie settings"
+            :showCookieLink="true"
         />
     </div>
     <br />
@@ -33,7 +33,7 @@ covering or replacing an existing element
         <VsWarning
             warningMessage="Cookies are needed to watch this video."
             variant="row"
-           warningLinkText="Update my cookie settings"
+            :showCookieLink="true"
         />
     </div>
 

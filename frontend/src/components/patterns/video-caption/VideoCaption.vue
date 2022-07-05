@@ -117,12 +117,22 @@ export default {
             type: String,
             required: true,
         },
+        /**
+        * Text used for the link which opens the cookie preference centre.
+        */
+        cookieLinkText: {
+            type: String,
+            default: '',
+        },
     },
     inject: {
         noJsMessage: {
             default: '',
         },
         noCookiesMessage: {
+            default: '',
+        },
+        cookieLinkText: {
             default: '',
         },
     },

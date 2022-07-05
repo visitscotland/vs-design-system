@@ -15,6 +15,7 @@
         video-id="${videoId}"
         no-cookies-message="${label('video', 'video.no-cookies')}"
         no-js-message="${label('video', 'video.no-js')}"
+        cookie-link-text="${label('essentials.global', 'cookie.link-message')}"
         <#if videoBtn?? && videoBtn != "">
             play-button-text="${videoBtn}"
         <#else>

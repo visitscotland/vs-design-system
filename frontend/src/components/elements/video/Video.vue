@@ -24,6 +24,7 @@
                 <VsWarning
                     :warning-message="noCookiesMessage"
                     :warning-link-text="cookieLinkText"
+                    :show-cookie-link="true"
                 />
             </div>
         </div>
@@ -128,8 +129,7 @@ export default {
             default: '',
         },
         /**
-        * Text used for the link which opens the cookie preference centre, is
-        * provided for descendent components to inject
+        * Text used for the link which opens the cookie preference centre.
         */
         cookieLinkText: {
             type: String,
