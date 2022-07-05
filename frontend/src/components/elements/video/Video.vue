@@ -21,7 +21,11 @@
                 v-if="!requiredCookiesExist && cookiesSetStatus"
                 key="fallback"
             >
-                <CookiesFallback />
+                <VsWarning
+                    :warning-message="noCookiesMessage"
+                    :warning-link-text="cookieLinkText"
+                    :show-cookie-link="true"
+                />
             </div>
         </div>
     </div>
@@ -51,7 +55,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import VueYoutube from 'vue-youtube';
 import Vue from 'vue';
-import CookiesFallback from '@components/elements/cookies/CookiesFallback';
+import VsWarning from '@components/patterns/warning/Warning';
 import videoStore from '../../../stores/video.store';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
 import requiredCookiesData from '../../../utils/required-cookies-data';
@@ -74,7 +78,7 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        CookiesFallback,
+        VsWarning,
     },
     mixins: [
         verifyCookiesMixin,
@@ -116,6 +120,29 @@ export default {
             type: String,
             default: '%s minute video',
         },
+        /**
+        * A message explaining why the component has been disabled with disabled cookies, is
+        * provided for descendent components to inject
+        */
+        noCookiesMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Text used for the link which opens the cookie preference centre.
+        */
+        cookieLinkText: {
+            type: String,
+            default: '',
+        },
+        /**
+        * A message explaining why the component has been disabled when js is disabled,
+        * is provided for descendent components to inject
+        */
+        noJsMessage: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
@@ -144,8 +171,6 @@ export default {
         },
     },
     mounted() {
-        this.getPlayerDetails();
-
         /**
          * Sets up listener for play/pause events
          * from $root
@@ -187,8 +212,8 @@ export default {
              * Upon promise resolution, if the video ID returns
              * a YouTube video, process the time into the desired format.
              */
-            if (this.playerRef) {
-                this.playerRef.getDuration().then((response) => {
+            if (typeof this.player !== 'undefined') {
+                this.player.getDuration().then((response) => {
                     this.formatTime(response);
                     this.storeVideoDetails();
                 });
