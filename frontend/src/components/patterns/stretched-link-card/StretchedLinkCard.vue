@@ -29,7 +29,6 @@
             <VsWarning
                 v-if="videoId && jsDisabled"
                 :warning-message="noJsMessage"
-                class=""
             />
 
             <VsWarning
