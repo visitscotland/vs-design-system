@@ -36,8 +36,11 @@
             </template>
             <template slot="embedIntroCopyNoCookies">
                 ${module.noCookiesMessage}
-                <button id="ot-sdk-btn" class="ot-sdk-show-settings">
-                    Cookie Settings
+                <button
+                    class="ot-sdk-show-settings"
+                    id="ot-sdk-btn"
+                >
+                    ${label('stackla', 'stackla.update-cookies-link.label')}
                 </button>
             </template>
             <template slot="embedWidget">

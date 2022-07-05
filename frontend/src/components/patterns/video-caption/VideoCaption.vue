@@ -1,8 +1,7 @@
 <template>
-    <div>
+    <div data-test="video-caption">
         <div
             class="vs-video-caption"
-            data-test="video-caption"
             v-if="videoLoaded && requiredCookiesExist"
             key="video-caption"
         >
@@ -45,52 +44,33 @@
         </div>
 
         <div
-            v-else-if="!requiredCookiesExist && cookiesSetStatus"
-            class="vs-video-caption vs-video-caption"
+            v-else-if="showCookieMessage"
+            class="vs-video-caption vs-video-caption--warning"
         >
-            <div class="vs-video-caption__details container">
-                <div class="vs-video-caption__alert">
-                    <VsIcon
-                        name="review"
-                        custom-colour="gold"
-                        size="lg"
-                    />
-
-                    <p>
-                        <!-- @slot Slot for no cookies alert message -->
-                        <slot name="video-no-cookies-alert" />
-                    </p>
-                </div>
-            </div>
+            <VsWarning
+                :warning-message="noCookiesMessage"
+                :show-cookie-link="true"
+                variant="row"
+            />
         </div>
 
         <div
             v-else
-            class="vs-video-caption vs-video-caption--no-js"
+            class="vs-video-caption vs-video-caption--no-js vs-video-caption--warning"
             data-test="video-caption-nojs"
         >
-            <div class="vs-video-caption__details container">
-                <div class="vs-video-caption__alert">
-                    <VsIcon
-                        name="review"
-                        custom-colour="gold"
-                        size="lg"
-                    />
-
-                    <p>
-                        <!-- @slot Slot for no-js alert message -->
-                        <slot name="video-no-js-alert" />
-                    </p>
-                </div>
-            </div>
+            <VsWarning
+                :warning-message="noJsMessage"
+                variant="row"
+            />
         </div>
     </div>
 </template>
 
 <script>
 import VsButton from '@components/elements/button/Button';
-import VsIcon from '@components/elements/icon/Icon';
 import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
+import VsWarning from '@components/patterns/warning/Warning';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
 import videoStore from '../../../stores/video.store';
 import requiredCookiesData from '../../../utils/required-cookies-data';
@@ -108,8 +88,8 @@ export default {
     release: '0.0.1',
     components: {
         VsButton,
-        VsIcon,
         VsToggleButton,
+        VsWarning,
     },
     mixins: [
         verifyCookiesMixin,
@@ -137,6 +117,24 @@ export default {
             type: String,
             required: true,
         },
+        /**
+        * Text used for the link which opens the cookie preference centre.
+        */
+        cookieLinkText: {
+            type: String,
+            default: '',
+        },
+    },
+    inject: {
+        noJsMessage: {
+            default: '',
+        },
+        noCookiesMessage: {
+            default: '',
+        },
+        cookieLinkText: {
+            default: '',
+        },
     },
     data() {
         return {
@@ -149,6 +147,13 @@ export default {
         },
         videoLoaded() {
             if (typeof this.videoDetails !== 'undefined' && this.videoDetails.videoDuration > 0) {
+                return true;
+            }
+
+            return false;
+        },
+        showCookieMessage() {
+            if (!this.requiredCookiesExist && this.cookiesSetStatus && this.noCookiesMessage) {
                 return true;
             }
 
@@ -173,6 +178,10 @@ export default {
 
         &--no-js {
             display: none;
+        }
+
+        &--warning {
+            background-color: $color-gray-shade-6;
         }
 
         &__details {
