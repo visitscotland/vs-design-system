@@ -17,9 +17,12 @@
                 {{ warningMessage }}
             </p>
             <button
+                v-if="showCookieLink"
                 class="ot-sdk-show-settings vs-warning__cookie-trigger"
                 id="ot-sdk-btn"
-            />
+            >
+                {{ cookieLinkText }}
+            </button>
         </div>
     </div>
 </template>
@@ -49,11 +52,18 @@ export default {
             required: true,
         },
         /**
-        * The warning message to display to the user
+        * If set to true, the cookie preference centre link is displayed
         */
         showCookieLink: {
             type: Boolean,
             default: false,
+        },
+        /**
+        * Text for the link to the cookies preference centre.
+        */
+        cookieLinkText: {
+            type: String,
+            required: true,
         },
         variant: {
             type: String,
