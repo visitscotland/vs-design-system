@@ -36,9 +36,14 @@ describe('VsVideo', () => {
     });
 
     describe(':props', () => {
-        it('should pass a videoId prop to the youtube component', () => {
+        it('should pass a videoId prop to the youtube component', async() => {
             const wrapper = factoryShallowMount();
 
+            wrapper.setData({
+                requiredCookies: [],
+            });
+
+            await wrapper.vm.$nextTick();
             expect(wrapper.find('youtube-stub').attributes('videoid')).toBe(videoId);
         });
 
@@ -56,9 +61,15 @@ describe('VsVideo', () => {
             // a 25 second video, which should round to 1 minute
             wrapper.vm.formatTime(25);
 
-            await wrapper.setData({
+            wrapper.setData({
                 showDuration: true,
             });
+
+            wrapper.setData({
+                requiredCookies: [],
+            });
+
+            await wrapper.vm.$nextTick();
 
             expect(wrapper.vm.duration.roundedMinutes).toContain('1');
         });
