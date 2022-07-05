@@ -80,8 +80,7 @@
                             isVideo="true"
                             videoId="${heroVideo.youtubeId}"
                             videoTitle="${heroVideo.label}"
-                            videoBtn="${ctaText}"
-                            
+                            videoBtn="${ctaText}"                        
                         />
                     <#else>
                         <@imageWithCaption 

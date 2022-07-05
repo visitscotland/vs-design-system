@@ -13,20 +13,17 @@
         :mobile-overlap="${mobileOverlap}"
         :is-video="${isVideo}"
         video-id="${videoId}"
+        no-cookies-message="${label('video', 'video.no-cookies')}"
+        no-js-message="${label('video', 'video.no-js')}"
+        cookie-link-text="${label('essentials.global', 'cookie.link-message')}"
         <#if videoBtn?? && videoBtn != "">
             play-button-text="${videoBtn}"
         <#else>
             play-button-text="${label('video', 'video.play-btn')}"
         </#if>
     >
-        <template slot="video-no-js-alert">
-            ${label('video', 'video.no-js')}
-        </template>
         <template slot="video-title">
             ${videoTitle}
-        </template>
-        <template slot="video-no-cookies-alert">
-            ${label('video', 'video.no-cookies')}
         </template>
 
         <vs-img
