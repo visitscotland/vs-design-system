@@ -63,9 +63,11 @@ export default {
         //     });
         // }
     },
-    // mounted() {
-    // },
     methods: {
+        /**
+         * initialises listener to ensure accepted cookie values
+         * are updated when OneTrust preferences are changed
+         */
         checkOneTrust() {
             if (typeof window !== 'undefined') {
                 this.oneTrust.checkThirdPartyLibrary('OneTrust', () => {
@@ -78,6 +80,10 @@ export default {
                 });
             }
         },
+        /**
+         * checks cookies have been accepted via OneTrust and
+         * adds them to activeGroups
+         */
         checkActiveGroups() {
             if (typeof window !== 'undefined') {
                 this.oneTrust.checkThirdPartyLibrary('OnetrustActiveGroups', () => {
