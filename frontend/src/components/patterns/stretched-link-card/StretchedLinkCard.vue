@@ -5,7 +5,10 @@
         @click="emitShowModal"
         @keypress="emitShowModal"
     >
-        <div class="vs-stretched-link-card__img-container">
+        <div
+            class="vs-stretched-link-card__img-container"
+            :class="warningClass"
+        >
             <template
                 v-if="imgSrc"
             >
@@ -31,7 +34,8 @@
             <VsWarning
                 v-if="showCookieWarning"
                 :warning-message="noCookiesMessage"
-                :warning-link="noCookiesLink"
+                :show-cookie-link="true"
+                :cookie-link-text="cookieLinkText"
             />
         </div>
 
@@ -54,7 +58,7 @@
                 size="md"
                 ref="videoShow"
                 @click.native="emitShowModal"
-                v-if="videoId && videoLoaded && !disableVideo"
+                v-if="videoId && videoLoaded && requiredCookiesExist"
             >
                 <span
                     class="vs-stretched-link-card__video-btn-text"
@@ -225,8 +229,8 @@ export default {
         noCookiesMessage: {
             default: '',
         },
-        noCookiesLink: {
-            default: null,
+        cookieLinkText: {
+            default: '',
         },
     },
     data() {
@@ -271,17 +275,13 @@ export default {
 
             return false;
         },
-        // Checks whether appropriate cookies have been rejected for the video on this megalink,
-        // to display an appropriate warning to the user
-        cookiesMissing() {
-            // TODO: Add cookie functionality once checker integrated
-            // See VS-3606
-            return false;
-        },
-        // Checks both cookiesMissing and jsDisabled to determine whether the video should be
-        // prevented from initialising
-        disableVideo() {
-            return (this.cookiesMissing || this.jsDisabled);
+        // Calculates if warning is showing and gives class for appropriate styles
+        warningClass() {
+            if (this.videoId && (this.jsDisabled || !this.requiredCookiesExist)) {
+                return 'vs-stretched-link-card__img-container--warning';
+            }
+
+            return '';
         },
         showCookieWarning() {
             if (this.videoId && !this.jsDisabled
@@ -298,7 +298,7 @@ export default {
     },
     methods: {
         emitShowModal() {
-            if (!this.videoId) {
+            if (!this.videoId || !this.requiredCookiesExist) {
                 return;
             }
 
@@ -394,6 +394,18 @@ export default {
             align-self: flex-start;
             flex-shrink: 0; // IE11 fix, prevents image vertical stretching
             position: relative;
+
+            &--warning {
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba($color-black, 0.8);
+                }
+            }
         }
 
         .vs-stretched-link-card__img {

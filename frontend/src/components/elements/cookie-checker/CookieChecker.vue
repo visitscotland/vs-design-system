@@ -67,7 +67,7 @@ export default {
     // },
     methods: {
         checkOneTrust() {
-            if (window) {
+            if (typeof window !== 'undefined') {
                 this.oneTrust.checkThirdPartyLibrary('OneTrust', () => {
                     window.OneTrust.OnConsentChanged(() => {
                         this.oneTrust.checkThirdPartyLibrary('OnetrustActiveGroups', () => {
@@ -79,10 +79,12 @@ export default {
             }
         },
         checkActiveGroups() {
-            this.oneTrust.checkThirdPartyLibrary('OnetrustActiveGroups', () => {
-                // Check what cookies were accepted
-                this.activeGroups = window.OnetrustActiveGroups;
-            });
+            if (typeof window !== 'undefined') {
+                this.oneTrust.checkThirdPartyLibrary('OnetrustActiveGroups', () => {
+                    // Check what cookies were accepted
+                    this.activeGroups = window.OnetrustActiveGroups;
+                });
+            }
         },
     },
 };
