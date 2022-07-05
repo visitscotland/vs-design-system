@@ -80,7 +80,8 @@
                             isVideo="true"
                             videoId="${heroVideo.youtubeId}"
                             videoTitle="${heroVideo.label}"
-                            videoBtn="${ctaText}"                        
+                            videoBtn="${ctaText}"
+                            useLazyLoading="false"
                         />
                     <#else>
                         <@imageWithCaption 
@@ -89,6 +90,7 @@
                             variant="large"
                             isHero="true"
                             isVideo="false"
+                            useLazyLoading="false"
                         />
                     </#if>
                 </template>
