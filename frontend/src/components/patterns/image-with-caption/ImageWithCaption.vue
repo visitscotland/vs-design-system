@@ -14,6 +14,7 @@
                     v-if="imageSrc"
                     :src="imageSrc"
                     :alt="altText"
+                    :use-lazy-loading="useLazyLoading"
                 />
             </slot>
 
@@ -188,6 +189,13 @@ export default {
         noJsMessage: {
             type: String,
             default: '',
+        },
+        /*
+         * If true switches on lazy loading for the image
+        */
+        useLazyLoading: {
+            type: Boolean,
+            default: true,
         },
     },
     data() {
