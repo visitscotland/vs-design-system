@@ -47,6 +47,7 @@
                             cludo-input-form__search-button"
                             variant="primary"
                             size="lg"
+                            @click.native="closeSearchForm"
                         >
                             {{ submitButtonText }}
                         </VsButton>
@@ -98,6 +99,13 @@ export default {
     },
     props: {
         /**
+         * Used to know if the search form is currently showing
+         */
+        isShowing: {
+            type: Boolean,
+            default: false,
+        },
+        /**
          * Text that renders in form label (sr-only) and input placeholder
          */
         labelText: {
@@ -132,7 +140,23 @@ export default {
             showSearchForm: true,
         };
     },
+    watch: {
+        /**
+         * Watches for search form opening
+         */
+        isShowing(formOpen) {
+            if (formOpen) {
+                this.focusOnInput();
+            }
+        },
+    },
     methods: {
+        /**
+         * Puts focus on input when form is opened
+         */
+        focusOnInput() {
+            this.$refs.searchInput.$refs.input.focus();
+        },
         /**
          * Update searchTerm value with returned data
          */
