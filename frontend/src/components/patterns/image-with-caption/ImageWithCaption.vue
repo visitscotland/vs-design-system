@@ -44,10 +44,6 @@
                     @toggleAction="toggleCaption"
                     :video-id="videoId"
                 >
-                    <!-- @slot Slot for the video alert message -->
-                    <template slot="video-no-js-alert">
-                        <slot name="video-no-js-alert" />
-                    </template>
                     <!-- @slot Slot for the video title text -->
                     <template slot="video-title">
                         <slot name="video-title" />
@@ -76,6 +72,10 @@
 import VsImg from '@components/elements/img/Img';
 import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
 import VsVideoCaption from '@components/patterns/video-caption/VideoCaption';
+import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
+import requiredCookiesData from '../../../utils/required-cookies-data';
+
+const cookieValues = requiredCookiesData.youtube;
 
 /**
  * Image with toggle to open a caption and image location map
@@ -91,6 +91,9 @@ export default {
         VsToggleButton,
         VsVideoCaption,
     },
+    mixins: [
+        verifyCookiesMixin,
+    ],
     props: {
         /**
          * The image alt text for screen readers
@@ -164,6 +167,30 @@ export default {
             default: '',
         },
         /**
+        * A message explaining why the component has been disabled with disabled cookies, is
+        * provided for descendent components to inject
+        */
+        noCookiesMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Text used for the link which opens the cookie preference centre, is
+        * provided for descendent components to inject
+        */
+        cookieLinkText: {
+            type: String,
+            default: '',
+        },
+        /**
+        * A message explaining why the component has been disabled when js is disabled,
+        * is provided for descendent components to inject
+        */
+        noJsMessage: {
+            type: String,
+            default: '',
+        },
+        /*
          * If true switches on lazy loading for the image
         */
         useLazyLoading: {
@@ -174,6 +201,7 @@ export default {
     data() {
         return {
             showCaption: false,
+            requiredCookies: cookieValues,
         };
     },
     computed: {
@@ -181,6 +209,7 @@ export default {
             return {
                 'vs-image-with-caption--closed-default': this.closedDefaultCaption,
                 'vs-image-with-caption--hero': this.isHeroImage,
+                'vs-image-with-caption--show-caption': !this.requiredCookiesExist && this.cookiesSetStatus,
                 'vs-image-with-caption--video': this.isVideo,
             };
         },
@@ -197,6 +226,13 @@ export default {
         toggleCaption() {
             this.showCaption = !this.showCaption;
         },
+    },
+    provide() {
+        return {
+            noJsMessage: this.noJsMessage,
+            noCookiesMessage: this.noCookiesMessage,
+            cookieLinkText: this.cookieLinkText,
+        };
     },
 };
 </script>
@@ -289,9 +325,11 @@ export default {
                 }
             }
 
-            .vs-image-with-caption__caption-wrapper {
-                display: none;
-                justify-content: flex-end;
+            .vs-image-with-caption {
+                &__caption-wrapper {
+                    display: none;
+                    justify-content: flex-end;
+                }
             }
 
             .vs-image-with-caption__video-caption-wrapper {
@@ -335,6 +373,13 @@ export default {
                         position: relative;
                         bottom: auto;
                         right: auto;
+                    }
+                }
+
+                &.vs-image-with-caption--show-caption {
+                    .vs-image-with-caption__caption-wrapper {
+                        display: flex;
+                        margin-top: $spacer-2;
                     }
                 }
             }
@@ -482,7 +527,7 @@ export default {
     }
 
     @include no-js {
-        .vs-image-with-caption{
+        .vs-image-with-caption {
             &__image-wrapper {
                 .vs-toggle-btn {
                     display: none;
