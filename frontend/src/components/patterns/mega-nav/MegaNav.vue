@@ -92,6 +92,7 @@
         <VsSiteSearchForm
             v-show="showSearch"
             @toggleAction="toggleSearch"
+            :is-showing="showSearch"
             :label-text="searchLabelText"
             :submit-button-text="searchButtonText"
             :clear-button-text="searchClearButtonText"
