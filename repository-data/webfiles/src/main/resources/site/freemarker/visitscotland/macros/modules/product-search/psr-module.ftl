@@ -6,7 +6,7 @@
 
 <#macro productSearchWidget module="" position="bottom" >
     <#if module?has_content>
-        <#--  <vs-product-search
+        <vs-product-search
             :config-arr="[
                 {'subSearchType': '${module.category.productTypes}'},
                 <#if module.location??>
@@ -31,6 +31,6 @@
             <template slot="vsModuleIntro">
                 ${module.description}
             </template>
-        </vs-product-search>  -->
+        </vs-product-search>
     </#if>
 </#macro>
