@@ -30,15 +30,15 @@
                             </label>
                             <VsInput
                                 class="vs-site-search-form__input cludo-input-form__input"
+                                id="cludo-search-input"
+                                ref="searchInput"
                                 name="searchrequest"
                                 type="search"
-                                :placeholder="labelText"
-                                :auto-complete="false"
-                                ref="searchInput"
-                                id="cludo-search-input"
-                                @updated="updateVal"
-                                :clear-button-text="clearButtonText"
                                 field-name="site-search"
+                                :placeholder="labelText"
+                                :clear-button-text="clearButtonText"
+                                :auto-complete="false"
+                                @updated="updateVal"
                             />
                         </div>
                         <VsButton
@@ -110,28 +110,28 @@ export default {
          */
         labelText: {
             type: String,
-            default: 'What are you looking for?',
+            default: '',
         },
         /**
          * Text that renders inside the submit button
          */
         submitButtonText: {
             type: String,
-            default: 'Search',
+            default: '',
         },
         /**
          * Text that renders inside the clear button (sr-only)
          */
         clearButtonText: {
             type: String,
-            default: 'Clear form',
+            default: '',
         },
         /**
          * Text that renders inside the close button (sr-only)
          */
         closeButtonText: {
             type: String,
-            default: 'Close search form',
+            default: '',
         },
     },
     data() {
