@@ -316,6 +316,12 @@
     max-width: 164px !important;
 }
 
+.listing-content {
+    .row {
+        display: block;
+    }
+}
+
 @media (min-width: 500px) {
     .c-results__filters__list-title,
     .c-results__pagination__li {
