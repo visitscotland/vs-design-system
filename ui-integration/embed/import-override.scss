@@ -4,7 +4,6 @@
  */
 
 .vs-global-menu {
-    .vs-global-menu__list_item,
     .vs-global-menu__languages .btn-primary.dropdown-toggle,
     .vs-global-menu__dropdown .btn-primary.dropdown-toggle,
     .vs-global-menu__languages .btn-primary.dropdown-toggle,
@@ -16,6 +15,27 @@
     .vs-global-menu__languages__item .dropdown-item,
     .vs-global-menu__dropdown .dropdown-menu li a {
         padding: 1.5rem !important;
+    }
+
+    .vs-global-menu__list_item,
+    .vs-global-menu__languages__text,
+    .vs-global-menu__languages__selected {
+        font-size: 1.2rem !important;
+    }
+
+    .dropdown-menu {
+        border-radius: 0;
+
+        .vs-global-menu__languages__item {
+            margin-bottom: 0;
+
+            .dropdown-item {
+                &:hover,
+                &:focus {
+                    color: #fff !important;
+                }
+            }
+        }
     }
 
     @media (max-width: 499px) {
