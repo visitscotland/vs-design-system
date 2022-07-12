@@ -224,6 +224,22 @@
     }
 }
 
+.vs-banner {
+    &__title,
+    &__text p,
+    &__cta-link {
+        font-size: 1.6rem !important;
+    }
+
+    @media (max-width: 499px) {
+        &__title,
+        &__text p,
+        &__cta-link {
+            font-size: 1.778rem !important;
+        }
+    }
+}
+
 .vs-footer {    
     .vs-accordion-item__title {
         text-transform: none !important;
@@ -338,6 +354,11 @@
     .row {
         display: block;
     }
+}
+
+.component-booking-nav .booking {
+    position: relative !important;
+    top: auto !important;
 }
 
 @media (min-width: 500px) {
