@@ -26,9 +26,12 @@
 	<@hst.manageContent hippobean=document/>
 
     <#if standardTemplate>
-        <@pageIntro content=document heroDetails=heroImage lightBackground=psrWidget?has_content />
+		<@pageIntro content=document lightBackground=psrWidget?has_content />
 		<@productSearchWidget psrWidget "top"/>
-    <#else>
+    <#elseif document.theme=="Top-Level">
+		<@pageIntro content=document heroDetails=heroImage lightBackground=psrWidget?has_content />
+		<@productSearchWidget psrWidget "top"/>
+	<#else>
         <@pageIntro content=document lightBackground=true />
     </#if>
 
@@ -36,7 +39,7 @@
 	<#list pageItems as module>
 
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a common macro to control it-->
-		<#if standardTemplate >
+		<#if standardTemplate || document.theme="Top-level" >
 			<@moduleBuilder module />
 		<#else>
 			<@moduleBuilder module=module colourScheme=["light", "light", "light"] />
