@@ -321,6 +321,12 @@
     }
 }
 
+@media (min-width: 576px) {
+    .form-inline .form-control {
+        max-width: 100%;
+    }
+}
+
 @media (min-width: 992px) {
     .c-search__button--submit {
         padding: 5px 30px 6px !important;
