@@ -25,6 +25,7 @@
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document/>
 
+	<#--TODO Starndard template should be updated to use the hero image in the format of the article image-->
     <#if standardTemplate>
 		<@pageIntro content=document lightBackground=psrWidget?has_content />
 		<@productSearchWidget psrWidget "top"/>
