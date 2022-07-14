@@ -361,6 +361,20 @@
     top: auto !important;
 }
 
+.c-search__button--submit-primary {
+    display: flex;
+    align-items: center;
+
+    .c-search__button-container {
+        padding-top: 18px !important;
+
+        .c-search__button--submit {
+            height: calc(1.5em + 1.5rem + 2px);
+            font-size: 1.4rem;
+        }
+    }
+}
+
 @media (min-width: 500px) {
     .c-results__filters__list-title,
     .c-results__pagination__li {
