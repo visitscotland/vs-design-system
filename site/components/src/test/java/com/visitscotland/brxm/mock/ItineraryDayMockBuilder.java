@@ -116,6 +116,7 @@ public class ItineraryDayMockBuilder {
         when(currentStop.getStopItem()).thenReturn(link);
         //This is only used for opening times
         lenient().when(link.getExternalLink().getLink()).thenReturn(url);
+        lenient().when(link.getExternalLink().getLabel()).thenReturn("");
 
         //This mocked value is not representative of the real object.
         when(currentStop.getIdentifier()).thenReturn(url);
