@@ -375,6 +375,20 @@
     }
 }
 
+.c-results__sort .c-results__label {
+    display: flex !important;
+
+    .c-results__sort__label {
+        float: none !important;
+        flex-shrink: 0 !important;
+    }
+
+    .c-results__sort-dropdown {
+        border: none !important;
+        font-size: 1.4rem !important;
+    }
+}
+
 @media (min-width: 500px) {
     .c-results__filters__list-title,
     .c-results__pagination__li {
