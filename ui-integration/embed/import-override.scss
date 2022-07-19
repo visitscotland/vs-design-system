@@ -389,6 +389,10 @@
     }
 }
 
+.c-search__in, .c-search__on {
+    left: -1.5rem;
+}
+
 @media (min-width: 500px) {
     .c-results__filters__list-title,
     .c-results__pagination__li {
@@ -405,6 +409,15 @@
 @media (min-width: 992px) {
     .c-search__button--submit {
         padding: 5px 30px 6px !important;
+    }
+
+    .c-search-type .form-group,
+    .c-search__date-anytime {
+        max-width: 95%;
+    }
+
+    .c-search__for {
+        left: -1.9rem;
     }
 }
 
