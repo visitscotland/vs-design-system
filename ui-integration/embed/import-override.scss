@@ -389,6 +389,13 @@
     }
 }
 
+.c-results__map__refresh.btn {
+    background: #fff !important;
+    font-size: 1.4rem !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
 @media (min-width: 500px) {
     .c-results__filters__list-title,
     .c-results__pagination__li {
