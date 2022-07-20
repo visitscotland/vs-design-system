@@ -389,6 +389,10 @@
     }
 }
 
+.datepicker-dropdown.dropdown-menu {
+    width: 30rem !important;
+}
+
 @media (min-width: 500px) {
     .c-results__filters__list-title,
     .c-results__pagination__li {
