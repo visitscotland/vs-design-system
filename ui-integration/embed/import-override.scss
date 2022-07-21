@@ -389,6 +389,10 @@
     }
 }
 
+#loading-content .col-lg-12 > .row {
+    justify-content: center;
+}
+
 @media (min-width: 500px) {
     .c-results__filters__list-title,
     .c-results__pagination__li {
