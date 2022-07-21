@@ -24,7 +24,7 @@
 <#-- @ftlvariable name="introTheme" type="int" -->
 
 <#macro pageIntro content heroDetails="" itinerary="" lightBackground=false >
-    <@previewWarning editMode content alerts />
+    <@previewWarning editMode content alerts!"" />
     <#if lightBackground>
         <#assign themeName = themeCalculator(1)>
     <#else>
@@ -81,7 +81,7 @@
                             videoId="${heroVideo.youtubeId}"
                             videoTitle="${heroVideo.label}"
                             videoBtn="${ctaText}"
-                            
+                            useLazyLoading="false"
                         />
                     <#else>
                         <@imageWithCaption 
@@ -90,6 +90,7 @@
                             variant="large"
                             isHero="true"
                             isVideo="false"
+                            useLazyLoading="false"
                         />
                     </#if>
                 </template>

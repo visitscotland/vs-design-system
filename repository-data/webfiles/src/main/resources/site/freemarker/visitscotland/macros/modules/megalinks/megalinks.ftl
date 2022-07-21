@@ -26,6 +26,9 @@
         title="${item.title}"
         theme="${theme}"
         <#if item.cta?? && type != "SingleImageLinksModule">button-link="${item.cta.link}"</#if>
+        no-cookies-message="${label('video', 'video.no-cookies')}"
+        cookie-link-text="${label('essentials.global', 'cookie.link-message')}"
+        no-js-message="${label('video', 'video.no-js')}"
     >
 
         <template slot="vsMegalinksHeading">
