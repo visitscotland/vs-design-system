@@ -393,6 +393,10 @@
     width: 30rem !important;
 }
 
+#loading-content .col-lg-12 > .row {
+    justify-content: center;
+}
+
 .c-results__map__refresh.btn {
     background: #fff !important;
     font-size: 1.4rem !important;
