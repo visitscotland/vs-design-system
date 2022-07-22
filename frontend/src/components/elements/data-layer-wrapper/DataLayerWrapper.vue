@@ -4,9 +4,14 @@
             variant="dark"
             type="external"
             href="https://www.google.com"
-            @click.native.prevent="buttonClick($event)"
-            data-vs-tracking-event="externalLink"
-            data-vs-tracking-tag-name="VS - GA - External Link"
+        >
+            Test Link
+        </VsLink>
+        <br>
+        <VsLink
+            variant="dark"
+            type="internal"
+            href="#"
         >
             Test Link
         </VsLink>
@@ -17,12 +22,12 @@
 <script>
 /* eslint-disable */
 import checkVendorLibrary from '../../../utils/check-vendor-library';
-import dataLayerPushTemplatesMixin from '../../../mixins/dataLayerPushTemplatesMixin';
-import dataLayerNormalizerMixin from '../../../mixins/dataLayerNormalizerMixin';
+import dataLayerMixin from '../../../mixins/dataLayerMixin';
 
 /**
- * Component used to manage the Google Tag Manager (GTM)
- * data layer and help with pushing tracking data
+ * This component is only being used as a placeholder to test out
+ * GTM integration with vue components and the vuex store <br>
+ * <strong style="color: red;">Has to be deleted (Used in development only, DO NOT push into production)</strong>
  *
  * @displayName Data Layer Wrapper
  */
@@ -30,17 +35,7 @@ export default {
     name: 'VsDataLayerWrapper',
     status: 'prototype',
     release: '0.0.1',
-    mixins: [dataLayerNormalizerMixin, dataLayerPushTemplatesMixin],
-    props: {
-        /**
-         * Receive an external payload to be pushed through
-         * the data layer by this component
-         */
-        payload: {
-            type: Object,
-            default: () => {},
-        },
-    },
+    mixins: [dataLayerMixin],
     data() {
         return {
         };
@@ -52,10 +47,9 @@ export default {
         // });
     },
     methods: {
-        buttonClick(event) {
-            let data = this.ExternalLinkDataNormalizer(event);
-            this.ExternalLinkPushTemplate(data);
-        },
+        // buttonClick(event) {
+        //     this.externalLinkDataEvent(event);
+        // },
     },
 };
 </script>
