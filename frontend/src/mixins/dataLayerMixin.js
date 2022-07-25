@@ -1,7 +1,11 @@
 /* eslint-disable */
 import { Store } from 'vuex';
 import dataLayerStore from '../stores/dataLayer.store';
-import { externalLinkTemplate } from '../utils/data-layer-templates';
+import {
+    pageViewTemplate,
+    externalLinkTemplate,
+    internalLinkTemplate
+} from '../utils/data-layer-templates';
 
 /**
  * There is a general function to retrieve any value from the store:
@@ -17,9 +21,6 @@ const dataLayerMixin = {
         // TagManagerWrapper.vue (Global component that reads and updates the store)
         pageUrl() {
             return dataLayerStore.getters.getPageUrl;
-        },
-        pageLanguage() {
-            return dataLayerStore.getters.getTestRunStatus;
         },
     },
     methods: {
@@ -48,6 +49,25 @@ const dataLayerMixin = {
         pageViewTemplateDataEvent(event) {
             const eventName = "page_view"
             const tagName = "VS - GA - Pageview"
+
+            const storeValues = dataLayerStore.getters.getAllGTMValues;
+
+            const templateValues = {
+                "event": eventName,
+                "tag_name": tagName,
+            };
+
+            const fullTemplate = {
+                ...storeValues,
+                ...templateValues,
+            };
+
+            // Running the values and the template trough the templateFiller() function
+            // This will make sure that the values are added on the right place
+            // And if any value was not found then it will return as undefined (as per iProspect request)
+            const pageView = this.templateFiller(pageViewTemplate, fullTemplate);
+
+            console.log(pageView);
         },
         menuNavigationDataEvent(event) {
             const eventName = "menu_navigation"
@@ -88,10 +108,15 @@ const dataLayerMixin = {
                 "click_URL": event.target.href,
             }
 
+            const fullTemplate = {
+                ...storeValues,
+                ...templateValues,
+            };
+
             // Running the values and the template trough the templateFiller() function
             // This will make sure that the values are added on the right place
             // And if any value was not found then it will return as undefined (as per iProspect request)
-            const externalLink = this.templateFiller(externalLinkTemplate, storeValues);
+            const externalLink = this.templateFiller(externalLinkTemplate, fullTemplate);
             
             // After that we just need to push the object returned to the data layer
             // datalayer.push(externalLink);
@@ -117,7 +142,7 @@ const dataLayerMixin = {
                 ...templateValues,
             };
 
-            const internalLink = this.templateFiller(externalLinkTemplate, fullTemplate);
+            const internalLink = this.templateFiller(internalLinkTemplate, fullTemplate);
             // datalayer.push(externalLink);
 
             console.log(`internalLink:`)
