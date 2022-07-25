@@ -6,6 +6,7 @@
 /* eslint-disable */
 import checkVendorLibrary from '../../../utils/check-vendor-library';
 import dataLayerStore from '../../../stores/dataLayer.store';
+import dataLayerMixin from '../../../mixins/dataLayerMixin';
 
 /**
  * This is a hidden "Global" component that sits on
@@ -20,6 +21,7 @@ export default {
     name: 'VsTagManagerWrapper',
     status: 'prototype',
     release: '0.0.1',
+    mixins: [dataLayerMixin],
     props: {
         /**
          * Receive an external payload to be pushed through
@@ -27,7 +29,8 @@ export default {
          */
         payload: {
             type: Object,
-            default: () => {},
+            default: () => {
+            },
         },
     },
     mounted() {
@@ -41,6 +44,8 @@ export default {
             dataLayerStore.dispatch('setTestRun', true);
             dataLayerStore.dispatch('setPageUrl', window.location.href);
         });
+
+        this.pageViewTemplateDataEvent();
     },
     methods: {
         /**
@@ -51,29 +56,16 @@ export default {
          * dataLayerStore.getters.getValueFromKey("key_name")
          */
         processPayload(payload) {
-            if (payload == undefined) return
+            if (payload == undefined) return;
 
             // Convert all the keys from kebab-case to snake_case
             for (let key in payload) {
-                const newKey = key.replaceAll("-", "_")
-
-                // This function add a new property to the payload using the newKey name
-                Object.defineProperty(
-                    payload, // Object that contains the property to be modified
-                    newKey, // The property name to be added to the object
-                    Object.getOwnPropertyDescriptor(payload, key) // Payload = object that contains the property | key = the name of the property
-                );
-
-                // Copying the value from the old key
-                payload[newKey] = payload[key]
-
-                // Removing the old key:value from the payload
-                delete payload[key];
+                const newKey = key.replaceAll("-", "_");
 
                 // Pushing the new payload with processed key names to the store
                 dataLayerStore.dispatch('processPayload', {
                     'key': newKey,
-                    'value': payload[newKey],
+                    'value': payload[key],
                 })
             }
         }
