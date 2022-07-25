@@ -78,26 +78,20 @@ const dataLayerMixin = {
             const eventName = "external_link"
             const tagName = "VS - GA - External Link"
 
-            // Values that come both from the component that called the function 
-            // As well as from the page store
-            // Left column needs to match the template names from data-layer-templates.js
+            const storeValues = dataLayerStore.getters.getAllGTMValues;
+
             const templateValues = {
                 "event": eventName,
                 "language": this.pageLanguage,
                 "tag_name": tagName,
                 "click_text": event.target.text,
                 "click_URL": event.target.href,
-                "page_category_1": dataLayerStore.getters.getValueFromKey("page_category_1"),
-                "page_category_2": dataLayerStore.getters.getValueFromKey("page_category_2"),
-                "page_category_3": dataLayerStore.getters.getValueFromKey("page_category_3"),
-                "user_country_setting": dataLayerStore.getters.getValueFromKey("user_country_setting"),
-                "meta_data": dataLayerStore.getters.getValueFromKey("meta_data")
             }
 
             // Running the values and the template trough the templateFiller() function
             // This will make sure that the values are added on the right place
             // And if any value was not found then it will return as undefined (as per iProspect request)
-            const externalLink = this.templateFiller(externalLinkTemplate, templateValues);
+            const externalLink = this.templateFiller(externalLinkTemplate, storeValues);
             
             // After that we just need to push the object returned to the data layer
             // datalayer.push(externalLink);
@@ -108,6 +102,8 @@ const dataLayerMixin = {
             const eventName = "internal_link"
             const tagName = "VS - GA - Internal Link"
 
+            const storeValues = dataLayerStore.getters.getAllGTMValues;
+
             const templateValues = {
                 "event": eventName,
                 "language": this.pageLanguage,
@@ -116,7 +112,12 @@ const dataLayerMixin = {
                 "click_URL": event.target.href,
             }
 
-            const internalLink = this.templateFiller(externalLinkTemplate, templateValues);
+            const fullTemplate = {
+                ...storeValues,
+                ...templateValues,
+            };
+
+            const internalLink = this.templateFiller(externalLinkTemplate, fullTemplate);
             // datalayer.push(externalLink);
 
             console.log(`internalLink:`)
