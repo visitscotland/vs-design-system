@@ -31,10 +31,6 @@ export default {
         },
     },
     mounted() {
-        // checkVendorLibrary('dataLayer', () => {
-        //     console.log('dataLayer available');
-        // });
-
         this.processPayload(this.payload)
 
         document.addEventListener('DOMContentLoaded', event => {
