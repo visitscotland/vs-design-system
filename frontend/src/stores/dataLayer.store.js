@@ -9,6 +9,8 @@ export default new Vuex.Store({
         pageUrl: '',
         pageLanguage: 'en',
         tagsTestRun: false,
+        GTMData: {
+        },
     },
     mutations: {
         SET_TEST_RUN: (state, payload) => {
@@ -27,7 +29,7 @@ export default new Vuex.Store({
          */
         PAYLOAD_UPDATE: (state, payload) => {
             // eslint-disable-next-line no-param-reassign
-            state[payload.key] = payload.value;
+            state.GTMData[payload.key] = payload.value;
         },
     },
     actions: {
@@ -60,6 +62,9 @@ export default new Vuex.Store({
         },
 
         // This is a general getter to retrieve any value from the store:
-        getValueFromKey: (state) => (key) => state[key],
+        getValueFromKey: (state) => (key) => state.GTMData[key],
+
+        // This is a general getter to retrieve all values from the store:
+        getAllGTMValues: (state) => state.GTMData,
     },
 });
