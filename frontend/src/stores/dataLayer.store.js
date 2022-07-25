@@ -7,7 +7,6 @@ export default new Vuex.Store({
     namespaced: true,
     state: {
         pageUrl: '',
-        pageLanguage: 'en',
         tagsTestRun: false,
         GTMData: {
         },
@@ -52,13 +51,10 @@ export default new Vuex.Store({
     },
     getters: {
         getTestRunStatus: (state) => state.tagsTestRun,
+
         // eslint-disable-next-line arrow-body-style
         getPageUrl: (state) => {
             return state.pageUrl;
-        },
-        // eslint-disable-next-line arrow-body-style
-        getPageLanguage: (state) => {
-            return state.pageLanguage;
         },
 
         // This is a general getter to retrieve any value from the store:
