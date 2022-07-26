@@ -52,10 +52,7 @@ export default new Vuex.Store({
     getters: {
         getTestRunStatus: (state) => state.tagsTestRun,
 
-        // eslint-disable-next-line arrow-body-style
-        getPageUrl: (state) => {
-            return state.pageUrl;
-        },
+        getPageUrl: (state) => state.pageUrl,
 
         // This is a general getter to retrieve any value from the store:
         getValueFromKey: (state) => (key) => state.GTMData[key],
