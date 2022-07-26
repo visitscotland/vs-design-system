@@ -7,6 +7,7 @@
 
 <script>
 import dataLayerStore from '../../../stores/dataLayer.store';
+import dataLayerMixin from '../../../mixins/dataLayerMixin';
 
 /**
  * This is a hidden "Global" component that sits on
@@ -21,6 +22,7 @@ export default {
     name: 'VsTagManagerWrapper',
     status: 'prototype',
     release: '0.0.1',
+    mixins: [dataLayerMixin],
     props: {
         /**
          * Receive an external payload to be pushed through
@@ -28,7 +30,8 @@ export default {
          */
         payload: {
             type: Object,
-            default: () => {},
+            default: () => {
+            },
         },
     },
     mounted() {
@@ -38,6 +41,8 @@ export default {
             dataLayerStore.dispatch('setTestRun', true);
             dataLayerStore.dispatch('setPageUrl', window.location.href);
         });
+
+        this.pageViewTemplateDataEvent();
     },
     methods: {
         /**
@@ -48,35 +53,20 @@ export default {
          * dataLayerStore.getters.getValueFromKey("key_name")
          */
         processPayload(payload) {
-            if (typeof payload === 'undefined') return;
+            if (payload == undefined) return;
 
             // Convert all the keys from kebab-case to snake_case
-            Object.keys(payload).forEach((key) => {
-                const newKey = key.replaceAll('-', '_');
-                const payloadClone = payload;
-
-                // This function add a new property to the payload using the newKey name
-                Object.defineProperty(
-                    payloadClone, // Object that contains the property to be modified
-                    newKey, // The property name to be added to the object
-                    // Payload = object that contains the property | key = the name of the property
-                    Object.getOwnPropertyDescriptor(payloadClone, key)
-                );
-
-                // Copying the value from the old key
-                payloadClone[newKey] = payloadClone[key];
-
-                // Removing the old key:value from the payload
-                delete payloadClone[key];
+            for (let key in payload) {
+                const newKey = key.replaceAll("-", "_");
 
                 // Pushing the new payload with processed key names to the store
                 dataLayerStore.dispatch('processPayload', {
-                    key: newKey,
-                    value: payloadClone[newKey],
-                });
-            });
-        },
-    },
+                    'key': newKey,
+                    'value': payload[key],
+                })
+            }
+        }
+    }
 };
 </script>
 
