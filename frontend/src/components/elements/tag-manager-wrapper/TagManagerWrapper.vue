@@ -40,9 +40,8 @@ export default {
         document.addEventListener('DOMContentLoaded', () => {
             dataLayerStore.dispatch('setTestRun', true);
             dataLayerStore.dispatch('setPageUrl', window.location.href);
+            this.pageViewTemplateDataEvent();
         });
-
-        this.pageViewTemplateDataEvent();
     },
     methods: {
         /**
@@ -53,20 +52,20 @@ export default {
          * dataLayerStore.getters.getValueFromKey("key_name")
          */
         processPayload(payload) {
-            if (payload == undefined) return;
+            if (payload === undefined) return;
 
             // Convert all the keys from kebab-case to snake_case
-            for (let key in payload) {
-                const newKey = key.replaceAll("-", "_");
+            Object.keys(payload).forEach((key) => {
+                const newKey = key.replaceAll('-', '_');
 
                 // Pushing the new payload with processed key names to the store
                 dataLayerStore.dispatch('processPayload', {
-                    'key': newKey,
-                    'value': payload[key],
-                })
-            }
-        }
-    }
+                    key: newKey,
+                    value: payload[key],
+                });
+            });
+        },
+    },
 };
 </script>
 
