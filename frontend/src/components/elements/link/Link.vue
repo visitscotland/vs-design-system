@@ -96,10 +96,10 @@ export default {
             event.preventDefault();
             if (this.type === 'external') {
                 this.externalLinkDataEvent(event);
-                // window.open(this.href, '_blank');
+                window.open(this.href, '_blank');
             } else {
                 this.internalLinkDataEvent(event);
-                // window.location.replace(this.href);
+                window.location.replace(this.href);
             }
         },
     },
