@@ -1,5 +1,8 @@
 <template>
-    <span class="d-none" />
+    <span
+        data-test="vs-tag-manager-wrapper"
+        class="d-none"
+    />
 </template>
 
 <script>
