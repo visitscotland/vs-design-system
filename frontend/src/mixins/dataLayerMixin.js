@@ -1,6 +1,10 @@
 import dataLayerStore from '../stores/dataLayer.store';
-import { externalLinkTemplate } from '../utils/data-layer-templates';
 import checkVendorLibrary from '../utils/check-vendor-library';
+import {
+    pageViewTemplate,
+    externalLinkTemplate,
+    internalLinkTemplate
+} from '../utils/data-layer-templates';
 
 /**
  * There is a general function to retrieve any value from the store:
@@ -15,9 +19,6 @@ const dataLayerMixin = {
         // TagManagerWrapper.vue (Global component that reads and updates the store)
         pageUrl() {
             return dataLayerStore.getters.getPageUrl;
-        },
-        pageLanguage() {
-            return dataLayerStore.getters.getTestRunStatus;
         },
     },
     methods: {
@@ -47,34 +48,50 @@ const dataLayerMixin = {
             // Return an object ready to be pushed to the data-layer
             return obj;
         },
-        // pageViewTemplateDataEvent(event) {
-        //     const eventName = "page_view"
-        //     const tagName = "VS - GA - Pageview"
-        // },
-        // menuNavigationDataEvent(event) {
-        //     const eventName = "menu_navigation"
-        //     const tagName = "VS - GA - Mega Menu"
-        // },
-        // newsletterDataEvent(event) {
-        //     const eventName = "newsletter"
-        //     const tagName = "VS - GA - Newsletter"
-        // },
-        // shareDataEvent(event) {
-        //     const eventName = "share"
-        //     const tagName = "VS - GA - Share"
-        // },
-        // socialMediaExternalLinkDataEvent(event) {
-        //     const eventName = "social_media_external_link"
-        //     const tagName = "VS - GA - Social Media External Link"
-        // },
-        // homePageLogoClickDataEvent(event) {
-        //     const eventName = "homepage_logo_click"
-        //     const tagName = "VS - GA - Homepage Logo Click"
-        // },
-        // videoTrackingDataEvent(event) {
-        //     const eventName = "video_tracking"
-        //     const tagName = "VS - GA - Video Tracking"
-        // },
+        pageViewTemplateDataEvent(event) {
+            const eventName = "page_view"
+            const tagName = "VS - GA - Pageview"
+
+            const storeValues = dataLayerStore.getters.getAllGTMValues;
+
+            const templateValues = {
+                "event": eventName,
+                "tag_name": tagName,
+            };
+
+            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+
+            // Running the values and the template trough the templateFiller() function
+            // This will make sure that the values are added on the right place
+            // And if any value was not found then it will return as undefined (as per iProspect request)
+            const pageView = this.templateFiller(pageViewTemplate, fullTemplate);
+
+            this.pushToDataLayer(pageView);
+        },
+        menuNavigationDataEvent(event) {
+            const eventName = "menu_navigation"
+            const tagName = "VS - GA - Mega Menu"
+        },
+        newsletterDataEvent(event) {
+            const eventName = "newsletter"
+            const tagName = "VS - GA - Newsletter"
+        },
+        shareDataEvent(event) {
+            const eventName = "share"
+            const tagName = "VS - GA - Share"
+        },
+        socialMediaExternalLinkDataEvent(event) {
+            const eventName = "social_media_external_link"
+            const tagName = "VS - GA - Social Media External Link"
+        },
+        homePageLogoClickDataEvent(event) {
+            const eventName = "homepage_logo_click"
+            const tagName = "VS - GA - Homepage Logo Click"
+        },
+        videoTrackingDataEvent(event) {
+            const eventName = "video_tracking"
+            const tagName = "VS - GA - Video Tracking"
+        },
         externalLinkDataEvent(event) {
             // Fixed values
             const eventName = 'external_link';
@@ -93,12 +110,9 @@ const dataLayerMixin = {
 
             // Running the values and the template trough the templateFiller() function
             // This will make sure that the values are added on the right place
-            // And if any value was not found then it will return as undefined
-            // (as per iProspect request)
+            // And if any value was not found then it will return as undefined (as per iProspect request)
             const externalLink = this.templateFiller(externalLinkTemplate, fullTemplate);
-
-            console.log(externalLink);
-
+            
             // After that we just need to push the object returned to the data layer
             this.pushToDataLayer(externalLink);
         },
@@ -117,9 +131,7 @@ const dataLayerMixin = {
 
             const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
 
-            const internalLink = this.templateFiller(externalLinkTemplate, fullTemplate);
-
-            console.log(internalLink);
+            const internalLink = this.templateFiller(internalLinkTemplate, fullTemplate);
 
             this.pushToDataLayer(internalLink);
         },
