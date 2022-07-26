@@ -84,22 +84,20 @@ const dataLayerMixin = {
 
             const templateValues = {
                 event: eventName,
-                language: this.pageLanguage,
                 tag_name: tagName,
-                click_text: event.target.text,
+                click_text: event.target.text.trim(),
                 click_URL: event.target.href,
             };
 
-            const fullTemplate = {
-                ...storeValues,
-                ...templateValues,
-            };
+            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
 
             // Running the values and the template trough the templateFiller() function
             // This will make sure that the values are added on the right place
             // And if any value was not found then it will return as undefined
             // (as per iProspect request)
             const externalLink = this.templateFiller(externalLinkTemplate, fullTemplate);
+
+            console.log(externalLink);
 
             // After that we just need to push the object returned to the data layer
             this.pushToDataLayer(externalLink);
@@ -112,19 +110,16 @@ const dataLayerMixin = {
 
             const templateValues = {
                 event: eventName,
-                language: this.pageLanguage,
                 tag_name: tagName,
                 click_text: event.target.text.trim(),
                 click_URL: event.target.href,
             };
 
-            const fullTemplate = {
-                ...storeValues,
-                ...templateValues,
-            };
+            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
 
             const internalLink = this.templateFiller(externalLinkTemplate, fullTemplate);
-            // datalayer.push(externalLink);
+
+            console.log(internalLink);
 
             this.pushToDataLayer(internalLink);
         },
@@ -155,8 +150,18 @@ const dataLayerMixin = {
         pushToDataLayer(object) {
             checkVendorLibrary('dataLayer', () => {
                 // eslint-disable-next-line
-                datalayer.push(object);
+                dataLayer.push(object);
             });
+        },
+        compileFullTemplate(storeValues, templateValues) {
+            const fullTemplate = {
+                ...storeValues,
+                ...templateValues,
+            };
+
+            fullTemplate.hit_timestamp = this.returnIsoDate();
+
+            return fullTemplate;
         },
     },
 };
