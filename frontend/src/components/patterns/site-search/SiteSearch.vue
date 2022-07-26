@@ -31,8 +31,7 @@ export default {
     },
     props: {
         /**
-         * Used to know if the search form has been closed
-         * via close button within search form
+         * Used to know if the search form is currently showing
          */
         isShowing: {
             type: Boolean,
