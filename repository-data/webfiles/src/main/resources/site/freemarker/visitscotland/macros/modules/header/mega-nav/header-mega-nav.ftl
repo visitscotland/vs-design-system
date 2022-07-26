@@ -29,12 +29,12 @@
     <@hst.headContribution category="htmlBodyEndScriptsLast"> 
         <script>
             var engine = {
-				de: 12812,
-				es: 12814,
-				nl: 12810,
-				fr: 12811,
-				it: 12813,
-				en: 12809,
+				de: ${property("cludo.engine.de")},
+				es: ${property("cludo.engine.es")},
+				nl: ${property("cludo.engine.nl")},
+				fr: ${property("cludo.engine.fr")},
+				it: ${property("cludo.engine.it")},
+				en: ${property("cludo.engine.en")},
 			};
 
             var cludo_engineId = engine["${language}"]; //Engine ID
