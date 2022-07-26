@@ -1,6 +1,0 @@
-## Usage
-WIP
-
-```js
-    <VsTagManagerWrapper />
-```
