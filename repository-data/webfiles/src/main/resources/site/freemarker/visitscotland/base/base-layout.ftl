@@ -20,13 +20,13 @@
         <div class="no-js" data-vue-app-init>
             <!-- payload prop to be updated by back end -->
             <vs-tag-manager-wrapper
-                :payload='{
-                    "page-category-1": "PageCategoryTest1",
-                    "page-category-2": "PageCategoryTest2",
-                    "page-category-3": "",
-                    "user-country-setting": "User Country Test",
-                    "meta-data": "Meta Data Test",
-                }'
+                :payload="{
+                    'page-category-1': 'PageCategoryTest1',
+                    'page-category-2': 'PageCategoryTest2',
+                    'page-category-3': '',
+                    'user-country-setting': 'User Country Test',
+                    'meta-data': 'Meta Data Test',
+                }"
             ></vs-tag-manager-wrapper>
             <@hst.include ref="top"/>
 
