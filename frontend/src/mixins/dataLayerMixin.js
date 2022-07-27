@@ -4,6 +4,7 @@ import {
     pageViewTemplate,
     externalLinkTemplate,
     internalLinkTemplate,
+    menuNavigationTemplate,
 } from '../utils/data-layer-templates';
 
 /**
@@ -69,10 +70,23 @@ const dataLayerMixin = {
 
             this.pushToDataLayer(pageView);
         },
-        // menuNavigationDataEvent(event) {
-        //     const eventName = "menu_navigation"
-        //     const tagName = "VS - GA - Mega Menu"
-        // },
+        menuNavigationDataEvent(event) {
+            const eventName = 'menu_navigation';
+            const tagName = 'VS - GA - Mega Menu';
+
+            const storeValues = dataLayerStore.getters.getAllGTMValues;
+
+            const templateValues = {
+                event: eventName,
+                tag_name: tagName,
+                click_text: event.target.text.trim(),
+                click_URL: event.target.href,
+            };
+
+            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+            const menuNavigation = this.templateFiller(menuNavigationTemplate, fullTemplate);
+            this.pushToDataLayer(menuNavigation);
+        },
         // newsletterDataEvent(event) {
         //     const eventName = "newsletter"
         //     const tagName = "VS - GA - Newsletter"
