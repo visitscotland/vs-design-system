@@ -48,7 +48,7 @@
                 <@multiImageFeatured  lastFeatured='true' feature=item.featuredLinks[1] theme=theme />
                 
                 <#if item.featuredLinks[1].youtubeId??>
-                    <@videoModal videoId=item.featuredLinks[1].youtubeId item=megalink.label />
+                    <@videoModal videoId=item.featuredLinks[1].youtubeId title=item.label />
                 </#if>
             </#if>
         </vs-row>
