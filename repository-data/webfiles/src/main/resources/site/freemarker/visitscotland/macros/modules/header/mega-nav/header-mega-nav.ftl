@@ -28,18 +28,9 @@
     </@hst.headContribution>
     <@hst.headContribution category="htmlBodyEndScriptsLast"> 
         <script>
-            var engine = {
-				de: ${property("cludo.engine.de")},
-				es: ${property("cludo.engine.es")},
-				nl: ${property("cludo.engine.nl")},
-				fr: ${property("cludo.engine.fr")},
-				it: ${property("cludo.engine.it")},
-				en: ${property("cludo.engine.en")},
-			};
-
-            var cludo_engineId = engine["${language}"]; //Engine ID
+            var cludo_engineId = ${property("cludo.engine." + language)}; //Engine ID
             var cludo_language = '${language}'; //Language
-            var cludo_searchUrl = 'site-search-results'; //Search URL
+            var cludo_searchUrl = '${property("search.path")}'; //Search URL
         </script>
     </@hst.headContribution>
     <@hst.headContribution category="htmlBodyEndScriptsLast"> 
