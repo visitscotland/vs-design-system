@@ -12,6 +12,9 @@
                     :video-id="videoId"
                     :player-vars="playerVars"
                     @ready="ready"
+                    @playing="youtubePlaying"
+                    @paused="youtubePaused"
+                    @ended="youtubeEnded"
                     ref="youtube"
                 />
             </div>
@@ -59,6 +62,7 @@ import VsWarning from '@components/patterns/warning/Warning';
 import videoStore from '../../../stores/video.store';
 import verifyCookiesMixin from '../../../mixins/verifyCookiesMixin';
 import requiredCookiesData from '../../../utils/required-cookies-data';
+import dataLayerMixin from '../../../mixins/dataLayerMixin';
 
 const cookieValues = requiredCookiesData.youtube;
 
@@ -82,6 +86,7 @@ export default {
     },
     mixins: [
         verifyCookiesMixin,
+        dataLayerMixin,
     ],
     props: {
         /**
@@ -97,6 +102,13 @@ export default {
         videoId: {
             type: String,
             required: true,
+        },
+        /**
+        * The title of the video, set in the CMS
+        */
+        videoTitle: {
+            type: String,
+            default: '',
         },
         /**
          * A string to be shown with the rounded time, when the rounded
@@ -206,6 +218,44 @@ export default {
          */
         pauseVideo() {
             this.playerRef.pauseVideo();
+        },
+        /**
+         * Triggered by video status events from the vue-youtube component. When any of these
+         * occur an appropriate analytics event is dispatched to the datalayer.
+         */
+        youtubePlaying() {
+            this.analyticsEvent('play');
+        },
+        youtubePaused() {
+            this.analyticsEvent('pause');
+        },
+        youtubeEnded() {
+            this.analyticsEvent('ended');
+        },
+        /**
+         * Submits an event to the datalayer mixin when the video is played or paused
+         */
+        analyticsEvent(videoStatus) {
+            let currentTime = 0;
+            let duration = 0;
+
+            this.player.getCurrentTime()
+                .then((time) => {
+                    currentTime = time;
+                    return this.player.getDuration();
+                })
+                .then((length) => {
+                    duration = length;
+                })
+                .then(() => {
+                    const videoPercent = (currentTime / duration) * 100;
+
+                    this.videoTrackingDataEvent({
+                        title: this.videoTitle,
+                        status: videoStatus,
+                        percent: Math.round(videoPercent),
+                    });
+                });
         },
         getPlayerDetails() {
             /**
