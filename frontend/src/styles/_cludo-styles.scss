@@ -303,6 +303,7 @@
         nav{
             text-align: center;
             font-size: $font-size-4;
+            padding-top: $spacer-4;
 
             .Page-counter{
                 margin-bottom: $spacer-2;
@@ -310,36 +311,84 @@
                 span{
                     margin-right: $spacer-2;
                 }
+
+                @include media-breakpoint-up(sm) {
+                    display: none;
+                }
             }
     
             ul.search_page_list{
                 margin: 0;
 
                 li{
-                    display: inline-block;
-                    border: 1px solid $color-gray-tint-6;
-                    margin-right: $spacer-2;
+                    display: none;
+
+                    @include media-breakpoint-up(sm) {
+                        display: inline-block;
+                        margin-right: $spacer-2;
+                    }
 
                     &.active{
                         background-color: $color-pink;
                         color: $color-white;
-                        padding: $spacer-1 $spacer-3;
+                        border-radius: $border-radius-pill;
+                        line-height: 1;
+                        padding: 0.3125rem 0.56rem;
                     }
 
                     a{
-                        color: $color-base-text;
+                        color: $color-pink;
                         text-decoration: none;
                         display: block;
                         padding: $spacer-1 $spacer-3;
-                        transition: all .2s;
 
                         &:hover{
-                            background-color: $color-pink;
-                            color: $color-white;
+                            text-decoration: underline;
                         }
 
                         &:focus{
                             outline: 2px solid $color-pink;
+                        }
+                    }
+
+                    &.next-mobile a:after, 
+                    &.previous a:before{
+                        content: '';
+                        background-image: url(../assets/images/icons/internal-link.svg);
+                        background-size: contain;
+                        width: 12px;
+                        height: 12px;
+                        display: inline-block;
+                        margin-top: -3px;
+                        vertical-align: middle;
+                    }
+
+                    &.next-mobile{
+                        float: right;
+
+                        a:after{
+                            margin-left: $spacer-2;
+                        }
+                    }
+
+                    &.previous{
+                        float: left;
+
+                        a:before{
+                            margin-right: $spacer-2;
+                            transform: rotate(180deg);
+                        }
+                    }
+
+                    &.next-mobile, &.previous{
+                        text-transform: uppercase;
+                        color: $color-pink;
+                        font-size: $font-size-3;
+                        font-weight: $font-weight-semi-bold;
+                        display: inline-block;
+
+                        @include media-breakpoint-up(sm) {
+                            float: none;
                         }
                     }
                 }
