@@ -5,6 +5,7 @@ import {
     externalLinkTemplate,
     internalLinkTemplate,
     menuNavigationTemplate,
+    homePageLogoClickTemplate,
 } from '../utils/data-layer-templates';
 
 /**
@@ -53,14 +54,12 @@ const dataLayerMixin = {
             const eventName = 'page_view';
             const tagName = 'VS - GA - Pageview';
 
-            const storeValues = dataLayerStore.getters.getAllGTMValues;
-
             const templateValues = {
                 event: eventName,
                 tag_name: tagName,
             };
 
-            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+            const fullTemplate = this.compileFullTemplate(templateValues);
 
             // Running the values and the template trough the templateFiller() function
             // This will make sure that the values are added on the right place
@@ -74,8 +73,6 @@ const dataLayerMixin = {
             const eventName = 'menu_navigation';
             const tagName = 'VS - GA - Mega Menu';
 
-            const storeValues = dataLayerStore.getters.getAllGTMValues;
-
             const templateValues = {
                 event: eventName,
                 tag_name: tagName,
@@ -83,7 +80,7 @@ const dataLayerMixin = {
                 click_URL: event.target.href,
             };
 
-            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+            const fullTemplate = this.compileFullTemplate(templateValues);
             const menuNavigation = this.templateFiller(menuNavigationTemplate, fullTemplate);
             this.pushToDataLayer(menuNavigation);
         },
@@ -99,10 +96,19 @@ const dataLayerMixin = {
         //     const eventName = "social_media_external_link"
         //     const tagName = "VS - GA - Social Media External Link"
         // },
-        // homePageLogoClickDataEvent(event) {
-        //     const eventName = "homepage_logo_click"
-        //     const tagName = "VS - GA - Homepage Logo Click"
-        // },
+        homePageLogoClickDataEvent() {
+            const eventName = 'homepage_logo_click';
+            const tagName = 'VS - GA - Homepage Logo Click';
+
+            const templateValues = {
+                event: eventName,
+                tag_name: tagName,
+            };
+
+            const fullTemplate = this.compileFullTemplate(templateValues);
+            const homePageLogoClick = this.templateFiller(homePageLogoClickTemplate, fullTemplate);
+            this.pushToDataLayer(homePageLogoClick);
+        },
         // videoTrackingDataEvent(event) {
         //     const eventName = "video_tracking"
         //     const tagName = "VS - GA - Video Tracking"
@@ -112,8 +118,6 @@ const dataLayerMixin = {
             const eventName = 'external_link';
             const tagName = 'VS - GA - External Link';
 
-            const storeValues = dataLayerStore.getters.getAllGTMValues;
-
             const templateValues = {
                 event: eventName,
                 tag_name: tagName,
@@ -121,7 +125,7 @@ const dataLayerMixin = {
                 click_URL: event.target.href,
             };
 
-            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+            const fullTemplate = this.compileFullTemplate(templateValues);
 
             // Running the values and the template trough the templateFiller() function
             // This will make sure that the values are added on the right place
@@ -136,8 +140,6 @@ const dataLayerMixin = {
             const eventName = 'internal_link';
             const tagName = 'VS - GA - Internal Link';
 
-            const storeValues = dataLayerStore.getters.getAllGTMValues;
-
             const templateValues = {
                 event: eventName,
                 tag_name: tagName,
@@ -145,7 +147,7 @@ const dataLayerMixin = {
                 click_URL: event.target.href,
             };
 
-            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+            const fullTemplate = this.compileFullTemplate(templateValues);
 
             const internalLink = this.templateFiller(internalLinkTemplate, fullTemplate);
 
@@ -181,7 +183,8 @@ const dataLayerMixin = {
                 dataLayer.push(object);
             });
         },
-        compileFullTemplate(storeValues, templateValues) {
+        compileFullTemplate(templateValues) {
+            const storeValues = dataLayerStore.getters.getAllGTMValues;
             const fullTemplate = {
                 ...storeValues,
                 ...templateValues,
