@@ -4,6 +4,7 @@ import {
     pageViewTemplate,
     externalLinkTemplate,
     internalLinkTemplate,
+    videoTrackingTemplate,
 } from '../utils/data-layer-templates';
 
 /**
@@ -89,10 +90,25 @@ const dataLayerMixin = {
         //     const eventName = "homepage_logo_click"
         //     const tagName = "VS - GA - Homepage Logo Click"
         // },
-        // videoTrackingDataEvent(event) {
-        //     const eventName = "video_tracking"
-        //     const tagName = "VS - GA - Video Tracking"
-        // },
+        videoTrackingDataEvent(event) {
+            const eventName = 'video_tracking';
+            const tagName = 'VS - GA - Video Tracking';
+
+            const storeValues = dataLayerStore.getters.getAllGTMValues;
+
+            const templateValues = {
+                event: eventName,
+                tag_name: tagName,
+                video_status: event.status,
+                video_title: event.title,
+                video_percent: event.percent,
+            };
+
+            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+            const videoTracking = this.templateFiller(videoTrackingTemplate, fullTemplate);
+
+            this.pushToDataLayer(videoTracking);
+        },
         externalLinkDataEvent(event) {
             // Fixed values
             const eventName = 'external_link';
