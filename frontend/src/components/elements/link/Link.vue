@@ -85,6 +85,13 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+        * If the click should trigger a dataLayerPush
+        */
+        useDataLayer: {
+            type: Boolean,
+            default: true,
+        },
     },
     computed: {
         variantClass() {
@@ -94,10 +101,13 @@ export default {
     methods: {
         clickHandler(event) {
             event.preventDefault();
-            if (this.type === 'external') {
-                this.externalLinkDataEvent(event);
-            } else {
-                this.internalLinkDataEvent(event);
+
+            if (this.useDataLayer) {
+                if (this.type === 'external') {
+                    this.externalLinkDataEvent(event);
+                } else {
+                    this.internalLinkDataEvent(event);
+                }
             }
             window.location.replace(this.href);
         },
