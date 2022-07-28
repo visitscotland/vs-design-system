@@ -1,7 +1,7 @@
 <#include "../modal/modal.ftl">
 <#include "../../../../frontend/components/vs-video.ftl">
 
-<#macro videoModal videoId videoTitle>
+<#macro videoModal videoId videoTitle="">
     <@modal
         modalId="${videoId}"
         closeBtnText="${label('essentials.global', 'close')}"
