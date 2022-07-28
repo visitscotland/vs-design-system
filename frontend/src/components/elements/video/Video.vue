@@ -224,12 +224,15 @@ export default {
          * occur an appropriate analytics event is dispatched to the datalayer.
          */
         youtubePlaying() {
+            console.log('Playing video');
             this.analyticsEvent('play');
         },
         youtubePaused() {
+            console.log('Pausing video');
             this.analyticsEvent('pause');
         },
         youtubeEnded() {
+            console.log('Ending video');
             this.analyticsEvent('ended');
         },
         /**
