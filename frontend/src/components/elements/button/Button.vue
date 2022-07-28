@@ -242,12 +242,13 @@ export default {
 <style lang="scss">
     .vs-button.btn {
         font-family: $font-family-base;
-        font-weight: $font-weight-light;
+        font-weight: $font-weight-semi-bold;
         transition: $transition-base;
         text-decoration: none;
         letter-spacing: $letter-spacing-m;
         position: relative;
         overflow: hidden;
+        border-width: 2px;
 
         .vs-icon {
             margin-top: -.05em;
