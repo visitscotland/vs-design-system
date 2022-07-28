@@ -44,10 +44,12 @@
       <artifactId>mockito-junit-jupiter</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>org.bloomreach.forge.ipfilter</groupId>
-      <artifactId>bloomreach-ipfilter-hst</artifactId>
-    </dependency>
+    <!-- This library is not currently in use and it is adding some vulnerabilities
+      so it has been removed for the time being -->
+<!--    <dependency>-->
+<!--      <groupId>org.bloomreach.forge.ipfilter</groupId>-->
+<!--      <artifactId>bloomreach-ipfilter-hst</artifactId>-->
+<!--    </dependency>-->
 
   </dependencies>
 
