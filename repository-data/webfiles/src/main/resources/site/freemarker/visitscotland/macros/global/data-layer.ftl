@@ -9,9 +9,9 @@
     >
     <#if location??>
         <#if location.isRegion() >
-            <#assign event = event + "'provider_region': '${location.name}'">
+            <#assign event = event + "'provider_region': '${location.name}',">
         <#else >
-            <#assign event = event + "'provider_city': '${location.name}'">
+            <#assign event = event + "'provider_city': '${location.name}',">
         </#if>
     </#if>
     <#list url?split("/") as x>
