@@ -52,11 +52,9 @@ const dataLayerMixin = {
         },
         pageViewTemplateDataEvent() {
             const eventName = 'page_view';
-            const tagName = 'VS - GA - Pageview';
 
             const templateValues = {
                 event: eventName,
-                tag_name: tagName,
             };
 
             const fullTemplate = this.compileFullTemplate(templateValues);
@@ -71,11 +69,9 @@ const dataLayerMixin = {
         },
         menuNavigationDataEvent(event) {
             const eventName = 'menu_navigation';
-            const tagName = 'VS - GA - Mega Menu';
 
             const templateValues = {
                 event: eventName,
-                tag_name: tagName,
                 click_text: event.target.text.trim(),
                 click_URL: event.target.href,
             };
@@ -86,23 +82,18 @@ const dataLayerMixin = {
         },
         // newsletterDataEvent(event) {
         //     const eventName = "newsletter"
-        //     const tagName = "VS - GA - Newsletter"
         // },
         // shareDataEvent(event) {
         //     const eventName = "share"
-        //     const tagName = "VS - GA - Share"
         // },
         // socialMediaExternalLinkDataEvent(event) {
         //     const eventName = "social_media_external_link"
-        //     const tagName = "VS - GA - Social Media External Link"
         // },
         homePageLogoClickDataEvent() {
             const eventName = 'homepage_logo_click';
-            const tagName = 'VS - GA - Homepage Logo Click';
 
             const templateValues = {
                 event: eventName,
-                tag_name: tagName,
             };
 
             const fullTemplate = this.compileFullTemplate(templateValues);
@@ -111,16 +102,13 @@ const dataLayerMixin = {
         },
         // videoTrackingDataEvent(event) {
         //     const eventName = "video_tracking"
-        //     const tagName = "VS - GA - Video Tracking"
         // },
         externalLinkDataEvent(event) {
             // Fixed values
             const eventName = 'external_link';
-            const tagName = 'VS - GA - External Link';
 
             const templateValues = {
                 event: eventName,
-                tag_name: tagName,
                 click_text: event.target.text.trim(),
                 click_URL: event.target.href,
             };
@@ -138,11 +126,9 @@ const dataLayerMixin = {
         },
         internalLinkDataEvent(event) {
             const eventName = 'internal_link';
-            const tagName = 'VS - GA - Internal Link';
 
             const templateValues = {
                 event: eventName,
-                tag_name: tagName,
                 click_text: event.target.text.trim(),
                 click_URL: event.target.href,
             };
@@ -155,23 +141,18 @@ const dataLayerMixin = {
         },
         // internalNavigation(event) {
         //     const eventName = 'internal_navigation'
-        //     const tagName = 'VS - GA - Internal Navigation'
         // },
         // errorDataTemplate(event) {
         //     const eventName = 'errors'
-        //     const tagName = 'VS - GA - Errors'
         // },
         // mapInteractionDataTemplate(event) {
         //     const eventName = 'map_interaction'
-        //     const tagName = 'VS - GA - Map Interaction'
         // },
         // cannedSearchDataTemplate(event) {
         //     const eventName = 'canned_search'
-        //     const tagName = 'VS - GA - Canned Search'
         // },
         // formsDataTemplate(event) {
         //     const eventName = 'forms'
-        //     const tagName = 'VS - GA - Forms'
         // },
         returnIsoDate() {
             const date = new Date(Date.now());
