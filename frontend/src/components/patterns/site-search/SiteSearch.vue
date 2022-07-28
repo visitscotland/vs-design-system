@@ -83,4 +83,10 @@ export default {
         }
     }
 }
+
+@include no-js {
+    .vs-site-search {
+        display: none!important;
+    }
+}
 </style>
