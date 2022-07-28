@@ -38,10 +38,10 @@
     </#if>
 
     <!-- payload prop to be updated by back end -->
-    ${pageViewDLEvent()}
-<#--            <vs-tag-manager-wrapper-->
-<#--                :payload="${${pageViewDLEvent()}}"-->
-<#--            ></vs-tag-manager-wrapper>-->
+    <#--    ${pageViewDLEvent()}-->
+            <vs-tag-manager-wrapper
+                :payload="${${pageViewDLEvent()}}"
+            ></vs-tag-manager-wrapper>
 
     <div class="has-edit-button">
         <vs-page-intro 
