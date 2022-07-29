@@ -3,7 +3,6 @@
 <#function pageViewDLEvent document>
     <#assign url = hstRequest.request.pathInfo >
     <#assign event = "{
-        'url' : '${url}',
         'site_language': '${language}',
         'content_language' : '${document.locale.language}',"
     >
