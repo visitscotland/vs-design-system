@@ -4,6 +4,7 @@ import {
     pageViewTemplate,
     externalLinkTemplate,
     internalLinkTemplate,
+    errorTemplate,
 } from '../utils/data-layer-templates';
 
 /**
@@ -141,10 +142,24 @@ const dataLayerMixin = {
         //     const eventName = 'internal_navigation'
         //     const tagName = 'VS - GA - Internal Navigation'
         // },
-        // errorDataTemplate(event) {
-        //     const eventName = 'errors'
-        //     const tagName = 'VS - GA - Errors'
-        // },
+        errorDataEvent(event) {
+            const eventName = 'errors';
+            const tagName = 'VS - GA - Errors';
+
+            const storeValues = dataLayerStore.getters.getAllGTMValues;
+
+            const templateValues = {
+                event: eventName,
+                tag_name: tagName,
+                error_type: event.error_type,
+                error_details: event.error_details,
+            };
+
+            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+            const errorData = this.templateFiller(errorTemplate, fullTemplate);
+
+            this.pushToDataLayer(errorData);
+        },
         // mapInteractionDataTemplate(event) {
         //     const eventName = 'map_interaction'
         //     const tagName = 'VS - GA - Map Interaction'
