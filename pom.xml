@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.onehippo.cms7</groupId>
     <artifactId>hippo-cms7-enterprise-release</artifactId>
-    <version>14.7.8</version>
+    <version>${cms.version}</version>
     <!--Remember to upgrade essentials when this versions is updated -->
   </parent>
 
@@ -25,7 +25,8 @@
     <cliOptions></cliOptions>
 
     <!-- Bloom Dependencies -->
-    <essentials.version>${project.parent.version}</essentials.version>
+
+    <essentials.version>14.7.8</essentials.version>
     <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
     <bloomreach.forge.ipfilter.version>3.1.0</bloomreach.forge.ipfilter.version>
