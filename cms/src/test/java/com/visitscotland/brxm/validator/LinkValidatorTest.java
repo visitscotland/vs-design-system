@@ -57,7 +57,10 @@ class LinkValidatorTest {
             "visitscotland:OTYML,visitscotland:SharedLink",
             "visitscotland:MadeUpDocument,visitscotland:SharedLink",
             "visitscotland:Day,visitscotland:Stop",
-            "visitscotland:VideoLink,visitscotland:Video"
+            "visitscotland:VideoLink,visitscotland:Video",
+            "visitscotland:MapCategory,visitscotland:Destination",
+            "visitscotland:MapCategory,visitscotland:Stop",
+            "visitscotland:SpecialLinkCoordinates,visitscotland:Page"
     })
     @DisplayName("VS-2905 - Validates that links are correctly validated depending on the parent")
     void correctValues(String parentType, String childType) throws RepositoryException {
@@ -72,7 +75,10 @@ class LinkValidatorTest {
             "visitscotland:Day,visitscotland:SharedLink",
             "visitscotland:Day,visitscotland:Video",
             "visitscotland:VideoLink,visitscotland:Stop",
-            "visitscotland:VideoLink,visitscotland:Page"
+            "visitscotland:VideoLink,visitscotland:Page",
+            "visitscotland:MapCategory,visitscotland:Video",
+            "visitscotland:MapCategory,visitscotland:General",
+            "visitscotland:SpecialLinkCoordinates,visitscotland:Stop"
     })
     @DisplayName("VS-2905 - Invalid documents cause a validation exception")
     void incorrectValues(String parentType, String childType) throws RepositoryException {
