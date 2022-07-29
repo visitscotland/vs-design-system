@@ -1,17 +1,17 @@
 
 <#-- frontend/src/utils/data-layer-templates.js -->
-<#function pageViewDLEvent >
+<#function pageViewDLEvent document>
     <#assign url = hstRequest.request.pathInfo >
     <#assign event = "{
         'url' : '${url}',
-        'language': '${language}',
-        'user_country_setting': 'User Country Test',"
+        'site_language': '${language}',
+        'content_language' : '${document.locale.language}',"
     >
     <#if location??>
         <#if location.isRegion() >
-            <#assign event = event + "'provider_region': '${location.name}',">
+            <#assign event = event + "'content_region': '${location.name}',">
         <#else >
-            <#assign event = event + "'provider_city': '${location.name}',">
+            <#assign event = event + "'content_city': '${location.name}',">
         </#if>
     </#if>
     <#list url?split("/") as x>

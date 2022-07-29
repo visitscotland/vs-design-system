@@ -40,7 +40,7 @@
     <!-- payload prop to be updated by back end -->
     <#--    ${pageViewDLEvent()}-->
             <vs-tag-manager-wrapper
-                :payload="${pageViewDLEvent()}"
+                :payload="${pageViewDLEvent(content)}"
             ></vs-tag-manager-wrapper>
 
     <div class="has-edit-button">
