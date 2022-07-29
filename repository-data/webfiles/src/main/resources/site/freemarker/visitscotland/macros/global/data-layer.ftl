@@ -1,5 +1,9 @@
+<#-- This Template will collect a list of methods or macros related to dataLayer operations.
 
-<#-- frontend/src/utils/data-layer-templates.js -->
+The specification of the events can be found on Airtable which needs to match with the front-end specification for them
+to be included or excluded. The front-end specification can be found in:
+- frontend/src/utils/data-layer-templates.js
+-->
 <#function pageViewDLEvent document>
     <#assign url = hstRequest.request.pathInfo >
     <#assign event = "{
@@ -19,8 +23,5 @@
         </#if>
     </#list>
     <#assign event = event + "}">
-
     <#return event>
 </#function>
-
-</script>
