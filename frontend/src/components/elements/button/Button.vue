@@ -18,6 +18,7 @@
             v-if="icon"
             class="align-self-center"
             :name="icon"
+            :class="iconClasses"
             :size="iconSizeOverride || calcIconSize"
             :padding="0"
             :orientation="iconOrientation"
@@ -171,6 +172,14 @@ export default {
                 },
             ];
         },
+        iconClasses() {
+            return [
+                {
+                    'vs-icon--right': this.iconPosition === 'right',
+                    'vs-icon--left': this.iconPosition === 'left',
+                },
+            ];
+        },
         calcIconSize() {
             switch (this.size) {
             case 'sm':
@@ -217,7 +226,14 @@ export default {
 
         .vs-icon {
             margin-top: -.05rem;
-            margin-right: $spacer-2;
+
+            &--right{
+                margin-left: $spacer-2;
+            }
+
+            &--left{
+                margin-right: $spacer-2;
+            }
         }
 
         &:focus {
@@ -303,16 +319,12 @@ export default {
             );
         }
 
-        &.btn-bg-white:not(:hover) {
-            background-color: $color-white;
-        }
-
         &.vs-button--icon-only {
             padding: $spacer-1;
             line-height: 1;
 
             .vs-icon{
-                margin-right: 0;
+                margin: 0;
             }
         }
 
