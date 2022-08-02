@@ -33,7 +33,7 @@ public class GeneralContentComponent extends PageContentComponent<Destination> {
         GeneralPageComponentInfo pageInfo = getComponentParametersInfo(request);
         int pageStatus = Integer.parseInt(pageInfo.getStatus());
         response.setStatus(pageStatus);
-        if (pageStatus != 200){
+        if (pageStatus >= 400){
             request.setAttribute(ERROR_CODE,pageStatus);
         }
         builder.addModules(request);
