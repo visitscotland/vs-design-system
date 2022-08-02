@@ -28,7 +28,7 @@ export default {
     },
     mounted() {
         this.errorDataEvent({
-            error_type: '',
+            error_type: 'System Error',
             error_details: this.statusCode,
         });
     },

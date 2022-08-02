@@ -11,6 +11,7 @@
 <#include "../../frontend/components/vs-col.ftl">
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-heading.ftl">
+<#include "../../frontend/components/vs-html-error.ftl">
 
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/otyml.ftl">
@@ -26,7 +27,7 @@
 	<@hst.manageContent hippobean=document/>
 
 	<#if errorCode??>
-		<#--TODO add it to the datalayer -->
+		<vs-html-error status-code="${errorCode}"></vs-html-error>
 	</#if>
 
 <#--TODO current Standard template will become Top-level and the Starndard Template will be the same with the hero image displayed as an article
