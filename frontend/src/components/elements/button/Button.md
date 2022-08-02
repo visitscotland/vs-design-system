@@ -19,38 +19,49 @@ be passed for this to display.
 The secondary button has less emphasis and should be used alongside a 
 primary button for secondary actions on the page. 
 ```jsx
-    <VsButton variant="outline-primary">
+    <VsButton variant="secondary">
+        Nearby places to eat
+    </VsButton>
+
+    <VsButton variant="secondary" icon="food">
         Nearby places to eat
     </VsButton>
 ```
 
 ### Dark Theme
 When displaying a button on a dark themed background, the colour variant 
-should change so the button is more accessible. 
+should change so the button is more accessible. Use the `darkTheme` prop to update.
 ```jsx
     <BsWrapper class="bg-dark px-4 pb-2 pt-4">
-        <VsButton variant="secondary" class="mr-2 mb-2">
+        <VsButton variant="primary-on-dark" class="mr-2 mb-2">
             Nearby places to eat
         </VsButton>
-        <VsButton variant="outline-secondary" class="mr-2 mb-2">
+        <VsButton variant="secondary-on-dark" class="mr-2 mb-2">
+            Nearby places to eat
+        </VsButton>
+
+        <VsButton variant="primary-on-dark" icon="food" class="mr-2 mb-2">
+            Nearby places to eat
+        </VsButton>
+        <VsButton variant="secondary-on-dark" icon="food" class="mr-2 mb-2">
             Nearby places to eat
         </VsButton>
     </BsWrapper>
 ```
 
 ### Other Variants
-Other variants available include `Transparent`, `Dark` and `Light`. 
+Other variants available include `Dark` and `Light`. 
 These can be used to help improve contrast between different backgrounds and
 for lower priority call to actions. 
 ```jsx
-    <BsWrapper class="d-flex flex-wrap">
-        <VsButton variant="transparent" class="mr-2 mb-2">
+    <BsWrapper class="d-flex flex-wrap p-4 mb-6" style="border: 1px solid #E0E0E0;">
+        <VsButton variant="light" icon="food">
             Nearby places to eat
         </VsButton>
-        <VsButton variant="dark" class="mr-2 mb-2">
-            Nearby places to eat
-        </VsButton>
-        <VsButton variant="light" class="mr-2 mb-2">
+    </BsWrapper>
+
+    <BsWrapper class="p-4" style="background: #fcca1b;">
+        <VsButton variant="dark" icon="food">
             Nearby places to eat
         </VsButton>
     </BsWrapper>
@@ -96,10 +107,10 @@ Icons can be right or left aligned and the icon orientation can also be changed.
 Icons can be used with any button variant and the size and colour of the icon are automatically 
 calculated to match. These can be overridden if needed for an edge case (see Props chart below).
 ```jsx
-    <VsButton icon="food" variant="dark" class="mr-2 mb-2">
+    <VsButton icon="food" size="sm" variant="light" class="mr-2 mb-4">
         Nearby places to eat
     </VsButton>
-    <VsButton icon="food" size="lg" variant="outline-primary" class="mr-2 mb-2">
+    <VsButton icon="food" size="lg" variant="secondary" class="mr-2 mb-2">
         Nearby places to eat
     </VsButton>
     
