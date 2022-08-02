@@ -21,7 +21,7 @@
             :size="iconSizeOverride || calcIconSize"
             :padding="0"
             :orientation="iconOrientation"
-            :variant="iconVariantOverride || calcIconVariant"
+            :variant="iconVariantOverride"
         />
         <!-- @slot The button content goes here -->
         <slot />
@@ -70,17 +70,8 @@ export default {
             type: String,
             default: 'primary',
             validator: (value) => value.match(
-                /(primary|secondary|transparent|dark|light)/,
+                /(primary|primary-on-dark|secondary|secondary-on-dark|transparent|dark|light)/,
             ),
-        },
-        /**
-         * Background property used primarily for overrides on transparent variant
-         * `white`.
-         */
-        background: {
-            type: String,
-            default: null,
-            validator: (value) => value.match(/(white)/),
         },
         /**
          * Size of the button
@@ -176,9 +167,8 @@ export default {
                     'vs-button--icon-only': this.iconOnly,
                     'd-flex': this.icon && !this.iconOnly,
                     'flex-row-reverse': this.iconPosition === 'right',
+                    'text-uppercase': this.uppercase,
                 },
-                this.background ? [`btn-bg-${this.background}`] : '',
-                this.uppercase ? 'text-uppercase' : '',
             ];
         },
         calcIconSize() {
@@ -192,35 +182,6 @@ export default {
             default:
                 return 'md';
             }
-        },
-        calcIconVariant() {
-            if (this.isOutline) {
-                if (this.hovered) {
-                    return 'light';
-                }
-
-                return this.outlineColour;
-            }
-
-            if (this.variant === 'secondary' || this.variant === 'light') {
-                return 'dark';
-            }
-
-            if (this.variant === 'transparent') {
-                return 'primary';
-            }
-
-            if (this.variant === 'light') {
-                return 'dark';
-            }
-
-            return 'light';
-        },
-        isOutline() {
-            return this.variant.match(/outline/) !== null;
-        },
-        outlineColour() {
-            return this.variant.replace('outline-', '');
         },
     },
     methods: {
@@ -241,6 +202,8 @@ export default {
 
 <style lang="scss">
     .vs-button.btn {
+        /* Button Default Styles
+        ------------------------------------------ */
         font-family: $font-family-base;
         font-weight: $font-weight-semi-bold;
         transition: $transition-base;
@@ -249,99 +212,24 @@ export default {
         position: relative;
         overflow: hidden;
         border-width: 2px;
+        line-height: $line-height-standard;
+        padding: $spacer-3 $spacer-8;
 
         .vs-icon {
-            margin-top: -.05em;
+            margin-top: -.05rem;
             margin-right: $spacer-2;
         }
 
         &:focus {
-            box-shadow: $shadow-button-focus;
-            background-color: $color-white;
-            color: $color-theme-primary;
+            box-shadow: 0 0 0 4px $color-white, 0 0 0 8px $color-pink;
+        }
 
-            .vs-icon {
-                fill: $color-theme-primary;
+        &.btn-primary-on-dark, &.btn-secondary-on-dark{
+            &:focus{
+                box-shadow: 0 0 0 4px $color-black, 0 0 0 8px $color-yellow;
             }
         }
 
-        &.btn-outline-primary {
-            &:focus {
-                background-color: $color-theme-primary;
-                color: $color-white;
-
-                .vs-icon {
-                    fill: $color-white;
-                }
-            }
-        }
-
-        &.btn-secondary {
-            color: $color-black;
-            background-color: $color-yellow;
-            border-color: $color-yellow;
-
-            &:not(:disabled) {
-                &:hover {
-                    background-color: darken($color-yellow, 10%);
-                    border-color: darken($color-yellow, 12%);
-                }
-
-                &:active {
-                    color: $color-black;
-                }
-
-                &:focus {
-                    color: $color-yellow;
-                    border-color: $color-yellow;
-                    background-color: transparent;
-
-                    .vs-icon {
-                        fill: $color-yellow;
-                    }
-                }
-            }
-        }
-
-        &.btn-outline-secondary {
-            color: $color-yellow;
-            border-color: $color-yellow;
-
-            .vs-icon {
-                fill: $color-yellow;
-            }
-
-            &:hover, &:focus {
-                color: $color-black;
-                background-color: $color-yellow;
-                border-color: $color-yellow;
-
-                .vs-icon {
-                    fill: $color-black;
-                }
-            }
-        }
-
-        &.btn-dark {
-            &:hover {
-                background-color: $color-gray-shade-5;
-            }
-        }
-
-        &.btn-light,
-        &.btn-transparent {
-            &::after {
-                background: rgba(187, 38, 132, 0.3);
-            }
-        }
-
-        &.btn-bg-white:not(:hover) {
-            background-color: $color-white;
-        }
-
-        // This is to match bootstrap specificity, otherwise it forces
-        // a pink shadow on primary buttons when active + focussing where we want
-        // no shadow
         &:not(:disabled):not(.disabled):active:focus {
             box-shadow: none;
         }
@@ -353,6 +241,72 @@ export default {
             border-width: 0;
         }
 
+        /* Button Variants
+        ------------------------------------------ */
+        &.btn-primary{
+            @include vs-button-variant(
+                $color-white, $color-pink, $color-pink,
+                $color-white, $color-pink-shade-2, $color-pink-shade-2,
+                $color-pink, $color-white, $color-pink,
+            );
+        }
+
+        &.btn-primary-on-dark{
+            @include vs-button-variant(
+                $color-black, $color-yellow, $color-yellow,
+                $color-black, $color-yellow-tint-2, $color-yellow-tint-2,
+                $color-yellow, $color-black, $color-yellow,
+            );
+        }
+
+        &.btn-secondary {
+            @include vs-button-variant(
+                $color-pink, $color-white, $color-pink,
+                $color-white, $color-pink, $color-pink,
+                $color-white, $color-pink, $color-pink,
+            );
+        }
+
+        &.btn-secondary-on-dark{
+            @include vs-button-variant(
+                $color-yellow, $color-black, $color-yellow,
+                $color-black, $color-yellow, $color-yellow,
+                $color-black, $color-yellow, $color-yellow,
+            );
+        }
+
+        &.btn-dark{
+            @include vs-button-variant(
+                $color-white, $color-gray-shade-6, $color-gray-shade-6,
+                $color-white, $color-secondary-gray-shade-1, $color-secondary-gray-shade-1,
+                $color-gray-shade-6, $color-white, $color-secondary-gray-shade-1,
+            );
+
+            &:focus{
+                box-shadow: 0 0 0 4px $color-yellow, 0 0 0 8px $color-black;
+            }
+        }
+
+        &.btn-light{
+            @include vs-button-variant(
+                $color-gray-shade-7, $color-gray-tint-7, $color-gray-tint-7,
+                $color-gray-shade-7, $color-gray-tint-6, $color-gray-tint-6,
+                $color-white, $color-gray-shade-7, $color-gray-shade-7,
+            );
+        }
+
+        &.btn-transparent{
+            @include vs-button-variant(
+                $color-gray-shade-7, transparent, transparent,
+                $color-pink, transparent, transparent,
+                $color-pink, transparent, transparent,
+            );
+        }
+
+        &.btn-bg-white:not(:hover) {
+            background-color: $color-white;
+        }
+
         &.vs-button--icon-only {
             padding: $spacer-1;
             line-height: 1;
@@ -362,6 +316,18 @@ export default {
             }
         }
 
+        /* Button Sizes
+        ------------------------------------------ */
+        &.btn-sm{
+            padding: $spacer-1 $spacer-4;
+        }
+
+        &.btn-lg{
+            padding: $spacer-4 $spacer-9;
+        }
+
+        /* Button Animation
+        ------------------------------------------ */
         &.vs-button--animated {
             @keyframes bubble {
                 0% {
