@@ -170,7 +170,7 @@ class LinkValidatorTest {
     private Node mockLink(String parentType, String childType, boolean expected) throws  RepositoryException{
         Node parentNode = Mockito.mock(Node.class, withSettings().lenient());
         Node childNode = Mockito.mock(Node.class, withSettings().lenient());
-        boolean isDefault = !LinkValidator.DAY.equals(parentType) && !LinkValidator.VIDEO.equals(parentType);
+        boolean isDefault = !LinkValidator.DAY.equals(parentType) && !LinkValidator.VIDEO.equals(parentType) && !LinkValidator.MAP.equals(parentType) && !LinkValidator.LINK_COORDINATES.equals(parentType);
 
         Property docbaseProp = mock(Property.class);
         when(parentNode.hasProperty(HIPPO_DOCBASE)).thenReturn(true);
