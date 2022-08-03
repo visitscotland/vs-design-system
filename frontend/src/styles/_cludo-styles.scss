@@ -33,7 +33,7 @@
                 font-size: $font-size-10;
             }
 
-            &:hover{
+            &:hover, &.active{
                 cursor: pointer;
                 background: $color-pink;
                 color: $color-white;
