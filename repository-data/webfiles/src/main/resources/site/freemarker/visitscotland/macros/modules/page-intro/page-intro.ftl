@@ -108,9 +108,11 @@
                 <@socialShare nojs=false />
             </template>
 
-            <template slot="vsIntroContent">
-                <@hst.html hippohtml=content.introduction/>
-            </template>
+            <#if !searchResultsPage??>
+                <template slot="vsIntroContent">
+                    <@hst.html hippohtml=content.introduction/>
+                </template>
+            </#if>
 
             <#if itinerary?has_content>
                 <#if itinerary.firstStopLocation?has_content && itinerary.lastStopLocation?has_content>
