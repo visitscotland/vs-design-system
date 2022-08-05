@@ -15,7 +15,7 @@
             class="align-self-center"
             :name="icon"
             :class="iconClasses"
-            :size="iconSizeOverride || calcIconSize"
+            :size="calcIconSize"
             :padding="0"
             :orientation="iconOrientation"
         />
