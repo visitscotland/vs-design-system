@@ -63,7 +63,6 @@
         <VsButton
             class="vs-site-search-form__close-button d-none d-lg-block"
             variant="transparent"
-            icon-variant-override="dark"
             icon="close-circle"
             size="md"
             icon-only
