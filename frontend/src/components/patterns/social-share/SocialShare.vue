@@ -5,19 +5,14 @@
         :class="noJs ? 'vs-module-wrapper__outer--hidden' : 'vs-module-wrapper__outer--light'"
     >
         <VsButton
+            icon-with-text
             class="vs-social-share__share-btn"
             variant="transparent"
-            :uppercase="false"
+            icon="share"
             :id="`vs-social-share-popover--${id}`"
             v-if="!noJs"
             ref="shareButton"
         >
-            <VsIcon
-                name="share"
-                variant="dark"
-                size="md"
-            />
-
             {{ shareBtnText }}
         </VsButton>
 
@@ -57,22 +52,18 @@
             </VsRow>
 
             <VsButton
+                icon-only
                 class="vs-social-share__close-btn"
+                icon="close"
+                size="lg"
                 variant="transparent"
-                @click.native="onClose"
-                aria-label="Close"
-                @keydown.tab.native="tabFromClose($event)"
                 ref="closeButton"
+                @click.native="onClose"
+                @keydown.tab.native="tabFromClose($event)"
             >
                 <span class="sr-only">
                     {{ closeAltText }}
                 </span>
-                <VsIcon
-                    name="close"
-                    variant="dark"
-                    size="md"
-                    aria-hidden="true"
-                />
             </VsButton>
         </BPopover>
 
@@ -102,7 +93,6 @@
 </template>
 
 <script>
-import VsIcon from '@components/elements/icon/Icon';
 import VsButton from '@components/elements/button/Button';
 import VsHeading from '@components/elements/heading/Heading';
 import VsModuleWrapper from '@components/patterns/module-wrapper/ModuleWrapper';
@@ -122,7 +112,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsIcon,
         VsButton,
         VsHeading,
         VsModuleWrapper,
@@ -266,24 +255,6 @@ export default {
     .vs-social-share{
         &--module-list{
             display: none;
-        }
-
-        &__share-btn.vs-button.btn{
-            padding: 0 $spacer-1;
-            letter-spacing: initial;
-            text-decoration: underline;
-            font-weight: $font-weight-normal;
-            font-size: $font-size-3;
-            line-height: $line_height_l;
-
-            svg {
-                display: block;
-                margin: 0 auto;
-            }
-
-            &:hover{
-                color: $color-pink;
-            }
         }
 
         &__popover{
