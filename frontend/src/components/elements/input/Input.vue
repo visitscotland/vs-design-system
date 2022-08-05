@@ -41,7 +41,6 @@
             v-if="showClearButton"
             class="vs-input__clear-button d-none d-lg-block"
             variant="transparent"
-            icon-variant-override="secondary"
             icon="close"
             size="md"
             icon-only

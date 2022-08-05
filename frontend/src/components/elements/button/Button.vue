@@ -8,11 +8,7 @@
         :size="size"
         v-bind="$attrs"
         @click="animateHandler"
-        @mouseover="hovered = true"
-        @focusin="hovered = true"
         @keyup.tab="tabbedIn"
-        @mouseleave="hovered = false"
-        @focusout="hovered = false"
     >
         <VsIcon
             v-if="icon"
@@ -22,7 +18,6 @@
             :size="iconSizeOverride || calcIconSize"
             :padding="0"
             :orientation="iconOrientation"
-            :variant="iconVariantOverride"
         />
         <!-- @slot The button content goes here -->
         <slot />
@@ -122,28 +117,6 @@ export default {
             default: false,
         },
         /**
-         * Icon color is automatically set by the Button component, however if
-         * needed for an edge case, this can be overriden here.
-         * `primary|secondary|light|dark|color-white|secondary-teal`
-         */
-        iconVariantOverride: {
-            type: String,
-            default: null,
-            validator: (value) => value.match(
-                /(primary|secondary|light|dark|color-white|secondary-teal)/,
-            ),
-        },
-        /**
-         * Icon size is automatically set by the Button component, however if
-         * needed for an edge case, this can be overriden here.
-         * `xxs|xs|sm|md|lg|xl`
-         */
-        iconSizeOverride: {
-            type: String,
-            default: null,
-            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
-        },
-        /**
          * The position of the icon
          * `left|right`
          */
@@ -156,7 +129,6 @@ export default {
     data() {
         return {
             isAnimating: false,
-            hovered: false,
         };
     },
     computed: {
@@ -210,7 +182,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .vs-button.btn {
+    .vs-button{
         /* Button Default Styles
         ------------------------------------------ */
         font-family: $font-family-base;
@@ -222,7 +194,6 @@ export default {
         overflow: hidden;
         border-width: 2px;
         line-height: $line-height-standard;
-        padding: $spacer-3 $spacer-8;
 
         .vs-icon {
             margin-top: -.05rem;
@@ -250,11 +221,20 @@ export default {
             box-shadow: none;
         }
 
-        &:disabled {
-            background-color: $color-secondary-gray-tint-4;
-            color: $color-white;
-            opacity: $opacity-100;
-            border-width: 0;
+        &.btn-primary, &.btn-primary-on-dark,
+        &.btn-secondary, &.btn-secondary-on-dark,
+        &.btn-dark, &.btn-light{
+            &:disabled {
+                background-color: $color-secondary-gray-tint-4;
+                color: $color-white;
+                opacity: $opacity-100;
+                border-width: 0;
+
+                &:hover{
+                    background-color: $color-secondary-gray-tint-4;
+                    border-color: $color-secondary-gray-tint-4;
+                }
+            }
         }
 
         /* Button Variants
@@ -317,11 +297,18 @@ export default {
                 $color-pink, transparent, transparent,
                 $color-pink, transparent, transparent,
             );
+
+            &:focus{
+                box-shadow: 0 0 0 4px $color-pink;
+            }
         }
 
         &.vs-button--icon-only {
-            padding: $spacer-1;
             line-height: 1;
+
+            &.btn-sm, &.btn-md, &.btn-lg{
+                padding: $spacer-1;
+            }
 
             .vs-icon{
                 margin: 0;
@@ -332,6 +319,10 @@ export default {
         ------------------------------------------ */
         &.btn-sm{
             padding: $spacer-1 $spacer-4;
+        }
+
+        &.btn-md{
+            padding: $spacer-3 $spacer-8;
         }
 
         &.btn-lg{
