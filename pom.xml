@@ -8,7 +8,7 @@
     <version>14.7.8</version>
     <!--Remember to upgrade essentials when this versions is updated -->
   </parent>
-  
+
   <name>www.visitscotland.com CMS Pages</name>
   <description>www.visitscotland.com CMS Pages</description>
   <groupId>com.visitscotland</groupId>
@@ -25,30 +25,24 @@
     <cliOptions></cliOptions>
 
     <!-- Bloom Dependencies -->
+
+    <essentials.version>14.7.8</essentials.version>
     <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
     <bloomreach.forge.ipfilter.version>3.1.0</bloomreach.forge.ipfilter.version>
+
 
     <!-- Other dependencies -->
     <commons-lan3.version>3.8.1</commons-lan3.version>
     <jsp-api.version>2.2</jsp-api.version>
     <taglibs.version>1.2.5</taglibs.version>
-    <h2.database.version>1.4.200</h2.database.version>
-    <essentials.version>14.7.2</essentials.version>
+    <h2.database.version>2.1.210</h2.database.version>
     <jackson-core.version>2.13.3</jackson-core.version>
 
-    <!--***START temporary override of versions*** -->
-    <!-- ***END temporary override of versions*** -->
-    <!--TODO define this in parent pom -->
-
-    
+    <!-- Test dependencies -->
     <junit.jupiter.version>5.7.1</junit.jupiter.version>
     <easymock.version>4.2</easymock.version>
     <mockito.version>3.3.3</mockito.version>
-
-
-    <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
-    <gitflow-maven-plugin.version>1.14.0</gitflow-maven-plugin.version>
   </properties>
 
   <organization>
@@ -95,6 +89,19 @@
 
   <dependencyManagement>
     <dependencies>
+      <!-- VisitScotland Dependencies -->
+      <dependency>
+        <groupId>com.visitscotland</groupId>
+        <artifactId>data-service-api</artifactId>
+        <version>1.3.2-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.visitscotland</groupId>
+        <artifactId>utils</artifactId>
+        <version>3.0.1-SNAPSHOT</version>
+      </dependency>
+
       <dependency>
         <groupId>javax.servlet.jsp</groupId>
         <artifactId>jsp-api</artifactId>
@@ -141,35 +148,12 @@
         <version>${bloomreach.forge.ipfilter.version}</version>
       </dependency>
 
-      <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-core -->
-      <dependency>
-        <groupId>org.jboss.resteasy</groupId>
-        <artifactId>resteasy-core</artifactId>
-        <version>6.0.3.Final</version>
-      </dependency>
 
-
-      <!-- VisitScotland Dependencies -->
-      <dependency>
-        <groupId>com.visitscotland</groupId>
-        <artifactId>data-service-api</artifactId>
-        <version>1.3.2-SNAPSHOT</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.visitscotland</groupId>
-        <artifactId>utils</artifactId>
-        <version>3.0.0</version>
-      </dependency>
-
-      <!-- Required for  -->
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-core</artifactId>
         <version>${jackson-core.version}</version>
       </dependency>
-
-      <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-jaxb-annotations -->
       <dependency>
         <groupId>com.fasterxml.jackson.module</groupId>
         <artifactId>jackson-module-jaxb-annotations</artifactId>
@@ -207,7 +191,7 @@
 
   <build>
     <defaultGoal>package</defaultGoal>
-    
+
     <pluginManagement>
       <plugins>
         <!--
@@ -301,7 +285,7 @@
         <plugin>
           <groupId>org.sonatype.plugins</groupId>
           <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>${nexus-staging-maven-plugin.version}</version>
+          <version>1.6.8</version>
           <extensions>true</extensions>
           <configuration>
             <serverId>vs</serverId>
@@ -314,7 +298,7 @@
         <plugin>
           <groupId>com.amashchenko.maven.plugin</groupId>
           <artifactId>gitflow-maven-plugin</artifactId>
-          <version>${gitflow-maven-plugin.version}</version>
+          <version>1.14.0</version>
           <executions>
             <execution>
               <id>default-cli</id>
@@ -394,7 +378,7 @@
 
       </plugins>
     </pluginManagement>
-    
+
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -416,7 +400,7 @@
       <plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>${nexus-staging-maven-plugin.version}</version>
+        <version>1.6.8</version>
         <extensions>true</extensions>
         <configuration>
           <serverId>vs</serverId>
@@ -705,7 +689,7 @@
     </profile>
 
   </profiles>
-  
+
   <scm>
     <connection>scm:git:https://bitbucket.visitscotland.com/scm/com/visitscotland-2019.git</connection>
     <developerConnection/>
