@@ -280,7 +280,7 @@ export default {
         }
     }
 
-    &__close-button.vs-button.btn {
+    &__close-button {
         position: absolute;
         right: 8px;
         top: 6px;
