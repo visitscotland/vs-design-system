@@ -94,6 +94,13 @@ export default {
             default: true,
         },
         /**
+         * Set this for a button on a dark background for better colour contrast
+         */
+        onDark: {
+            type: Boolean,
+            default: false,
+        },
+        /**
          * Pass the name of the icon to add it to the button.
          */
         icon: {
@@ -117,6 +124,13 @@ export default {
             default: false,
         },
         /**
+         * If the button contains an icon with accessible text.
+         */
+        iconWithText: {
+            type: Boolean,
+            default: false,
+        },
+        /**
          * The position of the icon
          * `left|right`
          */
@@ -135,12 +149,14 @@ export default {
         buttonClasses() {
             return [
                 {
-                    'vs-button--animated': this.animate,
+                    'vs-button--animated': this.animate && !this.iconOnly && !this.iconWithText,
                     'vs-button--is-animating': this.isAnimating,
+                    'vs-button--on-dark': this.onDark,
                     'vs-button--icon-only': this.iconOnly,
-                    'd-flex': this.icon && !this.iconOnly,
+                    'vs-button--icon-with-text': this.iconWithText,
+                    'd-flex': this.icon && !this.iconOnly && !this.iconWithText,
                     'flex-row-reverse': this.iconPosition === 'right',
-                    'text-uppercase': this.uppercase,
+                    'text-uppercase': this.uppercase && !this.iconWithText,
                 },
             ];
         },
@@ -183,8 +199,6 @@ export default {
 
 <style lang="scss">
     .vs-button{
-        /* Button Default Styles
-        ------------------------------------------ */
         font-family: $font-family-base;
         font-weight: $font-weight-semi-bold;
         transition: $transition-base;
@@ -211,7 +225,7 @@ export default {
             box-shadow: 0 0 0 4px $color-white, 0 0 0 8px $color-pink;
         }
 
-        &.btn-primary-on-dark, &.btn-secondary-on-dark{
+        &.vs-button--on-dark{
             &:focus{
                 box-shadow: 0 0 0 4px $color-black, 0 0 0 8px $color-yellow;
             }
@@ -221,8 +235,7 @@ export default {
             box-shadow: none;
         }
 
-        &.btn-primary, &.btn-primary-on-dark,
-        &.btn-secondary, &.btn-secondary-on-dark,
+        &.btn-primary, &.btn-secondary,
         &.btn-dark, &.btn-light{
             &:disabled {
                 background-color: $color-secondary-gray-tint-4;
@@ -245,14 +258,14 @@ export default {
                 $color-white, $color-pink-shade-2, $color-pink-shade-2,
                 $color-pink, $color-white, $color-pink,
             );
-        }
 
-        &.btn-primary-on-dark{
-            @include vs-button-variant(
-                $color-black, $color-yellow, $color-yellow,
-                $color-black, $color-yellow-tint-2, $color-yellow-tint-2,
-                $color-yellow, $color-black, $color-yellow,
-            );
+            &.vs-button--on-dark{
+                @include vs-button-variant(
+                    $color-black, $color-yellow, $color-yellow,
+                    $color-black, $color-yellow-tint-2, $color-yellow-tint-2,
+                    $color-yellow, $color-black, $color-yellow,
+                );
+            }
         }
 
         &.btn-secondary {
@@ -261,14 +274,14 @@ export default {
                 $color-white, $color-pink, $color-pink,
                 $color-white, $color-pink, $color-pink,
             );
-        }
 
-        &.btn-secondary-on-dark{
-            @include vs-button-variant(
-                $color-yellow, $color-black, $color-yellow,
-                $color-black, $color-yellow, $color-yellow,
-                $color-black, $color-yellow, $color-yellow,
-            );
+            &.vs-button--on-dark{
+                @include vs-button-variant(
+                    $color-yellow, $color-black, $color-yellow,
+                    $color-black, $color-yellow, $color-yellow,
+                    $color-black, $color-yellow, $color-yellow,
+                );
+            }
         }
 
         &.btn-dark{
@@ -300,6 +313,35 @@ export default {
 
             &:focus{
                 box-shadow: 0 0 0 4px $color-pink;
+            }
+
+            &.vs-button--on-dark{
+                @include vs-button-variant(
+                    $color-white, transparent, transparent,
+                    $color-yellow, transparent, transparent,
+                    $color-yellow, transparent, transparent,
+                );
+
+                &:focus{
+                    box-shadow: 0 0 0 4px $color-yellow;
+                }
+            }
+        }
+
+        &.vs-button--icon-with-text{
+            letter-spacing: initial;
+            text-decoration: underline;
+            font-weight: $font-weight-normal;
+            font-size: $font-size-3;
+            transition: none;
+
+            &.btn-sm, &.btn-md, &.btn-lg{
+                padding: $spacer-1;
+            }
+
+            .vs-icon{
+                display: block;
+                margin: 0 auto $spacer-1;
             }
         }
 
