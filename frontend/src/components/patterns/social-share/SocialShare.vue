@@ -343,18 +343,10 @@ export default {
             }
         }
 
-        &__close-btn.vs-button.btn{
+        &__close-btn{
             position: absolute;
             right: $spacer-4;
             top: $spacer-4;
-            border: 0;
-            padding: $spacer-1;
-
-            &:hover{
-                .vs-icon.vs-icon--variant-dark{
-                    fill: $color-pink;
-                }
-            }
         }
     }
 
@@ -364,7 +356,7 @@ export default {
                 display: block;
             }
 
-            &__share-btn.vs-button.btn{
+            &__share-btn{
                display: none;
             }
 
