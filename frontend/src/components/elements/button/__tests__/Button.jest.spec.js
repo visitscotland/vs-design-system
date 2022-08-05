@@ -57,15 +57,6 @@ describe('VsButton', () => {
             expect(wrapper.classes(`btn-${testVariant}`)).toBe(true);
         });
 
-        it(':background - should accept and render a `background` property', () => {
-            const testBgColor = 'white';
-            const wrapper = factoryMount({
-                background: testBgColor,
-            });
-
-            expect(wrapper.classes(`btn-bg-${testBgColor}`)).toBe(true);
-        });
-
         it(':size - should accept and render a `size` property', () => {
             const testSize = 'sm';
             const wrapper = factoryShallowMount({

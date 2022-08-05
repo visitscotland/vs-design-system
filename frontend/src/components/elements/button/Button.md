@@ -119,9 +119,9 @@ calculated to match. These can be overridden if needed for an edge case (see Pro
 ### Icon Only 
 Icon buttons without text should only be used when the context is totally clear to the user as 
 to what the button does. When using an icon only button, you must provide screen 
-reader text that will be hidden for accessibility.
+reader only text for accessibility.
 ```jsx
-    <VsButton icon-only icon="search" size="lg" class="mr-6">
+    <VsButton icon-only icon="search" size="md" class="mr-6">
         <span class="sr-only">
             Search
         </span>
@@ -132,7 +132,6 @@ reader text that will be hidden for accessibility.
             Close
         </span>
     </VsButton>
-
 ```
 
 ### Disabled States
