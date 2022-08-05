@@ -8,7 +8,7 @@
 <#include "../../global/preview-warning.ftl">
 <#include "../../../macros/modules/video/video.ftl">
 <#include "../../../macros/modules/modal/modal.ftl">
-<#include "../../../macros/global/data-layer.ftl">
+<#include "../../../functions/data-layer.ftl">
 
 <#include "../../../../frontend/components/vs-page-intro.ftl">
 <#include "../../../../frontend/components/vs-container.ftl">
