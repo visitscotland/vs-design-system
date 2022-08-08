@@ -6,6 +6,7 @@ import {
     internalLinkTemplate,
     menuNavigationTemplate,
     homePageLogoClickTemplate,
+    formsTemplate,
 } from '../utils/data-layer-templates';
 
 /**
@@ -151,9 +152,18 @@ const dataLayerMixin = {
         // cannedSearchDataTemplate(event) {
         //     const eventName = 'canned_search'
         // },
-        // formsDataTemplate(event) {
-        //     const eventName = 'forms'
-        // },
+        formsDataEvent() {
+            const eventName = 'forms';
+
+            const templateValues = {
+                event: eventName,
+                form_status: 'form_viewed',
+            };
+
+            const fullTemplate = this.compileFullTemplate(templateValues);
+            const formEvent = this.templateFiller(formsTemplate, fullTemplate);
+            this.pushToDataLayer(formEvent);
+        },
         returnIsoDate() {
             const date = new Date(Date.now());
             return date.toISOString();
