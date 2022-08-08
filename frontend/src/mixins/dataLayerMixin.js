@@ -7,6 +7,7 @@ import {
     menuNavigationTemplate,
     homePageLogoClickTemplate,
     formsTemplate,
+    socialMediaExternalLinkTemplate,
 } from '../utils/data-layer-templates';
 
 /**
@@ -87,9 +88,18 @@ const dataLayerMixin = {
         // shareDataEvent(event) {
         //     const eventName = "share"
         // },
-        // socialMediaExternalLinkDataEvent(event) {
-        //     const eventName = "social_media_external_link"
-        // },
+        socialMediaExternalLinkDataEvent(href) {
+            const eventName = 'social_media_external_link';
+
+            const templateValues = {
+                event: eventName,
+                click_URL: href,
+            };
+
+            const fullTemplate = this.compileFullTemplate(templateValues);
+            const socialClick = this.templateFiller(socialMediaExternalLinkTemplate, fullTemplate);
+            this.pushToDataLayer(socialClick);
+        },
         homePageLogoClickDataEvent() {
             const eventName = 'homepage_logo_click';
 
