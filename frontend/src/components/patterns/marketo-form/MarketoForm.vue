@@ -156,6 +156,7 @@ import VsIcon from '../../elements/icon/Icon';
 import VsRecaptcha from '../../elements/recaptcha/Recaptcha';
 import VsButton from '../../elements/button/Button';
 import VsHeading from '../../elements/heading/Heading';
+import dataLayerMixin from '../../../mixins/dataLayerMixin';
 
 const axios = require('axios');
 
@@ -179,6 +180,7 @@ export default {
         VsIcon,
         VsHeading,
     },
+    mixins: [dataLayerMixin],
     props: {
         /**
          * The URL for the form data file
@@ -275,6 +277,9 @@ export default {
     created() {
         this.getFormData();
         this.getGlobalMessaging();
+    },
+    mounted() {
+        this.formsDataEvent();
     },
     methods: {
         /**
