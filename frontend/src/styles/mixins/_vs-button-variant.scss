@@ -1,3 +1,8 @@
+/* 
+ * Creates a button variant for all states using 
+ * default, hover and focus colours provided. 
+ */
+
 @mixin vs-button-variant(
     $color, $background, $border, 
     $hover-color, $hover-background, $hover-border,
