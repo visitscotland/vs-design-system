@@ -265,18 +265,20 @@ export default {
     }
 
     &__search-button{
-        height: 50px;
-        padding: $spacer-3 $spacer-2;
-        font-size: $font-size-3;
+        &.btn-lg{
+            height: 50px;
+            padding: $spacer-3 $spacer-2;
+            font-size: $font-size-3;
 
-        @include media-breakpoint-up(lg) {
-            height: 79px;
-            padding: $spacer-3 $spacer-8;
-            font-size: $font-size-6;
-        }
+            @include media-breakpoint-up(lg) {
+                height: 79px;
+                padding: $spacer-3 $spacer-8;
+                font-size: $font-size-6;
+            }
 
-        @include media-breakpoint-up(xl) {
-            height: 94px;
+            @include media-breakpoint-up(xl) {
+                height: 94px;
+            }
         }
     }
 
