@@ -22,10 +22,6 @@ primary button for secondary actions on the page.
     <VsButton variant="secondary">
         Nearby places to eat
     </VsButton>
-
-    <VsButton variant="secondary" icon="food">
-        Nearby places to eat
-    </VsButton>
 ```
 
 ### Dark Theme
@@ -33,17 +29,10 @@ When displaying a button on a dark themed background, the colour variant
 should change so the button is more accessible. Use the `onDark` prop to update.
 ```jsx
     <BsWrapper class="bg-dark px-4 pb-2 pt-4">
-        <VsButton variant="primary" on-dark class="mr-2 mb-2">
+        <VsButton variant="primary" on-dark class="mr-3 mb-2">
             Nearby places to eat
         </VsButton>
-        <VsButton variant="secondary" on-dark class="mr-2 mb-2">
-            Nearby places to eat
-        </VsButton>
-
-        <VsButton variant="primary" on-dark icon="food" class="mr-2 mb-2">
-            Nearby places to eat
-        </VsButton>
-        <VsButton variant="secondary" on-dark icon="food" class="mr-2 mb-2">
+        <VsButton variant="secondary" on-dark class="mb-2">
             Nearby places to eat
         </VsButton>
     </BsWrapper>
@@ -55,13 +44,13 @@ These can be used to help improve contrast between different backgrounds and
 for lower priority call to actions. 
 ```jsx
     <BsWrapper class="p-4 mb-6 w-50 d-flex justify-content-center" style="border: 1px solid #E0E0E0;">
-        <VsButton variant="light" icon="food">
+        <VsButton variant="light">
             Nearby places to eat
         </VsButton>
     </BsWrapper>
 
     <BsWrapper class="p-4 mb-6 w-50 d-flex justify-content-center" style="background: #fcca1b;">
-        <VsButton variant="dark" icon="food">
+        <VsButton variant="dark">
             Nearby places to eat
         </VsButton>
     </BsWrapper>
@@ -71,16 +60,23 @@ for lower priority call to actions.
 Buttons are medium size by default but you can use small, large or block buttons depending 
 on copy size and space in your component.
 ```jsx
-    <VsButton size="sm" class="mr-2 mb-2" >
+    <h5>sm</h5>
+    <VsButton size="sm" class="mb-6" >
         Nearby places to eat
     </VsButton>
-    <VsButton size="md" class="mr-2 mb-2">
+
+    <h5>md</h5>
+    <VsButton size="md" class="mb-6">
         Nearby places to eat
     </VsButton>
-    <VsButton size="lg" class="mr-2 mb-3">
+
+    <h5>lg</h5>
+    <VsButton size="lg" class="mb-6">
         Nearby places to eat
     </VsButton>
-    <VsButton block class="mr-2 mb-2">
+
+    <h5>Block</h5>
+    <VsButton block class="mb-6">
         Nearby places to eat
     </VsButton>
 ```
@@ -95,10 +91,10 @@ You can use any icon on a button to help the user understand the meaning and wha
 Icons can be right or left aligned and the icon orientation can also be changed.
 ```jsx
     <BsWrapper class="d-flex flex-wrap">
-        <VsButton icon="chevron" icon-position="left" icon-orientation="left" class="mr-2 mb-2">
+        <VsButton icon="chevron" icon-position="left" icon-orientation="left" class="mr-4 mb-2">
             Previous
         </VsButton>
-        <VsButton icon="chevron" icon-position="right" icon-orientation="right" class="mr-2 mb-2">
+        <VsButton icon="chevron" icon-position="right" icon-orientation="right" class="mb-2">
             Next
         </VsButton>
     </BsWrapper>
