@@ -88,9 +88,9 @@ export default {
         /**
         * If the click should trigger a dataLayerPush
         */
-        useDataLayer: {
-            type: Boolean,
-            default: true,
+        dataLayerValue: {
+            type: String,
+            default: null,
         },
     },
     computed: {
@@ -102,14 +102,14 @@ export default {
         clickHandler(event) {
             event.preventDefault();
 
-            if (this.useDataLayer) {
-                if (this.type === 'external') {
-                    this.externalLinkDataEvent(event);
-                } else {
-                    this.internalLinkDataEvent(event);
-                }
+            if (this.dataLayerValue) {
+                this.createDataLayerObject(this.dataLayerValue, event, this.href);
+            } else if (this.type === 'external') {
+                this.createDataLayerObject('externalLinkDataEvent', event, this.href);
+            } else {
+                this.createDataLayerObject('internalLinkDataEvent', event, this.href);
             }
-            window.location.replace(this.href);
+            // window.location.replace(this.href);
         },
     },
 };

@@ -29,7 +29,7 @@
                                 :href="href"
                                 svg-fill="#700e57"
                                 svg-path="visitscotland"
-                                :use-data-layer="false"
+                                data-layer-value="homePageLogoClickDataEvent"
                             />
                         </div>
                     </VsCol>
@@ -206,13 +206,6 @@ export default {
         */
         toggleSearch() {
             this.showSearch = !this.showSearch;
-        },
-        /**
-         * Handles dataLayer push for logo click
-        */
-        dataLayerHandler(event) {
-            event.preventDefault();
-            this.homePageLogoClickDataEvent(event);
         },
     },
 };
