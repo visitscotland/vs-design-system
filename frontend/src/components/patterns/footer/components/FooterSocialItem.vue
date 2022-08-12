@@ -2,6 +2,8 @@
     <li
         class="vs-footer-social-item"
         data-test="vs-footer-social-item"
+        @click="dataLayerHandler"
+        @keydown="dataLayerHandler"
     >
         <VsLink
             data-test="vs-footer-social-item__link"
@@ -9,6 +11,7 @@
             type="external"
             :class="icon"
             :aria-label="icon"
+            :use-data-layer="false"
         >
             <VsIcon
                 :name="icon"
@@ -23,6 +26,7 @@
 
 import VsLink from '@components/elements/link/Link';
 import VsIcon from '@components/elements/icon/Icon';
+import dataLayerMixin from '../../../../mixins/dataLayerMixin';
 
 /**
  * The FooterSocialItem is used inside the FooterSocialMenu to
@@ -39,6 +43,7 @@ export default {
         VsLink,
         VsIcon,
     },
+    mixins: [dataLayerMixin],
     props: {
         /**
          * The URL the link will point to
@@ -55,6 +60,11 @@ export default {
             type: String,
             required: true,
             validator: (value) => value.match(/(facebook|instagram|twitter|youtube)/),
+        },
+    },
+    methods: {
+        dataLayerHandler() {
+            this.socialMediaExternalLinkDataEvent(this.href);
         },
     },
 };
