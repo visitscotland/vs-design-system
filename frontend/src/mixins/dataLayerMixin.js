@@ -52,104 +52,211 @@ const dataLayerMixin = {
             // Return an object ready to be pushed to the data-layer
             return obj;
         },
-        pageViewTemplateDataEvent() {
-            const eventName = 'page_view';
+        createDataLayerObject(type, event, href) {
+            let eventName;
+            let templateValues;
+            let fullTemplate;
+            let dataLayerData;
 
-            const templateValues = {
-                event: eventName,
-            };
+            switch (type) {
+            case 'pageViewTemplateDataEvent':
+                eventName = 'page_view';
 
-            const fullTemplate = this.compileFullTemplate(templateValues);
+                templateValues = {
+                    event: eventName,
+                };
 
-            // Running the values and the template trough the templateFiller() function
-            // This will make sure that the values are added on the right place
-            // And if any value was not found then it will return as undefined
-            // (as per iProspect request)
-            const pageView = this.templateFiller(pageViewTemplate, fullTemplate);
+                fullTemplate = this.compileFullTemplate(templateValues);
 
-            this.pushToDataLayer(pageView);
+                // Running the values and the template trough the templateFiller() function
+                // This will make sure that the values are added on the right place
+                // And if any value was not found then it will return as undefined
+                // (as per iProspect request)
+                dataLayerData = this.templateFiller(pageViewTemplate, fullTemplate);
+                break;
+
+            case 'menuNavigationDataEvent':
+                eventName = 'menu_navigation';
+
+                templateValues = {
+                    event: eventName,
+                    click_text: event.target.text.trim(),
+                    click_URL: href,
+                };
+
+                fullTemplate = this.compileFullTemplate(templateValues);
+                dataLayerData = this.templateFiller(menuNavigationTemplate, fullTemplate);
+                break;
+
+            case 'socialMediaExternalLinkDataEvent':
+                eventName = 'social_media_external_link';
+
+                templateValues = {
+                    event: eventName,
+                    click_URL: href,
+                };
+
+                fullTemplate = this.compileFullTemplate(templateValues);
+                dataLayerData = this.templateFiller(socialMediaExternalLinkTemplate, fullTemplate);
+                break;
+
+            case 'homePageLogoClickDataEvent':
+                eventName = 'homepage_logo_click';
+
+                templateValues = {
+                    event: eventName,
+                };
+
+                fullTemplate = this.compileFullTemplate(templateValues);
+                dataLayerData = this.templateFiller(homePageLogoClickTemplate, fullTemplate);
+                break;
+
+            case 'externalLinkDataEvent':
+                eventName = 'external_link';
+
+                templateValues = {
+                    event: eventName,
+                    click_text: event.target.text.trim(),
+                    click_URL: href,
+                };
+
+                fullTemplate = this.compileFullTemplate(templateValues);
+                dataLayerData = this.templateFiller(externalLinkTemplate, fullTemplate);
+                break;
+
+            case 'internalLinkDataEvent':
+                eventName = 'internal_link';
+
+                templateValues = {
+                    event: eventName,
+                    click_text: event.target.text.trim(),
+                    click_URL: href,
+                };
+
+                fullTemplate = this.compileFullTemplate(templateValues);
+                dataLayerData = this.templateFiller(internalLinkTemplate, fullTemplate);
+                break;
+
+            case 'formsDataEvent':
+                eventName = 'forms';
+
+                templateValues = {
+                    event: eventName,
+                    form_status: 'form_submitted',
+                };
+
+                fullTemplate = this.compileFullTemplate(templateValues);
+                dataLayerData = this.templateFiller(formsTemplate, fullTemplate);
+                break;
+
+            default:
+            }
+
+            this.pushToDataLayer(dataLayerData);
         },
-        menuNavigationDataEvent(event) {
-            const eventName = 'menu_navigation';
 
-            const templateValues = {
-                event: eventName,
-                click_text: event.target.text.trim(),
-                click_URL: event.target.href,
-            };
+        // pageViewTemplateDataEvent() {
+        //     const eventName = 'page_view';
 
-            const fullTemplate = this.compileFullTemplate(templateValues);
-            const menuNavigation = this.templateFiller(menuNavigationTemplate, fullTemplate);
-            this.pushToDataLayer(menuNavigation);
-        },
+        //     const templateValues = {
+        //         event: eventName,
+        //     };
+
+        //     const fullTemplate = this.compileFullTemplate(templateValues);
+
+        //     // Running the values and the template trough the templateFiller() function
+        //     // This will make sure that the values are added on the right place
+        //     // And if any value was not found then it will return as undefined
+        //     // (as per iProspect request)
+        //     const pageView = this.templateFiller(pageViewTemplate, fullTemplate);
+
+        //     this.pushToDataLayer(pageView);
+        // },
+        // menuNavigationDataEvent(event) {
+        //     const eventName = 'menu_navigation';
+
+        //     const templateValues = {
+        //         event: eventName,
+        //         click_text: event.target.text.trim(),
+        //         click_URL: href,
+        //     };
+
+        //     const fullTemplate = this.compileFullTemplate(templateValues);
+        //     const menuNavigation = this.templateFiller(menuNavigationTemplate, fullTemplate);
+        //     this.pushToDataLayer(menuNavigation);
+        // },
         // newsletterDataEvent(event) {
         //     const eventName = "newsletter"
         // },
         // shareDataEvent(event) {
         //     const eventName = "share"
         // },
-        socialMediaExternalLinkDataEvent(href) {
-            const eventName = 'social_media_external_link';
 
-            const templateValues = {
-                event: eventName,
-                click_URL: href,
-            };
+        // socialMediaExternalLinkDataEvent(href) {
+        //     const eventName = 'social_media_external_link';
 
-            const fullTemplate = this.compileFullTemplate(templateValues);
-            const socialClick = this.templateFiller(socialMediaExternalLinkTemplate, fullTemplate);
-            this.pushToDataLayer(socialClick);
-        },
-        homePageLogoClickDataEvent() {
-            const eventName = 'homepage_logo_click';
+        //     const templateValues = {
+        //         event: eventName,
+        //         click_URL: href,
+        //     };
 
-            const templateValues = {
-                event: eventName,
-            };
-
-            const fullTemplate = this.compileFullTemplate(templateValues);
-            const homePageLogoClick = this.templateFiller(homePageLogoClickTemplate, fullTemplate);
-            this.pushToDataLayer(homePageLogoClick);
-        },
-        // videoTrackingDataEvent(event) {
-        //     const eventName = "video_tracking"
+        //     const fullTemplate =
+        //          this.compileFullTemplate(templateValues);
+        //     const socialClick =
+        // this.templateFiller(socialMediaExternalLinkTemplate, fullTemplate);
+        //     this.pushToDataLayer(socialClick);
         // },
-        externalLinkDataEvent(event) {
-            // Fixed values
-            const eventName = 'external_link';
+        // homePageLogoClickDataEvent() {
+        //     const eventName = 'homepage_logo_click';
 
-            const templateValues = {
-                event: eventName,
-                click_text: event.target.text.trim(),
-                click_URL: event.target.href,
-            };
+        //     const templateValues = {
+        //         event: eventName,
+        //     };
 
-            const fullTemplate = this.compileFullTemplate(templateValues);
+        //     const fullTemplate = this.compileFullTemplate(templateValues);
+        //     const homePageLogoClick =
+        //          this.templateFiller(homePageLogoClickTemplate, fullTemplate);
+        //     this.pushToDataLayer(homePageLogoClick);
+        // },
+        // // videoTrackingDataEvent(event) {
+        // //     const eventName = "video_tracking"
+        // // },
+        // externalLinkDataEvent(event) {
+        //     // Fixed values
+        //     const eventName = 'external_link';
 
-            // Running the values and the template trough the templateFiller() function
-            // This will make sure that the values are added on the right place
-            // And if any value was not found then it will return as undefined
-            // (as per iProspect request)
-            const externalLink = this.templateFiller(externalLinkTemplate, fullTemplate);
+        //     const templateValues = {
+        //         event: eventName,
+        //         click_text: event.target.text.trim(),
+        //         click_URL: href,
+        //     };
 
-            // After that we just need to push the object returned to the data layer
-            this.pushToDataLayer(externalLink);
-        },
-        internalLinkDataEvent(event) {
-            const eventName = 'internal_link';
+        //     const fullTemplate = this.compileFullTemplate(templateValues);
 
-            const templateValues = {
-                event: eventName,
-                click_text: event.target.text.trim(),
-                click_URL: event.target.href,
-            };
+        //     // Running the values and the template trough the templateFiller() function
+        //     // This will make sure that the values are added on the right place
+        //     // And if any value was not found then it will return as undefined
+        //     // (as per iProspect request)
+        //     const externalLink = this.templateFiller(externalLinkTemplate, fullTemplate);
 
-            const fullTemplate = this.compileFullTemplate(templateValues);
+        //     // After that we just need to push the object returned to the data layer
+        //     this.pushToDataLayer(externalLink);
+        // },
+        // internalLinkDataEvent(event) {
+        //     const eventName = 'internal_link';
 
-            const internalLink = this.templateFiller(internalLinkTemplate, fullTemplate);
+        //     const templateValues = {
+        //         event: eventName,
+        //         click_text: event.target.text.trim(),
+        //         click_URL: href,
+        //     };
 
-            this.pushToDataLayer(internalLink);
-        },
+        //     const fullTemplate = this.compileFullTemplate(templateValues);
+
+        //     const internalLink = this.templateFiller(internalLinkTemplate, fullTemplate);
+
+        //     this.pushToDataLayer(internalLink);
+        // },
         // internalNavigation(event) {
         //     const eventName = 'internal_navigation'
         // },
@@ -162,18 +269,19 @@ const dataLayerMixin = {
         // cannedSearchDataTemplate(event) {
         //     const eventName = 'canned_search'
         // },
-        formsDataEvent() {
-            const eventName = 'forms';
+        // formsDataEvent() {
+        //     const eventName = 'forms';
 
-            const templateValues = {
-                event: eventName,
-                form_status: 'form_viewed',
-            };
+        //     const templateValues = {
+        //         event: eventName,
+        //         form_status: 'form_viewed',
+        //     };
 
-            const fullTemplate = this.compileFullTemplate(templateValues);
-            const formEvent = this.templateFiller(formsTemplate, fullTemplate);
-            this.pushToDataLayer(formEvent);
-        },
+        //     const fullTemplate = this.compileFullTemplate(templateValues);
+        //     const formEvent = this.templateFiller(formsTemplate, fullTemplate);
+        //     this.pushToDataLayer(formEvent);
+        // },
+
         returnIsoDate() {
             const date = new Date(Date.now());
             return date.toISOString();
