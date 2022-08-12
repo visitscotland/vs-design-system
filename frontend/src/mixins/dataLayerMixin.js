@@ -4,6 +4,10 @@ import {
     pageViewTemplate,
     externalLinkTemplate,
     internalLinkTemplate,
+    menuNavigationTemplate,
+    homePageLogoClickTemplate,
+    formsTemplate,
+    socialMediaExternalLinkTemplate,
 } from '../utils/data-layer-templates';
 
 /**
@@ -50,16 +54,12 @@ const dataLayerMixin = {
         },
         pageViewTemplateDataEvent() {
             const eventName = 'page_view';
-            const tagName = 'VS - GA - Pageview';
-
-            const storeValues = dataLayerStore.getters.getAllGTMValues;
 
             const templateValues = {
                 event: eventName,
-                tag_name: tagName,
             };
 
-            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+            const fullTemplate = this.compileFullTemplate(templateValues);
 
             // Running the values and the template trough the templateFiller() function
             // This will make sure that the values are added on the right place
@@ -69,45 +69,62 @@ const dataLayerMixin = {
 
             this.pushToDataLayer(pageView);
         },
-        // menuNavigationDataEvent(event) {
-        //     const eventName = "menu_navigation"
-        //     const tagName = "VS - GA - Mega Menu"
-        // },
-        // newsletterDataEvent(event) {
-        //     const eventName = "newsletter"
-        //     const tagName = "VS - GA - Newsletter"
-        // },
-        // shareDataEvent(event) {
-        //     const eventName = "share"
-        //     const tagName = "VS - GA - Share"
-        // },
-        // socialMediaExternalLinkDataEvent(event) {
-        //     const eventName = "social_media_external_link"
-        //     const tagName = "VS - GA - Social Media External Link"
-        // },
-        // homePageLogoClickDataEvent(event) {
-        //     const eventName = "homepage_logo_click"
-        //     const tagName = "VS - GA - Homepage Logo Click"
-        // },
-        // videoTrackingDataEvent(event) {
-        //     const eventName = "video_tracking"
-        //     const tagName = "VS - GA - Video Tracking"
-        // },
-        externalLinkDataEvent(event) {
-            // Fixed values
-            const eventName = 'external_link';
-            const tagName = 'VS - GA - External Link';
-
-            const storeValues = dataLayerStore.getters.getAllGTMValues;
+        menuNavigationDataEvent(event) {
+            const eventName = 'menu_navigation';
 
             const templateValues = {
                 event: eventName,
-                tag_name: tagName,
                 click_text: event.target.text.trim(),
                 click_URL: event.target.href,
             };
 
-            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+            const fullTemplate = this.compileFullTemplate(templateValues);
+            const menuNavigation = this.templateFiller(menuNavigationTemplate, fullTemplate);
+            this.pushToDataLayer(menuNavigation);
+        },
+        // newsletterDataEvent(event) {
+        //     const eventName = "newsletter"
+        // },
+        // shareDataEvent(event) {
+        //     const eventName = "share"
+        // },
+        socialMediaExternalLinkDataEvent(href) {
+            const eventName = 'social_media_external_link';
+
+            const templateValues = {
+                event: eventName,
+                click_URL: href,
+            };
+
+            const fullTemplate = this.compileFullTemplate(templateValues);
+            const socialClick = this.templateFiller(socialMediaExternalLinkTemplate, fullTemplate);
+            this.pushToDataLayer(socialClick);
+        },
+        homePageLogoClickDataEvent() {
+            const eventName = 'homepage_logo_click';
+
+            const templateValues = {
+                event: eventName,
+            };
+
+            const fullTemplate = this.compileFullTemplate(templateValues);
+            const homePageLogoClick = this.templateFiller(homePageLogoClickTemplate, fullTemplate);
+            this.pushToDataLayer(homePageLogoClick);
+        },
+        // videoTrackingDataEvent(event) {
+        //     const eventName = "video_tracking"
+        // },
+        externalLinkDataEvent(event) {
+            // Fixed values
+            const eventName = 'external_link';
+
+            const templateValues = {
+                event: eventName,
+                click_text: event.target.text.trim(),
+                click_URL: event.target.href,
+            };
+
+            const fullTemplate = this.compileFullTemplate(templateValues);
 
             // Running the values and the template trough the templateFiller() function
             // This will make sure that the values are added on the right place
@@ -120,18 +137,14 @@ const dataLayerMixin = {
         },
         internalLinkDataEvent(event) {
             const eventName = 'internal_link';
-            const tagName = 'VS - GA - Internal Link';
-
-            const storeValues = dataLayerStore.getters.getAllGTMValues;
 
             const templateValues = {
                 event: eventName,
-                tag_name: tagName,
                 click_text: event.target.text.trim(),
                 click_URL: event.target.href,
             };
 
-            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+            const fullTemplate = this.compileFullTemplate(templateValues);
 
             const internalLink = this.templateFiller(internalLinkTemplate, fullTemplate);
 
@@ -139,24 +152,28 @@ const dataLayerMixin = {
         },
         // internalNavigation(event) {
         //     const eventName = 'internal_navigation'
-        //     const tagName = 'VS - GA - Internal Navigation'
         // },
         // errorDataTemplate(event) {
         //     const eventName = 'errors'
-        //     const tagName = 'VS - GA - Errors'
         // },
         // mapInteractionDataTemplate(event) {
         //     const eventName = 'map_interaction'
-        //     const tagName = 'VS - GA - Map Interaction'
         // },
         // cannedSearchDataTemplate(event) {
         //     const eventName = 'canned_search'
-        //     const tagName = 'VS - GA - Canned Search'
         // },
-        // formsDataTemplate(event) {
-        //     const eventName = 'forms'
-        //     const tagName = 'VS - GA - Forms'
-        // },
+        formsDataEvent() {
+            const eventName = 'forms';
+
+            const templateValues = {
+                event: eventName,
+                form_status: 'form_viewed',
+            };
+
+            const fullTemplate = this.compileFullTemplate(templateValues);
+            const formEvent = this.templateFiller(formsTemplate, fullTemplate);
+            this.pushToDataLayer(formEvent);
+        },
         returnIsoDate() {
             const date = new Date(Date.now());
             return date.toISOString();
@@ -167,7 +184,8 @@ const dataLayerMixin = {
                 dataLayer.push(object);
             });
         },
-        compileFullTemplate(storeValues, templateValues) {
+        compileFullTemplate(templateValues) {
+            const storeValues = dataLayerStore.getters.getAllGTMValues;
             const fullTemplate = {
                 ...storeValues,
                 ...templateValues,
