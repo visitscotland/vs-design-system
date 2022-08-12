@@ -79,6 +79,12 @@
     <#return escaped>
 </#function>
 
+<#function escapeJSON2 original>
+    <#assign escaped = original?replace("\"", "'")>
+    <#assign escaped = escaped?replace("\"", "&quot;")>
+    <#return escaped>
+</#function>
+
 
 <#--TODO: polimorphism-->
 <#--<#function productSearch locale productType location >-->
