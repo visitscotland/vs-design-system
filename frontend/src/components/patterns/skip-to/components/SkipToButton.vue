@@ -50,24 +50,24 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-skip-to {
-    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-    letter-spacing: $letter-spacing-xxl;
-    left: 50%;
-    transform: translate(-50%);
-    top: 0;
-    transition: background-color $duration-base;
-    z-index: $zindex-fixed;
+// .vs-skip-to {
+//     box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+//     letter-spacing: $letter-spacing-xxl;
+//     left: 50%;
+//     transform: translate(-50%);
+//     top: 0;
+//     transition: background-color $duration-base;
+//     z-index: $zindex-fixed;
 
-    &:focus {
-        outline: none;
-        box-shadow: inset 0 -3px 0 0 $color-base-text;
-    }
+//     &:focus {
+//         outline: none;
+//         box-shadow: inset 0 -3px 0 0 $color-base-text;
+//     }
 
-    &.sr-only-focusable:focus {
-        position: absolute;
-    }
-}
+//     &.sr-only-focusable:focus {
+//         position: absolute;
+//     }
+// }
 </style>
 
 <docs>
