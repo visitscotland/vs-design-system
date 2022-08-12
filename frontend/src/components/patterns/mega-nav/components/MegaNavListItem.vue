@@ -4,10 +4,12 @@
         data-test="vs-mega-nav-list-item"
         :class="navItemClasses"
         role="presentation"
+        @click="dataLayerHandler($event)"
     >
         <VsLink
             :href="href"
             :role="href === '#' ? '' : 'menuitem'"
+            :use-data-layer="false"
         >
             <!-- @slot Default slot for nav link content  -->
             <slot />
@@ -17,6 +19,7 @@
 
 <script>
 import VsLink from '@components/elements/link/Link';
+import dataLayerMixin from '../../../../mixins/dataLayerMixin';
 
 /**
  *  Meganav list items with link and slot for link content
@@ -30,6 +33,7 @@ export default {
     components: {
         VsLink,
     },
+    mixins: [dataLayerMixin],
     props: {
         /**
          * The URL for the nav list link
@@ -61,6 +65,12 @@ export default {
                 'vs-mega-nav-list-item__subheading-link': this.subheadingLink,
                 'vs-mega-nav-list-item__cta-link': this.ctaLink,
             };
+        },
+    },
+    methods: {
+        dataLayerHandler(event) {
+            event.preventDefault();
+            this.menuNavigationDataEvent(event);
         },
     },
 };
