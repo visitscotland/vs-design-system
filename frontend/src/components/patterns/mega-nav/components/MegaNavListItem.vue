@@ -4,12 +4,11 @@
         data-test="vs-mega-nav-list-item"
         :class="navItemClasses"
         role="presentation"
-        @click="dataLayerHandler($event)"
     >
         <VsLink
             :href="href"
             :role="href === '#' ? '' : 'menuitem'"
-            :use-data-layer="false"
+            data-layer-value="menuNavigationDataEvent"
         >
             <!-- @slot Default slot for nav link content  -->
             <slot />
@@ -65,12 +64,6 @@ export default {
                 'vs-mega-nav-list-item__subheading-link': this.subheadingLink,
                 'vs-mega-nav-list-item__cta-link': this.ctaLink,
             };
-        },
-    },
-    methods: {
-        dataLayerHandler(event) {
-            event.preventDefault();
-            this.menuNavigationDataEvent(event);
         },
     },
 };

@@ -278,9 +278,6 @@ export default {
         this.getFormData();
         this.getGlobalMessaging();
     },
-    mounted() {
-        this.formsDataEvent();
-    },
     methods: {
         /**
          * Axios call to retrieve form data
@@ -588,6 +585,7 @@ export default {
          * submits form data to Marketo payload and sets submitted status
          */
         marketoSubmit() {
+            this.createDataLayerObject('formsDataEvent');
             const myForm = window.MktoForms2.allForms()[0];
             myForm.addHiddenFields(this.form);
             myForm.addHiddenFields({

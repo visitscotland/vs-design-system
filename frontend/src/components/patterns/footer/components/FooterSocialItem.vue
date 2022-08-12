@@ -2,8 +2,6 @@
     <li
         class="vs-footer-social-item"
         data-test="vs-footer-social-item"
-        @click="dataLayerHandler"
-        @keydown="dataLayerHandler"
     >
         <VsLink
             data-test="vs-footer-social-item__link"
@@ -11,7 +9,7 @@
             type="external"
             :class="icon"
             :aria-label="icon"
-            :use-data-layer="false"
+            data-layer-value="socialMediaExternalLinkDataEvent"
         >
             <VsIcon
                 :name="icon"
@@ -60,11 +58,6 @@ export default {
             type: String,
             required: true,
             validator: (value) => value.match(/(facebook|instagram|twitter|youtube)/),
-        },
-    },
-    methods: {
-        dataLayerHandler() {
-            this.socialMediaExternalLinkDataEvent(this.href);
         },
     },
 };
