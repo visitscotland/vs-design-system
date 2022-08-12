@@ -3,6 +3,7 @@
         class="vs-svg-link"
         data-test="vs-svg-link"
         :href="href"
+        :use-data-layer="useDataLayer"
     >
         <span
             class="sr-only"
@@ -81,6 +82,13 @@ export default {
         svgWidth: {
             type: [Number, String],
             default: '',
+        },
+        /**
+        * If the click should trigger a dataLayerPush
+        */
+        useDataLayer: {
+            type: Boolean,
+            default: true,
         },
     },
 };
