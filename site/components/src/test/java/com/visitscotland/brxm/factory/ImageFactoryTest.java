@@ -165,7 +165,7 @@ class ImageFactoryTest {
         verify(cmsImage, times(1)).getAltText();
         verify(cmsImage, times(1)).getDescription();
 
-        assertEquals(2, module.getErrorMessages().size());
+        assertEquals(1, module.getErrorMessages().size());
     }
 
     @Test
