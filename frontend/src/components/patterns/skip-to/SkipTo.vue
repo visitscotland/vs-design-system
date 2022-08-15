@@ -1,11 +1,10 @@
 <template>
-    <section class="vs-skip-to">
-        <p>Skip to</p>
-        <a href="#main">Main menu</a>
-        <a href="#main">Content</a>
-        <a href="#main">Search</a>
-        <a href="#main">Footer</a>
-        <a href="#main">Coookie policy</a>
+    <section class="vs-skip-to d-flex">
+        <p class="vs-skip-to__label">
+            Skip to:
+        </p>
+        <!-- @slot Default slot for skip to links  -->
+        <slot />
     </section>
 </template>
 
@@ -74,10 +73,25 @@ export default {
         position: absolute;
         transform: translateY(-100%);
         top: 0;
+        height: $spacer-9;
+        align-items: center;
+        padding: 0 $spacer-2;
+
+        &__label {
+            margin: 0;
+        }
 
         &:focus-within {
             position: relative;
             transform: translateY(0);
+        }
+
+        .vs-link {
+            margin-left: $spacer-2;
+        }
+
+        @include media-breakpoint-up(lg) {
+            height: $spacer-10;
         }
     }
 </style>
