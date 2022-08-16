@@ -42,9 +42,6 @@ public class ImageValidator implements Validator<Node> {
                 if (!childNode.hasProperty("hippogallery:description")) {
                     return Optional.of(context.createViolation());
                 } else {
-                  /*  if (childNode.hasProperty(Image.ALT_TEXT) && Contract.isEmpty(childNode.getProperty(Image.ALT_TEXT).getString())) {
-                        return Optional.of(context.createViolation());
-                    }*/
                     if (childNode.hasProperty("hippogallery:description") && Contract.isEmpty(childNode.getProperty("hippogallery:description").getString())) {
                         return Optional.of(context.createViolation());
                     }
