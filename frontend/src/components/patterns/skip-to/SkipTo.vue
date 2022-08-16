@@ -1,5 +1,8 @@
 <template>
-    <section class="vs-skip-to d-flex">
+    <section
+        class="vs-skip-to d-flex"
+        data-test="vs-skip-to"
+    >
         <p class="vs-skip-to__label">
             <!-- @slot text for 'skip to' label -->
             <slot name="skipToText" />:
