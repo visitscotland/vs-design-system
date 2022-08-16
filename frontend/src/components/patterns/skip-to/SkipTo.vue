@@ -1,14 +1,33 @@
 <template>
     <section class="vs-skip-to d-flex">
         <p class="vs-skip-to__label">
-            Skip to:
+            <!-- @slot text for 'skip to' label -->
+            <slot name="skipToText" />:
         </p>
-        <!-- @slot Default slot for skip to links  -->
-        <slot />
+        <VsLink @click.native="mainMenuFocus">
+            <!-- @slot text for 'Main menu' -->
+            <slot name="mainMenuText" />
+        </VsLink>
+        <VsLink
+            href="#main"
+            @click.native="mainContentFocus"
+        >
+            <!-- @slot text for 'Main content' -->
+            <slot name="mainContentText" />
+        </VsLink>
+        <VsLink @click.native="searchFocus">
+            <!-- @slot text for 'Searcgt' -->
+            <slot name="searchText" />
+        </VsLink>
+        <VsLink @click.native="footerFocus">
+            <!-- @slot text for 'Footer' -->
+            <slot name="footerText" />
+        </VsLink>
     </section>
 </template>
 
 <script>
+import VsLink from '@components/elements/link/Link';
 // import {
 //     isFunction, get, isNumber,
 // } from 'lodash';
@@ -25,29 +44,67 @@ export default {
     name: 'VsSkipTo',
     status: 'prototype',
     release: '0.0.1',
-    // components: {
-    //     VsSkipToButton,
-    // },
-    // props: {
-    //     /**
-    //      * The tabindex attribute for this element. For some reason
-    //      * tabindex isn't passed to the root element so we must do
-    //      * that manually.
-    //      */
-    //     tabindex: {
-    //         type: String,
-    //         default: '',
-    //     },
-    //     /**
-    //      * The target element to skip to: a Vue ref - e.g.
-    //      * from this.$refs - or a DOM Element.
-    //      */
-    //     target: {
-    //         type: Object,
-    //         default: null,
-    //     },
-    // },
-    // methods: {
+    components: {
+        VsLink,
+    },
+    methods: {
+        mainMenuFocus() {
+            const mobileMenuBtn = document.getElementsByClassName('vs-mega-nav__menu__mobile')[0];
+            const firstMenuItem = document.getElementsByClassName('vs-mega-nav-dropdown')[0];
+            let firstMenuBtn = firstMenuItem.getElementsByClassName('btn')[0];
+
+            if (mobileMenuBtn.offsetParent !== null) {
+                // if the mobile menu is visible, open it and focus
+                // the first link
+                mobileMenuBtn.querySelectorAll('.btn.dropdown-toggle')[0].click();
+                const firstMobileMenuItem = document.getElementsByClassName('vs-mega-nav-accordion-item--level-1')[0];
+                const firstMobileBtn = firstMobileMenuItem.querySelectorAll('.vs-button.vs-accordion-toggle')[0];
+                firstMenuBtn = firstMobileBtn;
+
+                // timeout need to ensure menu items to be accessible in DOM
+                setTimeout(() => {
+                    firstMenuBtn.focus();
+                }, 200);
+            } else {
+                firstMenuBtn.focus();
+            }
+        },
+        searchFocus() {
+            const searchBtn = document.getElementsByClassName('vs-site-search')[0];
+            const searchInput = document.getElementsByClassName('vs-input--site-search')[0];
+
+            searchBtn.click();
+            setTimeout(() => {
+                searchInput.focus();
+            }, 200);
+        },
+        mainContentFocus() {
+            const mainElement = document.getElementById('main');
+            const primaryHeading = mainElement.querySelector('h1');
+
+            primaryHeading.scrollIntoView(true);
+            primaryHeading.focus();
+        },
+        footerFocus() {
+            const footerElement = document.getElementsByClassName('vs-footer')[0];
+            const firstFooterSection = footerElement.getElementsByClassName('vs-footer-accordion-item')[0];
+            const firstFooterLink = firstFooterSection.getElementsByClassName('vs-link')[0];
+            const footerMobileToggle = firstFooterSection.getElementsByClassName('vs-accordion-toggle')[0];
+
+            // if mobile footer toggle link is visible click to open
+            if (footerMobileToggle.offsetParent !== null) {
+                footerMobileToggle.click();
+            }
+
+            footerElement.scrollIntoView(true);
+
+            // focus the first footer link - timeout allows it to be
+            // accessible in DOM for mobile accordion
+            setTimeout(() => {
+                firstFooterLink.focus();
+            }, 200);
+        },
+    },
     //     skipTo() {
     //         let element;
 
