@@ -9,7 +9,6 @@
             <slot name="mainMenuText" />
         </VsLink>
         <VsLink
-            href="#main"
             @click.native="mainContentFocus"
         >
             <!-- @slot text for 'Main content' -->
