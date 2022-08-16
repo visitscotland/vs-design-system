@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: a8a8926f-e625-4162-98b4-29f3c3b819b8
   hippo:name: Default Properties
-  hippo:versionHistory: 4102f916-5d60-4ece-9583-1776d1e1e268
+  hippo:versionHistory: e67de100-897f-4a56-a95f-bcd9f0cd0051
   /default-properties[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -13,7 +13,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2022-07-26T15:58:12.204+01:00
+    hippostdpubwf:lastModificationDate: 2022-08-16T10:14:17.464+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -62,7 +62,7 @@
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
       www.visitscotland.com, $YOUTUBE_API_KEY, VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es',
       '| VisitScotland', VisitScotland, '@VisitScotland', 'false', GTM-WWKWV5K, '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
-      site-search-results, 'true', 'false', /site/data/internal, '12812', '12814',
+      /site-search-results, 'true', 'false', /site/data/internal, '12812', '12814',
       '12810', '12811', '12813', '12809']
   /default-properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -71,9 +71,10 @@
     hippo:availability: []
     hippostd:retainable: false
     hippostd:state: draft
+    hippostd:transferable: false
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2022-07-26T15:54:48.870+01:00
+    hippostdpubwf:lastModificationDate: 2022-08-16T11:14:11.078+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
@@ -122,7 +123,7 @@
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
       www.visitscotland.com, $YOUTUBE_API_KEY, VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es',
       '| VisitScotland', VisitScotland, '@VisitScotland', 'false', GTM-WWKWV5K, '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
-      site-search-results, 'true', 'false', /site/data/internal, '12812', '12814',
+      /site-search-results, 'true', 'false', /site/data/internal, '12812', '12814',
       '12810', '12811', '12813', '12809']
   /default-properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -133,9 +134,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2021-02-05T15:37:26.056Z
-    hippostdpubwf:lastModificationDate: 2022-07-26T15:58:12.204+01:00
+    hippostdpubwf:lastModificationDate: 2022-08-16T10:14:17.464+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2022-07-26T15:58:15.256+01:00
+    hippostdpubwf:publicationDate: 2022-08-16T10:14:19.586+01:00
     resourcebundle:descriptions: [URL prefix for Instagram endpoints, '', Client Token
         for Instagram request, '', Encoding for requests made to dms data endpoints,
       "Token that identifies calls made to vs-dms-products as internal calls giving\
@@ -183,5 +184,5 @@
       'true', '', 'http://172.28.81.65:8089', /data, 'http://172.28.81.65:8089/data',
       www.visitscotland.com, $YOUTUBE_API_KEY, VisitScotland, '@VisitScotland', 'en,fr,de,nl,it,es',
       '| VisitScotland', VisitScotland, '@VisitScotland', 'false', GTM-WWKWV5K, '&gtm_auth=YWMt6gew5Au1PAnzyzMADQ&gtm_preview=env-3&gtm_cookies_win=x',
-      site-search-results, 'true', 'false', /site/data/internal, '12812', '12814',
+      /site-search-results, 'true', 'false', /site/data/internal, '12812', '12814',
       '12810', '12811', '12813', '12809']
