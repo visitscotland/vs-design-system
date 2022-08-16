@@ -73,7 +73,7 @@
 
 <#--  Escape some characters from a JSON object so it can be consumed by a Vue component -->
 <#--  Usage: ${escapeJSON(stop.opening)} -->
-<#function escapeJSON original isJsonObject=false>
+<#function escapeJSON original isJsonObject>
     <#assign escaped = original?replace("'", "\\'")>
     <#if isJsonObject == true>
         <#assign escaped = escaped?replace("\"", "'")>
