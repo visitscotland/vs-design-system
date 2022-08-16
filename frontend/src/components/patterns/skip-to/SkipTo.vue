@@ -27,10 +27,6 @@
 
 <script>
 import VsLink from '@components/elements/link/Link';
-// import {
-//     isFunction, get, isNumber,
-// } from 'lodash';
-// import VsSkipToButton from './components/SkipToButton';
 
 /**
  * The SkipTo component provides users of assistive
@@ -47,6 +43,9 @@ export default {
         VsLink,
     },
     methods: {
+        /**
+         * Focuses on first item in main nav
+        */
         mainMenuFocus() {
             const mobileMenuBtn = document.getElementsByClassName('vs-mega-nav__menu__mobile')[0];
             const firstMenuItem = document.getElementsByClassName('vs-mega-nav-dropdown')[0];
@@ -68,6 +67,9 @@ export default {
                 firstMenuBtn.focus();
             }
         },
+        /**
+         * Open search and focuses in input
+        */
         searchFocus() {
             const searchBtn = document.getElementsByClassName('vs-site-search')[0];
             const searchInput = document.getElementsByClassName('vs-input--site-search')[0];
@@ -77,6 +79,9 @@ export default {
                 searchInput.focus();
             }, 200);
         },
+        /**
+         * Focuses on first h1 on page and scrolls it into view
+        */
         mainContentFocus() {
             const mainElement = document.getElementById('main');
             const primaryHeading = mainElement.querySelector('h1');
@@ -84,6 +89,9 @@ export default {
             primaryHeading.scrollIntoView(true);
             primaryHeading.focus();
         },
+        /**
+         * Focuses on first item footer nav
+        */
         footerFocus() {
             const footerElement = document.getElementsByClassName('vs-footer')[0];
             const firstFooterSection = footerElement.getElementsByClassName('vs-footer-accordion-item')[0];
@@ -104,23 +112,6 @@ export default {
             }, 200);
         },
     },
-    //     skipTo() {
-    //         let element;
-
-    //         if (isFunction(get(this.target, 'focus'))) {
-    //             element = this.target;
-    //         } else if (isFunction(get(this.target, '$el.focus'))) {
-    //             element = this.target.$el;
-    //         }
-
-    //         if (element) {
-    //             if (!isNumber(element.tabIndex)) {
-    //                 element.tabIndex = -1;
-    //             }
-    //             element.focus();
-    //         }
-    //     },
-    // },
 };
 </script>
 
