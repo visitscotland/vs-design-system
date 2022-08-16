@@ -151,7 +151,7 @@ class ImageFactoryTest {
     }
 
     @Test
-    @DisplayName("A CMS image with no translation should generate 2 preview warnings")
+    @DisplayName("A CMS image with no translation should generate 1 preview warnings")
     void getImageFromCMS_cmsWarning(){
         Module module = new Module();
         Image cmsImage = mock(Image.class);
