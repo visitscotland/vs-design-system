@@ -60,6 +60,7 @@ import {
 } from '@components/elements/grid';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 import VsHeading from '@components/elements/heading/Heading';
+import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 /**
  * The article component is used for in-depth editorial style
@@ -78,6 +79,9 @@ export default {
         VsRichTextWrapper,
         VsHeading,
     },
+    mixins: [
+        removeAttrsMixin,
+    ],
     props: {
         /**
          * Title of the article

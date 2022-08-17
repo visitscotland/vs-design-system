@@ -56,6 +56,7 @@ import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWr
 import {
     VsContainer, VsRow, VsCol,
 } from '@components/elements/grid';
+import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 /**
 * Header intro and button wrapper for module content
@@ -73,6 +74,9 @@ export default {
         VsRow,
         VsCol,
     },
+    mixins: [
+        removeAttrsMixin,
+    ],
     props: {
         /**
         * Theme of module wrapper to use
