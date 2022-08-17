@@ -7,21 +7,31 @@
             <!-- @slot text for 'skip to' label -->
             <slot name="skipToText" />:
         </p>
-        <VsLink @click.native="mainMenuFocus">
+        <VsLink
+            data-test="vs-skip-to-main-menu"
+            @click.native="mainMenuFocus"
+        >
             <!-- @slot text for 'Main menu' -->
             <slot name="mainMenuText" />
         </VsLink>
         <VsLink
+            data-test="vs-skip-to-main-content"
             @click.native="mainContentFocus"
         >
             <!-- @slot text for 'Main content' -->
             <slot name="mainContentText" />
         </VsLink>
-        <VsLink @click.native="searchFocus">
+        <VsLink
+            @click.native="searchFocus"
+            data-test="vs-skip-to-search"
+        >
             <!-- @slot text for 'Searcgt' -->
             <slot name="searchText" />
         </VsLink>
-        <VsLink @click.native="footerFocus">
+        <VsLink
+            @click.native="footerFocus"
+            data-test="vs-skip-to-footer"
+        >
             <!-- @slot text for 'Footer' -->
             <slot name="footerText" />
         </VsLink>
