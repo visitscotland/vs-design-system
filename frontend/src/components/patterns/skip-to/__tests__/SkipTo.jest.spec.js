@@ -46,7 +46,7 @@ describe('VsSiteSearch', () => {
     describe(':methods', () => {
         it('should call the `mainMenuFocus` method on the main menu link click', async() => {
             const mainMenuBtn = wrapper.find('[data-test="vs-skip-to-main-menu"]');
-            const mockMethod = jest.spyOn(wrapper.vm, 'mainMenuFocus')
+            const mockMethod = jest.spyOn(wrapper.vm, 'mainMenuFocus');
             mainMenuBtn.trigger('click');
 
             await wrapper.vm.$nextTick();
@@ -56,7 +56,7 @@ describe('VsSiteSearch', () => {
 
         it('should call the `mainContentFocus` method on the main content link click', async() => {
             const mainContentBtn = wrapper.find('[data-test="vs-skip-to-main-content"]');
-            const mockMethod = jest.spyOn(wrapper.vm, 'mainContentFocus')
+            const mockMethod = jest.spyOn(wrapper.vm, 'mainContentFocus');
             mainContentBtn.trigger('click');
 
             await wrapper.vm.$nextTick();
@@ -66,7 +66,7 @@ describe('VsSiteSearch', () => {
 
         it('should call the `searchFocus` method on the search link click', async() => {
             const searchBtn = wrapper.find('[data-test="vs-skip-to-search"]');
-            const mockMethod = jest.spyOn(wrapper.vm, 'searchFocus')
+            const mockMethod = jest.spyOn(wrapper.vm, 'searchFocus');
             searchBtn.trigger('click');
 
             await wrapper.vm.$nextTick();
@@ -76,7 +76,7 @@ describe('VsSiteSearch', () => {
 
         it('should call the `footerFocus` method on the footer link click', async() => {
             const footerBtn = wrapper.find('[data-test="vs-skip-to-footer"]');
-            const mockMethod = jest.spyOn(wrapper.vm, 'footerFocus')
+            const mockMethod = jest.spyOn(wrapper.vm, 'footerFocus');
             footerBtn.trigger('click');
 
             await wrapper.vm.$nextTick();
