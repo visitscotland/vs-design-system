@@ -50,6 +50,7 @@ import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import { BFormCheckbox } from 'bootstrap-vue';
 import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
+import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 Vue.use(Vuelidate);
 
@@ -69,6 +70,7 @@ export default {
     },
     mixins: [
         validateFormElementMixin,
+        removeAttrsMixin,
     ],
     props: {
         /**

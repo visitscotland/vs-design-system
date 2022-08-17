@@ -12,6 +12,8 @@
 <script>
 import { VBTooltip } from 'bootstrap-vue';
 import VsButton from '@components/elements/button/Button';
+import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
+
 /**
  * A tooltip is a short, informative message that appears
  * when a user interacts with an element.
@@ -29,6 +31,9 @@ export default {
     directives: {
         'b-tooltip': VBTooltip,
     },
+    mixins: [
+        removeAttrsMixin,
+    ],
     props: {
         /**
          * The text to display in the tooltip

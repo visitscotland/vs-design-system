@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
+
 /**
  * The list component groups related content together
  * to help break text up into chunks.
@@ -25,6 +27,9 @@ export default {
     name: 'VsList',
     status: 'prototype',
     release: '0.0.1',
+    mixins: [
+        removeAttrsMixin,
+    ],
     props: {
         /**
          * Option to choose the kind of list needed (ordered | unordered)
