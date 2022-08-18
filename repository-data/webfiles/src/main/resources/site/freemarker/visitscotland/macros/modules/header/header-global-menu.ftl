@@ -2,6 +2,8 @@
 <#include "../../../../frontend/components/vs-global-menu.ftl">
 <#include "../../../../frontend/components/vs-global-menu-language.ftl">
 <#include "../../../../frontend/components/vs-global-menu-language-item.ftl">
+<#include "../../../../frontend/components/vs-skip-to.ftl">
+<#include "../../../../frontend/components/vs-link.ftl">
 
 <#-- @ftlvariable name="language" type="com.visitscotland.brxm.model.LocalizedURL"-->
 <#-- @ftlvariable name="hstRequestContext" type="org.hippoecm.hst.core.request.HstRequestContext" -->
@@ -11,7 +13,7 @@
     <#if localizedURLs?size == 0 && hstRequestContext.getModel("placeholderLocalizedURLs")??>
         <#assign localizedURLs=hstRequestContext.getModel("placeholderLocalizedURLs")>
     </#if>
-
+    
     <vs-global-menu
         dropdown-label="${label('navigation.static', 'uninav.our-sites')}"
         active-site="https://www.visitscotland.com/"
