@@ -257,6 +257,8 @@ export default {
             conditionalFields: {
             },
             inputVal: '',
+            fieldsetGroups: {
+            },
         };
     },
     computed: {
@@ -301,6 +303,8 @@ export default {
                             Vue.set(this.conditionalFields, field.name, false);
                         }
                     });
+
+                    this.createFieldsetGroups();
                 });
         },
         /**
@@ -326,6 +330,24 @@ export default {
             }
 
             return languageObj;
+        },
+        /**
+         * create arrays for fieldset grouping
+        */
+        createFieldsetGroups() {
+            this.formData.fields.forEach((field) => {
+                if (!typeof field.group === 'undefined' || field.group) {
+                    console.log(field.group);
+                    if (typeof this.fieldsetGroups[field.group] === 'undefined') {
+                        this.fieldsetGroups[field.group] = [];
+                    }
+                    this.fieldsetGroups[field.group].push(field);
+                }
+            });
+
+            if (this.fieldsetGroups.length === 0) {
+                this.fieldsetGroups.push(this.formData.fields);
+            }
         },
         /**
          * get translated label if available
