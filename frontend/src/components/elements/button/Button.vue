@@ -310,8 +310,8 @@ export default {
             &.vs-button--on-dark{
                 @include vs-button-variant(
                     $color-white, transparent, transparent,
-                    $color-yellow, transparent, transparent,
-                    $color-yellow, transparent, transparent,
+                    $color-gray-tint-6, transparent, transparent,
+                    $color-white, transparent, transparent,
                 );
 
                 &:focus{
