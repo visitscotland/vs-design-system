@@ -32,6 +32,7 @@
             aria-labelledby="skip-to-label"
             @click.native="searchFocus"
             data-test="vs-skip-to-search"
+            class="vs-skip-to__search"
         >
             <!-- @slot text for 'Searcgt' -->
             <slot name="searchText" />
@@ -152,6 +153,12 @@ export default {
 
         @include media-breakpoint-up(lg) {
             height: $spacer-10;
+        }
+    }
+
+    @include no-js {
+        .vs-skip-to__search {
+            display: none;
         }
     }
 </style>
