@@ -154,16 +154,14 @@
                 <vs-itinerary-border-overlap-wrapper slot="stop-buttons">
                     <vs-button
                         class="mb-3"
-                        background="white"
-                        variant="outline-primary"
+                        variant="secondary"
                         icon="food"
                         href="${nearbyEatsUrl}"
                     >
                         ${label("itinerary", "stop.nearby-eat")}
                     </vs-button>
                     <vs-button
-                        background="white"
-                        variant="outline-primary"
+                        variant="secondary"
                         icon="product-accommodation"
                         href="${nearbyStayUrl}"
                     >
