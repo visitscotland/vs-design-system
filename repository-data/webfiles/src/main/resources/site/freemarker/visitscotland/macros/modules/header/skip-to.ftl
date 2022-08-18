@@ -1,3 +1,5 @@
+<#include "../../../../frontend/components/vs-skip-to.ftl">
+
 <#macro headerSkipTo>
     <vs-skip-to>
         <template slot="skipToText">

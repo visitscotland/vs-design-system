@@ -3,6 +3,7 @@
         class="vs-footer pt-6 pt-md-9"
         data-unique-id="vs-footer"
         role="navigation"
+        id="site-footer"
     >
         <VsFooterNavList break-point="md">
             <!-- @slot Contains accordion item for each menu list  -->
