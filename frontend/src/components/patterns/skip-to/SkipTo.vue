@@ -73,22 +73,25 @@ export default {
         mainMenuFocus() {
             const mobileMenuBtn = document.getElementsByClassName('vs-mega-nav__menu__mobile')[0];
             const firstMenuItem = document.getElementsByClassName('vs-mega-nav-dropdown')[0];
-            let firstMenuBtn = firstMenuItem.getElementsByClassName('btn')[0];
 
-            if (mobileMenuBtn.offsetParent !== null) {
-                // if the mobile menu is visible, open it and focus
-                // the first link
-                mobileMenuBtn.querySelectorAll('.btn.dropdown-toggle')[0].click();
-                const firstMobileMenuItem = document.getElementsByClassName('vs-mega-nav-accordion-item--level-1')[0];
-                const firstMobileBtn = firstMobileMenuItem.querySelectorAll('.vs-button.vs-accordion-toggle')[0];
-                firstMenuBtn = firstMobileBtn;
+            if (!this.isUndefined(firstMenuItem)) {
+                let firstMenuBtn = firstMenuItem.getElementsByClassName('btn')[0];
 
-                // timeout need to ensure menu items to be accessible in DOM
-                setTimeout(() => {
+                if (mobileMenuBtn.offsetParent !== null) {
+                    // if the mobile menu is visible, open it and focus
+                    // the first link
+                    mobileMenuBtn.querySelectorAll('.btn.dropdown-toggle')[0].click();
+                    const firstMobileMenuItem = document.getElementsByClassName('vs-mega-nav-accordion-item--level-1')[0];
+                    const firstMobileBtn = firstMobileMenuItem.querySelectorAll('.vs-button.vs-accordion-toggle')[0];
+                    firstMenuBtn = firstMobileBtn;
+
+                    // timeout need to ensure menu items to be accessible in DOM
+                    setTimeout(() => {
+                        firstMenuBtn.focus();
+                    }, 200);
+                } else {
                     firstMenuBtn.focus();
-                }, 200);
-            } else {
-                firstMenuBtn.focus();
+                }
             }
         },
         /**
@@ -98,32 +101,47 @@ export default {
             const searchBtn = document.getElementsByClassName('vs-site-search')[0];
             const searchInput = document.getElementsByClassName('vs-input--site-search')[0];
 
-            searchBtn.click();
-            setTimeout(() => {
-                searchInput.focus();
-            }, 200);
+            if (!this.isUndefined(searchBtn) && !this.isUndefined(searchInput)) {
+                searchBtn.click();
+                setTimeout(() => {
+                    searchInput.focus();
+                }, 200);
+            }
         },
         /**
          * Focuses on first item footer nav
         */
         footerFocus() {
             const footerElement = document.getElementsByClassName('vs-footer')[0];
-            const firstFooterSection = footerElement.getElementsByClassName('vs-footer-accordion-item')[0];
-            const firstFooterLink = firstFooterSection.getElementsByClassName('vs-link')[0];
-            const footerMobileToggle = firstFooterSection.getElementsByClassName('vs-accordion-toggle')[0];
 
-            // if mobile footer toggle link is visible click to open
-            if (footerMobileToggle.offsetParent !== null) {
-                footerMobileToggle.click();
+            if (!this.isUndefined(footerElement)) {
+                const firstFooterSection = footerElement.getElementsByClassName('vs-footer-accordion-item')[0];
+                const firstFooterLink = firstFooterSection.getElementsByClassName('vs-link')[0];
+                const footerMobileToggle = firstFooterSection.getElementsByClassName('vs-accordion-toggle')[0];
+
+                // if mobile footer toggle link is visible click to open
+                if (footerMobileToggle.offsetParent !== null
+                    && !this.isUndefined(footerMobileToggle)) {
+                    footerMobileToggle.click();
+                }
+
+                if (!this.isUndefined(footerElement) && !this.isUndefined(firstFooterLink)) {
+                    footerElement.scrollIntoView(true);
+
+                    // focus the first footer link - timeout allows it to be
+                    // accessible in DOM for mobile accordion
+                    setTimeout(() => {
+                        firstFooterLink.focus();
+                    }, 200);
+                }
+            }
+        },
+        isUndefined(item) {
+            if (typeof item === 'undefined') {
+                return true;
             }
 
-            footerElement.scrollIntoView(true);
-
-            // focus the first footer link - timeout allows it to be
-            // accessible in DOM for mobile accordion
-            setTimeout(() => {
-                firstFooterLink.focus();
-            }, 200);
+            return false;
         },
     },
 };
