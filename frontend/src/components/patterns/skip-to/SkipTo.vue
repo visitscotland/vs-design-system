@@ -11,6 +11,7 @@
             <slot name="skipToText" />:
         </p>
         <VsLink
+            href="#main-nav"
             aria-labelledby="skip-to-label"
             data-test="vs-skip-to-main-menu"
             @click.native="mainMenuFocus"
@@ -20,13 +21,14 @@
         </VsLink>
         <VsLink
             aria-labelledby="skip-to-label"
-            data-test="vs-skip-to-main-content"
             href="#main-heading"
+            data-test="vs-skip-to-main-content"
         >
             <!-- @slot text for 'Main content' -->
             <slot name="mainContentText" />
         </VsLink>
         <VsLink
+            href="#site-search-btn"
             aria-labelledby="skip-to-label"
             @click.native="searchFocus"
             data-test="vs-skip-to-search"
@@ -35,6 +37,7 @@
             <slot name="searchText" />
         </VsLink>
         <VsLink
+            href="#site-footer"
             aria-labelledby="skip-to-label"
             @click.native="footerFocus"
             data-test="vs-skip-to-footer"
