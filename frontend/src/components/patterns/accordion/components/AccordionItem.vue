@@ -180,6 +180,7 @@ export default {
         font-size: $font-size-6;
         letter-spacing: normal;
         padding: $spacer-3;
+        border: 0;
 
         &.vs-button.btn:focus{
             box-shadow: $shadow-button-focus inset;
