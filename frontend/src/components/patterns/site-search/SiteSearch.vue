@@ -64,22 +64,27 @@ export default {
 
 <style lang="scss">
 .vs-site-search {
-    &.vs-button.btn{
-        z-index: 1;
+    z-index: 1;
+    height: 45px;
+    align-items: center;
+
+    .vs-icon{
+        margin-right: 0;
+    }
+
+    &.vs-button.btn-md{
         padding: $spacer-2;
-        height: 45px;
+    }
+
+    @include media-breakpoint-up(lg) {
+        height: 55px;
 
         .vs-icon{
-            margin-right: 0;
+            margin-right: $spacer-2;
         }
 
-        @include media-breakpoint-up(lg) {
+        &.vs-button.btn-md{
             padding: $spacer-3;
-            height: 55px;
-
-            .vs-icon{
-                margin-right: $spacer-2;
-            }
         }
     }
 }
