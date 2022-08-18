@@ -3,11 +3,15 @@
         class="vs-skip-to d-flex"
         data-test="vs-skip-to"
     >
-        <p class="vs-skip-to__label">
+        <p
+            class="vs-skip-to__label"
+            id="skip-to-label"
+        >
             <!-- @slot text for 'skip to' label -->
             <slot name="skipToText" />:
         </p>
         <VsLink
+            aria-labelledby="skip-to-label"
             data-test="vs-skip-to-main-menu"
             @click.native="mainMenuFocus"
         >
@@ -15,13 +19,15 @@
             <slot name="mainMenuText" />
         </VsLink>
         <VsLink
+            aria-labelledby="skip-to-label"
             data-test="vs-skip-to-main-content"
-            @click.native="mainContentFocus"
+            href="#main-heading"
         >
             <!-- @slot text for 'Main content' -->
             <slot name="mainContentText" />
         </VsLink>
         <VsLink
+            aria-labelledby="skip-to-label"
             @click.native="searchFocus"
             data-test="vs-skip-to-search"
         >
@@ -29,6 +35,7 @@
             <slot name="searchText" />
         </VsLink>
         <VsLink
+            aria-labelledby="skip-to-label"
             @click.native="footerFocus"
             data-test="vs-skip-to-footer"
         >
@@ -91,16 +98,6 @@ export default {
             setTimeout(() => {
                 searchInput.focus();
             }, 200);
-        },
-        /**
-         * Focuses on first h1 on page and scrolls it into view
-        */
-        mainContentFocus() {
-            const mainElement = document.getElementById('main');
-            const primaryHeading = mainElement.querySelector('h1');
-
-            primaryHeading.scrollIntoView(true);
-            primaryHeading.focus();
         },
         /**
          * Focuses on first item footer nav
