@@ -110,9 +110,15 @@ Icon buttons without text should only be used when the context is totally clear 
 to what the button does. When using an icon only button, you must provide screen 
 reader text that will be hidden for accessibility.
 ```jsx
-    <VsButton icon-only icon="search" size="lg" class="mr-2 mb-2">
+    <VsButton icon-only icon="search" size="lg" class="mr-6">
         <span class="sr-only">
             Search
+        </span>
+    </VsButton>
+
+    <VsButton icon-only icon="close" size="lg" variant="transparent">
+        <span class="sr-only">
+            Close
         </span>
     </VsButton>
 
