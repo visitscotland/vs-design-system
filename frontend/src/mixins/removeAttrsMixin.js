@@ -10,9 +10,17 @@ const removeAttrsMixin = {
     },
     methods: {
         removeAttrs() {
-            Object.keys(this.$attrs).forEach((attr) => {
-                this.$el.removeAttribute(attr);
+            const attrs = Object.keys(this.$attrs);
+
+            attrs.forEach((attr) => {
+                if (!this.checkIgnoreList(attr)) {
+                    this.$el.removeAttribute(attr);
+                }
             });
+        },
+        checkIgnoreList(attr) {
+            const ignoreList = [/data-/, /aria-/];
+            return ignoreList.some((el) => el.test(attr));
         },
     },
 };

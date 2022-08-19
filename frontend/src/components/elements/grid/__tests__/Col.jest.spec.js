@@ -8,9 +8,6 @@ const factoryShallowMount = () => shallowMount(VsCol, {
     slots: {
         default: slotText,
     },
-    attrs: {
-        class: 'cols-6 sm-12',
-    },
 });
 
 let wrapper;
@@ -21,17 +18,6 @@ beforeEach(() => {
 describe('VsCol', () => {
     it('should render a bcol-stub', () => {
         expect(wrapper.element.tagName).toBe('BCOL-STUB');
-    });
-
-    describe(':attrs', () => {
-        it('should accept and render attributes', () => {
-            expect([
-                wrapper.classes('cols-6'),
-                wrapper.classes('sm-12'),
-            ]).toEqual([
-                true, true,
-            ]);
-        });
     });
 
     describe(':slots', () => {
