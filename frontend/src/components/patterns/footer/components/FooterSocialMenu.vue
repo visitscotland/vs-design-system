@@ -24,6 +24,7 @@
 
 <script>
 import VsList from '@components/elements/list/List';
+import VsHeading from '@components/elements/heading/Heading';
 
 /**
  * The FooterSocialMenu is used inside the FooterNavList.
@@ -36,6 +37,7 @@ export default {
     name: 'VsFooterSocialMenu',
     components: {
         VsList,
+        VsHeading,
     },
 };
 </script>

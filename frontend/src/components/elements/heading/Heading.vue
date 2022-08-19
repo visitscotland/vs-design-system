@@ -69,7 +69,7 @@ export default {
         },
         headingClasses() {
             return [
-                `vs-heading--style-level-${this.overrideStyleLevel}`,
+                this.overrideStyleLevel ? `vs-heading--style-level-${this.overrideStyleLevel}` : '',
                 {
                     'vs-heading--thin': this.thin,
                     'vs-heading--alternative': this.alternative,
