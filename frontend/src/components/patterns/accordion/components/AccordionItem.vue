@@ -74,6 +74,7 @@
 <script>
 import VsAccordionToggle from '@components/patterns/accordion/components/AccordionToggle';
 import VsIcon from '@components/elements/icon/Icon';
+import VsHeading from '@components/elements/heading/Heading';
 
 import {
     BCard, BCardHeader, BCardBody,
@@ -93,6 +94,7 @@ export default {
         VsIcon,
         BCardHeader,
         BCardBody,
+        VsHeading,
     },
     props: {
         /**
