@@ -46,14 +46,16 @@
                 </template>
             </VsAccordionToggle>
 
-            <h4
+            <VsHeading
+                level="2"
+                override-style-level="4"
                 class="d-none vs-accordion-item__title"
                 :class="toggleResponsiveItem"
                 data-test="vs-accordion__item-title"
             >
                 <!-- @slot Put the title here  -->
                 <slot name="title" />
-            </h4>
+            </VsHeading>
         </BCardHeader>
 
         <BCardBody
