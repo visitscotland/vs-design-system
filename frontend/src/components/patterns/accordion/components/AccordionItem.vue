@@ -47,8 +47,8 @@
             </VsAccordionToggle>
 
             <VsHeading
-                level="3"
-                override-style-level="5"
+                level="2"
+                override-style-level="6"
                 class="d-none vs-accordion-item__title"
                 :class="toggleResponsiveItem"
                 data-test="vs-accordion__item-title"
