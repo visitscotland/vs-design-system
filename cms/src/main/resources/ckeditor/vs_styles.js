@@ -7,8 +7,8 @@
             name: 'H3'
         },
         {
-            element: 'h6',
-            name: 'H6'
+            element: 'h4',
+            name: 'H4'
         }
     ]);
 
