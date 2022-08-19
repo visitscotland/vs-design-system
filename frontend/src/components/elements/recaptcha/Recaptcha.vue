@@ -92,6 +92,7 @@ export default {
             const existingRecaptchaLabel = document.querySelector('label[for="g-recaptcha-response"]');
             const recaptchaLabel = document.createElement('label');
             recaptchaLabel.setAttribute('for', 'g-recaptcha-response');
+            recaptchaLabel.setAttribute('class', 'sr-only');
             recaptchaLabel.textContent = this.textareaLabel;
 
             if (!existingRecaptchaLabel) {
