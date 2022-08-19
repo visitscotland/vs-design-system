@@ -47,8 +47,8 @@
             </VsAccordionToggle>
 
             <VsHeading
-                level="2"
-                override-style-level="4"
+                level="3"
+                override-style-level="5"
                 class="d-none vs-accordion-item__title"
                 :class="toggleResponsiveItem"
                 data-test="vs-accordion__item-title"
@@ -190,13 +190,8 @@ export default {
     }
 
     .vs-accordion-item__title {
-        line-height: $line-height-lead;
-        font-weight: $font-weight-bold;
-        font-size: $font-size-6;
-        letter-spacing: normal;
         padding: $spacer-3;
         margin-bottom: 0;
-        font-family: $font-family-sans-serif;
     }
 
     .vs-accordion-item__panel.card-body {
