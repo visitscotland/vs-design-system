@@ -1,5 +1,5 @@
 <template>
-    <div
+    <nav
         class="vs-footer pt-6 pt-md-9"
         data-unique-id="vs-footer"
         role="navigation"
@@ -36,7 +36,7 @@
         </div>
 
         <slot />
-    </div>
+    </nav>
 </template>
 
 <script>
