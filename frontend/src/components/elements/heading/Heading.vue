@@ -55,7 +55,7 @@ export default {
         },
         /**
          * Heading override style
-         * `h1|h2|h3|h4|h5|h6`
+         * `1|2|3|4|5|6`
          */
         overrideStyleLevel: {
             type: [String, Number],
@@ -69,7 +69,7 @@ export default {
         },
         headingClasses() {
             return [
-                `vs-heading--style-level-${this.overrideStyleLevel}`,
+                this.overrideStyleLevel ? `vs-heading--style-level-${this.overrideStyleLevel}` : '',
                 {
                     'vs-heading--thin': this.thin,
                     'vs-heading--alternative': this.alternative,
