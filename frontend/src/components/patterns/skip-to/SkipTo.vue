@@ -12,16 +12,15 @@
         </p>
         <VsLink
             href="#main-nav"
-            aria-labelledby="skip-to-label"
             data-test="vs-skip-to-main-menu"
             @click.native="mainMenuFocus"
+            id="main-menu"
         >
             <!-- @slot text for 'Main menu' -->
             <slot name="mainMenuText" />
         </VsLink>
         <VsLink
             href="#site-search-btn"
-            aria-labelledby="skip-to-label"
             data-test="vs-skip-to-search"
             class="vs-skip-to__search"
         >
@@ -29,7 +28,6 @@
             <slot name="searchText" />
         </VsLink>
         <VsLink
-            aria-labelledby="skip-to-label"
             href="#main-heading"
             data-test="vs-skip-to-main-content"
         >
@@ -38,7 +36,6 @@
         </VsLink>
         <VsLink
             href="#site-footer"
-            aria-labelledby="skip-to-label"
             @click.native="footerFocus"
             data-test="vs-skip-to-footer"
         >
