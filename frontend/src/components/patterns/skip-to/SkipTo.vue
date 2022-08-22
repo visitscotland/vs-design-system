@@ -22,7 +22,6 @@
         <VsLink
             href="#site-search-btn"
             aria-labelledby="skip-to-label"
-            @click.native="searchFocus"
             data-test="vs-skip-to-search"
             class="vs-skip-to__search"
         >
@@ -92,20 +91,6 @@ export default {
                 } else {
                     firstMenuBtn.focus();
                 }
-            }
-        },
-        /**
-         * Open search and focuses in input
-        */
-        searchFocus() {
-            const searchBtn = document.getElementsByClassName('vs-site-search')[0];
-            const searchInput = document.getElementsByClassName('vs-input--site-search')[0];
-
-            if (!this.isUndefined(searchBtn) && !this.isUndefined(searchInput)) {
-                searchBtn.click();
-                setTimeout(() => {
-                    searchInput.focus();
-                }, 200);
             }
         },
         /**
