@@ -94,6 +94,7 @@
                     :language="language"
                     :error-msg="getMessagingData('recaptchaError', language)"
                     class="mt-9"
+                    :textareaLabel="recaptchaTextareaLabel"
                 />
 
                 <VsButton
@@ -195,6 +196,14 @@ export default {
         recaptchaKey: {
             type: String,
             required: true,
+        },
+        /**
+         * Text for invisible recaptcha textarea - tells
+         * screenreader users it's not needed
+         */
+        recaptchaTextareaLabel: {
+            type: String,
+            default: 'Does not need any text',
         },
         /**
          * If the form should use sandbox or live Marketo details
