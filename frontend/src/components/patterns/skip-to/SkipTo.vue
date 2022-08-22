@@ -25,7 +25,7 @@
             data-test="vs-skip-to-search"
             class="vs-skip-to__search"
         >
-            <!-- @slot text for 'Searcgt' -->
+            <!-- @slot text for 'Search' -->
             <slot name="searchText" />
         </VsLink>
         <VsLink
