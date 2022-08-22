@@ -9,7 +9,7 @@
         <template v-if="!submitted">
             <VsHeading
                 v-if="showFormHeading"
-                level="3"
+                level="2"
             >
                 {{ getTranslatedContent('heading') }}
             </VsHeading>
@@ -130,7 +130,7 @@
         <template v-if="submitted">
             <VsHeading
                 v-if="getTranslatedContent('successHeading')"
-                level="3"
+                level="2"
             >
                 {{ getTranslatedContent('successHeading') }}
             </VsHeading>
