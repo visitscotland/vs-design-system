@@ -20,14 +20,6 @@
             <slot name="mainMenuText" />
         </VsLink>
         <VsLink
-            aria-labelledby="skip-to-label"
-            href="#main-heading"
-            data-test="vs-skip-to-main-content"
-        >
-            <!-- @slot text for 'Main content' -->
-            <slot name="mainContentText" />
-        </VsLink>
-        <VsLink
             href="#site-search-btn"
             aria-labelledby="skip-to-label"
             @click.native="searchFocus"
@@ -36,6 +28,14 @@
         >
             <!-- @slot text for 'Searcgt' -->
             <slot name="searchText" />
+        </VsLink>
+        <VsLink
+            aria-labelledby="skip-to-label"
+            href="#main-heading"
+            data-test="vs-skip-to-main-content"
+        >
+            <!-- @slot text for 'Main content' -->
+            <slot name="mainContentText" />
         </VsLink>
         <VsLink
             href="#site-footer"
