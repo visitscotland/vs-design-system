@@ -265,8 +265,6 @@ const dataLayerMixin = {
             const eventName = 'errors';
             const tagName = 'VS - GA - Errors';
 
-            const storeValues = dataLayerStore.getters.getAllGTMValues;
-
             const templateValues = {
                 event: eventName,
                 tag_name: tagName,
@@ -274,7 +272,7 @@ const dataLayerMixin = {
                 error_details: event.error_details,
             };
 
-            const fullTemplate = this.compileFullTemplate(storeValues, templateValues);
+            const fullTemplate = this.compileFullTemplate(templateValues);
             const errorData = this.templateFiller(errorTemplate, fullTemplate);
 
             this.pushToDataLayer(errorData);
