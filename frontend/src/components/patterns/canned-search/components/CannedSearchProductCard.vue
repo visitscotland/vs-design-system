@@ -101,13 +101,7 @@
                             class="vs-product-card__description-link"
                             :disabled="!isVisible()"
                         >
-                            <span aria-hidden="true">
-                                {{ detailLink.label }}
-                            </span>
-
-                            <span class="sr-only">
-                                {{ detailLink.label }}: {{ title }}
-                            </span>
+                            {{ detailLink.label }} <span class="sr-only">: {{ title }}</span>
                         </VsLink>
                     </div>
                 </div>
