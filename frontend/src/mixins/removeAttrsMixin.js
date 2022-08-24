@@ -9,6 +9,10 @@ const removeAttrsMixin = {
         this.removeAttrs();
     },
     methods: {
+        /**
+         * Removes the attributes from the element if
+         * not on ignore list
+         */
         removeAttrs() {
             const attrs = Object.keys(this.$attrs);
 
@@ -18,8 +22,12 @@ const removeAttrsMixin = {
                 }
             });
         },
+        /**
+         * Tests whether any items in the array contain any
+         * string in the ignore list, returns a boolean
+         */
         checkIgnoreList(attr) {
-            const ignoreList = [/data-/, /aria-/];
+            const ignoreList = [/data-/, /aria-/, /disabled/, /srcset/, /sizes/];
             return ignoreList.some((el) => el.test(attr));
         },
     },
