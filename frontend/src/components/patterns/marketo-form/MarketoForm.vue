@@ -26,7 +26,10 @@
                         <legend v-if="!isUndefined(field.descriptor)">
                             {{ getTranslatedLegend(field.name, index) }}
                         </legend>
-                        <div :class="conditionalElementClass(field.name)">
+                        <div
+                            :class="conditionalElementClass(field.name)"
+                            aria-live="assertive"
+                        >
                             <template v-if="field.element === 'input'">
                                 <VsInput
                                     :ref="field.name"
@@ -583,6 +586,10 @@ export default {
                     this.form[key] = '';
                 }
             });
+
+            if (this.errorFields.length > 0) {
+                this.formIsInvalid = true;
+            }
 
             if (!this.formIsInvalid && this.recaptchaVerified) {
                 this.marketoSubmit();
