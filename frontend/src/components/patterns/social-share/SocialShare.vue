@@ -3,6 +3,7 @@
         class="vs-social-share"
         data-test="vs-social-share"
         :class="noJs ? 'vs-module-wrapper__outer--hidden' : 'vs-module-wrapper__outer--light'"
+        ref="socialShareContainer"
     >
         <VsButton
             icon-with-text
@@ -212,15 +213,10 @@ export default {
          * and loop back to the start
          */
         tabFromClose(event) {
-            const firstSocialLink = document.getElementsByClassName('vs-social-share-item__link')[0];
             // Only loop round if tabbing forwards
             if (!event.shiftKey) {
                 event.preventDefault();
-                if (typeof firstSocialLink !== 'undefined') {
-                    this.focusRef(firstSocialLink);
-                } else {
-                    this.focusRef(this.$refs.shareHeader);
-                }
+                this.focusRef(this.$refs.shareHeader);
             }
         },
         /**
