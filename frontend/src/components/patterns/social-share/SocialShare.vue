@@ -30,23 +30,15 @@
             <VsHeading
                 thin
                 level="3"
+                tabindex="0"
+                ref="shareHeader"
+                class="vs-social-share__header"
+                @keydown.tab.native="tabBackFromHidden($event)"
             >
                 {{ sharePopoverTitle }}
             </VsHeading>
 
             <VsRow>
-                <label for="hiddenAnchor">
-                    <input
-                        type="text"
-                        class="hidden-anchor"
-                        id="hiddenAnchor"
-                        tabindex="0"
-                        readonly
-                        ref="hiddenAnchor"
-                        @keydown.tab="tabBackFromHidden($event)"
-                    >
-                </label>
-
                 <!-- @slot Default slot for SocialShareItems -->
                 <slot :on-copy-link="onCopyLink" />
             </VsRow>
@@ -187,7 +179,7 @@ export default {
          * When popover is shown, focuses on hidden anchor
          */
         onShown() {
-            this.focusRef(this.$refs.hiddenAnchor);
+            this.focusRef(this.$refs.shareHeader);
         },
         /**
          * When popover is hidden, focuses back on share button
@@ -198,7 +190,7 @@ export default {
         onHide(bvEvent) {
             if (this.copyLink) {
                 bvEvent.preventDefault();
-                this.focusRef(this.$refs.hiddenAnchor);
+                this.focusRef(this.$refs.shareHeader);
                 this.copyLink = false;
             }
         },
@@ -220,14 +212,19 @@ export default {
          * and loop back to the start
          */
         tabFromClose(event) {
+            const firstSocialLink = document.getElementsByClassName('vs-social-share-item__link')[0];
             // Only loop round if tabbing forwards
             if (!event.shiftKey) {
                 event.preventDefault();
-                this.focusRef(this.$refs.hiddenAnchor);
+                if (typeof firstSocialLink !== 'undefined') {
+                    this.focusRef(firstSocialLink);
+                } else {
+                    this.focusRef(this.$refs.shareHeader);
+                }
             }
         },
         /**
-         * When tabbing backwards from the hidden anchor, trap focus within the modal
+         * When tabbing backwards from the header element, trap focus within the modal
          * and loop back to the close button
          */
         tabBackFromHidden(event) {
@@ -340,6 +337,12 @@ export default {
                 h3.vs-heading{
                     margin-bottom: $spacer-9;
                 }
+            }
+        }
+
+        &__header {
+            &:focus {
+                outline: none;
             }
         }
 
