@@ -8,9 +8,6 @@ const factoryShallowMount = () => shallowMount(VsContainer, {
     slots: {
         default: slotText,
     },
-    attrs: {
-        style: 'background: #ccc',
-    },
 });
 
 let wrapper;
@@ -21,12 +18,6 @@ beforeEach(() => {
 describe('VsContainer', () => {
     it('should render a bcontainer-stub', () => {
         expect(wrapper.element.tagName).toBe('BCONTAINER-STUB');
-    });
-
-    describe(':attrs', () => {
-        it('should accept and render attributes', () => {
-            expect(wrapper.attributes('style')).toBe('background: #ccc');
-        });
     });
 
     describe(':slots', () => {
