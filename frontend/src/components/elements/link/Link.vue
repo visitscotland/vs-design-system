@@ -62,12 +62,12 @@ export default {
         },
         /**
          * Option to choose a pre-defined style variant
-         * `primary|dark`
+         * `primary|on-dark`
          */
         variant: {
             type: String,
             default: 'primary',
-            validator: (value) => value.match(/(primary|dark)/),
+            validator: (value) => value.match(/(primary|on-dark)/),
         },
         /**
         * Size of icon
@@ -119,7 +119,7 @@ export default {
         }
     }
 
-    &.vs-link--variant-dark {
+    &.vs-link--variant-on-dark {
         color: $color_yellow;
 
         .vs-icon {
