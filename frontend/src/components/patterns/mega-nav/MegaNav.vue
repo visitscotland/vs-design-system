@@ -47,7 +47,7 @@
                         cols="4"
                         md="8"
                         lg="2"
-                        class="justify-content-end position-static d-flex h-100"
+                        class="justify-content-end align-items-center position-static d-flex h-100"
                     >
                         <VsSiteSearch
                             @toggleAction="toggleSearch"
@@ -56,7 +56,30 @@
                             {{ searchButtonText }}
                         </VsSiteSearch>
 
-                        <VsMegaNavDropdown
+                        <div class="vs-mega-nav__menu__mobile d-lg-none">
+                            <VsButton
+                                class="vs-mega-nav__mobile-menu-toggle"
+                                icon-only
+                                :icon="isOpen ? 'close' : 'bars-mobile-menu'"
+                                size="md"
+                                variant="transparent"
+                                @click.native="menuToggle()"
+                                ref="toggleButton"
+                            >
+                                <span class="sr-only">
+                                    {{ menuToggleAltText }}
+                                </span>
+                            </VsButton>
+
+                            <VsMegaNavMobileMenu
+                                v-if="isOpen"
+                                v-click-outside="closeMenu"
+                            >
+                                <slot name="megaNavAccordionItems" />
+                            </VsMegaNavMobileMenu>
+                        </div>
+
+                        <!-- <VsMegaNavDropdown
                             @menuToggled="menuToggle"
                             :menu-toggle-alt-text="menuToggleAltText"
                             class="vs-mega-nav__menu__mobile d-lg-none"
@@ -81,10 +104,9 @@
                             </template>
 
                             <template #dropdownContent>
-                                <!-- @slot For mobile list items  -->
                                 <slot name="megaNavAccordionItems" />
                             </template>
-                        </VsMegaNavDropdown>
+                        </VsMegaNavDropdown> -->
                     </VsCol>
                 </VsRow>
             </VsContainer>
@@ -107,11 +129,28 @@ import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/grid';
 import VsSvgLink from '@components/elements/svg-link/SvgLink';
-import VsMegaNavDropdown from '@components/patterns/mega-nav/components/MegaNavDropdown';
+// import VsMegaNavDropdown from '@components/patterns/mega-nav/components/MegaNavDropdown';
 import VsMegaNavTopMenu from '@components/patterns/mega-nav/components/MegaNavTopMenu';
-import VsIcon from '@components/elements/icon/Icon';
+import VsMegaNavMobileMenu from '@components/patterns/mega-nav/components/MegaNavMobileMenu';
+import VsButton from '@components/elements/button/Button';
 import VsSiteSearch from '@components/patterns/site-search/SiteSearch';
 import VsSiteSearchForm from '@components/patterns/site-search/components/SiteSearchForm';
+import Vue from 'vue';
+
+Vue.directive('click-outside', {
+    bind(el, binding, vnode) {
+        /* eslint-disable-next-line */
+        el.clickOutsideEvent = (event) => {
+            if (!(el === event.target || el.contains(event.target))) {
+                vnode.context[binding.expression](event);
+            }
+        };
+        document.body.addEventListener('click', el.clickOutsideEvent);
+    },
+    unbind(el) {
+        document.body.removeEventListener('click', el.clickOutsideEvent);
+    },
+});
 
 /**
  *  The Mega Nav bar component includes main VS logo and slots for
@@ -128,11 +167,11 @@ export default {
         VsRow,
         VsContainer,
         VsSvgLink,
-        VsMegaNavDropdown,
         VsMegaNavTopMenu,
-        VsIcon,
+        VsMegaNavMobileMenu,
         VsSiteSearch,
         VsSiteSearchForm,
+        VsButton,
     },
     props: {
         /**
@@ -201,6 +240,22 @@ export default {
         toggleSearch() {
             this.showSearch = !this.showSearch;
         },
+        closeMenu(event) {
+            // console.log(event.target);
+            // const mobileNavContainer =
+            // document.getElementsByClassName('vs-mega-nav__menu__mobile')[0];
+            // console.log(mobileNavContainer);
+            // if (mobileNavContainer.contains(event.target)) {
+            //     console.log('click came from within');
+            // }
+            const mobileNavContainer = document.getElementsByClassName('vs-mega-nav__menu__mobile')[0];
+            console.log(mobileNavContainer);
+            console.log(!mobileNavContainer.contains(event.target));
+
+            if (this.isOpen && !mobileNavContainer.contains(event.target)) {
+                this.isOpen = false;
+            }
+        },
     },
 };
 </script>
@@ -232,6 +287,24 @@ export default {
 
     .vs-mega-nav__menu {
         position: static;
+    }
+
+    &__mobile-menu-toggle {
+        position: relative;
+        letter-spacing: 0;
+        font-weight: $font-weight-normal;
+        line-height: $line-height-standard;
+        border-radius: 0;
+        border: 0;
+        height: $spacer-7;
+        width: $spacer-7;
+        font-size: 0;
+        padding: .125rem;
+        margin: 0.5rem;
+    }
+
+    &__mobile-menu {
+        display: none
     }
 }
 
