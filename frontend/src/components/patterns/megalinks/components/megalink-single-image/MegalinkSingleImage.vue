@@ -47,6 +47,7 @@
                     <div class="vs-megalink-single-image__button">
                         <VsButton
                             :href="buttonLink"
+                            :on-dark="theme === 'dark'"
                             v-if="buttonLink"
                         >
                             <!-- @slot Slot for button text -->
