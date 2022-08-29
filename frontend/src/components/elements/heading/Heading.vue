@@ -87,11 +87,5 @@ export default {
 @import "../../../assets/fonts/fonts.css";
 .vs-heading {
     @extend %heading-default-styles;
-
-    &--alternative {
-        font-family: $font_family_sans_serif;
-        font-weight: $font-weight-light;
-        letter-spacing: normal;
-    }
 }
 </style>
