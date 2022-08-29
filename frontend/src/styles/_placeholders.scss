@@ -112,4 +112,10 @@ $sub-font-sizes: (
             }
         }
     }
+
+    &.vs-heading--alternative {
+        font-family: $font_family_sans_serif;
+        font-weight: $font-weight-light;
+        letter-spacing: normal;
+    }
 }
