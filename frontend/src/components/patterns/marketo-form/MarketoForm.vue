@@ -9,7 +9,7 @@
         <template v-if="!submitted">
             <form @submit.prevent="preSubmit">
                 <fieldset>
-                    <legend class="vs-form__main-heading vs-heading--style-level-3">
+                    <legend class="vs-form__main-heading vs-heading--style-level-2">
                         {{ getTranslatedContent('heading') }}
                     </legend>
                     <BFormGroup
