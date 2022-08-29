@@ -7,15 +7,11 @@
         <form class="d-none" />
 
         <template v-if="!submitted">
-            <VsHeading
-                v-if="showFormHeading"
-                level="2"
-            >
-                {{ getTranslatedContent('heading') }}
-            </VsHeading>
-
             <form @submit.prevent="preSubmit">
                 <fieldset>
+                    <legend class="vs-form__main-heading vs-heading--style-level-2">
+                        {{ getTranslatedContent('heading') }}
+                    </legend>
                     <BFormGroup
                         v-for="(field, index) in formData.fields"
                         :key="field.name"
@@ -23,7 +19,10 @@
                         :label-for="needsLabel(field) ? field.name : ''"
                         :class="conditionalElementClass(field.name)"
                     >
-                        <legend v-if="!isUndefined(field.descriptor)">
+                        <legend
+                            v-if="!isUndefined(field.descriptor)
+                                && field.element === 'checkbox'"
+                        >
                             {{ getTranslatedLegend(field.name, index) }}
                         </legend>
                         <div :class="conditionalElementClass(field.name)">
@@ -94,7 +93,7 @@
                     :language="language"
                     :error-msg="getMessagingData('recaptchaError', language)"
                     class="mt-9"
-                    :textareaLabel="recaptchaTextareaLabel"
+                    :textarea-label="recaptchaTextareaLabel"
                 />
 
                 <VsButton
@@ -670,6 +669,10 @@ export default {
 
 <style lang='scss'>
     .vs-form {
+        &__main-heading {
+            @extend %heading-default-styles;
+        }
+
         &__content {
             font-size: $font-size-6;
         }
