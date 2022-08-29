@@ -58,7 +58,7 @@
 
                         <div
                             class="vs-mega-nav__menu-mobile d-lg-none"
-                            @keydown.tab="menuTab"
+                            id="vs-mega-nav__menu-mobile"
                         >
                             <VsButton
                                 class="vs-mega-nav__mobile-menu-toggle p-0"
@@ -78,8 +78,6 @@
                             <VsMegaNavMobileMenu
                                 v-if="isOpen"
                                 v-click-outside="closeMenu"
-                                v-tab-out="menuTab"
-                                @blur.native="handleBlur"
                             >
                                 <slot name="megaNavAccordionItems" />
                             </VsMegaNavMobileMenu>
@@ -125,23 +123,6 @@ Vue.directive('click-outside', {
     },
     unbind(el) {
         document.body.removeEventListener('click', el.clickOutsideEvent);
-    },
-});
-
-Vue.directive('tab-out', {
-    bind(el, binding, vnode) {
-        /* eslint-disable-next-line */
-        el.tabOutEvent = (event) => {
-            // if (!(el === event.target || el.contains(event.target))) {
-            //     vnode.context[binding.expression](event);
-            // }
-            console.log(binding, vnode);
-            console.log(document.activeElement);
-        };
-        document.body.addEventListener('keyup', el.tabOutEvent);
-    },
-    unbind(el) {
-        document.body.removeEventListener('keyup', el.tabOutEvent);
     },
 });
 
@@ -219,6 +200,9 @@ export default {
             showSearch: false,
         };
     },
+    mounted() {
+        this.addTabClose();
+    },
     methods: {
         /**
          * Toggles dropdown menu property
@@ -243,14 +227,18 @@ export default {
                 this.isOpen = false;
             }
         },
-        menuTab(event) {
-            this.$nextTick(() => {
-                console.log(event);
-                console.log(document.activeElement);
+        /**
+         * adds event listener for tabbing out of mobile menu
+        */
+        addTabClose() {
+            document.body.addEventListener('focusin', (event) => {
+                if (this.isOpen) {
+                    const theTarget = event.target;
+                    if (!theTarget.closest('#vs-mega-nav__menu-mobile')) {
+                        this.isOpen = false;
+                    }
+                }
             });
-        },
-        handleBlur() {
-            console.log('blurred');
         },
     },
 };
