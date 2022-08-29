@@ -1,7 +1,6 @@
 <template>
     <div
         class="mega-nav-mobile-menu"
-        @blur="handleBlur"
     >
         <slot />
     </div>
@@ -12,11 +11,6 @@ export default {
     name: 'VsMegaNavDropdown',
     status: 'prototype',
     release: '0.1.0',
-    methods: {
-        handleBlur() {
-            console.log('blur');
-        },
-    },
 };
 </script>
 
