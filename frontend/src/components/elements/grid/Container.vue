@@ -10,6 +10,8 @@
 
 <script>
 import { BContainer } from 'bootstrap-vue';
+import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
+
 /**
  * Containers are the primary structural element used to
  * organise page content.
@@ -24,5 +26,8 @@ export default {
     components: {
         BContainer,
     },
+    mixins: [
+        removeAttrsMixin,
+    ],
 };
 </script>
