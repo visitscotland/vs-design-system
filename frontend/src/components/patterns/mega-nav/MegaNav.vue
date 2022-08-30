@@ -59,6 +59,7 @@
                         <div
                             class="vs-mega-nav__menu-mobile d-lg-none"
                             id="vs-mega-nav__menu-mobile"
+                            data-test="vs-mega-nav-mobile-container"
                         >
                             <VsButton
                                 class="vs-mega-nav__mobile-menu-toggle p-0"
