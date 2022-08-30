@@ -26,6 +26,7 @@
 import { BLink } from 'bootstrap-vue';
 import VsIcon from '@components/elements/icon/Icon';
 import dataLayerMixin from '../../../mixins/dataLayerMixin';
+import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 /**
  * Links allow a user to navigate through
@@ -42,7 +43,10 @@ export default {
         BLink,
         VsIcon,
     },
-    mixins: [dataLayerMixin],
+    mixins: [
+        dataLayerMixin,
+        removeAttrsMixin,
+    ],
     props: {
         /**
          * The URL the link will point to

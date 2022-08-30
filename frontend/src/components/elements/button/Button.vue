@@ -26,6 +26,7 @@
 <script>
 import { BButton } from 'bootstrap-vue';
 import VsIcon from '@components/elements/icon/Icon';
+import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 /**
  * Buttons are used to let users carry out actions on
@@ -42,6 +43,9 @@ export default {
         BButton,
         VsIcon,
     },
+    mixins: [
+        removeAttrsMixin,
+    ],
     props: {
         /**
          * Use this option to render the button as an anchor element with the given href.
