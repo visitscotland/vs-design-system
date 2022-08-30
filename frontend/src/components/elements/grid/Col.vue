@@ -7,6 +7,7 @@
 
 <script>
 import { BCol } from 'bootstrap-vue';
+import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 /**
  * Column components are used to organise, align and space sibling blocks of content within row
@@ -22,5 +23,8 @@ export default {
     components: {
         BCol,
     },
+    mixins: [
+        removeAttrsMixin,
+    ],
 };
 </script>
