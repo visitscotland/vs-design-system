@@ -1,14 +1,16 @@
 <template>
     <div
         class="mega-nav-mobile-menu"
+        data-test="vs-mega-nav-mobile-menu"
     >
+        <!-- @slot default slot for mobile menu contents  -->
         <slot />
     </div>
 </template>
 
 <script>
 export default {
-    name: 'VsMegaNavDropdown',
+    name: 'VsMegaNavMobileMenu',
     status: 'prototype',
     release: '0.1.0',
 };
