@@ -54,26 +54,6 @@ describe('VsSiteSearch', () => {
             expect(mockMethod).toHaveBeenCalled();
         });
 
-        it('should call the `mainContentFocus` method on the main content link click', async() => {
-            const mainContentBtn = wrapper.find('[data-test="vs-skip-to-main-content"]');
-            const mockMethod = jest.spyOn(wrapper.vm, 'mainContentFocus');
-            mainContentBtn.trigger('click');
-
-            await wrapper.vm.$nextTick();
-
-            expect(mockMethod).toHaveBeenCalled();
-        });
-
-        it('should call the `searchFocus` method on the search link click', async() => {
-            const searchBtn = wrapper.find('[data-test="vs-skip-to-search"]');
-            const mockMethod = jest.spyOn(wrapper.vm, 'searchFocus');
-            searchBtn.trigger('click');
-
-            await wrapper.vm.$nextTick();
-
-            expect(mockMethod).toHaveBeenCalled();
-        });
-
         it('should call the `footerFocus` method on the footer link click', async() => {
             const footerBtn = wrapper.find('[data-test="vs-skip-to-footer"]');
             const mockMethod = jest.spyOn(wrapper.vm, 'footerFocus');
