@@ -4,6 +4,7 @@ import {
     pageViewTemplate,
     externalLinkTemplate,
     internalLinkTemplate,
+    errorTemplate,
     menuNavigationTemplate,
     homePageLogoClickTemplate,
     formsTemplate,
@@ -260,9 +261,22 @@ const dataLayerMixin = {
         // internalNavigation(event) {
         //     const eventName = 'internal_navigation'
         // },
-        // errorDataTemplate(event) {
-        //     const eventName = 'errors'
-        // },
+        errorDataEvent(event) {
+            const eventName = 'errors';
+            const tagName = 'VS - GA - Errors';
+
+            const templateValues = {
+                event: eventName,
+                tag_name: tagName,
+                error_type: event.error_type,
+                error_details: event.error_details,
+            };
+
+            const fullTemplate = this.compileFullTemplate(templateValues);
+            const errorData = this.templateFiller(errorTemplate, fullTemplate);
+
+            this.pushToDataLayer(errorData);
+        },
         // mapInteractionDataTemplate(event) {
         //     const eventName = 'map_interaction'
         // },
