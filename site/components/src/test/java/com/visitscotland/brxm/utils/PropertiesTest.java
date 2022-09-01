@@ -269,5 +269,26 @@ class PropertiesTest {
         assertEquals("DEFAULT-VALUE", properties.getDmsToken());
     }
 
+    @Test
+    @DisplayName("VS-3908 - The properties can have specific values for different locales")
+    void locales(){
+        when(bundle.getResourceBundle(Properties.DEFAULT_CONFIG, Properties.GLOBAL_SEARCH_PATH, Locale.UK, true)).thenReturn("/site/site-search-results");
+        assertEquals("/site/site-search-results", properties.getProperty(Properties.GLOBAL_SEARCH_PATH));
+
+        when(bundle.getResourceBundle(Properties.DEFAULT_CONFIG, Properties.GLOBAL_SEARCH_PATH, Locale.FRANCE, true)).thenReturn("/site/fr/site-search-results");
+        assertEquals("/site/fr/site-search-results", properties.getProperty(Properties.GLOBAL_SEARCH_PATH, Locale.FRANCE));
+
+        assertEquals("/site/fr/site-search-results", properties.getProperty(Properties.GLOBAL_SEARCH_PATH, Locale.FRANCE));
+    }
+
+    @Test
+    @DisplayName("VS-3908 - Properties not found in languages default to English")
+    void locales_default(){
+        when(bundle.getResourceBundle(Properties.DEFAULT_CONFIG, Properties.GLOBAL_SEARCH_PATH, Locale.FRANCE, true)).thenReturn("");
+        when(bundle.getResourceBundle(Properties.DEFAULT_CONFIG, Properties.GLOBAL_SEARCH_PATH, Locale.UK, true)).thenReturn("/site/site-search-results");
+        assertEquals("/site/fr/site-search-results", properties.getProperty(Properties.GLOBAL_SEARCH_PATH, Locale.FRANCE));
+
+
+    }
 
 }

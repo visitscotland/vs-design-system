@@ -267,11 +267,15 @@ public class Properties {
     }
 
     public String getProperty(String key){
+        return getProperty(key, Locale.UK);
+    }
+
+    public String getProperty(String key, Locale locale){
         String bundleId = getEnvironmentProperties();
-        String value = bundle.getResourceBundle(bundleId, key, Locale.UK, true);
+        String value = bundle.getResourceBundle(bundleId, key, locale, true);
 
         if (Contract.isEmpty(value)) {
-            value = bundle.getResourceBundle(DEFAULT_CONFIG, key, Locale.UK);
+            value = bundle.getResourceBundle(DEFAULT_CONFIG, key,locale);
         }
 
         if (Contract.isEmpty(value)) {
