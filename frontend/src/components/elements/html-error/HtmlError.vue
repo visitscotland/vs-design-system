@@ -27,7 +27,7 @@ export default {
         },
     },
     mounted() {
-        this.errorDataEvent({
+        this.createDataLayerObject('errorDataEvent', {
             error_type: 'System Error',
             error_details: this.statusCode,
         });

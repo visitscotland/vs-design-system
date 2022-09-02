@@ -27,6 +27,7 @@
                             ${imgSrc}?size=lg 2048w`"
                             sizes="(min-width: 768px) 50vw, 100vw"
                             :low-res-image="`${imgSrc}?size=xxs`"
+                            :use-generic-lqip="useGenericLqip"
                             class="vs-product-card__img"
                             data-test="vs-product-card__img"
                         />
@@ -101,7 +102,7 @@
                             class="vs-product-card__description-link"
                             :disabled="!isVisible()"
                         >
-                            {{ detailLink.label }}
+                            {{ detailLink.label }} <span class="sr-only">: {{ title }}</span>
                         </VsLink>
                     </div>
                 </div>
@@ -225,6 +226,17 @@ export default {
             }
 
             return '';
+        },
+        /**
+         * TMS images currently aren't passed to the image scaler, and as such return the
+         * full quality image when we request the xxs one causing some significant performance
+         * issues in tours canned searches. If the searchType is tour, use a generic
+         * placeholder rather than the specified one.
+         *
+         * Remove when TMS images are scaled properly.
+         */
+        useGenericLqip() {
+            return this.searchType === 'tour';
         },
     },
     methods: {
