@@ -115,7 +115,7 @@ export default {
         color: $color_pink;
 
         &:focus {
-            outline: 2px solid $color_pink;
+            @extend %outline-link-focus;
         }
     }
 
@@ -127,7 +127,7 @@ export default {
         }
 
         &:focus {
-            outline: 2px solid $color_yellow;
+            @extend %outline-link-focus-dark;
         }
     }
 
@@ -145,7 +145,7 @@ export default {
         }
 
         &:focus {
-            outline: 2px solid $color_yellow;
+            @extend %outline-link-focus-dark;
         }
     }
 }
