@@ -55,6 +55,7 @@ const dataLayerMixin = {
         },
         createDataLayerObject(type, event, href) {
             let eventName;
+            let tagName;
             let templateValues;
             let fullTemplate;
             let dataLayerData;
@@ -91,9 +92,11 @@ const dataLayerMixin = {
 
             case 'socialMediaExternalLinkDataEvent':
                 eventName = 'social_media_external_link';
+                tagName = 'VS - GA - Social Media External Link';
 
                 templateValues = {
                     event: eventName,
+                    tag_name: tagName,
                     click_URL: href,
                 };
 
@@ -103,9 +106,11 @@ const dataLayerMixin = {
 
             case 'homePageLogoClickDataEvent':
                 eventName = 'homepage_logo_click';
+                tagName = 'VS - GA - Homepage Logo Click';
 
                 templateValues = {
                     event: eventName,
+                    tag_name: tagName,
                 };
 
                 fullTemplate = this.compileFullTemplate(templateValues);
@@ -114,11 +119,13 @@ const dataLayerMixin = {
 
             case 'externalLinkDataEvent':
                 eventName = 'external_link';
+                tagName = 'VS - GA - External Link';
 
                 templateValues = {
                     event: eventName,
-                    click_text: event.target.text.trim(),
-                    click_URL: href,
+                    tag_name: tagName,
+                    click_text: this.targetText(event),
+                    click_URL: event.target.href,
                 };
 
                 fullTemplate = this.compileFullTemplate(templateValues);
@@ -127,9 +134,11 @@ const dataLayerMixin = {
 
             case 'internalLinkDataEvent':
                 eventName = 'internal_link';
+                tagName = 'VS - GA - Internal Link';
 
                 templateValues = {
                     event: eventName,
+                    tag_name: tagName,
                     click_text: event.target.text.trim(),
                     click_URL: href,
                 };
@@ -140,14 +149,31 @@ const dataLayerMixin = {
 
             case 'formsDataEvent':
                 eventName = 'forms';
+                tagName = 'VS - GA - Forms';
 
                 templateValues = {
                     event: eventName,
+                    tag_name: tagName,
                     form_status: 'form_submitted',
                 };
 
                 fullTemplate = this.compileFullTemplate(templateValues);
                 dataLayerData = this.templateFiller(formsTemplate, fullTemplate);
+                break;
+
+            case 'errorDataEvent':
+                eventName = 'errors';
+                tagName = 'VS - GA - Errors';
+
+                templateValues = {
+                    event: eventName,
+                    tag_name: tagName,
+                    error_type: event.error_type,
+                    error_details: event.error_details,
+                };
+
+                fullTemplate = this.compileFullTemplate(templateValues);
+                dataLayerData = this.templateFiller(errorTemplate, fullTemplate);
                 break;
 
             default:
@@ -261,22 +287,24 @@ const dataLayerMixin = {
         // internalNavigation(event) {
         //     const eventName = 'internal_navigation'
         // },
-        errorDataEvent(event) {
-            const eventName = 'errors';
-            const tagName = 'VS - GA - Errors';
+        // errorDataEvent(event) {
+        //     const eventName = 'errors';
+        //     const tagName = 'VS - GA - Errors';
 
-            const templateValues = {
-                event: eventName,
-                tag_name: tagName,
-                error_type: event.error_type,
-                error_details: event.error_details,
-            };
+        //     const templateValues = {
+        //         event: eventName,
+        //         tag_name: tagName,
+        //         error_type: event.error_type,
+        //         error_details: event.error_details,
+        //         click_text: this.targetText(event),
+        //         click_URL: event.target.href,
+        //     };
 
-            const fullTemplate = this.compileFullTemplate(templateValues);
-            const errorData = this.templateFiller(errorTemplate, fullTemplate);
+        //     const fullTemplate = this.compileFullTemplate(templateValues);
+        //     const errorData = this.templateFiller(errorTemplate, fullTemplate);
 
-            this.pushToDataLayer(errorData);
-        },
+        //     this.pushToDataLayer(errorData);
+        // },
         // mapInteractionDataTemplate(event) {
         //     const eventName = 'map_interaction'
         // },
@@ -316,6 +344,17 @@ const dataLayerMixin = {
             fullTemplate.hit_timestamp = this.returnIsoDate();
 
             return fullTemplate;
+        },
+        targetText(event) {
+            let text;
+
+            if (event.target.text) {
+                text = event.target.text.trim();
+            } else {
+                text = '';
+            }
+
+            return text;
         },
     },
 };
