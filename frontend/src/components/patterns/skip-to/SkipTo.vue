@@ -1,5 +1,5 @@
 <template>
-    <section
+    <nav
         class="vs-skip-to d-flex"
         data-test="vs-skip-to"
     >
@@ -42,7 +42,7 @@
             <!-- @slot text for 'Footer' -->
             <slot name="footerText" />
         </VsLink>
-    </section>
+    </nav>
 </template>
 
 <script>
