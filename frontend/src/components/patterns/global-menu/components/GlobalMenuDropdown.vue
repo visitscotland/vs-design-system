@@ -95,14 +95,13 @@ export default {
         padding: 0.3rem $spacer-3;
         font-size: $font-size-2;
         align-items: center;
-        height: 35px;
 
         &:not(:disabled):not(.disabled):active {
             background: $color-purple-shade-2;
         }
 
         &:focus {
-            box-shadow: $shadow-button-focus inset;
+            box-shadow: $shadow-button-focus-dark inset;
         }
     }
 
@@ -114,7 +113,7 @@ export default {
         }
 
         .btn-primary.dropdown-toggle:focus {
-            box-shadow: $shadow-button-focus inset;
+            box-shadow: $shadow-button-focus-dark inset;
         }
     }
 
