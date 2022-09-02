@@ -109,7 +109,10 @@ export default {
             } else {
                 this.createDataLayerObject('internalLinkDataEvent', event, this.href);
             }
-            // window.location.replace(this.href);
+            // don't navigate if it's an empty or anchor link
+            if (this.href !== '#' && this.href !== null) {
+                window.location.href = this.href;
+            }
         },
     },
 };

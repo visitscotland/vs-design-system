@@ -26,10 +26,6 @@
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document/>
 
-	<#if errorCode??>
-		<vs-html-error status-code="${errorCode}"></vs-html-error>
-	</#if>
-
 <#--TODO current Standard template will become Top-level and the Starndard Template will be the same with the hero image displayed as an article
 for now both options are in the CMS so the content team can keep working and both will display the same format -->
 	<#if standardTemplate || document.theme=="Top-Level">
@@ -38,6 +34,10 @@ for now both options are in the CMS so the content team can keep working and bot
 	<#else>
         <@pageIntro content=document lightBackground=true />
     </#if>
+
+	<#if errorCode??>
+		<vs-html-error status-code="${errorCode}"></vs-html-error>
+	</#if>
 
     <#--TODO Control abput colours, change style="background-color:${style}  -->
 	<#list pageItems as module>
