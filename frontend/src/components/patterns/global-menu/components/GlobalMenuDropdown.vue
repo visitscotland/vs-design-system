@@ -95,6 +95,7 @@ export default {
         padding: 0.3rem $spacer-3;
         font-size: $font-size-2;
         align-items: center;
+        height: 35px;
 
         &:not(:disabled):not(.disabled):active {
             background: $color-purple-shade-2;
@@ -115,11 +116,6 @@ export default {
         .btn-primary.dropdown-toggle:focus {
             box-shadow: $shadow-button-focus inset;
         }
-    }
-
-    ul:focus {
-        outline: 3px solid $color-pink-tint-5;
-        outline-offset: -3px;
     }
 
     .dropdown-menu {
@@ -150,7 +146,7 @@ export default {
                 }
 
                 &:focus {
-                    outline: 3px solid $color-pink-tint-5;
+                    outline: 3px solid $color-yellow;
                     outline-offset: -3px;
                 }
             }
