@@ -31,15 +31,15 @@ class RemoveAltText extends BaseNodeUpdateVisitor {
             log.debug n.getPath()
             n.setProperty("visitscotland:altText", "")
             if (n.hasNode("visitscotland:nl"))
-                n.getNode("visitscotland:nl").setProperty("visitscotland:altText", "");
+                n.getNode("visitscotland:nl").setProperty("visitscotland:altText", "")
             if (n.hasNode("visitscotland:fr"))
-                n.getNode("visitscotland:fr").setProperty("visitscotland:altText", "");
+                n.getNode("visitscotland:fr").setProperty("visitscotland:altText", "")
             if (n.hasNode("visitscotland:de"))
-                n.getNode("visitscotland:de").setProperty("visitscotland:altText", "");
+                n.getNode("visitscotland:de").setProperty("visitscotland:altText", "")
             if (n.hasNode("visitscotland:es"))
-                n.getNode("visitscotland:es").setProperty("visitscotland:altText", "");
+                n.getNode("visitscotland:es").setProperty("visitscotland:altText", "")
             if (n.hasNode("visitscotland:it"))
-                n.getNode("visitscotland:it").setProperty("visitscotland:altText", "");
+                n.getNode("visitscotland:it").setProperty("visitscotland:altText", "")
         }
     }
 
@@ -47,8 +47,8 @@ class RemoveAltText extends BaseNodeUpdateVisitor {
 
     @Override
     boolean doUpdate(Node node) {
-        removeAltText(node.session);
-        return true;
+        removeAltText(node.session)
+        return true
     }
 
     /**
@@ -64,9 +64,9 @@ class RemoveAltText extends BaseNodeUpdateVisitor {
         } else {
             // Note that the method size. Moves the pointer for the iterator at the end. That is why we need to
             // invoke .getNodes() for getting the size
-            log.info "Matches = ${results.getNodes().size()}";
+            log.info "Matches = ${results.getNodes().size()}"
         }
-        return results.getNodes();
+        return results.getNodes()
     }
 
     @Override
