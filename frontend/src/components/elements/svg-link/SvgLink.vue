@@ -4,6 +4,7 @@
         data-test="vs-svg-link"
         :href="href"
         :data-layer-value="dataLayerValue"
+        :variant="linkVariant"
     >
         <span
             class="sr-only"
@@ -89,6 +90,15 @@ export default {
         dataLayerValue: {
             type: String,
             default: null,
+        },
+        /**
+         * Option to choose a pre-defined link variant
+         * `primary|on-dark`
+         */
+        linkVariant: {
+            type: String,
+            default: 'primary',
+            validator: (value) => value.match(/(primary|on-dark)/),
         },
     },
 };
