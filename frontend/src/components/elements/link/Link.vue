@@ -62,12 +62,12 @@ export default {
         },
         /**
          * Option to choose a pre-defined style variant
-         * `primary|dark`
+         * `primary|on-dark`
          */
         variant: {
             type: String,
             default: 'primary',
-            validator: (value) => value.match(/(primary|dark)/),
+            validator: (value) => value.match(/(primary|on-dark)/),
         },
         /**
         * Size of icon
@@ -124,11 +124,11 @@ export default {
         color: $color_pink;
 
         &:focus {
-            outline: 2px solid $color_pink;
+            @extend %outline-link-focus;
         }
     }
 
-    &.vs-link--variant-dark {
+    &.vs-link--variant-on-dark {
         color: $color_yellow;
 
         .vs-icon {
@@ -136,7 +136,7 @@ export default {
         }
 
         &:focus {
-            outline: 2px solid $color_yellow;
+            @extend %outline-link-focus-dark;
         }
     }
 
@@ -154,7 +154,7 @@ export default {
         }
 
         &:focus {
-            outline: 2px solid $color_yellow;
+            @extend %outline-link-focus-dark;
         }
     }
 }
