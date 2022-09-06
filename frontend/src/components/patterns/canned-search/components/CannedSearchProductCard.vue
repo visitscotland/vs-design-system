@@ -304,7 +304,7 @@ export default {
             display: block;
 
             &:focus {
-                outline: 2px solid $color-pink;
+                @extend %outline-link-focus;
             }
         }
 

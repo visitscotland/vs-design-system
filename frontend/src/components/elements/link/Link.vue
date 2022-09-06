@@ -66,12 +66,12 @@ export default {
         },
         /**
          * Option to choose a pre-defined style variant
-         * `primary|dark`
+         * `primary|on-dark`
          */
         variant: {
             type: String,
             default: 'primary',
-            validator: (value) => value.match(/(primary|dark)/),
+            validator: (value) => value.match(/(primary|on-dark)/),
         },
         /**
         * Size of icon
@@ -89,6 +89,13 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+        * If the click should trigger a dataLayerPush
+        */
+        dataLayerValue: {
+            type: String,
+            default: null,
+        },
     },
     computed: {
         variantClass() {
@@ -98,12 +105,14 @@ export default {
     methods: {
         clickHandler(event) {
             event.preventDefault();
-            if (this.type === 'external') {
-                this.externalLinkDataEvent(event);
-            } else {
-                this.internalLinkDataEvent(event);
-            }
 
+            if (this.dataLayerValue) {
+                this.createDataLayerObject(this.dataLayerValue, event, this.href);
+            } else if (this.type === 'external') {
+                this.createDataLayerObject('externalLinkDataEvent', event, this.href);
+            } else {
+                this.createDataLayerObject('internalLinkDataEvent', event, this.href);
+            }
             // don't navigate if it's an empty or anchor link
             if (this.href !== '#' && this.href !== null) {
                 window.location.href = this.href;
@@ -119,11 +128,11 @@ export default {
         color: $color_pink;
 
         &:focus {
-            outline: 2px solid $color_pink;
+            @extend %outline-link-focus;
         }
     }
 
-    &.vs-link--variant-dark {
+    &.vs-link--variant-on-dark {
         color: $color_yellow;
 
         .vs-icon {
@@ -131,7 +140,7 @@ export default {
         }
 
         &:focus {
-            outline: 2px solid $color_yellow;
+            @extend %outline-link-focus-dark;
         }
     }
 
@@ -149,7 +158,7 @@ export default {
         }
 
         &:focus {
-            outline: 2px solid $color_yellow;
+            @extend %outline-link-focus-dark;
         }
     }
 }
