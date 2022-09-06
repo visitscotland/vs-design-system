@@ -98,7 +98,7 @@
                     :type="type"
                     class="stretched-link"
                     :class="disabled ? 'stretched-link--disabled' : ''"
-                    :variant="theme === 'dark' ? 'dark' : 'primary'"
+                    :variant="theme === 'dark' ? 'on-dark' : 'primary'"
                     data-test="vs-stretched-link"
                     :disabled="disabled"
                     :tabindex="(videoId || disabled) ? '-1' : '0'"
@@ -391,7 +391,7 @@ export default {
             }
 
             &:focus {
-                outline: 2px solid $color-pink;
+                @extend %outline-link-focus;
             }
         }
 
