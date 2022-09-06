@@ -70,7 +70,7 @@ export default {
     font-weight: $font-weight-normal;
     white-space: nowrap;
     overflow: hidden;
-    padding: 1px; // Prevents breadcrumb link focus state from being clipped
+    padding: 3px; // Prevents breadcrumb link focus state from being clipped
 
     &:last-child {
         color: $color-base-text;
@@ -105,6 +105,10 @@ export default {
 
     a {
         color: $color-base-text;
+
+        &:focus {
+            @extend %outline-link-focus;
+        }
     }
 
     a, span {
