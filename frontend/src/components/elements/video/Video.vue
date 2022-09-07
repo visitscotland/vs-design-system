@@ -253,11 +253,14 @@ export default {
                 .then(() => {
                     const videoPercent = (currentTime / duration) * 100;
 
-                    this.videoTrackingDataEvent({
-                        title: this.videoTitle,
-                        status: videoStatus,
-                        percent: Math.round(videoPercent),
-                    });
+                    this.createDataLayerObject(
+                        'videoTrackingDataEvent',
+                        {
+                            title: this.videoTitle,
+                            status: videoStatus,
+                            percent: Math.round(videoPercent),
+                        },
+                    );
                 });
         },
         getPlayerDetails() {
