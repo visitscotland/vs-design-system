@@ -27,3 +27,9 @@ action-lists:
 - 1.0.7:
     /content/documents/administration/labels/modules/video: reload
     /content/documents/administration/labels/global/common-label: reload
+- 1.0.8:
+    /content/documents/administration/configuration/default-properties: reload
+- 1.0.9:
+    /content/documents/administration/labels/modules/forms: reload
+- 1.0.10:
+    /content/documents/administration/configuration/default-properties: reload

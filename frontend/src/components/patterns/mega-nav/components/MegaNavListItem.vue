@@ -8,6 +8,7 @@
         <VsLink
             :href="href"
             :role="href === '#' ? '' : 'menuitem'"
+            data-layer-value="menuNavigationDataEvent"
         >
             <!-- @slot Default slot for nav link content  -->
             <slot />
@@ -17,6 +18,7 @@
 
 <script>
 import VsLink from '@components/elements/link/Link';
+import dataLayerMixin from '../../../../mixins/dataLayerMixin';
 
 /**
  *  Meganav list items with link and slot for link content
@@ -30,6 +32,7 @@ export default {
     components: {
         VsLink,
     },
+    mixins: [dataLayerMixin],
     props: {
         /**
          * The URL for the nav list link
@@ -97,8 +100,8 @@ export default {
         }
 
         &:focus{
-            outline: 0;
-            border: 2px solid $color-pink;
+            @extend %outline-link-focus;
+            outline-offset: -2px;
         }
     }
 
@@ -201,11 +204,6 @@ export default {
             border: 2px solid $color-white;
             line-height: $line-height-s;
             padding: $spacer-1 $spacer-5;
-
-            &:focus{
-                outline: 0;
-                border: 2px solid $color-pink;
-            }
         }
 
         &__link{

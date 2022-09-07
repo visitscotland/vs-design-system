@@ -27,9 +27,13 @@
 
 <#--  More reliable method for including labels from resource bundles  -->
 <#--  Usage: ${property("helpdesk")} -->
-<#function property key>
+<#function property key locale="">
     <#if Properties??>
-        <#return Properties.getProperty(key)>
+        <#if locale??>
+            <#return Properties.getProperty(key, locale)>
+        <#else>
+            <#return Properties.getProperty(key)>
+        </#if>
     <#else>
         <#return labelFallback("default.config", key)>
     </#if>
@@ -73,9 +77,13 @@
 
 <#--  Escape some characters from a JSON object so it can be consumed by a Vue component -->
 <#--  Usage: ${escapeJSON(stop.opening)} -->
-<#function escapeJSON original>
+<#function escapeJSON original isJsonObject>
     <#assign escaped = original?replace("'", "\\'")>
-    <#assign escaped = escaped?replace("\"", "'")>
+    <#if isJsonObject == true>
+        <#assign escaped = escaped?replace("\"", "'")>
+    <#else>
+        <#assign escaped = escaped?replace("\"", "&quot;")>
+    </#if>
     <#return escaped>
 </#function>
 
