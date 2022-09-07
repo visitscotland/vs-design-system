@@ -21,7 +21,6 @@
                             @btnFocus="controlFocus($event, 'prev')"
                             icon="internal-link"
                             icon-orientation="down"
-                            icon-size-override="xs"
                             ref="prevButton"
                         >
                             <div class="vs-carousel__control-label-container">
@@ -32,7 +31,6 @@
                                     {{ prevText }}
                                 </span>
                             </div>
-                            <span class="sr-only">{{ prevText }}</span>
                         </VsButton>
                         <VsRow
                             class="vs-carousel__track"
@@ -49,7 +47,6 @@
                             @btnFocus="controlFocus($event, 'next')"
                             icon="internal-link"
                             icon-position="right"
-                            icon-size-override="xs"
                             ref="nextButton"
                         >
                             <div class="vs-carousel__control-label-container">
@@ -60,7 +57,6 @@
                                     {{ nextText }}
                                 </span>
                             </div>
-                            <span class="sr-only">{{ nextText }}</span>
                         </VsButton>
 
                         <ul
@@ -436,6 +432,10 @@ export default {
             }
         }
 
+        .vs-button.vs-carousel__control {
+            padding: $spacer-3;
+        }
+
         &__control {
             position: absolute !important;
             top: 25%;
@@ -443,16 +443,14 @@ export default {
             min-width: 35px;
             height: 35px;
             border-radius: 0;
-            display: flex;
             align-items: center;
             justify-content: center;
-            padding: $spacer-3;
 
             &--next {
                 right: 0;
 
                 &:focus {
-                    right: .3125rem;
+                    right: $spacer-2;
                 }
             }
 
@@ -460,7 +458,7 @@ export default {
                 left: 0;
 
                 &:focus {
-                    left: .3125rem;
+                    left: $spacer-2;
                 }
             }
 
@@ -468,7 +466,7 @@ export default {
                 color: $color-white;
                 white-space: nowrap;
                 text-transform: uppercase;
-                font-weight: $font-weight-light;
+                font-weight: $font-weight-semi-bold;
 
                 &--next {
                     padding-right: $spacer-2;
@@ -505,6 +503,7 @@ export default {
             &:hover, &:focus {
                 outline: none;
                 background-color: $color-theme-primary;
+                border-color: $color-theme-primary;
 
                 .vs-carousel__control-label-container {
                     max-width: 15rem;
