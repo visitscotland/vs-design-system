@@ -15,7 +15,6 @@
 
 <script>
 import { BBreadcrumb } from 'bootstrap-vue';
-import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 /**
  * Breadcrumbs indicate where a user is in the website’s
@@ -31,8 +30,5 @@ export default {
     components: {
         BBreadcrumb,
     },
-    mixins: [
-        removeAttrsMixin,
-    ],
 };
 </script>

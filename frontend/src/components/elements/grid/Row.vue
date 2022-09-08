@@ -7,7 +7,6 @@
 
 <script>
 import { BRow } from 'bootstrap-vue';
-import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 /**
  * Rows are used to wrap column elements to ensure consistent alignment.
@@ -22,9 +21,6 @@ export default {
     components: {
         BRow,
     },
-    mixins: [
-        removeAttrsMixin,
-    ],
 };
 </script>
 

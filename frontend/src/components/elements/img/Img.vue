@@ -17,7 +17,6 @@
 
 <script>
 import { BImg } from 'bootstrap-vue';
-import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 /**
  * This image component is used to render images in our products
  * to help support and clarify content.
@@ -32,9 +31,6 @@ export default {
     components: {
         BImg,
     },
-    mixins: [
-        removeAttrsMixin,
-    ],
     props: {
         /**
          * The source URL
