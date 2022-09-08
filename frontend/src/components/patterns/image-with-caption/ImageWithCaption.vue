@@ -44,6 +44,7 @@
                     @toggleAction="toggleCaption"
                     :video-id="videoId"
                     :cookie-link-text="cookieLinkText"
+                    :error-message="errorMessage"
                 >
                     <!-- @slot Slot for the video title text -->
                     <template slot="video-title">
@@ -197,6 +198,13 @@ export default {
         useLazyLoading: {
             type: Boolean,
             default: true,
+        },
+        /**
+         * Message to show when there's an error with a third party
+        */
+        errorMessage: {
+            type: String,
+            required: true,
         },
     },
     data() {
