@@ -6,7 +6,6 @@
 
 <script>
 import { BDropdownItem } from 'bootstrap-vue';
-import removeAttrsMixin from '../../../../mixins/removeAttrsMixin';
 
 /**
  * TODO: Document usage
@@ -18,8 +17,5 @@ export default {
     components: {
         BDropdownItem,
     },
-    mixins: [
-        removeAttrsMixin,
-    ],
 };
 </script>

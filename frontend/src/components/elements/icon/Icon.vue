@@ -19,7 +19,6 @@
 import { get } from 'lodash';
 import designTokens from '@/assets/tokens/tokens.raw.json';
 import VsSvg from '@components/elements/svg';
-import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 const iconPath = 'icons/';
 
@@ -36,9 +35,6 @@ export default {
     components: {
         VsSvg,
     },
-    mixins: [
-        removeAttrsMixin,
-    ],
     props: {
         /**
          * The name of the icon to display, which will be the name of the icon file
