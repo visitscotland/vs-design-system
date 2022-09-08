@@ -10,7 +10,6 @@
 
 <script>
 import { BContainer } from 'bootstrap-vue';
-import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 /**
  * Containers are the primary structural element used to
@@ -26,8 +25,5 @@ export default {
     components: {
         BContainer,
     },
-    mixins: [
-        removeAttrsMixin,
-    ],
 };
 </script>

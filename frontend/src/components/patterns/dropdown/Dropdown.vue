@@ -20,7 +20,6 @@
 <script>
 import { BDropdown } from 'bootstrap-vue';
 import { reject } from 'lodash';
-import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 /**
  * Dropdown component for lists of links for example.
@@ -32,9 +31,6 @@ export default {
     components: {
         BDropdown,
     },
-    mixins: [
-        removeAttrsMixin,
-    ],
     props: {
         text: {
             type: String,

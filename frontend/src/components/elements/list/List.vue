@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import removeAttrsMixin from '../../../mixins/removeAttrsMixin';
 
 /**
  * The list component groups related content together
@@ -27,9 +26,6 @@ export default {
     name: 'VsList',
     status: 'prototype',
     release: '0.0.1',
-    mixins: [
-        removeAttrsMixin,
-    ],
     props: {
         /**
          * Option to choose the kind of list needed (ordered | unordered)
