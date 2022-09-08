@@ -67,6 +67,9 @@ export default {
     components: {
         BFormCheckbox,
     },
+    mixins: [
+        validateFormElementMixin,
+    ],
     props: {
         /**
          * Name of the input
