@@ -18,7 +18,7 @@
 
             <div
                 class="vs-video__fallback-wrapper"
-                v-if="!requiredCookiesExist && cookiesSetStatus"
+                v-if="!requiredCookiesExist && cookiesInitStatus"
                 key="fallback"
             >
                 <VsWarning

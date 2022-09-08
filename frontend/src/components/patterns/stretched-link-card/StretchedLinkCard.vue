@@ -5,6 +5,19 @@
         @click="emitShowModal"
         @keypress="emitShowModal"
     >
+        <VsWarning
+            v-if="showCookieWarning && errorType === 'full'"
+            :warning-message="noCookiesMessage"
+            :show-cookie-link="true"
+            :cookie-link-text="cookieLinkText "
+            variant="xs"
+        />
+
+        <VsWarning
+            v-else-if="showError && errorType === 'full'"
+            :warning-message="errorMessage"
+            variant="xs"
+        />
         <div
             class="vs-stretched-link-card__img-container"
             :class="warningClass"
@@ -32,10 +45,15 @@
             />
 
             <VsWarning
-                v-if="showCookieWarning"
+                v-if="showCookieWarning && errorType === 'image'"
                 :warning-message="noCookiesMessage"
                 :show-cookie-link="true"
-                :cookie-link-text="cookieLinkText"
+                :cookie-link-text="cookieLinkText "
+            />
+
+            <VsWarning
+                v-else-if="showError && errorType === 'image'"
+                :warning-message="errorMessage"
             />
         </div>
 
@@ -49,6 +67,7 @@
         <div
             class="card-body"
             :class="videoId ? 'position-relative' : ''"
+            v-if="showContent"
         >
             <VsButton
                 class="vs-stretched-link-card__video-button"
@@ -232,6 +251,21 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * Message to show when there's an error with a third party
+        */
+        errorMessage: {
+            type: String,
+            default: '',
+        },
+        /**
+         * Message to show when there's an error with a third party
+        */
+        errorType: {
+            type: String,
+            default: 'image',
+            validator: (value) => value.match(/(image|full)/),
+        },
     },
     inject: {
         noJsMessage: {
@@ -288,19 +322,43 @@ export default {
         },
         // Calculates if warning is showing and gives class for appropriate styles
         warningClass() {
+            let className = '';
+
             if (this.videoId && (this.jsDisabled || !this.requiredCookiesExist)) {
-                return 'vs-stretched-link-card__img-container--warning';
+                className = 'vs-stretched-link-card__img-container--warning ';
+
+                if (this.errorType === 'full' && this.cookiesInitStatus !== null) {
+                    className += 'vs-stretched-link-card__img-container--warning-full';
+                }
             }
 
-            return '';
+            return className;
         },
         showCookieWarning() {
             if (this.videoId && !this.jsDisabled
-                && !this.requiredCookiesExist && this.cookiesSetStatus) {
+                && !this.requiredCookiesExist
+                && this.cookiesInitStatus === true) {
                 return true;
             }
 
             return false;
+        },
+        showError() {
+            if (this.videoId
+                && this.errorMessage !== ''
+                && this.cookiesInitStatus === 'error') {
+                return true;
+            }
+
+            return false;
+        },
+        showContent() {
+            if (this.errorType === 'full'
+                && (this.showError || this.showCookieWarning)) {
+                return false;
+            }
+
+            return true;
         },
     },
     mounted() {
