@@ -11,7 +11,6 @@
 
 <script>
 import { BBreadcrumbItem } from 'bootstrap-vue';
-import removeAttrsMixin from '../../../../mixins/removeAttrsMixin';
 
 /**
  * https://bootstrap-vue.js.org/docs/components/breadcrumb#comp-ref-b-breadcrumb-item
@@ -26,9 +25,6 @@ export default {
     components: {
         BBreadcrumbItem,
     },
-    mixins: [
-        removeAttrsMixin,
-    ],
     props: {
         /**
          * The breadcrumb anchor link href.
