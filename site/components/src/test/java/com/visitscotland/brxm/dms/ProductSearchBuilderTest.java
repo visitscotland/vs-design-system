@@ -465,7 +465,7 @@ class ProductSearchBuilderTest {
     void channel() {
         mockLocationLoader("Edinburgh");
         String url = createBuilder().productTypes(DEFAULT_TYPE)
-                .location("Edinburgh").channel("wedding")
+                .location("Edinburgh").channel("weddings")
                 .proximity(null)
                 .build();
 
