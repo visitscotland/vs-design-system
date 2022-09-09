@@ -30,6 +30,7 @@
         <VsLink
             v-if="ctaLink && ctaText"
             class="vs-mega-nav-accordion-item__cta-link"
+            data-test="vs-mega-nav-accordion-item__cta-link"
             :href="ctaLink"
         >
             {{ ctaText }}

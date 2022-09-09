@@ -10,7 +10,6 @@
             :id="listHeadingId"
             level="2"
         >
-            <!-- @slot Slot for nav list heading  -->
             {{ listHeading }}
         </VsHeading>
 
