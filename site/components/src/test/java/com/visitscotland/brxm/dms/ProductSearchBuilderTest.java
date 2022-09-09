@@ -461,6 +461,21 @@ class ProductSearchBuilderTest {
     }
 
     @Test
+    @DisplayName("Channel - Show results within a channel")
+    void channel() {
+        mockLocationLoader("Edinburgh");
+        String url = createBuilder().productTypes(DEFAULT_TYPE)
+                .location("Edinburgh").channel("wedding")
+                .proximity(null)
+                .build();
+
+        validateUrl(url);
+        assertTrue(url.contains("channel=weddings"),
+                String.format("The Generated URL is expected to have no order (%s) ", url)
+        );
+    }
+
+    @Test
     @DisplayName("Safe Travels - Show results with Covid Safe Travels ")
     void safeTravels() {
         mockLocationLoader("Edinburgh");
