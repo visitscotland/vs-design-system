@@ -185,14 +185,12 @@ const dataLayerMixin = {
                     event: eventName,
                     tag_name: tagName,
                     video_status: event.status,
-                    video_title: event.title,
-                    video_percent: event.percent,
+                    video_title: event.title || '',
+                    video_percent: event.percent || 0,
                 };
 
                 fullTemplate = this.compileFullTemplate(templateValues);
                 dataLayerData = this.templateFiller(videoTrackingTemplate, fullTemplate);
-
-                console.log(dataLayerData);
 
                 break;
 
