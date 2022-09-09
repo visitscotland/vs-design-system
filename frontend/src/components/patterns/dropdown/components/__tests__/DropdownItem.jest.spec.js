@@ -29,6 +29,12 @@ describe('VsDropdownItem', () => {
         expect(wrapper.element.tagName).toBe('BDROPDOWNITEM-STUB');
     });
 
+    describe(':attrs', () => {
+        it('should bind the attributes passed in as `attrs`', () => {
+            expect(wrapper.attributes().href).toEqual(loadedAttrs.href);
+        });
+    });
+
     describe(':slots', () => {
         it('renders content inserted into the default `slot`', () => {
             expect(wrapper.text()).toContain(slotContent);
