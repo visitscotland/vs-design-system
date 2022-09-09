@@ -2,6 +2,7 @@
     <div
         class="vs-video"
         data-test="vs-video"
+        v-if="!reRendering"
     >
         <div
             class="vs-video__iframe-wrapper"
@@ -167,20 +168,10 @@ export default {
                 hl: this.language,
             },
             requiredCookies: cookieValues,
-            playerRef: null,
+            player: null,
+            reRendering: false,
+            shouldAutoPlay: false,
         };
-    },
-    computed: {
-        /**
-         * Return the player instance
-         */
-        player() {
-            if (typeof this.$refs.youtube !== 'undefined') {
-                return this.$refs.youtube.player;
-            }
-
-            return null;
-        },
     },
     mounted() {
         /**
@@ -189,6 +180,16 @@ export default {
          */
         this.$root.$on('video-controls', (action, id, type) => {
             if (id === this.videoId) {
+                if (action === 'modal-opened') {
+                    this.reRendering = true;
+                    this.$nextTick(() => {
+                        this.reRendering = false;
+                        this.$nextTick(() => {
+                            this.shouldAutoPlay = true;
+                        });
+                    });
+                }
+
                 if (action === 'play' && type === 'modal') {
                     // timeout allows for video in modal to appear
                     setTimeout(() => {
@@ -204,35 +205,41 @@ export default {
     },
     methods: {
         ready() {
-            this.playerRef = this.$refs.youtube.player;
+            this.player = this.$refs.youtube.player;
             this.getPlayerDetails();
+
+            if (this.shouldAutoPlay) {
+                this.shouldAutoPlay = false;
+                this.playVideo();
+            }
         },
         /**
          * Plays the video
          */
         playVideo() {
-            this.playerRef.playVideo();
+            if (this.player) {
+                this.player.playVideo();
+            }
         },
         /**
          * Pauses the video
          */
         pauseVideo() {
-            this.playerRef.pauseVideo();
+            if (this.player) {
+                this.player.pauseVideo();
+            }
         },
         /**
          * Triggered by video status events from the vue-youtube component. When any of these
          * occur an appropriate analytics event is dispatched to the datalayer.
          */
         youtubePlaying() {
-            console.log('Playing video');
             this.analyticsEvent('play');
         },
         youtubePaused() {
-            console.log('Pausing video');
             this.analyticsEvent('pause');
         },
         youtubeEnded() {
-            console.log('Ending video');
             this.analyticsEvent('ended');
         },
         /**
