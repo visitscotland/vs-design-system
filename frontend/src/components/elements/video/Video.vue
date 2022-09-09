@@ -181,13 +181,7 @@ export default {
         this.$root.$on('video-controls', (action, id, type) => {
             if (id === this.videoId) {
                 if (action === 'modal-opened') {
-                    this.reRendering = true;
-                    this.$nextTick(() => {
-                        this.reRendering = false;
-                        this.$nextTick(() => {
-                            this.shouldAutoPlay = true;
-                        });
-                    });
+                    this.reRenderVideo();
                 }
 
                 if (action === 'play' && type === 'modal') {
@@ -339,6 +333,19 @@ export default {
                 durationMsg: this.duration.roundedMinutes,
                 duration: (this.duration.minutes * 60) + this.duration.seconds,
                 fullDuration: this.duration,
+            });
+        },
+        /**
+         * Upon opening a vs-modal with a video, the video must be briefly removed and re-rendered
+         * to ensure that all event triggers in the video fire properly.
+         */
+        reRenderVideo() {
+            this.reRendering = true;
+            this.$nextTick(() => {
+                this.reRendering = false;
+                this.$nextTick(() => {
+                    this.shouldAutoPlay = true;
+                });
             });
         },
     },
