@@ -174,28 +174,7 @@ export default {
         };
     },
     mounted() {
-        /**
-         * Sets up listener for play/pause events
-         * from $root
-         */
-        this.$root.$on('video-controls', (action, id, type) => {
-            if (id === this.videoId) {
-                if (action === 'modal-opened') {
-                    this.reRenderVideo();
-                }
-
-                if (action === 'play' && type === 'modal') {
-                    // timeout allows for video in modal to appear
-                    setTimeout(() => {
-                        this.playVideo();
-                    }, 1000);
-                } else if (action === 'play') {
-                    this.playVideo();
-                } else if (action === 'pause') {
-                    this.pauseVideo();
-                }
-            }
-        });
+        this.setEventListeners();
     },
     methods: {
         ready() {
@@ -333,6 +312,26 @@ export default {
                 durationMsg: this.duration.roundedMinutes,
                 duration: (this.duration.minutes * 60) + this.duration.seconds,
                 fullDuration: this.duration,
+            });
+        },
+        /**
+         * Attaches event listeners upon mounting video. These include play and pause functions,
+         * for external play buttons and re-render + autoplay functionality for a video inside
+         * a modal.
+         */
+        setEventListeners() {
+            this.$root.$on('video-controls', (action, id) => {
+                if (id === this.videoId) {
+                    if (action === 'modal-opened') {
+                        this.reRenderVideo();
+                    }
+
+                    if (action === 'play') {
+                        this.playVideo();
+                    } else if (action === 'pause') {
+                        this.pauseVideo();
+                    }
+                }
             });
         },
         /**
