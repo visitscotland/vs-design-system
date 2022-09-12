@@ -6,17 +6,10 @@
         @keypress="emitShowModal"
     >
         <VsWarning
-            v-if="showCookieWarning && errorType === 'full'"
-            :warning-message="noCookiesMessage"
-            :show-cookie-link="true"
-            :cookie-link-text="cookieLinkText "
+            v-if="showWarning === 'full'"
+            v-bind="warningProps"
             variant="xs"
-        />
-
-        <VsWarning
-            v-else-if="showError && errorType === 'full'"
-            :warning-message="errorMessage"
-            variant="xs"
+            data-test="vs-stretched-link-card__full-warning"
         />
         <div
             class="vs-stretched-link-card__img-container"
@@ -40,20 +33,9 @@
             </template>
 
             <VsWarning
-                v-if="videoId && jsDisabled"
-                :warning-message="noJsMessage"
-            />
-
-            <VsWarning
-                v-if="showCookieWarning && errorType === 'image'"
-                :warning-message="noCookiesMessage"
-                :show-cookie-link="true"
-                :cookie-link-text="cookieLinkText "
-            />
-
-            <VsWarning
-                v-else-if="showError && errorType === 'image'"
-                :warning-message="errorMessage"
+                v-if="showWarning === 'image'"
+                v-bind="warningProps"
+                data-test="vs-stretched-link-card__image-warning"
             />
         </div>
 
@@ -67,7 +49,7 @@
         <div
             class="card-body"
             :class="videoId ? 'position-relative' : ''"
-            v-if="showContent"
+            v-if="showWarning !== 'full'"
         >
             <VsButton
                 class="vs-stretched-link-card__video-button"
@@ -352,13 +334,31 @@ export default {
 
             return false;
         },
-        showContent() {
-            if (this.errorType === 'full'
-                && (this.showError || this.showCookieWarning)) {
-                return false;
+        showWarning() {
+            if (this.showError || this.showCookieWarning) {
+                return this.errorType;
             }
 
-            return true;
+            return false;
+        },
+        warningProps() {
+            if (this.jsDisabled) {
+                return {
+                    warningMessage: this.noJsMessage,
+                };
+            }
+
+            if (this.showCookieWarning) {
+                return {
+                    warningMessage: this.noCookiesMessage,
+                    showCookieLink: true,
+                    cookieLinkText: this.cookieLinkText,
+                };
+            }
+
+            return {
+                warningMessage: this.errorMessage,
+            };
         },
     },
     mounted() {
