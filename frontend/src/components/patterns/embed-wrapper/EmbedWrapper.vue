@@ -15,7 +15,7 @@
                     <VsRichTextWrapper
                         class="vs-module-wrapper__intro vs-embed-wrapper__intro"
                         v-if="!!this.$slots['embedIntroCopy']
-                            && !cookiesInitStatus === 'error'"
+                            && cookiesInitStatus !== 'error'"
                         data-test="vs-module-wrapper__intro"
                     >
                         <!-- @slot Slot to contain intro text -->
