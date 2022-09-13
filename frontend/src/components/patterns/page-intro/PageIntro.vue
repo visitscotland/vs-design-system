@@ -15,7 +15,10 @@
                         :lg="heroIntro ? '8' : ''"
                         :offset-lg="heroIntro ? '1' : ''"
                     >
-                        <div class="vs-page-intro__breadcrumb">
+                        <div
+                            class="vs-page-intro__breadcrumb"
+                            :class="heroIntro ? 'mt-lg-4' : 'mt-lg-8'"
+                        >
                             <!-- @slot Slot to display breadcrumb items  -->
                             <slot name="vsIntroBreadcrumb" />
                         </div>
@@ -29,8 +32,8 @@
 
                 <VsRow>
                     <VsCol
-                        cols="12"
-                        :md="heroIntro ? '12' : '10'"
+                        cols="11"
+                        :md="heroIntro ? '11' : '10'"
                         :lg="heroIntro ? '7' : '10'"
                         :xl="heroIntro ? '8' : '10'"
                         :offset-lg="heroIntro ? '1' : '0'"
@@ -243,9 +246,7 @@ export default {
     }
 
      &__breadcrumb {
-        @include media-breakpoint-up(lg) {
-            margin-top: $spacer-4;
-        }
+        margin-top: $spacer-2;
     }
 
     &__lower,
