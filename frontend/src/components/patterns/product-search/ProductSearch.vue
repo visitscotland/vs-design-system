@@ -274,7 +274,7 @@ export default {
         }
 
         #inline-search-container .form-control::-webkit-input-placeholder {
-            color: #666666;
+            color: $color-theme-secondary-light;
         }
 
         @include media-breakpoint-up(sm) {
