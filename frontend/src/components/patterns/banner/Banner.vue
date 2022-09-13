@@ -193,7 +193,7 @@ export default {
 
     &__text.vs-rich-text-wrapper--normal{
         display: inline-block;
-        padding-left: 0.25rem;
+        padding-left: $spacer-1;
 
         @include media-breakpoint-up(sm) {
             padding-left: 0;
