@@ -1,109 +1,94 @@
 /content/documents/administration/labels/modules/forms:
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-  jcr:uuid: 792f499b-043c-4396-8829-eba133f3f606
+  jcr:uuid: c84352c2-c31c-4acb-a5b8-1178fafa709a
   hippo:name: Forms
-  hippo:versionHistory: f721e6f5-9725-4b9d-bcf3-daa84f550df9
+  hippo:versionHistory: 054caae1-7065-4190-bd77-5f8162334fdf
   /forms[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: c8534e64-3cc5-4f8e-a925-784264b1ff94
+    jcr:uuid: b0e5a577-cc15-4551-987d-2459f1df58bd
     hippo:availability: []
     hippostd:retainable: false
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2022-04-14T11:08:53.925+01:00
-    hippostdpubwf:lastModificationDate: 2022-09-08T11:27:38.152+02:00
-    hippostdpubwf:lastModifiedBy: nikki.sherret
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '']
+    hippostdpubwf:lastModificationDate: 2022-09-12T14:57:29.847+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: forms
     resourcebundle:keys: [form.messaging-url, form.country-url, form.recaptcha-key,
       form.munchkin-sandbox, form.munchkin-prod, form.submitting, form.error, form.marketo-instance-sandbox,
-      form.marketo-instance-prod, form.script-url, form.recaptcha-textarea-label]
+      form.marketo-instance-prod, form.script-url, form.recaptcha-textarea-label,
+      form.no-js]
     resourcebundle:messages: ['https://static.visitscotland.com/forms/common/messaging.json',
       'https://static.visitscotland.com/forms/common/countries.json', 6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe,
       830-QYE-256, 638-HHZ-510, We're just submitting your form, 'We''re sorry there''s
         been a problem, please try again later.', //830-QYE-256.mktoweb.com, //e.visitscotland.com,
-      //e.visitscotland.com/js/forms2/js/forms2.min.js, Does not need any text]
-    resourcebundle:messages_de: ['', '', '', '', '', Wir übermitteln gerade Ihre Informationen,
-      'Es tut uns leid, dass ein Problem aufgetreten ist. Bitte versuchen Sie es später
-        erneut.', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', Estamos enviando tu información,
-      'Lamentamos que haya habido un problema, inténtalo de nuevo más tarde.', '',
-      '', '', '']
-    resourcebundle:messages_fr: ['', '', '', '', '', Nous transmettons vos informations,
-      'Désolé, une erreur est survenue. Veuillez réessayer plus tard.', '', '', '',
-      '']
-    resourcebundle:messages_it: ['', '', '', '', '', Stiamo inviando le tue informazioni,
-      'Siamo spiacenti che si sia verificato un problema, per favore riprova più tardi.',
-      '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '']
+      //e.visitscotland.com/js/forms2/js/forms2.min.js, Does not need any text, You
+        need Javascript enabled to be able to display this form.  You can enable this
+        in your browser settings.]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '']
   /forms[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-    jcr:uuid: b6f7b8ec-d1b4-4515-9328-638d92838699
+    jcr:uuid: c714f71d-6e23-425c-baf6-9759dc6f12ca
     hippo:availability: [preview]
     hippostd:retainable: false
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2022-04-14T11:08:53.925+01:00
-    hippostdpubwf:lastModificationDate: 2022-09-08T11:28:07.776+02:00
-    hippostdpubwf:lastModifiedBy: nikki.sherret
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '']
+    hippostdpubwf:lastModificationDate: 2022-09-12T14:57:50.041+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: forms
     resourcebundle:keys: [form.messaging-url, form.country-url, form.recaptcha-key,
       form.munchkin-sandbox, form.munchkin-prod, form.submitting, form.error, form.marketo-instance-sandbox,
-      form.marketo-instance-prod, form.script-url, form.recaptcha-textarea-label]
+      form.marketo-instance-prod, form.script-url, form.recaptcha-textarea-label,
+      form.no-js]
     resourcebundle:messages: ['https://static.visitscotland.com/forms/common/messaging.json',
       'https://static.visitscotland.com/forms/common/countries.json', 6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe,
       830-QYE-256, 638-HHZ-510, We're just submitting your form, 'We''re sorry there''s
         been a problem, please try again later.', //830-QYE-256.mktoweb.com, //e.visitscotland.com,
-      //e.visitscotland.com/js/forms2/js/forms2.min.js, Does not need any text]
-    resourcebundle:messages_de: ['', '', '', '', '', Wir übermitteln gerade Ihre Informationen,
-      'Es tut uns leid, dass ein Problem aufgetreten ist. Bitte versuchen Sie es später
-        erneut.', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', Estamos enviando tu información,
-      'Lamentamos que haya habido un problema, inténtalo de nuevo más tarde.', '',
-      '', '', '']
-    resourcebundle:messages_fr: ['', '', '', '', '', Nous transmettons vos informations,
-      'Désolé, une erreur est survenue. Veuillez réessayer plus tard.', '', '', '',
-      '']
-    resourcebundle:messages_it: ['', '', '', '', '', Stiamo inviando le tue informazioni,
-      'Siamo spiacenti che si sia verificato un problema, per favore riprova più tardi.',
-      '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '']
+      //e.visitscotland.com/js/forms2/js/forms2.min.js, Does not need any text, You
+        need Javascript enabled to be able to display this form.  You can enable this
+        in your browser settings.]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '']
   /forms[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: 0eb2fd57-ff17-4294-aaf7-34f9d0cc413e
+    jcr:uuid: 565f970c-6357-417c-afad-0767889da241
     hippo:availability: [live]
     hippostd:retainable: false
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2022-04-14T11:08:53.925+01:00
-    hippostdpubwf:lastModificationDate: 2022-09-08T11:28:07.776+02:00
-    hippostdpubwf:lastModifiedBy: nikki.sherret
-    hippostdpubwf:publicationDate: 2022-09-09T11:20:26.329+02:00
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '']
+    hippostdpubwf:lastModificationDate: 2022-09-12T14:57:50.041+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2022-09-12T14:57:52.208+01:00
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: forms
     resourcebundle:keys: [form.messaging-url, form.country-url, form.recaptcha-key,
       form.munchkin-sandbox, form.munchkin-prod, form.submitting, form.error, form.marketo-instance-sandbox,
-      form.marketo-instance-prod, form.script-url, form.recaptcha-textarea-label]
+      form.marketo-instance-prod, form.script-url, form.recaptcha-textarea-label,
+      form.no-js]
     resourcebundle:messages: ['https://static.visitscotland.com/forms/common/messaging.json',
       'https://static.visitscotland.com/forms/common/countries.json', 6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe,
       830-QYE-256, 638-HHZ-510, We're just submitting your form, 'We''re sorry there''s
         been a problem, please try again later.', //830-QYE-256.mktoweb.com, //e.visitscotland.com,
-      //e.visitscotland.com/js/forms2/js/forms2.min.js, Does not need any text]
-    resourcebundle:messages_de: ['', '', '', '', '', Wir übermitteln gerade Ihre Informationen,
-      'Es tut uns leid, dass ein Problem aufgetreten ist. Bitte versuchen Sie es später
-        erneut.', '', '', '', '']
-    resourcebundle:messages_es: ['', '', '', '', '', Estamos enviando tu información,
-      'Lamentamos que haya habido un problema, inténtalo de nuevo más tarde.', '',
-      '', '', '']
-    resourcebundle:messages_fr: ['', '', '', '', '', Nous transmettons vos informations,
-      'Désolé, une erreur est survenue. Veuillez réessayer plus tard.', '', '', '',
-      '']
-    resourcebundle:messages_it: ['', '', '', '', '', Stiamo inviando le tue informazioni,
-      'Siamo spiacenti che si sia verificato un problema, per favore riprova più tardi.',
-      '', '', '', '']
-    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '']
+      //e.visitscotland.com/js/forms2/js/forms2.min.js, Does not need any text, You
+        need Javascript enabled to be able to display this form.  You can enable this
+        in your browser settings.]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '']
