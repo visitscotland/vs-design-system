@@ -40,6 +40,19 @@ BUTTON STYLES
     box-shadow: 0 0 0 4px $color-white, 0 0 0 8px $color-pink;
 }
 
+
+/**************
+LINK STYLES
+***************/
+
+%outline-link-focus {
+    outline: 2px solid $color-pink;
+}
+
+%outline-link-focus-dark {
+    outline: 2px solid $color-yellow;
+}
+
 /**************
 HEADING STYLES
 ***************/
