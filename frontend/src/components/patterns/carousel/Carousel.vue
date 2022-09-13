@@ -30,7 +30,6 @@
                                     {{ prevText }}
                                 </span>
                             </div>
-                            <span class="sr-only">{{ prevText }}</span>
                         </VsButton>
                         <VsRow
                             class="vs-carousel__track"
@@ -56,7 +55,6 @@
                                     {{ nextText }}
                                 </span>
                             </div>
-                            <span class="sr-only">{{ nextText }}</span>
                         </VsButton>
 
                         <ul
