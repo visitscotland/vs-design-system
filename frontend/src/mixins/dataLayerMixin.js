@@ -4,6 +4,7 @@ import {
     pageViewTemplate,
     externalLinkTemplate,
     internalLinkTemplate,
+    videoTrackingTemplate,
     errorTemplate,
     menuNavigationTemplate,
     homePageLogoClickTemplate,
@@ -176,6 +177,23 @@ const dataLayerMixin = {
                 dataLayerData = this.templateFiller(errorTemplate, fullTemplate);
                 break;
 
+            case 'videoTrackingDataEvent':
+                eventName = 'video_tracking';
+                tagName = 'VS - GA - Video Tracking';
+
+                templateValues = {
+                    event: eventName,
+                    tag_name: tagName,
+                    video_status: event.status,
+                    video_title: event.title || '',
+                    video_percent: event.percent || 0,
+                };
+
+                fullTemplate = this.compileFullTemplate(templateValues);
+                dataLayerData = this.templateFiller(videoTrackingTemplate, fullTemplate);
+
+                break;
+
             default:
             }
 
@@ -218,7 +236,6 @@ const dataLayerMixin = {
         // shareDataEvent(event) {
         //     const eventName = "share"
         // },
-
         // socialMediaExternalLinkDataEvent(href) {
         //     const eventName = 'social_media_external_link';
 
