@@ -244,7 +244,7 @@ export default {
 
      &__breadcrumb {
         @include media-breakpoint-up(lg) {
-            margin-top: $spacer-8;
+            margin-top: $spacer-4;
         }
     }
 
