@@ -148,9 +148,9 @@ describe('VsMarketoForm', () => {
 
     it('should render a header from the data supplied', () => {
         const wrapper = factoryShallowMount();
-        const conditionalField = wrapper.find('vsheading-stub');
+        const heading = wrapper.find('.vs-form__main-heading');
 
-        expect(conditionalField.exists()).toBe(true);
+        expect(heading.exists()).toBe(true);
     });
 
     it('should render three input fields', async() => {
