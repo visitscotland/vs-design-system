@@ -242,11 +242,13 @@ export default {
         }
 
         .vs-image-with-caption--hero {
-            img {
-                min-height: 100%;
-                position: absolute;
-                transform: translateY(-50%);
-                top: 50%;
+            @include media-breakpoint-up(lg) {
+                img {
+                    min-height: 100%;
+                    position: absolute;
+                    transform: translateY(-50%);
+                    top: 50%;
+                }
             }
         }
     }
