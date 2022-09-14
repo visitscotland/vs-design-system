@@ -460,6 +460,10 @@ export default {
                             display: block;
                         }
                     }
+
+                    @include media-breakpoint-up(lg) {
+                        height: 100vh;
+                    }
                 }
 
                 &__caption-wrapper {
