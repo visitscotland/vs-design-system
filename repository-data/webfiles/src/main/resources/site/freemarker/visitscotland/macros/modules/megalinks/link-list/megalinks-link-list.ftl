@@ -30,6 +30,7 @@
                             theme="${theme}"
                             link-type="${listItem.type}"
                             link-url="${listItem.link}"
+                            error-message="${label('essentials.global', 'third-party-error')}"
                             <#if listItem.itineraryTransport??>
                                 transport="${listItem.itineraryTransport}"
                                 transport-name="${label('transports', listItem.itineraryTransport)}"
