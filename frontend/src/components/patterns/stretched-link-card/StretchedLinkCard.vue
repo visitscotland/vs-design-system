@@ -1,6 +1,7 @@
 <template>
     <div
         class="card vs-stretched-link-card"
+        data-test="vs-stretched-link-card"
         :class="stretchedLinkCardClasses"
         @click="emitShowModal"
         @keypress="emitShowModal"
