@@ -42,7 +42,9 @@ export default {
         BLink,
         VsIcon,
     },
-    mixins: [dataLayerMixin],
+    mixins: [
+        dataLayerMixin,
+    ],
     props: {
         /**
          * The URL the link will point to
