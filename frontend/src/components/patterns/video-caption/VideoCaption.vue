@@ -69,6 +69,8 @@
         >
             <VsWarning
                 :warning-message="noJsMessage"
+                :show-cookie-link="false"
+                :cookie-link-text="cookieLinkText"
                 variant="row"
             />
         </div>

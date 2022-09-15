@@ -437,7 +437,7 @@ export default {
                 &.vs-image-with-caption--hero {
                      .vs-image-with-caption__captions {
                         position: absolute;
-                        bottom: 200px;
+                        bottom: 210px;
                         width: 100%;
                         right: 0;
                         z-index: 3;
