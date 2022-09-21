@@ -15,6 +15,7 @@
                     control-id="${item?index}"
                     cta-link="${getUrl(item)}"
                     cta-text="${item.cta}"
+                    @click.native="$root.$emit('navAccordionClick', '${item.title}')"
                 >
                     <#list item.childMenuItems as childItem>
                         <#if childItem.title??>
@@ -22,6 +23,7 @@
                                 title="${childItem.title}"
                                 level="2"
                                 control-id="${childItem?index}"
+                                @click.native="$root.$emit('navAccordionClick', '${item.title}')"
                             >
                                 <vs-mega-nav-list>
                                     <#list childItem.childMenuItems as thirdChildItem>
