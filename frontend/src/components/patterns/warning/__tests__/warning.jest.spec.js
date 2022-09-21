@@ -1,11 +1,15 @@
 import { shallowMount } from '@vue/test-utils';
 import VsWarning from '../Warning';
 
-const warningMessage = 'There is no javascript';
+const defaultSlotText = 'There is no javascript';
 
-const factoryShallowMount = () => shallowMount(VsWarning, {
+const factoryShallowMount = (propsData, slots) => shallowMount(VsWarning, {
     propsData: {
-        warningMessage,
+        ...propsData,
+    },
+    slots: {
+        default: defaultSlotText,
+        ...slots,
     },
 });
 
@@ -17,25 +21,79 @@ describe('VsWarning', () => {
     });
 
     describe(':props', () => {
-        it(':variant - should accept and render variants as props', async() => {
+        it(':icon - should render an `review` icon by default', () => {
             const wrapper = factoryShallowMount();
-            const variant = 'small';
+            const iconStub = wrapper.find('vsicon-stub');
 
-            await wrapper.setProps({
-                variant,
-            });
-
-            expect(wrapper.classes()).toContain(`vs-warning--${variant}`);
+            expect(iconStub.attributes('name')).toBe('review');
         });
 
-        it('should render the contents of the `warningMessage` prop', async() => {
-            const wrapper = factoryShallowMount();
+        it(':icon - should render an icon with the same name as the `icon` prop', () => {
+            const wrapper = factoryShallowMount({
+                icon: 'test',
+            });
+            const iconStub = wrapper.find('vsicon-stub');
 
-            await wrapper.setProps({
-                warningMessage,
+            expect(iconStub.attributes('name')).toBe('test');
+        });
+
+        it(':theme - should render a class matching the `theme` prop', () => {
+            const wrapper = factoryShallowMount({
+                theme: 'dark',
             });
 
-            expect(wrapper.html()).toContain(warningMessage);
+            expect(wrapper.classes()).toContain('vs-warning--dark');
+        });
+
+        it(':size - should render a class matching the `size` prop', () => {
+            const wrapper = factoryShallowMount({
+                size: 'small',
+            });
+
+            expect(wrapper.classes()).toContain('vs-warning--small');
+        });
+
+        it(':align - should render a class matching the `align` prop', () => {
+            const wrapper = factoryShallowMount({
+                align: 'right',
+            });
+
+            expect(wrapper.classes()).toContain('vs-warning--right');
+        });
+
+        it(':type - should show a cookie manangement button if `type` is `cookie` and the slot is populated', () => {
+            const wrapper = factoryShallowMount(
+                {
+                    type: 'cookie',
+                },
+                {
+                    'button-text': 'Manage cookies',
+                },
+            );
+            const cookieBtn = wrapper.find('vsbutton-stub');
+
+            expect(cookieBtn.attributes('id')).toBe('ot-sdk-btn');
+        });
+    });
+
+    describe(':slots', () => {
+        it('should display the content of the default slot', () => {
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.text()).toContain(defaultSlotText);
+        });
+
+        it('should display the content of the `button-text` slot', () => {
+            const btnText = 'Manage cookies';
+            const wrapper = factoryShallowMount(
+                {
+                },
+                {
+                    'button-text': btnText,
+                },
+            );
+
+            expect(wrapper.text()).toContain(btnText);
         });
     });
 });
