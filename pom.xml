@@ -27,7 +27,7 @@
     <!-- Bloom Dependencies -->
 
     <essentials.version>14.7.8</essentials.version>
-    <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
+    <forge.exdocpickerbase.version>7.0.0</forge.exdocpickerbase.version>
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
 <!--    <bloomreach.forge.ipfilter.version>3.1.0</bloomreach.forge.ipfilter.version>-->
 
