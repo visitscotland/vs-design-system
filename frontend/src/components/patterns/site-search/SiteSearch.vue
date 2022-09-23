@@ -91,6 +91,10 @@ export default {
             padding: $spacer-3;
         }
     }
+
+    span.sr-only-lg-down {
+        overflow: hidden;
+    }
 }
 
 @include no-js {
