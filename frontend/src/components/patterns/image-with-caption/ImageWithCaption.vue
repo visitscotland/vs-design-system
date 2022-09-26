@@ -232,6 +232,7 @@ export default {
         return {
             noJsMessage: this.noJsMessage,
             noCookiesMessage: this.noCookiesMessage,
+            cookieLinkText: this.cookieLinkText,
         };
     },
 };
