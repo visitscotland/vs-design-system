@@ -57,9 +57,16 @@
                 </template>
             </VsWarning>
         </div>
-
         <div
-            v-else
+            v-else-if="cookiesInitStatus === 'error'"
+            class="vs-video-caption vs-video-caption--warning"
+        >
+            <VsWarning
+                :warning-message="errorMessage"
+                variant="row"
+            />
+        </div>
+        <div
             class="vs-video-caption vs-video-caption--no-js vs-video-caption--warning"
             data-test="video-caption-nojs"
         >
@@ -137,6 +144,7 @@ export default {
     data() {
         return {
             requiredCookies: cookieValues,
+            showErrorMessage: false,
         };
     },
     computed: {
@@ -151,7 +159,9 @@ export default {
             return false;
         },
         showCookieMessage() {
-            if (!this.requiredCookiesExist && this.cookiesSetStatus && this.noCookiesMessage) {
+            if (!this.requiredCookiesExist
+                && this.cookiesSet.length > 0
+                && this.noCookiesMessage) {
                 return true;
             }
 
@@ -303,6 +313,8 @@ export default {
 
     @include no-js {
         .vs-video-caption {
+            display: none;
+
             &--no-js {
                 display: block;
             }
@@ -368,6 +380,7 @@ export default {
         class="mb-5 mt-12"
         videoBtnText="Play video"
         videoId="FlG6tbYaA88"
+        error-message="Something's gone wrong"
     >
         <template slot="video-title">
             This video caption has a toggle button
@@ -384,6 +397,8 @@ export default {
             videoBtnText="Play video"
             videoId="FlG6tbYaA88"
             class="mt-12"
+            error-message="Something's gone wrong"
+            noJs-message="You don't have JS enabled"
         >
             <template slot="video-title">
                 This is the video title
