@@ -48,11 +48,14 @@
             class="vs-video-caption vs-video-caption--warning"
         >
             <VsWarning
-                :warning-message="noCookiesMessage"
-                :show-cookie-link="true"
-                :cookie-link-text="cookieLinkText"
-                variant="row"
-            />
+                size="small"
+                type="cookie"
+            >
+                {{ noCookiesMessage }}
+                <template slot="button-text">
+                    {{ cookiesLinkText }}
+                </template>
+            </VsWarning>
         </div>
 
         <div
@@ -61,11 +64,10 @@
             data-test="video-caption-nojs"
         >
             <VsWarning
-                :warning-message="noJsMessage"
-                :show-cookie-link="false"
-                :cookie-link-text="cookieLinkText"
-                variant="row"
-            />
+                size="small"
+            >
+                {{ noJsMessage }}
+            </VsWarning>
         </div>
     </div>
 </template>
@@ -120,19 +122,15 @@ export default {
             type: String,
             required: true,
         },
-        /**
-        * Text used for the link which opens the cookie preference centre.
-        */
-        cookieLinkText: {
-            type: String,
-            default: '',
-        },
     },
     inject: {
         noJsMessage: {
             default: '',
         },
         noCookiesMessage: {
+            default: '',
+        },
+        cookieLinkText: {
             default: '',
         },
     },
@@ -337,28 +335,33 @@ export default {
 
 <docs>
     ``` jsx
-    <VsVideoCaption
-        class="mt-5 mb-5"
-        videoBtnText="Play video this is a longer caption"
-        videoId="c05sg3G4oA4"
+    <VsImageWithCaption
+        noJsMessage="You need Javascript enabled to see this content"
+        noCookiesMessage="You need cookies enabled to see this content"
+        cookieLinkText="Manage your cookies"
     >
-        <template slot="video-title">
-            This is the video title
-        </template>
-        <template slot="video-no-js-alert">
-            JavaScript needs to be enabled to watch this video.
-            You can turn this on in your browser settings.
-        </template>
+        <VsVideoCaption
+            class="mt-5 mb-5"
+            videoBtnText="Play video this is a longer caption"
+            videoId="c05sg3G4oA4"
+        >
+            <template slot="video-title">
+                This is the video title
+            </template>
+            <template slot="video-no-js-alert">
+                JavaScript needs to be enabled to watch this video.
+                You can turn this on in your browser settings.
+            </template>
 
-        <template slot="video-no-cookies-alert">
-            You need cookies enabled to watch this video.
-            <span id="ot-sdk-btn" class="ot-sdk-show-settings">Manage Cookie Settings</span>.
-        </template>
+            <template slot="video-no-cookies-alert">
+                You need cookies enabled to watch this video.
+            </template>
 
-        <button id="ot-sdk-btn" class="ot-sdk-show-settings">
-            Cookie Settings
-        </button>
-    </VsVideoCaption>
+            <button id="ot-sdk-btn" class="ot-sdk-show-settings">
+                Cookie Settings
+            </button>
+        </VsVideoCaption>
+    </VsImageWithCaption>
 
     <VsVideoCaption
         withToggleBtn

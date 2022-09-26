@@ -28,15 +28,22 @@
 
             <VsWarning
                 v-if="videoId && jsDisabled"
-                :warning-message="noJsMessage"
-            />
+            >
+                {{ noJsMessage }}
+            </VsWarning>
 
             <VsWarning
                 v-if="showCookieWarning"
                 :warning-message="noCookiesMessage"
                 :show-cookie-link="true"
                 :cookie-link-text="cookieLinkText"
-            />
+            >
+                {{ noCookiesMessage }}
+
+                <template slot="button-text">
+                    {{ cookieLinkText }}
+                </template>
+            </VsWarning>
         </div>
 
         <template
