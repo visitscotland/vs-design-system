@@ -93,7 +93,7 @@ export default {
             type: String,
             default: 'normal',
             validator: (value) => value.match(
-                /(small|normal)/,
+                /(xs|small|normal)/,
             ),
         },
         /**
@@ -157,6 +157,20 @@ export default {
         padding: $spacer-9;
         background: $color-gray-tint-7;
         height: 100%;
+        // flex-direction: column;
+        // align-items: center;
+        // text-align: center;
+        // justify-content: center;
+        // color: $color-white;
+        // z-index: 2;
+
+        // &--normal {
+        //     .vs-warning__icon {
+        //         width: 4rem !important;
+        //         height: 4rem !important;
+        //         margin-bottom: 2rem;
+        //     }
+        // }
 
         &--small {
             padding: $spacer-5;
@@ -202,6 +216,14 @@ export default {
             & > div p:last-of-type {
                 margin-bottom: 0;
             }
+
+            &--xs {
+            .vs-warning__icon {
+                width: 2rem !important;
+                height: 2rem !important;
+                margin-bottom: 1rem;
+            }
+        }
         }
 
         /** override OneTrust styles **/
