@@ -190,19 +190,11 @@ export default {
         margin-bottom: $spacer-8;
         transition: box-shadow $duration-slowly;
 
-        .vs-stretched-link {
-            color: $color-base-text;
-            text-decoration: none;
-            letter-spacing: 0;
+        &:hover {
+            box-shadow: $shadow_card;
 
-            &:hover {
-                .vs-megalink-multi-image__title {
-                    text-decoration: underline;
-                }
-            }
-
-            &:focus {
-                @extend %outline-link-focus;
+            .vs-megalink-multi-image__title {
+                text-decoration: underline;
             }
         }
 
@@ -213,10 +205,6 @@ export default {
 
         .vs-megalink-multi-image__img {
             max-width: 100%;
-        }
-
-        &:hover {
-            box-shadow: $shadow_card;
         }
 
         .vs-megalink-multi-image__title {
