@@ -243,6 +243,17 @@ export default {
                 }
             }
         }
+
+        .vs-image-with-caption--hero {
+            @include media-breakpoint-up(lg) {
+                img {
+                    min-height: 100%;
+                    position: absolute;
+                    transform: translateY(-50%);
+                    top: 50%;
+                }
+            }
+        }
     }
 
      &__breadcrumb {
