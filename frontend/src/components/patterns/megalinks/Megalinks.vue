@@ -325,10 +325,12 @@ export default {
                             featured
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text"
-                            linkType="video"
-                            linkUrl="#"
-                            videoId="g-Fhvj7vW-E"
-                            videoBtnText="Play Video"
+                            linkType="external"
+                            linkUrl="https://www.visitscotland.com"
+                            days="6"
+                            daysLabel="days"
+                            transport="bus"
+                            transportName="bus"
                             errorMessage="Something went wrong"
                         >
                             <template slot="vsMultiImageHeading">
@@ -340,20 +342,6 @@ export default {
                                 from local markets to renowned restaurants.</p>
                             </template>
                         </VsMegalinkMultiImage>
-                        <VsModal
-                            modalId="g-Fhvj7vW-E"
-                            closeBtnText="Close"
-                            :isVideoModal="true"
-                        >
-                            <VsRow>
-                                <VsCol cols="12">
-                                    <VsVideo
-                                        videoId="g-Fhvj7vW-E"
-                                        class="mb-8"
-                                    />
-                                </VsCol>
-                            </VsRow>
-                        </VsModal>
                     </VsCol>
                     <VsCol
                         cols="12"
