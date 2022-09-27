@@ -20,17 +20,23 @@
                 />
             </div>
 
-            <div
-                class="vs-video__fallback-wrapper"
-                v-if="!requiredCookiesExist && cookiesInitStatus"
-                key="fallback"
+            <VsWarning
+                v-if="showError"
+                theme="light"
+                :type="cookiesInitStatus === true ? 'cookie' : 'normal'"
+                data-test="vs-video__warning"
+                class="vs-video__warning"
             >
-                <VsWarning
-                    :warning-message="noCookiesMessage"
-                    :warning-link-text="cookieLinkText"
-                    :show-cookie-link="true"
-                />
-            </div>
+                {{ warningText }}
+
+                <template
+                    v-if="!requiredCookiesExist
+                        && cookiesInitStatus === true"
+                    slot="button-text"
+                >
+                    {{ cookieLinkText }}
+                </template>
+            </VsWarning>
         </div>
     </div>
 </template>
@@ -51,6 +57,13 @@
                 width: 100%;
                 height: 100%;
             }
+        }
+
+        &__warning {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: 1;
         }
     }
 </style>
@@ -156,6 +169,13 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * Message to show when there's an error with a third party
+        */
+        errorMessage: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
@@ -172,6 +192,30 @@ export default {
             reRendering: false,
             shouldAutoPlay: false,
         };
+    },
+    computed: {
+        showError() {
+            if ((!this.requiredCookiesExist
+                && this.cookiesInitStatus === true)
+                || this.cookiesInitStatus === 'error') {
+                return true;
+            }
+
+            return false;
+        },
+        warningText() {
+            let message = '';
+
+            if (this.videoId && this.jsDisabled) {
+                message = this.noJsMessage;
+            } else if (this.showCookieWarning) {
+                message = this.noCookiesMessage;
+            } else {
+                message = this.errorMessage;
+            }
+
+            return message;
+        },
     },
     mounted() {
         this.setEventListeners();
