@@ -191,7 +191,7 @@ export default {
         transition: box-shadow $duration-slowly;
 
         &:hover {
-            box-shadow: $shadow_card;
+            box-shadow: $shadow_popover;
 
             .vs-megalink-multi-image__title {
                 text-decoration: underline;
@@ -244,10 +244,14 @@ export default {
 
         &:hover {
             box-shadow: 10px 10px 20px $color-theme-dark;
+
+            &:not(.vs-megalink-multi-image--featured) {
+                background-color: $color-secondary-gray-shade-5;
+            }
         }
     }
 
-    @include media-breakpoint-up(xl) {
+    @include media-breakpoint-up(lg) {
         .vs-megalink-multi-image.card {
             margin-bottom: $spacer-11;
 
@@ -277,7 +281,7 @@ export default {
             }
 
             .vs-stretched-link-card__img-container {
-                width: calc(50% - 20px);
+                width: 75%
             }
 
             .megalink-multi-image__content {
@@ -287,29 +291,54 @@ export default {
             }
 
             .card-body {
-                max-width: calc(50% + 20px);
-                padding: $spacer-6 5% $spacer-5;
+                position: absolute;
+                background-color: $color-white;
+                width: 40%;
+                right: 0;
+                top: $spacer-10;
+                padding: $spacer-8;
+            }
+
+            .vs-stretched-link-panels {
+                left: $spacer-5;
+                top: $spacer-5;
+            }
+
+            .vs-stretched-link-panels__panel:first-of-type {
+                margin-left: 0;
             }
 
             &.vs-megalink-multi-image--featured-last {
                 flex-direction: row-reverse;
 
                 .vs-stretched-link-panels {
-                    left: calc(50% + 20px);
+                    left: auto;
+                    right: $spacer-5;
+                }
+
+                .card-body {
+                    left: 0;
                     right: auto;
                 }
             }
 
-            .vs-stretched-link-panels {
-                right: calc(50% + 30px);
+            &:hover {
+                box-shadow: none !important;
+
+                .card-body {
+                    box-shadow: $shadow_popover;
+                }
             }
 
-            .megalink-multi-image--featured.card {
+            &.vs-megalink-multi-image--dark {
                 .card-body {
-                    padding: $spacer-9 5% $spacer-5;
+                    background-color: $color-secondary-gray-shade-5;
                 }
-                .megalink-multi-image__content {
-                    margin-top: $spacer-8;
+
+                &:hover {
+                    .card-body {
+                        box-shadow: 10px 10px 20px $color-theme-dark;
+                    }
                 }
             }
         }
