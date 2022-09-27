@@ -8,10 +8,31 @@
     >
         <VsWarning
             v-if="showWarning === 'full'"
-            v-bind="warningProps"
-            variant="xs"
+            :size="warningSize"
+            :theme="theme"
+            :type="showCookieWarning ? 'cookie' : 'normal'"
             data-test="vs-stretched-link-card__full-warning"
-        />
+            class="vs-stretched-link-card__full-warning"
+        >
+            {{ warningMessage }}
+
+            <template
+                slot="button-text"
+                v-if="cookieLinkText !== '' && showCookieWarning"
+            >
+                {{ cookieLinkText }}
+            </template>
+        </VsWarning>
+
+        <VsWarning
+            v-if="showWarning === 'full'"
+            :size="warningSize"
+            data-test="vs-stretched-link-card__full-warning"
+            class="vs-stretched-link-card__full-warning vs-stretched-link-card__full-warning--no-js"
+            :theme="theme"
+        >
+            {{ noJsMessage }}
+        </VsWarning>
         <div
             class="vs-stretched-link-card__img-container"
             :class="warningClass"
@@ -34,30 +55,30 @@
             </template>
 
             <VsWarning
-                v-if="videoId && jsDisabled"
+                v-if="showWarning === 'image'"
+                :size="warningSize"
+                :type="showCookieWarning ? 'cookie' : 'normal'"
+                data-test="vs-stretched-link-card__image-warning"
+                class="vs-stretched-link-card__image-warning"
+                :theme="theme"
             >
-                {{ noJsMessage }}
-            </VsWarning>
+                {{ warningMessage }}
 
-            <VsWarning
-                v-if="showCookieWarning"
-                :warning-message="noCookiesMessage"
-                :show-cookie-link="true"
-                :cookie-link-text="cookieLinkText"
-            >
-                {{ noCookiesMessage }}
-
-                <template slot="button-text">
+                <template
+                    slot="button-text"
+                    v-if="cookieLinkText !== '' && showCookieWarning"
+                >
                     {{ cookieLinkText }}
                 </template>
             </VsWarning>
 
             <VsWarning
-                v-if="showWarning === 'image'"
-                v-bind="warningProps"
-                data-test="vs-stretched-link-card__image-warning"
+                :size="warningSize"
+                data-test="vs-stretched-link-card__warning"
+                class="vs-stretched-link-card__warning vs-stretched-link-card__warning--no-js"
+                :theme="theme"
             >
-                Error
+                {{ noJsMessage }}
             </VsWarning>
         </div>
 
@@ -212,14 +233,6 @@ export default {
             validator: (value) => value.match(/(default|external|internal|download|video)/),
         },
         /**
-        * The component color theme
-        */
-        theme: {
-            type: String,
-            default: 'light',
-            validator: (value) => value.match(/(light|dark)/),
-        },
-        /**
         * The image to use in the component
         */
         imgSrc: {
@@ -263,12 +276,20 @@ export default {
             default: '',
         },
         /**
-         * Message to show when there's an error with a third party
+         * Where the error message should appear
         */
         errorType: {
             type: String,
             default: 'image',
             validator: (value) => value.match(/(image|full)/),
+        },
+        /**
+         * Size of warning message to show
+        */
+        warningSize: {
+            type: String,
+            default: 'small',
+            validator: (value) => value.match(/(normal|small)/),
         },
     },
     inject: {
@@ -279,6 +300,9 @@ export default {
             default: '',
         },
         cookieLinkText: {
+            default: '',
+        },
+        theme: {
             default: '',
         },
     },
@@ -363,24 +387,33 @@ export default {
 
             return false;
         },
-        warningProps() {
-            if (this.jsDisabled) {
-                return {
-                    warningMessage: this.noJsMessage,
-                };
+        warningMessage() {
+            let message = '';
+
+            if (this.videoId && this.jsDisabled) {
+                message = this.noJsMessage;
+            } else if (this.showCookieWarning) {
+                message = this.noCookiesMessage;
+            } else {
+                message = this.errorMessage;
             }
 
-            if (this.showCookieWarning) {
-                return {
-                    warningMessage: this.noCookiesMessage,
-                    showCookieLink: true,
-                    cookieLinkText: this.cookieLinkText,
-                };
-            }
-
-            return {
-                warningMessage: this.errorMessage,
+            return message;
+        },
+        warningAttrs() {
+            const attrsObj = {
             };
+            if (this.type === 'cookie') {
+                attrsObj.class = 'ot-sdk-show-settings vs-warning__cookie-trigger';
+            }
+            if (this.theme === 'dark') {
+                attrsObj.onDark = '';
+            }
+            if (this.size === 'small') {
+                attrsObj.size = 'sm';
+            }
+
+            return attrsObj;
         },
     },
     mounted() {
@@ -485,18 +518,6 @@ export default {
             align-self: flex-start;
             flex-shrink: 0; // IE11 fix, prevents image vertical stretching
             position: relative;
-
-            &--warning {
-                &:before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba($color-black, 0.8);
-                }
-            }
         }
 
         .vs-stretched-link-card__img {
@@ -556,6 +577,26 @@ export default {
 
         .vs-stretched-link-card__video-btn-text {
             padding-right: $spacer-1;
+        }
+
+        .vs-stretched-link-card__full-warning {
+            position: absolute;
+            height: 127px;
+            width: calc(100% - 1rem);
+            z-index: 1;
+        }
+
+        .vs-stretched-link-card__image-warning {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            top: 0;
+        }
+
+        .vs-stretched-link-card__full-warning--no-js,
+        .vs-stretched-link-card__warning--no-js {
+            display: none;
         }
 
         @include media-breakpoint-up(sm) {
@@ -675,6 +716,20 @@ export default {
         }
 
         @include small-rectangle-video-button();
+    }
+
+    @include no-js {
+        .card.vs-stretched-link-card {
+            .vs-stretched-link-card__full-warning,
+            .vs-stretched-link-card__warning {
+                display: none;
+            }
+
+            .vs-stretched-link-card__full-warning--no-js,
+            .vs-stretched-link-card__warning--no-js {
+                display: block;
+            }
+        }
     }
 </style>
 

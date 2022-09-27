@@ -154,6 +154,7 @@ export default {
             noJsMessage: this.noJsMessage,
             noCookiesMessage: this.noCookiesMessage,
             cookieLinkText: this.cookieLinkText,
+            theme: this.theme,
         };
     },
 };
@@ -329,6 +330,7 @@ export default {
                             linkUrl="#"
                             videoId="g-Fhvj7vW-E"
                             videoBtnText="Play Video"
+                            errorMessage="We're sorry, there's been an error"
                         >
                             <template slot="vsMultiImageHeading">
                                 The Edinburgh International Festival
@@ -387,6 +389,7 @@ export default {
                             linkUrl="#"
                             videoId="N3r5rCN9iaE"
                             videoBtnText="Play Video"
+                            errorMessage="We're sorry, there's been an error"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest
@@ -570,6 +573,7 @@ export default {
                             linkUrl="https://www.visitscotland.com"
                             videoId="N3r5rCN9iaE"
                             videoBtnText="Play Video"
+                            errorMessage="We're sorry, there's been an error"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest
@@ -669,6 +673,7 @@ export default {
                 linkUrl="#"
                 videoId="tfk7J6XZju4"
                 videoBtnText="Play Video"
+                errorMessage="We're sorry, there's been an error"
             >
                 <template slot="vsLinkListHeading">
                     The Edinburgh International Festival and summer festival
@@ -725,6 +730,7 @@ export default {
                 linkUrl="#"
                 videoId="zZCUFjSiWpE"
                 videoBtnText="Play Video"
+                errorMessage="We're sorry, there's been an error"
             >
                 <template slot="vsLinkListHeading">
                     Count 7,000 shining stars in the iconic galloway forest
