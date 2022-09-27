@@ -25,16 +25,17 @@
                 >
                     <slot name="extra-content" />
                 </p>
-                <VsButton
-                    v-bind="btnAttrs"
-                    v-if="!!this.$slots['button-text']"
-                    variant="secondary"
-                    class="vs-warning__button"
-                >
-                    <slot name="button-text" />
-                </VsButton>
             </div>
         </div>
+
+        <VsButton
+            v-bind="btnAttrs"
+            variant="secondary"
+            v-if="!!this.$slots['button-text']"
+            class="vs-warning__button"
+        >
+            <slot name="button-text" />
+        </VsButton>
     </div>
 </template>
 <script>
@@ -114,7 +115,6 @@ export default {
             };
             if (this.type === 'cookie') {
                 attrsObj.class = 'ot-sdk-show-settings vs-warning__cookie-trigger';
-                attrsObj.id = 'ot-sdk-btn';
             }
             if (this.theme === 'dark') {
                 attrsObj.onDark = '';
@@ -152,31 +152,33 @@ export default {
         position: relative;
         display: flex;
         align-items: flex-end;
-        justify-content: flex-start;
+        justify-content: flex-end;
+        flex-direction: column;
         text-align: left;
-        padding: $spacer-9;
+        padding: $spacer-5;
         background: $color-gray-tint-7;
         height: 100%;
-        // flex-direction: column;
-        // align-items: center;
-        // text-align: center;
-        // justify-content: center;
-        // color: $color-white;
-        // z-index: 2;
+        line-height: 1.1;
 
-        // &--normal {
-        //     .vs-warning__icon {
-        //         width: 4rem !important;
-        //         height: 4rem !important;
-        //         margin-bottom: 2rem;
-        //     }
-        // }
+        @include media-breakpoint-up(lg) {
+            padding: $spacer-9;
+        }
+
+        &--left {
+            align-items: flex-start;
+        }
 
         &--small {
             padding: $spacer-5;
 
             .vs-warning__content {
                 max-width: 100%;
+
+                @include media-breakpoint-up(lg) {
+                    & > div p:first-of-type {
+                        font-size: $font-size-5;
+                    }
+                }
             }
 
             .vs-warning__button {
@@ -203,7 +205,11 @@ export default {
         }
 
         &__button {
-            margin-top: $spacer-9;
+            margin-top: $spacer-6;
+
+            @include media-breakpoint-up(lg) {
+                margin-top: $spacer-9;
+            }
         }
 
         &__content {
@@ -215,42 +221,25 @@ export default {
 
             & > div p:last-of-type {
                 margin-bottom: 0;
+                font-size: $font-size-5;
+            }
+
+            & > div p:first-of-type {
+                margin-top: $spacer-1;
+                font-size: $font-size-5;
+
+                @include media-breakpoint-up(lg) {
+                    font-size: $font-size-6;
+                }
             }
 
             &--xs {
-            .vs-warning__icon {
-                width: 2rem !important;
-                height: 2rem !important;
-                margin-bottom: 1rem;
+                .vs-warning__icon {
+                    width: 2rem !important;
+                    height: 2rem !important;
+                    margin-bottom: 1rem;
+                }
             }
         }
-        }
-
-        /** override OneTrust styles **/
-        // &__cookie-trigger {
-        //     color: $color-yellow !important;
-        //     font-weight: $font-weight-normal !important;
-        //     background: transparent;
-        //     border: none;
-        //     box-shadow: none;
-
-        //     &:focus {
-        //         @extend %outline-link-focus-dark;
-        //     }
-        // }
-
-        // @include media-breakpoint-up(sm) {
-        //     &--row {
-        //         padding: $spacer-5;
-        //     }
-        // }
-
-        // @include media-breakpoint-up(md) {
-        //     &--row {
-        //         .vs-warning__icon {
-        //             margin: 0 $spacer-5 0 0;
-        //         }
-        //     }
-        // }
     }
 </style>

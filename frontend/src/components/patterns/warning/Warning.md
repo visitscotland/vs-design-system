@@ -47,6 +47,7 @@ A link to OneTrust's preference centre
             type="cookie"
             theme="dark"
             size="small"
+            align="left"
         >
             You need cookies enabled to view this content.
 

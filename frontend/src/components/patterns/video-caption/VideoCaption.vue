@@ -53,7 +53,7 @@
             >
                 {{ noCookiesMessage }}
                 <template slot="button-text">
-                    {{ cookiesLinkText }}
+                    {{ cookieLinkText }}
                 </template>
             </VsWarning>
         </div>
@@ -62,9 +62,10 @@
             class="vs-video-caption vs-video-caption--warning"
         >
             <VsWarning
-                :warning-message="errorMessage"
-                variant="row"
-            />
+                size="small"
+            >
+                {{ errorMessage }}
+            </VsWarning>
         </div>
         <div
             class="vs-video-caption vs-video-caption--no-js vs-video-caption--warning"
@@ -138,6 +139,9 @@ export default {
             default: '',
         },
         cookieLinkText: {
+            default: '',
+        },
+        errorMessage: {
             default: '',
         },
     },
@@ -351,6 +355,7 @@ export default {
         noJsMessage="You need Javascript enabled to see this content"
         noCookiesMessage="You need cookies enabled to see this content"
         cookieLinkText="Manage your cookies"
+        errorMessage="Something's gone wrong. Please try again later"
     >
         <VsVideoCaption
             class="mt-5 mb-5"
@@ -375,40 +380,54 @@ export default {
         </VsVideoCaption>
     </VsImageWithCaption>
 
-    <VsVideoCaption
-        withToggleBtn
-        class="mb-5 mt-12"
-        videoBtnText="Play video"
-        videoId="FlG6tbYaA88"
-        error-message="Something's gone wrong"
+    <VsImageWithCaption
+        noJsMessage="You need Javascript enabled to see this content"
+        noCookiesMessage="You need cookies enabled to see this content"
+        cookieLinkText="Manage your cookies"
+        errorMessage="Something's gone wrong. Please try again later"
     >
-        <template slot="video-title">
-            This video caption has a toggle button
-        </template>
-        <template slot="video-no-js-alert">
-            JavaScript needs to be enabled to watch this video.
-            You can turn this on in your browser settings.
-        </template>
-    </VsVideoCaption>
-
-    <div class="no-js">
         <VsVideoCaption
             withToggleBtn
+            class="mb-5 mt-12"
             videoBtnText="Play video"
             videoId="FlG6tbYaA88"
-            class="mt-12"
             error-message="Something's gone wrong"
-            noJs-message="You don't have JS enabled"
         >
             <template slot="video-title">
-                This is the video title
+                This video caption has a toggle button
             </template>
             <template slot="video-no-js-alert">
-                This is display when JS is turned off.<br />
                 JavaScript needs to be enabled to watch this video.
                 You can turn this on in your browser settings.
             </template>
         </VsVideoCaption>
+    </VsImageWithCaption>
+
+    <div class="no-js">
+        <VsImageWithCaption
+            noJsMessage="You need Javascript enabled to see this content"
+            noCookiesMessage="You need cookies enabled to see this content"
+            cookieLinkText="Manage your cookies"
+            errorMessage="Something's gone wrong. Please try again later"
+        >
+            <VsVideoCaption
+                withToggleBtn
+                videoBtnText="Play video"
+                videoId="FlG6tbYaA88"
+                class="mt-12"
+                error-message="Something's gone wrong"
+                noJs-message="You don't have JS enabled"
+            >
+                <template slot="video-title">
+                    This is the video title
+                </template>
+                <template slot="video-no-js-alert">
+                    This is display when JS is turned off.<br />
+                    JavaScript needs to be enabled to watch this video.
+                    You can turn this on in your browser settings.
+                </template>
+            </VsVideoCaption>
+        </VsImageWithCaption>
     </div>
 
     <VsModal
