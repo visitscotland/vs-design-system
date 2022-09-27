@@ -9,6 +9,10 @@ Include a YouTube `video-id` so the component knows which video to load.
  ```jsx
     <VsVideo 
         video-id="c05sg3G4oA4" 
+        error-message="Sorry, something's gone wrong. Please try again later"
+        cookie-link-text="Manage cookies"
+        no-js-message="You need Javascript enabled to see this video"
+        no-cookies-message="You need cookies enabled to see this video"
     />
   ```
 
