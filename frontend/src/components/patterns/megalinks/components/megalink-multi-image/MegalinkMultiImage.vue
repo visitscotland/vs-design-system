@@ -243,7 +243,7 @@ export default {
         }
 
         &:hover {
-            box-shadow: 10px 10px 20px $color-theme-dark;
+            box-shadow: $shadow_popover_dark;
 
             &:not(.vs-megalink-multi-image--featured) {
                 background-color: $color-secondary-gray-shade-5;
@@ -337,7 +337,7 @@ export default {
 
                 &:hover {
                     .card-body {
-                        box-shadow: 10px 10px 20px $color-theme-dark;
+                        box-shadow: $shadow_popover_dark;
                     }
                 }
             }
