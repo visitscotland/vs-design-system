@@ -33,7 +33,7 @@
             </VsToggleButton>
         </div>
 
-        <div class="vs-image-with-caption__captions">
+        <figcaption class="vs-image-with-caption__captions">
             <div
                 class="vs-image-with-caption__video-caption-wrapper container-lg"
                 v-if="isVideo"
@@ -65,7 +65,7 @@
                 <!-- @slot Slot for image caption component -->
                 <slot name="img-caption" />
             </div>
-        </div>
+        </figcaption>
     </figure>
 </template>
 
