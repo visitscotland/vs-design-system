@@ -231,7 +231,7 @@ export default {
         .vs-hero {
             margin-bottom: $spacer-0;
 
-            figcaption {
+            .vs-caption {
                 @include media-breakpoint-up(lg) {
                     bottom: 200px;
                 }
