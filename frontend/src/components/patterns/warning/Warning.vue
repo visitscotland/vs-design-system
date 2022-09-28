@@ -1,11 +1,7 @@
 <template>
     <div
         class="vs-warning"
-        :class="{
-            [`vs-warning--${theme}`]: true,
-            [`vs-warning--${size}`]: true,
-            [`vs-warning--${align}`]: true,
-        }"
+        :class="[warningClasses, transparent ? 'vs-warning--transparent' : '']"
         data-test="vs-warning"
     >
         <div class="vs-warning__content">
@@ -76,7 +72,7 @@ export default {
             ),
         },
         /**
-        * Color theme - can be `light` or `dark`.
+        * Color theme - can be `light`, `dark` or `transparent`.
         * The default theme is dark
         */
         theme: {
@@ -108,8 +104,22 @@ export default {
                 /(left|right)/,
             ),
         },
+        /**
+        * Whether the background should be semi-transparent
+        */
+        transparent: {
+            type: Boolean,
+            default: true,
+        },
     },
     computed: {
+        warningClasses() {
+            return [
+                `vs-warning--${this.theme}`,
+                `vs-warning--${this.size}`,
+                `vs-warning--${this.align}`,
+            ];
+        },
         btnAttrs() {
             const attrsObj = {
             };
@@ -188,7 +198,11 @@ export default {
 
         &--dark {
             color: $color-white;
-            background: rgba(0,0,0,0.8);
+            background: $color-gray-shade-6;
+
+            &.vs-warning--transparent {
+                background: rgba(0,0,0,0.8);
+            }
         }
 
         &--right {
@@ -218,6 +232,7 @@ export default {
             align-items: flex-start;
             justify-content: flex-start;
             max-width: 80%;
+            line-height: 1.5;
 
             & > div p:last-of-type {
                 margin-bottom: 0;
@@ -225,7 +240,6 @@ export default {
             }
 
             & > div p:first-of-type {
-                margin-top: $spacer-1;
                 font-size: $font-size-5;
 
                 @include media-breakpoint-up(lg) {
