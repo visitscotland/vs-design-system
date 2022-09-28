@@ -53,6 +53,20 @@ describe('VsWarning', () => {
             expect(wrapper.classes()).toContain('vs-warning--small');
         });
 
+        it(':transparent - should render a class if the `transparent` prop is true', () => {
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.classes()).toContain('vs-warning--transparent');
+        });
+
+        it(':transparent - should not render a class if the `transparent` prop is false', () => {
+            const wrapper = factoryShallowMount({
+                transparent: false,
+            });
+
+            expect(wrapper.classes('vs-warning--transparent')).toBe(false);
+        });
+
         it(':align - should render a class matching the `align` prop', () => {
             const wrapper = factoryShallowMount({
                 align: 'right',
