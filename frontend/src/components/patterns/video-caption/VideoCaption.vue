@@ -50,6 +50,7 @@
             <VsWarning
                 size="small"
                 type="cookie"
+                :transparent="false"
             >
                 {{ noCookiesMessage }}
                 <template slot="button-text">
@@ -63,6 +64,7 @@
         >
             <VsWarning
                 size="small"
+                :transparent="false"
             >
                 {{ errorMessage }}
             </VsWarning>
@@ -73,6 +75,7 @@
         >
             <VsWarning
                 size="small"
+                :transparent="false"
             >
                 {{ noJsMessage }}
             </VsWarning>
@@ -190,10 +193,6 @@ export default {
 
         &--no-js {
             display: none;
-        }
-
-        &--warning {
-            background-color: $color-gray-shade-6;
         }
 
         &__details {

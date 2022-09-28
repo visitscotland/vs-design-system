@@ -17,6 +17,7 @@
                 {'domain' : '${module.domain}'},
                 {'lang':'${locale[0..1]}'},
             ]"
+
             <#if position=="top" && themeCalculator(introTheme) != "light">
                 class="mb-9 mb-lg-12"
             <#elseif position=="bottom">
@@ -29,6 +30,11 @@
 
             <template slot="vsModuleIntro">
                 ${module.description}
+            </template>
+
+            <template slot="vsNoJsMessage">
+                ${label('product-search-widget', 'no-js-message')}
+
             </template>
         </vs-product-search>
     </#if>
