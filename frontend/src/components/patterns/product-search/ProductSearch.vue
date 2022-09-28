@@ -25,8 +25,13 @@
                     xl="5"
                 >
                     <VsProductSearchEmbed
+                        class="vs-product-search__widget"
                         :config="configArr"
                     />
+
+                    <VsWarning class="vs-product-search__no-js">
+                        <slot name="vsNoJsMessage" />
+                    </VsWarning>
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -40,6 +45,7 @@ import {
     VsCol,
 } from '@components/elements/grid';
 import VsHeading from '@components/elements/heading/Heading';
+import VsWarning from '@components/patterns/warning/Warning';
 import VsProductSearchEmbed from './components/ProductSearchEmbed';
 
 /**
@@ -58,6 +64,7 @@ export default {
         VsCol,
         VsProductSearchEmbed,
         VsHeading,
+        VsWarning,
     },
     props: {
         /**
@@ -79,6 +86,10 @@ export default {
         background: $color-gray-shade-5;
         padding: 0 6px $spacer-9;
         font-family: $font-family-sans-serif;
+
+        &__no-js {
+            display: none;
+        }
 
         &__heading,
         &__intro {
@@ -308,6 +319,22 @@ export default {
 
             &__col--right.col-lg-4 {
                 padding: $spacer-8;
+            }
+        }
+    }
+
+    @include no-js {
+        .vs-product-search {
+            &__col--right {
+                padding: 0;
+            }
+
+            &__no-js {
+                display: flex;
+            }
+
+            &__widget {
+                display: none;
             }
         }
     }

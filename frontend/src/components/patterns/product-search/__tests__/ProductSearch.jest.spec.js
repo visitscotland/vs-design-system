@@ -33,6 +33,16 @@ describe('VsProductSearch', () => {
 
             expect(wrapper.html()).toContain('This is the Product Search intro');
         });
+
+        it('should render no-js slot content', () => {
+            const wrapper = factoryShallowMount({
+                slots: {
+                    vsNoJsMessage: 'This is the no JS message',
+                },
+            });
+
+            expect(wrapper.html()).toContain('This is the no JS message');
+        });
     });
 
     describe(':props', () => {
