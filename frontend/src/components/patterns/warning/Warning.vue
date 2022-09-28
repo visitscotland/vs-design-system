@@ -76,8 +76,8 @@ export default {
             ),
         },
         /**
-        * Color theme - can be `primary` or `secondary`.
-        * The default theme is secondary
+        * Color theme - can be `light` or `dark`.
+        * The default theme is dark
         */
         theme: {
             type: String,
