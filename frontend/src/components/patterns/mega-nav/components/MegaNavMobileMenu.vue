@@ -20,11 +20,13 @@ export default {
     ],
     mounted() {
         this.$root.$on('navAccordionClick', (text) => {
-            console.log(text);
             this.dataLayerSubmit(text);
         });
     },
     methods: {
+        /**
+         * Submit event to dataLayer for tracking
+         */
         dataLayerSubmit(text) {
             const clickEvent = {
                 target: {
