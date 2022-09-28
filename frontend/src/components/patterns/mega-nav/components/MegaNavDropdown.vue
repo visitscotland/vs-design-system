@@ -111,9 +111,15 @@ export default {
         window.removeEventListener('resize', this.closeMenu);
     },
     methods: {
+        /**
+         * Close the menu
+         */
         closeMenu() {
             this.$refs.dropdown.hide(true);
         },
+        /**
+         * Submit event to dataLayer for tracking
+         */
         dataLayerSubmit(event) {
             const btnText = event.vueTarget.$slots['button-content'][0].text.trim();
 
