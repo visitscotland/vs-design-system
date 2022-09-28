@@ -72,7 +72,7 @@ describe('VsWarning', () => {
             );
             const cookieBtn = wrapper.find('vsbutton-stub');
 
-            expect(cookieBtn.attributes('id')).toBe('ot-sdk-btn');
+            expect(cookieBtn.classes('vs-warning__cookie-trigger')).toBe(true);
         });
     });
 
