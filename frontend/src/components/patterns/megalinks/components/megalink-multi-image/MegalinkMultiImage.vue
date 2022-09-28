@@ -252,6 +252,18 @@ export default {
     }
 
     @include media-breakpoint-up(lg) {
+        .vs-megalinks--multi-image .vs-megalinks__links-wrapper .container {
+            .row {
+                width: calc(100% + #{$spacer-10} + #{$spacer-3});
+                margin-left: -#{$spacer-8};
+            }
+
+            [class*=col-] {
+                padding-left: $spacer-8;
+                padding-right: $spacer-8;
+            }
+        }
+
         .vs-megalink-multi-image.card {
             margin-bottom: $spacer-11;
 
