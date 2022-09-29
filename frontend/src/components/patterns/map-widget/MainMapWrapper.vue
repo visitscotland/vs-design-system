@@ -60,8 +60,15 @@ export default {
             height: 500px;
         }
 
+        .container,
+        .row {
+            height: 100%;
+        }
+
         &__map {
             display: none;
+            height: 100%;
+            width: 100%;
 
             @include media-breakpoint-up(md) {
                 display: block;
