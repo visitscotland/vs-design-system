@@ -1,1 +1,5 @@
-export { default } from './Map';
+import VsMap from './Map';
+
+export default {
+    VsMap,
+};

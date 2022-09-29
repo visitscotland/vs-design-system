@@ -256,7 +256,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @import "mapbox-gl/dist/mapbox-gl.css";
 
 @import "https://labs.os.uk/public/os-api-branding/v0.2.0/os-api-branding.css";
