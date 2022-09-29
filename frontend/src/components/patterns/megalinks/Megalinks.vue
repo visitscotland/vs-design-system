@@ -319,7 +319,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="12"
+                        xl="12"
                     >
                         <VsMegalinkMultiImage
                             featured
@@ -346,7 +346,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -368,7 +368,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -415,7 +415,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -476,7 +476,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="12"
+                        xl="12"
                     >
                         <VsMegalinkMultiImage
                             featured
@@ -532,7 +532,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="12"
+                        xl="12"
                     >
                         <vs-megalink-multi-image
                             featured
@@ -556,7 +556,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <vs-megalink-multi-image
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -596,7 +596,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <vs-megalink-multi-image
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -619,7 +619,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <vs-megalink-multi-image
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
