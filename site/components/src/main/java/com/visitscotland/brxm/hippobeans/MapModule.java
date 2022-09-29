@@ -4,6 +4,7 @@ import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerat
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.util.Calendar;
+import java.util.List;
 
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
@@ -49,5 +50,11 @@ public class MapModule extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationPriority")
     public String getTranslationPriority() {
         return getSingleProperty("visitscotland:translationPriority");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:categories")
+    public List<MapCategory> getCategories() {
+        return getChildBeansByName("visitscotland:categories",
+                MapCategory.class);
     }
 }
