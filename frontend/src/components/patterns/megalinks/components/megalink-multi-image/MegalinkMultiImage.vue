@@ -281,6 +281,7 @@ export default {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
+            transform: rotate(0deg);
 
             .vs-megalink-multi-image__title {
                 font-size: $font-size-5;
@@ -309,6 +310,14 @@ export default {
                 right: 0;
                 top: $spacer-10;
                 padding: $spacer-8;
+            }
+
+            .stretched-link:after {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
             }
 
             .vs-stretched-link-panels {
