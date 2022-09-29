@@ -251,7 +251,7 @@ export default {
         }
     }
 
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-up(xl) {
         .vs-megalinks--multi-image .vs-megalinks__links-wrapper .container {
             .row {
                 width: calc(100% + #{$spacer-10} + #{$spacer-3});
@@ -281,6 +281,7 @@ export default {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
+            width: 100%;
             transform: rotate(0deg);
 
             .vs-megalink-multi-image__title {
@@ -304,12 +305,16 @@ export default {
             }
 
             .card-body {
-                position: absolute;
+                position: absolute !important;
                 background-color: $color-white;
                 width: 40%;
                 right: 0;
                 top: $spacer-10;
                 padding: $spacer-8;
+            }
+
+            .vs-stretched-link-card__video-button {
+                position: fixed;
             }
 
             .stretched-link:after {
@@ -338,8 +343,13 @@ export default {
                 }
 
                 .card-body {
-                    left: 0;
+                    left: $spacer-0;;
                     right: auto;
+                }
+
+                .vs-stretched-link-card__video-button {
+                    left: auto;
+                    right: $spacer-2;
                 }
             }
 
