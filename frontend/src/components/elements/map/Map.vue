@@ -1,14 +1,24 @@
 <template>
     <div
-        class="vs-map"
-        ref="mapbox"
         id="vs-map"
         data-test="vs-map"
-    />
+        class="vs-map"
+    >
+        <div
+            class="vs-map"
+            ref="mapbox"
+            id="vs-map"
+            data-test="vs-map"
+        />
+        <!-- TO DO: Warning to be added once the updated
+        component is available in develop -->
+        <VsWarning class="vs-map__no-js" />
+    </div>
 </template>
 
 <script>
 // import Vue from 'vue';
+import VsWarning from '@components/patterns/warning/Warning';
 import osBranding from '@/utils/os-branding';
 
 let mapboxgl = null;
@@ -24,23 +34,41 @@ export default {
     name: 'VsMap',
     status: 'prototype',
     release: '0.0.1',
+    components: {
+        VsWarning,
+    },
     props: {
+        /**
+         * Labels for the map
+         */
         labels: {
             type: Object,
             required: true,
         },
+        /**
+         * Starting latitude for map view
+         */
         overviewMapLatitude: {
             type: String,
-            default: '-4.13',
+            default: '-5.51748',
         },
+        /**
+         * Starting longitude for map view
+         */
         overviewMapLongitude: {
             type: String,
             default: '57.81',
         },
+        /**
+         * Starting zoom level for map view
+         */
         overviewMapZoom: {
             type: String,
             default: '5',
         },
+        /**
+         * Pins for map
+         */
         pins: {
             type: Array,
             required: true,
@@ -82,6 +110,9 @@ export default {
         this.isTablet = window.innerWidth >= 768;
         window.addEventListener('resize', this.onResize);
 
+        /**
+         * Initialise branding options when DOM loads
+         */
         window.addEventListener('DOMContentLoaded', () => {
             osBranding.init({
                 div: 'vs-map',
@@ -105,11 +136,11 @@ export default {
          */
         addMapControls() {
             const nav = new mapboxgl.NavigationControl();
-            // todo: add map control components or otherwise style the controls as per design
-            // add tooltips to the map control icons
             this.mapbox.map.addControl(nav, 'top-right');
             this.mapbox.map.addControl(new mapboxgl.FullscreenControl());
         },
+        // PLEASE NOTE: the commented methods below will be added back into the
+        // component when we hook up functionality
         /**
          * Adds map features
          */
@@ -268,5 +299,19 @@ export default {
 .vs-map {
     height: 100%;
     position: relative;
+
+    &__no-js {
+        display: none;
+    }
+}
+
+@include no-js {
+    .vs-map {
+        display: none;
+
+        &__no-js {
+            display: flex;
+        }
+    }
 }
 </style>
