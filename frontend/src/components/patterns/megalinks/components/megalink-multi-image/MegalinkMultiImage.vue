@@ -252,11 +252,9 @@ export default {
     }
 
     @include media-breakpoint-up(xl) {
-        .vs-megalinks--multi-image .vs-megalinks__links-wrapper .container {
-            .row {
-                width: calc(100% + #{$spacer-10} + #{$spacer-3});
-                margin-left: -#{$spacer-8};
-            }
+        .vs-megalinks--multi-image .vs-megalinks__links-wrapper .row {
+            width: calc(100% + #{$spacer-10} + #{$spacer-3});
+            margin-left: -#{$spacer-8};
 
             [class*=col-] {
                 padding-left: $spacer-8;
