@@ -8,7 +8,9 @@
                 <VsCol
                     class="vs-main-map-wrapper__side-panel"
                     md="4"
-                />
+                >
+                    <VsMainMapWrapperPanel />
+                </VsCol>
                 <VsCol
                     class="vs-main-map-wrapper__map"
                     md="8"
@@ -32,6 +34,7 @@ import {
     VsCol,
 } from '@components/elements/grid';
 import VsMap from '@components/elements/map/Map';
+import VsMainMapWrapperPanel from './components/MainMapWrapperPanel';
 /**
  * Renders a widget that display a map
  * and gives filtering options
@@ -48,6 +51,7 @@ export default {
         VsRow,
         VsCol,
         VsMap,
+        VsMainMapWrapperPanel,
     },
 };
 </script>
