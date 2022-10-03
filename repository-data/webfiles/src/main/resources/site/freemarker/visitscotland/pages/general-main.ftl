@@ -29,8 +29,6 @@
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document/>
 
-<#--TODO current Standard template will become Top-level and the Starndard Template will be the same with the hero image displayed as an article
-for now both options are in the CMS so the content team can keep working and both will display the same format -->
 	<#if topLevelTemplate>
 		<@pageIntro content=document heroDetails=heroImage lightBackground=psrWidget?has_content />
 		<@productSearchWidget psrWidget "top"/>
