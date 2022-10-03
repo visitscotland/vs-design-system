@@ -176,14 +176,14 @@ export default {
         */
         noCookiesMessage: {
             type: String,
-            default: '',
+            required: true,
         },
         /**
         * Text used for the link which opens the cookie preference centre.
         */
         cookieBtnText: {
             type: String,
-            default: '',
+            required: true,
         },
         /**
         * A message explaining why the component has been disabled when js is disabled,
@@ -191,7 +191,7 @@ export default {
         */
         noJsMessage: {
             type: String,
-            default: '',
+            required: true,
         },
         /**
          * Message to show when there's an error with a third party
