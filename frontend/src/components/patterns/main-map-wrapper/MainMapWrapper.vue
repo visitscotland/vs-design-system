@@ -10,6 +10,7 @@
                     <div
                         class="vs-main-map-wrapper__side-panel"
                         :class="panelDisplayClass"
+                        data-test="vs-main-map-wrapper__side-panel"
                     >
                         <VsMainMapWrapperPanel
                             @close-panel="closePanel"
