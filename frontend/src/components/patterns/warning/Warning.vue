@@ -72,8 +72,7 @@ export default {
             ),
         },
         /**
-        * Color theme - can be `light`, `dark` or `transparent`.
-        * The default theme is dark
+        * Color theme - can be `light`, `dark` or `transparent`
         */
         theme: {
             type: String,
@@ -83,8 +82,7 @@ export default {
             ),
         },
         /**
-        * Message size - can be `small` or `normal`.
-        * The default size is normal
+        * Message size - can be `small` or `normal`
         */
         size: {
             type: String,
@@ -94,8 +92,7 @@ export default {
             ),
         },
         /**
-        * Alignment of message - can be `left` or `right`.
-        * The default alignment is left
+        * Alignment of message - can be `left` or `right`
         */
         align: {
             type: String,
@@ -251,7 +248,7 @@ export default {
                 .vs-warning__icon {
                     width: 2rem !important;
                     height: 2rem !important;
-                    margin-bottom: 1rem;
+                    margin-bottom: $spacer-4;
                 }
             }
         }
