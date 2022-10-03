@@ -1,14 +1,12 @@
 <template>
     <div
-        id="vs-map"
-        data-test="vs-map"
         class="vs-map"
+        data-test="vs-map"
     >
         <div
-            class="vs-map"
+            :id="mapId"
+            class="vs-map__map"
             ref="mapbox"
-            id="vs-map"
-            data-test="vs-map"
         />
         <!-- TO DO: Warning to be added once the updated
         component is available in develop -->
@@ -73,6 +71,13 @@ export default {
             type: Array,
             required: true,
         },
+        /**
+         * Unique ID for the map
+         */
+        mapId: {
+            type: String,
+            default: 'vs-map',
+        },
     },
     data() {
         return {
@@ -115,7 +120,7 @@ export default {
          */
         window.addEventListener('DOMContentLoaded', () => {
             osBranding.init({
-                div: 'vs-map',
+                div: this.mapId,
             });
         });
     },
@@ -299,6 +304,10 @@ export default {
 .vs-map {
     height: 100%;
     position: relative;
+
+    &__map {
+        height: 100%;
+    }
 
     &__no-js {
         display: none;
