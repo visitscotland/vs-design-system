@@ -10,6 +10,7 @@
                 size="md"
                 variant="transparent"
                 @click.native="closePanel"
+                data-test="vs-main-map-wrapper-panel--btn"
             >
                 <span class="sr-only">
                     <slot name="closePanelText" />
@@ -37,7 +38,6 @@ export default {
     },
     methods: {
         closePanel() {
-            console.log('hi');
             this.$emit('close-panel');
         },
     },

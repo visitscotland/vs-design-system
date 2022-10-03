@@ -1,10 +1,11 @@
 <template>
-    <VsContainer>
+    <VsContainer
+        data-test="vs-main-map-wrapper"
+    >
         <VsRow>
             <VsCol>
                 <section
                     class="vs-main-map-wrapper"
-                    data-test="vs-main-map-wrapper"
                 >
                     <div
                         class="vs-main-map-wrapper__side-panel"
@@ -138,6 +139,10 @@ export default {
             top: $spacer-4;
             left: $spacer-4;
             z-index: 1;
+
+            @include media-breakpoint-up(md) {
+                display: none;
+            }
         }
     }
 </style>
