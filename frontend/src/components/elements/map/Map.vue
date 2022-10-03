@@ -48,14 +48,14 @@ export default {
          */
         overviewMapLatitude: {
             type: String,
-            default: '-5.51748',
+            default: '57.81',
         },
         /**
          * Starting longitude for map view
          */
         overviewMapLongitude: {
             type: String,
-            default: '57.81',
+            default: '-5.51748',
         },
         /**
          * Starting zoom level for map view
