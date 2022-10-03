@@ -1,11 +1,9 @@
 <template>
     <div
-        id="vs-map"
-        data-test="vs-map"
         class="vs-map"
     >
         <div
-            class="vs-map"
+            class="vs-map__map"
             ref="mapbox"
             id="vs-map"
             data-test="vs-map"
@@ -299,6 +297,10 @@ export default {
 .vs-map {
     height: 100%;
     position: relative;
+
+    &__map {
+        height: 100%;
+    }
 
     &__no-js {
         display: none;
