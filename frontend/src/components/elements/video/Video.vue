@@ -34,8 +34,16 @@
                         && cookiesInitStatus === true"
                     slot="button-text"
                 >
-                    {{ cookieLinkText }}
+                    {{ cookieBtnText }}
                 </template>
+            </VsWarning>
+
+            <VsWarning
+                theme="light"
+                data-test="vs-video__warning--no-js"
+                class="vs-video__warning--no-js"
+            >
+                {{ noJsMessage }}
             </VsWarning>
         </div>
     </div>
@@ -64,6 +72,22 @@
             height: 100%;
             width: 100%;
             z-index: 1;
+
+            &--no-js {
+                display: none;
+            }
+        }
+    }
+
+    @include no-js {
+        .vs-video {
+            &__warning {
+                display: none;
+
+                &--no-js {
+                    display: flex;
+                }
+            }
         }
     }
 </style>
@@ -157,7 +181,7 @@ export default {
         /**
         * Text used for the link which opens the cookie preference centre.
         */
-        cookieLinkText: {
+        cookieBtnText: {
             type: String,
             default: '',
         },
@@ -204,17 +228,22 @@ export default {
             return false;
         },
         warningText() {
-            let message = '';
+            let text = '';
 
             if (this.videoId && this.jsDisabled) {
-                message = this.noJsMessage;
-            } else if (this.showCookieWarning) {
-                message = this.noCookiesMessage;
-            } else {
-                message = this.errorMessage;
+                text = this.noJsMessage;
             }
 
-            return message;
+            if (this.cookiesInitStatus === 'error') {
+                text = this.errorMessage;
+            }
+
+            if (!this.requiredCookiesExist
+                && this.cookiesInitStatus === true) {
+                text = this.noCookiesMessage;
+            }
+
+            return text;
         },
     },
     mounted() {
