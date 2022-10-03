@@ -37,6 +37,9 @@ export default {
         VsButton,
     },
     methods: {
+        /**
+         * Emits 'close-panel'
+         */
         closePanel() {
             this.$emit('close-panel');
         },
