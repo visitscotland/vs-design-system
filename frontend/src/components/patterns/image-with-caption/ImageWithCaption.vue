@@ -20,7 +20,7 @@
 
             <VsToggleButton
                 :img-src="imageSrc"
-                :toggle-id="getUniqueCaptionId"
+                :toggle-id="uniqueCaptionId"
                 @toggleAction="toggleCaption"
             >
                 {{ toggleButtonText }}
@@ -60,7 +60,7 @@
             <div
                 class="vs-image-with-caption__caption-wrapper"
                 :class="captionWrapperClasses"
-                :id="getUniqueCaptionId"
+                :id="uniqueCaptionId"
             >
                 <!-- @slot Slot for image caption component -->
                 <slot name="img-caption" />
@@ -71,6 +71,7 @@
 
 <script>
 
+import { v4 as uuidv4 } from 'uuid';
 import VsImg from '@components/elements/img/Img';
 import VsToggleButton from '@components/patterns/toggle-button/ToggleButton';
 import VsVideoCaption from '@components/patterns/video-caption/VideoCaption';
@@ -211,6 +212,7 @@ export default {
         return {
             showCaption: false,
             requiredCookies: cookieValues,
+            uniqueCaptionId: '',
         };
     },
     computed: {
@@ -230,14 +232,17 @@ export default {
                 container: this.isHeroImage,
             };
         },
-        getUniqueCaptionId() {
-            const randomUUID = crypto.randomUUID();
-            return `vs-caption-${randomUUID}`;
-        },
+    },
+    created() {
+        this.generateCaptionId();
     },
     methods: {
         toggleCaption() {
             this.showCaption = !this.showCaption;
+        },
+        generateCaptionId() {
+            const randomUUID = uuidv4();
+            this.uniqueCaptionId = `vs-caption-${randomUUID}`;
         },
     },
     provide() {
