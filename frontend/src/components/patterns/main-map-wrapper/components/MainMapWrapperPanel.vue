@@ -17,11 +17,24 @@
                 </span>
             </VsButton>
         </div>
+
+        <VsHeading
+            level="4"
+            class="vs-main-map-categories__heading text-center mt-0"
+            v-if="currentHeading !== ''"
+            data-test="vs-main-map-categories__heading"
+        >
+            {{ currentHeading }}
+        </VsHeading>
+
+        <VsMainMapWrapperCategories />
     </div>
 </template>
 
 <script>
 import VsButton from '@components/elements/button/Button/';
+import VsHeading from '@components/elements/heading/Heading';
+import VsMainMapWrapperCategories from './MainMapWrapperCategories';
 
 /**
  * Renders a side panel for the map wrapper component
@@ -35,6 +48,37 @@ export default {
     release: '0.0.1',
     components: {
         VsButton,
+        VsMainMapWrapperCategories,
+        VsHeading,
+    },
+    props: {
+        /**
+         * Heading for the categories view
+         */
+        categoryHeading: {
+            type: String,
+            default: '',
+        },
+    },
+    data() {
+        return {
+            currentStage: 'category',
+        };
+    },
+    computed: {
+        currentHeading() {
+            let headingText = '';
+
+            switch (this.currentStage) {
+            case 'category':
+                headingText = this.categoryHeading;
+                break;
+            default:
+                break;
+            }
+
+            return headingText;
+        },
     },
     methods: {
         /**
@@ -49,13 +93,26 @@ export default {
 
 <style lang="scss">
     .vs-main-map-wrapper-panel {
-        padding: $spacer-6;
+        position: relative;
+        padding: $spacer-11 $spacer-6 $spacer-6;
+        border: 1px solid $color-gray;
+        height: 100%;
+
+        h4.vs-heading {
+            margin-bottom: $spacer-8;
+        }
 
         &__close {
-            display: flex;
-            justify-content: flex-end;
+            position: absolute;
+            top: $spacer-3;
+            right: $spacer-3;
+        }
 
-            @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(lg) {
+            padding: $spacer-8;
+            border-right: none;
+
+            &__close {
                 display: none;
             }
         }
