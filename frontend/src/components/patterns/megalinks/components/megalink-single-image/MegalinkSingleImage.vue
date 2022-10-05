@@ -47,6 +47,7 @@
                     <div class="vs-megalink-single-image__button">
                         <VsButton
                             :href="buttonLink"
+                            variant="secondary"
                             :on-dark="theme === 'dark'"
                             v-if="buttonLink"
                         >
