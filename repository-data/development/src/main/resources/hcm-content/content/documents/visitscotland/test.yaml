@@ -9904,7 +9904,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 529453f8-9e5e-4575-864f-4dcec0850574
         hippo:name: General page with video hero
-        hippo:versionHistory: 3fab03b7-f82d-4924-84c1-1407c6d69399
+        hippo:versionHistory: c016875c-89e8-4287-92d5-2a0a73e1b396
         /content[1]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable']
@@ -9914,7 +9914,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-12-07T13:58:57.830Z
-          hippostdpubwf:lastModificationDate: 2021-12-07T14:00:43.343Z
+          hippostdpubwf:lastModificationDate: 2022-10-05T11:20:32.510+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 419ee6eb-9a1f-4cb6-8588-7c645544394a
           hippotranslation:locale: en
@@ -9925,7 +9925,7 @@
           visitscotland:seoTitle: General page with video hero
           visitscotland:teaser: This is an example of a general page which uses a
             video hero
-          visitscotland:theme: Standard
+          visitscotland:theme: Top-Level
           visitscotland:title: General page with video hero
           visitscotland:translation: ''
           /visitscotland:heroImage:
@@ -9953,7 +9953,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-12-07T13:58:57.830Z
-          hippostdpubwf:lastModificationDate: 2021-12-07T14:00:43.251Z
+          hippostdpubwf:lastModificationDate: 2022-10-05T11:20:36.731+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 419ee6eb-9a1f-4cb6-8588-7c645544394a
           hippotranslation:locale: en
@@ -9964,7 +9964,7 @@
           visitscotland:seoTitle: General page with video hero
           visitscotland:teaser: This is an example of a general page which uses a
             video hero
-          visitscotland:theme: Standard
+          visitscotland:theme: Top-Level
           visitscotland:title: General page with video hero
           visitscotland:translation: ''
           /visitscotland:heroImage:
@@ -9992,9 +9992,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2021-12-07T13:58:57.830Z
-          hippostdpubwf:lastModificationDate: 2021-12-07T14:00:43.251Z
+          hippostdpubwf:lastModificationDate: 2022-10-05T11:20:36.731+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2021-12-07T14:00:47.033Z
+          hippostdpubwf:publicationDate: 2022-10-05T11:20:47.847+01:00
           hippotranslation:id: 419ee6eb-9a1f-4cb6-8588-7c645544394a
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -10004,7 +10004,7 @@
           visitscotland:seoTitle: General page with video hero
           visitscotland:teaser: This is an example of a general page which uses a
             video hero
-          visitscotland:theme: Standard
+          visitscotland:theme: Top-Level
           visitscotland:title: General page with video hero
           visitscotland:translation: ''
           /visitscotland:heroImage:
