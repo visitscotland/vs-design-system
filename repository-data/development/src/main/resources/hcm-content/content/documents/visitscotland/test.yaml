@@ -7922,9 +7922,10 @@
           hippo:availability: []
           hippostd:retainable: false
           hippostd:state: draft
+          hippostd:transferable: false
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2022-09-23T11:10:37.268+01:00
-          hippostdpubwf:lastModificationDate: 2022-09-23T11:10:37.269+01:00
+          hippostdpubwf:lastModificationDate: 2022-10-03T16:19:27.395+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 8c8b0230-5cef-43a7-a24a-6a5a0abdb85a
           hippotranslation:locale: en
@@ -10094,7 +10095,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 5e0d09e3-fdf2-479e-880d-8052730ec4e5
     hippo:name: Test landing page
-    hippo:versionHistory: 1ff8c915-f81b-470e-a13c-2d2d43eb8a27
+    hippo:versionHistory: 9fd37208-87ab-4d4e-a7d1-d34090e77354
     /content[1]:
       jcr:primaryType: visitscotland:General
       jcr:mixinTypes: ['mix:referenceable']
@@ -10104,7 +10105,7 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-10-18T16:41:57.408+01:00
+      hippostdpubwf:lastModificationDate: 2022-10-05T10:58:22.535+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
@@ -10117,7 +10118,7 @@
       visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
-      visitscotland:theme: Standard
+      visitscotland:theme: Top-Level
       visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
@@ -10143,7 +10144,7 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-10-18T16:42:03.262+01:00
+      hippostdpubwf:lastModificationDate: 2022-10-05T10:58:25.283+01:00
       hippostdpubwf:lastModifiedBy: admin
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
@@ -10156,7 +10157,7 @@
       visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
-      visitscotland:theme: Standard
+      visitscotland:theme: Top-Level
       visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
@@ -10182,9 +10183,9 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2021-05-25T14:08:10.992+01:00
-      hippostdpubwf:lastModificationDate: 2021-10-18T16:42:03.262+01:00
+      hippostdpubwf:lastModificationDate: 2022-10-05T10:58:25.283+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2021-10-18T16:42:05.236+01:00
+      hippostdpubwf:publicationDate: 2022-10-05T10:58:27.635+01:00
       hippotranslation:id: 4f812572-ca3a-4f99-a01a-b1154c17417e
       hippotranslation:locale: en
       visitscotland:breadcrumb: ''
@@ -10196,7 +10197,7 @@
       visitscotland:seoTitle: VisitScotland .com test area
       visitscotland:teaser: This area is designed to hold stable content to test layout
         and functionality of the site.
-      visitscotland:theme: Standard
+      visitscotland:theme: Top-Level
       visitscotland:title: VisitScotland .com Test Area
       visitscotland:translation: ''
       /visitscotland:heroImage:
