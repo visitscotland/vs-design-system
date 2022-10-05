@@ -27,9 +27,13 @@
 
 <#--  More reliable method for including labels from resource bundles  -->
 <#--  Usage: ${property("helpdesk")} -->
-<#function property key>
+<#function property key locale="">
     <#if Properties??>
-        <#return Properties.getProperty(key)>
+        <#if locale??>
+            <#return Properties.getProperty(key, locale)>
+        <#else>
+            <#return Properties.getProperty(key)>
+        </#if>
     <#else>
         <#return labelFallback("default.config", key)>
     </#if>
@@ -42,13 +46,6 @@
     <@fmt.message var="message" key="${key}" />
     <@log "ResourceBundle object not defined in the template" />
     <#return message>
-</#function>
-
-<#--  Logs an error in the FreeMarker Console  -->
-<#--  It is a hacky way of logging an error and It is achieved by invoking a method that does not exist -->
-<#--  Usage: ${log("Oh no! Something is not all right")} -->
-<#function log message>
-    console.error(message)
 </#function>
 
 <#function productSearch locale productType lat lon proximity>
