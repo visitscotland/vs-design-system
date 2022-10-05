@@ -15,4 +15,21 @@ describe('VsMainMapWrapperPanel', () => {
 
         expect(wrapper.emitted('close-panel')).toBeTruthy();
     });
+
+    it('should display a header with the `categoryHeading` prop value', async() => {
+        const wrapper = shallowMount(VsMainMapWrapperPanel);
+        await wrapper.setProps({
+            categoryHeading: 'This is a heading',
+        });
+        const panelHeading = wrapper.find('[data-test="vs-main-map-categories__heading"]');
+
+        expect(panelHeading.text()).toBe('This is a heading');
+    });
+
+    it('should not display a header if the `categoryHeading` prop is blank', async() => {
+        const wrapper = shallowMount(VsMainMapWrapperPanel);
+        const panelHeading = wrapper.find('[data-test="vs-main-map-categories__heading"]');
+
+        expect(panelHeading.exists()).toBe(false);
+    });
 });
