@@ -239,7 +239,7 @@ export default {
                     font-size: $font-size-5;
 
                     &:focus {
-                        outline: 2px solid $color-secondary-teal-shade-2;
+                        @extend %outline-link-focus;
                     }
 
                     &:hover {
@@ -271,6 +271,10 @@ export default {
                     }
                 }
             }
+        }
+
+        #inline-search-container .form-control::-webkit-input-placeholder {
+            color: $color-theme-secondary-light;
         }
 
         @include media-breakpoint-up(sm) {
