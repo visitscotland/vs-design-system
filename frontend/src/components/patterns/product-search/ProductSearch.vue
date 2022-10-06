@@ -30,7 +30,7 @@
                     />
 
                     <VsWarning class="vs-product-search__no-js">
-                        <slot name="vsNoJsMessage" />
+                        {{ noJsMessage }}
                     </VsWarning>
                 </VsCol>
             </VsRow>
@@ -75,6 +75,13 @@ export default {
             default() {
                 return [];
             },
+        },
+        /**
+         * Message to show when Javascript is disabled
+         */
+        noJsMessage: {
+            type: String,
+            required: true,
         },
     },
 };
@@ -351,6 +358,7 @@ export default {
                     {'lang':'en'},
                     {'domain':'http://172.28.81.65:8089'},
                 ]"
+                noJsMessage="You need Javascript to see this content"
             >
                 <template slot="vsModuleHeading">
                     Find places to stay & things to do
