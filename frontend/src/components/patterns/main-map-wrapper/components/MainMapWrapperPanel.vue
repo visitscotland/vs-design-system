@@ -1,5 +1,5 @@
 <template>
-    <div
+    <section
         data-test="vs-main-map-wrapper-panel"
         class="vs-main-map-wrapper-panel"
     >
@@ -28,7 +28,7 @@
         </VsHeading>
 
         <VsMainMapWrapperCategories />
-    </div>
+    </section>
 </template>
 
 <script>
