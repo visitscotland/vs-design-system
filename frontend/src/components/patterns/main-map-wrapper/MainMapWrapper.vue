@@ -4,7 +4,7 @@
     >
         <VsRow>
             <VsCol>
-                <section
+                <div
                     class="vs-main-map-wrapper"
                 >
                     <div
@@ -43,7 +43,7 @@
                             ]"
                         />
                     </div>
-                </section>
+                </div>
             </VsCol>
         </VsRow>
     </VsContainer>
