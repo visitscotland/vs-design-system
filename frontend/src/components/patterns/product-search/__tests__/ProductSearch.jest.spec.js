@@ -8,6 +8,7 @@ const factoryShallowMount = (slotData) => shallowMount(VsProductSearch, {
                 subSearchType: 'acco',
             },
         ],
+        noJsMessage: 'This is the no JS message',
     },
     ...slotData,
 });
@@ -33,16 +34,6 @@ describe('VsProductSearch', () => {
 
             expect(wrapper.html()).toContain('This is the Product Search intro');
         });
-
-        it('should render no-js slot content', () => {
-            const wrapper = factoryShallowMount({
-                slots: {
-                    vsNoJsMessage: 'This is the no JS message',
-                },
-            });
-
-            expect(wrapper.html()).toContain('This is the no JS message');
-        });
     });
 
     describe(':props', () => {
@@ -51,6 +42,12 @@ describe('VsProductSearch', () => {
 
             const embedStub = wrapper.find('vsProductSearchEmbed-stub');
             expect(embedStub.attributes('config')).toBe('[object Object]');
+        });
+
+        it('should render `noJsMessage` prop content', () => {
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.html()).toContain('This is the no JS message');
         });
     });
 });
