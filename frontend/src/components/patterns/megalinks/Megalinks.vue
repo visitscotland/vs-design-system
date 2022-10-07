@@ -45,7 +45,10 @@
                         class="vs-megalinks__button"
                         data-test="vs-megalinks__button"
                     >
-                        <VsButton :href="buttonLink">
+                        <VsButton
+                            :href="buttonLink"
+                            :on-dark="theme === 'dark'"
+                        >
                             <!-- @slot Slot to contain button text -->
                             <slot name="vsMegalinksButton" />
                         </VsButton>
