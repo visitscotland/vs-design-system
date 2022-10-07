@@ -1,9 +1,9 @@
 import VsMainMapWrapper from './MainMapWrapper';
 import VsMainMapWrapperPanel from './components/MainMapWrapperPanel';
-import VsMainMapWrapperCategories from './components/MainMapWrapperCategories';
+import VsMainMapWrapperCategory from './components/MainMapWrapperCategory';
 
 export default {
     VsMainMapWrapper,
     VsMainMapWrapperPanel,
-    VsMainMapWrapperCategories,
+    VsMainMapWrapperCategory,
 };
