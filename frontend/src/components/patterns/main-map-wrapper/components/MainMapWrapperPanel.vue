@@ -8,7 +8,7 @@
                 icon-only
                 icon="close"
                 size="md"
-                variant="transparent"
+                variant="secondary"
                 @click.native="closePanel"
                 data-test="vs-main-map-wrapper-panel--btn"
             >
@@ -20,21 +20,44 @@
 
         <VsHeading
             level="4"
-            class="vs-main-map-categories__heading text-center mt-0"
+            class="vs-main-map-wrapper__heading text-center mt-0"
             v-if="currentHeading !== ''"
             data-test="vs-main-map-categories__heading"
         >
             {{ currentHeading }}
         </VsHeading>
 
-        <VsMainMapWrapperCategories />
+        <!-- TO DO: change this to interation once
+            we have data from CMS -->
+        <div v-if="currentStage === 'category'">
+            <VsMainMapWrapperCategory
+                category-name="Cities"
+                type="cities"
+            />
+            <VsMainMapWrapperCategory
+                category-name="Towns"
+                type="towns"
+            />
+            <VsMainMapWrapperCategory
+                category-name="Islands"
+                type="islands"
+            />
+            <VsMainMapWrapperCategory
+                category-name="Regions"
+                type="regions"
+            />
+            <VsMainMapWrapperCategory
+                category-name="Featured Places"
+                type="featured"
+            />
+        </div>
     </section>
 </template>
 
 <script>
 import VsButton from '@components/elements/button/Button/';
 import VsHeading from '@components/elements/heading/Heading';
-import VsMainMapWrapperCategories from './MainMapWrapperCategories';
+import VsMainMapWrapperCategory from './MainMapWrapperCategory';
 
 /**
  * Renders a side panel for the map wrapper component
@@ -48,7 +71,7 @@ export default {
     release: '0.0.1',
     components: {
         VsButton,
-        VsMainMapWrapperCategories,
+        VsMainMapWrapperCategory,
         VsHeading,
     },
     props: {
@@ -106,6 +129,16 @@ export default {
             position: absolute;
             top: $spacer-3;
             right: $spacer-3;
+        }
+
+        .vs-main-wrapper-category:last-of-type {
+            &::before {
+                display: none;
+
+                @include media-breakpoint-up(lg) {
+                    display: block;
+                }
+            }
         }
 
         @include media-breakpoint-up(lg) {
