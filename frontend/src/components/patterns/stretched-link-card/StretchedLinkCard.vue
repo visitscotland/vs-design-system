@@ -25,10 +25,11 @@
         </VsWarning>
 
         <VsWarning
-            v-if="showWarning === 'full'"
+            v-if="showWarning === 'full' && videoId !== ''"
             :size="warningSize"
             data-test="vs-stretched-link-card__full-warning"
-            class="vs-stretched-link-card__full-warning vs-stretched-link-card__full-warning--no-js"
+            class="vs-stretched-link-card__full-warning
+                vs-stretched-link-card__full-warning--no-js"
             :theme="theme"
         >
             {{ noJsMessage }}
@@ -73,9 +74,11 @@
             </VsWarning>
 
             <VsWarning
+                v-if="videoId !== ''"
                 :size="warningSize"
                 data-test="vs-stretched-link-card__warning"
-                class="vs-stretched-link-card__warning vs-stretched-link-card__warning--no-js"
+                class="vs-stretched-link-card__image-warning
+                    vs-stretched-link-card__image-warning--no-js"
                 :theme="theme"
             >
                 {{ noJsMessage }}
@@ -720,14 +723,14 @@ export default {
 
     @include no-js {
         .card.vs-stretched-link-card {
-            .vs-stretched-link-card__full-warning,
-            .vs-stretched-link-card__warning {
+            .vs-stretched-link-card__image-warning,
+            .vs-stretched-link-card__full-warning {
                 display: none;
             }
 
             .vs-stretched-link-card__full-warning--no-js,
-            .vs-stretched-link-card__warning--no-js {
-                display: block;
+            .vs-stretched-link-card__image-warning--no-js {
+                display: flex;
             }
         }
     }
