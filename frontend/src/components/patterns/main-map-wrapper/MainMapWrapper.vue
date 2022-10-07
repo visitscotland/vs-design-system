@@ -13,6 +13,7 @@
                         data-test="vs-main-map-wrapper__side-panel"
                     >
                         <VsMainMapWrapperPanel
+                            :category-heading="categoryHeading"
                             @close-panel="closePanel"
                         >
                             <template slot="closePanelText">
@@ -29,7 +30,7 @@
                             icon-only
                             icon="bars-mobile-menu"
                             size="md"
-                            variant="transparent"
+                            variant="secondary"
                             @click.native="openPanel"
                         >
                             <span class="sr-only">
@@ -37,6 +38,7 @@
                             </span>
                         </VsButton>
                         <VsMap
+                            :is-visible="!panelVisible"
                             :labels="{
                             }"
                             :pins="[
@@ -75,8 +77,17 @@ export default {
         VsRow,
         VsCol,
         VsMap,
-        VsMainMapWrapperPanel,
         VsButton,
+        VsMainMapWrapperPanel,
+    },
+    props: {
+        /**
+         * Heading for the categories view
+         */
+        categoryHeading: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
@@ -85,10 +96,10 @@ export default {
     },
     computed: {
         mapDisplayClass() {
-            return this.panelVisible ? 'd-none d-md-block' : '';
+            return this.panelVisible ? 'd-none d-lg-block' : '';
         },
         panelDisplayClass() {
-            return this.panelVisible ? '' : 'd-none d-md-block';
+            return this.panelVisible ? '' : 'd-none d-lg-block';
         },
     },
     mounted() {
@@ -116,7 +127,7 @@ export default {
         height: 100vh;
         display: flex;
 
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(lg) {
             height: 500px;
         }
 
@@ -126,22 +137,26 @@ export default {
         }
 
         &__side-panel {
-            width: 490px;
+            width: 100%;
+
+            @include media-breakpoint-up(lg) {
+                width: 490px
+            }
         }
 
         &__map {
+            position: relative;
             height: 100%;
             width: 100%;
         }
 
         &__map-toggle.vs-button {
-            background: $color-white;
             position: absolute;
             top: $spacer-4;
             left: $spacer-4;
             z-index: 1;
 
-            @include media-breakpoint-up(md) {
+            @include media-breakpoint-up(lg) {
                 display: none;
             }
         }

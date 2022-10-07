@@ -6,6 +6,7 @@ Use the map component to add an interactive map to the page.
     <VsMap
         :pins="[]"
         :labels="{}"
+        mapId="vs-map"
     />
 </div>
 ```
