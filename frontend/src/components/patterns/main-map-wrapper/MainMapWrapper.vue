@@ -32,9 +32,11 @@
                             size="md"
                             variant="secondary"
                             @click.native="openPanel"
+                            data-test="vs-main-map-wrapper__map-toggle"
                         >
                             <span class="sr-only">
-                                <slot name="openMapText" />
+                                <!-- @slot Text for panel open button  -->
+                                <slot name="openSidePanelText" />
                             </span>
                         </VsButton>
                         <VsMap
@@ -88,6 +90,13 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * Filter categories
+         */
+        filters: {
+            type: Array,
+            required: true,
+        },
     },
     data() {
         return {
@@ -118,6 +127,11 @@ export default {
         openPanel() {
             this.panelVisible = true;
         },
+    },
+    provide() {
+        return {
+            filters: this.filters,
+        };
     },
 };
 </script>
