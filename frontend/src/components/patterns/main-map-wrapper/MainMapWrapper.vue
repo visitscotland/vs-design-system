@@ -30,7 +30,7 @@
                             icon-only
                             icon="bars-mobile-menu"
                             size="md"
-                            variant="transparent"
+                            variant="secondary"
                             @click.native="openPanel"
                         >
                             <span class="sr-only">
@@ -38,6 +38,7 @@
                             </span>
                         </VsButton>
                         <VsMap
+                            :is-visible="!panelVisible"
                             :labels="{
                             }"
                             :pins="[
@@ -144,12 +145,12 @@ export default {
         }
 
         &__map {
+            position: relative;
             height: 100%;
             width: 100%;
         }
 
         &__map-toggle.vs-button {
-            background: $color-white;
             position: absolute;
             top: $spacer-4;
             left: $spacer-4;
