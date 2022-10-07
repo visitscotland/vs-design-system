@@ -1,5 +1,5 @@
 <template>
-    <section
+    <div
         class="vs-megalink-single-image"
         :class="singleImageClasses"
         data-test="megalink-single-image"
@@ -56,7 +56,7 @@
                 </div>
             </VsCol>
         </VsRow>
-    </section>
+    </div>
 </template>
 
 <script>
