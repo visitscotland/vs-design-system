@@ -382,7 +382,8 @@ export default {
     }
 
     .mapboxgl-ctrl-fullscreen {
-        background-image: url('~@/assets/svg/icons/boat.svg');
+        // TO DO: add icon once it's available (VS-4043)
+        // background-image: url('~@/assets/svg/icons/boat.svg');
         .mapboxgl-ctrl-icon {
             display: none;
         }
