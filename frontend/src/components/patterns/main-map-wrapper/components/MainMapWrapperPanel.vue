@@ -3,6 +3,26 @@
         data-test="vs-main-map-wrapper-panel"
         class="vs-main-map-wrapper-panel"
     >
+        <div
+            class="vs-main-map-wrapper-panel__back"
+            v-if="currentStage > 0"
+        >
+            <VsButton
+                icon-only
+                icon="internal-link"
+                icon-orientation="down"
+                size="md"
+                variant="secondary"
+                @click.native="stageBack"
+                data-test="vs-main-map-wrapper-panel--btn-back"
+            >
+                <span class="sr-only">
+                    <!-- @slot Text for panel back button  -->
+                    <slot name="backBtnText" />
+                </span>
+            </VsButton>
+        </div>
+
         <div class="vs-main-map-wrapper-panel__close">
             <VsButton
                 icon-only
@@ -10,10 +30,11 @@
                 size="md"
                 variant="secondary"
                 @click.native="closePanel"
-                data-test="vs-main-map-wrapper-panel--btn"
+                data-test="vs-main-map-wrapper-panel--btn-close"
             >
                 <span class="sr-only">
-                    <slot name="closePanelText" />
+                    <!-- @slot Text for panel close button  -->
+                    <slot name="closeSidePanelText" />
                 </span>
             </VsButton>
         </div>
@@ -27,30 +48,23 @@
             {{ currentHeading }}
         </VsHeading>
 
-        <!-- TO DO: change this to interation once
-            we have data from CMS -->
-        <div v-if="currentStage === 'category'">
-            <VsMainMapWrapperCategory
-                category-name="Cities"
-                type="cities"
-            />
-            <VsMainMapWrapperCategory
-                category-name="Towns"
-                type="towns"
-            />
-            <VsMainMapWrapperCategory
-                category-name="Islands"
-                type="islands"
-            />
-            <VsMainMapWrapperCategory
-                category-name="Regions"
-                type="regions"
-            />
-            <VsMainMapWrapperCategory
-                category-name="Featured Places"
-                type="featured"
-            />
-        </div>
+        <template v-if="currentStage === 0">
+            <div
+                v-for="filter in filters"
+                :key="filter.id"
+            >
+                <VsMainMapWrapperCategory
+                    :category-name="filter.label"
+                    :type="filter.id"
+                    @category-selected="setCategory(filter.id)"
+                />
+            </div>
+        </template>
+        <template v-if="currentStage === 1">
+            <div>
+                Stage 2 - {{ selectedCategory }}
+            </div>
+        </template>
     </section>
 </template>
 
@@ -85,22 +99,38 @@ export default {
     },
     data() {
         return {
-            currentStage: 'category',
+            currentStage: 0,
+            selectedCategory: '',
+            filterCategories: this.filters,
         };
     },
+    inject: ['filters'],
     computed: {
         currentHeading() {
             let headingText = '';
 
             switch (this.currentStage) {
-            case 'category':
+            case 0:
                 headingText = this.categoryHeading;
+                break;
+            case 1:
+                headingText = this.currentFilter.label;
                 break;
             default:
                 break;
             }
 
             return headingText;
+        },
+        currentFilter() {
+            let currentFilter = '';
+            this.filters.forEach((filter) => {
+                if (filter.id === this.selectedCategory) {
+                    currentFilter = filter;
+                }
+            });
+
+            return currentFilter;
         },
     },
     methods: {
@@ -109,6 +139,19 @@ export default {
          */
         closePanel() {
             this.$emit('close-panel');
+        },
+        /**
+         * Sets the currently chosen category
+         */
+        setCategory(cat) {
+            this.selectedCategory = cat;
+            this.currentStage += 1;
+        },
+        /**
+         * Moves one stage back
+         */
+        stageBack() {
+            this.currentStage -= 1;
         },
     },
 };
@@ -125,9 +168,17 @@ export default {
             margin-bottom: $spacer-8;
         }
 
-        &__close {
+        &__close,
+        &__back {
             position: absolute;
             top: $spacer-3;
+        }
+
+        &__back {
+            left: $spacer-3;
+        }
+
+        &__close {
             right: $spacer-3;
         }
 
@@ -145,7 +196,8 @@ export default {
             padding: $spacer-8;
             border-right: none;
 
-            &__close {
+            &__close,
+            &__back {
                 display: none;
             }
         }
