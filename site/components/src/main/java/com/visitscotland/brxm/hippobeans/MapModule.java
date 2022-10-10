@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.hippobeans;
 
+import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
@@ -56,5 +57,9 @@ public class MapModule extends BaseDocument {
     public List<MapCategory> getCategories() {
         return getChildBeansByName("visitscotland:categories",
                 MapCategory.class);
+    }
+
+    public HippoCompound getFeaturedPlacesItem() {
+        return getOnlyChild(getCategories());
     }
 }

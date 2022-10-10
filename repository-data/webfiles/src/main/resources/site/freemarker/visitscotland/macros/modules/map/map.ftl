@@ -13,5 +13,7 @@
 
         <@hst.html hippohtml=module.introduction/>
 
-        ${module.tabTitle}
+        ${module.tabTitle} </br>
+        ${module.mapControls} </br>
+        ${module.geoJson}
 </#macro>
