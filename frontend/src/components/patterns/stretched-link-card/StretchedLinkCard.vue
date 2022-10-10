@@ -25,7 +25,7 @@
         </VsWarning>
 
         <VsWarning
-            v-if="showWarning === 'full' && videoId !== ''"
+            v-if="errorType === 'full' && videoId !== ''"
             :size="warningSize"
             data-test="vs-stretched-link-card__full-warning"
             class="vs-stretched-link-card__full-warning
@@ -74,7 +74,7 @@
             </VsWarning>
 
             <VsWarning
-                v-if="videoId !== ''"
+                v-if="videoId !== '' && errorType === 'image'"
                 :size="warningSize"
                 data-test="vs-stretched-link-card__warning"
                 class="vs-stretched-link-card__image-warning
@@ -105,7 +105,7 @@
                 size="md"
                 ref="videoShow"
                 @click.native="emitShowModal"
-                v-if="videoId && videoLoaded && requiredCookiesExist"
+                v-if="videoId && videoLoaded && requiredCookiesExist && !jsDisabled"
             >
                 <span
                     class="vs-stretched-link-card__video-btn-text"
@@ -339,6 +339,10 @@ export default {
                 outputClasses += 'vs-stretched-link-card--video';
             }
 
+            if (this.showWarning) {
+                outputClasses += 'vs-stretched-link-card--warning';
+            }
+
             return outputClasses;
         },
         videoDetails() {
@@ -388,14 +392,16 @@ export default {
                 return this.errorType;
             }
 
+            if (this.jsDisabled) {
+                return true;
+            }
+
             return false;
         },
         warningMessage() {
             let message = '';
 
-            if (this.videoId && this.jsDisabled) {
-                message = this.noJsMessage;
-            } else if (this.showCookieWarning) {
+            if (this.showCookieWarning) {
                 message = this.noCookiesMessage;
             } else {
                 message = this.errorMessage;
@@ -598,7 +604,7 @@ export default {
         }
 
         .vs-stretched-link-card__full-warning--no-js,
-        .vs-stretched-link-card__warning--no-js {
+        .vs-stretched-link-card__image-warning--no-js {
             display: none;
         }
 
@@ -731,6 +737,26 @@ export default {
             .vs-stretched-link-card__full-warning--no-js,
             .vs-stretched-link-card__image-warning--no-js {
                 display: flex;
+            }
+        }
+
+        .vs-megalink-link-list {
+            .vs-stretched-link-card--warning {
+                overflow: hidden;
+                padding: 0;
+
+                &__img-container {
+                    width: 100%;
+                    max-width: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                .card-body {
+                    display: none;
+                }
             }
         }
     }
