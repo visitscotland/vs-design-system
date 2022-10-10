@@ -773,6 +773,7 @@ export default {
                     type="external"
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
+                    theme="light"
                 >
                     <template slot="stretchedCardCategory">
                         A category header
@@ -802,8 +803,9 @@ export default {
                 <VsStretchedLinkCard
                     link="https://visitscotland.com"
                     type="internal"
-                    imgSrc=""
+                    imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
+                    theme="light"
                 >
                     <template slot="stretchedCardHeader">
                         A Title Would Go Here
@@ -825,17 +827,10 @@ export default {
                     imgAlt="This is the alt text"
                     videoId="FlG6tbYaA88"
                     videoBtnText="Play Video"
+                    theme="light"
                 >
                     <template slot="stretchedCardCategory">
                         A category header
-                    </template>
-                    <template slot="stretchedCardPanels">
-                        <VsStretchedLinkPanels
-                            days="14"
-                            transport="car"
-                            transportName="Car"
-                            daysLabel="days"
-                        />
                     </template>
 
                     <template slot="stretchedCardHeader">
@@ -857,6 +852,7 @@ export default {
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
                     headingLevel="2"
+                    theme="light"
                 >
                     <template slot="stretchedCardCategory">
                         A category header
@@ -886,6 +882,9 @@ export default {
                 <VsVideo
                     videoId="FlG6tbYaA88"
                     class="mb-8"
+                    noCookiesMessage="Cookies need to be enabled to view this video"
+                    cookieBtnText="Manage cookies"
+                    noJsMessage="Javascript needs to be enabled to view this video"
                 />
             </VsCol>
         </VsRow>
