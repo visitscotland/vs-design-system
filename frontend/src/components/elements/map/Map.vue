@@ -353,8 +353,7 @@ export default {
             background-color: $color-white;
             border-radius: 0 !important;
 
-            &:active,
-            &:focus {
+            &:active {
                 background-color: $color-white;
             }
 
@@ -382,8 +381,31 @@ export default {
     }
 
     .mapboxgl-ctrl-fullscreen {
-        // TO DO: add icon once it's available (VS-4043)
-        // background-image: url('~@/assets/svg/icons/boat.svg');
+        background-image: url('~@/assets/images/icons/expand-primary.svg');
+
+        &:hover,
+        &:focus {
+            background-image: url('~@/assets/images/icons/expand-white.svg');
+        }
+    }
+
+    .mapboxgl-ctrl-shrink {
+        background-image: url('~@/assets/images/icons/compress-primary.svg');
+
+        &:hover,
+        &:focus {
+            background-image: url('~@/assets/images/icons/compress-white.svg');
+        }
+    }
+
+    .mapboxgl-ctrl {
+        & > button {
+            &:hover,
+            &:focus {
+                background-color: $color-theme-primary;
+            }
+        }
+
         .mapboxgl-ctrl-icon {
             display: none;
         }
