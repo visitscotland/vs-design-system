@@ -323,7 +323,7 @@ definitions:
               /script-footer:
                 jcr:primaryType: hst:sitemapitem
                 hst:componentconfigurationid: hst:pages/internal-script-footer
-          /_default_.:
+          /_default_:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
             hst:relativecontentpath: site/${1}
