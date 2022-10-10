@@ -3,7 +3,7 @@
 <#include "../../../../frontend/components/vs-link.ftl">
 
 <#include "../../global/preview-warning.ftl">
-Teruel, Spain
+
 <#-- @ftlvariable name="module" type="com.visitscotland.brxm.model.BannerModule"-->
 <#macro emergencyBanner module>
     <@previewWarning editMode module module.errorMessages />
