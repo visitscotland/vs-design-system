@@ -336,11 +336,11 @@ export default {
             }
 
             if (this.type === 'video') {
-                outputClasses += 'vs-stretched-link-card--video';
+                outputClasses += ' vs-stretched-link-card--video';
             }
 
-            if (this.showWarning) {
-                outputClasses += 'vs-stretched-link-card--warning';
+            if (this.showWarning && this.type === 'video') {
+                outputClasses += ' vs-stretched-link-card--warning';
             }
 
             return outputClasses;
@@ -362,7 +362,8 @@ export default {
             if (this.videoId && (this.jsDisabled || !this.requiredCookiesExist)) {
                 className = 'vs-stretched-link-card__img-container--warning ';
 
-                if (this.errorType === 'full' && this.cookiesInitStatus !== null) {
+                if (this.errorType === 'full' && (this.cookiesInitStatus !== null
+                    || this.jsDisabled)) {
                     className += 'vs-stretched-link-card__img-container--warning-full';
                 }
             }
