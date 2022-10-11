@@ -1,10 +1,10 @@
 /content/taxonomies:
   jcr:primaryType: hippotaxonomy:container
-  /Visitsctoland-categories:
+  /Visitscotland-categories:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:versionInfo']
     hippo:versionHistory: 82dd606e-6a14-4716-ae64-14851ffab3ce
-    /Visitsctoland-categories[1]:
+    /Visitscotland-categories[1]:
       jcr:primaryType: hippotaxonomy:taxonomy
       jcr:mixinTypes: ['hippostd:publishableSummary', 'mix:versionable']
       jcr:uuid: cab42352-ce45-4925-93c8-e8507374f506
@@ -178,7 +178,7 @@
               /en:
                 jcr:primaryType: hippotaxonomy:categoryinfo
                 hippotaxonomy:name: church
-    /Visitsctoland-categories[2]:
+    /Visitscotland-categories[2]:
       jcr:primaryType: hippotaxonomy:taxonomy
       jcr:mixinTypes: ['hippostd:publishableSummary', 'mix:referenceable', 'mix:versionable']
       jcr:uuid: 0149d1ec-eee8-445d-83cb-e22a48a26a30
@@ -350,7 +350,7 @@
               /en:
                 jcr:primaryType: hippotaxonomy:categoryinfo
                 hippotaxonomy:name: church
-    /Visitsctoland-categories[3]:
+    /Visitscotland-categories[3]:
       jcr:primaryType: hippotaxonomy:taxonomy
       jcr:mixinTypes: ['hippostd:publishableSummary', 'mix:referenceable']
       jcr:uuid: 6270c674-cc98-4416-843b-31ebcee006c3

@@ -64,7 +64,7 @@ public class MapFactory {
             JsonArray keys = new JsonArray();
             //get all the Taxonomy information
             TaxonomyManager taxonomyManager = HstServices.getComponentManager().getComponent("TaxonomyManager", "org.onehippo.taxonomy.contentbean");
-            Taxonomy vsTaxonomyTree = taxonomyManager.getTaxonomies().getTaxonomy("Visitsctoland-categories");
+            Taxonomy vsTaxonomyTree = taxonomyManager.getTaxonomies().getTaxonomy("Visitscotland-categories");
             for (Category child : vsTaxonomyTree.getCategoryByKey(taxonomy).getChildren()) {
                 keys.add(getFilterNode(child, request.getLocale()));
                 //find all the documents with a taxonomy
