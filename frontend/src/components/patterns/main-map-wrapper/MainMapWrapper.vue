@@ -1,28 +1,52 @@
 <template>
-    <section
-        class="vs-main-map-wrapper"
+    <VsContainer
         data-test="vs-main-map-wrapper"
     >
-        <VsContainer>
-            <VsRow>
-                <VsCol
-                    class="vs-main-map-wrapper__side-panel"
-                    md="4"
-                />
-                <VsCol
-                    class="vs-main-map-wrapper__map"
-                    md="8"
+        <VsRow>
+            <VsCol>
+                <div
+                    class="vs-main-map-wrapper"
                 >
-                    <VsMap
-                        :labels="{
-                        }"
-                        :pins="[
-                        ]"
-                    />
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-    </section>
+                    <div
+                        class="vs-main-map-wrapper__side-panel"
+                        :class="panelDisplayClass"
+                        data-test="vs-main-map-wrapper__side-panel"
+                    >
+                        <VsMainMapWrapperPanel
+                            @close-panel="closePanel"
+                        >
+                            <template slot="closePanelText">
+                                <slot name="closeSidePanelText" />
+                            </template>
+                        </VsMainMapWrapperPanel>
+                    </div>
+                    <div
+                        class="vs-main-map-wrapper__map"
+                        :class="mapDisplayClass"
+                    >
+                        <VsButton
+                            class="vs-main-map-wrapper__map-toggle"
+                            icon-only
+                            icon="bars-mobile-menu"
+                            size="md"
+                            variant="transparent"
+                            @click.native="openPanel"
+                        >
+                            <span class="sr-only">
+                                <slot name="openMapText" />
+                            </span>
+                        </VsButton>
+                        <VsMap
+                            :labels="{
+                            }"
+                            :pins="[
+                            ]"
+                        />
+                    </div>
+                </div>
+            </VsCol>
+        </VsRow>
+    </VsContainer>
 </template>
 
 <script>
@@ -32,6 +56,9 @@ import {
     VsCol,
 } from '@components/elements/grid';
 import VsMap from '@components/elements/map/Map';
+import VsButton from '@components/elements/button/Button/';
+import VsMainMapWrapperPanel from './components/MainMapWrapperPanel';
+
 /**
  * Renders a widget that display a map
  * and gives filtering options
@@ -48,6 +75,38 @@ export default {
         VsRow,
         VsCol,
         VsMap,
+        VsMainMapWrapperPanel,
+        VsButton,
+    },
+    data() {
+        return {
+            panelVisible: false,
+        };
+    },
+    computed: {
+        mapDisplayClass() {
+            return this.panelVisible ? 'd-none d-md-block' : '';
+        },
+        panelDisplayClass() {
+            return this.panelVisible ? '' : 'd-none d-md-block';
+        },
+    },
+    mounted() {
+        this.panelVisible = true;
+    },
+    methods: {
+        /**
+         * Close the side panel
+         */
+        closePanel() {
+            this.panelVisible = false;
+        },
+        /**
+         * Open the side panel
+         */
+        openPanel() {
+            this.panelVisible = true;
+        },
     },
 };
 </script>
@@ -55,6 +114,7 @@ export default {
 <style lang="scss">
     .vs-main-map-wrapper {
         height: 100vh;
+        display: flex;
 
         @include media-breakpoint-up(md) {
             height: 500px;
@@ -65,13 +125,24 @@ export default {
             height: 100%;
         }
 
+        &__side-panel {
+            width: 490px;
+        }
+
         &__map {
-            display: none;
             height: 100%;
             width: 100%;
+        }
+
+        &__map-toggle.vs-button {
+            background: $color-white;
+            position: absolute;
+            top: $spacer-4;
+            left: $spacer-4;
+            z-index: 1;
 
             @include media-breakpoint-up(md) {
-                display: block;
+                display: none;
             }
         }
     }
