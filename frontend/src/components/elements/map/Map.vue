@@ -398,6 +398,24 @@ export default {
         }
     }
 
+    .mapboxgl-ctrl-zoom-in {
+        background-image: url('~@/assets/images/icons/add-primary.svg');
+
+        &:hover,
+        &:focus {
+            background-image: url('~@/assets/images/icons/add-white.svg');
+        }
+    }
+
+    .mapboxgl-ctrl-zoom-out {
+        background-image: url('~@/assets/images/icons/subtract-primary.svg');
+
+        &:hover,
+        &:focus {
+            background-image: url('~@/assets/images/icons/subtract-white.svg');
+        }
+    }
+
     .mapboxgl-ctrl {
         & > button {
             &:hover,
