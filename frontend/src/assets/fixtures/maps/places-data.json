@@ -48,5 +48,15 @@
             "title": "Isle of Skye",
             "id": "skye"
         }
+    },
+    {
+        "properties": {
+            "category": {
+                "id": "cities",
+                "label": "Cities"
+            },
+            "title": "Glasgow",
+            "id": "glasgow"
+        }
     }
 ]
