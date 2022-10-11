@@ -97,6 +97,13 @@ export default {
             type: Array,
             required: true,
         },
+        /**
+         * Data for individual places
+         */
+        placesData: {
+            type: Array,
+            required: true,
+        },
     },
     data() {
         return {
@@ -131,6 +138,7 @@ export default {
     provide() {
         return {
             filters: this.filters,
+            placesData: this.placesData,
         };
     },
 };

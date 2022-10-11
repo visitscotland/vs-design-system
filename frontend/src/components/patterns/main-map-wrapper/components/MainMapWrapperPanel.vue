@@ -4,49 +4,77 @@
         class="vs-main-map-wrapper-panel"
     >
         <div
-            class="vs-main-map-wrapper-panel__back"
-            v-if="currentStage > 0"
+            class="vs-main-map-wrapper-panel__header-section"
+            :class="currentStage === 1 ?
+                'vs-main-map-wrapper-panel__header-section--with-spacer' : ''"
         >
-            <VsButton
-                icon-only
-                icon="internal-link"
-                icon-orientation="down"
-                size="md"
-                variant="secondary"
-                @click.native="stageBack"
-                data-test="vs-main-map-wrapper-panel--btn-back"
+            <div
+                class="vs-main-map-wrapper-panel__back"
+                v-if="currentStage > 0"
             >
-                <span class="sr-only">
-                    <!-- @slot Text for panel back button  -->
-                    <slot name="backBtnText" />
-                </span>
-            </VsButton>
-        </div>
+                <VsButton
+                    icon-only
+                    icon="internal-link"
+                    icon-orientation="down"
+                    size="md"
+                    variant="secondary"
+                    @click.native="stageBack"
+                    data-test="vs-main-map-wrapper-panel--btn-back"
+                >
+                    <span class="sr-only">
+                        <!-- @slot Text for panel back button  -->
+                        <slot name="backBtnText" />
+                    </span>
+                </VsButton>
+            </div>
 
-        <div class="vs-main-map-wrapper-panel__close">
-            <VsButton
-                icon-only
-                icon="close"
-                size="md"
-                variant="secondary"
-                @click.native="closePanel"
-                data-test="vs-main-map-wrapper-panel--btn-close"
+            <VsHeading
+                level="2"
+                override-style-level="4"
+                class="vs-main-map-wrapper__heading text-center mt-0"
+                v-if="currentHeading !== ''"
+                data-test="vs-main-map-categories__heading"
             >
-                <span class="sr-only">
-                    <!-- @slot Text for panel close button  -->
-                    <slot name="closeSidePanelText" />
-                </span>
-            </VsButton>
-        </div>
+                {{ currentHeading }}
+            </VsHeading>
 
-        <VsHeading
-            level="4"
-            class="vs-main-map-wrapper__heading text-center mt-0"
-            v-if="currentHeading !== ''"
-            data-test="vs-main-map-categories__heading"
-        >
-            {{ currentHeading }}
-        </VsHeading>
+            <div
+                class="vs-main-map-wrapper-panel__close d-lg-none"
+            >
+                <VsButton
+                    icon-only
+                    icon="close"
+                    size="md"
+                    variant="secondary"
+                    @click.native="closePanel"
+                    data-test="vs-main-map-wrapper-panel--btn-close"
+                >
+                    <span class="sr-only">
+                        <!-- @slot Text for panel close button  -->
+                        <slot name="closeSidePanelText" />
+                    </span>
+                </VsButton>
+            </div>
+
+            <div
+                class="vs-main-map-wrapper-panel__reset"
+                :class="currentStage < 2 ? 'd-lg-none' : ''"
+            >
+                <VsButton
+                    icon-only
+                    icon="close"
+                    size="md"
+                    variant="secondary"
+                    @click.native="resetPanel"
+                    data-test="vs-main-map-wrapper-panel--btn-reset"
+                >
+                    <span class="sr-only">
+                        <!-- @slot Text for panel reset button  -->
+                        <slot name="resetSidePanelText" />
+                    </span>
+                </VsButton>
+            </div>
+        </div>
 
         <template v-if="currentStage === 0">
             <div
@@ -61,8 +89,17 @@
             </div>
         </template>
         <template v-if="currentStage === 1">
-            <div>
-                Stage 2 - {{ selectedCategory }}
+            <div
+                v-for="place in placesData"
+                :key="place.id"
+            >
+                <VsMainMapWrapperListItem
+                    v-if="place.properties.category.id === selectedCategory"
+                    item-id="place.properties.id"
+                    @show-item-detail="showDetail(place.properties.id)"
+                >
+                    {{ place.properties.title }}
+                </VsMainMapWrapperListItem>
             </div>
         </template>
     </section>
@@ -72,6 +109,7 @@
 import VsButton from '@components/elements/button/Button/';
 import VsHeading from '@components/elements/heading/Heading';
 import VsMainMapWrapperCategory from './MainMapWrapperCategory';
+import VsMainMapWrapperListItem from './MainMapWrapperListItem';
 
 /**
  * Renders a side panel for the map wrapper component
@@ -87,6 +125,7 @@ export default {
         VsButton,
         VsMainMapWrapperCategory,
         VsHeading,
+        VsMainMapWrapperListItem,
     },
     props: {
         /**
@@ -102,9 +141,13 @@ export default {
             currentStage: 0,
             selectedCategory: '',
             filterCategories: this.filters,
+            selectedItem: '',
         };
     },
-    inject: ['filters'],
+    inject: [
+        'filters',
+        'placesData',
+    ],
     computed: {
         currentHeading() {
             let headingText = '';
@@ -153,6 +196,19 @@ export default {
         stageBack() {
             this.currentStage -= 1;
         },
+        /**
+         * Resets the panel
+         */
+        resetPanel() {
+            this.currentStage = 0;
+        },
+        /**
+         * Show an item's details
+         */
+        showDetail(id) {
+            this.currentStage = 2;
+            this.selectedItem = id;
+        },
     },
 };
 </script>
@@ -160,12 +216,16 @@ export default {
 <style lang="scss">
     .vs-main-map-wrapper-panel {
         position: relative;
-        padding: $spacer-11 $spacer-6 $spacer-6;
+        padding: $spacer-11 $spacer-3 $spacer-6;
         border: 1px solid $color-gray;
         height: 100%;
+        overflow-y: scroll;
 
-        h4.vs-heading {
-            margin-bottom: $spacer-8;
+        &__header-section {
+            display: flex;
+            min-height: 32px;
+            align-items: center;
+            margin-bottom: $spacer-5;
         }
 
         &__close,
@@ -182,6 +242,16 @@ export default {
             right: $spacer-3;
         }
 
+        &__reset {
+            display: none;
+        }
+
+        h2.vs-heading {
+            flex-grow: 1;
+            margin-top: $spacer-11;
+            margin-bottom: 0;
+        }
+
         .vs-main-wrapper-category:last-of-type {
             &::before {
                 display: none;
@@ -193,12 +263,30 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
-            padding: $spacer-8;
+            padding: $spacer-8 $spacer-4;
             border-right: none;
 
-            &__close,
-            &__back {
+            &__header-section {
+                display: flex;
+                margin-bottom: $spacer-7;
+
+                &--with-spacer {
+                    padding-right: $spacer-8;
+                }
+            }
+
+            &__close {
                 display: none;
+            }
+
+            &__back {
+                left: 0;
+                top: 0;
+                position: relative;
+            }
+
+            &__reset {
+                display: block;
             }
         }
     }
