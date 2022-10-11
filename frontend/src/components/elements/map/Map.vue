@@ -78,6 +78,14 @@ export default {
             type: String,
             default: 'vs-map',
         },
+        /**
+         * Whether or not the map is visible
+         * used for triggering resize
+         */
+        isVisible: {
+            type: Boolean,
+            required: true,
+        },
     },
     data() {
         return {
@@ -110,6 +118,13 @@ export default {
             popup: null,
         };
     },
+    watch: {
+        isVisible(newVal) {
+            if (newVal && this.mapbox.map !== null) {
+                this.mapbox.map.resize();
+            }
+        },
+    },
     mounted() {
         this.lazyloadMapComponent();
         this.isTablet = window.innerWidth >= 768;
@@ -135,6 +150,8 @@ export default {
             this.mapbox.map.on('rotate', () => {
                 this.mapbox.rotation = this.mapbox.map.transform.angle;
             });
+
+            this.mapbox.map.resize();
         },
         /**
          * Adds map to controls
@@ -307,10 +324,69 @@ export default {
 
     &__map {
         height: 100%;
+        position: relative;
     }
 
     &__no-js {
         display: none;
+    }
+
+    .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+        margin: $spacer-4;
+
+        & > button {
+            border: 2px solid $color-theme-primary;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 1rem 1rem;
+        }
+    }
+
+    .mapboxgl-ctrl-group:not(:empty) {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+
+        & > button {
+            width: 32px;
+            height: 32px;
+            background-color: $color-white;
+            border-radius: 0 !important;
+
+            &:active,
+            &:focus {
+                background-color: $color-white;
+            }
+
+            &:focus {
+                @extend %primary-button-focus;
+            }
+
+            &:not(:disabled):hover {
+                background-color: $color-theme-primary;
+            }
+
+            &.mapboxgl-ctrl-zoom-in {
+                margin-bottom: $spacer-2;
+            }
+
+            @include media-breakpoint-up(lg) {
+                width: 36px;
+                height: 36px;
+            }
+        }
+    }
+
+    .mapboxgl-ctrl-compass {
+        display: none;
+    }
+
+    .mapboxgl-ctrl-fullscreen {
+        // TO DO: add icon once it's available (VS-4043)
+        // background-image: url('~@/assets/svg/icons/boat.svg');
+        .mapboxgl-ctrl-icon {
+            display: none;
+        }
     }
 }
 
