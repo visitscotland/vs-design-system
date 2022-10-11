@@ -1,0 +1,52 @@
+[
+    {
+        "properties": {
+            "category": {
+                "id": "cities",
+                "label": "Cities"
+            },        
+            "title": "Aberdeen",
+            "id": "aberdeen"
+        }
+    },
+    {
+        "properties": {
+            "category": {
+                "id": "cities",
+                "label": "Cities"
+            },   
+            "title": "Dundee",
+            "id": "dundee"
+        }
+    },
+    {
+        "properties": {
+            "category": {
+                "id": "cities",
+                "label": "Cities"
+            },
+            "title": "Dunfermline",
+            "id": "dunfermline"
+        }
+    },
+    {
+        "properties": {
+            "category": {
+                "id": "cities",
+                "label": "Cities"
+            },
+            "title": "Edinburgh",
+            "id": "edinburgh"
+        }
+    },
+    {
+        "properties": {
+            "category": {
+                "id": "islands",
+                "label": "Islands"
+            },
+            "title": "Isle of Skye",
+            "id": "skye"
+        }
+    }
+]
