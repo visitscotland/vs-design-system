@@ -219,7 +219,7 @@ export default {
         padding: $spacer-11 $spacer-3 $spacer-6;
         border: 1px solid $color-gray;
         height: 100%;
-        overflow-y: scroll;
+        overflow-y: auto;
 
         &__header-section {
             display: flex;
