@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 07c7cf3a-2d23-40bf-8c04-f3bab762c4e9
+          jcr:uuid: 66e0e1b1-4eac-47c6-9aa1-4a30f033dfc7
           hipposysedit:node: true
           hipposysedit:supertype: ['hippotranslation:translated', 'hippotaxonomy:classifiable',
             'visitscotland:basedocument', 'hippostd:relaxed']
@@ -63,7 +63,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable', 'hippotaxonomy:classifiable']
           visitscotland:title: ''
           visitscotland:tabTitle: ''
-          jcr:uuid: 25990a96-bb98-4497-a8d9-124eb574fe1c
+          jcr:uuid: 6ea9f871-0036-464f-806b-3883c29f8f8b
           hippostdpubwf:lastModificationDate: 2022-06-10T13:36:38.111+01:00
           hippostdpubwf:creationDate: 2022-06-10T13:36:38.111+01:00
       /editor:templates:
@@ -115,7 +115,7 @@ definitions:
                 , removeButtons: ''PickImage,Youtube,Table,Bold,Underline,Strike,Subscript,Superscript''}'
           /tabTitle:
             jcr:primaryType: frontend:plugin
-            caption: Tab Title (H4)
+            caption: Tab Title (H3)
             field: tabTitle
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
