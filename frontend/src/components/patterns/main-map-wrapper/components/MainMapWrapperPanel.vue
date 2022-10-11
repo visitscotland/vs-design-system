@@ -1,5 +1,5 @@
 <template>
-    <div
+    <section
         data-test="vs-main-map-wrapper-panel"
         class="vs-main-map-wrapper-panel"
     >
@@ -8,7 +8,7 @@
                 icon-only
                 icon="close"
                 size="md"
-                variant="transparent"
+                variant="secondary"
                 @click.native="closePanel"
                 data-test="vs-main-map-wrapper-panel--btn"
             >
@@ -17,11 +17,47 @@
                 </span>
             </VsButton>
         </div>
-    </div>
+
+        <VsHeading
+            level="4"
+            class="vs-main-map-wrapper__heading text-center mt-0"
+            v-if="currentHeading !== ''"
+            data-test="vs-main-map-categories__heading"
+        >
+            {{ currentHeading }}
+        </VsHeading>
+
+        <!-- TO DO: change this to interation once
+            we have data from CMS -->
+        <div v-if="currentStage === 'category'">
+            <VsMainMapWrapperCategory
+                category-name="Cities"
+                type="cities"
+            />
+            <VsMainMapWrapperCategory
+                category-name="Towns"
+                type="towns"
+            />
+            <VsMainMapWrapperCategory
+                category-name="Islands"
+                type="islands"
+            />
+            <VsMainMapWrapperCategory
+                category-name="Regions"
+                type="regions"
+            />
+            <VsMainMapWrapperCategory
+                category-name="Featured Places"
+                type="featured"
+            />
+        </div>
+    </section>
 </template>
 
 <script>
 import VsButton from '@components/elements/button/Button/';
+import VsHeading from '@components/elements/heading/Heading';
+import VsMainMapWrapperCategory from './MainMapWrapperCategory';
 
 /**
  * Renders a side panel for the map wrapper component
@@ -35,6 +71,37 @@ export default {
     release: '0.0.1',
     components: {
         VsButton,
+        VsMainMapWrapperCategory,
+        VsHeading,
+    },
+    props: {
+        /**
+         * Heading for the categories view
+         */
+        categoryHeading: {
+            type: String,
+            default: '',
+        },
+    },
+    data() {
+        return {
+            currentStage: 'category',
+        };
+    },
+    computed: {
+        currentHeading() {
+            let headingText = '';
+
+            switch (this.currentStage) {
+            case 'category':
+                headingText = this.categoryHeading;
+                break;
+            default:
+                break;
+            }
+
+            return headingText;
+        },
     },
     methods: {
         /**
@@ -49,13 +116,36 @@ export default {
 
 <style lang="scss">
     .vs-main-map-wrapper-panel {
-        padding: $spacer-6;
+        position: relative;
+        padding: $spacer-11 $spacer-6 $spacer-6;
+        border: 1px solid $color-gray;
+        height: 100%;
+
+        h4.vs-heading {
+            margin-bottom: $spacer-8;
+        }
 
         &__close {
-            display: flex;
-            justify-content: flex-end;
+            position: absolute;
+            top: $spacer-3;
+            right: $spacer-3;
+        }
 
-            @include media-breakpoint-up(md) {
+        .vs-main-wrapper-category:last-of-type {
+            &::before {
+                display: none;
+
+                @include media-breakpoint-up(lg) {
+                    display: block;
+                }
+            }
+        }
+
+        @include media-breakpoint-up(lg) {
+            padding: $spacer-8;
+            border-right: none;
+
+            &__close {
                 display: none;
             }
         }
