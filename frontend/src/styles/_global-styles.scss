@@ -9,6 +9,10 @@
 body {
     font-size: $font-size-body;
 
+    @media only screen and (min-width: $max-overflow-width) {
+        overflow-x: hidden;
+    }
+
     @include media-breakpoint-up(md) {
         font-size: $font-size-body-md;
     }
