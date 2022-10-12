@@ -99,7 +99,7 @@ public class PageTemplateBuilder {
                 } else if (item instanceof LongCopy){
                     processLongCopy(request, page, (LongCopy) item);
                 } else if (item instanceof MapModule) {
-                    page.modules.add(mapFactory.getModule(request, (MapModule) item));
+                    page.modules.add(mapFactory.getModule(request, (MapModule) item, getDocument(request)));
                 } else if (item instanceof Stackla) {
                     page.modules.add(stacklaFactory.getStacklaModule((Stackla) item, request.getLocale()));
                 }  else if (item instanceof TravelInformation) {
