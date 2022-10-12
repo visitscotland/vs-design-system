@@ -6,7 +6,8 @@
                 "label": "Cities"
             },        
             "title": "Aberdeen",
-            "id": "aberdeen"
+            "id": "aberdeen",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
         }
     },
     {
@@ -16,7 +17,8 @@
                 "label": "Cities"
             },   
             "title": "Dundee",
-            "id": "dundee"
+            "id": "dundee",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
         }
     },
     {
@@ -26,7 +28,8 @@
                 "label": "Cities"
             },
             "title": "Dunfermline",
-            "id": "dunfermline"
+            "id": "dunfermline",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
         }
     },
     {
@@ -36,7 +39,8 @@
                 "label": "Cities"
             },
             "title": "Edinburgh",
-            "id": "edinburgh"
+            "id": "edinburgh",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
         }
     },
     {
@@ -46,7 +50,8 @@
                 "label": "Islands"
             },
             "title": "Isle of Skye",
-            "id": "skye"
+            "id": "skye",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
         }
     },
     {
@@ -56,7 +61,8 @@
                 "label": "Cities"
             },
             "title": "Glasgow",
-            "id": "glasgow"
+            "id": "glasgow",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
         }
     }
 ]

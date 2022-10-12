@@ -2,16 +2,15 @@
     <button
         class="vs-main-map-wrapper-list-item"
         data-test="vs-main-map-wrapper-list-item"
-        @click="showItemDetail(itemId)"
-        @keyup.enter="showItemDetail(itemId)"
+        @click="showItemDetail(itemData.id)"
+        @keyup.enter="showItemDetail(itemData.id)"
     >
-        <img
-            src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-            alt="alt"
+        <VsImg
+            :src="itemData.image"
             class="vs-main-map-wrapper-list-item__img"
-        >
-        <!-- @slot Default slot for item name text -->
-        <slot />
+        />
+
+        {{ itemData.title }}
 
         <VsIcon
             name="internal-link"
@@ -23,36 +22,29 @@
 </template>
 
 <script>
-// import VsButton from '@components/elements/button/Button';
+import VsImg from '@components/elements/img/Img';
 import VsIcon from '@components/elements/icon/Icon';
 /**
  * Renders a list item for the map filter tool.
  * Consists of an image and text in the form of a link.
  *
- * @displayName Main Map Wrapper
+ * @displayName Main Map Wrapper List Item
  */
 export default {
     name: 'VsMainMapWrapperListItem',
     status: 'prototype',
     release: '0.0.1',
     components: {
-        // VsButton,
+        VsImg,
         VsIcon,
     },
     props: {
         /**
          * Name of item
          */
-        itemName: {
-            type: String,
-            default: '',
-        },
-        /**
-         * Id of item
-         */
-        itemId: {
-            type: String,
-            default: '',
+        itemData: {
+            type: Object,
+            required: true,
         },
     },
     methods: {

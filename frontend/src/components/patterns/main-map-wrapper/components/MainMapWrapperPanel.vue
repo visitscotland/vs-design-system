@@ -95,11 +95,9 @@
             >
                 <VsMainMapWrapperListItem
                     v-if="place.properties.category.id === selectedCategory"
-                    item-id="place.properties.id"
+                    :item-data="place.properties"
                     @show-item-detail="showDetail(place.properties.id)"
-                >
-                    {{ place.properties.title }}
-                </VsMainMapWrapperListItem>
+                />
             </div>
         </template>
     </section>
