@@ -102,6 +102,11 @@
                 </VsMainMapWrapperListItem>
             </div>
         </template>
+        <template v-if="currentStage === 2">
+            <VsMainMapWrapperDetail
+                :content-data="currentPlaceData"
+            />
+        </template>
     </section>
 </template>
 
@@ -110,6 +115,7 @@ import VsButton from '@components/elements/button/Button/';
 import VsHeading from '@components/elements/heading/Heading';
 import VsMainMapWrapperCategory from './MainMapWrapperCategory';
 import VsMainMapWrapperListItem from './MainMapWrapperListItem';
+import VsMainMapWrapperDetail from './MainMapWrapperDetail';
 
 /**
  * Renders a side panel for the map wrapper component
@@ -126,6 +132,7 @@ export default {
         VsMainMapWrapperCategory,
         VsHeading,
         VsMainMapWrapperListItem,
+        VsMainMapWrapperDetail,
     },
     props: {
         /**
@@ -159,6 +166,9 @@ export default {
             case 1:
                 headingText = this.currentFilter.label;
                 break;
+            case 2:
+                headingText = this.currentPlaceData.properties.title;
+                break;
             default:
                 break;
             }
@@ -174,6 +184,9 @@ export default {
             });
 
             return currentFilter;
+        },
+        currentPlaceData() {
+            return this.placesData.filter((obj) => obj.properties.id === this.selectedItem)[0];
         },
     },
     methods: {
