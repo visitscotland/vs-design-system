@@ -95,8 +95,8 @@ public class LinkService {
             return createExternalLink(locale, ((ItineraryExternalLink) item).getExternalLink().getLink(), bundle.getCtaLabel(((ItineraryExternalLink) item).getExternalLink().getLabel(), locale));
         } else if (item instanceof CMSLink) {
             return createCMSLink(module, locale, (CMSLink) item);
-        }else if (item instanceof Destination) {
-            return createSimpleLink((Destination) item, module, locale);
+        }else if (item instanceof Page) {
+            return createSimpleLink((Page) item, module, locale);
         }
 
         logger.warn("The document {} could not be turned into a link", item.getPath());

@@ -28,6 +28,7 @@ import org.onehippo.taxonomy.api.Taxonomy;
 import org.onehippo.taxonomy.api.TaxonomyManager;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Locale;
 
 import static com.visitscotland.brxm.dms.DMSConstants.DMSProduct.*;
@@ -35,6 +36,10 @@ import static org.hippoecm.hst.content.beans.query.builder.ConstraintBuilder.con
 
 @Component
 public class MapFactory {
+
+    static final String GEOMETRY = "geometry";
+    static final String LABEL = "label";
+    static final String FEATURE_PLACES_LABEL = "map.feature-default-title";
 
     private final LinkService linkService;
     private final LocationLoader locationLoader;
@@ -51,75 +56,68 @@ public class MapFactory {
         this.bundle = bundle;
     }
 
-    public MapsModule getModule(HstRequest request, MapModule doc , Page page) {
+    public MapsModule getModule(HstRequest request, MapModule mapModuleDocument , Page page) {
         MapsModule module = new MapsModule();
 
-        module.setTitle(doc.getTitle());
-        module.setIntroduction(doc.getCopy());
-        module.setTabTitle(doc.getTabTitle());
-        module.setFeauredPlaces(doc.getCategories());
+        module.setTitle(mapModuleDocument.getTitle());
+        module.setIntroduction(mapModuleDocument.getCopy());
+        module.setTabTitle(mapModuleDocument.getTabTitle());
 
-        JsonObject featureCollection = new JsonObject();
-        featureCollection.addProperty("type", "FeatureCollection");
+        JsonObject featureCollectionGeoJson = new JsonObject();
+        featureCollectionGeoJson.addProperty("type", "FeatureCollection");
         JsonArray features = new JsonArray();
-        JsonArray keysMain = new JsonArray();
-        JsonObject jsonParameters = new JsonObject();
-        if (page instanceof General) {
-            for (String taxonomy : doc.getKeys()) {
-                JsonObject jsonFilters = new JsonObject();
-                JsonArray keys = new JsonArray();
-                //get all the Taxonomy information
-                TaxonomyManager taxonomyManager = HstServices.getComponentManager().getComponent("TaxonomyManager", "org.onehippo.taxonomy.contentbean");
-                Taxonomy vsTaxonomyTree = taxonomyManager.getTaxonomies().getTaxonomy("Visitscotland-categories");
-                for (Category child : vsTaxonomyTree.getCategoryByKey(taxonomy).getChildren()) {
-                    keys.add(getFilterNode(child, request.getLocale()));
-                    //find all the documents with a taxonomy/category
-                    HstQueryResult result = getMapDocumentsByTaxonomy(request, child);
-                    if (result != null) {
-                        final HippoBeanIterator it = result.getHippoBeans();
-
-                        while (it.hasNext()) {
-                            JsonObject feature = new JsonObject();
-                            features.add(getMapDocuments(request, child, module, feature, it));
-                        }
-                    }
-                }
-                //TODO implement featured places and move it to a different method
-                if (doc.getFeaturedPlacesItem() != null) {
-                    for (MapCategory featuredPlaces : doc.getCategories()) {
-                        JsonObject filter = new JsonObject();
-                        filter.addProperty("id", "map.feature-default-title");
-                        if (Contract.isEmpty(featuredPlaces.getTitle())) {
-                            filter.addProperty("label", bundle.getResourceBundle("map", "map.feature-default-title", request.getLocale()));
-                        } else {
-                            filter.addProperty("label", featuredPlaces.getTitle());
-                        }
-                        keys.add(filter);
-                        for(HippoBean link:featuredPlaces.getMapPins()) {
-                            JsonObject filter2 = new JsonObject();
-                            if (link instanceof HippoMirror) {
-                                //filter.addProperty("title", featuredPlaces.getTitle());
-                                features.add(filter2);
-                            }
-                        }
-                    }
-                }
-
-                jsonFilters.add("filters", keys);
-                keysMain.add(jsonFilters);
-            }
-        }else{
-            //TODO Maps for Cities and Region pages
+        JsonArray mapControlsArray = new JsonArray();
+        JsonArray keys = new JsonArray();
+        if (!(page instanceof General)) {
+            buildMapDestinationPages(request, mapModuleDocument, module, keys, features);
+        } else {
+            buildMapGeneralPages(request, mapModuleDocument, module, keys, features);
         }
-
-        featureCollection.add("features", features);
-        jsonParameters.add("map", keysMain);
+        //add first Json for map controls (include filters) to the module
+        JsonObject mapControlFilters = new JsonObject();
+        mapControlFilters.add("filters", keys);
+        mapControlsArray.add(mapControlFilters);
+        JsonObject jsonParameters = new JsonObject();
+        jsonParameters.add("map", mapControlsArray);
         module.setFilters(jsonParameters);
-        module.setGeoJson(featureCollection);
-        module.setHippoBean(doc);
+
+        //add second json (geoJson) to the module
+        featureCollectionGeoJson.add("features", features);
+        module.setGeoJson(featureCollectionGeoJson);
+        module.setHippoBean(mapModuleDocument);
         return module;
     }
 
+    private void buildMapGeneralPages (HstRequest request, MapModule mapModuleDocument, MapsModule module, JsonArray keys, JsonArray features){
+        for (String taxonomy : mapModuleDocument.getKeys()) {
+            //get all the Taxonomy information
+            TaxonomyManager taxonomyManager = HstServices.getComponentManager().getComponent("TaxonomyManager", "org.onehippo.taxonomy.contentbean");
+            Taxonomy vsTaxonomyTree = taxonomyManager.getTaxonomies().getTaxonomy("Visitscotland-categories");
+            for (Category child : vsTaxonomyTree.getCategoryByKey(taxonomy).getChildren()) {
+                keys.add(getFilterNode(child, request.getLocale()));
+                //find all the documents with a taxonomy/category
+                HstQueryResult result = getMapDocumentsByTaxonomy(request, child);
+                if (result != null) {
+                    final HippoBeanIterator it = result.getHippoBeans();
+
+                    while (it.hasNext()) {
+                        JsonObject feature = new JsonObject();
+                        features.add(getMapDocuments(request.getLocale(), child, module, feature, it));
+                    }
+                }
+            }
+            if (mapModuleDocument.getFeaturedPlacesItem() != null) {
+                addFeaturePlacesNode(module, mapModuleDocument.getCategories(), request.getLocale() , keys, features);
+            }
+        }
+    }
+
+    private void buildMapDestinationPages (HstRequest request, MapModule mapModuleDocument, MapsModule module, JsonArray keys , JsonArray features){
+        //TODO differenciate between cities and regions and bring the right filters for each of them.
+        if (mapModuleDocument.getFeaturedPlacesItem() != null) {
+            addFeaturePlacesNode(module, mapModuleDocument.getCategories(), request.getLocale() , keys, features);
+        }
+    }
 
     /** Method to build the property section for the GeoJson file generated for maps
      *
@@ -142,7 +140,7 @@ public class MapFactory {
 
         if (link != null) {
             JsonObject linkNode = new JsonObject();
-            linkNode.addProperty("label", link.getLabel());
+            linkNode.addProperty(LABEL, link.getLabel());
             linkNode.addProperty("link", link.getLink());
             linkNode.addProperty("type", link.getType().name());
             properties.add("link", linkNode);
@@ -172,9 +170,40 @@ public class MapFactory {
     private JsonObject getCategoryNode(Category child, Locale locale) {
         JsonObject filter = new JsonObject();
         filter.addProperty("id", child.getKey());
-        filter.addProperty("label", child.getInfo(locale).getName());
+        filter.addProperty(LABEL, child.getInfo(locale).getName());
 
         return filter;
+    }
+
+    private void addFeaturePlacesNode(MapsModule module, List<MapCategory> categories, Locale locale , JsonArray keys, JsonArray features ) {
+        for (MapCategory featuredPlaces : categories) {
+            JsonObject filter = new JsonObject();
+            filter.addProperty("id", FEATURE_PLACES_LABEL);
+            if (Contract.isEmpty(featuredPlaces.getTitle())) {
+                filter.addProperty(LABEL, bundle.getResourceBundle("map", FEATURE_PLACES_LABEL, locale));
+            } else {
+                filter.addProperty(LABEL, featuredPlaces.getTitle());
+            }
+            keys.add(filter);
+            for(HippoBean link:featuredPlaces.getMapPins()){
+                JsonObject feat = new JsonObject();
+                if (link instanceof HippoMirror) {
+                    if (((HippoMirror) link).getReferencedBean() instanceof Destination){
+                        Destination destination = (Destination)((HippoMirror) link).getReferencedBean();
+                        buildPageNode(locale, filter, module,destination,feat);
+                    }else{
+                        buildStopNode(locale,filter,module, (Stop) ((HippoMirror) link).getReferencedBean(), feat);
+                    }
+
+                }else{
+                    SpecialLinkCoordinates linkCoordinates = ((SpecialLinkCoordinates) link);
+                    Page otherPage = (Page)(linkCoordinates).getLink();
+                    buildPageNode(locale, filter, module,otherPage,feat);
+                    feat.add(GEOMETRY, getGeometryNode(((SpecialLinkCoordinates)link).getCoordinates().getLatitude(), ((SpecialLinkCoordinates)link).getCoordinates().getLongitude()));
+                }
+                features.add(feat);
+            }
+        }
     }
 
     /**
@@ -192,8 +221,6 @@ public class MapFactory {
             }
             filter.add("subCategory",childrenArray);
         }
-
-
         return filter;
     }
 
@@ -224,28 +251,22 @@ public class MapFactory {
      * Method that build properties and geometry nodes for the GeoJson file to be consumed by feds
      * for each destination and stop with the category/taxonomy selected
      *
-     * @param request the request
+     * @param locale the locale/language
      * @param category the category/taxonomy selected
      * @param module the map module
      * @param feature jsonobject to keep adding destinations or stops
      * @param it iterator to iterate the list of destinations or stops
      * @return JsonObject with the right format to be sent to FEDs
      */
-    private JsonObject getMapDocuments(HstRequest request, Category category, MapsModule module, JsonObject feature, HippoBeanIterator it){
+    private JsonObject getMapDocuments(Locale locale, Category category, MapsModule module, JsonObject feature, HippoBeanIterator it){
         //find all the documents with a taxonomy
         final HippoBean bean = it.nextHippoBean();
         if (bean != null) {
             feature.addProperty("type", "Feature");
             if (bean instanceof Destination) {
-                Destination destination = ((Destination) bean);
-                feature.add("properties", getPropertyNode(destination.getTitle(), destination.getTeaser(),
-                        imageFactory.createImage(destination.getImage(), module, request.getLocale()), getCategoryNode(category, request.getLocale()),
-                        linkService.createFindOutMoreLink(module, request.getLocale(), destination), destination.getCanonicalUUID()));
-
-                LocationObject location = locationLoader.getLocation(destination.getLocation(), Locale.UK);
-                feature.add("geometry", getGeometryNode(location.getLatitude(), location.getLongitude()));
+                buildPageNode(locale, getCategoryNode(category, locale), module,((Destination) bean), feature);
             } else {
-               buildStopNode(request.getLocale(),category,module, ((Stop) bean), feature);
+                buildStopNode(locale,getCategoryNode(category, locale),module, ((Stop) bean), feature);
             }
         }
         return feature;
@@ -260,7 +281,7 @@ public class MapFactory {
      * @param stop stop document information
      * @param feature JsonObject to add the Stop information
      */
-    private void buildStopNode(Locale locale, Category category, MapsModule module,Stop stop, JsonObject feature){
+    private void buildStopNode(Locale locale, JsonObject category, MapsModule module,Stop stop, JsonObject feature){
         Double latitude = null;
         Double longitude = null;
 
@@ -280,8 +301,27 @@ public class MapFactory {
             longitude = ((ItineraryExternalLink) item).getCoordinates().getLongitude();
         }
         feature.add("properties", getPropertyNode(stop.getTitle(),stop.getDescription().getContent(),
-               image, getCategoryNode(category, locale),linkService.createFindOutMoreLink(module, locale, item),stop.getCanonicalUUID()));
-        feature.add("geometry", getGeometryNode(latitude, longitude));
+               image, category,linkService.createFindOutMoreLink(module, locale, item),stop.getCanonicalUUID()));
+        feature.add(GEOMETRY, getGeometryNode(latitude, longitude));
+    }
+
+    /**
+     * Method to build nodes when the document selected is a Destination
+     *
+     * @param locale language of the destination
+     * @param category the category/taxonomy for the destination
+     * @param module map module
+     * @param page the destination or other pages
+     * @param feature json to build the features and geometry nodes
+     */
+    private void buildPageNode(Locale locale, JsonObject category, MapsModule module,Page page, JsonObject feature){
+        feature.add("properties", getPropertyNode(page.getTitle(), page.getTeaser(),
+                imageFactory.createImage(page.getImage(), module, locale), category,
+                linkService.createFindOutMoreLink(module, locale, page), page.getCanonicalUUID()));
+        if (page instanceof Destination){
+            LocationObject location = locationLoader.getLocation(((Destination)page).getLocation(), Locale.UK);
+            feature.add(GEOMETRY, getGeometryNode(location.getLatitude(), location.getLongitude()));
+        }
     }
 }
 

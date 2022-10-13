@@ -10,7 +10,6 @@ public class MapsModule extends Module {
     private String title;
     private HippoHtml introduction;
     private String tabTitle;
-    private List<MapCategory> feauredPlaces;
     private JsonObject mapControls;
     private JsonObject geoJson;
 
@@ -37,14 +36,6 @@ public class MapsModule extends Module {
 
     public void setTabTitle(String tabTitle) {
         this.tabTitle = tabTitle;
-    }
-
-    public List<MapCategory> getFeauredPlaces() {
-        return feauredPlaces;
-    }
-
-    public void setFeauredPlaces(List<MapCategory> feauredPlaces) {
-        this.feauredPlaces = feauredPlaces;
     }
 
     public JsonObject getFilters() {
