@@ -27,10 +27,10 @@ describe('VsMainMapWrapperListItem', () => {
     describe(':methods', () => {
         it('should emit `show-item-detail` with a value of the `itemId` prop when the button is clicked', async() => {
             const wrapper = factoryShallowMount();
-
+            const mockMethod = jest.spyOn(wrapper.vm, 'showItemDetail');
             await wrapper.trigger('click');
 
-            expect(wrapper.emitted('show-item-detail')[0]).toEqual(['aberdeen']);
+            expect(mockMethod).toHaveBeenCalledWith('aberdeen');
         });
     });
 });
