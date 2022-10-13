@@ -73,7 +73,7 @@ public class MapFactory {
                 Taxonomy vsTaxonomyTree = taxonomyManager.getTaxonomies().getTaxonomy("Visitscotland-categories");
                 for (Category child : vsTaxonomyTree.getCategoryByKey(taxonomy).getChildren()) {
                     keys.add(getFilterNode(child, request.getLocale()));
-                    //find all the documents with a taxonomy
+                    //find all the documents with a taxonomy/category
                     HstQueryResult result = getMapDocumentsByTaxonomy(request, child);
                     if (result != null) {
                         final HippoBeanIterator it = result.getHippoBeans();
@@ -84,7 +84,7 @@ public class MapFactory {
                         }
                     }
                 }
-
+                //TODO implement featured places and move it to a different method
                 if (doc.getFeaturedPlacesItem() != null) {
                     for (MapCategory featuredPlaces : doc.getCategories()) {
                         JsonObject filter = new JsonObject();
@@ -109,11 +109,8 @@ public class MapFactory {
                 keysMain.add(jsonFilters);
             }
         }else{
-            //Cities or Region page
+            //TODO Maps for Cities and Region pages
         }
-
-
-
 
         featureCollection.add("features", features);
         jsonParameters.add("map", keysMain);
@@ -200,12 +197,19 @@ public class MapFactory {
         return filter;
     }
 
-    private HstQueryResult getMapDocumentsByTaxonomy(HstRequest request, Category child) {
+    /**
+     * Get all the Destinations and stops categorised with the taxonomy wanted in alphabetic order
+     *
+     * @param request the request
+     * @param category the category or taxonomy wanted
+     * @return all the destinations and stop with that category selected
+     */
+    private HstQueryResult getMapDocumentsByTaxonomy(HstRequest request, Category category) {
         HstRequestContext requestContext = request.getRequestContext();
         HippoBean scope = requestContext.getSiteContentBaseBean();
         HstQuery hstQuery = HstQueryBuilder.create(scope)
                 .ofTypes(Destination.class, Stop.class)
-                .where(constraint("@hippotaxonomy:keys").contains(child.getKey())).orderByAscending("visitscotland:title").build();
+                .where(constraint("@hippotaxonomy:keys").contains(category.getKey())).orderByAscending("visitscotland:title").build();
 
         try {
             return hstQuery.execute();
@@ -216,7 +220,18 @@ public class MapFactory {
     }
 
 
-    private JsonObject getMapDocuments(HstRequest request, Category child, MapsModule module, JsonObject feature, HippoBeanIterator it){
+    /**
+     * Method that build properties and geometry nodes for the GeoJson file to be consumed by feds
+     * for each destination and stop with the category/taxonomy selected
+     *
+     * @param request the request
+     * @param category the category/taxonomy selected
+     * @param module the map module
+     * @param feature jsonobject to keep adding destinations or stops
+     * @param it iterator to iterate the list of destinations or stops
+     * @return JsonObject with the right format to be sent to FEDs
+     */
+    private JsonObject getMapDocuments(HstRequest request, Category category, MapsModule module, JsonObject feature, HippoBeanIterator it){
         //find all the documents with a taxonomy
         final HippoBean bean = it.nextHippoBean();
         if (bean != null) {
@@ -224,13 +239,13 @@ public class MapFactory {
             if (bean instanceof Destination) {
                 Destination destination = ((Destination) bean);
                 feature.add("properties", getPropertyNode(destination.getTitle(), destination.getTeaser(),
-                        imageFactory.createImage(destination.getImage(), module, request.getLocale()), getCategoryNode(child, request.getLocale()),
+                        imageFactory.createImage(destination.getImage(), module, request.getLocale()), getCategoryNode(category, request.getLocale()),
                         linkService.createFindOutMoreLink(module, request.getLocale(), destination), destination.getCanonicalUUID()));
 
                 LocationObject location = locationLoader.getLocation(destination.getLocation(), Locale.UK);
                 feature.add("geometry", getGeometryNode(location.getLatitude(), location.getLongitude()));
             } else {
-               buildStopNode(request.getLocale(),child,module, ((Stop) bean), feature);
+               buildStopNode(request.getLocale(),category,module, ((Stop) bean), feature);
             }
         }
         return feature;
