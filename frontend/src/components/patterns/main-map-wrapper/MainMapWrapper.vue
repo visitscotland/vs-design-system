@@ -14,7 +14,13 @@
                     >
                         <VsMainMapWrapperPanel
                             :category-heading="categoryHeading"
+                            :selected-category="selectedCategory"
+                            :current-stage="currentStage"
+                            :selected-item="selectedItem"
+                            @set-category="setCategory"
+                            @set-stage="setStage"
                             @close-panel="closePanel"
+                            @show-item-detail="showDetail"
                         >
                             <template slot="closePanelText">
                                 <slot name="closeSidePanelText" />
@@ -108,6 +114,10 @@ export default {
     data() {
         return {
             panelVisible: false,
+            currentStage: 0,
+            selectedCategory: '',
+            filterCategories: this.filters,
+            selectedItem: '',
         };
     },
     computed: {
@@ -133,6 +143,24 @@ export default {
          */
         openPanel() {
             this.panelVisible = true;
+        },
+        /**
+         * Show an item's details
+         */
+        showDetail(id) {
+            this.selectedItem = id;
+        },
+        /**
+         * Sets the currently chosen category
+         */
+        setCategory(cat) {
+            this.selectedCategory = cat;
+        },
+        /**
+         * Sets the current stage
+         */
+        setStage(num) {
+            this.currentStage = num;
         },
     },
     provide() {
