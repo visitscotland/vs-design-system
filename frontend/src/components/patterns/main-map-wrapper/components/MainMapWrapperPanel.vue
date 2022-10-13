@@ -31,9 +31,9 @@
             <VsHeading
                 level="2"
                 override-style-level="4"
-                class="vs-main-map-wrapper__heading text-center mt-0"
+                class="vs-main-map-wrapper-panel__heading text-center mt-0"
                 v-if="currentHeading !== ''"
-                data-test="vs-main-map-categories__heading"
+                data-test="vs-main-map-wrapper-panel__heading"
             >
                 {{ currentHeading }}
             </VsHeading>
@@ -84,7 +84,6 @@
                 <VsMainMapWrapperCategory
                     :category-name="filter.label"
                     :type="filter.id"
-                    @category-selected="setCategory(filter.id)"
                 />
             </div>
         </template>
@@ -95,7 +94,7 @@
             >
                 <VsMainMapWrapperListItem
                     v-if="place.properties.category.id === selectedCategory"
-                    item-id="place.properties.id"
+                    :item-id="place.properties.id"
                     @show-item-detail="showDetail(place.properties.id)"
                 >
                     {{ place.properties.title }}
@@ -142,14 +141,27 @@ export default {
             type: String,
             default: '',
         },
-    },
-    data() {
-        return {
-            currentStage: 0,
-            selectedCategory: '',
-            filterCategories: this.filters,
-            selectedItem: '',
-        };
+        /**
+         * Currently selected category
+         */
+        selectedCategory: {
+            type: String,
+            default: '',
+        },
+        /**
+         * The current stage
+         */
+        currentStage: {
+            type: Number,
+            required: true,
+        },
+        /**
+         * The currently selected item
+         */
+        selectedItem: {
+            type: String,
+            default: '',
+        },
     },
     inject: [
         'filters',
@@ -197,30 +209,22 @@ export default {
             this.$emit('close-panel');
         },
         /**
-         * Sets the currently chosen category
-         */
-        setCategory(cat) {
-            this.selectedCategory = cat;
-            this.currentStage += 1;
-        },
-        /**
          * Moves one stage back
          */
         stageBack() {
-            this.currentStage -= 1;
+            this.setStage(this.currentStage -= 1);
         },
         /**
          * Resets the panel
          */
         resetPanel() {
-            this.currentStage = 0;
+            this.setStage(0);
         },
         /**
-         * Show an item's details
+         * Emits the current stage
          */
-        showDetail(id) {
-            this.currentStage = 2;
-            this.selectedItem = id;
+        setStage(stageNum) {
+            this.$emit('set-stage', stageNum);
         },
     },
 };

@@ -1,11 +1,58 @@
 import { shallowMount } from '@vue/test-utils';
 import VsMainMapWrapperPanel from '../MainMapWrapperPanel';
 
-const factoryShallowMount = () => shallowMount(VsMainMapWrapperPanel, {
+const factoryShallowMount = (propsData) => shallowMount(VsMainMapWrapperPanel, {
     slots: {
         closeSidePanelText: 'Close panel',
         backBtnText: 'Back',
         resetSidePanelText: 'Reset panel',
+    },
+    propsData: {
+        ...propsData,
+    },
+    provide: {
+        placesData: [{
+            properties: {
+                category: {
+                    id: 'cities',
+                    label: 'Cities',
+                },
+                title: 'Aberdeen',
+                id: 'aberdeen',
+            },
+        },
+        {
+            properties: {
+                category: {
+                    id: 'cities',
+                    label: 'Cities',
+                },
+                title: 'Dundee',
+                id: 'dundee',
+            },
+        }],
+        filters: [
+            {
+                id: 'cities',
+                label: 'Cities',
+            },
+            {
+                id: 'towns',
+                label: 'Towns',
+            },
+            {
+                id: 'islands',
+                label: 'Islands',
+            },
+            {
+                id: 'regions',
+                label: 'Regions',
+            },
+            {
+                id: 'featured',
+                label: 'Featured',
+            },
+        ],
     },
 });
 
@@ -25,57 +72,44 @@ describe('VsMainMapWrapperPanel', () => {
             expect(wrapper.emitted('close-panel')).toBeTruthy();
         });
 
-        it('should move the stage back one when the back button is clicked', async() => {
-            const wrapper = factoryShallowMount();
-            wrapper.setData({
-                currentStage: 2,
+        it('should emit `set-stage` with a value of currentStage - 1 when the back button is clicked', async() => {
+            const wrapper = factoryShallowMount({
+                currentStage: 1,
             });
             await wrapper.vm.$nextTick();
             const backBtn = wrapper.find('[data-test="vs-main-map-wrapper-panel--btn-back"]');
 
             backBtn.trigger('click');
 
-            expect(wrapper.vm.currentStage).toBe(1);
+            expect(wrapper.emitted('set-stage')[0]).toEqual([0]);
         });
 
-        it('should move the stage forward when the `setCategory` method is called', () => {
-            const wrapper = factoryShallowMount();
-            wrapper.setData({
-                currentStage: 1,
-            });
-            wrapper.vm.setCategory('cities');
-
-            expect(wrapper.vm.currentStage).toBe(2);
-        });
-
-        it('should move the update the `selectedCategory` value when the `setCategory` method is called', () => {
-            const wrapper = factoryShallowMount();
-            wrapper.setData({
-                currentStage: 1,
-            });
-            wrapper.vm.setCategory('cities');
-
-            expect(wrapper.vm.selectedCategory).toBe('cities');
-        });
-
-        it('should move the update the `curretStange` value when the `resetPanel` method is called', () => {
-            const wrapper = factoryShallowMount();
-            wrapper.setData({
+        it('should emit `set-stage` with a value of 0 when the `resetPanel` method is called', () => {
+            const wrapper = factoryShallowMount({
                 currentStage: 1,
             });
             wrapper.vm.resetPanel();
 
-            expect(wrapper.vm.currentStage).toBe(0);
+            expect(wrapper.emitted('set-stage')[0]).toEqual([0]);
+        });
+
+        it('should emit `set-stage` when the `setStage` method is called', () => {
+            const wrapper = factoryShallowMount({
+                currentStage: 1,
+            });
+            wrapper.vm.setStage(2);
+
+            expect(wrapper.emitted('set-stage')[0]).toEqual([2]);
         });
     });
 
     describe(':props', () => {
         it('should display a header with the `categoryHeading` prop value', async() => {
-            const wrapper = factoryShallowMount();
-            await wrapper.setProps({
+            const wrapper = factoryShallowMount({
                 categoryHeading: 'This is a heading',
+                currentStage: 0,
             });
-            const panelHeading = wrapper.find('[data-test="vs-main-map-categories__heading"]');
+            const panelHeading = wrapper.find('[data-test="vs-main-map-wrapper-panel__heading"]');
 
             expect(panelHeading.text()).toBe('This is a heading');
         });
@@ -97,9 +131,8 @@ describe('VsMainMapWrapperPanel', () => {
         });
 
         it('should display a button with the `backBtnText` slot value', async() => {
-            const wrapper = factoryShallowMount();
-            wrapper.setData({
-                currentStage: 2,
+            const wrapper = factoryShallowMount({
+                currentStage: 1,
             });
             await wrapper.vm.$nextTick();
             const backBtn = wrapper.find('[data-test="vs-main-map-wrapper-panel--btn-back"]');
