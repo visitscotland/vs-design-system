@@ -2,11 +2,30 @@
     <div
         class="vs-main-map-wrapper-detail"
         data-test="vs-main-map-wrapper-detail"
-    />
+    >
+        <VsImg
+            :src="contentData.properties.image"
+            class="vs-main-map-wrapper-detail__image mb-5 mb-lg-3"
+        />
+
+        <VsHeading
+            level="2"
+            override-style-level="4"
+            class="vs-main-map-wrapper-detail__heading mt-0 mb-4 d-lg-none"
+            data-test="vs-main-map-wrapper-detail__heading"
+        >
+            {{ contentData.properties.title }}
+        </VsHeading>
+
+        <p data-test="vs-main-map-wrapper-detail__description">
+            {{ contentData.properties.description }}
+        </p>
+    </div>
 </template>
 
 <script>
 import VsImg from '@components/elements/img/Img';
+import VsHeading from '@components/elements/heading/Heading';
 
 /**
  * Renders a details of a place in the map component.
@@ -18,9 +37,10 @@ export default {
     name: 'VsMainMapWrapperDetail',
     status: 'prototype',
     release: '0.0.1',
-    components: [
+    components: {
         VsImg,
-    ],
+        VsHeading,
+    },
     props: {
         /**
          * Data for component content
@@ -34,5 +54,14 @@ export default {
 </script>
 
 <style lang="scss">
+    .vs-main-map-wrapper-detail {
+        &__image {
+            max-width: 100%;
+        }
 
+        @include media-breakpoint-up(lg) {
+            font-size: $font-size-4;
+            margin: 0 $spacer-2;
+        }
+    }
 </style>
