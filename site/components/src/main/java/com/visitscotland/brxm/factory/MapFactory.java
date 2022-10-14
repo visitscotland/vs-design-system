@@ -42,7 +42,6 @@ public class MapFactory {
 
     static final String GEOMETRY = "geometry";
     static final String LABEL = "label";
-    static final String FEATURE_PLACES_LABEL = "map.feature-default-title";
 
     private final LinkService linkService;
     private final LocationLoader locationLoader;
@@ -224,9 +223,9 @@ public class MapFactory {
     private void addFeaturePlacesNode(MapsModule module, List<MapCategory> categories, Locale locale, JsonArray keys, JsonArray features,MapModule mapModuleDocument ) {
         for (MapCategory featuredPlaces : categories) {
             JsonObject filter = new JsonObject();
-            filter.addProperty("id", FEATURE_PLACES_LABEL);
+            filter.addProperty("id", "featured");
             if (Contract.isEmpty(featuredPlaces.getTitle())) {
-                filter.addProperty(LABEL, bundle.getResourceBundle("map", FEATURE_PLACES_LABEL, locale));
+                filter.addProperty(LABEL, bundle.getResourceBundle("map", "map.feature-default-title", locale));
             } else {
                 filter.addProperty(LABEL, featuredPlaces.getTitle());
             }
