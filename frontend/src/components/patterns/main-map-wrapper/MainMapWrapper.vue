@@ -110,6 +110,13 @@ export default {
             type: Array,
             required: true,
         },
+        /**
+         * Translatable text for button
+         */
+        discoverText: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
@@ -167,6 +174,8 @@ export default {
         return {
             filters: this.filters,
             placesData: this.placesData,
+            selectedItem: this.selectedItem,
+            discoverText: this.discoverText,
         };
     },
 };
@@ -190,7 +199,8 @@ export default {
             width: 100%;
 
             @include media-breakpoint-up(lg) {
-                width: 490px
+                flex: 0 0 354px;
+                max-width: 354px;
             }
         }
 
