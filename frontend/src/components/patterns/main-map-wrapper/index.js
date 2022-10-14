@@ -3,6 +3,7 @@ import VsMainMapWrapperPanel from './components/MainMapWrapperPanel';
 import VsMainMapWrapperCategory from './components/MainMapWrapperCategory';
 import VsMainMapWrapperListItem from './components/MainMapWrapperListItem';
 import VsMainMapWrapperDetail from './components/MainMapWrapperDetail';
+import VsMainMapWrapperButtons from './components/MainMapWrapperButtons';
 
 export default {
     VsMainMapWrapper,
@@ -10,4 +11,5 @@ export default {
     VsMainMapWrapperCategory,
     VsMainMapWrapperListItem,
     VsMainMapWrapperDetail,
+    VsMainMapWrapperButtons,
 };
