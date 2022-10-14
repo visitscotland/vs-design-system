@@ -1,8 +1,12 @@
 <template>
-    <div class="vs-main-map-wrapper-buttons">
+    <div
+        class="vs-main-map-wrapper-buttons"
+        data-test="vs-main-map-wrapper-buttons"
+    >
         <VsButton
             block
             :href="contentData.properties.link"
+            data-test="vs-main-map-wrapper-buttons__discover"
         >
             {{ discoverText }} {{ contentData.properties.title }}
         </VsButton>

@@ -2,11 +2,11 @@
     <section
         data-test="vs-main-map-wrapper-panel"
         class="vs-main-map-wrapper-panel"
+        :class="currentStage === 2 ? 'vs-main-map-wrapper-panel--small-padding' : ''"
     >
         <div
             class="vs-main-map-wrapper-panel__header-section"
-            :class="currentStage === 1 ?
-                'vs-main-map-wrapper-panel__header-section--with-spacer' : ''"
+            :class="headerClasses"
         >
             <div
                 class="vs-main-map-wrapper-panel__back"
@@ -32,6 +32,7 @@
                 level="2"
                 override-style-level="4"
                 class="vs-main-map-wrapper-panel__heading text-center mt-0"
+                :class="currentStage === 2 ? 'd-none d-lg-block' : ''"
                 v-if="currentHeading !== ''"
                 data-test="vs-main-map-wrapper-panel__heading"
             >
@@ -105,6 +106,10 @@
             <VsMainMapWrapperDetail
                 :content-data="currentPlaceData"
             />
+
+            <VsMainMapWrapperButtons
+                :content-data="currentPlaceData"
+            />
         </template>
     </section>
 </template>
@@ -115,6 +120,7 @@ import VsHeading from '@components/elements/heading/Heading';
 import VsMainMapWrapperCategory from './MainMapWrapperCategory';
 import VsMainMapWrapperListItem from './MainMapWrapperListItem';
 import VsMainMapWrapperDetail from './MainMapWrapperDetail';
+import VsMainMapWrapperButtons from './MainMapWrapperButtons';
 
 /**
  * Renders a side panel for the map wrapper component
@@ -132,6 +138,7 @@ export default {
         VsHeading,
         VsMainMapWrapperListItem,
         VsMainMapWrapperDetail,
+        VsMainMapWrapperButtons,
     },
     props: {
         /**
@@ -187,6 +194,17 @@ export default {
 
             return headingText;
         },
+        headerClasses() {
+            if (this.currentStage === 1) {
+                return 'vs-main-map-wrapper-panel__header-section--with-spacer';
+            }
+
+            if (this.currentStage === 2) {
+                return 'vs-main-map-wrapper-panel__header-section--overlapped';
+            }
+
+            return '';
+        },
         currentFilter() {
             let currentFilter = '';
             this.filters.forEach((filter) => {
@@ -233,16 +251,26 @@ export default {
 <style lang="scss">
     .vs-main-map-wrapper-panel {
         position: relative;
-        padding: $spacer-11 $spacer-3 $spacer-6;
+        padding: $spacer-11 $spacer-3 $spacer-0;
         border: 1px solid $color-gray;
         height: 100%;
         overflow-y: auto;
+        overflow-x: hidden;
+
+        &--small-padding {
+            padding-top: $spacer-6;
+        }
 
         &__header-section {
             display: flex;
             min-height: 32px;
             align-items: center;
             margin-bottom: $spacer-5;
+
+            &--overlapped {
+                position: absolute;
+                width: calc(100% - #{$spacer-6});
+            }
         }
 
         &__close,
@@ -280,7 +308,7 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
-            padding: $spacer-8 $spacer-4;
+            padding: $spacer-8 $spacer-4 $spacer-0;
             border-right: none;
 
             &__header-section {
@@ -289,6 +317,11 @@ export default {
 
                 &--with-spacer {
                     padding-right: $spacer-8;
+                }
+
+                &--overlapped {
+                    position: relative;
+                    width: 100%;
                 }
             }
 
