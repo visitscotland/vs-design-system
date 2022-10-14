@@ -9,9 +9,9 @@
         :uppercase="false"
     >
         <!-- @slot Default slot contains text for the button -->
-        <span class="vs-accordion-toggle__text">
+        <div class="vs-accordion-toggle__text">
             <slot />
-        </span>
+        </div>
         <span class="vs-accordion-toggle__icon">
             <!-- @slot Put the icon to be used when panel is open  -->
             <slot
