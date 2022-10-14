@@ -10,6 +10,7 @@
             icon="internal-link"
             icon-position="right"
             size="sm"
+            @click.native="selectCategory(type)"
         >
             <div>
                 <VsSvg
@@ -50,6 +51,14 @@ export default {
         type: {
             type: String,
             required: true,
+        },
+    },
+    methods: {
+        /**
+         * Emits category type
+         */
+        selectCategory(type) {
+            this.$emit('category-selected', type);
         },
     },
 };
