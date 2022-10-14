@@ -9,6 +9,7 @@ import com.visitscotland.brxm.dms.model.LocationObject;
 import com.visitscotland.brxm.hippobeans.*;
 import com.visitscotland.brxm.model.FlatImage;
 import com.visitscotland.brxm.model.FlatLink;
+import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.model.MapsModule;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
@@ -171,7 +172,7 @@ public class MapFactory {
 
         if (!Contract.isNull(link)){
             JsonObject linkNode = new JsonObject();
-            linkNode.addProperty(LABEL, link.getLabel());
+            linkNode.addProperty(LABEL, link.getLabel() + " " + title);
             linkNode.addProperty("link", link.getLink());
             linkNode.addProperty("type", link.getType().name());
             properties.add("link", linkNode);
@@ -348,12 +349,15 @@ public class MapFactory {
     private void buildStopNode(Locale locale, JsonObject category, MapsModule module, Stop stop, JsonObject feature, MapModule mapModuleDocument){
         Double latitude = null;
         Double longitude = null;
+        FlatLink flatLink = null;
 
         HippoBean item = stop.getStopItem();
         FlatImage image = imageFactory.createImage(stop.getImage(), module, locale);
         if (item instanceof DMSLink) {
             JsonNode dmsNode = dmsDataService.productCard(((DMSLink) item).getProduct(), locale);
             if (!Contract.isNull(dmsNode)) {
+                flatLink = linkService.createDmsLink(locale,(DMSLink) item, dmsNode);
+                flatLink.setLabel(bundle.getResourceBundle("map", "map.discover", locale));
                 if (Contract.isNull(stop.getImage()) && dmsNode.has(IMAGE)) {
                     image = imageFactory.createImage(dmsNode, module, locale);
                 }
@@ -363,12 +367,14 @@ public class MapFactory {
                 }
             }
             } else if (item instanceof ItineraryExternalLink) {
-                latitude = ((ItineraryExternalLink) item).getCoordinates().getLatitude();
-                longitude = ((ItineraryExternalLink) item).getCoordinates().getLongitude();
+                ItineraryExternalLink externalStop = ((ItineraryExternalLink) item);
+                latitude = externalStop.getCoordinates().getLatitude();
+                longitude = externalStop.getCoordinates().getLongitude();
+                flatLink = new FlatLink(bundle.getResourceBundle("map", "map.discover", locale),externalStop.getExternalLink().getLink(), LinkType.EXTERNAL);
             }
             if (!Contract.isNull(latitude) && !Contract.isNull(longitude)) {
                 feature.add("properties", getPropertyNode(stop.getTitle(), stop.getDescription().getContent(),
-                        image, category, linkService.createFindOutMoreLink(module, locale, item), stop.getCanonicalUUID()));
+                        image, category, flatLink, stop.getCanonicalUUID()));
                 feature.add(GEOMETRY, getGeometryNode(latitude, longitude));
             }else{
                 String errorMessage = String.format("Failed to create map card '%s' , please review the document attached at: %s", mapModuleDocument.getDisplayName(), mapModuleDocument.getPath() );
@@ -387,9 +393,11 @@ public class MapFactory {
      * @param feature json to build the features and geometry nodes
      */
     private void buildPageNode(Locale locale, JsonObject category, MapsModule module,Page page, JsonObject feature){
+        FlatLink flatLink = linkService.createSimpleLink(page, module, locale);
+        flatLink.setLabel(bundle.getResourceBundle("map", "map.discover", locale));
         feature.add("properties", getPropertyNode(page.getTitle(), page.getTeaser(),
                 imageFactory.createImage(page.getImage(), module, locale), category,
-                linkService.createFindOutMoreLink(module, locale, page), page.getCanonicalUUID()));
+                flatLink, page.getCanonicalUUID()));
         if (page instanceof Destination){
             LocationObject location = locationLoader.getLocation(((Destination)page).getLocation(), Locale.UK);
             feature.add(GEOMETRY, getGeometryNode(location.getLatitude(), location.getLongitude()));
