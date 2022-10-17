@@ -327,8 +327,9 @@ public class MapFactory {
         //find all the documents with a taxonomy
         final HippoBean bean = it.nextHippoBean();
         if (!Contract.isNull(bean)) {
-            feature.addProperty("type", "Feature");
+
             if (bean instanceof Destination) {
+                feature.addProperty("type", "Feature");
                 buildPageNode(locale, getCategoryNode(category, locale), module,((Destination) bean), feature);
             } else {
                 buildStopNode(locale,getCategoryNode(category, locale),module, ((Stop) bean), feature, mapModuleDocument);
@@ -373,7 +374,8 @@ public class MapFactory {
                 flatLink = new FlatLink(bundle.getResourceBundle("map", "map.discover", locale),externalStop.getExternalLink().getLink(), LinkType.EXTERNAL);
             }
             if (!Contract.isNull(latitude) && !Contract.isNull(longitude)) {
-                feature.add("properties", getPropertyNode(stop.getTitle(), stop.getDescription().getContent(),
+                feature.addProperty("type", "Feature");
+                feature.add("properties", getPropertyNode(stop.getTitle(), stop.getDescription().getContent().trim().replaceAll("\"", "'"),
                         image, category, flatLink, stop.getCanonicalUUID()));
                 feature.add(GEOMETRY, getGeometryNode(latitude, longitude));
             }else{
