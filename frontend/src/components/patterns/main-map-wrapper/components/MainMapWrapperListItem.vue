@@ -77,6 +77,7 @@ export default {
         min-height: 88px;
         transition: box-shadow $duration-slowly;
         border-bottom: 1px solid $color-gray-tint-5;
+        text-align: left;
 
         &:hover {
             box-shadow: $shadow_card;
