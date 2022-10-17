@@ -1,5 +1,6 @@
 package com.visitscotland.brxm.model;
 
+import com.google.gson.JsonObject;
 import com.visitscotland.brxm.hippobeans.MapCategory;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
@@ -9,7 +10,9 @@ public class MapsModule extends Module {
     private String title;
     private HippoHtml introduction;
     private String tabTitle;
-    private List<MapCategory> feauredPlaces;
+    private JsonObject mapControls;
+    private JsonObject geoJson;
+
 
     public String getTitle() {
         return title;
@@ -35,11 +38,19 @@ public class MapsModule extends Module {
         this.tabTitle = tabTitle;
     }
 
-    public List<MapCategory> getFeauredPlaces() {
-        return feauredPlaces;
+    public JsonObject getFilters() {
+        return mapControls;
     }
 
-    public void setFeauredPlaces(List<MapCategory> feauredPlaces) {
-        this.feauredPlaces = feauredPlaces;
+    public void setFilters(JsonObject filters) {
+        this.mapControls = filters;
+    }
+
+    public JsonObject getGeoJson() {
+        return geoJson;
+    }
+
+    public void setGeoJson(JsonObject geoJson) {
+        this.geoJson = geoJson;
     }
 }

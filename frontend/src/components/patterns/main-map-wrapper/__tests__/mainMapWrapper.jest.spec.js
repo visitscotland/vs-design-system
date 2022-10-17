@@ -39,6 +39,30 @@ describe('VsMainMapWrapper', () => {
 
             expect(panel.classes('d-none')).toBe(false);
         });
+
+        it('should change the `selectedItem` data when the `showDetail` method is fired', async() => {
+            const wrapper = factoryShallowMount();
+
+            wrapper.vm.showDetail('test');
+            await wrapper.vm.$nextTick();
+            expect(wrapper.vm.selectedItem).toBe('test');
+        });
+
+        it('should change the `selectedCategory` data when the `setCategory` method is fired', async() => {
+            const wrapper = factoryShallowMount();
+
+            wrapper.vm.setCategory('cities');
+            await wrapper.vm.$nextTick();
+            expect(wrapper.vm.selectedCategory).toBe('cities');
+        });
+
+        it('should change the `currentStage` data when the `setStage` method is fired', async() => {
+            const wrapper = factoryShallowMount();
+
+            wrapper.vm.setStage(2);
+            await wrapper.vm.$nextTick();
+            expect(wrapper.vm.currentStage).toBe(2);
+        });
     });
 
     describe(':slots', () => {

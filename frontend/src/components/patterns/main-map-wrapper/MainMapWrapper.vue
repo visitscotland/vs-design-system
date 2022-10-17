@@ -14,7 +14,13 @@
                     >
                         <VsMainMapWrapperPanel
                             :category-heading="categoryHeading"
+                            :selected-category="selectedCategory"
+                            :current-stage="currentStage"
+                            :selected-item="selectedItem"
+                            @set-category="setCategory"
+                            @set-stage="setStage"
                             @close-panel="closePanel"
+                            @show-item-detail="showDetail"
                         >
                             <template slot="closePanelText">
                                 <slot name="closeSidePanelText" />
@@ -104,10 +110,21 @@ export default {
             type: Array,
             required: true,
         },
+        /**
+         * Translatable text for button
+         */
+        discoverText: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
             panelVisible: false,
+            currentStage: 0,
+            selectedCategory: '',
+            filterCategories: this.filters,
+            selectedItem: '',
         };
     },
     computed: {
@@ -134,11 +151,31 @@ export default {
         openPanel() {
             this.panelVisible = true;
         },
+        /**
+         * Show an item's details
+         */
+        showDetail(id) {
+            this.selectedItem = id;
+        },
+        /**
+         * Sets the currently chosen category
+         */
+        setCategory(cat) {
+            this.selectedCategory = cat;
+        },
+        /**
+         * Sets the current stage
+         */
+        setStage(num) {
+            this.currentStage = num;
+        },
     },
     provide() {
         return {
             filters: this.filters,
             placesData: this.placesData,
+            selectedItem: this.selectedItem,
+            discoverText: this.discoverText,
         };
     },
 };
@@ -162,7 +199,8 @@ export default {
             width: 100%;
 
             @include media-breakpoint-up(lg) {
-                width: 490px
+                flex: 0 0 354px;
+                max-width: 354px;
             }
         }
 
