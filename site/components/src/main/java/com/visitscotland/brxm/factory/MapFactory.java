@@ -281,7 +281,6 @@ public class MapFactory {
         HstQueryResult result = getMapDocumentsByTaxonomy(request, category);
         if (result != null) {
             final HippoBeanIterator it = result.getHippoBeans();
-
             while (it.hasNext()) {
                 JsonObject feature = new JsonObject();
                 features.add(getMapDocuments(request.getLocale(), category, module, feature, it, mapModuleDocument));
