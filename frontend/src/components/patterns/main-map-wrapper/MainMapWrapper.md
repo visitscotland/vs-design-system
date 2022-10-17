@@ -7,6 +7,7 @@ user to filter and search for data contained on the map.
     categoryHeading="Explore places to go"
     :filters="maps.mapFilters"
     :places-data="maps.placesData"
+    discover-text="discover"
 >
     <template slot="closeSidePanelText">
         Close search and filter panel
