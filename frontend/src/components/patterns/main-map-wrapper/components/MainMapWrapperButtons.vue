@@ -47,14 +47,14 @@ export default {
     .vs-main-map-wrapper-buttons {
         position: sticky;
         bottom: 0;
-        padding: 1rem 0;
+        padding: $spacer-4 0;
         width: 100%;
-        background: white;
+        background: $color-white;
         border-top: 4px solid red;
         text-align: center;
 
         @include media-breakpoint-up(lg) {
-            padding: 1rem;
+            padding: $spacer-4;
         }
     }
 </style>
