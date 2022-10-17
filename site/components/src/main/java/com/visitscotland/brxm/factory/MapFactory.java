@@ -326,7 +326,6 @@ public class MapFactory {
         //find all the documents with a taxonomy
         final HippoBean bean = it.nextHippoBean();
         if (!Contract.isNull(bean)) {
-
             if (bean instanceof Destination) {
                 feature.addProperty("type", "Feature");
                 buildPageNode(locale, getCategoryNode(category, locale), module,((Destination) bean), feature);
