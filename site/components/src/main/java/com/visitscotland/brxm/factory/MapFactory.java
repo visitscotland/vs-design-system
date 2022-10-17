@@ -281,7 +281,6 @@ public class MapFactory {
         HstQueryResult result = getMapDocumentsByTaxonomy(request, category);
         if (result != null) {
             final HippoBeanIterator it = result.getHippoBeans();
-
             while (it.hasNext()) {
                 JsonObject feature = new JsonObject();
                 features.add(getMapDocuments(request.getLocale(), category, module, feature, it, mapModuleDocument));
@@ -327,8 +326,8 @@ public class MapFactory {
         //find all the documents with a taxonomy
         final HippoBean bean = it.nextHippoBean();
         if (!Contract.isNull(bean)) {
-            feature.addProperty("type", "Feature");
             if (bean instanceof Destination) {
+                feature.addProperty("type", "Feature");
                 buildPageNode(locale, getCategoryNode(category, locale), module,((Destination) bean), feature);
             } else {
                 buildStopNode(locale,getCategoryNode(category, locale),module, ((Stop) bean), feature, mapModuleDocument);
@@ -373,7 +372,12 @@ public class MapFactory {
                 flatLink = new FlatLink(bundle.getResourceBundle("map", "map.discover", locale),externalStop.getExternalLink().getLink(), LinkType.EXTERNAL);
             }
             if (!Contract.isNull(latitude) && !Contract.isNull(longitude)) {
-                feature.add("properties", getPropertyNode(stop.getTitle(), stop.getDescription().getContent(),
+                feature.addProperty("type", "Feature");
+                String description = stop.getDescription().getContent().trim().replaceAll("\"", "'");
+                if (description.startsWith("<p>") && description.endsWith("</p>")) {
+                    description = description.substring(3, description.length() - 4);
+                }
+                feature.add("properties", getPropertyNode(stop.getTitle(), description,
                         image, category, flatLink, stop.getCanonicalUUID()));
                 feature.add(GEOMETRY, getGeometryNode(latitude, longitude));
             }else{
