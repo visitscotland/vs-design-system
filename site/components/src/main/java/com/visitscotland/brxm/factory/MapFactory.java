@@ -374,7 +374,9 @@ public class MapFactory {
             if (!Contract.isNull(latitude) && !Contract.isNull(longitude)) {
                 feature.addProperty("type", "Feature");
                 String description = stop.getDescription().getContent().trim().replaceAll("\"", "'");
-                description = description.substring(3, description.length()-4);
+                if (description.startsWith("<p>") && description.endsWith("</p>")) {
+                    description = description.substring(3, description.length() - 4);
+                }
                 feature.add("properties", getPropertyNode(stop.getTitle(), description,
                         image, category, flatLink, stop.getCanonicalUUID()));
                 feature.add(GEOMETRY, getGeometryNode(latitude, longitude));
