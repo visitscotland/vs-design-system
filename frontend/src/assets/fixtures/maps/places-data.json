@@ -1,0 +1,80 @@
+[
+    {
+        "properties": {
+            "category": {
+                "id": "cities",
+                "label": "Cities"
+            },        
+            "title": "Aberdeen",
+            "id": "aberdeen",
+            "description": "Aberdeen. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non tristique urna. Pellentesque sit amet nunc nec lectus sagittis viverra. Nulla vitae congue mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed volutpat turpis. Nullam ac cursus sem. Praesent eleifend nisl at lorem volutpat, ut congue velit sagittis. In hac habitasse platea dictumst.",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm",
+            "link": "https://www.visitscotland.com/"
+        }
+    },
+    {
+        "properties": {
+            "category": {
+                "id": "cities",
+                "label": "Cities"
+            },   
+            "title": "Dundee",
+            "id": "dundee",
+            "description": "Dundee. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non tristique urna. Pellentesque sit amet nunc nec lectus sagittis viverra. Nulla vitae congue mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed volutpat turpis. Nullam ac cursus sem. Praesent eleifend nisl at lorem volutpat, ut congue velit sagittis. In hac habitasse platea dictumst.",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm",
+            "link": "https://www.visitscotland.com/"
+        }
+    },
+    {
+        "properties": {
+            "category": {
+                "id": "cities",
+                "label": "Cities"
+            },
+            "title": "Dunfermline",
+            "id": "dunfermline",
+            "description": "Dunfermline. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non tristique urna. Pellentesque sit amet nunc nec lectus sagittis viverra. Nulla vitae congue mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed volutpat turpis. Nullam ac cursus sem. Praesent eleifend nisl at lorem volutpat, ut congue velit sagittis. In hac habitasse platea dictumst.",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm",
+            "link": "https://www.visitscotland.com/"
+        }
+    },
+    {
+        "properties": {
+            "category": {
+                "id": "cities",
+                "label": "Cities"
+            },
+            "title": "Edinburgh",
+            "id": "edinburgh",
+            "description": "Edinburgh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non tristique urna. Pellentesque sit amet nunc nec lectus sagittis viverra. Nulla vitae congue mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed volutpat turpis. Nullam ac cursus sem. Praesent eleifend nisl at lorem volutpat, ut congue velit sagittis. In hac habitasse platea dictumst.",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm",
+            "link": "https://www.visitscotland.com/"
+        }
+    },
+    {
+        "properties": {
+            "category": {
+                "id": "islands",
+                "label": "Islands"
+            },
+            "title": "Isle of Skye",
+            "id": "skye",
+            "description": "Skye. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non tristique urna. Pellentesque sit amet nunc nec lectus sagittis viverra. Nulla vitae congue mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed volutpat turpis. Nullam ac cursus sem. Praesent eleifend nisl at lorem volutpat, ut congue velit sagittis. In hac habitasse platea dictumst.",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm",
+            "link": "https://www.visitscotland.com/"
+        }
+    },
+    {
+        "properties": {
+            "category": {
+                "id": "cities",
+                "label": "Cities"
+            },
+            "title": "Glasgow",
+            "id": "glasgow",
+            "description": "Glasgow. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non tristique urna. Pellentesque sit amet nunc nec lectus sagittis viverra. Nulla vitae congue mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed volutpat turpis. Nullam ac cursus sem. Praesent eleifend nisl at lorem volutpat, ut congue velit sagittis. In hac habitasse platea dictumst.",
+            "image": "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm",
+            "link": "https://www.visitscotland.com/"
+        }
+    }
+]
