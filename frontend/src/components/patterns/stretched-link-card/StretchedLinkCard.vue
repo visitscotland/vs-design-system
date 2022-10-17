@@ -19,18 +19,20 @@
             <template
                 v-if="imgSrc"
             >
-                <VsImg
-                    :src="imgSrc"
-                    :alt="imgAlt"
-                    :srcset="`${imgSrc}?size=xs 300w,
-                        ${imgSrc}?size=sm 600w,
-                        ${imgSrc}?size=md 1200w,
-                        ${imgSrc}?size=lg 2048w`"
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    :low-res-image="`${imgSrc}?size=xxs`"
-                    class="vs-stretched-link-card__img"
-                    data-test="vs-stretched-link-card__img"
-                />
+                <div class="vs-stretched-link-card__img-inner-container">
+                    <VsImg
+                        :src="imgSrc"
+                        :alt="imgAlt"
+                        :srcset="`${imgSrc}?size=xs 300w,
+                            ${imgSrc}?size=sm 600w,
+                            ${imgSrc}?size=md 1200w,
+                            ${imgSrc}?size=lg 2048w`"
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        :low-res-image="`${imgSrc}?size=xxs`"
+                        class="vs-stretched-link-card__img"
+                        data-test="vs-stretched-link-card__img"
+                    />
+                </div>
             </template>
 
             <VsWarning
@@ -461,8 +463,7 @@ export default {
         .vs-stretched-link-card__img-container {
             width: 100%;
             max-width: 100%;
-            align-self: flex-start;
-            flex-shrink: 0; // IE11 fix, prevents image vertical stretching
+            padding-bottom: 66.6%;
             position: relative;
 
             &--warning {
@@ -478,8 +479,20 @@ export default {
             }
         }
 
+        .vs-stretched-link-card__img-inner-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
         .vs-stretched-link-card__img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            align-self: flex-start;
+            flex-shrink: 0; // IE11 fix, prevents image vertical stretching
         }
 
         .vs-stretched-link-card__title {
