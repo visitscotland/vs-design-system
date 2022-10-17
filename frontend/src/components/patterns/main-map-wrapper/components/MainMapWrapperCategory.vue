@@ -6,6 +6,7 @@
         <VsButton
             class="vs-main-map-category__button text-capitalize"
             :class="`vs-main-map-category__button--${type}`"
+            data-test="vs-main-map-category__button"
             variant="transparent"
             icon="internal-link"
             icon-position="right"
@@ -58,7 +59,8 @@ export default {
          * Emits category type
          */
         selectCategory(type) {
-            this.$emit('category-selected', type);
+            this.$parent.$emit('set-category', type);
+            this.$parent.$emit('set-stage', 1);
         },
     },
 };

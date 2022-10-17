@@ -53,7 +53,8 @@ export default {
          * item as the payload
          */
         showItemDetail(id) {
-            this.$emit('show-item-detail', id);
+            this.$parent.$emit('show-item-detail', id);
+            this.$parent.$emit('set-stage', 2);
         },
     },
 };
