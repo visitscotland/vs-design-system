@@ -1,0 +1,224 @@
+<template>
+    <VsContainer
+        data-test="vs-main-map-wrapper"
+    >
+        <VsRow>
+            <VsCol>
+                <div
+                    class="vs-main-map-wrapper"
+                >
+                    <div
+                        class="vs-main-map-wrapper__side-panel"
+                        :class="panelDisplayClass"
+                        data-test="vs-main-map-wrapper__side-panel"
+                    >
+                        <VsMainMapWrapperPanel
+                            :category-heading="categoryHeading"
+                            :selected-category="selectedCategory"
+                            :current-stage="currentStage"
+                            :selected-item="selectedItem"
+                            @set-category="setCategory"
+                            @set-stage="setStage"
+                            @close-panel="closePanel"
+                            @show-item-detail="showDetail"
+                        >
+                            <template slot="closePanelText">
+                                <slot name="closeSidePanelText" />
+                            </template>
+                        </VsMainMapWrapperPanel>
+                    </div>
+                    <div
+                        class="vs-main-map-wrapper__map"
+                        :class="mapDisplayClass"
+                    >
+                        <VsButton
+                            class="vs-main-map-wrapper__map-toggle"
+                            icon-only
+                            icon="bars-mobile-menu"
+                            size="md"
+                            variant="secondary"
+                            @click.native="openPanel"
+                            data-test="vs-main-map-wrapper__map-toggle"
+                        >
+                            <span class="sr-only">
+                                <!-- @slot Text for panel open button  -->
+                                <slot name="openSidePanelText" />
+                            </span>
+                        </VsButton>
+                        <VsMap
+                            :is-visible="!panelVisible"
+                            :labels="{
+                            }"
+                            :pins="[
+                            ]"
+                        />
+                    </div>
+                </div>
+            </VsCol>
+        </VsRow>
+    </VsContainer>
+</template>
+
+<script>
+import {
+    VsContainer,
+    VsRow,
+    VsCol,
+} from '@components/elements/grid';
+import VsMap from '@components/elements/map/Map';
+import VsButton from '@components/elements/button/Button/';
+import VsMainMapWrapperPanel from './components/MainMapWrapperPanel';
+
+/**
+ * Renders a widget that display a map
+ * and gives filtering options
+ *
+ * @displayName Main Map Wrapper
+ */
+
+export default {
+    name: 'VsMainMapWrapper',
+    status: 'prototype',
+    release: '0.0.1',
+    components: {
+        VsContainer,
+        VsRow,
+        VsCol,
+        VsMap,
+        VsButton,
+        VsMainMapWrapperPanel,
+    },
+    props: {
+        /**
+         * Heading for the categories view
+         */
+        categoryHeading: {
+            type: String,
+            default: '',
+        },
+        /**
+         * Filter categories
+         */
+        filters: {
+            type: Array,
+            required: true,
+        },
+        /**
+         * Data for individual places
+         */
+        placesData: {
+            type: Array,
+            required: true,
+        },
+        /**
+         * Translatable text for button
+         */
+        discoverText: {
+            type: String,
+            required: true,
+        },
+    },
+    data() {
+        return {
+            panelVisible: false,
+            currentStage: 0,
+            selectedCategory: '',
+            filterCategories: this.filters,
+            selectedItem: '',
+        };
+    },
+    computed: {
+        mapDisplayClass() {
+            return this.panelVisible ? 'd-none d-lg-block' : '';
+        },
+        panelDisplayClass() {
+            return this.panelVisible ? '' : 'd-none d-lg-block';
+        },
+    },
+    mounted() {
+        this.panelVisible = true;
+    },
+    methods: {
+        /**
+         * Close the side panel
+         */
+        closePanel() {
+            this.panelVisible = false;
+        },
+        /**
+         * Open the side panel
+         */
+        openPanel() {
+            this.panelVisible = true;
+        },
+        /**
+         * Show an item's details
+         */
+        showDetail(id) {
+            this.selectedItem = id;
+        },
+        /**
+         * Sets the currently chosen category
+         */
+        setCategory(cat) {
+            this.selectedCategory = cat;
+        },
+        /**
+         * Sets the current stage
+         */
+        setStage(num) {
+            this.currentStage = num;
+        },
+    },
+    provide() {
+        return {
+            filters: this.filters,
+            placesData: this.placesData,
+            selectedItem: this.selectedItem,
+            discoverText: this.discoverText,
+        };
+    },
+};
+</script>
+
+<style lang="scss">
+    .vs-main-map-wrapper {
+        height: 100vh;
+        display: flex;
+
+        @include media-breakpoint-up(lg) {
+            height: 500px;
+        }
+
+        .container,
+        .row {
+            height: 100%;
+        }
+
+        &__side-panel {
+            width: 100%;
+
+            @include media-breakpoint-up(lg) {
+                flex: 0 0 354px;
+                max-width: 354px;
+            }
+        }
+
+        &__map {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        &__map-toggle.vs-button {
+            position: absolute;
+            top: $spacer-4;
+            left: $spacer-4;
+            z-index: 1;
+
+            @include media-breakpoint-up(lg) {
+                display: none;
+            }
+        }
+    }
+</style>
