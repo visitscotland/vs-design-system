@@ -50,8 +50,8 @@ export default {
         padding: $spacer-4 0;
         width: 100%;
         background: $color-white;
-        border-top: 4px solid red;
         text-align: center;
+        box-shadow: 0px -12px 10px -10px #c69fbc;
 
         @include media-breakpoint-up(lg) {
             padding: $spacer-4;
