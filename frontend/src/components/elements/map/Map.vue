@@ -80,9 +80,19 @@ export default {
             type: Boolean,
             required: true,
         },
+        /**
+         * Place data for markers
+         */
         places: {
             type: Array,
             required: true,
+        },
+        /**
+         * Whether the map should fit to marker bounds
+         */
+        fitToMarkers: {
+            type: Boolean,
+            default: false,
         },
     },
     data() {
@@ -99,15 +109,15 @@ export default {
                 config: {
                     container: this.$refs.mapbox,
                     style: 'https://api.visitscotland.com/maps/vector/v1/vts/resources/styles',
-                    center: [
-                        parseFloat(this.overviewMapLatitude),
-                        parseFloat(this.overviewMapLongitude),
-                    ],
-                    zoom: parseInt(this.overviewMapZoom, 10),
-                    fitBounds: [
-                        [-11.697414, 52.801395], // south-west point.
-                        [0.651219, 61.395636], // north-east point.
-                    ],
+                    // center: [
+                    //     parseFloat(this.overviewMapLatitude),
+                    //     parseFloat(this.overviewMapLongitude),
+                    // ],
+                    // zoom: parseInt(this.overviewMapZoom, 10),
+                    // fitBounds: [
+                    //     [-11.697414, 52.801395], // south-west point.
+                    //     [0.651219, 61.395636], // north-east point.
+                    // ],
                     pitchWithRotate: false,
                     dragRotate: false,
                 },
@@ -124,10 +134,7 @@ export default {
         },
         places() {
             this.geojsonData.features.splice(0, this.geojsonData.features.length);
-            this.places.forEach((place) => {
-                this.geojsonData.features.push(place);
-            });
-
+            this.addMapFeatures();
             this.addMapMarkers();
         },
     },
@@ -151,7 +158,14 @@ export default {
          */
         addMap() {
             this.mapbox.config.container = this.$refs.mapbox;
-            this.mapbox.map = new mapboxgl.Map(this.mapbox.config);
+            this.mapbox.map = new mapboxgl.Map({
+                container: this.$refs.mapbox,
+                style: 'https://api.visitscotland.com/maps/vector/v1/vts/resources/styles',
+                bounds: [
+                    [-11.697414, 52.801395], // south-west point.
+                    [0.651219, 61.395636], // north-east point.
+                ],
+            });
             this.mapbox.map.scrollZoom.disable();
             this.mapbox.map.on('rotate', () => {
                 this.mapbox.rotation = this.mapbox.map.transform.angle;
@@ -167,24 +181,22 @@ export default {
             this.mapbox.map.addControl(nav, 'top-right');
             this.mapbox.map.addControl(new mapboxgl.FullscreenControl());
         },
-        // PLEASE NOTE: the commented methods below will be added back into the
-        // component when we hook up functionality
         /**
          * Adds map features
          */
         addMapFeatures() {
-            this.places.map((stop) => this.geojsonData.features.push({
+            this.places.map((place) => this.geojsonData.features.push({
                 type: 'Feature',
                 geometry: {
                     type: 'Point',
-                    // coordinates: [parseFloat(stop.longitude), parseFloat(stop.latitude)],
-                    coordinates: [stop.geometry.coordinates[0], stop.geometry.coordinates[1]],
+                    // coordinates: [parseFloat(place.longitude), parseFloat(place.latitude)],
+                    coordinates: [place.geometry.coordinates[0], place.geometry.coordinates[1]],
                 },
                 properties: {
-                    title: stop.properties.title,
-                    // stopCount: stop.stopCount,
-                    imageSrc: stop.image,
-                    // altText: stop.altText,
+                    title: place.properties.title,
+                    // placeCount: place.placeCount,
+                    imageSrc: place.image,
+                    type: place.properties.category.id,
                 },
             }));
         },
@@ -275,7 +287,9 @@ export default {
 
             if (this.geojsonData.features.length) {
                 this.addMapMarkers();
-                this.fitToBounds();
+                if (this.fitToMarkers) {
+                    this.fitToBounds();
+                }
             }
         },
         /**
