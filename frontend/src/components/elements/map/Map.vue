@@ -162,7 +162,7 @@ export default {
                 container: this.$refs.mapbox,
                 style: 'https://api.visitscotland.com/maps/vector/v1/vts/resources/styles',
                 bounds: [
-                    [-4.879977, 54.636987], // south-west point.
+                    [-7.555827, 55.308836], // south-west point.
                     [-0.778285, 60.830894], // north-east point.
                 ],
             });
