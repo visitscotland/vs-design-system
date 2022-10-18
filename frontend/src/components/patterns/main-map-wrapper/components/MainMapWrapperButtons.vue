@@ -5,10 +5,10 @@
     >
         <VsButton
             block
-            :href="contentData.properties.link"
+            :href="contentData.properties.link.link"
             data-test="vs-main-map-wrapper-buttons__discover"
         >
-            {{ discoverText }} {{ contentData.properties.title }}
+            {{ contentData.properties.link.label }}
         </VsButton>
     </div>
 </template>
@@ -37,9 +37,6 @@ export default {
             required: true,
         },
     },
-    inject: [
-        'discoverText',
-    ],
 };
 </script>
 
