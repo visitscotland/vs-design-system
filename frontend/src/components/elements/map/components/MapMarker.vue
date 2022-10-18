@@ -11,25 +11,19 @@
         @keydown="handleClick()"
     >
         <div class="vs-map-marker__wrapper">
-            <VsIcon
-                name="map-marker-filled"
+            <VsSvg
                 :class="isHighlighted ? 'active' : ''"
                 :variant="isHighlighted ? 'dark' : 'secondary-teal'"
-                size="xl"
+                slot="svg"
+                :path="`marker-${feature.properties.type}`"
             />
-            <span
-                class="vs-itinerary-map-marker__count"
-                :class="isHighlighted ? 'active' : ''"
-            >
-                <span class="sr-only">Stop</span>{{ feature.properties.stopCount }}
-            </span>
         </div>
     </button>
 </template>
 
 <script>
 import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
-import VsIcon from '@components/elements/icon/Icon';
+import VsSvg from '@components/elements/svg/Svg';
 
 /**
  * TODO: Document usage
@@ -42,7 +36,7 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsIcon,
+        VsSvg,
     },
     props: {
         feature: {
