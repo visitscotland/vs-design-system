@@ -210,14 +210,15 @@ describe('VsStretchedLinkCard', () => {
 
             expect(wrapper.find('[data-test="vs-stretched-link-card__title"]').find('[data-test="vs-stretched-link"]').exists()).toBe(true);
         });
-        it('does not render a link in the header if a stretchedCardLink slot content is supplied', () => {
+        it.only('does not render a link in the header if a stretchedCardLink slot content is supplied', () => {
             const wrapper = factoryShallowMount({
                 slots: {
                     stretchedCardHeader: 'Stretched link header',
                     stretchedCardLink: 'Stretched link link text',
                 },
             });
-            expect(wrapper.find('[data-test="vs-stretched-link-card__title"]').exists()).toBe(false);
+
+            expect(wrapper.find('[data-test="vs-stretched-link-card__title"]').find('[data-test="vs-stretched-link"]').exists()).toBe(false);
         });
     });
 });
