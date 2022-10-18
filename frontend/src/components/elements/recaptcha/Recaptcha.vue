@@ -3,6 +3,7 @@
         <span
             v-if="invalid"
             class="error"
+            aria-live="assertive"
         >
             {{ errorMsg }}
         </span>
