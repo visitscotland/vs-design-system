@@ -109,15 +109,6 @@ export default {
                 config: {
                     container: this.$refs.mapbox,
                     style: 'https://api.visitscotland.com/maps/vector/v1/vts/resources/styles',
-                    // center: [
-                    //     parseFloat(this.overviewMapLatitude),
-                    //     parseFloat(this.overviewMapLongitude),
-                    // ],
-                    // zoom: parseInt(this.overviewMapZoom, 10),
-                    // fitBounds: [
-                    //     [-11.697414, 52.801395], // south-west point.
-                    //     [0.651219, 61.395636], // north-east point.
-                    // ],
                     pitchWithRotate: false,
                     dragRotate: false,
                 },
@@ -189,12 +180,10 @@ export default {
                 type: 'Feature',
                 geometry: {
                     type: 'Point',
-                    // coordinates: [parseFloat(place.longitude), parseFloat(place.latitude)],
                     coordinates: [place.geometry.coordinates[0], place.geometry.coordinates[1]],
                 },
                 properties: {
                     title: place.properties.title,
-                    // placeCount: place.placeCount,
                     imageSrc: place.image,
                     type: place.properties.category.id,
                 },
