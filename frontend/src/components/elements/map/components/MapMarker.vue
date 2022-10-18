@@ -49,33 +49,34 @@ export default {
             isHighlighted: false,
         };
     },
+    // TO DO - refactor as part of VS-4087
     // computed: {
     //     highlightedStop() {
     //         return itinerariesStore.getters['itineraries/getHighlightedStop'];
     //     },
     // },
-    watch: {
-        highlightedStop() {
-            this.toggleHighlighted();
-        },
-    },
-    methods: {
-        // handleClick() {
-        //     if (this.highlightedStop === this.feature) {
-        //         return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
-        //     }
-        //     return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
-        // },
-        // handleMouseEnter() {
-        //     return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
-        // },
-        // handleMouseLeave() {
-        //     return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
-        // },
-        // toggleHighlighted() {
-        //     this.isHighlighted = this.highlightedStop === this.feature;
-        // },
-    },
+    // watch: {
+    //     highlightedStop() {
+    //         this.toggleHighlighted();
+    //     },
+    // },
+    // methods: {
+    //     handleClick() {
+    //         if (this.highlightedStop === this.feature) {
+    //             return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
+    //         }
+    //         return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
+    //     },
+    //     handleMouseEnter() {
+    //         return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
+    //     },
+    //     handleMouseLeave() {
+    //         return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
+    //     },
+    //     toggleHighlighted() {
+    //         this.isHighlighted = this.highlightedStop === this.feature;
+    //     },
+    // },
 };
 </script>
 
