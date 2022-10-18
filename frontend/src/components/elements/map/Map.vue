@@ -15,9 +15,10 @@
 </template>
 
 <script>
-// import Vue from 'vue';
+import Vue from 'vue';
 import VsWarning from '@components/patterns/warning/Warning';
 import osBranding from '@/utils/os-branding';
+import VsMapMarker from './components/MapMarker';
 
 let mapboxgl = null;
 let geojsonExtent = null;
@@ -65,13 +66,6 @@ export default {
             default: '5',
         },
         /**
-         * Pins for map
-         */
-        pins: {
-            type: Array,
-            required: true,
-        },
-        /**
          * Unique ID for the map
          */
         mapId: {
@@ -84,6 +78,10 @@ export default {
          */
         isVisible: {
             type: Boolean,
+            required: true,
+        },
+        places: {
+            type: Array,
             required: true,
         },
     },
@@ -106,7 +104,7 @@ export default {
                         parseFloat(this.overviewMapLongitude),
                     ],
                     zoom: parseInt(this.overviewMapZoom, 10),
-                    maxBounds: [
+                    fitBounds: [
                         [-11.697414, 52.801395], // south-west point.
                         [0.651219, 61.395636], // north-east point.
                     ],
@@ -123,6 +121,14 @@ export default {
             if (newVal && this.mapbox.map !== null) {
                 this.mapbox.map.resize();
             }
+        },
+        places() {
+            this.geojsonData.features.splice(0, this.geojsonData.features.length);
+            this.places.forEach((place) => {
+                this.geojsonData.features.push(place);
+            });
+
+            this.addMapMarkers();
         },
     },
     mounted() {
@@ -166,43 +172,50 @@ export default {
         /**
          * Adds map features
          */
-        // addMapFeatures() {
-        //     this.stops.map((stop) => this.geojsonData.features.push({
-        //         type: 'Feature',
-        //         geometry: {
-        //             type: 'Point',
-        //             coordinates: [parseFloat(stop.longitude), parseFloat(stop.latitude)],
-        //         },
-        //         properties: {
-        //             title: stop.title,
-        //             stopCount: stop.stopCount,
-        //             imageSrc: stop.imageSrc,
-        //             altText: stop.altText,
-        //         },
-        //     }));
-        // },
+        addMapFeatures() {
+            this.places.map((stop) => this.geojsonData.features.push({
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    // coordinates: [parseFloat(stop.longitude), parseFloat(stop.latitude)],
+                    coordinates: [stop.geometry.coordinates[0], stop.geometry.coordinates[1]],
+                },
+                properties: {
+                    title: stop.properties.title,
+                    // stopCount: stop.stopCount,
+                    imageSrc: stop.image,
+                    // altText: stop.altText,
+                },
+            }));
+        },
         /**
          * Adds map markers
          */
-        // addMapMarkers() {
-        //     this.geojsonData.features.forEach((feature) => {
-        //         const markerComponent = new Vue({
-        //             ...VsItineraryMapMarker,
-        //             parent: this,
-        //             propsData: {
-        //                 feature,
-        //             },
-        //         });
+        addMapMarkers() {
+            if (this.markers !== null) {
+                for (let i = this.markers.length - 1; i >= 0; i--) {
+                    this.markers[i].remove();
+                }
+            }
 
-        //         markerComponent.$mount();
+            this.geojsonData.features.forEach((feature) => {
+                const markerComponent = new Vue({
+                    ...VsMapMarker,
+                    parent: this,
+                    propsData: {
+                        feature,
+                    },
+                });
 
-        //         const mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
-        //             .setLngLat(feature.geometry.coordinates)
-        //             .addTo(this.mapbox.map);
+                markerComponent.$mount();
 
-        //         this.markers.push(mapboxMarker);
-        //     });
-        // },
+                const mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
+                    .setLngLat(feature.geometry.coordinates)
+                    .addTo(this.mapbox.map);
+
+                this.markers.push(mapboxMarker);
+            });
+        },
         /**
          * Adds map pop ups
          */
@@ -241,7 +254,12 @@ export default {
          */
         fitToBounds() {
             this.mapbox.map.fitBounds(geojsonExtent(this.geojsonData), {
-                padding: this.mapPadding,
+                padding: {
+                    top: 100,
+                    bottom: 100,
+                    left: 100,
+                    right: 100,
+                },
             });
         },
         /**
@@ -251,7 +269,7 @@ export default {
             this.addMap();
             this.addMapControls();
 
-            if (this.pins.length) {
+            if (this.places.length) {
                 this.addMapFeatures();
             }
 
