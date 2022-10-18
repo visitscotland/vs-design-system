@@ -85,7 +85,6 @@
                 <VsMainMapWrapperCategory
                     :category-name="filter.label"
                     :type="filter.id"
-                    @click.native.prevent="filterPlaces(filter.id)"
                 />
             </div>
         </template>
@@ -246,12 +245,6 @@ export default {
          */
         setStage(stageNum) {
             this.$emit('set-stage', stageNum);
-        },
-        /**
-         * Emits instruction to filter places
-         */
-        filterPlaces(filter) {
-            this.$emit('filter-places', filter);
         },
     },
 };
