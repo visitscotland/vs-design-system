@@ -21,6 +21,7 @@
                             @set-stage="setStage"
                             @close-panel="closePanel"
                             @show-item-detail="showDetail"
+                            @filter-places="filterPlaces"
                         >
                             <template slot="closePanelText">
                                 <slot name="closeSidePanelText" />
@@ -49,8 +50,7 @@
                             :is-visible="!panelVisible"
                             :labels="{
                             }"
-                            :pins="[
-                            ]"
+                            :places="activePins"
                         />
                     </div>
                 </div>
@@ -118,6 +118,7 @@ export default {
             selectedCategory: '',
             filterCategories: this.filters,
             selectedItem: '',
+            activePins: this.placesData,
         };
     },
     computed: {
@@ -126,6 +127,14 @@ export default {
         },
         panelDisplayClass() {
             return this.panelVisible ? '' : 'd-none d-lg-block';
+        },
+        formatPinData() {
+            const pinArray = [];
+            this.placesData.forEach((place) => {
+                pinArray.push(place.geometry.coordinates);
+            });
+
+            return pinArray;
         },
     },
     mounted() {
@@ -149,6 +158,7 @@ export default {
          */
         showDetail(id) {
             this.selectedItem = id;
+            this.showPlace();
         },
         /**
          * Sets the currently chosen category
@@ -161,6 +171,34 @@ export default {
          */
         setStage(num) {
             this.currentStage = num;
+
+            if (this.currentStage === 0) {
+                this.showAllPlaces();
+            } else if (this.currentStage === 1) {
+                this.filterPlaces(this.selectedCategory);
+            }
+        },
+        /**
+         * Updates active pins for map
+         */
+        filterPlaces(id) {
+            const filteredPlaces = this.placesData
+                .filter((place) => place.properties.category.id === id);
+            this.activePins = filteredPlaces;
+        },
+        /**
+         * Show all pins
+         */
+        showAllPlaces() {
+            this.activePins = this.placesData;
+        },
+        /**
+         * Show single place pin
+         */
+        showPlace() {
+            const chosenPlace = (this.placesData
+                .filter((place) => this.selectedItem === place.properties.id));
+            this.activePins = chosenPlace;
         },
     },
     provide() {
