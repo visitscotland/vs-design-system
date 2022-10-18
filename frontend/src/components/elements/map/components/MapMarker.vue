@@ -1,7 +1,8 @@
 <template>
     <button
-        class="vs-itinerary-map-marker"
+        class="vs-map-marker"
         :class="isHighlighted ? 'active' : ''"
+        data-test="vs-map-marker"
         variant="transparent"
         @mouseenter="handleMouseEnter()"
         @mouseleave="handleMouseLeave()"
@@ -22,13 +23,12 @@
 </template>
 
 <script>
-import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
 import VsSvg from '@components/elements/svg/Svg';
 
 /**
- * TODO: Document usage
+ * A marker for a map compenent
  *
- * @displayName Itinerary Map Marker
+ * @displayName Map Marker
  */
 
 export default {
@@ -49,39 +49,38 @@ export default {
             isHighlighted: false,
         };
     },
-    itinerariesStore,
-    computed: {
-        highlightedStop() {
-            return itinerariesStore.getters['itineraries/getHighlightedStop'];
-        },
-    },
+    // computed: {
+    //     highlightedStop() {
+    //         return itinerariesStore.getters['itineraries/getHighlightedStop'];
+    //     },
+    // },
     watch: {
         highlightedStop() {
             this.toggleHighlighted();
         },
     },
     methods: {
-        handleClick() {
-            if (this.highlightedStop === this.feature) {
-                return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
-            }
-            return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
-        },
-        handleMouseEnter() {
-            return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
-        },
-        handleMouseLeave() {
-            return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
-        },
-        toggleHighlighted() {
-            this.isHighlighted = this.highlightedStop === this.feature;
-        },
+        // handleClick() {
+        //     if (this.highlightedStop === this.feature) {
+        //         return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
+        //     }
+        //     return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
+        // },
+        // handleMouseEnter() {
+        //     return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
+        // },
+        // handleMouseLeave() {
+        //     return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
+        // },
+        // toggleHighlighted() {
+        //     this.isHighlighted = this.highlightedStop === this.feature;
+        // },
     },
 };
 </script>
 
 <style lang="scss">
-.vs-itinerary-map-marker {
+.vs-map-marker {
     background: transparent;
     border: none;
     display: block;
@@ -108,18 +107,18 @@ export default {
             fill: $color-secondary-teal-shade-3 !important;
         }
     }
-}
 
-.vs-itinerary-map-marker__count {
-    color: $color-white;
-    display: block;
-    font-size: $font-size-4;
-    font-family: $headings-font-family;
-    position: absolute;
-    top: 4px;
-    left: 0;
-    transition: $transition-base;
-    text-align: center;
-    width: 100%;
+    &__count {
+        color: $color-white;
+        display: block;
+        font-size: $font-size-4;
+        font-family: $headings-font-family;
+        position: absolute;
+        top: 4px;
+        left: 0;
+        transition: $transition-base;
+        text-align: center;
+        width: 100%;
+    }
 }
 </style>
