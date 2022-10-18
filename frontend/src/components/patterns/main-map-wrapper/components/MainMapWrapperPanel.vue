@@ -230,7 +230,8 @@ export default {
          * Moves one stage back
          */
         stageBack() {
-            this.setStage(this.currentStage -= 1);
+            const previousStage = this.currentStage - 1;
+            this.setStage(previousStage);
         },
         /**
          * Resets the panel
