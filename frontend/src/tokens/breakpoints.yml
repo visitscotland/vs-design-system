@@ -16,8 +16,6 @@ props:
     value: "1200px"
   breakpoint_xxl:
     value: "1400px"
-  max_overflow_width:
-    value: "320px"
   max_container_width_sm:
     value: "540px"
   max_container_width_md:
