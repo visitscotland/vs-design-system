@@ -1,9 +1,11 @@
 <template>
-    <div class="vs-recaptcha">
+    <div
+        class="vs-recaptcha"
+        aria-live="assertive"
+    >
         <span
             v-if="invalid"
             class="error"
-            aria-live="assertive"
         >
             {{ errorMsg }}
         </span>
