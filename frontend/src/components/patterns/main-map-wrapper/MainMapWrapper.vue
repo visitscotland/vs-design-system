@@ -110,13 +110,6 @@ export default {
             type: Array,
             required: true,
         },
-        /**
-         * Translatable text for button
-         */
-        discoverText: {
-            type: String,
-            required: true,
-        },
     },
     data() {
         return {
@@ -175,7 +168,6 @@ export default {
             filters: this.filters,
             placesData: this.placesData,
             selectedItem: this.selectedItem,
-            discoverText: this.discoverText,
         };
     },
 };
