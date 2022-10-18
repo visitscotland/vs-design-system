@@ -85,6 +85,7 @@
                 <VsMainMapWrapperCategory
                     :category-name="filter.label"
                     :type="filter.id"
+                    @click.native.prevent="filterPlaces(filter.id)"
                 />
             </div>
         </template>
@@ -218,6 +219,7 @@ export default {
         currentPlaceData() {
             return this.placesData.filter((obj) => obj.properties.id === this.selectedItem)[0];
         },
+
     },
     methods: {
         /**
@@ -244,6 +246,12 @@ export default {
          */
         setStage(stageNum) {
             this.$emit('set-stage', stageNum);
+        },
+        /**
+         * Emits instruction to filter places
+         */
+        filterPlaces(filter) {
+            this.$emit('filter-places', filter);
         },
     },
 };
