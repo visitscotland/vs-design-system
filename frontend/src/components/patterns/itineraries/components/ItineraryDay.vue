@@ -147,6 +147,13 @@ export default {
 
 .vs-itinerary__day-outer {
     border-top: 5px solid $color-base-text;
+
+    @include media-breakpoint-down(xs) {
+        max-width: initial;
+        width: calc(100% + #{$spacer-4});
+        margin-left: -#{$spacer-2};
+        padding: $spacer-0 $spacer-2;
+    }
 }
 
 .vs-itinerary__day-outer:first-of-type {
