@@ -1,9 +1,15 @@
 import { shallowMount } from '@vue/test-utils';
 import VsMainMapWrapper from '../MainMapWrapper';
+import placesJson from './data/places.json';
+import filtersJson from './data/filters.json';
 
 const factoryShallowMount = () => shallowMount(VsMainMapWrapper, {
     slots: {
         openSidePanelText: 'Open panel',
+    },
+    propsData: {
+        placesData: placesJson.features,
+        filters: filtersJson,
     },
 });
 
@@ -48,6 +54,14 @@ describe('VsMainMapWrapper', () => {
             expect(wrapper.vm.selectedItem).toBe('test');
         });
 
+        it('should change the `activePins` to be a single item when the `showPlace` method is fired', async() => {
+            const wrapper = factoryShallowMount();
+
+            wrapper.vm.showDetail('a4260a0c-9d66-425b-835a-eec833c30a92');
+            await wrapper.vm.$nextTick();
+            expect(wrapper.vm.activePins.length).toBe(1);
+        });
+
         it('should change the `selectedCategory` data when the `setCategory` method is fired', async() => {
             const wrapper = factoryShallowMount();
 
@@ -62,6 +76,21 @@ describe('VsMainMapWrapper', () => {
             wrapper.vm.setStage(2);
             await wrapper.vm.$nextTick();
             expect(wrapper.vm.currentStage).toBe(2);
+        });
+
+        it('should add all objects from `placesData` prop to `activePins` when `showAllPlaces` is fired', async() => {
+            const wrapper = factoryShallowMount();
+            wrapper.vm.showAllPlaces();
+
+            await wrapper.vm.$nextTick();
+            expect(wrapper.vm.activePins.length).toBe(13);
+        });
+
+        it('filters places by a category when `filterPlaces` is fired', async() => {
+            const wrapper = factoryShallowMount();
+            wrapper.vm.filterPlaces('cities');
+
+            expect(wrapper.vm.activePins.length).toBe(3);
         });
     });
 
