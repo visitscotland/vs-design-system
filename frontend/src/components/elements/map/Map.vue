@@ -186,6 +186,7 @@ export default {
                     title: place.properties.title,
                     imageSrc: place.image,
                     type: place.properties.category.id,
+                    id: place.properties.id,
                 },
             }));
         },
