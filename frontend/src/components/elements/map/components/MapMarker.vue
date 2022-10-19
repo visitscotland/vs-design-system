@@ -4,26 +4,22 @@
         :class="isHighlighted ? 'active' : ''"
         data-test="vs-map-marker"
         variant="transparent"
-        @mouseenter="handleMouseEnter()"
-        @mouseleave="handleMouseLeave()"
-        @focus="handleClick()"
-        @blur="handleClick()"
-        @click="handleClick()"
-        @keydown="handleClick()"
+        @click="handleClick(feature.properties.id)"
+        @keydown="handleClick(feature.properties.id)"
     >
-        <div class="vs-map-marker__wrapper">
-            <VsSvg
-                :class="isHighlighted ? 'active' : ''"
-                :variant="isHighlighted ? 'dark' : 'secondary-teal'"
-                slot="svg"
-                :path="`marker-${feature.properties.type}`"
-            />
-        </div>
+        <VsSvg
+            class="vs-map-marker__icon"
+            :class="isHighlighted ? 'active' : ''"
+            :variant="isHighlighted ? 'dark' : 'secondary-teal'"
+            slot="svg"
+            :path="`marker-${feature.properties.type}`"
+        />
     </button>
 </template>
 
 <script>
 import VsSvg from '@components/elements/svg/Svg';
+// import mapStore from '../../../../stores/map.store';
 
 /**
  * A marker for a map compenent
@@ -77,6 +73,11 @@ export default {
     //         this.isHighlighted = this.highlightedStop === this.feature;
     //     },
     // },
+    methods: {
+        handleClick(id) {
+            this.$parent.$emit('show-detail', id);
+        },
+    },
 };
 </script>
 
@@ -93,21 +94,25 @@ export default {
     &:focus,
     &.active {
         z-index: 1 !important;
+
+        .vs-map-marker__icon {
+            transform: scale(1.2, 1.2) translateY(-10px);
+        }
     }
 
-    svg {
+    &__icon {
         transition: $transition-base;
     }
 
-    &.active {
-        .vs-map-marker__wrapper {
-            transform: scale(1.2, 1.2) translateY(-10px);
-        }
+    // &.active {
+    //     .vs-map-marker__wrapper {
+    //         transform: scale(1.2, 1.2) translateY(-10px);
+    //     }
 
-        svg {
-            fill: $color-secondary-teal-shade-3 !important;
-        }
-    }
+    //     svg {
+    //         fill: $color-secondary-teal-shade-3 !important;
+    //     }
+    // }
 
     &__count {
         color: $color-white;
@@ -120,6 +125,16 @@ export default {
         transition: $transition-base;
         text-align: center;
         width: 100%;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 2s ease;
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
+        opacity: 0;
     }
 }
 </style>

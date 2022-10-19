@@ -295,8 +295,7 @@ export default {
 
         h2.vs-heading {
             flex-grow: 1;
-            margin-top: $spacer-11;
-            margin-bottom: 0;
+            margin: $spacer-11 $spacer-3 $spacer-0;
         }
 
         .vs-main-wrapper-category:last-of-type {
