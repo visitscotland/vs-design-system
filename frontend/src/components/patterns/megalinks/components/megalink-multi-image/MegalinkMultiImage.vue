@@ -11,6 +11,7 @@
         :video-id="videoId"
         :video-btn-text="videoBtnText"
         :error-message="errorMessage"
+        :warning-size="featured ? 'normal' : 'small'"
     >
         <VsStretchedLinkPanels
             v-if="days && transport"
@@ -165,7 +166,7 @@ export default {
         */
         errorMessage: {
             type: String,
-            required: true,
+            default: '',
         },
     },
     computed: {
