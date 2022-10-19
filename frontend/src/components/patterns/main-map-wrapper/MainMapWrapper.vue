@@ -51,6 +51,7 @@
                             :labels="{
                             }"
                             :places="activePins"
+                            @show-detail="showDetail"
                         />
                     </div>
                 </div>
@@ -159,6 +160,8 @@ export default {
         showDetail(id) {
             this.selectedItem = id;
             this.showPlace();
+            this.setStage(2);
+            this.openPanel();
         },
         /**
          * Sets the currently chosen category
@@ -198,6 +201,7 @@ export default {
         showPlace() {
             const chosenPlace = (this.placesData
                 .filter((place) => this.selectedItem === place.properties.id));
+            this.selectedCategory = chosenPlace[0].properties.category.id;
             this.activePins = chosenPlace;
         },
     },
