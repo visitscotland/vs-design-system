@@ -45,7 +45,10 @@
                         class="vs-megalinks__button"
                         data-test="vs-megalinks__button"
                     >
-                        <VsButton :href="buttonLink">
+                        <VsButton
+                            :href="buttonLink"
+                            :on-dark="theme === 'dark'"
+                        >
                             <!-- @slot Slot to contain button text -->
                             <slot name="vsMegalinksButton" />
                         </VsButton>
@@ -320,7 +323,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="12"
+                        xl="12"
                     >
                         <VsMegalinkMultiImage
                             featured
@@ -341,31 +344,18 @@ export default {
                                 from local markets to renowned restaurants.</p>
                             </template>
                         </VsMegalinkMultiImage>
-                        <VsModal
-                            modalId="g-Fhvj7vW-E"
-                            closeBtnText="Close"
-                            :isVideoModal="true"
-                        >
-                            <VsRow>
-                                <VsCol cols="12">
-                                    <VsVideo
-                                        videoId="g-Fhvj7vW-E"
-                                        class="mb-8"
-                                    />
-                                </VsCol>
-                            </VsRow>
-                        </VsModal>
                     </VsCol>
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text 1"
                             linkType="external"
                             linkUrl="https://www.visitscotland.com"
+                            errorMessage="Something went wrong"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest
@@ -380,7 +370,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -427,12 +417,13 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <VsMegalinkMultiImage
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             linkType="download"
                             linkUrl="https://www.visitscotland.com"
+                            errorMessage="Something went wrong"
                         >
                             <template slot="vsMultiImageHeading">
                                 Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
@@ -452,6 +443,7 @@ export default {
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             linkType="download"
                             linkUrl="https://www.visitscotland.com"
+                            errorMessage="Something went wrong"
                         >
                             <template slot="vsMultiImageHeading">
                                 Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
@@ -471,6 +463,7 @@ export default {
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             linkType="download"
                             linkUrl="https://www.visitscotland.com"
+                            errorMessage="Something went wrong"
                         >
                             <template slot="vsMultiImageHeading">
                                 Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
@@ -485,7 +478,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="12"
+                        xl="12"
                     >
                         <VsMegalinkMultiImage
                             featured
@@ -498,6 +491,7 @@ export default {
                             daysLabel="days"
                             transport="bus"
                             transportName="bus"
+                            errorMessage="Something went wrong"
                         >
                             <template slot="vsMultiImageHeading">
                                 The Edinburgh International Festival
@@ -540,7 +534,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="12"
+                        xl="12"
                     >
                         <vs-megalink-multi-image
                             featured
@@ -549,6 +543,7 @@ export default {
                             linkType="internal"
                             theme="dark"
                             linkUrl="https://www.visitscotland.com"
+                            errorMessage="Something went wrong"
                         >
                             <template slot="vsMultiImageHeading">
                                 The Edinburgh International Festival and summer festival
@@ -563,7 +558,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <vs-megalink-multi-image
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -603,7 +598,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <vs-megalink-multi-image
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -611,6 +606,7 @@ export default {
                             linkType="external"
                             theme="dark"
                             linkUrl="https://www.visitscotland.com"
+                            errorMessage="Something went wrong"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest
@@ -625,7 +621,7 @@ export default {
                     <VsCol
                         cols="12"
                         md="6"
-                        lg="4"
+                        xl="4"
                     >
                         <vs-megalink-multi-image
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -637,6 +633,7 @@ export default {
                             daysLabel="days"
                             transport="bus"
                             transportName="bus"
+                            errorMessage="Something went wrong"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest
@@ -708,6 +705,7 @@ export default {
                 imgAlt="This is the alt text 1"
                 linkType="external"
                 linkUrl="https://www.visitscotland.com"
+                errorMessage="Something went wrong"
             >
                 <template slot="vsLinkListHeading">
                     Count 7,000 shining stars in the iconic galloway forest
@@ -765,6 +763,7 @@ export default {
                 imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 linkType="download"
                 linkUrl="https://www.visitscotland.com"
+                errorMessage="Something went wrong"
             >
                 <template slot="vsLinkListHeading">
                     Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
@@ -798,6 +797,7 @@ export default {
                 linkType="internal"
                 theme="dark"
                 linkUrl="https://www.visitscotland.com"
+                errorMessage="Something went wrong"
             >
                 <template slot="vsLinkListHeading">
                     The Edinburgh International Festival and summer festival
@@ -819,6 +819,7 @@ export default {
                 linkType="external"
                 theme="dark"
                 linkUrl="https://www.visitscotland.com"
+                errorMessage="Something went wrong"
             >
                 <template slot="vsLinkListHeading">
                     Count 7,000 shining stars in the iconic galloway forest
@@ -840,6 +841,7 @@ export default {
                 linkType="external"
                 theme="dark"
                 linkUrl="https://www.visitscotland.com"
+                errorMessage="Something went wrong"
             >
                 <template slot="vsLinkListHeading">
                     Count 7,000 shining stars in the iconic galloway forest
@@ -861,6 +863,7 @@ export default {
                 linkType="download"
                 theme="dark"
                 linkUrl="https://www.visitscotland.com"
+                errorMessage="Something went wrong"
             >
                 <template slot="vsLinkListHeading">
                     Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
@@ -895,6 +898,7 @@ export default {
                         mobile-overlap
                         alt-text="Image alt text"
                         image-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                        errorMessage="Something went wrong"
                     >
                         <VsCaption
                             slot="img-caption"
@@ -974,6 +978,7 @@ export default {
                         mobile-overlap
                         alt-text="Image alt text"
                         image-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                        errorMessage="Something went wrong"
                     >
                         <VsCaption
                             slot="img-caption"
