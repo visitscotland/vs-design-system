@@ -463,8 +463,12 @@ export default {
         .vs-stretched-link-card__img-container {
             width: 100%;
             max-width: 100%;
-            padding-bottom: 66.6%;
             position: relative;
+            aspect-ratio: 3/2;
+
+            @supports not (aspect-ratio: 3/2) {
+                padding-bottom: 66.6%;
+            }
 
             &--warning {
                 &:before {
