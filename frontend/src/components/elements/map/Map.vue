@@ -40,10 +40,10 @@ export default {
         /**
          * Labels for the map
          */
-        labels: {
-            type: Object,
-            required: true,
-        },
+        // labels: {
+        //     type: Object,
+        //     required: true,
+        // },
         /**
          * Starting latitude for map view
          */
@@ -70,7 +70,7 @@ export default {
          */
         mapId: {
             type: String,
-            default: 'vs-map',
+            required: true,
         },
         /**
          * Whether or not the map is visible
@@ -93,6 +93,13 @@ export default {
         fitToMarkers: {
             type: Boolean,
             default: false,
+        },
+        /**
+         * The ID of the currently selected item
+         */
+        selectedItem: {
+            type: String,
+            default: '',
         },
     },
     data() {
@@ -206,6 +213,7 @@ export default {
                     parent: this,
                     propsData: {
                         feature,
+                        mapId: this.mapId,
                     },
                 });
 

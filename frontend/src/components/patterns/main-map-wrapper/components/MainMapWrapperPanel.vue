@@ -163,9 +163,16 @@ export default {
             required: true,
         },
         /**
-         * The currently selected item
+         * The ID of thecurrently selected item
          */
         selectedItem: {
+            type: String,
+            default: '',
+        },
+        /**
+         * The ID of the currently hover item
+         */
+        hovered: {
             type: String,
             default: '',
         },

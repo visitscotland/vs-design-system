@@ -1,16 +1,18 @@
 <template>
     <button
         class="vs-map-marker"
-        :class="isHighlighted ? 'active' : ''"
+        :class="isActive ? 'vs-map-marker--active' : ''"
         data-test="vs-map-marker"
         variant="transparent"
-        @click="handleClick(feature.properties.id)"
-        @keydown="handleClick(feature.properties.id)"
+        @click="handleClick"
+        @keydown="handleClick"
+        @mouseover="handleHover(feature.properties.id)"
+        @mouseleave="handleHover('')"
+        @focusin="handleHover(feature.properties.id)"
+        @focusout="handleHover('')"
     >
         <VsSvg
             class="vs-map-marker__icon"
-            :class="isHighlighted ? 'active' : ''"
-            :variant="isHighlighted ? 'dark' : 'secondary-teal'"
             slot="svg"
             :path="`marker-${feature.properties.type}`"
         />
@@ -19,7 +21,7 @@
 
 <script>
 import VsSvg from '@components/elements/svg/Svg';
-// import mapStore from '../../../../stores/map.store';
+import mapStore from '../../../../stores/map.store';
 
 /**
  * A marker for a map compenent
@@ -39,43 +41,41 @@ export default {
             type: Object,
             required: true,
         },
+        mapId: {
+            type: String,
+            required: true,
+        },
     },
-    data() {
-        return {
-            isHighlighted: false,
-        };
+    computed: {
+        isActive() {
+            if (this.activePlace === this.feature.properties.id
+                || this.highlightedPlace === this.feature.properties.id) {
+                return true;
+            }
+
+            return false;
+        },
+        highlightedPlace() {
+            return mapStore.getters.getHoveredStop(this.mapId);
+        },
+        activePlace() {
+            return mapStore.getters.getActivePlace(this.mapId);
+        },
     },
-    // TO DO - refactor as part of VS-4087
-    // computed: {
-    //     highlightedStop() {
-    //         return itinerariesStore.getters['itineraries/getHighlightedStop'];
-    //     },
-    // },
-    // watch: {
-    //     highlightedStop() {
-    //         this.toggleHighlighted();
-    //     },
-    // },
-    // methods: {
-    //     handleClick() {
-    //         if (this.highlightedStop === this.feature) {
-    //             return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
-    //         }
-    //         return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
-    //     },
-    //     handleMouseEnter() {
-    //         return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
-    //     },
-    //     handleMouseLeave() {
-    //         return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
-    //     },
-    //     toggleHighlighted() {
-    //         this.isHighlighted = this.highlightedStop === this.feature;
-    //     },
-    // },
     methods: {
-        handleClick(id) {
-            this.$parent.$emit('show-detail', id);
+        handleClick() {
+            mapStore.dispatch('setActivePlace', {
+                mapId: this.mapId,
+                placeId: this.feature.properties.id,
+            });
+            this.$parent.$emit('show-detail', this.feature.properties.id);
+            this.$parent.$emit('set-category', this.feature.properties.type);
+        },
+        handleHover(id) {
+            mapStore.dispatch('setHoveredPlace', {
+                mapId: this.mapId,
+                hoveredId: id,
+            });
         },
     },
 };
@@ -92,7 +92,7 @@ export default {
 
     &:hover,
     &:focus,
-    &.active {
+    &--active {
         z-index: 1 !important;
 
         .vs-map-marker__icon {
@@ -103,16 +103,6 @@ export default {
     &__icon {
         transition: $transition-base;
     }
-
-    // &.active {
-    //     .vs-map-marker__wrapper {
-    //         transform: scale(1.2, 1.2) translateY(-10px);
-    //     }
-
-    //     svg {
-    //         fill: $color-secondary-teal-shade-3 !important;
-    //     }
-    // }
 
     &__count {
         color: $color-white;
@@ -125,16 +115,6 @@ export default {
         transition: $transition-base;
         text-align: center;
         width: 100%;
-    }
-
-    .fade-enter-active,
-    .fade-leave-active {
-        transition: opacity 2s ease;
-    }
-
-    .fade-enter-from,
-    .fade-leave-to {
-        opacity: 0;
     }
 }
 </style>
