@@ -205,7 +205,7 @@ export default {
         */
         errorMessage: {
             type: String,
-            required: true,
+            default: '',
         },
     },
     data() {
@@ -249,6 +249,8 @@ export default {
         return {
             noJsMessage: this.noJsMessage,
             noCookiesMessage: this.noCookiesMessage,
+            cookieLinkText: this.cookieLinkText,
+            errorMessage: this.errorMessage,
         };
     },
 };
