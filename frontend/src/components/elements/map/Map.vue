@@ -38,13 +38,6 @@ export default {
     },
     props: {
         /**
-         * Labels for the map
-         */
-        // labels: {
-        //     type: Object,
-        //     required: true,
-        // },
-        /**
          * Starting latitude for map view
          */
         overviewMapLatitude: {
