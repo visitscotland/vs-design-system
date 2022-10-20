@@ -13,12 +13,13 @@ const factoryShallowMount = () => shallowMount(VsMainMapWrapperButtons, {
                 id: 'aberdeen',
                 description: 'Aberdeen description',
                 image: 'https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm',
-                link: 'https://www.visitscotland.com/',
+                link: {
+                    label: 'Discover Aberdeen',
+                    link: 'http://172.28.81.65:8089/info/see-do/national-museum-of-scotland-p246591',
+                    type: 'INTERNAL',
+                },
             },
         },
-    },
-    provide: {
-        discoverText: 'Discover',
     },
 });
 
@@ -35,15 +36,7 @@ describe('VsMainMapWrapperButtons', () => {
 
             const discoverBtn = wrapper.find('[data-test="vs-main-map-wrapper-buttons__discover"]');
 
-            expect(discoverBtn.text()).toContain('Aberdeen');
-        });
-
-        it('should render the `discover` translation from the `discoverText` prop', () => {
-            const wrapper = factoryShallowMount();
-
-            const discoverBtn = wrapper.find('[data-test="vs-main-map-wrapper-buttons__discover"]');
-
-            expect(discoverBtn.text()).toContain('Discover');
+            expect(discoverBtn.text()).toBe('Discover Aberdeen');
         });
     });
 });
