@@ -41,20 +41,18 @@
             <template
                 v-if="imgSrc"
             >
-                <div class="vs-stretched-link-card__img-inner-container">
-                    <VsImg
-                        :src="imgSrc"
-                        :alt="imgAlt"
-                        :srcset="`${imgSrc}?size=xs 300w,
-                            ${imgSrc}?size=sm 600w,
-                            ${imgSrc}?size=md 1200w,
-                            ${imgSrc}?size=lg 2048w`"
-                        sizes="(min-width: 768px) 50vw, 100vw"
-                        :low-res-image="`${imgSrc}?size=xxs`"
-                        class="vs-stretched-link-card__img"
-                        data-test="vs-stretched-link-card__img"
-                    />
-                </div>
+                <VsImg
+                    :src="imgSrc"
+                    :alt="imgAlt"
+                    :srcset="`${imgSrc}?size=xs 300w,
+                        ${imgSrc}?size=sm 600w,
+                        ${imgSrc}?size=md 1200w,
+                        ${imgSrc}?size=lg 2048w`"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    :low-res-image="`${imgSrc}?size=xxs`"
+                    class="vs-stretched-link-card__img"
+                    data-test="vs-stretched-link-card__img"
+                />
             </template>
 
             <VsWarning
@@ -533,14 +531,6 @@ export default {
             @supports not (aspect-ratio: 3/2) {
                 padding-bottom: 66.6%;
             }
-        }
-
-        .vs-stretched-link-card__img-inner-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
         }
 
         .vs-stretched-link-card__img {
