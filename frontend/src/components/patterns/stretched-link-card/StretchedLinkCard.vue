@@ -8,10 +8,32 @@
     >
         <VsWarning
             v-if="showWarning === 'full'"
-            v-bind="warningProps"
-            variant="xs"
+            :size="warningSize"
+            :theme="theme"
+            :type="showCookieWarning ? 'cookie' : 'normal'"
             data-test="vs-stretched-link-card__full-warning"
-        />
+            class="vs-stretched-link-card__full-warning"
+        >
+            {{ warningMessage }}
+
+            <template
+                slot="button-text"
+                v-if="cookieLinkText !== '' && showCookieWarning"
+            >
+                {{ cookieLinkText }}
+            </template>
+        </VsWarning>
+
+        <VsWarning
+            v-if="errorType === 'full' && videoId !== ''"
+            :size="warningSize"
+            data-test="vs-stretched-link-card__full-warning"
+            class="vs-stretched-link-card__full-warning
+                vs-stretched-link-card__full-warning--no-js"
+            :theme="theme"
+        >
+            {{ noJsMessage }}
+        </VsWarning>
         <div
             class="vs-stretched-link-card__img-container"
             :class="warningClass"
@@ -37,9 +59,32 @@
 
             <VsWarning
                 v-if="showWarning === 'image'"
-                v-bind="warningProps"
+                :size="warningSize"
+                :type="showCookieWarning ? 'cookie' : 'normal'"
                 data-test="vs-stretched-link-card__image-warning"
-            />
+                class="vs-stretched-link-card__image-warning"
+                :theme="theme"
+            >
+                {{ warningMessage }}
+
+                <template
+                    slot="button-text"
+                    v-if="cookieLinkText !== '' && showCookieWarning"
+                >
+                    {{ cookieLinkText }}
+                </template>
+            </VsWarning>
+
+            <VsWarning
+                v-if="videoId !== '' && errorType === 'image'"
+                :size="warningSize"
+                data-test="vs-stretched-link-card__warning"
+                class="vs-stretched-link-card__image-warning
+                    vs-stretched-link-card__image-warning--no-js"
+                :theme="theme"
+            >
+                {{ noJsMessage }}
+            </VsWarning>
         </div>
 
         <template
@@ -62,7 +107,7 @@
                 size="md"
                 ref="videoShow"
                 @click.native="emitShowModal"
-                v-if="videoId && videoLoaded && requiredCookiesExist"
+                v-if="videoId && videoLoaded && requiredCookiesExist && !jsDisabled"
             >
                 <span
                     class="vs-stretched-link-card__video-btn-text"
@@ -193,14 +238,6 @@ export default {
             validator: (value) => value.match(/(default|external|internal|download|video)/),
         },
         /**
-        * The component color theme
-        */
-        theme: {
-            type: String,
-            default: 'light',
-            validator: (value) => value.match(/(light|dark)/),
-        },
-        /**
         * The image to use in the component
         */
         imgSrc: {
@@ -244,12 +281,20 @@ export default {
             default: '',
         },
         /**
-         * Message to show when there's an error with a third party
+         * Where the error message should appear
         */
         errorType: {
             type: String,
             default: 'image',
             validator: (value) => value.match(/(image|full)/),
+        },
+        /**
+         * Size of warning message to show
+        */
+        warningSize: {
+            type: String,
+            default: 'small',
+            validator: (value) => value.match(/(normal|small)/),
         },
     },
     inject: {
@@ -260,6 +305,9 @@ export default {
             default: '',
         },
         cookieLinkText: {
+            default: '',
+        },
+        theme: {
             default: '',
         },
     },
@@ -290,7 +338,11 @@ export default {
             }
 
             if (this.type === 'video') {
-                outputClasses += 'vs-stretched-link-card--video';
+                outputClasses += ' vs-stretched-link-card--video';
+            }
+
+            if (this.showWarning && this.type === 'video') {
+                outputClasses += ' vs-stretched-link-card--warning';
             }
 
             return outputClasses;
@@ -312,7 +364,8 @@ export default {
             if (this.videoId && (this.jsDisabled || !this.requiredCookiesExist)) {
                 className = 'vs-stretched-link-card__img-container--warning ';
 
-                if (this.errorType === 'full' && this.cookiesInitStatus !== null) {
+                if (this.errorType === 'full' && (this.cookiesInitStatus !== null
+                    || this.jsDisabled)) {
                     className += 'vs-stretched-link-card__img-container--warning-full';
                 }
             }
@@ -342,26 +395,37 @@ export default {
                 return this.errorType;
             }
 
+            if (this.jsDisabled) {
+                return true;
+            }
+
             return false;
         },
-        warningProps() {
-            if (this.jsDisabled) {
-                return {
-                    warningMessage: this.noJsMessage,
-                };
-            }
+        warningMessage() {
+            let message = '';
 
             if (this.showCookieWarning) {
-                return {
-                    warningMessage: this.noCookiesMessage,
-                    showCookieLink: true,
-                    cookieLinkText: this.cookieLinkText,
-                };
+                message = this.noCookiesMessage;
+            } else {
+                message = this.errorMessage;
             }
 
-            return {
-                warningMessage: this.errorMessage,
+            return message;
+        },
+        warningAttrs() {
+            const attrsObj = {
             };
+            if (this.type === 'cookie') {
+                attrsObj.class = 'ot-sdk-show-settings vs-warning__cookie-trigger';
+            }
+            if (this.theme === 'dark') {
+                attrsObj.onDark = '';
+            }
+            if (this.size === 'small') {
+                attrsObj.size = 'sm';
+            }
+
+            return attrsObj;
         },
     },
     mounted() {
@@ -469,18 +533,6 @@ export default {
             @supports not (aspect-ratio: 3/2) {
                 padding-bottom: 66.6%;
             }
-
-            &--warning {
-                &:before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba($color-black, 0.8);
-                }
-            }
         }
 
         .vs-stretched-link-card__img-inner-container {
@@ -552,6 +604,26 @@ export default {
 
         .vs-stretched-link-card__video-btn-text {
             padding-right: $spacer-1;
+        }
+
+        .vs-stretched-link-card__full-warning {
+            position: absolute;
+            height: 127px;
+            width: calc(100% - 1rem);
+            z-index: 1;
+        }
+
+        .vs-stretched-link-card__image-warning {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            top: 0;
+        }
+
+        .vs-stretched-link-card__full-warning--no-js,
+        .vs-stretched-link-card__image-warning--no-js {
+            display: none;
         }
 
         @include media-breakpoint-up(sm) {
@@ -669,6 +741,40 @@ export default {
 
         @include small-rectangle-video-button();
     }
+
+    @include no-js {
+        .card.vs-stretched-link-card {
+            .vs-stretched-link-card__image-warning,
+            .vs-stretched-link-card__full-warning {
+                display: none;
+            }
+
+            .vs-stretched-link-card__full-warning--no-js,
+            .vs-stretched-link-card__image-warning--no-js {
+                display: flex;
+            }
+        }
+
+        .vs-megalink-link-list {
+            .vs-stretched-link-card--warning {
+                overflow: hidden;
+                padding: 0;
+
+                &__img-container {
+                    width: 100%;
+                    max-width: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                .card-body {
+                    display: none;
+                }
+            }
+        }
+    }
 </style>
 
 <docs>
@@ -681,6 +787,7 @@ export default {
                     type="external"
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
+                    theme="light"
                 >
                     <template slot="stretchedCardCategory">
                         A category header
@@ -710,8 +817,9 @@ export default {
                 <VsStretchedLinkCard
                     link="https://visitscotland.com"
                     type="internal"
-                    imgSrc=""
+                    imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
+                    theme="light"
                 >
                     <template slot="stretchedCardHeader">
                         A Title Would Go Here
@@ -733,17 +841,10 @@ export default {
                     imgAlt="This is the alt text"
                     videoId="FlG6tbYaA88"
                     videoBtnText="Play Video"
+                    theme="light"
                 >
                     <template slot="stretchedCardCategory">
                         A category header
-                    </template>
-                    <template slot="stretchedCardPanels">
-                        <VsStretchedLinkPanels
-                            days="14"
-                            transport="car"
-                            transportName="Car"
-                            daysLabel="days"
-                        />
                     </template>
 
                     <template slot="stretchedCardHeader">
@@ -765,6 +866,7 @@ export default {
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
                     headingLevel="2"
+                    theme="light"
                 >
                     <template slot="stretchedCardCategory">
                         A category header
@@ -794,6 +896,9 @@ export default {
                 <VsVideo
                     videoId="FlG6tbYaA88"
                     class="mb-8"
+                    noCookiesMessage="Cookies need to be enabled to view this video"
+                    cookieBtnText="Manage cookies"
+                    noJsMessage="Javascript needs to be enabled to view this video"
                 />
             </VsCol>
         </VsRow>
