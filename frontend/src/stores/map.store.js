@@ -16,8 +16,6 @@ export default new Vuex.Store({
                 activePins: payload.activePins,
                 hovered: '',
             });
-
-            console.log(state);
         },
         SET_HOVERED_PLACE: (state, payload) => {
             state.maps.forEach((map) => {
