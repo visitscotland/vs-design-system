@@ -218,6 +218,7 @@ export default {
         currentPlaceData() {
             return this.placesData.filter((obj) => obj.properties.id === this.selectedItem)[0];
         },
+
     },
     methods: {
         /**
