@@ -37,10 +37,17 @@ export default {
         VsSvg,
     },
     props: {
+        /**
+         * Details for the marker
+         */
         feature: {
             type: Object,
             required: true,
         },
+        /**
+         * Id for the map - to be used with
+         * the map store
+         */
         mapId: {
             type: String,
             required: true,
@@ -63,6 +70,9 @@ export default {
         },
     },
     methods: {
+        /**
+         * Fires on click of the marker
+         */
         handleClick() {
             mapStore.dispatch('setActivePlace', {
                 mapId: this.mapId,
@@ -71,6 +81,9 @@ export default {
             this.$parent.$emit('show-detail', this.feature.properties.id);
             this.$parent.$emit('set-category', this.feature.properties.type);
         },
+        /**
+         * Fires on hover over the maker
+         */
         handleHover(id) {
             mapStore.dispatch('setHoveredPlace', {
                 mapId: this.mapId,
