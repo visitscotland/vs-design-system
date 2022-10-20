@@ -15,9 +15,10 @@
 </template>
 
 <script>
-// import Vue from 'vue';
+import Vue from 'vue';
 import VsWarning from '@components/patterns/warning/Warning';
 import osBranding from '@/utils/os-branding';
+import VsMapMarker from './components/MapMarker';
 
 let mapboxgl = null;
 let geojsonExtent = null;
@@ -65,13 +66,6 @@ export default {
             default: '5',
         },
         /**
-         * Pins for map
-         */
-        pins: {
-            type: Array,
-            required: true,
-        },
-        /**
          * Unique ID for the map
          */
         mapId: {
@@ -85,6 +79,20 @@ export default {
         isVisible: {
             type: Boolean,
             required: true,
+        },
+        /**
+         * Place data for markers
+         */
+        places: {
+            type: Array,
+            required: true,
+        },
+        /**
+         * Whether the map should fit to marker bounds
+         */
+        fitToMarkers: {
+            type: Boolean,
+            default: false,
         },
     },
     data() {
@@ -101,15 +109,6 @@ export default {
                 config: {
                     container: this.$refs.mapbox,
                     style: 'https://api.visitscotland.com/maps/vector/v1/vts/resources/styles',
-                    center: [
-                        parseFloat(this.overviewMapLatitude),
-                        parseFloat(this.overviewMapLongitude),
-                    ],
-                    zoom: parseInt(this.overviewMapZoom, 10),
-                    maxBounds: [
-                        [-11.697414, 52.801395], // south-west point.
-                        [0.651219, 61.395636], // north-east point.
-                    ],
                     pitchWithRotate: false,
                     dragRotate: false,
                 },
@@ -123,6 +122,11 @@ export default {
             if (newVal && this.mapbox.map !== null) {
                 this.mapbox.map.resize();
             }
+        },
+        places() {
+            this.geojsonData.features.splice(0, this.geojsonData.features.length);
+            this.addMapFeatures();
+            this.addMapMarkers();
         },
     },
     mounted() {
@@ -145,7 +149,14 @@ export default {
          */
         addMap() {
             this.mapbox.config.container = this.$refs.mapbox;
-            this.mapbox.map = new mapboxgl.Map(this.mapbox.config);
+            this.mapbox.map = new mapboxgl.Map({
+                container: this.$refs.mapbox,
+                style: 'https://api.visitscotland.com/maps/vector/v1/vts/resources/styles',
+                bounds: [
+                    [-7.555827, 55.308836], // south-west point.
+                    [-0.778285, 60.830894], // north-east point.
+                ],
+            });
             this.mapbox.map.scrollZoom.disable();
             this.mapbox.map.on('rotate', () => {
                 this.mapbox.rotation = this.mapbox.map.transform.angle;
@@ -161,48 +172,51 @@ export default {
             this.mapbox.map.addControl(nav, 'top-right');
             this.mapbox.map.addControl(new mapboxgl.FullscreenControl());
         },
-        // PLEASE NOTE: the commented methods below will be added back into the
-        // component when we hook up functionality
         /**
          * Adds map features
          */
-        // addMapFeatures() {
-        //     this.stops.map((stop) => this.geojsonData.features.push({
-        //         type: 'Feature',
-        //         geometry: {
-        //             type: 'Point',
-        //             coordinates: [parseFloat(stop.longitude), parseFloat(stop.latitude)],
-        //         },
-        //         properties: {
-        //             title: stop.title,
-        //             stopCount: stop.stopCount,
-        //             imageSrc: stop.imageSrc,
-        //             altText: stop.altText,
-        //         },
-        //     }));
-        // },
+        addMapFeatures() {
+            this.places.map((place) => this.geojsonData.features.push({
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [place.geometry.coordinates[0], place.geometry.coordinates[1]],
+                },
+                properties: {
+                    title: place.properties.title,
+                    imageSrc: place.image,
+                    type: place.properties.category.id,
+                },
+            }));
+        },
         /**
          * Adds map markers
          */
-        // addMapMarkers() {
-        //     this.geojsonData.features.forEach((feature) => {
-        //         const markerComponent = new Vue({
-        //             ...VsItineraryMapMarker,
-        //             parent: this,
-        //             propsData: {
-        //                 feature,
-        //             },
-        //         });
+        addMapMarkers() {
+            if (this.markers !== null) {
+                for (let i = this.markers.length - 1; i >= 0; i--) {
+                    this.markers[i].remove();
+                }
+            }
 
-        //         markerComponent.$mount();
+            this.geojsonData.features.forEach((feature) => {
+                const markerComponent = new Vue({
+                    ...VsMapMarker,
+                    parent: this,
+                    propsData: {
+                        feature,
+                    },
+                });
 
-        //         const mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
-        //             .setLngLat(feature.geometry.coordinates)
-        //             .addTo(this.mapbox.map);
+                markerComponent.$mount();
 
-        //         this.markers.push(mapboxMarker);
-        //     });
-        // },
+                const mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
+                    .setLngLat(feature.geometry.coordinates)
+                    .addTo(this.mapbox.map);
+
+                this.markers.push(mapboxMarker);
+            });
+        },
         /**
          * Adds map pop ups
          */
@@ -241,7 +255,12 @@ export default {
          */
         fitToBounds() {
             this.mapbox.map.fitBounds(geojsonExtent(this.geojsonData), {
-                padding: this.mapPadding,
+                padding: {
+                    top: 100,
+                    bottom: 100,
+                    left: 100,
+                    right: 100,
+                },
             });
         },
         /**
@@ -251,13 +270,15 @@ export default {
             this.addMap();
             this.addMapControls();
 
-            if (this.pins.length) {
+            if (this.places.length) {
                 this.addMapFeatures();
             }
 
             if (this.geojsonData.features.length) {
                 this.addMapMarkers();
-                this.fitToBounds();
+                if (this.fitToMarkers) {
+                    this.fitToBounds();
+                }
             }
         },
         /**
