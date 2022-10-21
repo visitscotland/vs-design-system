@@ -1,6 +1,6 @@
 <template>
     <div
-        class="vs-itinerary__day-outer"
+        class="vs-itinerary-day"
     >
         <VsContainer>
             <VsRow>
@@ -14,15 +14,22 @@
                     >
                         <template #title>
                             <!-- @slot Put the title here  -->
-                            <VsHeading
-                                level="2"
-                                class="vs-itinerary-day__header text-center mt-9 position-relative"
+                            <span
+                                class="vs-itinerary-day__header"
                             >
-                                <span class="vs-itinerary-day__title d-inline-block">
+                                <span
+                                    class="vs-itinerary-day__title
+                                    vs-heading vs-heading--style-level-2 d-inline-block"
+                                >
                                     {{ dayLabel }} {{ dayNumber }}
                                 </span>
-                                <span slot="sub-heading">{{ dayTitle }}</span>
-                            </VsHeading>
+
+                                <span
+                                    class="vs-itinerary-day__sub-heading"
+                                >
+                                    {{ dayTitle }}
+                                </span>
+                            </span>
                         </template>
 
                         <template #icon-open>
@@ -72,7 +79,6 @@ import {
     VsCol,
 } from '@components/elements/grid';
 import VsIcon from '@components/elements/icon/Icon';
-import VsHeading from '@components/elements/heading/Heading';
 import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
 
 /**
@@ -89,7 +95,6 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
-        VsHeading,
         VsIcon,
         VsAccordionItem,
     },
@@ -133,19 +138,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-itinerary-day__list-item.card {
-    width: calc(100% + #{$spacer-4});
-    margin-left: -#{$spacer-2};
-    padding: $spacer-4 $spacer-3 0;
-
-    @include media-breakpoint-up(md) {
-        width: calc(100% + #{$spacer-6});
-        margin-left: -#{$spacer-3};
-        padding: $spacer-4 $spacer-4 0;
-    }
-}
-
-.vs-itinerary__day-outer {
+.vs-itinerary-day{
     border-top: 5px solid $color-base-text;
 
     @include media-breakpoint-down(xs) {
@@ -154,52 +147,79 @@ export default {
         margin-left: -#{$spacer-2};
         padding: $spacer-0 $spacer-2;
     }
-}
 
-.vs-itinerary__day-outer:first-of-type {
-    @include media-breakpoint-up(md) {
-        border-top: none;
+    &:first-of-type {
+        @include media-breakpoint-up(md) {
+            border-top: none;
+        }
     }
-}
 
-.vs-itinerary-day__title  {
-    border-bottom: 1px solid $color-base-text;
-    color: $color-secondary-teal-shade-3;
-    padding: 0 $spacer-6 $spacer-3;
-}
+    &__list-item.card {
+        width: calc(100% + #{$spacer-4});
+        margin-left: -#{$spacer-2};
+        padding: 0 $spacer-3 0;
 
-.vs-itinerary-day__toggle-button {
-    border: 1px solid $color-base-text;
-    border-radius: 50%;
-    height: 24px;
-    width: 24px;
+        @include media-breakpoint-up(md) {
+            width: calc(100% + #{$spacer-6});
+            margin-left: -#{$spacer-3};
+            padding: $spacer-4 $spacer-4 0;
+        }
+    }
 
-    .vs-icon {
-        height: 100%;
-        margin: 0 auto;
+    &__header{
         display: block;
+        text-align: center;
+        margin: $spacer-5 0 $spacer-5;
+
+        .vs-itinerary-day__title  {
+            border-bottom: 1px solid $color-base-text;
+            color: $color-secondary-teal-shade-3;
+            padding: 0 $spacer-6 $spacer-3;
+            margin-bottom: $spacer-4;
+        }
+
+        .vs-itinerary-day__sub-heading{
+            letter-spacing: .15rem;
+            font-size: $font-size-8;
+            font-family: $headings-font-family-thin;
+            font-weight: $font-weight-normal;
+            display: block;
+        }
     }
 
-    &.vs-icon.vs-icon--size-xs {
-        height: 32px;
-        width: 32px;
-        padding: 8px;
+    &__toggle-button {
+        border: 1px solid $color-base-text;
+        border-radius: 50%;
+        height: 24px;
+        width: 24px;
+
+        .vs-icon {
+            height: 100%;
+            margin: 0 auto;
+            display: block;
+        }
+
+        &.vs-icon.vs-icon--size-xs {
+            height: 32px;
+            width: 32px;
+            padding: 8px;
+        }
     }
-}
 
-.vs-itinerary-day__intro-content {
-    padding: $spacer-0 $spacer-5;
-    margin-bottom: $spacer-9;
+    &__intro-content {
+        padding: $spacer-0 $spacer-5;
+        margin-bottom: $spacer-9;
 
-    @include media-breakpoint-up(md) {
-        padding: $spacer-0;
-        margin-bottom: $spacer-0;
+        @include media-breakpoint-up(md) {
+            padding: $spacer-0;
+            margin-bottom: $spacer-0;
+        }
     }
-}
 
-.vs-itinerary-day__panel .list-inline-item:not(:last-child) {
-    @include media-breakpoint-down(xs) {
-        margin-right: $spacer-1;
+    &__panel .list-inline-item:not(:last-child) {
+        @include media-breakpoint-down(xs) {
+            margin-right: $spacer-1;
+        }
     }
 }
 
