@@ -94,7 +94,8 @@
                 :key="place.id"
             >
                 <VsMainMapWrapperListItem
-                    v-if="place.properties.category.id === selectedCategory"
+                    v-if="typeof place.properties !== 'undefined'
+                        && place.properties.category.id === selectedCategory"
                     :item-data="place.properties"
                     @show-item-detail="showDetail(place.properties.id)"
                 >
@@ -104,11 +105,11 @@
         </template>
         <template v-if="currentStage === 2">
             <VsMainMapWrapperDetail
-                :content-data="currentPlaceData"
+                :content-data="currentPlaceData[0]"
             />
 
             <VsMainMapWrapperButtons
-                :content-data="currentPlaceData"
+                :content-data="currentPlaceData[0]"
             />
         </template>
     </section>
@@ -186,7 +187,7 @@ export default {
                 headingText = this.currentFilter.label;
                 break;
             case 2:
-                headingText = this.currentPlaceData.properties.title;
+                headingText = this.currentPlaceData[0].properties.title;
                 break;
             default:
                 break;
@@ -216,7 +217,13 @@ export default {
             return currentFilter;
         },
         currentPlaceData() {
-            return this.placesData.filter((obj) => obj.properties.id === this.selectedItem)[0];
+            return this.placesData.filter((obj) => {
+                if (typeof obj.properties !== 'undefined') {
+                    return obj.properties.id === this.selectedItem;
+                }
+
+                return false;
+            });
         },
 
     },

@@ -176,18 +176,28 @@ export default {
          * Adds map features
          */
         addMapFeatures() {
-            this.places.map((place) => this.geojsonData.features.push({
-                type: 'Feature',
-                geometry: {
-                    type: 'Point',
-                    coordinates: [place.geometry.coordinates[0], place.geometry.coordinates[1]],
-                },
-                properties: {
-                    title: place.properties.title,
-                    imageSrc: place.image,
-                    type: place.properties.category.id,
-                },
-            }));
+            this.places.map((place) => {
+                if (typeof place.geometry !== 'undefined') {
+                    return this.geojsonData.features.push({
+                        type: 'Feature',
+                        geometry: {
+                            type: 'Point',
+                            coordinates: [
+                                place.geometry.coordinates[0],
+                                place.geometry.coordinates[1],
+                            ],
+                        },
+                        properties: {
+                            title: place.properties.title,
+                            imageSrc: place.image,
+                            type: place.properties.category.id,
+                            id: place.properties.id,
+                        },
+                    });
+                }
+
+                return false;
+            });
         },
         /**
          * Adds map markers
@@ -308,6 +318,10 @@ export default {
                 }
             });
             this.observer.observe(this.$el);
+
+            if (this.places.length) {
+                this.addMapFeatures();
+            }
         },
         /**
          * Removes a map pop up
