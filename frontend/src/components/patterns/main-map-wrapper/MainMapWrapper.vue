@@ -131,13 +131,16 @@ export default {
         formatPinData() {
             const pinArray = [];
             this.placesData.forEach((place) => {
-                pinArray.push(place.geometry.coordinates);
+                if (typeof this.place.geometry !== 'undefined') {
+                    pinArray.push(place.geometry.coordinates);
+                }
             });
 
             return pinArray;
         },
     },
     mounted() {
+        console.log(this.placesData);
         this.panelVisible = true;
     },
     methods: {
@@ -183,7 +186,14 @@ export default {
          */
         filterPlaces(id) {
             const filteredPlaces = this.placesData
-                .filter((place) => place.properties.category.id === id);
+                .filter((place) => {
+                    console.log(place);
+                    if (typeof place.properties !== 'undefined') {
+                        return place.properties.category.id === id;
+                    }
+
+                    return false;
+                });
             this.activePins = filteredPlaces;
         },
         /**
