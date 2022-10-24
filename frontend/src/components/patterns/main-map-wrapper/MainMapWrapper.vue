@@ -140,7 +140,6 @@ export default {
         },
     },
     mounted() {
-        console.log(this.placesData);
         this.panelVisible = true;
     },
     methods: {
@@ -187,7 +186,6 @@ export default {
         filterPlaces(id) {
             const filteredPlaces = this.placesData
                 .filter((place) => {
-                    console.log(place);
                     if (typeof place.properties !== 'undefined') {
                         return place.properties.category.id === id;
                     }
