@@ -60,7 +60,6 @@ export default {
          */
         selectCategory(type) {
             this.$parent.$emit('set-category', type);
-            this.$parent.$emit('filter-places', type);
             this.$parent.$emit('set-stage', 1);
         },
     },
