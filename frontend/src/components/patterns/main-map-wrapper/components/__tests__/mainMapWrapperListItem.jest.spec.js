@@ -16,6 +16,14 @@ const factoryShallowMount = () => shallowMount(VsMainMapWrapperListItem, {
             image: 'https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm',
         },
     },
+    computed: {
+        isActive() {
+            return true;
+        },
+        highlightedPlace() {
+            return 'highlighted-id';
+        },
+    },
 });
 
 describe('VsMainMapWrapperListItem', () => {
