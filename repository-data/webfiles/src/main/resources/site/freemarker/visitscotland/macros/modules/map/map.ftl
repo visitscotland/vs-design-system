@@ -14,6 +14,6 @@
         <@hst.html hippohtml=module.introduction/>
 
         ${module.tabTitle} </br>
-        ${module.mapControls} </br>
+        ${module.mapFilters} </br>
         ${module.geoJson}
 </#macro>
