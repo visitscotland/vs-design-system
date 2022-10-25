@@ -39,12 +39,12 @@ public class MapsModule extends Module {
         this.tabTitle = tabTitle;
     }
 
-    public JsonArray getFilters() {
+    public JsonArray getMapFilters() {
         return mapFilters;
     }
 
-    public void setFilters(JsonArray filters) {
-        this.mapFilters = filters;
+    public void setMapFilters(JsonArray mapFilters) {
+        this.mapFilters = mapFilters;
     }
 
     public JsonObject getGeoJson() {
