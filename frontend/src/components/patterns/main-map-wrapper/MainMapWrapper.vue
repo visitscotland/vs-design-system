@@ -51,6 +51,10 @@
                             :labels="{
                             }"
                             :places="activePins"
+                            :selected-item="selectedItem"
+                            :map-id="mapId"
+                            @show-detail="showDetail"
+                            @set-category="setCategory"
                         />
                     </div>
                 </div>
@@ -68,6 +72,7 @@ import {
 import VsMap from '@components/elements/map/Map';
 import VsButton from '@components/elements/button/Button/';
 import VsMainMapWrapperPanel from './components/MainMapWrapperPanel';
+import mapStore from '../../../stores/map.store';
 
 /**
  * Renders a widget that display a map
@@ -110,6 +115,15 @@ export default {
             type: Array,
             required: true,
         },
+        /**
+         * Unique ID for the map - used to
+         * differentiate between multiple map
+         * instances in the Vuex store
+         */
+        mapId: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
@@ -119,6 +133,7 @@ export default {
             filterCategories: this.filters,
             selectedItem: '',
             activePins: this.placesData,
+            currentlyHovered: '',
         };
     },
     computed: {
@@ -141,6 +156,12 @@ export default {
     },
     mounted() {
         this.panelVisible = true;
+        mapStore.commit('addMapInstance', {
+            id: this.mapId,
+            filters: this.filters,
+            places: this.placesData,
+            activePins: this.activePins,
+        });
     },
     methods: {
         /**
@@ -160,13 +181,16 @@ export default {
          */
         showDetail(id) {
             this.selectedItem = id;
-            this.showPlace();
+            this.setStage(2);
+            this.openPanel();
+            this.filterPlaces(this.selectedCategory);
         },
         /**
          * Sets the currently chosen category
          */
         setCategory(cat) {
             this.selectedCategory = cat;
+            this.filterPlaces(cat);
         },
         /**
          * Sets the current stage
@@ -178,6 +202,15 @@ export default {
                 this.showAllPlaces();
             } else if (this.currentStage === 1) {
                 this.filterPlaces(this.selectedCategory);
+            }
+
+            if (this.currentStage !== 2) {
+                // if the stage isn't showing a place's details
+                // make sure the store doesn't have an active place set
+                mapStore.dispatch('setActivePlace', {
+                    mapId: this.mapId,
+                    placeId: '',
+                });
             }
         },
         /**
@@ -200,20 +233,12 @@ export default {
         showAllPlaces() {
             this.activePins = this.placesData;
         },
-        /**
-         * Show single place pin
-         */
-        showPlace() {
-            const chosenPlace = (this.placesData
-                .filter((place) => this.selectedItem === place.properties.id));
-            this.activePins = chosenPlace;
-        },
     },
     provide() {
         return {
             filters: this.filters,
             placesData: this.placesData,
-            selectedItem: this.selectedItem,
+            mapId: this.mapId,
         };
     },
 };
