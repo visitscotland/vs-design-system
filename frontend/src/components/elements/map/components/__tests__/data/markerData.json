@@ -1,19 +1,9 @@
 {
     "type": "Feature",
     "properties": {
-        "category": {
-            "id": "cities",
-            "label": "Cities"
-        },
+        "type": "cities",
         "id": "a4260a0c-9d66-425b-835a-eec833c30a92",
-        "title": "Old town hideouts",
-        "description":"Two old town cafés near the Royal Mile claim that JK Rowling spent endless afternoons in the 1990s gazing out of their windows and dreaming up her magical characters. The Elephant House, with its beautiful views of Edinburgh Castle, has become known as the 'Birthplace of Harry Potter'. Whilst Spoon (in those days known as the Nicholson Café), is a lovely eatery and a great place to collect your creative thoughts. You can also see JK Rowling's handprints set in stone at the Edinburgh City Chambers on the Royal Mile.",
-        "image": "http://www.visitscotland.com/wsimgs/Royal%20Mile%20%20Kenny%20Lam_1848791035.jpg",
-        "link": {
-            "label": "Discover Old town hideouts",
-            "link": "http://172.28.81.65:8089/info/towns-villages/royal-mile-and-grassmarket-p918401",
-            "type": "INTERNAL"
-        }
+        "title": "Old town hideouts"
     },
     "geometry": {
         "type": "Point",
