@@ -8,6 +8,7 @@ user to filter and search for data contained on the map.
     :filters="maps.mapFilters"
     :places-data="maps.placesData.features"
     discover-text="discover"
+    map-id="vs-map"
 >
     <template slot="closeSidePanelText">
         Close search and filter panel
