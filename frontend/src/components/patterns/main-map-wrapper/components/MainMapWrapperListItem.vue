@@ -1,9 +1,14 @@
 <template>
     <button
         class="vs-main-map-wrapper-list-item"
+        :class="isActive ? 'vs-main-map-wrapper-list-item--hovered' : ''"
         data-test="vs-main-map-wrapper-list-item"
         @click="showItemDetail(itemData.id)"
         @keyup.enter="showItemDetail(itemData.id)"
+        @mouseover="itemHover(itemData.id)"
+        @mouseleave="itemHover('')"
+        @focusin="itemHover(itemData.id)"
+        @focusout="itemHover('')"
     >
         <VsImg
             :src="itemData.image"
@@ -24,6 +29,7 @@
 <script>
 import VsImg from '@components/elements/img/Img';
 import VsIcon from '@components/elements/icon/Icon';
+import mapStore from '../../../../stores/map.store';
 /**
  * Renders a list item for the map filter tool.
  * Consists of an image and text in the form of a link.
@@ -47,16 +53,45 @@ export default {
             required: true,
         },
     },
+    computed: {
+        isActive() {
+            if (this.highlightedPlace === this.itemData.id) {
+                return true;
+            }
+
+            return false;
+        },
+        highlightedPlace() {
+            return mapStore.getters.getHoveredStop(this.mapId);
+        },
+    },
     methods: {
         /**
          * Emits an event with the ID of the chosen
          * item as the payload
          */
         showItemDetail(id) {
+            mapStore.dispatch('setActivePlace', {
+                mapId: this.mapId,
+                placeId: id,
+            });
             this.$parent.$emit('show-item-detail', id);
             this.$parent.$emit('set-stage', 2);
         },
+        /**
+         * Emits an event with the ID of the chosen
+         * item on hover
+         */
+        itemHover(id) {
+            mapStore.dispatch('setHoveredPlace', {
+                mapId: this.mapId,
+                hoveredId: id,
+            });
+        },
     },
+    inject: [
+        'mapId',
+    ],
 };
 </script>
 
@@ -79,7 +114,8 @@ export default {
         border-bottom: 1px solid $color-gray-tint-5;
         text-align: left;
 
-        &:hover {
+        &:hover,
+        &--hovered {
             box-shadow: $shadow_card;
             text-decoration: underline;
         }

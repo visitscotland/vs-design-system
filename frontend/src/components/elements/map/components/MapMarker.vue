@@ -1,29 +1,27 @@
 <template>
     <button
         class="vs-map-marker"
-        :class="isHighlighted ? 'active' : ''"
+        :class="isActive ? 'vs-map-marker--active' : ''"
         data-test="vs-map-marker"
         variant="transparent"
-        @mouseenter="handleMouseEnter()"
-        @mouseleave="handleMouseLeave()"
-        @focus="handleClick()"
-        @blur="handleClick()"
-        @click="handleClick()"
-        @keydown="handleClick()"
+        @click="handleClick"
+        @keydown="handleClick"
+        @mouseover="handleHover(feature.properties.id)"
+        @mouseleave="handleHover('')"
+        @focusin="handleHover(feature.properties.id)"
+        @focusout="handleHover('')"
     >
-        <div class="vs-map-marker__wrapper">
-            <VsSvg
-                :class="isHighlighted ? 'active' : ''"
-                :variant="isHighlighted ? 'dark' : 'secondary-teal'"
-                slot="svg"
-                :path="`marker-${feature.properties.type}`"
-            />
-        </div>
+        <VsSvg
+            class="vs-map-marker__icon"
+            slot="svg"
+            :path="`marker-${feature.properties.type}`"
+        />
     </button>
 </template>
 
 <script>
 import VsSvg from '@components/elements/svg/Svg';
+import mapStore from '../../../../stores/map.store';
 
 /**
  * A marker for a map compenent
@@ -39,44 +37,60 @@ export default {
         VsSvg,
     },
     props: {
+        /**
+         * Details for the marker
+         */
         feature: {
             type: Object,
             required: true,
         },
+        /**
+         * Id for the map - to be used with
+         * the map store
+         */
+        mapId: {
+            type: String,
+            required: true,
+        },
     },
-    data() {
-        return {
-            isHighlighted: false,
-        };
+    computed: {
+        isActive() {
+            if (this.activePlace === this.feature.properties.id
+                || this.highlightedPlace === this.feature.properties.id) {
+                return true;
+            }
+
+            return false;
+        },
+        highlightedPlace() {
+            return mapStore.getters.getHoveredStop(this.mapId);
+        },
+        activePlace() {
+            return mapStore.getters.getActivePlace(this.mapId);
+        },
     },
-    // TO DO - refactor as part of VS-4087
-    // computed: {
-    //     highlightedStop() {
-    //         return itinerariesStore.getters['itineraries/getHighlightedStop'];
-    //     },
-    // },
-    // watch: {
-    //     highlightedStop() {
-    //         this.toggleHighlighted();
-    //     },
-    // },
-    // methods: {
-    //     handleClick() {
-    //         if (this.highlightedStop === this.feature) {
-    //             return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
-    //         }
-    //         return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
-    //     },
-    //     handleMouseEnter() {
-    //         return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
-    //     },
-    //     handleMouseLeave() {
-    //         return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
-    //     },
-    //     toggleHighlighted() {
-    //         this.isHighlighted = this.highlightedStop === this.feature;
-    //     },
-    // },
+    methods: {
+        /**
+         * Fires on click of the marker
+         */
+        handleClick() {
+            mapStore.dispatch('setActivePlace', {
+                mapId: this.mapId,
+                placeId: this.feature.properties.id,
+            });
+            this.$parent.$emit('show-detail', this.feature.properties.id);
+            this.$parent.$emit('set-category', this.feature.properties.type);
+        },
+        /**
+         * Fires on hover over the maker
+         */
+        handleHover(id) {
+            mapStore.dispatch('setHoveredPlace', {
+                mapId: this.mapId,
+                hoveredId: id,
+            });
+        },
+    },
 };
 </script>
 
@@ -91,22 +105,16 @@ export default {
 
     &:hover,
     &:focus,
-    &.active {
+    &--active {
         z-index: 1 !important;
-    }
 
-    svg {
-        transition: $transition-base;
-    }
-
-    &.active {
-        .vs-map-marker__wrapper {
+        .vs-map-marker__icon {
             transform: scale(1.2, 1.2) translateY(-10px);
         }
+    }
 
-        svg {
-            fill: $color-secondary-teal-shade-3 !important;
-        }
+    &__icon {
+        transition: $transition-base;
     }
 
     &__count {
