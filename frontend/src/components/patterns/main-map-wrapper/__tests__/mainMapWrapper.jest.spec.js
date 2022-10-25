@@ -10,6 +10,7 @@ const factoryShallowMount = () => shallowMount(VsMainMapWrapper, {
     propsData: {
         placesData: placesJson.features,
         filters: filtersJson,
+        selectedItem: 'a4260a0c-9d66-425b-835a-eec833c30a92',
     },
 });
 
@@ -54,12 +55,11 @@ describe('VsMainMapWrapper', () => {
             expect(wrapper.vm.selectedItem).toBe('test');
         });
 
-        it('should change the `activePins` to be a single item when the `showPlace` method is fired', async() => {
+        it('should add all places to `activePins` when `showAllPlaces` is fired', async() => {
             const wrapper = factoryShallowMount();
-
-            wrapper.vm.showDetail('a4260a0c-9d66-425b-835a-eec833c30a92');
+            wrapper.vm.showAllPlaces();
             await wrapper.vm.$nextTick();
-            expect(wrapper.vm.activePins.length).toBe(1);
+            expect(wrapper.vm.activePins.length).toBe(13);
         });
 
         it('should change the `selectedCategory` data when the `setCategory` method is fired', async() => {

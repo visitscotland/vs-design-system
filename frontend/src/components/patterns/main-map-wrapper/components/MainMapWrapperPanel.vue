@@ -163,9 +163,16 @@ export default {
             required: true,
         },
         /**
-         * The currently selected item
+         * The ID of thecurrently selected item
          */
         selectedItem: {
+            type: String,
+            default: '',
+        },
+        /**
+         * The ID of the currently hover item
+         */
+        hovered: {
             type: String,
             default: '',
         },
@@ -295,8 +302,7 @@ export default {
 
         h2.vs-heading {
             flex-grow: 1;
-            margin-top: $spacer-11;
-            margin-bottom: 0;
+            margin: $spacer-11 $spacer-3 $spacer-0;
         }
 
         .vs-main-wrapper-category:last-of-type {
