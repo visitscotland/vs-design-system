@@ -29,7 +29,7 @@
             </div>
 
             <VsHeading
-                level="2"
+                :level="headingLevel"
                 override-style-level="4"
                 class="vs-main-map-wrapper-panel__heading text-center mt-0"
                 :class="currentStage === 2 ? 'd-none d-lg-block' : ''"
@@ -148,6 +148,13 @@ export default {
         categoryHeading: {
             type: String,
             default: '',
+        },
+        /**
+         * Heading level for panel header
+         */
+        headingLevel: {
+            type: String,
+            default: '2',
         },
         /**
          * Currently selected category
@@ -307,7 +314,8 @@ export default {
             display: none;
         }
 
-        h2.vs-heading {
+        h2.vs-heading,
+        h3.vs-heading {
             flex-grow: 1;
             margin: $spacer-11 $spacer-3 $spacer-0;
         }

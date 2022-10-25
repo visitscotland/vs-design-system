@@ -11,13 +11,14 @@ user to filter and search for data contained on the map.
     map-id="vs-map"
 >
     <template slot="closeSidePanelText">
-        Close search and filter panel
+        <span class="sr-only">
+            Close search and filter panel
+        </span>
     </template>
     <template slot="openSidePanelText">
-        Open search and filter panel
-    </template>
-    <template slot="backBtnText">
-        Go back one step
+        <span class="sr-only">
+            Open search and filter panel
+        </span>
     </template>
     <template slot="backBtnText">
         Go back one step
