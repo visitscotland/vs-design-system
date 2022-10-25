@@ -68,4 +68,7 @@
                 Reset filters
             </template>
         </vs-main-map-wrapper>
+        ${module.tabTitle} </br>
+        ${module.mapFilters} </br>
+        ${module.geoJson}
 </#macro>

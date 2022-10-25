@@ -78,7 +78,6 @@ public class MapFactory {
         JsonObject featureCollectionGeoJson = new JsonObject();
         featureCollectionGeoJson.addProperty("type", "FeatureCollection");
         JsonArray features = new JsonArray();
-        JsonArray mapControlsArray = new JsonArray();
         JsonArray keys = new JsonArray();
         if (!(page instanceof General)) {
             buildMapDestinationPages(request, mapModuleDocument, module, keys, features);
@@ -86,12 +85,11 @@ public class MapFactory {
             buildMapGeneralPages(request, mapModuleDocument, module, keys, features);
         }
         //add first Json for map controls (include filters) to the module
-        JsonObject mapControlFilters = new JsonObject();
+       /* JsonObject mapControlFilters = new JsonObject();
         mapControlFilters.add("filters", keys);
-        mapControlsArray.add(mapControlFilters);
         JsonObject jsonParameters = new JsonObject();
-        jsonParameters.add("map", mapControlsArray);
-        module.setFilters(jsonParameters);
+        jsonParameters.add("map", mapControlFilters);*/
+        module.setFilters(keys);
 
         //add second json (geoJson) to the module
         featureCollectionGeoJson.add("features", features);
