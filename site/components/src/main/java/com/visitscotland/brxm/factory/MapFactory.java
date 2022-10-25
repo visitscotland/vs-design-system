@@ -71,7 +71,7 @@ public class MapFactory {
     public MapsModule getModule(HstRequest request, MapModule mapModuleDocument, Page page) {
         MapsModule module = new MapsModule();
 
-        module.setId(mapModuleDocument.getPath());
+        module.setId(mapModuleDocument.getCanonicalUUID());
         module.setTitle(mapModuleDocument.getTitle());
         module.setIntroduction(mapModuleDocument.getCopy());
         module.setTabTitle(mapModuleDocument.getTabTitle());
@@ -85,11 +85,7 @@ public class MapFactory {
         } else {
             buildMapGeneralPages(request, mapModuleDocument, module, keys, features);
         }
-        //add first Json for map controls (include filters) to the module
-       /* JsonObject mapControlFilters = new JsonObject();
-        mapControlFilters.add("filters", keys);
-        JsonObject jsonParameters = new JsonObject();
-        jsonParameters.add("map", mapControlFilters);*/
+        //add first Json for filters
         module.setFilters(keys);
 
         //add second json (geoJson) to the module
