@@ -4,7 +4,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: ac89a8cf-a2c8-4cd6-bf14-91afb3d68e3e
   hippo:name: Map
-  hippo:versionHistory: 8c29c865-3c1f-4fec-9085-848e4e800c7f
+  hippo:versionHistory: e5fd89f6-f3b3-4604-8afb-80c9d253babd
   /map[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -14,24 +14,28 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-03-02T10:09:34.350Z
-    hippostdpubwf:lastModificationDate: 2022-10-24T12:41:17.347+01:00
+    hippostdpubwf:lastModificationDate: 2022-10-25T14:18:37.652+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '', '', '', '', '']
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: map
     resourcebundle:keys: [map.fullscreen, map.exitfullscreen, map.reset, map.zoomin,
-      map.zoomout, map.feature-default-title, map.discover]
+      map.zoomout, map.feature-default-title, map.discover, map.close-panel, map.open-panel,
+      map.step-back, map.reset-filters]
     resourcebundle:messages: [Show fullscreen, Exit fullscreen, Reset angle, Zoom
-        in, Zoom out, Featured Places, Discover]
+        in, Zoom out, Featured Places, Discover, Close search and filter panel, Open
+        search and filter panel, Go back one step, Reset filters]
     resourcebundle:messages_de: [Vollbild anzeigen, Vollbild schließen, Zurücksetzen,
-      Vergrößern, Verkleinern, Besondere Orte, Entdecken Sie]
+      Vergrößern, Verkleinern, Besondere Orte, Entdecken Sie, '', '', '', '']
     resourcebundle:messages_es: [Mostrar pantalla completa, Cerrar pantalla completa,
-      Restablecer ángulo, Ampliar, Reducir, Lugares destacados, Descubre]
+      Restablecer ángulo, Ampliar, Reducir, Lugares destacados, Descubre, '', '',
+      '', '']
     resourcebundle:messages_fr: [Afficher en mode plein écran, Fermer le mode plein
-        écran, Réinitialiser, Zoomer, Dézoomer, Lieux d’intérêt, Découvrez]
+        écran, Réinitialiser, Zoomer, Dézoomer, Lieux d’intérêt, Découvrez, '', '',
+      '', '']
     resourcebundle:messages_it: [Mostra a schermo intero, Esci dallo schermo intero,
-      Reset, Ingrandisci, Riduci, Luoghi in primo piano, Scopri]
+      Reset, Ingrandisci, Riduci, Luoghi in primo piano, Scopri, '', '', '', '']
     resourcebundle:messages_nl: [Volledig scherm tonen, Volledig scherm sluiten, Heroriënteren,
-      Inzoomen, Uitzoomen, '', Ontdek]
+      Inzoomen, Uitzoomen, '', Ontdek, '', '', '', '']
   /map[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -41,24 +45,28 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-03-02T10:09:34.350Z
-    hippostdpubwf:lastModificationDate: 2022-10-17T09:21:23.937+01:00
+    hippostdpubwf:lastModificationDate: 2022-10-25T14:19:55.961+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '', '', '', '', '']
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: map
     resourcebundle:keys: [map.fullscreen, map.exitfullscreen, map.reset, map.zoomin,
-      map.zoomout, map.feature-default-title, map.discover]
+      map.zoomout, map.feature-default-title, map.discover, map.close-panel, map.open-panel,
+      map.step-back, map.reset-filters]
     resourcebundle:messages: [Show fullscreen, Exit fullscreen, Reset angle, Zoom
-        in, Zoom out, Featured Places, Discover]
+        in, Zoom out, Featured Places, Discover, Close search and filter panel, Open
+        search and filter panel, Go back one step, Reset filters]
     resourcebundle:messages_de: [Vollbild anzeigen, Vollbild schließen, Zurücksetzen,
-      Vergrößern, Verkleinern, Besondere Orte, Entdecken Sie]
+      Vergrößern, Verkleinern, Besondere Orte, Entdecken Sie, '', '', '', '']
     resourcebundle:messages_es: [Mostrar pantalla completa, Cerrar pantalla completa,
-      Restablecer ángulo, Ampliar, Reducir, Lugares destacados, Descubre]
+      Restablecer ángulo, Ampliar, Reducir, Lugares destacados, Descubre, '', '',
+      '', '']
     resourcebundle:messages_fr: [Afficher en mode plein écran, Fermer le mode plein
-        écran, Réinitialiser, Zoomer, Dézoomer, Lieux d’intérêt, Découvrez]
+        écran, Réinitialiser, Zoomer, Dézoomer, Lieux d’intérêt, Découvrez, '', '',
+      '', '']
     resourcebundle:messages_it: [Mostra a schermo intero, Esci dallo schermo intero,
-      Reset, Ingrandisci, Riduci, Luoghi in primo piano, Scopri]
+      Reset, Ingrandisci, Riduci, Luoghi in primo piano, Scopri, '', '', '', '']
     resourcebundle:messages_nl: [Volledig scherm tonen, Volledig scherm sluiten, Heroriënteren,
-      Inzoomen, Uitzoomen, '', Ontdek]
+      Inzoomen, Uitzoomen, '', Ontdek, '', '', '', '']
   /map[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -68,22 +76,26 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-03-02T10:09:34.350Z
-    hippostdpubwf:lastModificationDate: 2022-10-17T09:21:23.937+01:00
+    hippostdpubwf:lastModificationDate: 2022-10-25T14:19:55.961+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2022-10-17T09:21:27.138+01:00
-    resourcebundle:descriptions: ['', '', '', '', '', '', '']
+    hippostdpubwf:publicationDate: 2022-10-25T14:19:59.434+01:00
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: map
     resourcebundle:keys: [map.fullscreen, map.exitfullscreen, map.reset, map.zoomin,
-      map.zoomout, map.feature-default-title, map.discover]
+      map.zoomout, map.feature-default-title, map.discover, map.close-panel, map.open-panel,
+      map.step-back, map.reset-filters]
     resourcebundle:messages: [Show fullscreen, Exit fullscreen, Reset angle, Zoom
-        in, Zoom out, Featured Places, Discover]
+        in, Zoom out, Featured Places, Discover, Close search and filter panel, Open
+        search and filter panel, Go back one step, Reset filters]
     resourcebundle:messages_de: [Vollbild anzeigen, Vollbild schließen, Zurücksetzen,
-      Vergrößern, Verkleinern, Besondere Orte, Entdecken Sie]
+      Vergrößern, Verkleinern, Besondere Orte, Entdecken Sie, '', '', '', '']
     resourcebundle:messages_es: [Mostrar pantalla completa, Cerrar pantalla completa,
-      Restablecer ángulo, Ampliar, Reducir, Lugares destacados, Descubre]
+      Restablecer ángulo, Ampliar, Reducir, Lugares destacados, Descubre, '', '',
+      '', '']
     resourcebundle:messages_fr: [Afficher en mode plein écran, Fermer le mode plein
-        écran, Réinitialiser, Zoomer, Dézoomer, Lieux d’intérêt, Découvrez]
+        écran, Réinitialiser, Zoomer, Dézoomer, Lieux d’intérêt, Découvrez, '', '',
+      '', '']
     resourcebundle:messages_it: [Mostra a schermo intero, Esci dallo schermo intero,
-      Reset, Ingrandisci, Riduci, Luoghi in primo piano, Scopri]
+      Reset, Ingrandisci, Riduci, Luoghi in primo piano, Scopri, '', '', '', '']
     resourcebundle:messages_nl: [Volledig scherm tonen, Volledig scherm sluiten, Heroriënteren,
-      Inzoomen, Uitzoomen, '', Ontdek]
+      Inzoomen, Uitzoomen, '', Ontdek, '', '', '', '']
