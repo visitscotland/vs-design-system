@@ -120,6 +120,15 @@ describe('VsMainMapWrapperPanel', () => {
 
             expect(panelHeading.exists()).toBe(false);
         });
+
+        it('should show the correct heading level from the `headingLevel prop', () => {
+            const wrapper = factoryShallowMount({
+                currentStage: 1,
+                headingLevel: '3',
+            });
+            const headingStub = wrapper.find('vsheading-stub');
+            expect(headingStub.attributes('level')).toBe('3');
+        });
     });
 
     describe(':slots', () => {

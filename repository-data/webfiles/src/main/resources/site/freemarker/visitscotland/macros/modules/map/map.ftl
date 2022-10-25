@@ -1,5 +1,6 @@
 <#include "../../../../include/imports.ftl">
 <#include "../../global/preview-warning.ftl">
+<#include "../../../../frontend/components/vs-module-wrapper.ftl">
 <#include "../../../../frontend/components/vs-main-map-wrapper.ftl">
 
 
@@ -10,66 +11,81 @@
     <@hst.manageContent hippobean=module.hippoBean />
     <@previewWarning editMode module module.errorMessages />
 
-        <#assign safeJson>
-            ${module.geoJson.features?replace("'", "&#39;")}
+    <#assign safeJson>
+        ${module.geoJson.features?replace("'", "&#39;")}
+    </#assign>
+
+    <#assign filters>
+        <#--  ${module.mapControls.map}  -->
+        [
+            {
+                "id": "cities",
+                "label": "Cities"
+            },
+            {
+                "id": "towns",
+                "label": "Towns"
+            },
+            {
+                "id": "islands",
+                "label": "Islands"
+            },
+            {
+                "id": "regions",
+                "label": "Regions"
+            },
+            {
+                "id": "featured",
+                "label": "Featured"
+            }
+        ]
+    </#assign>
+    
+    <#if module.title??>
+        <#assign mainHeadingExists>
+            true
         </#assign>
-
-        <#assign filters>
-            [
-                {
-                    "id": "cities",
-                    "label": "Cities"
-                },
-                {
-                    "id": "towns",
-                    "label": "Towns"
-                },
-                {
-                    "id": "islands",
-                    "label": "Islands"
-                },
-                {
-                    "id": "regions",
-                    "label": "Regions"
-                },
-                {
-                    "id": "featured",
-                    "label": "Featured"
-                }
-            ]
+    <#else>
+        <#assign mainHeadingExists>
+            false
         </#assign>
+    </#if>
 
-        ${module.id}
-        ${module.title}
+    ${module.filters} </br>
 
-        <@hst.html hippohtml=module.introduction/>
-        CONTROLs: ${module.mapControls}
-        
-        <#--  ${module.geoJson?replace("'", "&#39;")}  -->
+    <vs-module-wrapper>
+        <template slot="vsModuleWrapperHeading">
+            ${module.title}
+        </template>
+
+        <template slot="vsModuleWrapperIntro">
+            <@hst.html hippohtml=module.introduction/>
+        </template>
 
         <vs-main-map-wrapper
+            :main-heading-exists="${mainHeadingExists}"
             category-heading="${module.tabTitle}"
             :filters='${filters}'
             :places-data='${safeJson}'
             map-id="vs-map"
         >
+
             <template slot="closeSidePanelText">
-                Close search and filter panel
+                <span class="sr-only">
+                    ${label('map', 'map.close-panel')}
+                </span>
             </template>
             <template slot="openSidePanelText">
-                Open search and filter panel
+                <span class="sr-only">
+                    ${label('map', 'map.open-panel')}
+                </span>
             </template>
             <template slot="backBtnText">
-                Go back one step
-            </template>
-            <template slot="backBtnText">
-                Go back one step
+                ${label('map', 'map.step-back')}
             </template>
             <template slot="resetSidePanelText">
-                Reset filters
+                ${label('map', 'map.reset-filters')}
             </template>
         </vs-main-map-wrapper>
-        ${module.tabTitle} </br>
-        ${module.filters} </br>
-        ${module.geoJson}
+    </vs-module-wrapper>
 </#macro>

@@ -17,6 +17,7 @@
                             :selected-category="selectedCategory"
                             :current-stage="currentStage"
                             :selected-item="selectedItem"
+                            :heading-level="mainHeadingExists ? '3' : '2'"
                             @set-category="setCategory"
                             @set-stage="setStage"
                             @close-panel="closePanel"
@@ -25,6 +26,14 @@
                         >
                             <template slot="closePanelText">
                                 <slot name="closeSidePanelText" />
+                            </template>
+
+                            <template slot="resetSidePanelText">
+                                <slot name="resetSidePanelText" />
+                            </template>
+                            backBtnText
+                            <template slot="backBtnText">
+                                <slot name="backBtnText" />
                             </template>
                         </VsMainMapWrapperPanel>
                     </div>
@@ -41,10 +50,8 @@
                             @click.native="openPanel"
                             data-test="vs-main-map-wrapper__map-toggle"
                         >
-                            <span class="sr-only">
-                                <!-- @slot Text for panel open button  -->
-                                <slot name="openSidePanelText" />
-                            </span>
+                            <!-- @slot Text for panel open button  -->
+                            <slot name="openSidePanelText" />
                         </VsButton>
                         <VsMap
                             :is-visible="!panelVisible"
@@ -123,6 +130,14 @@ export default {
         mapId: {
             type: String,
             required: true,
+        },
+        /**
+         * Level of the heading to be used in the
+         * panel (to allow main heading in section)
+         */
+        mainHeadingExists: {
+            type: Boolean,
+            default: false,
         },
     },
     data() {
