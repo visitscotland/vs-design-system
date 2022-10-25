@@ -9,11 +9,12 @@
     <@hst.manageContent hippobean=module.hippoBean />
     <@previewWarning editMode module module.errorMessages />
 
+        ${module.id}
         ${module.title}
 
         <@hst.html hippohtml=module.introduction/>
 
         ${module.tabTitle} </br>
-        ${module.mapFilters} </br>
+        ${module.filters} </br>
         ${module.geoJson}
 </#macro>

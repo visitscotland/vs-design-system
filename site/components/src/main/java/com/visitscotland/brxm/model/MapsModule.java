@@ -8,12 +8,20 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.util.List;
 
 public class MapsModule extends Module {
+    private String id;
     private String title;
     private HippoHtml introduction;
     private String tabTitle;
-    private JsonArray mapFilters;
+    private JsonArray filters;
     private JsonObject geoJson;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -39,12 +47,12 @@ public class MapsModule extends Module {
         this.tabTitle = tabTitle;
     }
 
-    public JsonArray getMapFilters() {
-        return mapFilters;
+    public JsonArray getFilters() {
+        return filters;
     }
 
-    public void setMapFilters(JsonArray mapFilters) {
-        this.mapFilters = mapFilters;
+    public void setFilters(JsonArray filters) {
+        this.filters = filters;
     }
 
     public JsonObject getGeoJson() {
