@@ -39,6 +39,7 @@
             ]
         </#assign>
 
+        ${module.id}
         ${module.title}
 
         <@hst.html hippohtml=module.introduction/>
@@ -69,6 +70,6 @@
             </template>
         </vs-main-map-wrapper>
         ${module.tabTitle} </br>
-        ${module.mapFilters} </br>
+        ${module.filters} </br>
         ${module.geoJson}
 </#macro>

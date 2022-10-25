@@ -71,6 +71,7 @@ public class MapFactory {
     public MapsModule getModule(HstRequest request, MapModule mapModuleDocument, Page page) {
         MapsModule module = new MapsModule();
 
+        module.setId(mapModuleDocument.getPath());
         module.setTitle(mapModuleDocument.getTitle());
         module.setIntroduction(mapModuleDocument.getCopy());
         module.setTabTitle(mapModuleDocument.getTabTitle());
