@@ -17,9 +17,13 @@
             {{ contentData.properties.title }}
         </VsHeading>
 
-        <p data-test="vs-main-map-wrapper-detail__description">
-            {{ contentData.properties.description }}
-        </p>
+        <!-- eslint-disable vue/no-v-html -->
+        <p
+            data-test="vs-main-map-wrapper-detail__description"
+            class="vs-main-map-wrapper-detail__description"
+            v-html="contentData.properties.description"
+        />
+        <!-- eslint-enable vue/no-v-html -->
     </div>
 </template>
 
@@ -62,6 +66,10 @@ export default {
         @include media-breakpoint-up(lg) {
             font-size: $font-size-4;
             margin: 0 $spacer-2;
+        }
+
+        &__description {
+            text-align: left;
         }
     }
 </style>
