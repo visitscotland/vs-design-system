@@ -14,32 +14,6 @@
     <#assign safeJson>
         ${module.geoJson.features?replace("'", "&#39;")}
     </#assign>
-
-    <#assign filters>
-        <#--  ${module.mapControls.map}  -->
-        [
-            {
-                "id": "cities",
-                "label": "Cities"
-            },
-            {
-                "id": "towns",
-                "label": "Towns"
-            },
-            {
-                "id": "islands",
-                "label": "Islands"
-            },
-            {
-                "id": "regions",
-                "label": "Regions"
-            },
-            {
-                "id": "featured",
-                "label": "Featured"
-            }
-        ]
-    </#assign>
     
     <#if module.title??>
         <#assign mainHeadingExists>
@@ -50,8 +24,6 @@
             false
         </#assign>
     </#if>
-
-    ${module.filters} </br>
 
     <vs-module-wrapper>
         <template slot="vsModuleWrapperHeading">
@@ -65,7 +37,7 @@
         <vs-main-map-wrapper
             :main-heading-exists="${mainHeadingExists}"
             category-heading="${module.tabTitle}"
-            :filters='${filters}'
+            :filters='${module.filters}'
             :places-data='${safeJson}'
             map-id="vs-map"
         >
