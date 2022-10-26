@@ -7,6 +7,7 @@
 @import './docs.mixins.scss';
 @import './docs.functions.scss';
 @import './examples.styles.scss';
+@import './demos.styles.scss';
 
 /* LOCAL DESIGN TOKENS
  --------------------------------------------- */
@@ -153,6 +154,14 @@ h4[class^='rsg--heading'] a {
     color: $docs-color-heading;
 }
 
+// Heading, level 5
+h5[class^='rsg--heading'],
+h5[class^='rsg--heading'] a{
+    font-size: $size-s;
+    font-weight: $weight-semi-bold;
+}
+
+
 // Paragraphs
 p[class^='rsg--para'] {
     -webkit-font-smoothing: antialiased;
@@ -195,11 +204,10 @@ p[class^='rsg--para'] {
 }
 
 article[class^='rsg--root']{
+    div:first-of-type >
     p[class^='rsg--para'] {
         &:first-of-type{
             font-weight: 100;
-            font-size: 28px;
-            line-height: initial;
         }
     }
 }
@@ -218,7 +226,6 @@ h4[class^='rsg--heading'] {
     width: 100%;
 
     @media (min-width: $docs-breakpoint-xl) {
-
         width: 80%;
     }
 }
@@ -540,21 +547,9 @@ p[class^='rsg--version'] {
 /* Categories
  --------------------------------------------- */
 
-
-
-
-
-        
-
-
-
-
-
-
-
 // If you edit the component categories, you have to edit
 // these to match as well.
-div[data-preview='Elements'],
+div[data-preview='Elements'] ,
 div[data-preview='Patterns'],
 div[data-preview='Templates'] {
     background: transparent;
@@ -567,28 +562,6 @@ div[data-preview='Templates'] {
         display: none !important;
     }
 }
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* COMPONENT STATUS LABELS
  --------------------------------------------- */
@@ -701,7 +674,6 @@ table[class^='rsg--table'] {
             &[class^='rsg--cell']:last-child{
                 padding-right: 16px;
             }
-            
             // Styles for tables added through CMS 
             // It automatically puts table content in paragraphs
             p[class^='rsg--para']{
@@ -723,9 +695,9 @@ table[class^='rsg--table'] {
                     p[class^='rsg--para']{
                         &:first-of-type{
                             font-weight: $weight-semi-bold;
-        }
-    }
-}
+                        }
+                    }
+                }
             }
         }
     }

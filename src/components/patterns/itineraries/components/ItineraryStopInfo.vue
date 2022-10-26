@@ -28,7 +28,7 @@
             </template>
 
             <p
-                v-if="!!this.$slots['stop-link-text'] && openingTimesLink !== null"
+                v-if="!!$slots['stop-link-text'] && openingTimesLink !== null"
                 data-test="vs-stop-link"
             >
                 <VsLink :href="openingTimesLink">
@@ -38,7 +38,7 @@
             </p>
 
             <p
-                v-if="!!this.$slots['stop-charge-text']"
+                v-if="!!$slots['stop-charge-text']"
                 data-test="vs-stop-charge-text"
             >
                 <!-- @slot The admission charge text -->

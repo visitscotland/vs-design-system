@@ -20,9 +20,8 @@ import { get } from 'lodash';
 import designTokens from '@/assets/tokens/tokens.raw.json';
 
 /**
- * Icons are used to visually communicate core parts of the product and
- * available actions. They can act as wayfinding tools to help users more
- * easily understand where they are in the product.
+ * Icons are used to visually communicate available actions
+ * or ideas and can help users navigate the product.
  *
  * Our icons come in specific sizes - xxs, xs, sm, md, lg and xl - and can be any colour,
  * including any of the theme colours.
@@ -44,14 +43,13 @@ export default {
         },
         /**
          * The fill color of the SVG icon.
-         * `primary, secondary, light, dark,
-         * reverse-white, secondary-teal`
+         * `primary|secondary|light|dark|color-white|secondary-teal`
          */
         variant: {
             type: String,
             default: null,
             validator: (value) => value.match(
-                /(primary|secondary|light|dark|reverse-white|secondary-teal)/,
+                /(primary|secondary|light|dark|color-white|secondary-teal)/,
             ),
         },
         /**
@@ -65,8 +63,8 @@ export default {
             default: null,
         },
         /**
-        * The orientation of the icon. Defaults to 'up'.
-        * `up, left, right, down`
+        * The orientation of the icon
+        * `up|down|left|right`
         */
         orientation: {
             type: String,
@@ -76,8 +74,8 @@ export default {
             ),
         },
         /**
-        * Size of icon, defaults to medium
-        * `xxs, xs, sm, md, lg, xl`)
+        * Size of icon
+        * `xxs|xs|sm|md|lg|xl`
         */
         size: {
             type: String,
@@ -85,9 +83,8 @@ export default {
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
         /**
-        * Size of icon at small and extra small viewport, defaults to null,
-        * the size falls back to the regular size if not set
-        * `xxs, xs, sm, md, lg, xl`)
+        * Changes the size of the icon at sm and xs viewports
+        * `xxs|xs|sm|md|lg|xl`
         */
         smallSize: {
             type: String,
@@ -272,13 +269,14 @@ $variants: (
     secondary: $color-theme-secondary,
     light: $color-theme-light,
     dark: $color-theme-dark,
-    reverse-white: $color-white,
-    secondary-teal: $color-theme-secondary-teal,
+    color-white: $color-white,
+    secondary-teal: $color-secondary-teal-shade-3,
 );
 
 .vs-icon {
     fill: $color-black;
     overflow: visible;
+    pointer-events: none;
 
     @each $size in map-keys($sizes) {
         $this-size: map-get($sizes, $size);
@@ -291,8 +289,8 @@ $variants: (
         }
     }
 
-    // This is awkward but these have to be two separate loops through
-    // the sizes. If you have one loop generating both sets you run into
+    // We need two separate loops through the sizes.
+    // If you have one loop generating both sets you run into
     // specificity issues as the classes go sm-xs xs sm-sm sm etc etc,
     // and the later non-sm classes override the earlier sm ones
     @each $size in map-keys($sizes) {
@@ -332,79 +330,3 @@ $variants: (
     }
 }
 </style>
-
-<docs>
-```jsx
-  <div>
-
-    <h3>Default</h3>
-    <VsIcon name="search" />
-
-    <h3 class="mt-8">Variant</h3>
-    <VsIcon name="boat" variant="primary" />
-    <VsIcon name="user" variant="secondary" />
-    <VsIcon name="user" variant="light" />
-    <VsIcon name="user" variant="dark" />
-    <VsIcon name="user" variant="reverse-white" />
-    <VsIcon name="user" variant="secondary-teal" />
-
-    <h3 class="mt-8">Custom Colour</h3>
-    <VsIcon name="user" customColour="#ff0000" />
-    <VsIcon name="user" customColour="gold" />
-
-    <h3 class="mt-8">Size</h3>
-
-    <div class="d-flex">
-        <div class="d-flex flex-column mr-3 align-items-center">
-            <h4>xxs</h4>
-            <VsIcon name="boat" size="xxs" />
-            </div>
-
-            <div class="d-flex flex-column mr-3 align-items-center">
-            <h4>xs</h4>
-            <VsIcon name="favourite" size="xs" />
-            </div>
-
-            <div class="d-flex flex-column mr-3 align-items-center">
-            <h4>sm</h4>
-            <VsIcon name="favourite" size="sm" />
-            </div>
-
-            <div class="d-flex flex-column mr-3 align-items-center">
-            <h4>md</h4>
-            <VsIcon name="favourite" size="md" />
-            </div>
-
-            <div class="d-flex flex-column mr-3 align-items-center">
-            <h4>lg</h4>
-            <VsIcon name="favourite" size="lg" />
-            </div>
-
-            <div class="d-flex flex-column mr-3 align-items-center">
-            <h4>xl</h4>
-            <VsIcon name="favourite" size="xl" />
-            </div>
-        </div>
-
-        <h3 class="mt-8">Orientation</h3>
-        <div class="d-flex">
-            <div class="d-flex flex-column mr-3 align-items-center">
-                <h4>Up</h4>
-                <VsIcon name="chevron" orientation="up" />
-            </div>
-            <div class="d-flex flex-column mr-3 align-items-center">
-                <h4>Down</h4>
-                <VsIcon name="chevron" orientation="down" />
-            </div>
-            <div class="d-flex flex-column mr-3 align-items-center">
-                <h4>Left</h4>
-                <VsIcon name="chevron" orientation="left" />
-            </div>
-            <div class="d-flex flex-column mr-3 align-items-center">
-                <h4>Right</h4>
-                <VsIcon name="chevron" orientation="right" />
-            </div>
-        </div>
-    </div>
-```
-</docs>
