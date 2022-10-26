@@ -63,11 +63,5 @@ public class MapsModule extends Module {
         this.geoJson = geoJson;
     }
 
-    public JsonObject getMapControls() {
-        return mapControls;
-    }
 
-    public void setMapControls(JsonObject mapControls) {
-        this.mapControls = mapControls;
-    }
 }
