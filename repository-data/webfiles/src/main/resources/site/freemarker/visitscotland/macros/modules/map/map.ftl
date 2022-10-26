@@ -41,8 +41,8 @@
         <vs-main-map-wrapper
             :main-heading-exists="${mainHeadingExists}"
             category-heading="${module.tabTitle}"
-            :filters="${safeFilters}"
-            :places-data="${safeJson}"
+            :filters="${escapeJSON(module.filters,false)}"
+            :places-data="${escapeJSON(module.geoJson.features,false)}"
             map-id="vs-map"
         >
 
