@@ -3,7 +3,7 @@
         <ul class="status-list">
             <li>
                 <VsIcon
-                    name="ready"
+                    name="docs/ready"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -12,7 +12,7 @@
             </li>
             <li>
                 <VsIcon
-                    name="review"
+                    name="docs/review"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -21,7 +21,7 @@
             </li>
             <li>
                 <VsIcon
-                    name="deprecated"
+                    name="docs/deprecated"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -30,7 +30,7 @@
             </li>
             <li>
                 <VsIcon
-                    name="prototype"
+                    name="docs/prototype"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -83,27 +83,27 @@
                     </td>
                     <td v-if="component.status">
                         <VsIcon
-                            v-if="component.status === 'ready'"
-                            name="ready"
+                            v-if="component.status === 'docs/ready'"
+                            name="docs/ready"
                             custom-colour="green"
                             size="xs"
                         />
                         <VsIcon
                             v-if="component.status === 'under-review' ||
                                 component.status === 'review'"
-                            name="review"
+                            name="docs/review"
                             custom-colour="orange"
                             size="xs"
                         />
                         <VsIcon
                             v-if="component.status === 'prototype'"
-                            name="prototype"
+                            name="docs/prototype"
                             custom-colour="blue"
                             size="xs"
                         />
                         <VsIcon
                             v-if="component.status === 'deprecated'"
-                            name="deprecated"
+                            name="docs/deprecated"
                             custom-colour="red"
                             size="xs"
                         />
