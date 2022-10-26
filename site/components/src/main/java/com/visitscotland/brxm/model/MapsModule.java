@@ -2,10 +2,7 @@ package com.visitscotland.brxm.model;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.visitscotland.brxm.hippobeans.MapCategory;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-
-import java.util.List;
 
 public class MapsModule extends Module {
     private String id;
