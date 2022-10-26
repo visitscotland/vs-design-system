@@ -227,17 +227,14 @@ public class MapFactory {
                 filter.addProperty(LABEL, featuredPlaces.getTitle());
             }
             keys.add(filter);
-            for(HippoBean link:featuredPlaces.getMapPins()){
+            for(HippoBean link : featuredPlaces.getMapPins()){
                 JsonObject feat = new JsonObject();
-                if (link instanceof HippoMirror) {
-                    if (((HippoMirror) link).getReferencedBean() instanceof Destination){
-                        Destination destination = (Destination)((HippoMirror) link).getReferencedBean();
-                        buildPageNode(locale, filter, module,destination,feat);
-                    }else{
-                        buildStopNode(locale,filter,module, (Stop) ((HippoMirror) link).getReferencedBean(), feat,mapModuleDocument);
-                    }
+                if (link instanceof Destination) {
+                    buildPageNode(locale, filter, module,(Destination) link,feat);
+                }else if (link instanceof Stop){
+                        buildStopNode(locale,filter,module, (Stop) link, feat,mapModuleDocument);
 
-                }else{
+                }else  if (link instanceof SpecialLinkCoordinates){
                     SpecialLinkCoordinates linkCoordinates = ((SpecialLinkCoordinates) link);
                     Page otherPage = (Page)(linkCoordinates).getLink();
                     buildPageNode(locale, filter, module,otherPage,feat);
@@ -346,30 +343,31 @@ public class MapFactory {
         Double longitude = null;
         FlatLink flatLink = null;
 
-        HippoBean item = stop.getStopItem();
-        FlatImage image = imageFactory.createImage(stop.getImage(), module, locale);
-        if (item instanceof DMSLink) {
-            JsonNode dmsNode = dmsDataService.productCard(((DMSLink) item).getProduct(), locale);
-            if (!Contract.isNull(dmsNode)) {
-                flatLink = linkService.createDmsLink(locale,(DMSLink) item, dmsNode);
-                flatLink.setLabel(bundle.getResourceBundle("map", "map.discover", locale));
-                if (Contract.isNull(stop.getImage()) && dmsNode.has(IMAGE)) {
-                    image = imageFactory.createImage(dmsNode, module, locale);
+        if (stop != null){
+            HippoBean item = stop.getStopItem();
+            FlatImage image = imageFactory.createImage(stop.getImage(), module, locale);
+            if (item instanceof DMSLink) {
+                JsonNode dmsNode = dmsDataService.productCard(((DMSLink) item).getProduct(), locale);
+                if (!Contract.isNull(dmsNode)) {
+                    flatLink = linkService.createDmsLink(locale,(DMSLink) item, dmsNode);
+                    flatLink.setLabel(bundle.getResourceBundle("map", "map.discover", locale));
+                    if (Contract.isNull(stop.getImage()) && dmsNode.has(IMAGE)) {
+                        image = imageFactory.createImage(dmsNode, module, locale);
+                    }
+                    if (dmsNode.has(LATITUDE) && dmsNode.has(LONGITUDE)) {
+                        latitude = dmsNode.get(LATITUDE).asDouble();
+                        longitude = dmsNode.get(LONGITUDE).asDouble();
+                    }
                 }
-                if (dmsNode.has(LATITUDE) && dmsNode.has(LONGITUDE)) {
-                    latitude = dmsNode.get(LATITUDE).asDouble();
-                    longitude = dmsNode.get(LONGITUDE).asDouble();
-                }
-            }
             } else if (item instanceof ItineraryExternalLink) {
-                ItineraryExternalLink externalStop = ((ItineraryExternalLink) item);
-                latitude = externalStop.getCoordinates().getLatitude();
-                longitude = externalStop.getCoordinates().getLongitude();
-                flatLink = new FlatLink(bundle.getResourceBundle("map", "map.discover", locale),externalStop.getExternalLink().getLink(), LinkType.EXTERNAL);
+                    ItineraryExternalLink externalStop = ((ItineraryExternalLink) item);
+                    latitude = externalStop.getCoordinates().getLatitude();
+                    longitude = externalStop.getCoordinates().getLongitude();
+                    flatLink = new FlatLink(bundle.getResourceBundle("map", "map.discover", locale),externalStop.getExternalLink().getLink(), LinkType.EXTERNAL);
             }
             if (!Contract.isNull(latitude) && !Contract.isNull(longitude)) {
                 feature.addProperty("type", "Feature");
-                String description = stop.getDescription().getContent().trim().replaceAll("\"", "'");
+                String description = stop.getDescription().getContent().trim().replace("\"", "'");
                 if (description.startsWith("<p>") && description.endsWith("</p>")) {
                     description = description.substring(3, description.length() - 4);
                 }
@@ -381,6 +379,11 @@ public class MapFactory {
                 module.setErrorMessages(Collections.singletonList(errorMessage));
                 contentLogger.error(errorMessage);
             }
+        } else{
+            String errorMessage = String.format("Failed to create map card '%s' , please review the document attached at: %s", mapModuleDocument.getDisplayName(), mapModuleDocument.getPath() );
+            module.setErrorMessages(Collections.singletonList(errorMessage));
+            contentLogger.error(errorMessage);
+        }
     }
 
     /**
@@ -392,7 +395,7 @@ public class MapFactory {
      * @param page the destination or other pages
      * @param feature json to build the features and geometry nodes
      */
-    private void buildPageNode(Locale locale, JsonObject category, MapsModule module,Page page, JsonObject feature){
+    private void buildPageNode(Locale locale, JsonObject category, MapsModule module, Page page, JsonObject feature){
         FlatLink flatLink = linkService.createSimpleLink(page, module, locale);
         flatLink.setLabel(bundle.getResourceBundle("map", "map.discover", locale));
         feature.add("properties", getPropertyNode(page.getTitle(), page.getTeaser(),
