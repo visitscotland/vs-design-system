@@ -13,6 +13,7 @@ import com.visitscotland.brxm.model.LinkType;
 import com.visitscotland.brxm.model.MapsModule;
 import com.visitscotland.brxm.services.LinkService;
 import com.visitscotland.brxm.services.ResourceBundleService;
+import com.visitscotland.brxm.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.query.HstQuery;
 import org.hippoecm.hst.content.beans.query.HstQueryResult;
@@ -162,7 +163,7 @@ public class MapFactory {
         properties.addProperty("title", title);
         properties.addProperty("description", description);
         if (!Contract.isNull(image)){
-            properties.addProperty("image", !Contract.isNull(image.getCmsImage())? image.getCmsImage().getOriginal().getPath() : image.getExternalImage());
+            properties.addProperty("image", !Contract.isNull(image.getCmsImage())? HippoUtilsService.createUrl(image.getCmsImage()) : image.getExternalImage());
         }
 
         if (!Contract.isNull(link)){
