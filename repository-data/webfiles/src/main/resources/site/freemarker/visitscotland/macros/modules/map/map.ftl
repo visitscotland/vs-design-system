@@ -12,7 +12,11 @@
     <@previewWarning editMode module module.errorMessages />
 
     <#assign safeJson>
-        ${module.geoJson.features?replace("'", "&#39;")}
+        ${module.geoJson.features?replace('"', '&quot;')}
+    </#assign>
+
+    <#assign safeFilters>
+        ${module.filters?replace('"', '&quot;')}
     </#assign>
     
     <#if module.title??>
@@ -37,8 +41,8 @@
         <vs-main-map-wrapper
             :main-heading-exists="${mainHeadingExists}"
             category-heading="${module.tabTitle}"
-            :filters='${module.filters}'
-            :places-data='${safeJson}'
+            :filters="${safeFilters}"
+            :places-data="${safeJson}"
             map-id="vs-map"
         >
 
