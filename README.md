@@ -2,7 +2,7 @@
 
 This is the repository for the **VisitScotland Design System** which serves as a set of organized tools, patterns & practices that work as the foundation for www.visitscotland.com.
 
-## Getting started
+## Getting Started
 
 Install the package:
 
