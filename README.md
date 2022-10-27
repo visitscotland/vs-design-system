@@ -7,7 +7,7 @@ This is the repository for the **VisitScotland Design System** which serves as a
 Install the package:
 
 ```sh
-# Clone the repo
+# Clone the repository
 git clone git@github.com:visitscotland/design-system.git
 
 # Install the package
