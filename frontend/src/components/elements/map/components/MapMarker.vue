@@ -85,7 +85,6 @@ export default {
          * Fires on hover over the maker
          */
         handleHover(id) {
-            console.log('hover');
             mapStore.dispatch('setHoveredPlace', {
                 mapId: this.mapId,
                 hoveredId: id,
