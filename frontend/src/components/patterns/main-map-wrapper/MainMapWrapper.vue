@@ -31,7 +31,7 @@
                             <template slot="resetSidePanelText">
                                 <slot name="resetSidePanelText" />
                             </template>
-                            backBtnText
+
                             <template slot="backBtnText">
                                 <slot name="backBtnText" />
                             </template>
