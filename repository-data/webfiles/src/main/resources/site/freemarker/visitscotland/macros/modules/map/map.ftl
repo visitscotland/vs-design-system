@@ -11,14 +11,6 @@
     <@hst.manageContent hippobean=module.hippoBean />
     <@previewWarning editMode module module.errorMessages />
 
-    <#assign safeJson>
-        ${module.geoJson.features?replace('"', '&quot;')}
-    </#assign>
-
-    <#assign safeFilters>
-        ${module.filters?replace('"', '&quot;')}
-    </#assign>
-    
     <#if module.title??>
         <#assign mainHeadingExists>
             true

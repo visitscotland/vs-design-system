@@ -7,6 +7,7 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
@@ -19,19 +20,15 @@ public class MapCategory extends HippoCompound {
         return getSingleProperty("visitscotland:title");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:links", allowModifications = false)
-    public HippoBean getLinkItem() {
-        if (getBean("visitscotland:links") instanceof HippoMirror) {
-            return getLinkedBean("visitscotland:links", HippoBean.class);
-        } else {
-            return getBean("visitscotland:links");
-        }
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:mapPins", allowModifications = false)
     public List<HippoBean> getMapPins() {
-        return getChildBeansByName("visitscotland:mapPins",
-                HippoBean.class);
+        return getChildBeansByName("visitscotland:mapPins", HippoBean.class).stream().map(hippoBean -> {
+                    if (hippoBean instanceof HippoMirror) {
+                        return ((HippoMirror) hippoBean).getReferencedBean();
+                    }
+                    return hippoBean;
+                }
+        ).collect(Collectors.toList());
     }
 
     public HippoBean getProductItem() {
