@@ -5,7 +5,7 @@
         data-test="vs-map-marker"
         variant="transparent"
         @click="handleClick"
-        @keydown="handleClick"
+        @keydown.enter="handleClick"
         @mouseover="handleHover(feature.properties.id)"
         @mouseleave="handleHover('')"
         @focusin="handleHover(feature.properties.id)"
@@ -85,6 +85,7 @@ export default {
          * Fires on hover over the maker
          */
         handleHover(id) {
+            console.log('hover');
             mapStore.dispatch('setHoveredPlace', {
                 mapId: this.mapId,
                 hoveredId: id,
