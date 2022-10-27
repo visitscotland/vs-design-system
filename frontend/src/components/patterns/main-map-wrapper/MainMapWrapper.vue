@@ -261,7 +261,7 @@ export default {
 
 <style lang="scss">
     .vs-main-map-wrapper {
-        height: 100vh;
+        height: 75vh;
         display: flex;
 
         @include media-breakpoint-up(lg) {
