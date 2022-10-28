@@ -16,6 +16,16 @@
 }
 
 .section-components {
+
+    article[class^='rsg--root']{
+        div:first-of-type >
+        p[class^='rsg--para'] {
+            &:first-of-type{
+                font-weight: 400;
+            }
+        }
+    }
+
     .vds-example {        
         // Only show example & view code
         // buttons on component pages
