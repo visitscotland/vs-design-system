@@ -3,7 +3,7 @@
 .vds-example {
     position: relative;
     margin-bottom: $space-l;
-    margin-top: $space-xl / 2;
+    margin-top: calc($space-xl / 2);
 
     div[class^='rsg--root']{
         margin-bottom: 0;
@@ -124,7 +124,7 @@
             *[class*='col-'] > p {
                 background: $docs-color-light-blue;
                 border: 1px solid white;
-                padding: $space-m $space-xl/2;
+                padding: $space-m calc($space-xl / 2);
                 text-align: center;
                 margin-bottom: $space-m;
             }
@@ -210,12 +210,12 @@
                 font-weight: $weight-semi-bold;
                 text-transform: none;
                 letter-spacing: -0.5px;
-                margin: $space-xl / 2 0 20px;
+                margin: calc($space-xl / 2) 0 20px;
                 color: $docs-color-heading;
                 cursor: auto;
 
                 @media (max-width: #{$docs-breakpoint}) {
-                    font-size: $size-xl / 1.2;
+                    font-size: calc($space-xl / 1.2);
                 }
 
                 &:hover {
@@ -303,7 +303,7 @@ pre[class^='rsg--pre'],
     font-family: Consolas, 'Liberation Mono', Menlo, monospace;
     font-size: $size-s;
     margin: 0;
-    min-height: $space-xxl / 1.5;
+    min-height: calc($space-xxl / 1.5);
     color: $docs-color-grey-dark;
     padding: $space-m;
     word-wrap: break-word;
