@@ -63,6 +63,10 @@ export default {
     .vs-heading--style-level-6 {
         margin-top: $spacer-4;
         margin-bottom: $spacer-8;
+
+        &:not(:first-of-type) {
+            margin-top: $spacer-10;
+        }
     }
 }
 
