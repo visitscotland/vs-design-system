@@ -23,7 +23,7 @@
 
 <script>
 import VsIcon from '@components/elements/icon/';
-import { VsRow, VsCol } from '@components/elements/layout';
+import { VsRow, VsCol } from '@components/elements/grid';
 import axios from 'axios';
 
 export default {
