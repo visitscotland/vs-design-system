@@ -18,6 +18,14 @@
  */
 export default {
     name: 'VsAccordion',
+    /**
+     * Provides breakPoint prop to be injected to child component AccordionItem
+     */
+    provide() {
+        return {
+            breakPoint: this.breakPoint,
+        };
+    },
     props: {
         /**
          * If this is provided, the accordion expands above
@@ -28,14 +36,6 @@ export default {
             default: null,
             validator: (value) => value.match(/(xs|sm|md|lg|xl|xxl)/),
         },
-    },
-    /**
-     * Provides breakPoint prop to be injected to child component AccordionItem
-     */
-    provide() {
-        return {
-            breakPoint: this.breakPoint,
-        };
     },
 };
 </script>

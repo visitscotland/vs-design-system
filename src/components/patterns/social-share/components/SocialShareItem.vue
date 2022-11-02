@@ -27,7 +27,7 @@
 <script>
 import VsLink from '@components/elements/link/Link';
 import VsIcon from '@components/elements/icon/Icon';
-import { VsCol } from '@components/elements/layout';
+import { VsCol } from '@components/elements/grid';
 
 /**
  * This component displays an icon and link to a social sharing channel
@@ -42,6 +42,26 @@ export default {
         VsCol,
         VsLink,
         VsIcon,
+    },
+    inject: {
+        /**
+        * Page URL to share - provided by parent SocialShare
+        */
+        pageUrl: {
+            default: '',
+        },
+        /**
+        * Page Title to share - provided by parent SocialShare
+        */
+        pageTitle: {
+            default: '',
+        },
+        /**
+        * Page Title to share - provided by parent SocialShare
+        */
+        noJs: {
+            default: '',
+        },
     },
     props: {
         /**
@@ -64,26 +84,6 @@ export default {
         */
         linkCopiedText: {
             type: String,
-            default: '',
-        },
-    },
-    inject: {
-        /**
-        * Page URL to share - provided by parent SocialShare
-        */
-        pageUrl: {
-            default: '',
-        },
-        /**
-        * Page Title to share - provided by parent SocialShare
-        */
-        pageTitle: {
-            default: '',
-        },
-        /**
-        * Page Title to share - provided by parent SocialShare
-        */
-        noJs: {
             default: '',
         },
     },
@@ -114,24 +114,27 @@ export default {
             };
             return colour;
         },
+        encodedPageTitle() {
+            return encodeURI(this.pageTitle);
+        },
         shareUrl() {
             let url = '';
 
             switch (this.name) {
             case 'facebook':
-                url = `https://www.facebook.com/sharer/sharer.php?u=${this.pageUrl}&t=${this.pageTitle}`;
+                url = `https://www.facebook.com/sharer/sharer.php?u=${this.pageUrl}&t=${this.encodedPageTitle}`;
                 break;
             case 'twitter':
-                url = `https://twitter.com/intent/tweet?text=${this.pageTitle}%20@VisitScotland&url=${this.pageUrl}`;
+                url = `https://twitter.com/intent/tweet?text=${this.encodedPageTitle}%20@VisitScotland&url=${this.pageUrl}`;
                 break;
             case 'pinterest':
                 url = `https://www.pinterest.com/pin/create/button/?url=${this.pageUrl}`;
                 break;
             case 'email':
-                url = `mailto:?body=${this.pageTitle}%20-%20${this.pageUrl}&subject=${this.pageTitle}`;
+                url = `mailto:?body=${this.encodedPageTitle}%20-%20${this.pageUrl}&subject=${this.encodedPageTitle}`;
                 break;
             case 'whatsapp':
-                url = `https://wa.me/?text=${this.pageTitle}%20-%20${this.pageUrl}`;
+                url = `https://wa.me/?text=${this.encodedPageTitle}%20-%20${this.pageUrl}`;
                 break;
             case 'link':
                 url = '#';

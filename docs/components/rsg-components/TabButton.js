@@ -44,7 +44,9 @@ export const TabButtonRenderer = ({
 	const classNames = cx(classes.button, className, {
 		[classes.isActive]: active,
 	});
+
     var disabled = (name === 'rsg-usage') ? true : false;
+
 	return (
 		<button
 			type="button"
