@@ -45,7 +45,7 @@
             <div class="vs-itinerary-stop__details-container">
                 <div
                     class="vs-itinerary-stop__address"
-                    v-if="!!this.$slots['stop-address']"
+                    v-if="!!$slots['stop-address']"
                     data-test="vs-itinerary-stop-address"
                 >
                     <!-- @slot The address component for the stop -->
@@ -59,7 +59,7 @@
             <!-- @slot The facilities content for the stop -->
             <slot name="stop-facilities" />
         </div>
-        <template v-if="!!this.$slots['stop-buttons']">
+        <template v-if="!!$slots['stop-buttons']">
             <!-- @slot The button content for the stop -->
             <slot name="stop-buttons" />
         </template>
@@ -139,7 +139,7 @@ export default {
     .map-marker__count {
         color: $color-white;
         font-family: $headings-font-family;
-        font-size: 1rem;
+        font-size: $font-size-4;
         display: block;
         position: absolute;
         top: 4px;
@@ -299,16 +299,14 @@ export default {
                             <VsButton
                                 class="mb-3"
                                 button-size="md"
-                                background="white"
-                                variant="outline-primary"
+                                variant="secondary"
                                 href="#"
                                 icon="food"
                             >
                                 Nearby places to eat
                             </VsButton>
                             <VsButton
-                                background="white"
-                                variant="outline-primary"
+                                variant="secondary"
                                 href="#"
                                 icon="product-accommodation"
                             >

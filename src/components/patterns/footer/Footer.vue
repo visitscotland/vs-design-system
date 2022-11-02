@@ -1,8 +1,8 @@
 <template>
-    <div
+    <footer
         class="vs-footer pt-6 pt-md-9"
         data-unique-id="vs-footer"
-        role="navigation"
+        id="site-footer"
     >
         <VsFooterNavList break-point="md">
             <!-- @slot Contains accordion item for each menu list  -->
@@ -36,14 +36,14 @@
         </div>
 
         <slot />
-    </div>
+    </footer>
 </template>
 
 <script>
 import VsFooterNavList from '@components/patterns/footer/components/FooterNavList';
 import {
     VsContainer, VsRow, VsCol,
-} from '@components/elements/layout';
+} from '@components/elements/grid';
 
 /**
  * This component is the main Footer wrapper for the bottom of the page.
@@ -96,6 +96,6 @@ export default {
 </style>
 
 <docs>
-  ```[import](./__examples__/footer.example.vue)
+  ```[import](./__examples__/footer-example.vue)
   ```
 </docs>

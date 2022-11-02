@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { VsRow } from '@components/elements/layout';
+import { VsRow } from '@components/elements/grid';
 /**
  * A description list can be used where there is a list of terms and descriptions.
  *
@@ -27,6 +27,14 @@ export default {
     components: {
         VsRow,
     },
+    /**
+     * Provides inline prop to be injected to child components
+     */
+    provide() {
+        return {
+            inline: this.inline,
+        };
+    },
     props: {
         /**
          * Option to create inline list
@@ -35,14 +43,6 @@ export default {
             type: Boolean,
             default: false,
         },
-    },
-    /**
-     * Provides inline prop to be injected to child components
-     */
-    provide() {
-        return {
-            inline: this.inline,
-        };
     },
 };
 </script>

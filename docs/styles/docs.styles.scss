@@ -7,6 +7,7 @@
 @import './docs.mixins.scss';
 @import './docs.functions.scss';
 @import './examples.styles.scss';
+@import './demos.styles.scss';
 
 /* LOCAL DESIGN TOKENS
  --------------------------------------------- */
@@ -94,7 +95,7 @@ div[class^='rsg--wrapper'] > h2[class^='rsg--heading'] {
     }
 
     @media (max-width: #{$docs-breakpoint}) {
-        font-size: $size-xl / 1.2;
+        font-size: calc($size-xl / 1.2);
         width: calc(100% + #{$space-xl});
     }
 }
@@ -112,14 +113,14 @@ h2[class^='rsg--heading'] {
     font-weight: $weight-semi-bold;
     letter-spacing: -0.5px;
     width: 100%;
-    margin: $space-xl / 2 0 $space-s;
+    margin: calc($space-xl / 2) 0 $space-s;
 
     @media (max-width: #{$docs-breakpoint}) {
-        font-size: $size-xxl / 1.3;
+        font-size: calc($size-xxl / 1.3);
     }
 
     @media (max-width: #{$docs-breakpoint-sm}) {
-        font-size: $size-xxl / 1.6;
+        font-size: calc($size-xxl / 1.6);
     }
 
     a {
@@ -152,6 +153,14 @@ h4[class^='rsg--heading'] a {
     line-height: $line-height-s;
     color: $docs-color-heading;
 }
+
+// Heading, level 5
+h5[class^='rsg--heading'],
+h5[class^='rsg--heading'] a{
+    font-size: $size-s;
+    font-weight: $weight-semi-bold;
+}
+
 
 // Paragraphs
 p[class^='rsg--para'] {
@@ -195,11 +204,10 @@ p[class^='rsg--para'] {
 }
 
 article[class^='rsg--root']{
+    div:first-of-type >
     p[class^='rsg--para'] {
         &:first-of-type{
             font-weight: 100;
-            font-size: 28px;
-            line-height: initial;
         }
     }
 }
@@ -218,7 +226,6 @@ h4[class^='rsg--heading'] {
     width: 100%;
 
     @media (min-width: $docs-breakpoint-xl) {
-
         width: 80%;
     }
 }
@@ -540,21 +547,9 @@ p[class^='rsg--version'] {
 /* Categories
  --------------------------------------------- */
 
-
-
-
-
-        
-
-
-
-
-
-
-
 // If you edit the component categories, you have to edit
 // these to match as well.
-div[data-preview='Elements'],
+div[data-preview='Elements'] ,
 div[data-preview='Patterns'],
 div[data-preview='Templates'] {
     background: transparent;
@@ -567,28 +562,6 @@ div[data-preview='Templates'] {
         display: none !important;
     }
 }
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* COMPONENT STATUS LABELS
  --------------------------------------------- */
@@ -615,7 +588,7 @@ div[class^='rsg--root'] div[class^='rsg--tabs'] {
     cursor: help;
     line-height: $line-height-xs;
     background: tint($docs-color-grey, 50%);
-    padding: $space-xs $space-s $space-xs/1.2;
+    padding: $space-xs $space-s calc($space-xs / 1.2);
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: $size-xs;
@@ -701,7 +674,6 @@ table[class^='rsg--table'] {
             &[class^='rsg--cell']:last-child{
                 padding-right: 16px;
             }
-            
             // Styles for tables added through CMS 
             // It automatically puts table content in paragraphs
             p[class^='rsg--para']{
@@ -723,9 +695,9 @@ table[class^='rsg--table'] {
                     p[class^='rsg--para']{
                         &:first-of-type{
                             font-weight: $weight-semi-bold;
-        }
-    }
-}
+                        }
+                    }
+                }
             }
         }
     }
