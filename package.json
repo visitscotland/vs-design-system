@@ -1,11 +1,12 @@
 {
-  "name": "vs-dotcom-frontend",
+  "name": "vs-component-library",
   "version": "0.1.0",
-  "description": "visitscotland.com Frontend",
-  "author": "lukenofurther",
+  "description": "visitscotland.com Component Library",
+  "author": "VisitScotland",
   "main": "dist/library/manifest.json",
   "files": [
-    "dist/library"
+    "dist/*",
+    "src/**/*.vue"
   ],
   "homepage": "",
   "private": true,
@@ -46,7 +47,8 @@
     "pretest:watch": "yarn theo",
     "pretest:coverage": "yarn theo",
     "pretest:debug:chrome": "yarn theo",
-    "pretest:e2e": "yarn theo"
+    "pretest:e2e": "yarn theo",
+    "prepublish": "yarn package"
   },
   "repository": {
     "type": "git",
