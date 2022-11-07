@@ -84,7 +84,6 @@
     "express-http-proxy": "^1.6.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "get-port": "^5.1.1",
-    "husky": "^4.3.6",
     "image-webpack-loader": "^7.0.1",
     "js-beautify": "^1.11.0",
     "lighthouse": "^6.2.0",
@@ -161,6 +160,7 @@
     "html-webpack-plugin": "^3.2.0",
     "http-proxy-middleware": "^0.19.2",
     "http-server": "^14.1.1",
+    "husky": "4",
     "jest": "^23.6.0",
     "jest-serializer-vue": "^2.0.2",
     "jest-silent-reporter": "^0.4.0",
@@ -208,9 +208,9 @@
     "webpack-node-externals": "^1.7.2"
   },
   "resolutions": {
-      "lodash": "^4.17.21",
-      "minimist": "^1.2.6",
-      "immer": "^9.0.6"
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.6",
+    "immer": "^9.0.6"
   },
   "engines": {
     "node": ">= 12.22.7",
