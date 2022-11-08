@@ -49,7 +49,8 @@
     "pretest:debug:chrome": "yarn theo",
     "pretest:e2e": "yarn theo",
     "prepublish": "yarn package",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
