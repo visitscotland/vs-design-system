@@ -30,6 +30,7 @@
                         </legend>
                         <div
                             :class="conditionalElementClass(field.name)"
+                            aria-live="assertive"
                         >
                             <template v-if="field.element === 'input'">
                                 <VsInput
