@@ -17,7 +17,6 @@
                 :key="error"
                 class="error"
                 :id="`error-${fieldName}`"
-                aria-live="assertive"
             >
                 {{ validationMessages[error] || genericValidation[error] }}
             </span>
