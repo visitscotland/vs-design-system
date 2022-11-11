@@ -416,41 +416,41 @@ export default {
         display: none;
     }
 
-    .mapboxgl-ctrl-fullscreen {
-        background-image: url('~@/assets/images/icons/expand-primary.svg');
+    // .mapboxgl-ctrl-fullscreen {
+    //     background-image: url('~@/assets/images/icons/expand-primary.svg');
 
-        &:hover,
-        &:focus {
-            background-image: url('~@/assets/images/icons/expand-white.svg');
-        }
-    }
+    //     &:hover,
+    //     &:focus {
+    //         background-image: url('~@/assets/images/icons/expand-white.svg');
+    //     }
+    // }
 
-    .mapboxgl-ctrl-shrink {
-        background-image: url('~@/assets/images/icons/compress-primary.svg');
+    // .mapboxgl-ctrl-shrink {
+    //     background-image: url('~@/assets/images/icons/compress-primary.svg');
 
-        &:hover,
-        &:focus {
-            background-image: url('~@/assets/images/icons/compress-white.svg');
-        }
-    }
+    //     &:hover,
+    //     &:focus {
+    //         background-image: url('~@/assets/images/icons/compress-white.svg');
+    //     }
+    // }
 
-    .mapboxgl-ctrl-zoom-in {
-        background-image: url('~@/assets/images/icons/add-primary.svg');
+    // .mapboxgl-ctrl-zoom-in {
+    //     background-image: url('~@/assets/images/icons/add-primary.svg');
 
-        &:hover,
-        &:focus {
-            background-image: url('~@/assets/images/icons/add-white.svg');
-        }
-    }
+    //     &:hover,
+    //     &:focus {
+    //         background-image: url('~@/assets/images/icons/add-white.svg');
+    //     }
+    // }
 
-    .mapboxgl-ctrl-zoom-out {
-        background-image: url('~@/assets/images/icons/subtract-primary.svg');
+    // .mapboxgl-ctrl-zoom-out {
+    //     background-image: url('~@/assets/images/icons/subtract-primary.svg');
 
-        &:hover,
-        &:focus {
-            background-image: url('~@/assets/images/icons/subtract-white.svg');
-        }
-    }
+    //     &:hover,
+    //     &:focus {
+    //         background-image: url('~@/assets/images/icons/subtract-white.svg');
+    //     }
+    // }
 
     .mapboxgl-ctrl {
         & > button {
