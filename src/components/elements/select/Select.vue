@@ -36,7 +36,6 @@
                 :autocomplete="autocompleteValue(fieldName)"
             />
             <span class="vs-select__focus" />
-            <span class="vs-select__toggle" />
         </div>
     </div>
 </template>
@@ -46,6 +45,7 @@ import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import { BFormSelect } from 'bootstrap-vue';
 import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
+import initFontAwesome from '../../../utils/init-font-awesome';
 
 Vue.use(Vuelidate);
 
@@ -206,6 +206,9 @@ export default {
                 });
         }
     },
+    mounted() {
+        initFontAwesome();
+    },
     methods: {
         autocompleteValue(fieldName) {
             // https://html.spec.whatwg.org/multipage/forms.html#enabling-client-side-automatic-filling-of-form-controls
@@ -240,30 +243,24 @@ export default {
             cursor: pointer;
             height: 50px;
             border-radius: 0;
-        }
-
-        &__toggle{
-            width: 1.5rem;
-            height: 1.5rem;
-            padding-left: 2px;
-            border: 1px solid $color-black;
-            border-radius: $border-radius-pill;
-            position: absolute;
-            top: calc(50% - #{$spacer-3});
-            right: $spacer-4;
-            pointer-events: none;
-            display: inline-block;
 
             &::after {
-                font: var(--fa-font-solid);
-                content: "\f078";
-                display: none;
+                font-family: "Font Awesome Kit";
+                content: "\e06c";
+                line-height: $line-height-s;
+                vertical-align: text-top;
+                text-align: center;
+                display: inline-block;
                 text-rendering: auto;
                 -webkit-font-smoothing: antialiased;
-            }
-
-            .svg-inline--fa{
-                vertical-align: 0;
+                width: 1.5rem;
+                height: 1.5rem;
+                border: 1px solid $color-black;
+                border-radius: 1000px;
+                position: absolute;
+                top: calc(50% - #{$spacer-3});
+                right: $spacer-4;
+                pointer-events: none;
             }
         }
 

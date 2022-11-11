@@ -18,6 +18,7 @@
 <script>
 import { get } from 'lodash';
 import designTokens from '@/assets/tokens/tokens.raw.json';
+import initFontAwesome from '../../../utils/init-font-awesome';
 
 /**
  * Icons are used to visually communicate available actions
@@ -233,24 +234,7 @@ export default {
         },
     },
     mounted() {
-        this.loadFontAwesomeScript();
-    },
-    methods: {
-        loadFontAwesomeScript() {
-            /*
-            * To use the font awesome icons correctly we need to inject the Font Kit for .com
-            */
-            if (!window.fontAwesomeRequested) {
-                window.fontAwesomeRequested = true;
-                const script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.src = `https://kit.fontawesome.com/${process.env.ICON_KIT_TOKEN}.js`;
-                script.crossOrigin = 'anonymous';
-                script.dataSearchPseudoElements = 'data-search-pseudo-elements';
-                script.setAttribute('data-search-pseudo-elements', 'data-search-pseudo-elements');
-                document.head.appendChild(script);
-            }
-        },
+        initFontAwesome();
     },
 };
 </script>
