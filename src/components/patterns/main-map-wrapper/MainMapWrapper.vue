@@ -100,6 +100,13 @@ export default {
         VsButton,
         VsMainMapWrapperPanel,
     },
+    provide() {
+        return {
+            filters: this.filters,
+            placesData: this.placesData,
+            mapId: this.mapId,
+        };
+    },
     props: {
         /**
          * Heading for the categories view
@@ -248,13 +255,6 @@ export default {
         showAllPlaces() {
             this.activePins = this.placesData;
         },
-    },
-    provide() {
-        return {
-            filters: this.filters,
-            placesData: this.placesData,
-            mapId: this.mapId,
-        };
     },
 };
 </script>
