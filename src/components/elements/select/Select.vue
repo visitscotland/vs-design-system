@@ -36,6 +36,7 @@
                 :autocomplete="autocompleteValue(fieldName)"
             />
             <span class="vs-select__focus" />
+            <span class="vs-select__toggle" />
         </div>
     </div>
 </template>
@@ -239,23 +240,30 @@ export default {
             cursor: pointer;
             height: 50px;
             border-radius: 0;
+        }
+
+        &__toggle{
+            width: 1.5rem;
+            height: 1.5rem;
+            padding-left: 2px;
+            border: 1px solid $color-black;
+            border-radius: $border-radius-pill;
+            position: absolute;
+            top: calc(50% - #{$spacer-3});
+            right: $spacer-4;
+            pointer-events: none;
+            display: inline-block;
 
             &::after {
-                content: "";
-                width: 1.5rem;
-                height: 1.5rem;
-                border: 1px solid $color-black;
-                border-radius: 1000px;
-                // background-image: url('~@/assets/svg/icons/chevron.svg');
-                display: block;
-                position: absolute;
-                top: calc(50% - #{$spacer-3});
-                right: $spacer-4;
-                background-repeat: no-repeat;
-                background-size: 60% 60%;
-                background-position: center center;
-                transform: rotate(180deg);
-                pointer-events: none;
+                font: var(--fa-font-solid);
+                content: "\f078";
+                display: none;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .svg-inline--fa{
+                vertical-align: 0;
             }
         }
 

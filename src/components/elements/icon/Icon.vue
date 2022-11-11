@@ -246,6 +246,8 @@ export default {
                 script.type = 'text/javascript';
                 script.src = `https://kit.fontawesome.com/${process.env.ICON_KIT_TOKEN}.js`;
                 script.crossOrigin = 'anonymous';
+                script.dataSearchPseudoElements = 'data-search-pseudo-elements';
+                script.setAttribute('data-search-pseudo-elements', 'data-search-pseudo-elements');
                 document.head.appendChild(script);
             }
         },
