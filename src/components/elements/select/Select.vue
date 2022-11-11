@@ -10,7 +10,6 @@
             v-for="error in errorsList"
             :key="error"
             class="error"
-            aria-live="assertive"
         >
             <template
                 v-if="$v.inputVal.$anyError || invalid"
@@ -246,7 +245,7 @@ export default {
                 height: 1.5rem;
                 border: 1px solid $color-black;
                 border-radius: 1000px;
-                // background-image: url('~@/assets/svg/icons/chevron.svg');
+                background-image: url('~@/assets/svg/icons/chevron.svg');
                 display: block;
                 position: absolute;
                 top: calc(50% - #{$spacer-3});

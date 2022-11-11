@@ -1,8 +1,5 @@
 <template>
-    <div
-        class="vs-recaptcha"
-        aria-live="assertive"
-    >
+    <div class="vs-recaptcha">
         <span
             v-if="invalid"
             class="error"

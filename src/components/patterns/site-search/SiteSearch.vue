@@ -27,6 +27,11 @@ import VsButton from '@components/elements/button/Button';
  * @displayName Site Search
  */
 
+/**
+ * TODO: Document Usage
+ *
+ * @displayName Site Search
+ */
 export default {
     name: 'VsSiteSearch',
     components: {
