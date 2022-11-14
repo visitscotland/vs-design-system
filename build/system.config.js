@@ -45,7 +45,7 @@ module.exports = {
      * Custom wrapper template for the design system site.
      */
     template: {
-        title: 'Example — Design System',
+        title: 'VisitScotland Design System',
         lang: 'en',
         trimWhitespace: true,
         head: {
