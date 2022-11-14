@@ -8,9 +8,7 @@ be made via API Request to check the reponse.
 ### Default
 A `site-key` must be provided in order to use the reCaptcha functionality.
 ```jsx
-    <vs-recaptcha
-        site-key="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
-    />
+    <vs-recaptcha />
 ```
 
 ### Invalid State
@@ -18,7 +16,6 @@ If a form is attempted to be submitted without the reCaptcha being checked and v
 it will appear in its invalid state.
 ```jsx
     <vs-recaptcha
-        :invalid="true"
-        site-key="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
+        :invalid="true" 
     />
 ```
