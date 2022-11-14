@@ -16,7 +16,6 @@ For the form to work, there are several required props that must be included mor
    dataUrl="https://static.visitscotland.com/forms/newsletter-sign-up/newsletter-sign-up.json"
     messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
     countryListUrl="https://static.visitscotland.com/forms/common/countries.json"
-    recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
     marketo-instance="marketo-instance-code"
     munchkin-id="munchkin-id-code"
     language="it"
@@ -50,7 +49,6 @@ Note that due to the Recaptcha already being used in English on this page, a tra
     dataUrl="https://static.visitscotland.com/forms/newsletter-sign-up/newsletter-sign-up.json"
     countryListUrl="https://static.visitscotland.com/forms/common/countries.json"
     messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
-    recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
     marketo-instance="marketo-instance-code"
     munchkin-id="munchkin-id-code"
     language="de"
@@ -77,7 +75,6 @@ In the example below, the 'Last name' field is not defined as required.
 <VsMarketoForm
     dataUrl="../../../fixtures/marketo-forms/optional-field.json"
     messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
-    recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
     marketo-instance="marketo-instance-code"
     munchkin-id="munchkin-id-code"
     language="en"
@@ -105,7 +102,6 @@ In the example below the conditional field will only shown if 'Yes' is chosen in
 <VsMarketoForm
     dataUrl="../../../fixtures/marketo-forms/conditional-field.json"
     messagingUrl="https://static.visitscotland.com/forms/common/messaging.json"
-    recaptchaKey="6LfqqfcZAAAAACbkbPaHRZTIFpKZGAPZBDkwBKhe"
     marketo-instance="marketo-instance-code"
     munchkin-id="munchkin-id-code"
     language="en"

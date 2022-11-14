@@ -43,7 +43,7 @@ export default {
          */
         siteKey: {
             type: String,
-            required: true,
+            default: process.env.RECAPTCHA_TOKEN,
         },
         /**
          * Whether or not the form is invalid - this should

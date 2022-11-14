@@ -203,7 +203,7 @@ export default {
          */
         recaptchaKey: {
             type: String,
-            required: true,
+            default: process.env.RECAPTCHA_TOKEN,
         },
         /**
          * Text for invisible recaptcha textarea - tells
