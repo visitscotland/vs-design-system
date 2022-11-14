@@ -114,6 +114,14 @@ export default {
         VsMainMapWrapperPanel,
         VsButtonToggleGroup,
     },
+    provide() {
+        return {
+            filters: this.filters,
+            placesData: this.placesData,
+            mapId: this.mapId,
+            regions: this.regionsData,
+        };
+    },
     props: {
         /**
          * Heading for the categories view
@@ -299,14 +307,6 @@ export default {
                 this.showAllPlaces();
             }
         },
-    },
-    provide() {
-        return {
-            filters: this.filters,
-            placesData: this.placesData,
-            mapId: this.mapId,
-            regions: this.regionsData,
-        };
     },
 };
 </script>
