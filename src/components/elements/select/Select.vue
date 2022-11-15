@@ -45,6 +45,7 @@ import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import { BFormSelect } from 'bootstrap-vue';
 import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
+import initFontAwesome from '../../../utils/init-font-awesome';
 
 Vue.use(Vuelidate);
 
@@ -205,6 +206,9 @@ export default {
                 });
         }
     },
+    mounted() {
+        initFontAwesome();
+    },
     methods: {
         autocompleteValue(fieldName) {
             // https://html.spec.whatwg.org/multipage/forms.html#enabling-client-side-automatic-filling-of-form-controls
@@ -241,20 +245,21 @@ export default {
             border-radius: 0;
 
             &::after {
-                content: "";
+                font-family: "Font Awesome Kit";
+                content: "\e06c";
+                line-height: $line-height-s;
+                vertical-align: text-top;
+                text-align: center;
+                display: inline-block;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
                 width: 1.5rem;
                 height: 1.5rem;
                 border: 1px solid $color-black;
                 border-radius: 1000px;
-                // background-image: url('~@/assets/svg/icons/chevron.svg');
-                display: block;
                 position: absolute;
                 top: calc(50% - #{$spacer-3});
                 right: $spacer-4;
-                background-repeat: no-repeat;
-                background-size: 60% 60%;
-                background-position: center center;
-                transform: rotate(180deg);
                 pointer-events: none;
             }
         }
