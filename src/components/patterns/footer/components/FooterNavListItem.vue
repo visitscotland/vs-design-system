@@ -76,7 +76,7 @@ export default {
         }
 
         .vs-icon {
-            fill: $color-white;
+            color: $color-white;
         }
     }
 

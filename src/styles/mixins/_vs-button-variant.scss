@@ -13,37 +13,21 @@
     background-color: $background;
     border-color: $border;
 
-    .vs-icon {
-        fill: $color;
-    }
-
     &:hover{
         color: $hover-color;
         background-color: $hover-background;
         border-color: $hover-border;
-
-        .vs-icon {
-            fill: $hover-color;
-        }
     }
 
     &:not(:disabled):not(.disabled):active{
         color: $color;
         background-color: $background;
         border-color: $border;
-
-        .vs-icon {
-            fill: $color;
-        }
     }
 
     &:focus{
         color: $focus-color;
         background-color: $focus-background;
         border-color: $focus-border;
-
-        .vs-icon {
-            fill: $focus-color;
-        }
     }
 }
