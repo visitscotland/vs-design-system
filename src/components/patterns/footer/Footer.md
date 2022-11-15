@@ -1,3 +1,4 @@
+```jsx
 <template>
     <VsFooter>
         <template slot="accordion-items">
@@ -222,3 +223,4 @@
         </VsFooterCopyright>
     </VsFooter>
 </template>
+```
