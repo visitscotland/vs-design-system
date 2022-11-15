@@ -48,7 +48,11 @@
     "pretest:coverage": "yarn theo",
     "pretest:debug:chrome": "yarn theo",
     "pretest:e2e": "yarn theo",
-    "prepublish": "yarn package"
+    "prepublish": "yarn package",
+    "commit": "git-cz",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major"
   },
   "repository": {
     "type": "git",
@@ -76,6 +80,7 @@
     "chart.js": "^2.9.4",
     "cheerio": "^1.0.0-rc.3",
     "codemirror": "^5.63.0",
+    "commitizen": "^4.2.5",
     "core-js": "^3.6.5",
     "dotenv": "^7.0.0",
     "dotenv-webpack": "^7.1.0",
@@ -84,6 +89,7 @@
     "express-http-proxy": "^1.6.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "get-port": "^5.1.1",
+    "git-cz": "^4.9.0",
     "husky": "^4.3.6",
     "image-webpack-loader": "^7.0.1",
     "js-beautify": "^1.11.0",
@@ -98,6 +104,7 @@
     "postcss-url": "^8.0.0",
     "require-context.macro": "^1.2.2",
     "smoothscroll-polyfill": "^0.4.4",
+    "standard-version": "^9.5.0",
     "tinycolor2": "^1.4.1",
     "uuid": "^9.0.0",
     "vue": "~2.6.14",
@@ -142,6 +149,7 @@
     "css-loader": "^1.0.1",
     "cypress": "^10.0.3",
     "cypress-vue-unit-test": "^3.5.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-import-resolver-webpack": "^0.12.2",
@@ -208,9 +216,9 @@
     "webpack-node-externals": "^1.7.2"
   },
   "resolutions": {
-      "lodash": "^4.17.21",
-      "minimist": "^1.2.6",
-      "immer": "^9.0.6"
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.6",
+    "immer": "^9.0.6"
   },
   "engines": {
     "node": ">= 12.22.7",
@@ -237,6 +245,11 @@
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint:all"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }
