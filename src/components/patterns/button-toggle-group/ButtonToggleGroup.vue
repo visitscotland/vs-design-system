@@ -124,7 +124,7 @@ export default {
             return `${option.icon}-${color}`;
         },
         /**
-         * Updates data value to esignify that the element
+         * Updates data value to signify that the element
          * has been tabbed into
          */
         addTabClass() {
