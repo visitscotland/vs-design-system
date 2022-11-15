@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/visitscotland/design-system/compare/v0.2.2...v0.2.3) (2022-11-15)
+
+
+### Bug Fixes
+
+* 🐛 Remove currently unused package command ([1d248fd](https://github.com/visitscotland/design-system/commit/1d248fd2e036d6746d83cc1d3ed53f4eb5d258c1))
+
 ### [0.2.2](https://github.com/visitscotland/design-system/compare/v0.2.1...v0.2.2) (2022-11-15)
 
 
