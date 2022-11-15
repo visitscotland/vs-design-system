@@ -58,16 +58,6 @@ export default {
         }
     }
 
-    .vs-alert__icon {
-        width: $spacer-4;
-        width: $spacer-4;
-
-        @include media-breakpoint-up(lg) {
-            width: $spacer-6;
-            width: $spacer-6;
-        }
-    }
-
     .vs-alert__content-wrapper {
         flex: 1;
         display: flex;

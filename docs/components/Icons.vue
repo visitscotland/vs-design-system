@@ -43,6 +43,8 @@ export default {
     },
     methods: {
         async fetchIcons() {
+            const apiToken = process.env.ICON_API_TOKEN;
+
             /*
             * Query the FA Graph API to retrieve icons,
             * iterate over the uploaded icons and return
@@ -50,13 +52,13 @@ export default {
             */
             const accessToken = await axios({
                 method: 'POST',
-                url: `${process.env.ICON_API_URL }/token`,
+                url: 'https://api.fontawesome.com/token',
                 headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${process.env.ICON_API_TOKEN}`,
+                    Authorization: `Bearer ${apiToken}`,
                 },
             }).then((response) => response.data.access_token);
-            fetch(`${process.env.ICON_API_URL}/me`, {
+
+            fetch('https://api.fontawesome.com/me', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -75,8 +77,7 @@ export default {
                         }
                     `,
                 }),
-            })
-                .then((res) => res.json())
+            }).then((res) => res.json())
                 .then((result) => {
                     this.icons = result.data.me.kit.iconUploads.map((icon) => icon.name);
                 }).catch((error) => {
@@ -86,7 +87,6 @@ export default {
         },
     },
 };
-
 </script>
 
 <style lang="scss" scoped>
