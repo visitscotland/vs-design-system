@@ -13,10 +13,11 @@
             <slot />
         </span>
 
-        <VsIcon
+        <VsSvg
             v-if="show"
-            name="close-circle-filled"
-            size="md"
+            path="icons/close-circle-filled"
+            height="24"
+            width="24"
         />
 
         <!-- @slot Slot for custom toggle icon - used for social images -->
@@ -24,9 +25,10 @@
             v-else
             name="toggle-icon"
         >
-            <VsIcon
-                name="information-filled"
-                size="md"
+            <VsSvg
+                path="icons/information-filled"
+                height="24"
+                width="24"
             />
         </slot>
     </VsButton>
@@ -41,7 +43,6 @@
 
 <script>
 import VsButton from '@components/elements/button/Button';
-import VsIcon from '@components/elements/icon/Icon';
 
 /**
  * Toggle button to toggle elements in other components.
@@ -56,7 +57,6 @@ export default {
     release: '0.0.1',
     components: {
         VsButton,
-        VsIcon,
     },
     props: {
         /**
