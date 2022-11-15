@@ -664,14 +664,14 @@ export default {
             font-family: "Font Awesome Kit";
             content: "\e017";
             display: inline-block;
-            fill: $color-theme-primary;
+            color: $color-theme-primary;
         }
-        // background-image: url('~@/assets/images/icons/expand-primary.svg');
 
         &:hover,
         &:focus {
-            fill: $color-white;
-            // background-image: url('~@/assets/images/icons/expand-white.svg');
+            &::after {
+                color: $color-white;
+            }
         }
     }
 
@@ -684,23 +684,37 @@ export default {
     //     }
     // }
 
-    // .mapboxgl-ctrl-zoom-in {
-    //     background-image: url('~@/assets/images/icons/add-primary.svg');
+    .mapboxgl-ctrl-zoom-in {
+        &::after {
+            font-family: "Font Awesome Kit";
+            content: "\e05c";
+            display: inline-block;
+            color: $color-theme-primary;
+        }
 
-    //     &:hover,
-    //     &:focus {
-    //         background-image: url('~@/assets/images/icons/add-white.svg');
-    //     }
-    // }
+        &:hover,
+        &:focus {
+            &::after {
+                color: $color-white;
+            }
+        }
+    }
 
-    // .mapboxgl-ctrl-zoom-out {
-    //     background-image: url('~@/assets/images/icons/subtract-primary.svg');
+    .mapboxgl-ctrl-zoom-out {
+        &::after {
+            font-family: "Font Awesome Kit";
+            content: "\e034";
+            display: inline-block;
+            color: $color-theme-primary;
+        }
 
-    //     &:hover,
-    //     &:focus {
-    //         background-image: url('~@/assets/images/icons/subtract-white.svg');
-    //     }
-    // }
+        &:hover,
+        &:focus {
+            &::after {
+                color: $color-white;
+            }
+        }
+    }
 
     .mapboxgl-ctrl {
         & > button {
