@@ -123,9 +123,16 @@ export default {
             const color = this.selected === option.value ? 'purple' : 'white';
             return `${option.icon}-${color}`;
         },
+        /**
+         * Updates data value to esignify that the element
+         * has been tabbed into
+         */
         addTabClass() {
             this.groupTabbedInto = true;
         },
+        /**
+         * Removes the 'tabbed into' class
+         */
         removeTabClass(event) {
             if (event.target.tagName !== 'INPUT') {
                 this.groupTabbedInto = false;
@@ -156,7 +163,7 @@ export default {
         &--radios {
             background-color: $color-purple;
             display: flex;
-            border-radius: 1000px;
+            border-radius: $border-radius-pill;
             overflow: hidden;
 
             input[type="radio"] {
@@ -188,7 +195,7 @@ export default {
 
                 &:not(:disabled):not(.disabled).active {
                     z-index: 2;
-                    border-radius: 1000px;
+                    border-radius: $border-radius-pill;
 
                     @include vs-button-variant(
                         $color-purple, $color-white, $color-purple,
