@@ -245,13 +245,13 @@ export default {
 
             &:first-child {
                 margin-right: -(#{$spacer-4});
-                border-top-left-radius: 10000px;
-                border-bottom-left-radius: 10000px;
+                border-top-left-radius: $border-radius-pill;
+                border-bottom-left-radius: $border-radius-pill;
             }
 
             &:last-child {
-                border-top-right-radius: 10000px;
-                border-bottom-right-radius: 10000px;
+                border-top-right-radius: $border-radius-pill;
+                border-bottom-right-radius: $border-radius-pill;
             }
         }
     }
