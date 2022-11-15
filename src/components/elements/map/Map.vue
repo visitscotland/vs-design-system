@@ -20,6 +20,7 @@ import Vue from 'vue';
 import VsWarning from '@components/patterns/warning/Warning';
 import osBranding from '@/utils/os-branding';
 import VsMapMarker from './components/MapMarker';
+import initFontAwesome from '../../../utils/init-font-awesome';
 import mapStore from '../../../stores/map.store';
 
 let mapboxgl = null;
@@ -178,6 +179,7 @@ export default {
         },
     },
     mounted() {
+        initFontAwesome();
         this.lazyloadMapComponent();
         this.isTablet = window.innerWidth >= 768;
         window.addEventListener('resize', this.onResize);
@@ -657,14 +659,21 @@ export default {
         display: none;
     }
 
-    // .mapboxgl-ctrl-fullscreen {
-    //     background-image: url('~@/assets/images/icons/expand-primary.svg');
+    .mapboxgl-ctrl-fullscreen {
+        &::after {
+            font-family: "Font Awesome Kit";
+            content: "\e017";
+            display: inline-block;
+            fill: $color-theme-primary;
+        }
+        // background-image: url('~@/assets/images/icons/expand-primary.svg');
 
-    //     &:hover,
-    //     &:focus {
-    //         background-image: url('~@/assets/images/icons/expand-white.svg');
-    //     }
-    // }
+        &:hover,
+        &:focus {
+            fill: $color-white;
+            // background-image: url('~@/assets/images/icons/expand-white.svg');
+        }
+    }
 
     // .mapboxgl-ctrl-shrink {
     //     background-image: url('~@/assets/images/icons/compress-primary.svg');
