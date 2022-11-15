@@ -128,7 +128,6 @@ export default {
         },
         removeTabClass(event) {
             if (event.target.tagName !== 'INPUT') {
-                console.log('remove');
                 this.groupTabbedInto = false;
             }
         },
