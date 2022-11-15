@@ -20,7 +20,9 @@
             :orientation="iconOrientation"
         />
         <!-- @slot The button content goes here -->
-        <slot />
+        <span class="vs-button__text">
+            <slot />
+        </span>
     </BButton>
 </template>
 <script>
@@ -322,13 +324,16 @@ export default {
 
         &.vs-button--icon-with-text{
             letter-spacing: initial;
-            text-decoration: underline;
             font-weight: $font-weight-normal;
             font-size: $font-size-3;
             transition: none;
 
             &.btn-sm, &.btn-md, &.btn-lg{
                 padding: $spacer-1;
+            }
+
+            .vs-button__text{
+                text-decoration: underline;
             }
 
             .vs-icon{
