@@ -171,7 +171,7 @@ export default {
 
         &:hover {
             .vs-icon{
-                fill: $color-pink;
+                color: $color-pink;
             }
         }
 
@@ -200,7 +200,7 @@ export default {
 
         &:hover, &:focus {
             .vs-icon {
-                fill: $color-pink;
+                color: $color-pink;
             }
         }
 
@@ -338,8 +338,3 @@ export default {
     }
 }
 </style>
-
-<docs>
-   ```[import](../__examples__/meganav-example.vue)
-    ```
-</docs>

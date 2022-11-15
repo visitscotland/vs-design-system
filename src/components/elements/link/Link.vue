@@ -134,7 +134,7 @@ export default {
         color: $color_yellow;
 
         .vs-icon {
-            fill: $color_yellow;
+            color: $color_yellow;
         }
 
         &:focus {
@@ -152,7 +152,7 @@ export default {
         color: $color_yellow;
 
         .vs-icon {
-            fill: $color_yellow;
+            color: $color_yellow;
         }
 
         &:focus {

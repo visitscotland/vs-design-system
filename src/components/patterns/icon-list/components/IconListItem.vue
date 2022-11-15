@@ -60,7 +60,7 @@ export default {
     font-size: $font-size-3;
     line-height: $line-height-standard;
 
-    svg {
+    .vs-icon {
         margin-bottom: $spacer-3;
     }
 }

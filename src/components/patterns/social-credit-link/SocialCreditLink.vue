@@ -79,8 +79,8 @@ export default {
         font-weight: $font-weight-light;
         font-size: $font-size-3;
 
-        svg.vs-icon {
-            fill: $color-white;
+        .vs-icon {
+            color: $color-white;
             vertical-align: middle;
         }
     }

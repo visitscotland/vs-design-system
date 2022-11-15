@@ -79,6 +79,7 @@ export default {
             height: 42px;
             width: 42px;
             transition: $transition-base;
+            text-decoration: none;
 
             &.facebook {
                 &:hover {
@@ -116,22 +117,21 @@ export default {
                 outline: none;
 
                 .vs-icon {
-                    fill: $color-gray-shade-1;
+                    color: $color-gray-shade-1;
                 }
             }
 
             &:hover {
-                text-decoration: underline;
-
                 .vs-icon {
-                    fill: $color-white;
+                    color: $color-white;
                 }
             }
 
             .vs-icon {
                 height: 100%;
                 margin: 0 auto;
-                fill: $color-white;
+                color: $color-white;
+                line-height: $line-height-m;
                 display: block;
 
                 &.vs-icon--external-link {

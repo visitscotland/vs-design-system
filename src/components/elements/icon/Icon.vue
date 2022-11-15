@@ -43,7 +43,7 @@ export default {
             default: 'search',
         },
         /**
-         * The fill color of the SVG icon.
+         * The color of the icon.
          * `primary|secondary|light|dark|color-white|secondary-teal`
          */
         variant: {
@@ -54,7 +54,7 @@ export default {
             ),
         },
         /**
-         * Accepts a colour (hex code or colour name) to fill the icon, if this is
+         * Accepts a colour (hex code or colour name) for the icon, if this is
          * set it will override the given variant. This should be used for individual
          * exceptions but if one is being used regularly it should likely be a variant
          * instead.
@@ -260,7 +260,7 @@ $variants: (
 );
 
 .vs-icon {
-    fill: $color-black;
+    color: $color-black;
     overflow: visible;
     pointer-events: none;
 

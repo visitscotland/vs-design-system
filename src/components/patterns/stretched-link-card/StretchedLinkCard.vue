@@ -475,7 +475,7 @@ export default {
         &:active {
             .vs-stretched-link-card__video-button {
                 .vs-icon {
-                    fill: $color-theme-primary;
+                    color: $color-theme-primary;
                 }
             }
         }

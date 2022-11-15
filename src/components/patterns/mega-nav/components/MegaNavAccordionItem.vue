@@ -169,12 +169,12 @@ export default {
                     border-top: 1px solid $color-gray-tint-6;
 
                     .vs-icon{
-                        fill: $color-secondary-gray-shade-3;
+                        color: $color-secondary-gray-shade-3;
                     }
 
                     &:focus, &:active, &:active:focus{
                         .vs-icon{
-                            fill: $color-pink;
+                            color: $color-pink;
                         }
                     }
                 }

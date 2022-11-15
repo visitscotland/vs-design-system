@@ -100,7 +100,7 @@ export default {
             border: none;
 
             .vs-icon {
-                fill: $color-pink;
+                color: $color-pink;
             }
 
             &::after {
@@ -113,7 +113,7 @@ export default {
                 box-shadow: none;
 
                 .vs-icon {
-                    fill: $color-white;
+                    color: $color-white;
                 }
 
                 &::after {
