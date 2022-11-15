@@ -9,7 +9,6 @@
     "src/**/*.vue"
   ],
   "homepage": "",
-  "private": true,
   "license": "MIT",
   "scripts": {
     "system": "cross-env NODE_ENV=development node ./build/system server --remote-profile hippo",
