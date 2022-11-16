@@ -675,14 +675,21 @@ export default {
         }
     }
 
-    // .mapboxgl-ctrl-shrink {
-    //     background-image: url('~@/assets/images/icons/compress-primary.svg');
+    .mapboxgl-ctrl-shrink {
+        &::after {
+            font-family: "Font Awesome Kit";
+            content: "\e07b";
+            display: inline-block;
+            color: $color-theme-primary;
+        }
 
-    //     &:hover,
-    //     &:focus {
-    //         background-image: url('~@/assets/images/icons/compress-white.svg');
-    //     }
-    // }
+        &:hover,
+        &:focus {
+            &::after {
+                color: $color-white;
+            }
+        }
+    }
 
     .mapboxgl-ctrl-zoom-in {
         &::after {
@@ -703,7 +710,7 @@ export default {
     .mapboxgl-ctrl-zoom-out {
         &::after {
             font-family: "Font Awesome Kit";
-            content: "\e034";
+            content: "\e07a";
             display: inline-block;
             color: $color-theme-primary;
         }
