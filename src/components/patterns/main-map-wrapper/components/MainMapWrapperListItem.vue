@@ -14,8 +14,11 @@
             :src="itemData.image"
             class="vs-main-map-wrapper-list-item__img"
         />
-
-        {{ itemData.title }}
+        <span
+            class="vs-main-map-wrapper-list-item__text"
+        >
+            {{ itemData.title }}
+        </span>
 
         <VsIcon
             name="internal-link"
@@ -117,7 +120,10 @@ export default {
         &:hover,
         &--hovered {
             box-shadow: $shadow_card;
-            text-decoration: underline;
+
+            .vs-main-map-wrapper-list-item__text{
+                text-decoration: underline;
+            }
         }
 
         &:focus {
