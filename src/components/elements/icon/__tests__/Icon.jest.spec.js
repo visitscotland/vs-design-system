@@ -10,15 +10,15 @@ const factoryShallowMount = (propsData) => shallowMount(VsIcon, {
 });
 
 describe('VsIcon', () => {
-    it('should render a vs-svg stub', () => {
+    it('should render a font awesome icon', () => {
         const wrapper = factoryShallowMount();
-        expect(wrapper.element.tagName).toBe('VSSVG-STUB');
+        expect(wrapper.element.tagName).toBe('I');
     });
 
     describe(':props', () => {
-        it(':name - should render the VsIcon with the correct path for its name', () => {
+        it(':name - should render the VsIcon with the correct class', () => {
             const wrapper = factoryShallowMount();
-            expect(wrapper.attributes('path')).toBe('icons/facility-accessparkdrop');
+            expect(wrapper.attributes('class')).toContain('facility-accessparkdrop');
         });
 
         it(':variant - should accept and render variants as props', () => {

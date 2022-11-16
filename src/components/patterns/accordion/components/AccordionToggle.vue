@@ -70,6 +70,11 @@ export default {
     display: flex;
     width: 100%;
 
+    .vs-button__text{
+        display: flex;
+        width: 100%;
+    }
+
     .vs-accordion-toggle__text {
         flex-grow: 1;
     }
