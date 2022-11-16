@@ -1,6 +1,6 @@
 {
-  "name": "vs-component-library",
-  "version": "0.1.0",
+  "name": "@visitscotland/vs-component-library",
+  "version": "0.2.3",
   "description": "visitscotland.com Component Library",
   "author": "VisitScotland",
   "main": "dist/library/manifest.json",
@@ -9,7 +9,6 @@
     "src/**/*.vue"
   ],
   "homepage": "",
-  "private": true,
   "license": "MIT",
   "scripts": {
     "system": "cross-env NODE_ENV=development node ./build/system server --remote-profile hippo",
@@ -48,7 +47,6 @@
     "pretest:coverage": "yarn theo",
     "pretest:debug:chrome": "yarn theo",
     "pretest:e2e": "yarn theo",
-    "prepublish": "yarn package",
     "commit": "git-cz",
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
