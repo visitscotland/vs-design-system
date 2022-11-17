@@ -8,16 +8,18 @@ is hidden from users and designed to give those using screenreaders some context
 
 ```jsx
     <VsButtonToggleGroup
-        buttonsLabel="Select map type"
+        buttonsLabel="select map type"
         initialSelected="places"
         :options="[
             {
                 text: 'Regions',
                 value: 'regions',
+                icon: 'map',
             },
             {
                 text: 'Places',
                 value: 'places',
+                icon: 'pin',
             },
         ]"
     />
