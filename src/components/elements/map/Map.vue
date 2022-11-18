@@ -710,7 +710,7 @@ export default {
     .mapboxgl-ctrl-zoom-out {
         &::after {
             font-family: "Font Awesome Kit";
-            content: "\e07a";
+            content: "\e034";
             display: inline-block;
             color: $color-theme-primary;
         }
