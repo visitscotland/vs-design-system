@@ -209,7 +209,6 @@ export default {
         },
     },
     mounted() {
-        this.panelVisible = true;
         mapStore.commit('addMapInstance', {
             id: this.mapId,
             filters: this.filters,
