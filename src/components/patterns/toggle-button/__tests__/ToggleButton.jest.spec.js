@@ -27,7 +27,7 @@ describe('VsToggleButton', () => {
     describe(':props', () => {
         it('should set correct ID for aria controls with `toggleId` prop', () => {
             const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('.vs-toggle-btn');
+            const toggleCaptionBtn = wrapper.find('[data-test="vs-toggle-btn"]');
 
             expect(toggleCaptionBtn.attributes('aria-controls')).toBe(toggleIdValue);
         });
@@ -49,7 +49,7 @@ describe('VsToggleButton', () => {
     describe(':methods', () => {
         it('emits `toggleImage` when clicked', async() => {
             const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('.vs-toggle-btn');
+            const toggleCaptionBtn = wrapper.find('[data-test="vs-toggle-btn"]');
 
             toggleCaptionBtn.trigger('click');
             await wrapper.vm.$nextTick();
@@ -59,10 +59,11 @@ describe('VsToggleButton', () => {
 
         it(':toggleCaption - icon is updated when the caption is toggled on', async() => {
             const wrapper = factoryShallowMount();
-            const toggleCaptionBtn = wrapper.find('.vs-toggle-btn');
+            const toggleCaptionBtn = wrapper.find('[data-test="vs-toggle-btn"]');
+
             await toggleCaptionBtn.trigger('click');
 
-            expect(wrapper.find('vsicon-stub').attributes('name')).toBe('close-circle-filled');
+            expect(wrapper.find('vssvg-stub').attributes('path')).toContain('close-circle-filled');
         });
 
         it(':toggleCaption - caption hide icon when toggled twice', async() => {

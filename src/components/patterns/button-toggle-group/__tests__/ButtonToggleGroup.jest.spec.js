@@ -3,6 +3,7 @@ import VsButtonToggleGroup from '../ButtonToggleGroup';
 
 const factoryMount = () => mount(VsButtonToggleGroup, {
     propsData: {
+        buttonsLabel: 'Select map type',
         options: [
             {
                 text: 'Regions',

@@ -72,7 +72,7 @@ export default {
             ),
         },
         /**
-        * Color theme - can be `light`, `dark` or `transparent`
+        * Color theme - can be `light` or `dark`
         */
         theme: {
             type: String,
