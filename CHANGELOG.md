@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.4.0 (2022-11-22)
+
+
+### Features
+
+* **design system:** fix bootstrap vue version drift ([d9a9a7f](https://github.com/visitscotland/design-system/commit/d9a9a7fe94329b57c70dc38a27234abaedcddb4c))
+* **versioning:** hooks up git commit to automatically lint and run git cz ([09cf54b](https://github.com/visitscotland/design-system/commit/09cf54bd6731fe618a94436fe069663888e09f7a))
+
+
+### Bug Fixes
+
+* 🐛 Fix broken unit tests and console errors ([6d5091b](https://github.com/visitscotland/design-system/commit/6d5091bd2cbb630bce3c7ec6ceefcc93a7204b01))
+* 🐛 Lock down sass version ([72286cd](https://github.com/visitscotland/design-system/commit/72286cddfcae4f5f0607d83f6557adb3559b58c2))
+* 🐛 Prevent inset-squish-space calculation breaking build ([3bd24b3](https://github.com/visitscotland/design-system/commit/3bd24b3a2594a923435c11cce978b6ae7b1800c5))
+
+## 0.3.0 (2022-11-22)
+
+
+### Features
+
+* **design system:** fix bootstrap vue version drift ([d9a9a7f](https://github.com/visitscotland/design-system/commit/d9a9a7fe94329b57c70dc38a27234abaedcddb4c))
+* **versioning:** hooks up git commit to automatically lint and run git cz ([09cf54b](https://github.com/visitscotland/design-system/commit/09cf54bd6731fe618a94436fe069663888e09f7a))
+
+
+### Bug Fixes
+
+* 🐛 Fix broken unit tests and console errors ([6d5091b](https://github.com/visitscotland/design-system/commit/6d5091bd2cbb630bce3c7ec6ceefcc93a7204b01))
+* 🐛 Lock down sass version ([72286cd](https://github.com/visitscotland/design-system/commit/72286cddfcae4f5f0607d83f6557adb3559b58c2))
+* 🐛 Prevent inset-squish-space calculation breaking build ([3bd24b3](https://github.com/visitscotland/design-system/commit/3bd24b3a2594a923435c11cce978b6ae7b1800c5))
+
 ### [0.2.3](https://github.com/visitscotland/design-system/compare/v0.2.2...v0.2.3) (2022-11-15)
 
 
