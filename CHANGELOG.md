@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/visitscotland/design-system/compare/v0.4.0...v0.4.1) (2022-11-22)
+
+
+### Bug Fixes
+
+* 🐛 Fixes overlapping of share button and header on mobile ([27313d2](https://github.com/visitscotland/design-system/commit/27313d235a04ac2c1d47326e88a60283fdfc58c9))
+
+
+### Others
+
+* 🤖 Adding prepublishOnly script to publish prod assets ([20203e6](https://github.com/visitscotland/design-system/commit/20203e6a21f5b0c7f5a8822e6eee763f46301a1d))
+* 🤖 Updating changelog and version ([f01e6f7](https://github.com/visitscotland/design-system/commit/f01e6f78425a03a7e88594b8aa7fd80d7c13c902))
+
 ## 0.4.0 (2022-11-22)
 
 
