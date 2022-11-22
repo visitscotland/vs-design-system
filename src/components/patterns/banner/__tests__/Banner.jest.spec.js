@@ -35,10 +35,11 @@ describe('VsBanner', () => {
         });
 
         it('does not set a cookie if `dontShowAgain` is false', async() => {
-            wrapper.setProps({
+            await wrapper.setProps({
                 dontShowAgain: false,
             });
             const mockSetCookie = jest.fn();
+
             wrapper.vm.setHiddenCookie = mockSetCookie;
 
             await wrapper.find('[data-test=vs-banner__close-btn]').trigger('click');

@@ -11,10 +11,9 @@ const noCookiesContent = 'Cookies are off';
 const errorContent = 'Error content';
 const cookieBtnText = 'Cookie link text';
 
-const factoryShallowMount = (compData) => shallowMount(VsVideo, {
+const factoryShallowMount = () => shallowMount(VsVideo, {
     propsData: {
         videoId,
-        showDuration: true,
         singleMinuteDescriptor,
         pluralMinuteDescriptor,
         language,
@@ -22,24 +21,13 @@ const factoryShallowMount = (compData) => shallowMount(VsVideo, {
         noCookiesMessage: noCookiesContent,
         errorMessage: errorContent,
         noJsMessage: noJsContent,
-    },
-    computed: {
-        player() {
-            return {
-                getDuration() {
-                    // return fake video lenth of 3 mins 30 secs
-                    return Promise.resolve(210);
-                },
-            };
-        },
-        ...compData,
+        player: null,
     },
 });
 
-const factoryMount = (compData) => mount(VsVideo, {
+const factoryMount = () => mount(VsVideo, {
     propsData: {
         videoId,
-        showDuration: true,
         singleMinuteDescriptor,
         pluralMinuteDescriptor,
         language,
@@ -47,17 +35,7 @@ const factoryMount = (compData) => mount(VsVideo, {
         noCookiesMessage: noCookiesContent,
         errorMessage: errorContent,
         noJsMessage: noJsContent,
-    },
-    computed: {
-        player() {
-            return {
-                getDuration() {
-                    // return fake video lenth of 3 mins 30 secs
-                    return Promise.resolve(210);
-                },
-            };
-        },
-        ...compData,
+        player: null,
     },
 });
 
@@ -95,10 +73,6 @@ describe('VsVideo', () => {
             wrapper.vm.formatTime(25);
 
             wrapper.setData({
-                showDuration: true,
-            });
-
-            wrapper.setData({
                 requiredCookies: [],
             });
 
@@ -113,10 +87,6 @@ describe('VsVideo', () => {
             // a 1 minute 20 second video, which should round down to 1 minute
             wrapper.vm.formatTime(80);
 
-            await wrapper.setData({
-                showDuration: true,
-            });
-
             expect(wrapper.vm.duration.roundedMinutes).toContain('1');
         });
 
@@ -125,10 +95,6 @@ describe('VsVideo', () => {
             const wrapper = factoryShallowMount();
 
             wrapper.vm.formatTime(90);
-
-            await wrapper.setData({
-                showDuration: true,
-            });
 
             expect(wrapper.vm.duration.roundedMinutes).toContain('2');
         });
@@ -139,10 +105,6 @@ describe('VsVideo', () => {
 
             wrapper.vm.formatTime(80);
 
-            await wrapper.setData({
-                showDuration: true,
-            });
-
             expect(wrapper.vm.duration.roundedMinutes).toBe(singleMinuteDescriptor.replace('%s', '1'));
         });
 
@@ -151,10 +113,6 @@ describe('VsVideo', () => {
 
             // a 3 minute 40 second video, which should round up to 4 minute
             wrapper.vm.formatTime(220);
-
-            await wrapper.setData({
-                showDuration: true,
-            });
 
             expect(wrapper.vm.duration.roundedMinutes).toBe(pluralMinuteDescriptor.replace('%s', '4'));
         });
