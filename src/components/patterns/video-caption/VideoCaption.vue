@@ -431,6 +431,10 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
+            .vs-image-with-caption__video-caption-wrapper .vs-video-caption {
+                width: 400px;
+            }
+
             .vs-image-with-caption__image-wrapper .vs-toggle-btn {
                 display: none !important;
             }
