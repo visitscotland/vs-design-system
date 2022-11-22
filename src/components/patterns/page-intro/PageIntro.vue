@@ -37,6 +37,7 @@
                         :lg="heroIntro ? '7' : '10'"
                         :xl="heroIntro ? '8' : '10'"
                         :offset-lg="heroIntro ? '1' : '0'"
+                        class="mt-1 mt-sm-0"
                     >
                         <VsHeading
                             level="1"
@@ -201,10 +202,11 @@ export default {
 
     &__share {
         position: absolute;
-        top: $spacer-4;
+        top: $spacer-3;
         right: $spacer-1;
 
         @include media-breakpoint-up(sm) {
+            top: $spacer-4;
             right: $spacer-4;
         }
 
@@ -257,7 +259,7 @@ export default {
     }
 
      &__breadcrumb {
-        margin-top: $spacer-2;
+        margin-top: $spacer-3;
     }
 
     &__lower,
