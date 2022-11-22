@@ -209,16 +209,16 @@ export default {
     ],
     inject: {
         noJsMessage: {
-            default: '',
+            default: null,
         },
         noCookiesMessage: {
-            default: '',
+            default: null,
         },
         cookieLinkText: {
-            default: '',
+            default: null,
         },
         theme: {
-            default: '',
+            default: null,
         },
     },
     props: {

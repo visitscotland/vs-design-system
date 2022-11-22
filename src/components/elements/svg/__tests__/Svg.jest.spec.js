@@ -68,8 +68,8 @@ describe('VsSvg', () => {
             expect(wrapper.vm.attributes).toEqual(mockNativeAttrs);
         });
 
-        it('should add the extra attributes to the native attributes', () => {
-            wrapper.setProps(extraProps);
+        it('should add the extra attributes to the native attributes', async() => {
+            await wrapper.setProps(extraProps);
             expect(wrapper.vm.attributes).toEqual(extend({
             }, mockNativeAttrs, extraAttrs));
         });
