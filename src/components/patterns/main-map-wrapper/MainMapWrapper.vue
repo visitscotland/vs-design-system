@@ -70,7 +70,7 @@
                             </template>
                         </VsMap>
                         <VsButtonToggleGroup
-                            :initial-selected="initialSelected"
+                            :initial-selected="selectedToggle"
                             :options="toggleData"
                             :buttons-label="buttonsLabel"
                             @toggleChanged="onToggleChanged"
@@ -195,6 +195,7 @@ export default {
             showRegions: false,
             regions: [
             ],
+            selectedToggle: '',
         };
     },
     computed: {
@@ -210,6 +211,7 @@ export default {
         },
     },
     mounted() {
+        this.selectedToggle = this.initialSelected;
         mapStore.commit('addMapInstance', {
             id: this.mapId,
             filters: this.filters,
@@ -254,6 +256,7 @@ export default {
 
             if (this.currentStage === 0) {
                 this.showAllPlaces();
+                this.selectedToggle = 'places';
             } else if (this.currentStage === 1) {
                 this.filterPlaces(this.selectedCategory);
             }
@@ -276,8 +279,10 @@ export default {
             if (id === 'regions') {
                 this.showRegions = true;
                 this.activePins = [];
+                this.selectedToggle = 'regions';
             } else {
                 this.showRegions = false;
+                this.selectedToggle = 'places';
 
                 const filteredPlaces = this.placesData
                     .filter((place) => {
@@ -303,8 +308,10 @@ export default {
         onToggleChanged(category) {
             if (category === 'regions') {
                 this.setCategory('regions');
+                this.setStage(1);
             } else {
                 this.showAllPlaces();
+                this.setStage(0);
             }
         },
     },
