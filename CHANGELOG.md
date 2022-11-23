@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.2](https://github.com/visitscotland/design-system/compare/v0.4.1...v0.4.2) (2022-11-23)
+
+
+### Features
+
+* **icons:** add missing wetroom icon ([a4bf026](https://github.com/visitscotland/design-system/commit/a4bf02604fe7d653f09d787f040a9151cb3a1740))
+
+
+### Bug Fixes
+
+* 🐛 Fixing caption layout on page intro hero ([da3f1d8](https://github.com/visitscotland/design-system/commit/da3f1d85c413bb38f25124cfaf9368b766e37a13))
+* **video:** reduce hero play button on small screens ([f1ab6d0](https://github.com/visitscotland/design-system/commit/f1ab6d034cd3e3350e3ea49f0aa26993c54cf04a))
+* **video:** restore fixed width to hero video on large ([82eee3f](https://github.com/visitscotland/design-system/commit/82eee3fd68c720f1daef0abede04e3f39f710545))
+
 ### [0.4.1](https://github.com/visitscotland/design-system/compare/v0.4.0...v0.4.1) (2022-11-22)
 
 
