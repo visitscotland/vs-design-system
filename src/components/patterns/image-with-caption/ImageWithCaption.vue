@@ -534,7 +534,6 @@ export default {
                         @include media-breakpoint-down(xs) {
                             text-align: left;
                             display: block;
-                            position: absolute;
 
                             .order-2 {
                                 order: 1;
