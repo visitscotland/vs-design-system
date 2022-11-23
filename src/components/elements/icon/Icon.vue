@@ -212,6 +212,10 @@ export default {
                     key: 'brekavail',
                     value: 'breakfast-available',
                 },
+                {
+                    key: 'wetroom',
+                    value: 'level-entry-shower',
+                },
             ],
         };
     },
