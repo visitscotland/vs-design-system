@@ -6,9 +6,7 @@
   "main": "dist/library/manifest.json",
   "files": [
     "dist/*",
-    "src/**/*.vue",
-    "ssr/*",
-    "build/*"
+    "src/**/*.vue"
   ],
   "homepage": "",
   "license": "MIT",
