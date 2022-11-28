@@ -1,12 +1,14 @@
 {
   "name": "@visitscotland/vs-component-library",
-  "version": "0.4.4",
+  "version": "0.4.3",
   "description": "visitscotland.com Component Library",
   "author": "VisitScotland",
   "main": "dist/library/manifest.json",
   "files": [
     "dist/*",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "build/ssr.client.webpack.conf.js",
+    "build/ssr.server.webpack.conf.js"
   ],
   "homepage": "",
   "license": "MIT",
