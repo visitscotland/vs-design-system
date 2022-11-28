@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.4](https://github.com/visitscotland/design-system/compare/v0.4.3...v0.4.4) (2022-11-28)
+
+
+### Others
+
+* 🤖 Removes SSR package from the repo ([93ec2f9](https://github.com/visitscotland/design-system/commit/93ec2f997396f0fc409c1068f71db2619e6a5d50))
+
 ### [0.4.3](https://github.com/visitscotland/design-system/compare/v0.4.2...v0.4.3) (2022-11-24)
 
 
