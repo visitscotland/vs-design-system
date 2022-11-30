@@ -272,8 +272,6 @@ $variants: (
         $this-size: map-get($sizes, $size);
 
         &.vs-icon--size-#{$size} {
-            height: $this-size;
-            width: $this-size;
             font-size: $this-size;
             padding: 0;
         }
@@ -288,8 +286,6 @@ $variants: (
 
         @include media-breakpoint-down(sm) {
             &.vs-icon--sm-size-#{$size} {
-                height: $this-size;
-                width: $this-size;
                 font-size: $this-size;
                 padding: 0;
             }

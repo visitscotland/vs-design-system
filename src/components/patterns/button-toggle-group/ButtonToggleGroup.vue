@@ -55,7 +55,7 @@ import initFontAwesome from '../../../utils/init-font-awesome';
 /**
  * A group of buttons that allow only one to be selected at a time
  *
- * @displayName Button toggle group
+ * @displayName Button Toggle Group
  */
 
 export default {
