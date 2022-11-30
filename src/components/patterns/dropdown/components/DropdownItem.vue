@@ -14,6 +14,8 @@ import { BDropdownItem } from 'bootstrap-vue';
  */
 export default {
     name: 'VsDropdownItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         BDropdownItem,
     },

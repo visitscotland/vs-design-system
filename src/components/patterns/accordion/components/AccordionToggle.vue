@@ -38,6 +38,8 @@ import VsButton from '@components/elements/button/Button';
  */
 export default {
     name: 'VsAccordionToggle',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsButton,
     },

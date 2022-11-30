@@ -28,6 +28,8 @@ import { reject } from 'lodash';
  */
 export default {
     name: 'VsDropdown',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         BDropdown,
     },

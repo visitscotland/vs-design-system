@@ -47,6 +47,8 @@ import {
 
 export default {
     name: 'VsFooterCopyright',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsSvgLink,
         VsRow,
