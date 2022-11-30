@@ -4,7 +4,6 @@
             <li>
                 <VsIcon
                     name="ready"
-                    custom-colour="green"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -14,7 +13,6 @@
             <li>
                 <VsIcon
                     name="circle-exclamation fa-solid"
-                    custom-colour="orange"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -24,7 +22,6 @@
             <li>
                 <VsIcon
                     name="close-circle-filled"
-                    custom-colour="red"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -34,7 +31,6 @@
             <li>
                 <VsIcon
                     name="prototype"
-                    custom-colour="blue"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -89,26 +85,22 @@
                         <VsIcon
                             v-if="component.status === 'ready'"
                             name="ready"
-                            custom-colour="green"
                             size="xs"
                         />
                         <VsIcon
                             v-if="component.status === 'under-review' ||
                                 component.status === 'review'"
                             name="circle-exclamation fa-solid"
-                            custom-colour="orange"
                             size="xs"
                         />
                         <VsIcon
                             v-if="component.status === 'prototype'"
                             name="prototype"
-                            custom-colour="blue"
                             size="xs"
                         />
                         <VsIcon
                             v-if="component.status === 'deprecated'"
                             name="close-circle-filled"
-                            custom-colour="red"
                             size="xs"
                         />
                     </td>
@@ -234,6 +226,24 @@ export default {
                         margin: 0;
                     }
                 }
+            }
+        }
+
+        .vs-icon{
+            &--ready{
+                color: $color-theme-secondary-teal;
+            }
+
+            &--circle-exclamation{
+                color: $color-yellow;
+            }
+
+            &--close-circle-filled{
+                color: $color-theme-danger;
+            }
+
+            &--prototype{
+                color: $color-theme-secondary-indigo;
             }
         }
     }
