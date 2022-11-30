@@ -38,8 +38,8 @@
                 data-test="vs-main-map-subcategory__apply-filters"
                 size="sm"
                 @click.native="checkboxesChangeSubmit"
-                :aria-disabled="selected.length === 0 ? 'true' : 'false'"
-                :disabled="selected.length === 0 ? true : false"
+                :aria-disabled="isDisabled"
+                :disabled="isDisabled"
             >
                 {{ applyFiltersText }}
             </VsButton>
@@ -80,6 +80,15 @@ export default {
         return {
             selected: [],
         };
+    },
+    computed: {
+        isDisabled() {
+            if (this.selected.length > 0) {
+                return false;
+            }
+
+            return true;
+        },
     },
     methods: {
         checkboxesChangeSubmit() {

@@ -306,7 +306,9 @@ export default {
             }).then((response) => {
                 this.activePins = [];
                 response.data.features.forEach((feature) => {
-                    this.activePins.push(feature);
+                    const modifiedFeature = feature;
+                    modifiedFeature.properties.apiData = true;
+                    this.activePins.push(modifiedFeature);
                 });
             });
         },

@@ -2,6 +2,7 @@ import { shallowMount } from '@vue/test-utils';
 import VsMainMapWrapper from '../MainMapWrapper';
 import placesJson from './data/places.json';
 import filtersJson from './data/filters.json';
+import filtersSubcatJson from './data/fitlersSubcat.json';
 
 const factoryShallowMount = () => shallowMount(VsMainMapWrapper, {
     slots: {
@@ -106,8 +107,13 @@ describe('VsMainMapWrapper', () => {
             expect(wrapper.vm.activePins.length).toBe(0);
         });
 
-        it('should update the `selectedSubCategory` data value when method is run', () => {
+        it('should update the `selectedSubCategory` data value when method is run', async() => {
             const wrapper = factoryShallowMount();
+
+            await wrapper.setProps({
+                filters: filtersSubcatJson,
+            });
+
             wrapper.vm.setSubCategory('acco');
 
             expect(wrapper.vm.selectedSubCategory).toBe('acco');
