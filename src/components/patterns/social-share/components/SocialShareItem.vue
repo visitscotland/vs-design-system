@@ -19,7 +19,9 @@
                 small-size="lg"
             />
 
-            {{ show ? linkCopiedText : linkText }}
+            <span class="vs-social-share-item__text">
+                {{ show ? linkCopiedText : linkText }}
+            </span>
         </VsLink>
     </VsCol>
 </template>
@@ -175,10 +177,17 @@ export default {
         margin-bottom: $spacer-2;
         padding: $spacer-4 $spacer-2;
         text-align: center;
+        text-decoration: none;
 
         @include media-breakpoint-up(md) {
             padding: $spacer-6;
             margin-bottom: $spacer-6;
+        }
+
+        &:hover{
+            .vs-social-share-item__text{
+                text-decoration: none;
+            }
         }
 
         &:focus, &:focus-visible{
@@ -191,6 +200,10 @@ export default {
             display: block;
             margin: 0 auto $spacer-3;
         }
+    }
+
+    &__text{
+        text-decoration: underline;
     }
 }
 
