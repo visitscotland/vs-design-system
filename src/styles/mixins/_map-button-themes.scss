@@ -4,7 +4,13 @@
         "towns": $color-secondary-teal-shade-3,
         "islands": #1066D6,
         "regions": $color-theme-primary,
-        "featured": #C31613
+        "featured": #C31613,
+        "acco": $color-pink,
+        "attr": $color-secondary-teal-shade-3,
+        "acti": $color-purple,
+        "even": #1066D6,
+        "cate": #C31613,
+        "reta": $color-theme-secondary-indigo,
     );
 
     @each $name, $color in $themes {
