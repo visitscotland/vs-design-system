@@ -14,12 +14,12 @@ is hidden from users and designed to give those using screenreaders some context
             {
                 text: 'Regions',
                 value: 'regions',
-                icon: 'map',
+                icon: 'regions',
             },
             {
                 text: 'Places',
                 value: 'places',
-                icon: 'pin',
+                icon: 'map-marker',
             },
         ]"
     />

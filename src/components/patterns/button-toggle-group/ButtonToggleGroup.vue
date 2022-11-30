@@ -30,10 +30,10 @@
                     :key="option.text"
                 >
                     <span>
-                        <VsSvg
-                            :path="iconPath(option)"
-                            class="mr-2"
+                        <VsIcon
                             v-if="option.icon"
+                            :name="option.icon"
+                            class="mr-1"
                         />
                         {{ option.text }}
                     </span>
@@ -49,7 +49,7 @@ import {
     BFormRadioGroup,
     BFormRadio,
 } from 'bootstrap-vue';
-import VsSvg from '@components/elements/svg/Svg';
+import VsIcon from '@components/elements/icon/Icon';
 import initFontAwesome from '../../../utils/init-font-awesome';
 
 /**
@@ -66,7 +66,7 @@ export default {
         BFormGroup,
         BFormRadioGroup,
         BFormRadio,
-        VsSvg,
+        VsIcon,
     },
     props: {
         /**
@@ -116,13 +116,6 @@ export default {
          */
         toggleChange(checked) {
             this.$emit('toggleChanged', checked);
-        },
-        /**
-         * Return icon path for icon
-         */
-        iconPath(option) {
-            const color = this.selected === option.value ? 'purple' : 'white';
-            return `${option.icon}-${color}`;
         },
         /**
          * Updates data value to signify that the element
