@@ -105,6 +105,13 @@ describe('VsMainMapWrapper', () => {
 
             expect(wrapper.vm.activePins.length).toBe(0);
         });
+
+        it('should update the `selectedSubCategory` data value when method is run', () => {
+            const wrapper = factoryShallowMount();
+            wrapper.vm.setSubCategory('acco');
+
+            expect(wrapper.vm.selectedSubCategory).toBe('acco');
+        });
     });
 
     describe(':slots', () => {

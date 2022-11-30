@@ -15,10 +15,13 @@
                         <VsMainMapWrapperPanel
                             :category-heading="categoryHeading"
                             :selected-category="selectedCategory"
+                            :selected-subcategory="selectedSubCategory"
                             :current-stage="currentStage"
                             :selected-item="selectedItem"
                             :heading-level="mainHeadingExists ? '3' : '2'"
                             @set-category="setCategory"
+                            @set-subcategory="setSubCategory"
+                            @subcategories-filtered="filterSubCategories"
                             @set-stage="setStage"
                             @close-panel="closePanel"
                             @show-item-detail="showDetail"
@@ -91,6 +94,7 @@ import {
 import VsMap from '@components/elements/map/Map';
 import VsButton from '@components/elements/button/Button/';
 import VsButtonToggleGroup from '@components/patterns/button-toggle-group/ButtonToggleGroup';
+import axios from 'axios';
 import VsMainMapWrapperPanel from './components/MainMapWrapperPanel';
 import mapStore from '../../../stores/map.store';
 
@@ -120,6 +124,8 @@ export default {
             placesData: this.placesData,
             mapId: this.mapId,
             regions: this.regionsData,
+            clearSelectionText: this.clearSelectionText,
+            applyFiltersText: this.applyFiltersText,
         };
     },
     props: {
@@ -182,12 +188,27 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * Text for the 'clear selection' button
+         */
+        clearSelectionText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Text for the 'apply filters' button
+         */
+        applyFiltersText: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
             panelVisible: false,
             currentStage: 0,
             selectedCategory: '',
+            selectedSubCategory: null,
             filterCategories: this.filters,
             selectedItem: '',
             activePins: this.placesData,
@@ -244,6 +265,50 @@ export default {
         setCategory(cat) {
             this.selectedCategory = cat;
             this.filterPlaces(cat);
+        },
+        /**
+         * Sets a subcategory
+         */
+        setSubCategory(subcat) {
+            this.selectedSubCategory = subcat;
+            if (subcat !== null) {
+                this.getSubcatMarkerData();
+            } else {
+                this.showAllPlaces();
+            }
+        },
+        /**
+         * Filters subcategories
+         */
+        filterSubCategories(filters) {
+            let filterString = '';
+
+            filters.forEach((filter) => {
+                const filterSuffix = `&cat=${filter}`;
+                filterString += filterSuffix;
+            });
+
+            this.getSubcatMarkerData(filterString);
+        },
+        /**
+         * Makes a call to the API to get marker data for
+         * the current subcategory
+         */
+        getSubcatMarkerData(endpointFilters) {
+            const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
+            let endpoint = subCat[0].pinsEndpoint;
+            if (typeof endpointFilters !== 'undefined') {
+                endpoint += endpointFilters;
+            }
+
+            axios.get(endpoint, {
+                crossDomain: true,
+            }).then((response) => {
+                this.activePins = [];
+                response.data.features.forEach((feature) => {
+                    this.activePins.push(feature);
+                });
+            });
         },
         /**
          * Sets the current stage

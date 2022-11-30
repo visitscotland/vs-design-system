@@ -14,7 +14,7 @@
         <VsSvg
             class="vs-map-marker__icon"
             slot="svg"
-            :path="`marker-${feature.properties.type}`"
+            :path="getMarkerIcon"
         />
     </button>
 </template>
@@ -67,6 +67,13 @@ export default {
         },
         activePlace() {
             return mapStore.getters.getActivePlace(this.mapId);
+        },
+        getMarkerIcon() {
+            if (this.feature.properties.type !== '') {
+                return `marker-${this.feature.properties.type}`;
+            }
+
+            return 'pin-purple';
         },
     },
     methods: {

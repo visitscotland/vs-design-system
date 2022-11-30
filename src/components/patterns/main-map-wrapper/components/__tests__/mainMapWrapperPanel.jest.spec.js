@@ -1,6 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
 import VsMainMapWrapperPanel from '../MainMapWrapperPanel';
 
+const mockMethod = jest.fn();
+
 const factoryShallowMount = (propsData) => shallowMount(VsMainMapWrapperPanel, {
     slots: {
         closeSidePanelText: 'Close panel',
@@ -53,6 +55,9 @@ const factoryShallowMount = (propsData) => shallowMount(VsMainMapWrapperPanel, {
                 label: 'Featured',
             },
         ],
+        methods: {
+            subCatExists: mockMethod,
+        },
     },
 });
 
