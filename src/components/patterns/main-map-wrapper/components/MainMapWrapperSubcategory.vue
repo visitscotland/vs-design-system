@@ -29,7 +29,7 @@
                 data-test="vs-main-map-subcategory__clear-selection"
                 size="sm"
                 variant="secondary"
-                @click="clearSelection"
+                @click.native="clearSelection"
             >
                 {{ clearSelectionText }}
             </VsButton>
@@ -37,7 +37,9 @@
                 class="vs-main-map-subcategory__apply-filters"
                 data-test="vs-main-map-subcategory__apply-filters"
                 size="sm"
-                @click="checkboxesChangeSubmit()"
+                @click.native="checkboxesChangeSubmit"
+                :aria-disabled="selected.length === 0 ? 'true' : 'false'"
+                :disabled="selected.length === 0 ? true : false"
             >
                 {{ applyFiltersText }}
             </VsButton>
