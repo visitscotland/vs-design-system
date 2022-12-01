@@ -128,8 +128,7 @@ export default {
             }
 
             .vs-icon {
-                height: 100%;
-                margin: 0 auto;
+                text-align: center;
                 color: $color-white;
                 line-height: $line-height-m;
                 display: block;

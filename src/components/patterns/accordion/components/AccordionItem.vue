@@ -88,6 +88,8 @@ import {
  */
 export default {
     name: 'VsAccordionItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsAccordionToggle,
         BCard,

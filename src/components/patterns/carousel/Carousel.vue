@@ -120,7 +120,7 @@ import {
 
 export default {
     name: 'VsCarousel',
-    status: 'protolink-type',
+    status: 'prototype',
     release: '0.0.1',
     components: {
         VsContainer,

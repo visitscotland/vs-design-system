@@ -35,6 +35,8 @@ import VsHeading from '@components/elements/heading/Heading';
 
 export default {
     name: 'VsFooterSocialMenu',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsList,
         VsHeading,

@@ -27,6 +27,8 @@ import { BTab } from 'bootstrap-vue';
  */
 export default {
     name: 'VsTabItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         BTab,
         VsHeading,
