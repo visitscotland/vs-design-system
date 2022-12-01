@@ -15,7 +15,7 @@ base.entry = {
 
 module.exports = merge(base, {
     output: {
-        path: path.resolve(__dirname, '../node_modules/@visitscotland/vs-component-library/dist/ssr/client'),
+        path: path.resolve(__dirname, '../dist/ssr/client'),
     },
     plugins: [
         new VueSSRClientPlugin(),
