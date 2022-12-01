@@ -97,19 +97,31 @@
             </template>
         </template>
         <template v-if="currentStage === 1">
-            <div
-                v-for="place in currentData"
-                :key="place.id"
-            >
-                <VsMainMapWrapperListItem
-                    v-if="typeof place.properties !== 'undefined'
-                        && place.properties.category.id === selectedCategory"
-                    :item-data="place.properties"
-                    @show-item-detail="showDetail(place.properties.id)"
+            <template v-if="selectedSubcategory !== null">
+                <div
+                    v-for="place in subcategoryLocations"
+                    :key="place.id"
                 >
-                    {{ place.properties.title }}
-                </VsMainMapWrapperListItem>
-            </div>
+                    <VsMainMapWrapperListItem
+                        :item-data="place"
+                        :from-endpoint="true"
+                        @show-item-detail="showDetail(place.id)"
+                    />
+                </div>
+            </template>
+            <template v-else>
+                <div
+                    v-for="place in currentData"
+                    :key="place.id"
+                >
+                    <VsMainMapWrapperListItem
+                        v-if="typeof place.properties !== 'undefined'
+                            && place.properties.category.id === selectedCategory"
+                        :item-data="place.properties"
+                        @show-item-detail="showDetail(place.properties.id)"
+                    />
+                </div>
+            </template>
         </template>
         <template v-if="currentStage === 2">
             <VsMainMapWrapperDetail
@@ -205,6 +217,13 @@ export default {
         hovered: {
             type: String,
             default: '',
+        },
+        /**
+         * The ID of the currently hover item
+         */
+        subcategoryLocations: {
+            type: Array,
+            default: null,
         },
     },
     computed: {

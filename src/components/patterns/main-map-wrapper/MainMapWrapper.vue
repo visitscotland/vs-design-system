@@ -19,6 +19,7 @@
                             :current-stage="currentStage"
                             :selected-item="selectedItem"
                             :heading-level="mainHeadingExists ? '3' : '2'"
+                            :subcategory-locations="subCatList"
                             @set-category="setCategory"
                             @set-subcategory="setSubCategory"
                             @subcategories-filtered="filterSubCategories"
@@ -126,6 +127,7 @@ export default {
             regions: this.regionsData,
             clearSelectionText: this.clearSelectionText,
             applyFiltersText: this.applyFiltersText,
+            subCatList: this.subCatList,
         };
     },
     props: {
@@ -216,6 +218,7 @@ export default {
             showRegions: false,
             regions: [
             ],
+            subCatList: null,
         };
     },
     computed: {
@@ -289,6 +292,7 @@ export default {
             });
 
             this.getSubcatMarkerData(filterString);
+            this.getSubcatPanelData(filterString);
         },
         /**
          * Makes a call to the API to get marker data for
@@ -301,9 +305,7 @@ export default {
                 endpoint += endpointFilters;
             }
 
-            axios.get(endpoint, {
-                crossDomain: true,
-            }).then((response) => {
+            axios.get(endpoint).then((response) => {
                 this.activePins = [];
                 response.data.features.forEach((feature) => {
                     const modifiedFeature = feature;
@@ -313,6 +315,23 @@ export default {
             });
         },
         /**
+         * Makes a call to the endpoint in the subcategory data which
+         * provides a random 24 items for the side panel
+         */
+        getSubcatPanelData(endpointFilters) {
+            const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
+            let endpoint = subCat[0].listProductsEndPoint;
+            if (typeof endpointFilters !== 'undefined') {
+                endpoint += endpointFilters;
+            }
+
+            axios.get(endpoint).then((response) => {
+                this.subCatList = response.data.data.products;
+                this.setStage(1);
+            });
+        },
+
+        /**
          * Sets the current stage
          */
         setStage(num) {
@@ -321,7 +340,9 @@ export default {
             if (this.currentStage === 0) {
                 this.showAllPlaces();
             } else if (this.currentStage === 1) {
-                this.filterPlaces(this.selectedCategory);
+                if (this.selectedSubCategory === null) {
+                    this.filterPlaces(this.selectedCategory);
+                }
             }
 
             if (this.currentStage !== 2) {

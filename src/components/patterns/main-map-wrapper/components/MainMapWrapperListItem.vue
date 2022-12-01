@@ -3,21 +3,21 @@
         class="vs-main-map-wrapper-list-item"
         :class="isActive ? 'vs-main-map-wrapper-list-item--hovered' : ''"
         data-test="vs-main-map-wrapper-list-item"
-        @click="showItemDetail(itemData.id)"
-        @keyup.enter="showItemDetail(itemData.id)"
-        @mouseover="itemHover(itemData.id)"
+        @click="showItemDetail(data.id)"
+        @keyup.enter="showItemDetail(data.id)"
+        @mouseover="itemHover(data.id)"
         @mouseleave="itemHover('')"
-        @focusin="itemHover(itemData.id)"
+        @focusin="itemHover(data.id)"
         @focusout="itemHover('')"
     >
         <VsImg
-            :src="itemData.image"
+            :src="data.image"
             class="vs-main-map-wrapper-list-item__img"
         />
         <span
             class="vs-main-map-wrapper-list-item__text"
         >
-            {{ itemData.title }}
+            {{ data.title }}
         </span>
 
         <VsIcon
@@ -58,10 +58,21 @@ export default {
             type: Object,
             required: true,
         },
+        /** If the data source is from an API endpoint */
+        fromEndpoint: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    data() {
+        return {
+            data: {
+            },
+        };
     },
     computed: {
         isActive() {
-            if (this.highlightedPlace === this.itemData.id) {
+            if (this.highlightedPlace === this.data.id) {
                 return true;
             }
 
@@ -70,6 +81,15 @@ export default {
         highlightedPlace() {
             return mapStore.getters.getHoveredStop(this.mapId);
         },
+    },
+    mounted() {
+        if (!this.fromEndpoint) {
+            this.data = this.itemData;
+        } else {
+            this.data.id = this.itemData.id;
+            this.data.image = this.itemData.images[0].mediaUrl;
+            this.data.title = this.itemData.name;
+        }
     },
     methods: {
         /**
