@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.5](https://github.com/visitscotland/design-system/compare/v0.4.4...v0.4.5) (2022-12-01)
+
+
+### Others
+
+* 🤖 Adds back SSR files for building production files ([14c4018](https://github.com/visitscotland/design-system/commit/14c4018c22967da1ccf383faa9bbff31a1b10902))
+* 🤖 Adds back SSR files for production asset builds ([f932fdc](https://github.com/visitscotland/design-system/commit/f932fdcb35e79f1620290c1e2b317a9c84153251))
+
+
+### Styling
+
+* 💄 (Icon) Fixing icon size in VsBanner ([49f3c58](https://github.com/visitscotland/design-system/commit/49f3c58578318e4557d1970fc54f04d027c92803))
+* 💄 (Icons) Ensuring we are using FA icons where possible ([6fa9d7a](https://github.com/visitscotland/design-system/commit/6fa9d7a8cbffa7a888c280fa72c555c0ba723710))
+* 💄 (Icons) Fixing icon spacing after re-uploaded to FA ([ffe294c](https://github.com/visitscotland/design-system/commit/ffe294c2a388ed94802b194fca625fc906d439dc))
+* 💄 (Icons) Fixing icon spacing on footer and share ([70174f3](https://github.com/visitscotland/design-system/commit/70174f31d71e4a602a3ecc82c0efc5e714d6a20f))
+* 💄 (Icons) Updating colour of docs icons ([ef885ea](https://github.com/visitscotland/design-system/commit/ef885ea1f08c2032a9fdc8d299a996a89a8bd3ac))
+* 💄 (Icons) Updating docs icons and adds missing status ([e8bb12a](https://github.com/visitscotland/design-system/commit/e8bb12a46e1f7eb877e31b4e26874fee40b9bfe8))
+
 ### [0.4.4](https://github.com/visitscotland/design-system/compare/v0.4.3...v0.4.4) (2022-11-28)
 
 
