@@ -230,18 +230,22 @@ export default {
         currentHeading() {
             let headingText = '';
 
-            switch (this.currentStage) {
-            case 0:
-                headingText = this.categoryHeading;
-                break;
-            case 1:
+            if (this.selectedSubcategory !== null) {
                 headingText = this.currentFilter.label;
-                break;
-            case 2:
-                headingText = this.currentPlaceData[0].properties.title;
-                break;
-            default:
-                break;
+            } else {
+                switch (this.currentStage) {
+                case 0:
+                    headingText = this.categoryHeading;
+                    break;
+                case 1:
+                    headingText = this.currentFilter.label;
+                    break;
+                case 2:
+                    headingText = this.currentPlaceData[0].properties.title;
+                    break;
+                default:
+                    break;
+                }
             }
 
             return headingText;

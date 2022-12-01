@@ -3,21 +3,23 @@
         class="vs-main-map-wrapper-list-item"
         :class="isActive ? 'vs-main-map-wrapper-list-item--hovered' : ''"
         data-test="vs-main-map-wrapper-list-item"
-        @click="showItemDetail(data.id)"
-        @keyup.enter="showItemDetail(data.id)"
-        @mouseover="itemHover(data.id)"
+        @click="showItemDetail(formattedData.id)"
+        @keyup.enter="showItemDetail(formattedData.id)"
+        @mouseover="itemHover(formattedData.id)"
         @mouseleave="itemHover('')"
-        @focusin="itemHover(data.id)"
+        @focusin="itemHover(formattedData.id)"
         @focusout="itemHover('')"
     >
-        <VsImg
-            :src="data.image"
-            class="vs-main-map-wrapper-list-item__img"
-        />
+        <div class="vs-main-map-wrapper-list-item__img-container">
+            <VsImg
+                :src="formattedData.image"
+                class="vs-main-map-wrapper-list-item__img"
+            />
+        </div>
         <span
             class="vs-main-map-wrapper-list-item__text"
         >
-            {{ data.title }}
+            {{ formattedData.title }}
         </span>
 
         <VsIcon
@@ -66,13 +68,13 @@ export default {
     },
     data() {
         return {
-            data: {
+            formattedData: {
             },
         };
     },
     computed: {
         isActive() {
-            if (this.highlightedPlace === this.data.id) {
+            if (this.highlightedPlace === this.formattedData.id) {
                 return true;
             }
 
@@ -82,13 +84,13 @@ export default {
             return mapStore.getters.getHoveredStop(this.mapId);
         },
     },
-    mounted() {
+    beforeMount() {
         if (!this.fromEndpoint) {
-            this.data = this.itemData;
+            this.formattedData = this.itemData;
         } else {
-            this.data.id = this.itemData.id;
-            this.data.image = this.itemData.images[0].mediaUrl;
-            this.data.title = this.itemData.name;
+            this.formattedData.id = this.itemData.id;
+            this.formattedData.image = this.itemData.images[0].mediaUrl;
+            this.formattedData.title = this.itemData.name;
         }
     },
     methods: {
@@ -123,6 +125,7 @@ export default {
         display: flex;
         position: relative;
         width: 100%;
+        height: 100px;
         align-items: center;
         outline: none;
         background: none;
@@ -152,12 +155,23 @@ export default {
             outline: none;
         }
 
-        &__img {
-            width: 120px;
-            margin-right: $spacer-2;
+        &__img-container {
+            flex-basis: 100px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            height: 90px;
+            position: relative;
+            overflow: hidden;
         }
 
-        &__icon {
+        &__img {
+           width: 120px;
+           height: 90px;
+           object-fit: fill;
+        }
+
+        &__icon,
+        &__text {
             margin-left: $spacer-2;
         }
 

@@ -276,6 +276,7 @@ export default {
             this.selectedSubCategory = subcat;
             if (subcat !== null) {
                 this.getSubcatMarkerData();
+                this.selectedCategory = subcat;
             } else {
                 this.showAllPlaces();
             }
