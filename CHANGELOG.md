@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.6](https://github.com/visitscotland/design-system/compare/v0.4.5...v0.4.6) (2022-12-01)
+
+
+### Others
+
+* 🤖 (Build) Updating ssr asset build to correct path ([cd08f46](https://github.com/visitscotland/design-system/commit/cd08f46593fcfaf0907d5b3297118c09d6f67fff))
+
 ### [0.4.5](https://github.com/visitscotland/design-system/compare/v0.4.4...v0.4.5) (2022-12-01)
 
 
