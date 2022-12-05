@@ -249,7 +249,8 @@ export default {
             // iterate through child slides and evaluate if they're active
             // if they are, add to the activeSlides array
             if (allSlides.length > 0) {
-                allSlides.forEach((slide, index) => {
+                const allSlidesArr = Array.from(allSlides);
+                allSlidesArr.forEach((slide, index) => {
                     const activeSlideStart = this.currentPage
                         * this.slidesPerPage[this.currentWidth];
                     const activeSlideEnd = parseInt(
@@ -293,7 +294,7 @@ export default {
             let firstActiveItem;
 
             // calculate first active item for reference when resizing
-            if (this.currentWidth === 'xs' && this.slidesXs === '1') {
+            if (this.currentWidth === 'xs' && this.slidesXs === 1) {
                 firstActiveItem = this.currentPage + 1;
             } else {
                 firstActiveItem = (this.currentPage * this.slidesPerPage[this.currentWidth]) + 1;
@@ -305,7 +306,7 @@ export default {
             // calculate which page we're on in the new viewport
             // based on the first active item
             let newFirstPage;
-            if (this.currentWidth === 'xs' && this.slidesXs === '1') {
+            if (this.currentWidth === 'xs' && this.slidesXs === 1) {
                 newFirstPage = firstActiveItem;
             } else {
                 newFirstPage = Math.ceil(
