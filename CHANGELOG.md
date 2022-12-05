@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.7](https://github.com/visitscotland/design-system/compare/v0.4.6...v0.4.7) (2022-12-05)
+
+
+### Bug Fixes
+
+* 🐛 (Carousel) Fixing errors with string and number type ([0811eef](https://github.com/visitscotland/design-system/commit/0811eefc001c9180bb937724b049778e09783e50))
+
+
+### Styling
+
+* 💄 (Itinerary) Tidying classes on itinerary tooltop ([133f92b](https://github.com/visitscotland/design-system/commit/133f92bb51830f72dda9dd71e049f5adf7b09fae))
+
 ### [0.4.6](https://github.com/visitscotland/design-system/compare/v0.4.5...v0.4.6) (2022-12-01)
 
 
