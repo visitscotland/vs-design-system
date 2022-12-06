@@ -252,7 +252,7 @@ export default {
                         properties: {
                             title: place.properties.title,
                             imageSrc: place.image,
-                            type: place.properties.category.id,
+                            type: typeof place.properties.category !== 'undefined' ? place.properties.category.id : '',
                             id: place.properties.id,
                         },
                         id: place.properties.id,
