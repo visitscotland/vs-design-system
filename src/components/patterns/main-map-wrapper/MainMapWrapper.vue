@@ -208,9 +208,7 @@ export default {
     data() {
         return {
             panelVisible: false,
-            currentStage: 0,
             selectedCategory: '',
-            selectedSubCategory: null,
             filterCategories: this.filters,
             selectedItem: '',
             activePins: this.placesData,
@@ -230,6 +228,12 @@ export default {
         },
         regionsData() {
             return this.placesData.filter((place) => place.geometry.type === 'Polygon');
+        },
+        currentStage() {
+            return mapStore.getters.getCurrentStage;
+        },
+        selectedSubCategory() {
+            return mapStore.getters.getSelectedSubcat;
         },
     },
     mounted() {
@@ -273,11 +277,12 @@ export default {
          * Sets a subcategory
          */
         setSubCategory(subcat) {
-            this.selectedSubCategory = subcat;
+            mapStore.dispatch('setSelectedSubcat', subcat);
             if (subcat !== null) {
                 this.getSubcatMarkerData();
                 this.selectedCategory = subcat;
             } else {
+                mapStore.dispatch('setActiveSubcatFilters', []);
                 this.showAllPlaces();
             }
         },
@@ -336,10 +341,12 @@ export default {
          * Sets the current stage
          */
         setStage(num) {
-            this.currentStage = num;
+            mapStore.dispatch('setCurrentStage', num);
 
             if (this.currentStage === 0) {
-                this.showAllPlaces();
+                if (this.selectedSubCategory === null) {
+                    this.showAllPlaces();
+                }
             } else if (this.currentStage === 1) {
                 if (this.selectedSubCategory === null) {
                     this.filterPlaces(this.selectedCategory);

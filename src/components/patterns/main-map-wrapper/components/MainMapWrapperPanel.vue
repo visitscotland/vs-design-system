@@ -314,7 +314,7 @@ export default {
          * Moves one stage back
          */
         stageBack() {
-            if (this.selectedSubcategory) {
+            if (this.selectedSubcategory && this.currentStage === 0) {
                 this.$emit('set-subcategory', null);
             } else {
                 const previousStage = this.currentStage - 1;

@@ -17,7 +17,6 @@ const mockSubCat = [
 ];
 
 // Following lines tell Jest to mock any call to `axios.get`
-// and to return `mockSubCat` instead
 jest.spyOn(axios, 'get').mockResolvedValue(mockSubCat);
 
 const factoryShallowMount = () => shallowMount(VsMainMapWrapper, {
@@ -93,14 +92,6 @@ describe('VsMainMapWrapper', () => {
             wrapper.vm.setCategory('cities');
             await wrapper.vm.$nextTick();
             expect(wrapper.vm.selectedCategory).toBe('cities');
-        });
-
-        it('should change the `currentStage` data when the `setStage` method is fired', async() => {
-            const wrapper = factoryShallowMount();
-
-            wrapper.vm.setStage(2);
-            await wrapper.vm.$nextTick();
-            expect(wrapper.vm.currentStage).toBe(2);
         });
 
         it('should add all objects from `placesData` prop to `activePins` when `showAllPlaces` is fired', async() => {
