@@ -43,8 +43,6 @@
                     >
                         <VsButton
                             class="vs-main-map-wrapper__map-toggle"
-                            icon-only
-                            icon="bars-mobile-menu"
                             size="md"
                             variant="secondary"
                             @click.native="openPanel"
