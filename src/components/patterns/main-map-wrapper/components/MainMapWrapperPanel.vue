@@ -10,7 +10,7 @@
         >
             <div
                 class="vs-main-map-wrapper-panel__back"
-                v-if="currentStage > 0"
+                v-if="currentStage > 0 || selectedSubcategory"
             >
                 <VsButton
                     icon-only
@@ -78,15 +78,23 @@
         </div>
 
         <template v-if="currentStage === 0">
-            <div
-                v-for="filter in filters"
-                :key="filter.id"
-            >
-                <VsMainMapWrapperCategory
-                    :category-name="filter.label"
-                    :type="filter.id"
+            <template v-if="selectedSubcategory !== null">
+                <VsMainMapWrapperSubcategory
+                    :data="selectedSubcategoryData[0].subCategory"
                 />
-            </div>
+            </template>
+            <template v-else>
+                <div
+                    v-for="filter in filters"
+                    :key="filter.id"
+                >
+                    <VsMainMapWrapperCategory
+                        :category-name="filter.label"
+                        :type="filter.id"
+                        :has-sub-cat="subCatExists(filter)"
+                    />
+                </div>
+            </template>
         </template>
         <template v-if="currentStage === 1">
             <div
@@ -119,6 +127,7 @@
 import VsButton from '@components/elements/button/Button/';
 import VsHeading from '@components/elements/heading/Heading';
 import VsMainMapWrapperCategory from './MainMapWrapperCategory';
+import VsMainMapWrapperSubcategory from './MainMapWrapperSubcategory';
 import VsMainMapWrapperListItem from './MainMapWrapperListItem';
 import VsMainMapWrapperDetail from './MainMapWrapperDetail';
 import VsMainMapWrapperButtons from './MainMapWrapperButtons';
@@ -136,6 +145,7 @@ export default {
     components: {
         VsButton,
         VsMainMapWrapperCategory,
+        VsMainMapWrapperSubcategory,
         VsHeading,
         VsMainMapWrapperListItem,
         VsMainMapWrapperDetail,
@@ -167,6 +177,13 @@ export default {
         selectedCategory: {
             type: String,
             default: '',
+        },
+        /**
+         * Currently selected subcategory
+         */
+        selectedSubcategory: {
+            type: String,
+            default: null,
         },
         /**
          * The current stage
@@ -253,7 +270,15 @@ export default {
                 return false;
             });
         },
+        selectedSubcategoryData() {
+            if (this.selectedSubcategory) {
+                const data = this.filters.filter((item) => item.id === this.selectedSubcategory);
 
+                return data;
+            }
+
+            return [];
+        },
     },
     methods: {
         /**
@@ -266,8 +291,12 @@ export default {
          * Moves one stage back
          */
         stageBack() {
-            const previousStage = this.currentStage - 1;
-            this.setStage(previousStage);
+            if (this.selectedSubcategory) {
+                this.$emit('set-subcategory', null);
+            } else {
+                const previousStage = this.currentStage - 1;
+                this.setStage(previousStage);
+            }
         },
         /**
          * Resets the panel
@@ -280,6 +309,18 @@ export default {
          */
         setStage(stageNum) {
             this.$emit('set-stage', stageNum);
+        },
+        /**
+         * Determines whether or not a subCategory
+         * array exists and has data in it
+         */
+        subCatExists(cat) {
+            if (typeof cat.subCategory !== 'undefined'
+                && cat.subCategory.length > 0) {
+                return true;
+            }
+
+            return false;
         },
     },
 };

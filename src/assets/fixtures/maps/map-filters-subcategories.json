@@ -1,0 +1,208 @@
+[
+    {
+        "id": "featured",
+        "label": "Featured Places"
+    },
+    {
+        "id": "acco",
+        "label": "Accommodation",
+        "pinsEndpoint": "http://172.28.81.65:8089/data/product-search/map?prodtypes=acco&avail=off&locplace=4161&loc=Edinburgh&locprox=0",
+        "listProductsEndPoint": "http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4161&loc=Edinburgh&locprox=0",
+        "pinClickEndPoint": "http://172.28.81.65:8089/data/private/products/mapcard?",
+        "subCategory": [
+            {
+                "id": "cgbandbguesthouse",
+                "name": "B&B/Guesthouse"
+            },
+            {
+                "id": "cgcaravancamping",
+                "name": "Caravan & Camping"
+            },
+            {
+                "id": "cgexclusiveuse",
+                "name": "Exclusive Use"
+            },
+            {
+                "id": "cghostels",
+                "name": "Hostel"
+            },
+            {
+                "id": "cghotel",
+                "name": "Hotel"
+            },
+            {
+                "id": "cgselfcatering",
+                "name": "Self Catering"
+            },
+            {
+                "id": "cgunusual",
+                "name": "Unusual"
+            }
+        ]
+    },
+    {
+        "id": "attr",
+        "label": "Attractions",
+        "pinsEndpoint": "http://172.28.81.65:8089/data/product-search/map?prodtypes=attr&locplace=4161&loc=Edinburgh&locprox=0",
+        "listProductsEndPoint": "http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=attr&locplace=4161&loc=Edinburgh&locprox=0",
+        "pinClickEndPoint": "http://172.28.81.65:8089/data/private/products/mapcard?",
+        "subCategory": [
+            {
+                "id": "cgartsculture",
+                "name": "Arts & Culture"
+            },
+            {
+                "id": "cgattractions",
+                "name": "Attractions"
+            },
+            {
+                "id": "cgallattr",
+                "name": "Attractions"
+            },
+            {
+                "id": "cgfamilyattractions",
+                "name": "Family Attractions"
+            },
+            {
+                "id": "cgfooddrinkattr",
+                "name": "Food & Drink"
+            },
+            {
+                "id": "cghistoryheritage",
+                "name": "History  & Heritage"
+            },
+            {
+                "id": "cgnaturalattr",
+                "name": "Natural Attractions"
+            },
+            {
+                "id": "cgnaturereserves",
+                "name": "Nature Reserves & Animals"
+            },
+            {
+                "id": "cgoutdoors",
+                "name": "Outdoors"
+            },
+            {
+                "id": "cgparksgardens",
+                "name": "Parks & Gardens"
+            },
+            {
+                "id": "cgsciencetechnology",
+                "name": "Science & Technology"
+            }
+        ]
+    },
+    {
+        "id": "acti",
+        "label": "Activities",
+        "pinsEndpoint": "http://172.28.81.65:8089/data/product-search/map?prodtypes=acti&locplace=4161&loc=Edinburgh&locprox=0",
+        "listProductsEndPoint": "http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acti&locplace=4161&loc=Edinburgh&locprox=0",
+        "pinClickEndPoint": "http://172.28.81.65:8089/data/private/products/mapcard?",
+        "subCategory": [
+            {
+                "id": "cgallacti",
+                "name": "Activities"
+            },
+            {
+                "id": "cgindooractivities",
+                "name": "Indoor Activities"
+            },
+            {
+                "id": "cgoutdooractivities",
+                "name": "Outdoor Activities"
+            }
+        ]
+    },
+    {
+        "id": "even",
+        "label": "Events",
+        "pinsEndpoint": "http://172.28.81.65:8089/data/product-search/map?prodtypes=even&locplace=4161&loc=Edinburgh&locprox=0",
+        "listProductsEndPoint": "http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=even&locplace=4161&loc=Edinburgh&locprox=0",
+        "pinClickEndPoint": "http://172.28.81.65:8089/data/private/products/mapcard?",
+        "subCategory": [
+            {
+                "id": "cgartscultev",
+                "name": "Arts & Cultural"
+            },
+            {
+                "id": "cgfamilyev",
+                "name": "Family"
+            },
+            {
+                "id": "cgfestivalsev",
+                "name": "Festivals"
+            },
+            {
+                "id": "cgfooddrinkev",
+                "name": "Food & Drink"
+            },
+            {
+                "id": "cgmusicev",
+                "name": "Music"
+            },
+            {
+                "id": "cgseasonal",
+                "name": "Seasonal"
+            },
+            {
+                "id": "cgsportoutact",
+                "name": "Sports & Outdoor Activities"
+            },
+            {
+                "id": "cgthemes",
+                "name": "Themes"
+            },
+            {
+                "id": "cgvirtualevent",
+                "name": "Online Event"
+            },
+            {
+                "id": "cgyos",
+                "name": "Year of Stories 2022"
+            }
+        ]
+    },
+    {
+        "id": "cate",
+        "label": "Food & Drink",
+        "pinsEndpoint": "http://172.28.81.65:8089/data/product-search/map?prodtypes=cate&locplace=4161&loc=Edinburgh&locprox=0",
+        "listProductsEndPoint": "http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=cate&locplace=4161&loc=Edinburgh&locprox=0",
+        "pinClickEndPoint": "http://172.28.81.65:8089/data/private/products/mapcard?",
+        "subCategory": [
+            {
+                "id": "cgbarspubs",
+                "name": "Bars & Pubs"
+            },
+            {
+                "id": "cgeatingout",
+                "name": "Eating Out"
+            },
+            {
+                "id": "cgproducers",
+                "name": "Producers"
+            }
+        ]
+    },
+    {
+        "id": "reta",
+        "label": "Shopping",
+        "pinsEndpoint": "http://172.28.81.65:8089/data/product-search/map?prodtypes=reta&locplace=4161&loc=Edinburgh&locprox=0",
+        "listProductsEndPoint": "http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=reta&locplace=4161&loc=Edinburgh&locprox=0",
+        "pinClickEndPoint": "http://172.28.81.65:8089/data/private/products/mapcard?",
+        "subCategory": [
+            {
+                "id": "cgfashionscotcloth",
+                "name": "Fashion & Scottish Clothing"
+            },
+            {
+                "id": "cgshopgiftscollect",
+                "name": "Gifts & Collectables"
+            },
+            {
+                "id": "cgallreta",
+                "name": "Shopping"
+            }
+        ]
+    }
+]
