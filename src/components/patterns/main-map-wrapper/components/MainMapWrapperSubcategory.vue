@@ -91,9 +91,15 @@ export default {
         },
     },
     methods: {
+        /**
+         * Emits data of checkboxes currently selected
+         */
         checkboxesChangeSubmit() {
             this.$parent.$emit('subcategories-filtered', this.selected);
         },
+        /**
+         * Clears all selected checkboxes
+         */
         clearSelection() {
             this.selected = [];
         },
