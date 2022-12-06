@@ -98,10 +98,16 @@ export default {
         this.selected = this.activeSubcatFilters;
     },
     methods: {
+        /**
+         * Emits data of checkboxes currently selected
+         */
         checkboxesChangeSubmit() {
             mapStore.dispatch('setActiveSubcatFilters', this.selected);
             this.$parent.$emit('subcategories-filtered', this.selected);
         },
+        /**
+         * Clears all selected checkboxes
+         */
         clearSelection() {
             this.selected = [];
         },
