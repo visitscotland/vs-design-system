@@ -174,8 +174,12 @@ export default {
             margin-right: $spacer-3;
 
             &.vs-icon.vs-icon--size-sm{
-                height: 30px;
-                width: 30px;
+                font-size: 24px;
+            }
+        }
+
+        @include media-breakpoint-up(lg) {
+            &.vs-icon.vs-icon--size-sm{
                 font-size: 30px;
             }
         }

@@ -27,6 +27,8 @@ import VsLink from '@components/elements/link/Link';
 
 export default {
     name: 'VsFooterNavListItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsLink,
     },

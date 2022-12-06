@@ -239,7 +239,6 @@ export default {
                 'vs-image-with-caption--hero': this.isHeroImage,
                 'vs-image-with-caption--show-caption': !this.requiredCookiesExist && this.setCookieStatus === true,
                 'vs-image-with-caption--video': this.isVideo,
-                'vs-image-with-caption--video-small-play-button': this.isVideo && this.smallPlayButton,
             };
         },
         captionWrapperClasses() {
@@ -534,7 +533,6 @@ export default {
                         @include media-breakpoint-down(xs) {
                             text-align: left;
                             display: block;
-                            position: absolute;
 
                             .order-2 {
                                 order: 1;
@@ -728,10 +726,11 @@ export default {
                 data-sizes="auto">
             </VsImg>
 
-            <VsIcon
+            <VsSvg
                 slot="toggle-icon"
-                name="instagram-filled"
-                size="md"
+                path="icons/instagram-filled"
+                height="24"
+                width="24"
             />
 
             <VsCaption

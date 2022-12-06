@@ -79,7 +79,12 @@ export default {
                 }),
             }).then((res) => res.json())
                 .then((result) => {
-                    this.icons = result.data.me.kit.iconUploads.map((icon) => icon.name);
+                    const faIcons = result.data.me.kit.iconUploads;
+                    this.icons = faIcons.sort(
+                        (a, b) => a.name.localeCompare(b.name)
+                    ).map(
+                        (icon) => icon.name
+                    );
                 }).catch((error) => {
                     // eslint-disable-next-line no-console
                     console.log(error);
