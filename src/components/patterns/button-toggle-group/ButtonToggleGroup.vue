@@ -9,7 +9,6 @@
             class="vs-button-toggle-group--radios"
             id="btn-radios-1"
             v-model="selected"
-            :options="options"
             :aria-describedby="ariaDescribedby"
             name="radios-btn-default"
             buttons
