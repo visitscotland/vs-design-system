@@ -176,18 +176,11 @@ export default {
         margin: 0 0 $spacer-5 $spacer-3;
 
         .vs-heading__sub-heading {
-            letter-spacing: 0.1125rem;
             margin-top: $spacer-0;
-            font-size: $font-size-5;
         }
 
         @include media-breakpoint-up(md) {
             margin-bottom: 0;
-
-            .vs-heading__sub-heading {
-                letter-spacing: 0.125rem;
-                font-size: $font-size-6;
-            }
         }
     }
 
