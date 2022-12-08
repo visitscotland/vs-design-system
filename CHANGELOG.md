@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/visitscotland/design-system/compare/v0.4.7...v0.5.0) (2022-12-08)
+
+
+### Bug Fixes
+
+* 🐛 Adjust itinerary stop heading levels ([d6c82af](https://github.com/visitscotland/design-system/commit/d6c82afe8429c59d91ee9329a7469bf9fdbde724))
+* 🐛 Update colours on carousel controls ([26eab0d](https://github.com/visitscotland/design-system/commit/26eab0d8fd146cfd1b0e9af911ae30021b7fc8a0))
+
+
+### Others
+
+* 🤖 Tidies package.json scripts and removes unused ones ([d1cea06](https://github.com/visitscotland/design-system/commit/d1cea06c7aedb9b9c3c1f3da39a0f8a1c4ef96b6))
+* **deps:** bump decode-uri-component from 0.2.0 to 0.2.2 ([7ece768](https://github.com/visitscotland/design-system/commit/7ece768b9047ae965d249747ee0de13c9d4e2ef7))
+
 ### [0.4.7](https://github.com/visitscotland/design-system/compare/v0.4.6...v0.4.7) (2022-12-05)
 
 
