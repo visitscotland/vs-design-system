@@ -15,21 +15,15 @@
                     >{{ index }}</span>
                 </div>
             </div>
-            <div class="position-relative">
-                <VsHeading
-                    level="2"
-                    class="ml-4 mt-0 mb-1"
-                >
-                    {{ title }}
-                </VsHeading>
-                <VsHeading
-                    level="3"
-                    thin
-                    class="ml-4 mt-0 mb-1"
-                >
+            <VsHeading
+                level="2"
+            >
+                {{ title }}
+
+                <template slot="sub-heading">
                     {{ subTitle }}
-                </VsHeading>
-            </div>
+                </template>
+            </VsHeading>
         </div>
 
         <!-- BODY -->
@@ -118,7 +112,7 @@ export default {
     .count {
         color: $color-white;
         font-family: $headings-font-family;
-        font-size: $font-size-9;
+        font-size: $font-size-8;
         line-height: $line-height-xs;
         display: block;
         text-align: center;
@@ -128,18 +122,31 @@ export default {
             content: "";
             border-bottom: 1px solid $color-white;
             display: block;
-            margin: $spacer-1 $spacer-6 0;
+            margin: $spacer-1 $spacer-4 0;
             margin-top: $spacer-1;
+
+            @include media-breakpoint-up(md) {
+                margin: $spacer-1 $spacer-6 0;
+            }
+        }
+
+        @include media-breakpoint-up(md) {
+            font-size: $font-size-9;
         }
     }
 
     .count__bg {
         background: $color_secondary_teal;
-        height: 67px;
-        width: 67px;
         display: flex;
         align-items: center;
         justify-content: center;
+        width: $spacer-9;
+        height: $spacer-9;
+
+        @include media-breakpoint-up(md) {
+            height: 67px;
+            width: 67px;
+        }
     }
 
     &.border {
@@ -162,14 +169,25 @@ export default {
         }
     }
 
-    h2.vs-heading, h3.vs-heading {
+    h2.vs-heading {
         display: flex;
         flex-direction: column;
         justify-content: center;
         margin: 0 0 $spacer-5 $spacer-3;
 
+        .vs-heading__sub-heading {
+            letter-spacing: 0.1125rem;
+            margin-top: $spacer-0;
+            font-size: $font-size-5;
+        }
+
         @include media-breakpoint-up(md) {
             margin-bottom: 0;
+
+            .vs-heading__sub-heading {
+                letter-spacing: 0.125rem;
+                font-size: $font-size-6;
+            }
         }
     }
 
