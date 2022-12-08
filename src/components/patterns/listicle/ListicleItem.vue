@@ -15,6 +15,21 @@
                     >{{ index }}</span>
                 </div>
             </div>
+            <div class="position-relative">
+                <VsHeading
+                    level="2"
+                    class="vs-itinerary-stop__title ml-4 mt-0 mb-1"
+                >
+                    {{ stopLabel }}
+                </VsHeading>
+                <VsHeading
+                    level="3"
+                    thin
+                    class="vs-itinerary-stop__title ml-4 mt-0 mb-1"
+                >
+                    {{ stopTitle }}
+                </VsHeading>
+            </div>
             <VsHeading level="3">
                 {{ title }}
 
@@ -154,7 +169,7 @@ export default {
         }
     }
 
-    h3.vs-heading {
+    h2.vs-heading, h3.vs-heading {
         display: flex;
         flex-direction: column;
         justify-content: center;

@@ -20,21 +20,16 @@
                         data-test="vs-itinerary-stop-marker"
                     >{{ stopNumber }}</span>
                 </div>
-                <div class="position-relative">
-                    <VsHeading
-                        level="2"
-                        class="vs-itinerary-stop__title ml-4 mt-0 mb-1"
-                    >
-                        {{ stopLabel }}
-                    </VsHeading>
-                    <VsHeading
-                        level="3"
-                        thin
-                        class="vs-itinerary-stop__title ml-4 mt-0 mb-1"
-                    >
+                <VsHeading
+                    level="3"
+                    class="vs-itinerary-stop__title ml-4 mt-0"
+                >
+                    {{ stopLabel }}
+
+                    <template slot="sub-heading">
                         {{ stopTitle }}
-                    </VsHeading>
-                </div>
+                    </template>
+                </VsHeading>
             </div>
 
             <!-- @ Default slot for the image component for the stop -->
