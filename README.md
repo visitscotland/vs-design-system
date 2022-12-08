@@ -1,8 +1,8 @@
 # VisitScotland Design System
 
-This is the repository for the **VisitScotland Design System** which serves as a set of organized tools, patterns & practices that work as the foundation for www.visitscotland.com.
+This is the repository for the **VisitScotland Design System** which serves as a set of organized tools, patterns & practices that work as the foundation for VisitScotland products.
 
-## Getting Started
+## Getting started
 
 Install the package:
 
@@ -22,3 +22,19 @@ yarn system
 ```
 
 The design system instance will be running at [localhost:6060](http://localhost:6060).
+
+
+## Installation
+The component library can be installed via NPM to be used in your project. 
+
+To install the VisitScotland Design System in your project, run the following command using npm:
+
+```sh
+npm install @visitscotland/vs-component-library
+```
+
+If using Yarn, use the following command instead:
+
+```sh
+yarn add @visitscotland/vs-component-library
+```
