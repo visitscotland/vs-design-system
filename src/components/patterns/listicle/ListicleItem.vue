@@ -20,23 +20,16 @@
                     level="2"
                     class="ml-4 mt-0 mb-1"
                 >
-                    {{ stopLabel }}
+                    {{ title }}
                 </VsHeading>
                 <VsHeading
                     level="3"
                     thin
                     class="ml-4 mt-0 mb-1"
                 >
-                    {{ stopTitle }}
+                    {{ subTitle }}
                 </VsHeading>
             </div>
-            <VsHeading level="3">
-                {{ title }}
-
-                <template slot="sub-heading">
-                    {{ subTitle }}
-                </template>
-            </VsHeading>
         </div>
 
         <!-- BODY -->
