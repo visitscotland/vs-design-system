@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.2](https://github.com/visitscotland/design-system/compare/v0.5.1...v0.5.2) (2022-12-09)
+
+
+### Bug Fixes
+
+* 🐛 Move heading level fix to correct component ([c7cca0e](https://github.com/visitscotland/design-system/commit/c7cca0ef8fe1a8d41f3be058d4e0033b0bf53f8f))
+* 🐛 Remove itinerary classes from listicle ([b32e4a0](https://github.com/visitscotland/design-system/commit/b32e4a08c1239fbd376333a75600807c19b3b028))
+* 🐛 Remove old title setup in listicle ([439d62b](https://github.com/visitscotland/design-system/commit/439d62b5ed8586a07dd4d53cad25ff9c24d21984))
+* 🐛 Remove specific sub heading font sizes and update generi ([bf14270](https://github.com/visitscotland/design-system/commit/bf14270bbb9c950002790ea0f1a68937c68bcc0d))
+* 🐛 Revert listicle title to a single h2 ([3f06ffa](https://github.com/visitscotland/design-system/commit/3f06ffa7ecb61d451bf78c75de1373337e9b7b26))
+
 ### [0.5.1](https://github.com/visitscotland/design-system/compare/v0.5.0...v0.5.1) (2022-12-08)
 
 
