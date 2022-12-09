@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.3](https://github.com/visitscotland/design-system/compare/v0.5.2...v0.5.3) (2022-12-09)
+
+
+### Bug Fixes
+
+* 🐛 Add content category and page type to datalayer ([92c95ea](https://github.com/visitscotland/design-system/commit/92c95ea1e6e7bb76b169b4e2d72050ca639878f7))
+
 ### [0.5.2](https://github.com/visitscotland/design-system/compare/v0.5.1...v0.5.2) (2022-12-09)
 
 
