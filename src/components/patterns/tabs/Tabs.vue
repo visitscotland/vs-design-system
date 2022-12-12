@@ -19,6 +19,8 @@ import { BTabs } from 'bootstrap-vue';
  */
 export default {
     name: 'VsTabs',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         BTabs,
     },

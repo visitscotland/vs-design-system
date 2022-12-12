@@ -120,7 +120,7 @@ import {
 
 export default {
     name: 'VsCarousel',
-    status: 'protolink-type',
+    status: 'prototype',
     release: '0.0.1',
     components: {
         VsContainer,
@@ -249,7 +249,8 @@ export default {
             // iterate through child slides and evaluate if they're active
             // if they are, add to the activeSlides array
             if (allSlides.length > 0) {
-                allSlides.forEach((slide, index) => {
+                const allSlidesArr = Array.from(allSlides);
+                allSlidesArr.forEach((slide, index) => {
                     const activeSlideStart = this.currentPage
                         * this.slidesPerPage[this.currentWidth];
                     const activeSlideEnd = parseInt(
@@ -293,7 +294,7 @@ export default {
             let firstActiveItem;
 
             // calculate first active item for reference when resizing
-            if (this.currentWidth === 'xs' && this.slidesXs === '1') {
+            if (this.currentWidth === 'xs' && this.slidesXs === 1) {
                 firstActiveItem = this.currentPage + 1;
             } else {
                 firstActiveItem = (this.currentPage * this.slidesPerPage[this.currentWidth]) + 1;
@@ -305,7 +306,7 @@ export default {
             // calculate which page we're on in the new viewport
             // based on the first active item
             let newFirstPage;
-            if (this.currentWidth === 'xs' && this.slidesXs === '1') {
+            if (this.currentWidth === 'xs' && this.slidesXs === 1) {
                 newFirstPage = firstActiveItem;
             } else {
                 newFirstPage = Math.ceil(
@@ -526,6 +527,8 @@ export default {
 
             li {
                 display: flex;
+                margin-left: $spacer-1;
+                margin-right: $spacer-1;
             }
         }
 
@@ -534,7 +537,7 @@ export default {
             width: 10px;
             height: 10px;
             border-radius: 5px;
-            background: $color-gray-tint-4;
+            background: $color-gray-tint-1;
             transform: translateY(2px);
             margin: 0 2px;
             border: none;
@@ -543,34 +546,34 @@ export default {
             padding: 0;
 
             &:hover {
-                background: $color-pink-tint-5;
+                background: $color_pink_shade_2;
             }
 
             &:focus {
-                outline: 1px solid $color-purple;
+                outline: 1px solid $color-pink;
             }
 
             &--active {
                 width: 14px;
                 height: 14px;
                 border-radius: 7px;
-                background: $color-black;
+                background: $color-pink;
                 transform: none;
                 cursor: default;
 
                 &:hover {
-                    background: $color-black;
+                    background: $color-pink;
                 }
             }
 
             @media (hover: none) {
                 &:hover {
-                    background: $color-gray-tint-4;
+                    background: $color-gray-tint-1;
                 }
 
                 &--active {
                     &:hover {
-                        background: $color-black;
+                        background: $color-pink;
                     }
                 }
             }

@@ -261,7 +261,6 @@ export default {
                         :icon="transportType.key"
                         size="lg"
                         icon-only
-                        class="p-0"
                         variant="transparent"
                     >
                         <span class="sr-only">

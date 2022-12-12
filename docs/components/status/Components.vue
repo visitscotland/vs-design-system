@@ -3,7 +3,7 @@
         <ul class="status-list">
             <li>
                 <VsIcon
-                    name="docs/ready"
+                    name="ready"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -12,7 +12,7 @@
             </li>
             <li>
                 <VsIcon
-                    name="docs/review"
+                    name="circle-exclamation fa-solid"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -21,7 +21,7 @@
             </li>
             <li>
                 <VsIcon
-                    name="docs/deprecated"
+                    name="close-circle-filled"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -30,7 +30,7 @@
             </li>
             <li>
                 <VsIcon
-                    name="docs/prototype"
+                    name="prototype"
                     size="xs"
                 />
                 <p class="mb-0">
@@ -83,28 +83,24 @@
                     </td>
                     <td v-if="component.status">
                         <VsIcon
-                            v-if="component.status === 'docs/ready'"
-                            name="docs/ready"
-                            custom-colour="green"
+                            v-if="component.status === 'ready'"
+                            name="ready"
                             size="xs"
                         />
                         <VsIcon
                             v-if="component.status === 'under-review' ||
                                 component.status === 'review'"
-                            name="docs/review"
-                            custom-colour="orange"
+                            name="circle-exclamation fa-solid"
                             size="xs"
                         />
                         <VsIcon
                             v-if="component.status === 'prototype'"
-                            name="docs/prototype"
-                            custom-colour="blue"
+                            name="prototype"
                             size="xs"
                         />
                         <VsIcon
                             v-if="component.status === 'deprecated'"
-                            name="docs/deprecated"
-                            custom-colour="red"
+                            name="close-circle-filled"
                             size="xs"
                         />
                     </td>
@@ -122,10 +118,14 @@
 // import designTokens from "@/assets/tokens/tokens.raw.json"
 import orderBy from 'lodash/orderBy';
 import get from 'lodash/get';
+import VsIcon from '@components/elements/icon/Icon';
 import designTokens from '../../styles/docs.tokens.json';
 
 export default {
     name: 'Components',
+    components: {
+        VsIcon,
+    },
     props: {
         show: {
             type: String,
@@ -214,7 +214,7 @@ export default {
                     float: none;
                 }
 
-                svg,
+                .vs-icon,
                 span {
                     margin: 0 calc(#{$space-s} / 4) 0 0;
                 }
@@ -226,6 +226,24 @@ export default {
                         margin: 0;
                     }
                 }
+            }
+        }
+
+        .vs-icon{
+            &--ready{
+                color: $color-theme-secondary-teal;
+            }
+
+            &--circle-exclamation{
+                color: $color-yellow;
+            }
+
+            &--close-circle-filled{
+                color: $color-theme-danger;
+            }
+
+            &--prototype{
+                color: $color-theme-secondary-indigo;
             }
         }
     }

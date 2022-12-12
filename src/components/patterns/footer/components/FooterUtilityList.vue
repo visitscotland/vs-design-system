@@ -39,6 +39,8 @@ import {
 
 export default {
     name: 'VsFooterUtilityList',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsList,
         VsRow,

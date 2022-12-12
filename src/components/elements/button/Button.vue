@@ -346,7 +346,7 @@ export default {
             line-height: 1;
 
             &.btn-sm, &.btn-md, &.btn-lg{
-                padding: $spacer-1;
+                padding: $spacer-1 0;
             }
 
             .vs-icon{

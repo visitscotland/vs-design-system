@@ -80,7 +80,7 @@ The button style can also be changed by passing in the button
                     name="walk"
                     variant="dark"
                     size="sm"
-                    class="mr-2"
+                    class="mr-1"
                 />
                 Walking
             </span>
@@ -102,7 +102,7 @@ The button style can also be changed by passing in the button
                     name="car"
                     variant="dark"
                     size="sm"
-                    class="mr-2"
+                    class="mr-1"
                 />
                 Driving
             </span>
@@ -123,7 +123,7 @@ The button style can also be changed by passing in the button
                     name="cycle"
                     variant="dark"
                     size="sm"
-                    class="mr-2"
+                    class="mr-1"
                 />
                 Cycling
             </span>

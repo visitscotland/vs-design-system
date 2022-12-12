@@ -20,7 +20,6 @@
                         data-test="vs-itinerary-stop-marker"
                     >{{ stopNumber }}</span>
                 </div>
-
                 <VsHeading
                     level="3"
                     class="vs-itinerary-stop__title ml-4 mt-0"
