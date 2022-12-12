@@ -1,7 +1,7 @@
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import VsTagManagerWrapper from '../TagManagerWrapper';
 
-const factoryShallowMount = () => shallowMount(VsTagManagerWrapper);
+const factoryShallowMount = () => mount(VsTagManagerWrapper);
 
 describe('VsTagManagerWrapper', () => {
     it('should render a span with test attribute of vs-tag-manager-wrapper', () => {

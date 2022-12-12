@@ -14,7 +14,7 @@ const factoryMount = () => mount(VsButtonToggleGroup, {
                 value: 'places',
             },
         ],
-        selected: 'places',
+        initialSelected: 'places',
     },
 });
 
@@ -44,8 +44,8 @@ describe('VsButtonToggleGroup', () => {
             expect(firstInput.text()).toBe('Regions');
         });
 
-        it('should make the item defined by `selected` prop the active item', () => {
-            const secondInput = wrapper.findAll('.btn').at(1);
+        it('should make the item defined by `selected` prop the active item', async() => {
+            const secondInput = wrapper.findAll('.vs-button-toggle-group--button').at(1);
             const inputLabel = secondInput.find('label');
             expect(inputLabel.classes('active')).toBe(true);
         });

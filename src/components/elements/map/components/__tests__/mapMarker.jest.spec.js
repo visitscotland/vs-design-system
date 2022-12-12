@@ -3,7 +3,6 @@ import { shallowMount } from '@vue/test-utils';
 import VsMapMarker from '../MapMarker';
 import markerExample from './data/markerData.json';
 
-const mockMethod = jest.fn();
 const factoryShallowMount = () => shallowMount(VsMapMarker, {
     propsData: {
         feature: markerExample,
@@ -17,9 +16,6 @@ const factoryShallowMount = () => shallowMount(VsMapMarker, {
             return 'highlighted-id';
         },
     },
-    methods: {
-        handleClick: mockMethod,
-    },
 });
 
 describe('VsMapMarker', () => {
@@ -31,9 +27,10 @@ describe('VsMapMarker', () => {
 
     describe(':methods', () => {
         it('should fire the `handleClick` method when clicked', async() => {
+            const mockMethod = jest.spyOn(VsMapMarker.methods, 'handleClick');
             const wrapper = factoryShallowMount();
-
             await wrapper.trigger('click');
+
             expect(mockMethod).toHaveBeenCalled();
         });
     });
