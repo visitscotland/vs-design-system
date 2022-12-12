@@ -97,19 +97,31 @@
             </template>
         </template>
         <template v-if="currentStage === 1">
-            <div
-                v-for="place in currentData"
-                :key="place.id"
-            >
-                <VsMainMapWrapperListItem
-                    v-if="typeof place.properties !== 'undefined'
-                        && place.properties.category.id === selectedCategory"
-                    :item-data="place.properties"
-                    @show-item-detail="showDetail(place.properties.id)"
+            <template v-if="selectedSubcategory !== null">
+                <div
+                    v-for="place in subcategoryLocations"
+                    :key="place.id"
                 >
-                    {{ place.properties.title }}
-                </VsMainMapWrapperListItem>
-            </div>
+                    <VsMainMapWrapperListItem
+                        :item-data="place"
+                        :from-endpoint="true"
+                        @show-item-detail="showDetail(place.id)"
+                    />
+                </div>
+            </template>
+            <template v-else>
+                <div
+                    v-for="place in currentData"
+                    :key="place.id"
+                >
+                    <VsMainMapWrapperListItem
+                        v-if="typeof place.properties !== 'undefined'
+                            && place.properties.category.id === selectedCategory"
+                        :item-data="place.properties"
+                        @show-item-detail="showDetail(place.properties.id)"
+                    />
+                </div>
+            </template>
         </template>
         <template v-if="currentStage === 2">
             <VsMainMapWrapperDetail
@@ -206,23 +218,34 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * The ID of the currently hover item
+         */
+        subcategoryLocations: {
+            type: Array,
+            default: null,
+        },
     },
     computed: {
         currentHeading() {
             let headingText = '';
 
-            switch (this.currentStage) {
-            case 0:
-                headingText = this.categoryHeading;
-                break;
-            case 1:
+            if (this.selectedSubcategory !== null) {
                 headingText = this.currentFilter.label;
-                break;
-            case 2:
-                headingText = this.currentPlaceData[0].properties.title;
-                break;
-            default:
-                break;
+            } else {
+                switch (this.currentStage) {
+                case 0:
+                    headingText = this.categoryHeading;
+                    break;
+                case 1:
+                    headingText = this.currentFilter.label;
+                    break;
+                case 2:
+                    headingText = this.currentPlaceData[0].properties.title;
+                    break;
+                default:
+                    break;
+                }
             }
 
             return headingText;
@@ -291,7 +314,7 @@ export default {
          * Moves one stage back
          */
         stageBack() {
-            if (this.selectedSubcategory) {
+            if (this.selectedSubcategory && this.currentStage === 0) {
                 this.$emit('set-subcategory', null);
             } else {
                 const previousStage = this.currentStage - 1;

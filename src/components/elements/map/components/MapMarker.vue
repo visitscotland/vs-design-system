@@ -69,14 +69,18 @@ export default {
             return mapStore.getters.getActivePlace(this.mapId);
         },
         activeSubcat() {
-            return mapStore.getters.getSelectedSubcat(this.mapId);
+            return mapStore.getters.getSelectedSubcat;
         },
         getMarkerIcon() {
             if (this.feature.properties.type !== '') {
                 return `marker-${this.feature.properties.type}`;
             }
 
-            return 'marker-acco';
+            if (this.activeSubCat !== null) {
+                return `marker-${this.activeSubcat}`;
+            }
+
+            return 'marker-featured';
         },
     },
     methods: {
