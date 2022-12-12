@@ -68,12 +68,15 @@ export default {
         activePlace() {
             return mapStore.getters.getActivePlace(this.mapId);
         },
+        activeSubcat() {
+            return mapStore.getters.getSelectedSubcat(this.mapId);
+        },
         getMarkerIcon() {
             if (this.feature.properties.type !== '') {
                 return `marker-${this.feature.properties.type}`;
             }
 
-            return 'pin-purple';
+            return 'marker-acco';
         },
     },
     methods: {

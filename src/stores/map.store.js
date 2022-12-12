@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         maps: [],
+        selectedSubCategory: null,
     },
     mutations: {
         addMapInstance: (state, payload) => {
@@ -33,6 +34,9 @@ export default new Vuex.Store({
                 }
             });
         },
+        SET_SELECTED_SUBCAT: (state, payload) => {
+            state.selectedSubCategory = payload;
+        },
     },
     actions: {
         setHoveredPlace: ({ commit }, payload) => {
@@ -40,6 +44,9 @@ export default new Vuex.Store({
         },
         setActivePlace: ({ commit }, payload) => {
             commit('SET_ACTIVE_PLACE', payload);
+        },
+        setSelectedSubcat: ({ commit }, payload) => {
+            commit('SET_SELECTED_SUBCAT', payload);
         },
     },
     getters: {
@@ -52,6 +59,11 @@ export default new Vuex.Store({
         getActivePlace: (state) => (mapId) => {
             const activeMap = state.maps.find((map) => map.id === mapId);
             return activeMap.activePlace;
+        },
+        getSelectedSubcat: (state) => (mapId) => {
+            const activeMap = state.maps.find((map) => map.id === mapId);
+            console.log(activeMap);
+            return activeMap.selectedSubCategory;
         },
     },
 });
