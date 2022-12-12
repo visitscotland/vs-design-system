@@ -7,7 +7,9 @@
 
 <script>
 export default {
-
+    name: 'VsMainMapWrapperToggle',
+    status: 'prototype',
+    release: '0.0.1',
 };
 </script>
 

@@ -2,6 +2,89 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.3](https://github.com/visitscotland/design-system/compare/v0.5.2...v0.5.3) (2022-12-09)
+
+
+### Bug Fixes
+
+* 🐛 Add content category and page type to datalayer ([92c95ea](https://github.com/visitscotland/design-system/commit/92c95ea1e6e7bb76b169b4e2d72050ca639878f7))
+
+### [0.5.2](https://github.com/visitscotland/design-system/compare/v0.5.1...v0.5.2) (2022-12-09)
+
+
+### Bug Fixes
+
+* 🐛 Move heading level fix to correct component ([c7cca0e](https://github.com/visitscotland/design-system/commit/c7cca0ef8fe1a8d41f3be058d4e0033b0bf53f8f))
+* 🐛 Remove itinerary classes from listicle ([b32e4a0](https://github.com/visitscotland/design-system/commit/b32e4a08c1239fbd376333a75600807c19b3b028))
+* 🐛 Remove old title setup in listicle ([439d62b](https://github.com/visitscotland/design-system/commit/439d62b5ed8586a07dd4d53cad25ff9c24d21984))
+* 🐛 Remove specific sub heading font sizes and update generi ([bf14270](https://github.com/visitscotland/design-system/commit/bf14270bbb9c950002790ea0f1a68937c68bcc0d))
+* 🐛 Revert listicle title to a single h2 ([3f06ffa](https://github.com/visitscotland/design-system/commit/3f06ffa7ecb61d451bf78c75de1373337e9b7b26))
+
+### [0.5.1](https://github.com/visitscotland/design-system/compare/v0.5.0...v0.5.1) (2022-12-08)
+
+
+### Docs
+
+* ✏️ Updating readme ([85a6aa0](https://github.com/visitscotland/design-system/commit/85a6aa039db0b22074bb640b05da4ef93b06e386))
+
+## [0.5.0](https://github.com/visitscotland/design-system/compare/v0.4.7...v0.5.0) (2022-12-08)
+
+
+### Bug Fixes
+
+* 🐛 Adjust itinerary stop heading levels ([d6c82af](https://github.com/visitscotland/design-system/commit/d6c82afe8429c59d91ee9329a7469bf9fdbde724))
+* 🐛 Update colours on carousel controls ([26eab0d](https://github.com/visitscotland/design-system/commit/26eab0d8fd146cfd1b0e9af911ae30021b7fc8a0))
+
+
+### Others
+
+* 🤖 Tidies package.json scripts and removes unused ones ([d1cea06](https://github.com/visitscotland/design-system/commit/d1cea06c7aedb9b9c3c1f3da39a0f8a1c4ef96b6))
+* **deps:** bump decode-uri-component from 0.2.0 to 0.2.2 ([7ece768](https://github.com/visitscotland/design-system/commit/7ece768b9047ae965d249747ee0de13c9d4e2ef7))
+
+### [0.4.7](https://github.com/visitscotland/design-system/compare/v0.4.6...v0.4.7) (2022-12-05)
+
+
+### Bug Fixes
+
+* 🐛 (Carousel) Fixing errors with string and number type ([0811eef](https://github.com/visitscotland/design-system/commit/0811eefc001c9180bb937724b049778e09783e50))
+
+
+### Styling
+
+* 💄 (Itinerary) Tidying classes on itinerary tooltop ([133f92b](https://github.com/visitscotland/design-system/commit/133f92bb51830f72dda9dd71e049f5adf7b09fae))
+
+### [0.4.6](https://github.com/visitscotland/design-system/compare/v0.4.5...v0.4.6) (2022-12-01)
+
+
+### Others
+
+* 🤖 (Build) Updating ssr asset build to correct path ([cd08f46](https://github.com/visitscotland/design-system/commit/cd08f46593fcfaf0907d5b3297118c09d6f67fff))
+
+### [0.4.5](https://github.com/visitscotland/design-system/compare/v0.4.4...v0.4.5) (2022-12-01)
+
+
+### Others
+
+* 🤖 Adds back SSR files for building production files ([14c4018](https://github.com/visitscotland/design-system/commit/14c4018c22967da1ccf383faa9bbff31a1b10902))
+* 🤖 Adds back SSR files for production asset builds ([f932fdc](https://github.com/visitscotland/design-system/commit/f932fdcb35e79f1620290c1e2b317a9c84153251))
+
+
+### Styling
+
+* 💄 (Icon) Fixing icon size in VsBanner ([49f3c58](https://github.com/visitscotland/design-system/commit/49f3c58578318e4557d1970fc54f04d027c92803))
+* 💄 (Icons) Ensuring we are using FA icons where possible ([6fa9d7a](https://github.com/visitscotland/design-system/commit/6fa9d7a8cbffa7a888c280fa72c555c0ba723710))
+* 💄 (Icons) Fixing icon spacing after re-uploaded to FA ([ffe294c](https://github.com/visitscotland/design-system/commit/ffe294c2a388ed94802b194fca625fc906d439dc))
+* 💄 (Icons) Fixing icon spacing on footer and share ([70174f3](https://github.com/visitscotland/design-system/commit/70174f31d71e4a602a3ecc82c0efc5e714d6a20f))
+* 💄 (Icons) Updating colour of docs icons ([ef885ea](https://github.com/visitscotland/design-system/commit/ef885ea1f08c2032a9fdc8d299a996a89a8bd3ac))
+* 💄 (Icons) Updating docs icons and adds missing status ([e8bb12a](https://github.com/visitscotland/design-system/commit/e8bb12a46e1f7eb877e31b4e26874fee40b9bfe8))
+
+### [0.4.4](https://github.com/visitscotland/design-system/compare/v0.4.3...v0.4.4) (2022-11-28)
+
+
+### Others
+
+* 🤖 Removes SSR package from the repo ([93ec2f9](https://github.com/visitscotland/design-system/commit/93ec2f997396f0fc409c1068f71db2619e6a5d50))
+
 ### [0.4.3](https://github.com/visitscotland/design-system/compare/v0.4.2...v0.4.3) (2022-11-24)
 
 

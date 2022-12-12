@@ -27,6 +27,8 @@ import { VsRow, VsContainer } from '@components/elements/grid';
 
 export default {
     name: 'VsFooterNavList',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsAccordion,
         VsRow,

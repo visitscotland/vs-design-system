@@ -42,9 +42,9 @@
             <VsCarousel
                 :next-text="carouselNextText"
                 :prev-text="carouselPreviousText"
-                slides-xs="1"
-                slides-md="2"
-                slides-lg="3"
+                :slides-xs="1"
+                :slides-md="2"
+                :slides-lg="3"
                 v-if="products.length"
             >
                 <VsCannedSearchProductCard

@@ -51,6 +51,7 @@ import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import { BFormCheckbox } from 'bootstrap-vue';
 import validateFormElementMixin from '../../../mixins/validateFormElementMixin';
+import initFontAwesome from '../../../utils/init-font-awesome';
 
 Vue.use(Vuelidate);
 
@@ -181,6 +182,9 @@ export default {
             this.manualValidate();
         },
     },
+    mounted() {
+        initFontAwesome();
+    },
     validations() {
         return {
             inputVal: this.rules,
@@ -232,10 +236,12 @@ export default {
 
             &:checked {
                 &:before {
-                    background-image: url('~@/assets/svg/checkbox-check.svg');
-                    background-size: 60% 60%;
-                    background-position: center center;
-                    background-repeat: no-repeat;
+                    font-family: "Font Awesome Kit";
+                    content: "\e001";
+                    color: $color-pink;
+                    text-align: center;
+                    line-height: 2;
+                    font-size: $font-size-6;
                 }
             }
         }

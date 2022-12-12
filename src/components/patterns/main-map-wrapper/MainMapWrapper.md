@@ -26,13 +26,11 @@ user to filter and search for data contained on the map.
 >
     <template slot="closeSidePanelText">
         <span class="sr-only">
-            Close search and filter panel
+            Close map filters
         </span>
     </template>
     <template slot="openSidePanelText">
-        <span class="sr-only">
-            Open search and filter panel
-        </span>
+        Map filters
     </template>
     <template slot="backBtnText">
         Go back one step

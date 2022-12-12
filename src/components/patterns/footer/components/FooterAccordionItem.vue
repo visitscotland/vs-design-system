@@ -39,6 +39,8 @@ import VsAccordionItem from '@components/patterns/accordion/components/Accordion
 
 export default {
     name: 'VsFooterAccordionItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsAccordionItem,
     },

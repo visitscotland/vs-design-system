@@ -6,8 +6,8 @@ const { html: beautifyHtml } = require("js-beautify");
 
 const buildMode = require("../../build/base.build-mode")
 
-const serverBundle = require("../../dist/ssr/server/vue-ssr-server-bundle.json");
-const clientManifest = require("../../dist/ssr/client/vue-ssr-client-manifest.json");
+const serverBundle = require("../../node_modules/@visitscotland/vs-component-library/dist/ssr/server/vue-ssr-server-bundle.json");
+const clientManifest = require("../../node_modules/@visitscotland/vs-component-library/dist/ssr/client/vue-ssr-client-manifest.json");
 
 // const transformHtml = require("./transform-html");
 

@@ -18,6 +18,8 @@
  */
 export default {
     name: 'VsAccordion',
+    status: 'prototype',
+    release: '0.0.1',
     /**
      * Provides breakPoint prop to be injected to child component AccordionItem
      */

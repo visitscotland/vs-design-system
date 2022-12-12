@@ -333,10 +333,10 @@ export default {
         <VsCarousel
             next-text="next page"
             prev-text="previous page"
-            slides-xs="1"
-            slides-sm="2"
-            slides-md="3"
-            slides-lg="4"
+            :slides-xs="1"
+            :slides-sm="2"
+            :slides-md="3"
+            :slides-lg="4"
         >
             <VsCarouselSlide
                 slide-index="0"

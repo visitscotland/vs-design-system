@@ -28,7 +28,7 @@ props:
     - name: font-size-h3-sub
       value: "1rem"
     - name: font-size-h2-sub
-      value: "1.5rem"
+      value: "1.25rem"
 global:
     type: number
     category: heading-size

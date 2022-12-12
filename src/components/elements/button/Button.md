@@ -91,10 +91,10 @@ You can use any icon on a button to help the user understand the meaning and wha
 Icons can be right or left aligned and the icon orientation can also be changed.
 ```jsx
     <BsWrapper class="d-flex flex-wrap">
-        <VsButton icon="internal-link" icon-position="left" icon-orientation="down" class="mr-4 mb-2">
+        <VsButton icon="chevron-down" icon-position="left" icon-orientation="right" class="mr-4 mb-2">
             Previous
         </VsButton>
-        <VsButton icon="internal-link" icon-position="right" icon-orientation="up" class="mb-2">
+        <VsButton icon="chevron-down" icon-position="right" icon-orientation="left" class="mb-2">
             Next
         </VsButton>
     </BsWrapper>

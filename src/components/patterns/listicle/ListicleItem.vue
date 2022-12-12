@@ -15,7 +15,9 @@
                     >{{ index }}</span>
                 </div>
             </div>
-            <VsHeading level="3">
+            <VsHeading
+                level="2"
+            >
                 {{ title }}
 
                 <template slot="sub-heading">
@@ -110,7 +112,7 @@ export default {
     .count {
         color: $color-white;
         font-family: $headings-font-family;
-        font-size: $font-size-9;
+        font-size: $font-size-8;
         line-height: $line-height-xs;
         display: block;
         text-align: center;
@@ -120,18 +122,31 @@ export default {
             content: "";
             border-bottom: 1px solid $color-white;
             display: block;
-            margin: $spacer-1 $spacer-6 0;
+            margin: $spacer-1 $spacer-4 0;
             margin-top: $spacer-1;
+
+            @include media-breakpoint-up(md) {
+                margin: $spacer-1 $spacer-6 0;
+            }
+        }
+
+        @include media-breakpoint-up(md) {
+            font-size: $font-size-9;
         }
     }
 
     .count__bg {
         background: $color_secondary_teal;
-        height: 67px;
-        width: 67px;
         display: flex;
         align-items: center;
         justify-content: center;
+        width: $spacer-9;
+        height: $spacer-9;
+
+        @include media-breakpoint-up(md) {
+            height: 67px;
+            width: 67px;
+        }
     }
 
     &.border {
@@ -154,11 +169,15 @@ export default {
         }
     }
 
-    h3.vs-heading {
+    h2.vs-heading {
         display: flex;
         flex-direction: column;
         justify-content: center;
         margin: 0 0 $spacer-5 $spacer-3;
+
+        .vs-heading__sub-heading {
+            margin-top: $spacer-0;
+        }
 
         @include media-breakpoint-up(md) {
             margin-bottom: 0;

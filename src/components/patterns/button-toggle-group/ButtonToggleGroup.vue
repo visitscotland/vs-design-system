@@ -9,7 +9,6 @@
             class="vs-button-toggle-group--radios"
             id="btn-radios-1"
             v-model="selected"
-            :options="options"
             :aria-describedby="ariaDescribedby"
             name="radios-btn-default"
             buttons
@@ -30,10 +29,10 @@
                     :key="option.text"
                 >
                     <span>
-                        <VsSvg
-                            :path="iconPath(option)"
-                            class="mr-2"
+                        <VsIcon
                             v-if="option.icon"
+                            :name="option.icon"
+                            class="mr-1"
                         />
                         {{ option.text }}
                     </span>
@@ -49,13 +48,13 @@ import {
     BFormRadioGroup,
     BFormRadio,
 } from 'bootstrap-vue';
-import VsSvg from '@components/elements/svg/Svg';
+import VsIcon from '@components/elements/icon/Icon';
 import initFontAwesome from '../../../utils/init-font-awesome';
 
 /**
  * A group of buttons that allow only one to be selected at a time
  *
- * @displayName Button toggle group
+ * @displayName Button Toggle Group
  */
 
 export default {
@@ -66,7 +65,7 @@ export default {
         BFormGroup,
         BFormRadioGroup,
         BFormRadio,
-        VsSvg,
+        VsIcon,
     },
     props: {
         /**
@@ -116,13 +115,6 @@ export default {
          */
         toggleChange(checked) {
             this.$emit('toggleChanged', checked);
-        },
-        /**
-         * Return icon path for icon
-         */
-        iconPath(option) {
-            const color = this.selected === option.value ? 'purple' : 'white';
-            return `${option.icon}-${color}`;
         },
         /**
          * Updates data value to signify that the element
