@@ -170,7 +170,7 @@ export default {
         &__img {
            width: 120px;
            height: 90px;
-           object-fit: fill;
+           object-fit: cover;
         }
 
         &__icon,

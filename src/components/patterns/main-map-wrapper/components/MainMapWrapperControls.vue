@@ -4,16 +4,16 @@
         data-test="vs-main-map-controls"
     >
         <VsButton
-            class="vs-main-map-subcategory__clear-selection"
+            class="vs-main-map-controls__clear-selection"
             data-test="vs-main-map-subcategory__clear-selection"
             size="sm"
-            variant="secondary"
+            variant="transparent"
             @click.native="clearSelection"
         >
             {{ clearSelectionText }}
         </VsButton>
         <VsButton
-            class="vs-main-map-subcategory__apply-filters"
+            class="vs-main-map-controls__apply-filters"
             data-test="vs-main-map-subcategory__apply-filters"
             size="sm"
             @click.native="submitCheckboxes"
@@ -82,15 +82,18 @@ export default {
             position: sticky;
             bottom: 0;
             left: 0;
-            width: 100%;
             display: flex;
             justify-content: space-around;
             align-items: center;;
-            height: 50px;
+            min-height: 75px;
             border-top: $color-gray-tint-4 solid 1px;
             background: $color-white;
             width: calc(100% + #{$spacer-8});
             margin-top: auto;
             margin-left: -#{$spacer-4};
+
+            &__clear-selection.vs-button.btn-transparent {
+                color: $color-pink;
+            }
         }
 </style>

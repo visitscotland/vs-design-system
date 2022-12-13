@@ -84,7 +84,7 @@ export default {
                 break;
             case 'even':
                 icon.name = 'calendar-check';
-                icon.colour = '#187776';
+                icon.colour = '#1066D6';
                 break;
             case 'cate':
                 icon.name = 'food';
