@@ -36,8 +36,10 @@ describe('VsMainMapWrapperListItem', () => {
     });
 
     describe(':props', () => {
-        it('should render the button text from the `itemData` prop', () => {
+        it('should render the button text from the `itemData` prop', async() => {
             const wrapper = factoryShallowMount();
+            console.log(wrapper.html());
+            await wrapper.vm.$nextTick();
             expect(wrapper.text()).toBe('Glasgow');
         });
     });

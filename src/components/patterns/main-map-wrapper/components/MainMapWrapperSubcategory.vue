@@ -54,6 +54,7 @@ import {
     BFormCheckbox,
 } from 'bootstrap-vue';
 import VsButton from '@/components/elements/button/Button';
+import mapStore from '../../../../stores/map.store';
 
 export default {
     name: 'VsMainMapWrapperSubCategories',
@@ -89,12 +90,19 @@ export default {
 
             return true;
         },
+        activeSubcatFilters() {
+            return mapStore.getters.getActiveSubcatFilters;
+        },
+    },
+    mounted() {
+        this.selected = this.activeSubcatFilters;
     },
     methods: {
         /**
          * Emits data of checkboxes currently selected
          */
         checkboxesChangeSubmit() {
+            mapStore.dispatch('setActiveSubcatFilters', this.selected);
             this.$parent.$emit('subcategories-filtered', this.selected);
         },
         /**
