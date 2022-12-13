@@ -527,6 +527,8 @@ export default {
 
             li {
                 display: flex;
+                margin-left: $spacer-1;
+                margin-right: $spacer-1;
             }
         }
 
@@ -535,7 +537,7 @@ export default {
             width: 10px;
             height: 10px;
             border-radius: 5px;
-            background: $color-gray-tint-4;
+            background: $color-gray-tint-1;
             transform: translateY(2px);
             margin: 0 2px;
             border: none;
@@ -544,34 +546,34 @@ export default {
             padding: 0;
 
             &:hover {
-                background: $color-pink-tint-5;
+                background: $color_pink_shade_2;
             }
 
             &:focus {
-                outline: 1px solid $color-purple;
+                outline: 1px solid $color-pink;
             }
 
             &--active {
                 width: 14px;
                 height: 14px;
                 border-radius: 7px;
-                background: $color-black;
+                background: $color-pink;
                 transform: none;
                 cursor: default;
 
                 &:hover {
-                    background: $color-black;
+                    background: $color-pink;
                 }
             }
 
             @media (hover: none) {
                 &:hover {
-                    background: $color-gray-tint-4;
+                    background: $color-gray-tint-1;
                 }
 
                 &--active {
                     &:hover {
-                        background: $color-black;
+                        background: $color-pink;
                     }
                 }
             }

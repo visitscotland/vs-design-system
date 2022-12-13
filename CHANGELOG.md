@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.3](https://github.com/visitscotland/design-system/compare/v0.5.2...v0.5.3) (2022-12-09)
+
+
+### Bug Fixes
+
+* 🐛 Add content category and page type to datalayer ([92c95ea](https://github.com/visitscotland/design-system/commit/92c95ea1e6e7bb76b169b4e2d72050ca639878f7))
+
+### [0.5.2](https://github.com/visitscotland/design-system/compare/v0.5.1...v0.5.2) (2022-12-09)
+
+
+### Bug Fixes
+
+* 🐛 Move heading level fix to correct component ([c7cca0e](https://github.com/visitscotland/design-system/commit/c7cca0ef8fe1a8d41f3be058d4e0033b0bf53f8f))
+* 🐛 Remove itinerary classes from listicle ([b32e4a0](https://github.com/visitscotland/design-system/commit/b32e4a08c1239fbd376333a75600807c19b3b028))
+* 🐛 Remove old title setup in listicle ([439d62b](https://github.com/visitscotland/design-system/commit/439d62b5ed8586a07dd4d53cad25ff9c24d21984))
+* 🐛 Remove specific sub heading font sizes and update generi ([bf14270](https://github.com/visitscotland/design-system/commit/bf14270bbb9c950002790ea0f1a68937c68bcc0d))
+* 🐛 Revert listicle title to a single h2 ([3f06ffa](https://github.com/visitscotland/design-system/commit/3f06ffa7ecb61d451bf78c75de1373337e9b7b26))
+
+### [0.5.1](https://github.com/visitscotland/design-system/compare/v0.5.0...v0.5.1) (2022-12-08)
+
+
+### Docs
+
+* ✏️ Updating readme ([85a6aa0](https://github.com/visitscotland/design-system/commit/85a6aa039db0b22074bb640b05da4ef93b06e386))
+
+## [0.5.0](https://github.com/visitscotland/design-system/compare/v0.4.7...v0.5.0) (2022-12-08)
+
+
+### Bug Fixes
+
+* 🐛 Adjust itinerary stop heading levels ([d6c82af](https://github.com/visitscotland/design-system/commit/d6c82afe8429c59d91ee9329a7469bf9fdbde724))
+* 🐛 Update colours on carousel controls ([26eab0d](https://github.com/visitscotland/design-system/commit/26eab0d8fd146cfd1b0e9af911ae30021b7fc8a0))
+
+
+### Others
+
+* 🤖 Tidies package.json scripts and removes unused ones ([d1cea06](https://github.com/visitscotland/design-system/commit/d1cea06c7aedb9b9c3c1f3da39a0f8a1c4ef96b6))
+* **deps:** bump decode-uri-component from 0.2.0 to 0.2.2 ([7ece768](https://github.com/visitscotland/design-system/commit/7ece768b9047ae965d249747ee0de13c9d4e2ef7))
+
 ### [0.4.7](https://github.com/visitscotland/design-system/compare/v0.4.6...v0.4.7) (2022-12-05)
 
 

@@ -53,6 +53,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsMainMapWrapperPanel, {
                 label: 'Featured',
             },
         ],
+        regions: [],
     },
 });
 
