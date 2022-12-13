@@ -58,6 +58,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsMainMapWrapperPanel, {
         methods: {
             subCatExists: mockMethod,
         },
+        regions: [],
     },
 });
 
