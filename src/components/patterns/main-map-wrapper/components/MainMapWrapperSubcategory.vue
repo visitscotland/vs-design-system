@@ -3,10 +3,7 @@
         class="vs-main-map-subcategory"
         data-test="vs-main-map-subcategory"
     >
-        <BFormGroup
-            label="Using options array:"
-            v-slot="{ ariaDescribedby }"
-        >
+        <BFormGroup v-slot="{ ariaDescribedby }">
             <BFormCheckboxGroup
                 id="checkbox-group-1"
                 v-model="selected"
@@ -17,33 +14,17 @@
                     v-for="item in data"
                     :key="item.id"
                     :value="item.id"
+                    @change="emitChange"
                 >
+                    <VsIcon
+                        class="mr-4"
+                        :name="getSubCatIcon.name"
+                        :custom-colour="getSubCatIcon.colour"
+                    />
                     {{ item.name }}
                 </BFormCheckbox>
             </BFormCheckboxGroup>
         </BFormGroup>
-
-        <div class="vs-main-map-subcategory__controls">
-            <VsButton
-                class="vs-main-map-subcategory__clear-selection"
-                data-test="vs-main-map-subcategory__clear-selection"
-                size="sm"
-                variant="secondary"
-                @click.native="clearSelection"
-            >
-                {{ clearSelectionText }}
-            </VsButton>
-            <VsButton
-                class="vs-main-map-subcategory__apply-filters"
-                data-test="vs-main-map-subcategory__apply-filters"
-                size="sm"
-                @click.native="checkboxesChangeSubmit"
-                :aria-disabled="isDisabled"
-                :disabled="isDisabled"
-            >
-                {{ applyFiltersText }}
-            </VsButton>
-        </div>
     </div>
 </template>
 
@@ -53,7 +34,7 @@ import {
     BFormCheckboxGroup,
     BFormCheckbox,
 } from 'bootstrap-vue';
-import VsButton from '@/components/elements/button/Button';
+import VsIcon from '@/components/elements/icon/Icon';
 import mapStore from '../../../../stores/map.store';
 
 export default {
@@ -64,12 +45,8 @@ export default {
         BFormGroup,
         BFormCheckboxGroup,
         BFormCheckbox,
-        VsButton,
+        VsIcon,
     },
-    inject: [
-        'clearSelectionText',
-        'applyFiltersText',
-    ],
     props: {
         /** Data for subcategory */
         data: {
@@ -83,19 +60,56 @@ export default {
         };
     },
     computed: {
-        isDisabled() {
-            if (this.selected.length > 0) {
-                return false;
-            }
-
-            return true;
-        },
         activeSubcatFilters() {
             return mapStore.getters.getActiveSubcatFilters;
+        },
+        selectedSubCategory() {
+            return mapStore.getters.getSelectedSubcat;
+        },
+        getSubCatIcon() {
+            const icon = {
+            };
+            switch (this.selectedSubCategory) {
+            case 'acco':
+                icon.name = 'bed';
+                icon.colour = '#AF0E6E';
+                break;
+            case 'acti':
+                icon.name = 'walk';
+                icon.colour = '#700E57';
+                break;
+            case 'attr':
+                icon.name = 'camera';
+                icon.colour = '#187776';
+                break;
+            case 'even':
+                icon.name = 'calendar-check';
+                icon.colour = '#187776';
+                break;
+            case 'cate':
+                icon.name = 'food';
+                icon.colour = '#C31600';
+                break;
+            default:
+                break;
+            }
+            return icon;
         },
     },
     mounted() {
         this.selected = this.activeSubcatFilters;
+
+        this.$root.$on('clearSelectedSubcats', () => {
+            this.selected = [];
+        });
+
+        this.$root.$on('submitSelected', () => {
+            this.checkboxesChangeSubmit();
+        });
+
+        this.$root.$on('submitCheckboxData', () => {
+            this.checkboxesChangeSubmit();
+        });
     },
     methods: {
         /**
@@ -106,10 +120,14 @@ export default {
             this.$parent.$emit('subcategories-filtered', this.selected);
         },
         /**
-         * Clears all selected checkboxes
+         * Emits change event declaring if any selections have been made
          */
-        clearSelection() {
-            this.selected = [];
+        emitChange(checked) {
+            if (checked.length > 0) {
+                this.$root.$emit('checkboxes-selected', true);
+            } else {
+                this.$root.$emit('checkboxes-selected', false);
+            }
         },
     },
 };
@@ -117,28 +135,32 @@ export default {
 
 <style lang="scss">
     .vs-main-map-subcategory {
-        height: 100%;
-
         .custom-checkbox {
             display: flex;
             flex-direction: row-reverse;
             justify-content: space-between;
+            padding: $spacer-3 0;
+            border-top: 1px solid $color-gray-tint-5;
+
+            &::last-of-type {
+                border-bottom: 1px solid $color-gray-tint-5;
+            }
 
             input[type="checkbox"] {
                 width: 30px;
                 height: 30px;
+                border-radius: 8px;
+                border: 1px solid $color-gray-tint-5;
+
+                &:checked {
+                    background: red;
+                }
             }
         }
 
-        &__controls {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+        .custom-control-label {
             display: flex;
-            justify-content: space-around;
-            padding: $spacer-4;
-            border-top: $color-gray-tint-4 solid 1px;
+            align-items: center;
         }
     }
 </style>

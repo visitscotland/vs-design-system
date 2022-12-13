@@ -83,6 +83,9 @@ export default {
         highlightedPlace() {
             return mapStore.getters.getHoveredStop(this.mapId);
         },
+        selectedSubCategory() {
+            return mapStore.getters.getSelectedSubcat;
+        },
     },
     beforeMount() {
         if (!this.fromEndpoint) {

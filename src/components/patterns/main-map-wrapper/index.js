@@ -5,6 +5,7 @@ import VsMainMapWrapperListItem from './components/MainMapWrapperListItem';
 import VsMainMapWrapperDetail from './components/MainMapWrapperDetail';
 import VsMainMapWrapperButtons from './components/MainMapWrapperButtons';
 import VsMainMapWrapperSubcategory from './components/MainMapWrapperSubcategory';
+import VsMainMapWrapperControls from './components/MainMapWrapperControls';
 
 export default {
     VsMainMapWrapper,
@@ -14,4 +15,5 @@ export default {
     VsMainMapWrapperDetail,
     VsMainMapWrapperButtons,
     VsMainMapWrapperSubcategory,
+    VsMainMapWrapperControls,
 };
