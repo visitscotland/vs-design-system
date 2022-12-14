@@ -83,12 +83,16 @@ export default {
                 icon.colour = '#187776';
                 break;
             case 'even':
-                icon.name = 'calendar-check';
+                icon.name = 'events';
                 icon.colour = '#1066D6';
                 break;
             case 'cate':
                 icon.name = 'food';
                 icon.colour = '#C31600';
+                break;
+            case 'reta':
+                icon.name = 'shopping-bag';
+                icon.colour = '#432FB2';
                 break;
             default:
                 break;
