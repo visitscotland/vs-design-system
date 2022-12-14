@@ -43,7 +43,7 @@
                     >
                         <VsButton
                             class="vs-main-map-wrapper__map-toggle"
-                            size="md"
+                            size="sm"
                             variant="secondary"
                             @click.native="openPanel"
                             data-test="vs-main-map-wrapper__map-toggle"
