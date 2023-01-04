@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.5](https://github.com/visitscotland/design-system/compare/v0.5.4...v0.5.5) (2023-01-04)
+
+### [0.5.4](https://github.com/visitscotland/design-system/compare/v0.5.3...v0.5.4) (2023-01-04)
+
+
+### Bug Fixes
+
+* 🐛 fix button size for map panel control ([8ac6789](https://github.com/visitscotland/design-system/commit/8ac67894e97be71cffa9f6f40d4fe6dc3827c6da))
+* 🐛 Switch no-js social share header to h2 ([fd1a39f](https://github.com/visitscotland/design-system/commit/fd1a39f2c3f94ee6622c8185fbb0681254124c97))
+
+
+### Tests
+
+* 💍 fix errors and console warnings in unit tests ([9686b0e](https://github.com/visitscotland/design-system/commit/9686b0e5eaf38232826ba2573cca0e173118988b))
+
+
+### Others
+
+* 🤖 Removing Lighthouse to fix dependency errors ([8aeef25](https://github.com/visitscotland/design-system/commit/8aeef2551b09375a398e360af4628ae7bbc4215a))
+
+
+### Docs
+
+* ✏️ addition of hippo content file ([37a5447](https://github.com/visitscotland/design-system/commit/37a544753210daa0ee6e59a2079b360327cab169))
+
 ### [0.5.3](https://github.com/visitscotland/design-system/compare/v0.5.2...v0.5.3) (2022-12-09)
 
 
