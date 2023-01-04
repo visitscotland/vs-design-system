@@ -150,7 +150,8 @@ export default {
             }
         },
         places() {
-            this.geojsonData.features.splice(0, this.geojsonData.features.length);
+            this.geojsonData.features = [];
+            // this.geojsonData.features.splice(0, this.geojsonData.features.length);
             this.addMapFeatures();
             this.addMapMarkers();
         },
@@ -277,6 +278,10 @@ export default {
                 for (let i = this.markers.length - 1; i >= 0; i--) {
                     this.markers[i].remove();
                 }
+            }
+
+            for (let child = this.$children.length - 1; child >= 0; child--) {
+                this.$children[child].$destroy();
             }
 
             this.geojsonData.features.forEach((feature) => {

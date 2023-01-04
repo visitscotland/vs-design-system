@@ -83,6 +83,9 @@ export default {
         highlightedPlace() {
             return mapStore.getters.getHoveredStop(this.mapId);
         },
+        selectedSubCategory() {
+            return mapStore.getters.getSelectedSubcat;
+        },
     },
     beforeMount() {
         if (!this.fromEndpoint) {
@@ -167,7 +170,7 @@ export default {
         &__img {
            width: 120px;
            height: 90px;
-           object-fit: fill;
+           object-fit: cover;
         }
 
         &__icon,

@@ -82,6 +82,7 @@
                 <VsMainMapWrapperSubcategory
                     :data="selectedSubcategoryData[0].subCategory"
                 />
+                <VsMainMapWrapperControls />
             </template>
             <template v-else>
                 <div
@@ -143,6 +144,7 @@ import VsMainMapWrapperSubcategory from './MainMapWrapperSubcategory';
 import VsMainMapWrapperListItem from './MainMapWrapperListItem';
 import VsMainMapWrapperDetail from './MainMapWrapperDetail';
 import VsMainMapWrapperButtons from './MainMapWrapperButtons';
+import VsMainMapWrapperControls from './MainMapWrapperControls';
 
 /**
  * Renders a side panel for the map wrapper component
@@ -162,6 +164,7 @@ export default {
         VsMainMapWrapperListItem,
         VsMainMapWrapperDetail,
         VsMainMapWrapperButtons,
+        VsMainMapWrapperControls,
     },
     inject: [
         'filters',
@@ -357,6 +360,8 @@ export default {
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
 
         &--small-padding {
             padding-top: $spacer-6;
