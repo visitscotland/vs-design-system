@@ -84,7 +84,7 @@ export default {
             left: 0;
             display: flex;
             justify-content: space-around;
-            align-items: center;;
+            align-items: center;
             min-height: 75px;
             border-top: $color-gray-tint-4 solid 1px;
             background: $color-white;
