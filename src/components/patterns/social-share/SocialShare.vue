@@ -69,7 +69,8 @@
                     <VsCol cols="12">
                         <VsHeading
                             thin
-                            level="3"
+                            level="2"
+                            override-style-level="3"
                             class="mb-9 mt-0"
                         >
                             {{ sharePopoverTitle }}
