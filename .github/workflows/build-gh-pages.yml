@@ -1,5 +1,4 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+name: Build & Deploy Design System to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -40,6 +39,9 @@ jobs:
           yarn system:build
         env:
           VS_DS_REMOTE_CONFIG_URL: ${{ secrets.VS_DS_REMOTE_CONFIG_URL }}
+          VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME: ${{ secrets.VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME }}
+          VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE: ${{ secrets.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE }}
+          VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE: ${{ secrets.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE }}
       - name: Upload a Build Artifact
         uses: actions/upload-pages-artifact@v1.0.7
         with:
