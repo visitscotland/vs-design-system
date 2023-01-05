@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: 16
       - run: |
-          yarn system
+          yarn system:build
         env:
           VS_DS_REMOTE_CONFIG_URL: ${{ secrets.VS_DS_REMOTE_CONFIG_URL }}
   # Deployment job
