@@ -24,6 +24,8 @@ jobs:
   prepare:
     name: Prepare
     runs-on: ubuntu-latest
+    env:
+      VS_DS_REMOTE_CONFIG_URL: ${{ secrets.VS_DS_REMOTE_CONFIG_URL }}
     steps:
       - uses: DerYeger/yarn-setup-action@master
         with:
