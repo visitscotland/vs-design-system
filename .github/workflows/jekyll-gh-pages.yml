@@ -33,11 +33,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: prepare
     steps:
-      - shell: bash
-        env:
-          VS_DS_REMOTE_CONFIG_URL: ${{ secrets.VS_DS_REMOTE_CONFIG_URL }}
+      - name: Add env variable
         run: |
-          echo "Secret: $VS_DS_REMOTE_CONFIG_URL"
+          echo "${{ secrets.VS_DS_REMOTE_CONFIG_URL }}" > .env
       - uses: DerYeger/yarn-setup-action@master
         with:
           node-version: 16
