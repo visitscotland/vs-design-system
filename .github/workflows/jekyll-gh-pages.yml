@@ -36,7 +36,8 @@ jobs:
       - shell: bash
         env:
           VS_DS_REMOTE_CONFIG_URL: ${{ secrets.VS_DS_REMOTE_CONFIG_URL }}
-      - run: echo "secret $VS_DS_REMOTE_CONFIG_URL"
+        run: |
+          example-command "$VS_DS_REMOTE_CONFIG_URL"
       - uses: DerYeger/yarn-setup-action@master
         with:
           node-version: 16
