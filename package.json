@@ -10,7 +10,7 @@
     "build/ssr.client.webpack.conf.js",
     "build/ssr.server.webpack.conf.js"
   ],
-  "homepage": "",
+  "homepage": "https://visitscotland.github.io/design-system",
   "license": "MIT",
   "scripts": {
     "system": "yarn theo && cross-env NODE_ENV=development node ./build/system server --remote-profile hippo",
