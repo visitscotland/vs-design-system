@@ -37,8 +37,9 @@ jobs:
           node-version: 16
       - run: |
           yarn system:build
-        env:
-          VS_ENV_FILE: ${{ secrets.VS_ENV_FILE }}
+      - name: 'Create env file'
+        run: |
+          echo "${{ secrets.VS_ENV_FILE }}" > .env
       - name: Upload a Build Artifact
         uses: actions/upload-pages-artifact@v1.0.7
         with:
