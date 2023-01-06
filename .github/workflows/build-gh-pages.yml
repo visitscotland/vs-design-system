@@ -38,13 +38,7 @@ jobs:
       - run: |
           yarn system:build
         env:
-          VS_DS_REMOTE_CONFIG_URL: ${{ secrets.VS_DS_REMOTE_CONFIG_URL }}
-          VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME: ${{ secrets.VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME }}
-          VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE: ${{ secrets.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE }}
-          VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE: ${{ secrets.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE }}
-          ICON_KIT_TOKEN: ${{ secrets.ICON_KIT_TOKEN }}
-          ICON_API_TOKEN: ${{ secrets.ICON_API_TOKEN }}
-          RECAPTCHA_TOKEN: ${{ secrets.RECAPTCHA_TOKEN }}
+          VS_ENV_FILE: ${{ secrets.VS_ENV_FILE }}
       - name: Upload a Build Artifact
         uses: actions/upload-pages-artifact@v1.0.7
         with:
