@@ -476,7 +476,7 @@ export default {
         }
     }
 
-    .no-js {
+    @include no-js {
         .vs-main-map-wrapper {
             display: none;
 
