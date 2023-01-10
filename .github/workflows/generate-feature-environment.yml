@@ -44,7 +44,6 @@ jobs:
       url: ${{ steps.aws-sync.outputs.s3_url }}
       
     steps:
-      - uses: aitorres/aws-s3-create-bucket@v1.2.0
       - uses: actions/checkout@v2
       - uses: aws-actions/configure-aws-credentials@v1
       
