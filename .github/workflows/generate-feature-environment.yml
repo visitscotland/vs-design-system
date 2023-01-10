@@ -1,4 +1,4 @@
-name: s3-deploy
+name: S3 Build and Deploy
 
 on:
   # Runs on pushes targeting the default branch
@@ -6,11 +6,13 @@ on:
     branches: ["feature/*"]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 env:
+  applicationfolder: dist/system
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: 'eu-west-2'
 
 jobs:
   prepare:
@@ -33,33 +35,22 @@ jobs:
           echo "${{ secrets.VS_ENV_FILE }}" > .env
       - run: |
           yarn system:build
-  aws-s3-deploy:
-    runs-on: ubuntu-latest
+  deploy:
     needs: build
-    # Create an environment for the static hosting enabled & Pulumi created S3 Bucket
+    runs-on: ubuntu-latest
+    # Create an environment for the static hosting
     environment:
       name: ds-s3-deployment
       url: ${{ steps.aws-sync.outputs.s3_url }}
+      
     steps:
-      - name: Get branch name for bucket name
-        run: |
-          # Short name for current branch. For PRs, use target branch (base ref)
-          GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
-          echo "GIT_BRANCH=${GIT_BRANCH////-}" >> $GITHUB_ENV
+      - uses: aitorres/aws-s3-create-bucket@v1.2.0
+      - uses: actions/checkout@v2
+      - uses: aws-actions/configure-aws-credentials@v1
+      
       - name: Create bucket in S3
-        uses: aitorres/aws-s3-create-bucket@v1.2.0
-        with:
-          bucket-name: ${{ env.GIT_BRANCH }}
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: 'eu-west-2'
-          acl: 'public-read'
-      - name: aws-sync
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read --exclude '.git/*' -follow-symlinks --delete
-        env:
-          AWS_S3_BUCKET: ${{ env.GIT_BRANCH }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'eu-west-2'   # optional: defaults to us-east-1
+        run: |
+          echo "Deploying branch ${{ env.GITHUB_REF }} to ${{ github.event.inputs.environment }}"
+          commit_hash=`git rev-parse HEAD`
+          aws s3api create-bucket --bucket ${{ env.GITHUB_REF }} --region ${{ env.AWS_REGION }}
+
