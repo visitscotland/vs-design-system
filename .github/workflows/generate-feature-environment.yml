@@ -54,7 +54,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: 'eu-west-2'
           acl: 'public-read'
-      - name: Sync with AWS s3
+      - name: aws-sync
         uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --exclude '.git/*' -follow-symlinks --delete
