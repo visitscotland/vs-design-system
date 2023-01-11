@@ -1,7 +1,6 @@
-import { shallowMount, createWrapper } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 import VsTable from '../Table';
-
 
 const factoryShallowMount = (propsData) => shallowMount(VsTable, {
     slots: {
