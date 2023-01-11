@@ -29,6 +29,19 @@
                 </tr>
             </tbody>
         </table>
+        <p>Last updated: {{ lastUpdate }}</p>
+
+        <h3>Snow Conditions Full report</h3>
+
+        <p>{{ report }}</p>
+        <h4>Current Weather</h4>
+        <p>{{ currentWeather }}</p>
+        <h4>Weather Forecast</h4>
+        <p>{{ weatherForecast }}</p>
+        <h4>Road Status</h4>
+        <p>{{ roadStatus }}</p>
+        <h4>News from the Slopes</h4>
+        <p>{{ news }}</p>
     </div>
 </template>
 
@@ -68,6 +81,14 @@ export default {
                     closed: 0,
                 },
             },
+            lifts: [],
+            runs: [],
+            lastUpdate: '',
+            report: '',
+            currentWeather: '',
+            weatherForecast: '',
+            roadStatus: '',
+            news: '',
         };
     },
     mounted() {
@@ -86,6 +107,8 @@ export default {
                     const data = this.cleanData(response.data);
                     this.processLifts(data.lifts);
                     this.processRuns(data.runs);
+                    this.processLastUpdate(data.lastUpdate);
+                    this.processFullReport(data.report);
                 })
                 .catch(() => {
                     this.runStatusInfo = null;
@@ -115,6 +138,16 @@ export default {
 
             return output;
         },
+        processFullReport(data) {
+            this.report = data.runs;
+            this.currentWeather = data.current_weather_conditions;
+            this.weatherForecast = data.weather_forecast;
+            this.roadStatus = data.access_roads;
+            this.news = data.news_from_the_slopes;
+        },
+        processLastUpdate(lastUpdate) {
+            this.lastUpdate = `${lastUpdate.hour24}:${lastUpdate.minute} - ${lastUpdate.day} ${lastUpdate.month} ${lastUpdate.year}`;
+        },
         processLifts(lifts) {
             for (let x = 0; x < lifts.length; x++) {
                 switch (lifts[x].status) {
@@ -131,6 +164,8 @@ export default {
                     break;
                 }
             }
+
+            this.lifts = lifts;
         },
         processRuns(runs) {
             for (let x = 0; x < runs.length; x++) {
@@ -148,6 +183,8 @@ export default {
                     break;
                 }
             }
+
+            this.runs = runs;
         },
     },
 };

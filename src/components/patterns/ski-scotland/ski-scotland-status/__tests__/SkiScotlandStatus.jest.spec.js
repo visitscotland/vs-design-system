@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import VsSkiScotlandStatus from '../SkiScotlandStatus';
 
-const factoryShallowMount = () => shallowMount(VsSkiScotlandStatus, {});
+const factoryShallowMount = () => shallowMount(VsSkiScotlandStatus);
 
 let wrapper;
 beforeEach(() => {
