@@ -20,6 +20,7 @@
                             :selected-item="selectedItem"
                             :heading-level="mainHeadingExists ? '3' : '2'"
                             :subcategory-locations="subCatList"
+                            :current-endpoint-data="currentEndpointData"
                             @set-category="setCategory"
                             @set-subcategory="setSubCategory"
                             @subcategories-filtered="filterSubCategories"
@@ -79,6 +80,14 @@
                         />
                     </div>
                 </div>
+
+                <VsWarning
+                    class="vs-main-map-wrapper__no-js"
+                    theme="light"
+                >
+                    <!-- @slot Message to show when JS is disabled  -->
+                    <slot name="noJs" />
+                </VsWarning>
             </VsCol>
         </VsRow>
     </VsContainer>
@@ -202,6 +211,13 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * Endpoint for getting place details
+         */
+        detailsEndpoint: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
@@ -216,6 +232,7 @@ export default {
             ],
             subCatList: null,
             selectedToggle: '',
+            currentEndpointData: null,
         };
     },
     computed: {
@@ -265,14 +282,18 @@ export default {
             this.selectedItem = id;
             this.setStage(2);
             this.openPanel();
-            this.filterPlaces(this.selectedCategory);
+            if (this.selectedSubCategory === null) {
+                this.filterPlaces(this.selectedCategory);
+            }
         },
         /**
          * Sets the currently chosen category
          */
         setCategory(cat) {
             this.selectedCategory = cat;
-            this.filterPlaces(cat);
+            if (this.selectedSubCategory === null) {
+                this.filterPlaces(cat);
+            }
         },
         /**
          * Sets a subcategory
@@ -342,16 +363,28 @@ export default {
          * Sets the current stage
          */
         setStage(num) {
-            mapStore.dispatch('setCurrentStage', num);
+            // ensure that if data is coming from an endpoint then
+            // it is loaded before moving to the next stage
+            if (num === 2 && this.detailsEndpoint !== '' && this.selectedSubCategory !== null) {
+                const endpoint = `${this.detailsEndpoint}${this.selectedItem}`;
+                axios.get(endpoint).then((response) => {
+                    const dataArr = [];
+                    dataArr.push(response.data.data);
+                    this.currentEndpointData = dataArr;
+                    mapStore.dispatch('setCurrentStage', num);
+                });
+            } else {
+                mapStore.dispatch('setCurrentStage', num);
 
-            if (this.currentStage === 0) {
-                if (this.selectedSubCategory === null) {
-                    this.showAllPlaces();
-                }
-                this.selectedToggle = 'places';
-            } else if (this.currentStage === 1) {
-                if (this.selectedSubCategory === null) {
-                    this.filterPlaces(this.selectedCategory);
+                if (this.currentStage === 0) {
+                    if (this.selectedSubCategory === null) {
+                        this.showAllPlaces();
+                    }
+                    this.selectedToggle = 'places';
+                } else if (this.currentStage === 1) {
+                    if (this.selectedSubCategory === null) {
+                        this.filterPlaces(this.selectedCategory);
+                    }
                 }
             }
 
@@ -370,6 +403,7 @@ export default {
          * Updates active pins for map
          */
         filterPlaces(id) {
+            console.log('filter places');
             if (id === 'regions') {
                 this.showRegions = true;
                 this.activePins = [];
@@ -452,6 +486,10 @@ export default {
             }
         }
 
+        &__no-js {
+            display: none;
+        }
+
         .vs-button-toggle-group {
             position: absolute;
             bottom: 0;
@@ -460,6 +498,16 @@ export default {
 
             @include media-breakpoint-up(lg) {
                 display: none;
+            }
+        }
+    }
+
+    @include no-js {
+        .vs-main-map-wrapper {
+            display: none;
+
+            &__no-js {
+                display: flex;
             }
         }
     }

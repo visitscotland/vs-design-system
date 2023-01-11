@@ -22,6 +22,7 @@ jest.spyOn(axios, 'get').mockResolvedValue(mockSubCat);
 const factoryShallowMount = () => shallowMount(VsMainMapWrapper, {
     slots: {
         openSidePanelText: 'Open panel',
+        noJs: 'Javascript is needed for this map',
     },
     propsData: {
         placesData: placesJson.features,
@@ -146,6 +147,12 @@ describe('VsMainMapWrapper', () => {
             const openMapBtn = wrapper.find('[data-test="vs-main-map-wrapper__map-toggle"]');
 
             expect(openMapBtn.text()).toBe('Open panel');
+        });
+
+        it('should render the `noJs` slot content', () => {
+            const wrapper = factoryShallowMount();
+            const warning = wrapper.find('vswarning');
+            expect(warning.text()).toContain('Javascript is needed for this map');
         });
     });
 });

@@ -92,6 +92,7 @@ export default {
                 mapId: this.mapId,
                 placeId: this.feature.properties.id,
             });
+
             this.$parent.$emit('show-detail', this.feature.properties.id);
             this.$parent.$emit('set-category', this.feature.properties.type);
         },

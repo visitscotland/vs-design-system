@@ -8,7 +8,7 @@
         "label": "Accommodation",
         "pinsEndpoint": "http://172.28.81.65:8089/data/product-search/map?prodtypes=acco&avail=off&locplace=4161&loc=Edinburgh&locprox=0",
         "listProductsEndPoint": "http://172.28.81.65:8089/data/component/cannedsearch?prodtypes=acco&avail=off&locplace=4161&loc=Edinburgh&locprox=0",
-        "pinClickEndPoint": "http://172.28.81.65:8089/data/private/products/mapcard?",
+        "pinClickEndPoint": "http://172.28.81.65:8089/data/product-search/map?prod_id=",
         "subCategory": [
             {
                 "id": "cgbandbguesthouse",
