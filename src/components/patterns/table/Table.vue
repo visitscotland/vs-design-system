@@ -7,7 +7,10 @@
         :responsive="responsive"
         :stacked="stacked"
     >
-        <caption class="sr-only">
+        <caption
+            class="sr-only"
+            data-test="vs-table__caption"
+        >
             {{ tableCaption }}
         </caption>
 

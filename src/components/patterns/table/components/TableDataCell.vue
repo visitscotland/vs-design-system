@@ -29,7 +29,7 @@ export default {
          */
         stackedHeading: {
             type: String,
-            default: '',
+            default: null,
         },
     },
 };
