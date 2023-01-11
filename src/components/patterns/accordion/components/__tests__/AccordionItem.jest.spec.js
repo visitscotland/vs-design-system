@@ -62,6 +62,16 @@ describe('VsAccordionItem', () => {
             const accordionItemBody = wrapper.find('vsaccordiontoggle-stub');
             expect(accordionItemBody.attributes('variant')).toBe('secondary');
         });
+
+        it(':should render a colour badge if `colourBadge` prop is set', () => {
+            const wrapper = factoryShallowMount({
+                colourBadge: 'red',
+            });
+
+            const badge = wrapper.find('[data-test=vs-accordion-item__card-colour-badge]');
+
+            expect(badge.exists()).toBe(true);
+        });
     });
 
     describe(':methods', () => {
