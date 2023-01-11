@@ -68,7 +68,7 @@ Use the `tableCaption` prop to provide a caption describing the table.
         </VsTableBody>
         <VsTableFooter>
             <VsTableRow>
-                <VsTableDataCell colspan="3">
+                <VsTableDataCell colspan="3" role="cell">
                     Last Updated: 11/01/2023
                 </VsTableDataCell>
             </VsTableRow>

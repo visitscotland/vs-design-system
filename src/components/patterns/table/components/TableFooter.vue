@@ -1,6 +1,7 @@
 <template>
     <BTfoot
         v-bind="$attrs"
+        role="rowgroup"
     >
         <!-- Default slot for table footer content -->
         <slot />
