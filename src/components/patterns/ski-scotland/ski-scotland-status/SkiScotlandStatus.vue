@@ -42,6 +42,64 @@
         <p>{{ roadStatus }}</p>
         <h4>News from the Slopes</h4>
         <p>{{ news }}</p>
+
+        <h3>Lift Status</h3>
+
+        <table>
+            <thead>
+                <td>Status</td>
+                <td>Lift</td>
+            </thead>
+            <tbody>
+                <tr
+                    v-for="lift in lifts"
+                    :key="lift.name"
+                >
+                    <td v-if="lift.status === '0' || lift.status === 0">
+                        Closed
+                    </td>
+                    <td v-if="lift.status === '1' || lift.status === 1">
+                        Open
+                    </td>
+                    <td v-if="lift.status === '2' || lift.status === 2">
+                        Opening
+                    </td>
+                    <td>{{ lift.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Last updated: {{ lastUpdate }}</p>
+
+        <h3>Run Status</h3>
+        <div
+            v-for="level in filteredRunLevels"
+            :key="level.name"
+        >
+            <h4>{{ level.name }}</h4>
+            <table>
+                <thead>
+                    <td>Status</td>
+                    <td>Run</td>
+                </thead>
+                <tbody>
+                    <tr
+                        v-for="run in level.runs"
+                        :key="run.name"
+                    >
+                        <td v-if="run.status === '0' || run.status === 0">
+                            Closed
+                        </td>
+                        <td v-if="run.status === '1' || run.status === 1">
+                            Open
+                        </td>
+                        <td v-if="run.status === '2' || run.status === 2">
+                            Opening
+                        </td>
+                        <td>{{ run.name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 
@@ -89,7 +147,44 @@ export default {
             weatherForecast: '',
             roadStatus: '',
             news: '',
+            runLevels: [
+                {
+                    colour: 'green',
+                    name: 'Easy',
+                    runs: [],
+                },
+                {
+                    colour: 'blue',
+                    name: 'Intermediate',
+                    runs: [],
+                },
+                {
+                    colour: 'red',
+                    name: 'Difficult',
+                    runs: [],
+                },
+                {
+                    colour: 'black',
+                    name: 'Very Difficult',
+                    runs: [],
+                },
+                {
+                    colour: 'orange',
+                    name: 'Itineraries',
+                    runs: [],
+                },
+                {
+                    colour: 'grey',
+                    name: 'Other',
+                    runs: [],
+                },
+            ],
         };
+    },
+    computed: {
+        filteredRunLevels() {
+            return this.runLevels.filter((level) => level.runs.length > 0);
+        },
     },
     mounted() {
         if (this.skiStatusUrl) {
@@ -181,6 +276,12 @@ export default {
                 default:
                     this.statusSummary.runs.closed += 1;
                     break;
+                }
+
+                for (let y = 0; y < this.runLevels.length; y++) {
+                    if (this.runLevels[y].colour === runs[x].difficulty) {
+                        this.runLevels[y].runs.push(runs[x]);
+                    }
                 }
             }
 
