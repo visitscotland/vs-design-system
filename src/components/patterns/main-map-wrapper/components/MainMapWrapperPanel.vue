@@ -228,13 +228,20 @@ export default {
             type: Array,
             default: null,
         },
+        /**
+         * Place data defined from endpoint
+         */
+        currentEndpointData: {
+            type: Array,
+            default: null,
+        },
     },
     computed: {
         currentHeading() {
             let headingText = '';
 
-            if (this.selectedSubcategory !== null) {
-                headingText = this.currentFilter.label;
+            if (this.selectedSubcategory !== null && this.currentStage !== 2) {
+                headingText = this.selectedSubcategoryData[0].label;
             } else {
                 switch (this.currentStage) {
                 case 0:
@@ -288,6 +295,10 @@ export default {
                 data = this.regions;
             }
 
+            if (this.currentEndpointData !== null) {
+                return this.refineEndpointData(this.currentEndpointData);
+            }
+
             return data.filter((obj) => {
                 if (typeof obj.properties !== 'undefined') {
                     return obj.properties.id === this.selectedItem;
@@ -314,11 +325,17 @@ export default {
             this.$emit('close-panel');
         },
         /**
-         * Moves one stage back
+         * Moves back stages dependent on current state
          */
         stageBack() {
             if (this.selectedSubcategory && this.currentStage === 0) {
+                // if the user is on the subcategory page, keep the stage the same
+                // but reset the subcategory
                 this.$emit('set-subcategory', null);
+            } else if (this.selectedSubcategory !== null && this.subcategoryLocations === null) {
+                // if the user has selected a subcategory item straight from the subcategory
+                // filter menu, take them back to that stage
+                this.setStage(0);
             } else {
                 const previousStage = this.currentStage - 1;
                 this.setStage(previousStage);
@@ -347,6 +364,34 @@ export default {
             }
 
             return false;
+        },
+        /**
+         * transforms endpoint data into format to be used
+         */
+        refineEndpointData(data) {
+            const refinedData = [{
+                isEndpoint: true,
+                properties: {
+                    category: data[0].category[0].id,
+                    id: data[0].id,
+                    image: data[0].images[0].mediaUrl,
+                    title: data[0].name,
+                    description: data[0].description,
+                    link: {
+                        label: data[0].productLink.label,
+                        link: data[0].productLink.link,
+                        type: data[0].productLink.type,
+                    },
+                },
+            }];
+
+            return refinedData;
+        },
+        /**
+         * set heading manually
+         */
+        setHeading(content) {
+            this.currentHeading = content;
         },
     },
 };
