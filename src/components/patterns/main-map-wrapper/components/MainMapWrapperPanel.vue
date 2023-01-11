@@ -384,7 +384,6 @@ export default {
                     },
                 },
             }];
-            console.log(refinedData);
 
             return refinedData;
         },
