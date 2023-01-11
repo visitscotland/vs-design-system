@@ -48,7 +48,6 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
-          role-session-name: GitHub-Action-Role
           aws-region: ${{ env.AWS_REGION }}
       - name: Create bucket in S3
         run: |
