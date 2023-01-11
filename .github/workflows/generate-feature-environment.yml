@@ -10,8 +10,6 @@ on:
 
 env:
   applicationfolder: dist/system
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: 'eu-west-2'
 
 jobs:
@@ -61,5 +59,8 @@ jobs:
         run: |
           echo "Deploying branch ${{ env.GITHUB_REF }} to ${{ github.event.inputs.environment }}"
           commit_hash=`git rev-parse HEAD`
-          aws s3api create-bucket --bucket $GIT_BRANCH
+          aws s3api create-bucket --bucket ${{env.GIT_BRANCH}}
+      - name: Upload Artifact to s3
+        working-directory: ${{ env.applicationfolder }}/dist/
+        run: aws s3 cp system/* s3://${{ env.S3BUCKET }}/
 
