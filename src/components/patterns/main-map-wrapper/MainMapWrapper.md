@@ -24,6 +24,7 @@ user to filter and search for data contained on the map.
     clearSelectionText="Clear all"
     applyFiltersText="Show results"
     detailsEndpoint="http://172.28.81.65:8089/data/component/mapcard?id="
+    :region-bounds="maps.regionsData.features[1].geometry.coordinates"
 >
     <template slot="closeSidePanelText">
         <span class="sr-only">
