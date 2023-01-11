@@ -49,6 +49,7 @@ jobs:
         with:
           role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
           aws-region: ${{ env.AWS_REGION }}
+          role-duration-seconds: 1200
       - name: Create bucket in S3
         run: |
           echo "Deploying branch ${{ env.GITHUB_REF }} to ${{ github.event.inputs.environment }}"
