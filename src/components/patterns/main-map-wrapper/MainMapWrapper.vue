@@ -403,7 +403,6 @@ export default {
          * Updates active pins for map
          */
         filterPlaces(id) {
-            console.log('filter places');
             if (id === 'regions') {
                 this.showRegions = true;
                 this.activePins = [];
