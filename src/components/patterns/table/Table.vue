@@ -20,7 +20,7 @@
 import { BTableSimple } from 'bootstrap-vue';
 
 /**
- * A simple table for oganising and displaying information.
+ * The table component organises and displays information to help a user read and scan it easily.
  *
  * @displayName Table
  */

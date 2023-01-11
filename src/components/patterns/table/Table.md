@@ -1,11 +1,11 @@
 ## Usage
-- Use a table when you need to make information easier to read and digest and that it is clearly laid out and easy to understand.
+- Use a table when you need to make information easier to read and digest for a user and ensure it is clearly laid out and easy to understand
 
-- Ensure a caption is included describing what the table is about. 
+- Ensure a caption is included describing what the table is about
 
-- The table must be properly marked up with correct header cells `<VsTableHeaderCell>` and data cells `<VsTableDataCell>` to make it accessible. Headers should describe what the data in rows or columns represents. 
+- The table must be properly marked up with correct header cells `<VsTableHeaderCell>` and data cells `<VsTableDataCell>` to make it accessible. Headers should describe what the data in rows or columns represents
 
-- A table should never be used for creating page layouts, use the <a href="#/Elements/Grid">grid system</a> instead. 
+- A table should never be used for creating page layouts, use the <a href="#/Elements/Grid">grid system</a> instead
 
 
 ### Standard
@@ -245,7 +245,7 @@ Use the `stacked-heading` prop on the header or data cells to provide the headin
     </VsTable>
 ```
 ## Accessibility
-- By default, the table elements will have the appropriate roles applied. 
-- A table should have a caption applied, this will be visually hidden for screen readers 
+- By default, the table elements will have the appropriate roles applied
+- A table should have a caption applied, this will be visually hidden for screen readers
 
 
