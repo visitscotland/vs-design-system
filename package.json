@@ -1,6 +1,6 @@
 {
   "name": "@visitscotland/vs-component-library",
-  "version": "0.5.3",
+  "version": "0.5.5",
   "description": "visitscotland.com Component Library",
   "author": "VisitScotland",
   "main": "dist/library/manifest.json",
@@ -10,7 +10,7 @@
     "build/ssr.client.webpack.conf.js",
     "build/ssr.server.webpack.conf.js"
   ],
-  "homepage": "",
+  "homepage": "https://visitscotland.github.io/design-system",
   "license": "MIT",
   "scripts": {
     "system": "yarn theo && cross-env NODE_ENV=development node ./build/system server --remote-profile hippo",
@@ -81,7 +81,6 @@
     "git-cz": "^4.9.0",
     "image-webpack-loader": "^7.0.1",
     "js-beautify": "^1.11.0",
-    "lighthouse": "^6.2.0",
     "lodash": "^4.17.21",
     "mapbox-gl": "^1.11.1",
     "mini-css-extract-plugin": "^0.4.5",
@@ -181,7 +180,6 @@
     "shelljs": "^0.8.4",
     "style-loader": "^0.23.1",
     "stylelint": "^13.6.1",
-    "stylelint-config-airbnb": "^0.0.0",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.18.0",
