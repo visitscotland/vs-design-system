@@ -54,5 +54,5 @@ jobs:
         run: |
           echo "Deploying branch ${{ env.GITHUB_REF }} to ${{ github.event.inputs.environment }}"
           commit_hash=`git rev-parse HEAD`
-          aws s3api create-bucket --bucket ${{ env.GITHUB_REF }} --region ${{ env.AWS_REGION }}
+          aws s3api create-bucket --bucket ${{ env.GITHUB_REF }}
 
