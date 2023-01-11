@@ -79,6 +79,14 @@
                         />
                     </div>
                 </div>
+
+                <VsWarning
+                    class="vs-main-map-wrapper__no-js"
+                    theme="light"
+                >
+                    <!-- @slot Message to show when JS is disabled  -->
+                    <slot name="noJs" />
+                </VsWarning>
             </VsCol>
         </VsRow>
     </VsContainer>
@@ -452,6 +460,10 @@ export default {
             }
         }
 
+        &__no-js {
+            display: none;
+        }
+
         .vs-button-toggle-group {
             position: absolute;
             bottom: 0;
@@ -460,6 +472,16 @@ export default {
 
             @include media-breakpoint-up(lg) {
                 display: none;
+            }
+        }
+    }
+
+    @include no-js {
+        .vs-main-map-wrapper {
+            display: none;
+
+            &__no-js {
+                display: flex;
             }
         }
     }
