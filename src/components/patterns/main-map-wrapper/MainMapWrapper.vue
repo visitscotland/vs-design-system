@@ -218,6 +218,7 @@ export default {
         detailsEndpoint: {
             type: String,
             default: '',
+        },
         /**
          * Bounds if map needs to show a specific area
          */
