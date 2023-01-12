@@ -3,114 +3,157 @@
         class="vs-ski-scotland-status"
         data-test="vs-ski-scotland-status"
     >
-        <h3>Run/Lift Status</h3>
-
-        <VsTable
-            table-caption="Run/Lift Status"
-        >
-            <VsTableHead>
-                <VsTableHeaderCell>Status</VsTableHeaderCell>
-                <VsTableHeaderCell>Runs</VsTableHeaderCell>
-                <VsTableHeaderCell>Lifts</VsTableHeaderCell>
-            </VsTableHead>
-            <VsTableBody>
-                <VsTableRow>
-                    <VsTableDataCell>Open</VsTableDataCell>
-                    <VsTableDataCell>{{ statusSummary.runs.open }}</VsTableDataCell>
-                    <VsTableDataCell>{{ statusSummary.lifts.open }}</VsTableDataCell>
-                </VsTableRow>
-                <VsTableRow>
-                    <VsTableDataCell>Opening</VsTableDataCell>
-                    <VsTableDataCell>{{ statusSummary.runs.opening }}</VsTableDataCell>
-                    <VsTableDataCell>{{ statusSummary.lifts.opening }}</VsTableDataCell>
-                </VsTableRow>
-                <VsTableRow>
-                    <VsTableDataCell>Closed</VsTableDataCell>
-                    <VsTableDataCell>{{ statusSummary.runs.closed }}</VsTableDataCell>
-                    <VsTableDataCell>{{ statusSummary.lifts.closed }}</VsTableDataCell>
-                </VsTableRow>
-            </VsTableBody>
-        </VsTable>
-        <VsTableFooter>
-            <VsTableRow>
-                <VsTableDataCell
-                    colspan="3"
-                    role="cell"
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="12"
+                    md="7"
                 >
-                    <p>Last updated: {{ lastUpdate }}</p>
-                </VsTableDataCell>
-            </VsTableRow>
-        </VsTableFooter>
+                    <h3>Run/Lift Status</h3>
 
-        <h3>Snow Conditions Full report</h3>
-
-        <p>{{ report }}</p>
-        <h4>Current Weather</h4>
-        <p>{{ currentWeather }}</p>
-        <h4>Weather Forecast</h4>
-        <p>{{ weatherForecast }}</p>
-        <h4>Road Status</h4>
-        <p>{{ roadStatus }}</p>
-        <h4>News from the Slopes</h4>
-        <p>{{ news }}</p>
-
-        <h3>Lift Status</h3>
-
-        <table>
-            <thead>
-                <td>Status</td>
-                <td>Lift</td>
-            </thead>
-            <tbody>
-                <tr
-                    v-for="lift in lifts"
-                    :key="lift.name"
-                >
-                    <td v-if="lift.status === '0' || lift.status === 0">
-                        Closed
-                    </td>
-                    <td v-if="lift.status === '1' || lift.status === 1">
-                        Open
-                    </td>
-                    <td v-if="lift.status === '2' || lift.status === 2">
-                        Opening
-                    </td>
-                    <td>{{ lift.name }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>Last updated: {{ lastUpdate }}</p>
-
-        <h3>Run Status</h3>
-        <div
-            v-for="level in filteredRunLevels"
-            :key="level.name"
-        >
-            <h4>{{ level.name }}</h4>
-            <table>
-                <thead>
-                    <td>Status</td>
-                    <td>Run</td>
-                </thead>
-                <tbody>
-                    <tr
-                        v-for="run in level.runs"
-                        :key="run.name"
+                    <VsTable
+                        table-caption="Run/Lift Status"
                     >
-                        <td v-if="run.status === '0' || run.status === 0">
-                            Closed
-                        </td>
-                        <td v-if="run.status === '1' || run.status === 1">
-                            Open
-                        </td>
-                        <td v-if="run.status === '2' || run.status === 2">
-                            Opening
-                        </td>
-                        <td>{{ run.name }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        <VsTableHead>
+                            <VsTableHeaderCell>Status</VsTableHeaderCell>
+                            <VsTableHeaderCell>Runs</VsTableHeaderCell>
+                            <VsTableHeaderCell>Lifts</VsTableHeaderCell>
+                        </VsTableHead>
+                        <VsTableBody>
+                            <VsTableRow>
+                                <VsTableDataCell>Open</VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.runs.open }}/{{ runs.length }}
+                                </VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.lifts.open }}/{{ lifts.length }}
+                                </VsTableDataCell>
+                            </VsTableRow>
+                            <VsTableRow>
+                                <VsTableDataCell>Opening</VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.runs.opening }}/{{ runs.length }}
+                                </VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.lifts.opening }}/{{ lifts.length }}
+                                </VsTableDataCell>
+                            </VsTableRow>
+                            <VsTableRow>
+                                <VsTableDataCell>Closed</VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.runs.closed }}/{{ runs.length }}
+                                </VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.lifts.closed }}/{{ lifts.length }}
+                                </VsTableDataCell>
+                            </VsTableRow>
+                        </VsTableBody>
+                    </VsTable>
+                    <VsTableFooter>
+                        <VsTableRow>
+                            <VsTableDataCell
+                                colspan="3"
+                                role="cell"
+                            >
+                                <p>Last updated: {{ lastUpdate }}</p>
+                            </VsTableDataCell>
+                        </VsTableRow>
+                    </VsTableFooter>
+                </VsCol>
+
+                <VsCol
+                    cols="12"
+                    md="5"
+                >
+                    Centre information placeholder
+                </VsCol>
+
+                <VsCol
+                    cols="12"
+                    md="8"
+                >
+                    <h3>Snow Conditions Full report</h3>
+
+                    <p>{{ report }}</p>
+                    <h4>Current Weather</h4>
+                    <p>{{ currentWeather }}</p>
+                    <h4>Weather Forecast</h4>
+                    <p>{{ weatherForecast }}</p>
+                    <h4>Road Status</h4>
+                    <p>{{ roadStatus }}</p>
+                    <h4>News from the Slopes</h4>
+                    <p>{{ news }}</p>
+
+                    <h3>Lift Status</h3>
+
+                    <VsTable
+                        table-caption="Lift Status"
+                    >
+                        <VsTableHead>
+                            <VsTableHeaderCell>Status</VsTableHeaderCell>
+                            <VsTableHeaderCell>Lift</VsTableHeaderCell>
+                        </VsTableHead>
+                        <VsTableBody>
+                            <VsTableRow
+                                v-for="lift in lifts"
+                                :key="lift.name"
+                            >
+                                <VsTableDataCell v-if="lift.status === '0' || lift.status === 0">
+                                    Closed
+                                </VsTableDataCell>
+                                <VsTableDataCell v-if="lift.status === '1' || lift.status === 1">
+                                    Open
+                                </VsTableDataCell>
+                                <VsTableDataCell v-if="lift.status === '2' || lift.status === 2">
+                                    Opening
+                                </VsTableDataCell>
+                                <VsTableDataCell>{{ lift.name }}</VsTableDataCell>
+                            </VsTableRow>
+                        </VsTableBody>
+                    </VsTable>
+                    <VsTableFooter>
+                        <VsTableRow>
+                            <VsTableDataCell>
+                                <p>Last updated: {{ lastUpdate }}</p>
+                            </VsTableDataCell>
+                        </VsTableRow>
+                    </VsTableFooter>
+
+                    <h3>Run Status</h3>
+                    <div
+                        v-for="level in filteredRunLevels"
+                        :key="level.name"
+                    >
+                        <h4>{{ level.name }}</h4>
+                        <VsTable
+                            :table-caption="level.colour + ' - ' + level.name"
+                        >
+                            <VsTableHead>
+                                <VsTableHeaderCell>Status</VsTableHeaderCell>
+                                <VsTableHeaderCell>Run</VsTableHeaderCell>
+                            </VsTableHead>
+                            <VsTableBody>
+                                <VsTableRow
+                                    v-for="run in level.runs"
+                                    :key="run.name"
+                                >
+                                    <VsTableDataCell v-if="run.status === '0' || run.status === 0">
+                                        Closed
+                                    </VsTableDataCell>
+                                    <VsTableDataCell v-if="run.status === '1' || run.status === 1">
+                                        Open
+                                    </VsTableDataCell>
+                                    <VsTableDataCell v-if="run.status === '2' || run.status === 2">
+                                        Opening
+                                    </VsTableDataCell>
+                                    <VsTableDataCell>{{ run.name }}</VsTableDataCell>
+                                </VsTableRow>
+                            </VsTableBody>
+                        </VsTable>
+                    </div>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
     </div>
 </template>
 
@@ -123,6 +166,9 @@ import VsTableBody from '@components/patterns/table/components/TableBody';
 import VsTableRow from '@components/patterns/table/components/TableRow';
 import VsTableDataCell from '@components/patterns/table/components/TableDataCell';
 import VsTableFooter from '@components/patterns/table/components/TableFooter';
+import {
+    VsContainer, VsRow, VsCol,
+} from '@components/elements/grid';
 
 const axios = require('axios');
 
@@ -143,6 +189,9 @@ export default {
         VsTableRow,
         VsTableDataCell,
         VsTableFooter,
+        VsContainer,
+        VsRow,
+        VsCol,
     },
     props: {
         /**
