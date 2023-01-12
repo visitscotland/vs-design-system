@@ -15,8 +15,8 @@
 <script>
 
 /**
- * The address component uses the HTML address tag
- * to display the data semantically.
+ * Simple loading spinner component to drop in wherever
+ * an async javascript is delaying the render of a component
  *
  * @displayName Loading Spinner
  */
