@@ -5,31 +5,42 @@
     >
         <h3>Run/Lift Status</h3>
 
-        <table>
-            <thead>
-                <td>Status</td>
-                <td>Runs</td>
-                <td>Lifts</td>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Open</td>
-                    <td>{{ statusSummary.runs.open }}</td>
-                    <td>{{ statusSummary.lifts.open }}</td>
-                </tr>
-                <tr>
-                    <td>Opening</td>
-                    <td>{{ statusSummary.runs.opening }}</td>
-                    <td>{{ statusSummary.lifts.opening }}</td>
-                </tr>
-                <tr>
-                    <td>Closed</td>
-                    <td>{{ statusSummary.runs.closed }}</td>
-                    <td>{{ statusSummary.lifts.closed }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>Last updated: {{ lastUpdate }}</p>
+        <VsTable
+            table-caption="Run/Lift Status"
+        >
+            <VsTableHead>
+                <VsTableHeaderCell>Status</VsTableHeaderCell>
+                <VsTableHeaderCell>Runs</VsTableHeaderCell>
+                <VsTableHeaderCell>Lifts</VsTableHeaderCell>
+            </VsTableHead>
+            <VsTableBody>
+                <VsTableRow>
+                    <VsTableDataCell>Open</VsTableDataCell>
+                    <VsTableDataCell>{{ statusSummary.runs.open }}</VsTableDataCell>
+                    <VsTableDataCell>{{ statusSummary.lifts.open }}</VsTableDataCell>
+                </VsTableRow>
+                <VsTableRow>
+                    <VsTableDataCell>Opening</VsTableDataCell>
+                    <VsTableDataCell>{{ statusSummary.runs.opening }}</VsTableDataCell>
+                    <VsTableDataCell>{{ statusSummary.lifts.opening }}</VsTableDataCell>
+                </VsTableRow>
+                <VsTableRow>
+                    <VsTableDataCell>Closed</VsTableDataCell>
+                    <VsTableDataCell>{{ statusSummary.runs.closed }}</VsTableDataCell>
+                    <VsTableDataCell>{{ statusSummary.lifts.closed }}</VsTableDataCell>
+                </VsTableRow>
+            </VsTableBody>
+        </VsTable>
+        <VsTableFooter>
+            <VsTableRow>
+                <VsTableDataCell
+                    colspan="3"
+                    role="cell"
+                >
+                    <p>Last updated: {{ lastUpdate }}</p>
+                </VsTableDataCell>
+            </VsTableRow>
+        </VsTableFooter>
 
         <h3>Snow Conditions Full report</h3>
 
@@ -105,6 +116,14 @@
 
 <script>
 
+import VsTable from '@components/patterns/table/Table';
+import VsTableHead from '@components/patterns/table/components/TableHead';
+import VsTableHeaderCell from '@components/patterns/table/components/TableHeaderCell';
+import VsTableBody from '@components/patterns/table/components/TableBody';
+import VsTableRow from '@components/patterns/table/components/TableRow';
+import VsTableDataCell from '@components/patterns/table/components/TableDataCell';
+import VsTableFooter from '@components/patterns/table/components/TableFooter';
+
 const axios = require('axios');
 
 /**
@@ -116,6 +135,15 @@ export default {
     name: 'VsSkiScotlandStatus',
     status: 'prototype',
     release: '0.0.1',
+    components: {
+        VsTable,
+        VsTableHead,
+        VsTableHeaderCell,
+        VsTableBody,
+        VsTableRow,
+        VsTableDataCell,
+        VsTableFooter,
+    },
     props: {
         /**
         * The url that the skiStatus information should be retrieved from for display
