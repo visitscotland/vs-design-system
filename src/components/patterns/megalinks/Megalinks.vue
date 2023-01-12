@@ -409,6 +409,9 @@ export default {
                                     <VsVideo
                                         videoId="N3r5rCN9iaE"
                                         class="mb-8"
+                                        no-js-message="You need Javascript enabled"
+                                        no-cookies-message="You need cookies enabled"
+                                        cookie-btn-text="Cookie button"
                                     />
                                 </VsCol>
                             </VsRow>
@@ -590,6 +593,9 @@ export default {
                                     <VsVideo
                                         videoId="N3r5rCN9iaE"
                                         class="mb-8"
+                                        no-js-message="You need Javascript enabled"
+                                        no-cookies-message="You need cookies enabled"
+                                        cookie-btn-text="Cookie button"
                                     />
                                 </VsCol>
                             </VsRow>
@@ -691,6 +697,9 @@ export default {
                         <VsVideo
                             videoId="tfk7J6XZju4"
                             class="mb-8"
+                            no-js-message="You need Javascript enabled"
+                            no-cookies-message="You need cookies enabled"
+                            cookie-btn-text="Cookie button"
                         />
                     </VsCol>
                 </VsRow>
@@ -750,6 +759,9 @@ export default {
                         <VsVideo
                             videoId="zZCUFjSiWpE"
                             class="mb-8"
+                            no-js-message="You need Javascript enabled"
+                            no-cookies-message="You need cookies enabled"
+                            cookie-btn-text="Cookie button"
                         />
                     </VsCol>
                 </VsRow>
