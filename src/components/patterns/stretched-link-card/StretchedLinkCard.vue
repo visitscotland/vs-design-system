@@ -105,7 +105,7 @@
                 size="md"
                 ref="videoShow"
                 @click.native="emitShowModal"
-                v-if="videoId && videoLoaded && requiredCookiesExist && !jsDisabled"
+                v-if="videoId && videoLoaded && requiredCookiesExist"
             >
                 <span
                     class="vs-stretched-link-card__video-btn-text"
