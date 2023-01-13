@@ -10,7 +10,7 @@
                     md="6"
                 >
                     <VsHeading level="3">
-                        Run/Lift Status
+                        {{ runsLiftsStatusLabel }}
                     </VsHeading>
 
                     <VsTable
@@ -102,23 +102,23 @@
                     class="vs-ski-scotland-status__full-report"
                 >
                     <VsHeading level="2">
-                        Snow Conditions Full Report
+                        {{ snowConditionsLabel }}
                     </VsHeading>
                     <p>{{ report }}</p>
                     <VsHeading level="3">
-                        Current Weather
+                        {{ currentWeatherLabel }}
                     </VsHeading>
                     <p>{{ currentWeather }}</p>
                     <VsHeading level="3">
-                        Weather Forecast
+                        {{ weatherForecastLabel }}
                     </VsHeading>
                     <p>{{ weatherForecast }}</p>
                     <VsHeading level="3">
-                        Road Status
+                        {{ roadStatusLabel }}
                     </VsHeading>
                     <p>{{ roadStatus }}</p>
                     <VsHeading level="3">
-                        News from the Slopes
+                        {{ newsLabel }}
                     </VsHeading>
                     <p>{{ news }}</p>
                 </VsCol>
@@ -322,6 +322,14 @@ export default {
             default: 'Closed',
         },
         /**
+         * Localisable label, translation of "current weather" for the full
+         * report
+         */
+        currentWeatherLabel: {
+            type: String,
+            default: 'Current Weather',
+        },
+        /**
          * Localisable label, translation of "difficult" to indicate run difficulty
          */
         difficultLabel: {
@@ -371,6 +379,14 @@ export default {
             default: 'Lift Status',
         },
         /**
+         * Localisable label, translation of "news from the slopes" for the full
+         * report
+         */
+        newsLabel: {
+            type: String,
+            default: 'News From The Slopes',
+        },
+        /**
          * Localisable label, translation of "open" for status tables
          */
         openLabel: {
@@ -392,6 +408,14 @@ export default {
             default: 'Other',
         },
         /**
+         * Localisable label, translation of "road status" for the full
+         * report
+         */
+        roadsLabel: {
+            type: String,
+            default: 'Road Status',
+        },
+        /**
          * Localisable label, translation of "runs" for status tables
          */
         runsLabel: {
@@ -399,11 +423,27 @@ export default {
             default: 'Runs',
         },
         /**
+         * Localisable label, translation of "run/lift status" for the full
+         * report
+         */
+        runsLiftsStatusLabel: {
+            type: String,
+            default: 'Run/Lift Status',
+        },
+        /**
          * Localisable label, translation of "run status" for status tables
          */
         runStatusLabel: {
             type: String,
             default: 'Run Status',
+        },
+        /**
+         * Localisable label, translation of "snow conditions full report" for
+         * the full report
+         */
+        snowConditionsLabel: {
+            type: String,
+            default: 'Snow Conditions Full Report',
         },
         /**
          * Localisable label, translation of "status" for status tables
@@ -418,6 +458,14 @@ export default {
         veryDifficultLabel: {
             type: String,
             default: 'Very Difficult',
+        },
+        /**
+         * Localisable label, translation of "weather forecast" for the full
+         * report
+         */
+        weatherForecastLabel: {
+            type: String,
+            default: 'Weather Forecast',
         },
         /**
          * The following properties are used to localise each of the months of the year
