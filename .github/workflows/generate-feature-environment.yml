@@ -67,6 +67,19 @@ jobs:
           echo "Deploying branch ${{ env.GIT_BRANCH}} to ${{ github.event.inputs.environment.Location }}"
           commit_hash=`git rev-parse HEAD`
           aws s3api create-bucket --bucket ${{env.GIT_BRANCH}} --create-bucket-configuration LocationConstraint=eu-west-2
+          aws s3api put-public-access-block ${{env.GIT_BRANCH}} --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
+          aws s3api put-bucket-policy --bucket ${{env.GIT_BRANCH}} --policy "{
+            \"Version\": \"2012-10-17\",
+            \"Statement\": [
+                {
+                    \"Sid\": \"PublicReadGetObject\",
+                    \"Effect\": \"Allow\",
+                    \"Principal\": \"*\",
+                    \"Action\": \"s3:GetObject\",
+                    \"Resource\": \"arn:aws:s3:::${{env.GIT_BRANCH}}/*\"
+                }
+            ]
+          }"
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
@@ -74,5 +87,5 @@ jobs:
           path: dist
       - name: Copy to S3
         run: |
-            aws s3 cp ./ s3://${{env.GIT_BRANCH}} --recursive
+            aws s3 sync ./dist/system/ s3://${{env.GIT_BRANCH}}
 
