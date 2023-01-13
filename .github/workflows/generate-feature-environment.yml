@@ -50,6 +50,7 @@ jobs:
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@master
+        id: download
         with:
           name: dist
           path: dist/system
@@ -73,5 +74,5 @@ jobs:
           aws s3api create-bucket --bucket ${{env.GIT_BRANCH}} --create-bucket-configuration LocationConstraint=eu-west-2
       - name: Upload Artifact to s3
         run: |
-          aws s3 cp ./ s3://${{env.GIT_BRANCH}} --recursive
+          aws s3 cp ${{steps.download.outputs.download-path}}/* s3://${{env.GIT_BRANCH}} --recursive
 
