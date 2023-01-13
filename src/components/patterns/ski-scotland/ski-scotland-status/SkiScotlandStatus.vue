@@ -315,32 +315,74 @@ export default {
             default: '',
         },
         /**
-         * Localisable label, translation of "last updated"
+         * Localisable label, translation of "difficult" to indicate run difficulty
+         */
+        difficultLabel: {
+            type: String,
+            default: 'Difficult',
+        },
+        /**
+         * Localisable label, translation of "easy" to indicate run difficulty
+         */
+        easyLabel: {
+            type: String,
+            default: 'Easy',
+        },
+        /**
+         * Localisable label, translation of "intermediate" to indicate run difficulty
+         */
+        intermediateLabel: {
+            type: String,
+            default: 'Intermediate',
+        },
+        /**
+         * Localisable label, translation of "itineraries" to indicate run difficulty
+         */
+        itinerariesLabel: {
+            type: String,
+            default: 'Itineraries',
+        },
+        /**
+         * Localisable label, translation of "last updated" for status tables
          */
         lastUpdatedLabel: {
             type: String,
             default: 'Last Updated',
         },
         /**
-         * Localisable label, translation of "lifts"
+         * Localisable label, translation of "lifts" for status tables
          */
         liftsLabel: {
             type: String,
             default: 'Lifts',
         },
         /**
-         * Localisable label, translation of "runs"
+         * Localisable label, translation of "other" to indicate run difficulty
+         */
+        otherLabel: {
+            type: String,
+            default: 'Other',
+        },
+        /**
+         * Localisable label, translation of "runs" for status tables
          */
         runsLabel: {
             type: String,
             default: 'Runs',
         },
         /**
-         * Localisable label, translation of "status"
+         * Localisable label, translation of "status" for status tables
          */
         statusLabel: {
             type: String,
             default: 'Status',
+        },
+        /**
+         * Localisable label, translation of "very difficult" to indicate run difficulty
+         */
+        veryDifficultLabel: {
+            type: String,
+            default: 'Very Difficult',
         },
         /**
          * The following properties are used to localise each of the months of the year
@@ -420,32 +462,32 @@ export default {
             runLevels: [
                 {
                     colour: 'green',
-                    name: 'Easy',
+                    name: this.easyLabel,
                     runs: [],
                 },
                 {
                     colour: 'blue',
-                    name: 'Intermediate',
+                    name: this.intermediateLabel,
                     runs: [],
                 },
                 {
                     colour: 'red',
-                    name: 'Difficult',
+                    name: this.difficultLabel,
                     runs: [],
                 },
                 {
                     colour: 'black',
-                    name: 'Very Difficult',
+                    name: this.veryDifficultLabel,
                     runs: [],
                 },
                 {
                     colour: 'orange',
-                    name: 'Itineraries',
+                    name: this.itinerariesLabel,
                     runs: [],
                 },
                 {
                     colour: 'grey',
-                    name: 'Other',
+                    name: this.otherLabel,
                     runs: [],
                 },
             ],
