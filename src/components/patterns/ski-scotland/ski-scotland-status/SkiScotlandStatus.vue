@@ -86,7 +86,11 @@
                     md="3"
                     offset-md="1"
                 >
-                    Centre information placeholder
+                    <!--
+                        @slot Slot for centre information content
+                        Expects html
+                    -->
+                    <slot name="centre-information" />
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -94,25 +98,26 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    md="7"
+                    md="9"
+                    class="vs-ski-scotland-status__full-report"
                 >
-                    <VsHeading level="3">
+                    <VsHeading level="2">
                         Snow Conditions Full Report
                     </VsHeading>
                     <p>{{ report }}</p>
-                    <VsHeading level="4">
+                    <VsHeading level="3">
                         Current Weather
                     </VsHeading>
                     <p>{{ currentWeather }}</p>
-                    <VsHeading level="4">
+                    <VsHeading level="3">
                         Weather Forecast
                     </VsHeading>
                     <p>{{ weatherForecast }}</p>
-                    <VsHeading level="4">
+                    <VsHeading level="3">
                         Road Status
                     </VsHeading>
                     <p>{{ roadStatus }}</p>
-                    <VsHeading level="4">
+                    <VsHeading level="3">
                         News from the Slopes
                     </VsHeading>
                     <p>{{ news }}</p>
@@ -123,7 +128,7 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    md="7"
+                    md="9"
                 >
                     <VsHeading level="3">
                         Lift Status
@@ -180,7 +185,7 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    md="7"
+                    md="9"
                 >
                     <VsHeading level="3">
                         Run Status
@@ -271,6 +276,7 @@ import VsAccordionItem from '@components/patterns/accordion/components/Accordion
 import {
     VsContainer, VsRow, VsCol,
 } from '@components/elements/grid';
+import VsIcon from '@components/elements/icon/Icon';
 import VsHeading from '@components/elements/heading/Heading';
 
 const axios = require('axios');
@@ -297,6 +303,7 @@ export default {
         VsCol,
         VsAccordion,
         VsAccordionItem,
+        VsIcon,
         VsHeading,
     },
     props: {
@@ -476,6 +483,17 @@ export default {
 
 <style lang="scss">
     .vs-ski-scotland-status {
+        &__full-report {
+            h2 {
+                margin-bottom: $spacer-7;
+            }
+
+            h3 {
+                margin-bottom: $spacer-2;
+                margin-top: $spacer-6;
+            }
+        }
+
         .container {
             &:not(:first-child) {
                 margin-top: $spacer-10;

@@ -1,7 +1,13 @@
 import { shallowMount } from '@vue/test-utils';
 import VsSkiScotlandStatus from '../SkiScotlandStatus';
 
-const factoryShallowMount = () => shallowMount(VsSkiScotlandStatus);
+const centreInformationSlot = 'Centre Information Placeholder';
+
+const factoryShallowMount = (propsData) => shallowMount(VsSkiScotlandStatus, {
+    propsData: {
+        ...propsData,
+    },
+});
 
 let wrapper;
 beforeEach(() => {
@@ -10,8 +16,20 @@ beforeEach(() => {
 
 describe('VsSkiScotlandStatus', () => {
     describe(':props', () => {
-        it('should render an element with the data-attr `vs-ski-scotland-status-wrapper class', () => {
-            expect(wrapper.element.tagName).toBe('div');
+        it('should render a component with the data-test attribute `vs-ski-scotland-status`', () => {
+            expect(wrapper.find('[data-test="vs-ski-scotland-status"]').exists()).toBe(true);
+        });
+    });
+
+    describe(':slots', () => {
+        it('should render content inserted into `centre-information` slot', () => {
+            const modifiedWrapper = shallowMount(VsSkiScotlandStatus, {
+                slots: {
+                    'centre-information': centreInformationSlot,
+                },
+            });
+
+            expect(modifiedWrapper.text()).toContain(centreInformationSlot);
         });
     });
 });
