@@ -28,7 +28,7 @@
                                         name="tick"
                                         size="xs"
                                         class="mr-2"
-                                    /> Open
+                                    /> {{ openLabel }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.runs.open }}/{{ runs.length }}
@@ -43,7 +43,7 @@
                                         name="expected-open"
                                         size="xs"
                                         class="mr-2"
-                                    /> Opening
+                                    /> {{ openingLabel }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.runs.opening }}/{{ runs.length }}
@@ -58,7 +58,7 @@
                                         name="close"
                                         size="xs"
                                         class="mr-2"
-                                    /> Closed
+                                    /> {{ closedLabel }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.runs.closed }}/{{ runs.length }}
@@ -131,7 +131,7 @@
                     md="9"
                 >
                     <VsHeading level="3">
-                        Lift Status
+                        {{ liftStatusLabel }}
                     </VsHeading>
 
                     <VsTable
@@ -151,21 +151,21 @@
                                         name="close"
                                         size="xs"
                                         class="mr-2"
-                                    /> Closed
+                                    /> {{ closedLabel }}
                                 </VsTableDataCell>
                                 <VsTableDataCell v-if="lift.status === '1' || lift.status === 1">
                                     <VsIcon
                                         name="tick"
                                         size="xs"
                                         class="mr-2"
-                                    /> Open
+                                    /> {{ openLabel }}
                                 </VsTableDataCell>
                                 <VsTableDataCell v-if="lift.status === '2' || lift.status === 2">
                                     <VsIcon
                                         name="expected-open"
                                         size="xs"
                                         class="mr-2"
-                                    /> Opening
+                                    /> {{ openingLabel }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>{{ lift.name }}</VsTableDataCell>
                             </VsTableRow>
@@ -188,7 +188,7 @@
                     md="9"
                 >
                     <VsHeading level="3">
-                        Run Status
+                        {{ runStatusLabel }}
                     </VsHeading>
                     <div
                         v-for="level in filteredRunLevels"
@@ -222,7 +222,7 @@
                                                     name="close"
                                                     size="xs"
                                                     class="mr-2"
-                                                /> Closed
+                                                /> {{ closedLabel }}
                                             </VsTableDataCell>
                                             <VsTableDataCell
                                                 v-if="run.status === '1' || run.status === 1"
@@ -231,7 +231,7 @@
                                                     name="tick"
                                                     size="xs"
                                                     class="mr-2"
-                                                /> Open
+                                                /> {{ openLabel }}
                                             </VsTableDataCell>
                                             <VsTableDataCell
                                                 v-if="run.status === '2' || run.status === 2"
@@ -240,7 +240,7 @@
                                                     name="expected-open"
                                                     size="xs"
                                                     class="mr-2"
-                                                /> Opening
+                                                /> {{ openingLabel }}
                                             </VsTableDataCell>
                                             <VsTableDataCell>{{ run.name }}</VsTableDataCell>
                                         </VsTableRow>
@@ -315,6 +315,13 @@ export default {
             default: '',
         },
         /**
+         * Localisable label, translation of "closed" for status tables
+         */
+        closedLabel: {
+            type: String,
+            default: 'Closed',
+        },
+        /**
          * Localisable label, translation of "difficult" to indicate run difficulty
          */
         difficultLabel: {
@@ -357,6 +364,27 @@ export default {
             default: 'Lifts',
         },
         /**
+         * Localisable label, translation of "lift status" for status tables
+         */
+        liftStatusLabel: {
+            type: String,
+            default: 'Lift Status',
+        },
+        /**
+         * Localisable label, translation of "open" for status tables
+         */
+        openLabel: {
+            type: String,
+            default: 'Open',
+        },
+        /**
+         * Localisable label, translation of "opening" for status tables
+         */
+        openingLabel: {
+            type: String,
+            default: 'Opening',
+        },
+        /**
          * Localisable label, translation of "other" to indicate run difficulty
          */
         otherLabel: {
@@ -369,6 +397,13 @@ export default {
         runsLabel: {
             type: String,
             default: 'Runs',
+        },
+        /**
+         * Localisable label, translation of "run status" for status tables
+         */
+        runStatusLabel: {
+            type: String,
+            default: 'Run Status',
         },
         /**
          * Localisable label, translation of "status" for status tables
