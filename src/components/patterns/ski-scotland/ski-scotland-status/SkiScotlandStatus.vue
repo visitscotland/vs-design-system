@@ -7,9 +7,11 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    md="7"
+                    md="6"
                 >
-                    <h3>Run/Lift Status</h3>
+                    <VsHeading level="3">
+                        Run/Lift Status
+                    </VsHeading>
 
                     <VsTable
                         table-caption="Run/Lift Status"
@@ -21,7 +23,13 @@
                         </VsTableHead>
                         <VsTableBody>
                             <VsTableRow>
-                                <VsTableDataCell>Open</VsTableDataCell>
+                                <VsTableDataCell>
+                                    <VsIcon
+                                        name="tick"
+                                        size="xs"
+                                        class="mr-2"
+                                    /> Open
+                                </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.runs.open }}/{{ runs.length }}
                                 </VsTableDataCell>
@@ -30,7 +38,13 @@
                                 </VsTableDataCell>
                             </VsTableRow>
                             <VsTableRow>
-                                <VsTableDataCell>Opening</VsTableDataCell>
+                                <VsTableDataCell>
+                                    <VsIcon
+                                        name="expected-open"
+                                        size="xs"
+                                        class="mr-2"
+                                    /> Opening
+                                </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.runs.opening }}/{{ runs.length }}
                                 </VsTableDataCell>
@@ -39,7 +53,13 @@
                                 </VsTableDataCell>
                             </VsTableRow>
                             <VsTableRow>
-                                <VsTableDataCell>Closed</VsTableDataCell>
+                                <VsTableDataCell>
+                                    <VsIcon
+                                        name="close"
+                                        size="xs"
+                                        class="mr-2"
+                                    /> Closed
+                                </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.runs.closed }}/{{ runs.length }}
                                 </VsTableDataCell>
@@ -48,43 +68,66 @@
                                 </VsTableDataCell>
                             </VsTableRow>
                         </VsTableBody>
+                        <VsTableFooter>
+                            <VsTableRow>
+                                <VsTableDataCell
+                                    colspan="3"
+                                    role="cell"
+                                >
+                                    Last updated: {{ lastUpdate }}
+                                </VsTableDataCell>
+                            </VsTableRow>
+                        </VsTableFooter>
                     </VsTable>
-                    <VsTableFooter>
-                        <VsTableRow>
-                            <VsTableDataCell
-                                colspan="3"
-                                role="cell"
-                            >
-                                <p>Last updated: {{ lastUpdate }}</p>
-                            </VsTableDataCell>
-                        </VsTableRow>
-                    </VsTableFooter>
                 </VsCol>
 
                 <VsCol
                     cols="12"
-                    md="5"
+                    md="3"
+                    offset-md="1"
                 >
                     Centre information placeholder
                 </VsCol>
-
+            </VsRow>
+        </VsContainer>
+        <VsContainer>
+            <VsRow>
                 <VsCol
                     cols="12"
-                    md="8"
+                    md="7"
                 >
-                    <h3>Snow Conditions Full report</h3>
-
+                    <VsHeading level="3">
+                        Snow Conditions Full Report
+                    </VsHeading>
                     <p>{{ report }}</p>
-                    <h4>Current Weather</h4>
+                    <VsHeading level="4">
+                        Current Weather
+                    </VsHeading>
                     <p>{{ currentWeather }}</p>
-                    <h4>Weather Forecast</h4>
+                    <VsHeading level="4">
+                        Weather Forecast
+                    </VsHeading>
                     <p>{{ weatherForecast }}</p>
-                    <h4>Road Status</h4>
+                    <VsHeading level="4">
+                        Road Status
+                    </VsHeading>
                     <p>{{ roadStatus }}</p>
-                    <h4>News from the Slopes</h4>
+                    <VsHeading level="4">
+                        News from the Slopes
+                    </VsHeading>
                     <p>{{ news }}</p>
-
-                    <h3>Lift Status</h3>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="12"
+                    md="7"
+                >
+                    <VsHeading level="3">
+                        Lift Status
+                    </VsHeading>
 
                     <VsTable
                         table-caption="Lift Status"
@@ -99,57 +142,114 @@
                                 :key="lift.name"
                             >
                                 <VsTableDataCell v-if="lift.status === '0' || lift.status === 0">
-                                    Closed
+                                    <VsIcon
+                                        name="close"
+                                        size="xs"
+                                        class="mr-2"
+                                    /> Closed
                                 </VsTableDataCell>
                                 <VsTableDataCell v-if="lift.status === '1' || lift.status === 1">
-                                    Open
+                                    <VsIcon
+                                        name="tick"
+                                        size="xs"
+                                        class="mr-2"
+                                    /> Open
                                 </VsTableDataCell>
                                 <VsTableDataCell v-if="lift.status === '2' || lift.status === 2">
-                                    Opening
+                                    <VsIcon
+                                        name="expected-open"
+                                        size="xs"
+                                        class="mr-2"
+                                    /> Opening
                                 </VsTableDataCell>
                                 <VsTableDataCell>{{ lift.name }}</VsTableDataCell>
                             </VsTableRow>
                         </VsTableBody>
+                        <VsTableFooter>
+                            <VsTableRow>
+                                <VsTableDataCell>
+                                    <p>Last updated: {{ lastUpdate }}</p>
+                                </VsTableDataCell>
+                            </VsTableRow>
+                        </VsTableFooter>
                     </VsTable>
-                    <VsTableFooter>
-                        <VsTableRow>
-                            <VsTableDataCell>
-                                <p>Last updated: {{ lastUpdate }}</p>
-                            </VsTableDataCell>
-                        </VsTableRow>
-                    </VsTableFooter>
-
-                    <h3>Run Status</h3>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="12"
+                    md="7"
+                >
+                    <VsHeading level="3">
+                        Run Status
+                    </VsHeading>
                     <div
                         v-for="level in filteredRunLevels"
                         :key="level.name"
                     >
-                        <h4>{{ level.name }}</h4>
-                        <VsTable
-                            :table-caption="level.colour + ' - ' + level.name"
-                        >
-                            <VsTableHead>
-                                <VsTableHeaderCell>Status</VsTableHeaderCell>
-                                <VsTableHeaderCell>Run</VsTableHeaderCell>
-                            </VsTableHead>
-                            <VsTableBody>
-                                <VsTableRow
-                                    v-for="run in level.runs"
-                                    :key="run.name"
+                        <VsAccordion>
+                            <VsAccordionItem
+                                variant="transparent"
+                                :control-id="'accordion_item_' + level.name"
+                                :colour-badge="level.colour"
+                            >
+                                <span slot="title">
+                                    {{ level.name }}
+                                </span>
+                                <VsTable
+                                    :table-caption="level.colour + ' - ' + level.name"
                                 >
-                                    <VsTableDataCell v-if="run.status === '0' || run.status === 0">
-                                        Closed
-                                    </VsTableDataCell>
-                                    <VsTableDataCell v-if="run.status === '1' || run.status === 1">
-                                        Open
-                                    </VsTableDataCell>
-                                    <VsTableDataCell v-if="run.status === '2' || run.status === 2">
-                                        Opening
-                                    </VsTableDataCell>
-                                    <VsTableDataCell>{{ run.name }}</VsTableDataCell>
-                                </VsTableRow>
-                            </VsTableBody>
-                        </VsTable>
+                                    <VsTableHead>
+                                        <VsTableHeaderCell>Status</VsTableHeaderCell>
+                                        <VsTableHeaderCell>Run</VsTableHeaderCell>
+                                    </VsTableHead>
+                                    <VsTableBody>
+                                        <VsTableRow
+                                            v-for="run in level.runs"
+                                            :key="run.name"
+                                        >
+                                            <VsTableDataCell
+                                                v-if="run.status === '0' || run.status === 0"
+                                            >
+                                                <VsIcon
+                                                    name="close"
+                                                    size="xs"
+                                                    class="mr-2"
+                                                /> Closed
+                                            </VsTableDataCell>
+                                            <VsTableDataCell
+                                                v-if="run.status === '1' || run.status === 1"
+                                            >
+                                                <VsIcon
+                                                    name="tick"
+                                                    size="xs"
+                                                    class="mr-2"
+                                                /> Open
+                                            </VsTableDataCell>
+                                            <VsTableDataCell
+                                                v-if="run.status === '2' || run.status === 2"
+                                            >
+                                                <VsIcon
+                                                    name="expected-open"
+                                                    size="xs"
+                                                    class="mr-2"
+                                                /> Opening
+                                            </VsTableDataCell>
+                                            <VsTableDataCell>{{ run.name }}</VsTableDataCell>
+                                        </VsTableRow>
+                                    </VsTableBody>
+                                    <VsTableFooter>
+                                        <VsTableRow>
+                                            <VsTableDataCell>
+                                                <p>Last updated: {{ lastUpdate }}</p>
+                                            </VsTableDataCell>
+                                        </VsTableRow>
+                                    </VsTableFooter>
+                                </VsTable>
+                            </VsAccordionItem>
+                        </VsAccordion>
                     </div>
                 </VsCol>
             </VsRow>
@@ -166,9 +266,12 @@ import VsTableBody from '@components/patterns/table/components/TableBody';
 import VsTableRow from '@components/patterns/table/components/TableRow';
 import VsTableDataCell from '@components/patterns/table/components/TableDataCell';
 import VsTableFooter from '@components/patterns/table/components/TableFooter';
+import VsAccordion from '@components/patterns/accordion/Accordion';
+import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
 import {
     VsContainer, VsRow, VsCol,
 } from '@components/elements/grid';
+import VsHeading from '@components/elements/heading/Heading';
 
 const axios = require('axios');
 
@@ -192,6 +295,9 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
+        VsAccordion,
+        VsAccordionItem,
+        VsHeading,
     },
     props: {
         /**
@@ -367,3 +473,13 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+    .vs-ski-scotland-status {
+        .container {
+            &:not(:first-child) {
+                margin-top: $spacer-10;
+            }
+        }
+    }
+</style>
