@@ -9,7 +9,6 @@ on:
   workflow_dispatch: {}
 
 env:
-  applicationfolder: dist/system
   AWS_REGION: 'eu-west-2'
 
 jobs:
@@ -33,6 +32,11 @@ jobs:
           echo "${{ secrets.VS_ENV_FILE }}" > .env
       - run: |
           yarn system:build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: dist
+          path: dist/system
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -44,6 +48,11 @@ jobs:
       id-token: write
       contents: read
     steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: dist
+          path: dist/system
       - uses: actions/checkout@v3
       - uses: aws-actions/configure-aws-credentials@v1-node16
         with:
@@ -64,5 +73,5 @@ jobs:
           aws s3api create-bucket --bucket ${{env.GIT_BRANCH}} --create-bucket-configuration LocationConstraint=eu-west-2
       - name: Upload Artifact to s3
         run: |
-          aws s3 cp ./ s3://${{env.GIT_BRANCH}} --recursive
+          aws s3 cp ./dist/system s3://${{env.GIT_BRANCH}} --recursive
 
