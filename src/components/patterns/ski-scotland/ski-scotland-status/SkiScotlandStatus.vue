@@ -17,9 +17,9 @@
                         table-caption="Run/Lift Status"
                     >
                         <VsTableHead>
-                            <VsTableHeaderCell>Status</VsTableHeaderCell>
-                            <VsTableHeaderCell>Runs</VsTableHeaderCell>
-                            <VsTableHeaderCell>Lifts</VsTableHeaderCell>
+                            <VsTableHeaderCell>{{ statusLabel }}</VsTableHeaderCell>
+                            <VsTableHeaderCell>{{ runsLabel }}</VsTableHeaderCell>
+                            <VsTableHeaderCell>{{ liftsLabel }}</VsTableHeaderCell>
                         </VsTableHead>
                         <VsTableBody>
                             <VsTableRow>
@@ -138,8 +138,8 @@
                         table-caption="Lift Status"
                     >
                         <VsTableHead>
-                            <VsTableHeaderCell>Status</VsTableHeaderCell>
-                            <VsTableHeaderCell>Lift</VsTableHeaderCell>
+                            <VsTableHeaderCell>{{ statusLabel }}</VsTableHeaderCell>
+                            <VsTableHeaderCell>{{ liftLabel }}</VsTableHeaderCell>
                         </VsTableHead>
                         <VsTableBody>
                             <VsTableRow
@@ -207,8 +207,8 @@
                                     :table-caption="level.colour + ' - ' + level.name"
                                 >
                                     <VsTableHead>
-                                        <VsTableHeaderCell>Status</VsTableHeaderCell>
-                                        <VsTableHeaderCell>Run</VsTableHeaderCell>
+                                        <VsTableHeaderCell>{{ statusLabel }}</VsTableHeaderCell>
+                                        <VsTableHeaderCell>{{ runLabel }}</VsTableHeaderCell>
                                     </VsTableHead>
                                     <VsTableBody>
                                         <VsTableRow
@@ -315,11 +315,32 @@ export default {
             default: '',
         },
         /**
-         * Localisable label, used to indicate the last time the api data was updated
+         * Localisable label, translation of "last updated"
          */
         lastUpdatedLabel: {
             type: String,
             default: 'Last Updated',
+        },
+        /**
+         * Localisable label, translation of "lifts"
+         */
+        liftsLabel: {
+            type: String,
+            default: 'Lifts',
+        },
+        /**
+         * Localisable label, translation of "runs"
+         */
+        runsLabel: {
+            type: String,
+            default: 'Runs',
+        },
+        /**
+         * Localisable label, translation of "status"
+         */
+        statusLabel: {
+            type: String,
+            default: 'Status',
         },
         /**
          * The following properties are used to localise each of the months of the year
