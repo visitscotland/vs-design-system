@@ -74,7 +74,7 @@
                                     colspan="3"
                                     role="cell"
                                 >
-                                    Last updated: {{ lastUpdate }}
+                                    {{ lastUpdatedLabel }}: {{ lastUpdate }}
                                 </VsTableDataCell>
                             </VsTableRow>
                         </VsTableFooter>
@@ -173,7 +173,7 @@
                         <VsTableFooter>
                             <VsTableRow>
                                 <VsTableDataCell>
-                                    <p>Last updated: {{ lastUpdate }}</p>
+                                    <p>{{ lastUpdatedLabel }}: {{ lastUpdate }}</p>
                                 </VsTableDataCell>
                             </VsTableRow>
                         </VsTableFooter>
@@ -248,7 +248,7 @@
                                     <VsTableFooter>
                                         <VsTableRow>
                                             <VsTableDataCell>
-                                                <p>Last updated: {{ lastUpdate }}</p>
+                                                <p>{{ lastUpdatedLabel }}: {{ lastUpdate }}</p>
                                             </VsTableDataCell>
                                         </VsTableRow>
                                     </VsTableFooter>
@@ -313,6 +313,65 @@ export default {
         skiStatusUrl: {
             type: String,
             default: '',
+        },
+        /**
+         * Localisable label, used to indicate the last time the api data was updated
+         */
+        lastUpdatedLabel: {
+            type: String,
+            default: 'Last Updated',
+        },
+        /**
+         * The following properties are used to localise each of the months of the year
+         * for the last updated section
+         */
+        month01: {
+            type: String,
+            default: 'January',
+        },
+        month02: {
+            type: String,
+            default: 'February',
+        },
+        month03: {
+            type: String,
+            default: 'March',
+        },
+        month04: {
+            type: String,
+            default: 'April',
+        },
+        month05: {
+            type: String,
+            default: 'May',
+        },
+        month06: {
+            type: String,
+            default: 'June',
+        },
+        month07: {
+            type: String,
+            default: 'July',
+        },
+        month08: {
+            type: String,
+            default: 'August',
+        },
+        month09: {
+            type: String,
+            default: 'September',
+        },
+        month10: {
+            type: String,
+            default: 'October',
+        },
+        month11: {
+            type: String,
+            default: 'November',
+        },
+        month12: {
+            type: String,
+            default: 'December',
         },
     },
     data() {
@@ -431,7 +490,8 @@ export default {
             this.news = data.news_from_the_slopes;
         },
         processLastUpdate(lastUpdate) {
-            this.lastUpdate = `${lastUpdate.hour24}:${lastUpdate.minute} - ${lastUpdate.day} ${lastUpdate.month} ${lastUpdate.year}`;
+            const monthName = this[`month${lastUpdate.month}`];
+            this.lastUpdate = `${lastUpdate.hour24}:${lastUpdate.minute} - ${lastUpdate.day} ${monthName} ${lastUpdate.year}`;
         },
         processLifts(lifts) {
             for (let x = 0; x < lifts.length; x++) {
