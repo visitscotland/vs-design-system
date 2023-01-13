@@ -189,6 +189,10 @@ export default {
 
             &:hover {
                 box-shadow: $shadow_card;
+
+                .vs-megalink-link-list__title {
+                    text-decoration: underline;
+                }
             }
 
             .stretched-link {
