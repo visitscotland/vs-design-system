@@ -33,10 +33,11 @@ jobs:
       - run: |
           yarn system:build
       - name: Upload Artifact
-        uses: actions/upload-artifact@master
+        id: upload
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: dist
-          path: dist/system
+          path: dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -48,12 +49,6 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@master
-        id: download
-        with:
-          name: dist
-          path: dist/system
       - uses: actions/checkout@v3
       - uses: aws-actions/configure-aws-credentials@v1-node16
         with:
@@ -72,7 +67,11 @@ jobs:
           echo "Deploying branch ${{ env.GIT_BRANCH}} to ${{ github.event.inputs.environment.Location }}"
           commit_hash=`git rev-parse HEAD`
           aws s3api create-bucket --bucket ${{env.GIT_BRANCH}} --create-bucket-configuration LocationConstraint=eu-west-2
-      - name: Upload Artifact to s3
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+      - name: Upload artifact to S3
         run: |
-          aws s3 cp ${{steps.download.outputs.download-path}}/* s3://${{env.GIT_BRANCH}} --recursive
+          aws s3 cp dist.zip s3://${{env.GIT_BRANCH}}
 
