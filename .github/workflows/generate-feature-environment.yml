@@ -73,5 +73,5 @@ jobs:
           name: dist
       - name: Upload artifact to S3
         run: |
-          aws s3 cp dist.zip s3://${{env.GIT_BRANCH}}
+          aws s3 cp /actions/artifacts/dist s3://${{env.GIT_BRANCH}}
 
