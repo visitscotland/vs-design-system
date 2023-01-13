@@ -63,6 +63,5 @@ jobs:
           commit_hash=`git rev-parse HEAD`
           aws s3api create-bucket --bucket ${{env.GIT_BRANCH}} --create-bucket-configuration LocationConstraint=eu-west-2
       - name: Upload Artifact to s3
-        working-directory: ${{ env.applicationfolder }}/dist/
-        run: aws s3 cp system/* s3://${{ env.S3BUCKET }}/
+        run: aws s3 cp * s3://${{ env.S3BUCKET }}/
 
