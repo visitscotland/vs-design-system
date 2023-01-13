@@ -71,6 +71,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist
-          run: |
+          path: dist
+      - name: Copy to S3
+        run: |
             aws s3 cp ./ s3://${{env.GIT_BRANCH}}
 
