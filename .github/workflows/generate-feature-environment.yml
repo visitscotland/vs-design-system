@@ -71,23 +71,23 @@ jobs:
           # Short name for current branch. For PRs, use target branch (base ref)
           GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
           GIT_HASH=$(git rev-parse --short "$GITHUB_SHA")
-          echo "GIT_BRANCH=${GIT_BRANCH////-}-${GIT_HASH}" >> $GITHUB_ENV
+          echo "BUCKET_NAME=${GIT_BRANCH////-}-${GIT_HASH}" >> $GITHUB_ENV
 
       - name: Check if bucket already exists
         id: check-bucket
         run: |
           BUCKET_EXISTS=false
-          BUCKET_EXISTS=$(aws s3api head-bucket --bucket ${{ env.GIT_BRANCH}} 2>&1 || true)
-          echo "::set-output name=BUCKET_EXISTS::$(echo $BUCKET_EXISTS)"
-
+          BUCKET_EXISTS=$(aws s3api head-bucket --bucket ${{ env.BUCKET_NAME}} 2>&1 || true)
+          echo "BUCKET_EXISTS=${{ BUCKET_EXISTS }}" >> .env"
+          
       - name: Create bucket in S3
-        if: ${{ steps.check-bucket.outputs.BUCKET_EXISTS }} === false
+        if: ${{ env.BUCKET_EXISTS }} === false
         run: |
-          echo "Deploying branch ${{ env.GIT_BRANCH}} to ${{ github.event.inputs.environment.Location }}"
+          echo "Deploying branch ${{ env.GIT_BRANCH}}"
           commit_hash=`git rev-parse HEAD`
-          aws s3api create-bucket --bucket ${{env.GIT_BRANCH}} --create-bucket-configuration LocationConstraint=eu-west-2
-          aws s3api put-public-access-block --bucket ${{env.GIT_BRANCH}} --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
-          aws s3api put-bucket-policy --bucket ${{env.GIT_BRANCH}} --policy "{
+          aws s3api create-bucket --bucket ${{env.BUCKET_NAME}} --create-bucket-configuration LocationConstraint=eu-west-2
+          aws s3api put-public-access-block --bucket ${{env.BUCKET_NAME}} --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
+          aws s3api put-bucket-policy --bucket ${{env.BUCKET_NAME}} --policy "{
             \"Version\": \"2012-10-17\",
             \"Statement\": [
                 {
@@ -99,7 +99,7 @@ jobs:
                 }
             ]
           }"
-          aws s3 website s3://${{env.GIT_BRANCH}} --index-document index.html
+          aws s3 website s3://${{ env.BUCKET_NAME }} --index-document index.html
 
       - name: Download artifact
         uses: actions/download-artifact@v3
@@ -110,8 +110,9 @@ jobs:
       - name: Deploying to S3
         id: aws-sync
         run: |
-          echo "Deploying branch ${{ env.GIT_BRANCH}} to https://${{env.GIT_BRANCH}}.s3.${{env.region}}.amazonaws.com"
+          echo "Deploying branch ${{ env.GIT_BRANCH}} to https://${{ env.BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com"
           commit_hash=`git rev-parse HEAD`
           aws s3 sync ./dist/system/ s3://${{env.GIT_BRANCH}}
-          s3_url=https://${{env.GIT_BRANCH}}.s3.${{env.region}}.amazonaws.com
+          S3_URL=https://${{env.GIT_BRANCH}}.s3.${{env.AWS_REGION}}.amazonaws.com/index.html
+          echo "S3_URL=${ S3_URL }" >> .env"
 
