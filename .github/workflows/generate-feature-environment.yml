@@ -74,5 +74,5 @@ jobs:
           path: dist
       - name: Copy to S3
         run: |
-            aws s3 cp ./ s3://${{env.GIT_BRANCH}}
+            aws s3 cp ./ s3://${{env.GIT_BRANCH}} --recursive
 
