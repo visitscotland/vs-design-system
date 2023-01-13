@@ -19,35 +19,43 @@ jobs:
       - uses: DerYeger/yarn-setup-action@master
         with:
           node-version: 16
+
   build:
     name: Build
     runs-on: ubuntu-latest
     needs: prepare
+    
     steps:
       - uses: DerYeger/yarn-setup-action@master
         with:
           node-version: 16
+  
       - name: 'Create env file'
         run: |
           echo "${{ secrets.VS_ENV_FILE }}" > .env
       - run: |
           yarn system:build
+
       - name: Upload Artifact
         id: upload
         uses: actions/upload-artifact@v3.1.2
         with:
           name: dist
           path: dist
+  
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    
     # Create an environment for the static hosting
     environment:
       name: ds-s3-deployment
       url: ${{ steps.aws-sync.outputs.s3_url }}
+      
     permissions:
       id-token: write
       contents: read
+      
     steps:
       - uses: actions/checkout@v3
       - uses: aws-actions/configure-aws-credentials@v1-node16
@@ -57,12 +65,23 @@ jobs:
           role-to-assume: ${{ secrets.IAMROLE_GITHUB }}
           aws-region: ${{ env.AWS_REGION }}
           role-duration-seconds: 1200
-      - name: Get branch name for bucket name
+
+      - name: Generate bucket name from branch name
         run: |
           # Short name for current branch. For PRs, use target branch (base ref)
           GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
-          echo "GIT_BRANCH=${GIT_BRANCH////-}" >> $GITHUB_ENV
+          GIT_HASH=$(git rev-parse --short "$GITHUB_SHA")
+          echo "GIT_BRANCH=${GIT_BRANCH////-}-${GIT_HASH}" >> $GITHUB_ENV
+
+      - name: Check if bucket already exists
+        id: check-bucket
+        run: |
+          BUCKET_EXISTS=false
+          BUCKET_EXISTS=$(aws s3api head-bucket --bucket ${{ env.GIT_BRANCH}} 2>&1 || true)
+          echo "::set-output name=BUCKET_EXISTS::$(echo $BUCKET_EXISTS)"
+
       - name: Create bucket in S3
+        if: ${{ steps.check-bucket.outputs.BUCKET_EXISTS }} === false
         run: |
           echo "Deploying branch ${{ env.GIT_BRANCH}} to ${{ github.event.inputs.environment.Location }}"
           commit_hash=`git rev-parse HEAD`
@@ -80,12 +99,19 @@ jobs:
                 }
             ]
           }"
+          aws s3 website s3://${{env.GIT_BRANCH}} --index-document index.html
+
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: dist
           path: dist
-      - name: Copy to S3
+    
+      - name: Deploying to S3
+        id: aws-sync
         run: |
-            aws s3 sync ./dist/system/ s3://${{env.GIT_BRANCH}}
+          echo "Deploying branch ${{ env.GIT_BRANCH}} to https://${{env.GIT_BRANCH}}.s3.${{env.region}}.amazonaws.com"
+          commit_hash=`git rev-parse HEAD`
+          aws s3 sync ./dist/system/ s3://${{env.GIT_BRANCH}}
+          s3_url=https://${{env.GIT_BRANCH}}.s3.${{env.region}}.amazonaws.com
 
