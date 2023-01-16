@@ -6,9 +6,14 @@
     <VsSkiScotlandStatus
         ski-status-url=" http://glencoe.infonet-online.fr/json/snowreport.json"
     >
-        Test
         <div slot="centre-information">
             Centre information placeholder
+        </div>
+        <div slot="data-loading">
+            Data is currently loading, please wait...
+        </div>
+        <div slot="js-required">
+            JavaScript is required to load more ski data.
         </div>
     </VsSkiScotlandStatus>
     <hr>
@@ -17,9 +22,14 @@
     <VsSkiScotlandStatus
         ski-status-url="https://www.cairngormmountain.co.uk/_mountain_feed/?json"
     >
-        Test
         <div slot="centre-information">
             Centre information placeholder
+        </div>
+        <div slot="data-loading">
+            Data is currently loading, please wait...
+        </div>
+        <div slot="js-required">
+            JavaScript is required to load more ski data.
         </div>
     </VsSkiScotlandStatus>
 ```

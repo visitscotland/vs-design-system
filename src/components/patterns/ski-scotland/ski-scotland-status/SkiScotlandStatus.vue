@@ -3,11 +3,39 @@
         class="vs-ski-scotland-status"
         data-test="vs-ski-scotland-status"
     >
+        <VsContainer v-if="!jsDisabled && isLoading">
+            <VsRow>
+                <VsCol class="text-center py-4">
+                    <VsLoadingSpinner />
+                    <!--
+                        @slot Slot for data loading message
+                        Expects text
+                    -->
+                    <slot name="data-loading" />
+                </VsCol>
+            </VsRow>
+        </VsContainer>
         <VsContainer>
             <VsRow>
                 <VsCol
                     cols="12"
                     md="6"
+                    v-if="jsDisabled"
+                >
+                    <VsWarning
+                        theme="light"
+                    >
+                        <!--
+                            @slot Slot for JS required message
+                            Expects text
+                        -->
+                        <slot name="js-required" />
+                    </VsWarning>
+                </VsCol>
+                <VsCol
+                    cols="12"
+                    md="6"
+                    v-if="!jsDisabled && !isLoading"
                 >
                     <VsHeading level="3">
                         {{ runsLiftsStatusLabel }}
@@ -93,9 +121,9 @@
                     <slot name="centre-information" />
                 </VsCol>
             </VsRow>
-        </VsContainer>
-        <VsContainer>
-            <VsRow>
+            <VsRow
+                v-if="!jsDisabled && !isLoading"
+            >
                 <VsCol
                     cols="12"
                     md="9"
@@ -123,9 +151,9 @@
                     <p>{{ news }}</p>
                 </VsCol>
             </VsRow>
-        </VsContainer>
-        <VsContainer>
-            <VsRow>
+            <VsRow
+                v-if="!jsDisabled && !isLoading"
+            >
                 <VsCol
                     cols="12"
                     md="9"
@@ -180,9 +208,9 @@
                     </VsTable>
                 </VsCol>
             </VsRow>
-        </VsContainer>
-        <VsContainer>
-            <VsRow>
+            <VsRow
+                v-if="!jsDisabled && !isLoading"
+            >
                 <VsCol
                     cols="12"
                     md="9"
@@ -273,11 +301,14 @@ import VsTableDataCell from '@components/patterns/table/components/TableDataCell
 import VsTableFooter from '@components/patterns/table/components/TableFooter';
 import VsAccordion from '@components/patterns/accordion/Accordion';
 import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
+import VsWarning from '@components/patterns/warning/Warning';
 import {
     VsContainer, VsRow, VsCol,
 } from '@components/elements/grid';
 import VsIcon from '@components/elements/icon/Icon';
 import VsHeading from '@components/elements/heading/Heading';
+import VsLoadingSpinner from '@components/elements/loading-spinner/LoadingSpinner';
+import jsIsDisabled from '@/utils/js-is-disabled';
 
 const axios = require('axios');
 
@@ -305,6 +336,8 @@ export default {
         VsAccordionItem,
         VsIcon,
         VsHeading,
+        VsLoadingSpinner,
+        VsWarning,
     },
     props: {
         /**
@@ -574,6 +607,8 @@ export default {
                     runs: [],
                 },
             ],
+            jsDisabled: true,
+            isLoading: true,
         };
     },
     computed: {
@@ -585,6 +620,10 @@ export default {
         if (this.skiStatusUrl) {
             this.retrieveSkiStatus();
         }
+
+        // Checks whether js is disabled, to display an appropriate warning to the user
+        this.jsDisabled = jsIsDisabled();
+        this.jsDisabled = true;
     },
     methods: {
         /**
@@ -599,6 +638,7 @@ export default {
                     this.processRuns(data.runs);
                     this.processLastUpdate(data.lastUpdate);
                     this.processFullReport(data.report);
+                    this.isLoading = false;
                 })
                 .catch(() => {
                     this.runStatusInfo = null;
@@ -700,7 +740,7 @@ export default {
             }
         }
 
-        .container {
+        .vs-row {
             &:not(:first-child) {
                 margin-top: $spacer-10;
             }
