@@ -623,7 +623,6 @@ export default {
 
         // Checks whether js is disabled, to display an appropriate warning to the user
         this.jsDisabled = jsIsDisabled();
-        this.jsDisabled = true;
     },
     methods: {
         /**
