@@ -18,6 +18,12 @@
                 :class="toggleAccordionBtn"
                 @toggle-panel="onButtonClick"
             >
+                <div
+                    class="vs-accordion-item__card-colour-badge"
+                    data-test="vs-accordion-item__card-colour-badge"
+                    :style="'background-color: ' + colourBadge"
+                    v-if="colourBadge"
+                />
                 <!-- @slot Put the title here  -->
                 <slot name="title" />
 
@@ -108,6 +114,15 @@ export default {
     },
     props: {
         /**
+         * If a colour code or name is provided, a badge of that colour will
+         * appear on the accordion item haeder.
+         */
+        colourBadge: {
+            type: String,
+            required: false,
+            default: '',
+        },
+        /**
          * The aria control ID used for panel ID to match button aria control
          */
         controlId: {
@@ -196,6 +211,14 @@ export default {
     .vs-accordion-item__title {
         padding: $spacer-3;
         margin-bottom: 0;
+    }
+
+    .vs-accordion-item__card-colour-badge {
+        width: $spacer-3;
+        height: $spacer-3;
+        border-radius: $spacer-1;
+        display: inline-block;
+        margin-right: $spacer-4;
     }
 
     .vs-accordion-item__panel.card-body {
