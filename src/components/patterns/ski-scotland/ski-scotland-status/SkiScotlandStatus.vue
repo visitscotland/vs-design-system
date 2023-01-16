@@ -788,7 +788,7 @@ export default {
             }
         }
 
-        .vs-row {
+        .row {
             &:not(:first-child) {
                 margin-top: $spacer-10;
             }
