@@ -21,6 +21,7 @@
                     cols="12"
                     md="6"
                     v-if="jsDisabled"
+                    data-test="vs-ski__js-disabled"
                 >
                     <VsWarning
                         theme="light"
@@ -37,7 +38,10 @@
                     md="6"
                     v-if="!jsDisabled && !isLoading"
                 >
-                    <VsHeading level="3">
+                    <VsHeading
+                        level="3"
+                        data-test="vs-ski__runs-lifts-status-label"
+                    >
                         {{ runsLiftsStatusLabel }}
                     </VsHeading>
 
@@ -45,9 +49,21 @@
                         table-caption="Run/Lift Status"
                     >
                         <VsTableHead>
-                            <VsTableHeaderCell>{{ statusLabel }}</VsTableHeaderCell>
-                            <VsTableHeaderCell>{{ runsLabel }}</VsTableHeaderCell>
-                            <VsTableHeaderCell>{{ liftsLabel }}</VsTableHeaderCell>
+                            <VsTableHeaderCell>
+                                <span data-test="vs-ski__status-label">
+                                    {{ statusLabel }}
+                                </span>
+                            </VsTableHeaderCell>
+                            <VsTableHeaderCell>
+                                <span data-test="vs-ski__runs-label">
+                                    {{ runsLabel }}
+                                </span>
+                            </VsTableHeaderCell>
+                            <VsTableHeaderCell>
+                                <span data-test="vs-ski__lifts-label">
+                                    {{ liftsLabel }}
+                                </span>
+                            </VsTableHeaderCell>
                         </VsTableHead>
                         <VsTableBody>
                             <VsTableRow>
@@ -56,7 +72,10 @@
                                         name="tick"
                                         size="xs"
                                         class="mr-2"
-                                    /> {{ openLabel }}
+                                    />
+                                    <span data-test="vs-ski__open-label">
+                                        {{ openLabel }}
+                                    </span>
                                 </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.runs.open }}/{{ runs.length }}
@@ -71,7 +90,10 @@
                                         name="expected-open"
                                         size="xs"
                                         class="mr-2"
-                                    /> {{ openingLabel }}
+                                    />
+                                    <span data-test="vs-ski__opening-label">
+                                        {{ openingLabel }}
+                                    </span>
                                 </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.runs.opening }}/{{ runs.length }}
@@ -86,7 +108,8 @@
                                         name="close"
                                         size="xs"
                                         class="mr-2"
-                                    /> {{ closedLabel }}
+                                    />
+                                    <span data-test="vs-ski__closed-label">{{ closedLabel }}</span>
                                 </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.runs.closed }}/{{ runs.length }}
@@ -102,7 +125,9 @@
                                     colspan="3"
                                     role="cell"
                                 >
-                                    {{ lastUpdatedLabel }}: {{ lastUpdate }}
+                                    <span data-test="vs-ski__last-updated-label">
+                                        {{ lastUpdatedLabel }}: {{ lastUpdate }}
+                                    </span>
                                 </VsTableDataCell>
                             </VsTableRow>
                         </VsTableFooter>
@@ -129,23 +154,38 @@
                     md="9"
                     class="vs-ski-scotland-status__full-report"
                 >
-                    <VsHeading level="2">
+                    <VsHeading
+                        level="2"
+                        data-test="vs-ski__snow-conditions-label"
+                    >
                         {{ snowConditionsLabel }}
                     </VsHeading>
                     <p>{{ report }}</p>
-                    <VsHeading level="3">
+                    <VsHeading
+                        level="3"
+                        data-test="vs-ski__current-weather-label"
+                    >
                         {{ currentWeatherLabel }}
                     </VsHeading>
                     <p>{{ currentWeather }}</p>
-                    <VsHeading level="3">
+                    <VsHeading
+                        level="3"
+                        data-test="vs-ski__weather-forecast-label"
+                    >
                         {{ weatherForecastLabel }}
                     </VsHeading>
                     <p>{{ weatherForecast }}</p>
-                    <VsHeading level="3">
-                        {{ roadStatusLabel }}
+                    <VsHeading
+                        level="3"
+                        data-test="vs-ski__roads-label"
+                    >
+                        {{ roadsLabel }}
                     </VsHeading>
                     <p>{{ roadStatus }}</p>
-                    <VsHeading level="3">
+                    <VsHeading
+                        level="3"
+                        data-test="vs-ski__news-label"
+                    >
                         {{ newsLabel }}
                     </VsHeading>
                     <p>{{ news }}</p>
@@ -158,7 +198,10 @@
                     cols="12"
                     md="9"
                 >
-                    <VsHeading level="3">
+                    <VsHeading
+                        level="3"
+                        data-test="vs-ski__lift-status-label"
+                    >
                         {{ liftStatusLabel }}
                     </VsHeading>
 
@@ -215,7 +258,10 @@
                     cols="12"
                     md="9"
                 >
-                    <VsHeading level="3">
+                    <VsHeading
+                        level="3"
+                        data-test="vs-ski__run-status-label"
+                    >
                         {{ runStatusLabel }}
                     </VsHeading>
                     <div
@@ -228,7 +274,10 @@
                                 :control-id="'accordion_item_' + level.name"
                                 :colour-badge="level.colour"
                             >
-                                <span slot="title">
+                                <span
+                                    slot="title"
+                                    :data-test="`vs-ski__${level.name}-label`"
+                                >
                                     {{ level.name }}
                                 </span>
                                 <VsTable
