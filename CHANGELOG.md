@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.7](https://github.com/visitscotland/design-system/compare/v0.5.6...v0.5.7) (2023-01-16)
+
+
+### Bug Fixes
+
+* 🐛 Add missing required fields to megalinks video examples ([867f7fe](https://github.com/visitscotland/design-system/commit/867f7feedb1b185ac4b5316dc4bf70f3594b6b8c))
+* 🐛 Remove unnecessary js enabled check causing race cond ([30d447b](https://github.com/visitscotland/design-system/commit/30d447be5ab5c46e095538879962ebae3ffbb091))
+
 ### [0.5.6](https://github.com/visitscotland/design-system/compare/v0.5.5...v0.5.6) (2023-01-13)
 
 
