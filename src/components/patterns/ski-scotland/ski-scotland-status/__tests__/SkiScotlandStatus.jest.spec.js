@@ -3,9 +3,11 @@ import moxios from 'moxios';
 import VsSkiScotlandStatus from '../SkiScotlandStatus';
 
 const sampleSkiData = require('./assets/sample-ski-data.json');
+const sampleCairngormsData = require('./assets/sample-cairngorms-ski-data.json');
 
 const centreInformationSlot = 'Centre Information Placeholder';
 const skiStatusUrl = 'https://testurl';
+const skiStatusCairngormsUrl = 'https://testurlcairngorms';
 
 const closedLabel = 'fermé';
 const currentWeatherLabel = 'météo actuelle';
@@ -57,24 +59,25 @@ const factoryMount = (propsData) => mount(VsSkiScotlandStatus, {
     },
 });
 
-let wrapper;
-beforeEach(() => {
-    moxios.install();
-
-    moxios.stubRequest(skiStatusUrl, {
-        status: 200,
-        response: sampleSkiData,
-    });
-
-    wrapper = factoryMount();
-});
-
-afterEach(() => {
-    moxios.uninstall();
-});
 
 describe('VsSkiScotlandStatus', () => {
     describe(':props', () => {
+        let wrapper;
+        beforeEach(() => {
+            moxios.install();
+
+            moxios.stubRequest(skiStatusUrl, {
+                status: 200,
+                response: sampleSkiData,
+            });
+
+            wrapper = factoryMount();
+        });
+
+        afterEach(() => {
+            moxios.uninstall();
+        });
+
         it('should render a component with the data-test attribute `vs-ski-scotland-status`', () => {
             expect(wrapper.find('[data-test="vs-ski-scotland-status"]').exists()).toBe(true);
         });
@@ -198,6 +201,72 @@ describe('VsSkiScotlandStatus', () => {
             });
 
             expect(modifiedWrapper.text()).toContain(centreInformationSlot);
+        });
+    });
+
+    describe(':skiScotlandData', () => {
+        let wrapper;
+        beforeEach(() => {
+            moxios.install();
+
+            moxios.stubRequest(skiStatusUrl, {
+                status: 200,
+                response: sampleSkiData,
+            });
+
+            wrapper = factoryMount();
+        });
+
+        afterEach(() => {
+            moxios.uninstall();
+        });
+
+        it('should correctly calculate the number of open, opening and closed runs', () => {
+            expect(wrapper.vm.statusSummary.runs.open).toBe(18);
+            expect(wrapper.vm.statusSummary.runs.opening).toBe(1);
+            expect(wrapper.vm.statusSummary.runs.closed).toBe(3);
+        });
+
+        it('should correctly calculate the number of runs in each difficulty', () => {
+            const easyRuns = wrapper.findAll(`[data-test="vs-ski__${easyLabel}-row"]`);
+            const difficultRuns = wrapper.findAll(`[data-test="vs-ski__${difficultLabel}-row"]`);
+
+            expect(easyRuns.length).toBe(8);
+            expect(difficultRuns.length).toBe(5);
+        });
+    });
+
+    describe(':cairngormsData', () => {
+        let wrapper;
+        beforeEach(() => {
+            moxios.install();
+
+            moxios.stubRequest(skiStatusCairngormsUrl, {
+                status: 200,
+                response: sampleCairngormsData,
+            });
+
+            wrapper = factoryMount({
+                skiStatusUrl: skiStatusCairngormsUrl
+            });
+        });
+
+        afterEach(() => {
+            moxios.uninstall();
+        });
+
+        it('should correctly calculate the number of open, opening and closed runs', () => {
+            expect(wrapper.vm.statusSummary.runs.open).toBe(16);
+            expect(wrapper.vm.statusSummary.runs.opening).toBe(0);
+            expect(wrapper.vm.statusSummary.runs.closed).toBe(16);
+        });
+
+        it('should correctly calculate the number of runs in each difficulty', () => {
+            const easyRuns = wrapper.findAll(`[data-test="vs-ski__${easyLabel}-row"]`);
+            const difficultRuns = wrapper.findAll(`[data-test="vs-ski__${difficultLabel}-row"]`);
+
+            expect(easyRuns.length).toBe(14);
+            expect(difficultRuns.length).toBe(6);
         });
     });
 });

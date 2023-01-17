@@ -239,7 +239,7 @@
                     },
                     {
                         "name": "Test Itinerary",
-                        "status": 1,
+                        "status": 2,
                         "difficulty": "orange"
                     }
                 ]

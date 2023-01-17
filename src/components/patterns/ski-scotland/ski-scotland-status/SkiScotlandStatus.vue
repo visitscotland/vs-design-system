@@ -304,6 +304,7 @@
                                         <VsTableRow
                                             v-for="run in level.runs"
                                             :key="run.name"
+                                            :data-test="`vs-ski__${level.name}-row`"
                                         >
                                             <VsTableDataCell
                                                 v-if="run.status === '0' || run.status === 0"
