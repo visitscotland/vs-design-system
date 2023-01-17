@@ -46,7 +46,7 @@
                     </VsHeading>
 
                     <VsTable
-                        table-caption="Run/Lift Status"
+                        :table-caption="runsLiftsStatusLabel"
                     >
                         <VsTableHead>
                             <VsTableHeaderCell>
@@ -206,7 +206,7 @@
                     </VsHeading>
 
                     <VsTable
-                        table-caption="Lift Status"
+                        :table-caption="liftStatusLabel"
                     >
                         <VsTableHead>
                             <VsTableHeaderCell>{{ statusLabel }}</VsTableHeaderCell>
