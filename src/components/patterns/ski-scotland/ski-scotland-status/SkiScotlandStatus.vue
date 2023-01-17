@@ -193,7 +193,15 @@
                     >
                         {{ newsLabel }}
                     </VsHeading>
-                    <p>{{ news }}</p>
+                    <!-- eslint-disable vue/no-v-html -->
+                    <div
+                        v-if="isCairngorms"
+                        v-html="news"
+                    />
+                    <!-- eslint-enable vue/no-v-html -->
+                    <p v-else>
+                        {{ news }}
+                    </p>
                 </VsCol>
             </VsRow>
             <VsRow
@@ -663,6 +671,7 @@ export default {
             ],
             jsDisabled: true,
             isLoading: true,
+            isCairngorms: false,
         };
     },
     computed: {
@@ -710,6 +719,7 @@ export default {
                 output.lastUpdate = data.snowReport.lastupdate;
                 output.lifts = data.lifts.sector.items;
                 output.runs = data.runs.items;
+                this.isCairngorms = true;
             } else {
                 // SkiScotland formatting
                 output.lastUpdate = data.lastupdate;
