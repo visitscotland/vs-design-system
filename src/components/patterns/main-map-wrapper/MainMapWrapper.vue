@@ -246,13 +246,6 @@ export default {
             type: String,
             default: null,
         },
-        /**
-         * URL for bounds data
-         */
-        boundsDataUrl: {
-            type: String,
-            default: null,
-        },
     },
     data() {
         return {
@@ -268,8 +261,6 @@ export default {
             subCatList: null,
             selectedToggle: '',
             currentEndpointData: null,
-            boundsData: [
-            ],
         };
     },
     computed: {
@@ -291,12 +282,6 @@ export default {
         },
     },
     mounted() {
-        if (this.boundsDataUrl !== null) {
-            axios.get(this.boundsDataUrl).then((response) => {
-                this.boundsData = this.getPlaceBounds(response.data);
-            });
-        }
-
         this.selectedToggle = this.initialSelected;
         mapStore.commit('addMapInstance', {
             id: this.mapId,
@@ -483,20 +468,6 @@ export default {
                 this.showAllPlaces();
                 this.setStage(0);
             }
-        },
-        /**
-         * Get bounds of place using data provided
-         */
-        getPlaceBounds(data) {
-            const placeBounds = data.filter((place) => {
-                if (place.id === this.placeId) {
-                    return place.bounds;
-                }
-
-                return null;
-            });
-
-            return placeBounds;
         },
     },
 };

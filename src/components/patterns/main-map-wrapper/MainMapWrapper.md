@@ -4,7 +4,6 @@ user to filter and search for data contained on the map.
 
 ```jsx
 <VsMainMapWrapper
-    boundsDataUrl="//172.28.74.132:8082"
     categoryHeading="Explore places to go"
     :filters="maps.mapFiltersSubcategories"
     :places-data="maps.placesDataFeatured.features"
