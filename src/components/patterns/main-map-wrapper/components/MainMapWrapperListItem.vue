@@ -92,7 +92,9 @@ export default {
             this.formattedData = this.itemData;
         } else {
             this.formattedData.id = this.itemData.id;
-            this.formattedData.image = this.itemData.images[0].mediaUrl;
+            if (typeof this.itemData.images[0].mediaUrl !== 'undefined') {
+                this.formattedData.image = this.itemData.images[0].mediaUrl;
+            }
             this.formattedData.title = this.itemData.name;
         }
     },
@@ -106,6 +108,7 @@ export default {
                 mapId: this.mapId,
                 placeId: id,
             });
+
             this.$parent.$emit('show-item-detail', id);
             this.$parent.$emit('set-stage', 2);
         },

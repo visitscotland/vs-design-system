@@ -32,6 +32,8 @@ const factoryShallowMount = () => shallowMount(VsMainMapWrapper, {
         currentStage: 0,
         clearSelectionText: 'Clear selection',
         applyFiltersText: 'Apply filters',
+        clearFiltersText: 'Clear filters',
+        filtersAppliedText: 'filters applied',
     },
     provide: {
         regions: [
@@ -151,7 +153,7 @@ describe('VsMainMapWrapper', () => {
 
         it('should render the `noJs` slot content', () => {
             const wrapper = factoryShallowMount();
-            const warning = wrapper.find('vswarning');
+            const warning = wrapper.find('vswarning-stub');
             expect(warning.text()).toContain('Javascript is needed for this map');
         });
     });

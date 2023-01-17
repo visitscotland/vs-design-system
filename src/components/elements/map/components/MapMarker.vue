@@ -52,6 +52,13 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * Selected place ID
+         */
+        selectedPlace: {
+            type: String,
+            default: null,
+        },
     },
     computed: {
         isActive() {
@@ -83,11 +90,28 @@ export default {
             return 'marker-featured';
         },
     },
+    watch: {
+        isActive() {
+            if (this.activePlace === this.feature.properties.id
+                || this.highlightedPlace === this.feature.properties.id) {
+                return true;
+            }
+
+            return false;
+        },
+        activePlace() {
+            if (this.activePlace === this.feature.properties.id) {
+                mapStore.dispatch('setActiveMarkerPos', this.feature.geometry.coordinates);
+            }
+        },
+    },
+
     methods: {
         /**
          * Fires on click of the marker
          */
         handleClick() {
+            mapStore.dispatch('setActiveMarkerPos', this.feature.geometry.coordinates);
             mapStore.dispatch('setActivePlace', {
                 mapId: this.mapId,
                 placeId: this.feature.properties.id,

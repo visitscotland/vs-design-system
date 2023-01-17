@@ -104,6 +104,14 @@ export default {
             type: String,
             default: null,
         },
+        /**
+         * The location of the data for bounds details
+         */
+        boundsData: {
+            type: Array,
+            default: () => [],
+        },
+
     },
     data() {
         return {
@@ -142,6 +150,13 @@ export default {
 
             return '';
         },
+        activeMarkerPostion() {
+            if (this.mapbox.map) {
+                return mapStore.getters.getActiveMarkerPosition;
+            }
+
+            return null;
+        },
     },
     watch: {
         isVisible(newVal) {
@@ -177,6 +192,11 @@ export default {
                 this.removeActivePolygon();
             } else if (isPolygon.length > 0) {
                 this.addActivePolygon(newVal);
+            }
+        },
+        activeMarkerPostion(coords) {
+            if (!this.checkPointIsVisible(coords)) {
+                this.centreMapOnPoint(coords);
             }
         },
     },
@@ -619,6 +639,23 @@ export default {
          */
         onResize() {
             this.isTablet = window.innerWidth >= 768;
+        },
+        /**
+         * Check a marker is visible on the map
+         */
+        checkPointIsVisible() {
+            const isInBounds = this.mapbox.map.getBounds()
+                .contains(this.activeMarkerPostion);
+
+            return isInBounds;
+        },
+        /**
+         * Reposition map to centre on point
+         */
+        centreMapOnPoint(coords) {
+            this.mapbox.map.flyTo({
+                center: coords,
+            });
         },
     },
 };

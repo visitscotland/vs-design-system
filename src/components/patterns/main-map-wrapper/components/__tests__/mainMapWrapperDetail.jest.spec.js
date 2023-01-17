@@ -14,6 +14,9 @@ const factoryShallowMount = () => shallowMount(VsMainMapWrapperDetail, {
                 description: 'Aberdeen description',
                 image: 'https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm',
                 link: 'https://www.visitscotland.com/',
+                address: {
+                    shortAddress: 'New Town, Edinburgh',
+                },
             },
         },
     },
