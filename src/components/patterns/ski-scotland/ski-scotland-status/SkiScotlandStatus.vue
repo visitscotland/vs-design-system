@@ -41,6 +41,7 @@
                     <VsHeading
                         level="3"
                         data-test="vs-ski__runs-lifts-status-label"
+                        class="d-none d-md-block"
                     >
                         {{ runsLiftsStatusLabel }}
                     </VsHeading>
@@ -163,6 +164,7 @@
                     <p>{{ report }}</p>
                     <VsHeading
                         level="3"
+                        override-style-level="6"
                         data-test="vs-ski__current-weather-label"
                     >
                         {{ currentWeatherLabel }}
@@ -170,6 +172,7 @@
                     <p>{{ currentWeather }}</p>
                     <VsHeading
                         level="3"
+                        override-style-level="6"
                         data-test="vs-ski__weather-forecast-label"
                     >
                         {{ weatherForecastLabel }}
@@ -177,6 +180,7 @@
                     <p>{{ weatherForecast }}</p>
                     <VsHeading
                         level="3"
+                        override-style-level="6"
                         data-test="vs-ski__roads-label"
                     >
                         {{ roadsLabel }}
@@ -184,6 +188,7 @@
                     <p>{{ roadStatus }}</p>
                     <VsHeading
                         level="3"
+                        override-style-level="6"
                         data-test="vs-ski__news-label"
                     >
                         {{ newsLabel }}
@@ -779,7 +784,11 @@ export default {
     .vs-ski-scotland-status {
         &__full-report {
             h2 {
-                margin-bottom: $spacer-7;
+                margin-bottom: $spacer-4;
+
+                @include media-breakpoint-up(md) {
+                    margin-bottom: $spacer-7;
+                }
             }
 
             h3 {
@@ -790,7 +799,11 @@ export default {
 
         .row {
             &:not(:first-child) {
-                margin-top: $spacer-10;
+                margin-top: $spacer-8 + $spacer-2;
+
+                @include media-breakpoint-up(md) {
+                    margin-top: $spacer-10;
+                }
             }
         }
     }
