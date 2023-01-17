@@ -207,9 +207,18 @@ export default {
          * Adds a map to the page
          */
         addMap() {
-            const southWest = new mapboxgl.LngLat(-3.048225395093510, 56.016982686756705);
-            const northEast = new mapboxgl.LngLat(-3.4343917642985673, 55.86853555707165);
-            const boundingBox = new mapboxgl.LngLatBounds(southWest, northEast);
+            let boundingBox;
+            if (this.boundsData.type === 'bounds') {
+                console.log(this.boundsData.coordinates[1][0]);
+                const southWest = new mapboxgl
+                    .LngLat(this.boundsData.coordinates[1][0], this.boundsData.coordinates[1][1]);
+                const northEast = new mapboxgl
+                    .LngLat(this.boundsData.coordinates[0][0], this.boundsData.coordinates[0][1]);
+                boundingBox = new mapboxgl.LngLatBounds(southWest, northEast);
+            } else {
+                boundingBox = this.getBoundsFromPolygon();
+            }
+
             this.mapbox.config.container = this.$refs.mapbox;
             this.mapbox.map = new mapboxgl.Map({
                 container: this.$refs.mapbox,
@@ -630,6 +639,17 @@ export default {
          */
         onResize() {
             this.isTablet = window.innerWidth >= 768;
+        },
+        /**
+         * Creates a map bounding object from polygon data
+         */
+        getBoundsFromPolygon() {
+            const coordinates = this.boundsData.coordinates[0];
+            /* eslint-disable arrow-body-style */
+            return coordinates.reduce((bounds, coord) => {
+                return bounds.extend(coord);
+            }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+            /* eslint-enable arrow-body-style */
         },
     },
 };

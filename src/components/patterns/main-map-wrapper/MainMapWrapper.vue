@@ -66,7 +66,7 @@
                             :show-polygons="showRegions"
                             @show-detail="showDetail"
                             @set-category="setCategory"
-                            :bounds-data ="regionBounds"
+                            :bounds-data="regionBounds"
                         >
                             <template slot="noJs">
                                 <!-- @slot Message to show when JS is disabled  -->
@@ -223,8 +223,8 @@ export default {
          * Bounds if map needs to show a specific area
          */
         regionBounds: {
-            type: Array,
-            default: () => [],
+            type: Object,
+            default: () => {},
         },
     },
     data() {
