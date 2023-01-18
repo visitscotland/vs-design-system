@@ -411,6 +411,14 @@ export default {
             default: '',
         },
         /**
+         * Locale string determined by the language selected on the site. Used to localise
+         * the month in getLastUpdated
+         */
+        locale: {
+            type: String,
+            default: 'en-gb',
+        },
+        /**
          * Localisable label, translation of "closed" for status tables
          */
         closedLabel: {
@@ -459,6 +467,13 @@ export default {
         lastUpdatedLabel: {
             type: String,
             default: 'Last Updated',
+        },
+        /**
+         * Localisable label, translation of "lift" for status tables
+         */
+        liftLabel: {
+            type: String,
+            default: 'Lift',
         },
         /**
          * Localisable label, translation of "lifts" for status tables
@@ -512,6 +527,13 @@ export default {
             default: 'Road Status',
         },
         /**
+         * Localisable label, translation of "run" for status tables
+         */
+        runLabel: {
+            type: String,
+            default: 'Run',
+        },
+        /**
          * Localisable label, translation of "runs" for status tables
          */
         runsLabel: {
@@ -562,58 +584,6 @@ export default {
         weatherForecastLabel: {
             type: String,
             default: 'Weather Forecast',
-        },
-        /**
-         * The following properties are used to localise each of the months of the year
-         * for the last updated section
-         */
-        month01: {
-            type: String,
-            default: 'January',
-        },
-        month02: {
-            type: String,
-            default: 'February',
-        },
-        month03: {
-            type: String,
-            default: 'March',
-        },
-        month04: {
-            type: String,
-            default: 'April',
-        },
-        month05: {
-            type: String,
-            default: 'May',
-        },
-        month06: {
-            type: String,
-            default: 'June',
-        },
-        month07: {
-            type: String,
-            default: 'July',
-        },
-        month08: {
-            type: String,
-            default: 'August',
-        },
-        month09: {
-            type: String,
-            default: 'September',
-        },
-        month10: {
-            type: String,
-            default: 'October',
-        },
-        month11: {
-            type: String,
-            default: 'November',
-        },
-        month12: {
-            type: String,
-            default: 'December',
         },
     },
     data() {
@@ -740,7 +710,15 @@ export default {
             this.news = data.news_from_the_slopes;
         },
         processLastUpdate(lastUpdate) {
-            const monthName = this[`month${lastUpdate.month}`];
+            const event = new Date(
+                lastUpdate.year,
+                parseInt(lastUpdate.month, 10) - 1,
+                lastUpdate.day
+            );
+            const options = {
+                month: 'long',
+            };
+            const monthName = event.toLocaleDateString(this.locale, options);
             this.lastUpdate = `${lastUpdate.hour24}:${lastUpdate.minute} - ${lastUpdate.day} ${monthName} ${lastUpdate.year}`;
         },
         processLifts(lifts) {

@@ -4,7 +4,8 @@
     <VsHeading level="2">Glencoe Ski Status</VsHeading>
     <hr>
     <VsSkiScotlandStatus
-        ski-status-url=" http://glencoe.infonet-online.fr/json/snowreport.json"
+        ski-status-url="http://glencoe.infonet-online.fr/json/snowreport.json"
+        locale="en-gb"
     >
         <div slot="centre-information">
             Centre information placeholder
@@ -21,6 +22,7 @@
     <hr>
     <VsSkiScotlandStatus
         ski-status-url="https://www.cairngormmountain.co.uk/_mountain_feed/?json"
+        locale="fr-fr"
     >
         <div slot="centre-information">
             Centre information placeholder

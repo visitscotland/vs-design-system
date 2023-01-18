@@ -59,7 +59,6 @@ const factoryMount = (propsData) => mount(VsSkiScotlandStatus, {
     },
 });
 
-
 describe('VsSkiScotlandStatus', () => {
     describe(':props', () => {
         let wrapper;
@@ -190,6 +189,13 @@ describe('VsSkiScotlandStatus', () => {
             const container = wrapper.find('[data-test="vs-ski__status-label"]');
             expect(container.html()).toContain(statusLabel);
         });
+
+        it('should correctly display the last updated month in english if the locale is `en-gb` (default)', () => {
+            const container = wrapper.find('[data-test="vs-ski__last-updated-label"]');
+            expect(container.html()).toContain('January');
+
+            moxios.uninstall();
+        });
     });
 
     describe(':slots', () => {
@@ -247,7 +253,7 @@ describe('VsSkiScotlandStatus', () => {
             });
 
             wrapper = factoryMount({
-                skiStatusUrl: skiStatusCairngormsUrl
+                skiStatusUrl: skiStatusCairngormsUrl,
             });
         });
 
@@ -269,4 +275,45 @@ describe('VsSkiScotlandStatus', () => {
             expect(difficultRuns.length).toBe(6);
         });
     });
+
+    /* eslint-disable */
+    /**
+     * This test can't actually be run, toLocaleDateString ignores the provided locale within jest
+     * because Node doesn't come with the localisation packages internally. The functionality does
+     * appear to work and the second example in the design system renders the date as `Last
+     * Updated: 13:18 - 18 janvier 2023`m but within a test environment it will provide a false
+     * negative.
+     *
+     * See:
+     * https://github.com/facebook/jest/issues/3514
+     * https://stackoverflow.com/questions/23199909/using-tolocalestring-in-node-js/23200062#23200062
+     */
+
+    // describe(':localisation', () => {
+    //  let wrapper;
+    //     beforeEach(() => {
+    //         moxios.install();
+
+    //         moxios.stubRequest(skiStatusUrl, {
+    //             status: 200,
+    //             response: sampleSkiData,
+    //         });
+
+    //         wrapper = factoryMount({
+    //             locale: 'fr-fr',
+    //         });
+    //     });
+
+    //     afterEach(() => {
+    //         moxios.uninstall();
+    //     });
+
+    //     it('should correctly display the last updated month in french if the locale is `fr-fr`', () => {
+    //         const container = wrapper.find('[data-test="vs-ski__last-updated-label"]');
+    //         expect(container.html()).toContain('Janvier');
+
+    //         moxios.uninstall();
+    //     });
+    // });
+    /* eslint-enable */
 });
