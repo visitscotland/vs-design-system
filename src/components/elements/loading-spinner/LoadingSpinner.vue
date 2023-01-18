@@ -45,6 +45,7 @@ export default {
         animation-duration: 3000ms;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        width: 100%;
 
         @for $i from 1 through 7 {
             .vs-loading-spinner__dot:nth-child(#{$i}) {
