@@ -175,6 +175,9 @@ user to filter and search for data contained on the map.
             ]
         ],
     }"
+    filtersAppliedText="filters applied"
+    clearFiltersText="clear filters"
+    placeId="dumfries"
 >
     <template slot="closeSidePanelText">
         <span class="sr-only">

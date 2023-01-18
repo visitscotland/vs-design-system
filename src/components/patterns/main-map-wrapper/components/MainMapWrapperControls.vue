@@ -58,6 +58,10 @@ export default {
                 this.isDisabled = true;
             }
         });
+
+        if (this.getSubcatFilters.length > 0) {
+            this.isDisabled = false;
+        }
     },
     methods: {
         /**

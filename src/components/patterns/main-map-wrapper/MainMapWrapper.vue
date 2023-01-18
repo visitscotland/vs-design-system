@@ -102,6 +102,7 @@ import {
 } from '@components/elements/grid';
 import VsMap from '@components/elements/map/Map';
 import VsButton from '@components/elements/button/Button/';
+import VsWarning from '@components/patterns/warning/Warning';
 import VsButtonToggleGroup from '@components/patterns/button-toggle-group/ButtonToggleGroup';
 import axios from 'axios';
 import VsMainMapWrapperPanel from './components/MainMapWrapperPanel';
@@ -126,6 +127,7 @@ export default {
         VsButton,
         VsMainMapWrapperPanel,
         VsButtonToggleGroup,
+        VsWarning,
     },
     provide() {
         return {
@@ -136,6 +138,8 @@ export default {
             clearSelectionText: this.clearSelectionText,
             applyFiltersText: this.applyFiltersText,
             subCatList: this.subCatList,
+            filtersAppliedText: this.filtersAppliedText,
+            clearFiltersText: this.clearFiltersText,
         };
     },
     props: {
@@ -225,6 +229,29 @@ export default {
         regionBounds: {
             type: Object,
             default: () => {},
+        },
+        /**
+         * Text for clearing filters - to be passed
+         * to buttons component
+         */
+        clearFiltersText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Text for applied filters - to be passed
+         * to buttons component
+         */
+        filtersAppliedText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * ID for map's place
+         */
+        placeId: {
+            type: String,
+            default: null,
         },
     },
     data() {
@@ -396,7 +423,7 @@ export default {
                 }
             }
 
-            if (this.currentStage !== 2) {
+            if (num !== 2) {
                 // if the stage isn't showing a place's details
                 // make sure the store doesn't have an active place set
                 mapStore.dispatch('setActivePlace', {

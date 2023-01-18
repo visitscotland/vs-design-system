@@ -149,6 +149,13 @@ export default {
 
             return '';
         },
+        activeMarkerPostion() {
+            if (this.mapbox.map) {
+                return mapStore.getters.getActiveMarkerPosition;
+            }
+
+            return null;
+        },
     },
     watch: {
         isVisible(newVal) {
@@ -186,6 +193,11 @@ export default {
                 this.addActivePolygon(newVal);
             }
         },
+        activeMarkerPostion(coords) {
+            if (!this.checkPointIsVisible(coords)) {
+                this.centreMapOnPoint(coords);
+            }
+        },
     },
     mounted() {
         initFontAwesome();
@@ -208,7 +220,8 @@ export default {
          */
         addMap() {
             let boundingBox;
-            if (this.boundsData.length === 0) {
+            if (this.boundsData.length === 0
+                || this.boundsData.type === 'MultiPolygon') {
                 boundingBox = [
                     [-7.555827, 55.308836], // south-west point.
                     [-0.778285, 60.830894], // north-east point.
@@ -650,6 +663,23 @@ export default {
                 return bounds.extend(coord);
             }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
             /* eslint-enable arrow-body-style */
+        },
+        /**
+         * Check a marker is visible on the map
+         */
+        checkPointIsVisible() {
+            const isInBounds = this.mapbox.map.getBounds()
+                .contains(this.activeMarkerPostion);
+
+            return isInBounds;
+        },
+        /**
+         * Reposition map to centre on point
+         */
+        centreMapOnPoint(coords) {
+            this.mapbox.map.flyTo({
+                center: coords,
+            });
         },
     },
 };
