@@ -1,0 +1,52 @@
+{
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "category": { "id": "featured", "label": "Featured Places" },
+                "id": "af10c61f-4f4d-412d-ab7a-267834ee4201",
+                "title": "Visit Edinburgh and discover the best things to see and do in Scotland's capital",
+                "description": "Edinburgh city teaser",
+                "image": "/content/gallery/visitscotland/default/royal-botanic-garden.jpg/royal-botanic-garden.jpg/hippogallery:original",
+                "link": {
+                    "label": "Discover Visit Edinburgh and discover the best things to see and do in Scotland's capital",
+                    "link": "/site/sandbox/destinations/edinburgh",
+                    "type": "INTERNAL"
+                }
+            },
+            "geometry": { "type": "Point", "coordinates": [-3.2852550000000003, 55.95357800000001] }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "category": { "id": "featured", "label": "Featured Places" },
+                "id": "bb5ac1b1-22a9-4c06-9f7b-707738d3e412",
+                "title": "National Museum of Scotland",
+                "description": "Explore the diversity of the natural world, world cultures, science and technology, art, design and fashion, and Scottish history, all under one roof. A range of new safety measures have been put in place along with timed entry to ensure that we can manage numbers and maintain physical distancing. Please book a timed entry ticket online at www.nms.ac.uk/scotland in advance of your visit. This includes National Museums Scotland members.",
+                "image": "http://www.visitscotland.com/wsimgs/External%20View%20Media%20Res%20c%20Andrew%20Lee.jpg",
+                "link": {
+                    "label": "Discover National Museum of Scotland",
+                    "link": "http://172.28.81.65:8089/info/see-do/national-museum-of-scotland-p246591",
+                    "type": "INTERNAL"
+                }
+            },
+            "geometry": { "type": "Point", "coordinates": [-3.18924, 55.94707] }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "category": { "id": "featured", "label": "Featured Places" },
+                "id": "680a900c-bae5-42f8-a775-839b5c70f809",
+                "title": "Discover The mountain with its head in the clouds",
+                "description": "Experiencing Ben Nevis Scotland's landscape is scattered with Munros and mist-shrouded hills...",
+                "image": "/content/gallery/visitscotland/default/2021/01/ben-nevis-view_cropped.jpg/ben-nevis-view_cropped.jpg/hippogallery:original",
+                "link": {
+                    "label": "Discover Discover The mountain with its head in the clouds",
+                    "link": "/site/sandbox/long-content",
+                    "type": "INTERNAL"
+                }
+            },
+            "geometry": { "type": "Point", "coordinates": [-5.003361, 56.797394] }
+        }
+    ]
+}

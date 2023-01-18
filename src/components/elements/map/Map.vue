@@ -104,6 +104,14 @@ export default {
             type: String,
             default: null,
         },
+        /**
+         * The location of the data for bounds details
+         */
+        boundsData: {
+            type: Array,
+            default: () => [],
+        },
+
     },
     data() {
         return {
@@ -142,6 +150,13 @@ export default {
 
             return '';
         },
+        activeMarkerPostion() {
+            if (this.mapbox.map) {
+                return mapStore.getters.getActiveMarkerPosition;
+            }
+
+            return null;
+        },
     },
     watch: {
         isVisible(newVal) {
@@ -150,7 +165,8 @@ export default {
             }
         },
         places() {
-            this.geojsonData.features.splice(0, this.geojsonData.features.length);
+            this.geojsonData.features = [];
+            // this.geojsonData.features.splice(0, this.geojsonData.features.length);
             this.addMapFeatures();
             this.addMapMarkers();
         },
@@ -176,6 +192,11 @@ export default {
                 this.removeActivePolygon();
             } else if (isPolygon.length > 0) {
                 this.addActivePolygon(newVal);
+            }
+        },
+        activeMarkerPostion(coords) {
+            if (!this.checkPointIsVisible(coords)) {
+                this.centreMapOnPoint(coords);
             }
         },
     },
@@ -259,7 +280,7 @@ export default {
                         properties: {
                             title: place.properties.title,
                             imageSrc: place.image,
-                            type: place.properties.category.id,
+                            type: typeof place.properties.category !== 'undefined' ? place.properties.category.id : '',
                             id: place.properties.id,
                         },
                         id: place.properties.id,
@@ -277,6 +298,10 @@ export default {
                 for (let i = this.markers.length - 1; i >= 0; i--) {
                     this.markers[i].remove();
                 }
+            }
+
+            for (let child = this.$children.length - 1; child >= 0; child--) {
+                this.$children[child].$destroy();
             }
 
             this.geojsonData.features.forEach((feature) => {
@@ -614,6 +639,23 @@ export default {
          */
         onResize() {
             this.isTablet = window.innerWidth >= 768;
+        },
+        /**
+         * Check a marker is visible on the map
+         */
+        checkPointIsVisible() {
+            const isInBounds = this.mapbox.map.getBounds()
+                .contains(this.activeMarkerPostion);
+
+            return isInBounds;
+        },
+        /**
+         * Reposition map to centre on point
+         */
+        centreMapOnPoint(coords) {
+            this.mapbox.map.flyTo({
+                center: coords,
+            });
         },
     },
 };

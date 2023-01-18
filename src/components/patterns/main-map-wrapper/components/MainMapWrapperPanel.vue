@@ -10,7 +10,7 @@
         >
             <div
                 class="vs-main-map-wrapper-panel__back"
-                v-if="currentStage > 0"
+                v-if="currentStage > 0 || selectedSubcategory"
             >
                 <VsButton
                     icon-only
@@ -78,30 +78,56 @@
         </div>
 
         <template v-if="currentStage === 0">
-            <div
-                v-for="filter in filters"
-                :key="filter.id"
-            >
-                <VsMainMapWrapperCategory
-                    :category-name="filter.label"
-                    :type="filter.id"
+            <template v-if="selectedSubcategory !== null">
+                <VsMainMapWrapperSubcategory
+                    :data="selectedSubcategoryData[0].subCategory"
                 />
-            </div>
+                <VsMainMapWrapperControls />
+            </template>
+            <template v-else>
+                <div
+                    v-for="filter in filters"
+                    :key="filter.id"
+                >
+                    <VsMainMapWrapperCategory
+                        :category-name="filter.label"
+                        :type="filter.id"
+                        :has-sub-cat="subCatExists(filter)"
+                    />
+                </div>
+            </template>
         </template>
         <template v-if="currentStage === 1">
-            <div
-                v-for="place in currentData"
-                :key="place.id"
-            >
-                <VsMainMapWrapperListItem
-                    v-if="typeof place.properties !== 'undefined'
-                        && place.properties.category.id === selectedCategory"
-                    :item-data="place.properties"
-                    @show-item-detail="showDetail(place.properties.id)"
+            <template v-if="selectedSubcategory !== null">
+                <div
+                    v-for="place in subcategoryLocations"
+                    :key="place.id"
                 >
-                    {{ place.properties.title }}
-                </VsMainMapWrapperListItem>
-            </div>
+                    <VsMainMapWrapperListItem
+                        :item-data="place"
+                        :from-endpoint="true"
+                        @show-item-detail="showDetail(place.id)"
+                    />
+                </div>
+                <VsMainMapWrapperButtons
+                    :content-data="{}"
+                    :filter-count="subCatFilterCount"
+                    @clear-filters="clearSubCatFilters"
+                />
+            </template>
+            <template v-else>
+                <div
+                    v-for="place in currentData"
+                    :key="place.id"
+                >
+                    <VsMainMapWrapperListItem
+                        v-if="typeof place.properties !== 'undefined'
+                            && place.properties.category.id === selectedCategory"
+                        :item-data="place.properties"
+                        @show-item-detail="showDetail(place.properties.id)"
+                    />
+                </div>
+            </template>
         </template>
         <template v-if="currentStage === 2">
             <VsMainMapWrapperDetail
@@ -119,9 +145,12 @@
 import VsButton from '@components/elements/button/Button/';
 import VsHeading from '@components/elements/heading/Heading';
 import VsMainMapWrapperCategory from './MainMapWrapperCategory';
+import VsMainMapWrapperSubcategory from './MainMapWrapperSubcategory';
 import VsMainMapWrapperListItem from './MainMapWrapperListItem';
 import VsMainMapWrapperDetail from './MainMapWrapperDetail';
 import VsMainMapWrapperButtons from './MainMapWrapperButtons';
+import VsMainMapWrapperControls from './MainMapWrapperControls';
+import mapStore from '../../../../stores/map.store';
 
 /**
  * Renders a side panel for the map wrapper component
@@ -136,10 +165,12 @@ export default {
     components: {
         VsButton,
         VsMainMapWrapperCategory,
+        VsMainMapWrapperSubcategory,
         VsHeading,
         VsMainMapWrapperListItem,
         VsMainMapWrapperDetail,
         VsMainMapWrapperButtons,
+        VsMainMapWrapperControls,
     },
     inject: [
         'filters',
@@ -169,6 +200,13 @@ export default {
             default: '',
         },
         /**
+         * Currently selected subcategory
+         */
+        selectedSubcategory: {
+            type: String,
+            default: null,
+        },
+        /**
          * The current stage
          */
         currentStage: {
@@ -189,23 +227,41 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * The ID of the currently hover item
+         */
+        subcategoryLocations: {
+            type: Array,
+            default: null,
+        },
+        /**
+         * Place data defined from endpoint
+         */
+        currentEndpointData: {
+            type: Array,
+            default: null,
+        },
     },
     computed: {
         currentHeading() {
             let headingText = '';
 
-            switch (this.currentStage) {
-            case 0:
-                headingText = this.categoryHeading;
-                break;
-            case 1:
-                headingText = this.currentFilter.label;
-                break;
-            case 2:
-                headingText = this.currentPlaceData[0].properties.title;
-                break;
-            default:
-                break;
+            if (this.selectedSubcategory !== null) {
+                headingText = this.selectedSubcategoryData[0].label;
+            } else {
+                switch (this.currentStage) {
+                case 0:
+                    headingText = this.categoryHeading;
+                    break;
+                case 1:
+                    headingText = this.currentFilter.label;
+                    break;
+                case 2:
+                    headingText = this.currentPlaceData[0].properties.title;
+                    break;
+                default:
+                    break;
+                }
             }
 
             return headingText;
@@ -245,6 +301,10 @@ export default {
                 data = this.regions;
             }
 
+            if (this.currentEndpointData !== null) {
+                return this.refineEndpointData(this.currentEndpointData);
+            }
+
             return data.filter((obj) => {
                 if (typeof obj.properties !== 'undefined') {
                     return obj.properties.id === this.selectedItem;
@@ -253,7 +313,18 @@ export default {
                 return false;
             });
         },
+        selectedSubcategoryData() {
+            if (this.selectedSubcategory) {
+                const data = this.filters.filter((item) => item.id === this.selectedSubcategory);
 
+                return data;
+            }
+
+            return [];
+        },
+        subCatFilterCount() {
+            return mapStore.getters.getActiveSubcatFilters.length;
+        },
     },
     methods: {
         /**
@@ -263,11 +334,21 @@ export default {
             this.$emit('close-panel');
         },
         /**
-         * Moves one stage back
+         * Moves back stages dependent on current state
          */
         stageBack() {
-            const previousStage = this.currentStage - 1;
-            this.setStage(previousStage);
+            if (this.selectedSubcategory && this.currentStage === 0) {
+                // if the user is on the subcategory page, keep the stage the same
+                // but reset the subcategory
+                this.$emit('set-subcategory', null);
+            } else if (this.selectedSubcategory !== null && this.subcategoryLocations === null) {
+                // if the user has selected a subcategory item straight from the subcategory
+                // filter menu, take them back to that stage
+                this.setStage(0);
+            } else {
+                const previousStage = this.currentStage - 1;
+                this.setStage(previousStage);
+            }
         },
         /**
          * Resets the panel
@@ -281,6 +362,55 @@ export default {
         setStage(stageNum) {
             this.$emit('set-stage', stageNum);
         },
+        /**
+         * Determines whether or not a subCategory
+         * array exists and has data in it
+         */
+        subCatExists(cat) {
+            if (typeof cat.subCategory !== 'undefined'
+                && cat.subCategory.length > 0) {
+                return true;
+            }
+
+            return false;
+        },
+        /**
+         * transforms endpoint data into format to be used
+         */
+        refineEndpointData(data) {
+            const refinedData = [{
+                isEndpoint: true,
+                properties: {
+                    category: data[0].category[0].id,
+                    id: data[0].id,
+                    image: data[0].images[0].mediaUrl,
+                    placeTitle: data[0].name,
+                    description: data[0].description,
+                    link: {
+                        label: data[0].productLink.label,
+                        link: data[0].productLink.link,
+                        type: data[0].productLink.type,
+                    },
+                    website: {
+                        label: data[0].website.label,
+                        link: data[0].website.link,
+                        type: data[0].website.type,
+                    },
+                    address: {
+                        shortAddress: data[0].address.shortAddress,
+                    },
+                },
+            }];
+
+            return refinedData;
+        },
+        /**
+         * clear the subcategory filters
+        */
+        clearSubCatFilters() {
+            mapStore.dispatch('setActiveSubcatFilters', []);
+            this.setStage(0);
+        },
     },
 };
 </script>
@@ -293,6 +423,8 @@ export default {
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
 
         &--small-padding {
             padding-top: $spacer-6;
@@ -328,8 +460,7 @@ export default {
             display: none;
         }
 
-        h2.vs-heading,
-        h3.vs-heading {
+        h2.vs-heading {
             flex-grow: 1;
             margin: $spacer-11 $spacer-3 $spacer-0;
         }

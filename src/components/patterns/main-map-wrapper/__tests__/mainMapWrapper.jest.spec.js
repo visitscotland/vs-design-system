@@ -1,11 +1,28 @@
 import { shallowMount } from '@vue/test-utils';
+import axios from 'axios';
 import VsMainMapWrapper from '../MainMapWrapper';
 import placesJson from './data/places.json';
 import filtersJson from './data/filters.json';
+import filtersSubcatJson from './data/fitlersSubcat.json';
+
+const mockSubCat = [
+    {
+        id: 1,
+        title: 'title1',
+    },
+    {
+        id: 2,
+        title: 'title2',
+    },
+];
+
+// Following lines tell Jest to mock any call to `axios.get`
+jest.spyOn(axios, 'get').mockResolvedValue(mockSubCat);
 
 const factoryShallowMount = () => shallowMount(VsMainMapWrapper, {
     slots: {
         openSidePanelText: 'Open panel',
+        noJs: 'Javascript is needed for this map',
     },
     propsData: {
         placesData: placesJson.features,
@@ -13,6 +30,10 @@ const factoryShallowMount = () => shallowMount(VsMainMapWrapper, {
         selectedItem: 'a4260a0c-9d66-425b-835a-eec833c30a92',
         mapId: 'vs-map',
         currentStage: 0,
+        clearSelectionText: 'Clear selection',
+        applyFiltersText: 'Apply filters',
+        clearFiltersText: 'Clear filters',
+        filtersAppliedText: 'filters applied',
     },
     provide: {
         regions: [
@@ -76,14 +97,6 @@ describe('VsMainMapWrapper', () => {
             expect(wrapper.vm.selectedCategory).toBe('cities');
         });
 
-        it('should change the `currentStage` data when the `setStage` method is fired', async() => {
-            const wrapper = factoryShallowMount();
-
-            wrapper.vm.setStage(2);
-            await wrapper.vm.$nextTick();
-            expect(wrapper.vm.currentStage).toBe(2);
-        });
-
         it('should add all objects from `placesData` prop to `activePins` when `showAllPlaces` is fired', async() => {
             const wrapper = factoryShallowMount();
             wrapper.vm.showAllPlaces();
@@ -105,6 +118,29 @@ describe('VsMainMapWrapper', () => {
 
             expect(wrapper.vm.activePins.length).toBe(0);
         });
+
+        it('should update the `selectedSubCategory` data value when method is run', async() => {
+            const wrapper = factoryShallowMount();
+
+            await wrapper.setProps({
+                filters: filtersSubcatJson,
+            });
+
+            wrapper.vm.setSubCategory('acco');
+
+            expect(wrapper.vm.selectedSubCategory).toBe('acco');
+        });
+
+        it('should make two API calls when the subcategory is changed', async() => {
+            const wrapper = factoryShallowMount();
+            await wrapper.setProps({
+                filters: filtersSubcatJson,
+            });
+            wrapper.vm.setSubCategory('acco');
+
+            await wrapper.vm.$nextTick();
+            expect(axios.get).toHaveBeenCalledTimes(2);
+        });
     });
 
     describe(':slots', () => {
@@ -113,6 +149,12 @@ describe('VsMainMapWrapper', () => {
             const openMapBtn = wrapper.find('[data-test="vs-main-map-wrapper__map-toggle"]');
 
             expect(openMapBtn.text()).toBe('Open panel');
+        });
+
+        it('should render the `noJs` slot content', () => {
+            const wrapper = factoryShallowMount();
+            const warning = wrapper.find('vswarning-stub');
+            expect(warning.text()).toContain('Javascript is needed for this map');
         });
     });
 });

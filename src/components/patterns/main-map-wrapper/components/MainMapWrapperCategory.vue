@@ -53,14 +53,25 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * If the category has a subcategory
+         */
+        hasSubCat: {
+            type: Boolean,
+            default: false,
+        },
     },
     methods: {
         /**
          * Emits category type
          */
         selectCategory(type) {
-            this.$parent.$emit('set-category', type);
-            this.$parent.$emit('set-stage', 1);
+            if (this.hasSubCat) {
+                this.$parent.$emit('set-subcategory', type);
+            } else {
+                this.$parent.$emit('set-category', type);
+                this.$parent.$emit('set-stage', 1);
+            }
         },
     },
 };

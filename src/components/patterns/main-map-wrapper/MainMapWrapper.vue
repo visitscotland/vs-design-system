@@ -15,10 +15,15 @@
                         <VsMainMapWrapperPanel
                             :category-heading="categoryHeading"
                             :selected-category="selectedCategory"
+                            :selected-subcategory="selectedSubCategory"
                             :current-stage="currentStage"
                             :selected-item="selectedItem"
                             :heading-level="mainHeadingExists ? '3' : '2'"
+                            :subcategory-locations="subCatList"
+                            :current-endpoint-data="currentEndpointData"
                             @set-category="setCategory"
+                            @set-subcategory="setSubCategory"
+                            @subcategories-filtered="filterSubCategories"
                             @set-stage="setStage"
                             @close-panel="closePanel"
                             @show-item-detail="showDetail"
@@ -59,6 +64,7 @@
                             :selected-item="selectedItem"
                             :map-id="mapId"
                             :show-polygons="showRegions"
+                            :bounds-data="boundsData"
                             @show-detail="showDetail"
                             @set-category="setCategory"
                         >
@@ -75,6 +81,14 @@
                         />
                     </div>
                 </div>
+
+                <VsWarning
+                    class="vs-main-map-wrapper__no-js"
+                    theme="light"
+                >
+                    <!-- @slot Message to show when JS is disabled  -->
+                    <slot name="noJs" />
+                </VsWarning>
             </VsCol>
         </VsRow>
     </VsContainer>
@@ -88,7 +102,9 @@ import {
 } from '@components/elements/grid';
 import VsMap from '@components/elements/map/Map';
 import VsButton from '@components/elements/button/Button/';
+import VsWarning from '@components/patterns/warning/Warning';
 import VsButtonToggleGroup from '@components/patterns/button-toggle-group/ButtonToggleGroup';
+import axios from 'axios';
 import VsMainMapWrapperPanel from './components/MainMapWrapperPanel';
 import mapStore from '../../../stores/map.store';
 
@@ -111,6 +127,7 @@ export default {
         VsButton,
         VsMainMapWrapperPanel,
         VsButtonToggleGroup,
+        VsWarning,
     },
     provide() {
         return {
@@ -118,6 +135,11 @@ export default {
             placesData: this.placesData,
             mapId: this.mapId,
             regions: this.regionsData,
+            clearSelectionText: this.clearSelectionText,
+            applyFiltersText: this.applyFiltersText,
+            subCatList: this.subCatList,
+            filtersAppliedText: this.filtersAppliedText,
+            clearFiltersText: this.clearFiltersText,
         };
     },
     props: {
@@ -180,11 +202,54 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * Text for the 'clear selection' button
+         */
+        clearSelectionText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Text for the 'apply filters' button
+         */
+        applyFiltersText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Endpoint for getting place details
+         */
+        detailsEndpoint: {
+            type: String,
+            default: '',
+        },
+        /**
+         * Text for clearing filters - to be passed
+         * to buttons component
+         */
+        clearFiltersText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Text for applied filters - to be passed
+         * to buttons component
+         */
+        filtersAppliedText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * ID for map's place
+         */
+        placeId: {
+            type: String,
+            default: null,
+        },
     },
     data() {
         return {
             panelVisible: false,
-            currentStage: 0,
             selectedCategory: '',
             filterCategories: this.filters,
             selectedItem: '',
@@ -193,7 +258,9 @@ export default {
             showRegions: false,
             regions: [
             ],
+            subCatList: null,
             selectedToggle: '',
+            currentEndpointData: null,
         };
     },
     computed: {
@@ -206,6 +273,12 @@ export default {
         regionsData() {
             return this.placesData.filter((place) => place.geometry.type === 'Polygon'
                 || place.geometry.type === 'MultiPolygon');
+        },
+        currentStage() {
+            return mapStore.getters.getCurrentStage;
+        },
+        selectedSubCategory() {
+            return mapStore.getters.getSelectedSubcat;
         },
     },
     mounted() {
@@ -237,29 +310,113 @@ export default {
             this.selectedItem = id;
             this.setStage(2);
             this.openPanel();
-            this.filterPlaces(this.selectedCategory);
+            if (this.selectedSubCategory === null) {
+                this.filterPlaces(this.selectedCategory);
+            }
         },
         /**
          * Sets the currently chosen category
          */
         setCategory(cat) {
             this.selectedCategory = cat;
-            this.filterPlaces(cat);
+            if (this.selectedSubCategory === null) {
+                this.filterPlaces(cat);
+            }
         },
+        /**
+         * Sets a subcategory
+         */
+        setSubCategory(subcat) {
+            mapStore.dispatch('setSelectedSubcat', subcat);
+            if (subcat !== null) {
+                this.getSubcatMarkerData();
+                this.selectedCategory = subcat;
+            } else {
+                mapStore.dispatch('setActiveSubcatFilters', []);
+                this.showAllPlaces();
+            }
+        },
+        /**
+         * Filters subcategories
+         */
+        filterSubCategories(filters) {
+            let filterString = '';
+
+            filters.forEach((filter) => {
+                const filterSuffix = `&cat=${filter}`;
+                filterString += filterSuffix;
+            });
+
+            this.getSubcatMarkerData(filterString);
+            this.getSubcatPanelData(filterString);
+        },
+        /**
+         * Makes a call to the API to get marker data for
+         * the current subcategory
+         */
+        getSubcatMarkerData(endpointFilters) {
+            const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
+            let endpoint = subCat[0].pinsEndpoint;
+            if (typeof endpointFilters !== 'undefined') {
+                endpoint += endpointFilters;
+            }
+
+            axios.get(endpoint).then((response) => {
+                this.activePins = [];
+                response.data.features.forEach((feature) => {
+                    const modifiedFeature = feature;
+                    modifiedFeature.properties.apiData = true;
+                    this.activePins.push(modifiedFeature);
+                });
+            });
+        },
+        /**
+         * Makes a call to the endpoint in the subcategory data which
+         * provides a random 24 items for the side panel
+         */
+        getSubcatPanelData(endpointFilters) {
+            const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
+            let endpoint = subCat[0].listProductsEndPoint;
+            if (typeof endpointFilters !== 'undefined') {
+                endpoint += endpointFilters;
+            }
+
+            axios.get(endpoint).then((response) => {
+                this.subCatList = response.data.data.products;
+                this.setStage(1);
+            });
+        },
+
         /**
          * Sets the current stage
          */
         setStage(num) {
-            this.currentStage = num;
+            // ensure that if data is coming from an endpoint then
+            // it is loaded before moving to the next stage
+            if (num === 2 && this.detailsEndpoint !== '' && this.selectedSubCategory !== null) {
+                const endpoint = `${this.detailsEndpoint}${this.selectedItem}`;
+                axios.get(endpoint).then((response) => {
+                    const dataArr = [];
+                    dataArr.push(response.data.data);
+                    this.currentEndpointData = dataArr;
+                    mapStore.dispatch('setCurrentStage', num);
+                });
+            } else {
+                mapStore.dispatch('setCurrentStage', num);
 
-            if (this.currentStage === 0) {
-                this.showAllPlaces();
-                this.selectedToggle = 'places';
-            } else if (this.currentStage === 1) {
-                this.filterPlaces(this.selectedCategory);
+                if (this.currentStage === 0) {
+                    if (this.selectedSubCategory === null) {
+                        this.showAllPlaces();
+                    }
+                    this.selectedToggle = 'places';
+                } else if (this.currentStage === 1) {
+                    if (this.selectedSubCategory === null) {
+                        this.filterPlaces(this.selectedCategory);
+                    }
+                }
             }
 
-            if (this.currentStage !== 2) {
+            if (num !== 2) {
                 // if the stage isn't showing a place's details
                 // make sure the store doesn't have an active place set
                 mapStore.dispatch('setActivePlace', {
@@ -356,6 +513,10 @@ export default {
             }
         }
 
+        &__no-js {
+            display: none;
+        }
+
         .vs-button-toggle-group {
             position: absolute;
             bottom: 0;
@@ -364,6 +525,16 @@ export default {
 
             @include media-breakpoint-up(lg) {
                 display: none;
+            }
+        }
+    }
+
+    @include no-js {
+        .vs-main-map-wrapper {
+            display: none;
+
+            &__no-js {
+                display: flex;
             }
         }
     }
