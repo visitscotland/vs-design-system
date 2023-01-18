@@ -106,7 +106,7 @@
                             <VsTableRow>
                                 <VsTableDataCell>
                                     <VsIcon
-                                        name="close"
+                                        name="status-closed"
                                         size="xs"
                                         class="mr-2"
                                     />
@@ -232,7 +232,7 @@
                             >
                                 <VsTableDataCell v-if="lift.status === '0' || lift.status === 0">
                                     <VsIcon
-                                        name="close"
+                                        name="status-closed"
                                         size="xs"
                                         class="mr-2"
                                     /> {{ closedLabel }}
@@ -310,7 +310,7 @@
                                                 v-if="run.status === '0' || run.status === 0"
                                             >
                                                 <VsIcon
-                                                    name="close"
+                                                    name="status-closed"
                                                     size="xs"
                                                     class="mr-2"
                                                 /> {{ closedLabel }}
