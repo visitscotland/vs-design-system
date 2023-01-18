@@ -9,6 +9,8 @@ export default new Vuex.Store({
         currentStage: 0,
         activeSubcatFilters: [],
         selectedSubCategory: null,
+        activeMarkerPos: null,
+        activePlace: null,
     },
     mutations: {
         addMapInstance: (state, payload) => {
@@ -18,6 +20,7 @@ export default new Vuex.Store({
                 places: payload.places,
                 activePins: payload.activePins,
                 hovered: '',
+                activePlace: null,
             });
         },
         SET_HOVERED_PLACE: (state, payload) => {
@@ -45,6 +48,9 @@ export default new Vuex.Store({
         SET_SELECTED_SUBCAT: (state, payload) => {
             state.selectedSubCategory = payload;
         },
+        SET_ACTIVE_MARKER_POSITION: (state, payload) => {
+            state.activeMarkerPos = payload;
+        },
     },
     actions: {
         setHoveredPlace: ({ commit }, payload) => {
@@ -62,6 +68,9 @@ export default new Vuex.Store({
         setSelectedSubcat: ({ commit }, payload) => {
             commit('SET_SELECTED_SUBCAT', payload);
         },
+        setActiveMarkerPos: ({ commit }, payload) => {
+            commit('SET_ACTIVE_MARKER_POSITION', payload);
+        },
     },
     getters: {
         getMaps: (state) => state,
@@ -77,5 +86,6 @@ export default new Vuex.Store({
         getCurrentStage: (state) => state.currentStage,
         getActiveSubcatFilters: (state) => state.activeSubcatFilters,
         getSelectedSubcat: (state) => state.selectedSubCategory,
+        getActiveMarkerPosition: (state) => state.activeMarkerPos,
     },
 });

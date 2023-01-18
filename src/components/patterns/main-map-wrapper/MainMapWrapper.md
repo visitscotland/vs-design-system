@@ -24,6 +24,9 @@ user to filter and search for data contained on the map.
     clearSelectionText="Clear all"
     applyFiltersText="Show results"
     detailsEndpoint="http://172.28.81.65:8089/data/component/mapcard?id="
+    filtersAppliedText="filters applied"
+    clearFiltersText="clear filters"
+    placeId="dumfries"
 >
     <template slot="closeSidePanelText">
         <span class="sr-only">

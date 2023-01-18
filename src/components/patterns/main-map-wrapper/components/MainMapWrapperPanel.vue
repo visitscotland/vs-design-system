@@ -109,6 +109,11 @@
                         @show-item-detail="showDetail(place.id)"
                     />
                 </div>
+                <VsMainMapWrapperButtons
+                    :content-data="{}"
+                    :filter-count="subCatFilterCount"
+                    @clear-filters="clearSubCatFilters"
+                />
             </template>
             <template v-else>
                 <div
@@ -145,6 +150,7 @@ import VsMainMapWrapperListItem from './MainMapWrapperListItem';
 import VsMainMapWrapperDetail from './MainMapWrapperDetail';
 import VsMainMapWrapperButtons from './MainMapWrapperButtons';
 import VsMainMapWrapperControls from './MainMapWrapperControls';
+import mapStore from '../../../../stores/map.store';
 
 /**
  * Renders a side panel for the map wrapper component
@@ -240,7 +246,7 @@ export default {
         currentHeading() {
             let headingText = '';
 
-            if (this.selectedSubcategory !== null && this.currentStage !== 2) {
+            if (this.selectedSubcategory !== null) {
                 headingText = this.selectedSubcategoryData[0].label;
             } else {
                 switch (this.currentStage) {
@@ -316,6 +322,9 @@ export default {
 
             return [];
         },
+        subCatFilterCount() {
+            return mapStore.getters.getActiveSubcatFilters.length;
+        },
     },
     methods: {
         /**
@@ -375,23 +384,39 @@ export default {
                     category: data[0].category[0].id,
                     id: data[0].id,
                     image: data[0].images[0].mediaUrl,
-                    title: data[0].name,
+                    placeTitle: data[0].name,
                     description: data[0].description,
                     link: {
                         label: data[0].productLink.label,
                         link: data[0].productLink.link,
                         type: data[0].productLink.type,
                     },
+                    website: {
+                        label: data[0].website.label,
+                        link: data[0].website.link,
+                        type: data[0].website.type,
+                    },
+                    grading: {
+                    },
+                    address: {
+                        shortAddress: data[0].address.shortAddress,
+                    },
                 },
             }];
+
+            if (typeof data[0].grading !== 'undefined') {
+                refinedData.properties.grading.maxStars = data[0].grading.maxStars;
+                refinedData.properties.grading.minStars = data[0].grading.minStars;
+            }
 
             return refinedData;
         },
         /**
-         * set heading manually
-         */
-        setHeading(content) {
-            this.currentHeading = content;
+         * clear the subcategory filters
+        */
+        clearSubCatFilters() {
+            mapStore.dispatch('setActiveSubcatFilters', []);
+            this.setStage(0);
         },
     },
 };
@@ -442,8 +467,7 @@ export default {
             display: none;
         }
 
-        h2.vs-heading,
-        h3.vs-heading {
+        h2.vs-heading {
             flex-grow: 1;
             margin: $spacer-11 $spacer-3 $spacer-0;
         }
