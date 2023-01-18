@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.6](https://github.com/visitscotland/design-system/compare/v0.5.5...v0.5.6) (2023-01-13)
+
+
+### Features
+
+* 🎸 Adding fix for screen readers to read table correctly ([cdae533](https://github.com/visitscotland/design-system/commit/cdae533bc35880d5c1db13604ff73a22f566765d))
+* 🎸 Adding new table component to the library ([190ca28](https://github.com/visitscotland/design-system/commit/190ca2841be5d70793c0287f10796547db14ae22))
+
+
+### Bug Fixes
+
+* 🐛 Fixes spacing in design system headings ([cf0d22f](https://github.com/visitscotland/design-system/commit/cf0d22fc079228b58857a34f71caf47682b8c3d4))
+
+
+### Others
+
+* 🤖 Adding homepage URL to package.json ([1fa5a1b](https://github.com/visitscotland/design-system/commit/1fa5a1bddcb81c1521751dce4a24454970489a7f))
+* 🤖 adding workflow for s3 bucket creation ([8242b2a](https://github.com/visitscotland/design-system/commit/8242b2af55c09011b8d4e48b4a0b0ef4a25794ad))
+* 🤖 Removes stylelint-config-airbnb to fix security issue ([5f4e396](https://github.com/visitscotland/design-system/commit/5f4e39686e6287220fb86d916f822a27ede8cc73))
+
+
+### Docs
+
+* ✏️ Adds snapshot json of Hippo content ([556c41b](https://github.com/visitscotland/design-system/commit/556c41b0d04264179eee93e09e5fb129be4765f1))
+* ✏️ Updating table component docs ([f961279](https://github.com/visitscotland/design-system/commit/f9612795aada36b0907ed32bd18afc9060f1a7ad))
+
+
+### Tests
+
+* 💍 Adds unit test for table and table child components ([1105c9a](https://github.com/visitscotland/design-system/commit/1105c9a21ca74de2951b59dc285f9ea988e62c4a))
+
+
+### Styling
+
+* 💄 Adds underline to megalinks list link on hover ([8ec48bb](https://github.com/visitscotland/design-system/commit/8ec48bb58b20aedfc8995e0c50ec692a590babc3))
+
 ### [0.5.5](https://github.com/visitscotland/design-system/compare/v0.5.4...v0.5.5) (2023-01-04)
 
 ### [0.5.4](https://github.com/visitscotland/design-system/compare/v0.5.3...v0.5.4) (2023-01-04)
