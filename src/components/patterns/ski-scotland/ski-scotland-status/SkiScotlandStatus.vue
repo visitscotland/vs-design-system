@@ -371,7 +371,6 @@ import {
 import VsIcon from '@components/elements/icon/Icon';
 import VsHeading from '@components/elements/heading/Heading';
 import VsLoadingSpinner from '@components/elements/loading-spinner/LoadingSpinner';
-import jsIsDisabled from '@/utils/js-is-disabled';
 
 const axios = require('axios');
 
@@ -655,8 +654,9 @@ export default {
             this.retrieveSkiStatus();
         }
 
-        // Checks whether js is disabled, to display an appropriate warning to the user
-        this.jsDisabled = jsIsDisabled();
+        // If component successfully mounted, declare js is enabled to hide the warning
+        // from the user
+        this.jsDisabled = false;
     },
     methods: {
         /**

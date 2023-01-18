@@ -281,7 +281,7 @@ describe('VsSkiScotlandStatus', () => {
      * This test can't actually be run, toLocaleDateString ignores the provided locale within jest
      * because Node doesn't come with the localisation packages internally. The functionality does
      * appear to work and the second example in the design system renders the date as `Last
-     * Updated: 13:18 - 18 janvier 2023`m but within a test environment it will provide a false
+     * Updated: 13:18 - 18 janvier 2023` but within a test environment it will provide a false
      * negative.
      *
      * See:
