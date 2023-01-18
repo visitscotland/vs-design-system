@@ -64,7 +64,6 @@
                             :selected-item="selectedItem"
                             :map-id="mapId"
                             :show-polygons="showRegions"
-                            :bounds-data="boundsData"
                             @show-detail="showDetail"
                             @set-category="setCategory"
                         >
@@ -307,6 +306,7 @@ export default {
          * Show an item's details
          */
         showDetail(id) {
+            document.exitFullscreen();
             this.selectedItem = id;
             this.setStage(2);
             this.openPanel();
