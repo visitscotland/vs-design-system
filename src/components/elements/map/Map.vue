@@ -108,8 +108,8 @@ export default {
          * Data to set map bounds
          */
         boundsData: {
-            type: Array,
-            default: () => [],
+            type: Object,
+            default: () => {},
         },
     },
     data() {
@@ -208,8 +208,12 @@ export default {
          */
         addMap() {
             let boundingBox;
-            if (this.boundsData.type === 'bounds') {
-                console.log(this.boundsData.coordinates[1][0]);
+            if (this.boundsData.length === 0) {
+                boundingBox = [
+                    [-7.555827, 55.308836], // south-west point.
+                    [-0.778285, 60.830894], // north-east point.
+                ];
+            } else if (this.boundsData.type === 'bounds') {
                 const southWest = new mapboxgl
                     .LngLat(this.boundsData.coordinates[1][0], this.boundsData.coordinates[1][1]);
                 const northEast = new mapboxgl
@@ -224,10 +228,6 @@ export default {
                 container: this.$refs.mapbox,
                 style: 'https://api.visitscotland.com/maps/vector/v1/vts/resources/styles',
                 bounds: boundingBox,
-                // [
-                // [-7.555827, 55.308836], // south-west point.
-                // [-0.778285, 60.830894], // north-east point.
-                // ],
             });
             this.mapbox.map.scrollZoom.disable();
             this.mapbox.map.on('rotate', () => {
