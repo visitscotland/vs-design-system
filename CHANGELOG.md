@@ -2,6 +2,102 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.8](https://github.com/visitscotland/design-system/compare/v0.5.7...v0.5.8) (2023-01-18)
+
+
+### Features
+
+* 🎸 add elements for details with endpoint content ([77a80e3](https://github.com/visitscotland/design-system/commit/77a80e34fca3f577d62066ee2835d69556ff3c7f))
+* 🎸 add no JS warning to mainmapwrapper component ([960e59b](https://github.com/visitscotland/design-system/commit/960e59b41106b265e4359bcbdb1f9835c92d3432))
+* 🎸 add place details that originate from endpoint ([d4e1fe0](https://github.com/visitscotland/design-system/commit/d4e1fe0301a3112331e05107ba369150eeb558ad))
+* 🎸 add separate controls component for map subcategories ([0fb35b9](https://github.com/visitscotland/design-system/commit/0fb35b9a4d9d21dc8e7b12f3e6ac1eb56598cf3f))
+* 🎸 refactor to use include in scss ([2d56251](https://github.com/visitscotland/design-system/commit/2d562519ead35fcbc9308419ad849cad5d764cc2))
+* 🎸 remove unneeded bounds data prop ([ac1911c](https://github.com/visitscotland/design-system/commit/ac1911c37c4fc1b5771c634a01aa3c7dc9eab9e9))
+
+
+### Bug Fixes
+
+* 🐛 add comments to methods ([c7c0d63](https://github.com/visitscotland/design-system/commit/c7c0d63d141f2a2ccf8eeee1c993b0037939330e))
+* 🐛 remove console log ([6e49558](https://github.com/visitscotland/design-system/commit/6e495586aa40c77ebd6919b151a81b7f6a64e718))
+* 🐛 Remove double colon ([94f957d](https://github.com/visitscotland/design-system/commit/94f957d637783db688f81345caedffd7d3e53816))
+* 🐛 remove grading as not needed for this release ([8a7a143](https://github.com/visitscotland/design-system/commit/8a7a1433f94888998764ed5073b5c03bf8eb0875))
+
+
+### Styling
+
+* 💄 add styling for subcomponent list ([30c103f](https://github.com/visitscotland/design-system/commit/30c103f04ebcaceb804deddb1cecc8ed916c5054))
+* 💄 tidy styles and add new marker images ([4d9d49a](https://github.com/visitscotland/design-system/commit/4d9d49a5d23664a6e29f525b5dc3bd78047243f4))
+* 💄 update new icons and colour for subcategories ([f73f992](https://github.com/visitscotland/design-system/commit/f73f992b841cc0d486f5bb9ba32278aea19bf21d))
+
+### [0.5.7](https://github.com/visitscotland/design-system/compare/v0.5.6...v0.5.7) (2023-01-16)
+
+
+### Bug Fixes
+
+* 🐛 Add missing required fields to megalinks video examples ([867f7fe](https://github.com/visitscotland/design-system/commit/867f7feedb1b185ac4b5316dc4bf70f3594b6b8c))
+* 🐛 Remove unnecessary js enabled check causing race cond ([30d447b](https://github.com/visitscotland/design-system/commit/30d447be5ab5c46e095538879962ebae3ffbb091))
+
+### [0.5.6](https://github.com/visitscotland/design-system/compare/v0.5.5...v0.5.6) (2023-01-13)
+
+
+### Features
+
+* 🎸 Adding fix for screen readers to read table correctly ([cdae533](https://github.com/visitscotland/design-system/commit/cdae533bc35880d5c1db13604ff73a22f566765d))
+* 🎸 Adding new table component to the library ([190ca28](https://github.com/visitscotland/design-system/commit/190ca2841be5d70793c0287f10796547db14ae22))
+
+
+### Bug Fixes
+
+* 🐛 Fixes spacing in design system headings ([cf0d22f](https://github.com/visitscotland/design-system/commit/cf0d22fc079228b58857a34f71caf47682b8c3d4))
+
+
+### Others
+
+* 🤖 Adding homepage URL to package.json ([1fa5a1b](https://github.com/visitscotland/design-system/commit/1fa5a1bddcb81c1521751dce4a24454970489a7f))
+* 🤖 adding workflow for s3 bucket creation ([8242b2a](https://github.com/visitscotland/design-system/commit/8242b2af55c09011b8d4e48b4a0b0ef4a25794ad))
+* 🤖 Removes stylelint-config-airbnb to fix security issue ([5f4e396](https://github.com/visitscotland/design-system/commit/5f4e39686e6287220fb86d916f822a27ede8cc73))
+
+
+### Docs
+
+* ✏️ Adds snapshot json of Hippo content ([556c41b](https://github.com/visitscotland/design-system/commit/556c41b0d04264179eee93e09e5fb129be4765f1))
+* ✏️ Updating table component docs ([f961279](https://github.com/visitscotland/design-system/commit/f9612795aada36b0907ed32bd18afc9060f1a7ad))
+
+
+### Tests
+
+* 💍 Adds unit test for table and table child components ([1105c9a](https://github.com/visitscotland/design-system/commit/1105c9a21ca74de2951b59dc285f9ea988e62c4a))
+
+
+### Styling
+
+* 💄 Adds underline to megalinks list link on hover ([8ec48bb](https://github.com/visitscotland/design-system/commit/8ec48bb58b20aedfc8995e0c50ec692a590babc3))
+
+### [0.5.5](https://github.com/visitscotland/design-system/compare/v0.5.4...v0.5.5) (2023-01-04)
+
+### [0.5.4](https://github.com/visitscotland/design-system/compare/v0.5.3...v0.5.4) (2023-01-04)
+
+
+### Bug Fixes
+
+* 🐛 fix button size for map panel control ([8ac6789](https://github.com/visitscotland/design-system/commit/8ac67894e97be71cffa9f6f40d4fe6dc3827c6da))
+* 🐛 Switch no-js social share header to h2 ([fd1a39f](https://github.com/visitscotland/design-system/commit/fd1a39f2c3f94ee6622c8185fbb0681254124c97))
+
+
+### Tests
+
+* 💍 fix errors and console warnings in unit tests ([9686b0e](https://github.com/visitscotland/design-system/commit/9686b0e5eaf38232826ba2573cca0e173118988b))
+
+
+### Others
+
+* 🤖 Removing Lighthouse to fix dependency errors ([8aeef25](https://github.com/visitscotland/design-system/commit/8aeef2551b09375a398e360af4628ae7bbc4215a))
+
+
+### Docs
+
+* ✏️ addition of hippo content file ([37a5447](https://github.com/visitscotland/design-system/commit/37a544753210daa0ee6e59a2079b360327cab169))
+
 ### [0.5.3](https://github.com/visitscotland/design-system/compare/v0.5.2...v0.5.3) (2022-12-09)
 
 

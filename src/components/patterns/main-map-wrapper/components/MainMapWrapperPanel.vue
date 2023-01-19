@@ -404,18 +404,11 @@ export default {
                         link: data[0].website.link,
                         type: data[0].website.type,
                     },
-                    grading: {
-                    },
                     address: {
                         shortAddress: data[0].address.shortAddress,
                     },
                 },
             }];
-
-            if (typeof data[0].grading !== 'undefined') {
-                refinedData.properties.grading.maxStars = data[0].grading.maxStars;
-                refinedData.properties.grading.minStars = data[0].grading.minStars;
-            }
 
             return refinedData;
         },

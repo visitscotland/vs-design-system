@@ -1,0 +1,728 @@
+{
+    "id": "f82b9e90-ec6b-431f-9199-9ffc50e2d4aa",
+    "name": "develop",
+    "displayName": "develop",
+    "type": "cms:designsysteminstance",
+    "locale": "en",
+    "pubState": "published",
+    "pubwfCreationDate": "2019-07-03T10:10:55.432+01:00",
+    "pubwfLastModificationDate": "2022-09-06T12:08:58.312+01:00",
+    "pubwfPublicationDate": "2022-09-06T12:09:27.478+01:00",
+    "items": {
+        "cms:title": "VisitScotland Design System",
+        "cms:Sections": [
+            {
+                "type": "cms:designsystemsection",
+                "items": {
+                    "cms:sectionDepth": 1,
+                    "cms:href": "",
+                    "cms:name": "Getting Started",
+                    "cms:description": "",
+                    "cms:usageMode": "hide",
+                    "cms:ignore": "",
+                    "cms:exampleMode": "hide",
+                    "cms:components": "",
+                    "cms:Content": {
+                        "type": "hippostd:html",
+                        "content": "<p>This design system serves as a set of organized tools, patterns &#38; practices that work as the foundation for visitscotland.com.</p>\n\n<p><strong>Please be aware this design system is a work in progress and still in development stages where things are constantly changing therefore should not be used as the only reference.</strong></p>"
+                    },
+                    "cms:Sections": [
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Designing",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<ul>\n <li>Introduction to designing for .com</li>\n <li>User research - approach</li>\n <li>Links to download prototyping design files for .com</li>\n <li>Link to Brand Portal for more info</li>\n</ul>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Developing",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<ul>\n <li>Introduction to developing for .com</li>\n <li>Info about developing and how to use DS</li>\n <li>Links to relevant sources</li>\n</ul>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Latest Updates",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<ul>\n <li>Intro and latest updates</li>\n <li>Work in progress</li>\n</ul>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Contact Us",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<ul>\n <li>Owners of the Design System, contact details</li>\n <li>How to give feedback</li>\n</ul>"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "cms:designsystemsection",
+                "items": {
+                    "cms:sectionDepth": 1,
+                    "cms:href": "",
+                    "cms:name": "Guidelines",
+                    "cms:description": "",
+                    "cms:ignore": "",
+                    "cms:usageMode": "hide",
+                    "cms:exampleMode": "hide",
+                    "cms:components": "",
+                    "cms:Content": {
+                        "type": "hippostd:html",
+                        "content": "<p>We have created the look and feel of the visitscotland.com site using the principles of Brand Scotland as a base.</p>"
+                    },
+                    "cms:Sections": [
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 1,
+                                "cms:href": "",
+                                "cms:name": "Colours",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<h2><strong>Primary palette </strong></h2>\n\n<p>Our primary palette consists of the principal VisitScotland brand colours and neutrals.</p>\n\n<p>Each colour has a suite of tints and shades to allow optimum flexibility while retaining brand identification. The neutral colours are used for the largest elements on the page, while the vibrant pinks and purples are used more sparingly to highlight specific elements.</p>\n\n<p>&#160;</p>\n\n<pre>\n&#60;Color filterCategory=&#34;Primary&#34; /&#62;\n</pre>\n\n<p>&#160;</p>\n\n<pre>\n&#60;Color filterCategory=&#34;Neutral&#34; /&#62;\n</pre>\n\n<p>&#160;</p>\n\n<h2>Secondary palette</h2>\n\n<p>Our secondary palette is used alongside the primary palette to complement and add depth. These are used sparingly to maintain their impact and not overwhelm functionality or imagery. They also have a suite of tints and shades to allow more flexibility.</p>\n\n<p>&#160;</p>\n\n<pre>\n&#60;Color filterCategory=&#34;Secondary&#34; /&#62;</pre>\n\n<p>&#160;</p>\n\n<h2>Theme colours</h2>\n\n<p>These colours don&#8217;t represent brand, but indicate specific functions like warning, success etc.</p>\n\n<p>&#160;</p>\n\n<pre>\n&#60;Color filterCategory=&#34;Theme colours&#34; /&#62;\n</pre>\n\n<p>&#160;</p>\n\n<pre>\n&#60;Color filterCategory=&#34;Social Media Colours&#34; /&#62;\n</pre>\n\n<p>&#160;</p>\n\n<h2><strong>Accessible colours</strong></h2>\n\n<p>Colour combinations should have adequate contrast to&#160;meet <a href=\"https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html\">WCAG 2.1 AA accessibility criteria</a>. This will depend on the size of the text and/or graphical elements. Check colour contrast using any of the <a href=\"https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html#resources\">WCAG 2.1 recommended tools</a>.&#160;</p>\n\n<p>&#160;</p>\n\n<p>&#160;</p>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 1,
+                                "cms:href": "",
+                                "cms:name": "Typography",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<h2>Fonts</h2>\n\n<p>We use the Source Sans Pro font for body content which is a free open source font developed by Google for use on screen. It has different weight options.</p>\n\n<p><a href=\"https://fonts.google.com/specimen/Source+Sans+Pro\">Download Source Sans Pro </a></p>\n\n<p>We use Eveleth for headings which is a font owned and licenced to Visit Scotland by Yellow Design Studio.</p>\n\n<p>For any queries please contact Mark Haddon at <a href=\"mailto:mark.haddon@visitscotland.com?subject=VisitScotland.com%20fonts\">mark.haddon@visitscotland.com</a></p>\n\n<p>&#160;</p>\n\n<h2>Headings</h2>\n\n<p>The first heading on a page is an H1. There should only be one H1 per page.</p>\n\n<p>H2 headings are used to distinguish different modules on a page. However, there are several exceptions:</p>\n\n<ul>\n <li>Megalinks module&#160;[link tbc]</li>\n <li>Long content module [link tbc]</li>\n <li>Long content text only &#8211; multiple H2s allowed [link tbc]</li>\n</ul>\n\n<p><em>These modules can be used without H2s.&#160;</em></p>\n\n<p>Heading levels should be in order. That means H1 is followed by an H2, an H2 is followed by an H2 or H3 and so on. Hierarchical headings are helpful for accessibility and help all users to understand your content. Search engines may make use of them to understand the content of your site.</p>\n\n<p>All Headings apart from H6 are written in capital letters. H6 headings are written in sentence case. Full stops are not used in headings.</p>\n\n<p>[insert demo]</p>\n\n<h2>Paragraphs</h2>\n\n<h3>Body</h3>\n\n<p>The default paragraph font size used by the Design System is 18px on larger screens and 16px on smaller screens.&#160;</p>\n\n<p>[insert demo]</p>\n\n<h3>Leader text</h3>\n\n<p>Leader text is copy associated with an H1 or and H2 and is located below either of these headings. It is also often referred to as introductory copy and summarises the subsequent page content.</p>\n\n<p>[insert demo]</p>\n\n<h3>Small copy</h3>\n\n<p>Small type should be used sparingly and when content is limited in space within a component, for example an image caption. This size is the same across all viewports</p>\n\n<p>[insert demo]</p>\n\n<h3>Very small copy</h3>\n\n<p>Small type should be used sparingly and when content is limited in space within a component, for example the command to &#8216;Enlarge image&#8217;. This size is the same across all viewports</p>\n\n<p>[insert demo]</p>\n\n<h3>Teaser</h3>\n\n<p>Teaser copy style is always associated with a list of images and is only used on viewports over 992px.</p>\n\n<p>[insert demo]</p>\n\n<h3>Quote</h3>\n\n<p>Quote style copy is only used when associating a quote or a &#8216;pull-out&#8217; with a larger paragraph of body copy. It is the same size across all viewports.</p>\n\n<p>[insert demo]</p>\n\n<h3>Quote Attribution</h3>\n\n<p>Quote Attribution copy style is only used in association with a quote style copy block when that copy requires an attribution. In all cases it will inherit the standard body copy paragraph style, relevant to that viewport and the paragraph in which it is placed.</p>\n\n<p>[insert demo]</p>\n\n<p>&#160;</p>\n\n<p>&#160;</p>\n\n<h2>Links</h2>\n\n<p>&#160;</p>\n\n<h3>Default links</h3>\n\n<p>Link styling is pink (#AF056E) and underlined by default. If a link appears at the end of a sentence, the full stop should be outside the link. In all cases the link will inherit the standard body copy paragraph style, relevant to that viewport.</p>\n\n<p>[insert demo]</p>\n\n<h3>Internal links</h3>\n\n<p>On user click, the link opens within the same browser tab.</p>\n\n<p>[insert demo]</p>\n\n<h3>Exceptions</h3>\n\n<p>Within the Megalinks and Other things you might like modules, an arrow icon [insert icon] is displayed to the right of the text. The character styles of these links are specified in the relevant module pages.</p>\n\n<p>[Insert relevant links to modules]</p>\n\n<h3>External links</h3>\n\n<p>External Link styling is pink (#AF056E) and underlined by default and is followed by a pink arrow icon [insert icon]. If a link appears at the end of a sentence, the full stop should be outside the link. In all cases the external link will inherit the standard body copy paragraph style, relevant to that viewport and the paragraph in which it is placed.</p>\n\n<p>On user click, open the link within the same browser tab.</p>\n\n<p>[insert demo]</p>\n\n<h3>Email Links</h3>\n\n<p>Make email addresses &#8216;mailto&#8217; links (to bring up default email client with a subject heading related to the enquiry). No icon is required.&#160;</p>\n\n<h3>Document links</h3>\n\n<p>Throughout the site, if there is a link to a document file, add the word &#8216;Download&#39;, file size and format to the end of the link text with brackets, to give users an indication of how much data will be used to download the file. For example &#8220;Wildlife of The Highlands eBrochure (download PDF 3MB)&#8221;. To the right of the text link, a download icon [insert icon]&#160; is displayed.</p>\n\n<p>The file format and size is displayed in consistent casing (for example all uppercase, e.g. PDF 3MB)</p>\n\n<p>[insert demo]</p>\n\n<h3>Button CTA link</h3>\n\n<p>Button copy is always in full caps and is always the same size irrespective of viewport.</p>\n\n<p>[insert demo]</p>\n\n<h3>Breadcrumb</h3>\n\n<p>All pages have a breadcrumb at the top of the page which is automatically generated and designed to help the user identify where they are on the website.</p>\n\n<p>[insert demo]</p>\n\n<h3>List of Links</h3>\n\n<p>Introduce a list of links with a lead-in line or paragraph.</p>\n\n<p>Link lists are not numbered or bulleted and are constructed from short complete statements. Lines do not end with punctuation as the links will refer directly to the headings of the pages to which they link.</p>\n\n<p>Links to webpages should be a descriptive text link (not repeated generic text). Use text rather than the URL of the site e.g. the text link &#39;Corporate site&#39;, instead of https://www.visitscotland.org/ as the link text.</p>\n\n<p>[insert demo]</p>\n\n<p>&#160;</p>\n\n<h2>Lists</h2>\n\n<p>Use lists to make blocks of text easier to read.</p>\n\n<p>&#160;</p>\n\n<h3>Bulleted list</h3>\n\n<p>Introduce bulleted lists with a lead-in line ending in a colon. Start each item with a lowercase letter, and do not use a full stop at the end.</p>\n\n<p>[insert demo]</p>\n\n<h3>Numbered list</h3>\n\n<p>Use numbered lists instead of bulleted lists when the order of the items is important. You do not need to use a lead-in line for numbered lists. Items in a numbered list should end in a full stop, because each one should be a complete sentence.</p>\n\n<p>[insert demo]</p>\n\n<p>&#160;</p>\n\n<h2>Navigation</h2>\n\n<p>&#160;</p>\n\n<h3>Global navigation links</h3>\n\n<p>Used to link to affiliated Visit Scotland websites. They share the same styling for mobile and desktop viewports.</p>\n\n<p>[insert demo]</p>\n\n<p>&#160;</p>\n\n<h3>Meganav</h3>\n\n<h4>L1 Link</h4>\n\n<p>These are the top level navigation links</p>\n\n<p>[insert demo]</p>\n\n<h4>L2 Link</h4>\n\n<p>L2 links are found under L1 links. They are used to categorise groups of links and can be links themselves</p>\n\n<p>[insert demo]</p>\n\n<h4>L3 Link</h4>\n\n<p>L3 links are found under L2 links.</p>\n\n<p>[insert demo]</p>\n\n<h4>See all CTA</h4>\n\n<p>Is the same size cross all viewports</p>\n\n<p>[insert demo]</p>\n\n<h3>Featured Item/Event</h3>\n\n<p>The featured item and featured events cards appear within the meganav</p>\n\n<h4>Featured Item Heading</h4>\n\n<p>Headings should use HTML heading elements. For all viewport sizes the Featured item heading adopts the H6</p>\n\n<p>Note: Featured Events do not have headings</p>\n\n<p>[insert demo]</p>\n\n<h4>Featured Event Date</h4>\n\n<p>Is the same size cross all viewports</p>\n\n<p>[insert demo]</p>\n\n<h4>Featured Item and Event Copy</h4>\n\n<p>Is the same size cross all viewports.</p>\n\n<p>[insert demo]</p>\n\n<p>&#160;</p>\n\n<h2>Other</h2>\n\n<h3>Call Out heading</h3>\n\n<p>Used very occasionally in specific module types, particularly where the reference is humorous or irreverent. Call out headings are the same size cross all viewports.</p>\n\n<p>[insert demo]</p>\n\n<p>&#160;</p>\n\n<h3>Call Out copy</h3>\n\n<p>Used in conjunction with a Call out heading to provide context or</p>\n\n<p>[insert demo]</p>\n\n<p>&#160;</p>\n\n<h3>Itinerary and Listicle Numbering</h3>\n\n<p>On Itinerary and Listicle pages the items are numbered. These numbers are the same size cross all viewports.</p>\n\n<p>[insert demo]</p>\n\n<p>&#160;</p>\n\n<h3>Itinerary items</h3>\n\n<p>Used when itinerary items are featured in the megalinks module. They appear the same in all viewports</p>\n\n<p>[insert demo]</p>\n\n<p>&#160;</p>\n\n<h3>&#8216;Other things you might like&#8217; categories</h3>\n\n<p>Used to label the category of items in the OTYML module</p>\n\n<p>[insert demo]</p>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 1,
+                                "cms:href": "",
+                                "cms:name": "Page Layout",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>All our page layouts are created using a uniform grid system providing fundamental structure for creating consistent layouts.</p>\n\n<p>The grid system makes it easier for users to browse multiple content types on a page and&#160;also provides a consistent framework for designers and developers to work together to build a page.&#160;</p>\n\n<p>All designs are created with a mobile-first approach, starting with the smallest viewport first then scaling up to the largest viewport.&#160;&#160;</p>\n\n<h2>Columns</h2>\n\n<p>All viewports are broken up into a 12-column grid based on the <a href=\"https://getbootstrap.com/docs/4.0/layout/overview/\">Bootstrap framework</a>. The grid flexes depending on the viewport size but the 12 columns are always maintained within it.</p>\n\n<p>All page content sits in relation to these columns:<img data-hippo-link=\"column-diagram.jpg\" /></p>\n\n<h2>Gutter</h2>\n\n<p>The gutter is the space between each column. For all viewports, the gutter width is 12px on either side of a column (or 24px combined). This excludes the XS viewport which has 2px on either side of a column (or 4px combined).&#160;In general, elements should line up from the inner left gutter to the inner right gutter.<img data-hippo-link=\"gutter-diagram.jpg\" /></p>\n\n<h4>Images</h4>\n\n<p><img data-hippo-link=\"image-example.jpg\" /></p>\n\n<h4>Text with padding</h4>\n\n<p><img data-hippo-link=\"text-with-padding-example.jpg\" /></p>\n\n<p>In a browser it would look like this</p>\n\n<p><img data-hippo-link=\"text-with-padding-browser-preview.jpg\" /></p>\n\n<h4>Text without padding</h4>\n\n<p><img data-hippo-link=\"text-without-padding-example.jpg_1\" /></p>\n\n<p>In browser it would look like this</p>\n\n<p><img data-hippo-link=\"text-without-padding-browser-preview.jpg\" /></p>\n\n<h2>Page margin</h2>\n\n<p>The page margin is the total width outside the 12 columns. This changes depending on the viewport width, except for the XS viewport which has a fixed 10px on either side (20px page margin in total)</p>\n\n<h3><strong>To calculate the page margin:</strong></h3>\n\n<p>Page margin = (viewport width &#8211; container width) / 2</p>\n\n<p>For example:</p>\n\n<p>1200px &#8211; 1140px / 2 = 30px (width of each margin)</p>\n\n<p><img data-hippo-link=\"page-margin-diagram.jpg\" /></p>\n\n<h2>Breakpoints</h2>\n\n<p>Breakpoints are customisable widths that we use to design responsive user interfaces. By designing responsively to these widths, we can adapt our design to a range of different device sizes.</p>\n\n<p>We have six breakpoints in our grid system and each breakpoint holds a max-width container with 12 equal columns. Note that at the smallest viewport (xs), there is no fixed width but the layout container becomes 100% wide.</p>\n\n<p>&#160;</p>\n\n<table border=\"1\">\n <tbody>\n  <tr>\n   <td>\n   <p>Viewport name (abbr.)&#160;</p>\n   </td>\n   <td>\n   <p>Viewport width (px)&#160;</p>\n   </td>\n   <td>\n   <p>Container width (px)&#160;</p>\n   </td>\n  </tr>\n  <tr>\n   <td>\n   <p>Extra small (xs)&#160;</p>\n   </td>\n   <td>\n   <p>0 - 575&#160;</p>\n   </td>\n   <td>\n   <p>None (auto)&#160;</p>\n   </td>\n  </tr>\n  <tr>\n   <td>\n   <p>Small (sm)&#160;</p>\n   </td>\n   <td>\n   <p>576 - 767&#160;</p>\n   </td>\n   <td>\n   <p>540&#160;</p>\n   </td>\n  </tr>\n  <tr>\n   <td>\n   <p>Medium (md)&#160;</p>\n   </td>\n   <td>\n   <p>768 - 991&#160;</p>\n   </td>\n   <td>\n   <p>720&#160;</p>\n   </td>\n  </tr>\n  <tr>\n   <td>\n   <p>Large (lg)&#160;</p>\n   </td>\n   <td>\n   <p>992 - 1199&#160;</p>\n   </td>\n   <td>\n   <p>960&#160;</p>\n   </td>\n  </tr>\n  <tr>\n   <td>\n   <p>Extra large (xl)&#160;</p>\n   </td>\n   <td>\n   <p>1200 - 1399&#160;</p>\n   </td>\n   <td>\n   <p>1140&#160;</p>\n   </td>\n  </tr>\n  <tr>\n   <td>\n   <p>Extra extra large (xxl)&#160;</p>\n   </td>\n   <td>\n   <p>1400+&#160;</p>\n   </td>\n   <td>\n   <p>1340&#160;</p>\n   </td>\n  </tr>\n </tbody>\n</table>\n\n<h3>&#160;</h3>\n\n<h2>Using the Grid in UI</h2>\n\n<p>Our component library includes the <a href=\"#/Elements/Grid?id=container\">&#60;vs-container&#62;</a>,<a href=\"#/Elements/Grid?id=col\"> &#60;vs-col&#62;</a> and <a href=\"#/Elements/Grid?id=row\">&#60;vs-row&#62;</a>&#160;components so developers can easily wrap content in the desired grid elements.</p>\n\n<p>For more information on the Bootstrap grid please see the documentation for <a href=\"https://getbootstrap.com/docs/4.0/layout/grid\">Bootstrap</a> and <a href=\"https://bootstrap-vue.org/docs/components/layout\">BootstrapVue</a>.</p>\n\n<p>&#160;</p>",
+                                    "links": {
+                                        "column-diagram.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/column-diagram.jpg"
+                                        },
+                                        "gutter-diagram.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/gutter-diagram.jpg"
+                                        },
+                                        "image-example.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/image-example.jpg"
+                                        },
+                                        "text-with-padding-example.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/text-with-padding-example.jpg"
+                                        },
+                                        "text-with-padding-browser-preview.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/text-with-padding-browser-preview.jpg"
+                                        },
+                                        "text-without-padding-example.jpg_1": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/text-without-padding-example.jpg"
+                                        },
+                                        "text-without-padding-browser-preview.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/text-without-padding-browser-preview.jpg"
+                                        },
+                                        "page-margin-diagram.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/page-margin-diagram.jpg"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 1,
+                                "cms:href": "",
+                                "cms:name": "Iconography",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>The icons we use on the visitscotland.com site are a mix of Font Awesome and custom icons.&#160;</p>\n\n<p>Icons are visual symbols that represent objects, actions or commands. They are used to help users understand the purpose of a particular action, command or section.&#160;</p>\n\n<p>Most of our icons are sourced from FontAwesome to maintain consistency throughout the site. A few icon exceptions were designed internally to encompass uniquely Scottish ideas.&#160;&#160;</p>\n\n<h2>Using Icons&#160;</h2>\n\n<p>Generally, icons should be decorative and used alongside meaningful and relevant text labels to help users progress through the site. There may be some exceptions when space is limited, in which case, alternative icon text should be provided for screen readers.</p>\n\n<p>&#160;</p>\n\n<p>Consider the surrounding space around an icon and ensure a minimum of 8px gap around it.</p>\n\n<p>&#160;</p>\n\n<p>For icons used on top of an image, use the filled version of the icon so it&#39;s clear.</p>\n\n<p>&#160;</p>\n\n<pre>\n&#60;icons /&#62;\n</pre>\n\n<p>&#160;</p>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 1,
+                                "cms:href": "",
+                                "cms:name": "Logos",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<h2>The VisitScotland logo&#160;</h2>\n\n<p>VisitScotland.com is a consumer focused website to inspire and inform people to visit Scotland. Therefore the predominant logo used is the consumer logo, as seen in the header.&#160;</p>\n\n<p><img data-hippo-link=\"vs-consumer-logo-web.png\" /></p>\n\n<h2>Other logos</h2>\n\n<p>VisitScotland corporate logo is used in the footer.&#160;</p>\n\n<p><img data-hippo-link=\"vs-corp-logo-onblack.png\" /></p>\n\n<p>&#160;</p>\n\n<p>The iCentre logo is used in the iCentre module.</p>\n\n<p><img data-hippo-link=\"vs-icentre-module.jpg\" /></p>\n\n<p>&#160;</p>\n\n<p>The iKnow community logo is used in the iKnow community module.</p>\n\n<p><img data-hippo-link=\"vs-iknow-community-module.jpg\" /></p>\n\n<p>The iKnow Scotland logo is used in the iKnow partner module.&#160;</p>\n\n<p><img data-hippo-link=\"vs-iknow-scotland-module.jpg\" /></p>\n\n<p>&#160;</p>\n\n<p>For more guidance on how to use logos, please&#160;contact <a rel=\"noreferrer noopener\" href=\"mailto:brandhelp@visitscotland.com\" target=\"_blank\">brandhelp@visitscotland.com</a>&#160;&#160;</p>\n\n<p>&#160;</p>",
+                                    "links": {
+                                        "vs-consumer-logo-web.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/vs-consumer-logo-web.png"
+                                        },
+                                        "vs-corp-logo-onblack.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/vs-corp-logo-onblack.png"
+                                        },
+                                        "vs-icentre-module.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/vs-icentre-module.jpg"
+                                        },
+                                        "vs-iknow-community-module.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/vs-iknow-community-module.jpg"
+                                        },
+                                        "vs-iknow-scotland-module.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/vs-iknow-scotland-module.jpg"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Accessibility",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>Accessibility in our design is at the core of what we do.</p>\n\n<p>We want to ensure users feel included and valued and have the same quality of experience, therefore VisitScotland strives to make digital products universally accessible and useful to everyone.&#160;</p>\n\n<p>This page outlines some general best practices to follow when designing and building for our product. More specific rules may be found within individual component pages.&#160;&#160;</p>\n\n<p>&#160;</p>\n\n<h2><a name=\"page-structure\" id=\"page-structure\">Page Structure&#160;</a></h2>\n\n<p>A consistent, clear page hierarchy helps users interact with and navigate the page.&#160;</p>\n\n<p>Heading levels should follow the correct hierarchy e.g. H1, H2, H3, H4 and they should have meaningful titles helps people understand the page and how sections relate to each other. Important information should be visible on the page and not hidden.&#160;&#160;</p>\n\n<p>Using semantic markup and correct HTML elements also helps to communicate structure and hierarchy of the page. Screen readers can read this and are informed what the element is and what it does. For example, use heading elements (e.g. H1) instead of styling a non-semantic element to look like a heading.&#160;&#160;</p>\n\n<p>&#160;</p>\n\n<h2><a name=\"keyboard-nav\" id=\"keyboard-nav\">Keyboard Navigation&#160;</a></h2>\n\n<p>Some users may navigate the content with just a keyboard or another tool such as a screen reader. People should be able to navigate our digital products without a mouse.&#160;&#160;</p>\n\n<p>When tabbing through the page, all interactive elements should have a visible focus style and be accessible in a logical order reading left to right, top to bottom.&#160;&#160;</p>\n\n<p>ARIA tags should be used where appropriate to make elements more accessible to assistive technologies. (See below)&#160;</p>\n\n<pre>\n&#60;DoDoNot&#62;\n    &#60;div slot=&#34;thingToDo&#34;&#62;\n        &#60;p&#62;This is a good suggestion, we&#39;d recommend you go ahead with it&#60;/p&#62;      <img data-hippo-link=\"page-margin-diagram.jpg\" />\n    &#60;/div&#62;\n    &#60;div slot=&#34;thingToNotDo&#34;&#62;\n        &#60;p&#62;This is absolutely not acceptable, you should not do this &#60;/p&#62;\n        <img data-hippo-link=\"image-example.jpg\" />\n    &#60;/div&#62;\n&#60;/DoDoNot&#62;</pre>\n\n<h2><a name=\"accessible-text\" id=\"accessible-text\">Accessible Text&#160;</a></h2>\n\n<p>Meaningful text helps people who use screen readers to understand the content. All text should be accessible whether its visible on the page or alternative text.&#160;</p>\n\n<p>Text should be clear and concise so users can navigate the content faster. Labels should be consistent throughout and describe what the element is doing. For example, we should not use &#8220;Find out more&#8221; but describe what will happen &#8220;Find more information about Edinburgh.&#8221; is much clearer.&#160;</p>\n\n<p>&#160;</p>\n\n<h2><a name=\"multimedia\" id=\"multimedia\">Multimedia&#160;</a>&#160;</h2>\n\n<p>For audio or video multimedia, provide an alternative means for the user to experience what is being conveyed through vision and sound. This might be done by clear easy-to-read captioning on a video or by providing a full transcript download.&#160;</p>\n\n<p>&#160;</p>\n\n<h2><a name=\"colour\" id=\"colour\">Use of Colour &#160;</a></h2>\n\n<p>We comply with the <a href=\"https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html\">WCAG AA Standards</a>&#160;which should ensure&#160;colour combinations have adequate contrast. This means the contrast ratio between standard text and the background should be greater than or equal to 4.5:1 and 3:1 for large text and UI components. Check colour contrast using any of the <a rel=\"noreferrer noopener\" href=\"https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html#resources\" target=\"_blank\">WCAG 2.1 recommended tools</a>.&#160;</p>\n\n<p>Use multiple visual clues for interactive or directive elements and&#160;not only colour to convey meaning. This may include use of illustrations, shape, strokes to help people who struggle to distinguish between colours. For example, error message could change stroke.&#160;</p>\n\n<p>&#160;</p>\n\n<h2><a name=\"visually-hidden-elements\" id=\"visually-hidden-elements\">Visually Hiding Elements&#160;</a></h2>\n\n<p>Sometimes we may need to add visually hidden content for assistive technologies. This is useful when visual information or cues need to be described to non-visual users. &#160;</p>\n\n<p>For example, if using an icon only button, we would want to provide visually hidden text to ensure this icon is described by a screen reader. Use the .sr-only utility class&#160;to hide elements for all devices except screen readers. &#160;</p>\n\n<p>&#160;</p>\n\n<h2><a name=\"aria\" id=\"aria\">Use ARIA Roles &#38; Attributes&#160;</a></h2>\n\n<p>Where relevant, use the correct ARIA (Accessible Rich Internet Application) roles&#160;and attributes to help assistive technologies understand the meaning of elements on the page. This will help users navigate the content and understand context. &#160;</p>\n\n<p>We must tell users if content has dynamically changed on the page, so the screen reader is aware of it. For more information, please see the <a href=\"https://www.w3.org/TR/wai-aria-practices-1.1/\">WAI-ARIA Authoring Practices</a>.&#160;&#160;</p>\n\n<p>&#160;</p>\n\n<h2><a name=\"responsive\" id=\"responsive\">Responsive Design&#160;</a></h2>\n\n<p>We follow a Mobile First approach when designing for our products, allowing for the key features to be built for small screens first and progressively advancing the design for desktop users. This gives a better user experience and means our software is responsive across a range of different viewports, ensuring it fits the screens of different devices automatically. &#160;</p>\n\n<p>&#160;</p>\n\n<h2><a name=\"no-js\" id=\"no-js\">Users With&#160;No JavaScript&#160;</a></h2>\n\n<p>To enable as many people to use our products as possible, we provide a fall-back option for all our interactive elements so the user can still find the information they are looking for. &#160;</p>\n\n<p>For example, when the JavaScript has been turned off in the browser, an Accordion component would not be able to be toggled. All Accordion items will&#160;be displayed with all tabs open and the toggle button hidden to allow all the content to be read. &#160;</p>\n\n<p>In some cases, it may not be possible to display without JavaScript. In this case, we will show a message to the users that this piece of functionality cannot be used without JavaScript. &#160;</p>\n\n<p>&#160;</p>\n\n<h2><a name=\"testing\" id=\"testing\">Testing for Accessibility </a>&#160;</h2>\n\n<p>Human interaction is the most reliable method to assess accessibility. Therefore, manual checks should be run alongside automated testing to ensure our components comply with WCAG 2.1 and&#160;the accessibility guidance outlined here. &#160;</p>\n\n<p>When writing production code, we should test for accessibility regularly using accessibility tools in the browser, assistive technologies such as a screen reader and using the interface with only a keyboard. For information on what assistive technologies to test with see <a href=\"https://www.gov.uk/service-manual/technology/testing-with-assistive-technologies\">testing with assistive technologies</a>.</p>\n\n<p>&#160;</p>",
+                                    "links": {
+                                        "page-margin-diagram.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/page-margin-diagram.jpg"
+                                        },
+                                        "image-example.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/image-example.jpg"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Analytics",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<ul>\n <li>Introduction to analytics on .com</li>\n <li>Link to documentation about how to track within GA, Decibel</li>\n</ul>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Content",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<ul>\n <li>Introduction to content guidelines, state there&#39;s more info in each section if relevant</li>\n <li>Links to Brand Portal, CMS user guide or other content guidelines</li>\n</ul>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Focus States",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<ul>\n <li>Introduction to focus/interaction states</li>\n <li>How it works - do&#39;s and don&#39;ts</li>\n <li>Best practice examples</li>\n</ul>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Images & Illustrations",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>Imagery plays a significant part in the VisitScotland.com experience, they help us to showcase the beauty and character of Scotland, its unique landscape, people and traditions.</p>\n\n<p>This section contains guidelines for producing, sourcing and using images on the VisitScotland.com estate. For more information on imagery please contact <a rel=\"noreferrer noopener\" href=\"mailto:multimedia@visitscotland.com\" target=\"_blank\">multimedia@visitscotland.</a><a href=\"mailto:multimedia@visitscotland.com\">com</a>.</p>\n\n<p>Illustrations are another visual tool used throughout the site to complement other types of content on the site. They are used sparingly and thoughtfully to add touches of playfulness and to convey concepts that don&#8217;t necessarily have a photographic equivalent. For more help with illustrations please contact <a rel=\"noreferrer noopener\" href=\"mailto:brandhelp@visitscotland.com\" target=\"_blank\">brandhelp@visitscotland.com</a>.&#160;&#160;</p>\n\n<h2>Photography&#160;</h2>\n\n<h3>Aspect ratio</h3>\n\n<p>All photographs&#160;should have a standard&#160;aspect ratio&#160;of&#160;3:2.&#160;</p>\n\n<h3>Image dos and don&#8217;ts&#160;&#160;</h3>\n\n<p>Do consider the context when choosing images.</p>\n\n<pre>\n&#60;DoDoNot&#62; \n&#60;div slot=&#34;thingToDo&#34;&#62; \n<img data-hippo-link=\"group-5049.png\" />\n&#60;p&#62;Do select images based on their intended context&#60;/p&#62; \n&#60;/div&#62;\n &#60;div slot=&#34;thingToNotDo&#34;&#62; \n\n<img data-hippo-link=\"group-5050.png\" />\n&#60;p&#62;Don&#39;t use images that don&#39;t work in their intended context&#60;/p&#62; \n&#60;/div&#62; \n&#60;/DoDoNot&#62;</pre>\n\n<p>&#160;</p>\n\n<p>Don&#8217;t use plain&#160;text over/as part of an image.</p>\n\n<pre>\n&#60;DoDoNot&#62;\n&#60;div slot=&#34;thingToDo&#34;&#62;\n<img data-hippo-link=\"group-5051.png_2\" />\n&#60;p&#62;Do use a solid background with adequate contrast behind text when using it on top of images.&#60;/p&#62;\n&#60;/div&#62;\n&#60;div slot=&#34;thingToNotDo&#34;&#62;\n<img data-hippo-link=\"mask-group-1624.png_1\" />\n&#60;p&#62;Don&#8217;t use plain text over images.&#60;/p&#62;\n&#60;/div&#62;\n&#60;/DoDoNot&#62;</pre>\n\n<p>&#160;</p>\n\n<p>Do make sure that all non-clickable images have a locator and use the appropriate image caption.</p>\n\n<pre>\n&#60;DoDoNot&#62;\n&#60;div slot=&#34;thingToDo&#34;&#62;\n\n<img data-hippo-link=\"group-5054.png\" />\n\n&#60;p&#62;Do use the appropriate image caption for the image.&#60;/p&#62;\n&#60;/div&#62;\n&#60;div slot=&#34;thingToNotDo&#34;&#62;\n<img data-hippo-link=\"group-5055.png\" />\n\n&#60;p&#62;Don&#8217;t use inappropriate image caption for the image.&#60;/p&#62;\n&#60;/div&#62;\n&#60;/DoDoNot&#62;</pre>\n\n<p>&#160;</p>\n\n<p>Note that within the Hero area, an image needs to be chosen that allows for the lower area of the image to be obscured.</p>\n\n<pre>\n&#60;DoDoNot&#62;\n&#60;div slot=&#34;thingToDo&#34;&#62;\n<img data-hippo-link=\"do.png\" />\n&#60;p&#62;Do select images that allows for the lower area to be obscured.&#60;/p&#62;\n&#60;/div&#62;\n&#60;div slot=&#34;thingToNotDo&#34;&#62;\n<img data-hippo-link=\"dont.png\" />\n&#60;p&#62;Don&#39;t use images that do not allow for the lower area to be obscured.&#60;/p&#62;\n&#60;/div&#62;\n&#60;/DoDoNot&#62;\n</pre>\n\n<h3>Credits and Descriptions&#160;</h3>\n\n<p>At VisitScotland we give credit to our creators and use image descriptions where possible, apart from the card component image.&#160;</p>\n\n<pre>\n&#60;DoDoNot&#62;\n&#60;div slot=&#34;thingToDo&#34;&#62;\n<img data-hippo-link=\"frame-5.png\" />\n&#60;p&#62;Do use credits and image description on hero images likes this.&#60;/p&#62;\n&#60;/div&#62;\n&#60;div slot=&#34;thingToNotDo&#34;&#62;\n\n<img data-hippo-link=\"frame-4.png\" />\n&#60;p&#62;Don&#39;t use credits and image description on card images likes this..&#60;/p&#62;\n&#60;/div&#62;\n&#60;/DoDoNot&#62;</pre>\n\n<h2>Illustrations&#160;</h2>\n\n<p>An illustration may be used to communicate, explain or add context to information or to help&#160;visualise data. They should be used sparingly and thoughtfully.</p>\n\n<pre>\n&#60;DoDoNot&#62;\n&#60;div slot=&#34;thingToDo&#34;&#62;\n<img data-hippo-link=\"group-5053.png\" />\n&#60;p&#62;Do use illustrations sparingly and thoughtfully.&#60;/p&#62;\n&#60;/div&#62;\n&#60;div slot=&#34;thingToNotDo&#34;&#62;\n<img data-hippo-link=\"group-5052.png\" />\n\n&#60;p&#62;Don&#8217;t use illustrations that add unneccessary visual clutter.&#60;/p&#62;\n&#60;/div&#62;\n&#60;/DoDoNot&#62;\n</pre>\n\n<h2>Accessibility&#160;</h2>\n\n<p>Images should have text alternatives to describe them for people using assistive technologies. Avoid using text on an image but include images that are useful and meaningful to the text on the page. Do not use moving or flashing images where possible.&#160;&#160;&#160;</p>\n\n<p>All images must have an alt text attribute and should succinctly describe the content of the image so it can be conveyed to people who cannot see it.&#160;Please refer to the <a href=\"https://dev-designsystem.visitscotland.com/#/Elements/Img\">image component page</a> for guidance on how to use images.</p>\n\n<p>For decorative images, the alt attribute must be present but can be left blank to avoid screen readers reading out the image URL. See the<a href=\"https://www.w3.org/WAI/tutorials/images/\"> Web Accessibility Tutorials</a> from W3C for more information on each type of image and what kind of alt text to include.&#160;&#160;&#160;</p>\n\n<h2>Media Library&#160;</h2>\n\n<p>At VisitScotland our media is sourced responsibly, and every media content created is accredited to the appropriate creator. We do not use unapproved media on the website. <a rel=\"noreferrer noopener\" href=\"https://assets.visitscotland.com/\" target=\"_blank\">Visit our media library</a>.&#160;</p>\n\n<p>&#160;</p>",
+                                    "links": {
+                                        "group-5049.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/group-5049.png"
+                                        },
+                                        "group-5050.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/group-5050.png"
+                                        },
+                                        "group-5051.png_2": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/group-5051.png"
+                                        },
+                                        "mask-group-1624.png_1": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/mask-group-1624.png"
+                                        },
+                                        "group-5054.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/group-5054.png"
+                                        },
+                                        "group-5055.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/group-5055.png"
+                                        },
+                                        "do.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/do.png"
+                                        },
+                                        "dont.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/dont.png"
+                                        },
+                                        "frame-5.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/frame-5.png"
+                                        },
+                                        "frame-4.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/frame-4.png"
+                                        },
+                                        "group-5053.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/group-5053.png"
+                                        },
+                                        "group-5052.png": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/group-5052.png"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Motion",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<ul>\n <li>Introduction to motion, animation</li>\n <li>Examples of motion on .com - transitions</li>\n <li>Accessibility - Animation - recuded motion, no flashing</li>\n <li>Why these animations, how it works - do&#39;s and don&#39;ts</li>\n</ul>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Multimedia",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<ul>\n <li>Introduction to multimedia</li>\n <li>Examples of video on .com</li>\n <li>Why add multimedia, how it works - do&#39;s and don&#39;ts</li>\n <li>Accessibility - Multimedia - ensure captions</li>\n</ul>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Spacing",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>We use a spacing scale to define padding, margins and positions of our components.</p>\n\n<p>Spacing between elements is important as it helps to create relationships and hierarchy between elements in the UI, whilst use of white space helps to break up the page to help a user understand the content.</p>\n\n<p>Using our spacing system allows our pages to stay consistent and keeps a similar rhythm across all screens.</p>\n\n<h2>The spacing system</h2>\n\n<p>The system uses multiples of 8px in our designs with 4px spacing used for smaller adjustments. Tokens themselves do not change based on screen size but at some breakpoints, it may be necessary to jump up or down on the scale to fit the needs of the UI.</p>\n\n<p><img data-hippo-link=\"vs-spacing-system.jpg\" /></p>\n\n<h3>Example of spacing tokens in a design</h3>\n\n<p>&#160;</p>\n\n<p><img data-hippo-link=\"vs-spacing-module-example.jpg\" /></p>",
+                                    "links": {
+                                        "vs-spacing-system.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/vs-spacing-system.jpg"
+                                        },
+                                        "vs-spacing-module-example.jpg": {
+                                            "type": "binary",
+                                            "url": "https://dev-designsystem.visitscotland.com:8080/site/binaries/content/gallery/cms/vs-spacing-module-example.jpg"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "cms:designsystemsection",
+                "items": {
+                    "cms:sectionDepth": 4,
+                    "cms:href": "",
+                    "cms:name": "Design Tokens",
+                    "cms:description": "",
+                    "cms:ignore": "",
+                    "cms:usageMode": "hide",
+                    "cms:exampleMode": "hide",
+                    "cms:components": "",
+                    "cms:Content": {
+                        "type": "hippostd:html",
+                        "content": "<p>Design tokens are master values that contain specific design variables, used to construct and maintain the design while it is constantly evolving.&#160;</p>\n\n<p>They are the&#160;visual design foundations of our design system and all the values we need, set in data, that can be reused throughout our components.</p>\n\n<p>From colour, spacing, typography, opacity, animation etc, design tokens can represent anything from an RGB colour to a number value or setting a complex box shadow.</p>\n\n<p>Using these instead of hard coded values helps to standardise our designs and ensure we stay consistent whilst the design system grows. It also allows us to have a faster hand-off process between design and UI development.&#160;&#160;</p>"
+                    },
+                    "cms:Sections": [
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Colour",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>All colour tokens and tints used across the site for various purposes.&#160;</p>\n\n<pre>\n&#60;tokens types=&#34;color&#34;/&#62;</pre>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Time",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>Use timing tokens for setting animation durations.</p>\n\n<pre>\n&#60;tokens category=&#34;time&#34;/&#62;</pre>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Type",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>Typography values including font families, sizes, weights, letter spacing and line height.</p>\n\n<p>&#160;</p>\n\n<h3>Font Family</h3>\n\n<pre>\n&#60;tokens category=&#34;font&#34;/&#62;\n</pre>\n\n<h3>Font Size</h3>\n\n<pre>\n&#60;tokens category=&#34;font-size&#34;/&#62;\n</pre>\n\n<h3>Heading Size</h3>\n\n<pre>\n&#60;tokens category=&#34;heading-size&#34;/&#62;</pre>\n\n<h3>Font Weight</h3>\n\n<pre>\n&#60;tokens category=&#34;font-weight&#34;/&#62;</pre>\n\n<h3>Line Height</h3>\n\n<pre>\n&#60;tokens category=&#34;line-height&#34;/&#62;</pre>\n\n<h3>Letter Spacing</h3>\n\n<pre>\n&#60;tokens category=&#34;letter-spacing&#34;/&#62;\n</pre>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Radius",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>Use these radius values to set the border-radius property.</p>\n\n<pre>\n&#60;tokens category=&#34;border-radius&#34;/&#62;</pre>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Icon Size",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>These&#160;tokens define the different&#160;icon sizes for our icon element.&#160;</p>\n\n<pre>\n&#60;tokens category=&#34;icons&#34;/&#62;</pre>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Shadow",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>Use shadow tokens to set box shadow on elements.</p>\n\n<pre>\n&#60;tokens category=&#34;box-shadow&#34;/&#62;</pre>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Theme",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>Theme tokens are used to set the&#160;background colour&#160;for components.&#160;</p>\n\n<pre>\n&#60;tokens category=&#34;themes&#34;/&#62;</pre>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Space",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>Spacing tokens used for padding, margins and positioning.</p>\n\n<pre>\n&#60;tokens category=&#34;space&#34;/&#62;</pre>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Grid Layout",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "hide",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>Grid layout and breakpoint&#160;values are&#160;used to set our grid structure and&#160;override default Bootstrap values.</p>\n\n<h3>Grid</h3>\n\n<pre>\n&#60;tokens category=&#34;grid-layout&#34;/&#62;\n</pre>\n\n<h3>Breakpoints</h3>\n\n<pre>\n&#60;tokens category=&#34;breakpoints&#34;/&#62;\n</pre>"
+                                }
+                            }
+                        },
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 0,
+                                "cms:href": "",
+                                "cms:name": "Opacity",
+                                "cms:description": "",
+                                "cms:usageMode": "hide",
+                                "cms:ignore": "",
+                                "cms:exampleMode": "hide",
+                                "cms:components": "",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>Use these tokens for setting transparency on elements.</p>\n\n<pre>\n&#60;tokens category=&#34;opacity&#34;/&#62;</pre>"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "cms:designsystemsection",
+                "items": {
+                    "cms:sectionDepth": 1,
+                    "cms:href": "",
+                    "cms:name": "Elements",
+                    "cms:description": "",
+                    "cms:ignore": "./src/components/elements/tag-manager-wrapper/[A-Z]*.vue",
+                    "cms:usageMode": "expand",
+                    "cms:exampleMode": "collapse",
+                    "cms:components": "./src/components/elements/**/[A-Z]*.vue",
+                    "cms:Content": {
+                        "type": "hippostd:html",
+                        "content": "<p>The basic building blocks of our site such as a button or form input. Elements can be used to build more complex patterns.&#160;</p>\n\n<p>&#160;</p>\n\n<pre>\n&#60;components show=&#34;elements&#34; /&#62;</pre>"
+                    },
+                    "cms:Sections": [
+                        {
+                            "type": "cms:designsystemsection",
+                            "items": {
+                                "cms:sectionDepth": 1,
+                                "cms:href": "",
+                                "cms:name": "Grid",
+                                "cms:description": "",
+                                "cms:ignore": "",
+                                "cms:usageMode": "expand",
+                                "cms:exampleMode": "collapse",
+                                "cms:components": "./src/components/elements/grid/**/[A-Z]*.vue",
+                                "cms:Content": {
+                                    "type": "hippostd:html",
+                                    "content": "<p>All our layouts are built using the Bootstrap grid system.</p>\n\n<p>We use the Bootstrap Vue&#160;mobile-first flexbox grid components&#160;for containers. rows and columns. This means that any any prop for these components can be applied to our component.</p>\n\n<p>Please see the docs for more information on what can be achieved&#160;<a href=\"http://bootstrap-vue.org/docs/components/layout\">Bootstrap Vue Layout</a>.</p>"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "cms:designsystemsection",
+                "items": {
+                    "cms:sectionDepth": 1,
+                    "cms:href": "",
+                    "cms:name": "Patterns",
+                    "cms:description": "",
+                    "cms:usageMode": "expand",
+                    "cms:ignore": "./src/components/patterns/**/components/**/*",
+                    "cms:exampleMode": "collapse",
+                    "cms:components": "./src/components/patterns/**/[A-Z]*.vue",
+                    "cms:Content": {
+                        "type": "hippostd:html",
+                        "content": "<p>Patterns are more complex components in the design system which are&#160;made up of multiple elements. An Accordion or Article are good examples.&#160;</p>\n\n<pre>\n&#60;components show=&#34;patterns&#34; /&#62;</pre>"
+                    }
+                }
+            },
+            {
+                "type": "cms:designsystemsection",
+                "items": {
+                    "cms:sectionDepth": 1,
+                    "cms:href": "",
+                    "cms:name": "Templates",
+                    "cms:description": "",
+                    "cms:ignore": "./src/components/templates/**/components/**/*",
+                    "cms:usageMode": "expand",
+                    "cms:exampleMode": "collapse",
+                    "cms:components": "./src/components/templates/**/[A-Z]*.vue",
+                    "cms:Content": {
+                        "type": "hippostd:html",
+                        "content": "<p>Larger page layouts made up of multiple patterns such as Article or Itinerary page modules.&#160;&#160;</p>\n\n<pre>\n&#60;components show=&#34;templates&#34; /&#62;</pre>"
+                    }
+                }
+            }
+        ]
+    }
+}
