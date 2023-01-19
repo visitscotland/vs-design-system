@@ -94,7 +94,7 @@ jobs:
                     \"Effect\": \"Allow\",
                     \"Principal\": \"*\",
                     \"Action\": \"s3:GetObject\",
-                    \"Resource\": \"arn:aws:s3:::${{env.GIT_BRANCH}}/*\"
+                    \"Resource\": \"arn:aws:s3:::${{env.BUCKET_NAME}}/*\"
                 }
             ]
           }"
@@ -109,9 +109,9 @@ jobs:
       - name: Deploying to S3
         id: aws-sync
         run: |
-          echo "Deploying branch ${{ env.GIT_BRANCH}} to https://${{ env.BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com"
+          echo "Deploying to https://${{ env.BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com"
           commit_hash=`git rev-parse HEAD`
-          aws s3 sync ./dist/system/ s3://${{env.GIT_BRANCH}}
-          S3_URL=https://${{env.GIT_BRANCH}}.s3.${{env.AWS_REGION}}.amazonaws.com/index.html
+          aws s3 sync ./dist/system/ s3://${{env.BUCKET_NAME}}
+          S3_URL=https://${{env.BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com/index.html
           echo "S3_URL=${ S3_URL }" >> .env"
 
