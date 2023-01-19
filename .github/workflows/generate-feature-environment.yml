@@ -112,6 +112,5 @@ jobs:
           echo "Deploying to https://${{ env.BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com"
           commit_hash=`git rev-parse HEAD`
           aws s3 sync ./dist/system/ s3://${{env.BUCKET_NAME}}
-          AWS_S3_URL=https://${{env.BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com/index.html
-          echo "S3_URL=${ AWS_S3_URL }" >> $GITHUB_ENV
+          echo "S3_URL=https://${{env.BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com/index.html" >> $GITHUB_ENV
 
