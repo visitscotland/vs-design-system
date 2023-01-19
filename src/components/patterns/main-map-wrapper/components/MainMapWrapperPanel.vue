@@ -240,7 +240,7 @@ export default {
          */
         currentEndpointData: {
             type: Array,
-            default: null,
+            default: () => [],
         },
     },
     computed: {
@@ -302,7 +302,7 @@ export default {
                 data = this.regions;
             }
 
-            if (this.currentEndpointData !== null) {
+            if (this.currentEndpointData.length > 0) {
                 return this.refineEndpointData(this.currentEndpointData);
             }
 
@@ -405,10 +405,14 @@ export default {
                         type: data[0].website.type,
                     },
                     address: {
-                        shortAddress: data[0].address.shortAddress,
+                        shortAddress: '',
                     },
                 },
             }];
+
+            if (typeof data[0].address !== 'undefined') {
+                refinedData[0].properties.address.shortAddress = data[0].address.shortAddress;
+            }
 
             return refinedData;
         },

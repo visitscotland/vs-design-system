@@ -259,7 +259,7 @@ export default {
             ],
             subCatList: null,
             selectedToggle: '',
-            currentEndpointData: null,
+            currentEndpointData: [],
         };
     },
     computed: {
@@ -306,7 +306,9 @@ export default {
          * Show an item's details
          */
         showDetail(id) {
-            document.exitFullscreen();
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            }
             this.selectedItem = id;
             this.setStage(2);
             this.openPanel();
