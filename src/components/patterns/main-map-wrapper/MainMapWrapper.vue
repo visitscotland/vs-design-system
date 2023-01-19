@@ -314,6 +314,7 @@ export default {
          * Show an item's details
          */
         showDetail(id) {
+            document.exitFullscreen();
             this.selectedItem = id;
             this.setStage(2);
             this.openPanel();

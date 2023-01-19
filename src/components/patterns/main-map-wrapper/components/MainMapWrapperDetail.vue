@@ -11,7 +11,7 @@
 
         <VsHeading
             v-if="showTitle"
-            level="3"
+            :level="headingLevel"
             override-style-level="4"
             class="vs-main-map-wrapper-detail__heading mt-0"
             :class="(typeof contentData.properties.title !== 'undefined' ? 'd-lg-none' : '')"
@@ -70,6 +70,13 @@ export default {
             type: Object,
             required: true,
         },
+        /**
+         * Heading level - to allow sequential heading
+         */
+        headingLevel: {
+            type: String,
+            default: '3',
+        },
     },
     computed: {
         showTitle() {
@@ -86,6 +93,8 @@ export default {
 
 <style lang="scss">
     .vs-main-map-wrapper-detail {
+        text-align: left;
+
         &__image {
             max-width: 100%;
         }

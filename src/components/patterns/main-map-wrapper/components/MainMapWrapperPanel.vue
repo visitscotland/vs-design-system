@@ -131,6 +131,7 @@
         </template>
         <template v-if="currentStage === 2">
             <VsMainMapWrapperDetail
+                :heading-level="detailHeadingLevel"
                 :content-data="currentPlaceData[0]"
             />
 
@@ -325,6 +326,13 @@ export default {
         subCatFilterCount() {
             return mapStore.getters.getActiveSubcatFilters.length;
         },
+        detailHeadingLevel() {
+            const headingNum = parseInt(this.headingLevel, 10);
+            const newHeading = headingNum + 1;
+            const headingStr = newHeading.toString();
+
+            return headingStr;
+        },
     },
     methods: {
         /**
@@ -430,6 +438,11 @@ export default {
             padding-top: $spacer-6;
         }
 
+        &__heading.vs-heading {
+            flex-grow: 1;
+            margin: $spacer-11 $spacer-3 $spacer-0;
+        }
+
         &__header-section {
             display: flex;
             min-height: 32px;
@@ -458,11 +471,6 @@ export default {
 
         &__reset {
             display: none;
-        }
-
-        h2.vs-heading {
-            flex-grow: 1;
-            margin: $spacer-11 $spacer-3 $spacer-0;
         }
 
         .vs-main-wrapper-category:last-of-type {
