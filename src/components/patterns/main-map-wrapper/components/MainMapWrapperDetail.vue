@@ -27,7 +27,7 @@
         </VsHeading>
 
         <p
-            v-if="typeof contentData.properties.address.shortAddress !== 'undefined'"
+            v-if="typeof contentData.properties.address !== 'undefined'"
             data-test="vs-main-map-wrapper-detail__address"
             class="vs-main-map-wrapper-detail__address"
         >
