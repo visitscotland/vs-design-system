@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.11](https://github.com/visitscotland/design-system/compare/v0.5.10...v0.5.11) (2023-01-19)
+
+
+### Bug Fixes
+
+* 🐛 fix bug caused by switching from endpoint to CMS data ([1097f54](https://github.com/visitscotland/design-system/commit/1097f54bf1791d227e2944b204413c31f2a49cc1))
+
 ### [0.5.10](https://github.com/visitscotland/design-system/compare/v0.5.9...v0.5.10) (2023-01-19)
 
 
