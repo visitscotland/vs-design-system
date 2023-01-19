@@ -50,7 +50,7 @@ jobs:
     # Create an environment for the static hosting
     environment:
       name: ds-s3-deployment
-      url: ${{ steps.aws-sync.outputs.s3_url }}
+      url: ${{ env.S3_URL }}
       
     permissions:
       id-token: write
@@ -109,7 +109,7 @@ jobs:
       - name: Deploying to S3
         id: aws-sync
         run: |
-          echo "Deploying to https://${{ env.BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com"
+          echo "Deploying to https://${{ env.BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com/index.html"
           commit_hash=`git rev-parse HEAD`
           aws s3 sync ./dist/system/ s3://${{env.BUCKET_NAME}}
           echo "S3_URL=https://${{env.BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com/index.html" >> $GITHUB_ENV
