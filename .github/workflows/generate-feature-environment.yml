@@ -113,5 +113,5 @@ jobs:
           commit_hash=`git rev-parse HEAD`
           aws s3 sync ./dist/system/ s3://${{env.BUCKET_NAME}}
           S3_URL=https://${{env.BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com/index.html
-          echo "S3_URL=${ S3_URL }" >> .env"
+          echo "S3_URL=${ S3_URL }" >> $GITHUB_ENV
 
