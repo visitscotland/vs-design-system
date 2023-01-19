@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.9](https://github.com/visitscotland/design-system/compare/v0.5.8...v0.5.9) (2023-01-19)
+
+
+### Features
+
+* 🎸 ensure data is available before formatting ([5d6cdbf](https://github.com/visitscotland/design-system/commit/5d6cdbf86cbba5f0924e8c72c7aa9c81d7338efc))
+* 🎸 tweak heading styles and levels for integration ([fc0c1f3](https://github.com/visitscotland/design-system/commit/fc0c1f3c5804965455a7225e1b2bb724dc6a829d))
+
 ### [0.5.8](https://github.com/visitscotland/design-system/compare/v0.5.7...v0.5.8) (2023-01-18)
 
 
