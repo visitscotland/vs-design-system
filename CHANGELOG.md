@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.8](https://github.com/visitscotland/design-system/compare/v0.5.7...v0.5.8) (2023-01-18)
+
+
+### Features
+
+* 🎸 add elements for details with endpoint content ([77a80e3](https://github.com/visitscotland/design-system/commit/77a80e34fca3f577d62066ee2835d69556ff3c7f))
+* 🎸 add no JS warning to mainmapwrapper component ([960e59b](https://github.com/visitscotland/design-system/commit/960e59b41106b265e4359bcbdb1f9835c92d3432))
+* 🎸 add place details that originate from endpoint ([d4e1fe0](https://github.com/visitscotland/design-system/commit/d4e1fe0301a3112331e05107ba369150eeb558ad))
+* 🎸 add separate controls component for map subcategories ([0fb35b9](https://github.com/visitscotland/design-system/commit/0fb35b9a4d9d21dc8e7b12f3e6ac1eb56598cf3f))
+* 🎸 refactor to use include in scss ([2d56251](https://github.com/visitscotland/design-system/commit/2d562519ead35fcbc9308419ad849cad5d764cc2))
+* 🎸 remove unneeded bounds data prop ([ac1911c](https://github.com/visitscotland/design-system/commit/ac1911c37c4fc1b5771c634a01aa3c7dc9eab9e9))
+
+
+### Bug Fixes
+
+* 🐛 add comments to methods ([c7c0d63](https://github.com/visitscotland/design-system/commit/c7c0d63d141f2a2ccf8eeee1c993b0037939330e))
+* 🐛 remove console log ([6e49558](https://github.com/visitscotland/design-system/commit/6e495586aa40c77ebd6919b151a81b7f6a64e718))
+* 🐛 Remove double colon ([94f957d](https://github.com/visitscotland/design-system/commit/94f957d637783db688f81345caedffd7d3e53816))
+* 🐛 remove grading as not needed for this release ([8a7a143](https://github.com/visitscotland/design-system/commit/8a7a1433f94888998764ed5073b5c03bf8eb0875))
+
+
+### Styling
+
+* 💄 add styling for subcomponent list ([30c103f](https://github.com/visitscotland/design-system/commit/30c103f04ebcaceb804deddb1cecc8ed916c5054))
+* 💄 tidy styles and add new marker images ([4d9d49a](https://github.com/visitscotland/design-system/commit/4d9d49a5d23664a6e29f525b5dc3bd78047243f4))
+* 💄 update new icons and colour for subcategories ([f73f992](https://github.com/visitscotland/design-system/commit/f73f992b841cc0d486f5bb9ba32278aea19bf21d))
+
 ### [0.5.7](https://github.com/visitscotland/design-system/compare/v0.5.6...v0.5.7) (2023-01-16)
 
 
