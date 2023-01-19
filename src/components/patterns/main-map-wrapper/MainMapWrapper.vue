@@ -407,6 +407,7 @@ export default {
                 mapStore.dispatch('setCurrentStage', num);
 
                 if (this.currentStage === 0) {
+                    this.currentEndpointData = [];
                     if (this.selectedSubCategory === null) {
                         this.showAllPlaces();
                     }
