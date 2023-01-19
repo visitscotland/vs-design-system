@@ -87,7 +87,7 @@ export default {
             return mapStore.getters.getSelectedSubcat;
         },
     },
-    beforeMount() {
+    mounted() {
         if (!this.fromEndpoint) {
             this.formattedData = this.itemData;
         } else {
