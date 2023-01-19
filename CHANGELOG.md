@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.10](https://github.com/visitscotland/design-system/compare/v0.5.9...v0.5.10) (2023-01-19)
+
+
+### Bug Fixes
+
+* 🐛 fix bugs in feature branch ([0a5720c](https://github.com/visitscotland/design-system/commit/0a5720c64a085903efda567872b49a519d6afafa))
+
 ### [0.5.9](https://github.com/visitscotland/design-system/compare/v0.5.8...v0.5.9) (2023-01-19)
 
 
