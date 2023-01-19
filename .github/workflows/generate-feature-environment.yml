@@ -78,7 +78,7 @@ jobs:
         run: |
           BUCKET_EXISTS=false
           BUCKET_EXISTS=$(aws s3api head-bucket --bucket ${{ env.BUCKET_NAME }} 2>&1 || true)
-          echo "BUCKET_EXISTS=${ BUCKET_EXISTS }" >> .env"
+          echo "BUCKET_EXISTS=${ BUCKET_EXISTS }" >> .env
           
       - name: Create bucket in S3
         if: ${{ env.BUCKET_EXISTS }} === false
