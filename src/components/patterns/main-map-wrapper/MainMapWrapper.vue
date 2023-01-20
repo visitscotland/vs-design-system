@@ -267,7 +267,7 @@ export default {
             ],
             subCatList: null,
             selectedToggle: '',
-            currentEndpointData: null,
+            currentEndpointData: [],
         };
     },
     computed: {
@@ -314,7 +314,9 @@ export default {
          * Show an item's details
          */
         showDetail(id) {
-            document.exitFullscreen();
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            }
             this.selectedItem = id;
             this.setStage(2);
             this.openPanel();
@@ -413,6 +415,7 @@ export default {
                 mapStore.dispatch('setCurrentStage', num);
 
                 if (this.currentStage === 0) {
+                    this.currentEndpointData = [];
                     if (this.selectedSubCategory === null) {
                         this.showAllPlaces();
                     }

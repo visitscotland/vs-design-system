@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.12](https://github.com/visitscotland/design-system/compare/v0.5.11...v0.5.12) (2023-01-20)
+
+
+### Bug Fixes
+
+* 🐛 fix multiple submit when subcategory is changed ([9cd3a92](https://github.com/visitscotland/design-system/commit/9cd3a929493ddeab9d2a20a658fa0b6fe3b9195d))
+
+### [0.5.11](https://github.com/visitscotland/design-system/compare/v0.5.10...v0.5.11) (2023-01-19)
+
+
+### Bug Fixes
+
+* 🐛 fix bug caused by switching from endpoint to CMS data ([1097f54](https://github.com/visitscotland/design-system/commit/1097f54bf1791d227e2944b204413c31f2a49cc1))
+
+### [0.5.10](https://github.com/visitscotland/design-system/compare/v0.5.9...v0.5.10) (2023-01-19)
+
+
+### Bug Fixes
+
+* 🐛 fix bugs in feature branch ([0a5720c](https://github.com/visitscotland/design-system/commit/0a5720c64a085903efda567872b49a519d6afafa))
+
+### [0.5.9](https://github.com/visitscotland/design-system/compare/v0.5.8...v0.5.9) (2023-01-19)
+
+
+### Features
+
+* 🎸 ensure data is available before formatting ([5d6cdbf](https://github.com/visitscotland/design-system/commit/5d6cdbf86cbba5f0924e8c72c7aa9c81d7338efc))
+* 🎸 tweak heading styles and levels for integration ([fc0c1f3](https://github.com/visitscotland/design-system/commit/fc0c1f3c5804965455a7225e1b2bb724dc6a829d))
+
 ### [0.5.8](https://github.com/visitscotland/design-system/compare/v0.5.7...v0.5.8) (2023-01-18)
 
 

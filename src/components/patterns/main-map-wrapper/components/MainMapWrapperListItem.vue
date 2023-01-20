@@ -12,6 +12,7 @@
     >
         <div class="vs-main-map-wrapper-list-item__img-container">
             <VsImg
+                v-if="typeof formattedData.image !== 'undefined'"
                 :src="formattedData.image"
                 class="vs-main-map-wrapper-list-item__img"
             />
@@ -92,7 +93,7 @@ export default {
             this.formattedData = this.itemData;
         } else {
             this.formattedData.id = this.itemData.id;
-            if (typeof this.itemData.images[0].mediaUrl !== 'undefined') {
+            if (typeof this.itemData.images !== 'undefined') {
                 this.formattedData.image = this.itemData.images[0].mediaUrl;
             }
             this.formattedData.title = this.itemData.name;

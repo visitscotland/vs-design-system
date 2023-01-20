@@ -107,13 +107,12 @@ export default {
             this.selected = [];
         });
 
-        this.$root.$on('submitSelected', () => {
-            this.checkboxesChangeSubmit();
-        });
-
         this.$root.$on('submitCheckboxData', () => {
             this.checkboxesChangeSubmit();
         });
+    },
+    beforeDestroy() {
+        this.$root.$off('submitCheckboxData');
     },
     methods: {
         /**
