@@ -219,22 +219,9 @@ export default {
          * Adds a map to the page
          */
         addMap() {
-            let boundingBox;
-            if (this.boundsData.length === 0
-                || this.boundsData.type === 'MultiPolygon') {
-                boundingBox = [
-                    [-7.555827, 55.308836], // south-west point.
-                    [-0.778285, 60.830894], // north-east point.
-                ];
-            } else if (this.boundsData.type === 'bounds') {
-                const southWest = new mapboxgl
-                    .LngLat(this.boundsData.coordinates[1][0], this.boundsData.coordinates[1][1]);
-                const northEast = new mapboxgl
-                    .LngLat(this.boundsData.coordinates[0][0], this.boundsData.coordinates[0][1]);
-                boundingBox = new mapboxgl.LngLatBounds(southWest, northEast);
-            } else {
-                boundingBox = this.getBoundsFromPolygon();
-            }
+            const boundingBox = this.calculateBoundingBox();
+
+            console.log(boundingBox);
 
             this.mapbox.config.container = this.$refs.mapbox;
             this.mapbox.map = new mapboxgl.Map({
@@ -680,6 +667,37 @@ export default {
             this.mapbox.map.flyTo({
                 center: coords,
             });
+        },
+        /**
+         * Calculate bounding box depending on data provided
+        */
+        calculateBoundingBox() {
+            let boundingBox;
+
+            if (typeof this.boundsData === 'undefined'
+                || this.boundsData.type === 'undefined') {
+                boundingBox = [
+                    [-7.555827, 55.308836], // south-west point.
+                    [-0.778285, 60.830894], // north-east point.
+                ];
+            } else if (this.boundsData.type === 'bounds') {
+                const southWest = new mapboxgl
+                    .LngLat(this.boundsData.coordinates[1][0],
+                            this.boundsData.coordinates[1][1]);
+                const northEast = new mapboxgl
+                    .LngLat(this.boundsData.coordinates[0][0],
+                            this.boundsData.coordinates[0][1]);
+                boundingBox = new mapboxgl.LngLatBounds(southWest, northEast);
+            } else if (this.boundsData.type === 'Polygon') {
+                boundingBox = this.getBoundsFromPolygon();
+            } else {
+                boundingBox = [
+                    [-7.555827, 55.308836], // south-west point.
+                    [-0.778285, 60.830894], // north-east point.
+                ];
+            }
+
+            return boundingBox;
         },
     },
 };
