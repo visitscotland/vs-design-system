@@ -221,8 +221,6 @@ export default {
         addMap() {
             const boundingBox = this.calculateBoundingBox();
 
-            console.log(boundingBox);
-
             this.mapbox.config.container = this.$refs.mapbox;
             this.mapbox.map = new mapboxgl.Map({
                 container: this.$refs.mapbox,
@@ -294,36 +292,45 @@ export default {
          * Adds map markers
          */
         addMapMarkers() {
-            if (this.markers !== null) {
-                for (let i = this.markers.length - 1; i >= 0; i--) {
-                    this.markers[i].remove();
-                }
+            // timeout needed to give the store a chance to load
+            // so that watchers update
+            let timeout = 0;
+
+            if (this.initialLoad) {
+                timeout = 1000;
             }
-
-            for (let child = this.$children.length - 1; child >= 0; child--) {
-                this.$children[child].$destroy();
-            }
-
-            this.geojsonData.features.forEach((feature) => {
-                if (feature.geometry.type === 'Point') {
-                    const markerComponent = new Vue({
-                        ...VsMapMarker,
-                        parent: this,
-                        propsData: {
-                            feature,
-                            mapId: this.mapId,
-                        },
-                    });
-
-                    markerComponent.$mount();
-
-                    const mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
-                        .setLngLat(feature.geometry.coordinates)
-                        .addTo(this.mapbox.map);
-
-                    this.markers.push(mapboxMarker);
+            setTimeout(() => {
+                if (this.markers !== null) {
+                    for (let i = this.markers.length - 1; i >= 0; i--) {
+                        this.markers[i].remove();
+                    }
                 }
-            });
+
+                for (let child = this.$children.length - 1; child >= 0; child--) {
+                    this.$children[child].$destroy();
+                }
+
+                this.geojsonData.features.forEach((feature) => {
+                    if (feature.geometry.type === 'Point') {
+                        const markerComponent = new Vue({
+                            ...VsMapMarker,
+                            parent: this,
+                            propsData: {
+                                feature,
+                                mapId: this.mapId,
+                            },
+                        });
+
+                        markerComponent.$mount();
+
+                        const mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
+                            .setLngLat(feature.geometry.coordinates)
+                            .addTo(this.mapbox.map);
+
+                        this.markers.push(mapboxMarker);
+                    }
+                });
+            }, timeout);
         },
         /**
          * Hide all polygons
