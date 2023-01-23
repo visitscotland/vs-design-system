@@ -139,6 +139,14 @@
                 :content-data="currentPlaceData[0]"
             />
         </template>
+
+        <p
+            v-if="panelMessage !== null"
+            data-test="vs-main-map-wrapper-panel__message"
+            class="vs-main-map-wrapper-panel__message"
+        >
+            {{ panelMessage }}
+        </p>
     </section>
 </template>
 
@@ -241,6 +249,14 @@ export default {
         currentEndpointData: {
             type: Array,
             default: () => [],
+        },
+        /**
+         * A message that appears at the bottom
+         * of the side panel
+         */
+        panelMessage: {
+            type: String,
+            default: null,
         },
     },
     computed: {
@@ -517,6 +533,21 @@ export default {
 
             &__reset {
                 display: block;
+            }
+
+            &__message {
+                position: sticky;
+                bottom: -1px;
+                padding: $spacer-4 0;
+                width: 100%;
+                background: $color-white;
+                text-align: center;
+                margin-bottom: $spacer-0;
+                font-size: $font-size-4;
+
+                @include media-breakpoint-up(lg) {
+                    padding: $spacer-4;
+                }
             }
         }
     }
