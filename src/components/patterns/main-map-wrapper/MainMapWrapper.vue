@@ -21,6 +21,7 @@
                             :heading-level="mainHeadingExists ? '3' : '2'"
                             :subcategory-locations="subCatList"
                             :current-endpoint-data="currentEndpointData"
+                            :panel-message="panelMessage"
                             :total-pins="totalEndpointPins"
                             @set-category="setCategory"
                             @set-subcategory="setSubCategory"
@@ -256,6 +257,14 @@ export default {
          * ID for map's place
          */
         placeId: {
+            type: String,
+            default: null,
+        },
+        /**
+         * A message that appears at the bottom
+         * of the side panel
+         */
+        panelMessage: {
             type: String,
             default: null,
         },

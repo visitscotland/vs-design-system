@@ -33,6 +33,7 @@ user to filter and search for data contained on the map.
     }"
     filtersAppliedText="filters applied"
     clearFiltersText="clear filters"
+    panelMessage="Get friendly and helpful advice for your trip at our iCentres"
 >
     <template slot="closeSidePanelText">
         <span class="sr-only">

@@ -11,6 +11,8 @@
         "even": #1066D6,
         "cate": #C31613,
         "reta": $color-theme-secondary-indigo,
+        "twnv": #7A074D,
+        "serv": $color-pink,
     );
 
     @each $name, $color in $themes {
