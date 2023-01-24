@@ -105,13 +105,12 @@ export default {
             default: null,
         },
         /**
-         * The location of the data for bounds details
+         * Data to set map bounds
          */
         boundsData: {
-            type: Array,
-            default: () => [],
+            type: Object,
+            default: () => {},
         },
-
     },
     data() {
         return {
@@ -220,14 +219,13 @@ export default {
          * Adds a map to the page
          */
         addMap() {
+            const boundingBox = this.calculateBoundingBox();
+
             this.mapbox.config.container = this.$refs.mapbox;
             this.mapbox.map = new mapboxgl.Map({
                 container: this.$refs.mapbox,
                 style: 'https://api.visitscotland.com/maps/vector/v1/vts/resources/styles',
-                bounds: [
-                    [-7.555827, 55.308836], // south-west point.
-                    [-0.778285, 60.830894], // north-east point.
-                ],
+                bounds: boundingBox,
             });
             this.mapbox.map.scrollZoom.disable();
             this.mapbox.map.on('rotate', () => {
@@ -294,36 +292,45 @@ export default {
          * Adds map markers
          */
         addMapMarkers() {
-            if (this.markers !== null) {
-                for (let i = this.markers.length - 1; i >= 0; i--) {
-                    this.markers[i].remove();
-                }
+            // timeout needed to give the store a chance to load
+            // so that watchers update
+            let timeout = 0;
+
+            if (this.initialLoad) {
+                timeout = 1000;
             }
-
-            for (let child = this.$children.length - 1; child >= 0; child--) {
-                this.$children[child].$destroy();
-            }
-
-            this.geojsonData.features.forEach((feature) => {
-                if (feature.geometry.type === 'Point') {
-                    const markerComponent = new Vue({
-                        ...VsMapMarker,
-                        parent: this,
-                        propsData: {
-                            feature,
-                            mapId: this.mapId,
-                        },
-                    });
-
-                    markerComponent.$mount();
-
-                    const mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
-                        .setLngLat(feature.geometry.coordinates)
-                        .addTo(this.mapbox.map);
-
-                    this.markers.push(mapboxMarker);
+            setTimeout(() => {
+                if (this.markers !== null) {
+                    for (let i = this.markers.length - 1; i >= 0; i--) {
+                        this.markers[i].remove();
+                    }
                 }
-            });
+
+                for (let child = this.$children.length - 1; child >= 0; child--) {
+                    this.$children[child].$destroy();
+                }
+
+                this.geojsonData.features.forEach((feature) => {
+                    if (feature.geometry.type === 'Point') {
+                        const markerComponent = new Vue({
+                            ...VsMapMarker,
+                            parent: this,
+                            propsData: {
+                                feature,
+                                mapId: this.mapId,
+                            },
+                        });
+
+                        markerComponent.$mount();
+
+                        const mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
+                            .setLngLat(feature.geometry.coordinates)
+                            .addTo(this.mapbox.map);
+
+                        this.markers.push(mapboxMarker);
+                    }
+                });
+            }, timeout);
         },
         /**
          * Hide all polygons
@@ -641,6 +648,17 @@ export default {
             this.isTablet = window.innerWidth >= 768;
         },
         /**
+         * Creates a map bounding object from polygon data
+         */
+        getBoundsFromPolygon() {
+            const coordinates = this.boundsData.coordinates[0];
+            /* eslint-disable arrow-body-style */
+            return coordinates.reduce((bounds, coord) => {
+                return bounds.extend(coord);
+            }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+            /* eslint-enable arrow-body-style */
+        },
+        /**
          * Check a marker is visible on the map
          */
         checkPointIsVisible() {
@@ -656,6 +674,37 @@ export default {
             this.mapbox.map.flyTo({
                 center: coords,
             });
+        },
+        /**
+         * Calculate bounding box depending on data provided
+        */
+        calculateBoundingBox() {
+            let boundingBox;
+
+            if (typeof this.boundsData === 'undefined'
+                || this.boundsData.type === 'undefined') {
+                boundingBox = [
+                    [-7.555827, 55.308836], // south-west point.
+                    [-0.778285, 60.830894], // north-east point.
+                ];
+            } else if (this.boundsData.type === 'bounds') {
+                const southWest = new mapboxgl
+                    .LngLat(this.boundsData.coordinates[1][0],
+                            this.boundsData.coordinates[1][1]);
+                const northEast = new mapboxgl
+                    .LngLat(this.boundsData.coordinates[0][0],
+                            this.boundsData.coordinates[0][1]);
+                boundingBox = new mapboxgl.LngLatBounds(southWest, northEast);
+            } else if (this.boundsData.type === 'Polygon') {
+                boundingBox = this.getBoundsFromPolygon();
+            } else {
+                boundingBox = [
+                    [-7.555827, 55.308836], // south-west point.
+                    [-0.778285, 60.830894], // north-east point.
+                ];
+            }
+
+            return boundingBox;
         },
     },
 };

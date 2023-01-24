@@ -109,6 +109,15 @@
                         @show-item-detail="showDetail(place.id)"
                     />
                 </div>
+                <VsButton
+                    v-if="showLoadMore"
+                    class="vs-main-map-wrapper-panel__load-more"
+                    data-test="vs-main-map-wrapper-panel__load-more"
+                    @click.native="loadMorePlaces()"
+                >
+                    <!-- @slot Text for load more button  -->
+                    <slot name="loadMoreText" />
+                </VsButton>
                 <VsMainMapWrapperButtons
                     :content-data="{}"
                     :filter-count="subCatFilterCount"
@@ -258,6 +267,18 @@ export default {
             type: String,
             default: null,
         },
+         * Total amount of places coming from endpoint.
+         * Used to work out if there's more to load in panel.
+         */
+        totalPins: {
+            type: Number,
+            default: 0,
+        },
+    },
+    data() {
+        return {
+            placesLoaded: 1,
+        };
     },
     computed: {
         currentHeading() {
@@ -349,6 +370,18 @@ export default {
 
             return headingStr;
         },
+        showLoadMore() {
+            if (this.placesLoaded * 24 > this.totalPins) {
+                return false;
+            }
+
+            return true;
+        },
+    },
+    watch: {
+        currentFilter() {
+            this.placesLoaded = 1;
+        },
     },
     methods: {
         /**
@@ -439,6 +472,13 @@ export default {
             mapStore.dispatch('setActiveSubcatFilters', []);
             this.setStage(0);
         },
+        /**
+         * Load more places from endpoint
+        */
+        loadMorePlaces() {
+            this.placesLoaded += 1;
+            this.$emit('load-more-places', this.placesLoaded);
+        },
     },
 };
 </script>
@@ -491,6 +531,11 @@ export default {
 
         &__reset {
             display: none;
+        }
+
+        &__load-more {
+            flex-shrink: 0;
+            margin: $spacer-4 0;
         }
 
         .vs-main-wrapper-category:last-of-type {
