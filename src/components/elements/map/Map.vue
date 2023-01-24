@@ -139,7 +139,7 @@ export default {
          * a slot
          */
         showInfoMessage: {
-            type: String,
+            type: Boolean,
             default: null,
         },
     },
@@ -229,6 +229,13 @@ export default {
         activeMarkerPostion(coords) {
             if (!this.checkPointIsVisible(coords)) {
                 this.centreMapOnPoint(coords);
+            }
+        },
+        showInfoMessage(newVal) {
+            if (newVal) {
+                this.showMapMessage = true;
+            } else {
+                this.showMapMessage = false;
             }
         },
     },
@@ -734,6 +741,7 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: $spacer-6;
     }
 
     &__loading {
@@ -743,6 +751,7 @@ export default {
     &__message-text {
         font-size: $font-size-3;
         margin-bottom: 0;
+        text-align: center;
     }
 
     &__no-js {

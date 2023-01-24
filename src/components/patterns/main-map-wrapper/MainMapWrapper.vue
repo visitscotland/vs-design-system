@@ -64,7 +64,7 @@
                             :selected-item="selectedItem"
                             :map-id="mapId"
                             :show-polygons="showRegions"
-                            :show-info-messge="false"
+                            :show-info-message="mapStatus !== ''"
                             @show-detail="showDetail"
                             @set-category="setCategory"
                         >
@@ -253,6 +253,20 @@ export default {
             type: String,
             default: null,
         },
+        /**
+         * Text to show on map propmpting user to filter results
+         */
+        mapFilterMessage: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Text to show on map when there are no results
+         */
+        mapNoResultsMessage: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
@@ -288,21 +302,31 @@ export default {
         selectedSubCategory() {
             return mapStore.getters.getSelectedSubcat;
         },
+        subCatActiveFilters() {
+            return mapStore.getters.getActiveSubcatFilters;
+        },
         infoMessage() {
             let msg = '';
 
             switch (this.mapStatus) {
             case ('no-results'):
-                msg = 'No results';
+                msg = this.mapNoResultsMessage;
                 break;
             case ('filter-results'):
-                msg = 'Filter results';
+                msg = this.mapFilterMessage;
                 break;
             default:
                 break;
             }
 
             return msg;
+        },
+    },
+    watch: {
+        selectedSubCategory(val) {
+            if (val === null) {
+                this.mapStatus = '';
+            }
         },
     },
     mounted() {
@@ -388,14 +412,22 @@ export default {
                 endpoint += endpointFilters;
             }
 
-            axios.get(endpoint).then((response) => {
+            this.activePins = [];
+
+            // show markers only if the subcategory has been filtered
+            if (typeof endpointFilters === 'undefined') {
                 this.activePins = [];
-                response.data.features.forEach((feature) => {
-                    const modifiedFeature = feature;
-                    modifiedFeature.properties.apiData = true;
-                    this.activePins.push(modifiedFeature);
+                this.mapStatus = 'filter-results';
+            } else {
+                axios.get(endpoint).then((response) => {
+                    response.data.features.forEach((feature) => {
+                        const modifiedFeature = feature;
+                        modifiedFeature.properties.apiData = true;
+                        this.activePins.push(modifiedFeature);
+                    });
                 });
-            });
+                this.mapStatus = '';
+            }
         },
         /**
          * Makes a call to the endpoint in the subcategory data which
@@ -435,6 +467,9 @@ export default {
                     this.currentEndpointData = [];
                     if (this.selectedSubCategory === null) {
                         this.showAllPlaces();
+                        this.mapStatus = '';
+                    } else {
+                        this.getSubcatMarkerData();
                     }
                     this.selectedToggle = 'places';
                 } else if (this.currentStage === 1) {

@@ -26,6 +26,8 @@ user to filter and search for data contained on the map.
     detailsEndpoint="http://172.28.81.65:8089/data/component/mapcard?id="
     filtersAppliedText="filters applied"
     clearFiltersText="clear filters"
+    mapFilterMessage="Please apply filter(s) to refine results."
+    mapNoResultsMessage="There are no results, please try again"
 >
     <template slot="closeSidePanelText">
         <span class="sr-only">
