@@ -267,6 +267,7 @@ export default {
             type: String,
             default: null,
         },
+        /**
          * Total amount of places coming from endpoint.
          * Used to work out if there's more to load in panel.
          */
