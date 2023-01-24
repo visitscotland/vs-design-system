@@ -4,6 +4,28 @@
         data-test="vs-map"
     >
         <div
+            v-if="showMapMessage"
+            class="vs-map__message"
+            data-test="vs-map__message"
+        >
+            <div class="vs-map__message-box">
+                <VsLoading
+                    v-if="isLoading"
+                    class="vs-map__loading"
+                />
+                <p class="vs-map__message-text">
+                    <template v-if="isLoading">
+                        <!-- @slot Message to show when map is loading  -->
+                        <slot name="mapLoadingText" />
+                    </template>
+                    <template v-else-if="showInfoMessage">
+                        <!-- @slot Generic message slot -->
+                        <slot name="infoMessage" />
+                    </template>
+                </p>
+            </div>
+        </div>
+        <div
             :id="mapId"
             class="vs-map__map"
             ref="mapbox"
@@ -18,6 +40,7 @@
 <script>
 import Vue from 'vue';
 import VsWarning from '@components/patterns/warning/Warning';
+import VsLoading from '@components/elements/loading-spinner/LoadingSpinner';
 import osBranding from '@/utils/os-branding';
 import VsMapMarker from './components/MapMarker';
 import initFontAwesome from '../../../utils/init-font-awesome';
@@ -38,6 +61,7 @@ export default {
     release: '0.0.1',
     components: {
         VsWarning,
+        VsLoading,
     },
     props: {
         /**
@@ -111,7 +135,13 @@ export default {
             type: Array,
             default: () => [],
         },
-
+        /** If the map should show an info message defined
+         * a slot
+         */
+        showInfoMessage: {
+            type: String,
+            default: null,
+        },
     },
     data() {
         return {
@@ -140,6 +170,8 @@ export default {
             popup: null,
             hoveredStateId: null,
             activeStateId: null,
+            showMapMessage: true,
+            isLoading: true,
         };
     },
     computed: {
@@ -238,6 +270,8 @@ export default {
 
             this.mapbox.map.on('load', () => {
                 this.addMapPolygons();
+                this.showMapMessage = false;
+                this.isLoading = false;
             });
         },
         /**
@@ -677,6 +711,38 @@ export default {
     &__map {
         height: 100%;
         position: relative;
+    }
+
+    &__message {
+        position: absolute;
+        z-index: 20;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    &__message-box {
+        border: 1px solid $color-pink;
+        border-radius: $border-radius-default;
+        height: 142px;
+        width: 200px;
+        background: $color-white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__loading {
+        margin-bottom: $spacer-4;
+    }
+
+    &__message-text {
+        font-size: $font-size-3;
+        margin-bottom: 0;
     }
 
     &__no-js {

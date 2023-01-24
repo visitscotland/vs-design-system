@@ -64,9 +64,17 @@
                             :selected-item="selectedItem"
                             :map-id="mapId"
                             :show-polygons="showRegions"
+                            :show-info-messge="false"
                             @show-detail="showDetail"
                             @set-category="setCategory"
                         >
+                            <template slot="mapLoadingText">
+                                <!-- @slot Message to show when map is loading  -->
+                                <slot name="mapLoadingText" />
+                            </template>
+                            <template slot="infoMessage">
+                                {{ infoMessage }}
+                            </template>
                             <template slot="noJs">
                                 <!-- @slot Message to show when JS is disabled  -->
                                 <slot name="noJs" />
@@ -260,6 +268,7 @@ export default {
             subCatList: null,
             selectedToggle: '',
             currentEndpointData: [],
+            mapStatus: '',
         };
     },
     computed: {
@@ -278,6 +287,22 @@ export default {
         },
         selectedSubCategory() {
             return mapStore.getters.getSelectedSubcat;
+        },
+        infoMessage() {
+            let msg = '';
+
+            switch (this.mapStatus) {
+            case ('no-results'):
+                msg = 'No results';
+                break;
+            case ('filter-results'):
+                msg = 'Filter results';
+                break;
+            default:
+                break;
+            }
+
+            return msg;
         },
     },
     mounted() {
