@@ -9,7 +9,7 @@ const centreInformationSlot = 'Centre Information Placeholder';
 const skiStatusUrl = 'https://testurl';
 const skiStatusCairngormsUrl = 'https://testurlcairngorms';
 
-const closedLabel = 'fermé';
+const summaryClosedLabel = 'fermé';
 const currentWeatherLabel = 'météo actuelle';
 const difficultLabel = 'difficile';
 const easyLabel = 'facile';
@@ -19,8 +19,8 @@ const lastUpdatedLabel = 'dernière mise à jour';
 const liftsLabel = 'ascenseurs';
 const liftStatusLabel = 'état des ascenseurs';
 const newsLabel = 'l\'actualités';
-const openLabel = 'ouvrir';
-const openingLabel = 'ouverture';
+const summaryOpenLabel = 'ouvrir';
+const summaryOpeningLabel = 'ouverture';
 const otherLabel = 'autre';
 const roadsLabel = 'routes';
 const runsLabel = 'court';
@@ -34,7 +34,7 @@ const weatherForecastLabel = 'prévisions météorologiques';
 const factoryMount = (propsData) => mount(VsSkiScotlandStatus, {
     propsData: {
         skiStatusUrl,
-        closedLabel,
+        summaryClosedLabel,
         currentWeatherLabel,
         difficultLabel,
         easyLabel,
@@ -44,8 +44,8 @@ const factoryMount = (propsData) => mount(VsSkiScotlandStatus, {
         liftsLabel,
         liftStatusLabel,
         newsLabel,
-        openLabel,
-        openingLabel,
+        summaryOpenLabel,
+        summaryOpeningLabel,
         otherLabel,
         roadsLabel,
         runsLabel,
@@ -85,19 +85,19 @@ describe('VsSkiScotlandStatus', () => {
             expect(wrapper.find('[data-test="vs-ski__js-disabled"]').exists()).toBe(false);
         });
 
-        it(':closedLabel - should render the label in the appropriate location', () => {
+        it(':summaryClosedLabel - should render the label in the appropriate location', () => {
             const container = wrapper.find('[data-test="vs-ski__closed-label"]');
-            expect(container.html()).toContain(closedLabel);
+            expect(container.html()).toContain(summaryClosedLabel);
         });
 
-        it(':openingLabel - should render the label in the appropriate location', () => {
+        it(':summaryOpeningLabel - should render the label in the appropriate location', () => {
             const container = wrapper.find('[data-test="vs-ski__opening-label"]');
-            expect(container.html()).toContain(openingLabel);
+            expect(container.html()).toContain(summaryOpeningLabel);
         });
 
-        it(':openLabel - should render the label in the appropriate location', () => {
+        it(':summaryOpenLabel - should render the label in the appropriate location', () => {
             const container = wrapper.find('[data-test="vs-ski__open-label"]');
-            expect(container.html()).toContain(openLabel);
+            expect(container.html()).toContain(summaryOpenLabel);
         });
 
         it(':easyLabel - should render the label in the appropriate location', () => {
