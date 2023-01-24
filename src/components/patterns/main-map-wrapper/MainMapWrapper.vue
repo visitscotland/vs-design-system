@@ -21,6 +21,7 @@
                             :heading-level="mainHeadingExists ? '3' : '2'"
                             :subcategory-locations="subCatList"
                             :current-endpoint-data="currentEndpointData"
+                            :total-pins="totalEndpointPins"
                             @set-category="setCategory"
                             @set-subcategory="setSubCategory"
                             @subcategories-filtered="filterSubCategories"
@@ -28,6 +29,7 @@
                             @close-panel="closePanel"
                             @show-item-detail="showDetail"
                             @filter-places="filterPlaces"
+                            @load-more-places="loadMorePlaces"
                         >
                             <template slot="closePanelText">
                                 <slot name="closeSidePanelText" />
@@ -39,6 +41,10 @@
 
                             <template slot="backBtnText">
                                 <slot name="backBtnText" />
+                            </template>
+
+                            <template slot="loadMoreText">
+                                <slot name="loadMoreText" />
                             </template>
                         </VsMainMapWrapperPanel>
                     </div>
@@ -268,6 +274,8 @@ export default {
             subCatList: null,
             selectedToggle: '',
             currentEndpointData: [],
+            currentPanelEndpointFilters: '',
+            totalEndpointPins: 0,
         };
     },
     computed: {
@@ -357,8 +365,10 @@ export default {
                 filterString += filterSuffix;
             });
 
+            this.currentPanelEndpointFilters = filterString;
+
             this.getSubcatMarkerData(filterString);
-            this.getSubcatPanelData(filterString);
+            this.getSubcatPanelData(filterString, 1);
         },
         /**
          * Makes a call to the API to get marker data for
@@ -373,6 +383,7 @@ export default {
 
             axios.get(endpoint).then((response) => {
                 this.activePins = [];
+                this.totalEndpointPins = response.data.features.length;
                 response.data.features.forEach((feature) => {
                     const modifiedFeature = feature;
                     modifiedFeature.properties.apiData = true;
@@ -384,15 +395,23 @@ export default {
          * Makes a call to the endpoint in the subcategory data which
          * provides a random 24 items for the side panel
          */
-        getSubcatPanelData(endpointFilters) {
+        getSubcatPanelData(endpointFilters, page) {
             const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
             let endpoint = subCat[0].listProductsEndPoint;
             if (typeof endpointFilters !== 'undefined') {
                 endpoint += endpointFilters;
             }
 
+            if (page !== 1) {
+                endpoint += `${endpointFilters}&page=${page}`;
+            }
+
             axios.get(endpoint).then((response) => {
-                this.subCatList = response.data.data.products;
+                if (page <= 1) {
+                    this.subCatList = response.data.data.products;
+                } else {
+                    this.subCatList = this.subCatList.concat(response.data.data.products);
+                }
                 this.setStage(1);
             });
         },
@@ -460,6 +479,12 @@ export default {
                     });
                 this.activePins = filteredPlaces;
             }
+        },
+        /**
+         * Load more places from endpoint
+         */
+        loadMorePlaces(page) {
+            this.getSubcatPanelData(this.currentPanelEndpointFilters, page);
         },
         /**
          * Show all pins, remove regions
