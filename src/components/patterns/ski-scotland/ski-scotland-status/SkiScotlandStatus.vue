@@ -40,6 +40,7 @@
                 >
                     <VsHeading
                         level="3"
+                        override-style-level="5"
                         data-test="vs-ski__runs-lifts-status-label"
                         class="d-none d-md-block"
                     >
@@ -139,6 +140,7 @@
                     cols="12"
                     md="3"
                     offset-md="1"
+                    class="vs-ski-scotland-status__centre-info"
                 >
                     <!--
                         @slot Slot for centre information content
@@ -164,7 +166,7 @@
                     <p>{{ report }}</p>
                     <VsHeading
                         level="3"
-                        override-style-level="6"
+                        override-style-level="5"
                         data-test="vs-ski__current-weather-label"
                     >
                         {{ currentWeatherLabel }}
@@ -172,7 +174,7 @@
                     <p>{{ currentWeather }}</p>
                     <VsHeading
                         level="3"
-                        override-style-level="6"
+                        override-style-level="5"
                         data-test="vs-ski__weather-forecast-label"
                     >
                         {{ weatherForecastLabel }}
@@ -180,7 +182,7 @@
                     <p>{{ weatherForecast }}</p>
                     <VsHeading
                         level="3"
-                        override-style-level="6"
+                        override-style-level="5"
                         data-test="vs-ski__roads-label"
                     >
                         {{ roadsLabel }}
@@ -188,7 +190,7 @@
                     <p>{{ roadStatus }}</p>
                     <VsHeading
                         level="3"
-                        override-style-level="6"
+                        override-style-level="5"
                         data-test="vs-ski__news-label"
                     >
                         {{ newsLabel }}
@@ -771,6 +773,8 @@ export default {
 
 <style lang="scss">
     .vs-ski-scotland-status {
+        text-align: left;
+
         &__full-report {
             h2 {
                 margin-bottom: $spacer-4;
@@ -784,6 +788,10 @@ export default {
                 margin-bottom: $spacer-2;
                 margin-top: $spacer-6;
             }
+        }
+
+        &__centre-info {
+            font-size: $font-size-4;
         }
 
         .row {
