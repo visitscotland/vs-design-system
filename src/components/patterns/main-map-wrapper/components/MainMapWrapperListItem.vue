@@ -14,7 +14,6 @@
             <VsImg
                 v-if="typeof formattedData.image !== 'undefined'"
                 :src="formattedData.image"
-                :use-lazy-loading="false"
                 class="vs-main-map-wrapper-list-item__img"
             />
         </div>
