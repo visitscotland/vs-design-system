@@ -289,13 +289,6 @@ export default {
             required: true,
         },
         /**
-         * Text to show in the panel while data is loading
-         */
-        panelLoadingMessage: {
-            type: String,
-            required: true,
-        },
-        /**
          * A message that appears at the bottom
          * of the side panel
          */

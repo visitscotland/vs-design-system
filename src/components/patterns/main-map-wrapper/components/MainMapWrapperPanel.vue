@@ -150,14 +150,14 @@
         </template>
         <div
             v-if="panelStatus !== null"
-            class="vs-main-map-wrapper-panel__message"
+            class="vs-main-map-wrapper-panel__overlay"
         >
             <div
                 v-if="!!$slots['panelLoadingMessage']
                     && panelStatus !== 'map-loading'"
-                class="vs-main-map-wrapper-panel__message-box"
+                class="vs-main-map-wrapper-panel__overlay-box"
             >
-                <p class="vs-main-map-wrapper-panel__message-text">
+                <p class="vs-main-map-wrapper-panel__overlay-text">
                     <!-- @slot Text for panel reset button  -->
                     <slot name="panelLoadingMessage" />
                 </p>
@@ -548,7 +548,7 @@ export default {
             display: none;
         }
 
-        &__message {
+        &__overlay {
             position: absolute;
             z-index: 20;
             height: 100%;
@@ -559,7 +559,7 @@ export default {
             background: rgba(255, 255, 255, 0.4);
         }
 
-        &__message-box {
+        &__overlay-box {
             border: 1px solid $color-pink;
             border-radius: $border-radius-default;
             height: 142px;
@@ -572,7 +572,7 @@ export default {
             padding: $spacer-6;
         }
 
-        &__message-text {
+        &__overlay-text {
             font-size: $font-size-3;
             margin-bottom: 0;
             text-align: center;
