@@ -1,4 +1,4 @@
-import { shallowMount, createWrapper } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import VsMainMapWrapperControls from '../MainMapWrapperControls';
 
 const factoryShallowMount = () => shallowMount(VsMainMapWrapperControls, {
@@ -47,7 +47,7 @@ describe('VsMainMapWrapperControls', () => {
             wrapper.setData({
                 isDisabled: false,
             });
-    
+
             await wrapper.vm.$nextTick();
             const applyBtn = wrapper.find('[data-test="vs-main-map-subcategory__apply-filters"]');
             expect(applyBtn.attributes('aria-disabled')).toBe(undefined);
