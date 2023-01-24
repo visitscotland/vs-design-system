@@ -176,7 +176,56 @@ when the accordion item is closed, and up when accordion item is open.
         </div>
     </VsAccordionItem>
 </VsAccordion>
+```
 
+## Colour Badge
+Each accordion item can be marked with a simple colour badge if needed, to add a visual
+indicator that contrasts that item with the others. The colours used should either be part
+of the site branding, or clearly attached to the meaning they're indicating.
+
+```js
+    <VsAccordion>
+        <VsAccordionItem
+        variant="transparent"
+            control-id="accordion_item_8"
+            colour-badge="green"
+        >
+            <span slot="title">
+                Easy
+            </span>
+            <p>Easy Ski Runs</p>
+        </VsAccordionItem>
+        <VsAccordionItem
+        variant="transparent"
+            control-id="accordion_item_9"
+            colour-badge="blue"
+        >
+            <span slot="title">
+                Intermediate
+            </span>
+            <p>Intermediate Ski Runs</p>
+        </VsAccordionItem>
+        <VsAccordionItem
+        variant="transparent"
+            control-id="accordion_item_10"
+            colour-badge="red"
+        >
+            <span slot="title">
+                Difficult
+            </span>
+            <p>Difficult Ski Runs</p>
+        </VsAccordionItem>
+        <VsAccordionItem
+        variant="transparent"
+            control-id="accordion_item_11"
+            colour-badge="black"
+        >
+            <span slot="title">
+                Very Difficult
+            </span>
+            <p>Very difficult Ski Runs</p>
+        </VsAccordionItem>
+    </VsAccordion>
 ```
 
 ## Accessibility
