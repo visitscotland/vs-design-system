@@ -125,7 +125,6 @@ export default {
          * item on hover
          */
         itemHover(id) {
-            console.log('item hover');
             mapStore.dispatch('setHoveredPlace', {
                 mapId: this.mapId,
                 hoveredId: id,
