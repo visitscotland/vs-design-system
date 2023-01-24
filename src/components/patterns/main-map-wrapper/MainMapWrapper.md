@@ -24,6 +24,13 @@ user to filter and search for data contained on the map.
     clearSelectionText="Clear all"
     applyFiltersText="Show results"
     detailsEndpoint="http://172.28.81.65:8089/data/component/mapcard?id="
+    :region-bounds="{
+        'type': 'bounds',
+        'coordinates': [
+            [-1.9512628517431096, 57.21203739352487],
+            [-2.253781748576017, 57.10308348515494]
+        ],
+    }"
     filtersAppliedText="filters applied"
     clearFiltersText="clear filters"
 >
