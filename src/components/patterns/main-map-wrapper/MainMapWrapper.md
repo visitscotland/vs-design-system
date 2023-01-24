@@ -24,10 +24,18 @@ user to filter and search for data contained on the map.
     clearSelectionText="Clear all"
     applyFiltersText="Show results"
     detailsEndpoint="http://172.28.81.65:8089/data/component/mapcard?id="
+    :region-bounds="{
+        'type': 'bounds',
+        'coordinates': [
+            [-1.9512628517431096, 57.21203739352487],
+            [-2.253781748576017, 57.10308348515494]
+        ],
+    }"
     filtersAppliedText="filters applied"
     clearFiltersText="clear filters"
     mapFilterMessage="Please apply filter(s) to refine results."
     mapNoResultsMessage="There are no results, please try again"
+    panelMessage="Get friendly and helpful advice for your trip at our iCentres"
 >
     <template slot="closeSidePanelText">
         <span class="sr-only">
@@ -45,6 +53,8 @@ user to filter and search for data contained on the map.
     </template>
     <template slot="mapLoadingText">
         Loading
+    <template slot="loadMoreText">
+        Load more
     </template>
     <template slot="noJs">
         You need Javascript enabled to see this map

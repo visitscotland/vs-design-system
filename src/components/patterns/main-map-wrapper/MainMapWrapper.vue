@@ -22,6 +22,8 @@
                             :subcategory-locations="subCatList"
                             :current-endpoint-data="currentEndpointData"
                             :panel-status="panelStatus"
+                            :panel-message="panelMessage"
+                            :total-pins="totalEndpointPins"
                             @set-category="setCategory"
                             @set-subcategory="setSubCategory"
                             @subcategories-filtered="filterSubCategories"
@@ -29,6 +31,7 @@
                             @close-panel="closePanel"
                             @show-item-detail="showDetail"
                             @filter-places="filterPlaces"
+                            @load-more-places="loadMorePlaces"
                         >
                             <template slot="closePanelText">
                                 <slot name="closeSidePanelText" />
@@ -44,6 +47,10 @@
 
                             <template slot="panelLoadingMessage">
                                 <slot name="panelLoadingMessage" />
+                            </template>
+
+                            <template slot="loadMoreText">
+                                <slot name="loadMoreText" />
                             </template>
                         </VsMainMapWrapperPanel>
                     </div>
@@ -73,6 +80,7 @@
                             @show-detail="showDetail"
                             @set-category="setCategory"
                             @map-ready="setMapReady"
+                            :bounds-data="regionBounds"
                         >
                             <template slot="mapLoadingText">
                                 <!-- @slot Message to show when map is loading  -->
@@ -237,6 +245,13 @@ export default {
             default: '',
         },
         /**
+         * Bounds if map needs to show a specific area
+         */
+        regionBounds: {
+            type: Object,
+            default: () => {},
+        },
+        /**
          * Text for clearing filters - to be passed
          * to buttons component
          */
@@ -278,6 +293,14 @@ export default {
          */
         panelLoadingMessage: {
             type: String,
+            required: true,
+        },
+        /**
+         * A message that appears at the bottom
+         * of the side panel
+         */
+        panelMessage: {
+            type: String,
             default: null,
         },
     },
@@ -299,6 +322,8 @@ export default {
             panelStatus: 'map-loading',
             mapReady: false,
             showPanelMessage: null,
+            currentPanelEndpointFilters: '',
+            totalEndpointPins: 0,
         };
     },
     computed: {
@@ -414,8 +439,10 @@ export default {
                 filterString += filterSuffix;
             });
 
+            this.currentPanelEndpointFilters = filterString;
+
             this.getSubcatMarkerData(filterString);
-            this.getSubcatPanelData(filterString);
+            this.getSubcatPanelData(filterString, 1);
         },
         /**
          * Makes a call to the API to get marker data for
@@ -436,6 +463,7 @@ export default {
                 this.mapStatus = 'filter-results';
             } else {
                 axios.get(endpoint).then((response) => {
+                    this.totalEndpointPins = response.data.features.length;
                     response.data.features.forEach((feature) => {
                         const modifiedFeature = feature;
                         modifiedFeature.properties.apiData = true;
@@ -449,7 +477,7 @@ export default {
          * Makes a call to the endpoint in the subcategory data which
          * provides a random 24 items for the side panel
          */
-        getSubcatPanelData(endpointFilters) {
+        getSubcatPanelData(endpointFilters, page) {
             this.panelStatus = 'loading-data';
             const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
             let endpoint = subCat[0].listProductsEndPoint;
@@ -457,8 +485,16 @@ export default {
                 endpoint += endpointFilters;
             }
 
+            if (page !== 1) {
+                endpoint += `${endpointFilters}&page=${page}`;
+            }
+
             axios.get(endpoint).then((response) => {
-                this.subCatList = response.data.data.products;
+                if (page <= 1) {
+                    this.subCatList = response.data.data.products;
+                } else {
+                    this.subCatList = this.subCatList.concat(response.data.data.products);
+                }
                 this.setStage(1);
                 this.panelStatus = null;
             });
@@ -532,6 +568,12 @@ export default {
             }
         },
         /**
+         * Load more places from endpoint
+         */
+        loadMorePlaces(page) {
+            this.getSubcatPanelData(this.currentPanelEndpointFilters, page);
+        },
+        /**
          * Show all pins, remove regions
          */
         showAllPlaces() {
@@ -554,7 +596,6 @@ export default {
          * Set whether or not map is ready to use
          */
         setMapReady(val) {
-            console.log('set map status');
             this.mapReady = val;
             if (val) {
                 this.panelStatus = null;

@@ -79,15 +79,20 @@ export default {
             return mapStore.getters.getSelectedSubcat;
         },
         getMarkerIcon() {
+            let markerName;
             if (this.feature.properties.type !== '') {
-                return `marker-${this.feature.properties.type}`;
+                markerName = `marker-${this.feature.properties.type}`;
+            } else if (this.activeSubCat !== null) {
+                markerName = `marker-${this.activeSubcat}`;
+            } else {
+                markerName = 'marker-featured';
             }
 
-            if (this.activeSubCat !== null) {
-                return `marker-${this.activeSubcat}`;
+            if (markerName === 'marker-null') {
+                markerName = '';
             }
 
-            return 'marker-featured';
+            return markerName;
         },
     },
     watch: {
@@ -95,6 +100,10 @@ export default {
             if (this.activePlace === this.feature.properties.id
                 || this.highlightedPlace === this.feature.properties.id) {
                 return true;
+            }
+
+            if (this.activePlace === this.feature.properties.id) {
+                mapStore.dispatch('setActiveMarkerPos', this.feature.geometry.coordinates);
             }
 
             return false;

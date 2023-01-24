@@ -40,6 +40,7 @@
                 >
                     <VsHeading
                         level="3"
+                        override-style-level="5"
                         data-test="vs-ski__runs-lifts-status-label"
                         class="d-none d-md-block"
                     >
@@ -75,7 +76,7 @@
                                         class="mr-2"
                                     />
                                     <span data-test="vs-ski__open-label">
-                                        {{ openLabel }}
+                                        {{ summaryOpenLabel }}
                                     </span>
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -93,7 +94,7 @@
                                         class="mr-2"
                                     />
                                     <span data-test="vs-ski__opening-label">
-                                        {{ openingLabel }}
+                                        {{ summaryOpeningLabel }}
                                     </span>
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -110,7 +111,9 @@
                                         size="xs"
                                         class="mr-2"
                                     />
-                                    <span data-test="vs-ski__closed-label">{{ closedLabel }}</span>
+                                    <span data-test="vs-ski__closed-label">
+                                        {{ summaryClosedLabel }}
+                                    </span>
                                 </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.runs.closed }}/{{ runs.length }}
@@ -133,12 +136,20 @@
                             </VsTableRow>
                         </VsTableFooter>
                     </VsTable>
+                    <VsLink
+                        :href="`#vs-ski-scotland-status__detailed-status-${id}`"
+                        type="default"
+                        class="vs-ski-scotland-status__detailed-status-link"
+                    >
+                        {{ detailedStatusLabel }}
+                    </VsLink>
                 </VsCol>
 
                 <VsCol
                     cols="12"
                     md="3"
                     offset-md="1"
+                    class="vs-ski-scotland-status__centre-info"
                 >
                     <!--
                         @slot Slot for centre information content
@@ -164,7 +175,7 @@
                     <p>{{ report }}</p>
                     <VsHeading
                         level="3"
-                        override-style-level="6"
+                        override-style-level="5"
                         data-test="vs-ski__current-weather-label"
                     >
                         {{ currentWeatherLabel }}
@@ -172,7 +183,7 @@
                     <p>{{ currentWeather }}</p>
                     <VsHeading
                         level="3"
-                        override-style-level="6"
+                        override-style-level="5"
                         data-test="vs-ski__weather-forecast-label"
                     >
                         {{ weatherForecastLabel }}
@@ -180,7 +191,7 @@
                     <p>{{ weatherForecast }}</p>
                     <VsHeading
                         level="3"
-                        override-style-level="6"
+                        override-style-level="5"
                         data-test="vs-ski__roads-label"
                     >
                         {{ roadsLabel }}
@@ -188,7 +199,7 @@
                     <p>{{ roadStatus }}</p>
                     <VsHeading
                         level="3"
-                        override-style-level="6"
+                        override-style-level="5"
                         data-test="vs-ski__news-label"
                     >
                         {{ newsLabel }}
@@ -214,6 +225,7 @@
                     <VsHeading
                         level="3"
                         data-test="vs-ski__lift-status-label"
+                        :id="`vs-ski-scotland-status__detailed-status-${id}`"
                     >
                         {{ liftStatusLabel }}
                     </VsHeading>
@@ -235,21 +247,21 @@
                                         name="status-closed"
                                         size="xs"
                                         class="mr-2"
-                                    /> {{ closedLabel }}
+                                    /> {{ statusClosedLabel }}
                                 </VsTableDataCell>
                                 <VsTableDataCell v-if="lift.status === '1' || lift.status === 1">
                                     <VsIcon
                                         name="tick"
                                         size="xs"
                                         class="mr-2"
-                                    /> {{ openLabel }}
+                                    /> {{ statusOpenLabel }}
                                 </VsTableDataCell>
                                 <VsTableDataCell v-if="lift.status === '2' || lift.status === 2">
                                     <VsIcon
                                         name="expected-open"
                                         size="xs"
                                         class="mr-2"
-                                    /> {{ openingLabel }}
+                                    /> {{ statusOpeningLabel }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>{{ lift.name }}</VsTableDataCell>
                             </VsTableRow>
@@ -287,12 +299,14 @@
                                 :control-id="'accordion_item_' + level.name"
                                 :colour-badge="level.colour"
                             >
-                                <span
+                                <div
                                     slot="title"
                                     :data-test="`vs-ski__${level.name}-label`"
+                                    class="d-inline-block"
                                 >
+                                    <span class="sr-only">{{ getColourLabel(level.colour) }}</span>
                                     {{ level.name }}
-                                </span>
+                                </div>
                                 <VsTable
                                     :table-caption="level.colour + ' - ' + level.name"
                                 >
@@ -313,7 +327,7 @@
                                                     name="status-closed"
                                                     size="xs"
                                                     class="mr-2"
-                                                /> {{ closedLabel }}
+                                                /> {{ statusClosedLabel }}
                                             </VsTableDataCell>
                                             <VsTableDataCell
                                                 v-if="run.status === '1' || run.status === 1"
@@ -322,7 +336,7 @@
                                                     name="tick"
                                                     size="xs"
                                                     class="mr-2"
-                                                /> {{ openLabel }}
+                                                /> {{ statusOpenLabel }}
                                             </VsTableDataCell>
                                             <VsTableDataCell
                                                 v-if="run.status === '2' || run.status === 2"
@@ -331,7 +345,7 @@
                                                     name="expected-open"
                                                     size="xs"
                                                     class="mr-2"
-                                                /> {{ openingLabel }}
+                                                /> {{ statusOpeningLabel }}
                                             </VsTableDataCell>
                                             <VsTableDataCell>{{ run.name }}</VsTableDataCell>
                                         </VsTableRow>
@@ -369,9 +383,9 @@ import {
     VsContainer, VsRow, VsCol,
 } from '@components/elements/grid';
 import VsIcon from '@components/elements/icon/Icon';
+import VsLink from '@components/elements/link/Link';
 import VsHeading from '@components/elements/heading/Heading';
 import VsLoadingSpinner from '@components/elements/loading-spinner/LoadingSpinner';
-import jsIsDisabled from '@/utils/js-is-disabled';
 
 const axios = require('axios');
 
@@ -398,6 +412,7 @@ export default {
         VsAccordion,
         VsAccordionItem,
         VsIcon,
+        VsLink,
         VsHeading,
         VsLoadingSpinner,
         VsWarning,
@@ -419,19 +434,19 @@ export default {
             default: 'en-gb',
         },
         /**
-         * Localisable label, translation of "closed" for status tables
-         */
-        closedLabel: {
-            type: String,
-            default: 'Closed',
-        },
-        /**
          * Localisable label, translation of "current weather" for the full
          * report
          */
         currentWeatherLabel: {
             type: String,
             default: 'Current Weather',
+        },
+        /**
+         * Localisable label, translation of "Detailed Status"
+         */
+        detailedStatusLabel: {
+            type: String,
+            default: 'Detailed Status',
         },
         /**
          * Localisable label, translation of "difficult" to indicate run difficulty
@@ -498,20 +513,6 @@ export default {
             default: 'News From The Slopes',
         },
         /**
-         * Localisable label, translation of "open" for status tables
-         */
-        openLabel: {
-            type: String,
-            default: 'Open',
-        },
-        /**
-         * Localisable label, translation of "opening" for status tables
-         */
-        openingLabel: {
-            type: String,
-            default: 'Opening',
-        },
-        /**
          * Localisable label, translation of "other" to indicate run difficulty
          */
         otherLabel: {
@@ -571,6 +572,48 @@ export default {
             default: 'Status',
         },
         /**
+         * Localisable label, translation of "closed" for the summary table
+         */
+        summaryClosedLabel: {
+            type: String,
+            default: 'Closed',
+        },
+        /**
+         * Localisable label, translation of "open" for the summary table
+         */
+        summaryOpenLabel: {
+            type: String,
+            default: 'Open',
+        },
+        /**
+         * Localisable label, translation of "opening" for the summary table
+         */
+        summaryOpeningLabel: {
+            type: String,
+            default: 'Opening',
+        },
+        /**
+         * Localisable label, translation of "closed" for the detailed status tables
+         */
+        statusClosedLabel: {
+            type: String,
+            default: 'Closed',
+        },
+        /**
+         * Localisable label, translation of "open" for the detailed status tables
+         */
+        statusOpenLabel: {
+            type: String,
+            default: 'Open',
+        },
+        /**
+         * Localisable label, translation of "opening" for the detailed status tables
+         */
+        statusOpeningLabel: {
+            type: String,
+            default: 'Opening',
+        },
+        /**
          * Localisable label, translation of "very difficult" to indicate run difficulty
          */
         veryDifficultLabel: {
@@ -585,9 +628,52 @@ export default {
             type: String,
             default: 'Weather Forecast',
         },
+        /**
+         * Localisable label, translation of "green" to indicate run difficulty
+         */
+        greenLabel: {
+            type: String,
+            default: 'Green',
+        },
+        /**
+         * Localisable label, translation of "blue" to indicate run difficulty
+         */
+        blueLabel: {
+            type: String,
+            default: 'Blue',
+        },
+        /**
+         * Localisable label, translation of "red" to indicate run difficulty
+         */
+        redLabel: {
+            type: String,
+            default: 'Red',
+        },
+        /**
+         * Localisable label, translation of "black" to indicate run difficulty
+         */
+        blackLabel: {
+            type: String,
+            default: 'Black',
+        },
+        /**
+         * Localisable label, translation of "orange" to indicate run difficulty
+         */
+        orangeLabel: {
+            type: String,
+            default: 'Orange',
+        },
+        /**
+         * Localisable label, translation of "grey" to indicate run difficulty
+         */
+        greyLabel: {
+            type: String,
+            default: 'Grey',
+        },
     },
     data() {
         return {
+            componentId: 0,
             statusSummary: {
                 runs: {
                     open: 0,
@@ -655,8 +741,11 @@ export default {
             this.retrieveSkiStatus();
         }
 
-        // Checks whether js is disabled, to display an appropriate warning to the user
-        this.jsDisabled = jsIsDisabled();
+        this.id = this._uid;
+
+        // If component successfully mounted, declare js is enabled to hide the warning
+        // from the user
+        this.jsDisabled = false;
     },
     methods: {
         /**
@@ -765,12 +854,18 @@ export default {
 
             this.runs = runs;
         },
+        // Returns the localised label value for a given colour
+        getColourLabel(colour) {
+            return this[`${colour}Label`];
+        },
     },
 };
 </script>
 
 <style lang="scss">
     .vs-ski-scotland-status {
+        text-align: left;
+
         &__full-report {
             h2 {
                 margin-bottom: $spacer-4;
@@ -784,6 +879,14 @@ export default {
                 margin-bottom: $spacer-2;
                 margin-top: $spacer-6;
             }
+        }
+
+        &__centre-info {
+            font-size: $font-size-4;
+        }
+
+        &__detailed-status-link {
+            font-size: $font-size-4;
         }
 
         .row {

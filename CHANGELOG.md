@@ -2,6 +2,66 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/visitscotland/design-system/compare/v0.5.12...v0.6.0) (2023-01-24)
+
+
+### Features
+
+* 🎸 Accordion ([90415eb](https://github.com/visitscotland/design-system/commit/90415eb62f0afbec88fe75d8555acdb2d6371341))
+* 🎸 add ability to define bounds for map ([d5c193e](https://github.com/visitscotland/design-system/commit/d5c193ead8dbfe23ca60fe0a4d8e4874322b6e6c))
+* 🎸 add ability to set initial bounds ([bf37392](https://github.com/visitscotland/design-system/commit/bf3739211668c0fc3120557dfc9f608d289434d4))
+* 🎸 Add additional tests for data processing ([738f909](https://github.com/visitscotland/design-system/commit/738f909c09bdddce4e10e90749fbdef6626ceac6))
+* 🎸 Add js disabled and loading spinner elements to status ([71fe5b1](https://github.com/visitscotland/design-system/commit/71fe5b153a16c10467de9910399c28c1242f471c))
+* 🎸 add Load More button to lists from endpoint ([fc20b8d](https://github.com/visitscotland/design-system/commit/fc20b8d214caed6c41edbfe613b3a490a4ec5059))
+* 🎸 Add localisable labels for last updated ([dd7d3e7](https://github.com/visitscotland/design-system/commit/dd7d3e7032b6da30b853e23efa90b5494b72a2bb))
+* 🎸 Add localisable labels for run difficulty ([da13217](https://github.com/visitscotland/design-system/commit/da132178de196a2a859a1f2831a68a6d9699d098))
+* 🎸 Add localisable labels for run/lift statuses ([132be33](https://github.com/visitscotland/design-system/commit/132be330afd4062efcb78437ffc7ebaaa32b241d))
+* 🎸 Add localisable labels for status tables ([67cd633](https://github.com/visitscotland/design-system/commit/67cd6332aa0ba9262acdb4e5d3fc03ab2b3b261a))
+* 🎸 Add localisable labels to full report section ([42403d3](https://github.com/visitscotland/design-system/commit/42403d3ce75d86282752a310b4df3fc882aa4534))
+* 🎸 add option to add bounds to maps ([525d778](https://github.com/visitscotland/design-system/commit/525d77803a1ae6f2be4cac45cbb4b3eedf9f596a))
+* 🎸 add zoom/position for polygons and bounds ([f1d86f8](https://github.com/visitscotland/design-system/commit/f1d86f8fc44165c4b8b370504d974acea4da25e8))
+* 🎸 Correct loading spinner component description ([cfee5cf](https://github.com/visitscotland/design-system/commit/cfee5cfbfe3e1e931d6babadb334934c2af872b9))
+* 🎸 Loading Spinner ([d0e73f5](https://github.com/visitscotland/design-system/commit/d0e73f5edfb06e1acf6bd987af14d9e1c17cdd21))
+* 🎸 Move centre information into a slot and add tests ([67b7a46](https://github.com/visitscotland/design-system/commit/67b7a4648660c0a462972ec700ae851c210b20fe))
+* 🎸 Move remaining data into vstables ([b780414](https://github.com/visitscotland/design-system/commit/b780414170321c2e99e024d231aa1a609fd80934))
+* 🎸 Raise heading style levels to 5 ([6bb3edc](https://github.com/visitscotland/design-system/commit/6bb3edce925dbcbe7d891919f3555bfdc84f08b9))
+* 🎸 Render cairngorms news as html ([f3eb8fc](https://github.com/visitscotland/design-system/commit/f3eb8fce0236264a71c699ea335d579692a9b0b1))
+* 🎸 Separate summary and status open/closed labels ([c0df5b4](https://github.com/visitscotland/design-system/commit/c0df5b4e229895fe62e9aaa4b2fdcb9c6d9699f1))
+* 🎸 Set up correct spacing and vs-headings in ski status ([81f0657](https://github.com/visitscotland/design-system/commit/81f065716e4d667ec60e5dfdcafde980bb185931))
+* 🎸 Ski Scotland ([96bd18b](https://github.com/visitscotland/design-system/commit/96bd18bf22c18cacdeb4d582dd3b4d06d08cb7fb))
+* 🎸 Ski Scotland ([abb6dbe](https://github.com/visitscotland/design-system/commit/abb6dbe0b62be659e5378c96de655a686a4c2caa))
+* 🎸 Ski Scotland ([4351a26](https://github.com/visitscotland/design-system/commit/4351a2644c214ddf014f94e333ef13401a0627ba))
+* 🎸 Switch to locale based month name generation ([6eaa08f](https://github.com/visitscotland/design-system/commit/6eaa08f6b098a5f992ee781e2d28ecb0ea8e725a))
+* 🎸 Update closed icon ([e754912](https://github.com/visitscotland/design-system/commit/e754912b569473ad9fdb9256b36ee4a7eca38e25))
+* 🎸 Use vs-table to render run status summary ([fd89007](https://github.com/visitscotland/design-system/commit/fd8900702698b34a61ccb89c0fd6eede3a3722fc))
+
+
+### Bug Fixes
+
+* 🐛 Correct .row class name ([02667ff](https://github.com/visitscotland/design-system/commit/02667ff6582fd9942896891183ab02624299d55c))
+* 🐛 Correct heading level and mobile spacing ([5a1ea72](https://github.com/visitscotland/design-system/commit/5a1ea72b4a6b9ace2b65886e753505286eb71467))
+* 🐛 Correct jsDisabled check ([357be65](https://github.com/visitscotland/design-system/commit/357be65193bed56f4bf918732f5c8bdfec2d2bee))
+* 🐛 fix bug brought in from merge ([c231b61](https://github.com/visitscotland/design-system/commit/c231b6163cdfff540618850a75bcc1899062779f))
+* 🐛 fix type of map bounds data ([8a8ff2e](https://github.com/visitscotland/design-system/commit/8a8ff2e923293e8ac3b6516774a0f735f605511e))
+* 🐛 remove console log ([fa0c5d2](https://github.com/visitscotland/design-system/commit/fa0c5d257aef7f5c681b2cef895a456801dfe2eb))
+* 🐛 Remove test flag ([8ba902a](https://github.com/visitscotland/design-system/commit/8ba902a13fd9358afad4800df1f3b39921b314b9))
+* 🐛 Use localisable labels for table captions ([206b90c](https://github.com/visitscotland/design-system/commit/206b90c181357e5fa2d890d02a18b576ba662fa2))
+
+
+### Tests
+
+* 💍 Add tests for all ski status localisation props ([d8dd1ee](https://github.com/visitscotland/design-system/commit/d8dd1eef40651f33d39f6968f3d55060cfc6f134))
+
+
+### Others
+
+* 🤖 merge from VS-3243 ([b40a035](https://github.com/visitscotland/design-system/commit/b40a0354e6c5c738f35cfb99a8a0b0d40c98ee11))
+
+
+### Styling
+
+* 💄 Fix linting issues ([dd25235](https://github.com/visitscotland/design-system/commit/dd252357c882658b4a4dfd2bb150d0e36f13c7a1))
+
 ### [0.5.12](https://github.com/visitscotland/design-system/compare/v0.5.11...v0.5.12) (2023-01-20)
 
 
