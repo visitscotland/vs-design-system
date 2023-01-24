@@ -21,6 +21,7 @@
                             :heading-level="mainHeadingExists ? '3' : '2'"
                             :subcategory-locations="subCatList"
                             :current-endpoint-data="currentEndpointData"
+                            :panel-status="panelStatus"
                             @set-category="setCategory"
                             @set-subcategory="setSubCategory"
                             @subcategories-filtered="filterSubCategories"
@@ -39,6 +40,10 @@
 
                             <template slot="backBtnText">
                                 <slot name="backBtnText" />
+                            </template>
+
+                            <template slot="panelLoadingMessage">
+                                <slot name="panelLoadingMessage" />
                             </template>
                         </VsMainMapWrapperPanel>
                     </div>
@@ -67,6 +72,7 @@
                             :show-info-message="mapStatus !== ''"
                             @show-detail="showDetail"
                             @set-category="setCategory"
+                            @map-ready="setMapReady"
                         >
                             <template slot="mapLoadingText">
                                 <!-- @slot Message to show when map is loading  -->
@@ -267,6 +273,13 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * Text to show in the panel while data is loading
+         */
+        panelLoadingMessage: {
+            type: String,
+            default: null,
+        },
     },
     data() {
         return {
@@ -283,6 +296,9 @@ export default {
             selectedToggle: '',
             currentEndpointData: [],
             mapStatus: '',
+            panelStatus: 'map-loading',
+            mapReady: false,
+            showPanelMessage: null,
         };
     },
     computed: {
@@ -434,6 +450,7 @@ export default {
          * provides a random 24 items for the side panel
          */
         getSubcatPanelData(endpointFilters) {
+            this.panelStatus = 'loading-data';
             const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
             let endpoint = subCat[0].listProductsEndPoint;
             if (typeof endpointFilters !== 'undefined') {
@@ -443,6 +460,7 @@ export default {
             axios.get(endpoint).then((response) => {
                 this.subCatList = response.data.data.products;
                 this.setStage(1);
+                this.panelStatus = null;
             });
         },
 
@@ -530,6 +548,18 @@ export default {
             } else {
                 this.showAllPlaces();
                 this.setStage(0);
+            }
+        },
+        /**
+         * Set whether or not map is ready to use
+         */
+        setMapReady(val) {
+            console.log('set map status');
+            this.mapReady = val;
+            if (val) {
+                this.panelStatus = null;
+            } else {
+                this.panelStatus = 'loading';
             }
         },
     },

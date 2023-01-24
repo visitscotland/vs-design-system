@@ -49,6 +49,9 @@ user to filter and search for data contained on the map.
     <template slot="noJs">
         You need Javascript enabled to see this map
     </template>
+    <template slot="panelLoadingMessage">
+        Loading results
+    </template>
 </VsMainMapWrapper>
 ```
 

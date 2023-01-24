@@ -279,6 +279,7 @@ export default {
                 this.addMapPolygons();
                 this.showMapMessage = false;
                 this.isLoading = false;
+                this.$emit('map-ready', true);
             });
         },
         /**

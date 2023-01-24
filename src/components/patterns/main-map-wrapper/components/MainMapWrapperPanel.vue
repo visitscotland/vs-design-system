@@ -139,6 +139,21 @@
                 :content-data="currentPlaceData[0]"
             />
         </template>
+        <div
+            v-if="panelStatus !== null"
+            class="vs-main-map-wrapper-panel__message"
+        >
+            <div
+                v-if="!!$slots['panelLoadingMessage']
+                    && panelStatus !== 'map-loading'"
+                class="vs-main-map-wrapper-panel__message-box"
+            >
+                <p class="vs-main-map-wrapper-panel__message-text">
+                    <!-- @slot Text for panel reset button  -->
+                    <slot name="panelLoadingMessage" />
+                </p>
+            </div>
+        </div>
     </section>
 </template>
 
@@ -241,6 +256,13 @@ export default {
         currentEndpointData: {
             type: Array,
             default: () => [],
+        },
+        /**
+         * Whether or not to show a panel message
+         */
+        panelStatus: {
+            type: String,
+            default: null,
         },
     },
     computed: {
@@ -475,6 +497,36 @@ export default {
 
         &__reset {
             display: none;
+        }
+
+        &__message {
+            position: absolute;
+            z-index: 20;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        &__message-box {
+            border: 1px solid $color-pink;
+            border-radius: $border-radius-default;
+            height: 142px;
+            width: 200px;
+            background: $color-white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: $spacer-6;
+        }
+
+        &__message-text {
+            font-size: $font-size-3;
+            margin-bottom: 0;
+            text-align: center;
         }
 
         .vs-main-wrapper-category:last-of-type {
