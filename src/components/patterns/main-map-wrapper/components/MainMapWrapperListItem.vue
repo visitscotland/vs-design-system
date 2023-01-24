@@ -14,6 +14,7 @@
             <VsImg
                 v-if="typeof formattedData.image !== 'undefined'"
                 :src="formattedData.image"
+                :use-lazy-loading="false"
                 class="vs-main-map-wrapper-list-item__img"
             />
         </div>
@@ -92,11 +93,18 @@ export default {
         if (!this.fromEndpoint) {
             this.formattedData = this.itemData;
         } else {
-            this.formattedData.id = this.itemData.id;
+            this.formattedData = {
+                ...this.formattedData,
+                id: this.itemData.id,
+                title: this.itemData.name,
+            };
+
             if (typeof this.itemData.images !== 'undefined') {
-                this.formattedData.image = this.itemData.images[0].mediaUrl;
+                this.formattedData = {
+                    ...this.formattedData,
+                    image: this.itemData.images[0].mediaUrl,
+                };
             }
-            this.formattedData.title = this.itemData.name;
         }
     },
     methods: {
@@ -118,6 +126,7 @@ export default {
          * item on hover
          */
         itemHover(id) {
+            console.log('item hover');
             mapStore.dispatch('setHoveredPlace', {
                 mapId: this.mapId,
                 hoveredId: id,
