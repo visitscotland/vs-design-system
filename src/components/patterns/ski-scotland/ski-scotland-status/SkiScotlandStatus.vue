@@ -86,6 +86,27 @@
                                     {{ statusSummary.lifts.open }}/{{ lifts.length }}
                                 </VsTableDataCell>
                             </VsTableRow>
+                            <VsTableRow
+                                v-if="statusSummary.runs.limitedPatrol
+                                    || statusSummary.lifts.limitedPatrol"
+                            >
+                                <VsTableDataCell>
+                                    <VsIcon
+                                        name="tick"
+                                        size="xs"
+                                        class="mr-2"
+                                    />
+                                    <span data-test="vs-ski__open-label">
+                                        {{ summaryLimitedPatrolLabel }}
+                                    </span>
+                                </VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.runs.limitedPatrol }}/{{ runs.length }}
+                                </VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.lifts.limitedPatrol }}/{{ lifts.length }}
+                                </VsTableDataCell>
+                            </VsTableRow>
                             <VsTableRow>
                                 <VsTableDataCell>
                                     <VsIcon
@@ -120,6 +141,26 @@
                                 </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.lifts.closed }}/{{ lifts.length }}
+                                </VsTableDataCell>
+                            </VsTableRow>
+                            <VsTableRow
+                                v-if="statusSummary.runs.onHold || statusSummary.lifts.onHold"
+                            >
+                                <VsTableDataCell>
+                                    <VsIcon
+                                        name="status-closed"
+                                        size="xs"
+                                        class="mr-2"
+                                    />
+                                    <span data-test="vs-ski__open-label">
+                                        {{ summaryOnHoldLabel }}
+                                    </span>
+                                </VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.runs.onHold }}/{{ runs.length }}
+                                </VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.lifts.onHold }}/{{ lifts.length }}
                                 </VsTableDataCell>
                             </VsTableRow>
                         </VsTableBody>
@@ -263,6 +304,20 @@
                                         class="mr-2"
                                     /> {{ statusOpeningLabel }}
                                 </VsTableDataCell>
+                                <VsTableDataCell v-if="lift.status === '3' || lift.status === 3">
+                                    <VsIcon
+                                        name="tick"
+                                        size="xs"
+                                        class="mr-2"
+                                    /> {{ statusLimitedPatrolLabel }}
+                                </VsTableDataCell>
+                                <VsTableDataCell v-if="lift.status === '4' || lift.status === 4">
+                                    <VsIcon
+                                        name="status-closed"
+                                        size="xs"
+                                        class="mr-2"
+                                    /> {{ statusOnHoldLabel }}
+                                </VsTableDataCell>
                                 <VsTableDataCell>{{ lift.name }}</VsTableDataCell>
                             </VsTableRow>
                         </VsTableBody>
@@ -346,6 +401,24 @@
                                                     size="xs"
                                                     class="mr-2"
                                                 /> {{ statusOpeningLabel }}
+                                            </VsTableDataCell>
+                                            <VsTableDataCell
+                                                v-if="run.status === '3' || run.status === 3"
+                                            >
+                                                <VsIcon
+                                                    name="tick"
+                                                    size="xs"
+                                                    class="mr-2"
+                                                /> {{ statusLimitedPatrolLabel }}
+                                            </VsTableDataCell>
+                                            <VsTableDataCell
+                                                v-if="run.status === '2' || run.status === 2"
+                                            >
+                                                <VsIcon
+                                                    name="status-closed"
+                                                    size="xs"
+                                                    class="mr-2"
+                                                /> {{ statusOnHoldLabel }}
                                             </VsTableDataCell>
                                             <VsTableDataCell>{{ run.name }}</VsTableDataCell>
                                         </VsTableRow>
@@ -593,6 +666,20 @@ export default {
             default: 'Opening',
         },
         /**
+         * Localisable label, translation of "limited patrol" for the summary table
+         */
+        summaryLimitedPatrolLabel: {
+            type: String,
+            default: 'Limited Patrol',
+        },
+        /**
+         * Localisable label, translation of "on hold" for the summary table
+         */
+        summaryOnHoldLabel: {
+            type: String,
+            default: 'On Hold',
+        },
+        /**
          * Localisable label, translation of "closed" for the detailed status tables
          */
         statusClosedLabel: {
@@ -612,6 +699,20 @@ export default {
         statusOpeningLabel: {
             type: String,
             default: 'Opening',
+        },
+        /**
+         * Localisable label, translation of "limited patrol" for the detailed status tables
+         */
+        statusLimitedPatrolLabel: {
+            type: String,
+            default: 'Limited Patrol',
+        },
+        /**
+         * Localisable label, translation of "on hold" for the detailed status tables
+         */
+        statusOnHoldLabel: {
+            type: String,
+            default: 'On Hold',
         },
         /**
          * Localisable label, translation of "very difficult" to indicate run difficulty
@@ -679,11 +780,15 @@ export default {
                     open: 0,
                     opening: 0,
                     closed: 0,
+                    onHold: 0,
+                    limitedPatrol: 0,
                 },
                 lifts: {
                     open: 0,
                     opening: 0,
                     closed: 0,
+                    onHold: 0,
+                    limitedPatrol: 0,
                 },
             },
             lifts: [],
@@ -813,6 +918,14 @@ export default {
         processLifts(lifts) {
             for (let x = 0; x < lifts.length; x++) {
                 switch (lifts[x].status) {
+                case '4':
+                case 4:
+                    this.statusSummary.lifts.onHold += 1;
+                    break;
+                case '3':
+                case 3:
+                    this.statusSummary.lifts.limitedPatrol += 1;
+                    break;
                 case '2':
                 case 2:
                     this.statusSummary.lifts.opening += 1;
@@ -832,6 +945,14 @@ export default {
         processRuns(runs) {
             for (let x = 0; x < runs.length; x++) {
                 switch (runs[x].status) {
+                case '4':
+                case 4:
+                    this.statusSummary.runs.onHold += 1;
+                    break;
+                case '3':
+                case 3:
+                    this.statusSummary.runs.limitedPatrol += 1;
+                    break;
                 case '2':
                 case 2:
                     this.statusSummary.runs.opening += 1;
