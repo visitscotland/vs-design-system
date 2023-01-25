@@ -207,53 +207,65 @@
                     md="9"
                     class="vs-ski-scotland-status__full-report"
                 >
+                    <!-- eslint-disable vue/no-v-html -->
                     <VsHeading
                         level="2"
                         data-test="vs-ski__snow-conditions-label"
                     >
                         {{ snowConditionsLabel }}
                     </VsHeading>
-                    <p>{{ report }}</p>
+                    <div
+                        v-html="report"
+                    />
                     <VsHeading
                         level="3"
                         override-style-level="5"
                         data-test="vs-ski__current-weather-label"
+                        v-if="currentWeather.length"
                     >
                         {{ currentWeatherLabel }}
                     </VsHeading>
-                    <p>{{ currentWeather }}</p>
+                    <div
+                        v-if="currentWeather.length"
+                        v-html="currentWeather"
+                    />
                     <VsHeading
                         level="3"
                         override-style-level="5"
                         data-test="vs-ski__weather-forecast-label"
+                        v-if="weatherForecast.length"
                     >
                         {{ weatherForecastLabel }}
                     </VsHeading>
-                    <p>{{ weatherForecast }}</p>
+                    <div
+                        v-if="weatherForecast.length"
+                        v-html="weatherForecast"
+                    />
                     <VsHeading
                         level="3"
                         override-style-level="5"
                         data-test="vs-ski__roads-label"
+                        v-if="roadStatus.length"
                     >
                         {{ roadsLabel }}
                     </VsHeading>
-                    <p>{{ roadStatus }}</p>
+                    <div
+                        v-if="roadStatus.length"
+                        v-html="roadStatus"
+                    />
                     <VsHeading
                         level="3"
                         override-style-level="5"
                         data-test="vs-ski__news-label"
+                        v-if="news.length"
                     >
                         {{ newsLabel }}
                     </VsHeading>
-                    <!-- eslint-disable vue/no-v-html -->
                     <div
-                        v-if="isCairngorms"
+                        v-if="news.length"
                         v-html="news"
                     />
                     <!-- eslint-enable vue/no-v-html -->
-                    <p v-else>
-                        {{ news }}
-                    </p>
                 </VsCol>
             </VsRow>
             <VsRow
@@ -997,8 +1009,8 @@ export default {
             }
 
             h3 {
-                margin-bottom: $spacer-2;
-                margin-top: $spacer-6;
+                margin-bottom: $spacer-2 !important;
+                margin-top: $spacer-6 !important;
             }
         }
 
