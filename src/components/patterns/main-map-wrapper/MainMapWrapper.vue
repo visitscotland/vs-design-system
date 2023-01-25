@@ -21,7 +21,7 @@
                             :heading-level="mainHeadingExists ? '3' : '2'"
                             :subcategory-locations="subCatList"
                             :current-endpoint-data="currentEndpointData"
-                            :panel-message="panelMessage"
+                            :panel-message="currentStage === 0 ? panelMessage : null"
                             :total-pins="totalEndpointPins"
                             @set-category="setCategory"
                             @set-subcategory="setSubCategory"
