@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.2](https://github.com/visitscotland/design-system/compare/v0.6.1...v0.6.2) (2023-01-25)
+
+
+### Bug Fixes
+
+* 🐛 Correct col width for table footer ([3ca0e8a](https://github.com/visitscotland/design-system/commit/3ca0e8a9a961ec56ec3d4ed0c0c810393176cf66))
+* 🐛 Correct if logic ([e259656](https://github.com/visitscotland/design-system/commit/e2596568fe0fcc4c1d0bcaaadacfac0e3d2878c5))
+
 ### [0.6.1](https://github.com/visitscotland/design-system/compare/v0.6.0...v0.6.1) (2023-01-25)
 
 
