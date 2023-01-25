@@ -21,6 +21,7 @@
                             :heading-level="mainHeadingExists ? '3' : '2'"
                             :subcategory-locations="subCatList"
                             :current-endpoint-data="currentEndpointData"
+                            :panel-status="panelStatus"
                             :panel-message="currentStage === 0 ? panelMessage : null"
                             :total-pins="totalEndpointPins"
                             @set-category="setCategory"
@@ -42,6 +43,10 @@
 
                             <template slot="backBtnText">
                                 <slot name="backBtnText" />
+                            </template>
+
+                            <template slot="panelLoadingMessage">
+                                <slot name="panelLoadingMessage" />
                             </template>
 
                             <template slot="loadMoreText">
@@ -71,10 +76,19 @@
                             :selected-item="selectedItem"
                             :map-id="mapId"
                             :show-polygons="showRegions"
+                            :show-info-message="mapStatus !== ''"
                             @show-detail="showDetail"
                             @set-category="setCategory"
+                            @map-ready="setMapReady"
                             :bounds-data="regionBounds"
                         >
+                            <template slot="mapLoadingText">
+                                <!-- @slot Message to show when map is loading  -->
+                                <slot name="mapLoadingText" />
+                            </template>
+                            <template slot="infoMessage">
+                                {{ infoMessage }}
+                            </template>
                             <template slot="noJs">
                                 <!-- @slot Message to show when JS is disabled  -->
                                 <slot name="noJs" />
@@ -261,6 +275,20 @@ export default {
             default: null,
         },
         /**
+         * Text to show on map propmpting user to filter results
+         */
+        mapFilterMessage: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Text to show on map when there are no results
+         */
+        mapNoResultsMessage: {
+            type: String,
+            required: true,
+        },
+        /**
          * A message that appears at the bottom
          * of the side panel
          */
@@ -283,6 +311,10 @@ export default {
             subCatList: null,
             selectedToggle: '',
             currentEndpointData: [],
+            mapStatus: '',
+            panelStatus: 'map-loading',
+            mapReady: false,
+            showPanelMessage: null,
             currentPanelEndpointFilters: '',
             totalEndpointPins: 0,
         };
@@ -303,6 +335,32 @@ export default {
         },
         selectedSubCategory() {
             return mapStore.getters.getSelectedSubcat;
+        },
+        subCatActiveFilters() {
+            return mapStore.getters.getActiveSubcatFilters;
+        },
+        infoMessage() {
+            let msg = '';
+
+            switch (this.mapStatus) {
+            case ('no-results'):
+                msg = this.mapNoResultsMessage;
+                break;
+            case ('filter-results'):
+                msg = this.mapFilterMessage;
+                break;
+            default:
+                break;
+            }
+
+            return msg;
+        },
+    },
+    watch: {
+        selectedSubCategory(val) {
+            if (val === null) {
+                this.mapStatus = '';
+            }
         },
     },
     mounted() {
@@ -390,21 +448,30 @@ export default {
                 endpoint += endpointFilters;
             }
 
-            axios.get(endpoint).then((response) => {
+            this.activePins = [];
+
+            // show markers only if the subcategory has been filtered
+            if (typeof endpointFilters === 'undefined') {
                 this.activePins = [];
-                this.totalEndpointPins = response.data.features.length;
-                response.data.features.forEach((feature) => {
-                    const modifiedFeature = feature;
-                    modifiedFeature.properties.apiData = true;
-                    this.activePins.push(modifiedFeature);
+                this.mapStatus = 'filter-results';
+            } else {
+                axios.get(endpoint).then((response) => {
+                    this.totalEndpointPins = response.data.features.length;
+                    response.data.features.forEach((feature) => {
+                        const modifiedFeature = feature;
+                        modifiedFeature.properties.apiData = true;
+                        this.activePins.push(modifiedFeature);
+                    });
                 });
-            });
+                this.mapStatus = '';
+            }
         },
         /**
          * Makes a call to the endpoint in the subcategory data which
          * provides a random 24 items for the side panel
          */
         getSubcatPanelData(endpointFilters, page) {
+            this.panelStatus = 'loading-data';
             const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
             let endpoint = subCat[0].listProductsEndPoint;
             if (typeof endpointFilters !== 'undefined') {
@@ -422,6 +489,7 @@ export default {
                     this.subCatList = this.subCatList.concat(response.data.data.products);
                 }
                 this.setStage(1);
+                this.panelStatus = null;
             });
         },
 
@@ -446,6 +514,9 @@ export default {
                     this.currentEndpointData = [];
                     if (this.selectedSubCategory === null) {
                         this.showAllPlaces();
+                        this.mapStatus = '';
+                    } else {
+                        this.getSubcatMarkerData();
                     }
                     this.selectedToggle = 'places';
                 } else if (this.currentStage === 1) {
@@ -512,6 +583,17 @@ export default {
             } else {
                 this.showAllPlaces();
                 this.setStage(0);
+            }
+        },
+        /**
+         * Set whether or not map is ready to use
+         */
+        setMapReady(val) {
+            this.mapReady = val;
+            if (val) {
+                this.panelStatus = null;
+            } else {
+                this.panelStatus = 'loading';
             }
         },
     },

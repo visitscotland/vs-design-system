@@ -27,12 +27,14 @@ user to filter and search for data contained on the map.
     :region-bounds="{
         'type': 'bounds',
         'coordinates': [
-            [-1.9512628517431096, 57.21203739352487],
-            [-2.253781748576017, 57.10308348515494]
+            [-3.058595889098882, 55.993275047970826],
+            [-3.34402565597901, 55.887115661571926]
         ],
     }"
     filtersAppliedText="filters applied"
     clearFiltersText="clear filters"
+    mapFilterMessage="Please apply filter(s) to refine results."
+    mapNoResultsMessage="There are no results, please try again"
     panelMessage="Get friendly and helpful advice for your trip at our iCentres"
 >
     <template slot="closeSidePanelText">
@@ -49,11 +51,17 @@ user to filter and search for data contained on the map.
     <template slot="resetSidePanelText">
         Reset filters
     </template>
+    <template slot="mapLoadingText">
+        Loading
+    </template>
     <template slot="loadMoreText">
         Load more
     </template>
     <template slot="noJs">
         You need Javascript enabled to see this map
+    </template>
+    <template slot="panelLoadingMessage">
+        Loading results
     </template>
 </VsMainMapWrapper>
 ```
