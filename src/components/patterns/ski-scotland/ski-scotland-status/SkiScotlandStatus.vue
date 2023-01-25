@@ -15,6 +15,18 @@
                 </VsCol>
             </VsRow>
         </VsContainer>
+        <VsContainer v-if="!jsDisabled && displayError">
+            <VsRow>
+                <VsCol class="text-center py-4">
+                    <VsLoadingSpinner />
+                    <!--
+                        @slot Slot for data unavailable message
+                        Expects text
+                    -->
+                    <slot name="data-unavailable" />
+                </VsCol>
+            </VsRow>
+        </VsContainer>
         <VsContainer>
             <VsRow>
                 <VsCol
@@ -36,7 +48,7 @@
                 <VsCol
                     cols="12"
                     md="6"
-                    v-if="!jsDisabled && !isLoading"
+                    v-if="!jsDisabled && !isLoading && !displayError"
                 >
                     <VsHeading
                         level="3"
@@ -86,6 +98,27 @@
                                     {{ statusSummary.lifts.open }}/{{ lifts.length }}
                                 </VsTableDataCell>
                             </VsTableRow>
+                            <VsTableRow
+                                v-if="statusSummary.runs.limitedPatrol
+                                    || statusSummary.lifts.limitedPatrol"
+                            >
+                                <VsTableDataCell>
+                                    <VsIcon
+                                        name="tick"
+                                        size="xs"
+                                        class="mr-2"
+                                    />
+                                    <span data-test="vs-ski__open-label">
+                                        {{ summaryLimitedPatrolLabel }}
+                                    </span>
+                                </VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.runs.limitedPatrol }}/{{ runs.length }}
+                                </VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.lifts.limitedPatrol }}/{{ lifts.length }}
+                                </VsTableDataCell>
+                            </VsTableRow>
                             <VsTableRow>
                                 <VsTableDataCell>
                                     <VsIcon
@@ -120,6 +153,26 @@
                                 </VsTableDataCell>
                                 <VsTableDataCell>
                                     {{ statusSummary.lifts.closed }}/{{ lifts.length }}
+                                </VsTableDataCell>
+                            </VsTableRow>
+                            <VsTableRow
+                                v-if="statusSummary.runs.onHold || statusSummary.lifts.onHold"
+                            >
+                                <VsTableDataCell>
+                                    <VsIcon
+                                        name="status-closed"
+                                        size="xs"
+                                        class="mr-2"
+                                    />
+                                    <span data-test="vs-ski__open-label">
+                                        {{ summaryOnHoldLabel }}
+                                    </span>
+                                </VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.runs.onHold }}/{{ runs.length }}
+                                </VsTableDataCell>
+                                <VsTableDataCell>
+                                    {{ statusSummary.lifts.onHold }}/{{ lifts.length }}
                                 </VsTableDataCell>
                             </VsTableRow>
                         </VsTableBody>
@@ -159,64 +212,76 @@
                 </VsCol>
             </VsRow>
             <VsRow
-                v-if="!jsDisabled && !isLoading"
+                v-if="!jsDisabled && !isLoading && !displayError"
             >
                 <VsCol
                     cols="12"
                     md="9"
                     class="vs-ski-scotland-status__full-report"
                 >
+                    <!-- eslint-disable vue/no-v-html -->
                     <VsHeading
                         level="2"
                         data-test="vs-ski__snow-conditions-label"
                     >
                         {{ snowConditionsLabel }}
                     </VsHeading>
-                    <p>{{ report }}</p>
+                    <div
+                        v-html="report"
+                    />
                     <VsHeading
                         level="3"
                         override-style-level="5"
                         data-test="vs-ski__current-weather-label"
+                        v-if="currentWeather.length"
                     >
                         {{ currentWeatherLabel }}
                     </VsHeading>
-                    <p>{{ currentWeather }}</p>
+                    <div
+                        v-if="currentWeather.length"
+                        v-html="currentWeather"
+                    />
                     <VsHeading
                         level="3"
                         override-style-level="5"
                         data-test="vs-ski__weather-forecast-label"
+                        v-if="weatherForecast.length"
                     >
                         {{ weatherForecastLabel }}
                     </VsHeading>
-                    <p>{{ weatherForecast }}</p>
+                    <div
+                        v-if="weatherForecast.length"
+                        v-html="weatherForecast"
+                    />
                     <VsHeading
                         level="3"
                         override-style-level="5"
                         data-test="vs-ski__roads-label"
+                        v-if="roadStatus.length"
                     >
                         {{ roadsLabel }}
                     </VsHeading>
-                    <p>{{ roadStatus }}</p>
+                    <div
+                        v-if="roadStatus.length"
+                        v-html="roadStatus"
+                    />
                     <VsHeading
                         level="3"
                         override-style-level="5"
                         data-test="vs-ski__news-label"
+                        v-if="news.length"
                     >
                         {{ newsLabel }}
                     </VsHeading>
-                    <!-- eslint-disable vue/no-v-html -->
                     <div
-                        v-if="isCairngorms"
+                        v-if="news.length"
                         v-html="news"
                     />
                     <!-- eslint-enable vue/no-v-html -->
-                    <p v-else>
-                        {{ news }}
-                    </p>
                 </VsCol>
             </VsRow>
             <VsRow
-                v-if="!jsDisabled && !isLoading"
+                v-if="!jsDisabled && !isLoading && !displayError"
             >
                 <VsCol
                     cols="12"
@@ -263,6 +328,20 @@
                                         class="mr-2"
                                     /> {{ statusOpeningLabel }}
                                 </VsTableDataCell>
+                                <VsTableDataCell v-if="lift.status === '3' || lift.status === 3">
+                                    <VsIcon
+                                        name="tick"
+                                        size="xs"
+                                        class="mr-2"
+                                    /> {{ statusLimitedPatrolLabel }}
+                                </VsTableDataCell>
+                                <VsTableDataCell v-if="lift.status === '4' || lift.status === 4">
+                                    <VsIcon
+                                        name="status-closed"
+                                        size="xs"
+                                        class="mr-2"
+                                    /> {{ statusOnHoldLabel }}
+                                </VsTableDataCell>
                                 <VsTableDataCell>{{ lift.name }}</VsTableDataCell>
                             </VsTableRow>
                         </VsTableBody>
@@ -277,7 +356,7 @@
                 </VsCol>
             </VsRow>
             <VsRow
-                v-if="!jsDisabled && !isLoading"
+                v-if="!jsDisabled && !isLoading && !displayError"
             >
                 <VsCol
                     cols="12"
@@ -346,6 +425,24 @@
                                                     size="xs"
                                                     class="mr-2"
                                                 /> {{ statusOpeningLabel }}
+                                            </VsTableDataCell>
+                                            <VsTableDataCell
+                                                v-if="run.status === '3' || run.status === 3"
+                                            >
+                                                <VsIcon
+                                                    name="tick"
+                                                    size="xs"
+                                                    class="mr-2"
+                                                /> {{ statusLimitedPatrolLabel }}
+                                            </VsTableDataCell>
+                                            <VsTableDataCell
+                                                v-if="run.status === '2' || run.status === 2"
+                                            >
+                                                <VsIcon
+                                                    name="status-closed"
+                                                    size="xs"
+                                                    class="mr-2"
+                                                /> {{ statusOnHoldLabel }}
                                             </VsTableDataCell>
                                             <VsTableDataCell>{{ run.name }}</VsTableDataCell>
                                         </VsTableRow>
@@ -432,6 +529,14 @@ export default {
         locale: {
             type: String,
             default: 'en-gb',
+        },
+        /**
+         * Determines how long the request should wait for a response from the api before
+         * giving up and displaying an error. Should be provided in milliseconds.
+         */
+        timeoutDuration: {
+            type: Number,
+            default: 30000,
         },
         /**
          * Localisable label, translation of "current weather" for the full
@@ -593,6 +698,20 @@ export default {
             default: 'Opening',
         },
         /**
+         * Localisable label, translation of "limited patrol" for the summary table
+         */
+        summaryLimitedPatrolLabel: {
+            type: String,
+            default: 'Limited Patrol',
+        },
+        /**
+         * Localisable label, translation of "on hold" for the summary table
+         */
+        summaryOnHoldLabel: {
+            type: String,
+            default: 'On Hold',
+        },
+        /**
          * Localisable label, translation of "closed" for the detailed status tables
          */
         statusClosedLabel: {
@@ -612,6 +731,20 @@ export default {
         statusOpeningLabel: {
             type: String,
             default: 'Opening',
+        },
+        /**
+         * Localisable label, translation of "limited patrol" for the detailed status tables
+         */
+        statusLimitedPatrolLabel: {
+            type: String,
+            default: 'Limited Patrol',
+        },
+        /**
+         * Localisable label, translation of "on hold" for the detailed status tables
+         */
+        statusOnHoldLabel: {
+            type: String,
+            default: 'On Hold',
         },
         /**
          * Localisable label, translation of "very difficult" to indicate run difficulty
@@ -679,11 +812,15 @@ export default {
                     open: 0,
                     opening: 0,
                     closed: 0,
+                    onHold: 0,
+                    limitedPatrol: 0,
                 },
                 lifts: {
                     open: 0,
                     opening: 0,
                     closed: 0,
+                    onHold: 0,
+                    limitedPatrol: 0,
                 },
             },
             lifts: [],
@@ -728,6 +865,7 @@ export default {
             ],
             jsDisabled: true,
             isLoading: true,
+            displayError: false,
             isCairngorms: false,
         };
     },
@@ -753,6 +891,10 @@ export default {
          * and sets up relevant sub-components
          */
         retrieveSkiStatus() {
+            const errorTimeout = setTimeout(() => {
+                this.displayError = true;
+            }, this.timeoutDuration);
+
             axios.get(this.skiStatusUrl)
                 .then((response) => {
                     const data = this.cleanData(response.data);
@@ -761,9 +903,12 @@ export default {
                     this.processLastUpdate(data.lastUpdate);
                     this.processFullReport(data.report);
                     this.isLoading = false;
+                    clearTimeout(errorTimeout);
                 })
                 .catch(() => {
                     this.runStatusInfo = null;
+                    this.displayError = false;
+                    clearTimeout(errorTimeout);
                 });
         },
         // Tidy up small formatting differences between Cairngorms and SkiScotland
@@ -805,14 +950,24 @@ export default {
                 lastUpdate.day
             );
             const options = {
+                year: 'numeric',
                 month: 'long',
+                day: 'numeric',
             };
-            const monthName = event.toLocaleDateString(this.locale, options);
-            this.lastUpdate = `${lastUpdate.hour24}:${lastUpdate.minute} - ${lastUpdate.day} ${monthName} ${lastUpdate.year}`;
+            const formattedDate = event.toLocaleDateString(this.locale, options);
+            this.lastUpdate = `${lastUpdate.hour24}:${lastUpdate.minute} - ${formattedDate}`;
         },
         processLifts(lifts) {
             for (let x = 0; x < lifts.length; x++) {
                 switch (lifts[x].status) {
+                case '4':
+                case 4:
+                    this.statusSummary.lifts.onHold += 1;
+                    break;
+                case '3':
+                case 3:
+                    this.statusSummary.lifts.limitedPatrol += 1;
+                    break;
                 case '2':
                 case 2:
                     this.statusSummary.lifts.opening += 1;
@@ -832,6 +987,14 @@ export default {
         processRuns(runs) {
             for (let x = 0; x < runs.length; x++) {
                 switch (runs[x].status) {
+                case '4':
+                case 4:
+                    this.statusSummary.runs.onHold += 1;
+                    break;
+                case '3':
+                case 3:
+                    this.statusSummary.runs.limitedPatrol += 1;
+                    break;
                 case '2':
                 case 2:
                     this.statusSummary.runs.opening += 1;
@@ -876,8 +1039,8 @@ export default {
             }
 
             h3 {
-                margin-bottom: $spacer-2;
-                margin-top: $spacer-6;
+                margin-bottom: $spacer-2 !important;
+                margin-top: $spacer-6 !important;
             }
         }
 

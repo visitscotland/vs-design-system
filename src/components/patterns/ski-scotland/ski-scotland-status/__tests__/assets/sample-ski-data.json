@@ -139,7 +139,7 @@
                     },
                     {
                         "name": "The Low Road",
-                        "status": 1,
+                        "status": 3,
                         "difficulty": "green"
                     },
                     {
@@ -149,7 +149,7 @@
                     },
                     {
                         "name": "Mugs Alley",
-                        "status": 1,
+                        "status": 3,
                         "difficulty": "green"
                     },
                     {
@@ -169,7 +169,7 @@
                     },
                     {
                         "name": "Canyon",
-                        "status": 0,
+                        "status": 4,
                         "difficulty": "black"
                     },
                     {

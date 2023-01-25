@@ -22,7 +22,7 @@
                             :subcategory-locations="subCatList"
                             :current-endpoint-data="currentEndpointData"
                             :panel-status="panelStatus"
-                            :panel-message="panelMessage"
+                            :panel-message="currentStage === 0 ? panelMessage : null"
                             :total-pins="totalEndpointPins"
                             @set-category="setCategory"
                             @set-subcategory="setSubCategory"
