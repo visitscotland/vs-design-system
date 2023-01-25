@@ -39,7 +39,7 @@
     <hr>
     <VsSkiScotlandStatus
         ski-status-url="https://nevis-range.infonet-online.fr/json/snowreport.json"
-        locale="de-de"
+        locale="es-es"
     >
         <div slot="centre-information">
             Centre information placeholder

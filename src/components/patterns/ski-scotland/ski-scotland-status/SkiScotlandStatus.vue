@@ -922,10 +922,12 @@ export default {
                 lastUpdate.day
             );
             const options = {
+                year: 'numeric',
                 month: 'long',
+                day: 'numeric',
             };
-            const monthName = event.toLocaleDateString(this.locale, options);
-            this.lastUpdate = `${lastUpdate.hour24}:${lastUpdate.minute} - ${lastUpdate.day} ${monthName} ${lastUpdate.year}`;
+            const formattedDate = event.toLocaleDateString(this.locale, options);
+            this.lastUpdate = `${lastUpdate.hour24}:${lastUpdate.minute} - ${formattedDate}`;
         },
         processLifts(lifts) {
             for (let x = 0; x < lifts.length; x++) {
