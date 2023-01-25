@@ -86,7 +86,9 @@ export default {
     },
     computed: {
         websiteDataExists() {
-            if (typeof this.contentData.properties.website !== 'undefined') {
+            if (typeof this.contentData.properties.website !== 'undefined'
+                && this.contentData.properties.website.link
+                    !== this.contentData.properties.link.link) {
                 return true;
             }
 
