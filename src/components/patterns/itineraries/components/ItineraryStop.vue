@@ -158,7 +158,7 @@ export default {
 
     &__address {
         @include media-breakpoint-up(md) {
-            border-right: 1px solid $color-gray-tint-5;
+            // border-right: 1px solid $color-gray-tint-5;
             margin-bottom: -#{$spacer-4};
             padding: $spacer-4 $spacer-0;
             margin-right: $spacer-6;
