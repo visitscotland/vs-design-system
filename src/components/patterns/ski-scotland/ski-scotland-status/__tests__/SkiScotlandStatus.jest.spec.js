@@ -228,9 +228,11 @@ describe('VsSkiScotlandStatus', () => {
         });
 
         it('should correctly calculate the number of open, opening and closed runs', () => {
-            expect(wrapper.vm.statusSummary.runs.open).toBe(18);
+            expect(wrapper.vm.statusSummary.runs.open).toBe(16);
             expect(wrapper.vm.statusSummary.runs.opening).toBe(1);
-            expect(wrapper.vm.statusSummary.runs.closed).toBe(3);
+            expect(wrapper.vm.statusSummary.runs.closed).toBe(2);
+            expect(wrapper.vm.statusSummary.runs.limitedPatrol).toBe(2);
+            expect(wrapper.vm.statusSummary.runs.onHold).toBe(1);
         });
 
         it('should correctly calculate the number of runs in each difficulty', () => {
