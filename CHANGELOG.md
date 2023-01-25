@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.3](https://github.com/visitscotland/design-system/compare/v0.6.2...v0.6.3) (2023-01-25)
+
+
+### Features
+
+* 🎸 add map message and loading message ([d76a9d5](https://github.com/visitscotland/design-system/commit/d76a9d52e1e02cbea53d67845e0b6bba0e75e5e5))
+* 🎸 add message prompting users to filter ([1d45758](https://github.com/visitscotland/design-system/commit/1d45758b3f91c8d5697536cb40d35d6288de9c9f))
+* 🎸 add message to map panel for loading etc ([1f5a5f3](https://github.com/visitscotland/design-system/commit/1f5a5f300769c4811a3341588d17445c57eb8b03))
+
+
+### Bug Fixes
+
+* 🐛 ensure details reset button takes user back to start ([71da84c](https://github.com/visitscotland/design-system/commit/71da84c868ee819d45c72d6cfcd2b5523eaf04ea))
+* 🐛 ensure details reset button takes user to start ([74cde80](https://github.com/visitscotland/design-system/commit/74cde80ab0cb58798491a355c23303994461d972))
+* 🐛 ensure that Vue updates when object changes ([17c32d5](https://github.com/visitscotland/design-system/commit/17c32d54ba354016ebdf7bd6917e96121e40ed53))
+* 🐛 fixes after merge ([cbc76f1](https://github.com/visitscotland/design-system/commit/cbc76f1fdfe59831ac4a696871d50129e8dbd673))
+* 🐛 keyboard focus on top of panel when stages change ([6fe3e64](https://github.com/visitscotland/design-system/commit/6fe3e64a4fa2174a9e048236a84e7c526893de57))
+* 🐛 re-add lazy loading ([1268cdc](https://github.com/visitscotland/design-system/commit/1268cdc2f045fe55c1e7d28cd603cc457d8a41ae))
+* 🐛 remove console log ([fa22fde](https://github.com/visitscotland/design-system/commit/fa22fde8ba6b7a43c0ba30e2edc3a8cc4414ffff))
+* 🐛 remove previous commit ([1e16dc6](https://github.com/visitscotland/design-system/commit/1e16dc63b4725817c24bf2cfd3e5111dd6e314a5))
+* 🐛 remove second details button if the URLs match ([e8500ab](https://github.com/visitscotland/design-system/commit/e8500ab175f8c5201a2c7a84a2c073f20669a213))
+
+
+### Others
+
+* 🤖 merge from main and fix conflicts ([99b202e](https://github.com/visitscotland/design-system/commit/99b202effde4817437fb32b66e1160de65045079))
+
+
+### Styling
+
+* 💄 Removes border between Itinerary address & times ([4bd2845](https://github.com/visitscotland/design-system/commit/4bd284554a0c7c6dd4af2d2ab042c218a5fd5a53))
+
+
+### Code Refactoring
+
+* 💡 merge main branch and fix conflicts ([4ac16dd](https://github.com/visitscotland/design-system/commit/4ac16dd94a58a4f117f4098bcab2794d46fdbce5))
+
 ### [0.6.2](https://github.com/visitscotland/design-system/compare/v0.6.1...v0.6.2) (2023-01-25)
 
 
