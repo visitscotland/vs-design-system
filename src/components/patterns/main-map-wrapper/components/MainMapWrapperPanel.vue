@@ -194,6 +194,7 @@ export default {
         'filters',
         'placesData',
         'regions',
+        'mapId',
     ],
     props: {
         /**
@@ -382,6 +383,17 @@ export default {
     watch: {
         currentFilter() {
             this.placesLoaded = 1;
+        },
+        currentStage() {
+            setTimeout(() => {
+                if (this.currentStage === 1) {
+                    const container = document.getElementById(this.mapId).closest('.vs-main-map-wrapper__map');
+                    const panel = container.previousElementSibling;
+                    const firstListItem = panel.getElementsByClassName('vs-main-map-wrapper-list-item')[0];
+
+                    firstListItem.focus();
+                }
+            }, 500);
         },
     },
     methods: {
