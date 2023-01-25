@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.1](https://github.com/visitscotland/design-system/compare/v0.6.0...v0.6.1) (2023-01-25)
+
+
+### Features
+
+* 🎸 Add catch for timeout on endpoint ([3323ba0](https://github.com/visitscotland/design-system/commit/3323ba0149b7cd4900e06480e2bfaecf69bb7ee0))
+* 🎸 add icons for places and icentres ([f9529bd](https://github.com/visitscotland/design-system/commit/f9529bd93166d37bd72dd020dad5f48d5cf43bba))
+* 🎸 Add limited patrol and on hold statuses ([941a285](https://github.com/visitscotland/design-system/commit/941a2855fdb439c92860e74986868696eac8ee8b))
+* 🎸 add panel message for places map ([8c4ad58](https://github.com/visitscotland/design-system/commit/8c4ad585121fe13f9fd850b130a894acb14fd9b9))
+* 🎸 HTML format all report fields and make optional ([8e38342](https://github.com/visitscotland/design-system/commit/8e383420d68595eeda53c85ed7d1e028b146c49c))
+
+
+### Bug Fixes
+
+* 🐛 Fix breaking change from code merge ([74070a6](https://github.com/visitscotland/design-system/commit/74070a6ec12387620fbf16e795a804f5ce6f860b))
+* 🐛 Rely on localeDateString to format properly for i18n ([209c8fe](https://github.com/visitscotland/design-system/commit/209c8fed7fddf67b3a094c4245b1cc34f0e82c87))
+
+
+### Tests
+
+* 💍 Add tests for additional statuses ([54c4e72](https://github.com/visitscotland/design-system/commit/54c4e720475ea3b5f565884af406285682747294))
+
 ## [0.6.0](https://github.com/visitscotland/design-system/compare/v0.5.12...v0.6.0) (2023-01-24)
 
 
