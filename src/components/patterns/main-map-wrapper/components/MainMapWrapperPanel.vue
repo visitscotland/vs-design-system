@@ -412,7 +412,6 @@ export default {
          * Resets the panel
          */
         resetPanel() {
-            mapStore.dispatch('setSelectedSubcat', null);
             this.setStage(0);
         },
         /**
