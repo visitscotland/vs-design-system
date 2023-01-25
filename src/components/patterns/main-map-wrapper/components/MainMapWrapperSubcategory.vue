@@ -110,6 +110,11 @@ export default {
         this.$root.$on('submitCheckboxData', () => {
             this.checkboxesChangeSubmit();
         });
+
+        const container = document.getElementsByClassName('vs-main-map-subcategory')[0];
+        const firstEl = container.querySelectorAll('input[type="checkbox"]')[0];
+
+        firstEl.focus();
     },
     beforeDestroy() {
         this.$root.$off('submitCheckboxData');
