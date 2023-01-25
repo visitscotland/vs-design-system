@@ -347,7 +347,10 @@
                         </VsTableBody>
                         <VsTableFooter>
                             <VsTableRow>
-                                <VsTableDataCell>
+                                <VsTableDataCell
+                                    colspan="2"
+                                    role="cell"
+                                >
                                     <p>{{ lastUpdatedLabel }}: {{ lastUpdate }}</p>
                                 </VsTableDataCell>
                             </VsTableRow>
@@ -449,7 +452,10 @@
                                     </VsTableBody>
                                     <VsTableFooter>
                                         <VsTableRow>
-                                            <VsTableDataCell>
+                                            <VsTableDataCell
+                                                colspan="2"
+                                                role="cell"
+                                            >
                                                 <p>{{ lastUpdatedLabel }}: {{ lastUpdate }}</p>
                                             </VsTableDataCell>
                                         </VsTableRow>
