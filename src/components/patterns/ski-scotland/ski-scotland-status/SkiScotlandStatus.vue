@@ -15,6 +15,18 @@
                 </VsCol>
             </VsRow>
         </VsContainer>
+        <VsContainer v-if="!jsDisabled && displayError">
+            <VsRow>
+                <VsCol class="text-center py-4">
+                    <VsLoadingSpinner />
+                    <!--
+                        @slot Slot for data unavailable message
+                        Expects text
+                    -->
+                    <slot name="data-unavailable" />
+                </VsCol>
+            </VsRow>
+        </VsContainer>
         <VsContainer>
             <VsRow>
                 <VsCol
@@ -36,7 +48,7 @@
                 <VsCol
                     cols="12"
                     md="6"
-                    v-if="!jsDisabled && !isLoading"
+                    v-if="!jsDisabled && !isLoading && !displayError"
                 >
                     <VsHeading
                         level="3"
@@ -200,7 +212,7 @@
                 </VsCol>
             </VsRow>
             <VsRow
-                v-if="!jsDisabled && !isLoading"
+                v-if="!jsDisabled && !isLoading && !displayError"
             >
                 <VsCol
                     cols="12"
@@ -269,7 +281,7 @@
                 </VsCol>
             </VsRow>
             <VsRow
-                v-if="!jsDisabled && !isLoading"
+                v-if="!jsDisabled && !isLoading && !displayError"
             >
                 <VsCol
                     cols="12"
@@ -344,7 +356,7 @@
                 </VsCol>
             </VsRow>
             <VsRow
-                v-if="!jsDisabled && !isLoading"
+                v-if="!jsDisabled && !isLoading && !displayError"
             >
                 <VsCol
                     cols="12"
@@ -517,6 +529,14 @@ export default {
         locale: {
             type: String,
             default: 'en-gb',
+        },
+        /**
+         * Determines how long the request should wait for a response from the api before
+         * giving up and displaying an error. Should be provided in milliseconds.
+         */
+        timeoutDuration: {
+            type: Number,
+            default: 30000,
         },
         /**
          * Localisable label, translation of "current weather" for the full
@@ -845,6 +865,7 @@ export default {
             ],
             jsDisabled: true,
             isLoading: true,
+            displayError: false,
             isCairngorms: false,
         };
     },
@@ -870,6 +891,10 @@ export default {
          * and sets up relevant sub-components
          */
         retrieveSkiStatus() {
+            const errorTimeout = setTimeout(() => {
+                this.displayError = true;
+            }, this.timeoutDuration);
+
             axios.get(this.skiStatusUrl)
                 .then((response) => {
                     const data = this.cleanData(response.data);
@@ -878,9 +903,12 @@ export default {
                     this.processLastUpdate(data.lastUpdate);
                     this.processFullReport(data.report);
                     this.isLoading = false;
+                    clearTimeout(errorTimeout);
                 })
                 .catch(() => {
                     this.runStatusInfo = null;
+                    this.displayError = false;
+                    clearTimeout(errorTimeout);
                 });
         },
         // Tidy up small formatting differences between Cairngorms and SkiScotland

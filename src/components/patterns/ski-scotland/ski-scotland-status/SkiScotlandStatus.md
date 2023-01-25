@@ -13,6 +13,9 @@
         <div slot="data-loading">
             Data is currently loading, please wait...
         </div>
+        <div slot="data-unavailable">
+            Data is currently unavailable, please try again later.
+        </div>
         <div slot="js-required">
             JavaScript is required to load more ski data.
         </div>
@@ -30,6 +33,9 @@
         <div slot="data-loading">
             Data is currently loading, please wait...
         </div>
+        <div slot="data-unavailable">
+            Data is currently unavailable, please try again later.
+        </div>
         <div slot="js-required">
             JavaScript is required to load more ski data.
         </div>
@@ -46,6 +52,9 @@
         </div>
         <div slot="data-loading">
             Data is currently loading, please wait...
+        </div>
+        <div slot="data-unavailable">
+            Data is currently unavailable, please try again later.
         </div>
         <div slot="js-required">
             JavaScript is required to load more ski data.
