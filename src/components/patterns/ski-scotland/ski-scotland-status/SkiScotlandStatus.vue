@@ -348,6 +348,7 @@
                             <VsTableRow>
                                 <VsTableDataCell
                                     colspan="2"
+                                    role="cell"
                                 >
                                     <p>{{ lastUpdatedLabel }}: {{ lastUpdate }}</p>
                                 </VsTableDataCell>
@@ -437,7 +438,7 @@
                                                 /> {{ statusLimitedPatrolLabel }}
                                             </VsTableDataCell>
                                             <VsTableDataCell
-                                                v-if="run.status === '2' || run.status === 2"
+                                                v-if="run.status === '4' || run.status === 4"
                                             >
                                                 <VsIcon
                                                     name="status-closed"
@@ -450,7 +451,10 @@
                                     </VsTableBody>
                                     <VsTableFooter>
                                         <VsTableRow>
-                                            <VsTableDataCell>
+                                            <VsTableDataCell
+                                                colspan="2"
+                                                role="cell"
+                                            >
                                                 <p>{{ lastUpdatedLabel }}: {{ lastUpdate }}</p>
                                             </VsTableDataCell>
                                         </VsTableRow>

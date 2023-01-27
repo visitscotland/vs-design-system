@@ -10,7 +10,7 @@
         >
             <div
                 class="vs-main-map-wrapper-panel__back"
-                v-if="currentStage > 0"
+                v-if="currentStage > 0 || selectedSubcategory"
             >
                 <VsButton
                     icon-only
@@ -78,33 +78,69 @@
         </div>
 
         <template v-if="currentStage === 0">
-            <div
-                v-for="filter in filters"
-                :key="filter.id"
-            >
-                <VsMainMapWrapperCategory
-                    :category-name="filter.label"
-                    :type="filter.id"
+            <template v-if="selectedSubcategory !== null">
+                <VsMainMapWrapperSubcategory
+                    :data="selectedSubcategoryData[0].subCategory"
                 />
-            </div>
+                <VsMainMapWrapperControls />
+            </template>
+            <template v-else>
+                <div
+                    v-for="filter in filters"
+                    :key="filter.id"
+                >
+                    <VsMainMapWrapperCategory
+                        :category-name="filter.label"
+                        :type="filter.id"
+                        :has-sub-cat="subCatExists(filter)"
+                    />
+                </div>
+            </template>
         </template>
         <template v-if="currentStage === 1">
-            <div
-                v-for="place in currentData"
-                :key="place.id"
-            >
-                <VsMainMapWrapperListItem
-                    v-if="typeof place.properties !== 'undefined'
-                        && place.properties.category.id === selectedCategory"
-                    :item-data="place.properties"
-                    @show-item-detail="showDetail(place.properties.id)"
+            <template v-if="selectedSubcategory !== null">
+                <div
+                    v-for="place in subcategoryLocations"
+                    :key="place.id"
                 >
-                    {{ place.properties.title }}
-                </VsMainMapWrapperListItem>
-            </div>
+                    <VsMainMapWrapperListItem
+                        :item-data="place"
+                        :from-endpoint="true"
+                        @show-item-detail="showDetail(place.id)"
+                    />
+                </div>
+                <VsButton
+                    v-if="showLoadMore"
+                    class="vs-main-map-wrapper-panel__load-more"
+                    data-test="vs-main-map-wrapper-panel__load-more"
+                    @click.native="loadMorePlaces()"
+                >
+                    <!-- @slot Text for load more button  -->
+                    <slot name="loadMoreText" />
+                </VsButton>
+                <VsMainMapWrapperButtons
+                    :content-data="{}"
+                    :filter-count="subCatFilterCount"
+                    @clear-filters="clearSubCatFilters"
+                />
+            </template>
+            <template v-else>
+                <div
+                    v-for="place in currentData"
+                    :key="place.id"
+                >
+                    <VsMainMapWrapperListItem
+                        v-if="typeof place.properties !== 'undefined'
+                            && place.properties.category.id === selectedCategory"
+                        :item-data="place.properties"
+                        @show-item-detail="showDetail(place.properties.id)"
+                    />
+                </div>
+            </template>
         </template>
         <template v-if="currentStage === 2">
             <VsMainMapWrapperDetail
+                :heading-level="detailHeadingLevel"
                 :content-data="currentPlaceData[0]"
             />
 
@@ -112,6 +148,21 @@
                 :content-data="currentPlaceData[0]"
             />
         </template>
+        <div
+            v-if="panelStatus !== null"
+            class="vs-main-map-wrapper-panel__overlay"
+        >
+            <div
+                v-if="!!$slots['panelLoadingMessage']
+                    && panelStatus !== 'map-loading'"
+                class="vs-main-map-wrapper-panel__overlay-box"
+            >
+                <p class="vs-main-map-wrapper-panel__overlay-text">
+                    <!-- @slot Text for panel reset button  -->
+                    <slot name="panelLoadingMessage" />
+                </p>
+            </div>
+        </div>
     </section>
 </template>
 
@@ -119,9 +170,12 @@
 import VsButton from '@components/elements/button/Button/';
 import VsHeading from '@components/elements/heading/Heading';
 import VsMainMapWrapperCategory from './MainMapWrapperCategory';
+import VsMainMapWrapperSubcategory from './MainMapWrapperSubcategory';
 import VsMainMapWrapperListItem from './MainMapWrapperListItem';
 import VsMainMapWrapperDetail from './MainMapWrapperDetail';
 import VsMainMapWrapperButtons from './MainMapWrapperButtons';
+import VsMainMapWrapperControls from './MainMapWrapperControls';
+import mapStore from '../../../../stores/map.store';
 
 /**
  * Renders a side panel for the map wrapper component
@@ -136,15 +190,18 @@ export default {
     components: {
         VsButton,
         VsMainMapWrapperCategory,
+        VsMainMapWrapperSubcategory,
         VsHeading,
         VsMainMapWrapperListItem,
         VsMainMapWrapperDetail,
         VsMainMapWrapperButtons,
+        VsMainMapWrapperControls,
     },
     inject: [
         'filters',
         'placesData',
         'regions',
+        'mapId',
     ],
     props: {
         /**
@@ -169,6 +226,13 @@ export default {
             default: '',
         },
         /**
+         * Currently selected subcategory
+         */
+        selectedSubcategory: {
+            type: String,
+            default: null,
+        },
+        /**
          * The current stage
          */
         currentStage: {
@@ -189,23 +253,69 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * The ID of the currently hover item
+         */
+        subcategoryLocations: {
+            type: Array,
+            default: null,
+        },
+        /**
+         * Place data defined from endpoint
+         */
+        currentEndpointData: {
+            type: Array,
+            default: () => [],
+        },
+        /**
+         * Whether or not to show a panel message
+         */
+        panelStatus: {
+            type: String,
+            default: null,
+        },
+        /**
+         * A message that appears at the bottom
+         * of the side panel
+         */
+        panelMessage: {
+            type: String,
+            default: null,
+        },
+        /**
+         * Total amount of places coming from endpoint.
+         * Used to work out if there's more to load in panel.
+         */
+        totalPins: {
+            type: Number,
+            default: 0,
+        },
+    },
+    data() {
+        return {
+            placesLoaded: 1,
+        };
     },
     computed: {
         currentHeading() {
             let headingText = '';
 
-            switch (this.currentStage) {
-            case 0:
-                headingText = this.categoryHeading;
-                break;
-            case 1:
-                headingText = this.currentFilter.label;
-                break;
-            case 2:
-                headingText = this.currentPlaceData[0].properties.title;
-                break;
-            default:
-                break;
+            if (this.selectedSubcategory !== null) {
+                headingText = this.selectedSubcategoryData[0].label;
+            } else {
+                switch (this.currentStage) {
+                case 0:
+                    headingText = this.categoryHeading;
+                    break;
+                case 1:
+                    headingText = this.currentFilter.label;
+                    break;
+                case 2:
+                    headingText = this.currentPlaceData[0].properties.title;
+                    break;
+                default:
+                    break;
+                }
             }
 
             return headingText;
@@ -245,6 +355,10 @@ export default {
                 data = this.regions;
             }
 
+            if (this.currentEndpointData.length > 0) {
+                return this.refineEndpointData(this.currentEndpointData);
+            }
+
             return data.filter((obj) => {
                 if (typeof obj.properties !== 'undefined') {
                     return obj.properties.id === this.selectedItem;
@@ -253,7 +367,48 @@ export default {
                 return false;
             });
         },
+        selectedSubcategoryData() {
+            if (this.selectedSubcategory) {
+                const data = this.filters.filter((item) => item.id === this.selectedSubcategory);
 
+                return data;
+            }
+
+            return [];
+        },
+        subCatFilterCount() {
+            return mapStore.getters.getActiveSubcatFilters.length;
+        },
+        detailHeadingLevel() {
+            const headingNum = parseInt(this.headingLevel, 10);
+            const newHeading = headingNum + 1;
+            const headingStr = newHeading.toString();
+
+            return headingStr;
+        },
+        showLoadMore() {
+            if (this.placesLoaded * 24 > this.totalPins) {
+                return false;
+            }
+
+            return true;
+        },
+    },
+    watch: {
+        currentFilter() {
+            this.placesLoaded = 1;
+        },
+        currentStage() {
+            setTimeout(() => {
+                if (this.currentStage === 1) {
+                    const container = document.getElementById(this.mapId).closest('.vs-main-map-wrapper__map');
+                    const panel = container.previousElementSibling;
+                    const firstListItem = panel.getElementsByClassName('vs-main-map-wrapper-list-item')[0];
+
+                    firstListItem.focus();
+                }
+            }, 500);
+        },
     },
     methods: {
         /**
@@ -263,16 +418,27 @@ export default {
             this.$emit('close-panel');
         },
         /**
-         * Moves one stage back
+         * Moves back stages dependent on current state
          */
         stageBack() {
-            const previousStage = this.currentStage - 1;
-            this.setStage(previousStage);
+            if (this.selectedSubcategory && this.currentStage === 0) {
+                // if the user is on the subcategory page, keep the stage the same
+                // but reset the subcategory
+                this.$emit('set-subcategory', null);
+            } else if (this.selectedSubcategory !== null && this.subcategoryLocations === null) {
+                // if the user has selected a subcategory item straight from the subcategory
+                // filter menu, take them back to that stage
+                this.setStage(0);
+            } else {
+                const previousStage = this.currentStage - 1;
+                this.setStage(previousStage);
+            }
         },
         /**
          * Resets the panel
          */
         resetPanel() {
+            mapStore.dispatch('setSelectedSubcat', null);
             this.setStage(0);
         },
         /**
@@ -280,6 +446,66 @@ export default {
          */
         setStage(stageNum) {
             this.$emit('set-stage', stageNum);
+        },
+        /**
+         * Determines whether or not a subCategory
+         * array exists and has data in it
+         */
+        subCatExists(cat) {
+            if (typeof cat.subCategory !== 'undefined'
+                && cat.subCategory.length > 0) {
+                return true;
+            }
+
+            return false;
+        },
+        /**
+         * transforms endpoint data into format to be used
+         */
+        refineEndpointData(data) {
+            const refinedData = [{
+                isEndpoint: true,
+                properties: {
+                    category: data[0].category[0].id,
+                    id: data[0].id,
+                    image: data[0].images[0].mediaUrl,
+                    placeTitle: data[0].name,
+                    description: data[0].description,
+                    link: {
+                        label: data[0].productLink.label,
+                        link: data[0].productLink.link,
+                        type: data[0].productLink.type,
+                    },
+                    website: {
+                        label: data[0].website.label,
+                        link: data[0].website.link,
+                        type: data[0].website.type,
+                    },
+                    address: {
+                        shortAddress: '',
+                    },
+                },
+            }];
+
+            if (typeof data[0].address !== 'undefined') {
+                refinedData[0].properties.address.shortAddress = data[0].address.shortAddress;
+            }
+
+            return refinedData;
+        },
+        /**
+         * clear the subcategory filters
+        */
+        clearSubCatFilters() {
+            mapStore.dispatch('setActiveSubcatFilters', []);
+            this.setStage(0);
+        },
+        /**
+         * Load more places from endpoint
+        */
+        loadMorePlaces() {
+            this.placesLoaded += 1;
+            this.$emit('load-more-places', this.placesLoaded);
         },
     },
 };
@@ -293,9 +519,16 @@ export default {
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
 
         &--small-padding {
             padding-top: $spacer-6;
+        }
+
+        &__heading.vs-heading {
+            flex-grow: 1;
+            margin: $spacer-11 $spacer-3 $spacer-0;
         }
 
         &__header-section {
@@ -328,10 +561,39 @@ export default {
             display: none;
         }
 
-        h2.vs-heading,
-        h3.vs-heading {
-            flex-grow: 1;
-            margin: $spacer-11 $spacer-3 $spacer-0;
+        &__overlay {
+            position: absolute;
+            z-index: 20;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        &__overlay-box {
+            border: 1px solid $color-pink;
+            border-radius: $border-radius-default;
+            height: 142px;
+            width: 200px;
+            background: $color-white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: $spacer-6;
+        }
+
+        &__overlay-text {
+            font-size: $font-size-3;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        &__load-more {
+            flex-shrink: 0;
+            margin: $spacer-4 0;
         }
 
         .vs-main-wrapper-category:last-of-type {
@@ -374,6 +636,21 @@ export default {
 
             &__reset {
                 display: block;
+            }
+
+            &__message {
+                position: sticky;
+                bottom: -1px;
+                padding: $spacer-4 0;
+                width: 100%;
+                background: $color-white;
+                text-align: center;
+                margin-bottom: $spacer-0;
+                font-size: $font-size-4;
+
+                @include media-breakpoint-up(lg) {
+                    padding: $spacer-4;
+                }
             }
         }
     }

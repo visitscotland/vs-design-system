@@ -1,0 +1,30 @@
+[
+    {
+        "id": "cgbandbguesthouse",
+        "name": "B&B/Guesthouse"
+    },
+    {
+        "id": "cgcaravancamping",
+        "name": "Caravan & Camping"
+    },
+    {
+        "id": "cgexclusiveuse",
+        "name": "Exclusive Use"
+    },
+    {
+        "id": "cghostels",
+        "name": "Hostel"
+    },
+    {
+        "id": "cghotel",
+        "name": "Hotel"
+    },
+    {
+        "id": "cgselfcatering",
+        "name": "Self Catering"
+    },
+    {
+        "id": "cgunusual",
+        "name": "Unusual"
+    }
+]

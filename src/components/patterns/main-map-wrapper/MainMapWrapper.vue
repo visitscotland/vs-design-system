@@ -15,14 +15,23 @@
                         <VsMainMapWrapperPanel
                             :category-heading="categoryHeading"
                             :selected-category="selectedCategory"
+                            :selected-subcategory="selectedSubCategory"
                             :current-stage="currentStage"
                             :selected-item="selectedItem"
                             :heading-level="mainHeadingExists ? '3' : '2'"
+                            :subcategory-locations="subCatList"
+                            :current-endpoint-data="currentEndpointData"
+                            :panel-status="panelStatus"
+                            :panel-message="currentStage === 0 ? panelMessage : null"
+                            :total-pins="totalEndpointPins"
                             @set-category="setCategory"
+                            @set-subcategory="setSubCategory"
+                            @subcategories-filtered="filterSubCategories"
                             @set-stage="setStage"
                             @close-panel="closePanel"
                             @show-item-detail="showDetail"
                             @filter-places="filterPlaces"
+                            @load-more-places="loadMorePlaces"
                         >
                             <template slot="closePanelText">
                                 <slot name="closeSidePanelText" />
@@ -34,6 +43,14 @@
 
                             <template slot="backBtnText">
                                 <slot name="backBtnText" />
+                            </template>
+
+                            <template slot="panelLoadingMessage">
+                                <slot name="panelLoadingMessage" />
+                            </template>
+
+                            <template slot="loadMoreText">
+                                <slot name="loadMoreText" />
                             </template>
                         </VsMainMapWrapperPanel>
                     </div>
@@ -59,9 +76,19 @@
                             :selected-item="selectedItem"
                             :map-id="mapId"
                             :show-polygons="showRegions"
+                            :show-info-message="mapStatus !== ''"
                             @show-detail="showDetail"
                             @set-category="setCategory"
+                            @map-ready="setMapReady"
+                            :bounds-data="regionBounds"
                         >
+                            <template slot="mapLoadingText">
+                                <!-- @slot Message to show when map is loading  -->
+                                <slot name="mapLoadingText" />
+                            </template>
+                            <template slot="infoMessage">
+                                {{ infoMessage }}
+                            </template>
                             <template slot="noJs">
                                 <!-- @slot Message to show when JS is disabled  -->
                                 <slot name="noJs" />
@@ -75,6 +102,14 @@
                         />
                     </div>
                 </div>
+
+                <VsWarning
+                    class="vs-main-map-wrapper__no-js"
+                    theme="light"
+                >
+                    <!-- @slot Message to show when JS is disabled  -->
+                    <slot name="noJs" />
+                </VsWarning>
             </VsCol>
         </VsRow>
     </VsContainer>
@@ -88,7 +123,9 @@ import {
 } from '@components/elements/grid';
 import VsMap from '@components/elements/map/Map';
 import VsButton from '@components/elements/button/Button/';
+import VsWarning from '@components/patterns/warning/Warning';
 import VsButtonToggleGroup from '@components/patterns/button-toggle-group/ButtonToggleGroup';
+import axios from 'axios';
 import VsMainMapWrapperPanel from './components/MainMapWrapperPanel';
 import mapStore from '../../../stores/map.store';
 
@@ -111,6 +148,7 @@ export default {
         VsButton,
         VsMainMapWrapperPanel,
         VsButtonToggleGroup,
+        VsWarning,
     },
     provide() {
         return {
@@ -118,6 +156,11 @@ export default {
             placesData: this.placesData,
             mapId: this.mapId,
             regions: this.regionsData,
+            clearSelectionText: this.clearSelectionText,
+            applyFiltersText: this.applyFiltersText,
+            subCatList: this.subCatList,
+            filtersAppliedText: this.filtersAppliedText,
+            clearFiltersText: this.clearFiltersText,
         };
     },
     props: {
@@ -180,11 +223,83 @@ export default {
             type: String,
             default: '',
         },
+        /**
+         * Text for the 'clear selection' button
+         */
+        clearSelectionText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Text for the 'apply filters' button
+         */
+        applyFiltersText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Endpoint for getting place details
+         */
+        detailsEndpoint: {
+            type: String,
+            default: '',
+        },
+        /**
+         * Bounds if map needs to show a specific area
+         */
+        regionBounds: {
+            type: Object,
+            default: () => {},
+        },
+        /**
+         * Text for clearing filters - to be passed
+         * to buttons component
+         */
+        clearFiltersText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Text for applied filters - to be passed
+         * to buttons component
+         */
+        filtersAppliedText: {
+            type: String,
+            required: true,
+        },
+        /**
+         * ID for map's place
+         */
+        placeId: {
+            type: String,
+            default: null,
+        },
+        /**
+         * Text to show on map propmpting user to filter results
+         */
+        mapFilterMessage: {
+            type: String,
+            required: true,
+        },
+        /**
+         * Text to show on map when there are no results
+         */
+        mapNoResultsMessage: {
+            type: String,
+            required: true,
+        },
+        /**
+         * A message that appears at the bottom
+         * of the side panel
+         */
+        panelMessage: {
+            type: String,
+            default: null,
+        },
     },
     data() {
         return {
             panelVisible: false,
-            currentStage: 0,
             selectedCategory: '',
             filterCategories: this.filters,
             selectedItem: '',
@@ -193,7 +308,15 @@ export default {
             showRegions: false,
             regions: [
             ],
+            subCatList: null,
             selectedToggle: '',
+            currentEndpointData: [],
+            mapStatus: '',
+            panelStatus: 'map-loading',
+            mapReady: false,
+            showPanelMessage: null,
+            currentPanelEndpointFilters: '',
+            totalEndpointPins: 0,
         };
     },
     computed: {
@@ -206,6 +329,38 @@ export default {
         regionsData() {
             return this.placesData.filter((place) => place.geometry.type === 'Polygon'
                 || place.geometry.type === 'MultiPolygon');
+        },
+        currentStage() {
+            return mapStore.getters.getCurrentStage;
+        },
+        selectedSubCategory() {
+            return mapStore.getters.getSelectedSubcat;
+        },
+        subCatActiveFilters() {
+            return mapStore.getters.getActiveSubcatFilters;
+        },
+        infoMessage() {
+            let msg = '';
+
+            switch (this.mapStatus) {
+            case ('no-results'):
+                msg = this.mapNoResultsMessage;
+                break;
+            case ('filter-results'):
+                msg = this.mapFilterMessage;
+                break;
+            default:
+                break;
+            }
+
+            return msg;
+        },
+    },
+    watch: {
+        selectedSubCategory(val) {
+            if (val === null) {
+                this.mapStatus = '';
+            }
         },
     },
     mounted() {
@@ -234,32 +389,144 @@ export default {
          * Show an item's details
          */
         showDetail(id) {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            }
             this.selectedItem = id;
             this.setStage(2);
             this.openPanel();
-            this.filterPlaces(this.selectedCategory);
+            if (this.selectedSubCategory === null) {
+                this.filterPlaces(this.selectedCategory);
+            }
         },
         /**
          * Sets the currently chosen category
          */
         setCategory(cat) {
             this.selectedCategory = cat;
-            this.filterPlaces(cat);
+            if (this.selectedSubCategory === null) {
+                this.filterPlaces(cat);
+            }
         },
+        /**
+         * Sets a subcategory
+         */
+        setSubCategory(subcat) {
+            mapStore.dispatch('setSelectedSubcat', subcat);
+            if (subcat !== null) {
+                this.getSubcatMarkerData();
+                this.selectedCategory = subcat;
+            } else {
+                mapStore.dispatch('setActiveSubcatFilters', []);
+                this.showAllPlaces();
+            }
+        },
+        /**
+         * Filters subcategories
+         */
+        filterSubCategories(filters) {
+            let filterString = '';
+
+            filters.forEach((filter) => {
+                const filterSuffix = `&cat=${filter}`;
+                filterString += filterSuffix;
+            });
+
+            this.currentPanelEndpointFilters = filterString;
+
+            this.getSubcatMarkerData(filterString);
+            this.getSubcatPanelData(filterString, 1);
+        },
+        /**
+         * Makes a call to the API to get marker data for
+         * the current subcategory
+         */
+        getSubcatMarkerData(endpointFilters) {
+            const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
+            let endpoint = subCat[0].pinsEndpoint;
+            if (typeof endpointFilters !== 'undefined') {
+                endpoint += endpointFilters;
+            }
+
+            this.activePins = [];
+
+            // show markers only if the subcategory has been filtered
+            if (typeof endpointFilters === 'undefined') {
+                this.activePins = [];
+                this.mapStatus = 'filter-results';
+            } else {
+                axios.get(endpoint).then((response) => {
+                    this.totalEndpointPins = response.data.features.length;
+                    response.data.features.forEach((feature) => {
+                        const modifiedFeature = feature;
+                        modifiedFeature.properties.apiData = true;
+                        this.activePins.push(modifiedFeature);
+                    });
+                });
+                this.mapStatus = '';
+            }
+        },
+        /**
+         * Makes a call to the endpoint in the subcategory data which
+         * provides a random 24 items for the side panel
+         */
+        getSubcatPanelData(endpointFilters, page) {
+            this.panelStatus = 'loading-data';
+            const subCat = this.filters.filter((cat) => cat.id === this.selectedSubCategory);
+            let endpoint = subCat[0].listProductsEndPoint;
+            if (typeof endpointFilters !== 'undefined') {
+                endpoint += endpointFilters;
+            }
+
+            if (page !== 1) {
+                endpoint += `${endpointFilters}&page=${page}`;
+            }
+
+            axios.get(endpoint).then((response) => {
+                if (page <= 1) {
+                    this.subCatList = response.data.data.products;
+                } else {
+                    this.subCatList = this.subCatList.concat(response.data.data.products);
+                }
+                this.setStage(1);
+                this.panelStatus = null;
+            });
+        },
+
         /**
          * Sets the current stage
          */
         setStage(num) {
-            this.currentStage = num;
+            // ensure that if data is coming from an endpoint then
+            // it is loaded before moving to the next stage
+            if (num === 2 && this.detailsEndpoint !== '' && this.selectedSubCategory !== null) {
+                const endpoint = `${this.detailsEndpoint}${this.selectedItem}`;
+                axios.get(endpoint).then((response) => {
+                    const dataArr = [];
+                    dataArr.push(response.data.data);
+                    this.currentEndpointData = dataArr;
+                    mapStore.dispatch('setCurrentStage', num);
+                });
+            } else {
+                mapStore.dispatch('setCurrentStage', num);
 
-            if (this.currentStage === 0) {
-                this.showAllPlaces();
-                this.selectedToggle = 'places';
-            } else if (this.currentStage === 1) {
-                this.filterPlaces(this.selectedCategory);
+                if (this.currentStage === 0) {
+                    this.currentEndpointData = [];
+                    if (this.selectedSubCategory === null) {
+                        this.showAllPlaces();
+                        this.mapStatus = '';
+                    } else {
+                        this.getSubcatMarkerData();
+                    }
+                    this.selectedToggle = 'places';
+                } else if (this.currentStage === 1) {
+                    if (this.selectedSubCategory === null) {
+                        this.filterPlaces(this.selectedCategory);
+                    }
+                }
             }
 
-            if (this.currentStage !== 2) {
+            if (num !== 2) {
                 // if the stage isn't showing a place's details
                 // make sure the store doesn't have an active place set
                 mapStore.dispatch('setActivePlace', {
@@ -294,6 +561,12 @@ export default {
             }
         },
         /**
+         * Load more places from endpoint
+         */
+        loadMorePlaces(page) {
+            this.getSubcatPanelData(this.currentPanelEndpointFilters, page);
+        },
+        /**
          * Show all pins, remove regions
          */
         showAllPlaces() {
@@ -310,6 +583,17 @@ export default {
             } else {
                 this.showAllPlaces();
                 this.setStage(0);
+            }
+        },
+        /**
+         * Set whether or not map is ready to use
+         */
+        setMapReady(val) {
+            this.mapReady = val;
+            if (val) {
+                this.panelStatus = null;
+            } else {
+                this.panelStatus = 'loading';
             }
         },
     },
@@ -356,6 +640,10 @@ export default {
             }
         }
 
+        &__no-js {
+            display: none;
+        }
+
         .vs-button-toggle-group {
             position: absolute;
             bottom: 0;
@@ -364,6 +652,16 @@ export default {
 
             @include media-breakpoint-up(lg) {
                 display: none;
+            }
+        }
+    }
+
+    @include no-js {
+        .vs-main-map-wrapper {
+            display: none;
+
+            &__no-js {
+                display: flex;
             }
         }
     }
