@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.4](https://github.com/visitscotland/design-system/compare/v0.7.3...v0.7.4) (2023-01-27)
+
+
+### Bug Fixes
+
+* 🐛 Add spacing above centre info on mobile ([f970eb7](https://github.com/visitscotland/design-system/commit/f970eb733eb7eaa9402f02d8a4085b69eaf48d5a))
+
 ### [0.7.3](https://github.com/visitscotland/design-system/compare/v0.7.2...v0.7.3) (2023-01-27)
 
 
