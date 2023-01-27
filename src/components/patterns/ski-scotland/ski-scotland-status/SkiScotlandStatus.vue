@@ -18,7 +18,6 @@
         <VsContainer v-if="!jsDisabled && displayError">
             <VsRow>
                 <VsCol class="text-center py-4">
-                    <VsLoadingSpinner />
                     <!--
                         @slot Slot for data unavailable message
                         Expects text
@@ -909,7 +908,8 @@ export default {
                 })
                 .catch(() => {
                     this.runStatusInfo = null;
-                    this.displayError = false;
+                    this.displayError = true;
+                    this.isLoading = false;
                     clearTimeout(errorTimeout);
                 });
         },
