@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.3](https://github.com/visitscotland/design-system/compare/v0.7.2...v0.7.3) (2023-01-27)
+
+
+### Features
+
+* 🎸 Add new icons for limited patrol and on hold ([ccfc31b](https://github.com/visitscotland/design-system/commit/ccfc31b06546b7aacc65d84cd2afbd6db9e7be17))
+
+
+### Bug Fixes
+
+* 🐛 Handle glenshee and lecht apis with no run data ([36381e4](https://github.com/visitscotland/design-system/commit/36381e44606278ca600e88ec81063e5493ff718b))
+
 ### [0.7.2](https://github.com/visitscotland/design-system/compare/v0.7.1...v0.7.2) (2023-01-27)
 
 
