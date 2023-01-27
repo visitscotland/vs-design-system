@@ -932,18 +932,16 @@ export default {
                 output.lastUpdate = data.lastupdate;
                 [output.lifts] = data.lift.sectors;
                 output.lifts = output.lifts.lifts;
-                const areaRuns = data.run.areas.map((area) => area.runs);
 
                 // Some of the sites (Nevis Range) return multiple areas, some runs appear in
                 // multiple areas and some are only in one so we have to join them, then filter
                 // out dupes.
-                let runs = [];
-                for (let x = 0; x < areaRuns.length; x++) {
-                    runs = runs.concat(areaRuns[x]);
-                }
-                runs = runs.filter((value, index, self) => index === self.findIndex((t) => (
-                    t.name === value.name
-                )));
+                const runs = data.run.areas
+                    .map((area) => area.runs)
+                    .reduce((pre, cur) => pre.concat(cur))
+                    .filter((value, index, self) => index === self.findIndex((t) => (
+                        t.name === value.name
+                    )));
 
                 output.runs = runs;
             }
