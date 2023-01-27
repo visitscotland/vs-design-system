@@ -9,6 +9,7 @@
         @mouseleave="itemHover('')"
         @focusin="itemHover(formattedData.id)"
         @focusout="itemHover('')"
+        ref="btn"
     >
         <div class="vs-main-map-wrapper-list-item__img-container">
             <VsImg
@@ -66,6 +67,13 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+        * If the component should be focussed on mount
+         */
+        focussed: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
@@ -104,6 +112,9 @@ export default {
                     image: this.itemData.images[0].mediaUrl,
                 };
             }
+        }
+        if (this.focussed) {
+            this.$refs.btn.focus();
         }
     },
     methods: {

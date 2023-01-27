@@ -9,6 +9,7 @@
             size="sm"
             variant="transparent"
             @click.native="clearSelection"
+            @keyup.enter.native="clearSelection"
         >
             {{ clearSelectionText }}
         </VsButton>
@@ -16,6 +17,7 @@
             class="vs-main-map-controls__apply-filters"
             data-test="vs-main-map-subcategory__apply-filters"
             size="sm"
+            @keypress.enter.native="submitCheckboxes"
             @click.native="submitCheckboxes"
             :aria-disabled="isDisabled"
             :disabled="isDisabled"

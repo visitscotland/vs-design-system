@@ -101,12 +101,13 @@
             <template v-if="selectedSubcategory !== null">
                 <div class="vs-main-map-wrapper-panel__list-container">
                     <div
-                        v-for="place in subcategoryLocations"
+                        v-for="(place, index) in subcategoryLocations"
                         :key="place.id"
                     >
                         <VsMainMapWrapperListItem
                             :item-data="place"
                             :from-endpoint="true"
+                            :focussed="index === currentListItemFocus"
                             @show-item-detail="showDetail(place.id)"
                         />
                     </div>
@@ -116,6 +117,7 @@
                         class="vs-main-map-wrapper-panel__load-more"
                         data-test="vs-main-map-wrapper-panel__load-more"
                         @click.native="loadMorePlaces()"
+                        @keyup.native.enter="loadMorePlaces()"
                     >
                         <!-- @slot Text for load more button  -->
                         <slot name="loadMoreText" />
@@ -205,6 +207,7 @@ export default {
         'placesData',
         'regions',
         'mapId',
+        'focussedListItem',
     ],
     props: {
         /**
@@ -293,10 +296,18 @@ export default {
             type: Number,
             default: 0,
         },
+        /**
+         * The number of the list item that should be focussed
+         * on creation
+         */
+        currentListItemFocus: {
+            type: Number,
+            default: 0,
+        },
     },
     data() {
         return {
-            placesLoaded: 1,
+            placesLoaded: 0,
         };
     },
     computed: {
@@ -399,18 +410,7 @@ export default {
     },
     watch: {
         currentFilter() {
-            this.placesLoaded = 1;
-        },
-        currentStage() {
-            setTimeout(() => {
-                if (this.currentStage === 1) {
-                    const container = document.getElementById(this.mapId).closest('.vs-main-map-wrapper__map');
-                    const panel = container.previousElementSibling;
-                    const firstListItem = panel.getElementsByClassName('vs-main-map-wrapper-list-item')[0];
-
-                    firstListItem.focus();
-                }
-            }, 500);
+            this.placesLoaded = 0;
         },
     },
     methods: {
@@ -524,6 +524,7 @@ export default {
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
 
         &--small-padding {
             padding-top: $spacer-6;
