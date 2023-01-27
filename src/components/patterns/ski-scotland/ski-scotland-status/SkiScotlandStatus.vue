@@ -1088,6 +1088,12 @@ export default {
 
         &__centre-info {
             font-size: $font-size-4;
+            margin-top: $spacer-8;
+
+            @include media-breakpoint-up(md) {
+                margin-bottom: $spacer-7;
+                margin-top: $spacer-0;
+            }
         }
 
         &__detailed-status-link {
