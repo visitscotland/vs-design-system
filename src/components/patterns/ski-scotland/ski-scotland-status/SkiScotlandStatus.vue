@@ -199,7 +199,7 @@
 
                 <VsCol
                     cols="12"
-                    md="3"
+                    md="5"
                     offset-md="1"
                     class="vs-ski-scotland-status__centre-info"
                 >
