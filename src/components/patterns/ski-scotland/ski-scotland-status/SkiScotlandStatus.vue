@@ -107,7 +107,7 @@
                             >
                                 <VsTableDataCell>
                                     <VsIcon
-                                        name="tick"
+                                        name="ski-boot"
                                         size="xs"
                                         class="mr-2"
                                     />
@@ -169,7 +169,7 @@
                             >
                                 <VsTableDataCell>
                                     <VsIcon
-                                        name="status-closed"
+                                        name="hourglass"
                                         size="xs"
                                         class="mr-2"
                                     />
@@ -341,14 +341,14 @@
                                 </VsTableDataCell>
                                 <VsTableDataCell v-if="lift.status === '3' || lift.status === 3">
                                     <VsIcon
-                                        name="tick"
+                                        name="ski-boot"
                                         size="xs"
                                         class="mr-2"
                                     /> {{ statusLimitedPatrolLabel }}
                                 </VsTableDataCell>
                                 <VsTableDataCell v-if="lift.status === '4' || lift.status === 4">
                                     <VsIcon
-                                        name="status-closed"
+                                        name="hourglass"
                                         size="xs"
                                         class="mr-2"
                                     /> {{ statusOnHoldLabel }}
@@ -444,7 +444,7 @@
                                                 v-if="run.status === '3' || run.status === 3"
                                             >
                                                 <VsIcon
-                                                    name="tick"
+                                                    name="ski-boot"
                                                     size="xs"
                                                     class="mr-2"
                                                 /> {{ statusLimitedPatrolLabel }}
@@ -453,7 +453,7 @@
                                                 v-if="run.status === '4' || run.status === 4"
                                             >
                                                 <VsIcon
-                                                    name="status-closed"
+                                                    name="hourglass"
                                                     size="xs"
                                                     class="mr-2"
                                                 /> {{ statusOnHoldLabel }}
@@ -1102,6 +1102,11 @@ export default {
                     margin-top: $spacer-10;
                 }
             }
+        }
+
+        .vs-icon {
+            width: $spacer-5;
+            text-align: center;
         }
     }
 </style>
