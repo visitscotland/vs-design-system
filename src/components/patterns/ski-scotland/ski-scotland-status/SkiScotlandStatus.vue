@@ -18,7 +18,6 @@
         <VsContainer v-if="!jsDisabled && displayError">
             <VsRow>
                 <VsCol class="text-center py-4">
-                    <VsLoadingSpinner />
                     <!--
                         @slot Slot for data unavailable message
                         Expects text
@@ -913,7 +912,8 @@ export default {
                 })
                 .catch(() => {
                     this.runStatusInfo = null;
-                    this.displayError = false;
+                    this.displayError = true;
+                    this.isLoading = false;
                     clearTimeout(errorTimeout);
                 });
         },
@@ -936,8 +936,26 @@ export default {
                 output.lastUpdate = data.lastupdate;
                 [output.lifts] = data.lift.sectors;
                 output.lifts = output.lifts.lifts;
-                [output.runs] = data.run.areas;
-                output.runs = output.runs.runs;
+
+                // Some of the sites (Nevis Range) return multiple areas, some runs appear in
+                // multiple areas and some are only in one so we have to join them, then filter
+                // out dupes.
+                const runs = data.run.areas
+                    .map((area) => area.runs)
+                    .reduce((pre, cur) => pre.concat(cur))
+                    .filter((value, index, self) => index === self.findIndex((t) => (
+                        t.name === value.name
+                    )));
+
+                output.runs = runs;
+            }
+
+            // Some sites return itineraries with null difficulty rather than the standard
+            // orange
+            for (let x = 0; x < output.runs.length; x++) {
+                if (output.runs[x].difficulty === null) {
+                    output.runs[x].difficulty = 'orange';
+                }
             }
 
             return output;
