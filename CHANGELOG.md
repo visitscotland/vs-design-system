@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.1](https://github.com/visitscotland/design-system/compare/v0.7.0...v0.7.1) (2023-01-27)
+
+
+### Bug Fixes
+
+* 🐛 Correct colSpan for lift status footer ([77e75c6](https://github.com/visitscotland/design-system/commit/77e75c67d64902e0c9a1a4ea6e24f118bb4528a5))
+* 🐛 Correct error checking logic for ski url errors ([f176924](https://github.com/visitscotland/design-system/commit/f176924d192cf5a68987dd0559b18d6267e79499))
+* 🐛 Extend cleanData to handle nevis range data properly ([78e0dd6](https://github.com/visitscotland/design-system/commit/78e0dd61fb8632ea4e3fb7a338b8555cd19da7c9))
+* 🐛 Replace for loop with reduce ([a1235e5](https://github.com/visitscotland/design-system/commit/a1235e5e299aafcf8c3828b4078db8a5f4bbaab2))
+
 ## [0.7.0](https://github.com/visitscotland/design-system/compare/v0.6.3...v0.7.0) (2023-01-25)
 
 ### [0.6.3](https://github.com/visitscotland/design-system/compare/v0.6.2...v0.6.3) (2023-01-25)
