@@ -67,7 +67,9 @@
                                     {{ statusLabel }}
                                 </span>
                             </VsTableHeaderCell>
-                            <VsTableHeaderCell>
+                            <VsTableHeaderCell
+                                v-if="runs.length"
+                            >
                                 <span data-test="vs-ski__runs-label">
                                     {{ runsLabel }}
                                 </span>
@@ -90,7 +92,9 @@
                                         {{ summaryOpenLabel }}
                                     </span>
                                 </VsTableDataCell>
-                                <VsTableDataCell>
+                                <VsTableDataCell
+                                    v-if="runs.length"
+                                >
                                     {{ statusSummary.runs.open }}/{{ runs.length }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -111,7 +115,9 @@
                                         {{ summaryLimitedPatrolLabel }}
                                     </span>
                                 </VsTableDataCell>
-                                <VsTableDataCell>
+                                <VsTableDataCell
+                                    v-if="runs.length"
+                                >
                                     {{ statusSummary.runs.limitedPatrol }}/{{ runs.length }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -129,7 +135,9 @@
                                         {{ summaryOpeningLabel }}
                                     </span>
                                 </VsTableDataCell>
-                                <VsTableDataCell>
+                                <VsTableDataCell
+                                    v-if="runs.length"
+                                >
                                     {{ statusSummary.runs.opening }}/{{ runs.length }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -147,7 +155,9 @@
                                         {{ summaryClosedLabel }}
                                     </span>
                                 </VsTableDataCell>
-                                <VsTableDataCell>
+                                <VsTableDataCell
+                                    v-if="runs.length"
+                                >
                                     {{ statusSummary.runs.closed }}/{{ runs.length }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -167,7 +177,9 @@
                                         {{ summaryOnHoldLabel }}
                                     </span>
                                 </VsTableDataCell>
-                                <VsTableDataCell>
+                                <VsTableDataCell
+                                    v-if="runs.length"
+                                >
                                     {{ statusSummary.runs.onHold }}/{{ runs.length }}
                                 </VsTableDataCell>
                                 <VsTableDataCell>
@@ -358,7 +370,7 @@
                 </VsCol>
             </VsRow>
             <VsRow
-                v-if="!jsDisabled && !isLoading && !displayError"
+                v-if="!jsDisabled && !isLoading && !displayError && runs.length"
             >
                 <VsCol
                     cols="12"
@@ -904,7 +916,9 @@ export default {
                 .then((response) => {
                     const data = this.cleanData(response.data);
                     this.processLifts(data.lifts);
-                    this.processRuns(data.runs);
+                    if (data.runs) {
+                        this.processRuns(data.runs);
+                    }
                     this.processLastUpdate(data.lastUpdate);
                     this.processFullReport(data.report);
                     this.isLoading = false;
@@ -937,24 +951,28 @@ export default {
                 [output.lifts] = data.lift.sectors;
                 output.lifts = output.lifts.lifts;
 
-                // Some of the sites (Nevis Range) return multiple areas, some runs appear in
-                // multiple areas and some are only in one so we have to join them, then filter
-                // out dupes.
-                const runs = data.run.areas
-                    .map((area) => area.runs)
-                    .reduce((pre, cur) => pre.concat(cur))
-                    .filter((value, index, self) => index === self.findIndex((t) => (
-                        t.name === value.name
-                    )));
+                // Glenshee and the Lecht don't have any run data, just lifts
+                if (data.run.areas) {
+                    // Some of the sites (Nevis Range) return multiple areas, some runs appear in
+                    // multiple areas and some are only in one so we have to join them, then filter
+                    // out dupes.
+                    const runs = data.run.areas
+                        .map((area) => area.runs)
+                        .reduce((pre, cur) => pre.concat(cur))
+                        .filter((value, index, self) => index === self.findIndex((t) => (
+                            t.name === value.name
+                        )));
 
-                output.runs = runs;
+                    output.runs = runs;
+                }
             }
-
-            // Some sites return itineraries with null difficulty rather than the standard
-            // orange
-            for (let x = 0; x < output.runs.length; x++) {
-                if (output.runs[x].difficulty === null) {
-                    output.runs[x].difficulty = 'orange';
+            if (output.runs) {
+                // Some sites return itineraries with null difficulty rather than the standard
+                // orange
+                for (let x = 0; x < output.runs.length; x++) {
+                    if (output.runs[x].difficulty === null) {
+                        output.runs[x].difficulty = 'orange';
+                    }
                 }
             }
 
