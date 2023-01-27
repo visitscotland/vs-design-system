@@ -488,13 +488,13 @@ import VsLoadingSpinner from '@components/elements/loading-spinner/LoadingSpinne
 const axios = require('axios');
 
 /**
- * The ski scotland status component retrieves information about a specific ski resort,
- * and displays organised, processed snow status information about it
+ * The ski scotland card component displays ski run status information for a specific
+ * ski resort. It is intended to be used in a grid with other
  *
- * @displayName Ski Scotland Status
+ * @displayName Ski Scotland Card
  */
 export default {
-    name: 'VsSkiScotlandStatus',
+    name: 'VsSkiScotlandCard',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -541,61 +541,11 @@ export default {
             default: 30000,
         },
         /**
-         * Localisable label, translation of "current weather" for the full
-         * report
-         */
-        currentWeatherLabel: {
-            type: String,
-            default: 'Current Weather',
-        },
-        /**
-         * Localisable label, translation of "Detailed Status"
-         */
-        detailedStatusLabel: {
-            type: String,
-            default: 'Detailed Status',
-        },
-        /**
-         * Localisable label, translation of "difficult" to indicate run difficulty
-         */
-        difficultLabel: {
-            type: String,
-            default: 'Difficult',
-        },
-        /**
-         * Localisable label, translation of "easy" to indicate run difficulty
-         */
-        easyLabel: {
-            type: String,
-            default: 'Easy',
-        },
-        /**
-         * Localisable label, translation of "intermediate" to indicate run difficulty
-         */
-        intermediateLabel: {
-            type: String,
-            default: 'Intermediate',
-        },
-        /**
-         * Localisable label, translation of "itineraries" to indicate run difficulty
-         */
-        itinerariesLabel: {
-            type: String,
-            default: 'Itineraries',
-        },
-        /**
          * Localisable label, translation of "last updated" for status tables
          */
         lastUpdatedLabel: {
             type: String,
             default: 'Last Updated',
-        },
-        /**
-         * Localisable label, translation of "lift" for status tables
-         */
-        liftLabel: {
-            type: String,
-            default: 'Lift',
         },
         /**
          * Localisable label, translation of "lifts" for status tables
@@ -605,71 +555,11 @@ export default {
             default: 'Lifts',
         },
         /**
-         * Localisable label, translation of "lift status" for status tables
-         */
-        liftStatusLabel: {
-            type: String,
-            default: 'Lift Status',
-        },
-        /**
-         * Localisable label, translation of "news from the slopes" for the full
-         * report
-         */
-        newsLabel: {
-            type: String,
-            default: 'News From The Slopes',
-        },
-        /**
-         * Localisable label, translation of "other" to indicate run difficulty
-         */
-        otherLabel: {
-            type: String,
-            default: 'Other',
-        },
-        /**
-         * Localisable label, translation of "road status" for the full
-         * report
-         */
-        roadsLabel: {
-            type: String,
-            default: 'Road Status',
-        },
-        /**
-         * Localisable label, translation of "run" for status tables
-         */
-        runLabel: {
-            type: String,
-            default: 'Run',
-        },
-        /**
          * Localisable label, translation of "runs" for status tables
          */
         runsLabel: {
             type: String,
             default: 'Runs',
-        },
-        /**
-         * Localisable label, translation of "run/lift status" for the full
-         * report
-         */
-        runsLiftsStatusLabel: {
-            type: String,
-            default: 'Run/Lift Status',
-        },
-        /**
-         * Localisable label, translation of "run status" for status tables
-         */
-        runStatusLabel: {
-            type: String,
-            default: 'Run Status',
-        },
-        /**
-         * Localisable label, translation of "snow conditions full report" for
-         * the full report
-         */
-        snowConditionsLabel: {
-            type: String,
-            default: 'Snow Conditions Full Report',
         },
         /**
          * Localisable label, translation of "status" for status tables
@@ -713,175 +603,20 @@ export default {
             type: String,
             default: 'On Hold',
         },
-        /**
-         * Localisable label, translation of "closed" for the detailed status tables
-         */
-        statusClosedLabel: {
-            type: String,
-            default: 'Closed',
-        },
-        /**
-         * Localisable label, translation of "open" for the detailed status tables
-         */
-        statusOpenLabel: {
-            type: String,
-            default: 'Open',
-        },
-        /**
-         * Localisable label, translation of "opening" for the detailed status tables
-         */
-        statusOpeningLabel: {
-            type: String,
-            default: 'Opening',
-        },
-        /**
-         * Localisable label, translation of "limited patrol" for the detailed status tables
-         */
-        statusLimitedPatrolLabel: {
-            type: String,
-            default: 'Limited Patrol',
-        },
-        /**
-         * Localisable label, translation of "on hold" for the detailed status tables
-         */
-        statusOnHoldLabel: {
-            type: String,
-            default: 'On Hold',
-        },
-        /**
-         * Localisable label, translation of "very difficult" to indicate run difficulty
-         */
-        veryDifficultLabel: {
-            type: String,
-            default: 'Very Difficult',
-        },
-        /**
-         * Localisable label, translation of "weather forecast" for the full
-         * report
-         */
-        weatherForecastLabel: {
-            type: String,
-            default: 'Weather Forecast',
-        },
-        /**
-         * Localisable label, translation of "green" to indicate run difficulty
-         */
-        greenLabel: {
-            type: String,
-            default: 'Green',
-        },
-        /**
-         * Localisable label, translation of "blue" to indicate run difficulty
-         */
-        blueLabel: {
-            type: String,
-            default: 'Blue',
-        },
-        /**
-         * Localisable label, translation of "red" to indicate run difficulty
-         */
-        redLabel: {
-            type: String,
-            default: 'Red',
-        },
-        /**
-         * Localisable label, translation of "black" to indicate run difficulty
-         */
-        blackLabel: {
-            type: String,
-            default: 'Black',
-        },
-        /**
-         * Localisable label, translation of "orange" to indicate run difficulty
-         */
-        orangeLabel: {
-            type: String,
-            default: 'Orange',
-        },
-        /**
-         * Localisable label, translation of "grey" to indicate run difficulty
-         */
-        greyLabel: {
-            type: String,
-            default: 'Grey',
-        },
     },
     data() {
         return {
             componentId: 0,
-            statusSummary: {
-                runs: {
-                    open: 0,
-                    opening: 0,
-                    closed: 0,
-                    onHold: 0,
-                    limitedPatrol: 0,
-                },
-                lifts: {
-                    open: 0,
-                    opening: 0,
-                    closed: 0,
-                    onHold: 0,
-                    limitedPatrol: 0,
-                },
-            },
-            lifts: [],
-            runs: [],
-            lastUpdate: '',
-            report: '',
-            currentWeather: '',
-            weatherForecast: '',
-            roadStatus: '',
-            news: '',
-            runLevels: [
-                {
-                    colour: 'green',
-                    name: this.easyLabel,
-                    runs: [],
-                },
-                {
-                    colour: 'blue',
-                    name: this.intermediateLabel,
-                    runs: [],
-                },
-                {
-                    colour: 'red',
-                    name: this.difficultLabel,
-                    runs: [],
-                },
-                {
-                    colour: 'black',
-                    name: this.veryDifficultLabel,
-                    runs: [],
-                },
-                {
-                    colour: 'orange',
-                    name: this.itinerariesLabel,
-                    runs: [],
-                },
-                {
-                    colour: 'grey',
-                    name: this.otherLabel,
-                    runs: [],
-                },
-            ],
+            skiResorts: [],
             jsDisabled: true,
             isLoading: true,
             displayError: false,
-            isCairngorms: false,
         };
-    },
-    computed: {
-        filteredRunLevels() {
-            return this.runLevels.filter((level) => level.runs.length > 0);
-        },
     },
     mounted() {
         if (this.skiStatusUrl) {
             this.retrieveSkiStatus();
         }
-
-        this.id = this._uid;
 
         // If component successfully mounted, declare js is enabled to hide the warning
         // from the user
@@ -957,130 +692,9 @@ export default {
 
             return output;
         },
-        processFullReport(data) {
-            this.report = data.runs;
-            this.currentWeather = data.current_weather_conditions;
-            this.weatherForecast = data.weather_forecast;
-            this.roadStatus = data.access_roads;
-            this.news = data.news_from_the_slopes;
-        },
-        processLastUpdate(lastUpdate) {
-            const event = new Date(
-                lastUpdate.year,
-                parseInt(lastUpdate.month, 10) - 1,
-                lastUpdate.day
-            );
-            const options = {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-            };
-            const formattedDate = event.toLocaleDateString(this.locale, options);
-            this.lastUpdate = `${lastUpdate.hour24}:${lastUpdate.minute} - ${formattedDate}`;
-        },
-        processLifts(lifts) {
-            for (let x = 0; x < lifts.length; x++) {
-                switch (lifts[x].status) {
-                case '4':
-                case 4:
-                    this.statusSummary.lifts.onHold += 1;
-                    break;
-                case '3':
-                case 3:
-                    this.statusSummary.lifts.limitedPatrol += 1;
-                    break;
-                case '2':
-                case 2:
-                    this.statusSummary.lifts.opening += 1;
-                    break;
-                case '1':
-                case 1:
-                    this.statusSummary.lifts.open += 1;
-                    break;
-                default:
-                    this.statusSummary.lifts.closed += 1;
-                    break;
-                }
-            }
-
-            this.lifts = lifts;
-        },
-        processRuns(runs) {
-            for (let x = 0; x < runs.length; x++) {
-                switch (runs[x].status) {
-                case '4':
-                case 4:
-                    this.statusSummary.runs.onHold += 1;
-                    break;
-                case '3':
-                case 3:
-                    this.statusSummary.runs.limitedPatrol += 1;
-                    break;
-                case '2':
-                case 2:
-                    this.statusSummary.runs.opening += 1;
-                    break;
-                case '1':
-                case 1:
-                    this.statusSummary.runs.open += 1;
-                    break;
-                default:
-                    this.statusSummary.runs.closed += 1;
-                    break;
-                }
-
-                for (let y = 0; y < this.runLevels.length; y++) {
-                    if (this.runLevels[y].colour === runs[x].difficulty) {
-                        this.runLevels[y].runs.push(runs[x]);
-                    }
-                }
-            }
-
-            this.runs = runs;
-        },
-        // Returns the localised label value for a given colour
-        getColourLabel(colour) {
-            return this[`${colour}Label`];
-        },
     },
 };
 </script>
 
 <style lang="scss">
-    .vs-ski-scotland-status {
-        text-align: left;
-
-        &__full-report {
-            h2 {
-                margin-bottom: $spacer-4;
-
-                @include media-breakpoint-up(md) {
-                    margin-bottom: $spacer-7;
-                }
-            }
-
-            h3 {
-                margin-bottom: $spacer-2 !important;
-                margin-top: $spacer-6 !important;
-            }
-        }
-
-        &__centre-info {
-            font-size: $font-size-4;
-        }
-
-        &__detailed-status-link {
-            font-size: $font-size-4;
-        }
-
-        .row {
-            &:not(:first-child) {
-                margin-top: $spacer-8 + $spacer-2;
-
-                @include media-breakpoint-up(md) {
-                    margin-top: $spacer-10;
-                }
-            }
-        }
-    }
 </style>
