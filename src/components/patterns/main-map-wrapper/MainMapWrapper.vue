@@ -461,13 +461,19 @@ export default {
             } else {
                 axios.get(endpoint).then((response) => {
                     this.totalEndpointPins = response.data.features.length;
-                    response.data.features.forEach((feature) => {
-                        const modifiedFeature = feature;
-                        modifiedFeature.properties.apiData = true;
-                        this.activePins.push(modifiedFeature);
-                    });
+
+                    if (this.totalEndpointPins === 0) {
+                        this.mapStatus = 'no-results';
+                    } else {
+                        this.totalEndpointPins = response.data.features.length;
+                        response.data.features.forEach((feature) => {
+                            const modifiedFeature = feature;
+                            modifiedFeature.properties.apiData = true;
+                            this.activePins.push(modifiedFeature);
+                        });
+                        this.mapStatus = '';
+                    }
                 });
-                this.mapStatus = '';
             }
         },
         /**
@@ -487,19 +493,17 @@ export default {
             }
 
             axios.get(endpoint).then((response) => {
-                if (page === 0) {
-                    this.subCatList = response.data.data.products;
-                    this.focussedListItem = 0;
-                } else {
-                    this.focussedListItem = page * 24;
-                    this.subCatList = this.subCatList.concat(response.data.data.products);
-                    // console.log(this.subCatList.length);
-                    // const thisComponent = this.$refs[this.mapId];
-                    // const thisComponent = this.$refs[this.mapId];
-                    // console.log(thisComponent
-                    //     .getElementsByClassName('vs-main-map-wrapper-list-item'));
+                if (response.data.data.products.length !== 0) {
+                    if (page === 0) {
+                        this.subCatList = response.data.data.products;
+                        this.focussedListItem = 0;
+                    } else {
+                        this.focussedListItem = page * 24;
+                        this.subCatList = this.subCatList.concat(response.data.data.products);
+                    }
+
+                    this.setStage(1);
                 }
-                this.setStage(1);
                 this.panelStatus = null;
             });
         },
