@@ -1,472 +1,187 @@
 <template>
     <div
-        class="vs-ski-scotland-status"
-        data-test="vs-ski-scotland-status"
+        class="card vs-ski-scotland-card"
+        data-test="vs-ski-scotland-card"
     >
-        <VsContainer v-if="!jsDisabled && isLoading">
-            <VsRow>
-                <VsCol class="text-center py-4">
-                    <VsLoadingSpinner />
-                    <!--
-                        @slot Slot for data loading message
-                        Expects text
-                    -->
-                    <slot name="data-loading" />
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-        <VsContainer v-if="!jsDisabled && displayError">
-            <VsRow>
-                <VsCol class="text-center py-4">
-                    <!--
-                        @slot Slot for data unavailable message
-                        Expects text
-                    -->
-                    <slot name="data-unavailable" />
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-        <VsContainer>
-            <VsRow>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    v-if="jsDisabled"
-                    data-test="vs-ski__js-disabled"
-                >
-                    <VsWarning
-                        theme="light"
-                    >
-                        <!--
-                            @slot Slot for JS required message
-                            Expects text
-                        -->
-                        <slot name="js-required" />
-                    </VsWarning>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    v-if="!jsDisabled && !isLoading && !displayError"
-                >
-                    <VsHeading
-                        level="3"
-                        override-style-level="5"
-                        data-test="vs-ski__runs-lifts-status-label"
-                        class="d-none d-md-block"
-                    >
-                        {{ runsLiftsStatusLabel }}
-                    </VsHeading>
-
-                    <VsTable
-                        :table-caption="runsLiftsStatusLabel"
-                    >
-                        <VsTableHead>
-                            <VsTableHeaderCell>
-                                <span data-test="vs-ski__status-label">
-                                    {{ statusLabel }}
-                                </span>
-                            </VsTableHeaderCell>
-                            <VsTableHeaderCell>
-                                <span data-test="vs-ski__runs-label">
-                                    {{ runsLabel }}
-                                </span>
-                            </VsTableHeaderCell>
-                            <VsTableHeaderCell>
-                                <span data-test="vs-ski__lifts-label">
-                                    {{ liftsLabel }}
-                                </span>
-                            </VsTableHeaderCell>
-                        </VsTableHead>
-                        <VsTableBody>
-                            <VsTableRow>
-                                <VsTableDataCell>
-                                    <VsIcon
-                                        name="tick"
-                                        size="xs"
-                                        class="mr-2"
-                                    />
-                                    <span data-test="vs-ski__open-label">
-                                        {{ summaryOpenLabel }}
-                                    </span>
-                                </VsTableDataCell>
-                                <VsTableDataCell>
-                                    {{ statusSummary.runs.open }}/{{ runs.length }}
-                                </VsTableDataCell>
-                                <VsTableDataCell>
-                                    {{ statusSummary.lifts.open }}/{{ lifts.length }}
-                                </VsTableDataCell>
-                            </VsTableRow>
-                            <VsTableRow
-                                v-if="statusSummary.runs.limitedPatrol
-                                    || statusSummary.lifts.limitedPatrol"
-                            >
-                                <VsTableDataCell>
-                                    <VsIcon
-                                        name="tick"
-                                        size="xs"
-                                        class="mr-2"
-                                    />
-                                    <span data-test="vs-ski__open-label">
-                                        {{ summaryLimitedPatrolLabel }}
-                                    </span>
-                                </VsTableDataCell>
-                                <VsTableDataCell>
-                                    {{ statusSummary.runs.limitedPatrol }}/{{ runs.length }}
-                                </VsTableDataCell>
-                                <VsTableDataCell>
-                                    {{ statusSummary.lifts.limitedPatrol }}/{{ lifts.length }}
-                                </VsTableDataCell>
-                            </VsTableRow>
-                            <VsTableRow>
-                                <VsTableDataCell>
-                                    <VsIcon
-                                        name="expected-open"
-                                        size="xs"
-                                        class="mr-2"
-                                    />
-                                    <span data-test="vs-ski__opening-label">
-                                        {{ summaryOpeningLabel }}
-                                    </span>
-                                </VsTableDataCell>
-                                <VsTableDataCell>
-                                    {{ statusSummary.runs.opening }}/{{ runs.length }}
-                                </VsTableDataCell>
-                                <VsTableDataCell>
-                                    {{ statusSummary.lifts.opening }}/{{ lifts.length }}
-                                </VsTableDataCell>
-                            </VsTableRow>
-                            <VsTableRow>
-                                <VsTableDataCell>
-                                    <VsIcon
-                                        name="status-closed"
-                                        size="xs"
-                                        class="mr-2"
-                                    />
-                                    <span data-test="vs-ski__closed-label">
-                                        {{ summaryClosedLabel }}
-                                    </span>
-                                </VsTableDataCell>
-                                <VsTableDataCell>
-                                    {{ statusSummary.runs.closed }}/{{ runs.length }}
-                                </VsTableDataCell>
-                                <VsTableDataCell>
-                                    {{ statusSummary.lifts.closed }}/{{ lifts.length }}
-                                </VsTableDataCell>
-                            </VsTableRow>
-                            <VsTableRow
-                                v-if="statusSummary.runs.onHold || statusSummary.lifts.onHold"
-                            >
-                                <VsTableDataCell>
-                                    <VsIcon
-                                        name="status-closed"
-                                        size="xs"
-                                        class="mr-2"
-                                    />
-                                    <span data-test="vs-ski__open-label">
-                                        {{ summaryOnHoldLabel }}
-                                    </span>
-                                </VsTableDataCell>
-                                <VsTableDataCell>
-                                    {{ statusSummary.runs.onHold }}/{{ runs.length }}
-                                </VsTableDataCell>
-                                <VsTableDataCell>
-                                    {{ statusSummary.lifts.onHold }}/{{ lifts.length }}
-                                </VsTableDataCell>
-                            </VsTableRow>
-                        </VsTableBody>
-                        <VsTableFooter>
-                            <VsTableRow>
-                                <VsTableDataCell
-                                    colspan="3"
-                                    role="cell"
-                                >
-                                    <span data-test="vs-ski__last-updated-label">
-                                        {{ lastUpdatedLabel }}: {{ lastUpdate }}
-                                    </span>
-                                </VsTableDataCell>
-                            </VsTableRow>
-                        </VsTableFooter>
-                    </VsTable>
-                    <VsLink
-                        :href="`#vs-ski-scotland-status__detailed-status-${id}`"
-                        type="default"
-                        class="vs-ski-scotland-status__detailed-status-link"
-                    >
-                        {{ detailedStatusLabel }}
-                    </VsLink>
-                </VsCol>
-
-                <VsCol
-                    cols="12"
-                    md="3"
-                    offset-md="1"
-                    class="vs-ski-scotland-status__centre-info"
-                >
-                    <!--
-                        @slot Slot for centre information content
-                        Expects html
-                    -->
-                    <slot name="centre-information" />
-                </VsCol>
-            </VsRow>
-            <VsRow
-                v-if="!jsDisabled && !isLoading && !displayError"
+        <div
+            class="vs-ski-scotland-card__img-container"
+        >
+            <template
+                v-if="imgSrc"
             >
-                <VsCol
-                    cols="12"
-                    md="9"
-                    class="vs-ski-scotland-status__full-report"
-                >
-                    <!-- eslint-disable vue/no-v-html -->
-                    <VsHeading
-                        level="2"
-                        data-test="vs-ski__snow-conditions-label"
-                    >
-                        {{ snowConditionsLabel }}
-                    </VsHeading>
-                    <div
-                        v-html="report"
-                    />
-                    <VsHeading
-                        level="3"
-                        override-style-level="5"
-                        data-test="vs-ski__current-weather-label"
-                        v-if="currentWeather.length"
-                    >
-                        {{ currentWeatherLabel }}
-                    </VsHeading>
-                    <div
-                        v-if="currentWeather.length"
-                        v-html="currentWeather"
-                    />
-                    <VsHeading
-                        level="3"
-                        override-style-level="5"
-                        data-test="vs-ski__weather-forecast-label"
-                        v-if="weatherForecast.length"
-                    >
-                        {{ weatherForecastLabel }}
-                    </VsHeading>
-                    <div
-                        v-if="weatherForecast.length"
-                        v-html="weatherForecast"
-                    />
-                    <VsHeading
-                        level="3"
-                        override-style-level="5"
-                        data-test="vs-ski__roads-label"
-                        v-if="roadStatus.length"
-                    >
-                        {{ roadsLabel }}
-                    </VsHeading>
-                    <div
-                        v-if="roadStatus.length"
-                        v-html="roadStatus"
-                    />
-                    <VsHeading
-                        level="3"
-                        override-style-level="5"
-                        data-test="vs-ski__news-label"
-                        v-if="news.length"
-                    >
-                        {{ newsLabel }}
-                    </VsHeading>
-                    <div
-                        v-if="news.length"
-                        v-html="news"
-                    />
-                    <!-- eslint-enable vue/no-v-html -->
-                </VsCol>
-            </VsRow>
-            <VsRow
-                v-if="!jsDisabled && !isLoading && !displayError"
+                <VsImg
+                    :src="imgSrc"
+                    :alt="imgAlt"
+                    :srcset="`${imgSrc}?size=xs 300w,
+                        ${imgSrc}?size=sm 600w,
+                        ${imgSrc}?size=md 1200w,
+                        ${imgSrc}?size=lg 2048w`"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    :low-res-image="`${imgSrc}?size=xxs`"
+                    class="vs-ski-scotland-card__img"
+                    data-test="vs-ski-scotland-card__img"
+                />
+            </template>
+        </div>
+        <div class="card-body">
+            <VsHeading
+                level="3"
             >
-                <VsCol
-                    cols="12"
-                    md="9"
-                >
-                    <VsHeading
-                        level="3"
-                        data-test="vs-ski__lift-status-label"
-                        :id="`vs-ski-scotland-status__detailed-status-${id}`"
-                    >
-                        {{ liftStatusLabel }}
-                    </VsHeading>
-
-                    <VsTable
-                        :table-caption="liftStatusLabel"
-                    >
-                        <VsTableHead>
-                            <VsTableHeaderCell>{{ statusLabel }}</VsTableHeaderCell>
-                            <VsTableHeaderCell>{{ liftLabel }}</VsTableHeaderCell>
-                        </VsTableHead>
-                        <VsTableBody>
-                            <VsTableRow
-                                v-for="lift in lifts"
-                                :key="lift.name"
-                            >
-                                <VsTableDataCell v-if="lift.status === '0' || lift.status === 0">
-                                    <VsIcon
-                                        name="status-closed"
-                                        size="xs"
-                                        class="mr-2"
-                                    /> {{ statusClosedLabel }}
-                                </VsTableDataCell>
-                                <VsTableDataCell v-if="lift.status === '1' || lift.status === 1">
-                                    <VsIcon
-                                        name="tick"
-                                        size="xs"
-                                        class="mr-2"
-                                    /> {{ statusOpenLabel }}
-                                </VsTableDataCell>
-                                <VsTableDataCell v-if="lift.status === '2' || lift.status === 2">
-                                    <VsIcon
-                                        name="expected-open"
-                                        size="xs"
-                                        class="mr-2"
-                                    /> {{ statusOpeningLabel }}
-                                </VsTableDataCell>
-                                <VsTableDataCell v-if="lift.status === '3' || lift.status === 3">
-                                    <VsIcon
-                                        name="tick"
-                                        size="xs"
-                                        class="mr-2"
-                                    /> {{ statusLimitedPatrolLabel }}
-                                </VsTableDataCell>
-                                <VsTableDataCell v-if="lift.status === '4' || lift.status === 4">
-                                    <VsIcon
-                                        name="status-closed"
-                                        size="xs"
-                                        class="mr-2"
-                                    /> {{ statusOnHoldLabel }}
-                                </VsTableDataCell>
-                                <VsTableDataCell>{{ lift.name }}</VsTableDataCell>
-                            </VsTableRow>
-                        </VsTableBody>
-                        <VsTableFooter>
-                            <VsTableRow>
-                                <VsTableDataCell
-                                    colspan="2"
-                                >
-                                    <p>{{ lastUpdatedLabel }}: {{ lastUpdate }}</p>
-                                </VsTableDataCell>
-                            </VsTableRow>
-                        </VsTableFooter>
-                    </VsTable>
-                </VsCol>
-            </VsRow>
-            <VsRow
-                v-if="!jsDisabled && !isLoading && !displayError"
+                <!--
+                    @slot Slot for ski centre name
+                    Expects text
+                -->
+                <slot name="centre-name" />
+            </VsHeading>
+            <VsTable
+                :table-caption="runsLiftsStatusLabel"
             >
-                <VsCol
-                    cols="12"
-                    md="9"
-                >
-                    <VsHeading
-                        level="3"
-                        data-test="vs-ski__run-status-label"
+                <VsTableHead>
+                    <VsTableHeaderCell>
+                        <span data-test="vs-ski__status-label">
+                            {{ statusLabel }}
+                        </span>
+                    </VsTableHeaderCell>
+                    <VsTableHeaderCell
+                        v-if="runs.length"
                     >
-                        {{ runStatusLabel }}
-                    </VsHeading>
-                    <div
-                        v-for="level in filteredRunLevels"
-                        :key="level.name"
+                        <span data-test="vs-ski__runs-label">
+                            {{ runsLabel }}
+                        </span>
+                    </VsTableHeaderCell>
+                    <VsTableHeaderCell>
+                        <span data-test="vs-ski__lifts-label">
+                            {{ liftsLabel }}
+                        </span>
+                    </VsTableHeaderCell>
+                </VsTableHead>
+                <VsTableBody>
+                    <VsTableRow>
+                        <VsTableDataCell>
+                            <VsIcon
+                                name="tick"
+                                size="xs"
+                                class="mr-2"
+                            />
+                            <span data-test="vs-ski__open-label">
+                                {{ summaryOpenLabel }}
+                            </span>
+                        </VsTableDataCell>
+                        <VsTableDataCell
+                            v-if="runs.length"
+                        >
+                            {{ statusSummary.runs.open }}/{{ runs.length }}
+                        </VsTableDataCell>
+                        <VsTableDataCell>
+                            {{ statusSummary.lifts.open }}/{{ lifts.length }}
+                        </VsTableDataCell>
+                    </VsTableRow>
+                    <VsTableRow
+                        v-if="statusSummary.runs.limitedPatrol
+                            || statusSummary.lifts.limitedPatrol"
                     >
-                        <VsAccordion>
-                            <VsAccordionItem
-                                variant="transparent"
-                                :control-id="'accordion_item_' + level.name"
-                                :colour-badge="level.colour"
-                            >
-                                <div
-                                    slot="title"
-                                    :data-test="`vs-ski__${level.name}-label`"
-                                    class="d-inline-block"
-                                >
-                                    <span class="sr-only">{{ getColourLabel(level.colour) }}</span>
-                                    {{ level.name }}
-                                </div>
-                                <VsTable
-                                    :table-caption="level.colour + ' - ' + level.name"
-                                >
-                                    <VsTableHead>
-                                        <VsTableHeaderCell>{{ statusLabel }}</VsTableHeaderCell>
-                                        <VsTableHeaderCell>{{ runLabel }}</VsTableHeaderCell>
-                                    </VsTableHead>
-                                    <VsTableBody>
-                                        <VsTableRow
-                                            v-for="run in level.runs"
-                                            :key="run.name"
-                                            :data-test="`vs-ski__${level.name}-row`"
-                                        >
-                                            <VsTableDataCell
-                                                v-if="run.status === '0' || run.status === 0"
-                                            >
-                                                <VsIcon
-                                                    name="status-closed"
-                                                    size="xs"
-                                                    class="mr-2"
-                                                /> {{ statusClosedLabel }}
-                                            </VsTableDataCell>
-                                            <VsTableDataCell
-                                                v-if="run.status === '1' || run.status === 1"
-                                            >
-                                                <VsIcon
-                                                    name="tick"
-                                                    size="xs"
-                                                    class="mr-2"
-                                                /> {{ statusOpenLabel }}
-                                            </VsTableDataCell>
-                                            <VsTableDataCell
-                                                v-if="run.status === '2' || run.status === 2"
-                                            >
-                                                <VsIcon
-                                                    name="expected-open"
-                                                    size="xs"
-                                                    class="mr-2"
-                                                /> {{ statusOpeningLabel }}
-                                            </VsTableDataCell>
-                                            <VsTableDataCell
-                                                v-if="run.status === '3' || run.status === 3"
-                                            >
-                                                <VsIcon
-                                                    name="tick"
-                                                    size="xs"
-                                                    class="mr-2"
-                                                /> {{ statusLimitedPatrolLabel }}
-                                            </VsTableDataCell>
-                                            <VsTableDataCell
-                                                v-if="run.status === '2' || run.status === 2"
-                                            >
-                                                <VsIcon
-                                                    name="status-closed"
-                                                    size="xs"
-                                                    class="mr-2"
-                                                /> {{ statusOnHoldLabel }}
-                                            </VsTableDataCell>
-                                            <VsTableDataCell>{{ run.name }}</VsTableDataCell>
-                                        </VsTableRow>
-                                    </VsTableBody>
-                                    <VsTableFooter>
-                                        <VsTableRow>
-                                            <VsTableDataCell>
-                                                <p>{{ lastUpdatedLabel }}: {{ lastUpdate }}</p>
-                                            </VsTableDataCell>
-                                        </VsTableRow>
-                                    </VsTableFooter>
-                                </VsTable>
-                            </VsAccordionItem>
-                        </VsAccordion>
-                    </div>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
+                        <VsTableDataCell>
+                            <VsIcon
+                                name="ski-boot"
+                                size="xs"
+                                class="mr-2"
+                            />
+                            <span data-test="vs-ski__open-label">
+                                {{ summaryLimitedPatrolLabel }}
+                            </span>
+                        </VsTableDataCell>
+                        <VsTableDataCell
+                            v-if="runs.length"
+                        >
+                            {{ statusSummary.runs.limitedPatrol }}/{{ runs.length }}
+                        </VsTableDataCell>
+                        <VsTableDataCell>
+                            {{ statusSummary.lifts.limitedPatrol }}/{{ lifts.length }}
+                        </VsTableDataCell>
+                    </VsTableRow>
+                    <VsTableRow>
+                        <VsTableDataCell>
+                            <VsIcon
+                                name="expected-open"
+                                size="xs"
+                                class="mr-2"
+                            />
+                            <span data-test="vs-ski__opening-label">
+                                {{ summaryOpeningLabel }}
+                            </span>
+                        </VsTableDataCell>
+                        <VsTableDataCell
+                            v-if="runs.length"
+                        >
+                            {{ statusSummary.runs.opening }}/{{ runs.length }}
+                        </VsTableDataCell>
+                        <VsTableDataCell>
+                            {{ statusSummary.lifts.opening }}/{{ lifts.length }}
+                        </VsTableDataCell>
+                    </VsTableRow>
+                    <VsTableRow>
+                        <VsTableDataCell>
+                            <VsIcon
+                                name="status-closed"
+                                size="xs"
+                                class="mr-2"
+                            />
+                            <span data-test="vs-ski__closed-label">
+                                {{ summaryClosedLabel }}
+                            </span>
+                        </VsTableDataCell>
+                        <VsTableDataCell
+                            v-if="runs.length"
+                        >
+                            {{ statusSummary.runs.closed }}/{{ runs.length }}
+                        </VsTableDataCell>
+                        <VsTableDataCell>
+                            {{ statusSummary.lifts.closed }}/{{ lifts.length }}
+                        </VsTableDataCell>
+                    </VsTableRow>
+                    <VsTableRow
+                        v-if="statusSummary.runs.onHold || statusSummary.lifts.onHold"
+                    >
+                        <VsTableDataCell>
+                            <VsIcon
+                                name="hourglass"
+                                size="xs"
+                                class="mr-2"
+                            />
+                            <span data-test="vs-ski__open-label">
+                                {{ summaryOnHoldLabel }}
+                            </span>
+                        </VsTableDataCell>
+                        <VsTableDataCell
+                            v-if="runs.length"
+                        >
+                            {{ statusSummary.runs.onHold }}/{{ runs.length }}
+                        </VsTableDataCell>
+                        <VsTableDataCell>
+                            {{ statusSummary.lifts.onHold }}/{{ lifts.length }}
+                        </VsTableDataCell>
+                    </VsTableRow>
+                </VsTableBody>
+                <VsTableFooter>
+                    <VsTableRow>
+                        <VsTableDataCell
+                            colspan="3"
+                            role="cell"
+                        >
+                            <span data-test="vs-ski__last-updated-label">
+                                {{ lastUpdatedLabel }}: {{ lastUpdate }}
+                            </span>
+                        </VsTableDataCell>
+                    </VsTableRow>
+                </VsTableFooter>
+            </VsTable>
+        </div>
     </div>
 </template>
 
 <script>
-
+import VsImg from '@components/elements/img/Img';
+import VsHeading from '@components/elements/heading/Heading';
 import VsTable from '@components/patterns/table/Table';
 import VsTableHead from '@components/patterns/table/components/TableHead';
 import VsTableHeaderCell from '@components/patterns/table/components/TableHeaderCell';
@@ -474,16 +189,6 @@ import VsTableBody from '@components/patterns/table/components/TableBody';
 import VsTableRow from '@components/patterns/table/components/TableRow';
 import VsTableDataCell from '@components/patterns/table/components/TableDataCell';
 import VsTableFooter from '@components/patterns/table/components/TableFooter';
-import VsAccordion from '@components/patterns/accordion/Accordion';
-import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
-import VsWarning from '@components/patterns/warning/Warning';
-import {
-    VsContainer, VsRow, VsCol,
-} from '@components/elements/grid';
-import VsIcon from '@components/elements/icon/Icon';
-import VsLink from '@components/elements/link/Link';
-import VsHeading from '@components/elements/heading/Heading';
-import VsLoadingSpinner from '@components/elements/loading-spinner/LoadingSpinner';
 
 const axios = require('axios');
 
@@ -498,6 +203,8 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
+        VsImg,
+        VsHeading,
         VsTable,
         VsTableHead,
         VsTableHeaderCell,
@@ -505,22 +212,12 @@ export default {
         VsTableRow,
         VsTableDataCell,
         VsTableFooter,
-        VsContainer,
-        VsRow,
-        VsCol,
-        VsAccordion,
-        VsAccordionItem,
-        VsIcon,
-        VsLink,
-        VsHeading,
-        VsLoadingSpinner,
-        VsWarning,
     },
     props: {
         /**
-        * The url that the skiStatus information should be retrieved from for display
+        * The url that the centre's summary information should be retrieved from for display
         */
-        skiStatusUrl: {
+        centreInfoUrl: {
             type: String,
             default: '',
         },
@@ -560,6 +257,14 @@ export default {
         runsLabel: {
             type: String,
             default: 'Runs',
+        },
+        /**
+         * Localisable label, translation of "run/lift status" for the full
+         * report
+         */
+        runsLiftsStatusLabel: {
+            type: String,
+            default: 'Run/Lift Status',
         },
         /**
          * Localisable label, translation of "status" for status tables
@@ -603,19 +308,50 @@ export default {
             type: String,
             default: 'On Hold',
         },
+        /**
+        * The image to use in the card
+        */
+        imgSrc: {
+            required: true,
+            type: String,
+        },
+        /**
+        * The image alt text to use in the card
+        */
+        imgAlt: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
-            componentId: 0,
-            skiResorts: [],
+            statusSummary: {
+                runs: {
+                    open: 0,
+                    opening: 0,
+                    closed: 0,
+                    onHold: 0,
+                    limitedPatrol: 0,
+                },
+                lifts: {
+                    open: 0,
+                    opening: 0,
+                    closed: 0,
+                    onHold: 0,
+                    limitedPatrol: 0,
+                },
+            },
+            runs: [],
+            lifts: [],
+            lastUpdate: '',
             jsDisabled: true,
             isLoading: true,
             displayError: false,
         };
     },
     mounted() {
-        if (this.skiStatusUrl) {
-            this.retrieveSkiStatus();
+        if (this.centreInfoUrl) {
+            this.retrieveCentreInfo();
         }
 
         // If component successfully mounted, declare js is enabled to hide the warning
@@ -625,20 +361,22 @@ export default {
     methods: {
         /**
          * Invoked when mounted, retrieves ski status info from the appropriate slope API
-         * and sets up relevant sub-components
          */
-        retrieveSkiStatus() {
+        retrieveCentreInfo() {
             const errorTimeout = setTimeout(() => {
                 this.displayError = true;
             }, this.timeoutDuration);
 
-            axios.get(this.skiStatusUrl)
+            axios.get(this.centreInfoUrl)
                 .then((response) => {
                     const data = this.cleanData(response.data);
+                    console.log(data);
                     this.processLifts(data.lifts);
-                    this.processRuns(data.runs);
+                    if (data.runs) {
+                        this.processRuns(data.runs);
+                    }
+                    console.log(data);
                     this.processLastUpdate(data.lastUpdate);
-                    this.processFullReport(data.report);
                     this.isLoading = false;
                     clearTimeout(errorTimeout);
                 })
@@ -682,19 +420,108 @@ export default {
                 output.runs = runs;
             }
 
-            // Some sites return itineraries with null difficulty rather than the standard
-            // orange
-            for (let x = 0; x < output.runs.length; x++) {
-                if (output.runs[x].difficulty === null) {
-                    output.runs[x].difficulty = 'orange';
+            return output;
+        },
+        processLastUpdate(lastUpdate) {
+            const event = new Date(
+                lastUpdate.year,
+                parseInt(lastUpdate.month, 10) - 1,
+                lastUpdate.day
+            );
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            };
+            const formattedDate = event.toLocaleDateString(this.locale, options);
+            this.lastUpdate = `${lastUpdate.hour24}:${lastUpdate.minute} - ${formattedDate}`;
+        },
+        processLifts(lifts) {
+            for (let x = 0; x < lifts.length; x++) {
+                switch (lifts[x].status) {
+                case '4':
+                case 4:
+                    this.statusSummary.lifts.onHold += 1;
+                    break;
+                case '3':
+                case 3:
+                    this.statusSummary.lifts.limitedPatrol += 1;
+                    break;
+                case '2':
+                case 2:
+                    this.statusSummary.lifts.opening += 1;
+                    break;
+                case '1':
+                case 1:
+                    this.statusSummary.lifts.open += 1;
+                    break;
+                default:
+                    this.statusSummary.lifts.closed += 1;
+                    break;
                 }
             }
 
-            return output;
+            this.lifts = lifts;
+        },
+        processRuns(runs) {
+            for (let x = 0; x < runs.length; x++) {
+                switch (runs[x].status) {
+                case '4':
+                case 4:
+                    this.statusSummary.runs.onHold += 1;
+                    break;
+                case '3':
+                case 3:
+                    this.statusSummary.runs.limitedPatrol += 1;
+                    break;
+                case '2':
+                case 2:
+                    this.statusSummary.runs.opening += 1;
+                    break;
+                case '1':
+                case 1:
+                    this.statusSummary.runs.open += 1;
+                    break;
+                default:
+                    this.statusSummary.runs.closed += 1;
+                    break;
+                }
+            }
+
+            this.runs = runs;
         },
     },
 };
 </script>
 
 <style lang="scss">
+    .vs-ski-scotland-card {
+        .vs-ski-scotland-card__img-container {
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+            aspect-ratio: 3/2;
+
+            @supports not (aspect-ratio: 3/2) {
+                padding-bottom: 66.6%;
+            }
+        }
+
+        .vs-ski-scotland-card__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            align-self: flex-start;
+            flex-shrink: 0; // IE11 fix, prevents image vertical stretching
+        }
+
+        .card-body {
+            padding: $spacer-4;
+        }
+
+        .vs-heading {
+            margin-top: $spacer-0;
+        }
+    }
+
 </style>
