@@ -447,17 +447,20 @@ export default {
                 [output.lifts] = data.lift.sectors;
                 output.lifts = output.lifts.lifts;
 
-                // Some of the sites (Nevis Range) return multiple areas, some runs appear in
-                // multiple areas and some are only in one so we have to join them, then filter
-                // out dupes.
-                const runs = data.run.areas
-                    .map((area) => area.runs)
-                    .reduce((pre, cur) => pre.concat(cur))
-                    .filter((value, index, self) => index === self.findIndex((t) => (
-                        t.name === value.name
-                    )));
+                // Glenshee and the Lecht don't have any run data, just lifts
+                if (data.run.areas) {
+                    // Some of the sites (Nevis Range) return multiple areas, some runs appear in
+                    // multiple areas and some are only in one so we have to join them, then filter
+                    // out dupes.
+                    const runs = data.run.areas
+                        .map((area) => area.runs)
+                        .reduce((pre, cur) => pre.concat(cur))
+                        .filter((value, index, self) => index === self.findIndex((t) => (
+                            t.name === value.name
+                        )));
 
-                output.runs = runs;
+                    output.runs = runs;
+                }
             }
 
             return output;
